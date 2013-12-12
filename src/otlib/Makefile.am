@@ -2,19 +2,19 @@ SUBDIRS = otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 
-opentxs_include_dir =		$(top_srcdir)/include
-opentxs_source_dir =		$(top_srcdir)/src
+opentxs_include_dir 	=	$(top_srcdir)/include
+opentxs_source_dir 	=	$(top_srcdir)/src
 
 ## COMMON FLAGS ###
 
-common_includes		=	$(AM_CXXFLAGS)			\
-                -I$(top_builddir)/include/otlib \
-                -I$(opentxs_include_dir)		\
-				-I$(opentxs_include_dir)/otlib	\
+common_includes		=	$(AM_CXXFLAGS)				\
+				$(DEPS_FLAGS)				\
+				-I$(top_builddir)/include/otlib 	\
+				-I$(opentxs_include_dir)		\
+				-I$(opentxs_include_dir)/otlib		\
 				-I$(opentxs_include_dir)/containers	\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
-
 
 
 #### Lib OT build calls
@@ -25,11 +25,12 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 
 libot_la_CXXFLAGS	=	$(common_includes)
 
-libot_la_LIBADD	=	bigint/libbigint.la		\
+libot_la_LIBADD		=	bigint/libbigint.la		\
 				irrxml/libirrxml.la		\
 				lucre/liblucre.la		\
 				otprotob/libotprotob.la		\
-				otext/libotext.la
+				otext/libotext.la		\
+				$(DEPS_LIBS)
 
 libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
 				irrxml/libirrxml.la		\
