@@ -98,7 +98,7 @@ $ cd ..
 $ export PKG_CONFIG_PATH=$HOMEBREW_PREFIX/lib/pkgconfig
 
 $ mkdir -p ~/Scratch/Sources; cd ~/Scratch/Sources
-$ git clone git://github.com/FellowTraveler/Open-Transactions.git
+$ git clone git://github.com/Open-Transactions/Open-Transactions.git
 $ cd Open-Transactions
 
 $ ./autogen.sh
