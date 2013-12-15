@@ -41,7 +41,7 @@
 #ifdef OT_USE_TR1
 #undef OT_USE_TR1
 #endif
-#if !defined(_MSC_VER) && !defined(OPENTXS_HAVE_CXX11)
+#if !defined(_MSC_VER) && defined(OPENTXS_NO_CXX11)
 #define OT_USE_TR1
 #endif
 

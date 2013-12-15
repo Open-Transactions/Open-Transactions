@@ -107,10 +107,10 @@ $ ./autogen.sh
 ## include "--disable-cxx11" in your configure options.
 
 (for a x64)
-$ ./configure --prefix=$HOMEBREW_PREFIX --disable-boost --with-openssl=/usr/local/opt/openssl
+$ ./configure --prefix=$HOMEBREW_PREFIX --with-openssl=/usr/local/opt/openssl
 
 (for a x32)
-$ ./configure --target=i686-apple-darwin11 --prefix=$HOMEBREW_PREFIX --disable-boost --with-openssl=/usr/local/opt/openssl
+$ ./configure --target=i686-apple-darwin11 --prefix=$HOMEBREW_PREFIX --with-openssl=/usr/local/opt/openssl
 
 (NB: Default without the "--prefix=$HOMEBREW_PREFIX" installs sytem-wide  
 and will require admin privileges for "$ sudo make install" step below)
