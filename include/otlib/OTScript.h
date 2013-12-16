@@ -155,7 +155,7 @@
 
 #include <chaiscript/chaiscript.hpp>
 
-#ifndef OPENTXS_HAVE_BOOST
+#ifndef OPENTXS_CHAISCRIPT_4
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
