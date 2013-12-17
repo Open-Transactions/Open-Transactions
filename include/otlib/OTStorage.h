@@ -2158,7 +2158,7 @@ namespace OTDB
 
 
 // -----------------------------------------------
-#ifdef ANDROID
+#if defined(ANDROID) || defined(OT_KEYRING_IOS)
 #include "Generics-lite.pb.h"
 #include "Markets-lite.pb.h"
 #include "Bitcoin-lite.pb.h"
