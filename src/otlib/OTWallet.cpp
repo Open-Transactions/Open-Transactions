@@ -951,8 +951,11 @@ OTPseudonym * OTWallet::GetOrLoadPublicNym(const OTIdentifier & NYM_ID, const ch
 					   "Attempting to load public key...\n", szFunc, szFuncName);
 		pNym = OTPseudonym::LoadPublicNym(NYM_ID); // <===========
 		// It worked!
-		if (NULL != pNym) // LoadPublicNym has plenty of error logging already.	
-			this->AddNym(*pNym); // <===========
+		if (NULL != pNym) // LoadPublicNym has plenty of error logging already.
+        {
+            if (pNym->HasPrivateKey()) // We don't auto-add public Nyms -- only private ones.
+                this->AddNym(*pNym); // <===========
+        }
 		else
 			OTLog::vOutput(0, "%s %s: Unable to load public Nym for: %s \n",
 						   szFunc, szFuncName, strNymID.Get());
