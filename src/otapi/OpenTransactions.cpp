@@ -13244,17 +13244,15 @@ int OT_API::usageCredits(const OTIdentifier &	SERVER_ID,
 
 
 int OT_API::checkUser(OTIdentifier & SERVER_ID,
-					   OTIdentifier & USER_ID,
-					   OTIdentifier & USER_ID_CHECK)
+                      OTIdentifier & USER_ID,
+                      OTIdentifier & USER_ID_CHECK)
 {	
-	const char * szFuncName = "OT_API::checkUser";
-	// -----------------------------------------------------
-	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, szFuncName); // This ASSERTs and logs already.
+	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pNym) return (-1);	
 	// By this point, pNym is a good pointer, and is on the wallet.
 	//  (No need to cleanup.)
 	// -----------------------------------------------------
-	OTServerContract *	pServer = this->GetServer(SERVER_ID, szFuncName); // This ASSERTs and logs already.
+	OTServerContract *	pServer = this->GetServer(SERVER_ID, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pServer) return (-1);
 	// By this point, pServer is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------

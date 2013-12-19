@@ -846,7 +846,7 @@ std::string OTAPI_Wrap::GetNym_SubCredentialContents(const std::string & NYM_ID,
         const OTSubcredential * pSub = pCredential->GetSubcredential(strSubID);
 
         if (NULL != pSub)
-            return pSub->GetContents().Get();
+            return pSub->GetPubCredential().Get();
     }
     // --------------
     return "";

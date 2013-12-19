@@ -30,6 +30,13 @@
 #include <vector>
 #include <locale>
 
+// NOTE: Turns out moneypunct kind of sucks.
+// As a result, for internationalization purposes,
+// these values have to be set here before compilation.
+//
+#define OT_THOUSANDS_SEP ","
+#define OT_DECIMAL_POINT "."
+
 // if we are not compiling with C++11, lets use the tr1.
 #ifdef OT_USE_TR1
 #undef OT_USE_TR1
