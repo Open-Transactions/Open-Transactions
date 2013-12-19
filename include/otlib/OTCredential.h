@@ -388,7 +388,7 @@ public:
     const OTString & GetNymIDSource()    const { return m_strSourceForNymID; } // Source for NymID for this credential. (Hash it to get ID.)
     const OTString & GetContents()       const { return m_strContents;       } // The actual, final, signed public credential. Public keys only.
 
-    const OTString & GetPubCredential()  const;  // More intelligent version of GetContents. Higher level.
+EXPORT    const OTString & GetPubCredential()  const;  // More intelligent version of GetContents. Higher level.
     const OTString & GetPriCredential()  const;  // I needed this for exporting a Nym (with credentials) from the wallet.
         
     const OTString & GetMasterSigned()   const { return m_strMasterSigned;   } // For subkeys, the master credential signs first, then the subkey signs a version which contains the "master signed" version. (This proves the subkey really authorizes all this.) That "master signed" version is stored here in m_strMasterSigned. But the final actual public credential (which must be hashed to get the credential ID) is the contents, not the master signed. The contents is the public version, signed by the subkey, which contains the master-signed version inside of it as a data member (this variable in fact, m_strMasterSigned.) You might ask: then what's in m_strRawContents? Answer: the version that includes the private keys. Well at least, on the client side. On the server side, the raw contents will contain only the public version because that's all the client will send it. Que sera sera.
