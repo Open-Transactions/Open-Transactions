@@ -3,11 +3,10 @@ SUBDIRS                 =   otlib otapi
 opentxs_include_dir     =   $(top_srcdir)/include
 opentxs_source_dir      =   $(top_srcdir)/src
 
-common_includes         =   $(AM_CXXFLAGS)			\
-			    $(DEPS_FLAGS)			\
-			    -I$(top_builddir)/include/otlib	\
-			    -I$(opentxs_include_dir)		\
-			    -I$(opentxs_include_dir)/otlib
+common_includes         =   $(AM_CXXFLAGS) \
+                            -I$(top_builddir)/include/otlib	\
+                            -I$(opentxs_include_dir)		\
+                            -I$(opentxs_include_dir)/otlib
 
 ## Open Transactions Bin Build  ##
 

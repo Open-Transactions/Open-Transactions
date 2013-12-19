@@ -54,6 +54,32 @@ AC_FUNC_STRERROR_R
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([getpass gettimeofday mkdir socket strtol strtoul])
 
+#########################
+######## PThread ########
+#########################
+
+# we have pthread fisrt, as this needs to be included before everything else.
+
+AX_PTHREAD
+
+# set the c compiler to what AX_PTHREAD thinks it should be.
+CC="$PTHREAD_CC"
+
+#########################
+######## OpenSSL ########
+#########################
+
+## OpenSSL
+# "--with-openssl=DIR" point to optional openssl package headers (for devs)
+
+AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
+
+if test "x$acv_ot_openssl" = xyes; then
+    AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
+else
+    AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
+fi
+
 
 ############################################
 ########   Check for CLANG OR GCC   ########
@@ -165,7 +191,7 @@ if test "x$boost" = xtrue; then
 	AX_BOOST_THREAD
 	AX_BOOST_DATE_TIME
 	AX_BOOST_SYSTEM
-	AC_SUBST([BOOST_LIB_INCLUDE],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
+	AC_SUBST([BOOST_LIBS],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
 	AC_DEFINE([HAVE_BOOST], [1], [We have boost])
 fi
 
@@ -243,22 +269,6 @@ AC_SUBST([PROTOC])
 
 
 #########################
-######## OpenSSL ########
-#########################
-
-## OpenSSL
-# "--with-openssl=DIR" point to optional openssl package headers (for devs)
-
-AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
-
-if test "x$acv_ot_openssl" = xyes; then
-    AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
-else
-    AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
-fi
-
-
-#########################
 ######## MsgPack ########
 #########################
 
@@ -270,12 +280,6 @@ AC_CHECK_LIB([msgpack],[msgpack_unpack],
 	],
 	[AC_MSG_RESULT([Warning: libmsgpack not found!])]
 	)
-
-#########################
-######## PThread ########
-#########################
-
-AX_PTHREAD
 
 #####################
 ######## ZMQ ########
@@ -604,13 +608,60 @@ AM_CONDITIONAL([WANT_GO], [test "x$with_go" == "xyes"])
 ######## Build Flags: what is passed to the compiler ########
 #############################################################
 
-AC_SUBST([DEPS_FLAGS],	["$CHAISCRIPT_CFLAGS $PROTOBUF_CFLAGS $OPENSSL_CFLAGS $PTHREAD_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS  $OPENSSL_INCLUDES"])
 
-AC_SUBST([DEPS_LIBS],	["$BOOST_LIB_INCLUDE $CHAISCRIPT_LIBS $PROTOBUF_LIBS $OPENSSL_LIBS $MSG_LIBS $PTHREAD_LIBS $ZMQ_LIBS $KRG_LIBS $OPENSSL_LDFLAGS -ldl"])
+#
+#    AM_CPPFLAGS (first)
+#
+#    info:
+#    We need to get the correct order here. (or things will break, somehow).
+#    On some systems, this order isn't so important, others it is very.
+#    
+#    First, the most important is 'pthread' we include this before anything else.
+#    In our makefiles AM_CXXFLAGS is explicitly used, while AM_CPPFLAGS is defined implicitly.
+#    Automake will first check if there is a LIB_CPPFLAGS (we don’t define any), then if this
+#    is not found, it will just include AM_CPPFLAGS, as is.
+#
+#    The order included is: CXX (compiler), CPPFLAGS (pre processor), CXXFLAGS (c++), FILE (file to be compiled)
+#
+#    We have sorted the include order for:
+#      1. pthread (this must be first)
+#      2. openssl (c program)
+#      3. boost (c++ low level)
+#      4. other (c++ high level)
+#      5. compiler flags
+#      6. warning flags
+#
+#
 
-AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $DEPS_FLAGS"])
+AC_SUBST([AM_CPPFLAGS], ["$PTHREAD_CFLAGS $BOOST_CPPFLAGS $OPENSSL_INCLUDES"])
 
-AC_SUBST([AM_CPPFLAGS],["$BOOST_CPPFLAGS"])
+
+#
+#    C and CXX (second)
+#
+#    info:
+#    This is where we define the rest of the compiler flags.
+#    We define DEPS_FLAGS, then set it to both C and C++ compilers.
+#    We finally append some C++ only compile options to the AM_CXXFLAGS.
+#
+#
+
+AC_SUBST([DEPS_FLAGS],	["$OPENSSL_CFLAGS $CHAISCRIPT_CFLAGS $PROTOBUF_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS"])
+AC_SUBST([AM_CFLAGS],	["$DEPS_FLAGS"])
+AC_SUBST([AM_CXXFLAGS],	["$DEPS_FLAGS $DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS"])
+
+
+#
+#    LIBS (third)
+#
+#    info:
+#    This is for the linker, we explicitly use DEPS_LIBS in the makefiles.
+#    Hence we clear AM_LIBS (we, instead, use LIB_LDADD)
+#
+#
+
+AC_SUBST([DEPS_LIBS],	["$PTHREAD_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS $BOOST_LIBS $CHAISCRIPT_LIBS $PROTOBUF_LIBS $MSG_LIBS $ZMQ_LIBS $KRG_LIBS -ldl"])
+AC_SUBST([AM_LIBS],	[""])
 
 
 #####################################################################################
