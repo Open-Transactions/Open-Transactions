@@ -166,6 +166,8 @@ if (test "x$acv_ot_cxx11" == x"true" -a "x$cxx11" == x"true"); then
 	fi
 
 	AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])	
+else
+	AC_DEFINE([NO_CXX11], [1], [Not Using C++11])
 fi
 
 
