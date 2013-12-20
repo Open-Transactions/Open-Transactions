@@ -65,6 +65,7 @@ AX_PTHREAD
 # set the c compiler to what AX_PTHREAD thinks it should be.
 CC="$PTHREAD_CC"
 
+
 #########################
 ######## OpenSSL ########
 #########################
@@ -74,7 +75,7 @@ CC="$PTHREAD_CC"
 
 AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
 
-if test "x$acv_ot_openssl" = xyes; then
+if (test "x$acv_ot_openssl" = xyes); then
     AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
 else
     AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
@@ -168,6 +169,54 @@ if (test "x$acv_ot_cxx11" == x"true" -a "x$cxx11" == x"true"); then
 	AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])	
 else
 	AC_DEFINE([NO_CXX11], [1], [Not Using C++11])
+fi
+
+
+#############
+## C++ TR1 ##
+#############
+
+
+AC_ARG_ENABLE([cxxtr1],
+	AS_HELP_STRING([--enable-cxxtr1],[enable C++03 TR1, default: false]),
+	[case "${enableval}" in
+		yes) xopensource=true ;;
+		no)  xopensource=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxxtr1]) ;;
+        esac],[cxxtr1=false])
+AM_CONDITIONAL([WANT_CXXTR1], [test x"$cxxtr1" = x"true"])
+
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"true"); then
+	AC_MSG_ERROR([ERROR: You cannot have C++11 and TR1 at the same time!])
+fi
+
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"false"); then
+	AC_DEFINE([CXX03_TR1], [1], [Use TR1 for compile])
+fi
+
+
+
+###########################
+## _XOPEN_SOURCE for MAC ##
+###########################
+
+
+# for mac we need to enable this flag (you can override it with --disable-xopensource).
+# this flag is only enabled if you don't have C++11
+
+AC_ARG_ENABLE([xopensource],
+	AS_HELP_STRING([--enable-xopensource],[enable xopen source, default: false]),
+	[case "${enableval}" in
+		yes) xopensource=true ;;
+		no)  xopensource=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-xopensource]) ;;
+        esac],[xopensource=false])
+AM_CONDITIONAL([WANT_XOPENSOURCE], [test x"$xopensource" = x"true"])
+
+if (test "x$xopensource" = x"true" -a "x$cxx11" == x"false"); then
+	AC_DEFINE([XOPEN_SOURCE], [1], [Set _XOPEN_SOURCE for compile])
 fi
 
 
@@ -642,13 +691,12 @@ AC_SUBST([AM_CPPFLAGS], ["$PTHREAD_CFLAGS $BOOST_CPPFLAGS $OPENSSL_INCLUDES"])
 #    C and CXX (second)
 #
 #    info:
-#    This is where we define the rest of the compiler flags.
 #    We define DEPS_FLAGS, then set it to both C and C++ compilers.
 #    We finally append some C++ only compile options to the AM_CXXFLAGS.
 #
 #
 
-AC_SUBST([DEPS_FLAGS],	["$OPENSSL_CFLAGS $CHAISCRIPT_CFLAGS $PROTOBUF_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS"])
+AC_SUBST([DEPS_FLAGS],	["$OPENSSL_CFLAGS $CHAISCRIPT_CFLAGS $PROTOBUF_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $PTHREAD_CFLAGS"])
 AC_SUBST([AM_CFLAGS],	["$DEPS_FLAGS"])
 AC_SUBST([AM_CXXFLAGS],	["$DEPS_FLAGS $DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS"])
 
@@ -660,10 +708,13 @@ AC_SUBST([AM_CXXFLAGS],	["$DEPS_FLAGS $DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS
 #    This is for the linker, we explicitly use DEPS_LIBS in the makefiles.
 #    Hence we clear AM_LIBS (we, instead, use LIB_LDADD)
 #
+#    Linker Order: From Most Dependant, to Least (the linker need to know what to link, before it links it).
+#    It is more important when linking staticialy.
+#
 #
 
-AC_SUBST([DEPS_LIBS],	["$PTHREAD_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS $BOOST_LIBS $CHAISCRIPT_LIBS $PROTOBUF_LIBS $MSG_LIBS $ZMQ_LIBS $KRG_LIBS -ldl"])
-AC_SUBST([AM_LIBS],	[""])
+AC_SUBST([DEPS_LIBS],	["$OPENSSL_LDFLAGS $OPENSSL_LIBS $CHAISCRIPT_LIBS $BOOST_LIBS $PROTOBUF_LIBS $MSG_LIBS $ZMQ_LIBS $KRG_LIBS $PTHREAD_LIBS -ldl"])
+AC_SUBST([AM_LIBS], 	[""])
 
 
 #####################################################################################
