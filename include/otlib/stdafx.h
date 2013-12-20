@@ -20,8 +20,19 @@
 #include <WinsockWrapper.h>
 #endif
 
-#include <list>
+// for mac, this enables deprecated functions. (aka, for pthread)
+#ifdef _XOPEN_SOURCE
+#undef _XOPEN_SOURCE
+#endif
+
+// define fstream while _XOPEN_SOURCE isn't defined.
 #include <fstream>
+
+#if defined(__APPLE__) && defined(OPENTXS_XOPEN_SOURCE)
+#define _XOPEN_SOURCE 500
+#endif
+
+#include <list>
 #include <string>
 #include <map>
 #include <set>
@@ -41,8 +52,15 @@
 #ifdef OT_USE_TR1
 #undef OT_USE_TR1
 #endif
-#if !defined(_MSC_VER) && defined(OPENTXS_NO_CXX11)
+#if !defined(_MSC_VER) && defined(OPENTXS_CXX03_TR1)
 #define OT_USE_TR1
+#endif
+
+#ifdef OT_USE_CXX11
+#undef OT_USE_CXX11
+#endif
+#if defined(_MSC_VER) || !defined(OPENTXS_NO_CXX11)
+#define OT_USE_CXX11
 #endif
 
 #ifndef OT_USE_TR1
