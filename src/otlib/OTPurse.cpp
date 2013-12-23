@@ -215,17 +215,16 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
 //
 OTCachedKey * OTPurse::GetInternalMaster()  // stores the passphrase for the symmetric key.
 {
-    const char * szFunc = "OTPurse::GetInternalMaster";
     // -------------------------------------------
     if (!this->IsPasswordProtected() || (NULL == m_pCachedKey)) // this second half of the logic should never happen.
     {
-        OTLog::vOutput(0, "%s: Failed: no internal master key exists, in this purse.\n", szFunc);
+        OTLog::vOutput(0, "%s: Failed: no internal master key exists, in this purse.\n", __FUNCTION__);
         return NULL;
     }
     // -------------------------------------------
     if (!m_pCachedKey->IsGenerated()) // should never happen, since the purse IS password-protected... then where's the master key?
     {
-        OTLog::vOutput(0, "%s: Error: internal master key has not yet been generated.\n", szFunc);
+        OTLog::vOutput(0, "%s: Error: internal master key has not yet been generated.\n", __FUNCTION__);
         return NULL;
     }
     // -------------------------------------------
