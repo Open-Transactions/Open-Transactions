@@ -111,7 +111,7 @@
 
     def VerifyStringVal(strValue)
 	{
-		if ( strValue.is_var_null() || strValue.is_var_undef() || !strValue.is_type("string") || (1 > strValue.size()))
+		if ( strValue.is_var_null() || strValue.is_var_undef() || !strValue.is_type("string") || strValue.empty() || (1 > strValue.size()))
 		{	return false	}
 		else { return true }
 	}
