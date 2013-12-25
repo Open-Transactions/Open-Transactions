@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTWallet.cpp
  *  
@@ -1543,7 +1543,12 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
 							if (!OTCachedKey::It()->HasHashCheck())
 							{
 								OTPassword tempPassword; tempPassword.zeroMemory();
-								bNeedToSaveAgain = OTCachedKey::It()->GetMasterPassword(tempPassword,"We do not have a check hash yet for this password, please enter your password",true);
+                                
+                                OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+                                
+								bNeedToSaveAgain = sharedPtr->GetMasterPassword(sharedPtr,
+                                                                                tempPassword,
+                                                                                "We do not have a check hash yet for this password, please enter your password", true);
 							}
                         }
                         
