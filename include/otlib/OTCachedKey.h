@@ -160,11 +160,15 @@
 //using namespace tthread; // in the C++ file
 // --------------------------------------
 
+#include "stdafx.h"
+
+
 class OTString;
 class OTASCIIArmor;
 class OTSymmetricKey;
 class OTCachedKey;
 class OTPassword;
+class OTIdentifier;
 
 // ------------------------------------------------------------------------
 
@@ -270,9 +274,19 @@ class OTPassword;
 //
 #define OT_MASTER_KEY_TIMEOUT  300
 
-typedef std::map<std::string, OTCachedKey*> mapOfCachedKeys;
+// ------------------------------------------------------------------
 
+#ifndef OT_USE_TR1
+typedef std::shared_ptr	<OTCachedKey>         OTCachedKey_SharedPtr;
+typedef std::weak_ptr   <OTCachedKey>         OTCachedKey_WeakPtr;
+#else
+typedef std::tr1::shared_ptr <OTCachedKey>    OTCachedKey_SharedPtr;
+typedef std::tr1::weak_ptr   <OTCachedKey>    OTCachedKey_WeakPtr;
+#endif
 
+typedef std::map<std::string, OTCachedKey_SharedPtr> mapOfCachedKeys;
+
+// ------------------------------------------------------------------
 class OTCachedKey
 {
 private:
@@ -288,6 +302,8 @@ private:
 	// -----------------------------------------------------------
 	OTCachedKey(int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
 	// -----------------------------------------------------------
+    static tthread::mutex   s_mutexThreadTimeout;
+	// -----------------------------------------------------------
     static tthread::mutex   s_mutexCachedKeys;
 	static mapOfCachedKeys  s_mapCachedKeys;  // Now we have many "master keys," mapped by their symmetric key ID. These are actually temps, just so we can safely cache the passphrases for various symmetric keys, between uses of that symmetric key. Such as Pop'ing tokens off of a purse, over and over again. Normally in the API, this would have to load the key each time. By caching here, we can exploit all the cool master key code, with its security, and threads, and timeouts, etc for every symmetric key we use. Just pass an ID into It() and if it's on the map, a pointer will be returned. Pass NULL into It() (no arguments) to get a pointer to the global Master Key (for Nyms.)
 public:
@@ -296,9 +312,9 @@ public:
 	EXPORT    OTCachedKey(const OTASCIIArmor & ascCachedKey);
 	EXPORT    ~OTCachedKey();
 	// -----------------------------------------------------------
-	EXPORT    static OTCachedKey * It(OTIdentifier * pIdentifier=NULL); // if you pass in a master key ID, it will look it up on an existing cached map of master keys. Otherwise it will use "the" global Master Key (the one used for the Nyms.)
+	EXPORT    static OTCachedKey_SharedPtr It(OTIdentifier * pIdentifier=NULL); // if you pass in a master key ID, it will look it up on an existing cached map of master keys. Otherwise it will use "the" global Master Key (the one used for the Nyms.)
 
-	EXPORT    static OTCachedKey * It(OTCachedKey & theSourceKey); // if you pass in a master key, it will look it up on an existing cached map of master keys, based on the ID of the master key passed in. If not there, it copies the one passed in, and returns a pointer to the copy. (Do NOT delete it.)
+	EXPORT    static OTCachedKey_SharedPtr It(OTCachedKey & theSourceKey); // if you pass in a master key, it will look it up on an existing cached map of master keys, based on the ID of the master key passed in. If not there, it copies the one passed in, and returns a pointer to the copy. (Do NOT delete it.)
 
 	EXPORT    static void Cleanup(); // Call on application shutdown. Called in CleanupOTAPI and also in OTServer wherever it cleans up.
 	// ------------------------------------------------------------------------
@@ -340,13 +356,14 @@ public:
 	// master key to get the passphrase, (which _would_ happen if the purse is encrypted to a nym) will
 	// instead use its own internal master key to get its passphrase (also retrieving from the user if
 	// necessary.)
-	EXPORT    bool   GetMasterPassword(      OTPassword & theOutput,
-                                       const char       * szDisplay=NULL,
-                                             bool         bVerifyTwice=false);
+	EXPORT    bool   GetMasterPassword(OTCachedKey_SharedPtr & mySharedPtr,
+                                             OTPassword      & theOutput,
+                                       const char            * szDisplay=NULL,
+                                             bool              bVerifyTwice=false);
 	// Caller must delete!
-	EXPORT  static OTCachedKey * CreateMasterPassword(OTPassword & theOutput,
-                                                      const char * szDisplay=NULL,
-                                                      int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
+	EXPORT  static OTCachedKey_SharedPtr CreateMasterPassword(OTPassword & theOutput,
+                                                              const char * szDisplay=NULL,
+                                                              int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
 	// --------------------------------
 
 	EXPORT   void DestroyMasterPassword(); // The thread, when the time comes, calls this method using the instance pointer that was passed into the thread originally. The actual encrypted version is kept -- only the temporary cleartext version is destroyed.

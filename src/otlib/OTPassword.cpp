@@ -359,7 +359,7 @@ const char * OTPasswordData::GetDisplayString() const
 
 // ---------------------------------------------------------
 
-OTPasswordData::OTPasswordData(const char * szDisplay, OTPassword * pMasterPW/*=NULL*/, OTCachedKey * pCachedKey/*=NULL*/)
+OTPasswordData::OTPasswordData(const char * szDisplay, OTPassword * pMasterPW/*=NULL*/, OTCachedKey_SharedPtr pCachedKey/*=OTCachedKey_SharedPtr()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(NULL == szDisplay ? "(Sorry, no user data provided.)" : szDisplay),
   m_bUsingOldSystem(false),
@@ -367,12 +367,12 @@ OTPasswordData::OTPasswordData(const char * szDisplay, OTPassword * pMasterPW/*=
 {
     // They can both be NULL, or they can both be not NULL.
     // But you can't have one NULL, and the other not.
-    OT_ASSERT(     ( (NULL == pMasterPW) && (NULL == pCachedKey) ) || ( (NULL != pMasterPW) && (NULL != pCachedKey) )    );
+    OT_ASSERT(     ( (NULL == pMasterPW) && (!pCachedKey) ) || ( (NULL != pMasterPW) && (pCachedKey) )    );
 }
 
 // ---------------------------------------------------------
 
-OTPasswordData::OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW/*=NULL*/, OTCachedKey * pCachedKey/*=NULL*/)
+OTPasswordData::OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW/*=NULL*/, OTCachedKey_SharedPtr pCachedKey/*=OTCachedKey_SharedPtr()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(str_Display),
   m_bUsingOldSystem(false),
@@ -380,11 +380,11 @@ OTPasswordData::OTPasswordData(const std::string & str_Display, OTPassword * pMa
 {
     // They can both be NULL, or they can both be not NULL.
     // But you can't have one NULL, and the other not.
-    OT_ASSERT(     ( (NULL == pMasterPW) && (NULL == pCachedKey) ) || ( (NULL != pMasterPW) && (NULL != pCachedKey) )    );
+    OT_ASSERT(     ( (NULL == pMasterPW) && (!pCachedKey) ) || ( (NULL != pMasterPW) && (pCachedKey) )    );
 }
 // ---------------------------------------------------------
 
-OTPasswordData::OTPasswordData(const OTString & strDisplay, OTPassword * pMasterPW/*=NULL*/, OTCachedKey * pCachedKey/*=NULL*/)
+OTPasswordData::OTPasswordData(const OTString & strDisplay, OTPassword * pMasterPW/*=NULL*/, OTCachedKey_SharedPtr pCachedKey/*=OTCachedKey_SharedPtr()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(strDisplay.Get()),
   m_bUsingOldSystem(false),
@@ -392,14 +392,14 @@ OTPasswordData::OTPasswordData(const OTString & strDisplay, OTPassword * pMaster
 {
     // They can both be NULL, or they can both be  not NULL.
     // But you can't have one NULL, and the other not.
-    OT_ASSERT(     ( (NULL == pMasterPW) && (NULL == pCachedKey) ) || ( (NULL != pMasterPW) && (NULL != pCachedKey) )    );
+    OT_ASSERT(     ( (NULL == pMasterPW) && (!pCachedKey) ) || ( (NULL != pMasterPW) && (pCachedKey) )    );
 }
 // ---------------------------------------------------------
 
 OTPasswordData::~OTPasswordData()
 {
 	m_pMasterPW  = NULL; // not owned
-    m_pCachedKey = NULL; // not owned
+//    m_pCachedKey = NULL; // not owned
 }
 
 // ---------------------------------------------------------

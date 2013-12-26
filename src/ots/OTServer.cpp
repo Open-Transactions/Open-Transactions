@@ -1823,10 +1823,10 @@ bool OTServer::CreateMainFile()
 	if (!OTCachedKey::It()->HasHashCheck())
 	{
 		OTPassword tempPassword; tempPassword.zeroMemory();
-		OTCachedKey::It()->GetMasterPassword(tempPassword,
-                                             "We do not have a check "
-                                             "hash yet for this password, "
-                                             "please enter your password", true);
+        OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+		sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
+                                     "We do not have a check hash yet for this password, "
+                                     "please enter your password", true);
 		if (!SaveMainFile())
 		{
 			OT_FAIL;
@@ -2012,7 +2012,10 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 							if (!OTCachedKey::It()->HasHashCheck())
 							{
 								OTPassword tempPassword; tempPassword.zeroMemory();
-								bNeedToSaveAgain = OTCachedKey::It()->GetMasterPassword(tempPassword,"We do not have a check hash yet for this password, please enter your password",true);
+                                OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+								bNeedToSaveAgain = sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
+                                                                                "We do not have a check hash yet for this password, "
+                                                                                "please enter your password", true);
 							}
                         }
                         

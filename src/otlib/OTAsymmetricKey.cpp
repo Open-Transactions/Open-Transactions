@@ -2216,13 +2216,14 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     OTPassword  thePassword;
     bool        bGotPassword = false;
     // -------------------------------------
-    OTCachedKey * pCachedKey = pPWData->GetCachedKey(); // Sometimes it's passed in, otherwise we use the global one.
-    if (NULL == pCachedKey)
+    OTCachedKey_SharedPtr pCachedKey(pPWData->GetCachedKey()); // Sometimes it's passed in, otherwise we use the global one.
+    
+    if (!pCachedKey)
     {
         // Global one.
         pCachedKey = OTCachedKey::It(); // Used to only use this one (global one) but now I allow pPWData to contain a pointer to the exact instance. (To enable multiple instances...) If that's not found then here we set it to the global one.
     }
-    OT_ASSERT(NULL != pCachedKey);
+    OT_ASSERT(pCachedKey);
     // -------------------------------------
     const bool b1 = pPWData->isForNormalNym();
     const bool b3 = !(pCachedKey->isPaused());
@@ -2269,7 +2270,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
         //
         OTLog::vOutput(3, "%s: Using GetMasterPassword() call. \n", __FUNCTION__);
         
-        bGotPassword = pCachedKey->GetMasterPassword(thePassword, str_userdata.c_str());//bool bVerifyTwice=false
+        bGotPassword = pCachedKey->GetMasterPassword(pCachedKey, thePassword, str_userdata.c_str());//bool bVerifyTwice=false
 
         // NOTE: shouldn't the above call to GetMasterPassword be passing the rwflag as the final parameter?
         // Just as we see below with the call to GetPasswordFromConsole. Right? Of course, it DOES generate internally,
