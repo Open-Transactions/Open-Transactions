@@ -1,3 +1,4 @@
+###########################################
 ####### AC-AM Package Preliminaries #######
 
 AC_PREREQ([2.61])
@@ -53,8 +54,39 @@ AC_FUNC_STRERROR_R
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([getpass gettimeofday mkdir socket strtol strtoul])
 
-###     GCC AND CLANG DETECTION     ###
-### (from mesa's configure.ac file) ###
+#########################
+######## PThread ########
+#########################
+
+# we have pthread fisrt, as this needs to be included before everything else.
+
+AX_PTHREAD
+
+# set the c compiler to what AX_PTHREAD thinks it should be.
+CC="$PTHREAD_CC"
+
+
+#########################
+######## OpenSSL ########
+#########################
+
+## OpenSSL
+# "--with-openssl=DIR" point to optional openssl package headers (for devs)
+
+AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
+
+if (test "x$acv_ot_openssl" = xyes); then
+    AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
+else
+    AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
+fi
+
+
+############################################
+########   Check for CLANG OR GCC   ########
+############################################
+
+# edited from mesa's configure.ac file
 
 dnl clang is mostly GCC-compatible, but its version is much lower,
 dnl so we have to check for it.
@@ -66,60 +98,131 @@ AC_COMPILE_IFELSE(
        not clang
 #endif
 ]])],
-[acv_ot_clang=yes], [acv_ot_clang=no])
+[acv_ot_clang=true], [acv_ot_clang=false])
 
 AC_MSG_RESULT([$acv_ot_clang])
 
 dnl If we're using GCC, make sure that it is at least version 4.2.0.  Older
 dnl versions are explictly not supported.
-if test "x$GCC" = xyes -a "x$acv_ot_clang" = xno; then
-    AC_MSG_CHECKING([whether gcc version is sufficient])
-    major=0
-    minor=0
+if (test "x$GCC" = x"yes" -a "x$acv_ot_clang" = x"false"); then
+	AC_MSG_CHECKING([what version of gcc we have...])
+	gcc_major=0
+	gcc_minor=0
 
-    GCC_VERSION=`$CC -dumpversion`
-    if test $? -eq 0; then
-        major=`echo $GCC_VERSION | cut -d. -f1`
-        minor=`echo $GCC_VERSION | cut -d. -f2`
-    fi
+	GCC_VERSION=`$CC -dumpversion`
+	if test $? -eq 0; then
+		gcc_major=`echo $GCC_VERSION | cut -d. -f1`
+		gcc_minor=`echo $GCC_VERSION | cut -d. -f2`
+	fi
 
-    if test $major -lt 4 -o $major -eq 4 -a $minor -lt 2 ; then
-        AC_MSG_RESULT([no])
-        AC_MSG_ERROR([If using GCC, version 4.2.0 or later is required.])
-    else
-        AC_MSG_RESULT([yes])
-    fi
+	## test if we have a version of gcc that suports c++11
+	acv_ot_gcc11=false
+
+	if test $gcc_major -ge 4 -a $gcc_minor -ge 7 ; then
+		acv_ot_gcc11=true
+		AC_MSG_RESULT([yes, and supports c++11])
+	elif test $gcc_major -ge 4 -a $gcc_minor -ge 2 ; then
+		acv_ot_gcc11=false
+		AC_MSG_RESULT([yes])
+	else
+		AC_MSG_ERROR([If using GCC, version 4.2.0 or later is required.])
+		AC_MSG_RESULT([no])
+	fi
 fi
 
 
-######## Prelims end, Custom checks begin #######
-
-##### Dependencies, packages, libs ####
-#
-## Main packages deps ##
-
-PKG_CHECK_MODULES([PKGS],[protobuf >= 2.4.1 chaiscript >= 3.1.0])
-
-AC_ARG_WITH([protoc],
-    [AS_HELP_STRING([--with-protoc=PATH],
-        [location of the protoc protocol buffer compiler binary, defaults to protoc])],
-    [PROTOC="$withval"],
-    [PROTOC='protoc'])
-AC_SUBST([PROTOC])
-
-## OpenSSL
-# "--with-openssl=DIR" point to optional openssl package headers (for devs)
-
-AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
-
-if test "x$acv_ot_openssl" = xyes; then
-    AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
+if (test "x$acv_ot_clang" == x"false" -a "x$acv_ot_gcc11" == x"false"); then
+	acv_ot_cxx11=false
 else
-    AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
+	acv_ot_cxx11=true
 fi
 
 
+###################################################
+######## Check for Boost and C++11 options ########
+###################################################
+
+# We need to check the configuration for Boost and C++11
+# We will test for different version of Chaiscript and gcc
+# depending on what is selected here.
+
+
+###########
+## C++11 ##
+###########
+
+AC_ARG_ENABLE([cxx11],
+	AS_HELP_STRING([--enable-cxx11],[enable cxx11, default: yes]),
+	[case "${enableval}" in
+		yes) cxx11=true ;;
+		no)  cxx11=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxx11]) ;;
+        esac],[cxx11=true])
+AM_CONDITIONAL([USE_CXX11], [test "x$cxx11" = x"true"])
+
+if (test "x$acv_ot_cxx11" == x"true" -a "x$cxx11" == x"true"); then
+
+	if (test "x$cxx11" == x"false"); then
+		AC_MSG_ERROR([If using GCC, must have version >= 4.7.0 to compile with C++11.])
+	fi
+
+	AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])	
+else
+	AC_DEFINE([NO_CXX11], [1], [Not Using C++11])
+fi
+
+
+#############
+## C++ TR1 ##
+#############
+
+
+AC_ARG_ENABLE([cxxtr1],
+	AS_HELP_STRING([--enable-cxxtr1],[enable C++03 TR1, default: false]),
+	[case "${enableval}" in
+		yes) xopensource=true ;;
+		no)  xopensource=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxxtr1]) ;;
+        esac],[cxxtr1=false])
+AM_CONDITIONAL([WANT_CXXTR1], [test x"$cxxtr1" = x"true"])
+
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"true"); then
+	AC_MSG_ERROR([ERROR: You cannot have C++11 and TR1 at the same time!])
+fi
+
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"false"); then
+	AC_DEFINE([CXX03_TR1], [1], [Use TR1 for compile])
+fi
+
+
+
+###########################
+## _XOPEN_SOURCE for MAC ##
+###########################
+
+
+# for mac we need to enable this flag (you can override it with --disable-xopensource).
+# this flag is only enabled if you don't have C++11
+
+AC_ARG_ENABLE([xopensource],
+	AS_HELP_STRING([--enable-xopensource],[enable xopen source, default: false]),
+	[case "${enableval}" in
+		yes) xopensource=true ;;
+		no)  xopensource=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-xopensource]) ;;
+        esac],[xopensource=false])
+AM_CONDITIONAL([WANT_XOPENSOURCE], [test x"$xopensource" = x"true"])
+
+if (test "x$xopensource" = x"true" -a "x$cxx11" == x"false"); then
+	AC_DEFINE([XOPEN_SOURCE], [1], [Set _XOPEN_SOURCE for compile])
+fi
+
+
+###########
 ## BOOST ##
+###########
 
 AC_ARG_ENABLE([boost],
 	AS_HELP_STRING([--enable-boost],[disable boost, default: yes]),
@@ -130,17 +233,95 @@ AC_ARG_ENABLE([boost],
         esac],[boost=true])
 AM_CONDITIONAL([WANT_BOOST], [test x"$boost" = x"true"])
 
+if (test "x$boost" == x"false" -a "x$cxx11" == x"false"); then
+	AC_MSG_ERROR([If no C++11, MUST use boost!])
+fi
+
 if test "x$boost" = xtrue; then
-    AX_BOOST_BASE([1.25.0])
-    AX_BOOST_THREAD
-    AX_BOOST_DATE_TIME
-    AX_BOOST_SYSTEM
-    AC_SUBST([BOOST_LIB_INCLUDE],["$BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
-    AC_DEFINE([HAVE_BOOST], [1], [We have boost])
+	AX_BOOST_BASE([1.25.0])
+	AX_BOOST_THREAD
+	AX_BOOST_DATE_TIME
+	AX_BOOST_SYSTEM
+	AC_SUBST([BOOST_LIBS],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
+	AC_DEFINE([HAVE_BOOST], [1], [We have boost])
 fi
 
 
-## MsgPack ##
+
+############################################
+######## Chaiscript (either 4 or 5) ########
+############################################
+
+
+ot_chai4=false
+ot_chai5=false
+
+AC_MSG_CHECKING([if Chaiscript 5 exists])
+PKG_CHECK_EXISTS([chaiscript >= 5.0.0], [ot_chai5=true])
+AC_MSG_RESULT([$ot_chai5])
+
+AC_MSG_CHECKING([if Chaiscript 4 exists])
+PKG_CHECK_EXISTS([chaiscript >= 3.1.0 chaiscript < 5.0.0], [ot_chai4=true])
+AC_MSG_RESULT([$ot_chai4])
+
+if (test "x$ot_chai5" == x"false" -a "x$ot_chai4" == x"false"); then
+	AC_MSG_ERROR([Cannot find Chaiscript on System.])
+fi
+
+ot_using_chai5=false
+ot_using_chai4=false
+
+AC_MSG_CHECKING([what version of Chaiscript to use])
+
+# If we have C++11; and Chaiscript 5, use that.
+if (test "x$cxx11" == x"true" -a "x$ot_chai5" == x"true"); then
+    AC_MSG_RESULT([Chaiscript 5])
+	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 5.0.0])
+	ot_using_chai5=true
+	AC_DEFINE([CHAISCRIPT_5], [1], [We are using Chaiscript 5])
+
+# Or if we have boost, and Chaiscript 4
+elif (test "x$boost" == x"true" -a "x$ot_chai4" == x"true"); then
+    AC_MSG_RESULT([Chaiscript 4])
+	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 3.1.0 chaiscript < 5.0.0])
+	ot_using_chai4=true
+	AC_DEFINE([CHAISCRIPT_4], [1], [We are using Chaiscript 4])
+fi
+
+# no chaiscript still... display correct error.
+if (test "x$ot_using_chai5" == x"false" -a "x$ot_using_chai4" == x"false"); then
+    AC_MSG_RESULT([ ERROR! No vaild version found!])
+
+	if (test "x$ot_chai5" == x"true" -a "x$cxx11" == x"false"); then
+		AC_MSG_ERROR([Have Chaiscript 5 but no C++11!])
+	fi
+
+	if (test "x$ot_chai4" == x"true" -a "x$boost" == x"false"); then
+		AC_MSG_ERROR([Have Chaiscript 4 but no Boost!])
+	fi
+fi
+
+AM_CONDITIONAL([USING_CHAI_5], [test x"$ot_using_chai5" = x"true"])
+AM_CONDITIONAL([USING_CHAI_4], [test x"$ot_using_chai4" = x"true"])
+
+
+###########################
+######## Protobuff ########
+###########################
+
+PKG_CHECK_MODULES([PROTOBUF],[protobuf >= 2.4.1])
+
+AC_ARG_WITH([protoc],
+    [AS_HELP_STRING([--with-protoc=PATH],
+        [location of the protoc protocol buffer compiler binary, defaults to protoc])],
+    [PROTOC="$withval"],
+    [PROTOC='protoc'])
+AC_SUBST([PROTOC])
+
+
+#########################
+######## MsgPack ########
+#########################
 
 AC_CHECK_LIB([msgpack],[msgpack_unpack],
 	[MSG_LIBS="-lmsgpack"
@@ -151,9 +332,9 @@ AC_CHECK_LIB([msgpack],[msgpack_unpack],
 	[AC_MSG_RESULT([Warning: libmsgpack not found!])]
 	)
 
-## pthread lib ##
-
-AX_PTHREAD
+#####################
+######## ZMQ ########
+#####################
 
 ## Transport Options (ZMQ defaut) ##
 
@@ -188,7 +369,10 @@ else
     AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
 fi
 
-## Keyring Options ##
+
+#########################
+######## Keyring ########
+#########################
 
 AC_ARG_WITH(	[keyring],
 		[AS_HELP_STRING([--with-keyring@<:@=ARG@:>@],
@@ -236,7 +420,9 @@ AS_IF(	[test "$with_keyring" == kwallet],
 	])
 
 
-#### More Configure Options ####
+################################################################
+######## Build Options, eg Warnings, Debug/Release, etc ########
+################################################################
 
 ## (Option) Signal Handler ##
 
@@ -275,9 +461,9 @@ AC_ARG_ENABLE(
 AM_CONDITIONAL(ENABLE_WARNINGS, test x"$warnings" = x"true")
 
 if (test "x$warnings" == x"true"); then
-
-	AC_SUBST([WARN_CXXFLAGS],
-	["-Wall -Waddress -Woverloaded-virtual -Wshadow -Wconversion"])
+	AC_SUBST([WARN_CXXFLAGS],["-Wall -Waddress -Woverloaded-virtual -Wshadow -Wconversion"])
+else
+	AC_SUBST([WARN_CXXFLAGS],["-Wno-deprecated-declarations"])
 fi
 
 ## (Option) Build In Release Mode ##
@@ -314,7 +500,7 @@ fi
 
 if (test "x$debug" == x"true"); then
 
-    if (test "x$acv_ot_clang" == "xyes"); then
+    if (test "x$acv_ot_clang" == x"true"); then
         AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
     else
         AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC --param ssp-buffer-size=4"])
@@ -324,7 +510,7 @@ fi
 
 if (test "x$release" == x"true"); then
 
-    if (test "x$acv_ot_clang" == "xyes"); then
+    if (test "x$acv_ot_clang" == x"true"); then
         AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector"])
     else
         AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -fstack-check -Wstack-protector"])
@@ -333,22 +519,9 @@ if (test "x$release" == x"true"); then
 fi
 
 
-## (Option) Build In C++11 Mode ##
-
-AC_ARG_ENABLE([cxx11],
-	AS_HELP_STRING([--enable-cxx11],[enable cxx11, default: yes]),
-	[case "${enableval}" in
-		yes) cxx11=true ;;
-		no)  cxx11=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxx11]) ;;
-        esac],[cxx11=true])
-AM_CONDITIONAL([USE_CXX11], [test x$cxx11 = xtrue])
-
-if (test "x$cxx11" == "xtrue"); then
-
-	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
-    AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-fi
+#######################################################
+######## SWIG:  Enable Java, Perl, PHP, D, etc ########
+#######################################################
 
 ## (Option) Add SWIG JAVA ##
 
@@ -480,15 +653,73 @@ AC_ARG_WITH(
 
 AM_CONDITIONAL([WANT_GO], [test "x$with_go" == "xyes"])
 
-#####   Output to AM   #####
 
-AC_SUBST([DEPS_FLAGS],	["$PTHREAD_CFLAGS $PKGS_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $OPENSSL_CFLAGS $OPENSSL_INCLUDES $BOOST_LIB_INCLUDE"])
 
-AC_SUBST([DEPS_LIBS],	["$PKGS_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS  $BOOST_LDFLAGS -ldl $PTHREAD_LIBS"])
+#############################################################
+######## Build Flags: what is passed to the compiler ########
+#############################################################
 
-AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_FLAGS"])
 
-AC_SUBST([AM_CPPFLAGS],["$BOOST_CPPFLAGS"])
+#
+#    AM_CPPFLAGS (first)
+#
+#    info:
+#    We need to get the correct order here. (or things will break, somehow).
+#    On some systems, this order isn't so important, others it is very.
+#    
+#    First, the most important is 'pthread' we include this before anything else.
+#    In our makefiles AM_CXXFLAGS is explicitly used, while AM_CPPFLAGS is defined implicitly.
+#    Automake will first check if there is a LIB_CPPFLAGS (we don’t define any), then if this
+#    is not found, it will just include AM_CPPFLAGS, as is.
+#
+#    The order included is: CXX (compiler), CPPFLAGS (pre processor), CXXFLAGS (c++), FILE (file to be compiled)
+#
+#    We have sorted the include order for:
+#      1. pthread (this must be first)
+#      2. openssl (c program)
+#      3. boost (c++ low level)
+#      4. other (c++ high level)
+#      5. compiler flags
+#      6. warning flags
+#
+#
+
+AC_SUBST([AM_CPPFLAGS], ["$PTHREAD_CFLAGS $BOOST_CPPFLAGS $OPENSSL_INCLUDES"])
+
+
+#
+#    C and CXX (second)
+#
+#    info:
+#    We define DEPS_FLAGS, then set it to both C and C++ compilers.
+#    We finally append some C++ only compile options to the AM_CXXFLAGS.
+#
+#
+
+AC_SUBST([DEPS_FLAGS],	["$OPENSSL_CFLAGS $CHAISCRIPT_CFLAGS $PROTOBUF_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $PTHREAD_CFLAGS"])
+AC_SUBST([AM_CFLAGS],	["$DEPS_FLAGS"])
+AC_SUBST([AM_CXXFLAGS],	["$DEPS_FLAGS $DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS"])
+
+
+#
+#    LIBS (third)
+#
+#    info:
+#    This is for the linker, we explicitly use DEPS_LIBS in the makefiles.
+#    Hence we clear AM_LIBS (we, instead, use LIB_LDADD)
+#
+#    Linker Order: From Most Dependant, to Least (the linker need to know what to link, before it links it).
+#    It is more important when linking staticialy.
+#
+#
+
+AC_SUBST([DEPS_LIBS],	["$OPENSSL_LDFLAGS $OPENSSL_LIBS $CHAISCRIPT_LIBS $BOOST_LIBS $PROTOBUF_LIBS $MSG_LIBS $ZMQ_LIBS $KRG_LIBS $PTHREAD_LIBS -ldl"])
+AC_SUBST([AM_LIBS], 	[""])
+
+
+#####################################################################################
+######## Makefiles: automake will run over these files to generate the build ########
+#####################################################################################
 
 
 AC_CONFIG_FILES([Makefile
@@ -501,5 +732,9 @@ AC_CONFIG_FILES([Makefile
 			src/otapi/Makefile
 			src/Makefile
 			src/opentxs.pc])
+
+######################################################################
+######## Output: The Last Step: Generate the configure script ########
+######################################################################
 
 AC_OUTPUT

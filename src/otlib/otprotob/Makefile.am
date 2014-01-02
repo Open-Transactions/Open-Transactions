@@ -10,7 +10,7 @@ otprotob_sources        =   Bitcoin.proto        \
                             Moneychanger.proto
 
 libotprotob_la_SOURCES  =   $(otprotob_sources)
-libotprotob_la_CXXFLAGS =   $(AM_CXXFLAGS) $(DEPS_FLAGS) -I$(otprotob_headers_dir)
+libotprotob_la_CXXFLAGS =   $(AM_CXXFLAGS) -I$(otprotob_headers_dir)
 libotprotob_la_LDFLAGS  =   -static
 
 ## Protobuf headers and packaging

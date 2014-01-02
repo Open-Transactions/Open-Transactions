@@ -725,7 +725,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 }
 
 
-#ifdef OPENTXS_HAVE_BOOST
+#ifdef OPENTXS_CHAISCRIPT_4
 
 OTScriptChai::OTScriptChai() : OTScript()
 {
