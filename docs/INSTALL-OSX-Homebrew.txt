@@ -77,11 +77,7 @@ $ git clone git://github.com/ChaiScript/ChaiScript.git
 
 # build chaiscript  (Now using non-boost version)
 $ cd ChaiScript
-
-### Only if you are using Mavericks !!
-# git checkout origin/ChaiScript_5_0_CPP_11
-###
-
+$ git checkout c6a1d1ea7552a4ebbc877b1714e8d5adfe32d85a
 $ cmake . -DCMAKE_INSTALL_PREFIX=$HOMEBREW_PREFIX
 $ make -j2
 $ make test
