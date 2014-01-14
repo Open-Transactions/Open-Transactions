@@ -10560,7 +10560,9 @@ def main_show_payment()
                 var strOut2 = "      "
                 
                 if (bAssetIDExists && bHasAmount)
+                {
                     strOut2 = OT_API_FormatAmount(strAssetType, lAmount) + (OT_API_FormatAmount(strAssetType, lAmount).size() < 3 ? "    " : "   ")
+                }
                 // ------------------------------
                 var strOut3 = strType
                 var strOut4 = strType.size() > 10 ? " " : "    "
