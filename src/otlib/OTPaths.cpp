@@ -530,15 +530,29 @@ bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
     {
         if(!FixPath(strConfigFolder,strConfigFolder,true)) { OT_FAIL; }
 
-        OTString strScriptPath = "";
-        OTString strScriptPrefix(AppBinaryFolder().Exists() ? AppBinaryFolder() : PrefixFolder());
-        
-        if (!AppendFolder(strScriptPath, strScriptPrefix, strConfigFolder))
-        {
-            OT_FAIL;
+        OTString strPrefixScriptPath = "";
+        AppendFolder(strPrefixScriptPath, PrefixFolder(), strConfigFolder);
+
+        OTString strAppBinaryScriptPath = "";
+
+
+        // if the AppBinaryFolder is set, we will attempt to use this script path instead.
+        // however if the directory dosn't exist, we will default back to appending to the prefix.
+
+        // TODO:  Make the prefix path set to AppBinaryFolder. (da2ce7)
+
+        if (AppBinaryFolder().Exists()) {
+            AppendFolder(strAppBinaryScriptPath, AppBinaryFolder(), strConfigFolder);
+            if (!OTPaths::FolderExists(strAppBinaryScriptPath)) {
+                OTLog::sOutput(0,"%s: Warning: Cannot Find: %s, using default!",__FUNCTION__,strAppBinaryScriptPath.Get());
+                strAppBinaryScriptPath = ""; //don't have anything here.
+            }
         }
 
-        s_strScriptsFolder = strScriptPath; // set
+        s_strScriptsFolder = strAppBinaryScriptPath.Exists() ? strAppBinaryScriptPath : strPrefixScriptPath;
+
+        if (!s_strScriptsFolder.Exists()) OT_FAIL;
+
     }
     else
     {
