@@ -458,6 +458,11 @@ EXPORT  static int64_t StringToLong(const std::string & strNumber);
 	
 EXPORT  int64_t ToLong() const;
 
+    
+EXPORT  static uint64_t StringToUlong(const std::string & strNumber);
+    
+EXPORT  uint64_t ToUlong() const;
+
     // ----------------------------
 
 EXPORT	bool At    (uint32_t lIndex, char &c) const;

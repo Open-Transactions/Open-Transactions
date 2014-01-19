@@ -37,14 +37,13 @@ EXPORT    Timer(bool bStart=false);                   // default constructor // 
 EXPORT    ~Timer();                                   // default destructor
 
 EXPORT    void   start();                             // start timer
-    void   stop();                              // stop the timer
-    void   clear();                             // stop the timer and clear the contents.
+          void   stop();                              // stop the timer
+          void   clear();                             // stop the timer and clear the contents.
     
-    
-    double getElapsedTime();                    // get elapsed time in second
-    double getElapsedTimeInSec();               // get elapsed time in second (same as getElapsedTime)
+          double getElapsedTime();                    // get elapsed time in second
+          double getElapsedTimeInSec();               // get elapsed time in second (same as getElapsedTime)
 EXPORT    double getElapsedTimeInMilliSec();          // get elapsed time in milli-second
-    double getElapsedTimeInMicroSec();          // get elapsed time in micro-second
+          double getElapsedTimeInMicroSec();          // get elapsed time in micro-second
 
 
 protected:

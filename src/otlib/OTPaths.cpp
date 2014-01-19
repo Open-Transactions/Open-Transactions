@@ -185,15 +185,19 @@
 #define OT_APPDATA_DIR "OpenTransactions"
 #elif TARGET_OS_IPHONE
 #define OT_APPDATA_DIR "Documents"
+#elif ANDROID
+#define OT_APPDATA_DIR "ot"
 #else
 #define OT_APPDATA_DIR ".ot"
 #endif
 
 #ifndef OT_PREFIX_PATH
 #ifdef _WIN32
-#define OT_PREFIX_PATH OTPaths::AppDataFolder() //windows, set to OT AppData Folder.
+#define OT_PREFIX_PATH OTPaths::AppDataFolder() // windows, set to OT AppData Folder.
 #elif TARGET_OS_IPHONE
-#define OT_PREFIX_PATH OTPaths::AppDataFolder() //iphone, set to OT AppData Folder.
+#define OT_PREFIX_PATH OTPaths::AppDataFolder() // iphone,  set to OT AppData Folder.
+#elif ANDROID
+#define OT_PREFIX_PATH "res/raw"                // android, set to res/raw folder for static files in android app sandbox.
 #else
 #define OT_PREFIX_PATH "/usr/local" //default prefix_path unix
 #endif
@@ -221,6 +225,7 @@
 OTSettings OTPaths::s_settings = OTSettings(GlobalConfigFile());
 
 OTString OTPaths::s_strAppBinaryFolder("");
+OTString OTPaths::s_strHomeFolder("");
 OTString OTPaths::s_strAppDataFolder("");
 OTString OTPaths::s_strGlobalConfigFile("");
 OTString OTPaths::s_strPrefixFolder("");
@@ -243,13 +248,25 @@ void OTPaths::SetAppBinaryFolder(OTString strLocation)
 
 // --------------------------------------------------------------------
 
+const OTString & OTPaths::HomeFolder()
+{
+    return OTPaths::s_strHomeFolder;
+}
+
+void OTPaths::SetHomeFolder(OTString strLocation)
+{
+    OTPaths::s_strHomeFolder = strLocation;
+}
+
+// --------------------------------------------------------------------
+
 const OTString & OTPaths::AppDataFolder()
 {
     if (s_strAppDataFolder.Exists()) return s_strAppDataFolder;  // already got it, just return it.
 
-    OTString strHomeDataFolder(""), strAppDataFolder("");  // eg. /home/user/  (the folder that the OT appdata folder will be in.)
+    OTString strHomeDataFolder(OTPaths::HomeFolder()), strAppDataFolder("");  // eg. /home/user/  (the folder that the OT appdata folder will be in.)
 
-    if(!GetHomeFromSystem(strHomeDataFolder)) { OT_FAIL; }
+    if(!strHomeDataFolder.Exists() && !GetHomeFromSystem(strHomeDataFolder)) { OT_FAIL; }
 
     // now lets change all the '\' into '/'
     // then check that the path /home/user indeed exists, and is a folder.
@@ -326,12 +343,12 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
     one that would be automatically selected by this program
     (aka either compiled into, or from the registry, or the default user data directory).
 
-    If the set path is different to what would be supplied and the ‘override path’ value is set.
+    If the set path is different to what would be supplied and the override path value is set.
     Then we will use that path.
 
     Otherwise, we will update the path in the configuration to link against the updated path.
 
-    Users will need to set the ‘override path’ flag in the configuration,
+    Users will need to set the override path flag in the configuration,
     if they want to manually set the prefix path.
     */
 
@@ -602,7 +619,7 @@ bool OTPaths::Set(
     const                  OTString      & strKey,
     const                  OTString      & strValue,
     const                  bool          & bIsRelative,
-    bool        & out_bIsNewOrUpdated,
+                           bool          & out_bIsNewOrUpdated,
     const                  OTString      & strComment
     )
 {
