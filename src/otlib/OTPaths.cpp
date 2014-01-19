@@ -221,8 +221,11 @@
 #include "OTPaths.h"
 #include "OTLog.h"
 
-
-OTSettings OTPaths::s_settings = OTSettings(GlobalConfigFile());
+#ifdef ANDROID
+OTSettings OTPaths::s_settings;
+#else
+OTSettings OTPaths::s_settings(GlobalConfigFile()); // NOTE: This is BAD to call this here. da2ce7 ??
+#endif
 
 OTString OTPaths::s_strAppBinaryFolder("");
 OTString OTPaths::s_strHomeFolder("");
@@ -256,6 +259,10 @@ const OTString & OTPaths::HomeFolder()
 void OTPaths::SetHomeFolder(OTString strLocation)
 {
     OTPaths::s_strHomeFolder = strLocation;
+    
+#ifdef ANDROID
+    OTPaths::s_settings.SetConfigFilePath(GlobalConfigFile());
+#endif
 }
 
 // --------------------------------------------------------------------
@@ -292,6 +299,7 @@ const OTString & OTPaths::GlobalConfigFile()
 
     OTString strGlobalConfigFile("");
 
+    
     if(!AppendFile(strGlobalConfigFile,AppDataFolder(),OT_INIT_CONFIG_FILENAME)) OT_FAIL;
 
     s_strGlobalConfigFile = strGlobalConfigFile;
@@ -425,6 +433,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
                     OTString strTmp = strPrefixFolder;
 
                     if(!ToReal(strTmp,strTmp)) { OT_FAIL; }
+                    
                     if(!FixPath(strTmp,strTmp,true)) { OT_FAIL; }
 
                     if (!strLocalPrefixPath.Compare(strTmp)) {
@@ -534,6 +543,7 @@ bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
     else
     {
         if(!ToReal(strConfigFolder, strConfigFolder)) { OT_FAIL; }
+        
         if(!FixPath(strConfigFolder, strConfigFolder, true)) { OT_FAIL; }
         s_strScriptsFolder = strConfigFolder; // set
     }
@@ -586,6 +596,7 @@ bool OTPaths::Get(
                 if (!bIsRelative) // lets fix the path, so it dosn't matter how people write it in the config.
                 {
                     if(!ToReal(strOutFolder,strOutFolder)) { OT_FAIL; }
+                    
                     if(!FixPath(strOutFolder,strOutFolder,true)) { OT_FAIL; }
                 }
 
@@ -1171,6 +1182,7 @@ bool OTPaths::RelativeToCanonical(OTString & out_strCanonicalPath, const OTStrin
     if (!strBasePath.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strBasePath"    ); OT_FAIL; }
     if (!strRelativePath.Exists()) { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strRelativePath" ); OT_FAIL; }
 
+    
     OTString l_strBasePath_fix("");
     if(!FixPath(strBasePath,l_strBasePath_fix,true)) return false;
 
@@ -1356,6 +1368,7 @@ bool OTDataFolder::Init(const OTString & strThreadContext)
 
     pDataFolder->m_bInitialized = false;
 
+    
     // setup the config instance.
     OTSettings * pSettings(new OTSettings(OTPaths::GlobalConfigFile()));
     pSettings->Reset();
