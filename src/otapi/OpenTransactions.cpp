@@ -976,9 +976,13 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 				OTLog::vError("\n\n\nIS OPEN-TRANSACTIONS ALREADY RUNNING?\n\n"
 					"I found a PID (%lu) in the data lock file, located at: %s\n\n"
 					"If the OT process with PID %lu is truly not running anymore, "
-					"then just erase that file and restart.\n", lPID, this->m_strPidFilePath.Get(), lPID);
+					"then just erase that file and restart.\nThis is normally cleaned "
+                              "up during AppCleanup / AppShutdown. (Or should be.)\n",
+                              lPID, this->m_strPidFilePath.Get(), lPID);
+#ifndef ANDROID
 				this->m_bIsPidOpen = false;
 				return;
+#endif
 			}
 			// Otherwise, though the file existed, the PID within was 0.
 			// (Meaning the previous instance of OT already set it to 0 as it was shutting down.)
