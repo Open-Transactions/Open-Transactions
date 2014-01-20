@@ -109,56 +109,41 @@ $ ./autogen.sh
 ########################################
 
 
+$ ./configure --prefix=$HOME/.local
 
-$ ./configure --prefix=$HOME/.local --with-java
 
-(NB: Default without the "--prefix=" installs sytem-wide to /usr/local 
+(NB: Default without the "--prefix=" installs sytem-wide, e.g. /usr/local ,
 and will require admin privileges for "$ sudo make install" step below.
-Also, for otapiJ-test-gui support "--with-java" flag is needed)
-
 
 #########   Configure Options:   #########
-Enable Configuration in Release Mode:
---enable-release	
 
-Enable extra (noisy) warnings with compile:
---enable-warnings
+Debug Mode:      --enable-debug
+Signal Handling: --enable-sighandler
+Warnings:        --enable-warnings
 
-Enable the signal handling for catching segmentation fault's (debug only):
---enable-sighandler
+Release Mode:    --enable-release
 
-Enable system keyring storage of OT passwords:
---with-keyring=ARG
-(ARG can be one of gnome, kwallet, windows, mac.)
+No Boost:        --disable-boost
+No C++11:        --disable-cxx11
 
-### Swig API support options:  ###
+(Optional)
+System Keyring:  --with-keyring=ARG
+Arguments:       gnome, kwallet, windows or mac
 
-Enable Configuration for SWIG Java Support:
---with-java
+Enable OTAPI support for swig wrapper:
+       Java:     --with-java
+       Perl 5:   --with-perl5
+       PHP:      --with-php
+       Python:   --with-python
+       Ruby:     --with-ruby
+       TCL:      --with-tcl
+       CSHARP:   --with-csharp
+       D:        --with-d
+       Go:       --with-go
 
-Enable Configuration for SWIG Perl 5 Support:
---with-perl5
-
-Enable Configuration for SWIG PHP Support:
---with-php
-
-Enable Configuration for SWIG Python Support:
---with-python
-
-Enable Configuration for SWIG Ruby Support:
---with-ruby
-
-Enable Configuration for SWIG TCL Support:
---with-tcl
-
-Enable Configuration for SWIG CSHARP Support:
---with-csharp
-
-Enable Configuration for SWIG D Support:
---with-d
 ##########################################
 
-$ make uninstall (to cleanup anything in your .local folder)
+$ make uninstall (cleanup from possible previous build)
 
 $ make
 

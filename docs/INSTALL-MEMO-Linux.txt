@@ -8,7 +8,7 @@
 #
 # Memo for upgrades/rebuilds and 'quick start' guide for OT install on 
 # generic Linux, assumes dependencies are already satisfied.
-# (NB: Intended for linux savvy users.)
+# (NB: Intended for linux-familiar users.)
 
 # probably need to tell autoconf to look for dep packages in $HOME/.local
 # if you used the recommended install for chai, etc
@@ -36,7 +36,35 @@ $ mkdir -p build && cd build
 
 $ make uninstall (to cleanup anything in your ~/.local dir)
 
-$ ../configure --prefix=$HOME/.local --with-java
+$ ../configure --prefix=$HOME/.local
+
+#########   Configure Options:   #########
+
+Debug Mode:      --enable-debug
+Signal Handling: --enable-sighandler
+Warnings:        --enable-warnings
+
+Release Mode:    --enable-release
+
+No Boost:        --disable-boost
+No C++11:        --disable-cxx11
+
+(Optional)
+System Keyring:  --with-keyring=ARG
+Arguments:       gnome, kwallet, windows or mac
+
+Enable OTAPI support for swig wrapper:
+       Java:     --with-java
+       Perl 5:   --with-perl5
+       PHP:      --with-php
+       Python:   --with-python
+       Ruby:     --with-ruby
+       TCL:      --with-tcl
+       CSHARP:   --with-csharp
+       D:        --with-d
+       Go:       --with-go
+
+##########################################
 
 $ make
 (can add -j2 option for speedy build)
@@ -85,7 +113,7 @@ $ cd ~/Open-Transactions
 $ git clean -xfd
 $ git pull
 $ ./autogen.sh
-$ ./configure --prefix=$HOME/.local --with-java
+$ ./configure --prefix=$HOME/.local
 $ make
 $ make install
 #
