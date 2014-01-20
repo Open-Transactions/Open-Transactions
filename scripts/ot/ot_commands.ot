@@ -10507,7 +10507,10 @@ def main_show_payment()
                 var bAcctIDExists  = VerifyStringVal(strAcctID)
                 var bAssetIDExists = VerifyStringVal(strAssetType)
                 var bMemoExists    = VerifyStringVal(strMemo)
-                
+                // ------------------------------
+                var bHasAmount     = VerifyIntVal(lAmount)
+                // ------------------------------
+
                 if (bMemoExists && (strMemo.find("\n") >= 0) && !bShowLargeMemo)
                 {
                     strMemo = "<too large to display here>"
@@ -10553,7 +10556,14 @@ def main_show_payment()
                 if ("\"\"" == strAssetName)             { strAssetName  = ""; strAssetDenoter2 = "" }
                 // ------------------------------
                 var strOut1 = nIndex.to_string() + "    "
-                var strOut2 = OT_API_FormatAmount(strAssetType, lAmount) + (OT_API_FormatAmount(strAssetType, lAmount).size() < 3 ? "    " : "   ")
+                
+                var strOut2 = "      "
+                
+                if (bAssetIDExists && bHasAmount)
+                {
+                    strOut2 = OT_API_FormatAmount(strAssetType, lAmount) + (OT_API_FormatAmount(strAssetType, lAmount).size() < 3 ? "    " : "   ")
+                }
+                // ------------------------------
                 var strOut3 = strType
                 var strOut4 = strType.size() > 10 ? " " : "    "
                 var strOut5 = lTransNumber.to_string() + (lTransNumber.to_string().size() < 2 ? "    " : "   ")
@@ -10711,10 +10721,13 @@ def main_show_payments_inbox()
                         var strRecipientUserID = OT_API_Instrmnt_GetRecipientUserID(strInstrument)
                         var strRecipientAcctID = OT_API_Instrmnt_GetRecipientAcctID(strInstrument)
                         
-                        var strUserID = VerifyStringVal(strSenderUserID) ? strSenderUserID : strRecipientUserID
-                        var strAcctID = VerifyStringVal(strSenderAcctID) ? strSenderAcctID : strRecipientAcctID
-                        
-                        var strAmount = VerifyIntVal(lAmount) ? OT_API_FormatAmount(strAssetType, lAmount) : "UNKNOWN_AMOUNT"
+                        var strUserID  = VerifyStringVal(strSenderUserID) ? strSenderUserID : strRecipientUserID
+                        var strAcctID  = VerifyStringVal(strSenderAcctID) ? strSenderAcctID : strRecipientAcctID
+                        // ------------------------------
+                        var bHasAmount = VerifyIntVal(lAmount)
+                        var bHasAsset  = VerifyStringVal(strAssetType)
+                        // ------------------------------
+                        var strAmount  = (bHasAmount && bHasAsset) ? OT_API_FormatAmount(strAssetType, lAmount) : "UNKNOWN_AMOUNT"
                         // ------------------------------
                         var bUserIDExists  = VerifyStringVal(strUserID)
                         var bAcctIDExists  = VerifyStringVal(strAcctID)
@@ -10809,7 +10822,10 @@ def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordB
     
     var strAssetTypeID = bAcctIDExists ? OT_API_GetAccountWallet_AssetTypeID(strAcctID) : ""
     
-    var strAmount = VerifyIntVal(lAmount) ? (VerifyStringVal(strAssetTypeID) ? OT_API_FormatAmount(strAssetTypeID, lAmount) : lAmount.to_string()) : "UNKNOWN_AMOUNT"
+    var bHasAmount = VerifyIntVal(lAmount)
+    var bHasAsset  = VerifyStringVal(strAssetTypeID)
+    
+    var strAmount =  bHasAmount ? (bHasAsset ? OT_API_FormatAmount(strAssetTypeID, lAmount) : lAmount.to_string()) : "UNKNOWN_AMOUNT"
     
     OT_API_Output(0, nIndex.to_string() + "    ")
     OT_API_Output(0, strAmount + (strAmount.size() < 3 ? "    " : "   "))

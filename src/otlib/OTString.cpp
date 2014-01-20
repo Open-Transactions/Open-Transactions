@@ -624,9 +624,29 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
 
 
 //static
+uint64_t OTString::StringToUlong(const std::string & strNumber)
+{
+    if (strNumber.size() == 0 )
+        return 0;
+    
+    uint64_t v = 0;
+    size_t   i = 0;
+    
+    for( ; i < strNumber.size(); ++i)
+    {
+        if ( strNumber[i] < '0' || strNumber[i] > '9' )
+            break;
+        v = ( (v * 10) + (strNumber[i] - '0'));
+    }
+    return ((0 == v) ? 0 : v);
+}
+
+// ----------------------------------------------------------------------
+
+//static
 int64_t OTString::StringToLong(const std::string & strNumber)
 {
-    if(strNumber.size() == 0 )
+    if (strNumber.size() == 0 )
         return 0;
     
     int64_t v = 0;
@@ -644,6 +664,13 @@ int64_t OTString::StringToLong(const std::string & strNumber)
 }
 
 // ----------------------------------------------------------------------
+
+uint64_t OTString::ToUlong() const
+{
+    const std::string str_number(this->Get());
+    
+    return OTString::StringToUlong(str_number);
+}
 
 int64_t OTString::ToLong() const
 {

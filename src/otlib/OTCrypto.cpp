@@ -790,33 +790,33 @@ extern "C"
 //#ifndef ANDROID // Android thus far only supports OpenSSL 0.9.8k
 #include <openssl/whrlpool.h>
 	
-	// Just trying to get Whirlpool working since they added it to OpenSSL
-	//
-	static int init(EVP_MD_CTX *ctx)
-	{ return WHIRLPOOL_Init((WHIRLPOOL_CTX*)ctx->md_data); }
-	
-	static int update(EVP_MD_CTX *ctx,const void *data,size_t count)
-	{ return WHIRLPOOL_Update((WHIRLPOOL_CTX*)ctx->md_data,data,count); }
-	
-	static int final(EVP_MD_CTX *ctx,unsigned char *md)
-	{ return WHIRLPOOL_Final(md,(WHIRLPOOL_CTX*)ctx->md_data); }
-	
-	
-	static const EVP_MD whirlpool_md =
-	{
-		NID_whirlpool,
-		0,
-		WHIRLPOOL_DIGEST_LENGTH,
-		0,
-		init,
-		update,
-		final,
-		NULL,
-		NULL,
-		EVP_PKEY_NULL_method,
-		WHIRLPOOL_BBLOCK/8,
-		sizeof(EVP_MD *)+sizeof(WHIRLPOOL_CTX),
-	};
+//	// Just trying to get Whirlpool working since they added it to OpenSSL
+//	//
+//	static int init(EVP_MD_CTX *ctx)
+//	{ return WHIRLPOOL_Init((WHIRLPOOL_CTX*)ctx->md_data); }
+//	
+//	static int update(EVP_MD_CTX *ctx,const void *data,size_t count)
+//	{ return WHIRLPOOL_Update((WHIRLPOOL_CTX*)ctx->md_data,data,count); }
+//	
+//	static int final(EVP_MD_CTX *ctx,unsigned char *md)
+//	{ return WHIRLPOOL_Final(md,(WHIRLPOOL_CTX*)ctx->md_data); }
+//	
+//	
+//	static const EVP_MD whirlpool_md =
+//	{
+//		NID_whirlpool,
+//		0,
+//		WHIRLPOOL_DIGEST_LENGTH,
+//		0,
+//		init,
+//		update,
+//		final,
+//		NULL,
+//		NULL,
+//		EVP_PKEY_NULL_method,
+//		WHIRLPOOL_BBLOCK/8,
+//		sizeof(EVP_MD *)+sizeof(WHIRLPOOL_CTX),
+//	};
 //#endif // !ANDROID
     // -----------------------
     
@@ -1528,7 +1528,7 @@ const EVP_MD * OTCrypto_OpenSSL::GetOpenSSLDigestByName(const OTString & theName
 		return EVP_sha512();
 //#ifndef ANDROID
 	else if (theName.Compare("WHIRLPOOL")) // Todo: follow up on any cleanup issues related to this. (Are the others dynamically allocated? This one isn't.)
-		return &whirlpool_md;
+		return EVP_whirlpool();
 //#endif
 	return NULL;
 }

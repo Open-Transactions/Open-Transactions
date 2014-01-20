@@ -166,9 +166,7 @@ private:
 
     bool b_Loaded;
 
-    const OTString m_strConfigurationFileExactPath;
-
-    EXPORT OTSettings();
+    OTString m_strConfigurationFileExactPath;
 
     // Core (Load and Save)
     EXPORT bool Load(const OTString & strConfigurationFileExactPath);
@@ -181,10 +179,14 @@ private:
 
 public:
 
+    EXPORT OTSettings();
+
     EXPORT OTSettings(const OTString & strConfigFilePath);
 
     EXPORT ~OTSettings();
 
+    
+    EXPORT void SetConfigFilePath(const OTString & strConfigFilePath);
 
     // Core (Public Load and Save)
     EXPORT bool Load();

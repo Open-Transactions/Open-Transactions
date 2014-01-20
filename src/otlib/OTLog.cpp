@@ -357,6 +357,7 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 			pLogger->m_strLogFileName.Format("%s%s%s",LOGFILE_PRE, strThreadContext.Get(), LOGFILE_EXT);
 
+            
 			OTSettings config = OTSettings(OTPaths::GlobalConfigFile());
 
 			config.Reset();
@@ -370,6 +371,9 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 		}
 
+#ifdef ANDROID
+        if (OTPaths::HomeFolder().Exists())
+#endif
 		if(!OTPaths::AppendFile(pLogger->m_strLogFilePath, OTPaths::AppDataFolder(), pLogger->m_strLogFileName)) { return false; };
 
 		pLogger->m_bInitialized = true;

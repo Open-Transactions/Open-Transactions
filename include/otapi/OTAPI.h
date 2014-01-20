@@ -211,6 +211,9 @@ public :
 	EXPORT static int64_t     StringToLong(const std::string & strNumber);
 	EXPORT static std::string LongToString(const int64_t     & lNumber);
 
+    EXPORT static uint64_t    StringToUlong(const std::string &strNumber);
+    EXPORT static std::string UlongToString(const uint64_t & lNumber);
+
 	// --------------------------------------------------------------------
 	/**
      INITIALIZE the OTAPI library
@@ -221,6 +224,36 @@ public :
      */
 	EXPORT static bool AppInit();    // Call this ONLY ONCE, when your App first starts up.
 	EXPORT static bool AppCleanup(); // Call this ONLY ONCE, when your App is shutting down.
+    
+	// --------------------------------------------------------------------
+    // SetAppBinaryFolder
+    // OPTIONAL. Used in Android and Qt.
+    //
+    // Certain platforms use this to override the Prefix folder.
+    // Basically /usr/local is the prefix folder by default, meaning
+    // /usr/local/lib/opentxs will be the location of the scripts. But
+    // if you override AppBinary folder to, say, "res/raw/files"
+    // (Android does something like that) then even though the prefix remains
+    // as /usr/local, the scripts folder will be res/raw/lib/opentxs
+    //
+    //
+    EXPORT static void SetAppBinaryFolder(const std::string & strFolder);
+    
+	// --------------------------------------------------------------------
+    // SetHomeFolder
+    // OPTIONAL. Used in Android.
+    //
+    // The AppDataFolder, such as /Users/au/.ot, is constructed from the home
+    // folder, such as /Users/au.
+    //
+    // Normally the home folder is auto-detected, but certain platforms, such as
+    // Android, require us to explicitly set this folder from the Java code. Then
+    // the AppDataFolder is constructed from it. (It's the only way it can be done.)
+    //
+    // In Android, you would SetAppBinaryFolder to the path to "/data/app/packagename/res/raw",
+    // and you would SetHomeFolder to "/data/data/[app package]/files/"
+    //
+    EXPORT static void SetHomeFolder(const std::string & strFolder);
     
 	// --------------------------------------------------------------------
     // Then:

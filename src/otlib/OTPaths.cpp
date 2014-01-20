@@ -185,15 +185,19 @@
 #define OT_APPDATA_DIR "OpenTransactions"
 #elif TARGET_OS_IPHONE
 #define OT_APPDATA_DIR "Documents"
+#elif ANDROID
+#define OT_APPDATA_DIR "ot"
 #else
 #define OT_APPDATA_DIR ".ot"
 #endif
 
 #ifndef OT_PREFIX_PATH
 #ifdef _WIN32
-#define OT_PREFIX_PATH OTPaths::AppDataFolder() //windows, set to OT AppData Folder.
+#define OT_PREFIX_PATH OTPaths::AppDataFolder() // windows, set to OT AppData Folder.
 #elif TARGET_OS_IPHONE
-#define OT_PREFIX_PATH OTPaths::AppDataFolder() //iphone, set to OT AppData Folder.
+#define OT_PREFIX_PATH OTPaths::AppDataFolder() // iphone,  set to OT AppData Folder.
+#elif ANDROID
+#define OT_PREFIX_PATH "res/raw"                // android, set to res/raw folder for static files in android app sandbox.
 #else
 #define OT_PREFIX_PATH "/usr/local" //default prefix_path unix
 #endif
@@ -217,10 +221,14 @@
 #include "OTPaths.h"
 #include "OTLog.h"
 
-
-OTSettings OTPaths::s_settings = OTSettings(GlobalConfigFile());
+#ifdef ANDROID
+OTSettings OTPaths::s_settings;
+#else
+OTSettings OTPaths::s_settings(GlobalConfigFile()); // NOTE: This is BAD to call this here. da2ce7 ??
+#endif
 
 OTString OTPaths::s_strAppBinaryFolder("");
+OTString OTPaths::s_strHomeFolder("");
 OTString OTPaths::s_strAppDataFolder("");
 OTString OTPaths::s_strGlobalConfigFile("");
 OTString OTPaths::s_strPrefixFolder("");
@@ -243,13 +251,29 @@ void OTPaths::SetAppBinaryFolder(OTString strLocation)
 
 // --------------------------------------------------------------------
 
+const OTString & OTPaths::HomeFolder()
+{
+    return OTPaths::s_strHomeFolder;
+}
+
+void OTPaths::SetHomeFolder(OTString strLocation)
+{
+    OTPaths::s_strHomeFolder = strLocation;
+    
+#ifdef ANDROID
+    OTPaths::s_settings.SetConfigFilePath(GlobalConfigFile());
+#endif
+}
+
+// --------------------------------------------------------------------
+
 const OTString & OTPaths::AppDataFolder()
 {
     if (s_strAppDataFolder.Exists()) return s_strAppDataFolder;  // already got it, just return it.
 
-    OTString strHomeDataFolder(""), strAppDataFolder("");  // eg. /home/user/  (the folder that the OT appdata folder will be in.)
+    OTString strHomeDataFolder(OTPaths::HomeFolder()), strAppDataFolder("");  // eg. /home/user/  (the folder that the OT appdata folder will be in.)
 
-    if(!GetHomeFromSystem(strHomeDataFolder)) { OT_FAIL; }
+    if(!strHomeDataFolder.Exists() && !GetHomeFromSystem(strHomeDataFolder)) { OT_FAIL; }
 
     // now lets change all the '\' into '/'
     // then check that the path /home/user indeed exists, and is a folder.
@@ -275,6 +299,7 @@ const OTString & OTPaths::GlobalConfigFile()
 
     OTString strGlobalConfigFile("");
 
+    
     if(!AppendFile(strGlobalConfigFile,AppDataFolder(),OT_INIT_CONFIG_FILENAME)) OT_FAIL;
 
     s_strGlobalConfigFile = strGlobalConfigFile;
@@ -326,12 +351,12 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
     one that would be automatically selected by this program
     (aka either compiled into, or from the registry, or the default user data directory).
 
-    If the set path is different to what would be supplied and the ‘override path’ value is set.
+    If the set path is different to what would be supplied and the override path value is set.
     Then we will use that path.
 
     Otherwise, we will update the path in the configuration to link against the updated path.
 
-    Users will need to set the ‘override path’ flag in the configuration,
+    Users will need to set the override path flag in the configuration,
     if they want to manually set the prefix path.
     */
 
@@ -408,6 +433,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
                     OTString strTmp = strPrefixFolder;
 
                     if(!ToReal(strTmp,strTmp)) { OT_FAIL; }
+                    
                     if(!FixPath(strTmp,strTmp,true)) { OT_FAIL; }
 
                     if (!strLocalPrefixPath.Compare(strTmp)) {
@@ -517,6 +543,7 @@ bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
     else
     {
         if(!ToReal(strConfigFolder, strConfigFolder)) { OT_FAIL; }
+        
         if(!FixPath(strConfigFolder, strConfigFolder, true)) { OT_FAIL; }
         s_strScriptsFolder = strConfigFolder; // set
     }
@@ -569,6 +596,7 @@ bool OTPaths::Get(
                 if (!bIsRelative) // lets fix the path, so it dosn't matter how people write it in the config.
                 {
                     if(!ToReal(strOutFolder,strOutFolder)) { OT_FAIL; }
+                    
                     if(!FixPath(strOutFolder,strOutFolder,true)) { OT_FAIL; }
                 }
 
@@ -602,7 +630,7 @@ bool OTPaths::Set(
     const                  OTString      & strKey,
     const                  OTString      & strValue,
     const                  bool          & bIsRelative,
-    bool        & out_bIsNewOrUpdated,
+                           bool          & out_bIsNewOrUpdated,
     const                  OTString      & strComment
     )
 {
@@ -1154,6 +1182,7 @@ bool OTPaths::RelativeToCanonical(OTString & out_strCanonicalPath, const OTStrin
     if (!strBasePath.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strBasePath"    ); OT_FAIL; }
     if (!strRelativePath.Exists()) { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strRelativePath" ); OT_FAIL; }
 
+    
     OTString l_strBasePath_fix("");
     if(!FixPath(strBasePath,l_strBasePath_fix,true)) return false;
 
@@ -1339,6 +1368,7 @@ bool OTDataFolder::Init(const OTString & strThreadContext)
 
     pDataFolder->m_bInitialized = false;
 
+    
     // setup the config instance.
     OTSettings * pSettings(new OTSettings(OTPaths::GlobalConfigFile()));
     pSettings->Reset();

@@ -256,7 +256,7 @@ OTAPI_Wrap::~OTAPI_Wrap()
     if (NULL != p_OTAPI) delete p_OTAPI; p_OTAPI = NULL;
 }
 
-
+ 
 // **********************************************************************
 
 bool OTAPI_Wrap::AppInit()    // Call this ONLY ONCE, when your App first starts up.
@@ -301,6 +301,46 @@ bool OTAPI_Wrap::AppCleanup() // Call this ONLY ONCE, when your App is shutting 
 		return false;
 	}
 }
+
+
+
+
+// --------------------------------------------------------------------
+// SetAppBinaryFolder
+// OPTIONAL. Used in Android and Qt.
+//
+// Certain platforms use this to override the Prefix folder.
+// Basically /usr/local is the prefix folder by default, meaning
+// /usr/local/lib/opentxs will be the location of the scripts. But
+// if you override AppBinary folder to, say, "res/raw/files"
+// (Android does something like that) then even though the prefix remains
+// as /usr/local, the scripts folder will be res/raw/lib/opentxs
+//
+//
+void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
+{
+    OTPaths::SetAppBinaryFolder(strFolder.c_str());
+}
+
+// --------------------------------------------------------------------
+// SetHomeFolder
+// OPTIONAL. Used in Android.
+//
+// The AppDataFolder, such as /Users/au/.ot, is constructed from the home
+// folder, such as /Users/au.
+//
+// Normally the home folder is auto-detected, but certain platforms, such as
+// Android, require us to explicitly set this folder from the Java code. Then
+// the AppDataFolder is constructed from it. (It's the only way it can be done.)
+//
+// In Android, you would SetAppBinaryFolder to the path to "/data/app/packagename/res/raw",
+// and you would SetHomeFolder to "/data/data/[app package]/files/"
+//
+void OTAPI_Wrap::SetHomeFolder(const std::string & strFolder)
+{
+    OTPaths::SetHomeFolder(strFolder.c_str());
+}
+
 
 
 
@@ -349,10 +389,28 @@ std::string OTAPI_Wrap::LongToString(const int64_t & lNumber)
 {
 	std::string strNumber;
 	std::stringstream strstream;
-
+    
 	strstream << lNumber;
 	strstream >> strNumber;
+    
+	return strNumber;
+}
 
+
+uint64_t OTAPI_Wrap::StringToUlong(const std::string &strNumber)
+{
+    return OTString::StringToUlong(strNumber);
+}
+
+
+std::string OTAPI_Wrap::UlongToString(const uint64_t & lNumber)
+{
+	std::string strNumber;
+	std::stringstream strstream;
+    
+	strstream << lNumber;
+	strstream >> strNumber;
+    
 	return strNumber;
 }
 
