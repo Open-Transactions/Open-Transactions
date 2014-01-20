@@ -39,11 +39,11 @@ $ brew update
 $ echo 'export CPP=cpp; export CC=clang; export CXX=clang++' >> ~/.profile
 $ source ~/.profile
 
-$ brew install --use-clang cmake automake autoconf libtool
-$ brew install --use-clang protobuf msgpack zeromq22 openssl
+$ brew install --cc-clang cmake automake autoconf libtool
+$ brew install --cc-clang protobuf msgpack zeromq22 openssl
 
 ## If you are NOT on Mavericks !!
-$ brew install --use-clang boost
+$ brew install --cc-clang boost
 
 
 #############
