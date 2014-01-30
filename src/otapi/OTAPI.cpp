@@ -12224,7 +12224,21 @@ int32_t OTAPI_Wrap::deleteUserAccount(const std::string & SERVER_ID,
 // passed as a string). If you adjusted the balance using the usageCredits
 // message (THE_MESSAGE being the server's reply to that) then you will see
 // the balance AFTER the adjustment. (The "Current" Usage Credits balance.)
-// 
+//
+// UPDATE: Notice that we now return -2 in the case of all errors.
+//         This is because the lowest possible actual value is -1.
+//
+//         - Basically a 0 or positive value means that usage credits are
+//           actually turned on (on the server side) and that you are seeing
+//           the actual usage credits value for that Nym.
+//
+//         - Whereas a -2 value means there was an error.
+//
+//         - Whereas a -1 value means that usage credits are turned off (on
+//           the server side) OR that the Nym has been given the special -1
+//           setting for usage credits, which enables him to operate as if he
+//           has unlimited usage credits.
+//
 int64_t OTAPI_Wrap::Message_GetUsageCredits(const std::string & THE_MESSAGE)
 {
 	if (THE_MESSAGE.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_MESSAGE"); OT_FAIL; }
@@ -12235,25 +12249,26 @@ int64_t OTAPI_Wrap::Message_GetUsageCredits(const std::string & THE_MESSAGE)
 	if (!strMessage.Exists())
 	{
 		OTLog::vError("%s: Error: THE_MESSAGE doesn't exist.\n", __FUNCTION__);
-		return -1;
+		return -2;
 	}
 
 	if (!theMessage.LoadContractFromString(strMessage))
 	{
 		OTLog::vError("%s: Failed loading message from string.\n", __FUNCTION__);
-		return -1;
+		return -2;
 	}
 
 	if (false == theMessage.m_bSuccess)
 	{
-		OTLog::vError("%s: Message success == false, thus unable to report Usage Credits balance. (Returning "".)\n", __FUNCTION__);
-		return -1;
+		OTLog::vError("%s: Message success == false, thus unable to report Usage Credits balance. (Returning -2.)\n", __FUNCTION__);
+		return -2;
 	}
 
 	if (false == theMessage.m_strCommand.Compare("@usageCredits"))
 	{
-		OTLog::vError("%s: THE_MESSAGE is supposed to be of command type \"@usageCredits\", but instead it's a: %s\n (Failure. Returning "".)", __FUNCTION__, theMessage.m_strCommand.Get());
-		return -1;
+		OTLog::vError("%s: THE_MESSAGE is supposed to be of command type \"@usageCredits\", but instead it's a: %s\n (Failure. Returning -2.)",
+                      __FUNCTION__, theMessage.m_strCommand.Get());
+		return -2;
 	}
 
 	// ----------------------------------------------

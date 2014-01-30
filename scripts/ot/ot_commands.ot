@@ -7977,13 +7977,32 @@ def main_adjust_usage_credits()
                 
                 if (!VerifyStringVal(strNewUsageBalance))
                 {
-                    strNewUsageBalance = "(Error retrieving usage credits from this server reply.)"
+                    strNewUsageBalance = "(Error while calling API to retrieve usage credits from server reply.)"
+                }
+                else if (int64_t(-2) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = "Error code -2, while attempting to retrieve usage credits from this server reply."
+                }
+                else if (int64_t(-1) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = concat("Either Nym has unlimited usage credits, or server has its usage credit enforcement turned off.\n",
+                                                "(Either way, Nym is good to go, since -1 was returned as his 'credits balance'.)")
+                }
+                else if (int64_t(0) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = concat("Nym appears to have exhausted his supply of usage credits.\n",
+                                                "(0 was returned as his 'credits balance'.)")
                 }
                 else
                 {
-                    OT_API_Output(0, "\n\n SUCCESS in adjust_usage_credits!\n ===> New (or unchanged, depending on what you set the 'adjust' to) USAGE BALANCE: "+strNewUsageBalance+"\n\n(FYI, this server message is the only and proper way to query for your own current usage credits balance.)\n\n")
+                    strNewUsageBalance = concat("Nym currently has "+lNewUsageBalance.to_string(), " usage credits.")
                 }
-                break
+                // -------------------------------------------------------------------
+                var strOutput = concat("\n\n adjust_usage_credits -- reply: "+strNewUsageBalance,
+                                       "\n\n(FYI, this server message is the only and proper way to query for your own current usage credits balance, or also to set someone else's.)\n\n")
+                OT_API_Output(0, strOutput)
+                
+               break
             }
             case (0)
             {

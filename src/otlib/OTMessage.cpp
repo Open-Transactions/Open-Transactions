@@ -2107,7 +2107,7 @@ int OTMessage::ProcessXMLNode(IrrXMLReader*& xml)
 	
 	else if (strNodeName.Compare("@getMarketList"))
 	{
-        //        std::cerr << m_xmlUnsigned.Get() << std::endl;
+//      std::cerr << m_xmlUnsigned.Get() << std::endl;
         
 		strSuccess		= xml->getAttributeValue("success");
 		if (strSuccess.Compare("true"))
