@@ -2581,7 +2581,7 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 											const char *& szName, mapOfStrings * pmapExtraVars/*=NULL*/)
 {
 	OT_ASSERT(NULL != szName);
-    const char * szFunc = "OTContract::LoadEncodedTextFieldByName";
+	// ------------------
 	const char * pElementExpected = szName;
 	// ------------------
 	// If we're not ALREADY on an element, maybe there is some whitespace, so let's skip ahead...
@@ -2594,7 +2594,7 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 		if (false == SkipToElement(xml))
 		{
 			OTLog::vOutput(0, "%s: Failure: Unable to find expected element: %s. \n",
-                           szFunc, szName);
+                           __FUNCTION__, szName);
 			return false;
 		}
 	}
@@ -2631,7 +2631,7 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 			
 			if (false == OTContract::LoadEncodedTextField(xml, ascOutput)) // <====================================================
 			{
-				OTLog::vError("%s: Error loading %s field.\n", szFunc,
+				OTLog::vError("%s: Error loading %s field.\n", __FUNCTION__,
 							  pElementExpected);
 				return false; // error condition
 			}
@@ -2645,7 +2645,7 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 				//
 //				if (false == SkipAfterLoadingField(xml))
 //				{ OTLog::Output(0, "*** %s: Bad data? Expected EXN_ELEMENT_END here, but "
-//								"didn't get it. Returning false.\n", szFunc); return false; }
+//								"didn't get it. Returning false.\n", __FUNCTION__); return false; }
 				
 				return true;  // <============ SUCCESS!!!!
 			}
@@ -2653,14 +2653,14 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 		else 
 		{
 			OTLog::vError("%s: Error: missing %s element.\n",
-                          szFunc, pElementExpected);
+                          __FUNCTION__, pElementExpected);
 			return false; // error condition
 		}
 	}
 	else
 	{
 		OTLog::vError("%s: Error: Expected %s element with text field.\n",
-                      szFunc, pElementExpected);
+                      __FUNCTION__, pElementExpected);
 		return false; // error condition
 	}
 }
