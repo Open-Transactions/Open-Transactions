@@ -957,13 +957,15 @@ def add_asset_account(strSmartContract, strPartyName, strLawyerNymID)
     {
         stat_assets()
         
-        OT_API_Output(0, "\nPaste the asset type for this account: ")
-        
-        var strType = OT_CLI_ReadLine()
-        
+        OT_API_Output(0, "\nPaste the asset type for this account.\n")
+        OT_API_Output(0, "(Leave it blank if you don't want to specify): ")
+
+        var strType = ""
+        strType = OT_CLI_ReadLine()
+
         if (!VerifyStringVal(strType))
         {
-            return true
+            strType = ""
         }
         // --------------------------
         if (!VerifyStringVal(strLawyerNymID))

@@ -251,34 +251,34 @@ public:
     // ---------------------------------------------------------------
     // Load from local storage.
     EXPORT bool LoadPrivateKey(const OTString & strFoldername,
-                        const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
+                               const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     EXPORT bool LoadPublicKey (const OTString & strFoldername,
-                        const OTString & strFilename);    
+                               const OTString & strFilename);
     // ***************************************************************
     // LoadPrivateKeyFromCertString
     //
     // "escaped" means pre-pended with "- " as in:   - -----BEGIN CERTIFICATE....
     //
     EXPORT bool LoadPrivateKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                      const OTString   * pstrReason=NULL,
-                                            OTPassword * pImportPassword=NULL);
+                                             const OTString   * pstrReason=NULL,
+                                                   OTPassword * pImportPassword=NULL);
     // ***************************************************************
     // Load Public Key from Cert (file or string)
     //
     EXPORT bool LoadPublicKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                     const OTString   * pstrReason=NULL,
-                                           OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
+                                            const OTString   * pstrReason=NULL,
+                                                  OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
     EXPORT bool LoadPublicKeyFromCertFile  (const OTString   & strFoldername,
-                                     const OTString   & strFilename,
-                                     const OTString   * pstrReason=NULL,
-                                           OTPassword * pImportPassword=NULL); // DOES handle bookends.
+                                            const OTString   & strFilename,
+                                            const OTString   * pstrReason=NULL,
+                                                  OTPassword * pImportPassword=NULL); // DOES handle bookends.
     // ---------------------------------------------------------------
     EXPORT bool LoadCertAndPrivateKeyFromString(const OTString & strInput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     // ---------------------------------------------------------------
     // LOAD BOTH KEYS FROM CERT FILE
     //
     EXPORT bool LoadBothKeysFromCertFile(const OTString & strFoldername,
-        const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
+                                         const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
 
     EXPORT bool SaveAndReloadBothKeysFromTempFile(OTString * pstrOutputCert=NULL, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     // ***************************************************************************************

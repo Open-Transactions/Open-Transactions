@@ -5426,8 +5426,6 @@ std::string OTAPI_Wrap::SmartContract_AddHook(const std::string & THE_CONTRACT,	
 	//	
 	std::string pBuf = strOutput.Get(); 
 
-	
-
 	return pBuf;		
 }
 
@@ -5438,14 +5436,14 @@ std::string OTAPI_Wrap::SmartContract_AddHook(const std::string & THE_CONTRACT,	
 
 
 // RETURNS: Updated version of THE_CONTRACT. (Or "".)
-std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT, // The contract, about to have the party added to it.
-										  const std::string & SIGNER_NYM_ID,     // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-										   // ----------------------------------------
-										  const std::string & PARTY_NAME,        // The Party's NAME as referenced in the smart contract. (And the scripts...)
-										   // ----------------------------------------
-										  const std::string & AGENT_NAME)        // An AGENT will be added by default for this party. Need Agent NAME.
-										   // (FYI, that is basically the only option, until I code Entities and Roles. Until then, a party can ONLY be
-										   // a Nym, with himself as the agent representing that same party. Nym ID is supplied on ConfirmParty() below.)
+std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,    // The contract, about to have the party added to it.
+                                               const std::string & SIGNER_NYM_ID,   // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                                               // ----------------------------------------
+                                               const std::string & PARTY_NAME,      // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                                               // ----------------------------------------
+                                               const std::string & AGENT_NAME)      // An AGENT will be added by default for this party. Need Agent NAME.
+                                               // (FYI, that is basically the only option, until I code Entities and Roles. Until then, a party can ONLY be
+                                               // a Nym, with himself as the agent representing that same party. Nym ID is supplied on ConfirmParty() below.)
 {
 	if (THE_CONTRACT.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT" ); OT_FAIL; }
 	if (SIGNER_NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"); OT_FAIL; }
@@ -5453,7 +5451,7 @@ std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,
 	if (AGENT_NAME.empty())    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"   ); OT_FAIL; }
 	// -----------------------------------------------------
 	const OTString		strContract(THE_CONTRACT),	strPartyName(PARTY_NAME), 
-		strAgentName(AGENT_NAME);
+                        strAgentName(AGENT_NAME);
 	const OTIdentifier theSignerNymID(SIGNER_NYM_ID);
 	// -----------------------------------------------------
 	OTString strOutput;
@@ -5483,35 +5481,35 @@ std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,
 // Used when creating a theoretical smart contract (that could be used over and over again with different parties.)
 //
 // returns: the updated smart contract (or "")
-std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRACT,		// The contract, about to have the account added to it.
-											const std::string & SIGNER_NYM_ID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-											 // ----------------------------------------
-											const std::string & PARTY_NAME,		// The Party's NAME as referenced in the smart contract. (And the scripts...)
-											 // ----------------------------------------
-											const std::string & ACCT_NAME,		// The Account's name as referenced in the smart contract
-											const std::string & ASSET_TYPE_ID)	// Asset Type ID for the Account.
+std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRACT,  // The contract, about to have the account added to it.
+                                                 const std::string & SIGNER_NYM_ID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                                                 // ----------------------------------------
+                                                 const std::string & PARTY_NAME,    // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                                                 // ----------------------------------------
+                                                 const std::string & ACCT_NAME,		// The Account's name as referenced in the smart contract
+                                                 const std::string & ASSET_TYPE_ID)	// Asset Type ID for the Account.
 {
-	if (THE_CONTRACT.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"		); OT_FAIL; }
-	if (SIGNER_NYM_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"		); OT_FAIL; }
-	if (PARTY_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PARTY_NAME"			); OT_FAIL; }
-	if (ACCT_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCT_NAME"			); OT_FAIL; }
-	if (ASSET_TYPE_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ASSET_TYPE_ID"		); OT_FAIL; }
-
+	if (THE_CONTRACT.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"  ); OT_FAIL; }
+	if (SIGNER_NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID" ); OT_FAIL; }
+	if (PARTY_NAME.empty())    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PARTY_NAME"    ); OT_FAIL; }
+	if (ACCT_NAME.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCT_NAME"     ); OT_FAIL; }
+//	if (ASSET_TYPE_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ASSET_TYPE_ID" ); OT_FAIL; }
 	// -----------------------------------------------------
 	const OTString		strContract(THE_CONTRACT),	strPartyName(PARTY_NAME), 
-		strAcctName(ACCT_NAME),		strAssetTypeID(ASSET_TYPE_ID);
-	const OTIdentifier theSignerNymID(SIGNER_NYM_ID);
+                        strAcctName(ACCT_NAME),		strAssetTypeID(ASSET_TYPE_ID);
+	const OTIdentifier  theSignerNymID(SIGNER_NYM_ID);
 	// -----------------------------------------------------
 	OTString strOutput;
 
 	const bool & bAdded = OTAPI_Wrap::OTAPI()->SmartContract_AddAccount(strContract,		// The contract, about to have the clause added to it.
-		theSignerNymID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-		// ----------------------------------------
-		strPartyName,		// The Party's NAME as referenced in the smart contract. (And the scripts...)
-		// ----------------------------------------
-		strAcctName,		// The Account's name as referenced in the smart contract
-		strAssetTypeID,	// Asset Type ID for the Account.
-		strOutput);
+                            theSignerNymID, // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                            // ----------------------------------------
+                            strPartyName,   // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                            // ----------------------------------------
+                            strAcctName,    // The Account's name as referenced in the smart contract
+                            strAssetTypeID, // Asset Type ID for the Account.
+                            strOutput);
+	// -----------------------------------------------------
 	if (!bAdded || !strOutput.Exists())
 		return "";
 	// -----------------------------------------------------
@@ -5519,9 +5517,7 @@ std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRAC
 	//	
 	std::string pBuf = strOutput.Get(); 
 
-	
-
-	return pBuf;		
+	return pBuf;
 }	
 
 
@@ -5541,8 +5537,8 @@ std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRAC
 int32_t OTAPI_Wrap::SmartContract_CountNumsNeeded(const std::string & THE_CONTRACT,	// The smart contract, about to be queried by this function.
 										const std::string & AGENT_NAME)	
 {
-	if (THE_CONTRACT.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"		); OT_FAIL; }
-	if (AGENT_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"			); OT_FAIL; }
+	if (THE_CONTRACT.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT" ); OT_FAIL; }
+	if (AGENT_NAME.empty())   { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"   ); OT_FAIL; }
 	// -------------------------------------------------------------
 	const OTString		strContract(THE_CONTRACT), strAgentName(AGENT_NAME);
 	// -------------------------------------------------------------
