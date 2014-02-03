@@ -2202,7 +2202,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                 
                 if (!VerifyIntVal(nAccountCount) || (nAccountCount < 0))
                 {
-                    OT_API_Output(0, "Error: Party '"+strPartyName+"' has bad value for number of asset accounts.\n")
+                    OT_API_Output(0, "Error: Party '"+strPartyName+"' has a bad value for number of asset accounts.\n")
                     return (-1)
                 }
                 // ----------------------------------------------
