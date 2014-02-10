@@ -1,7 +1,7 @@
 ####### AC-AM Package Preliminaries #######
 
 AC_PREREQ([2.61])
-AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[Fellow-Traveler],[opentxs],[https://github.com/FellowTraveler/Open-Transactions])
+AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[Fellow-Traveler],[opentxs],[https://github.com/Open-Transactions/Open-Transactions])
 AC_CONFIG_SRCDIR([src/otd/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 AX_PREFIX_CONFIG_H(include/otlib/ot_config.h)
@@ -107,22 +107,32 @@ AC_ARG_WITH([protoc],
     [PROTOC='protoc'])
 AC_SUBST([PROTOC])
 
+
 ## OpenSSL
 # "--with-openssl=DIR" point to optional openssl package headers (for devs)
 
-AX_CHECK_OPENSSL([acv_ot_openssl="yes"])
-
-if test "x$acv_ot_openssl" = xyes; then
-    AC_DEFINE([HAVE_OPENSSL], [1], [We have openSSL])
-else
-    AC_MSG_ERROR([ERROR: Cannot find openssl, please use --with-openssl=openssl_dir])
-fi
+AC_ARG_WITH(	[openssl],
+		[],
+		[
+		case "$withval" in
+		"" | y | ye | yes | n | no)
+		AC_MSG_ERROR([Invalid --with-openssl value])
+		  ;;
+		*) AX_CHECK_OPENSSL([AC_MSG_RESULT([Custom openssl found!])],[AC_MSG_ERROR([Bad --with-openssl=DIR; openssl not found in DIR])])
+		  ;;
+		esac
+		],
+		[PKG_CHECK_MODULES([OPENSSL],[openssl >= 1.0.0],[],
+				[AC_MSG_RESULT([Warning: openssl version >= 1.0.0 not found!])]
+			)
+		]
+	)
 
 
 ## BOOST ##
 
 AC_ARG_ENABLE([boost],
-	AS_HELP_STRING([--enable-boost],[disable boost, default: yes]),
+	AS_HELP_STRING([--enable-boost],[enable boost, default: yes]),
 	[case "${enableval}" in
 		yes) boost=true ;;
 		no)  boost=false ;;
@@ -135,7 +145,7 @@ if test "x$boost" = xtrue; then
     AX_BOOST_THREAD
     AX_BOOST_DATE_TIME
     AX_BOOST_SYSTEM
-    AC_SUBST([BOOST_LIB_INCLUDE],["$BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
+    AC_SUBST([BOOST_LIBS],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
     AC_DEFINE([HAVE_BOOST], [1], [We have boost])
 fi
 
@@ -238,117 +248,6 @@ AS_IF(	[test "$with_keyring" == kwallet],
 
 #### More Configure Options ####
 
-## (Option) Signal Handler ##
-
-AC_ARG_ENABLE(
-	sighandler,
-	AS_HELP_STRING(
-		[--enable-sighandler],
-		[enable sighandler, default: no]),
-	[case "${enableval}" in
-		yes)	sighandler=true ;;
-		no)	sighandler=false ;;
-		*)	AC_MSG_ERROR([bad value ${enableval} for --disable-sighandler]) ;;
-		esac],
-	[sighandler=false])
-
-AM_CONDITIONAL(ENABLE_OT_SIGNAL_HANDLING, test x"$sighandler" = x"true")
-
-if test x"$sighandler" = x"true"; then
-    AC_DEFINE([OT_SIGNAL_HANDLING], [1], [Using OT Signal Handling])
-fi
-
-## (Option) Warnings ##
-
-AC_ARG_ENABLE(
-	warnings,
-	AS_HELP_STRING(
-		[--enable-warnings],
-		[enable warnings, default: no]),
-	[case "${enableval}" in
-		yes) warnings=true ;;
-		no)  warnings=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-warnings]) ;;
-		esac],
-	[warnings=false])
-
-AM_CONDITIONAL(ENABLE_WARNINGS, test x"$warnings" = x"true")
-
-if (test "x$warnings" == x"true"); then
-
-	AC_SUBST([WARN_CXXFLAGS],
-	["-Wall -Waddress -Woverloaded-virtual -Wshadow -Wconversion"])
-fi
-
-## (Option) Build In Release Mode ##
-
-
-AC_ARG_ENABLE([debug],
-	AS_HELP_STRING([--enable-debug],[enable debug, default: no]),
-	[case "${enableval}" in
-		yes) debug=true ;;
-		no)  debug=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
-        esac],[debug=false])
-AM_CONDITIONAL([ENABLE_DEBUG], [test x$debug = xtrue])
-
-
-AC_ARG_ENABLE([release],
-	AS_HELP_STRING([--enable-release],[enable release, default: no]),
-	[case "${enableval}" in
-		yes) release=true ;;
-		no)  release=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-release]) ;;
-        esac],[release=false])
-AM_CONDITIONAL([ENABLE_RELEASE], [test x$release = xtrue])
-
-if (test "x$debug" == x"true" -a "x$release" == x"true"); then
-    AC_MSG_ERROR([must not have both release and debug set!])
-fi
-
-if (test "x$debug" == x"false" -a "x$release" == x"false"); then
-    AC_MSG_RESULT([defaulting to RELEASE mode!])
-    release=true
-    AM_CONDITIONAL([ENABLE_RELEASE], [test x$release = xtrue])
-fi
-
-if (test "x$debug" == x"true"); then
-
-    if (test "x$acv_ot_clang" == "xyes"); then
-        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
-    else
-        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC --param ssp-buffer-size=4"])
-    fi
-    AC_DEFINE([DEBUG], [1], [Building in Debug Mode])
-fi
-
-if (test "x$release" == x"true"); then
-
-    if (test "x$acv_ot_clang" == "xyes"); then
-        AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector"])
-    else
-        AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -fstack-check -Wstack-protector"])
-    fi
-    AC_DEFINE([RELEASE], [1], [Building in Release Mode])
-fi
-
-
-## (Option) Build In C++11 Mode ##
-
-AC_ARG_ENABLE([cxx11],
-	AS_HELP_STRING([--enable-cxx11],[enable cxx11, default: yes]),
-	[case "${enableval}" in
-		yes) cxx11=true ;;
-		no)  cxx11=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxx11]) ;;
-        esac],[cxx11=true])
-AM_CONDITIONAL([USE_CXX11], [test x$cxx11 = xtrue])
-
-if (test "x$cxx11" == "xtrue"); then
-
-	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
-    AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-fi
 
 ## (Option) Add SWIG JAVA ##
 
@@ -480,15 +379,129 @@ AC_ARG_WITH(
 
 AM_CONDITIONAL([WANT_GO], [test "x$with_go" == "xyes"])
 
+##############################
+## Build Configuration Options
+
+## (Option) Signal Handler ##
+
+AC_ARG_ENABLE(
+	sighandler,
+	AS_HELP_STRING(
+		[--enable-sighandler],
+		[enable sighandler, default: no]),
+	[case "${enableval}" in
+		yes)	sighandler=true ;;
+		no)	sighandler=false ;;
+		*)	AC_MSG_ERROR([bad value ${enableval} for --disable-sighandler]) ;;
+		esac],
+	[sighandler=false])
+
+AM_CONDITIONAL(ENABLE_OT_SIGNAL_HANDLING, test x"$sighandler" = x"true")
+
+if test x"$sighandler" = x"true"; then
+    AC_DEFINE([OT_SIGNAL_HANDLING], [1], [Using OT Signal Handling])
+fi
+
+## (Option) Warnings ##
+
+AC_ARG_ENABLE(
+	warnings,
+	AS_HELP_STRING(
+		[--enable-warnings],
+		[enable warnings, default: no]),
+	[case "${enableval}" in
+		yes) warnings=true ;;
+		no)  warnings=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-warnings]) ;;
+		esac],
+	[warnings=false])
+
+AM_CONDITIONAL(ENABLE_WARNINGS, test x"$warnings" = x"true")
+
+if (test "x$warnings" == x"true"); then
+
+	AC_SUBST([WARN_CXXFLAGS],
+	["-Wall -Waddress -Woverloaded-virtual -Wshadow -Wconversion"])
+fi
+
+## (Option) Build In Release Mode ##
+
+
+AC_ARG_ENABLE([debug],
+	AS_HELP_STRING([--enable-debug],[enable debug, default: no]),
+	[case "${enableval}" in
+		yes) debug=true ;;
+		no)  debug=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+        esac],[debug=false])
+AM_CONDITIONAL([ENABLE_DEBUG], [test x$debug = xtrue])
+
+
+AC_ARG_ENABLE([release],
+	AS_HELP_STRING([--enable-release],[enable release, default: no]),
+	[case "${enableval}" in
+		yes) release=true ;;
+		no)  release=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-release]) ;;
+        esac],[release=false])
+AM_CONDITIONAL([ENABLE_RELEASE], [test x$release = xtrue])
+
+if (test "x$debug" == x"true" -a "x$release" == x"true"); then
+    AC_MSG_ERROR([must not have both release and debug set!])
+fi
+
+if (test "x$debug" == x"false" -a "x$release" == x"false"); then
+    AC_MSG_RESULT([defaulting to RELEASE mode!])
+    release=true
+    AM_CONDITIONAL([ENABLE_RELEASE], [test x$release = xtrue])
+fi
+
+if (test "x$debug" == x"true"); then
+
+    if (test "x$acv_ot_clang" == "xyes"); then
+        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
+    else
+        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
+    fi
+    AC_DEFINE([DEBUG], [1], [Building in Debug Mode])
+fi
+
+if (test "x$release" == x"true"); then
+
+    if (test "x$acv_ot_clang" == "xyes"); then
+        AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector"])
+    else
+        AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
+    fi
+    AC_DEFINE([RELEASE], [1], [Building in Release Mode])
+fi
+
+## (Option) Build In C++11 Mode ##
+
+AC_ARG_ENABLE([cxx11],
+	AS_HELP_STRING([--enable-cxx11],[enable cxx11, default: no]),
+	[case "${enableval}" in
+		yes) cxx11=true ;;
+		no)  cxx11=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxx11]) ;;
+        esac],[cxx11=false])
+AM_CONDITIONAL([USE_CXX11], [test x$cxx11 = xtrue])
+
+if (test "x$cxx11" == "xtrue"); then
+
+	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
+    AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
+fi
+
 #####   Output to AM   #####
 
-AC_SUBST([DEPS_FLAGS],	["$PTHREAD_CFLAGS $PKGS_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $OPENSSL_CFLAGS $OPENSSL_INCLUDES $BOOST_LIB_INCLUDE"])
+AC_SUBST([DEPS_CFLAGS],	["$PKGS_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $OPENSSL_CFLAGS $OPENSSL_INCLUDES $BOOST_CPPFLAGS $PTHREAD_CFLAGS"])
 
-AC_SUBST([DEPS_LIBS],	["$PKGS_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS  $BOOST_LDFLAGS -ldl $PTHREAD_LIBS"])
+AC_SUBST([DEPS_LIBS],	["$PKGS_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS $BOOST_LIBS -ldl $PTHREAD_LIBS"])
 
-AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_FLAGS"])
 
-AC_SUBST([AM_CPPFLAGS],["$BOOST_CPPFLAGS"])
+AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_CFLAGS"])
+
 
 
 AC_CONFIG_FILES([Makefile

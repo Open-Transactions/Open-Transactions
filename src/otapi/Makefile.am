@@ -14,7 +14,6 @@ opentxs_swig_dir	=	$(top_srcdir)/swig
 otlib_build_dir		=	$(top_builddir)/src/otlib
 
 common_includes		=	$(AM_CXXFLAGS)          	\
-				$(DEPS_CFLAGS)			\
 				-I$(top_builddir)/include/otlib	\
 				-I$(opentxs_include_dir)	\
 				-I$(opentxs_include_dir)/otlib	\
