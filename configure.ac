@@ -491,7 +491,30 @@ if (test "x$cxx11" == "xtrue"); then
 
 	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
     AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
+else
+    AC_DEFINE([NO_CXX11],   [1], [Not Using C++11])
 fi
+
+## (Option) Build In C++03 TR1 Mode ##
+
+AC_ARG_ENABLE([cxxtr1],
+	AS_HELP_STRING([--enable-cxxtr1],[enable cxxtr1, default: yes]),
+	[case "${enableval}" in
+		yes) cxxtr1=true ;;
+		no)  cxxtr1=false ;;
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxxtr1]) ;;
+        esac],[cxxtr1=true])
+AM_CONDITIONAL([USE_CXXTR1], [test x$cxxtr1 = xtrue])
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"true"); then
+	AC_MSG_ERROR([ERROR: You cannot have C++11 and TR1 at the same time!])
+fi
+
+
+if (test "x$cxxtr1" = x"true" -a "x$cxx11" == x"false"); then
+	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
+fi
+
 
 #####   Output to AM   #####
 

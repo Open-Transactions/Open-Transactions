@@ -2223,7 +2223,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
         // Global one.
         pCachedKey = OTCachedKey::It(); // Used to only use this one (global one) but now I allow pPWData to contain a pointer to the exact instance. (To enable multiple instances...) If that's not found then here we set it to the global one.
     }
-    OT_ASSERT(pCachedKey);
+    OT_ASSERT(NULL != pCachedKey);
     // -------------------------------------
     const bool b1 = pPWData->isForNormalNym();
     const bool b3 = !(pCachedKey->isPaused());
