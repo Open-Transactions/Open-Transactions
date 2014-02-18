@@ -101,6 +101,7 @@ Warnings:        --enable-warnings
 Release Mode:    --enable-release
 
 No Boost:        --disable-boost
+No TR1:          --disable-cxxtr1
 No C++11:        --disable-cxx11
 
 (Optional)
