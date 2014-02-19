@@ -66,11 +66,9 @@
 #ifdef OT_USE_CHAI5
 #undef OT_USE_CHAI5
 #endif
-// disabled for testing... we may not need this if-def.
-
-//#if defined(_MSC_VER) || !defined(OPENTXS_NO_CXX11)
-//#define OT_USE_CHAI5
-//#endif
+#if defined(_MSC_VER) || defined(OPENTXS_CHAISCRIPT_5)
+#define OT_USE_CHAI5
+#endif
 
 #ifndef OT_USE_TR1
 #include <memory>

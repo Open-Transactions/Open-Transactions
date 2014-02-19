@@ -1,4 +1,4 @@
-##########################################################################
+﻿##########################################################################
 #                                                                        #
 #                                                                        #
 #                   ##    INSTALL - OSX Homebrew    ##                   #
@@ -101,9 +101,9 @@ $ cd Open-Transactions
 $ ./autogen.sh
 
 ## If you are NOT on Mavericks !!
-## remove "--disable-boost --disable-cxxtr1 --enable-cxx11” from your configure options.
+## remove "--with-chai5 --enable-cxx11 --disable-cxxtr1” from your configure options.
 
-$ ./configure --prefix=$HOMEBREW_PREFIX --disable-boost --disable-cxxtr1 --enable-cxx11 --with-openssl=/usr/local/opt/openssl
+$ ./configure --prefix=$HOMEBREW_PREFIX --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --with-openssl=/usr/local/opt/openssl
 
 
 (NB: Default without the "--prefix=$HOMEBREW_PREFIX" installs sytem-wide  
@@ -111,6 +111,9 @@ and will require admin privileges for "$ sudo make install" step below)
 
 
 #########   Configure Options:   #########
+
+Chaiscript 4:    --with-script=chai4
+Chaiscript 5:    --with-script=chai5
 
 32bit Mode:      --target=i686-apple-darwin11
 
