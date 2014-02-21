@@ -1,4 +1,4 @@
-##########################################################################
+﻿##########################################################################
 #                                                                        #
 #                                                                        #
 #                   ##    INSTALL - OSX Homebrew    ##                   #
@@ -39,11 +39,11 @@ $ brew update
 $ echo 'export CPP=cpp; export CC=clang; export CXX=clang++' >> ~/.profile
 $ source ~/.profile
 
-$ brew install --use-clang cmake automake autoconf libtool
-$ brew install --use-clang protobuf msgpack zeromq22 openssl
+$ brew install --cc=clang cmake automake autoconf libtool
+$ brew install --cc=clang protobuf msgpack zeromq22 openssl
 
 ## If you are NOT on Mavericks !!
-$ brew install --use-clang boost
+$ brew install --cc=clang boost
 
 
 #############
@@ -77,11 +77,8 @@ $ git clone git://github.com/ChaiScript/ChaiScript.git
 
 # build chaiscript  (Now using non-boost version)
 $ cd ChaiScript
-
-### Only if you are using Mavericks !!
-# git checkout origin/ChaiScript_5_0_CPP_11
-###
-
+$ git checkout ChaiScript_5_0_CPP_11
+$ git clean -fxd
 $ cmake . -DCMAKE_INSTALL_PREFIX=$HOMEBREW_PREFIX
 $ make -j2
 $ make test
@@ -104,19 +101,21 @@ $ cd Open-Transactions
 $ ./autogen.sh
 
 ## If you are NOT on Mavericks !!
-## include "--disable-cxx11" in your configure options.
+## remove "--with-chai5 --enable-cxx11 --disable-cxxtr1” from your configure options.
 
-(for a x64)
-$ ./configure --prefix=$HOMEBREW_PREFIX --disable-boost --with-openssl=/usr/local/opt/openssl
+$ ./configure --prefix=$HOMEBREW_PREFIX --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --with-openssl=/usr/local/opt/openssl
 
-(for a x32)
-$ ./configure --target=i686-apple-darwin11 --prefix=$HOMEBREW_PREFIX --disable-boost --with-openssl=/usr/local/opt/openssl
 
 (NB: Default without the "--prefix=$HOMEBREW_PREFIX" installs sytem-wide  
 and will require admin privileges for "$ sudo make install" step below)
 
 
 #########   Configure Options:   #########
+
+Chaiscript 4:    --with-script=chai4
+Chaiscript 5:    --with-script=chai5
+
+32bit Mode:      --target=i686-apple-darwin11
 
 Debug Mode:      --enable-debug
 Signal Handling: --enable-sighandler
@@ -125,6 +124,7 @@ Warnings:        --enable-warnings
 Release Mode:    --enable-release
 
 No Boost:        --disable-boost
+No TR1:          --disable-cxxtr1
 No C++11:        --disable-cxx11
 
 (Optional)

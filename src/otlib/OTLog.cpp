@@ -223,7 +223,9 @@ extern "C"
 
 	// This shitty apple section is for struct sigcontext for the signal handling.
 #if defined(__APPLE__)
+#ifndef _XOPEN_SOURCE
 #define _XOPEN_SOURCE 600
+#endif
 	// Fucking Apple!
 	struct sigcontext
 	{
