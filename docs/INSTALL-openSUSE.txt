@@ -26,34 +26,22 @@ Unfortunatly the CPP binding for ZMQ is currently not included in the zeromq-dev
 You have to download it from there github (https://github.com/zeromq/cppzmq) and copy the zmq.hpp manually to /usr/include.
 
 #########    Optional API deps:   #########
-# install dev deps if build for SWIG JAVA
-$ sudo zypper in java-1_7_0-openjdk java-1_7_0-openjdk-devel
 
-# install dev deps if build SWIG PHP
-$ sudo zypper in php5 php5-devel
+$ sudo zypper in ...
 
-# install dev deps if build for SWIG PYTHON
-$ sudo zypper in python-devel
+SWIG JAVA:         java-1_7_0-openjdk java-1_7_0-openjdk-devel
+SWIG PERL5: (tba)
+SWIG PHP:          php5 php5-devel
+SWIG PYTHON:       python-devel
+SWIG RUBY:         ruby ruby-devel ruby-devel-extra
+SWIG TCL:          tcl tcl-devel
+SWIG CSHARP:       mono-complete mono-devel
 
-# install dev deps if build for SWIG RUBY
-$ sudo zypper in ruby ruby-devel ruby-devel-extra
-
-# install dev deps if build for SWIG TCL
-$ sudo zypper in tcl tcl-devel
-
-# install dev deps if build for SWIG CSHARP
-$ sudo zypper in mono-complete mono-devel
-
-# install dev deps if build for SWIG D
+SWIG D:
 # find .rpm for "gdc" d-compiler front end for gcc
 # or build-install "gdc" yourself from source
 
 ###########################################
-
-
-# setenv variable PKG_CONFIG_PATH
-$ export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
-
 
 # now chaiscript  (for now we are using the development version)
 
@@ -88,6 +76,7 @@ $ ./autogen.sh
 
 $ ./configure --with-script=chai5
 
+
 #########   Configure Options:   #########
 
 Chaiscript 4:    --with-script=chai4
@@ -98,6 +87,7 @@ Signal Handling: --enable-sighandler
 Warnings:        --enable-warnings
 
 Release Mode:    --enable-release
+(default)
 
 No Boost:        --disable-boost
 No TR1:          --disable-cxxtr1
@@ -134,27 +124,17 @@ $ make install
 
 ###########   Miscellaneous Notes:   ###########
 
-# add to ~/.bash_profile
-
-# set PATH so it includes user's .local root bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# to avoid logging out and then logging back in again, just do ...
-$ source ~/.bash_profile
-
 # to run otserver
 $ otserver
 
 # for python client api support export env variable
-$ export PYTHONPATH=$HOME/.local/lib:$PYTHONPATH
+$ export PYTHONPATH=/usr/local/lib:$PYTHONPATH
 
 # to look at an example wallet (WARNING :will reset all user data):
 $ mkdir -p ~/.ot && cp -R sample-data/ot-sample-data/* ~/.ot
 
 # also checkout tarball of sample contracts, baskets, server
-$ cd ~/.local/share/opentxs
+$ cd /usr/local/share/opentxs
 $ tar -xvf user-samples.tar.gz
 $ ls
 ################################################
