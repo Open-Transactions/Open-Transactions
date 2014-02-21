@@ -145,7 +145,7 @@ if test x"$with_script" == x"chai5"; then
 	fi
 
 	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 5.2.0])
-	AC_DEFINE([USE_CHAISCRIPT_5], [1], [Building with Chaiscript 5])
+	AC_DEFINE([CHAISCRIPT_5], [1], [Building with Chaiscript 5])
 fi
 
 if test x"$with_script" == x"chai4"; then
@@ -154,7 +154,7 @@ if test x"$with_script" == x"chai4"; then
 	fi
 
 	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 3.1.0])
-	AC_DEFINE([USE_CHAISCRIPT_4], [1], [Building with Chaiscript 4])
+	AC_DEFINE([CHAISCRIPT_4], [1], [Building with Chaiscript 4])
 fi
 
 
@@ -522,7 +522,7 @@ if test x"$debug" == x"false" -a x"$release" == x"false"; then
 fi
 
 if test x"$debug" == x"true"; then
-	if test x"$acv_ot_clang" == x"yes"; then
+	if test x"$acv_ot_clang" == x"true"; then
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
 	else
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
@@ -531,8 +531,8 @@ if test x"$debug" == x"true"; then
 fi
 
 if test x"$release" == x"true"; then
-	if test x"$acv_ot_clang" == x"yes"; then
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 -fstack-protector-all -Wstack-protector"])
+	if test x"$acv_ot_clang" == x"true"; then
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
 	else
 		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
 	fi
