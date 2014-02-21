@@ -35,6 +35,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otapi\OTAPI _Exec.cpp" />
     <ClCompile Include="..\..\src\otapi\OTAPI.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -255,9 +256,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\otapi\main.hpp" />
+    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.h" />
     <ClInclude Include="..\..\include\otapi\OpenTransactions.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI_Basic.hpp" />
+    <ClInclude Include="..\..\include\otapi\OTAPI_Exec.h" />
     <ClInclude Include="..\..\include\otapi\OTClient.hpp" />
     <ClInclude Include="..\..\include\otapi\OTMadeEasy.hpp" />
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp" />

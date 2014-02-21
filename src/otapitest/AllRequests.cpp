@@ -1,0 +1,169 @@
+#include "stdafx.h"
+
+#include "OtMeTest.hpp"
+
+
+#ifdef ALLTESTS
+
+TEST_MOCK(send_user_cash)
+{
+	OtMeTest::EXPECT_load_or_retrieve_encrypt_key(mock, index, SERVER_ID, NYM_ID, NYM_TO_ID);
+
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserInstrument(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA, INSTRUMENT_TO_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_cash(SERVER_ID, NYM_ID, NYM_TO_ID, INSTRUMENT_DATA, INSTRUMENT_TO_DATA));
+}
+
+TEST_MOCK(send_user_msg)
+{
+	OtMeTest::EXPECT_load_or_retrieve_encrypt_key(mock, index, SERVER_ID, NYM_ID, NYM_TO_ID);
+
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserMessage(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, MESSAGE_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_msg(SERVER_ID, NYM_ID, NYM_TO_ID, MESSAGE_DATA));
+}
+
+TEST_MOCK(send_user_payment)
+{
+	OtMeTest::EXPECT_load_or_retrieve_encrypt_key(mock, index, SERVER_ID, NYM_ID, NYM_TO_ID);
+
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserInstrument(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA, ""));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_payment(SERVER_ID, NYM_ID, NYM_TO_ID, INSTRUMENT_DATA));
+}
+
+TEST_MOCK(adjust_usage_credits)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, usageCredits(SERVER_ID, NYM_ID, NYM_TO_ID, 224488));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.adjust_usage_credits(SERVER_ID, NYM_ID, NYM_TO_ID, "224488"));
+}
+
+TEST_MOCK(check_user)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, checkUser(SERVER_ID, NYM_ID, NYM_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.check_user(SERVER_ID, NYM_ID, NYM_ID));
+}
+
+TEST_MOCK(create_asset_acct)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, createAssetAccount(SERVER_ID, NYM_ID, CONTRACT_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.create_asset_acct(SERVER_ID, NYM_ID, CONTRACT_ID));
+}
+
+TEST_MOCK(get_box_receipt_Inbox)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getBoxReceipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_INBOX, TRANSACTION_NUMBER));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_box_receipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_INBOX, TRANSACTION_NUMBER));
+}
+
+TEST_MOCK(get_box_receipt_Nymbox)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getBoxReceipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_box_receipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
+}
+
+TEST_MOCK(get_box_receipt_Outbox)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getBoxReceipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_OUTBOX, TRANSACTION_NUMBER));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_box_receipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_OUTBOX, TRANSACTION_NUMBER));
+}
+
+TEST_MOCK(get_market_list)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getMarketList(SERVER_ID, NYM_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_market_list(SERVER_ID, NYM_ID));
+}
+
+TEST_MOCK(get_market_offers)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getMarketOffers(SERVER_ID, NYM_ID, MARKET_ID, 5));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_market_offers(SERVER_ID, NYM_ID, MARKET_ID, 5));
+}
+
+TEST_MOCK(get_market_recent_trades)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getMarketRecentTrades(SERVER_ID, NYM_ID, MARKET_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_market_recent_trades(SERVER_ID, NYM_ID, MARKET_ID));
+}
+
+TEST_MOCK(get_nym_market_offers)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getNym_MarketOffers(SERVER_ID, NYM_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.get_nym_market_offers(SERVER_ID, NYM_ID));
+}
+
+TEST_MOCK(issue_asset_type)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, issueAssetType(SERVER_ID, NYM_ID, CONTRACT_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.issue_asset_type(SERVER_ID, NYM_ID, CONTRACT_DATA));
+}
+
+TEST_MOCK(issue_basket_currency)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, issueBasket(SERVER_ID, NYM_ID, CONTRACT_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.issue_basket_currency(SERVER_ID, NYM_ID, CONTRACT_DATA));
+}
+
+TEST_MOCK(query_asset_types)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, queryAssetTypes(SERVER_ID, NYM_ID, ENCODED_MAP));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.query_asset_types(SERVER_ID, NYM_ID, ENCODED_MAP));
+}
+
+TEST_MOCK(retrieve_contract)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getContract(SERVER_ID, NYM_ID, CONTRACT_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.retrieve_contract(SERVER_ID, NYM_ID, CONTRACT_ID));
+}
+
+TEST_MOCK(retrieve_mint)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, getMint(SERVER_ID, NYM_ID, ASSET_ID));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.retrieve_mint(SERVER_ID, NYM_ID, ASSET_ID));
+}
+
+TEST_MOCK(send_user_cash_pubkey)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserInstrument(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA, INSTRUMENT_TO_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_cash_pubkey(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA, INSTRUMENT_TO_DATA));
+}
+
+TEST_MOCK(send_user_msg_pubkey)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserMessage(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, MESSAGE_DATA));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_msg_pubkey(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, MESSAGE_DATA));
+}
+
+TEST_MOCK(send_user_pmnt_pubkey)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, sendUserInstrument(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA, ""));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.send_user_pmnt_pubkey(SERVER_ID, NYM_ID, NYM_TO_ID, PUBLIC_KEY, INSTRUMENT_DATA));
+}
+
+TEST_MOCK(trigger_clause)
+{
+	EXPECT_MOCK_REQUEST(MESSAGE_DATA, triggerClause(SERVER_ID, NYM_ID, 6767, "ClauseName", "Param"));
+
+	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.trigger_clause(SERVER_ID, NYM_ID, 6767, "ClauseName", "Param"));
+}
+
+#endif // ALLTESTS
+

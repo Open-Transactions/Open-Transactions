@@ -1361,7 +1361,7 @@ OTDataFolder * OTDataFolder::pDataFolder;
 // static
 bool OTDataFolder::Init(const OTString & strThreadContext)
 {
-    if (NULL != pDataFolder) return false; // we already have a data dir setup.
+    if (NULL != pDataFolder) return true; // we already have a data dir setup.
 
     if (!strThreadContext.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
     if (3 > strThreadContext.GetLength())       { OTLog::sError("%s: Too Short: %s !\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
