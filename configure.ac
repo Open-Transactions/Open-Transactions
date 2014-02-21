@@ -205,7 +205,7 @@ AC_ARG_ENABLE(
 
 AM_CONDITIONAL([WANT_BOOST], [test x"$boost" == x"true"])
 
-if test x"$with_script" == x"chai5" -a x"$boost" == x"false"; then
+if test x"$with_script" == x"chai4" -a x"$boost" == x"false"; then
 	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4   (change to: --with-script=chai5 or remove --disable-boost).])
 fi
 
