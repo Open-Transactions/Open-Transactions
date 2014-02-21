@@ -184,7 +184,7 @@ class OT_ME
 {
 private:
 
-    _SharedPtr<OTScript> m_pScript;
+    static _SharedPtr<OTScript> m_pScript;
     // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();

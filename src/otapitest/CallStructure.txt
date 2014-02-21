@@ -1,0 +1,737 @@
+// these 2 functions are used a lot, so I will map them seperately here
+// and only name them where they are used.
+// <OT_API_function is the OTAPI function it ends up calling
+
+SendRequest <OT_API_function>
+	SendRequestOnce <OT_API_function>
+	SendRequestOnce <OT_API_function>
+
+
+SendTransaction <OT_API_function>
+	getIntermediaryFiles
+	OT_API_GetNym_TransactionNumCount
+	getTransactionNumbers
+	OT_API_GetNym_TransactionNumCount
+	getTransactionNumbers
+	OT_API_GetNym_TransactionNumCount
+	getTransactionNumbers
+	OT_API_GetNym_TransactionNumCount
+	SendRequestOnce <OT_API_function>
+	getIntermediaryFiles
+	SendRequestOnce <OT_API_function>
+
+
+// These are a number of recurring utility functions
+// whenever a tree ends at a non-OTAPI function name you can find the implementation here
+
+SendRequestOnce <OT_API_function>
+	SendRequestLowLevel
+		OT_API_FlushMessageBuffer
+		<OT_API_function>
+	ReceiveReplyLowLevel
+		OT_API_Sleep
+		OT_API_PopMessageBuffer
+	VerifyMessageSuccess
+		OT_API_Message_GetSuccess
+	OT_API_Msg_GetBlnceAgrmntSuccess
+	OT_API_Msg_IsTransactionCanceled
+	OT_API_Msg_GetTransactionSuccess
+	getRequestNumber
+	getIntermediaryFiles
+	getAndProcessNymbox_8
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+
+getTransactionNumbers
+	getTransactionNumLowLevel
+	getAndProcessNymbox_4
+	getRequestNumber
+	getAndProcessNymbox_4
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+	getTransactionNumLowLevel
+	getAndProcessNymbox_4
+	getAndProcessNymbox_4
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+	getTransactionNumLowLevel
+	getAndProcessNymbox_4
+	OT_API_Message_GetNymboxHash
+	OT_API_GetNym_NymboxHash
+	getAndProcessNymbox_4
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+
+getTransactionNumLowLevel
+	OT_API_FlushMessageBuffer
+	OT_API_getTransactionNumber
+	receiveReplySuccessLowLevel
+		ReceiveReplyLowLevel
+			OT_API_Sleep
+			OT_API_PopMessageBuffer
+		VerifyMessageSuccess
+			OT_API_Message_GetSuccess
+
+getRequestNumber
+	OT_API_FlushMessageBuffer
+	OT_API_getRequest
+	receiveReplySuccessLowLevel
+		ReceiveReplyLowLevel
+			OT_API_Sleep
+			OT_API_PopMessageBuffer
+		VerifyMessageSuccess
+			OT_API_Message_GetSuccess
+
+getAndProcessNymbox_4
+	getAndProcessNymbox_8
+
+getAndProcessNymbox_8
+	getNymbox
+	insureHaveAllBoxReceipts
+	OT_API_RemoveSentMessage
+	OT_API_GetSentMessage
+	OT_API_Msg_HarvestTransactionNumbers
+	OT_API_RemoveSentMessage
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+	processNymbox
+		sendProcessNymboxLowLevel
+			OT_API_FlushMessageBuffer
+			OT_API_processNymbox
+		ReceiveReplyLowLevel
+			OT_API_Sleep
+			OT_API_PopMessageBuffer
+		OT_API_Msg_GetBlnceAgrmntSuccess
+		OT_API_Msg_GetTransactionSuccess
+	getNymbox
+	OT_API_GetSentMessage
+	OT_API_Msg_HarvestTransactionNumbers
+	OT_API_RemoveSentMessage
+	OT_API_LoadNymboxNoVerify
+	OT_API_FlushSentMessages
+
+getNymbox
+	OT_API_GetNym_RecentHash
+	OT_API_GetNym_NymboxHash
+	getNymboxLowLevel
+		OT_API_FlushMessageBuffer
+		OT_API_getNymbox
+		receiveReplySuccessLowLevel
+			ReceiveReplyLowLevel
+				OT_API_Sleep
+				OT_API_PopMessageBuffer
+			VerifyMessageSuccess
+				OT_API_Message_GetSuccess
+	getRequestNumber
+	OT_API_Message_GetNymboxHash
+	OT_API_GetNym_NymboxHash
+	getNymboxLowLevel
+		OT_API_FlushMessageBuffer
+		OT_API_getNymbox
+		receiveReplySuccessLowLevel
+			ReceiveReplyLowLevel
+				OT_API_Sleep
+				OT_API_PopMessageBuffer
+			VerifyMessageSuccess
+				OT_API_Message_GetSuccess
+
+insureHaveAllBoxReceipts
+	OT_API_LoadNymboxNoVerify
+	OT_API_LoadInboxNoVerify
+	OT_API_LoadOutboxNoVerify
+	OT_API_VerifySignature
+	OT_API_Ledger_GetCount
+	OT_API_Ledger_GetTransactionIDByIndex
+	OT_API_Ledger_GetTransactionByID
+	OT_API_Transaction_GetType
+	OT_API_ReplyNotice_GetRequestNum
+	OT_API_DoesBoxReceiptExist
+	getBoxReceiptWithErrorCorrection
+		getBoxReceiptLowLevel
+			OT_API_FlushMessageBuffer
+			OT_API_getBoxReceipt
+			receiveReplySuccessLowLevel
+				ReceiveReplyLowLevel
+					OT_API_Sleep
+					OT_API_PopMessageBuffer
+				VerifyMessageSuccess
+					OT_API_Message_GetSuccess
+		getRequestNumber
+		getBoxReceiptLowLevel
+			OT_API_FlushMessageBuffer
+			OT_API_getBoxReceipt
+			receiveReplySuccessLowLevel
+				ReceiveReplyLowLevel
+					OT_API_Sleep
+					OT_API_PopMessageBuffer
+				VerifyMessageSuccess
+					OT_API_Message_GetSuccess
+	OT_API_Nymbox_GetReplyNotice
+
+getIntermediaryFiles
+	getInboxAccount
+		OT_API_FlushMessageBuffer
+		OT_API_getAccountFiles
+		receiveReplySuccessLowLevel
+			ReceiveReplyLowLevel
+				OT_API_Sleep
+				OT_API_PopMessageBuffer
+			VerifyMessageSuccess
+				OT_API_Message_GetSuccess
+		insureHaveAllBoxReceipts
+		insureHaveAllBoxReceipts
+	getRequestNumber
+	getIntermediaryFiles_old
+		// this is actually a deprecated function
+	getInboxAccount
+		OT_API_FlushMessageBuffer
+		OT_API_getAccountFiles
+		receiveReplySuccessLowLevel
+			ReceiveReplyLowLevel
+				OT_API_Sleep
+				OT_API_PopMessageBuffer
+			VerifyMessageSuccess
+				OT_API_Message_GetSuccess
+		insureHaveAllBoxReceipts
+		insureHaveAllBoxReceipts
+
+InterpretTransactionMsgReply
+	VerifyMessageSuccess
+		OT_API_Message_GetSuccess
+	VerifyMsgBalanceAgrmntSuccess
+		OT_API_Msg_GetBlnceAgrmntSuccess
+	VerifyMsgTrnxSuccess
+		OT_API_Msg_GetTransactionSuccess
+
+processCashPurse
+	OT_API_CreatePurse_Passphrase
+	OT_API_CreatePurse
+	OT_API_Purse_Count
+	OT_API_Purse_Peek
+	OT_API_Purse_Pop
+	OT_API_Token_ChangeOwner
+	OT_API_Token_ChangeOwner
+	OT_API_Purse_Push
+	OT_API_Purse_Push
+	OT_API_SavePurse
+	OT_API_Purse_Empty
+	OT_API_CreatePurse_Passphrase
+	OT_API_CreatePurse
+	OT_API_Purse_Count
+	OT_API_Purse_Peek
+	OT_API_Purse_Pop
+	OT_API_Token_GetID
+	OT_API_Token_ChangeOwner
+	OT_API_Token_ChangeOwner
+	OT_API_Purse_Push
+	OT_API_Purse_Push
+	OT_API_Purse_Push
+	OT_API_SavePurse
+
+
+
+// These are the functions that we have to replace in order of occurrence
+// in the OT_ME.cpp file
+// Whenever ot_Msg.xxx is encountered in actuality this is one of the functor
+// calls, with that ot_Msg.xxx as the function id. Directly below it you will
+// find the OT_API function it ends up calling after handling all the parameters
+// Here and there in the tree there are comments about special occasions.
+
+OT_ME::make_sure_enough_trans_nums
+	madeEasy.insure_enough_nums
+		OT_API_GetNym_TransactionNumCount
+		getTransactionNumbers
+		madeEasy.details_refresh_nym
+			madeEasy.retrieve_nym
+				getRequestNumber
+				getAndProcessNymbox_4
+		OT_API_GetNym_TransactionNumCount
+
+OT_ME::register_nym
+	madeEasy.register_nym
+		ot_Msg.CREATE_USER_ACCT
+		SendRequest OT_API_createUserAccount
+		VerifyMessageSuccess
+			OT_API_Message_GetSuccess
+		getRequestNumber
+
+OT_ME::check_user
+	madeEasy.check_user
+		ot_Msg.CHECK_USER
+		SendRequest OT_API_checkUser
+
+OT_ME::create_pseudonym
+	madeEasy.create_pseudonym
+		OT_API_CreateNym
+
+OT_ME::issue_asset_type
+	madeEasy.issue_asset_type
+		ot_Msg.ISSUE_ASSET_TYPE
+		SendRequest OT_API_issueAssetType
+
+OT_ME::issue_basket_currency
+	madeEasy.issue_basket_currency
+		ot_Msg.ISSUE_BASKET
+		SendRequest OT_API_issueBasket
+
+OT_ME::exchange_basket_currency
+	madeEasy.exchange_basket_currency
+		OT_API_Basket_GetMemberCount
+		ot_Msg.EXCHANGE_BASKET
+		SendTransaction OT_API_exchangeBasket
+
+OT_ME::retrieve_contract
+	madeEasy.retrieve_contract
+		ot_Msg.GET_CONTRACT
+		SendRequest OT_API_getContract
+
+OT_ME::load_or_retrieve_contract
+	madeEasy.load_or_retrieve_contract
+		OT_API_LoadAssetContract
+		madeEasy.retrieve_contract
+			ot_Msg.GET_CONTRACT
+			SendRequest OT_API_getContract
+		OT_API_LoadAssetContract
+
+OT_ME::create_asset_acct
+	madeEasy.create_asset_acct
+		ot_Msg.CREATE_ASSET_ACCT
+		SendRequest OT_API_createAssetAccount
+
+OT_ME::stat_asset_account
+	madeEasy.stat_asset_account
+		OT_API_GetAccountWallet_Name
+		OT_API_GetAccountWallet_NymID
+		OT_API_GetAccountWallet_ServerID
+		OT_API_GetAccountWallet_AssetTypeID
+		OT_API_GetAccountWallet_Balance
+		OT_API_GetAssetType_Name
+		OT_API_GetNym_Name
+		OT_API_GetServer_Name
+		OT_API_FormatAmount
+
+OT_ME::retrieve_account
+	madeEasy.retrieve_account
+		madeEasy.retrieve_account // extra param
+
+OT_ME::retrieve_account // extra param
+	madeEasy.retrieve_account
+		getIntermediaryFiles
+
+OT_ME::retrieve_nym
+	madeEasy.details_refresh_nym
+		madeEasy.retrieve_nym
+			getRequestNumber
+			getAndProcessNymbox_4
+
+OT_ME::retrieve_nym // extra param
+	madeEasy.details_refresh_nym
+		madeEasy.retrieve_nym
+			getRequestNumber
+			getAndProcessNymbox_4
+
+OT_ME::send_transfer
+	madeEasy.send_transfer
+		ot_Msg.SEND_TRANSFER
+		SendTransaction OT_API_notarizeTransfer
+
+OT_ME::process_inbox
+	madeEasy.process_inbox
+		ot_Msg.PROCESS_INBOX
+		SendTransaction OT_API_processInbox
+
+OT_ME::accept_inbox_items
+	accept_inbox_items // bypasses madeEasy !!!
+		OT_API_GetAccountWallet_NymID
+		OT_API_GetAccountWallet_ServerID
+		getIntermediaryFiles
+		madeEasy.insure_enough_nums
+			OT_API_GetNym_TransactionNumCount
+			getTransactionNumbers
+			madeEasy.details_refresh_nym
+				madeEasy.retrieve_nym
+					getRequestNumber
+					getAndProcessNymbox_4
+			OT_API_GetNym_TransactionNumCount
+		OT_API_LoadInbox
+		OT_API_Ledger_GetCount
+		OT_API_NumList_Count
+		OT_API_Ledger_GetTransactionByIndex
+		OT_API_Transaction_GetType
+		OT_API_NumList_VerifyQuery
+		OT_API_Ledger_CreateResponse
+		OT_API_Transaction_CreateResponse
+		OT_API_Ledger_FinalizeResponse
+		madeEasy.process_inbox
+			ot_Msg.PROCESS_INBOX
+			SendTransaction OT_API_processInbox
+		InterpretTransactionMsgReply
+		madeEasy.retrieve_account
+			// see same in OT_ME::retrieve_account
+
+OT_ME::discard_incoming_payments
+	details_discard_incoming // bypasses madeEasy !!!
+		OT_API_LoadPaymentInbox
+		OT_API_Ledger_GetCount
+		OT_API_NumList_Count
+		OT_API_NumList_VerifyQuery
+		OT_API_RecordPayment
+
+OT_ME::cancel_outgoing_payments
+	details_cancel_outgoing // bypasses madeEasy !!!
+		OT_API_NumList_Count
+		OT_API_GetNym_OutpaymentsCount
+		OT_API_Nym_RemoveOutpaymentsByIndex
+		OT_API_GetNym_OutpaymentsServerIDByIndex
+		OT_API_GetNym_OutpaymentsContentsByIndex
+		OT_API_Instrmnt_GetAssetID
+		OT_API_Instrmnt_GetType
+		madeEasy.activate_smart_contract
+			OT_API_activateSmartContract
+			ot_Msg.ACTIVATE_SMART_CONTRACT
+			SendTransaction OT_API_activateSmartContract
+		OT_API_Msg_IsTransactionCanceled
+		madeEasy.cancel_payment_plan
+			OT_API_Instrmnt_GetRecipientAcctID
+			ot_Msg.DEPOSIT_PAYMENT_PLAN
+			SendTransaction OT_API_depositPaymentPlan
+		OT_API_Msg_IsTransactionCanceled
+		OT_CLI_ReadLine
+		OT_API_RecordPayment
+		OT_API_Instrmnt_GetRemitterAcctID
+		OT_API_Instrmnt_GetRemitterUserID
+		details_deposit_cheque
+			OT_API_Instrmnt_GetAssetID
+			OT_API_GetAccountWallet_AssetTypeID
+			madeEasy.deposit_cheque
+				ot_Msg.DEPOSIT_CHEQUE
+				SendTransaction OT_API_depositCheque
+			InterpretTransactionMsgReply
+			madeEasy.retrieve_account
+				// see same in OT_ME::retrieve_account
+
+OT_ME::accept_from_paymentbox
+	accept_from_paymentbox // bypasses madeEasy !!!
+		OT_API_GetAccountWallet_NymID
+		OT_API_GetAccountWallet_ServerID
+		OT_API_LoadPaymentInbox
+		OT_API_Ledger_GetCount
+		OT_API_NumList_Count
+		OT_API_NumList_VerifyQuery
+		handle_payment_index
+			OT_API_GetAccountWallet_NymID
+			OT_API_GetAccountWallet_ServerID
+			OT_CLI_ReadUntilEOF
+			madeEasy.get_payment_instrument
+				OT_API_LoadPaymentInbox
+				OT_API_Ledger_GetCount
+				OT_API_Ledger_GetInstrument
+			OT_API_Instrmnt_GetType
+			OT_API_Instrmnt_GetRecipientUserID
+			OT_API_Instrmnt_GetAssetID
+			OT_API_GetAccountWallet_AssetTypeID
+			OT_API_Instrmnt_GetValidFrom
+			OT_API_Instrmnt_GetValidTo
+			OT_API_GetTime
+			OT_API_RecordPayment
+			details_deposit_cheque
+				// see same in OT_ME::cancel_outgoing_payments
+			details_deposit_cheque
+				// see same in OT_ME::cancel_outgoing_payments
+			details_deposit_cheque
+				// see same in OT_ME::cancel_outgoing_payments
+			details_deposit_purse
+				// see same in OT_ME::deposit_local_purse
+			OT_API_RecordPayment
+
+OT_ME::load_public_encryption_key
+	madeEasy.load_public_encryption_key
+		OT_API_LoadPubkey_Encryption
+		OT_API_LoadUserPubkey_Encryption
+
+OT_ME::load_public_signing_key
+	madeEasy.load_public_signing_key
+		OT_API_LoadPubkey_Signing
+		OT_API_LoadUserPubkey_Signing
+
+OT_ME::load_or_retrieve_encrypt_key
+	madeEasy.load_or_retrieve_encrypt_key
+		madeEasy.load_public_encryption_key
+			OT_API_LoadPubkey_Encryption
+			OT_API_LoadUserPubkey_Encryption
+		madeEasy.check_user
+			ot_Msg.CHECK_USER
+			SendRequest OT_API_checkUser
+		VerifyMessageSuccess
+			OT_API_Message_GetSuccess
+		madeEasy.load_public_encryption_key
+			OT_API_LoadPubkey_Encryption
+			OT_API_LoadUserPubkey_Encryption
+
+OT_ME::load_or_retrieve_signing_key
+	madeEasy.load_or_retrieve_signing_key
+		madeEasy.load_public_signing_key
+			OT_API_LoadPubkey_Signing
+			OT_API_LoadUserPubkey_Signing
+		madeEasy.check_user
+			ot_Msg.CHECK_USER
+			SendRequest OT_API_checkUser
+		madeEasy.load_public_signing_key
+			OT_API_LoadPubkey_Signing
+			OT_API_LoadUserPubkey_Signing
+
+OT_ME::send_user_msg_pubkey
+	madeEasy.send_user_msg_pubkey
+		ot_Msg.SEND_USER_MESSAGE
+		SendRequest OT_API_sendUserMessage
+
+OT_ME::send_user_pmnt_pubkey
+	madeEasy.send_user_pmnt_pubkey
+		ot_Msg.SEND_USER_INSTRUMENT
+		SendRequest OT_API_sendUserInstrument
+
+OT_ME::send_user_cash_pubkey
+	madeEasy.send_user_cash_pubkey
+		ot_Msg.SEND_USER_INSTRUMENT // extra param
+		SendRequest OT_API_sendUserInstrument
+
+OT_ME::send_user_msg
+	madeEasy.send_user_msg
+		madeEasy.load_or_retrieve_encrypt_key
+			// see above in OT_ME::load_or_retrieve_encrypt_key
+		madeEasy.send_user_msg_pubkey
+			ot_Msg.SEND_USER_MESSAGE
+			SendRequest OT_API_sendUserMessage
+
+OT_ME::send_user_payment
+	madeEasy.send_user_payment
+		madeEasy.load_or_retrieve_encrypt_key
+			// see above in OT_ME::load_or_retrieve_encrypt_key
+		madeEasy.send_user_pmnt_pubkey
+			ot_Msg.SEND_USER_INSTRUMENT
+			SendRequest OT_API_sendUserInstrument
+
+OT_ME::send_user_cash
+	madeEasy.send_user_cash
+		madeEasy.load_or_retrieve_encrypt_key
+			// see above in OT_ME::load_or_retrieve_encrypt_key
+		madeEasy.send_user_cash_pubkey
+			ot_Msg.SEND_USER_INSTRUMENT // extra param
+			SendRequest OT_API_sendUserInstrument
+
+OT_ME::withdraw_and_send_cash
+	madeEasy.withdraw_and_send_cash
+		OT_API_GetAccountWallet_NymID
+		OT_API_GetAccountWallet_ServerID
+		OT_API_GetAccountWallet_AssetTypeID
+		details_send_cash
+			purse_get_indices_or_amount
+				OT_API_LoadPurse
+				OT_API_Purse_Count
+				OT_API_Purse_Peek
+				OT_API_Purse_Pop
+				OT_API_Token_GetID
+				OT_API_Token_GetDenomination
+				OT_API_Token_GetSeries
+				OT_API_Token_GetValidFrom
+				OT_API_Token_GetValidTo
+				OT_API_GetTime
+				OT_API_NumList_VerifyQuery
+				OT_API_NumList_Add
+				OT_API_NumList_Add
+			details_withdraw_cash
+				// see below in OT_ME::easy_withdraw_cash
+			purse_get_indices_or_amount
+				// see the same one two calls up within this function
+			details_export_cash
+				// see below in OT_ME::export_cash
+			madeEasy.send_user_cash
+				madeEasy.load_or_retrieve_encrypt_key
+					// see above in OT_ME::load_or_retrieve_encrypt_key
+				madeEasy.send_user_cash_pubkey
+					ot_Msg.SEND_USER_INSTRUMENT // extra param
+					SendRequest OT_API_sendUserInstrument
+			VerifyMessageSuccess
+				OT_API_Message_GetSuccess
+			OT_API_Wallet_ImportPurse
+
+OT_ME::get_payment_instrument
+	madeEasy.get_payment_instrument
+		madeEasy.get_payment_instrument // extra param
+
+OT_ME::get_payment_instrument // extra param
+	madeEasy.get_payment_instrument
+		OT_API_LoadPaymentInbox
+		OT_API_Ledger_GetCount
+		OT_API_Ledger_GetInstrument
+
+OT_ME::get_box_receipt
+	madeEasy.get_box_receipt
+		ot_Msg.GET_BOX_RECEIPT
+		SendRequest OT_API_getBoxReceipt
+
+OT_ME::retrieve_mint
+	madeEasy.retrieve_mint
+		ot_Msg.GET_MINT
+		SendRequest OT_API_getMint
+
+OT_ME::load_or_retrieve_mint
+	madeEasy.load_or_retrieve_mint
+		OT_API_Mint_IsStillGood
+		madeEasy.retrieve_mint
+			ot_Msg.GET_MINT
+			SendRequest OT_API_getMint
+		OT_API_Mint_IsStillGood
+		OT_API_LoadMint
+
+OT_ME::query_asset_types
+	madeEasy.query_asset_types
+		ot_Msg.QUERY_ASSET_TYPES
+		SendRequest OT_API_queryAssetTypes
+
+OT_ME::create_market_offer
+	madeEasy.create_market_offer
+		OT_API_GetAccountWallet_ServerID
+		OT_API_GetAccountWallet_NymID
+		ot_Msg.CREATE_MARKET_OFFER
+		SendTransaction OT_API_issueMarketOffer
+
+OT_ME::kill_market_offer
+	madeEasy.kill_market_offer
+		ot_Msg.KILL_MARKET_OFFER
+		SendTransaction OT_API_killMarketOffer
+
+OT_ME::kill_payment_plan
+	madeEasy.kill_payment_plan
+		ot_Msg.KILL_PAYMENT_PLAN
+		SendTransaction OT_API_killPaymentPlan
+
+OT_ME::cancel_payment_plan
+	madeEasy.cancel_payment_plan
+		OT_API_Instrmnt_GetRecipientAcctID
+		ot_Msg.DEPOSIT_PAYMENT_PLAN
+		SendTransaction OT_API_depositPaymentPlan
+
+OT_ME::activate_smart_contract
+	madeEasy.activate_smart_contract
+		OT_API_SmartContract_CountNumsNeeded
+		ot_Msg.ACTIVATE_SMART_CONTRACT
+		SendTransaction OT_API_activateSmartContract
+
+OT_ME::trigger_clause
+	madeEasy.trigger_clause
+		ot_Msg.TRIGGER_CLAUSE
+		SendRequest OT_API_triggerClause
+
+OT_ME::withdraw_cash
+	madeEasy.withdraw_cash
+		ot_Msg.WITHDRAW_CASH
+		SendTransaction OT_API_notarizeWithdrawal
+
+OT_ME::easy_withdraw_cash
+	details_withdraw_cash // bypasses madeEasy !!!
+		OT_API_GetAccountWallet_NymID
+		OT_API_GetAccountWallet_AssetTypeID
+		OT_API_GetAccountWallet_ServerID
+		OT_API_LoadAssetContract
+		madeEasy.retrieve_contract
+			ot_Msg.GET_CONTRACT
+			SendRequest OT_API_getContract
+		VerifyMessageSuccess
+			OT_API_Message_GetSuccess
+		OT_API_LoadAssetContract
+		madeEasy.load_or_retrieve_mint
+			OT_API_Mint_IsStillGood
+			madeEasy.retrieve_mint
+				ot_Msg.GET_MINT
+				SendRequest OT_API_getMint
+			OT_API_Mint_IsStillGood
+			OT_API_LoadMint
+		madeEasy.withdraw_cash
+			ot_Msg.WITHDRAW_CASH
+			SendTransaction OT_API_notarizeWithdrawal
+		InterpretTransactionMsgReply
+		madeEasy.retrieve_account
+			// see same in OT_ME::retrieve_account
+
+OT_ME::export_cash
+	details_export_cash // bypasses madeEasy !!!
+		madeEasy.load_or_retrieve_contract
+			OT_API_LoadAssetContract
+			madeEasy.retrieve_contract
+				ot_Msg.GET_CONTRACT
+				SendRequest OT_API_getContract
+			OT_API_LoadAssetContract
+		OT_API_LoadPurse
+		OT_API_Purse_Count
+		OT_API_Purse_Peek
+		OT_API_Purse_Pop
+		OT_API_Token_GetID
+		OT_API_NumList_VerifyQuery
+		exportCashPurse
+			madeEasy.load_or_retrieve_encrypt_key
+				// see above in OT_ME::load_or_retrieve_encrypt_key
+			processCashPurse
+
+OT_ME::withdraw_voucher
+	madeEasy.withdraw_voucher
+		ot_Msg.WITHDRAW_VOUCHER
+		SendTransaction OT_API_withdrawVoucher
+
+OT_ME::pay_dividend
+	madeEasy.pay_dividend
+		ot_Msg.PAY_DIVIDEND
+		SendTransaction OT_API_payDividend
+
+OT_ME::deposit_cheque
+	madeEasy.deposit_cheque
+		ot_Msg.DEPOSIT_CHEQUE
+		SendTransaction OT_API_depositCheque
+
+OT_ME::deposit_cash 
+	// see below (OT_ME::deposit_local_purse) for call tree
+
+OT_ME::deposit_local_purse
+	details_deposit_purse // bypasses madeEasy !!!
+		OT_API_GetAccountWallet_AssetTypeID
+		OT_API_LoadPurse
+		OT_API_Purse_Count
+		OT_API_Purse_Peek
+		OT_API_Purse_Pop
+		OT_API_Token_GetID
+		OT_API_NumList_VerifyQuery
+		depositCashPurse
+			OT_API_GetAccountWallet_NymID
+			OT_API_Purse_HasPassword
+			processCashPurse
+			ot_Msg.DEPOSIT_CASH
+			SendTransaction OT_API_notarizeDeposit
+			InterpretTransactionMsgReply
+			madeEasy.retrieve_account
+				// see same in OT_ME::retrieve_account
+			OT_API_Wallet_ImportPurse
+
+OT_ME::get_market_list
+	madeEasy.get_market_list
+		ot_Msg.GET_MARKET_LIST
+		SendRequest OT_API_getMarketList
+
+OT_ME::get_market_offers
+	madeEasy.get_market_offers
+		ot_Msg.GET_MARKET_OFFERS
+		SendRequest OT_API_getMarketOffers
+
+OT_ME::get_nym_market_offers
+	madeEasy.get_nym_market_offers
+		ot_Msg.GET_NYM_MARKET_OFFERS
+		SendRequest OT_API_getNym_MarketOffers
+
+OT_ME::get_market_recent_trades
+	madeEasy.get_market_recent_trades
+		ot_Msg.GET_MARKET_RECENT_TRADES
+		SendRequest OT_API_getMarketRecentTrades
+
+OT_ME::adjust_usage_credits
+	madeEasy.adjust_usage_credits
+		ot_Msg.ADJUST_USAGE_CREDITS
+		SendRequest OT_API_usageCredits

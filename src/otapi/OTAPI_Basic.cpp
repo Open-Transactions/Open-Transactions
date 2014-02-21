@@ -190,27 +190,11 @@ bool OTAPI_Basic::AppShutdown()
 }
 // -----------------------------------
 
-void OTAPI_Basic::SetAppBinaryFolder(const std::string & strFolder)
-{
-    OTAPI_Wrap::SetAppBinaryFolder(strFolder);
-}
-// -----------------------------------
-
-void OTAPI_Basic::SetHomeFolder(const std::string & strFolder)
-{
-    OTAPI_Wrap::SetHomeFolder(strFolder);
-}
-
-// -----------------------------------
-
-// NOTE: If you need to call SetAppBinaryFolder or SetHomeFolder, then you should probably
-// take care of that before calling this function, since it will assume they are already set.
-//
 bool OTAPI_Basic::Init()
 {
     // If this function fails, you can call it multiple times until it succeeds.
     //
-    return (NULL != OTAPI_Wrap::It());    // Call this for each OTAPI context you use. (Currently a singleton.)
+    return (NULL != OTAPI_Wrap::OTAPI());    // Call this for each OTAPI context you use. (Currently a singleton.)
 }
 // -----------------------------------
 

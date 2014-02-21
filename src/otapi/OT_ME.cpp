@@ -155,7 +155,8 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
-
+// no use in initializing the script multiple times since it takes prohibitively long
+_SharedPtr<OTScript> OT_ME::m_pScript;
 
 OT_ME::OT_ME()
 {
