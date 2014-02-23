@@ -1,10 +1,6 @@
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 
-//#define ALLTESTS
-
-#ifdef ALLTESTS
 
 TEST_MOCK(activate_smart_contract)
 {
@@ -106,6 +102,3 @@ TEST_MOCK(withdraw_voucher)
 
 	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.withdraw_voucher(SERVER_ID, NYM_ID, ACCOUNT_ID, NYM_TO_ID, "Memo", AMOUNT));
 }
-
-#endif // ALLTESTS
-

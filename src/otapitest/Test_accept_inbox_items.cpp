@@ -1,10 +1,6 @@
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 
-//#define ALLTESTS
-
-#ifdef ALLTESTS
 
 TEST_MOCK(accept_inbox_items)
 {
@@ -17,7 +13,7 @@ TEST_MOCK(accept_inbox_items)
 	if (index >= 0)
 	{
 		//FIX bombs with OT_ERROR
-		OtMeTest::EXPECT_getIntermediaryFiles(mock, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
+		OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
 
 		// madeEasy.insure_enough_nums bombs with OT_ERROR
 		EXPECT_MOCK_RET(10, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
@@ -49,12 +45,10 @@ TEST_MOCK(accept_inbox_items)
 			{
 				response = true;
 
-				OtMeTest::EXPECT_getIntermediaryFiles(mock, SERVER_ID, NYM_ID, ACCOUNT_ID, true);
+				OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, true);
 			}
 		}
 	}
 
 	ASSERT_EQ(response, me.accept_inbox_items(ACCOUNT_ID, ITEM_TYPE_ALL, INDICES_ALL));
 }
-
-#endif // ALLTESTS

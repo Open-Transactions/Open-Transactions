@@ -1,8 +1,6 @@
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 
-#ifdef ALLTESTS
 
 TEST_MOCK(register_nym)
 {
@@ -32,5 +30,3 @@ TEST_MOCK(register_nym)
 
 	ASSERT_EQ(result, me.register_nym(SERVER_ID, NYM_ID));
 }
-
-#endif // ALLTESTS

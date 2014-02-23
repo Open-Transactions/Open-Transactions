@@ -83,21 +83,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\otapitest\OtMeTest.hpp" />
+    <ClInclude Include="..\..\src\otapitest\OtMeExtra.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\otapitest\AllTests.cpp" />
     <ClCompile Include="..\..\src\otapitest\AllTransactions.cpp" />
     <ClCompile Include="..\..\src\otapitest\otapitest.cpp" />
     <ClCompile Include="..\..\src\otapitest\OtMeTest.cpp" />
     <ClCompile Include="..\..\src\otapitest\AllRequests.cpp" />
+    <ClCompile Include="..\..\src\otapitest\OtMeExtra.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_accept_from_paymentbox.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_accept_inbox_items.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_cancel_outgoing_payments.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_create_pseudonym.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_deposit_cash.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_deposit_local_purse.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_details_deposit_cheque.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_details_export_cash.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_discard_incoming_payments.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_export_cash.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_get_payment_instrument.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_handle_payment_index.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_contract.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_encrypt_key.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_mint.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_signing_key.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_OT_ME.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_make_sure_enough_trans_nums.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_register_nym.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_retrieve_account.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_retrieve_nym.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_stat_asset_account.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_withdraw_and_send_cash.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
