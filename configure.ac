@@ -200,13 +200,13 @@ AC_ARG_ENABLE(
 	[case "${enableval}" in
 		yes) boost=true  ;;
 		no)  boost=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --disable-boost]) ;; esac],
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-boost]) ;; esac],
 	[boost=true])
 
 AM_CONDITIONAL([WANT_BOOST], [test x"$boost" == x"true"])
 
 if test x"$with_script" == x"chai4" -a x"$boost" == x"false"; then
-	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4   (change to: --with-script=chai5 or remove --disable-boost).])
+	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4 (change to: --with-script=chai5 or remove --disable-boost).])
 fi
 
 if test x"$boost" == x"true"; then
