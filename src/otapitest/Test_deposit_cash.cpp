@@ -1,10 +1,9 @@
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 
-//#define ALLTESTS
 
-#ifdef ALLTESTS
+//SEE ALSO: deposit_local_purse
+
 
 TEST_MOCK(deposit_cash_EmptyPurse)
 {
@@ -43,7 +42,7 @@ TEST_MOCK(deposit_cash_EmptyPurse)
 
 				if (index >= 0)
 				{
-					OtMeTest::EXPECT_getIntermediaryFiles(mock, SERVER_ID, NYM_TO_ID, ACCOUNT_ID, false);
+					OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_TO_ID, ACCOUNT_ID, false);
 				}
 			}
 		}
@@ -101,7 +100,7 @@ TEST_MOCK(deposit_cash_PurseWithOneToken)
 
 				if (index >= 0)
 				{
-					OtMeTest::EXPECT_getIntermediaryFiles(mock, SERVER_ID, NYM_TO_ID, ACCOUNT_ID, false);
+					OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_TO_ID, ACCOUNT_ID, false);
 				}
 			}
 		}
@@ -109,5 +108,3 @@ TEST_MOCK(deposit_cash_PurseWithOneToken)
 
 	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.deposit_cash(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
 }
-
-#endif // ALLTESTS

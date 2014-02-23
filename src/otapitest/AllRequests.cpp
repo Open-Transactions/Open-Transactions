@@ -1,9 +1,6 @@
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 
-
-#ifdef ALLTESTS
 
 TEST_MOCK(send_user_cash)
 {
@@ -164,6 +161,3 @@ TEST_MOCK(trigger_clause)
 
 	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.trigger_clause(SERVER_ID, NYM_ID, 6767, "ClauseName", "Param"));
 }
-
-#endif // ALLTESTS
-

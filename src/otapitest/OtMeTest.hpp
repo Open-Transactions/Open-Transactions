@@ -1,9 +1,7 @@
-#ifndef _H_OTMETEST
+#ifndef _H_OT_ME_TEST
 
 #include "stdafx.h"
-
-
-#define ALLTESTS
+#include "OtMeExtra.hpp"
 
 
 #define EXPECT_MOCK(func) \
@@ -27,7 +25,7 @@
 	EXPECT_TRANSACTION_SNA(SERVER_ID, NYM_ID, ACCOUNT_ID, data, func)
 
 #define EXPECT_TRANSACTION_SNA(serverId, nymId, accountId, data, func) \
-	OtMeTest::EXPECT_getIntermediaryFiles(mock, serverId, nymId, accountId, false); \
+	OtMeTest::EXPECT_getIntermediaryFiles(mock, index, serverId, nymId, accountId, false); \
 	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
 	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
 	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
@@ -36,7 +34,7 @@
 	EXPECT_MOCK_RET(OT_TRUE, Message_GetBalanceAgreementSuccess(serverId, nymId, accountId, data)); \
 	EXPECT_MOCK_RET(OT_FALSE, Message_IsTransactionCanceled(serverId, nymId, accountId, data)); \
 	EXPECT_MOCK_RET(OT_TRUE, Message_GetTransactionSuccess(serverId, nymId, accountId, data)); \
-	OtMeTest::EXPECT_getIntermediaryFiles(mock, serverId, nymId, accountId, true);
+	OtMeTest::EXPECT_getIntermediaryFiles(mock, index, serverId, nymId, accountId, true);
 
 
 #define ASSERT_MOCK_EQ(fail, ret, func) \
@@ -63,9 +61,9 @@
 	if (index-- >= 0) { EXPECT_MOCK_RET(index >= 0 ? ret : fail, func); }
 
 #define TEST_MOCK(name) \
-	static void test_##name(Mock_OTAPI_Exec & mock, OT_ME & me, int & index); \
-	TEST_F(OtMeTest, _##name) { TestAllPaths(test_##name); } \
-	static void test_##name(Mock_OTAPI_Exec & mock, OT_ME & me, int & index)
+	static void test_##name(Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index); \
+	TEST_F(OtMeTest, _##name) { TestAllPathways(test_##name); } \
+	static void test_##name(Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index)
 
 
 
@@ -110,6 +108,7 @@ static const char * NYM_HASH					= "NymHash_____________";
 static const char * NYM_HASH2					= "NymHash_____________";
 static const char * NYM_ID						= "NymId_______________";
 static const char * NYM_NAME					= "NymName_____________";
+static const char * NYM_SOURCE					= "NymSource___________";
 static const char * NYM_TO_ID					= "NymToId_____________";
 static const int    OT_ERROR					= -1;
 static const int    OT_FALSE					= 0;
@@ -151,11 +150,15 @@ static const char * WALLET_NAME					= "WalletName__________";
 using namespace ::std;
 using namespace ::testing;
 
+
 class Mock_OTAPI_Exec;
 class OT_ME;
 
 
-typedef void (*TestFunc) (Mock_OTAPI_Exec & mock, OT_ME & me, int & index);
+extern int noAltPathways;
+
+
+typedef void (*TestFunc) (Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index);
 
 class OtMeTest : public Test
 {
@@ -174,22 +177,28 @@ public:
 	virtual ~OtMeTest();
 
 	StrictMock<Mock_OTAPI_Exec> & mock;
-	OT_ME me;
+	OtMeExtra me;
 	InSequence seq;
 
-	void EXPECT_detailsDepositCheque(const char * serverId, const char * nymId, const char * accountId, const char * paymentData);
-	void EXPECT_detailsExportCash(const char * serverId, const char * nymFromId, const char *assetId, const char *nymToId, const char *indices, bool password);
-	void EXPECT_detailsWithdrawCash(const char * accountId, const int64_t amount);
-	static void EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, const char * serverId, const char * nymId, const char * accountId, bool bForced);
-	void EXPECT_getNymBox(bool bForced);
-	time_t GetTime();
-	void EXPECT_insureHaveAllBoxReceipts();
+	static void EXPECT_accept_from_paymentbox_HasNonEmptyLedger(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const char * indices, const char * paymentType);
+	static void EXPECT_details_deposit_cheque(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType);
+	static void EXPECT_details_export_cash(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymFromId, const char *assetId, const char *nymToId, const char *indices, bool password);
+	static void EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const int64_t amount);
+	static void EXPECT_get_payment_instrument(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int paymentIndex, const char * inboxData);
+	static void EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, bool bForced);
+	static void EXPECT_handle_payment_index(Mock_OTAPI_Exec & mock, int & index, const char * accountId, int paymentIndex, const char * paymentType, const char * inboxData);
 	static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
+	static void EXPECT_load_or_retrieve_contract(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * contractId);
 	static void EXPECT_load_or_retrieve_encrypt_key(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char *nymToId);
+	
+	void EXPECT_getNymBox(bool bForced);
+	void EXPECT_insureHaveAllBoxReceipts();
+	
+	time_t GetTime();
 	virtual void SetUp();
 	virtual void TearDown();
-	void TestAllPaths(TestFunc testFunc);
-	void TestPositivePath(TestFunc testFunc);
+	void TestAllPathways(TestFunc testFunc);
+	void TestFullPathway(TestFunc testFunc);
 };
 
-#endif // _H_OTMETEST
+#endif // _H_OT_ME_TEST

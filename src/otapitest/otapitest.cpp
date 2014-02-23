@@ -30,7 +30,6 @@
 // Author: wan@google.com (Zhanyong Wan)
 
 #include "stdafx.h"
-
 #include "OtMeTest.hpp"
 #include "OTPaths.h"
 
