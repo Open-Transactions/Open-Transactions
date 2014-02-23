@@ -17,7 +17,7 @@
 $ sudo aptitude install wget git build-essential libtool automake cmake pkg-config
 
 # install Open-Transactions library dependencies
-$ sudo aptitude install libboost-all-dev libzmq-dev libmsgpack-dev libssl-dev 
+$ sudo aptitude install libzmq-dev libmsgpack-dev libssl-dev 
 $ sudo aptitude install protobuf-compiler libprotobuf-dev
 
 (NB: may need "libprotoc" if "protobuf-compiler" pkg not available on debian-like sytems)
@@ -77,7 +77,7 @@ $ ./autogen.sh
 ########################################
 
 
-$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1
+$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
 
 
 #########   Configure Options:   #########
@@ -113,14 +113,21 @@ Enable OTAPI support for swig wrapper:
 
 ##########################################
 
-$ make uninstall (cleanup from possible previous build)
+$ sudo make uninstall (cleanup from possible previous build)
 
 $ make
 
 Build Multithreaded, need about 1gb of ram per thread.
 -j (int)
 
-$ make install
+Install to system
+
+$ sudo make install
+
+Link the libraries
+
+$ sudo ldconfig
+
 
 ###########   Miscellaneous Notes:   ###########
 

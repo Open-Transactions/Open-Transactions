@@ -18,7 +18,7 @@ $ sudo yum groupinstall "Development Tools" "Development Libraries" "C Developme
 $ sudo yum install gcc autoconf automake libtool wget cmake zlib-devel gtest-devel
 
 # install Open-Transactions library dependencies
-$ sudo yum install boost-devel zeromq-devel openssl-devel msgpack-devel protobuf-devel
+$ sudo yum install zeromq-devel openssl-devel msgpack-devel protobuf-devel
 
 
 #########    Optional API deps:   #########
@@ -73,7 +73,7 @@ $ ./autogen.sh
 
 ########################################
 
-$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1
+$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
 
 #########   Configure Options:   #########
 
@@ -108,13 +108,21 @@ Enable OTAPI support for swig wrapper:
 
 ##########################################
 
-$ make uninstall (cleanup from possible previous build)
 
-Build multithreaded, need about 1gb of ram per thread.
--j (int)
+$ sudo make uninstall (cleanup from possible previous build)
 
 $ make
-$ make install
+
+Build Multithreaded, need about 1gb of ram per thread.
+-j (int)
+
+Install to system
+
+$ sudo make install
+
+Link the libraries
+
+$ sudo ldconfig
 
 ###########   Miscellaneous Notes:   ###########
 

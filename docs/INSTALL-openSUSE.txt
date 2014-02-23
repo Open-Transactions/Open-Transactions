@@ -15,7 +15,7 @@ $ sudo zypper install --type pattern devel_basis
 $ sudo zypper in libtool wget cmake zlib-devel googletest-devel
 
 # install Open-Transactions library dependencies
-$ sudo zypper in boost-devel libzmq3 zeromq-devel openssl libopenssl1_0_0 libopenssl-devel libprotobuf7 libprotobuf-lite7 protobuf-devel
+$ sudo zypper in libzmq3 zeromq-devel openssl libopenssl1_0_0 libopenssl-devel libprotobuf7 libprotobuf-lite7 protobuf-devel
 
 # get and install libmsgpack and libmsgpack-devel from build service
 http://software.opensuse.org/package/libmsgpack?search_term=libmsgpack
@@ -74,7 +74,7 @@ $ ./autogen.sh
 ########################################
 
 
-$ ./configure --with-script=chai5
+$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
 
 
 #########   Configure Options:   #########
@@ -110,16 +110,20 @@ Enable OTAPI support for swig wrapper:
 
 ##########################################
 
-$ make uninstall (cleanup from possible previous build)
-
+$ sudo make uninstall (cleanup from possible previous build)
 
 $ make
 
-Build multithreaded, need about 1gb of ram per thread.
--j (int, mutiple of of 2)
+Build Multithreaded, need about 1gb of ram per thread.
+-j (int)
 
+Install to system
 
-$ make install
+$ sudo make install
+
+Link the libraries
+
+$ sudo ldconfig
 
 
 ###########   Miscellaneous Notes:   ###########
