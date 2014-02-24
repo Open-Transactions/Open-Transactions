@@ -147,15 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\bigint\BigInteger.h" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerAlgorithms.h" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerLibrary.h" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerUtils.h" />
-    <ClInclude Include="..\..\include\bigint\BigUnsigned.h" />
-    <ClInclude Include="..\..\include\bigint\BigUnsignedInABase.h" />
-    <ClInclude Include="..\..\include\bigint\NumberlikeArray.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\src\otlib\bigint\BigInteger.cc" />
     <ClCompile Include="..\..\src\otlib\bigint\BigIntegerAlgorithms.cc" />
     <ClCompile Include="..\..\src\otlib\bigint\BigIntegerUtils.cc" />
@@ -173,6 +164,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\bigint\BigInteger.hh" />
+    <ClInclude Include="..\..\include\bigint\BigIntegerAlgorithms.hh" />
+    <ClInclude Include="..\..\include\bigint\BigIntegerLibrary.hh" />
+    <ClInclude Include="..\..\include\bigint\BigIntegerUtils.hh" />
+    <ClInclude Include="..\..\include\bigint\BigUnsigned.hh" />
+    <ClInclude Include="..\..\include\bigint\BigUnsignedInABase.hh" />
+    <ClInclude Include="..\..\include\bigint\NumberlikeArray.hh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

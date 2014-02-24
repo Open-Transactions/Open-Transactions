@@ -120,70 +120,69 @@ otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/fast_mutex.h		\
 				$(otlib_headers_dir)/WinsockWrapper.h		\
-				$(otlib_headers_dir)/tinythread.h		\
-				$(otlib_headers_dir)/Timer.h			\
+				$(otlib_headers_dir)/tinythread.hpp		\
+				$(otlib_headers_dir)/Timer.hpp			\
 				$(otlib_headers_ext)
 
 otlib_headers_ext	=	$(otlib_headers_dir)/ExportWrapper.h		\
 				$(otlib_headers_dir)/stacktrace.h		\
-				$(otlib_headers_dir)/stdafx.h			\
-				$(otlib_headers_dir)/OTAccount.h		\
-				$(otlib_headers_dir)/OTAgreement.h		\
-				$(otlib_headers_dir)/OTASCIIArmor.h		\
-				$(otlib_headers_dir)/OTAssetContract.h	\
-				$(otlib_headers_dir)/OTAsymmetricKey.h	\
-				$(otlib_headers_dir)/OTBasket.h		\
-				$(otlib_headers_dir)/OTBylaw.h		\
-				$(otlib_headers_dir)/OTCachedKey.h		\
-				$(otlib_headers_dir)/OTCheque.h		\
-				$(otlib_headers_dir)/OTContract.h		\
-				$(otlib_headers_dir)/OTCredential.h		\
-				$(otlib_headers_dir)/OTCron.h			\
-				$(otlib_headers_dir)/OTCronItem.h		\
-				$(otlib_headers_dir)/OTCrypto.h         	\
-				$(otlib_headers_dir)/OTData.h			\
-				$(otlib_headers_dir)/OTDataCheck.h		\
-				$(otlib_headers_dir)/OTDigitalCash.h		\
-				$(otlib_headers_dir)/OTEnvelope.h		\
-				$(otlib_headers_dir)/OTKeyring.h		\
-				$(otlib_headers_dir)/OTglobal.h		\
-				$(otlib_headers_dir)/OTIdentifier.h		\
-				$(otlib_headers_dir)/OTInstrument.h		\
-				$(otlib_headers_dir)/OTItem.h			\
-				$(otlib_headers_dir)/OTLedger.h		\
-				$(otlib_headers_dir)/OTLib.h			\
-				$(otlib_headers_dir)/OTLibPriv.h		\
-				$(otlib_headers_dir)/OTLog.h			\
-				$(otlib_headers_dir)/OTMarket.h		\
-				$(otlib_headers_dir)/OTMessage.h		\
-				$(otlib_headers_dir)/OTMessageBuffer.h	\
-				$(otlib_headers_dir)/OTMint.h			\
-				$(otlib_headers_dir)/OTOffer.h		\
-				$(otlib_headers_dir)/OTPassword.h		\
-				$(otlib_headers_dir)/OTPaths.h		\
-				$(otlib_headers_dir)/OTPayload.h		\
-				$(otlib_headers_dir)/OTPayment.h		\
-				$(otlib_headers_dir)/OTPaymentPlan.h		\
-				$(otlib_headers_dir)/OTPseudonym.h		\
-				$(otlib_headers_dir)/OTPurse.h		\
-				$(otlib_headers_dir)/OTScript.h		\
-				$(otlib_headers_dir)/OTScriptable.h		\
-				$(otlib_headers_dir)/OTServerContract.h	\
-				$(otlib_headers_dir)/OTSettings.h		\
-				$(otlib_headers_dir)/OTSignature.h		\
-				$(otlib_headers_dir)/OTSignedFile.h		\
-				$(otlib_headers_dir)/OTSmartContract.h	\
-				$(otlib_headers_dir)/OTStorage.h		\
-				$(otlib_headers_dir)/OTString.h		\
-				$(otlib_headers_dir)/OTStringXML.h		\
-				$(otlib_headers_dir)/OTSymmetricKey.h		\
-				$(otlib_headers_dir)/OTToken.h		\
-				$(otlib_headers_dir)/OTTrackable.h		\
-				$(otlib_headers_dir)/OTTrade.h		\
-				$(otlib_headers_dir)/OTTransaction.h		\
-				$(otlib_headers_dir)/OTTransactionType.h	\
-				$(otlib_headers_dir)/OTWallet.h
-
+				$(otlib_headers_dir)/stdafx.h		\
+				$(otlib_headers_dir)/OTAccount.hpp		\
+				$(otlib_headers_dir)/OTAgreement.hpp		\
+				$(otlib_headers_dir)/OTASCIIArmor.hpp		\
+				$(otlib_headers_dir)/OTAssetContract.hpp	\
+				$(otlib_headers_dir)/OTAsymmetricKey.hpp	\
+				$(otlib_headers_dir)/OTBasket.hpp		\
+				$(otlib_headers_dir)/OTBylaw.hpp		\
+				$(otlib_headers_dir)/OTCachedKey.hpp		\
+				$(otlib_headers_dir)/OTCheque.hpp		\
+				$(otlib_headers_dir)/OTContract.hpp		\
+				$(otlib_headers_dir)/OTCredential.hpp		\
+				$(otlib_headers_dir)/OTCron.hpp			\
+				$(otlib_headers_dir)/OTCronItem.hpp		\
+				$(otlib_headers_dir)/OTCrypto.hpp         	\
+				$(otlib_headers_dir)/OTData.hpp			\
+				$(otlib_headers_dir)/OTDataCheck.hpp		\
+				$(otlib_headers_dir)/OTDigitalCash.hpp	\
+				$(otlib_headers_dir)/OTEnvelope.hpp		\
+				$(otlib_headers_dir)/OTKeyring.hpp		\
+				$(otlib_headers_dir)/OTglobal.h			\
+				$(otlib_headers_dir)/OTIdentifier.hpp		\
+				$(otlib_headers_dir)/OTInstrument.hpp		\
+				$(otlib_headers_dir)/OTItem.hpp			\
+				$(otlib_headers_dir)/OTLedger.hpp			\
+				$(otlib_headers_dir)/OTLib.hpp			\
+				$(otlib_headers_dir)/OTLibPriv.hpp		\
+				$(otlib_headers_dir)/OTLog.hpp			\
+				$(otlib_headers_dir)/OTMarket.hpp			\
+				$(otlib_headers_dir)/OTMessage.hpp		\
+				$(otlib_headers_dir)/OTMessageBuffer.hpp		\
+				$(otlib_headers_dir)/OTMint.hpp			\
+				$(otlib_headers_dir)/OTOffer.hpp			\
+				$(otlib_headers_dir)/OTPassword.hpp		\
+				$(otlib_headers_dir)/OTPaths.hpp			\
+				$(otlib_headers_dir)/OTPayload.hpp		\
+				$(otlib_headers_dir)/OTPayment.hpp		\
+				$(otlib_headers_dir)/OTPaymentPlan.hpp		\
+				$(otlib_headers_dir)/OTPseudonym.hpp		\
+				$(otlib_headers_dir)/OTPurse.hpp			\
+				$(otlib_headers_dir)/OTScript.hpp			\
+				$(otlib_headers_dir)/OTScriptable.hpp		\
+				$(otlib_headers_dir)/OTServerContract.hpp		\
+				$(otlib_headers_dir)/OTSettings.hpp		\
+				$(otlib_headers_dir)/OTSignature.hpp		\
+				$(otlib_headers_dir)/OTSignedFile.hpp		\
+				$(otlib_headers_dir)/OTSmartContract.hpp		\
+				$(otlib_headers_dir)/OTStorage.hpp		\
+				$(otlib_headers_dir)/OTString.hpp			\
+				$(otlib_headers_dir)/OTStringXML.hpp		\
+				$(otlib_headers_dir)/OTSymmetricKey.hpp		\
+				$(otlib_headers_dir)/OTToken.hpp			\
+				$(otlib_headers_dir)/OTTrackable.hpp		\
+				$(otlib_headers_dir)/OTTrade.hpp			\
+				$(otlib_headers_dir)/OTTransaction.hpp		\
+				$(otlib_headers_dir)/OTTransactionType.hpp	\
+				$(otlib_headers_dir)/OTWallet.hpp
 ####   Containers
 
 containers_headers_dir	=	$(opentxs_include_dir)/containers
@@ -230,7 +229,7 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 simpleini_headers_dir	=	$(top_srcdir)/include/simpleini
 
 simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h  \
-				$(simpleini_headers_dir)/SimpleIni.h
+				$(simpleini_headers_dir)/SimpleIni.hpp
 
 pkginclude_simpleinidir	=	$(pkgincludedir)/simpleini
 pkginclude_simpleini_HEADERS	=	$(simpleini_headers)

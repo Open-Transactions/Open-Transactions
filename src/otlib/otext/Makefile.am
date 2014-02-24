@@ -10,9 +10,9 @@ otext_sources		=	mkcert.cpp			\
 				tinythread.cpp			\
 				Timer.cpp
 
-otext_headers		=	$(otext_headers_dir)/anyoption.h	\
-				$(otext_headers_dir)/tinythread.h	\
-				$(otext_headers_dir)/Timer.h
+otext_headers		=	$(otext_headers_dir)/anyoption.hpp	\
+				$(otext_headers_dir)/tinythread.hpp	\
+				$(otext_headers_dir)/Timer.hpp
 
 libotext_la_SOURCES	=	$(otext_sources) $(otext_headers) $(simpleini_headers)
 libotext_la_CXXFLAGS	=	$(AM_CXXFLAGS) -I$(otext_headers_dir)

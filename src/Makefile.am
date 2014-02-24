@@ -61,12 +61,12 @@ ot_sources              =   otd/main.cpp
 
 otapi_headers_dir       =   $(opentxs_include_dir)/otapi
 
-otapi_headers           =   $(otapi_headers_dir)/main.h             \
-                            $(otapi_headers_dir)/OpenTransactions.h \
-                            $(otapi_headers_dir)/OTAPI.h            \
-                            $(otapi_headers_dir)/OT_ME.h            \
-                            $(otapi_headers_dir)/OTClient.h         \
-                            $(otapi_headers_dir)/OTServerConnection.h
+otapi_headers           =   $(otapi_headers_dir)/main.hpp             \
+                            $(otapi_headers_dir)/OpenTransactions.hpp \
+                            $(otapi_headers_dir)/OTAPI.hpp            \
+                            $(otapi_headers_dir)/OT_ME.hpp            \
+                            $(otapi_headers_dir)/OTClient.hpp         \
+                            $(otapi_headers_dir)/OTServerConnection.hpp
 
 #### OT Server
 
@@ -75,9 +75,9 @@ otserver_sources        =   ots/OTClientConnection.cpp  \
 
 otserver_headers_dir    =   $(opentxs_include_dir)/ots
 
-otserver_headers        =   $(otserver_headers_dir)/main.h   \
-                            $(otserver_headers_dir)/OTClientConnection.h \
-                            $(otserver_headers_dir)/OTServer.h
+otserver_headers        =   $(otserver_headers_dir)/main.hpp   \
+                            $(otserver_headers_dir)/OTClientConnection.hpp \
+                            $(otserver_headers_dir)/OTServer.hpp
 
 #### OT Create Mint
 

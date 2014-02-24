@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\simpleini\ConvertUTF.h" />
-    <ClInclude Include="..\..\include\simpleini\SimpleIni.h" />
+    <ClInclude Include="..\..\include\simpleini\SimpleIni.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\otlib\simpleini\ConvertUTF.cpp" />
