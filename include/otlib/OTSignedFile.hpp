@@ -130,13 +130,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OT_SIGNED_FILE_H__
-#define __OT_SIGNED_FILE_H__
+#ifndef __OT_SIGNED_FILE_HPP__
+#define __OT_SIGNED_FILE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <fstream>
 
@@ -198,7 +196,7 @@ EXPORT	virtual ~OTSignedFile();
         virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
-#endif // __OT_SIGNED_FILE_H__
+#endif // __OT_SIGNED_FILE_HPP__
 
 
 

@@ -134,13 +134,11 @@
  **************************************************************/
 
 
-#ifndef __OT_SMART_CONTRACT_H__
-#define __OT_SMART_CONTRACT_H__
+#ifndef __OT_SMART_CONTRACT_HPP__
+#define __OT_SMART_CONTRACT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include "OTIdentifier.h"
 #include "OTString.h"
@@ -495,4 +493,4 @@ EXPORT	virtual ~OTSmartContract();
 };
 
 
-#endif // __OT_SMART_CONTRACT_H__
+#endif // __OT_SMART_CONTRACT_HPP__

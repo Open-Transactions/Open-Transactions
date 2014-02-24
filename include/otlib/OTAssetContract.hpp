@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTASSETCONTRACT_H__
-#define __OTASSETCONTRACT_H__
+#ifndef __OTASSETCONTRACT_HPP__
+#define __OTASSETCONTRACT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <map>
 #include <typeinfo>
@@ -336,7 +334,7 @@ EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an
 
 
 
-#endif // __OTASSETCONTRACT_H__
+#endif // __OTASSETCONTRACT_HPP__
 
 
 

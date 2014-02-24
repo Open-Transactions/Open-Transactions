@@ -133,9 +133,9 @@
 
 
 
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __MAIN_HPP__
+#define __MAIN_HPP__
 
 
 
-#endif // __MAIN_H__
+#endif // __MAIN_HPP__

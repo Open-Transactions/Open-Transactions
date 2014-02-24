@@ -131,17 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTENVELOPE_H__
-#define __OTENVELOPE_H__
+#ifndef __OTENVELOPE_HPP__
+#define __OTENVELOPE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
 
 // ---------------------------------------------------
 
@@ -291,7 +285,7 @@ EXPORT	bool SetFromBookendedString(const OTString     & strArmorWithBookends, bo
 
 
 
-#endif // __OTENVELOPE_H__
+#endif // __OTENVELOPE_HPP__
 
 
 

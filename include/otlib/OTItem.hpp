@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTITEM_H__
-#define __OTITEM_H__
+#ifndef __OTITEM_HPP__
+#define __OTITEM_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <fstream>
 
@@ -438,7 +436,7 @@ EXPORT	static void GetStringFromType(OTItem::itemType theType, OTString & strTyp
 
 
 
-#endif // __OTITEM_H__
+#endif // __OTITEM_HPP__
 
 
 

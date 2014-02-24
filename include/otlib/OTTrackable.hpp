@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OT_TRACKABLE_H__
-#define __OT_TRACKABLE_H__
+#ifndef __OT_TRACKABLE_HPP__
+#define __OT_TRACKABLE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 #include "OTIdentifier.h"
 
@@ -212,4 +211,4 @@ public:
 
 
 
-#endif // __OT_TRACKABLE_H__
+#endif // __OT_TRACKABLE_HPP__

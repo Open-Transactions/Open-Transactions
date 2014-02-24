@@ -130,20 +130,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTWALLET_H__
-#define __OTWALLET_H__
+#ifndef __OTWALLET_HPP__
+#define __OTWALLET_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
+
 
 #include <string>
 #include <map>
+
+#include "OTString.hpp"
 
 #include "OTPseudonym.h"
 #include "OTContract.h"
@@ -151,10 +148,18 @@
 #include "OTServerContract.h"
 #include "OTAccount.h"
 
-
+class OTAccount;
+class OTAssetContract;
+class OTContract;
+class OTIdentifier;
 class OTMessage;
+class OTPassword;
+class OTPasswordData;
+class OTPseudonym;
 class OTPurse;
+class OTServerContract;
 class OTString;
+
 
 //typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
 typedef std::map<std::string, OTServerContract *>	mapOfServers;
@@ -280,6 +285,6 @@ EXPORT	bool RemoveNym    (const OTIdentifier & theTargetID);
 
 };
 
-#endif // __OTWALLET_H__
+#endif // __OTWALLET_HPP__
 
 

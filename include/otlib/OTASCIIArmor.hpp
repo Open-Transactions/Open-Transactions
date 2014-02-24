@@ -1,10 +1,3 @@
-/************************************************************************************
- *    
- *  OTASCIIArmor.h
- *  
- */
-
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -132,34 +125,20 @@
  **************************************************************/
 
 
-#ifndef __OT_ASCII_ARMOR_H__
-#define __OT_ASCII_ARMOR_H__
+#ifndef __OT_ASCII_ARMOR_HPP__
+#define __OT_ASCII_ARMOR_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
 
+#include "OTData.hpp"
+#include "OTStorage.hpp"
+#include "OTString.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <map>
-
-#include "OTData.h"
-#include "OTString.h"
-//#include "OTStorage.h"
-
-// ----------------
 
 class OTPayload;
+class OTEnvelope;
 
-// ----------------
 
 extern const char * OT_BEGIN_ARMORED;
 extern const char * OT_END_ARMORED;
@@ -172,11 +151,6 @@ extern const char * OT_END_ARMORED_escaped;
 extern const char * OT_BEGIN_SIGNED;
 extern const char * OT_BEGIN_SIGNED_escaped;
 
-// ----------------
-
-class OTEnvelope;
-
-//class OTDB::OTPacker;
 
 // The natural state of OTASCIIArmor is in compressed and base64-encoded, string form.
 // It is derived from OTString. The Get() method returns a base64-encoded string.
@@ -271,7 +245,7 @@ EXPORT  bool SetAndPackStringMap(const std::map<std::string, std::string> & the_
 typedef std::map <long, OTASCIIArmor *> mapOfArmor;
 
 
-#endif // __OT_ASCII_ARMOR_H__ 
+#endif // __OT_ASCII_ARMOR_HPP__ 
 
 
 

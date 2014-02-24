@@ -1,9 +1,3 @@
-/**************************************************************
- *    
- *  OTMessage.h
- *  
- */
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -130,112 +124,61 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
-#ifndef __OTMESSAGE_HPP__
-#define __OTMESSAGE_HPP__
+#include <OTAssert.hpp>
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-
+#include <iostream>
 #include <fstream>
-#include <ctime>
 
-#include "irrxml/irrXML.h"
-using namespace irr; // irrXML is located in the namespace irr::io
-using namespace io;
+#include <assert.h>
 
-#include "OTContract.h"
+//static
+OTAssert * OTAssert::s_pOTAssert = new OTAssert();
 
-
-class OTPseudonym;
-class OTPasswordData;
-
-
-class OTMessage : public OTContract 
+OTAssert::OTAssert()
+: m_fpt_Assert_szFilename_nLinenumber_szMessage(NULL)
 {
-protected:
-	
-	virtual bool SaveContractWallet(std::ofstream & ofs);
-//	virtual bool SaveContractWallet(FILE * fl);
-	virtual int ProcessXMLNode(IrrXMLReader*& xml);
+}
 
-	virtual void UpdateContents();
+OTAssert::OTAssert(fpt_Assert_sz_n_sz &fp1)
+: m_fpt_Assert_szFilename_nLinenumber_szMessage(fp1)
+{
+}
 
-	bool m_bIsSigned;
-// -------------------------------
-public:
-EXPORT	OTMessage();
-EXPORT	virtual ~OTMessage();
+size_t OTAssert::m_Assert(const char * szFilename, size_t nLinenumber)
+{
+    if (NULL != this->m_fpt_Assert_szFilename_nLinenumber_szMessage) return m_fpt_Assert_szFilename_nLinenumber_szMessage(szFilename, nLinenumber, "");
+    return this->m_AssertDefault(szFilename, nLinenumber, "");
+}
+size_t OTAssert::m_Assert(const char * szFilename, size_t nLinenumber, const char * szMessage)
+{
+    if (NULL != this->m_fpt_Assert_szFilename_nLinenumber_szMessage) return m_fpt_Assert_szFilename_nLinenumber_szMessage(szFilename, nLinenumber, szMessage);
+    return this->m_AssertDefault(szFilename, nLinenumber, szMessage);
+}
 
-	virtual bool VerifyContractID();
+size_t OTAssert::m_AssertDefault(const char * szFilename, size_t nLinenumber, const char * szMessage)
+{
+    if (std::strcmp(szMessage, "") != 0) {
+        std::cerr << szMessage;
+        std::cerr.flush();
+    }
 
-EXPORT	virtual bool SignContract(const OTPseudonym & theNym,
-                                  OTPasswordData    * pPWData=NULL);
-EXPORT	virtual bool VerifySignature(const OTPseudonym & theNym,
-                                     OTPasswordData    * pPWData=NULL);
-
-// -------------------------------
-EXPORT    bool HarvestTransactionNumbers(  OTPseudonym &  theNym,
-                                           const bool     bHarvestingForRetry,     // false until positively asserted.
-                                           const bool     bReplyWasSuccess,        // false until positively asserted.
-                                           const bool     bReplyWasFailure,        // false until positively asserted.
-                                           const bool     bTransactionWasSuccess,  // false until positively asserted.
-                                           const bool     bTransactionWasFailure); // false until positively asserted.
+    std::cerr << "OT_ASSERT in " << szFilename << " at line " << szFilename;
+    std::cerr.flush();
     
-    // So the message can get the list of numbers from the Nym, before sending,
-    // that should be listed as acknowledged that the server reply has already been
-    // seen for those request numbers.
-    // IMPORTANT NOTE: The Server ID is used to lookup the numbers from the Nym. Therefore,
-    // make sure that OTMessage::m_strServerID is set BEFORE calling this function. (It will
-    // ASSERT if you don't...)
-    //
-EXPORT    void SetAcknowledgments(OTPseudonym & theNym);
-    
-    // ----------------------------------------------------------
-    
-	OTString	m_strCommand;		// perhaps @register is the string for "reply to register" a-ha
-	OTString	m_strServerID;		// This is sent with every message for security reasons.
-	OTString	m_strNymID;			// The hash of the user's public key... or x509 cert.
-	OTString	m_strNymboxHash;	// Sometimes in a server reply as FYI, sometimes in user message for validation purposes.
-	OTString	m_strInboxHash;     // Sometimes in a server reply as FYI, sometimes in user message for validation purposes.
-	OTString	m_strOutboxHash;	// Sometimes in a server reply as FYI, sometimes in user message for validation purposes.
-	OTString	m_strNymID2;		// If the user requests public key of another user. ALSO used for MARKET ID sometimes.
-	OTString	m_strNymPublicKey;  // The user's public key... or x509 cert.
-	OTString	m_strAssetID;		// The hash of the contract for whatever digital asset is referenced.
-	OTString	m_strAcctID;		// The unique ID of an asset account.
-	OTString	m_strType;			// .
-	OTString	m_strRequestNum;    // Every user has a request number. This prevents messages from
-									// being intercepted and repeated by attackers.
-	
-	OTASCIIArmor m_ascInReferenceTo;// If the server responds to a user command, he sends 
-									// it back to the user here in ascii armored format.
-	OTASCIIArmor m_ascPayload;		// If the reply needs to include a payload (such as a new account
-									// or a message envelope or request from another user etc) then
-									// it can be put here in ascii-armored format.
-    OTASCIIArmor m_ascPayload2;     // Sometimes one payload just isn't enough.
-    
-    // This list of request numbers is stored for optimization, so client/server can communicate about
-    // which messages have been received, and can avoid certain downloads, such as replyNotice Box Receipts.
-    //
-    OTNumList   m_AcknowledgedReplies;  // Client request: list of server replies client has already seen.
-                                        // Server reply:   list of client-acknowledged replies (so client knows that server knows.)
-    
-    long        m_lNewRequestNum;   // If you are SENDING a message, you set m_strRequestNum. (For all msgs.)
-                                    // Server Reply for all messages copies that same number into m_strRequestNum;
-                                    // But if this is a SERVER REPLY to the "getRequestNumber" MESSAGE, the
-                                    // "request number" expected in that reply is stored HERE in m_lNewRequestNum;
-	long		m_lDepth;			// For Market-related messages... (Plus for usage credits.) Also used by getBoxReceipt
-	long		m_lTransactionNum;	// For Market-related messages... Also used by getBoxReceipt
-	
-	bool		m_bSuccess;			// When the server replies to the client, this may be true or false
-	bool		m_bBool;			// Some commands need to send a bool. This variable is for those.
-    // ----------------------------------------------------------
-    long        m_lTime;            // Timestamp when the message was signed.
-};
+    return 0; // since we are not logging.
+}
 
 
-#endif // __OTMESSAGE_HPP__
+//static
+size_t OTAssert::Assert(const char * szFilename, size_t nLinenumber){
+    assert(NULL != OTAssert::s_pOTAssert);
+    return OTAssert::s_pOTAssert->m_Assert(szFilename, nLinenumber);
+}
 
-
-
-
+//static
+size_t OTAssert::Assert(const char * szFilename, size_t nLinenumber, const char * szMessage){
+    assert(NULL != OTAssert::s_pOTAssert);
+    return OTAssert::s_pOTAssert->m_Assert(szFilename, nLinenumber, szMessage);
+}

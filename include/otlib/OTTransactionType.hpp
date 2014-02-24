@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTTRANSACTION_TYPE_H__
-#define __OTTRANSACTION_TYPE_H__
+#ifndef __OTTRANSACTION_TYPE_HPP__
+#define __OTTRANSACTION_TYPE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 #include <fstream>
 
@@ -646,7 +645,7 @@ EXPORT	void SetReferenceString(const OTString & theStr);
 
 
 
-#endif // __OTTRANSACTION_TYPE_H__
+#endif // __OTTRANSACTION_TYPE_HPP__
 
 
 

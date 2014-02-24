@@ -131,44 +131,31 @@
  **************************************************************/
 
 
-#ifndef __OTPSEUDONYM_H__
-#define __OTPSEUDONYM_H__
+#ifndef __OTPSEUDONYM_HPP__
+#define __OTPSEUDONYM_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-// --------------------------------------------
+#include <WinsockWrapper.h>
 
-#include <cstdio>
-
-// --------------------------------------------
+#include "OTASCIIArmor.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTIdentifier.hpp"
 
 #include <deque>
-#include <fstream>
-#include <set>
 #include <map>
-#include <string>
-
-// --------------------------------------------
-
-#include "OTString.h"
-#include "OTData.h"
-#include "OTIdentifier.h"
-
-#include "OTASCIIArmor.h"
-#include "OTAsymmetricKey.h"
-
-// --------------------------------------------
-class OTItem;
-class OTTransaction;
-class OTLedger;
-class OTMessage;
-class OTKeypair;
+#include <set>
 
 class OTCredential;
-class OTSubcredential;
+class OTItem;
+class OTKeypair;
+class OTLedger;
+class OTMessage;
+class OTPassword;
 class OTPasswordData;
+class OTSubcredential;
+class OTTransaction;
+
+
 // --------------------------------------------
 
 typedef std::deque<OTMessage *>                     dequeOfMail;
@@ -714,7 +701,7 @@ EXPORT  int         GetOutpaymentsIndexByTransNum(const long lTransNum); // Retu
 EXPORT	void DisplayStatistics(OTString & strOutput);
 };
 
-#endif // __OTPSEUDONYM_H__
+#endif // __OTPSEUDONYM_HPP__
 
 
 

@@ -140,9 +140,11 @@
 
 
 
-#ifndef __OPEN_TRANSACTIONS_INTERFACE_H__
-#define __OPEN_TRANSACTIONS_INTERFACE_H__
+#ifndef __OPEN_TRANSACTIONS_INTERFACE_HPP__
+#define __OPEN_TRANSACTIONS_INTERFACE_HPP__
 
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #ifndef SWIG
 #ifndef NOT_SWIG
@@ -155,12 +157,6 @@
 #endif
 
 #ifdef NOT_SWIG
-
-
-#ifndef EXPORT
-#define EXPORT
-#endif
-#include <ExportWrapper.h>
 
 #include <string>
 #include <functional>
@@ -1188,4 +1184,4 @@ EXPORT	OTServerContract * LoadServerContract(const OTIdentifier & SERVER_ID);
 
 #endif // NOT_SWIG
 
-#endif // __OPEN_TRANSACTIONS_INTERFACE_H__
+#endif // __OPEN_TRANSACTIONS_INTERFACE_HPP__

@@ -14,10 +14,10 @@
  
  */
 
-#ifndef BIGINTEGERALGORITHMS_H
-#define BIGINTEGERALGORITHMS_H
+#ifndef __BIGINTEGERALGORITHMS_HH__
+#define __BIGINTEGERALGORITHMS_HH__
 
-#include "BigInteger.h"
+#include "BigInteger.hh"
 
 /* Some mathematical algorithms for big integers.
  * This code is new and, as such, experimental. */

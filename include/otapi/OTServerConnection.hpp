@@ -132,13 +132,12 @@
 
 
 
-#ifndef __OT_SERVERCONNECTION_H__
-#define __OT_SERVERCONNECTION_H__
+#ifndef __OT_SERVERCONNECTION_HPP__
+#define __OT_SERVERCONNECTION_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 extern "C"
 {
@@ -251,4 +250,4 @@ EXPORT	bool Connect(OTPseudonym & theNym, OTServerContract & theServerContract,
 	
 };
 
-#endif // __OT_SERVERCONNECTION_H__
+#endif // __OT_SERVERCONNECTION_HPP__

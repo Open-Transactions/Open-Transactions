@@ -131,36 +131,24 @@
  **************************************************************/
 
 
-#ifndef __OT_MASTER_KEY_H__
-#define __OT_MASTER_KEY_H__
+#ifndef __OT_MASTER_KEY_HPP__
+#define __OT_MASTER_KEY_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
 
-// --------------------------------------
+#include <MemoryWrapper.hpp>
 
 
 #include <map>
 #include <string>
 
-// --------------------------------------
+#include "tinythread.hpp"
 
-
-// TinyThread++
-//
-#include "tinythread.h"
-//#include "fast_mutex.h" // Not using this currently.
 
 //using namespace tthread; // in the C++ file
 // --------------------------------------
 
-#include "stdafx.h"
 
 
 class OTString;
@@ -403,7 +391,7 @@ public:
 
 
 
-#endif   // __OT_MASTER_KEY_H__
+#endif   // __OT_MASTER_KEY_HPP__
 
 
 

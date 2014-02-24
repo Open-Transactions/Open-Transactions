@@ -2,11 +2,11 @@
 // This file is part of the "Irrlicht Engine" and the "irrXML" project.
 // For conditions of distribution and use, see copyright notice in irrlicht.h and irrXML.h
 
-#ifndef __IRR_ARRAY_H_INCLUDED__
-#define __IRR_ARRAY_H_INCLUDED__
+#ifndef __IRR_ARRAY_HPP_INCLUDED__
+#define __IRR_ARRAY_HPP_INCLUDED__
 
-#include "irrTypes.h"
-#include "heapsort.h"
+#include "irrTypes.hpp"
+#include "heapsort.hpp"
 
 namespace irr
 {

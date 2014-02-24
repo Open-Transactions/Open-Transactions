@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTMESSAGEBUFFER_H__
-#define __OTMESSAGEBUFFER_H__
+#ifndef __OTMESSAGEBUFFER_HPP__
+#define __OTMESSAGEBUFFER_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <list>
 #include <map>
@@ -249,7 +247,7 @@ EXPORT	bool        RemoveSentMessage   (const OTTransaction & theTransaction); /
 
 
 
-#endif // __OTMESSAGEBUFFER_H__
+#endif // __OTMESSAGEBUFFER_HPP__
 
 
 

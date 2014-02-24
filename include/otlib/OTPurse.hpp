@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTPURSE_H__
-#define __OTPURSE_H__
+#ifndef __OTPURSE_HPP__
+#define __OTPURSE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <deque>
 #include <map>
@@ -293,5 +291,5 @@ public:
 };
 
 
-#endif // __OTPURSE_H__
+#endif // __OTPURSE_HPP__
 

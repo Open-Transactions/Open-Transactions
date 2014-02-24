@@ -134,17 +134,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTKEYRING_H__
-#define __OTKEYRING_H__
+#ifndef __OTKEYRING_HPP__
+#define __OTKEYRING_HPP__
 
-// DLL Export for Win32
-
-#undef EXPORT
-#ifdef _WINDLL
-  #define EXPORT __declspec(dllexport)
-#else
-  #define EXPORT
-#endif
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <string>
 
@@ -322,7 +316,7 @@ EXPORT static std::string s_str_passwd_folder; //NOTE: Do not ever use this. OT_
 
 
 
-#endif // __OTKEYRING_H__
+#endif // __OTKEYRING_HPP__
 
 
 

@@ -13,11 +13,11 @@
 #pragma once
 
 
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 #include <string.h>     // strlen()
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
 
 //#ifdef _WIN32
 //#ifndef WIN32_LEAN_AND_MEAN

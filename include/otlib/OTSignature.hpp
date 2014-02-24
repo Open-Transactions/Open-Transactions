@@ -131,16 +131,14 @@
  **************************************************************/
 
 
-#ifndef __OTSIGNATURE_H__
-#define __OTSIGNATURE_H__
+#ifndef __OTSIGNATURE_HPP__
+#define __OTSIGNATURE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
-#include "OTASCIIArmor.h"
-
+#include <OTString.hpp>
+#include <OTASCIIArmor.hpp>
 
 // ---------------------------------------------------------------------------
 
@@ -197,7 +195,7 @@ public:  // PUBLIC INTERFACE
 
 
 
-#endif // __OTSIGNATURE_H__ 
+#endif // __OTSIGNATURE_HPP__ 
 
 
 

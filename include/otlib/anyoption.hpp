@@ -1,15 +1,15 @@
 #ifndef _ANYOPTION_H
 #define _ANYOPTION_H
 
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <string>
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#include <ExportWrapper.h>
+
 
 #define COMMON_OPT 	1
 #define COMMAND_OPT 	2

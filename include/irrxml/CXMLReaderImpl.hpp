@@ -2,13 +2,13 @@
 // This file is part of the "Irrlicht Engine" and the "irrXML" project.
 // For conditions of distribution and use, see copyright notice in irrlicht.h and/or irrXML.h
 
-#ifndef __ICXML_READER_IMPL_H_INCLUDED__
-#define __ICXML_READER_IMPL_H_INCLUDED__
+#ifndef __ICXML_READER_IMPL_HPP_INCLUDED__
+#define __ICXML_READER_IMPL_HPP_INCLUDED__
 
-#include "irrXML.h"
-#include "irrString.h"
-#include "irrArray.h"
-#include "fast_atof.h"
+#include "irrXML.hpp"
+#include "irrString.hpp"
+#include "irrArray.hpp"
+#include "fast_atof.hpp"
 
 #ifdef _DEBUG
 #define IRR_DEBUGPRINT(x) printf((x));

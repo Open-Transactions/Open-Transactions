@@ -14,15 +14,15 @@
  
  */
 
-#ifndef BIGINTEGERUTILS_H
-#define BIGINTEGERUTILS_H
+#ifndef __BIGINTEGERUTILS_HH__
+#define __BIGINTEGERUTILS_HH__
 
 extern "C"
 {
 #include <assert.h>
 }
 
-#include "BigInteger.h"
+#include "BigInteger.hh"
 
 #include <string>
 #include <iostream>

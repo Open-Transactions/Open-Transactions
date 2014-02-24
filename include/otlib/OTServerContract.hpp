@@ -131,15 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTSERVERCONTRACT_H__
-#define __OTSERVERCONTRACT_H__
+#ifndef __OTSERVERCONTRACT_HPP__
+#define __OTSERVERCONTRACT_HPP__
 
-
-
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <fstream>
 // ---------------------------------------
@@ -176,7 +172,7 @@ EXPORT virtual void CreateContents(); // Only used when first generating an asse
 
 
 
-#endif // __OTSERVERCONTRACT_H__
+#endif // __OTSERVERCONTRACT_HPP__
 
 
 

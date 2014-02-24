@@ -1,10 +1,3 @@
-
-/*************************************************************
- *    
- *  OTData.h
- *  
- */
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -132,16 +125,12 @@
  **************************************************************/
 
 
-#ifndef __OTDATA_H__
-#define __OTDATA_H__
+#ifndef __OTDATA_HPP__
+#define __OTDATA_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
-// ------------------------------------
-// Windows (ugh)
 extern "C"
 {
 #ifdef _WIN32
@@ -150,7 +139,6 @@ extern "C"
 #include <inttypes.h>
 #endif
 }
-// ------------------------------------
 
 
 class OTASCIIArmor;

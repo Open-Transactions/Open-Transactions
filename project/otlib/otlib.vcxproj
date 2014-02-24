@@ -26,10 +26,12 @@
     <ClInclude Include="..\..\include\otlib\fast_mutex.h" />
     <ClInclude Include="..\..\include\otlib\Generics.pb.h" />
     <ClInclude Include="..\..\include\otlib\Markets.pb.h" />
+    <ClInclude Include="..\..\include\otlib\MemoryWrapper.hpp" />
     <ClInclude Include="..\..\include\otlib\Moneychanger.pb.h" />
     <ClInclude Include="..\..\include\otlib\OTAccount.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAgreement.hpp" />
     <ClInclude Include="..\..\include\otlib\OTASCIIArmor.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAssert.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAssetContract.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAsymmetricKey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTBasket.hpp" />
@@ -85,6 +87,7 @@
     <ClInclude Include="..\..\include\otlib\OTWallet.hpp" />
     <ClInclude Include="..\..\include\otlib\stacktrace.h" />
     <ClInclude Include="..\..\include\otlib\stdafx.h" />
+    <ClInclude Include="..\..\include\otlib\stdafx.hpp" />
     <ClInclude Include="..\..\include\otlib\Timer.hpp" />
     <ClInclude Include="..\..\include\otlib\tinythread.hpp" />
     <ClInclude Include="..\..\include\otlib\win32_utf8conv.hpp" />
@@ -150,6 +153,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAssert.cpp" />
     <ClCompile Include="..\..\src\otlib\OTAssetContract.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -601,6 +605,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -615,6 +620,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -632,6 +638,7 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -650,6 +657,7 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

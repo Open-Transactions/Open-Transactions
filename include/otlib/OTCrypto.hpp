@@ -131,17 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OT_CRYPTO_H__
-#define __OT_CRYPTO_H__
+#ifndef __OT_CRYPTO_HPP__
+#define __OT_CRYPTO_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
+
 // ------------------------------------------------------------------------
 #include <string>
 #include <map>
@@ -788,7 +783,7 @@ public:
 
 
 
-#endif // __OT_CRYPTO_H__
+#endif // __OT_CRYPTO_HPP__
 
 
 

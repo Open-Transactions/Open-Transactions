@@ -1,9 +1,3 @@
-/************************************************************************************
- *    
- *  OTStringXML.h
- *  
- */
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -131,18 +125,14 @@
  **************************************************************/
 
 
-#ifndef __OTSTRING_XML_H__
-#define __OTSTRING_XML_H__
+#ifndef __OTSTRING_XML_HPP__
+#define __OTSTRING_XML_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
-#include "irrxml/irrXML.h"
-
-#include "OTString.h"
-
+#include "irrxml/irrXML.hpp"
+#include "OTString.hpp"
 
 class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 {
@@ -161,7 +151,7 @@ EXPORT	virtual ~OTStringXML();
 	int getSize();
 };
 
-#endif // __OTSTRING_XML_H__
+#endif // __OTSTRING_XML_HPP__
 
 
 

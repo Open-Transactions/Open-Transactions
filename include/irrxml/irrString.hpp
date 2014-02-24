@@ -2,10 +2,10 @@
 // This file is part of the "Irrlicht Engine" and the "irrXML" project.
 // For conditions of distribution and use, see copyright notice in irrlicht.h and irrXML.h
 
-#ifndef __IRR_STRING_H_INCLUDED__
-#define __IRR_STRING_H_INCLUDED__
+#ifndef __IRR_STRING_HPP_INCLUDED__
+#define __IRR_STRING_HPP_INCLUDED__
 
-#include "irrTypes.h"
+#include "irrTypes.hpp"
 
 #include <stdlib.h>
 

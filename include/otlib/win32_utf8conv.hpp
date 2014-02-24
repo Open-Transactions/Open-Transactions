@@ -37,10 +37,10 @@
 
 #pragma once
 
-#ifndef EXPORT
-#define EXPORT
-#endif
+
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 
 //------------------------------------------------------------------------
@@ -160,7 +160,7 @@ EXPORT std::string UTF8FromUTF16(const wchar_t * utf16);
 
 
 
-#include "win32_utf8conv_inl.h"     // inline implementations
+#include "win32_utf8conv_inl.hpp"     // inline implementations
 
 
 //////////////////////////////////////////////////////////////////////////

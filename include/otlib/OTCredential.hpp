@@ -164,18 +164,11 @@
  **************************************************************/
 
 
-#ifndef __OT_CREDENTIAL_H__
-#define __OT_CREDENTIAL_H__
+#ifndef __OT_CREDENTIAL_HPP__
+#define __OT_CREDENTIAL_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
-
 
 #include "OTString.h"
 #include "OTContract.h"
@@ -771,7 +764,7 @@ public:
 
 
 
-#endif // __OT_CREDENTIAL_H__
+#endif // __OT_CREDENTIAL_HPP__
 
 
 

@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OT_CHEQUE_H__
-#define __OT_CHEQUE_H__
+#ifndef __OT_CHEQUE_HPP__
+#define __OT_CHEQUE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <ctime>
 #include <fstream>
@@ -231,7 +229,7 @@ EXPORT	virtual ~OTCheque();
 };
 
 
-#endif // __OT_CHEQUE_H__
+#endif // __OT_CHEQUE_HPP__
 
 
 

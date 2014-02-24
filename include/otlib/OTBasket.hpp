@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTBASKET_H__
-#define __OTBASKET_H__
+#ifndef __OTBASKET_HPP__
+#define __OTBASKET_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <deque>
 #include <fstream>
@@ -260,7 +258,7 @@ EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & the
 
 
 
-#endif // __OTBASKET_H__
+#endif // __OTBASKET_HPP__
 
 /*
  

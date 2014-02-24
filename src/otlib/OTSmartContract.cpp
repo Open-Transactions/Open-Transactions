@@ -456,8 +456,7 @@
       notes directly with the auditor and each other on the hashes for the various sequence numbers. Hm.
  */
 
-
-#include <stdafx.h>
+#include <stdafx.hpp>
 
 
 #include <map>

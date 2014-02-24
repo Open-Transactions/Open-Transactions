@@ -2,8 +2,8 @@
 // This file is part of the "Irrlicht Engine" and the "irrXML" project.
 // For conditions of distribution and use, see copyright notice in irrlicht.h and irrXML.h
 
-#ifndef __FAST_A_TO_F_H_INCLUDED__
-#define __FAST_A_TO_F_H_INCLUDED__
+#ifndef __FAST_A_TO_F_HPP_INCLUDED__
+#define __FAST_A_TO_F_HPP_INCLUDED__
 
 #include <cstdlib>
 #include <math.h>

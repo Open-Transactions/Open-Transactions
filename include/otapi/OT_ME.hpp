@@ -136,15 +136,12 @@ bool, int32_t, int64_t, std::string
  **************************************************************/
 
 
-#ifndef __OT_ME_H__
-#define __OT_ME_H__
+#ifndef __OT_ME_HPP__
+#define __OT_ME_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
 #include <ExportWrapper.h>
-#endif
+#include <WinsockWrapper.h>
+
 
 
 #include <string>
@@ -459,7 +456,7 @@ public:
 
 
 
-#endif   // __OT_ME_H__
+#endif   // __OT_ME_HPP__
 
 
 

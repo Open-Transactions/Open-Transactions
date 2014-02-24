@@ -133,13 +133,11 @@
 
 // OTCron has a list of OTCronItems. (Really subclasses of that such as OTTrade and OTAgreement.)
 
-#ifndef __OTCRON_H__
-#define __OTCRON_H__
+#ifndef __OTCRON_HPP__
+#define __OTCRON_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <ctime>
 
@@ -299,5 +297,5 @@ EXPORT	virtual ~OTCron();
 
 
 
-#endif // __OTCRON_H__
+#endif // __OTCRON_HPP__
 

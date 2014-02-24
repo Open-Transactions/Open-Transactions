@@ -155,15 +155,12 @@
  **************************************************************/
 
 
-#ifndef __OTAPI_H__
-#define __OTAPI_H__
+#ifndef __OTAPI_HPP__
+#define __OTAPI_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
 #include <ExportWrapper.h>
-#endif
+#include <WinsockWrapper.h>
+
 
 #include <string>
 #include <set>
@@ -3991,5 +3988,5 @@ public :
 
 
 
-#endif // __OTAPI_H__
+#endif // __OTAPI_HPP__
 

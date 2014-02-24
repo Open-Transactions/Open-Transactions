@@ -130,22 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OT_PASSWORD_H__
-#define __OT_PASSWORD_H__
+#ifndef __OT_PASSWORD_HPP__
+#define __OT_PASSWORD_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-// ------------------------------------------------------------------------
+#include <WinsockWrapper.h>
+
+#include <OTCachedKey.hpp>
+
 #include <string>
-// ------------------------------------------------------------------------
+
 extern "C" {
 #include <stdint.h>	
 }
-// ------------------------------------------------------------------------
 
-#include "OTCachedKey.h"
+
 
 /*
  To use:
@@ -732,7 +731,7 @@ void unlock_mem(void* ptr, size_t bytes)
 
 // _____________________________________________________________
 
-#endif //__OT_PASSWORD_H__
+#endif //__OT_PASSWORD_HPP__
 
 
 

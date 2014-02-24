@@ -130,7 +130,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
 // size_t
 #include <cstddef>

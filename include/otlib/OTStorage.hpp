@@ -124,8 +124,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OT_STORAGE_H__
-#define __OT_STORAGE_H__
+#ifndef __OT_STORAGE_HPP__
+#define __OT_STORAGE_HPP__
+
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #if __clang__
 #pragma clang diagnostic push
@@ -148,59 +151,39 @@
 
 #ifdef NOT_SWIG
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#include <ExportWrapper.h>
-
-#ifdef _WIN32
-
-#include <WinsockWrapper.h>
-#endif
-
-#include <typeinfo>
+#include <OTAssert.hpp>
 
 #include <iostream>
-#include <string>
 #include <deque>
-#include <vector>
 #include <map>
-#include <set>
+#include <vector>
 
-extern "C"
-{
-    
-#ifdef _WIN32
-#include <direct.h>
-#include <sys/stat.h>
-#else
-#include <sys/stat.h>
-#endif
-}
+//extern "C"
+//{
+//    
+//#ifdef _WIN32
+////#include <direct.h>
+////#include <sys/stat.h>
+//#else
+//#include <sys/stat.h>
+//#endif
+//}
 
 
 // credit:stlplus library.
 #include "containers/simple_ptr.hpp"
 
 
-// Use Win or Posix
-// IF I need this while porting, then uncomment it.
-#ifdef _WIN32
-//#include <windows.h>
-//#else
-//#ifndef POSIX
-//#warning POSIX will be used (but you did not define it)
+//// Use Win or Posix
+//// IF I need this while porting, then uncomment it.
+//#ifdef _WIN32
+////#include <windows.h>
+////#else
+////#ifndef POSIX
+////#warning POSIX will be used (but you did not define it)
+////#endif
+////#include <unistd.h>
 //#endif
-//#include <unistd.h>
-#endif
-
-
-
-#include "OTData.h"
-
-#include "OTLog.h"
-
-
 
 
 
@@ -208,9 +191,9 @@ extern "C"
 // (Option is for both...)
 //
 
-#ifndef _WIN32 // Until I get it working on Windows.
-//#define OTDB_MESSAGE_PACK   1 // Note: deactivating MsgPack for now, since we don't use it, and since I don't want to have to add it to the Android NDK build.
-#endif
+//#ifndef _WIN32 // Until I get it working on Windows.
+////#define OTDB_MESSAGE_PACK   1 // Note: deactivating MsgPack for now, since we don't use it, and since I don't want to have to add it to the Android NDK build.
+//#endif
 
 #define OTDB_PROTOCOL_BUFFERS 1
 //#define OTDB_JSON_PACKING 1 // coming soon.
@@ -2380,7 +2363,7 @@ namespace OTDB
 #pragma clang diagnostic pop
 #endif
 
-#endif // __OT_STORAGE_H__
+#endif // __OT_STORAGE_HPP__
 
 
 

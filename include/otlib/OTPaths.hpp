@@ -136,18 +136,16 @@
 
 // The long-awaited paths class.
 
-#ifndef __OTPATHS_H__
-#define __OTPATHS_H__
+#ifndef __OTPATHS_HPP__
+#define __OTPATHS_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 //#include "tinythread.h"
 
-#include "OTString.h"
-#include "OTSettings.h"
+#include "OTString.hpp"
+#include "OTSettings.hpp"
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
@@ -404,4 +402,4 @@ public:
 
 
 
-#endif // __OTPATHS_H__
+#endif // __OTPATHS_HPP__

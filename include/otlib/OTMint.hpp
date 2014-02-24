@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTMINT_H__
-#define __OTMINT_H__
+#ifndef __OTMINT_HPP__
+#define __OTMINT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <ctime>
 
@@ -322,4 +320,4 @@ EXPORT	virtual ~OTMint_Lucre();
 
 
 
-#endif // __OTMINT_H__
+#endif // __OTMINT_HPP__

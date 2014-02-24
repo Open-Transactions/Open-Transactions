@@ -135,13 +135,11 @@
 // A market has a list of OTOffers for all the bids, and another list of OTOffers for all the asks.
 // Presumably the server will have different markets for different asset types.
 
-#ifndef __OTMARKET_H__
-#define __OTMARKET_H__
+#ifndef __OTMARKET_HPP__
+#define __OTMARKET_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include "OTContract.h"
 #include "OTOffer.h"
@@ -277,7 +275,7 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
 	virtual bool SaveContractWallet(std::ofstream & ofs);	
 };
 
-#endif // __OTMARKET_H__
+#endif // __OTMARKET_HPP__
 
 
 

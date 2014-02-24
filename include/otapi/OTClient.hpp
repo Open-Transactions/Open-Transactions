@@ -130,17 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTCLIENT_H__
-#define __OTCLIENT_H__
+#ifndef __OTCLIENT_HPP__
+#define __OTCLIENT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
+
 
 class OTPseudonym;
 class OTAssetContract;
@@ -366,4 +361,4 @@ public:
 
 };
 
-#endif // __OTCLIENT_H__
+#endif // __OTCLIENT_HPP__

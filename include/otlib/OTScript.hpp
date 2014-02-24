@@ -131,20 +131,17 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_H__
-#define __OT_SCRIPT_H__
+#ifndef __OT_SCRIPT_HPP__
+#define __OT_SCRIPT_HPP__
+
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #if __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
-
-
-#ifndef EXPORT
-#define EXPORT
-#endif
-#include <ExportWrapper.h>
 
 #include <string>
 
@@ -309,7 +306,7 @@ typedef std::auto_ptr<OTScriptChai>            OTScriptChai_AutoPtr;
 
 // ------------------------------------------------------------------
 
-#endif // __OT_SCRIPT_H__
+#endif // __OT_SCRIPT_HPP__
 
 
 

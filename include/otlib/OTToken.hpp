@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OT_TOKEN_H__
-#define __OT_TOKEN_H__
+#ifndef __OT_TOKEN_HPP__
+#define __OT_TOKEN_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 // ------------------------------------
 #include <map>
 #include <stack>
@@ -425,7 +424,7 @@ EXPORT	virtual ~OTToken_Lucre();
 
 
 
-#endif // __OT_TOKEN_H__
+#endif // __OT_TOKEN_HPP__
 
 
 

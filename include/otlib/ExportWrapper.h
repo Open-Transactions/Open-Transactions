@@ -8,6 +8,7 @@
 #undef EXPORT
 #endif
 
+#ifndef NOEXPORT
 #ifdef _WINDLL
 #ifdef IMPORT
   #define EXPORT __declspec(dllimport)
@@ -16,6 +17,7 @@
 #endif
 #else
   #define EXPORT
+#endif
 #endif
 
 #endif

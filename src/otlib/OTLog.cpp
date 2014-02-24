@@ -130,23 +130,29 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The long-awaited logging class.
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include "OTLog.hpp"
+#include "OTSettings.hpp"
+#include "OTPaths.hpp"
+#include "OTAssert.hpp"
 
-#include <cstdarg>
-#include <cstdio>
-#include <cstring> // The C one 
-#include <cstdlib>
-#include <cctype>
-#include <cassert>
-#include <cerrno>
+#include "tinythread.hpp"
 
 #include <iostream>
+#include <fstream>
 #include <exception>
-#include <stdexcept>
-#include <sys/types.h>
-#include <sys/stat.h>
+
+#include <constants.h>
+
+#ifdef _WIN32
+#include <Shlobj.h>
+#include <direct.h>
+#else
+#include <libgen.h>
+#include <unistd.h>
+#endif
+
 
 #ifndef S_ISDIR
 #define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
@@ -156,16 +162,6 @@
 #define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
 #endif
 
-#include <string> // The C++ one 
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#include <Shlobj.h>
-#include <direct.h>
-#else
-#include <libgen.h>
-#include <unistd.h>
-#endif
 
 #ifdef __APPLE__
 #include "TargetConditionals.h"
@@ -178,22 +174,6 @@
 
 #define LOG_DEQUE_SIZE 1024
 
-// ----------------------------------------
-// OpenSSL for Windows
-//
-#ifdef _WIN32
-
-#ifdef _DEBUG
-#pragma comment( lib, "libeay32MDd.lib" )
-#pragma comment( lib, "ssleay32MDd.lib" )
-#else
-#pragma comment( lib, "libeay32MD.lib" )
-#pragma comment( lib, "ssleay32MD.lib" )
-
-#endif
-
-
-#endif
 // ----------------------------------------
 
 extern "C"
@@ -272,18 +252,7 @@ extern "C"
 } // extern C
 // ---------------------------
 
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
 
-using namespace tthread;
-
-// ---------------------------------------------------------------------------
-
-//#include "ot_default_paths.h"
-
-// ---------------------------------------------------------------------------
 
 
 
@@ -291,14 +260,10 @@ using namespace tthread;
 #include <android/log.h>
 #endif
 
-#include "OTString.h"
-#include "OTLog.h"
 
 #ifndef _WIN32  // No Windows for now.
 #include "stacktrace.h"
 #endif
-
-#include <constants.h>
 
 
 #define LOGFILE_PRE "log-"
@@ -409,6 +374,15 @@ bool OTLog::Cleanup()
 	else return false;
 }
 
+//static
+bool OTLog::CheckLogger(OTLog * pLogger)
+{
+    if (NULL != pLogger)
+    if (pLogger->m_bInitialized) return true;
+
+    assert(false);
+    return false;
+}
 
 
 

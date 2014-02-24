@@ -131,17 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OT_SYMMETRIC_KEY_H__
-#define __OT_SYMMETRIC_KEY_H__
+#ifndef __OT_SYMMETRIC_KEY_HPP__
+#define __OT_SYMMETRIC_KEY_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
+
 
 // ---------------------------------------------------
 
@@ -331,7 +326,7 @@ public:
 // ---------------------------------------------------
 
 
-#endif   // __OT_SYMMETRIC_KEY_H__
+#endif   // __OT_SYMMETRIC_KEY_HPP__
 
 
 

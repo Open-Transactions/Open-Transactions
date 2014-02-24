@@ -135,13 +135,12 @@
 // which may be trades or agreements or who knows what next.
 //
 
-#ifndef __OTTRADE_H__
-#define __OTTRADE_H__
+#ifndef __OTTRADE_HPP__
+#define __OTTRADE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 //#include <ctime> // already included in parent somewhere.
 
@@ -314,4 +313,4 @@ EXPORT	virtual ~OTTrade();
 };
 
 
-#endif // __OTTRADE_H__
+#endif // __OTTRADE_HPP__

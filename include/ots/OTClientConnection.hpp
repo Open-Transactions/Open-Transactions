@@ -131,8 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OT_CLIENT_CONNECTION_H__
-#define __OT_CLIENT_CONNECTION_H__
+#ifndef __OT_CLIENT_CONNECTION_HPP__
+#define __OT_CLIENT_CONNECTION_HPP__
+
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 extern "C"
 {
@@ -232,4 +235,4 @@ public:
 };
 
 
-#endif // __OT_CLIENT_CONNECTION_H__
+#endif // __OT_CLIENT_CONNECTION_HPP__

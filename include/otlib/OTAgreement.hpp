@@ -133,13 +133,11 @@
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 
-#ifndef __OTAGREEMENT_H__
-#define __OTAGREEMENT_H__
+#ifndef __OTAGREEMENT_HPP__
+#define __OTAGREEMENT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include "OTIdentifier.h"
 #include "OTString.h"
@@ -446,4 +444,4 @@ EXPORT	virtual long GetOpeningNumber(const OTIdentifier & theNymID) const;
 };
 
 
-#endif // __OTAGREEMENT_H__
+#endif // __OTAGREEMENT_HPP__

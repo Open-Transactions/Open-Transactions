@@ -1,5 +1,5 @@
-#ifndef _WINSOCK_WRAPPER_H_
-#define _WINSOCK_WRAPPER_H_
+#ifndef __WINSOCK_WRAPPER_H__
+#define __WINSOCK_WRAPPER_H__
 
 #ifdef _WIN32
 

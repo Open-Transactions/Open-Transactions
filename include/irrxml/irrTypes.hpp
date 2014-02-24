@@ -2,8 +2,8 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#ifndef __IRR_TYPES_H_INCLUDED__
-#define __IRR_TYPES_H_INCLUDED__
+#ifndef __IRR_TYPES_HPP_INCLUDED__
+#define __IRR_TYPES_HPP_INCLUDED__
 
 namespace irr
 {
@@ -97,5 +97,5 @@ Compiler version defines: VC6.0 : 1200, VC7.0 : 1300, VC7.1 : 1310, VC8.0 : 1400
 #define _IRR_IMPLEMENT_MANAGED_MARSHALLING_BUGFIX
 #endif // _IRR_MANAGED_MARSHALLING_BUGFIX
 
-#endif // __IRR_TYPES_H_INCLUDED__
+#endif // __IRR_TYPES_HPP_INCLUDED__
 

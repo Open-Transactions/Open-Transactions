@@ -131,8 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTSERVER_H__
-#define __OTSERVER_H__
+#ifndef __OTSERVER_HPP__
+#define __OTSERVER_HPP__
+
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <map>
 
@@ -522,7 +525,7 @@ public:
 };
 
 
-#endif // __OTSERVER_H__
+#endif // __OTSERVER_HPP__
 
 
 

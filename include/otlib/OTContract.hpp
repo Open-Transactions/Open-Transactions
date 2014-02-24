@@ -1,9 +1,3 @@
-/************************************************************************************
- *    
- *  OTContract.h
- *  
- */
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -131,42 +125,23 @@
  **************************************************************/
 
 
-#ifndef __OTCONTRACT_H__
-#define __OTCONTRACT_H__
+#ifndef __OTCONTRACT_HPP__
+#define __OTCONTRACT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
-#include <cstdio>	
+#include <OTString.hpp>
+#include <OTStringXML.hpp>
+#include <OTIdentifier.hpp>
+#include <OTBylaw.hpp>
 
-
-#include <list>
-#include <map>
 #include <set>
 
-#include <string>
-#include <fstream>
+#include "irrxml/irrXML.hpp"
 
-#include "irrxml/irrXML.h"
-
-#include "OTIdentifier.h"
-
-#include "OTData.h"
-#include "OTString.h"
-#include "OTAsymmetricKey.h"
-
-#include "OTSignature.h"
-#include "OTStringXML.h"
-
-#include "OTBylaw.h"
-//#include "OTStorage.h"
-
-
-class OTPseudonym;
-class OTIdentifier;
-
+class OTAsymmetricKey;
+class OTPasswordData;
 
 // --------------------------------------------------
 // Useful for storing a std::set of longs, 
@@ -529,7 +504,7 @@ EXPORT  bool VerifyWithKey(const OTAsymmetricKey & theKey,
 EXPORT	const OTPseudonym	  * GetContractPublicNym();	
 };
 
-#endif // __OTCONTRACT_H__
+#endif // __OTCONTRACT_HPP__
 
 
 

@@ -133,13 +133,11 @@
 
 // The long-awaited logging class.
 
-#ifndef __OTLOG_H__
-#define __OTLOG_H__
+#ifndef __OTLOG_HPP__
+#define __OTLOG_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)
 #define PREDEF_PLATFORM_UNIX 1
@@ -149,28 +147,10 @@
 #define PREDEF_MODE_DEBUG 1
 #endif
 
-// old, before we used std::terminate
-//#define    OT_ASSERT(x)			( (false == (x)) ? OTLog::Assert(__FILE__, __LINE__)		: (1))
-//#define    OT_ASSERT_MSG(x, s)	( (false == (x)) ? OTLog::Assert(__FILE__, __LINE__, (s))	: (1))
-
-// new, more simple OT_ASSERT, for static analysis.
-
-#define    OT_FAIL                               { OTLog::Assert(__FILE__, __LINE__);      std::terminate(); };
-#define    OT_FAIL_MSG(s)                        { OTLog::Assert(__FILE__, __LINE__, (s)); std::terminate(); };
-
-#define    OT_ASSERT(x)			if(false == (x)) { OTLog::Assert(__FILE__, __LINE__);      std::terminate(); };
-#define    OT_ASSERT_MSG(x, s)  if(false == (x)) { OTLog::Assert(__FILE__, __LINE__, (s)); std::terminate(); };
-
-
 
 #include <deque>
-#include <string>
+#include "OTString.hpp"
 
-//#include "tinythread.h"
-
-#include "OTString.h"
-#include "OTSettings.h"
-#include "OTPaths.h"
 
 EXPORT typedef std::deque <OTString *> dequeOfStrings;
 
@@ -207,14 +187,7 @@ public:
 
 	EXPORT static bool Cleanup();
 
-	EXPORT static inline bool CheckLogger(OTLog * pLogger)
-	{
-		if (NULL != pLogger)
-			if (pLogger->m_bInitialized) return true;
-
-		assert(false);
-		return false;
-	}
+    EXPORT static inline bool CheckLogger(OTLog * pLogger);
 
 	// ------------------------------------------------------------
 	// OTLog Constants.
@@ -321,4 +294,4 @@ public:
 
 };
 
-#endif // __OTLOG_H__
+#endif // __OTLOG_HPP__

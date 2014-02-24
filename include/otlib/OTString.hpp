@@ -131,16 +131,15 @@
  **************************************************************/
 
 
-#ifndef  __OT_STRING_H__
-#define  __OT_STRING_H__
+#ifndef  __OT_STRING_HPP__
+#define  __OT_STRING_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
-// ------------------------------------
-// Windows (ugh)
+
+#include <cstdarg>
+
 extern "C"
 {
 #ifdef _WIN32
@@ -149,6 +148,18 @@ extern "C"
 #include <inttypes.h>
 #endif
 }
+
+#include <list>
+#include <map>
+
+#include <stdexcept>  // via: win32_utf8conv.hpp
+#include <string>     // via: win32_utf8conv.hpp
+#include <string>     // via: win32_utf8conv.hpp
+
+#ifdef _WIN32
+#include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
+#endif
+
 
 // ------------------------------------
 
@@ -189,35 +200,6 @@ extern "C"
 #define PRId64 "lld"
 
 #endif
-#endif
-
-// ------------------------------------
-
-#include <cstdio>
-#include <cstdarg>
-#include <cstring>
-
-#include <string>
-#include <map>
-#include <list>
-
-#include <algorithm>
-
-//extern "C" 
-//{
-//#include <stdint.h>
-//}
-
-#include <iostream>
-#include <sstream>
-#include <fstream>
-
-//
-// support for changig between std::string and std::wstring
-// std::wstring is very commonly used on Windows
-//
-#ifdef _WIN32
-#include "win32_utf8conv.h" 
 #endif
 
 
@@ -341,10 +323,6 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
 }
 // (End of the Todd Miller code.)
 // =======================================================================
-
-
-
-#include <cstdarg>
 
 
 class OTIdentifier;
@@ -541,7 +519,7 @@ protected:
 
 
 
-#endif    // __OT_ STRING_H__
+#endif    // __OT_ STRING_HPP__
 
 
 

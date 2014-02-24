@@ -131,14 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OT_INSTRUMENT_H__
-#define __OT_INSTRUMENT_H__
+#ifndef __OT_INSTRUMENT_HPP__
+#define __OT_INSTRUMENT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
+#include <WinsockWrapper.h>
 #include <ctime>
 #include <fstream>
 
@@ -196,4 +193,4 @@ EXPORT  bool IsExpired();			// Verify whether the CURRENT date is AFTER the the 
 
 
 
-#endif // __OT_INSTRUMENT_H__
+#endif // __OT_INSTRUMENT_HPP__

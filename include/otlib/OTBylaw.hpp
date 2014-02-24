@@ -131,25 +131,22 @@
  **************************************************************/
 
 
-#ifndef __OT_BYLAW_H__
-#define __OT_BYLAW_H__
+#ifndef __OT_BYLAW_HPP__
+#define __OT_BYLAW_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
+#include "OTString.hpp"
+
+#include <map>
 #include <string>
 
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
 
-
-
-
-#include "OTString.h"
 
 class OTIdentifier;
 class OTNumList;
@@ -1082,7 +1079,7 @@ typedef std::map<std::string, OTBylaw *> mapOfBylaws;
 
 
 
-#endif // __OT_BYLAW_H__
+#endif // __OT_BYLAW_HPP__
 
 
 

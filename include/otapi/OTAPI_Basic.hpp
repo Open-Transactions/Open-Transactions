@@ -141,15 +141,12 @@ Every other type will be wrapped in a std::string.
  **************************************************************/
 
 
-#ifndef __OTAPI_BASIC_H__
-#define __OTAPI_BASIC_H__
+#ifndef __OTAPI_BASIC_HPP__
+#define __OTAPI_BASIC_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
 #include <ExportWrapper.h>
-#endif
+#include <WinsockWrapper.h>
+
 
 
 #include <string>
@@ -3891,5 +3888,5 @@ public:
 
 
 
-#endif   // __OTAPI_BASIC_H__
+#endif   // __OTAPI_BASIC_HPP__
 

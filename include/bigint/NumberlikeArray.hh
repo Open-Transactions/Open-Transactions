@@ -14,8 +14,8 @@
  
  */
 
-#ifndef NUMBERLIKEARRAY_H
-#define NUMBERLIKEARRAY_H
+#ifndef __NUMBERLIKEARRAY_HH__
+#define __NUMBERLIKEARRAY_HH__
 
 
 extern "C"

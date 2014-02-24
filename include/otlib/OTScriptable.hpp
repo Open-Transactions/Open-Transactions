@@ -132,13 +132,11 @@
  **************************************************************/
 
 
-#ifndef __OTSCRIPTABLE_H__
-#define __OTSCRIPTABLE_H__
+#ifndef __OTSCRIPTABLE_HPP__
+#define __OTSCRIPTABLE_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <string>
 
@@ -369,7 +367,7 @@ EXPORT	static OTScriptable * InstantiateScriptable(const OTString & strInput);
 
 
 
-#endif // __OTSCRIPTABLE_H__
+#endif // __OTSCRIPTABLE_HPP__
 
 
 

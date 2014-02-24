@@ -142,15 +142,12 @@ Every other type will be wrapped in a std::string.
  **************************************************************/
 
 
-#ifndef __OT_MADE_EASY_H__
-#define __OT_MADE_EASY_H__
+#ifndef __OT_MADE_EASY_HPP__
+#define __OT_MADE_EASY_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
 #include <ExportWrapper.h>
-#endif
+#include <WinsockWrapper.h>
+
 
 
 #include <string>
@@ -410,7 +407,7 @@ public:
 
 
 
-#endif   // __OT_MADE_EASY_H__
+#endif   // __OT_MADE_EASY_HPP__
 
 
 

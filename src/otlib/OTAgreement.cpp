@@ -130,8 +130,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#include <stdafx.h>
+#include <stdafx.hpp>
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 

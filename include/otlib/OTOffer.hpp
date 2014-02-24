@@ -134,13 +134,11 @@
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
 
 
-#ifndef __OTOFFER_H__
-#define __OTOFFER_H__
+#ifndef __OTOFFER_HPP__
+#define __OTOFFER_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <fstream>
 
@@ -294,7 +292,7 @@ EXPORT	virtual ~OTOffer();
 
 
 
-#endif // __OTOFFER_H__
+#endif // __OTOFFER_HPP__
 
 
 

@@ -14,10 +14,10 @@
  
  */
 
-#ifndef BIGUNSIGNED_H
-#define BIGUNSIGNED_H
+#ifndef __BIGUNSIGNED_HH__
+#define __BIGUNSIGNED_HH__
 
-#include "NumberlikeArray.h"
+#include "NumberlikeArray.hh"
 
 /* A BigUnsigned object represents a nonnegative integer of size limited only by
  * available memory.  BigUnsigneds support most mathematical operators and can

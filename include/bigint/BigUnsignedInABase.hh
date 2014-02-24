@@ -14,11 +14,11 @@
  
  */
 
-#ifndef BIGUNSIGNEDINABASE_H
-#define BIGUNSIGNEDINABASE_H
+#ifndef __BIGUNSIGNEDINABASE_HH__
+#define __BIGUNSIGNEDINABASE_HH__
 
-#include "NumberlikeArray.h"
-#include "BigUnsigned.h"
+#include "NumberlikeArray.hh"
+#include "BigUnsigned.hh"
 #include <string>
 
 /*

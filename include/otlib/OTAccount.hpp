@@ -130,13 +130,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTACCOUNT_H__
-#define __OTACCOUNT_H__
+#ifndef __OTACCOUNT_HPP__
+#define __OTACCOUNT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <list>
 #include <fstream>
@@ -342,7 +340,7 @@ EXPORT	OTAccount_SharedPtr GetOrCreateAccount(OTPseudonym			& theServerNym,
 
 
 
-#endif // __OTACCOUNT_H__
+#endif // __OTACCOUNT_HPP__
 
 
 

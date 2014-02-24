@@ -134,13 +134,11 @@
 // Base class for OTTrade and OTAgreement.
 // OTCron contains lists of these for regular processing.
 
-#ifndef __OTCRON_ITEM_H__
-#define __OTCRON_ITEM_H__
+#ifndef __OTCRON_ITEM_HPP__
+#define __OTCRON_ITEM_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <deque>
 
@@ -334,4 +332,4 @@ EXPORT      long GetClosingNum() const;
 
 
 
-#endif // __OTCRON_ITEM_H__
+#endif // __OTCRON_ITEM_HPP__

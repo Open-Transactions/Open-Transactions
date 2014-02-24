@@ -131,18 +131,16 @@
  **************************************************************/
 
 
-#ifndef __OTIDENTIFIER_H__
-#define __OTIDENTIFIER_H__
+#ifndef __OTIDENTIFIER_HPP__
+#define __OTIDENTIFIER_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <string>
 
-#include "OTData.h"
-#include "OTString.h"
+#include "OTData.hpp"
+#include "OTString.hpp"
 
 
 // An Identifier is basically a 256 bit hash value.
@@ -223,7 +221,7 @@ EXPORT	void GetString(OTString & theStr) const;
 //bool operator <=(const OTIdentifier &s1, const OTIdentifier& s2);
 
 
-#endif // __OTIDENTIFIER_H__
+#endif // __OTIDENTIFIER_HPP__
 
 
 

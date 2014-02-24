@@ -131,13 +131,11 @@
  **************************************************************/
 
 
-#ifndef __OTLEDGER_H__
-#define __OTLEDGER_H__
+#ifndef __OTLEDGER_HPP__
+#define __OTLEDGER_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <set>
 
@@ -337,7 +335,7 @@ EXPORT          char const * GetTypeString() { return OTLedger::_GetTypeString(m
 
 
 
-#endif //  __OTLEDGER_H__
+#endif //  __OTLEDGER_HPP__
 
 
 

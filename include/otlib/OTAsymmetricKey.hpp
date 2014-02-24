@@ -131,30 +131,26 @@
  **************************************************************/
 
 
-#ifndef __OT_ASYMMETRIC_KEY_H__
-#define __OT_ASYMMETRIC_KEY_H__
+#ifndef __OT_ASYMMETRIC_KEY_HPP__
+#define __OT_ASYMMETRIC_KEY_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
-
-#ifdef _WIN32
 #include <WinsockWrapper.h>
-#endif
 // -----------------------
 
 #include <string>
 #include <list>
 // -----------------------
 
-#include "Timer.h"
+#include "Timer.hpp"
 
-// -----------------------
-
-#include "OTPassword.h"
-
-#include "OTCrypto.h"
+class OTCaller;
+class OTKeypair;
+class OTString;
+class OTPassword;
+class OTIdentifier;
+class OTASCIIArmor;
+class OTSignatureMetadata;
 
 // --------------------------------------------------------
 
@@ -209,9 +205,6 @@ EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 // ------------------------------------------------
 
 
-class OTKeypair;
-
-
 /// OTLowLevelKeyData
 /// Used for passing x509's and EVP_PKEYs around, so a replacement
 /// crypto engine will not require changes to any function parameters
@@ -244,12 +237,6 @@ public:
 
 
 // ***************************************************************
-
-class OTString;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTSignatureMetadata;
-
 
 class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
 {
@@ -554,7 +541,7 @@ protected:
 
 
 
-#endif // __OT_ASYMMETRIC_KEY_H__
+#endif // __OT_ASYMMETRIC_KEY_HPP__
 
 
 

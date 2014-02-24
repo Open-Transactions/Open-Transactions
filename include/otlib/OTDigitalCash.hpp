@@ -134,9 +134,11 @@
 
 // This header is for info shared between OTMint and OTToken.
 
-#ifndef __OT_DIGITAL_CASH_H__
-#define __OT_DIGITAL_CASH_H__
+#ifndef __OT_DIGITAL_CASH_HPP__
+#define __OT_DIGITAL_CASH_HPP__
 
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 // *******************************************************************************************
 // WHICH DIGITAL CASH LIBRARY?
@@ -204,7 +206,8 @@
 //
 #if defined (OT_CASH_USING_LUCRE)
 
-#include "lucre/bank.h"  // Lucre
+#include <string>
+#include "lucre/bank.hpp"  // Lucre
 
 // ------------------
 class _OT_Lucre_Dumper
@@ -241,7 +244,7 @@ public:
 
 
 
-#endif // __OT_DIGITAL_CASH_H__
+#endif // __OT_DIGITAL_CASH_HPP__
 
 
 

@@ -130,7 +130,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
 // The long-awaited configuration class.
 

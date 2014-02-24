@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTTRANSACTION_H__
-#define __OTTRANSACTION_H__
+#ifndef __OTTRANSACTION_HPP__
+#define __OTTRANSACTION_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
 
 #include <ctime>
 
@@ -838,7 +837,7 @@ EXPORT	static const char * _GetTypeString(transactionType theType);
 
 
 
-#endif // __OTTRANSACTION_H__
+#endif // __OTTRANSACTION_HPP__
 
 
 

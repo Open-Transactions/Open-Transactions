@@ -136,13 +136,11 @@
  **************************************************************/
 
 
-#ifndef __OT_PAYMENT_H__
-#define __OT_PAYMENT_H__
+#ifndef __OT_PAYMENT_HPP__
+#define __OT_PAYMENT_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include <ctime>
 
@@ -356,5 +354,5 @@ EXPORT	static paymentType GetTypeFromString(const OTString & strType);
 };
 
 
-#endif // __OT_PAYMENT_H__
+#endif // __OT_PAYMENT_HPP__
 

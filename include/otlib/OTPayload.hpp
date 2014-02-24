@@ -130,13 +130,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTPAYLOAD_H__
-#define __OTPAYLOAD_H__
+#ifndef __OTPAYLOAD_HPP__
+#define __OTPAYLOAD_HPP__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #include "OTData.h"
 
@@ -177,7 +175,7 @@ EXPORT	bool GetEnvelope(OTEnvelope & theEnvelope) const; // Envelope retrieved f
 EXPORT	bool SetEnvelope(const OTEnvelope & theEnvelope); // Envelope copied into payload to prepare for sending.
 };
 
-#endif // __OTPAYLOAD_H__ 
+#endif // __OTPAYLOAD_HPP__ 
 
 
 

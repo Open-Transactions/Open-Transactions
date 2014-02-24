@@ -137,8 +137,11 @@
 
 // The long-awaited configuration class.
 
-#ifndef __OTSETTINGS_H__
-#define __OTSETTINGS_H__
+#ifndef __OTSETTINGS_HPP__
+#define __OTSETTINGS_HPP__
+
+#include <ExportWrapper.h>
+#include <WinsockWrapper.h>
 
 #if __clang__
 #pragma clang diagnostic push
@@ -146,17 +149,10 @@
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
 
+#include "OTString.hpp"
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#include <ExportWrapper.h>
+#include "simpleini/SimpleIni.hpp"
 
-#include <assert.h>
-
-#include "simpleini/SimpleIni.h"
-
-#include "OTString.h"
 
 class OTSettings
 {
@@ -230,4 +226,4 @@ public:
 #endif
 
 
-#endif // __OTSETTINGS_H__
+#endif // __OTSETTINGS_HPP__
