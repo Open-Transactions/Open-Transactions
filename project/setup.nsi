@@ -8,7 +8,6 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\${NAME}"
 !define /file VERSION ..\VERSION
-!define PRODUCT_VERSION 0.88.0.0
 !define COMPANY "Open Transactions"
 !define URL https://github.com/FellowTraveler/Open-Transactions
 
@@ -42,14 +41,14 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile ${NAME}-${VERSION}-win32-setup.exe
+OutFile ${NAME}-${VERSION}-Win32-setup.exe
 InstallDir $PROGRAMFILES\${NAME}
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion ${PRODUCT_VERSION}
-VIAddVersionKey ProductName ${NAME}
+VIProductVersion "0.88.10.0"
+VIAddVersionKey ProductName Bitcoin
 VIAddVersionKey ProductVersion ${VERSION}
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -71,7 +70,6 @@ Section -Main SEC0000
     File ..\lib\Win32\Release\otapi.dll
     File ..\lib\Win32\Release\otapi-d.dll
     File ..\lib\Win32\Release\otapi-java.dll
-#    File ..\lib\Win32\Release\otapi-php.dll
     File ..\lib\Win32\Release\otlib.dll
     File ..\lib\Win32\Release\otserver.exe
 
@@ -80,12 +78,8 @@ Section -Main SEC0000
     File C:\OpenSSL-Win32\libeay32.dll
     File C:\OpenSSL-Win32\ssleay32.dll
 
-# Scripts...
-
     SetOutPath $INSTDIR\scripts
     File /r ..\scripts\*
-
-# Docs...
 
     SetOutPath $INSTDIR\docs
     File ..\docs\CLIENT-COMMANDS.txt
@@ -109,11 +103,11 @@ Section -post SEC0001
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     SetShellVarContext all
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\${NAME}.lnk" %comspec% '/k "$INSTDIR\scripts\run_opentxs.bat"'
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall ${NAME}.lnk" $INSTDIR\uninstall.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\${NAME} Win32.lnk" %comspec% '/k "$INSTDIR\scripts\run_opentxs.bat"'
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall ${NAME} Win32.lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
 
-    WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" DisplayName "${NAME}"
+    WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" DisplayName "${NAME} Win32"
     WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" DisplayVersion "${VERSION}"
     WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" Publisher "${COMPANY}"
     WriteRegStr HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" URLInfoAbout "${URL}"
@@ -146,9 +140,9 @@ Section -un.post UNSEC0001
     DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
 
     SetShellVarContext all
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall ${NAME}.lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\${NAME}.lnk"
-    Delete /REBOOTOK "$SMSTARTUP\${NAME}.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall ${NAME} Win32.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\${NAME} Win32.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\${NAME} Win32.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -156,7 +150,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKLM "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKLM "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKLM "${REGKEY}"
-    DeleteRegKey HKCR "${NAME}"
+    DeleteRegKey HKLM "${NAME}"
     RmDir $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0
