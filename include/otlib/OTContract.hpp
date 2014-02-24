@@ -291,9 +291,9 @@ EXPORT  static bool LoadEncodedTextField(irr::io::IrrXMLReader*& xml, OTString  
         static bool LoadEncodedTextFieldByName(irr::io::IrrXMLReader*& xml, OTString &strOutput, 
                                                const char *& szName, mapOfStrings * pmapExtraVars = NULL);
         // -------------------------------------------------------------------
-        static bool SkipToElement(IrrXMLReader*& xml);
-        static bool SkipToTextField(IrrXMLReader*& xml);
-        static bool SkipAfterLoadingField(IrrXMLReader*& xml);
+        static bool SkipToElement(irr::io::IrrXMLReader*& xml);
+        static bool SkipToTextField(irr::io::IrrXMLReader*& xml);
+        static bool SkipAfterLoadingField(irr::io::IrrXMLReader*& xml);
         // -------------------------------------------------------------------
         inline const char * GetHashType() const { return m_strSigHashType.Get(); }
         // -------------------------------------------------------------------

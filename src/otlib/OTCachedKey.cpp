@@ -132,29 +132,21 @@
 
 #include <stdafx.hpp>
 
-// ------------------------------------------------------------------------
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
+#include <OTCachedKey.hpp>
 
+#include <OTSymmetricKey.hpp>
+#include <OTString.hpp>
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPassword.hpp>
+#include <OTCrypto.hpp>
+#include <OTKeyring.hpp>
+#include <OTAsymmetricKey.hpp>
+
+#include "tinythread.hpp"   // These are in the header already.
 using namespace tthread;
 
-// ----------------------------
-
-#include "OTStorage.h"
-
-#include "OTASCIIArmor.h"
-#include "OTIdentifier.h"
-#include "OTPassword.h"
-#include "OTCrypto.h"
-#include "OTKeyring.h"
-#include "OTAsymmetricKey.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-
-#include "OTLog.h"
-// ------------------------------------------------------------------------
 
 
 #define OT_DEFAULT_PASSWORD "test"
@@ -170,15 +162,6 @@ tthread::mutex  OTCachedKey::s_mutexCachedKeys;
 mapOfCachedKeys OTCachedKey::s_mapCachedKeys;
 
 // ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
 

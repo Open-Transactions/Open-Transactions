@@ -146,11 +146,6 @@
 #include "tinythread.hpp"
 
 
-//using namespace tthread; // in the C++ file
-// --------------------------------------
-
-
-
 class OTString;
 class OTASCIIArmor;
 class OTSymmetricKey;

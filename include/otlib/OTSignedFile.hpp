@@ -136,11 +136,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <fstream>
-
-
-#include "OTString.h"
-#include "OTContract.h"
+#include <OTContract.hpp>
 
 
 class OTSignedFile : public OTContract 

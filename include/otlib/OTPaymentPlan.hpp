@@ -137,6 +137,9 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTAgreement.hpp>
+
+
 #ifndef LENGTH_OF_DAY_IN_SECONDS
 
 // NOTE: a "year" is length of day * 365.
@@ -164,7 +167,6 @@
 
 
 
-#include "OTAgreement.h"
 
 
 /*

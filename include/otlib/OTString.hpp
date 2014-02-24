@@ -139,6 +139,7 @@
 
 #include <list>
 #include <map>
+#include <sstream>
 #include <stdexcept>  // via: win32_utf8conv.hpp
 #include <string>     // via: win32_utf8conv.hpp
 #include <string>     // via: win32_utf8conv.hpp

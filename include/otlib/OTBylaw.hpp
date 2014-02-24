@@ -142,12 +142,6 @@
 #include <map>
 #include <string>
 
-#include "irrxml/irrXML.hpp"
-
-using namespace irr;
-using namespace io;
-
-
 class OTIdentifier;
 class OTNumList;
 

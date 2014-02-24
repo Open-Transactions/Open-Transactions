@@ -142,16 +142,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <ctime>
-
-#include "OTString.h"
-#include "OTIdentifier.h"
-
-#include "OTContract.h"
-
-
-//class OTString;
-//class OTIdentifier;
+#include <OTContract.hpp>
 
 class OTPurse;
 class OTTrackable;

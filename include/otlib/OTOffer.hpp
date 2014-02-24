@@ -140,11 +140,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <fstream>
-
-//#include "OTTrade.h"
-#include "OTInstrument.h"
-
+#include <OTInstrument.hpp>
 
 class OTTrade;
 

@@ -141,9 +141,10 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTContract.h"
-#include "OTOffer.h"
-#include "OTStorage.h"
+#include <OTContract.hpp>
+
+class OTTrade;
+
 
 
 #define MAX_MARKET_QUERY_DEPTH	50  // todo add this to the ini file. (Now that we actually have one.)

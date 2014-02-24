@@ -141,12 +141,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
-//#include <ctime> // already included in parent somewhere.
-
-#include "OTString.h"
-#include "OTCronItem.h"
-#include "OTOffer.h"
+#include <OTCronItem.hpp>
 
 class OTIdentifier;
 

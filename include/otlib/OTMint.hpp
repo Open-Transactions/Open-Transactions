@@ -137,11 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <ctime>
-
-#include "OTContract.h"
-#include "OTDigitalCash.h"
-
+#include <OTContract.hpp>
 
 class OTToken;
 class OTAccount;

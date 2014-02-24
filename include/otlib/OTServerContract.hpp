@@ -137,9 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <fstream>
-// ---------------------------------------
-#include "OTContract.h"
+#include <OTContract.hpp>
 
 class OTString;
 

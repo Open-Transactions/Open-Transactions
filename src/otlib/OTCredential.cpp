@@ -145,19 +145,13 @@
 
 #include <stdafx.hpp>
 
-#include <algorithm>
+#include <OTCredential.hpp>
 
-// ------------------------------------------------
-#include "OTStorage.h"
-
-#include "OTContract.h"
-#include "OTAsymmetricKey.h"
-#include "OTCredential.h"
-#include "OTSignature.h"
-
-#include "OTLog.h"
-
-// ------------------------------------------------
+#include <OTAssert.hpp>
+#include <OTSignature.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTPassword.hpp>
 
 
 

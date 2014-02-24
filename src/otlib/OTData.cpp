@@ -133,21 +133,13 @@
 
 #include <stdafx.hpp>
 
+#include <OTData.hpp>
 
-#include <algorithm>
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTASCIIArmor.hpp>
 
-#include <cstdio>
-#include <cstring>
-
-
-#include "OTStorage.h"
-
-#include "OTASCIIArmor.h"
-#include "OTData.h"
-#include "OTString.h"
-#include "OTPassword.h"
-
-#include "OTLog.h"
 
 
 

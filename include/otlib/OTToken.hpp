@@ -137,18 +137,9 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-// ------------------------------------
-#include <map>
-#include <stack>
-#include <string>
-#include <fstream>
-// ------------------------------------
-#include "OTContract.h"
-#include "OTInstrument.h"
-#include "OTASCIIArmor.h"
-#include "OTSignature.h"
-#include "OTDigitalCash.h"
-// ------------------------------------
+#include <OTInstrument.hpp>
+
+
 class OTString;
 class OTIdentifier;
 class OTMint;

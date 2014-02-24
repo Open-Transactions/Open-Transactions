@@ -141,6 +141,7 @@
 #include <WinsockWrapper.h>
 
 #include <OTCronItem.hpp>
+#include <OTAccount.hpp>
 
 
 class OTParty;
