@@ -1,90 +1,55 @@
-#########################################################################
-#									#
-#									#
-#	##		INSTALL - Fedora			##	#
-#									#
-#									#
-#########################################################################
+######################################################################
+#                                                                    #
+#                                                                    #
+#                    ##  INSTALL - Fedora 17+  ##                    #
+#                                                                    #
+#                                                                    #
+######################################################################
 
+for a guide that support fedora 16 and 15:
+https://github.com/Open-Transactions/Open-Transactions/blob/6a96f043977afa1b70c90e8859dab5cb55c48d09/docs/INSTALL-Fedora.txt
+
+#########    Fedora deps:   #########
 
 # install general developer tools
-$ sudo yum groupinstall "Development Tools"
+$ sudo yum groupinstall "Development Tools" "Development Libraries" "C Development Tools and Libraries"
 
 # install general developer dependencies
 $ sudo yum install gcc autoconf automake libtool wget cmake zlib-devel gtest-devel
 
 # install Open-Transactions library dependencies
-$ sudo yum install boost-devel zeromq-devel openssl-devel
+$ sudo yum install boost-devel zeromq-devel openssl-devel msgpack-devel protobuf-devel
+
 
 #########    Optional API deps:   #########
-# install dev deps if build for SWIG JAVA
-$ sudo yum install java-1.6.0-openjdk java-1.6.0-openjdk-devel
 
-# install dev deps if build for SWIG PERL5
-$ sudo yum install perl-devel
+$ sudo yum install ...
 
-# install dev deps if build SWIG PHP
-$ sudo yum install php-devel
+SWIG JAVA:         java-1.6.0-openjdk java-1.6.0-openjdk-devel
+SWIG PERL5:        perl-devel
+SWIG PHP:          php-devel
+SWIG PYTHON:       python-devel
+SWIG RUBY:         ruby-devel
+SWIG TCL:          tcl-devel
+SWIG CSHARP:       monodevelop
 
-# install dev deps if build for SWIG PYTHON
-$ sudo yum install python-devel
-
-# install dev deps if build for SWIG RUBY
-$ sudo yum install ruby ruby-devel
-
-# install dev deps if build for SWIG TCL
-$ sudo yum install tcl tcl-devel
-
-# install dev deps if build for SWIG CSHARP
-$ sudo yum install monodevelop
-
-# install dev deps if build for SWIG D
+SWIG D:
 # find .rpm for "gdc" d-compiler front end for gcc
 # or build-install "gdc" yourself from source
 
 ###########################################
 
+You may be required to add /usr/local/lib to your ld directory.
+http://stackoverflow.com/questions/12045563/cannot-load-shared-library-that-exists-in-usr-local-lib-fedora-x64
 
-
-# if you are on fedora 15, 16 or 17
-$ sudo yum install openssl-devel
-
-
-# if you are on fedora 16 or 17
-$ sudo yum install msgpack-devel
-
-# else your version of Fedora doesn't include MsgPack (so we are going to compile a src-rpm):
-
-$ wget http://download.fedoraproject.org/pub/fedora/linux/updates/16/SRPMS/msgpack-0.5.7-1.fc16.src.rpm
-$ rpmbuild --rebuild msgpack-0.5.7-1.fc16.src.rpm
-$ sudo yum install ~/rpmbuild/RPMS/i686/msgpack-*
-
-
-# if you are on fedora 16 or 17
-$ sudo yum install protobuf-devel
-
-# else you are using fedora 15 or before (we need to compile a src-prm)
-
-# install dependancies
-$ sudo yum install python-setuptools-devel maven maven-compiler-plugin \
-maven-install-plugin maven-jar-plugin maven-javadoc-plugin \
-maven-resources-plugin maven-surefire-plugin \
-maven-antrun-plugin maven-doxia maven-doxia-sitetools
-
-
-$ wget http://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/17/Everything/source/SRPMS/p/protobuf-2.4.1-6.fc17.src.rpm
-$ rpmbuild --rebuild protobuf-2.4.1-6.fc17.src.rpm
-$ sudo yum install ~/rpmbuild/RPMS/i686/protobuf-*
-
-
-# setenv variable PKG_CONFIG_PATH
-$ export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
-
+###########################################
 # now chaiscript  (for now we are using the development version)
 
 $ git clone git://github.com/ChaiScript/ChaiScript.git
 $ cd ChaiScript
-$ cmake . -DCMAKE_INSTALL_PREFIX=$HOME/.local
+$ git checkout ChaiScript_5_0_CPP_11
+$ git clean -fxd
+$ cmake .
 $ make
 $ make test
 $ make install
@@ -102,96 +67,68 @@ $ ./autogen.sh
 ### OR ###
 
 # git pull latest development source method
-$ git clone git://github.com/FellowTraveler/Open-Transactions.git
+$ git clone git://github.com/Open-Transactions/Open-Transactions.git
 $ cd Open-Transactions
 $ ./autogen.sh
 
 ########################################
 
-
-
-$ ./configure --prefix=$HOME/.local --with-java
-
-(NB: Default without the "--prefix=" installs sytem-wide to /usr/local 
-and will require admin privileges for "$ sudo make install" step below.
-Also, for otapiJ-test-gui support "--with-java" flag is needed)
-
+$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1
 
 #########   Configure Options:   #########
-Enable Configuration in Release Mode:
---enable-release	
 
-Enable extra (noisy) warnings with compile:
---enable-warnings
+Chaiscript 4:    --with-script=chai4
+Chaiscript 5:    --with-script=chai5
 
-Enable the signal handling for catching segmentation fault's (debug only):
---enable-sighandler
+Debug Mode:      --enable-debug
+Signal Handling: --enable-sighandler
+Warnings:        --enable-warnings
 
-Enable system keyring storage of OT passwords:
---with-keyring=ARG
-(ARG can be one of gnome, kwallet, windows, mac.)
+Release Mode:    --enable-release
+(default)
 
-### Swig API support options:  ###
+No Boost:        --disable-boost
+No TR1:          --disable-cxxtr1
+No C++11:        --disable-cxx11
 
-Enable Configuration for SWIG Java Support:
---with-java
+(Optional)
+System Keyring:  --with-keyring=ARG
+Arguments:       gnome, kwallet, windows or mac
 
-Enable Configuration for SWIG Perl 5 Support:
---with-perl5
+Enable OTAPI support for swig wrapper:
+       Java:     --with-java
+       Perl 5:   --with-perl5
+       PHP:      --with-php
+       Python:   --with-python
+       Ruby:     --with-ruby
+       TCL:      --with-tcl
+       CSHARP:   --with-csharp
+       D:        --with-d
+       Go:       --with-go
 
-Enable Configuration for SWIG PHP Support:
---with-php
-
-Enable Configuration for SWIG Python Support:
---with-python
-
-Enable Configuration for SWIG Ruby Support:
---with-ruby
-
-Enable Configuration for SWIG TCL Support:
---with-tcl
-
-Enable Configuration for SWIG CSHARP Support:
---with-csharp
-
-Enable Configuration for SWIG D Support:
---with-d
 ##########################################
 
-$ make uninstall (to cleanup anything in your .local folder)
-
-$ make
+$ make uninstall (cleanup from possible previous build)
 
 Build multithreaded, need about 1gb of ram per thread.
--j (int, mutiple of of 2)
+-j (int)
 
-
+$ make
 $ make install
 
-
 ###########   Miscellaneous Notes:   ###########
-
-# add to ~/.bash_profile
-
-# set PATH so it includes user's .local root bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# to avoid logging out and then logging back in again, just do ...
-$ source ~/.bash_profile
 
 # to run otserver
 $ otserver
 
 # for python client api support export env variable
-$ export PYTHONPATH=$HOME/.local/lib:$PYTHONPATH
+$ export PYTHONPATH=/usr/local/lib:$PYTHONPATH
 
 # to look at an example wallet (WARNING :will reset all user data):
 $ mkdir -p ~/.ot && cp -R sample-data/ot-sample-data/* ~/.ot
 
 # also checkout tarball of sample contracts, baskets, server
-$ cd ~/.local/share/opentxs
+$ cd /usr/local/share/opentxs
 $ tar -xvf user-samples.tar.gz
 $ ls
 ################################################

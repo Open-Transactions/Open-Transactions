@@ -1823,10 +1823,10 @@ bool OTServer::CreateMainFile()
 	if (!OTCachedKey::It()->HasHashCheck())
 	{
 		OTPassword tempPassword; tempPassword.zeroMemory();
-		OTCachedKey::It()->GetMasterPassword(tempPassword,
-                                             "We do not have a check "
-                                             "hash yet for this password, "
-                                             "please enter your password", true);
+        OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+		sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
+                                     "We do not have a check hash yet for this password, "
+                                     "please enter your password", true);
 		if (!SaveMainFile())
 		{
 			OT_FAIL;
@@ -2012,7 +2012,10 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 							if (!OTCachedKey::It()->HasHashCheck())
 							{
 								OTPassword tempPassword; tempPassword.zeroMemory();
-								bNeedToSaveAgain = OTCachedKey::It()->GetMasterPassword(tempPassword,"We do not have a check hash yet for this password, please enter your password",true);
+                                OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+								bNeedToSaveAgain = sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
+                                                                                "We do not have a check hash yet for this password, "
+                                                                                "please enter your password", true);
 							}
                         }
                         
@@ -3146,8 +3149,12 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// UserID of user whose usage credits are being examined / adjusted.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
-	const long lAdjustment = MsgIn.m_lDepth;	// The amount the usage credits are being ADJUSTED by.
+	// -----------------------------------
+    const bool bIsPrivilegedNym = ((OTServer::GetOverrideNymID().size() > 0) && // And if there's an override Nym...
+                                   (0 == OTServer::GetOverrideNymID().compare((MsgIn.m_strNymID.Get())))); // And if the acting Nym IS the override Nym...
+	// -----------------------------------
+    // The amount the usage credits are being ADJUSTED by.
+	const long lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
 
 	msgOut.m_lDepth = 0; // Returns total Usage Credits on Nym at the end.
 	// -----------------------------------
@@ -3207,7 +3214,7 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
         }
     }
 	// -----------------------------------------------------
-    OTLedger     theNymbox(nym2ID, nym2ID, SERVER_ID);
+    OTLedger theNymbox(nym2ID, nym2ID, SERVER_ID);
     // ------------------------------------
     bool bSuccessLoadingNymbox	= theNymbox.LoadNymbox();
     
@@ -3240,26 +3247,43 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 	{
 		// Get the current usage credits, which will be sent in the reply.
 		//
-		const long &	lOldCredits = pNym->GetUsageCredits();
-		const long		lNewCredits = lOldCredits + lAdjustment;
+		const long &	lOldCredits   = pNym->GetUsageCredits();
+        const long      lTentativeNew = lOldCredits + lAdjustment;
+		const long		lNewCredits   = (lTentativeNew < 0) ? (-1) : lTentativeNew; // It can never be less than -1.
         
-		// if adjustment is non-zero...
-		if ((0 != lAdjustment) && ((OTServer::GetOverrideNymID().size() > 0) && // And if there's an override Nym...
-                                   (0 == OTServer::GetOverrideNymID().compare((MsgIn.m_strNymID.Get()))))) // And if the acting Nym IS the override Nym...
+		// if adjustment is non-zero, and the acting Nym has authority to make adjustments...
+//         if ((0 != lAdjustment) && bIsPrivilegedNym)
+        //
+        // Note: if the adjustment is non-zero, then we ALREADY know the acting Nym has the authority.
+        // How do we know?
+        //
+        // long lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
+        //
+        // (Therefore we also know that the server is in usage credits mode, as well.)
+        //
+		if (0 != lAdjustment)
 		{
             // Only the override Nym can get inside this block and set the credits.
+            // And ONLY in the case where usage credits are turned on, on the server side.
             // Any other Nym can use UsageCredits message but as read-only, to retrieve
-            // the value, not to actually set it.
+            // the value, not to actually set it. In that case, the adjustment is always
+            // interpreted as "0", and the return value usage credits is always set to -1.
             //
-			pNym->SetUsageCredits(lNewCredits);
-			
-			msgOut.m_bSuccess = pNym->SaveSignedNymfile(m_nymServer); // We changed it, so let's save pNym...
+            pNym->SetUsageCredits(lNewCredits);
+            msgOut.m_bSuccess = pNym->SaveSignedNymfile(m_nymServer); // We changed it, so let's save pNym...
 		}
 		else
-			msgOut.m_bSuccess = true; // No adjustment -- we're just returning the current usage credits.
-		// Either way (even if adjustment is zero) then lNewCredits contains the value being sent back...
+			msgOut.m_bSuccess = true; // No adjustment -- we're just returning the current usage credits or -1, depending on whether server is in usage mode.
+        //
+        // This is because we always return credits of -1 in this case, so we don't want to be secretly
+        // continuing to adjust the credits farther and farther while simultaneously returning -1.
+		// -------------------------------------------------
+        // Either way (even if adjustment is zero) then lNewCredits contains the value being sent back...
 		//
-		msgOut.m_lDepth = lNewCredits; // adjustment or not, we send the current usage credits balance back in the server reply.
+        if (OTServer::__admin_usage_credits) // If the server has usage credits turned on...
+            msgOut.m_lDepth = lNewCredits;   // ...then adjustment or not, we send the current usage credits balance back in the server reply.
+        else                                 // Else if the server does NOT have usage credits turned on...
+            msgOut.m_lDepth = -1;            // ...then we always return -1, so the client doesn't pop up any error messages related to usage credits.
 	}
 	// -----------------------------------------------------
 	// (2) Sign the Message 

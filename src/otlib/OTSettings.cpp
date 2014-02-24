@@ -217,6 +217,12 @@ OTSettings::OTSettings(const OTString & strConfigFilePath) : m_pIniSimple(new CS
 	if (! m_strConfigurationFileExactPath.Exists())	{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "m_strConfigurationFileExactPath"); OT_FAIL; }
 }
 
+
+void OTSettings::SetConfigFilePath(const OTString & strConfigFilePath)
+{
+    m_strConfigurationFileExactPath.Set(strConfigFilePath.Get());
+}
+
 OTSettings::OTSettings() : m_pIniSimple(new CSimpleIniA()), b_Loaded(false) {}
 
 OTSettings::~OTSettings() {

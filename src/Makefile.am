@@ -3,10 +3,10 @@ SUBDIRS                 =   otlib otapi
 opentxs_include_dir     =   $(top_srcdir)/include
 opentxs_source_dir      =   $(top_srcdir)/src
 
-common_includes         =   $(AM_CXXFLAGS) \
-			    -I$(top_builddir)/include/otlib \
-                            -I$(opentxs_include_dir)  \
-                            -I$(opentxs_include_dir)/otlib
+common_includes         =   $(AM_CXXFLAGS)			\
+			    -I$(top_builddir)/include/otlib	\
+			    -I$(opentxs_include_dir)		\
+			    -I$(opentxs_include_dir)/otlib
 
 ## Open Transactions Bin Build  ##
 
@@ -18,7 +18,7 @@ ot_SOURCES              =  $(ot_sources) $(otapi_headers)
 
 ot_CXXFLAGS             =  $(common_includes) -I$(otapi_headers_dir)
 
-ot_LDADD                =  otapi/libotapi.la otlib/libot.la
+ot_LDADD                =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
 ot_DEPENDENCIES         =  otapi/libotapi.la otlib/libot.la
 
 
@@ -28,7 +28,7 @@ otserver_SOURCES        =   $(otserver_sources) $(otserver_headers)
 
 otserver_CXXFLAGS       =   $(common_includes) -I$(otserver_headers_dir)
 
-otserver_LDADD          =   otlib/libot.la
+otserver_LDADD          =   otlib/libot.la $(DEPS_LIBS)
 otserver_DEPENDENCIES   =   otlib/libot.la
 
 
@@ -38,7 +38,7 @@ createmint_SOURCES      =   $(createmint_sources) $(otserver_sources) $(otserver
 
 createmint_CXXFLAGS     =   $(common_includes) -I$(otserver_headers_dir)
 
-createmint_LDADD        =   otlib/libot.la
+createmint_LDADD        =   otlib/libot.la $(DEPS_LIBS)
 createmint_DEPENDENCIES =   otlib/libot.la
 
 

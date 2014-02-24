@@ -145,6 +145,8 @@ extern "C" {
 }
 // ------------------------------------------------------------------------
 
+#include "OTCachedKey.h"
+
 /*
  To use:
  
@@ -355,17 +357,14 @@ class OTString;
 
 class OTPassword;
 
-class OTCachedKey;
-
-
 class OTPasswordData
 {
 private:
-    OTPassword *       m_pMasterPW; // Used only when isForCachedKey is true, for output. Points to output value from original caller (not owned.)
-    const std::string  m_strDisplay;
-    bool               m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
+    OTPassword *        m_pMasterPW; // Used only when isForCachedKey is true, for output. Points to output value from original caller (not owned.)
+    const std::string   m_strDisplay;
+    bool                m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
     
-    OTCachedKey *      m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
+    OTCachedKey_SharedPtr m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
 public:
     // --------------------------------
 EXPORT    bool            isForNormalNym()   const;
@@ -376,12 +375,12 @@ EXPORT    const char *    GetDisplayString() const;
 EXPORT    bool            isUsingOldSystem() const;
 EXPORT    void            setUsingOldSystem(bool bUsing=true);
     // --------------------------------
-    OTPassword  *    GetMasterPW () { return m_pMasterPW;  }
-    OTCachedKey *    GetCachedKey() { return m_pCachedKey; }
+    OTPassword          * GetMasterPW () { return m_pMasterPW;  }
+    OTCachedKey_SharedPtr GetCachedKey() { return m_pCachedKey; }
     // --------------------------------
-EXPORT    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL, OTCachedKey * pCachedKey=NULL);
-EXPORT    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL, OTCachedKey * pCachedKey=NULL);  
-EXPORT    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL, OTCachedKey * pCachedKey=NULL);  
+EXPORT    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
+EXPORT    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
+EXPORT    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
 EXPORT    ~OTPasswordData();
 };
 

@@ -251,34 +251,34 @@ public:
     // ---------------------------------------------------------------
     // Load from local storage.
     EXPORT bool LoadPrivateKey(const OTString & strFoldername,
-                        const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
+                               const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     EXPORT bool LoadPublicKey (const OTString & strFoldername,
-                        const OTString & strFilename);    
+                               const OTString & strFilename);
     // ***************************************************************
     // LoadPrivateKeyFromCertString
     //
     // "escaped" means pre-pended with "- " as in:   - -----BEGIN CERTIFICATE....
     //
     EXPORT bool LoadPrivateKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                      const OTString   * pstrReason=NULL,
-                                            OTPassword * pImportPassword=NULL);
+                                             const OTString   * pstrReason=NULL,
+                                                   OTPassword * pImportPassword=NULL);
     // ***************************************************************
     // Load Public Key from Cert (file or string)
     //
     EXPORT bool LoadPublicKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                     const OTString   * pstrReason=NULL,
-                                           OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
+                                            const OTString   * pstrReason=NULL,
+                                                  OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
     EXPORT bool LoadPublicKeyFromCertFile  (const OTString   & strFoldername,
-                                     const OTString   & strFilename,
-                                     const OTString   * pstrReason=NULL,
-                                           OTPassword * pImportPassword=NULL); // DOES handle bookends.
+                                            const OTString   & strFilename,
+                                            const OTString   * pstrReason=NULL,
+                                                  OTPassword * pImportPassword=NULL); // DOES handle bookends.
     // ---------------------------------------------------------------
     EXPORT bool LoadCertAndPrivateKeyFromString(const OTString & strInput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     // ---------------------------------------------------------------
     // LOAD BOTH KEYS FROM CERT FILE
     //
     EXPORT bool LoadBothKeysFromCertFile(const OTString & strFoldername,
-        const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
+                                         const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
 
     EXPORT bool SaveAndReloadBothKeysFromTempFile(OTString * pstrOutputCert=NULL, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     // ***************************************************************************************
@@ -388,7 +388,7 @@ public:
     const OTString & GetNymIDSource()    const { return m_strSourceForNymID; } // Source for NymID for this credential. (Hash it to get ID.)
     const OTString & GetContents()       const { return m_strContents;       } // The actual, final, signed public credential. Public keys only.
 
-    const OTString & GetPubCredential()  const;  // More intelligent version of GetContents. Higher level.
+EXPORT    const OTString & GetPubCredential()  const;  // More intelligent version of GetContents. Higher level.
     const OTString & GetPriCredential()  const;  // I needed this for exporting a Nym (with credentials) from the wallet.
         
     const OTString & GetMasterSigned()   const { return m_strMasterSigned;   } // For subkeys, the master credential signs first, then the subkey signs a version which contains the "master signed" version. (This proves the subkey really authorizes all this.) That "master signed" version is stored here in m_strMasterSigned. But the final actual public credential (which must be hashed to get the credential ID) is the contents, not the master signed. The contents is the public version, signed by the subkey, which contains the master-signed version inside of it as a data member (this variable in fact, m_strMasterSigned.) You might ask: then what's in m_strRawContents? Answer: the version that includes the private keys. Well at least, on the client side. On the server side, the raw contents will contain only the public version because that's all the client will send it. Que sera sera.

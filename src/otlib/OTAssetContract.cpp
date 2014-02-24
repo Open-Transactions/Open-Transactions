@@ -458,19 +458,32 @@ bool OTAssetContract::FormatAmount(const OTAmount & theInput, std::string & str_
     // --------------------------------------------------------
     // Get a moneypunct facet from the global ("C") locale
     //
-    static OTString strSeparator    (",");
-    static OTString strDecimalPoint (".");
+    // NOTE: Turns out moneypunct kind of sucks.
+    // As a result, for internationalization purposes,
+    // these values have to be set here before compilation.
+    //
+    static OTString strSeparator    (OT_THOUSANDS_SEP);
+    static OTString strDecimalPoint (OT_DECIMAL_POINT);
     // --------------------------------------------------------
-    static bool bFirstTime = true;
-    // --------------------------------------------------------
-    if (bFirstTime)
-    {
-        bFirstTime = false;
-        // TODO: Add ability to customize locale here, if necessary.
-        const std::moneypunct<char, false> &mp = std::use_facet< std::moneypunct<char, false> >(std::locale ()); // <=====
-        strSeparator.   Format("%c", ('\0' == mp.thousands_sep ()) ? ',' : mp.thousands_sep ());
-        strDecimalPoint.Format("%c", ('\0' == mp.decimal_point ()) ? '.' : mp.decimal_point ());
-    }
+    
+    // NOTE: from web searching, I've determined that locale / moneypunct has
+    // internationalization problems. Therefore it looks like if you want to
+    // build OT for various languages / regions, you're just going to have to
+    // edit stdafx.h and change the OT_THOUSANDS_SEP and OT_DECIMAL_POINT variables.
+    //
+    // The best improvement I can think on that is to check locale and then use
+    // it to choose from our own list of hardcoded values. Todo.
+    
+//    static bool bFirstTime = true;
+//    // --------------------------------------------------------
+//    if (bFirstTime)
+//    {
+//        bFirstTime = false;
+//        // TODO: Add ability to customize locale here, if necessary.
+//        const std::moneypunct<char, false> &mp = std::use_facet< std::moneypunct<char, false> >(std::locale ()); // <=====
+//        strSeparator.   Format("%c", ('\0' == mp.thousands_sep ()) ? ',' : mp.thousands_sep ());
+//        strDecimalPoint.Format("%c", ('\0' == mp.decimal_point ()) ? '.' : mp.decimal_point ());
+//    }
     // --------------------------------------------------------
     str_output = OTAssetContract::formatLongAmount(lValue, nFactor, nPower, m_strCurrencySymbol.Get(),
                                                    strSeparator.Get(), strDecimalPoint.Get());
@@ -501,19 +514,28 @@ bool OTAssetContract::StringToAmount(OTAmount & theOutput, const std::string & s
     // --------------------------------------------------------
     // Get a moneypunct facet from the global ("C") locale
     //
+    
+    // NOTE: from web searching, I've determined that locale / moneypunct has
+    // internationalization problems. Therefore it looks like if you want to
+    // build OT for various languages / regions, you're just going to have to
+    // edit stdafx.h and change the OT_THOUSANDS_SEP and OT_DECIMAL_POINT variables.
+    //
+    // The best improvement I can think on that is to check locale and then use
+    // it to choose from our own list of hardcoded values. Todo.
+    
     static OTString strSeparator    (",");
     static OTString strDecimalPoint (".");
     // --------------------------------------------------------
-    static bool bFirstTime = true;
-    // --------------------------------------------------------
-    if (bFirstTime)
-    {
-        bFirstTime = false;
-        // TODO: Add ability to customize locale here, if necessary.
-        const std::moneypunct<char, false> &mp = std::use_facet< std::moneypunct<char, false> >(std::locale ()); // <=====
-        strSeparator.   Format("%c", ('\0' == mp.thousands_sep ()) ? ',' : mp.thousands_sep ());
-        strDecimalPoint.Format("%c", ('\0' == mp.decimal_point ()) ? '.' : mp.decimal_point ());
-    }
+//    static bool bFirstTime = true;
+//    // --------------------------------------------------------
+//    if (bFirstTime)
+//    {
+//        bFirstTime = false;
+//        // TODO: Add ability to customize locale here, if necessary.
+//        const std::moneypunct<char, false> &mp = std::use_facet< std::moneypunct<char, false> >(std::locale ()); // <=====
+//        strSeparator.   Format("%c", ('\0' == mp.thousands_sep ()) ? ',' : mp.thousands_sep ());
+//        strDecimalPoint.Format("%c", ('\0' == mp.decimal_point ()) ? '.' : mp.decimal_point ());
+//    }
     // --------------------------------------------------------
     bool bSuccess = OTAssetContract::ParseFormatted(lValue, str_input, nFactor, nPower, strSeparator.Get(), strDecimalPoint.Get());
 

@@ -173,6 +173,13 @@ public:
 	EXPORT static bool AppStartup();  // Call once at startup.
 	EXPORT static bool AppShutdown(); // Call once at shutdown.
     
+	// --------------------------------------------------------------------
+    // Optional. Used by Qt, Android. Call these (if necessary) before calling Init.
+    //
+    EXPORT static void SetAppBinaryFolder(const std::string & strFolder);
+    EXPORT static void SetHomeFolder     (const std::string & strFolder);
+	// --------------------------------------------------------------------
+    
 	EXPORT static bool Init(); // Call until it returns true. Call AppStartup() first.
     
 	// --------------------------------------------------------------------

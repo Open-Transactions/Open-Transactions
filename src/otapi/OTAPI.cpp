@@ -256,7 +256,7 @@ OTAPI_Wrap::~OTAPI_Wrap()
     if (NULL != p_OTAPI) delete p_OTAPI; p_OTAPI = NULL;
 }
 
-
+ 
 // **********************************************************************
 
 bool OTAPI_Wrap::AppInit()    // Call this ONLY ONCE, when your App first starts up.
@@ -301,6 +301,46 @@ bool OTAPI_Wrap::AppCleanup() // Call this ONLY ONCE, when your App is shutting 
 		return false;
 	}
 }
+
+
+
+
+// --------------------------------------------------------------------
+// SetAppBinaryFolder
+// OPTIONAL. Used in Android and Qt.
+//
+// Certain platforms use this to override the Prefix folder.
+// Basically /usr/local is the prefix folder by default, meaning
+// /usr/local/lib/opentxs will be the location of the scripts. But
+// if you override AppBinary folder to, say, "res/raw/files"
+// (Android does something like that) then even though the prefix remains
+// as /usr/local, the scripts folder will be res/raw/lib/opentxs
+//
+//
+void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
+{
+    OTPaths::SetAppBinaryFolder(strFolder.c_str());
+}
+
+// --------------------------------------------------------------------
+// SetHomeFolder
+// OPTIONAL. Used in Android.
+//
+// The AppDataFolder, such as /Users/au/.ot, is constructed from the home
+// folder, such as /Users/au.
+//
+// Normally the home folder is auto-detected, but certain platforms, such as
+// Android, require us to explicitly set this folder from the Java code. Then
+// the AppDataFolder is constructed from it. (It's the only way it can be done.)
+//
+// In Android, you would SetAppBinaryFolder to the path to "/data/app/packagename/res/raw",
+// and you would SetHomeFolder to "/data/data/[app package]/files/"
+//
+void OTAPI_Wrap::SetHomeFolder(const std::string & strFolder)
+{
+    OTPaths::SetHomeFolder(strFolder.c_str());
+}
+
 
 
 
@@ -349,10 +389,28 @@ std::string OTAPI_Wrap::LongToString(const int64_t & lNumber)
 {
 	std::string strNumber;
 	std::stringstream strstream;
-
+    
 	strstream << lNumber;
 	strstream >> strNumber;
+    
+	return strNumber;
+}
 
+
+uint64_t OTAPI_Wrap::StringToUlong(const std::string &strNumber)
+{
+    return OTString::StringToUlong(strNumber);
+}
+
+
+std::string OTAPI_Wrap::UlongToString(const uint64_t & lNumber)
+{
+	std::string strNumber;
+	std::stringstream strstream;
+    
+	strstream << lNumber;
+	strstream >> strNumber;
+    
 	return strNumber;
 }
 
@@ -846,7 +904,7 @@ std::string OTAPI_Wrap::GetNym_SubCredentialContents(const std::string & NYM_ID,
         const OTSubcredential * pSub = pCredential->GetSubcredential(strSubID);
 
         if (NULL != pSub)
-            return pSub->GetContents().Get();
+            return pSub->GetPubCredential().Get();
     }
     // --------------
     return "";
@@ -2505,9 +2563,7 @@ std::string OTAPI_Wrap::GetNym_RecentHash(const std::string & SERVER_ID, const s
 
 			std::string pBuf = strOutput.Get();
 
-			
-
-			return pBuf;            
+			return pBuf;
 		}
 	}
 
@@ -2518,9 +2574,8 @@ std::string OTAPI_Wrap::GetNym_RecentHash(const std::string & SERVER_ID, const s
 
 std::string OTAPI_Wrap::GetNym_InboxHash(const std::string & ACCOUNT_ID, const std::string & NYM_ID) // InboxHash for "most recently DOWNLOADED" Inbox (by AccountID)
 {
-	if (ACCOUNT_ID.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCOUNT_ID"			); OT_FAIL; }
-	if (NYM_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"				); OT_FAIL; }
-
+	if (ACCOUNT_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCOUNT_ID" ); OT_FAIL; }
+	if (NYM_ID.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"     ); OT_FAIL; }
 	// -------------------------
 	OTIdentifier	theNymID(NYM_ID);
 	OTPseudonym * pNym = OTAPI_Wrap::OTAPI()->GetNym(theNymID, __FUNCTION__);
@@ -2548,7 +2603,6 @@ std::string OTAPI_Wrap::GetNym_InboxHash(const std::string & ACCOUNT_ID, const s
 
 			std::string pBuf = strOutput.Get();
 
-			
 			return pBuf;            
 		}
 	}
@@ -2558,9 +2612,8 @@ std::string OTAPI_Wrap::GetNym_InboxHash(const std::string & ACCOUNT_ID, const s
 
 std::string OTAPI_Wrap::GetNym_OutboxHash(const std::string & ACCOUNT_ID, const std::string & NYM_ID) // OutboxHash for "most recently DOWNLOADED" Outbox (by AccountID)
 {
-	if (ACCOUNT_ID.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCOUNT_ID"			); OT_FAIL; }
-	if (NYM_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"				); OT_FAIL; }
-
+	if (ACCOUNT_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCOUNT_ID" ); OT_FAIL; }
+	if (NYM_ID.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"     ); OT_FAIL; }
 	// -------------------------
 	OTIdentifier	theNymID(NYM_ID);
 	OTPseudonym * pNym = OTAPI_Wrap::OTAPI()->GetNym(theNymID, __FUNCTION__);
@@ -2613,12 +2666,13 @@ int32_t	OTAPI_Wrap::GetNym_MailCount(const std::string & NYM_ID)
 	return pNym->GetMailCount();
 }
 
+//--------------------------------------------------------
 
 // returns the message, optionally with Subject: as first line.
 std::string OTAPI_Wrap::GetNym_MailContentsByIndex(const std::string & NYM_ID, const int32_t & nIndex)
 {
-	if (NYM_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"  ); OT_FAIL; }
-	if (0 > nIndex) { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
+	if (NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"  ); OT_FAIL; }
+	if (0 > nIndex)     { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
 	// -------------------------
 	OTIdentifier	theNymID(NYM_ID);
 	OTPseudonym * pNym = OTAPI_Wrap::OTAPI()->GetNym(theNymID, __FUNCTION__);
@@ -2647,13 +2701,14 @@ std::string OTAPI_Wrap::GetNym_MailContentsByIndex(const std::string & NYM_ID, c
 }
 
 
+//--------------------------------------------------------
 
 // returns the sender ID for a piece of mail. (NymID).
 //
 std::string OTAPI_Wrap::GetNym_MailSenderIDByIndex(const std::string & NYM_ID, const int32_t & nIndex)
 {
-	if (NYM_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"  ); OT_FAIL; }
-	if (0 > nIndex) { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
+	if (NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"  ); OT_FAIL; }
+	if (0 > nIndex)     { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
 	// -------------------------
 	OTIdentifier	theNymID(NYM_ID);
 	OTPseudonym * pNym = OTAPI_Wrap::OTAPI()->GetNym(theNymID, __FUNCTION__);
@@ -2674,16 +2729,14 @@ std::string OTAPI_Wrap::GetNym_MailSenderIDByIndex(const std::string & NYM_ID, c
 	return "";	
 }
 
-
+//--------------------------------------------------------
 
 // returns the server ID that a piece of mail came from.
 //
 std::string OTAPI_Wrap::GetNym_MailServerIDByIndex(const std::string & NYM_ID, const int32_t & nIndex)
 {
-	if (NYM_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"				); OT_FAIL; }
-
-	if (0 > nIndex) { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
-
+	if (NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "NYM_ID"                  ); OT_FAIL; }
+	if (0 > nIndex)     { OTLog::vError("%s: nIndex is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
 	// -------------------------
 	OTIdentifier	theNymID(NYM_ID);
 	OTPseudonym * pNym = OTAPI_Wrap::OTAPI()->GetNym(theNymID, __FUNCTION__);
@@ -5368,8 +5421,6 @@ std::string OTAPI_Wrap::SmartContract_AddHook(const std::string & THE_CONTRACT,	
 	//	
 	std::string pBuf = strOutput.Get(); 
 
-	
-
 	return pBuf;		
 }
 
@@ -5380,14 +5431,14 @@ std::string OTAPI_Wrap::SmartContract_AddHook(const std::string & THE_CONTRACT,	
 
 
 // RETURNS: Updated version of THE_CONTRACT. (Or "".)
-std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT, // The contract, about to have the party added to it.
-										  const std::string & SIGNER_NYM_ID,     // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-										   // ----------------------------------------
-										  const std::string & PARTY_NAME,        // The Party's NAME as referenced in the smart contract. (And the scripts...)
-										   // ----------------------------------------
-										  const std::string & AGENT_NAME)        // An AGENT will be added by default for this party. Need Agent NAME.
-										   // (FYI, that is basically the only option, until I code Entities and Roles. Until then, a party can ONLY be
-										   // a Nym, with himself as the agent representing that same party. Nym ID is supplied on ConfirmParty() below.)
+std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,    // The contract, about to have the party added to it.
+                                               const std::string & SIGNER_NYM_ID,   // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                                               // ----------------------------------------
+                                               const std::string & PARTY_NAME,      // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                                               // ----------------------------------------
+                                               const std::string & AGENT_NAME)      // An AGENT will be added by default for this party. Need Agent NAME.
+                                               // (FYI, that is basically the only option, until I code Entities and Roles. Until then, a party can ONLY be
+                                               // a Nym, with himself as the agent representing that same party. Nym ID is supplied on ConfirmParty() below.)
 {
 	if (THE_CONTRACT.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT" ); OT_FAIL; }
 	if (SIGNER_NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"); OT_FAIL; }
@@ -5395,7 +5446,7 @@ std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,
 	if (AGENT_NAME.empty())    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"   ); OT_FAIL; }
 	// -----------------------------------------------------
 	const OTString		strContract(THE_CONTRACT),	strPartyName(PARTY_NAME), 
-		strAgentName(AGENT_NAME);
+                        strAgentName(AGENT_NAME);
 	const OTIdentifier theSignerNymID(SIGNER_NYM_ID);
 	// -----------------------------------------------------
 	OTString strOutput;
@@ -5425,35 +5476,35 @@ std::string OTAPI_Wrap::SmartContract_AddParty(const std::string & THE_CONTRACT,
 // Used when creating a theoretical smart contract (that could be used over and over again with different parties.)
 //
 // returns: the updated smart contract (or "")
-std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRACT,		// The contract, about to have the account added to it.
-											const std::string & SIGNER_NYM_ID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-											 // ----------------------------------------
-											const std::string & PARTY_NAME,		// The Party's NAME as referenced in the smart contract. (And the scripts...)
-											 // ----------------------------------------
-											const std::string & ACCT_NAME,		// The Account's name as referenced in the smart contract
-											const std::string & ASSET_TYPE_ID)	// Asset Type ID for the Account.
+std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRACT,  // The contract, about to have the account added to it.
+                                                 const std::string & SIGNER_NYM_ID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                                                 // ----------------------------------------
+                                                 const std::string & PARTY_NAME,    // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                                                 // ----------------------------------------
+                                                 const std::string & ACCT_NAME,		// The Account's name as referenced in the smart contract
+                                                 const std::string & ASSET_TYPE_ID)	// Asset Type ID for the Account.
 {
-	if (THE_CONTRACT.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"		); OT_FAIL; }
-	if (SIGNER_NYM_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"		); OT_FAIL; }
-	if (PARTY_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PARTY_NAME"			); OT_FAIL; }
-	if (ACCT_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCT_NAME"			); OT_FAIL; }
-	if (ASSET_TYPE_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ASSET_TYPE_ID"		); OT_FAIL; }
-
+	if (THE_CONTRACT.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"  ); OT_FAIL; }
+	if (SIGNER_NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID" ); OT_FAIL; }
+	if (PARTY_NAME.empty())    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PARTY_NAME"    ); OT_FAIL; }
+	if (ACCT_NAME.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ACCT_NAME"     ); OT_FAIL; }
+//	if (ASSET_TYPE_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "ASSET_TYPE_ID" ); OT_FAIL; }
 	// -----------------------------------------------------
 	const OTString		strContract(THE_CONTRACT),	strPartyName(PARTY_NAME), 
-		strAcctName(ACCT_NAME),		strAssetTypeID(ASSET_TYPE_ID);
-	const OTIdentifier theSignerNymID(SIGNER_NYM_ID);
+                        strAcctName(ACCT_NAME),		strAssetTypeID(ASSET_TYPE_ID);
+	const OTIdentifier  theSignerNymID(SIGNER_NYM_ID);
 	// -----------------------------------------------------
 	OTString strOutput;
 
 	const bool & bAdded = OTAPI_Wrap::OTAPI()->SmartContract_AddAccount(strContract,		// The contract, about to have the clause added to it.
-		theSignerNymID,	// Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
-		// ----------------------------------------
-		strPartyName,		// The Party's NAME as referenced in the smart contract. (And the scripts...)
-		// ----------------------------------------
-		strAcctName,		// The Account's name as referenced in the smart contract
-		strAssetTypeID,	// Asset Type ID for the Account.
-		strOutput);
+                            theSignerNymID, // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
+                            // ----------------------------------------
+                            strPartyName,   // The Party's NAME as referenced in the smart contract. (And the scripts...)
+                            // ----------------------------------------
+                            strAcctName,    // The Account's name as referenced in the smart contract
+                            strAssetTypeID, // Asset Type ID for the Account.
+                            strOutput);
+	// -----------------------------------------------------
 	if (!bAdded || !strOutput.Exists())
 		return "";
 	// -----------------------------------------------------
@@ -5461,9 +5512,7 @@ std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRAC
 	//	
 	std::string pBuf = strOutput.Get(); 
 
-	
-
-	return pBuf;		
+	return pBuf;
 }	
 
 
@@ -5483,8 +5532,8 @@ std::string OTAPI_Wrap::SmartContract_AddAccount(const std::string & THE_CONTRAC
 int32_t OTAPI_Wrap::SmartContract_CountNumsNeeded(const std::string & THE_CONTRACT,	// The smart contract, about to be queried by this function.
 										const std::string & AGENT_NAME)	
 {
-	if (THE_CONTRACT.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT"		); OT_FAIL; }
-	if (AGENT_NAME.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"			); OT_FAIL; }
+	if (THE_CONTRACT.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_CONTRACT" ); OT_FAIL; }
+	if (AGENT_NAME.empty())   { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "AGENT_NAME"   ); OT_FAIL; }
 	// -------------------------------------------------------------
 	const OTString		strContract(THE_CONTRACT), strAgentName(AGENT_NAME);
 	// -------------------------------------------------------------
@@ -12166,7 +12215,21 @@ int32_t OTAPI_Wrap::deleteUserAccount(const std::string & SERVER_ID,
 // passed as a string). If you adjusted the balance using the usageCredits
 // message (THE_MESSAGE being the server's reply to that) then you will see
 // the balance AFTER the adjustment. (The "Current" Usage Credits balance.)
-// 
+//
+// UPDATE: Notice that we now return -2 in the case of all errors.
+//         This is because the lowest possible actual value is -1.
+//
+//         - Basically a 0 or positive value means that usage credits are
+//           actually turned on (on the server side) and that you are seeing
+//           the actual usage credits value for that Nym.
+//
+//         - Whereas a -2 value means there was an error.
+//
+//         - Whereas a -1 value means that usage credits are turned off (on
+//           the server side) OR that the Nym has been given the special -1
+//           setting for usage credits, which enables him to operate as if he
+//           has unlimited usage credits.
+//
 int64_t OTAPI_Wrap::Message_GetUsageCredits(const std::string & THE_MESSAGE)
 {
 	if (THE_MESSAGE.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_MESSAGE"); OT_FAIL; }
@@ -12177,25 +12240,26 @@ int64_t OTAPI_Wrap::Message_GetUsageCredits(const std::string & THE_MESSAGE)
 	if (!strMessage.Exists())
 	{
 		OTLog::vError("%s: Error: THE_MESSAGE doesn't exist.\n", __FUNCTION__);
-		return -1;
+		return -2;
 	}
 
 	if (!theMessage.LoadContractFromString(strMessage))
 	{
 		OTLog::vError("%s: Failed loading message from string.\n", __FUNCTION__);
-		return -1;
+		return -2;
 	}
 
 	if (false == theMessage.m_bSuccess)
 	{
-		OTLog::vError("%s: Message success == false, thus unable to report Usage Credits balance. (Returning "".)\n", __FUNCTION__);
-		return -1;
+		OTLog::vError("%s: Message success == false, thus unable to report Usage Credits balance. (Returning -2.)\n", __FUNCTION__);
+		return -2;
 	}
 
 	if (false == theMessage.m_strCommand.Compare("@usageCredits"))
 	{
-		OTLog::vError("%s: THE_MESSAGE is supposed to be of command type \"@usageCredits\", but instead it's a: %s\n (Failure. Returning "".)", __FUNCTION__, theMessage.m_strCommand.Get());
-		return -1;
+		OTLog::vError("%s: THE_MESSAGE is supposed to be of command type \"@usageCredits\", but instead it's a: %s\n (Failure. Returning -2.)",
+                      __FUNCTION__, theMessage.m_strCommand.Get());
+		return -2;
 	}
 
 	// ----------------------------------------------

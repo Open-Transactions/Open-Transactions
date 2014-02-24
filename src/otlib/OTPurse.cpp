@@ -198,12 +198,12 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
         return false;
     }
     // -------------------------------------------
-    OTCachedKey * pCachedKey = this->GetInternalMaster();
+    OTCachedKey_SharedPtr pCachedKey(this->GetInternalMaster());
     OT_ASSERT(NULL != pCachedKey);
     // -------------------------------------------
     const OTString strReason((NULL == szDisplay) ? szFunc : szDisplay);
     // -------------------------------------------
-    const bool bGotMasterPassword = pCachedKey->GetMasterPassword(theOutput, strReason.Get()); //bVerifyTwice=false
+    const bool bGotMasterPassword = pCachedKey->GetMasterPassword(pCachedKey, theOutput, strReason.Get()); //bVerifyTwice=false
     return bGotMasterPassword;
 }
 
@@ -213,20 +213,19 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
 // (It will save the user from having the type the password, for example, 50 times in 1 minute,
 // by using the cached one.)
 //
-OTCachedKey * OTPurse::GetInternalMaster()  // stores the passphrase for the symmetric key.
+OTCachedKey_SharedPtr OTPurse::GetInternalMaster()  // stores the passphrase for the symmetric key.
 {
-    const char * szFunc = "OTPurse::GetInternalMaster";
     // -------------------------------------------
-    if (!this->IsPasswordProtected() || (NULL == m_pCachedKey)) // this second half of the logic should never happen.
+    if (!this->IsPasswordProtected() || (!m_pCachedKey)) // this second half of the logic should never happen.
     {
-        OTLog::vOutput(0, "%s: Failed: no internal master key exists, in this purse.\n", szFunc);
-        return NULL;
+        OTLog::vOutput(0, "%s: Failed: no internal master key exists, in this purse.\n", __FUNCTION__);
+        return OTCachedKey_SharedPtr();
     }
     // -------------------------------------------
     if (!m_pCachedKey->IsGenerated()) // should never happen, since the purse IS password-protected... then where's the master key?
     {
-        OTLog::vOutput(0, "%s: Error: internal master key has not yet been generated.\n", szFunc);
-        return NULL;
+        OTLog::vOutput(0, "%s: Error: internal master key has not yet been generated.\n", __FUNCTION__);
+        return OTCachedKey_SharedPtr();
     }
     // -------------------------------------------
     // By this point we know the purse is password protected, the internal master key
@@ -258,7 +257,7 @@ bool OTPurse::GenerateInternalKey()
 {
     if ( this->IsPasswordProtected()     ||
         (NULL != m_pSymmetricKey)        ||    //this->GetInternalKey())
-        (NULL != m_pCachedKey)
+        (m_pCachedKey)
        )
     {
         OTLog::vOutput(0, "%s: Failed: internal Key  or master key already exists. "
@@ -292,7 +291,7 @@ bool OTPurse::GenerateInternalKey()
     //
     m_pCachedKey = OTCachedKey::CreateMasterPassword(thePassphrase, strDisplay.Get()); //int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT)
     // ------------------------------------------------------------------------
-    if ((NULL == m_pCachedKey) ||
+    if ((!m_pCachedKey) ||
         !m_pCachedKey->IsGenerated()) // This one is unnecessary because CreateMasterPassword already checks it. todo optimize.
     {
         OTLog::vOutput(0, "%s: Failed: While calling OTCachedKey::CreateMasterPassword.\n", __FUNCTION__);
@@ -306,7 +305,7 @@ bool OTPurse::GenerateInternalKey()
     {
         OTLog::vOutput(0, "%s: Failed: generating m_pSymmetricKey.\n", __FUNCTION__);
         delete m_pSymmetricKey; m_pSymmetricKey = NULL;
-        delete m_pCachedKey;    m_pCachedKey    = NULL;
+        m_pCachedKey.reset();
         return false;
     }
     // ------------------------------------------------------------------
@@ -317,8 +316,8 @@ bool OTPurse::GenerateInternalKey()
     // -----------------
     m_bPasswordProtected = true;
     // -----------------
-    OTCachedKey * pCachedMaster = OTPurse::GetInternalMaster();
-    if (NULL == pCachedMaster)
+    OTCachedKey_SharedPtr pCachedMaster(OTPurse::GetInternalMaster());
+    if (!pCachedMaster)
         OTLog::vError("%s: Failed trying to cache the master key for this purse.\n", __FUNCTION__);
     // -----------------
 	return true;
@@ -670,7 +669,6 @@ OTPurse::OTPurse() : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_pCachedKey(NULL),
     m_tLatestValidFrom(0),
     m_tEarliestValidTo(0)
 {
@@ -685,7 +683,6 @@ OTPurse::OTPurse(const OTPurse & thePurse) : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_pCachedKey(NULL),
     m_tLatestValidFrom(0),
     m_tEarliestValidTo(0)
 {
@@ -702,7 +699,6 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID) : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_pCachedKey(NULL),
     m_tLatestValidFrom(0),
     m_tEarliestValidTo(0)
 {
@@ -716,7 +712,6 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) 
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_pCachedKey(NULL),
     m_tLatestValidFrom(0),
     m_tEarliestValidTo(0)
 {
@@ -735,7 +730,6 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID,
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_pCachedKey(NULL),
     m_tLatestValidFrom(0),
     m_tEarliestValidTo(0)
 {
@@ -779,11 +773,11 @@ void OTPurse::Release_Purse()
         m_pSymmetricKey = NULL;
     }
     // -----------------------
-    if (NULL != m_pCachedKey)
-    {
-        delete m_pCachedKey;
-        m_pCachedKey = NULL;
-    }
+//    if (m_pCachedKey)
+//    {
+//        delete m_pCachedKey;
+//        m_pCachedKey = NULL;
+//    }
     // -----------------------
 }
 
@@ -986,7 +980,7 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
     //
     if (m_bPasswordProtected)
     {
-        if (NULL == m_pCachedKey)
+        if (!m_pCachedKey)
             OTLog::vError("%s: Error: m_pCachedKey is unexpectedly NULL, even though "
                           "m_bPasswordProtected is true!\n", __FUNCTION__);
         else if (NULL == m_pSymmetricKey)
@@ -1237,15 +1231,14 @@ int OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         //
         // Let's see if the master key is already loaded somehow... (Shouldn't be...)
         //
-        if (NULL != m_pCachedKey)
+        if (m_pCachedKey)
         {
             OTLog::vError("%s: WARNING: While loading master Key for a purse, "
                          "noticed the pointer was ALREADY set! (I'm deleting old one to make room, "
                           "and then allowing this one to load instead...)\n", szFunc);
 //          return (-1); // error condition
             
-            delete m_pCachedKey;
-            m_pCachedKey = NULL;
+            m_pCachedKey.reset();
         }
         // ----------------------------------------------------
         //
@@ -1254,8 +1247,8 @@ int OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         //
         // (It's only now that I bother instantiating.)
         //
-        OTCachedKey * pCachedKey = new OTCachedKey(ascValue);
-        OT_ASSERT_MSG(NULL != pCachedKey, "OTPurse::ProcessXMLNode: Assert: NULL != new OTCachedKey \n");
+        OTCachedKey_SharedPtr pCachedKey(new OTCachedKey(ascValue));
+//        OT_ASSERT_MSG(NULL != pCachedKey, "OTPurse::ProcessXMLNode: Assert: NULL != new OTCachedKey \n");
         // -----------------
         // NOTE: In the event of any error, need to delete pCachedKey before returning.
         // (Or it will leak.)
@@ -1264,7 +1257,7 @@ int OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         {
             OTLog::vError("%s: Error: While loading master Key for a purse, failed "
                           "serializing from stored string! (Failed loading purse.)\n", szFunc);
-            delete pCachedKey; pCachedKey = NULL;
+//            delete pCachedKey; pCachedKey = NULL;
             return (-1);
         }
         // -----------------

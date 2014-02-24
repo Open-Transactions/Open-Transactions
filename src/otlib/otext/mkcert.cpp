@@ -21,7 +21,11 @@ extern "C" {
 #include <openssl/pem.h>
 #include <openssl/conf.h>
 #include <openssl/x509v3.h>
-
+    
+#ifdef ANDROID
+#include <openssl/bn.h>
+#endif
+    
 #ifndef OPENSSL_NO_ENGINE
 #include <openssl/engine.h>
 #endif
@@ -105,7 +109,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         {
             if ((pk = EVP_PKEY_new()) == NULL)
             {
-                abort(); 
+                abort();  // todo
                 //return(0); undeeded after abort.
             }
             bCreatedKey = true;
@@ -130,12 +134,27 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
             x = *x509p;
         // -----------------------------------------
 //		pRsaKey = RSA_generate_key(1024, 0x010001, NULL, NULL);
-
-        rsa = RSA_generate_key(bits, RSA_F4, callback, NULL);
+#ifdef ANDROID
+        rsa         = RSA_new();
+        BIGNUM * e1 = BN_new();
     
+        if ((NULL == rsa) || (NULL == e1))
+            abort(); // todo
+    
+//      BN_set_word(e1, 65537);
+        BN_set_word(e1, RSA_F4);
+    
+        if (!RSA_generate_key_ex(rsa, bits, e1, NULL))
+            abort(); // todo
+    
+        BN_free(e1);
+#else
+        rsa = RSA_generate_key(bits, RSA_F4, callback, NULL);
+#endif
+        // -----------------------------------------
         if (!EVP_PKEY_assign_RSA(pk, rsa))
         {
-            abort();
+            abort();  // todo
             //return(0); undeeded after abort.
         }
         // ------------------------------

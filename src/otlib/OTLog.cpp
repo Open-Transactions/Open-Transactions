@@ -223,7 +223,9 @@ extern "C"
 
 	// This shitty apple section is for struct sigcontext for the signal handling.
 #if defined(__APPLE__)
+#ifndef _XOPEN_SOURCE
 #define _XOPEN_SOURCE 600
+#endif
 	// Fucking Apple!
 	struct sigcontext
 	{
@@ -357,6 +359,7 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 			pLogger->m_strLogFileName.Format("%s%s%s",LOGFILE_PRE, strThreadContext.Get(), LOGFILE_EXT);
 
+            
 			OTSettings config = OTSettings(OTPaths::GlobalConfigFile());
 
 			config.Reset();
@@ -370,6 +373,9 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 		}
 
+#ifdef ANDROID
+        if (OTPaths::HomeFolder().Exists())
+#endif
 		if(!OTPaths::AppendFile(pLogger->m_strLogFilePath, OTPaths::AppDataFolder(), pLogger->m_strLogFileName)) { return false; };
 
 		pLogger->m_bInitialized = true;

@@ -161,6 +161,7 @@ private:
 	static OTSettings s_settings;
 
 	static OTString s_strAppBinaryFolder;
+	static OTString s_strHomeFolder;
 	static OTString s_strAppDataFolder;
 	static OTString s_strGlobalConfigFile;
 	static OTString s_strPrefixFolder;
@@ -171,9 +172,12 @@ public:
 	EXPORT ~OTPaths();
 
 	EXPORT static const OTString & AppBinaryFolder();   // Adding this for Mac, since it's sandboxed. (Don't want to put scripts in data folder.)
-
-    EXPORT static void             SetAppBinaryFolder(OTString strLocation);
-
+    EXPORT static void             SetAppBinaryFolder(OTString strLocation); // Note: Android should set this as the res/raw folder.
+    
+    
+	EXPORT static const OTString & HomeFolder();   // Adding this for Android, since it's sandboxed. Android will provide its own data folder here.
+    EXPORT static void             SetHomeFolder(OTString strLocation); // The AppDataFolder (below) will be created from this folder, plus .ot or whatever.
+    
 	EXPORT static const OTString & AppDataFolder();		// eg. /home/user/.ot/ (auto).
 	EXPORT static const OTString & GlobalConfigFile();  // ie. AppDataFolder() + ot_config.cfg
 	EXPORT static const OTString & PrefixFolder();		// If not set, will run LoadSetPrefixFolder with default values.

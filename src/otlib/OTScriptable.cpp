@@ -2471,8 +2471,8 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 
                                 // Missing Account ID is allowed, as well as agent name, since those things may not be decided yet.
                                 //
-                                if (!strAcctName.Exists() || !strAssetTypeID.Exists())
-                                    //					if (!strAcctName.Exists() || !strAcctID.Exists() || !strAgentName.Exists() || !strAssetTypeID.Exists())
+                                if (!strAcctName.Exists() || (m_bSpecifyAssetID && !strAssetTypeID.Exists()))
+//                              if (!strAcctName.Exists() || !strAcctID.Exists() || !strAgentName.Exists() || !strAssetTypeID.Exists())
                                 {
                                     OTLog::vError("%s: Expected missing AcctID or AssetTypeID or Name or AgentName in partyaccount.\n", 
                                                   szFunc);

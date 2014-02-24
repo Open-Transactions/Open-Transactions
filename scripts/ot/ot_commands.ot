@@ -2202,7 +2202,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                 
                 if (!VerifyIntVal(nAccountCount) || (nAccountCount < 0))
                 {
-                    OT_API_Output(0, "Error: Party '"+strPartyName+"' has bad value for number of asset accounts.\n")
+                    OT_API_Output(0, "Error: Party '"+strPartyName+"' has a bad value for number of asset accounts.\n")
                     return (-1)
                 }
                 // ----------------------------------------------
@@ -7977,13 +7977,32 @@ def main_adjust_usage_credits()
                 
                 if (!VerifyStringVal(strNewUsageBalance))
                 {
-                    strNewUsageBalance = "(Error retrieving usage credits from this server reply.)"
+                    strNewUsageBalance = "(Error while calling API to retrieve usage credits from server reply.)"
+                }
+                else if (int64_t(-2) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = "Error code -2, while attempting to retrieve usage credits from this server reply."
+                }
+                else if (int64_t(-1) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = concat("Either Nym has unlimited usage credits, or server has its usage credit enforcement turned off.\n",
+                                                "(Either way, Nym is good to go, since -1 was returned as his 'credits balance'.)")
+                }
+                else if (int64_t(0) == lNewUsageBalance)
+                {
+                    strNewUsageBalance = concat("Nym appears to have exhausted his supply of usage credits.\n",
+                                                "(0 was returned as his 'credits balance'.)")
                 }
                 else
                 {
-                    OT_API_Output(0, "\n\n SUCCESS in adjust_usage_credits!\n ===> New (or unchanged, depending on what you set the 'adjust' to) USAGE BALANCE: "+strNewUsageBalance+"\n\n(FYI, this server message is the only and proper way to query for your own current usage credits balance.)\n\n")
+                    strNewUsageBalance = concat("Nym currently has "+lNewUsageBalance.to_string(), " usage credits.")
                 }
-                break
+                // -------------------------------------------------------------------
+                var strOutput = concat("\n\n adjust_usage_credits -- reply: "+strNewUsageBalance,
+                                       "\n\n(FYI, this server message is the only and proper way to query for your own current usage credits balance, or also to set someone else's.)\n\n")
+                OT_API_Output(0, strOutput)
+                
+               break
             }
             case (0)
             {
@@ -10507,7 +10526,10 @@ def main_show_payment()
                 var bAcctIDExists  = VerifyStringVal(strAcctID)
                 var bAssetIDExists = VerifyStringVal(strAssetType)
                 var bMemoExists    = VerifyStringVal(strMemo)
-                
+                // ------------------------------
+                var bHasAmount     = VerifyIntVal(lAmount)
+                // ------------------------------
+
                 if (bMemoExists && (strMemo.find("\n") >= 0) && !bShowLargeMemo)
                 {
                     strMemo = "<too large to display here>"
@@ -10553,7 +10575,14 @@ def main_show_payment()
                 if ("\"\"" == strAssetName)             { strAssetName  = ""; strAssetDenoter2 = "" }
                 // ------------------------------
                 var strOut1 = nIndex.to_string() + "    "
-                var strOut2 = OT_API_FormatAmount(strAssetType, lAmount) + (OT_API_FormatAmount(strAssetType, lAmount).size() < 3 ? "    " : "   ")
+                
+                var strOut2 = "      "
+                
+                if (bAssetIDExists && bHasAmount)
+                {
+                    strOut2 = OT_API_FormatAmount(strAssetType, lAmount) + (OT_API_FormatAmount(strAssetType, lAmount).size() < 3 ? "    " : "   ")
+                }
+                // ------------------------------
                 var strOut3 = strType
                 var strOut4 = strType.size() > 10 ? " " : "    "
                 var strOut5 = lTransNumber.to_string() + (lTransNumber.to_string().size() < 2 ? "    " : "   ")
@@ -10711,10 +10740,13 @@ def main_show_payments_inbox()
                         var strRecipientUserID = OT_API_Instrmnt_GetRecipientUserID(strInstrument)
                         var strRecipientAcctID = OT_API_Instrmnt_GetRecipientAcctID(strInstrument)
                         
-                        var strUserID = VerifyStringVal(strSenderUserID) ? strSenderUserID : strRecipientUserID
-                        var strAcctID = VerifyStringVal(strSenderAcctID) ? strSenderAcctID : strRecipientAcctID
-                        
-                        var strAmount = VerifyIntVal(lAmount) ? OT_API_FormatAmount(strAssetType, lAmount) : "UNKNOWN_AMOUNT"
+                        var strUserID  = VerifyStringVal(strSenderUserID) ? strSenderUserID : strRecipientUserID
+                        var strAcctID  = VerifyStringVal(strSenderAcctID) ? strSenderAcctID : strRecipientAcctID
+                        // ------------------------------
+                        var bHasAmount = VerifyIntVal(lAmount)
+                        var bHasAsset  = VerifyStringVal(strAssetType)
+                        // ------------------------------
+                        var strAmount  = (bHasAmount && bHasAsset) ? OT_API_FormatAmount(strAssetType, lAmount) : "UNKNOWN_AMOUNT"
                         // ------------------------------
                         var bUserIDExists  = VerifyStringVal(strUserID)
                         var bAcctIDExists  = VerifyStringVal(strAcctID)
@@ -10809,7 +10841,10 @@ def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordB
     
     var strAssetTypeID = bAcctIDExists ? OT_API_GetAccountWallet_AssetTypeID(strAcctID) : ""
     
-    var strAmount = VerifyIntVal(lAmount) ? (VerifyStringVal(strAssetTypeID) ? OT_API_FormatAmount(strAssetTypeID, lAmount) : lAmount.to_string()) : "UNKNOWN_AMOUNT"
+    var bHasAmount = VerifyIntVal(lAmount)
+    var bHasAsset  = VerifyStringVal(strAssetTypeID)
+    
+    var strAmount =  bHasAmount ? (bHasAsset ? OT_API_FormatAmount(strAssetTypeID, lAmount) : lAmount.to_string()) : "UNKNOWN_AMOUNT"
     
     OT_API_Output(0, nIndex.to_string() + "    ")
     OT_API_Output(0, strAmount + (strAmount.size() < 3 ? "    " : "   "))
