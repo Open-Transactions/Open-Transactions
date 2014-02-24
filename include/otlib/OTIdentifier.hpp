@@ -137,10 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <string>
-
 #include "OTData.hpp"
-#include "OTString.hpp"
 
 
 // An Identifier is basically a 256 bit hash value.

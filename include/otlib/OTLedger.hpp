@@ -137,14 +137,15 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <set>
+#include "OTTransaction.hpp"
+#include "OTTransactionType.hpp"
 
+#include <set>
+#include <map>
 #include <fstream>
 
-#include "OTString.h"
-#include "OTTransactionType.h"
-#include "OTTransaction.h"
-
+class OTItem;
+class OTString;
 class OTAccount;
 class OTMessage;
 class OTPayment;

@@ -151,6 +151,19 @@ class OTPassword;
 class OTIdentifier;
 class OTASCIIArmor;
 class OTSignatureMetadata;
+class OTPasswordData;
+
+
+#ifdef OT_CRYPTO_USING_OPENSSL
+
+extern "C"
+{
+#include <openssl/pem.h>
+#include <openssl/evp.h>
+#include <openssl/x509v3.h>
+}
+
+#endif
 
 // --------------------------------------------------------
 
@@ -421,15 +434,6 @@ typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 // *******************************************************************************************
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
-
-extern "C"
-{
-#include <openssl/pem.h>
-#include <openssl/evp.h>
-#include <openssl/x509v3.h>
-}
-
 
 
 class OTAsymmetricKey_OpenSSL : public OTAsymmetricKey

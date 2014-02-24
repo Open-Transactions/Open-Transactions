@@ -139,15 +139,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <ctime>
-
-#include <map>
-#include <list>
-
-#include "OTIdentifier.h"
-#include "OTContract.h"
-#include "OTCronItem.h"
-#include "OTLog.h"
+#include <OTContract.hpp>
+#include <OTAssert.hpp>
 
 class OTCronItem;
 class OTPseudonym;

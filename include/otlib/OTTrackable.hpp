@@ -137,10 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
-#include "OTIdentifier.h"
-
-#include "OTInstrument.h"
+#include "OTInstrument.hpp"
 
 
 // OTTrackable is very similar to OTInstrument.

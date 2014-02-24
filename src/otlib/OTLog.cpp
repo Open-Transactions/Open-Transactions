@@ -1031,8 +1031,19 @@ bool OTLog::StringFill(OTString & out_strString, const char * szString, const in
 void ot_terminate(void);
 
 namespace {
-	// invoke set_terminate as part of global constant initialization
-	static const bool SET_TERMINATE = std::set_terminate(ot_terminate);
+
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4800 )  // warning C4800: forcing constant value.
+#endif
+
+    // invoke set_terminate as part of global constant initialization
+    static const bool SET_TERMINATE = std::set_terminate(ot_terminate);
+
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
+
 }
 
 // This is our custom std::terminate handler for SIGABRT (and any std::terminate() call)

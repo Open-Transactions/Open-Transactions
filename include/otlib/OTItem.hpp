@@ -137,10 +137,10 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <fstream>
+#include "OTTransactionType.hpp"
 
-#include "OTTransactionType.h"
-#include "OTString.h"
+#include <fstream>
+#include <list>
 
 class OTAccount;
 class OTLedger;

@@ -137,15 +137,13 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <fstream>
-#include <ctime>
+#include "OTContract.hpp"
+#include <OTASCIIArmor.hpp>
 
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
+
 using namespace irr; // irrXML is located in the namespace irr::io
 using namespace io;
-
-#include "OTContract.h"
-
 
 class OTPseudonym;
 class OTPasswordData;

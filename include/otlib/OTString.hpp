@@ -137,6 +137,15 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <list>
+#include <map>
+#include <stdexcept>  // via: win32_utf8conv.hpp
+#include <string>     // via: win32_utf8conv.hpp
+#include <string>     // via: win32_utf8conv.hpp
+
+#ifdef _WIN32
+#include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
+#endif
 
 #include <cstdarg>
 
@@ -149,16 +158,12 @@ extern "C"
 #endif
 }
 
-#include <list>
-#include <map>
 
-#include <stdexcept>  // via: win32_utf8conv.hpp
-#include <string>     // via: win32_utf8conv.hpp
-#include <string>     // via: win32_utf8conv.hpp
-
-#ifdef _WIN32
-#include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
-#endif
+class OTIdentifier;
+class OTContract;
+class OTASCIIArmor;
+class OTSignature;
+class OTPseudonym;
 
 
 // ------------------------------------
@@ -323,13 +328,6 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
 }
 // (End of the Todd Miller code.)
 // =======================================================================
-
-
-class OTIdentifier;
-class OTContract;
-class OTASCIIArmor;
-class OTSignature;
-class OTPseudonym;
 
 class OTString
 {

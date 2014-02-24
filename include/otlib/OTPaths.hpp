@@ -142,8 +142,6 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-//#include "tinythread.h"
-
 #include "OTString.hpp"
 #include "OTSettings.hpp"
 

@@ -170,10 +170,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTString.h"
-#include "OTContract.h"
-#include "OTAsymmetricKey.h"
-#include "OTSignature.h"
+#include <OTContract.hpp>
+
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -211,6 +209,8 @@
 
 // ------------------------------------------------
 
+class OTPassword;
+class OTString;
 class OTIdentifier;
 class OTAsymmetricKey;
 class OTASCIIArmor;

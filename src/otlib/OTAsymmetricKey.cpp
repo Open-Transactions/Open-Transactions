@@ -132,60 +132,72 @@
 
 #include <stdafx.hpp>
 
+#include <OTAsymmetricKey.hpp>
 
-// -------------------------------------------------------------------
+#include <OTPassword.hpp>
+#include <OTAssert.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTLog.hpp>
+#include <OTCredential.hpp>
+#include <OTPayload.hpp>
+#include <OTCrypto.hpp>
+#include <OTSignature.hpp>
 
 
-extern "C"
-{
-#include <memory.h>
-}
 
-// -----------------------------------------------------------------------
-
-#include <cstdio>
-#include <cstring>
-#include <cmath>
-
-// ----------------------------------------------------------------------
-
-#include <string>
-#include <iostream>
-
-// -----------------------------------------------------------------
-
-extern "C" 
-{
-#ifdef _WIN32
-//#include "Windows.h"
-#include <conio.h>
-#else
-#include <pwd.h>
-#include <unistd.h>
-#endif
-
-#include <stdint.h>
-}
-
-#include "stacktrace.h"
-
-// --------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTPayload.h"
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTSignature.h"
-#include "OTAsymmetricKey.h"
-#include "OTCredential.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-#include "OTPayload.h"
-#include "OTASCIIArmor.h"
-
-#include "OTLog.h"
+//// -------------------------------------------------------------------
+//
+//
+//extern "C"
+//{
+//#include <memory.h>
+//}
+//
+//// -----------------------------------------------------------------------
+//
+//#include <cstdio>
+//#include <cstring>
+//#include <cmath>
+//
+//// ----------------------------------------------------------------------
+//
+//#include <string>
+//#include <iostream>
+//
+//// -----------------------------------------------------------------
+//
+//extern "C" 
+//{
+//#ifdef _WIN32
+////#include "Windows.h"
+//#include <conio.h>
+//#else
+//#include <pwd.h>
+//#include <unistd.h>
+//#endif
+//
+//#include <stdint.h>
+//}
+//
+//#include "stacktrace.h"
+//
+//// --------------------------------------------------------------------
+//
+//#include "OTStorage.h"
+//
+//#include "OTData.h"
+//#include "OTPayload.h"
+//#include "OTString.h"
+//#include "OTIdentifier.h"
+//#include "OTSignature.h"
+//#include "OTAsymmetricKey.h"
+//#include "OTCredential.h"
+//#include "OTCachedKey.h"
+//#include "OTEnvelope.h"
+//#include "OTPayload.h"
+//#include "OTASCIIArmor.h"
+//
+//#include "OTLog.h"
 
 // -------------------------------------------------------------------------------------------
 
@@ -466,7 +478,7 @@ void OTAsymmetricKey_OpenSSL::SetX509(X509 * x509)
 
 void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey/*=false*/, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 { 
-	Release();
+	this->Release();
     OTPasswordData thePWData(NULL == pImportPassword ?
                              "Enter your wallet's master passphrase. (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)" :
                              "Enter your exported Nym's passphrase.  (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)");
@@ -525,7 +537,9 @@ const EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKey(OTPasswordData * pPWData/*=NULL
     if (NULL == m_p_ascKey)
     {
         OTLog::vError("%s: Unexpected NULL m_p_ascKey. Printing stack trace (and returning NULL):\n", __FUNCTION__);
+#ifndef _WIN32
         print_stacktrace();
+#endif
         return NULL;
     }
     // ----------------------------------------
@@ -801,7 +815,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordD
 {
     // ----------------------------------------
 	// Create a new memory buffer on the OpenSSL side
-	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());    
+	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());
 	OT_ASSERT_MSG(NULL != bmem, "OTAsymmetricKey_OpenSSL::CopyPublicKey: ASSERT: NULL != bmem");
     
     EVP_PKEY * pReturnKey = NULL;

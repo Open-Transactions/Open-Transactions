@@ -132,34 +132,21 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
-#include <cmath>
-//#include <cctype> // locale should have this covered already.
+#include <OTAssetContract.hpp>
 
-#include <iostream>
-#include <fstream>
+#include <OTAssert.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTBasket.hpp>
+
 #include <sstream>
-#include <string>
 
-#include <locale>
-#include <iterator>
-
-
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTPayload.h"
-#include "OTAssetContract.h"
-#include "OTStringXML.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTAccount.h"
-#include "OTBasket.h"
-#include "OTLog.h"
 
 
 

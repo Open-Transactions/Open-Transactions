@@ -139,10 +139,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTIdentifier.h"
-#include "OTString.h"
-//#include "OTPseudonym.h"
-#include "OTCronItem.h"
+#include "OTCronItem.hpp"
+
 
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.
 // Thus, we add the RECIPIENT (already have SENDER from OTTrackable.)

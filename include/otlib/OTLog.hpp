@@ -139,6 +139,10 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTString.hpp>
+
+#include <deque>
+
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)
 #define PREDEF_PLATFORM_UNIX 1
 #endif
@@ -147,13 +151,7 @@
 #define PREDEF_MODE_DEBUG 1
 #endif
 
-
-#include <deque>
-#include "OTString.hpp"
-
-
 EXPORT typedef std::deque <OTString *> dequeOfStrings;
-
 
 class OTLog
 {

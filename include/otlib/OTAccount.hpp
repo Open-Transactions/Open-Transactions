@@ -135,15 +135,16 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
+#include <MemoryWrapper.hpp>
+
+#include <OTTransactionType.hpp>
+#include <OTPaths.hpp>
 
 #include <list>
-#include <fstream>
+#include <map>
 #include <string>
 
 
-
-#include "OTTransactionType.h"
-#include "OTString.h"
 
 class OTPseudonym;
 class OTAccount;

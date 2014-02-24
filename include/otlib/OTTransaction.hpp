@@ -137,11 +137,13 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include "OTItem.hpp"
 
-#include <ctime>
 
-#include <list>
-#include <fstream>
+//#include <ctime>
+//
+//#include <list>
+//#include <fstream>
 
 /*
 WHEN THE server receives a transaction request, it receives a MESSAGE containing an ascii-armored LEDGER.
@@ -348,13 +350,6 @@ Ledger is derived from contract because you must be able to save / sign it and l
  added to the relevant box itself. (Look into centralizing that mechanism...)
  
  */
-
-
-
-
-#include "OTTransactionType.h"
-#include "OTIdentifier.h"
-#include "OTItem.h"
 
 class OTLedger;
 

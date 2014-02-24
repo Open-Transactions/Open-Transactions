@@ -140,11 +140,9 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include "OTTrackable.hpp"
+
 #include <deque>
-
-
-#include "OTTrackable.h"
-
 
 class OTIdentifier;
 class OTCron;

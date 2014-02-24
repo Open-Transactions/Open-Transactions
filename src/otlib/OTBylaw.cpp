@@ -132,24 +132,36 @@
 
 #include <stdafx.hpp>
 
-#include "OTStorage.h"
+#include <OTBylaw.hpp>
 
-#include "OTString.h"
-
-#include "OTASCIIArmor.h"
-#include "OTIdentifier.h"
-
-#include "OTPseudonym.h"
-
-#include "OTBylaw.h"
-#include "OTScriptable.h"
-#include "OTSmartContract.h"
-
-#include "OTAgreement.h"
-#include "OTAccount.h"
+#include <OTLog.hpp>
+#include <OTContract.hpp>
+#include <OTPseudonym.hpp>
+#include <OTAccount.hpp>
+#include <OTScriptable.hpp>
+#include <OTSmartContract.hpp>
+#include <OTAgreement.hpp>
+#include <OTScript.hpp>
 
 
-#include "OTLog.h"
+//#include "OTStorage.h"
+//
+//#include "OTString.h"
+//
+//#include "OTASCIIArmor.h"
+//#include "OTIdentifier.h"
+//
+//#include "OTPseudonym.h"
+//
+//#include "OTBylaw.h"
+//#include "OTScriptable.h"
+//#include "OTSmartContract.h"
+//
+//#include "OTAgreement.h"
+//#include "OTAccount.h"
+//
+//
+//#include "OTLog.h"
 
 
 

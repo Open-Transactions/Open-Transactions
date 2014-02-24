@@ -137,16 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-// ---------------------------------------------------
-
-#include <set>
-
-// ---------------------------------------------------
-
-#include "OTPayload.h"
-#include "OTCrypto.h"
-
-// ---------------------------------------------------
+#include <OTCrypto.hpp>
 
 class OTPseudonym;
 class OTString;

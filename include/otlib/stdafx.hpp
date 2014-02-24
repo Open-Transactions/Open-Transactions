@@ -20,6 +20,10 @@
 #define OT_USE_CHAI5
 #endif
 
+#ifndef OT_CRYPTO_USING_OPENSSL
+#define OT_CRYPTO_USING_OPENSSL 1
+#endif
+
 
 // for mac, this enables deprecated functions. (aka, for pthread)
 #ifdef _XOPEN_SOURCE

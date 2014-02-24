@@ -137,43 +137,24 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-// ------------------------------------------------------------------------
-#include <string>
-#include <map>
+#include <OTSettings.hpp>
+#include <OTPayload.hpp>
+
 #include <set>
-// ------------------------------------------------------------------------
-extern "C" {
-#include <stdint.h>
-}
-// ------------------------------------------------------------------------
-#include "OTPayload.h"
-// ------------------------------------------------------------------------
 
-// TinyThread++
-//
-#include "tinythread.h"
-//#include "fast_mutex.h" // Not using this currently.
+#include "tinythread.hpp"
 
-//using namespace tthread; // in the C++ file
-
-// ------------------------------------------------------------------------
-
-#ifndef OT_CRYPTO_USING_OPENSSL
-#define OT_CRYPTO_USING_OPENSSL 1
-#endif
-
-// ABOVE is where you can set the compile option for which crypto library OT
-// will use.
-//
-// Or, you could comment this out entirely (preferable) and just set the flag
-// via a compiler switch, and just make it purely a makefile option.
+class OTData;
+class OTIdentifier;
+class OTString;
+class OTAsymmetricKey;
+class OTSymmetricKey;
+class OTPassword;
+class OTPasswordData;
+class OTSignature;
+class OTPseudonym;
 
 
-// Someday:  OT_CRYPTO_USING_GPG
-//
-//#ifndef OT_CRYPTO_USING_GPG
-//#define OT_CRYPTO_USING_GPG 1
-//#endif
 
 // -------------------------------------------------------------------------------------------
 
@@ -214,22 +195,6 @@ extern "C"
 
 #endif
 // -------------------------------------------------------------------------------------------
-
-#include "OTSettings.h"
-
-
-
-// ----------------------------
-
-class OTData;
-class OTIdentifier;
-class OTString;
-class OTAsymmetricKey;
-class OTSymmetricKey;
-class OTPassword;
-class OTPasswordData;
-class OTSignature;
-class OTPseudonym;
 
 
 // ------------------------------------------------------------------------

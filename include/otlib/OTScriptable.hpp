@@ -138,15 +138,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <string>
+#include "OTContract.hpp"
 
-
-#include "OTContract.h"
-
-#include "OTBylaw.h"
-#include "OTScript.h"
-
-#include "OTString.h"
 
 class OTAccount;
 

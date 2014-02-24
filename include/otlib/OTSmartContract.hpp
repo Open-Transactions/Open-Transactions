@@ -140,15 +140,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTIdentifier.h"
-#include "OTString.h"
-//#include "OTPseudonym.h"
-#include "OTContract.h"
-#include "OTScriptable.h"
+#include <OTCronItem.hpp>
 
-#include "OTCronItem.h"
-
-#include "OTAccount.h"
 
 class OTParty;
 class OTPseudonym;

@@ -132,19 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTBasket.hpp>
 
-#include "OTStorage.h"
-
-
-#include "OTString.h"
-#include "OTPayload.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-
-#include "OTBasket.h"
-#include "OTLog.h"
-
+#include <OTAssert.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLog.hpp>
 
 BasketItem::BasketItem() :
     lMinimumTransferAmount(0), 

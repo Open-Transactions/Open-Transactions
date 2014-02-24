@@ -137,11 +137,10 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include "OTContract.hpp"
+#include "OTASCIIArmor.hpp"
 
 #include <fstream>
-
-#include "OTASCIIArmor.h"
-#include "OTContract.h"
 
 class OTString;
 class OTIdentifier;

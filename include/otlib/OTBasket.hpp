@@ -137,13 +137,9 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include "OTContract.hpp"
+
 #include <deque>
-#include <fstream>
-
-#include "OTIdentifier.h"
-#include "OTContract.h"
-
-
 
 class BasketItem 
 {
