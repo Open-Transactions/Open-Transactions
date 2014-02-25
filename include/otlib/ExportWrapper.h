@@ -1,5 +1,6 @@
 #ifndef _EXPORT_WRAPPER_H_
 #define _EXPORT_WRAPPER_H_
+#endif // no guard.
 
 #ifdef _WIN32
 
@@ -20,5 +21,4 @@
 #endif
 #endif
 
-#endif
 #endif

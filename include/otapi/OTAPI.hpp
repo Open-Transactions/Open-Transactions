@@ -161,20 +161,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
 #include <string>
-#include <set>
-#include <list>
-#include <vector>
 #include <cinttypes>
-
-// credit:stlplus library.
-//#include "containers/simple_ptr.hpp"
-
-
-
-#include <OTPassword.h>
-#include <OTData.h>
 
 
 class OT_API;

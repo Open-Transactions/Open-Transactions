@@ -138,8 +138,6 @@
  **************************************************************/
 
 
-
-
 #ifndef __OPEN_TRANSACTIONS_INTERFACE_HPP__
 #define __OPEN_TRANSACTIONS_INTERFACE_HPP__
 
@@ -158,54 +156,48 @@
 
 #ifdef NOT_SWIG
 
+#include <OTString.hpp>
+#include <OTASCIIArmor.hpp>
+
 #include <string>
 #include <functional>
 
 
-// --------------------------------------
-// TinyThread++
-//
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include "tinythread.h"
-//#include "fast_mutex.h" // Not using this currently.
+#include "tinythread.hpp"
 
-//using namespace tthread; // in the C++ file
-// --------------------------------------
-
-// This function is what makes Open Transactions go over XmlRpc/HTTP instead of TCP/SSL
-// (If you compile it in rpc mode using "make rpc"
-//
 #if defined(OT_ZMQ_MODE)
 #include <zmq.hpp>
 #endif
 
 // --------------------------------------
 
-
-class OTString;
-class OTASCIIArmor;
-class OTIdentifier;
-class OTServerContract;
-class OTEnvelope;
-class OTWallet;
-class OTClient;
-class OTPseudonym;
-class OTAccount;
-class OTAssetContract;
-class OTServerContract;
-class OTPurse;
-class OTCheque;
-class OTPaymentPlan;
-class OTMint;
-class OTBasket;
-class OTMessage;
-class OTLedger;
-class OTPayment;
-class OTNym_or_SymmetricKey;
-class OTToken;
 class OT_API;
+class OTAccount;
+class OTASCIIArmor;
+class OTAssetContract;
+class OTBasket;
+class OTCheque;
+class OTClient;
+class OTEnvelope;
+class OTIdentifier;
+class OTLedger;
+class OTMessage;
+class OTMint;
+class OTNumList;
+class OTNym_or_SymmetricKey;
+class OTPassword;
+class OTPasswordData;
+class OTPayment;
+class OTPaymentPlan;
+class OTPseudonym;
+class OTPurse;
+class OTServerContract;
+class OTServerContract;
+class OTSettings;
+class OTString;
+class OTToken;
+class OTWallet;
+
 
 // --------------------------------------------------------------------
 // Client-side only. 

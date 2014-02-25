@@ -136,20 +136,28 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTServerConnection.hpp>
 
-class OTPseudonym;
-class OTAssetContract;
-class OTServerContract;
+#ifndef IMPORT
+#define IMPORT
+#endif
+#include <OTMessageBuffer.hpp>
+#ifdef IMPORT
+#undef IMPORT
+#endif
+
+struct TransportCallback;
+
 class OTAccount;
-class OTPayload;
-class OTMessage;
-class OTServerConnection;
+class OTAssetContract;
 class OTLedger;
+class OTMessage;
+class OTPayload;
+class OTPseudonym;
+class OTServerContract;
 class OTTransaction;
 class OTWallet;
 
-#include "OTServerConnection.h"
-#include "OTMessageBuffer.h"
 
 // This class represents the "test client"
 //

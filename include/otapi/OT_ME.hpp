@@ -142,11 +142,10 @@ bool, int32_t, int64_t, std::string
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
+#include <OTScript.hpp>
 
 #include <string>
 
-#include <OTScript.h>
 
 // -------------------------------------------------------
 

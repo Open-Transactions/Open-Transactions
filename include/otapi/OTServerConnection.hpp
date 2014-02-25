@@ -138,6 +138,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTMessageBuffer.hpp>
+#include <OTServerContract.hpp>
 
 #include <cinttypes>
 
@@ -172,19 +174,6 @@ union u_header
 
 class OTMessage;
 class OTEnvelope;
-struct TransportCallback;
-
-#include "OTMessageBuffer.h"
-#include "OTPseudonym.h"
-#include "OTServerContract.h"
-
-
-//-----------------------------------------------------------------
-
-// Update: The actual connection information is now read out of the server contract!!
-//#define HOSTNAME        "localhost"
-//#define PORT            7085
-
 class OTPseudonym;
 class OTAccount;
 class OTWallet;

@@ -148,11 +148,7 @@ Every other type will be wrapped in a std::string.
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
-
 #include <string>
-
-
 
 class OT_ME;
 
