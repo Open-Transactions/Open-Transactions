@@ -144,61 +144,6 @@
 #include <OTSignature.hpp>
 
 
-
-//// -------------------------------------------------------------------
-//
-//
-//extern "C"
-//{
-//#include <memory.h>
-//}
-//
-//// -----------------------------------------------------------------------
-//
-//#include <cstdio>
-//#include <cstring>
-//#include <cmath>
-//
-//// ----------------------------------------------------------------------
-//
-//#include <string>
-//#include <iostream>
-//
-//// -----------------------------------------------------------------
-//
-//extern "C" 
-//{
-//#ifdef _WIN32
-////#include "Windows.h"
-//#include <conio.h>
-//#else
-//#include <pwd.h>
-//#include <unistd.h>
-//#endif
-//
-//#include <stdint.h>
-//}
-//
-//#include "stacktrace.h"
-//
-//// --------------------------------------------------------------------
-//
-//#include "OTStorage.h"
-//
-//#include "OTData.h"
-//#include "OTPayload.h"
-//#include "OTString.h"
-//#include "OTIdentifier.h"
-//#include "OTSignature.h"
-//#include "OTAsymmetricKey.h"
-//#include "OTCredential.h"
-//#include "OTCachedKey.h"
-//#include "OTEnvelope.h"
-//#include "OTPayload.h"
-//#include "OTASCIIArmor.h"
-//
-//#include "OTLog.h"
-
 // -------------------------------------------------------------------------------------------
 
 //static

@@ -136,7 +136,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTData.hpp"
+#include <OTData.hpp>
 
 class OTMessage;
 class OTEnvelope;

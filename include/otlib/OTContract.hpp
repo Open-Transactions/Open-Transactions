@@ -131,7 +131,6 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <OTString.hpp>
 #include <OTStringXML.hpp>
 #include <OTIdentifier.hpp>
 #include <OTBylaw.hpp>

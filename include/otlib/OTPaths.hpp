@@ -142,8 +142,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTString.hpp"
-#include "OTSettings.hpp"
+#include <OTSettings.hpp>
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!

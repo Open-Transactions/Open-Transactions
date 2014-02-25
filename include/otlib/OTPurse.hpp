@@ -137,16 +137,12 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <deque>
-#include <map>
-#include <string>
-#include <fstream>
-#include <ctime>
+#include <OTContract.hpp>
 
-#include "OTContract.h"
-#include "OTToken.h"
-#include "OTASCIIArmor.h"
-#include "OTCachedKey.h"
+#include <OTASCIIArmor.hpp>
+#include <OTToken.hpp>
+#include <OTCachedKey.hpp>
+
 
 class OTPurse;
 class OTPseudonym;

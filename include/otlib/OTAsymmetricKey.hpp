@@ -136,13 +136,13 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
-// -----------------------
+
+#include "Timer.hpp"
 
 #include <string>
 #include <list>
-// -----------------------
 
-#include "Timer.hpp"
+
 
 class OTCaller;
 class OTKeypair;

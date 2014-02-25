@@ -137,7 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTScriptable.hpp"
+#include <OTScriptable.hpp>
 
 
 class OTInstrument : public OTScriptable 

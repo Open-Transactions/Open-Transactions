@@ -149,15 +149,7 @@
 #endif
 
 #include <cstdarg>
-
-extern "C"
-{
-#ifdef _WIN32
-#include <stdint.h>
-#else
-#include <inttypes.h>
-#endif
-}
+#include <cinttypes>
 
 
 class OTIdentifier;

@@ -139,12 +139,7 @@
 #include <WinsockWrapper.h>
 
 
-extern "C"
-{
-#include <stdint.h>	
-
-//#include "SSL-Example/SFSocket.h"	
-}
+#include <cinttypes>
 
 extern "C" 
 {	

@@ -137,7 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTPayload.hpp"
+#include <OTPayload.hpp>
 
 
 class OTString;

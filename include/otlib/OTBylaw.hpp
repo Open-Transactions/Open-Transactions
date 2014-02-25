@@ -137,7 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTString.hpp"
+#include <OTString.hpp>
 
 #include <map>
 #include <string>

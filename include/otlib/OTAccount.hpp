@@ -138,12 +138,6 @@
 #include <MemoryWrapper.hpp>
 
 #include <OTTransactionType.hpp>
-#include <OTPaths.hpp>
-
-#include <list>
-#include <map>
-#include <string>
-
 
 
 class OTPseudonym;

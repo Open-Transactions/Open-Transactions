@@ -131,14 +131,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-extern "C"
-{
-#ifdef _WIN32
-#include <stdint.h>
-#else
-#include <inttypes.h>
-#endif
-}
+#include <cinttypes>
+
 
 
 class OTASCIIArmor;

@@ -136,17 +136,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-
-#include <string>
-#include <map>
-
-#include "OTString.hpp"
-
-#include "OTPseudonym.h"
-#include "OTContract.h"
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-#include "OTAccount.h"
+#include <OTAssetContract.hpp>
+#include <OTPseudonym.hpp>
 
 class OTAccount;
 class OTAssetContract;

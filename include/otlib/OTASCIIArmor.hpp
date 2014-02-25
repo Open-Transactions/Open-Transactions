@@ -131,9 +131,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTData.hpp"
-#include "OTStorage.hpp"
-#include "OTString.hpp"
+#include <OTStorage.hpp>
+
 
 
 class OTPayload;

@@ -137,13 +137,11 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <cinttypes>
+
 typedef unsigned char OT_BYTE;
 typedef bool OT_BOOL;
 
-
-extern "C" {
-#include <stdint.h>	
-}
 
 void AppendChecksum( OT_BYTE* buffer, uint32_t & size );
 

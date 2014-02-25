@@ -143,15 +143,16 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTString.hpp>
+
+#include "simpleini/SimpleIni.hpp"
+
 #if __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
 
-#include "OTString.hpp"
-
-#include "simpleini/SimpleIni.hpp"
 
 
 class OTSettings

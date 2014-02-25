@@ -137,8 +137,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTASCIIArmor.hpp"
-#include "OTAsymmetricKey.hpp"
+#include <OTASCIIArmor.hpp>
+#include <OTAsymmetricKey.hpp>
 
 class OTCredential;
 class OTItem;

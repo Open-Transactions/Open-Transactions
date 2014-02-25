@@ -140,9 +140,7 @@
 
 #include <string>
 
-extern "C" {
-#include <stdint.h>	
-}
+#include <cinttypes>
 
 
 

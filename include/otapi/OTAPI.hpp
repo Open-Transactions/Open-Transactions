@@ -166,11 +166,12 @@
 #include <set>
 #include <list>
 #include <vector>
+#include <cinttypes>
 
 // credit:stlplus library.
 //#include "containers/simple_ptr.hpp"
 
-#include <stdint.h>
+
 
 #include <OTPassword.h>
 #include <OTData.h>
