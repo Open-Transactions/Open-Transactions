@@ -162,6 +162,7 @@ using namespace irr;
 using namespace io;
 
 #include <locale>
+#include <fstream>
 
 
 

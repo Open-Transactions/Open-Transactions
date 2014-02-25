@@ -133,25 +133,28 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPaymentPlan.hpp>
 
-#include "irrxml/irrXML.h"
 
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTAccount.h"
-#include "OTLedger.h"
-#include "OTTransaction.h"
-#include "OTItem.h"
-
-#include "OTCron.h"
-#include "OTPaymentPlan.h"
-#include "OTLog.h"
+//#include <cstring>
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//#include "OTStorage.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTPseudonym.h"
+//#include "OTAccount.h"
+//#include "OTLedger.h"
+//#include "OTTransaction.h"
+//#include "OTItem.h"
+//
+//#include "OTCron.h"
+//#include "OTPaymentPlan.h"
+//#include "OTLog.h"
 
 
 

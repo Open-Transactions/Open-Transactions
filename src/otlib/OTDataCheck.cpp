@@ -133,12 +133,14 @@
 
 #include <stdafx.hpp>
 
-#include <cstdio>
+#include <OTDataCheck.hpp>
 
-
-#include "OTDataCheck.h"
-
-#include "OTLog.h"
+//#include <cstdio>
+//
+//
+//#include "OTDataCheck.h"
+//
+//#include "OTLog.h"
 
 void AppendChecksum( OT_BYTE* buffer, uint32_t & size )
 {

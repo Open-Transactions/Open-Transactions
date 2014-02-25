@@ -132,40 +132,42 @@
 
 #include <stdafx.hpp>
 
+#include <OTTransaction.hpp>
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iomanip>
-#include <cstring>
-#include <cmath>
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTAccount.h"
-#include "OTPayload.h"
-#include "OTMessage.h"
-#include "OTStringXML.h"
-
-#include "OTCheque.h"
-#include "OTItem.h"
-#include "OTLedger.h"
-#include "OTBasket.h"
-#include "OTTrade.h"
-#include "OTPaymentPlan.h"
-#include "OTSmartContract.h"
-#include "OTTransactionType.h"
-#include "OTTransaction.h"
-#include "OTLog.h"
+//
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
+//#include <string>
+//#include <iomanip>
+//#include <cstring>
+//#include <cmath>
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//#include "OTStorage.h"
+//
+//
+//#include "OTIdentifier.h"
+//#include "OTPseudonym.h"
+//#include "OTAccount.h"
+//#include "OTPayload.h"
+//#include "OTMessage.h"
+//#include "OTStringXML.h"
+//
+//#include "OTCheque.h"
+//#include "OTItem.h"
+//#include "OTLedger.h"
+//#include "OTBasket.h"
+//#include "OTTrade.h"
+//#include "OTPaymentPlan.h"
+//#include "OTSmartContract.h"
+//#include "OTTransactionType.h"
+//#include "OTTransaction.h"
+//#include "OTLog.h"
 
 
 

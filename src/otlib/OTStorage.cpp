@@ -126,24 +126,26 @@
 
 #include <stdafx.hpp>
 
-#include <cstdio>
+#include <OTStorage.hpp>
 
-#include <iostream>
-#include <sstream>
-
-
-// credit:stlplus library.
-#include "containers/simple_ptr.hpp"
-
-
-#include "OTStorage.h"
-
-#include "OTASCIIArmor.h"
-
-#include "OTData.h"
-#include "OTPayload.h"
-
-#include "OTLog.h"
+//#include <cstdio>
+//
+//#include <iostream>
+//#include <sstream>
+//
+//
+//// credit:stlplus library.
+//#include "containers/simple_ptr.hpp"
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTASCIIArmor.h"
+//
+//#include "OTData.h"
+//#include "OTPayload.h"
+//
+//#include "OTLog.h"
 
 
 /*

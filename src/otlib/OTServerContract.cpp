@@ -133,24 +133,26 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTServerContract.hpp>
 
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-#include "OTStorage.h"
-
-#include "OTServerContract.h"
-#include "OTStringXML.h"
-#include "OTLog.h"
-
-using namespace irr;
-using namespace io;
+//#include <cstring>
+//
+//
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
+//#include <string>
+//
+//#include "irrxml/irrXML.h"
+//
+//#include "OTStorage.h"
+//
+//#include "OTServerContract.h"
+//#include "OTStringXML.h"
+//#include "OTLog.h"
+//
+//using namespace irr;
+//using namespace io;
 
 
 OTServerContract::OTServerContract() : OTContract()

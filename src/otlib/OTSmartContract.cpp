@@ -458,30 +458,32 @@
 
 #include <stdafx.hpp>
 
+#include <OTSmartContract.hpp>
 
-#include <map>
-#include <set>
-
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-
-#include "OTContract.h"
-
-#include "OTCron.h"
-#include "OTSmartContract.h"
-#include "OTLog.h"
-
-#include "OTScript.h"
-
-#include "OTBylaw.h"
-
-#include "OTTransactionType.h"
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
+//
+//#include <map>
+//#include <set>
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTPseudonym.h"
+//
+//#include "OTContract.h"
+//
+//#include "OTCron.h"
+//#include "OTSmartContract.h"
+//#include "OTLog.h"
+//
+//#include "OTScript.h"
+//
+//#include "OTBylaw.h"
+//
+//#include "OTTransactionType.h"
+//#include "OTItem.h"
+//#include "OTTransaction.h"
+//#include "OTLedger.h"
 
 // -----------------------------------------------------------------
 

@@ -144,30 +144,6 @@
 #include <OTScript.hpp>
 
 
-//#include "OTStorage.h"
-//
-//#include "OTString.h"
-//
-//#include "OTASCIIArmor.h"
-//#include "OTIdentifier.h"
-//
-//#include "OTPseudonym.h"
-//
-//#include "OTBylaw.h"
-//#include "OTScriptable.h"
-//#include "OTSmartContract.h"
-//
-//#include "OTAgreement.h"
-//#include "OTAccount.h"
-//
-//
-//#include "OTLog.h"
-
-
-
-
-
-
 // Have the agent try to verify his own signature against any contract.
 //
 // NOTE: This function assumes that you have already taken actions that would have loaded the Nym's pointer
@@ -4992,7 +4968,7 @@ int OTStash::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strSt
 			}
 			// --------------------------------------
 			
-			if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("stashItem", xml->getNodeName())))
+			if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("stashItem", xml->getNodeName())))
 			{
 				OTString strAssetTypeID	= xml->getAttributeValue("assetTypeID"); // Asset Type ID of this account.
 				OTString strAmount		= xml->getAttributeValue("balance"); // Account ID for this account.

@@ -132,10 +132,12 @@
 
 #include <stdafx.hpp>
 
-// The long-awaited configuration class.
+#include <OTSettings.hpp>
 
-#include "OTSettings.h"
-#include "OTLog.h"
+//// The long-awaited configuration class.
+//
+//#include "OTSettings.h"
+//#include "OTLog.h"
 
 bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 {

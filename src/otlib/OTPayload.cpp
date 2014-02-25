@@ -132,23 +132,26 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPayload.hpp>
 
-
-#include "OTDataCheck.h"
-
-#include "irrxml/irrXML.h"
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTString.h"
-#include "OTIdentifier.h"
-
-#include "OTPayload.h"
-#include "OTEnvelope.h"
-#include "OTMessage.h"
-#include "OTLog.h"
+//
+//#include <cstring>
+//
+//
+//#include "OTDataCheck.h"
+//
+//#include "irrxml/irrXML.h"
+//
+//#include "OTStorage.h"
+//
+//#include "OTData.h"
+//#include "OTString.h"
+//#include "OTIdentifier.h"
+//
+//#include "OTPayload.h"
+//#include "OTEnvelope.h"
+//#include "OTMessage.h"
+//#include "OTLog.h"
 
 
 OTPayload::OTPayload() : OTData()

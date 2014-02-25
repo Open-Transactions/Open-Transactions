@@ -132,33 +132,35 @@
 
 #include <stdafx.hpp>
 
-#include <cstdio>
-#include <cstring>	
+#include <OTWallet.hpp>
 
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-
-#include "OTIdentifier.h"
-#include "OTString.h"
-#include "OTPseudonym.h"
-
-#include "OTWallet.h"
-#include "OTLog.h"
-
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-#include "OTContract.h"
-#include "OTAccount.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-#include "OTPurse.h"
+//#include <cstdio>
+//#include <cstring>	
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//#include "OTStorage.h"
+//
+//
+//#include "OTIdentifier.h"
+//#include "OTString.h"
+//#include "OTPseudonym.h"
+//
+//#include "OTWallet.h"
+//#include "OTLog.h"
+//
+//#include "OTAssetContract.h"
+//#include "OTServerContract.h"
+//#include "OTContract.h"
+//#include "OTAccount.h"
+//#include "OTCachedKey.h"
+//#include "OTEnvelope.h"
+//#include "OTPurse.h"
 
 
 

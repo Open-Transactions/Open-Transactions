@@ -133,41 +133,42 @@
 
 #include <stdafx.hpp>
 
+#include <OTToken.hpp>
 
-// -------------------------------------------------------------------------
-
-extern "C" 
-{
-
-#ifdef _WIN32
-#include <direct.h>
-#include <sys/stat.h>	
-#else
-#include <sys/stat.h>	
-#endif
-}
-// -------------------------------------------------------------------------
-
-#include "irrxml/irrXML.h"
-
-// -------------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTToken.h"
-#include "OTEnvelope.h"
-#include "OTMint.h"
-#include "OTPseudonym.h"
-#include "OTPurse.h"
-
-#include "OTLog.h"
-
-// -------------------------------------------------------------------------
-
-using namespace irr;
-using namespace io;
-
-// -------------------------------------------------------------------------
+//// -------------------------------------------------------------------------
+//
+//extern "C" 
+//{
+//
+//#ifdef _WIN32
+//#include <direct.h>
+//#include <sys/stat.h>	
+//#else
+//#include <sys/stat.h>	
+//#endif
+//}
+//// -------------------------------------------------------------------------
+//
+//#include "irrxml/irrXML.h"
+//
+//// -------------------------------------------------------------------------
+//
+//#include "OTStorage.h"
+//
+//#include "OTToken.h"
+//#include "OTEnvelope.h"
+//#include "OTMint.h"
+//#include "OTPseudonym.h"
+//#include "OTPurse.h"
+//
+//#include "OTLog.h"
+//
+//// -------------------------------------------------------------------------
+//
+//using namespace irr;
+//using namespace io;
+//
+//// -------------------------------------------------------------------------
 
 
 

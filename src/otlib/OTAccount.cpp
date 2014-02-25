@@ -140,10 +140,12 @@
 #include <OTPseudonym.hpp>
 #include <OTPayload.hpp>
 #include <OTMessage.hpp>
+#include <OTPaths.hpp>
 
 #include <ostream>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 #ifdef _WIN32
 #include <time.h>

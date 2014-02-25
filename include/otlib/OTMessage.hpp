@@ -151,7 +151,7 @@ protected:
 	
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 //	virtual bool SaveContractWallet(FILE * fl);
-	virtual int ProcessXMLNode(IrrXMLReader*& xml);
+    virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents();
 

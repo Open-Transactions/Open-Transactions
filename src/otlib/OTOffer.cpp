@@ -132,19 +132,21 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTOffer.hpp>
 
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTOffer.h"
-#include "OTLog.h"
+//#include <cstring>
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTOffer.h"
+//#include "OTLog.h"
 
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
 

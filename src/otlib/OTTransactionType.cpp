@@ -132,18 +132,20 @@
 
 #include <stdafx.hpp>
 
-#include <cctype>
-#include <cstdlib>
+#include <OTTransactionType.hpp>
 
-#include "OTStorage.h"
-
-#include "OTLog.h"
-
-#include "OTTransactionType.h"
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTAccount.h"
-#include "OTLedger.h"
+//#include <cctype>
+//#include <cstdlib>
+//
+//#include "OTStorage.h"
+//
+//#include "OTLog.h"
+//
+//#include "OTTransactionType.h"
+//#include "OTItem.h"
+//#include "OTTransaction.h"
+//#include "OTAccount.h"
+//#include "OTLedger.h"
 
 
 

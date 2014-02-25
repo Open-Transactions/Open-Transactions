@@ -132,18 +132,20 @@
 
 #include <stdafx.hpp>
 
-#include "irrxml/irrXML.h"
+#include <OTInstrument.hpp>
 
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTInstrument.h"
-
-using namespace std;
-
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//#include "OTStorage.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTInstrument.h"
+//
+//using namespace std;
+//
 
 
 

@@ -132,15 +132,17 @@
 
 #include <stdafx.hpp>
 
-#include <string>
+#include <OTSignature.hpp>
 
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTSignature.h"
-#include "OTCrypto.h"
-
-#include "OTLog.h"
+//#include <string>
+//
+//#include "OTStorage.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTSignature.h"
+//#include "OTCrypto.h"
+//
+//#include "OTLog.h"
 
 
 

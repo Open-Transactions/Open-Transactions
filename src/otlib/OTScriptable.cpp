@@ -132,29 +132,31 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
-#include <ctime>
+#include <OTScriptable.hpp>
 
-#include <string>
-#include <algorithm>
-
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTPseudonym.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
-
-#include "OTScriptable.h"
-#include "OTSmartContract.h"
-
-#include "OTLog.h"
+//#include <cstring>
+//#include <ctime>
+//
+//#include <string>
+//#include <algorithm>
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTPseudonym.h"
+//#include "OTTransaction.h"
+//#include "OTLedger.h"
+//
+//#include "OTScriptable.h"
+//#include "OTSmartContract.h"
+//
+//#include "OTLog.h"
 
 
 

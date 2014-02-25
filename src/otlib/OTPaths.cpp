@@ -132,21 +132,45 @@
 
 #include <stdafx.hpp>
 
-// The long-awaited paths class.
+#include <OTPaths.hpp>
 
-#include <cstdarg>
-#include <cstdio>
-#include <cstring> // The C one 
-#include <cstdlib>
-#include <cctype>
-#include <cassert>
-#include <cerrno>
+//// The long-awaited paths class.
+//
+//#include <cstdarg>
+//#include <cstdio>
+//#include <cstring> // The C one 
+//#include <cstdlib>
+//#include <cctype>
+//#include <cassert>
+//#include <cerrno>
+//
+//#include <iostream>
+//#include <exception>
+//#include <stdexcept>
+//#include <sys/types.h>
+//#include <sys/stat.h>
+//
+//#include <string> // The C++ one 
+//#include <vector>
+//
+//#ifdef _WIN32
+//#include <WinsockWrapper.h>
+//#include <Shlobj.h>
+//#include <direct.h>
+//#else
+//#include <libgen.h>
+//#include <unistd.h>
+//#endif
+//
+//#ifdef __APPLE__
+//#include "TargetConditionals.h"
+//#endif
+//
+//#ifdef TARGET_OS_MAC
+//#include <mach-o/dyld.h>
+//#include <limits.h>
+//#endif
 
-#include <iostream>
-#include <exception>
-#include <stdexcept>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 #ifndef S_ISDIR
 #define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
@@ -156,26 +180,6 @@
 #define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
 #endif
 
-#include <string> // The C++ one 
-#include <vector>
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#include <Shlobj.h>
-#include <direct.h>
-#else
-#include <libgen.h>
-#include <unistd.h>
-#endif
-
-#ifdef __APPLE__
-#include "TargetConditionals.h"
-#endif
-
-#ifdef TARGET_OS_MAC
-#include <mach-o/dyld.h>
-#include <limits.h>
-#endif
 
 #ifdef _WIN32
 #define OT_APPDATA_DIR "OpenTransactions"

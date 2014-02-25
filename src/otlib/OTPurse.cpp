@@ -133,28 +133,30 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPurse.hpp>
 
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTToken.h"
-#include "OTPurse.h"
-#include "OTPseudonym.h"
-#include "OTEnvelope.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-#include "OTASCIIArmor.h"
-#include "OTLog.h"
+//#include <cstring>
+//
+//#include <string>
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTData.h"
+//#include "OTToken.h"
+//#include "OTPurse.h"
+//#include "OTPseudonym.h"
+//#include "OTEnvelope.h"
+//#include "OTSymmetricKey.h"
+//#include "OTCachedKey.h"
+//#include "OTASCIIArmor.h"
+//#include "OTLog.h"
 
 
 

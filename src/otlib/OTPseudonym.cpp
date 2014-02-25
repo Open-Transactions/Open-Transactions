@@ -132,61 +132,62 @@
 
 #include <stdafx.hpp>
 
+#include <OTPseudonym.hpp>
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <cassert>
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <map>
-#include <algorithm>
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-
-#ifdef _WIN32 // Including this so it'll be above the openssl/ssl.h
-//#include <winsock.h> // So there won't be a conflict with WinCrypt.h due to Windows sucking
-#endif
-
-
-#include "irrxml/irrXML.h"
-
-// -------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTStringXML.h"
-#include "OTIdentifier.h"
-
-#include "OTPassword.h"
-
-#include "OTAsymmetricKey.h"
-
-#include "OTASCIIArmor.h"
-#include "OTCredential.h"
-
-#include "OTPseudonym.h"
-#include "OTSymmetricKey.h"
-#include "OTEnvelope.h"
-#include "OTSignedFile.h"
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
-#include "OTMessage.h"
-#include "OTPayment.h"
-
-#include "OTLog.h"
-
-// -------------------------------------
-
-using namespace irr;
-using namespace io;
+//#include <cstdio>
+//#include <cstdlib>
+//#include <cstring>
+//#include <cassert>
+//
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+//#include <sstream>
+//#include <map>
+//#include <algorithm>
+//
+//#ifdef _WIN32
+//#include <WinsockWrapper.h>
+//#endif
+//
+//#ifdef _WIN32 // Including this so it'll be above the openssl/ssl.h
+////#include <winsock.h> // So there won't be a conflict with WinCrypt.h due to Windows sucking
+//#endif
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//// -------------------------------------
+//
+//#include "OTStorage.h"
+//
+//#include "OTString.h"
+//#include "OTStringXML.h"
+//#include "OTIdentifier.h"
+//
+//#include "OTPassword.h"
+//
+//#include "OTAsymmetricKey.h"
+//
+//#include "OTASCIIArmor.h"
+//#include "OTCredential.h"
+//
+//#include "OTPseudonym.h"
+//#include "OTSymmetricKey.h"
+//#include "OTEnvelope.h"
+//#include "OTSignedFile.h"
+//#include "OTItem.h"
+//#include "OTTransaction.h"
+//#include "OTLedger.h"
+//#include "OTMessage.h"
+//#include "OTPayment.h"
+//
+//#include "OTLog.h"
+//
+//// -------------------------------------
+//
+//using namespace irr;
+//using namespace io;
 
 
 //static

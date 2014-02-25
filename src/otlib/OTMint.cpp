@@ -132,27 +132,29 @@
 
 #include <stdafx.hpp>
 
-#include "irrxml/irrXML.h"
+#include <OTMint.hpp>
 
-
-#include "OTStorage.h"
-
-#include "OTContract.h"
-#include "OTAccount.h"
-#include "OTToken.h"
-#include "OTMint.h"
-#include "OTAsymmetricKey.h"
-#include "OTEnvelope.h"
-#include "OTPseudonym.h"
-#include "OTASCIIArmor.h"
-#include "OTMessage.h"
-
-#include "OTLog.h"
-
-// -------------------------------------------------------------------------
-
-using namespace irr;
-using namespace io;
+//#include "irrxml/irrXML.h"
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTContract.h"
+//#include "OTAccount.h"
+//#include "OTToken.h"
+//#include "OTMint.h"
+//#include "OTAsymmetricKey.h"
+//#include "OTEnvelope.h"
+//#include "OTPseudonym.h"
+//#include "OTASCIIArmor.h"
+//#include "OTMessage.h"
+//
+//#include "OTLog.h"
+//
+//// -------------------------------------------------------------------------
+//
+//using namespace irr;
+//using namespace io;
 
 // -------------------------------------------------------------------------
 //static

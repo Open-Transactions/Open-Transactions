@@ -132,34 +132,36 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTMessage.hpp>
 
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTString.h"
-#include "OTStringXML.h"
-#include "OTASCIIArmor.h"
-
-#include "OTPseudonym.h"
-
-#include "OTMessage.h"
-
-#include "OTTransaction.h"
-#include "OTLedger.h"
-
-#include "OTLog.h"
+//#include <cstring>
+//
+//
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
+//#include <string>
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//#include "OTStorage.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTString.h"
+//#include "OTStringXML.h"
+//#include "OTASCIIArmor.h"
+//
+//#include "OTPseudonym.h"
+//
+//#include "OTMessage.h"
+//
+//#include "OTTransaction.h"
+//#include "OTLedger.h"
+//
+//#include "OTLog.h"
 
 // PROTOCOL DOCUMENT -------------------------------------------
 

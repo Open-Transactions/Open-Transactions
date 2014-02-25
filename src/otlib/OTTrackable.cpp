@@ -132,20 +132,22 @@
 
 #include <stdafx.hpp>
 
-#include <cstring>
+#include <OTTrackable.hpp>
 
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-
-#include "OTStorage.h"
-
-
-#include "OTTrackable.h"
+//#include <cstring>
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//
+//#include "OTStorage.h"
+//
+//
+//#include "OTTrackable.h"
 
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
 

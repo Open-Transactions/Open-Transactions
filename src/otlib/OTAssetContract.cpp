@@ -142,6 +142,7 @@
 #include <OTBasket.hpp>
 
 #include <sstream>
+#include <fstream>
 
 #include "irrxml/irrXML.hpp"
 

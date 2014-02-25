@@ -133,29 +133,31 @@
 
 #include <stdafx.hpp>
 
-#include <cstdio>
-#include <cstring>
+#include <OTIdentifier.hpp>
 
-#include <iostream>
-#include <string>
-// ------------------------------------------
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTString.h"
-
-#include "OTIdentifier.h"
-#include "OTCrypto.h"
-#include "OTPseudonym.h"
-#include "OTContract.h"
-#include "OTOffer.h"
-#include "OTTrade.h"
-#include "OTMarket.h"
-#include "OTEnvelope.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-
-#include "OTLog.h"
+//#include <cstdio>
+//#include <cstring>
+//
+//#include <iostream>
+//#include <string>
+//// ------------------------------------------
+//#include "OTStorage.h"
+//
+//#include "OTData.h"
+//#include "OTString.h"
+//
+//#include "OTIdentifier.h"
+//#include "OTCrypto.h"
+//#include "OTPseudonym.h"
+//#include "OTContract.h"
+//#include "OTOffer.h"
+//#include "OTTrade.h"
+//#include "OTMarket.h"
+//#include "OTEnvelope.h"
+//#include "OTSymmetricKey.h"
+//#include "OTCachedKey.h"
+//
+//#include "OTLog.h"
 // ------------------------------------------
 
 OTIdentifier::OTIdentifier() : OTData()  { }

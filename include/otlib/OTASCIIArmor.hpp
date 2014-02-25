@@ -131,12 +131,15 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTString.hpp>
+
 #include <OTStorage.hpp>
 
 
-
+class OTData;
 class OTPayload;
 class OTEnvelope;
+
 
 
 extern const char * OT_BEGIN_ARMORED;

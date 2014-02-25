@@ -132,19 +132,21 @@
 
 #include <stdafx.hpp>
 
-#include <algorithm>
+#include <OTScript.hpp>
 
-
-// -------------------
-#include "OTString.h"
-#include "OTIdentifier.h"
-
-#include "OTLog.h"
-
-#include "OTScript.h"
-#include "OTBylaw.h"
-
-#include "OTStorage.h"
+//#include <algorithm>
+//
+//
+//// -------------------
+//#include "OTString.h"
+//#include "OTIdentifier.h"
+//
+//#include "OTLog.h"
+//
+//#include "OTScript.h"
+//#include "OTBylaw.h"
+//
+//#include "OTStorage.h"
 
 // ------------------------------------------------------------
 

@@ -133,11 +133,13 @@
 
 #include <stdafx.hpp>
 
-#include "OTStorage.h"
+#include <OTDigitalCash.hpp>
 
-#include "OTDigitalCash.h"
-
-#include "OTLog.h"
+//#include "OTStorage.h"
+//
+//#include "OTDigitalCash.h"
+//
+//#include "OTLog.h"
 
 
 // -------------------------------------------------------------------------------------------

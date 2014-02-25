@@ -132,21 +132,23 @@
 
 #include <stdafx.hpp>
 
-#include <cstddef>
+#include <OTMessageBuffer.hpp>
 
-#include <list>
-#include <map>
-
-#include "OTStorage.h"
-
-
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTMessage.h"
-#include "OTTransaction.h"
-#include "OTMessageBuffer.h"
-
+//#include <cstddef>
+//
+//#include <list>
+//#include <map>
+//
+//#include "OTStorage.h"
+//
+//
+//#include "OTString.h"
+//#include "OTIdentifier.h"
+//#include "OTPseudonym.h"
+//#include "OTMessage.h"
+//#include "OTTransaction.h"
+//#include "OTMessageBuffer.h"
+//
 
 
 

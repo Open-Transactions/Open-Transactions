@@ -132,48 +132,50 @@
 
 #include <stdafx.hpp>
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iomanip>
-#include <cstring>
+#include <OTLedger.hpp>
 
-//#include <set> // in header now.
-
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTIdentifier.h"
-#include "OTAccount.h"
-#include "OTPayload.h"
-#include "OTMessage.h"
-#include "OTStringXML.h"
-
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
-
-#include "OTCheque.h"
-#include "OTPayment.h"
-#include "OTEnvelope.h"
-
-#include "OTPseudonym.h"
-#include "OTLog.h"
-
-
-#ifndef _WIN32
-#include "stacktrace.h"
-#endif
-
-
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
+//#include <string>
+//#include <iomanip>
+//#include <cstring>
+//
+////#include <set> // in header now.
+//
+//
+//#include "irrxml/irrXML.h"
+//
+//using namespace irr;
+//using namespace io;
+//
+//
+//#include "OTStorage.h"
+//
+//#include "OTData.h"
+//#include "OTIdentifier.h"
+//#include "OTAccount.h"
+//#include "OTPayload.h"
+//#include "OTMessage.h"
+//#include "OTStringXML.h"
+//
+//#include "OTItem.h"
+//#include "OTTransaction.h"
+//#include "OTLedger.h"
+//
+//#include "OTCheque.h"
+//#include "OTPayment.h"
+//#include "OTEnvelope.h"
+//
+//#include "OTPseudonym.h"
+//#include "OTLog.h"
+//
+//
+//#ifndef _WIN32
+//#include "stacktrace.h"
+//#endif
+//
+//
 
 
 char const * const __TypeStrings[] = 
