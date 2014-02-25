@@ -134,19 +134,10 @@
 
 #include <OTScript.hpp>
 
-//#include <algorithm>
-//
-//
-//// -------------------
-//#include "OTString.h"
-//#include "OTIdentifier.h"
-//
-//#include "OTLog.h"
-//
-//#include "OTScript.h"
-//#include "OTBylaw.h"
-//
-//#include "OTStorage.h"
+#include <OTLog.hpp>
+#include <OTAssert.hpp>
+#include <OTStorage.hpp>
+
 
 // ------------------------------------------------------------
 

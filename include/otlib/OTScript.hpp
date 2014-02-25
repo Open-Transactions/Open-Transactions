@@ -137,13 +137,13 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTBylaw.hpp>
+
 #if __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
-
-#include <string>
 
 #ifdef _MSC_VER
 #pragma warning( push )
@@ -159,9 +159,6 @@
 #ifdef _MSC_VER
 #pragma warning( pop )
 #endif
-
-
-class OTString;
 
 // ------------------------------------------------------------
 

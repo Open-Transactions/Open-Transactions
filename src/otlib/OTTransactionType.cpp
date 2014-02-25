@@ -134,19 +134,9 @@
 
 #include <OTTransactionType.hpp>
 
-//#include <cctype>
-//#include <cstdlib>
-//
-//#include "OTStorage.h"
-//
-//#include "OTLog.h"
-//
-//#include "OTTransactionType.h"
-//#include "OTItem.h"
-//#include "OTTransaction.h"
-//#include "OTAccount.h"
-//#include "OTLedger.h"
-
+#include <OTLog.hpp>
+#include <OTLedger.hpp>
+#include <OTAccount.hpp>
 
 
 // static -- class factory.

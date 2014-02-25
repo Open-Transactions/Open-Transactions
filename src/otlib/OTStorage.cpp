@@ -128,25 +128,12 @@
 
 #include <OTStorage.hpp>
 
-//#include <cstdio>
-//
-//#include <iostream>
-//#include <sstream>
-//
-//
-//// credit:stlplus library.
-//#include "containers/simple_ptr.hpp"
-//
-//
-//#include "OTStorage.h"
-//
-//#include "OTASCIIArmor.h"
-//
-//#include "OTData.h"
-//#include "OTPayload.h"
-//
-//#include "OTLog.h"
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPayload.hpp>
 
+#include <fstream>
 
 /*
  

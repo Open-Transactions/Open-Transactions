@@ -139,9 +139,10 @@
 
 #include <OTContract.hpp>
 
+#include <OTASCIIArmor.hpp>
+
 class OTToken;
 class OTAccount;
-class OTASCIIArmor;
 
 
 class OTMint : public OTContract

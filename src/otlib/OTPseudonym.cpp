@@ -134,61 +134,17 @@
 
 #include <OTPseudonym.hpp>
 
-//#include <cstdio>
-//#include <cstdlib>
-//#include <cstring>
-//#include <cassert>
-//
-//#include <iostream>
-//#include <fstream>
-//#include <string>
-//#include <sstream>
-//#include <map>
-//#include <algorithm>
-//
-//#ifdef _WIN32
-//#include <WinsockWrapper.h>
-//#endif
-//
-//#ifdef _WIN32 // Including this so it'll be above the openssl/ssl.h
-////#include <winsock.h> // So there won't be a conflict with WinCrypt.h due to Windows sucking
-//#endif
-//
-//
-//#include "irrxml/irrXML.h"
-//
-//// -------------------------------------
-//
-//#include "OTStorage.h"
-//
-//#include "OTString.h"
-//#include "OTStringXML.h"
-//#include "OTIdentifier.h"
-//
-//#include "OTPassword.h"
-//
-//#include "OTAsymmetricKey.h"
-//
-//#include "OTASCIIArmor.h"
-//#include "OTCredential.h"
-//
-//#include "OTPseudonym.h"
-//#include "OTSymmetricKey.h"
-//#include "OTEnvelope.h"
-//#include "OTSignedFile.h"
-//#include "OTItem.h"
-//#include "OTTransaction.h"
-//#include "OTLedger.h"
-//#include "OTMessage.h"
-//#include "OTPayment.h"
-//
-//#include "OTLog.h"
-//
-//// -------------------------------------
-//
-//using namespace irr;
-//using namespace io;
+#include <OTLog.hpp>
+#include <OTCredential.hpp>
+#include <OTLedger.hpp>
+#include <OTPaths.hpp>
+#include <OTMessage.hpp>
+#include <OTPassword.hpp>
+#include <OTPayment.hpp>
+#include <OTSignedFile.hpp>
+#include <OTSymmetricKey.hpp>
 
+#include <fstream>
 
 //static
 OTPseudonym * OTPseudonym::LoadPublicNym(const OTIdentifier & NYM_ID,
@@ -4759,9 +4715,9 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
     ClearAll();  // Since we are loading everything up... (credentials are NOT cleared here. See note in OTPseudonym::ClearAll.)
     // ------------------------------------
 	OTStringXML strNymXML(strNym); // todo optimize
-	IrrXMLReader* xml = createIrrXMLReader(&strNymXML);
+	irr::io::IrrXMLReader* xml = createIrrXMLReader(&strNymXML);
 	OT_ASSERT(NULL != xml);
-	OTCleanup<IrrXMLReader> theCleanup(*xml);
+    OTCleanup<irr::io::IrrXMLReader> theCleanup(*xml);
     
 	// parse the file until end reached
 	while(xml && xml->read())
@@ -4801,11 +4757,11 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
         //
 		switch(xml->getNodeType())
 		{
-			case EXN_NONE:
-			case EXN_TEXT:
-			case EXN_COMMENT:
-			case EXN_ELEMENT_END:
-			case EXN_CDATA:
+        case irr::io::EXN_NONE:
+        case irr::io::EXN_TEXT:
+        case irr::io::EXN_COMMENT:
+        case irr::io::EXN_ELEMENT_END:
+        case irr::io::EXN_CDATA:
 				// in this xml file, the only text which occurs is the messageText
 				//messageText = xml->getNodeData();
                 
@@ -4832,7 +4788,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
 //            }
                 
 				break;
-			case EXN_ELEMENT:
+        case irr::io::EXN_ELEMENT:
 			{
                 const OTString strNodeName = xml->getNodeName();
 //              OTLog::vError("PROCESSING EXN_ELEMENT: NODE NAME: %s\n", strNodeName.Get());
@@ -5345,7 +5301,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
 					
 					xml->read();
 					
-					if (EXN_TEXT == xml->getNodeType())
+                    if (irr::io::EXN_TEXT == xml->getNodeType())
 					{
 						OTString strNodeData = xml->getNodeData();
 						
@@ -5386,7 +5342,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
 					
 					xml->read();
 					
-					if (EXN_TEXT == xml->getNodeType())
+                    if (irr::io::EXN_TEXT == xml->getNodeType())
 					{
 						OTString strNodeData = xml->getNodeData();
 						
@@ -5426,7 +5382,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
 					
 					xml->read();
 					
-					if (EXN_TEXT == xml->getNodeType())
+                    if (irr::io::EXN_TEXT == xml->getNodeType())
 					{
 						OTString strNodeData = xml->getNodeData();
 						

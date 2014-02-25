@@ -135,12 +135,9 @@
 
 #include <OTDigitalCash.hpp>
 
-//#include "OTStorage.h"
-//
-//#include "OTDigitalCash.h"
-//
-//#include "OTLog.h"
-
+#include <OTAssert.hpp>
+#include <OTString.hpp>
+#include <OTPaths.hpp>
 
 // -------------------------------------------------------------------------------------------
 #if defined (OT_CASH_USING_MAGIC_MONEY)

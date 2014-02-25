@@ -168,8 +168,8 @@ EXPORT	const void * GetPayloadPointer() const;
 	// pass in an OTMessage and if the Payload
 	// contains a message, and checksum validates,
 	// it will set it for you and return true.
-EXPORT	bool SetMessage(const OTMessage & theMessage); // Message copied into payload to prepare for sending.
-	bool GetMessage(OTMessage & theMessage) const;
+EXPORT	bool SetMessagePayload(const OTMessage & theMessage); // Message copied into payload to prepare for sending.
+EXPORT	bool GetMessagePayload(OTMessage & theMessage) const;
 
 EXPORT	bool GetEnvelope(OTEnvelope & theEnvelope) const; // Envelope retrieved from payload.
 EXPORT	bool SetEnvelope(const OTEnvelope & theEnvelope); // Envelope copied into payload to prepare for sending.

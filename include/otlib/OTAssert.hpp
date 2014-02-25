@@ -131,6 +131,8 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <exception>
+
 #define    OT_FAIL                               { OTAssert::Assert(__FILE__, __LINE__);      std::terminate(); };
 #define    OT_FAIL_MSG(s)                        { OTAssert::Assert(__FILE__, __LINE__, (s)); std::terminate(); };
 

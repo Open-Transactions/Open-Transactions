@@ -138,6 +138,9 @@
 
 #include <OTKeyring.hpp>
 
+#include <OTLog.hpp>
+#include <OTCachedKey.hpp>
+
 
 
 // ***************************************************************

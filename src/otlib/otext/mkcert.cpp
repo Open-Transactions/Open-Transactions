@@ -2,10 +2,9 @@
 * operations.
 */
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
+#include <stdafx.hpp>
 
+#include <OTString.hpp>
 // -----------------------------------------------
 
 #ifdef __cplusplus
@@ -35,8 +34,6 @@ extern "C" {
 #endif
 
 // -----------------------------------------------
-
-#include <OTString.h>
 
 // -----------------------------------------------
 

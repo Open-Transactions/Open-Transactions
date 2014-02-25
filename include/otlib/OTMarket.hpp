@@ -142,6 +142,8 @@
 #include <WinsockWrapper.h>
 
 #include <OTContract.hpp>
+#include <OTCron.hpp>
+#include <OTStorage.hpp>
 
 class OTTrade;
 

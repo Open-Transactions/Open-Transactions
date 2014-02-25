@@ -134,6 +134,14 @@
 
 #include <OTSymmetricKey.hpp>
 
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTEnvelope.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPassword.hpp>
+#include <OTAsymmetricKey.hpp>
+
+
 //// ------------------------------------------------------------------------
 //extern "C"
 //{
@@ -151,20 +159,6 @@
 //    
 //#endif
 //}
-//// ------------------------------------------------------------------------
-//
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTPassword.h"
-//#include "OTASCIIArmor.h"
-//#include "OTEnvelope.h"
-//#include "OTCrypto.h"
-//#include "OTSymmetricKey.h"
-//#include "OTAsymmetricKey.h"
-//#include "OTLog.h"
-//
 
 
 // ------------------------------------------------------------------------

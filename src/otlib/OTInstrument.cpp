@@ -134,22 +134,7 @@
 
 #include <OTInstrument.hpp>
 
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTInstrument.h"
-//
-//using namespace std;
-//
-
-
-
-
+#include <time.h>
 
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.

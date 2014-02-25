@@ -134,36 +134,11 @@
 
 #include <OTItem.hpp>
 
-//
-//#include <iostream>
-//#include <fstream>
-//#include <sstream>
-//#include <string>
-//#include <iomanip>
-//#include <cstring>
-//
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTAccount.h"
-//#include "OTPayload.h"
-//#include "OTPseudonym.h"
-//#include "OTMessage.h"
-//#include "OTStringXML.h"
-//
-//#include "OTTransactionType.h"
-//#include "OTTransaction.h"
-//#include "OTLedger.h"
-//#include "OTItem.h"
-//#include "OTCheque.h"
-//#include "OTLog.h"
-//
-
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTAccount.hpp>
+#include <OTLedger.hpp>
+#include <OTCheque.hpp>
 
 
 // Server-side.

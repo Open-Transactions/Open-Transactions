@@ -134,21 +134,8 @@
 
 #include <OTSignedFile.hpp>
 
-//#include <cstring>
-//
-//
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//
-//#include "OTStorage.h"
-//
-//
-//#include "OTSignedFile.h"
-//#include "OTPseudonym.h"
-//#include "OTLog.h"
+#include <OTLog.hpp>
+#include <OTASCIIArmor.hpp>
 
 
 

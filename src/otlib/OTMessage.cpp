@@ -134,34 +134,13 @@
 
 #include <OTMessage.hpp>
 
-//#include <cstring>
-//
-//
-//#include <iostream>
-//#include <fstream>
-//#include <sstream>
-//#include <string>
-//
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTString.h"
-//#include "OTStringXML.h"
-//#include "OTASCIIArmor.h"
-//
-//#include "OTPseudonym.h"
-//
-//#include "OTMessage.h"
-//
-//#include "OTTransaction.h"
-//#include "OTLedger.h"
-//
-//#include "OTLog.h"
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+
+#include <fstream>
+
+
 
 // PROTOCOL DOCUMENT -------------------------------------------
 
@@ -2015,7 +1994,7 @@ void OTMessage::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMessage::ProcessXMLNode(IrrXMLReader*& xml)
+int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
 	
@@ -2067,7 +2046,7 @@ int OTMessage::ProcessXMLNode(IrrXMLReader*& xml)
     {
         OTLog::Error("OTMessage::ProcessXMLNode: SKIPPING DEPRECATED FIELD: acknowledgedReplies\n");
         
-        while (xml->getNodeType() != EXN_ELEMENT_END)
+        while (xml->getNodeType() != irr::io::EXN_ELEMENT_END)
         {
             xml->read();
         }

@@ -134,16 +134,8 @@
 
 #include <OTSignature.hpp>
 
-//#include <string>
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTSignature.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
-
+#include <OTLog.hpp>
+#include <OTCrypto.hpp>
 
 
 bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char cMetaMasterCredID, char cMetaSubCredID)

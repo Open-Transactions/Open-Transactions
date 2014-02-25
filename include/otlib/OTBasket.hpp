@@ -137,7 +137,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTContract.hpp"
+#include <OTContract.hpp>
 
 #include <deque>
 

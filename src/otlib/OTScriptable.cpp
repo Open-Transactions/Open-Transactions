@@ -134,30 +134,11 @@
 
 #include <OTScriptable.hpp>
 
-//#include <cstring>
-//#include <ctime>
-//
-//#include <string>
-//#include <algorithm>
-//
-//
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//
-//#include "OTStorage.h"
-//
-//#include "OTPseudonym.h"
-//#include "OTTransaction.h"
-//#include "OTLedger.h"
-//
-//#include "OTScriptable.h"
-//#include "OTSmartContract.h"
-//
-//#include "OTLog.h"
-
+#include <OTLog.hpp>
+#include <OTAssert.hpp>
+#include <OTSmartContract.hpp>
+#include <OTScript.hpp>
+#include <OTPseudonym.hpp>
 
 
 // -----------------------------------------------------------------
@@ -2352,7 +2333,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             }
                             // -----------------------------------------------
                             
-                            if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("agent", xml->getNodeName())))
+                            if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("agent", xml->getNodeName())))
                             {
                                 OTString strAgentName		= xml->getAttributeValue("name"); // Agent name (if needed in script code)
                                 OTString strAgentRepSelf	= xml->getAttributeValue("doesAgentRepresentHimself"); // Agent might also BE the party, and not just party's employee.
@@ -2451,7 +2432,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             }
                             // -----------------------------------------------
                             
-                            if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("assetAccount", xml->getNodeName())))
+                            if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("assetAccount", xml->getNodeName())))
                             {
                                 OTString strAcctName		= xml->getAttributeValue("name"); // Acct name (if needed in script code)
                                 OTString strAcctID			= xml->getAttributeValue("acctID"); // Asset Acct ID
@@ -2622,7 +2603,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             }
                             // -----------------------------------------------
                             
-                            if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("variable", xml->getNodeName())))
+                            if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("variable", xml->getNodeName())))
                             {
                                 OTString strVarName		= xml->getAttributeValue("name"); // Variable name (if needed in script code)
                                 OTString strVarValue	= xml->getAttributeValue("value"); // Value stored in variable (If this is "true" then a real value is expected in a text field below. Otherwise, it's assumed to be a BLANK STRING.)
@@ -2917,7 +2898,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             }
                             // --------------------------------------
                             
-                            if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("hook", xml->getNodeName())))
+                            if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("hook", xml->getNodeName())))
                             {
                                 OTString strHookName	= xml->getAttributeValue("name"); // Name of standard hook such as hook_activate or cron_process, etc
                                 OTString strClause		= xml->getAttributeValue("clause"); // Name of clause on this Bylaw that should trigger when that callback occurs.
@@ -2970,7 +2951,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             }
                             // --------------------------------------
                             
-                            if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("callback", xml->getNodeName())))
+                            if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("callback", xml->getNodeName())))
                             {
                                 OTString strCallbackName	= xml->getAttributeValue("name"); // Name of standard callback such as OnActivate, OnDeactivate, etc
                                 OTString strClause			= xml->getAttributeValue("clause"); // Name of clause on this Bylaw that should trigger when that hook occurs.

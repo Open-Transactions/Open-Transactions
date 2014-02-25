@@ -134,42 +134,31 @@
 
 #include <OTPaths.hpp>
 
-//// The long-awaited paths class.
-//
-//#include <cstdarg>
-//#include <cstdio>
-//#include <cstring> // The C one 
-//#include <cstdlib>
-//#include <cctype>
-//#include <cassert>
-//#include <cerrno>
-//
-//#include <iostream>
-//#include <exception>
-//#include <stdexcept>
-//#include <sys/types.h>
-//#include <sys/stat.h>
-//
-//#include <string> // The C++ one 
-//#include <vector>
-//
-//#ifdef _WIN32
-//#include <WinsockWrapper.h>
-//#include <Shlobj.h>
-//#include <direct.h>
-//#else
-//#include <libgen.h>
-//#include <unistd.h>
-//#endif
-//
-//#ifdef __APPLE__
-//#include "TargetConditionals.h"
-//#endif
-//
-//#ifdef TARGET_OS_MAC
-//#include <mach-o/dyld.h>
-//#include <limits.h>
-//#endif
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+
+#include <vector>
+
+#include <sys/stat.h>
+
+#ifdef _WIN32
+#include <direct.h>
+#include <shlobj.h>
+#endif
+
+#ifndef _WIN32
+#include <libgen.h>
+#include <unistd.h>
+#endif
+
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#endif
+
+#ifdef TARGET_OS_MAC
+#include <mach-o/dyld.h>
+#include <limits.h>
+#endif
 
 
 #ifndef S_ISDIR
@@ -217,9 +206,6 @@
 #else
 #define OT_SCRIPTS_DIR "lib/opentxs"
 #endif
-
-#include "OTPaths.h"
-#include "OTLog.h"
 
 #ifdef ANDROID
 OTSettings OTPaths::s_settings;

@@ -138,6 +138,7 @@
 #include <WinsockWrapper.h>
 
 #include <OTInstrument.hpp>
+#include <OTASCIIArmor.hpp>
 
 
 class OTString;

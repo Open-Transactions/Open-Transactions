@@ -140,6 +140,7 @@
 #include <WinsockWrapper.h>
 
 #include <OTContract.hpp>
+
 #include <OTAssert.hpp>
 
 class OTCronItem;

@@ -137,11 +137,12 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTString.hpp>
+
 #include <list>
 #include <map>
 
 
-class OTString;
 class OTPseudonym;
 class OTMessage;
 class OTTransaction;

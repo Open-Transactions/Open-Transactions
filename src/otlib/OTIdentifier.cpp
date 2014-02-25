@@ -135,30 +135,14 @@
 
 #include <OTIdentifier.hpp>
 
-//#include <cstdio>
-//#include <cstring>
-//
-//#include <iostream>
-//#include <string>
-//// ------------------------------------------
-//#include "OTStorage.h"
-//
-//#include "OTData.h"
-//#include "OTString.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTCrypto.h"
-//#include "OTPseudonym.h"
-//#include "OTContract.h"
-//#include "OTOffer.h"
-//#include "OTTrade.h"
-//#include "OTMarket.h"
-//#include "OTEnvelope.h"
-//#include "OTSymmetricKey.h"
-//#include "OTCachedKey.h"
-//
-//#include "OTLog.h"
-// ------------------------------------------
+#include <OTAssert.hpp>
+#include <OTPseudonym.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTOffer.hpp>
+#include <OTMarket.hpp>
+#include <OTCachedKey.hpp>
+#include <OTCrypto.hpp>
+
 
 OTIdentifier::OTIdentifier() : OTData()  { }
 

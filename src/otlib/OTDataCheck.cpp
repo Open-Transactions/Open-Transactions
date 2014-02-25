@@ -135,12 +135,8 @@
 
 #include <OTDataCheck.hpp>
 
-//#include <cstdio>
-//
-//
-//#include "OTDataCheck.h"
-//
-//#include "OTLog.h"
+#include <OTAssert.hpp>
+
 
 void AppendChecksum( OT_BYTE* buffer, uint32_t & size )
 {

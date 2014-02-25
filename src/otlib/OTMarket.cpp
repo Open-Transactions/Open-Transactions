@@ -134,36 +134,16 @@
 
 #include <OTMarket.hpp>
 
-//#include <cstring>
-//
-//// A market has a list of OTOffers for all the bids, and another list of OTOffers for all the asks.
-//// Presumably the server will have different markets for different asset types.
-//
-//#include <map>
-//#include <string>
-//#include <iostream>
-//#include <sstream>
-//
-//
-//#include "irrxml/irrXML.h"
-//
-//using namespace irr;
-//using namespace io;
-//
-//
-//#include "OTStorage.h"
-//
-//#include "OTPseudonym.h"
-//#include "OTCron.h"
-//
-//#include "OTOffer.h"
-//#include "OTTrade.h"
-//#include "OTMarket.h"
-//#include "OTTransaction.h"
-//#include "OTItem.h"
-//#include "OTAccount.h"
-//#include "OTLedger.h"
-//#include "OTLog.h"
+#include <OTCron.hpp>
+#include <OTLog.hpp>
+#include <OTOffer.hpp>
+#include <OTStorage.hpp>
+#include <OTAccount.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
+#include <OTTrade.hpp>
+#include <OTPaths.hpp>
+
 
 
 

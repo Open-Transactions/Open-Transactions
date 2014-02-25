@@ -134,10 +134,10 @@
 
 #include <OTSettings.hpp>
 
-//// The long-awaited configuration class.
-//
-//#include "OTSettings.h"
-//#include "OTLog.h"
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+
 
 bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 {

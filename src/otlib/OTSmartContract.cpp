@@ -460,32 +460,13 @@
 
 #include <OTSmartContract.hpp>
 
-//
-//#include <map>
-//#include <set>
-//
-//
-//#include "OTStorage.h"
-//
-//#include "OTIdentifier.h"
-//#include "OTPseudonym.h"
-//
-//#include "OTContract.h"
-//
-//#include "OTCron.h"
-//#include "OTSmartContract.h"
-//#include "OTLog.h"
-//
-//#include "OTScript.h"
-//
-//#include "OTBylaw.h"
-//
-//#include "OTTransactionType.h"
-//#include "OTItem.h"
-//#include "OTTransaction.h"
-//#include "OTLedger.h"
+#include <OTLog.hpp>
+#include <OTScript.hpp>
+#include <OTCron.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
+#include <OTPaths.hpp>
 
-// -----------------------------------------------------------------
 
 
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL	

@@ -139,7 +139,6 @@
 
 #include "Timer.hpp"
 
-#include <string>
 #include <list>
 
 
