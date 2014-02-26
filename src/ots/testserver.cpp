@@ -147,12 +147,18 @@ extern "C"
 #ifdef _WIN32
 //#include <WinSock.h>
 #else
-#include <netinet/in.h>
+
 #include <wordexp.h>
 #endif
-
-#include "SSL-Example/SFSocket.h"
 }
+
+extern "C"
+{
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+#include <netinet/in.h>
+#endif
+}
+
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN

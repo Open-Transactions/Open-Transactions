@@ -171,14 +171,12 @@
 #include "simpleini/SimpleIni.hpp"
 #include "tinythread.hpp"
 
-extern "C" 
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+extern "C"
 {
-#ifdef _WIN32
-#else
 #include <netinet/in.h>
-#endif
 }
-
+#endif
 
 
 #define CLIENT_CONFIG_KEY "client"

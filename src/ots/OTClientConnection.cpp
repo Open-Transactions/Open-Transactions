@@ -146,6 +146,14 @@
 #include <OTMessage.hpp>
 
 
+extern "C"
+{
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+#include <netinet/in.h>
+#endif
+}
+
+
 
 void SetupHeader( union u_header * pCMD, int nTypeID, int nCmdID, OTPayload & thePayload)
 {

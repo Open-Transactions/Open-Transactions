@@ -61,60 +61,61 @@ endif
 ####################################################################
 
 
-otlib_sources     =		OTAccount.cpp			\
-				OTAgreement.cpp			\
+otlib_sources     =	OTAccount.cpp		\
+				OTAgreement.cpp		\
 				OTASCIIArmor.cpp		\
-				OTAssert.cpp			\
+				OTAssert.cpp		\
 				OTAssetContract.cpp		\
 				OTAsymmetricKey.cpp		\
-				OTBasket.cpp			\
-				OTBylaw.cpp			\
-				OTCachedKey.cpp			\
-				OTCheque.cpp			\
-				OTContract.cpp			\
+				OTBasket.cpp		\
+				OTBylaw.cpp		\
+				OTCachedKey.cpp		\
+				OTCheque.cpp		\
+				OTContract.cpp		\
 				OTCredential.cpp		\
-				OTCron.cpp			\
-				OTCronItem.cpp			\
-				OTCrypto.cpp			\
-				OTData.cpp			\
-				OTDataCheck.cpp			\
+				OTCron.cpp		\
+				OTCronItem.cpp		\
+				OTCrypto.cpp		\
+				OTData.cpp		\
+				OTDataCheck.cpp		\
 				OTDigitalCash.cpp		\
-				OTEnvelope.cpp			\
-				OTKeyring.cpp			\
+				OTEnvelope.cpp		\
 				OTIdentifier.cpp		\
 				OTInstrument.cpp		\
-				OTItem.cpp			\
-				OTLedger.cpp			\
-				OTLog.cpp			\
-				OTMarket.cpp			\
-				OTMessage.cpp			\
+				OTItem.cpp		\
+				OTKeyring.cpp		\
+				OTLedger.cpp		\
+				OTLog.cpp		\
+				OTMarket.cpp		\
+				OTMessage.cpp		\
 				OTMessageBuffer.cpp		\
-				OTMint.cpp			\
-				OTOffer.cpp			\
-				OTPassword.cpp			\
-				OTPaths.cpp			\
-				OTPayload.cpp			\
-				OTPayment.cpp			\
+				OTMint.cpp		\
+				OTOffer.cpp		\
+				OTPassword.cpp		\
+				OTPaths.cpp		\
+				OTPayload.cpp		\
+				OTPayment.cpp		\
 				OTPaymentPlan.cpp		\
-				OTPseudonym.cpp			\
-				OTPurse.cpp			\
-				OTScript.cpp			\
+				OTPseudonym.cpp		\
+				OTPurse.cpp		\
+				OTScript.cpp		\
 				OTScriptable.cpp		\
 				OTServerContract.cpp		\
-				OTSettings.cpp			\
-				OTSignature.cpp			\
+				OTSettings.cpp		\
+				OTSignature.cpp		\
 				OTSignedFile.cpp		\
 				OTSmartContract.cpp		\
-				OTStorage.cpp			\
-				OTString.cpp			\
-				OTStringXML.cpp			\
+				OTStorage.cpp		\
+				OTString.cpp		\
+				OTStringXML.cpp		\
 				OTSymmetricKey.cpp		\
-				OTToken.cpp			\
-				OTTrackable.cpp			\
-				OTTrade.cpp			\
+				OTToken.cpp		\
+				OTTrackable.cpp		\
+				OTTrade.cpp		\
 				OTTransaction.cpp		\
 				OTTransactionType.cpp		\
-				OTWallet.cpp
+				OTWallet.cpp			
+
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 

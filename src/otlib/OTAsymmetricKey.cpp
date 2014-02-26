@@ -143,6 +143,8 @@
 #include <OTCrypto.hpp>
 #include <OTSignature.hpp>
 
+#include <stacktrace.h>
+
 
 // -------------------------------------------------------------------------------------------
 
@@ -482,9 +484,7 @@ const EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKey(OTPasswordData * pPWData/*=NULL
     if (NULL == m_p_ascKey)
     {
         OTLog::vError("%s: Unexpected NULL m_p_ascKey. Printing stack trace (and returning NULL):\n", __FUNCTION__);
-#ifndef _WIN32
         print_stacktrace();
-#endif
         return NULL;
     }
     // ----------------------------------------

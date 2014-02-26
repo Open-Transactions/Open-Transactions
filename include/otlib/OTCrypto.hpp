@@ -139,6 +139,7 @@
 
 #include <OTSettings.hpp>
 #include <OTPayload.hpp>
+#include <OTAssert.hpp>
 
 #include <set>
 
@@ -226,14 +227,12 @@ private:
 		return true;
 	}
 
-	static inline const int32_t & GetValue(const int32_t *& pValue)
-	{
-        if(NULL == pValue)
-            if(!GetSetAll())
-                assert(false);
-		if(NULL == pValue) assert(false);
+    static inline const int32_t & GetValue(const int32_t *& pValue)
+    {
+        if (NULL == pValue) { if (!GetSetAll()) OT_FAIL; }
+        if (NULL == pValue) { OT_FAIL; }
         return *pValue;
-	}
+    }
 
 	static const int32_t * sp_nIterationCount;
 	static const int32_t * sp_nSymmetricSaltSize;

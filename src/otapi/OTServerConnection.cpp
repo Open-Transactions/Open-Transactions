@@ -148,7 +148,12 @@
 #include <OTPseudonym.hpp>
 #include <OTWallet.hpp>
 
-
+extern "C"
+{
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+#include <netinet/in.h>
+#endif
+}
 
 int allow_debug = 1;
 

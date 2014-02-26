@@ -140,9 +140,7 @@
 #include <list>
 #include <map>
 #include <sstream>
-#include <stdexcept>  // via: win32_utf8conv.hpp
-#include <string>     // via: win32_utf8conv.hpp
-#include <string>     // via: win32_utf8conv.hpp
+#include <string.h>
 
 #ifdef _WIN32
 #include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring

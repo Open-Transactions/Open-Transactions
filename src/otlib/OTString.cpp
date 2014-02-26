@@ -145,6 +145,9 @@
 
 #include <sstream>
 
+#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
+#include <wordexp.h>
+#endif
 
 /*
  int vsnprintf(char *str, size_t size, const char *format, va_list ap);

@@ -142,6 +142,13 @@
 #include <OTPseudonym.hpp>
 
 
+extern "C"
+{
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+#include <netinet/in.h>
+#endif
+}
+
 // ------------------------------------------------------------------------
 
 // Presumably this Envelope contains encrypted data (in binary form.)

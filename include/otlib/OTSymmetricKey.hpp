@@ -138,6 +138,7 @@
 #include <WinsockWrapper.h>
 
 #include <OTPayload.hpp>
+#include <OTIdentifier.hpp>
 
 
 class OTString;

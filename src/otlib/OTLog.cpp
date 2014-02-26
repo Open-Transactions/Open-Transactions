@@ -145,6 +145,7 @@
 #include <exception>
 
 #include <constants.h>
+#include <stacktrace.h>
 
 #ifdef _WIN32
 #include <Shlobj.h>
@@ -153,16 +154,6 @@
 #include <libgen.h>
 #include <unistd.h>
 #endif
-
-
-#ifndef S_ISDIR
-#define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
-#endif
-
-#ifndef S_ISREG
-#define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
-#endif
-
 
 #ifdef __APPLE__
 #include "TargetConditionals.h"
@@ -381,7 +372,7 @@ bool OTLog::CheckLogger(OTLog * pLogger)
     if (NULL != pLogger)
     if (pLogger->m_bInitialized) return true;
 
-    assert(false);
+    OT_FAIL;
     return false;
 }
 
@@ -656,9 +647,7 @@ int OTLog::Assert(const char * szFilename, int nLinenumber, const char * szMessa
 		__android_log_write(ANDROID_LOG_FATAL,"OT Assert (or Fail)", szMessage);
 #endif
 
-#ifndef _WIN32
 		print_stacktrace();
-#endif
 	}
 
 	return OTLog::Assert(szFilename, nLinenumber);
@@ -683,9 +672,7 @@ int OTLog::Assert(const char * szFilename, int nLinenumber)
 		__android_log_write(ANDROID_LOG_FATAL,"OT Assert", (const char *)strAndroidAssertMsg.Get());
 #endif
 
-#ifndef _WIN32
 		print_stacktrace();
-#endif
 	}
 	return 1; // normal
 }
@@ -800,11 +787,10 @@ void OTLog::vOutput(int nVerbosity, const char *szOutput, ...)
 
 	va_end(args);
 	// -------------------
-	if (bFormatted)
-		OTLog::Output(nVerbosity, strOutput.c_str());
-	else
-		if (bHaveLogger) { OT_FAIL; }
-		else assert(false); //error
+    if (bFormatted)
+        OTLog::Output(nVerbosity, strOutput.c_str());
+    else
+        OT_FAIL;
 		return;
 }
 
@@ -1537,7 +1523,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 	tthread::lock_guard<tthread::mutex> lock(the_Mutex);
 
 
-	assert(NULL != v);
+	OT_ASSERT(NULL != v);
 
 	int read = 0;
 

@@ -141,10 +141,17 @@
 #include <OTPassword.hpp>
 #include <OTAsymmetricKey.hpp>
 
+extern "C"
+{
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+#include <netinet/in.h>
+#endif
+}
+
+
 
 //// ------------------------------------------------------------------------
-//extern "C"
-//{
+
 //#ifdef _WIN32
 //#include <WinsockWrapper.h>
 //#else
@@ -152,13 +159,6 @@
 //#if defined (OPENTXS_HAVE_SYS_TYPES_H)
 //#include <sys/types.h>
 //#endif
-//    
-//#if defined (OPENTXS_HAVE_NETINET_IN_H)
-//#include <netinet/in.h>
-//#endif
-//    
-//#endif
-//}
 
 
 // ------------------------------------------------------------------------

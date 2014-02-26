@@ -143,6 +143,7 @@
 #include <WinsockWrapper.h>
 
 #include <OTSettings.hpp>
+#include <OTAssert.hpp>
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
@@ -283,7 +284,7 @@ private:
 		if (NULL != pDataFolder)
 			if (pDataFolder->m_bInitialized) return true;
 
-		assert(false);
+		OT_FAIL;
 		return false;
 	}
 
@@ -337,9 +338,8 @@ private:
 
     static inline const OTString & GetFolder(const OTString & strFolder)
     {
-        if(!strFolder.Exists())
-            if(!GetSetAll())
-                assert(false);
+        if (!strFolder.Exists()) {
+            if (!GetSetAll()) { OT_FAIL; } }
         return strFolder;
     }
 

@@ -225,7 +225,7 @@
 
 #ifdef _DEBUG
 # ifndef assert
-#  include <cassert>
+#  include <assert.h>
 # endif
 # define SI_ASSERT(x)   assert(x)
 #else
@@ -1763,7 +1763,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::LoadMultiLineText(
         }
 
         // end the line with a NULL
-		assert(NULL != a_pData);
+        SI_ASSERT(NULL != a_pData);
         cEndOfLineChar = *a_pData;
         *a_pData = 0;
 
