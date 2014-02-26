@@ -41,9 +41,10 @@ do
     fi
 
     # Move and clean up wrapper files
-    for ext in cxx cpp h; do
+    for ext in cxx cpp hpp h; do
 	if [ -f otapi/OTAPI-$x.$ext ]; then rm otapi/OTAPI-$x.$ext; fi
 	if [ -f otapi/OTAPI_wrap.$ext ]; then mv otapi/OTAPI_wrap.$ext otapi/OTAPI-$x.$ext; fi
+	if [ -f otapi/OTAPI-$x.h ]; then mv otapi/OTAPI-$x.h otapi/OTAPI-$x.hpp; fi
     done
 
     for ext in cxx cpp; do

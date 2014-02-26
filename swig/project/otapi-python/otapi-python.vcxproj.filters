@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\otapi\OTAPI-python.h">
+    <ClInclude Include="..\..\otapi\OTAPI-python.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

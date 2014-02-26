@@ -136,6 +136,13 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#ifdef SWIG
+#ifdef EXPORT
+#undef EXPORT
+#endif
+#define EXPORT
+#endif
+
 #include <OTCachedKey.hpp>
 
 #include <string>

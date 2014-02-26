@@ -130,6 +130,13 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#ifdef SWIG
+#ifdef EXPORT
+#undef EXPORT
+#endif
+#define EXPORT
+#endif
+
 #if __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
@@ -140,16 +147,6 @@
 // we need to tell swig what parts to skip over.
 
 #ifndef SWIG
-#ifndef NOT_SWIG
-#define NOT_SWIG
-#endif
-#else
-#ifndef EXPORT
-#define EXPORT
-#endif
-#endif
-
-#ifdef NOT_SWIG
 
 #include <OTAssert.hpp>
 
@@ -249,7 +246,7 @@ public: \
 
 
 
-#endif // NOT_SWIG
+#endif // (not) SWIG
 // ----------------------------------------------------
 
 namespace OTDB
@@ -277,13 +274,13 @@ namespace OTDB
 		STORE_TYPE_SUBCLASS		// (Subclass provided by API client via SWIG.)
 	};
 
-#ifdef NOT_SWIG
+#ifndef SWIG
 	// -------------------------------------
 	// 
 	// STORED OBJECT TYPES...
 	// 
 	extern const char * StoredObjectTypeStrings[];
-#endif // NOT_SWIG
+#endif // (not) SWIG
 
 	enum StoredObjectType
 	{
@@ -314,7 +311,7 @@ namespace OTDB
 		STORED_OBJ_ERROR			// (Should never be.)
 	};
 
-#ifdef NOT_SWIG
+#ifndef SWIG
 	// ********************************************************************
 
 	// ABSTRACT BASE CLASSES
@@ -402,23 +399,25 @@ namespace OTDB
 	virtual void hookAfterUnpack() {} // This is called just after unpacking a storable. (Opportunity to copy values...)
 	EndInterface
 
-	
+#endif // (not) SWIG
 	
 	// ********************************************************************
 	//
 	// use this without a semicolon:
 	//
-#endif // NOT_SWIG
+
 #ifdef SWIG // swig version
 #define DEFINE_OT_DYNAMIC_CAST(CLASS_NAME_A) \
 	CLASS_NAME_A * clone () const { std::cerr << "********* THIS SHOULD NEVER HAPPEN!!!!! *****************" << std::endl; return NULL; } \
 	static CLASS_NAME_A *		ot_dynamic_cast(		Storable *pObject) { return dynamic_cast<CLASS_NAME_A *>(pObject); }
 //	static const CLASS_NAME_A*	ot_dynamic_cast(const	Storable *pObject) { return dynamic_cast<const CLASS_NAME_A *>(pObject); }
-#else
+#endif // SWIG
+
+#ifndef SWIG // normal version
 #define DEFINE_OT_DYNAMIC_CAST(CLASS_NAME) \
 	virtual CLASS_NAME * clone () const { std::cout << "********* THIS SHOULD NEVER HAPPEN!!!!! *****************" << std::endl; OT_FAIL; } \
 	static CLASS_NAME *			ot_dynamic_cast(		Storable *pObject) { return dynamic_cast<CLASS_NAME *>(pObject); }
-#endif
+#endif // (not) SWIG
 
 	//	static const CLASS_NAME	*	ot_dynamic_cast(const	Storable *pObject) { return dynamic_cast<const T *>(pObject); }
 
@@ -447,7 +446,7 @@ namespace OTDB
 		DEFINE_OT_DYNAMIC_CAST(Storable)
 	};
 	
-#ifdef NOT_SWIG
+#ifndef SWIG
 	
 	// ********************************************************************
 
@@ -582,7 +581,7 @@ namespace OTDB
 
 
 
-#endif // NOT_SWIG
+#endif
 	// ********************************************************************
 	//
 	// STORAGE  -- abstract base class
@@ -812,7 +811,10 @@ public: \
 	name * Get##name(size_t nIndex); \
 	bool Remove##name(size_t nIndex##name); \
 	bool Add##name(name & disownObject)
-#else
+
+#endif // SWIG
+#ifndef SWIG
+
 #define DECLARE_GET_ADD_REMOVE(name) \
 protected: \
 	std::deque< stlplus::simple_ptr_clone<name> > list_##name##s; \
@@ -821,7 +823,7 @@ public: \
 	EXPORT	name * Get##name(size_t nIndex); \
 	EXPORT	bool Remove##name(size_t nIndex##name); \
 	EXPORT	bool Add##name(name & disownObject)
-#endif
+#endif // (not) SWIG
 
 
 	// Serialized types...
@@ -1529,14 +1531,9 @@ public: \
 
 // ********************************************************************
 
-#ifdef NOT_SWIG
 
 
-
-
-
-
-
+#ifndef SWIG
 
 // *******************************************************************************************
 //
@@ -2356,7 +2353,7 @@ namespace OTDB
 
 
 
-#endif // NOT_SWIG
+#endif // (not) SWIG
 
 
 #if __clang__

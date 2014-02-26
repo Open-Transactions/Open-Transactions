@@ -23,5 +23,8 @@
     <ClInclude Include="..\..\otapi\OTAPI-php.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\otapi\OTAPI-php.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

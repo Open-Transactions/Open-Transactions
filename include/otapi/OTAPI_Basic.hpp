@@ -147,6 +147,13 @@ Every other type will be wrapped in a std::string.
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#ifdef SWIG
+#ifdef EXPORT
+#undef EXPORT
+#endif
+#define EXPORT
+#endif
+
 #include <string>
 
 
