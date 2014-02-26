@@ -2,25 +2,20 @@
 #define _EXPORT_WRAPPER_H_
 #endif // no guard.
 
-#ifndef SWIG // no export for swig.
-#ifdef _WIN32
 
-// DLL Export/Import for Win32
+#if defined(_WINDLL) && !defined(NOEXPORT)  && !defined(SWIG)
+
 #ifdef EXPORT
 #undef EXPORT
 #endif
 
-#ifndef NOEXPORT
-#ifdef _WINDLL
 #ifdef IMPORT
-  #define EXPORT __declspec(dllimport)
+#define EXPORT __declspec(dllimport)
 #else
-  #define EXPORT __declspec(dllexport)
-#endif
-#else
-  #define EXPORT
-#endif
+#define EXPORT __declspec(dllexport)
 #endif
 
+#else
+#define EXPORT
 #endif
-#endif
+

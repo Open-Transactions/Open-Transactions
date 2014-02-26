@@ -570,6 +570,7 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 
 /* Parse the header file to generate wrappers */
 
+%include "../../include/otlib/ExportWrapper.h"
 %include "../../include/otlib/OTPassword.hpp"
 %include "../../include/otapi/OTAPI_Basic.hpp"
 %include "../../include/otapi/OTMadeEasy.hpp"

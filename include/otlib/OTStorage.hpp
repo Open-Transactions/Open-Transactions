@@ -130,13 +130,6 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#ifdef SWIG
-#ifdef EXPORT
-#undef EXPORT
-#endif
-#define EXPORT
-#endif
-
 #if __clang__
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-function"
