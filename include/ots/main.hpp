@@ -136,21 +136,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include "OTMessage.h"
-#include "OTClientConnection.h"
-
-
-/*
-#define TYPE_1_CMD_1  1
-#define TYPE_1_CMD_2  2
-#define TYPE_1_CMD_3  3
-#define TYPE_1_CMD_4  4
-
-#define CMD_TYPE_1  1
-
-#define OT_CMD_HEADER_SIZE  7
-*/
-
+#include <OTClientConnection.hpp>
 
 typedef std::list<OTClientConnection *>	listOfConnections;
 

@@ -142,11 +142,6 @@ class OTMessage;
 class OTEnvelope;
 class OTASCIIArmor;
 
-#ifdef _WIN32
-class OTPayload;
-EXPORT bool OTPAYLOAD_GetMessage(OTPayload & thePayload, OTMessage & theMessage);
-#endif
-
 class OTPayload : public OTData 
 {
 public:

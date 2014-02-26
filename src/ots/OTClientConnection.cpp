@@ -130,56 +130,20 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
+#include <OTClientConnection.hpp>
 
-#include <cstring>
-#include <cstdio>
+#include <OTServer.hpp>
 
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
+#ifndef IMPORT
+#define IMPORT
 #endif
 
-extern "C" 
-{
-#ifdef _WIN32
-//#include <WinSock.h>
-#define strcasecmp _stricmp
-#else
-#include <netinet/in.h>
-#endif
-
-//#include "SSL-Example/SFSocket.h"
-}
-
-#include "OTStorage.h"
-
-#include "main.h"
-#include "OTDataCheck.h"
-#include "OTEnvelope.h"
-#include "OTClientConnection.h"
-#include "OTServer.h"
-#include "OTAsymmetricKey.h"
-
-
-#include "OTPayload.h"
-#include "OTLog.h"
-
-
-/*
- union u_header
- {
- BYTE buf[OT_CMD_HEADER_SIZE];
- struct {
- BYTE type_id;    // 1 byte
- BYTE command_id; // 1 byte
- BYTE filler[2];
- uint32_t size;     // 4 bytes to describe size of payload
- BYTE  checksum;  // 1 byte
- } fields;  // total of 9 bytes
- };	
- */
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTDataCheck.hpp>
+#include <OTMessage.hpp>
 
 
 
@@ -575,11 +539,7 @@ bool OTClientConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theMessa
 	// a signed OTMessage
 	if (TYPE_1_CMD_1 == theCMD.fields.command_id) 
 	{
-#ifdef _WIN32
-		if (OTPAYLOAD_GetMessage(thePayload, theMessage))
-#else
-		if (thePayload.GetMessage(theMessage))
-#endif
+		if (thePayload.GetMessagePayload(theMessage))
 		{
 			OTLog::Output(2, "Successfully retrieved payload message...\n");
 			
@@ -742,7 +702,7 @@ void OTClientConnection::ProcessReply(OTMessage &theReply)
 	}
 	else 
     {
-		thePayload.SetMessage(theReply);
+		thePayload.SetMessagePayload(theReply);
 		
 		// Now that the payload is ready, we'll set up the header.
 		SetupHeader(&theCMD, CMD_TYPE_1, TYPE_1_CMD_1, thePayload);

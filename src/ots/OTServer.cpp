@@ -131,50 +131,35 @@
  **************************************************************/
 
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstdio>
-#include <cstring>
-#include <ctime>
-#include <cstdlib>
+#include <OTServer.hpp>
 
-#include <iostream>
+#include <OTClientConnection.hpp>
+
+#ifndef IMPORT
+#define IMPORT
+#endif
+
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTMint.hpp>
+#include <OTPurse.hpp>
+#include <OTMessage.hpp>
+#include <OTSmartContract.hpp>
+#include <OTLedger.hpp>
+#include <OTEnvelope.hpp>
+#include <OTCheque.hpp>
+#include <OTBasket.hpp>
+#include <OTTrade.hpp>
+#include <OTOffer.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPayment.hpp>
+#include <OTServerContract.hpp>
+#include <OTPassword.hpp>
+#include <OTMarket.hpp>
+
 #include <fstream>
-#include <sstream>
-#include <string>
-
-#include <cerrno>
-
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-
-// ----------------------------------------------
-#ifdef _WIN32
-/*
- Minimum supported client    -- Windows XP
- Minimum supported server    -- Windows Server 2003
- Header                      -- WinBase.h (include Windows.h)
- Library                     -- Kernel32.lib
- DLL                         -- Kernel32.dll
- */
-//#ifdef _WIN32
-//#include <WinsockWrapper.h>
-//#endif
-//#include <windows.h>
-// DWORD GetCurrentProcessId(void);
-#else
-// getpid
-#include <sys/types.h>
-#include <unistd.h>
-//pid_t getpid(void);
-//pid_t getppid(void);
-#endif
-// ----------------------------------------------
-
-
-#include "irrxml/irrXML.h"
 
 
 #define SERVER_CONFIG_KEY "server"
@@ -186,81 +171,10 @@
 #define SERVER_PASSWORD_FOLDER ""
 #define SERVER_PID_FILENAME "ot.pid"
 
-
-// ---------------------------------------------------------------------------
-
-//#include "ot_default_paths.h"
-
-// ---------------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-// Had to move these below OTStorage.h since they were conflicting with the stlplus stuff.
-#include <list>
-#include <set>
-
-
-#include "OTData.h"
-
-#include "OTString.h"
-#include "OTStringXML.h"
-
-#include "OTDataCheck.h"
-
-
-#include "OTServer.h"
-
-
-#include "OTMint.h"
-
-#ifdef _WIN32
-const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
-const char * OT_BEGIN_ARMORED_escaped   = "- -----BEGIN OT ARMORED";
-#endif
-
-#include "OTPseudonym.h"
-#include "OTCheque.h"
-
-#include "OTPayload.h"
-#include "OTMessage.h"
-#include "OTEnvelope.h"
-#include "OTAccount.h"
-#include "OTClientConnection.h"
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-
-#include "OTTransactionType.h"
-
-#include "OTItem.h"
-
-#include "OTTransaction.h"
-#include "OTPayment.h"
-
-
-#include "OTLedger.h"
-#include "OTToken.h"
-#include "OTPurse.h"
-#include "OTBasket.h"
-#include "OTMarket.h"
-#include "OTTrade.h"
-#include "OTOffer.h"
-#include "OTPaymentPlan.h"
-#include "OTSmartContract.h"
-#include "OTCachedKey.h"
-#include "OTKeyring.h"
-
-
-#include "OTLog.h"
-#include "OTSettings.h"
-
-#include "OTCron.h"
-
-
-
-using namespace irr;
-using namespace io;
-using namespace std;
-
+//#ifdef _WIN32
+//const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
+//const char * OT_BEGIN_ARMORED_escaped   = "- -----BEGIN OT ARMORED";
+//#endif
 
 
 
@@ -612,7 +526,7 @@ OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // E
 			// It's a multimap now...
 			//m_mapMints[ASSET_ID_STR.Get()] = pMint;
 
-			m_mapMints.insert ( pair<std::string, OTMint *>(ASSET_ID_STR.Get(), pMint) );
+			m_mapMints.insert ( std::pair<std::string, OTMint *>(ASSET_ID_STR.Get(), pMint) );
 			
 			return pMint;
 		}
@@ -1939,8 +1853,8 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
             return false;
         }
         // --------------------------------------------------------------------
-        IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
-        OTCleanup<IrrXMLReader> theXMLGuardian(xml); // So I don't have to clean it up later.
+        irr::io::IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
+        OTCleanup<irr::io::IrrXMLReader> theXMLGuardian(xml); // So I don't have to clean it up later.
         // --------------------------------------------------------------------
         // parse the file until end reached
         while(xml && xml->read())
@@ -1955,11 +1869,11 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
             
             switch(xml->getNodeType())
             {
-                case EXN_TEXT:
+            case irr::io::EXN_TEXT:
                     // in this xml file, the only text which occurs is the messageText
                     //messageText = xml->getNodeData();
                     break;
-                case EXN_ELEMENT:
+            case irr::io::EXN_ELEMENT:
                 {
                     if (strNodeName.Compare("notaryServer"))
                     {

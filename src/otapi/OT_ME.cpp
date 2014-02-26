@@ -140,11 +140,13 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 
 #include <OTAPI.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTLog.hpp>
 #include <OTStorage.hpp>
 #include <OTPaths.hpp>
-
-
 
 
 OT_ME::OT_ME()

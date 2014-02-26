@@ -156,8 +156,24 @@
 
 #ifdef NOT_SWIG
 
+#ifndef IMPORT
+#define IMPORT
+#ifndef IMPORT_SET
+#define IMPORT_SET
+#endif
+#endif
+
 #include <OTString.hpp>
 #include <OTASCIIArmor.hpp>
+
+#ifdef IMPORT_SET
+#undef IMPORT_SET
+#ifdef IMPORT
+#undef IMPORT
+#include <ExportWrapper.h>
+#endif
+#endif
+
 
 #include <string>
 #include <functional>

@@ -137,25 +137,23 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-#include <map>
+#include <OTAssetContract.hpp>
+#include <OTPseudonym.hpp>
+#include <OTAccount.hpp>
+#include <OTCron.hpp>
+#include <OTTransaction.hpp>
 
-#include "OTString.h"
-#include "OTPseudonym.h"
-//#include "OTMint.h"
-#include "OTAssetContract.h"
-
-#include "OTTransaction.h" 
-#include "OTAccount.h" // for OTAcctList
-
-#include "OTCron.h"
 
 class OTMessage;
 class OTClientConnection;
-//class OTAccount;
 class OTPayment;
 class OTMint;
 class OTTrade;
 class OTServerContract;
+class OTAccount;
+class OTAssetContract;
+class OTIdentifier;
+class OTTransaction;
 
 // these correspond--same IDs.
 typedef std::multimap<std::string, OTMint *>	mapOfMints;

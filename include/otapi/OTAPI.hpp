@@ -168,7 +168,6 @@
 class OT_API;
 class OTServerContract;
 class OTEnvelope;
-class OTAPI_Wrap;
 
 
 class OTAPI_Wrap

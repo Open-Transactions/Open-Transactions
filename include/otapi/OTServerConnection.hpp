@@ -138,10 +138,33 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#ifndef IMPORT
+#define IMPORT
+#ifndef IMPORT_SET
+#define IMPORT_SET
+#endif
+#endif
+
 #include <OTMessageBuffer.hpp>
 #include <OTServerContract.hpp>
 
-#include <cinttypes>
+#ifdef IMPORT_SET
+#undef IMPORT_SET
+#ifdef IMPORT
+#undef IMPORT
+#include <ExportWrapper.h>
+#endif
+#endif
+
+struct TransportCallback;
+
+class OTMessage;
+class OTEnvelope;
+class OTPseudonym;
+class OTAccount;
+class OTWallet;
+class OTString;
+class OTClient;
 
 extern "C" 
 {	
@@ -171,14 +194,6 @@ union u_header
 	
 }
 
-
-class OTMessage;
-class OTEnvelope;
-class OTPseudonym;
-class OTAccount;
-class OTWallet;
-class OTString;
-class OTClient;
 
 class OTServerConnection 
 {

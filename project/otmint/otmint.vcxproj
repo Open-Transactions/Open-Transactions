@@ -149,6 +149,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;IMPORT;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -162,6 +163,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;IMPORT;_DEBUG;DEBUG;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -178,6 +180,7 @@
       <PreprocessorDefinitions>_UNICODE;UNICODE;IMPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -196,6 +199,7 @@
       <PreprocessorDefinitions>_UNICODE;UNICODE;IMPORT;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

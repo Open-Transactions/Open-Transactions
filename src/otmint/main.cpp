@@ -124,38 +124,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#include <ShlObj.h>
-#endif
+#include <main.hpp>
 
-extern "C"
-{
-#include <cstdio>
-#include <sys/stat.h>	
-}
+#include <OTServer.hpp>
 
-#include <ctime>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTCrypto.hpp>
+#include <OTMint.hpp>
 
-#include "simpleini/SimpleIni.h"
-
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTAssetContract.h"
-#include "OTMint.h"
-
-#include "OTEnvelope.h"
-#include "OTServer.h"
-
-#include "OTLog.h"
-
-// ------------------------------------------------
 
 // TODO: what about android for all the defaults here? Are there ini files in android? Revisit.
 // so far, treating it like unix since it is.
@@ -174,7 +153,6 @@ extern "C"
 
 #define KEY_PASSWORD        "test"
 //#define KEY_PASSWORD        ""
-
 
 
 

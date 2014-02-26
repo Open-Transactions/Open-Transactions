@@ -146,26 +146,24 @@
 #ifndef IMPORT
 #define IMPORT
 #endif
-#include <OTLog.hpp>
-#include <OTWallet.hpp>
-#include <OTPurse.hpp>
+
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
 #include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTOffer.hpp>
 #include <OTPassword.hpp>
 #include <OTPaths.hpp>
-#include <OTLedger.hpp>
-#include <OTBasket.hpp>
-#include <OTSmartContract.hpp>
-#include <OTCheque.hpp>
-#include <OTOffer.hpp>
-#include <OTSymmetricKey.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTMint.hpp>
 #include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTSmartContract.hpp>
+#include <OTSymmetricKey.hpp>
 #include <OTTrade.hpp>
-#ifdef IMPORT
-#undef IMPORT
-#endif
+#include <OTWallet.hpp>
 
 #include <fstream>
 

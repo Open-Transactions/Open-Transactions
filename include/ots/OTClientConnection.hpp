@@ -137,10 +137,9 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
-extern "C"
-{
-//#include "SSL-Example/SFSocket.h"	
-}
+#include <OTData.hpp>
+#include <OTMessageBuffer.hpp>
+
 
 
 #ifdef __cplusplus
@@ -176,18 +175,9 @@ extern "C" {
 #endif
 
 
-
-
-
+class OTAsymmetricKey;
 class OTMessage;
 class OTServer;
-
-
-
-#include "OTMessageBuffer.h"
-#include "OTAsymmetricKey.h"
-#include "OTData.h"
-
 class OTString;
 class OTEnvelope;
 
