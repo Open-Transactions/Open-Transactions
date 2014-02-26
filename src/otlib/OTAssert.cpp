@@ -135,51 +135,33 @@
 #include <assert.h>
 
 //static
-OTAssert * OTAssert::s_pOTAssert = new OTAssert();
-
-OTAssert::OTAssert()
-: m_fpt_Assert_szFilename_nLinenumber_szMessage(NULL)
-{
-}
+OTAssert * OTAssert::s_pOTAssert = new OTAssert(OTAssert::Assert);
 
 OTAssert::OTAssert(fpt_Assert_sz_n_sz &fp1)
 : m_fpt_Assert_szFilename_nLinenumber_szMessage(fp1)
 {
 }
 
-size_t OTAssert::m_Assert(const char * szFilename, size_t nLinenumber)
-{
-    if (NULL != this->m_fpt_Assert_szFilename_nLinenumber_szMessage) return m_fpt_Assert_szFilename_nLinenumber_szMessage(szFilename, nLinenumber, "");
-    return this->m_AssertDefault(szFilename, nLinenumber, "");
-}
-size_t OTAssert::m_Assert(const char * szFilename, size_t nLinenumber, const char * szMessage)
-{
-    if (NULL != this->m_fpt_Assert_szFilename_nLinenumber_szMessage) return m_fpt_Assert_szFilename_nLinenumber_szMessage(szFilename, nLinenumber, szMessage);
-    return this->m_AssertDefault(szFilename, nLinenumber, szMessage);
-}
-
 size_t OTAssert::m_AssertDefault(const char * szFilename, size_t nLinenumber, const char * szMessage)
 {
-    if (std::strcmp(szMessage, "") != 0) {
-        std::cerr << szMessage;
-        std::cerr.flush();
+    if (NULL != szMessage) {
+        if (std::strcmp(szMessage, "") != 0) {
+            std::cerr << szMessage;
+            std::cerr.flush();
+        }
     }
 
-    std::cerr << "OT_ASSERT in " << szFilename << " at line " << szFilename;
+    const char * l_szFilename = (NULL != szFilename) ? szFilename : "NULL";
+
+    std::cerr << "OT_ASSERT in " << l_szFilename << " at line " << nLinenumber;
     std::cerr.flush();
-    
+
     return 0; // since we are not logging.
 }
 
 
 //static
-size_t OTAssert::Assert(const char * szFilename, size_t nLinenumber){
-    assert(NULL != OTAssert::s_pOTAssert);
-    return OTAssert::s_pOTAssert->m_Assert(szFilename, nLinenumber);
-}
-
-//static
 size_t OTAssert::Assert(const char * szFilename, size_t nLinenumber, const char * szMessage){
     assert(NULL != OTAssert::s_pOTAssert);
-    return OTAssert::s_pOTAssert->m_Assert(szFilename, nLinenumber, szMessage);
+    return OTAssert::s_pOTAssert->m_AssertDefault(szFilename, nLinenumber, szMessage);
 }

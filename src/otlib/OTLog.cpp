@@ -134,9 +134,9 @@
 
 #include <OTLog.hpp>
 
-#include "OTSettings.hpp"
-#include "OTPaths.hpp"
-#include "OTAssert.hpp"
+#include <OTSettings.hpp>
+#include <OTPaths.hpp>
+#include <OTAssert.hpp>
 
 #include "tinythread.hpp"
 
@@ -289,6 +289,10 @@ const OTString OTLog::m_strPathSeparator = "/";
 //  OTLog Init, must run this befor useing any OTLog function.
 //
 
+
+
+
+
 //static
 bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 {
@@ -336,6 +340,11 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 		if(!OTPaths::AppendFile(pLogger->m_strLogFilePath, OTPaths::AppDataFolder(), pLogger->m_strLogFileName)) { return false; };
 
 		pLogger->m_bInitialized = true;
+
+        // Set the new log-assert function pointer.
+        OTAssert * pLogAssert = new OTAssert(OTLog::logAssert);
+        std::swap(pLogAssert, OTAssert::s_pOTAssert);
+        delete pLogAssert; pLogAssert = NULL;
 
 		return true;
 	}
@@ -632,8 +641,8 @@ bool OTLog::SleepMilliseconds(long lMilliseconds)
 // This function is for things that should NEVER happen.
 // In fact you should never even call it -- use the OT_ASSERT() macro instead.
 // This Function is now only for logging, you 
-
-int OTLog::Assert(const char * szFilename, int nLinenumber, const char * szMessage)
+//static private
+size_t OTLog::logAssert(const char * szFilename, size_t nLinenumber, const char * szMessage)
 {
 	if (NULL != szMessage)
 	{
@@ -650,34 +659,28 @@ int OTLog::Assert(const char * szFilename, int nLinenumber, const char * szMessa
 		print_stacktrace();
 	}
 
-	return OTLog::Assert(szFilename, nLinenumber);
-}
-
-int OTLog::Assert(const char * szFilename, int nLinenumber)
-{
-	if ((NULL != szFilename))
-	{
+    if ((NULL != szFilename))
+    {
 #ifndef ANDROID // if NOT android
-		// -----------------------------
-		// Pass it to LogToFile, as this always logs.
-		//
-		OTString strTemp;
-		strTemp.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
-		LogToFile(strTemp.Get());
-		// -----------------------------
+        // -----------------------------
+        // Pass it to LogToFile, as this always logs.
+        //
+        OTString strTemp;
+        strTemp.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
+        LogToFile(strTemp.Get());
+        // -----------------------------
 
 #else // if Android
-		OTString strAndroidAssertMsg;
-		strAndroidAssertMsg.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
-		__android_log_write(ANDROID_LOG_FATAL,"OT Assert", (const char *)strAndroidAssertMsg.Get());
+        OTString strAndroidAssertMsg;
+        strAndroidAssertMsg.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
+        __android_log_write(ANDROID_LOG_FATAL, "OT Assert", (const char *)strAndroidAssertMsg.Get());
 #endif
+    }
 
-		print_stacktrace();
-	}
-	return 1; // normal
+        print_stacktrace();
+
+        return 1; // normal
 }
-
-
 
 // -------------------------------------------------------
 

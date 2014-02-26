@@ -134,10 +134,10 @@
 #include <cstddef>
 #include <exception>
 
-#define    OT_FAIL                               { OTAssert::Assert(__FILE__, __LINE__);      std::terminate(); };
+#define    OT_FAIL                               { OTAssert::Assert(__FILE__, __LINE__, NULL);      std::terminate(); };
 #define    OT_FAIL_MSG(s)                        { OTAssert::Assert(__FILE__, __LINE__, (s)); std::terminate(); };
 
-#define    OT_ASSERT(x)			if(false == (x)) { OTAssert::Assert(__FILE__, __LINE__);      std::terminate(); };
+#define    OT_ASSERT(x)			if(false == (x)) { OTAssert::Assert(__FILE__, __LINE__, NULL);      std::terminate(); };
 #define    OT_ASSERT_MSG(x, s)  if(false == (x)) { OTAssert::Assert(__FILE__, __LINE__, (s)); std::terminate(); };
 
 class OTAssert
@@ -149,21 +149,16 @@ private:
 
     fpt_Assert_sz_n_sz * m_fpt_Assert_szFilename_nLinenumber_szMessage;
 
-    size_t m_Assert(const char * szFilename, size_t nLinenumber);
-    size_t m_Assert(const char * szFilename, size_t nLinenumber, const char * szMessage);
-
-    size_t m_AssertDefault(const char * szFilename, size_t nLinenumber, const char * szMessage);
+    fpt_Assert_sz_n_sz(m_AssertDefault);
 
 public:
 
     // if not null, must be deleted before changed.
     static OTAssert * s_pOTAssert;
 
-    EXPORT OTAssert();
     EXPORT OTAssert(fpt_Assert_sz_n_sz &fp1);
 
-    EXPORT static size_t Assert(const char * szFilename, size_t nLinenumber); // assert
-    EXPORT static size_t Assert(const char * szFilename, size_t nLinenumber, const char * szMessage); // assert
+    EXPORT static fpt_Assert_sz_n_sz(Assert); // assert
 
 };
 

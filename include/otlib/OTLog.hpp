@@ -139,6 +139,7 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <OTAssert.hpp>
 #include <OTString.hpp>
 
 #include <deque>
@@ -173,6 +174,11 @@ private:
 	int			m_nLogLevel;
 
 	bool		m_bInitialized;
+
+    // For things that represent internal inconsistency in the code. 
+    // Normally should NEVER happen even with bad input from user.
+    // (Don't call this directly. Use the above #defined macro instead.)
+    static OTAssert::fpt_Assert_sz_n_sz(logAssert);
 
 public:
 
@@ -228,13 +234,6 @@ public:
 	// -------------------------------------------------
 	EXPORT static bool		SleepSeconds(const long lSeconds);
 	EXPORT static bool		SleepMilliseconds(const long lMilliseconds);
-
-
-	// For things that represent internal inconsistency in the code. 
-	// Normally should NEVER happen even with bad input from user.
-	// (Don't call this directly. Use the above #defined macro instead.)
-	EXPORT static int Assert(const char * szFilename, int nLinenumber); // assert
-	EXPORT static int Assert(const char * szFilename, int nLinenumber, const char * szMessage); // assert
 
 	// Output() logs normal output, which carries a verbosity level.
 	//
