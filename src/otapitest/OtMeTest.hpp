@@ -18,6 +18,7 @@
 
 #define EXPECT_REQUEST_SN(serverId, nymId, data, func) \
 	EXPECT_MOCK_FUNC(REQUEST_NUMBER, func); \
+	EXPECT_MOCK(Sleep(50)); \
 	EXPECT_MOCK_RET(data, PopMessageBuffer(REQUEST_NUMBER, serverId, nymId)); \
 	EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(data));
 
@@ -190,7 +191,9 @@ public:
 	static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
 	static void EXPECT_load_or_retrieve_contract(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * contractId);
 	static void EXPECT_load_or_retrieve_encrypt_key(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char *nymToId);
-	
+	static void EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+	static void EXPECT_ot_utility_ReceiveReplyLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
+
 	void EXPECT_getNymBox(bool bForced);
 	void EXPECT_insureHaveAllBoxReceipts();
 	

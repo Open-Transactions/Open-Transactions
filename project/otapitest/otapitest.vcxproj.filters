@@ -110,6 +110,15 @@
     <ClCompile Include="..\..\src\otapitest\Test_details_export_cash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_ReceiveReplyLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getNymboxLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\otapitest\CallStructure.txt" />

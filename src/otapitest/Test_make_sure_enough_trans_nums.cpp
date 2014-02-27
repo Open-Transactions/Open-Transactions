@@ -33,6 +33,8 @@ TEST_F(OtMeTest, make_sure_enough_trans_nums_HasToGetMore)
 
 	EXPECT_MOCK_RET(REQUEST_NUMBER, getRequest(SERVER_ID, NYM_ID));
 
+	EXPECT_MOCK(Sleep(50));
+
 	EXPECT_MOCK_RET(MESSAGE_DATA, PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, NYM_ID));
 
 	EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
