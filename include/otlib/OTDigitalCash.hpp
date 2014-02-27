@@ -140,6 +140,16 @@
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
 
+#include <string>
+
+#ifdef OT_CASH_USING_LUCRE
+#include "lucre/bank.hpp"  // Lucre
+#endif
+
+#ifdef OT_CASH_USING_MAGIC_MONEY
+#include ...  // someday
+#endif
+
 // *******************************************************************************************
 // WHICH DIGITAL CASH LIBRARY?
 //
@@ -152,64 +162,9 @@
 // be easily added here as options for Open-Transactions.
 
 
-#ifndef OT_CASH_USING_LUCRE
-#define OT_CASH_USING_LUCRE 1
-#endif
 
-// Or, you could comment this out entirely (preferable) and just set the flag
-// via a compiler switch, and just make it purely a makefile option.
+#ifdef OT_CASH_USING_LUCRE
 
-
-// Someday:  OT_CASH_USING_MAGIC_MONEY
-//
-//#ifndef OT_CASH_USING_MAGIC_MONEY
-//#define OT_CASH_USING_MAGIC_MONEY 2
-//#endif
-// *******************************************************************************************
-
-
-
-
-
-// *******************************************************************************************
-// FIRST we'll see if ANY algorithm is set. (Not even one?)
-// Could be more than one...
-//
-#if defined (OT_CASH_USING_MAGIC_MONEY)
-#elif defined (OT_CASH_USING_LUCRE)
-#else  
-
-    // No digital cash lib is defined at all?
-    // Perhaps error message here?
-
-#endif
-// *******************************************************************************************
-
-
-
-
-
-// *******************************************************************************************
-//
-// NEXT We'll have the header data needed by each digital cash algorithm.
-// (There may be more than one, simultaneously.)
-// -------------------------------------------------------------------------------------------
-#if defined (OT_CASH_USING_MAGIC_MONEY)
-//#include "MagicMoney.h"  // MagicMoney
-
-// Todo:  Someday...
-
-#endif
-// *******************************************************************************************
-// We want to support multiple algorithms simultaneously. Thus the #endif above,
-// and between each algorithm...
-//
-#if defined (OT_CASH_USING_LUCRE)
-
-#include <string>
-#include "lucre/bank.hpp"  // Lucre
-
-// ------------------
 class _OT_Lucre_Dumper
 {
     std::string m_str_dumpfile;
@@ -217,28 +172,15 @@ public:
     _OT_Lucre_Dumper();
     ~_OT_Lucre_Dumper();
 };
-// ------------------
 
 #endif
-// *******************************************************************************************
-/*
-#if defined (OT_CASH_USING_BRANDS)
 
-// Etc.
+
+#ifdef OT_CASH_USING_MAGIC_MONEY
+
+// Todo:  Someday...
 
 #endif
-*/
-// *******************************************************************************************
-
-
-
-
-
-
-
-
-
-
 
 
 

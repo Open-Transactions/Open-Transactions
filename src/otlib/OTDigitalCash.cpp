@@ -139,13 +139,19 @@
 #include <OTString.hpp>
 #include <OTPaths.hpp>
 
+
+
+
+
 // -------------------------------------------------------------------------------------------
-#if defined (OT_CASH_USING_MAGIC_MONEY)
+#ifdef OT_CASH_USING_MAGIC_MONEY
+
 
 // Todo:  Someday...
+#endif
 
 // -------------------------------------------------------------------------------------------
-#elif defined (OT_CASH_USING_LUCRE)
+#ifdef OT_CASH_USING_LUCRE
 
 // We don't need this for release builds
 _OT_Lucre_Dumper::_OT_Lucre_Dumper()

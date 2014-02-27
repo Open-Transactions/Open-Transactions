@@ -132,13 +132,11 @@
 #include <fstream>
 #include <cstring>
 
-#include <assert.h>
-
 //static
 OTAssert * OTAssert::s_pOTAssert = new OTAssert(OTAssert::Assert);
 
 OTAssert::OTAssert(fpt_Assert_sz_n_sz &fp1)
-: m_fpt_Assert_szFilename_nLinenumber_szMessage(fp1)
+: m_fpt_Assert(fp1)
 {
 }
 
@@ -146,14 +144,14 @@ size_t OTAssert::m_AssertDefault(const char * szFilename, size_t nLinenumber, co
 {
     if (NULL != szMessage) {
         if (std::strcmp(szMessage, "") != 0) {
-            std::cerr << szMessage;
+            std::cerr << szMessage << "\n";
             std::cerr.flush();
         }
     }
 
     const char * l_szFilename = (NULL != szFilename) ? szFilename : "NULL";
 
-    std::cerr << "OT_ASSERT in " << l_szFilename << " at line " << nLinenumber;
+    std::cerr << "OT_ASSERT in " << l_szFilename << " at line " << nLinenumber << "\n";
     std::cerr.flush();
 
     return 0; // since we are not logging.
@@ -162,6 +160,6 @@ size_t OTAssert::m_AssertDefault(const char * szFilename, size_t nLinenumber, co
 
 //static
 size_t OTAssert::Assert(const char * szFilename, size_t nLinenumber, const char * szMessage){
-    assert(NULL != OTAssert::s_pOTAssert);
-    return OTAssert::s_pOTAssert->m_AssertDefault(szFilename, nLinenumber, szMessage);
+    if (NULL == OTAssert::s_pOTAssert) std::terminate();
+    return OTAssert::s_pOTAssert->m_fpt_Assert(szFilename, nLinenumber, szMessage);
 }

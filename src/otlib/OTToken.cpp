@@ -140,6 +140,7 @@
 #include <OTPaths.hpp>
 #include <OTEnvelope.hpp>
 #include <OTMint.hpp>
+#include <OTDigitalCash.hpp>
 
 
 // The current implementation for withdrawals (using Lucre) requires only a single proto-token

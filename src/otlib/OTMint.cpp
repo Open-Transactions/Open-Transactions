@@ -134,11 +134,16 @@
 
 #include <OTMint.hpp>
 
+#include <OTToken.hpp>
+#include <OTPseudonym.hpp>
+
 #include <OTLog.hpp>
 #include <OTAsymmetricKey.hpp>
 #include <OTPaths.hpp>
 #include <OTAccount.hpp>
 #include <OTMessage.hpp>
+#include <OTDigitalCash.hpp>
+#include <OTEnvelope.hpp>
 
 #include <time.h>
 

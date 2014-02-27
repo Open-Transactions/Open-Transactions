@@ -147,7 +147,7 @@ public:
 
 private:
 
-    fpt_Assert_sz_n_sz * m_fpt_Assert_szFilename_nLinenumber_szMessage;
+    fpt_Assert_sz_n_sz * m_fpt_Assert;
 
     fpt_Assert_sz_n_sz(m_AssertDefault);
 
