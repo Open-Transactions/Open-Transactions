@@ -117,17 +117,17 @@ otlib_sources     =		OTAccount.cpp			\
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 
-otlib_headers		=	$(otlib_headers_dir)/constants.h		\
+otlib_headers		=	$(otlib_headers_dir)/ot_config.h		\
+				$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/fast_mutex.h		\
 				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_dir)/tinythread.h		\
 				$(otlib_headers_dir)/Timer.h			\
 				$(otlib_headers_ext)
 
-otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
-                $(otlib_headers_dir)/ExportWrapper.h		\
+otlib_headers_ext	=	$(otlib_headers_dir)/ExportWrapper.h		\
 				$(otlib_headers_dir)/stacktrace.h		\
-				$(otlib_headers_dir)/stdafx.h		\
+				$(otlib_headers_dir)/stdafx.h			\
 				$(otlib_headers_dir)/OTAccount.h		\
 				$(otlib_headers_dir)/OTAgreement.h		\
 				$(otlib_headers_dir)/OTASCIIArmor.h		\

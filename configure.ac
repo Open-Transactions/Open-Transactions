@@ -1,7 +1,7 @@
 ####### AC-AM Package Preliminaries #######
 
 AC_PREREQ([2.61])
-AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[Fellow-Traveler],[opentxs],[https://github.com/Open-Transactions/Open-Transactions])
+AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[FellowTraveler@rayservers.net],[opentxs],[http://opentransactions.org])
 AC_CONFIG_SRCDIR([src/otd/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 AX_PREFIX_CONFIG_H(include/otlib/ot_config.h)
