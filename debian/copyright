@@ -2,7 +2,7 @@ Format: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?rev=174
 Upstream-Name: opentxs
 Upstream-Contact: Fellow Traveller <FellowTraveler@rayservers.net>
  irc://#opentransactions@freenode.net
-Source: https://github.com/FellowTraveler/Open-Transactions/
+Source: https://github.com/Open-Transactions/Open-Transactions/
 
 Files: *
 Copyright: 2010-2012 Fellow Traveler <FellowTraveler@rayservers.net>

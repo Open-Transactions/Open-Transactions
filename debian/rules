@@ -6,4 +6,4 @@ include /usr/share/cdbs/1/rules/autoreconf.mk
 
 export DEB_BUILD_HARDENING=1
 ## config options, e.g. extra otapi java lib
-## export DEB_CONFIGURE_EXTRA_FLAGS += --with-java
+export DEB_CONFIGURE_EXTRA_FLAGS += --with-script=chai4

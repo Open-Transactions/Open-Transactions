@@ -110,11 +110,11 @@ $ cd opentxs
 $ ./autogen.sh
 $ ./configure
 $ sudo make distcheck
-$ mv opentxs-0.90.b.tar.gz opentxs_0.90.b.orig.tar.gz
-$ tar xf opentxs_0.90.b.orig.tar.gz
-$ cd opentxs-0.90.b
+$ mv opentxs-0.90.c.tar.gz opentxs_0.90.c.orig.tar.gz
+$ tar xf opentxs_0.90.c.orig.tar.gz
+$ cd opentxs-0.90.c
 $ cp -r ../debian .
 $ debuild -us -uc -d
 
 To install deb package:
-$ sudo dpkg -i opentxs_0.90.b_<arch>.deb
+$ sudo dpkg -i opentxs_0.90.c_<arch>.deb
