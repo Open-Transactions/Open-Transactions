@@ -5,6 +5,9 @@
 #include <stdafx.hpp>
 
 #include <OTString.hpp>
+
+#include <cinttypes>
+
 // -----------------------------------------------
 
 #ifdef __cplusplus

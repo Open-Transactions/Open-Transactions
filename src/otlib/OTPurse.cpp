@@ -182,7 +182,7 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
     }
     // -------------------------------------------
     OTCachedKey_SharedPtr pCachedKey(this->GetInternalMaster());
-    OT_ASSERT(NULL != pCachedKey);
+    if (!pCachedKey) OT_FAIL;
     // -------------------------------------------
     const OTString strReason((NULL == szDisplay) ? szFunc : szDisplay);
     // -------------------------------------------
