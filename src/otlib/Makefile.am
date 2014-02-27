@@ -7,10 +7,10 @@ opentxs_source_dir 	=	$(top_srcdir)/src
 
 ## COMMON FLAGS ###
 
-common_includes		=	$(AM_CXXFLAGS)				\
+common_includes		=	$(AM_CXXFLAGS)			\
 				-I$(top_builddir)/include/otlib 	\
 				-I$(opentxs_include_dir)		\
-				-I$(opentxs_include_dir)/otlib		\
+				-I$(opentxs_include_dir)/otlib	\
 				-I$(opentxs_include_dir)/containers	\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
@@ -24,7 +24,7 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 
 libot_la_CXXFLAGS	=	$(common_includes)
 
-libot_la_LIBADD		=	bigint/libbigint.la		\
+libot_la_LIBADD		=	bigint/libbigint.la	\
 				irrxml/libirrxml.la		\
 				lucre/liblucre.la		\
 				otprotob/libotprotob.la		\
@@ -147,40 +147,40 @@ otlib_headers_ext	=	$(otlib_headers_dir)/ExportWrapper.h		\
 				$(otlib_headers_dir)/OTDigitalCash.h		\
 				$(otlib_headers_dir)/OTEnvelope.h		\
 				$(otlib_headers_dir)/OTKeyring.h		\
-				$(otlib_headers_dir)/OTglobal.h			\
+				$(otlib_headers_dir)/OTglobal.h		\
 				$(otlib_headers_dir)/OTIdentifier.h		\
 				$(otlib_headers_dir)/OTInstrument.h		\
 				$(otlib_headers_dir)/OTItem.h			\
-				$(otlib_headers_dir)/OTLedger.h			\
+				$(otlib_headers_dir)/OTLedger.h		\
 				$(otlib_headers_dir)/OTLib.h			\
 				$(otlib_headers_dir)/OTLibPriv.h		\
 				$(otlib_headers_dir)/OTLog.h			\
-				$(otlib_headers_dir)/OTMarket.h			\
+				$(otlib_headers_dir)/OTMarket.h		\
 				$(otlib_headers_dir)/OTMessage.h		\
-				$(otlib_headers_dir)/OTMessageBuffer.h		\
+				$(otlib_headers_dir)/OTMessageBuffer.h	\
 				$(otlib_headers_dir)/OTMint.h			\
-				$(otlib_headers_dir)/OTOffer.h			\
+				$(otlib_headers_dir)/OTOffer.h		\
 				$(otlib_headers_dir)/OTPassword.h		\
-				$(otlib_headers_dir)/OTPaths.h			\
+				$(otlib_headers_dir)/OTPaths.h		\
 				$(otlib_headers_dir)/OTPayload.h		\
 				$(otlib_headers_dir)/OTPayment.h		\
 				$(otlib_headers_dir)/OTPaymentPlan.h		\
 				$(otlib_headers_dir)/OTPseudonym.h		\
-				$(otlib_headers_dir)/OTPurse.h			\
-				$(otlib_headers_dir)/OTScript.h			\
+				$(otlib_headers_dir)/OTPurse.h		\
+				$(otlib_headers_dir)/OTScript.h		\
 				$(otlib_headers_dir)/OTScriptable.h		\
-				$(otlib_headers_dir)/OTServerContract.h		\
+				$(otlib_headers_dir)/OTServerContract.h	\
 				$(otlib_headers_dir)/OTSettings.h		\
 				$(otlib_headers_dir)/OTSignature.h		\
 				$(otlib_headers_dir)/OTSignedFile.h		\
-				$(otlib_headers_dir)/OTSmartContract.h		\
+				$(otlib_headers_dir)/OTSmartContract.h	\
 				$(otlib_headers_dir)/OTStorage.h		\
-				$(otlib_headers_dir)/OTString.h			\
+				$(otlib_headers_dir)/OTString.h		\
 				$(otlib_headers_dir)/OTStringXML.h		\
 				$(otlib_headers_dir)/OTSymmetricKey.h		\
-				$(otlib_headers_dir)/OTToken.h			\
+				$(otlib_headers_dir)/OTToken.h		\
 				$(otlib_headers_dir)/OTTrackable.h		\
-				$(otlib_headers_dir)/OTTrade.h			\
+				$(otlib_headers_dir)/OTTrade.h		\
 				$(otlib_headers_dir)/OTTransaction.h		\
 				$(otlib_headers_dir)/OTTransactionType.h	\
 				$(otlib_headers_dir)/OTWallet.h
@@ -190,13 +190,13 @@ otlib_headers_ext	=	$(otlib_headers_dir)/ExportWrapper.h		\
 containers_headers_dir	=	$(opentxs_include_dir)/containers
 
 containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
-				$(containers_headers_dir)/containers_fixes.hpp	\
+				$(containers_headers_dir)/containers_fixes.hpp\
 				$(containers_headers_dir)/copy_functors.hpp	\
-				$(containers_headers_dir)/digraph.hpp		\
-				$(containers_headers_dir)/digraph.tpp		\
+				$(containers_headers_dir)/digraph.hpp	\
+				$(containers_headers_dir)/digraph.tpp	\
 				$(containers_headers_dir)/exceptions.hpp	\
-				$(containers_headers_dir)/foursome.hpp		\
-				$(containers_headers_dir)/foursome.tpp		\
+				$(containers_headers_dir)/foursome.hpp	\
+				$(containers_headers_dir)/foursome.tpp	\
 				$(containers_headers_dir)/hash.hpp		\
 				$(containers_headers_dir)/hash.tpp		\
 				$(containers_headers_dir)/matrix.hpp		\
@@ -207,8 +207,8 @@ containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 				$(containers_headers_dir)/safe_iterator.tpp	\
 				$(containers_headers_dir)/simple_ptr.hpp	\
 				$(containers_headers_dir)/simple_ptr.tpp	\
-				$(containers_headers_dir)/smart_ptr.hpp		\
-				$(containers_headers_dir)/smart_ptr.tpp		\
+				$(containers_headers_dir)/smart_ptr.hpp	\
+				$(containers_headers_dir)/smart_ptr.tpp	\
 				$(containers_headers_dir)/triple.hpp		\
 				$(containers_headers_dir)/triple.tpp
 
@@ -230,3 +230,7 @@ simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h  \
 
 pkginclude_simpleinidir	=	$(pkgincludedir)/simpleini
 pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
+
+## Extra rule to clean-up temp. ot_config.h
+
+DISTCLEANFILES	= $(top_builddir)/include/otlib/ot_config.h
