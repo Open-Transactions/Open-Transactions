@@ -47,7 +47,7 @@ int OtMeExtra::handle_payment_index(const char * accountId, int32_t paymentIndex
 	code.Format("{ handle_payment_index(\"%s\", %d, \"%s\", \"%s\"); }",
 				accountId, paymentIndex, paymentType, inboxData);
 
-	return ExecuteScript_ReturnInt(code.Get(), __FUNCTION__);
+	return execInt(code.Get());
 }
 
 

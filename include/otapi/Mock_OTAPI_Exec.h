@@ -181,7 +181,7 @@ public:
 	// MOCK_METHOD0(GetTime, time_t ());
 
 	// seriously, Sleep(50) in every SendRequest? Ignore it here. It should be removed
-	//MOCK_METHOD1(Sleep, void(const int64_t & MILLISECONDS));
+	MOCK_METHOD1(Sleep, void(const int64_t & MILLISECONDS));
 
 	MOCK_METHOD1(StringToLong, int64_t (const std::string & strNumber));
 	MOCK_METHOD1(LongToString, std::string (const int64_t & lNumber));

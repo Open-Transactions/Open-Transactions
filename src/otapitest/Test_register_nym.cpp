@@ -21,6 +21,7 @@ TEST_MOCK(register_nym)
 			EXPECT_MOCK_FUNC(index >= 0 ? REQUEST_NUMBER : OT_ERROR, getRequest(SERVER_ID, NYM_ID));
 			if (index >= 0)
 			{
+				EXPECT_MOCK(Sleep(50));
 				EXPECT_MOCK_RET(MESSAGE_DATA2, PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, NYM_ID));
 				EXPECT_MOCK_STR(OT_FALSE, OT_TRUE, Message_GetSuccess(MESSAGE_DATA2));
 				result = index >= 0 ? MESSAGE_DATA : "";

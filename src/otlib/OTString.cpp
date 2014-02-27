@@ -605,7 +605,25 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
 	// --------------
 	return true;
 #else
-	return false;
+	const char * txt = Get();
+	std::string buf = txt;
+	for (int i = 0; txt[i] != 0;)
+	{
+		while (txt[i] == ' ') i++;
+		int k = i;
+		while (txt[i] != ' ' && txt[i] != 0) i++;
+		const std::string key = buf.substr(k, i - k);
+
+		while (txt[i] == ' ') i++;
+		int v = i;
+		while (txt[i] != ' ' && txt[i] != 0) i++;
+		const std::string value = buf.substr(v, i - v);
+		if (key.length() != 0 && value.length() != 0)
+		{
+			mapOutput.insert(std::pair<std::string, std::string>(key, value));
+		}
+	}
+	return true;
 #endif
 }
 // ----------------------------------------------------------------------
