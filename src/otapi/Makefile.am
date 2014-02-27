@@ -195,8 +195,8 @@ if WANT_GO
 lib_LTLIBRARIES			+=	libotapi-go.la
 endif
 
-libotapi_go_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-go.cxx
-	\				$(opentxs_swig_dir)/otapi/OTAPI-go.h
+libotapi_go_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-go.cxx		\
+					$(opentxs_swig_dir)/otapi/OTAPI-go.h
 libotapi_go_la_CXXFLAGS		=	$(common_includes)
 libotapi_go_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
 libotapi_go_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
