@@ -15,6 +15,11 @@ OtMeExtra::~OtMeExtra()
 //	OT_ME::AddVariable(var.GetName().Get(), var);
 //}
 
+const char * OtMeExtra::boolStr(bool bValue)
+{
+	return bValue ? "true" : "false";
+}
+
 void OtMeExtra::exec(const string & script)
 {
 	ExecuteScript_ReturnVoid(script, __FUNCTION__);

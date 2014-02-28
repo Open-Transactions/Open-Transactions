@@ -54,7 +54,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTAPI _Exec.cpp">
+    <ClCompile Include="..\..\src\otapi\OTAPI_Exec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

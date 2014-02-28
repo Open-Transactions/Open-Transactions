@@ -2,6 +2,7 @@
 #include "OtMeTest.hpp"
 
 
+int errorPathway = -1;
 int noAltPathways = INT_MAX;
 
 int OtMeTest::pathways = 0;
