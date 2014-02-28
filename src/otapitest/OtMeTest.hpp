@@ -95,18 +95,18 @@ static const int    ITEM_TYPE_TRANSFER			= 1;
 static const int    ITEM_TYPE_RECEIPT			= 2;
 static const int    LEDGER_COUNT				= 1;
 static const char * LEDGER_DATA					= "LedgerData__________";
-static const char * LEDGER_DATA2				= "LedgerData2_________";
-static const char * LEDGER_DATA3				= "LedgerData3_________";
-static const char * LEDGER_DATA4				= "LedgerData4_________";
-static const char * LEDGER_DATA5				= "LedgerData5_________";
+static const char * LEDGER_DATA2				= "LedgerData_2222_____";
+static const char * LEDGER_DATA3				= "LedgerData_3333_____";
+static const char * LEDGER_DATA4				= "LedgerData_4444_____";
+static const char * LEDGER_DATA5				= "LedgerData_5555_____";
 static const char * MARKET_ID					= "MarketId____________";
 static const char * MEMO_TEXT					= "MemoText____________";
 static const char * MESSAGE_DATA				= "MessageData_________";
-static const char * MESSAGE_DATA2				= "MessageData22222____";
+static const char * MESSAGE_DATA2				= "MessageData_2222____";
 static const char * MINT_DATA					= "MintData____________";
 static const char * NYM_FROM_ID					= "NymFromId___________";
 static const char * NYM_HASH					= "NymHash_____________";
-static const char * NYM_HASH2					= "NymHash_____________";
+static const char * NYM_HASH2					= "NymHash_2222________";
 static const char * NYM_ID						= "NymId_______________";
 static const char * NYM_NAME					= "NymName_____________";
 static const char * NYM_SOURCE					= "NymSource___________";
@@ -156,6 +156,7 @@ class Mock_OTAPI_Exec;
 class OT_ME;
 
 
+extern int errorPathway;
 extern int noAltPathways;
 
 
@@ -187,12 +188,15 @@ public:
 	static void EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const int64_t amount);
 	static void EXPECT_get_payment_instrument(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int paymentIndex, const char * inboxData);
 	static void EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, bool bForced);
+	static void EXPECT_ot_utility_getRequestNumber(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_handle_payment_index(Mock_OTAPI_Exec & mock, int & index, const char * accountId, int paymentIndex, const char * paymentType, const char * inboxData);
 	static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
 	static void EXPECT_load_or_retrieve_contract(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * contractId);
 	static void EXPECT_load_or_retrieve_encrypt_key(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char *nymToId);
+	static void EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
 	static void EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_ot_utility_ReceiveReplyLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
+	static void EXPECT_ot_utility_receiveReplySuccessLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
 
 	void EXPECT_getNymBox(bool bForced);
 	void EXPECT_insureHaveAllBoxReceipts();

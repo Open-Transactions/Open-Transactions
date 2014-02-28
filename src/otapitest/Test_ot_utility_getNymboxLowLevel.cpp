@@ -8,12 +8,7 @@ TEST_MOCK(ot_utility_getNymboxLowLevel)
 
 	EXPECT_MOCK_STR(OT_ERROR, REQUEST_NUMBER, getNymbox(SERVER_ID, NYM_ID));
 
-	OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
-
-	if (index >= 0)
-	{
-		EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
-	}
+	OtMeTest::EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
 
 	ASSERT_MOCK_EQ(OT_ERROR, REQUEST_NUMBER, me.ot_utility_getNymboxLowLevel(SERVER_ID, NYM_ID));
 }
@@ -33,7 +28,5 @@ void OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int &
 
 	EXPECT_MOCK_RET(REQUEST_NUMBER, getNymbox(serverId, nymId));
 
-	EXPECT_ot_utility_ReceiveReplyLowLevel(mock, noAltPathways, serverId, nymId, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
-
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, serverId, nymId, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
 }

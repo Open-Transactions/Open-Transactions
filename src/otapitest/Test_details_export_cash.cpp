@@ -65,7 +65,7 @@ string OtMeExtra::details_export_cash(const char * serverId, const char * nymFro
 
 	OTString code;
 	code.Format("{ details_export_cash(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %s, varRetained); }",
-				serverId, nymFromId, assetId, nymToId, indices, password ? "true" : "false");
+				serverId, nymFromId, assetId, nymToId, indices, boolStr(password));
 
 	const string result = ExecuteScript_ReturnString(code.Get(), __FUNCTION__);
 	if (!result.empty())
