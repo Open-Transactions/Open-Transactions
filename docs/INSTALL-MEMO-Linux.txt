@@ -109,7 +109,7 @@ $ git clone https://github.com/randy-waterhouse/opentxs.git
 $ cd opentxs
 $ ./autogen.sh
 $ ./configure
-$ sudo make distcheck
+$ make distcheck
 $ mv opentxs-0.90.c.tar.gz opentxs_0.90.c.orig.tar.gz
 $ tar xf opentxs_0.90.c.orig.tar.gz
 $ cd opentxs-0.90.c

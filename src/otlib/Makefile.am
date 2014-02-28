@@ -117,8 +117,7 @@ otlib_sources     =		OTAccount.cpp			\
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 
-otlib_headers		=	$(otlib_headers_dir)/ot_config.h		\
-				$(otlib_headers_dir)/constants.h		\
+otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/fast_mutex.h		\
 				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_dir)/tinythread.h		\
@@ -212,9 +211,14 @@ containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 				$(containers_headers_dir)/triple.hpp		\
 				$(containers_headers_dir)/triple.tpp
 
-####	Global Headers for dist.
+####	Global headers for dist.
 
-pkginclude_HEADERS	=	$(otlib_headers_ext)
+pkginclude_HEADERS		=	$(otlib_headers_ext)
+
+## Extra rules to handle special ot_config.h
+
+nodist_pkginclude_HEADERS	= $(top_builddir)/include/otlib/ot_config.h
+DISTCLEANFILES			= $(top_builddir)/include/otlib/ot_config.h
 
 ## Extra to package containers headers
 
@@ -231,6 +235,3 @@ simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h  \
 pkginclude_simpleinidir	=	$(pkgincludedir)/simpleini
 pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
 
-## Extra rule to clean-up temp. ot_config.h
-
-DISTCLEANFILES	= $(top_builddir)/include/otlib/ot_config.h
