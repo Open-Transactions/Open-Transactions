@@ -134,14 +134,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-// -------------------------------------------------------
+#include <OTKeyring.hpp>
 
-#include <string>
+#include <OTLog.hpp>
+#include <OTCachedKey.hpp>
+
+
 
 // ***************************************************************
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)
@@ -226,24 +226,6 @@ extern "C"
 
 
 #endif
-// ***************************************************************
-
-
-// OPEN-TRANSACTIONS HEADERS...
-
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-#include "OTEnvelope.h"
-#include "OTAsymmetricKey.h"
-#include "OTCachedKey.h"
-
-#include "OTKeyring.h"
-
-#include "OTLog.h"
-
 
 // ***************************************************************
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)

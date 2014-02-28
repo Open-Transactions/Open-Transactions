@@ -130,49 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iomanip>
-#include <cstring>
+#include <OTLedger.hpp>
 
-//#include <set> // in header now.
-
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTIdentifier.h"
-#include "OTAccount.h"
-#include "OTPayload.h"
-#include "OTMessage.h"
-#include "OTStringXML.h"
-
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
-
-#include "OTCheque.h"
-#include "OTPayment.h"
-#include "OTEnvelope.h"
-
-#include "OTPseudonym.h"
-#include "OTLog.h"
-
-
-#ifndef _WIN32
-#include "stacktrace.h"
-#endif
-
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTCheque.hpp>
+#include <OTPayment.hpp>
+#include <OTPseudonym.hpp>
+#include <OTMessage.hpp>
+#include <OTEnvelope.hpp>
 
 
 
@@ -2175,7 +2144,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                 //
                 const OTString strLoopNodeName = xml->getNodeName();
                 
-				if (strLoopNodeName.Exists() && (xml->getNodeType() == EXN_ELEMENT) && (strExpected.Compare(strLoopNodeName)))
+				if (strLoopNodeName.Exists() && (xml->getNodeType() == irr::io::EXN_ELEMENT) && (strExpected.Compare(strLoopNodeName)))
 				{
 					long lNumberOfOrigin	= 0;
 					long lTransactionNum	= 0;
@@ -2354,7 +2323,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		}
 		// -----------------------------------------------
 		
-		if (EXN_TEXT == xml->getNodeType())
+        if (irr::io::EXN_TEXT == xml->getNodeType())
 		{
 			// the ledger contains a series of transactions.
 			// Each transaction is initially stored as an OTASCIIArmor string.

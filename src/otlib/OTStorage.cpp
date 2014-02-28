@@ -124,27 +124,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstdio>
+#include <OTStorage.hpp>
 
-#include <iostream>
-#include <sstream>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPayload.hpp>
 
-
-// credit:stlplus library.
-#include "containers/simple_ptr.hpp"
-
-
-#include "OTStorage.h"
-
-#include "OTASCIIArmor.h"
-
-#include "OTData.h"
-#include "OTPayload.h"
-
-#include "OTLog.h"
-
+#include <fstream>
 
 /*
  

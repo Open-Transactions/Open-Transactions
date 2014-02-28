@@ -130,48 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
-#include <cstdlib>
+#include <OTASCIIArmor.hpp>
 
+#include <OTPayload.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+
+#include <iostream>
+#include <sstream>
 #include <fstream>
 
-// for std::fill
-#include <algorithm>
-
-
-extern "C"
-{
-#include <stdint.h>  //uint8_t
-}
-
-
-#include <string>
-#include <stdexcept>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-
 #include <zlib.h>
-
-
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTString.h"
-
-#include "OTCrypto.h"
-#include "OTEnvelope.h"
-
-#include "OTPayload.h"
-#include "OTASCIIArmor.h"
-
-#include "OTPassword.h"
-
-
-#include "OTLog.h"
 
 
 // ----------------------------------------------------------------------
@@ -348,7 +319,7 @@ std::string compress_string(const std::string& str,
         throw(std::runtime_error("deflateInit failed while compressing."));
     
     zs.next_in = (Bytef*)str.data();
-    zs.avail_in = str.size();           // set the z_stream's input
+    zs.avail_in = static_cast<uInt>(str.size());           // set the z_stream's input
     
     int ret;
     char outbuffer[32768];
@@ -389,7 +360,7 @@ std::string decompress_string(const std::string& str)
         throw(std::runtime_error("inflateInit failed while decompressing."));
     
     zs.next_in = (Bytef*)str.data();
-    zs.avail_in = str.size();
+    zs.avail_in = static_cast<uInt>(str.size());
     
     int ret;
     char outbuffer[32768];
@@ -816,7 +787,8 @@ bool OTASCIIArmor::SetAndPackString(const OTString & strData, bool bLineBreaks) 
     if (str_compressed.size())
 	{
 		// Now let's base-64 encode it...
-        char * pString = OTCrypto::It()->Base64Encode((const uint8_t*)(str_compressed.data()), str_compressed.size(), bLineBreaks);
+        // TODO: remove static cast, add check for longer than 'int' length? (da2ce7)
+        char * pString = OTCrypto::It()->Base64Encode((const uint8_t*)(str_compressed.data()), static_cast<int>(str_compressed.size()), bLineBreaks);
 		
 		if (pString)
 		{

@@ -130,12 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-// size_t
-#include <cstddef>
+#include <OTPassword.hpp>
 
-#include <iostream>
+#include <OTAssert.hpp>
+#include <OTString.hpp>
+#include <OTLog.hpp>
+#include <OTCrypto.hpp>
+
+//// size_t
+//#include <cstddef>
+//
+//#include <iostream>
 
 #ifdef _WIN32
 #include <WinsockWrapper.h>
@@ -144,9 +151,6 @@
 // ------------------------------
 // For SecureZeroMemory
 #ifdef _WIN32
-
-//#include "Windows.h"
-// ------------------------------
 #else // not _WIN32
 
 // for mlock and munlock
@@ -170,13 +174,13 @@
 #endif
 
 // ---------------------------------------------------------
-
-#include "OTPassword.h"
-
-#include "OTString.h"
-#include "OTCrypto.h"
-
-#include "OTLog.h"
+//
+//#include "OTPassword.h"
+//
+//#include "OTString.h"
+//#include "OTCrypto.h"
+//
+//#include "OTLog.h"
 
 // ---------------------------------------------------------
 // For everything but Windows:

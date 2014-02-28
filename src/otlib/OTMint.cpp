@@ -130,29 +130,22 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include "irrxml/irrXML.h"
+#include <OTMint.hpp>
 
+#include <OTToken.hpp>
+#include <OTPseudonym.hpp>
 
-#include "OTStorage.h"
+#include <OTLog.hpp>
+#include <OTAsymmetricKey.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTMessage.hpp>
+#include <OTDigitalCash.hpp>
+#include <OTEnvelope.hpp>
 
-#include "OTContract.h"
-#include "OTAccount.h"
-#include "OTToken.h"
-#include "OTMint.h"
-#include "OTAsymmetricKey.h"
-#include "OTEnvelope.h"
-#include "OTPseudonym.h"
-#include "OTASCIIArmor.h"
-#include "OTMessage.h"
-
-#include "OTLog.h"
-
-// -------------------------------------------------------------------------
-
-using namespace irr;
-using namespace io;
+#include <time.h>
 
 // -------------------------------------------------------------------------
 //static
@@ -840,7 +833,7 @@ void OTMint::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMint::ProcessXMLNode(IrrXMLReader*& xml)
+int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     OT_ASSERT(NULL != m_pKeyPublic);
 

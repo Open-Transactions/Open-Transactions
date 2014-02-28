@@ -130,25 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
-
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
+#include <OTTrackable.hpp>
 
 
 
-#include "OTStorage.h"
-
-
-#include "OTTrackable.h"
 
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
-
 
 
 OTTrackable::OTTrackable() : 

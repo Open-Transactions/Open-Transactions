@@ -132,27 +132,13 @@ This is a wrapper for OT_ME
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
-#include <ExportWrapper.h>
-#endif
+#include <OTMadeEasy.hpp>
 
-#include <string>
+#include <OT_ME.hpp>
+#include <OTAPI.hpp>
 
-
-
-#include "OTMadeEasy.h"
-#include "OTAPI.h"
-#include "OT_ME.h"
-
-#include "OTLog.h"
-
-
-using namespace std;
 
 
 OTMadeEasy::OTMadeEasy() : m_pME(new OT_ME)

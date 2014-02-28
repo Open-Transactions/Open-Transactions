@@ -130,62 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
+#include <OTAsymmetricKey.hpp>
 
-// -------------------------------------------------------------------
+#include <OTPassword.hpp>
+#include <OTAssert.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTLog.hpp>
+#include <OTCredential.hpp>
+#include <OTPayload.hpp>
+#include <OTCrypto.hpp>
+#include <OTSignature.hpp>
 
+#include <stacktrace.h>
 
-extern "C"
-{
-#include <memory.h>
-}
-
-// -----------------------------------------------------------------------
-
-#include <cstdio>
-#include <cstring>
-#include <cmath>
-
-// ----------------------------------------------------------------------
-
-#include <string>
-#include <iostream>
-
-// -----------------------------------------------------------------
-
-extern "C" 
-{
-#ifdef _WIN32
-//#include "Windows.h"
-#include <conio.h>
-#else
-#include <pwd.h>
-#include <unistd.h>
-#endif
-
-#include <stdint.h>
-}
-
-#include "stacktrace.h"
-
-// --------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTPayload.h"
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTSignature.h"
-#include "OTAsymmetricKey.h"
-#include "OTCredential.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-#include "OTPayload.h"
-#include "OTASCIIArmor.h"
-
-#include "OTLog.h"
 
 // -------------------------------------------------------------------------------------------
 
@@ -466,7 +425,7 @@ void OTAsymmetricKey_OpenSSL::SetX509(X509 * x509)
 
 void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey/*=false*/, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 { 
-	Release();
+	this->Release();
     OTPasswordData thePWData(NULL == pImportPassword ?
                              "Enter your wallet's master passphrase. (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)" :
                              "Enter your exported Nym's passphrase.  (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)");
@@ -801,7 +760,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordD
 {
     // ----------------------------------------
 	// Create a new memory buffer on the OpenSSL side
-	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());    
+	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());
 	OT_ASSERT_MSG(NULL != bmem, "OTAsymmetricKey_OpenSSL::CopyPublicKey: ASSERT: NULL != bmem");
     
     EVP_PKEY * pReturnKey = NULL;
@@ -2223,7 +2182,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
         // Global one.
         pCachedKey = OTCachedKey::It(); // Used to only use this one (global one) but now I allow pPWData to contain a pointer to the exact instance. (To enable multiple instances...) If that's not found then here we set it to the global one.
     }
-    OT_ASSERT(NULL != pCachedKey);
+    if (!pCachedKey) OT_FAIL;
     // -------------------------------------
     const bool b1 = pPWData->isForNormalNym();
     const bool b3 = !(pCachedKey->isPaused());

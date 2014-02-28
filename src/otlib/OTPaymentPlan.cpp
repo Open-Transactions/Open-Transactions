@@ -131,28 +131,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPaymentPlan.hpp>
 
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTAccount.h"
-#include "OTLedger.h"
-#include "OTTransaction.h"
-#include "OTItem.h"
-
-#include "OTCron.h"
-#include "OTPaymentPlan.h"
-#include "OTLog.h"
-
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTCron.hpp>
+#include <OTAccount.hpp>
+#include <OTLedger.hpp>
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.

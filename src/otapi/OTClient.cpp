@@ -130,57 +130,30 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
+#include <OTClient.hpp>
+
+#ifndef IMPORT
+#define IMPORT
 #endif
-// ---------------------------------------------------------------------------
 
-#include <sstream>
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTOffer.hpp>
+#include <OTPaths.hpp>
+#include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTTrade.hpp>
+#include <OTWallet.hpp>
 
-// ---------------------------------------------------------------------------
-
-//#include "ot_default_paths.h"
-
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTContract.h"
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-
-#include "OTAccount.h"
-
-
-#include "OTMessage.h"
-#include "OTPayload.h"
-#include "OTEnvelope.h"
-#include "OTItem.h"
-
-#include "OTLedger.h"
-
-#include "OTMint.h"
-
-#include "OTPurse.h"
-#include "OTBasket.h"
-
-#include "OTTransaction.h"
-
-#include "OTCheque.h"
-#include "OTPayment.h"
-
-#include "OTWallet.h"
-
-#include "OTOffer.h"
-#include "OTTrade.h"
-#include "OTPaymentPlan.h"
-
-#include "OTClient.h"
-#include "OTLog.h"
+#include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
 
 int OTClient::CalcReturnVal(const long & lRequestNumber)

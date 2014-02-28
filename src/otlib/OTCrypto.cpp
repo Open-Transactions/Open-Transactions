@@ -135,18 +135,31 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <string>
+#include <OTCrypto.hpp>
 
-// ----------------------------
+#include <OTPaths.hpp>
+#include <OTAssert.hpp>
+#include <OTPassword.hpp>
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTAsymmetricKey.hpp>
+#include <OTStorage.hpp>
+#include <OTPseudonym.hpp>
+#include <OTSignature.hpp>
+
+
+#include <bigint/BigIntegerLibrary.hh>
+
+#include <vector>
+
+
+#include "stacktrace.h"
 
 extern "C"
 {    
 #ifdef _WIN32
-//#include <WinSock.h>
-#include <sys/timeb.h>
-    
 #else
 #include <arpa/inet.h>          // For htonl()
 #include <unistd.h>
@@ -155,34 +168,7 @@ extern "C"
 #include <sys/resource.h>
 #endif
 }
-// ----------------------------
 
-#include "stacktrace.h"
-
-// ----------------------------
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
-
-using namespace tthread;
-
-// ----------------------------
-
-#include "OTStorage.h"
-
-#include "OTCrypto.h"
-#include "OTPassword.h"
-#include "OTIdentifier.h"
-#include "OTAsymmetricKey.h"
-#include "OTPseudonym.h"
-#include "OTSignature.h"
-
-#include "OTLog.h"
-
-// ------------------------------------------
-
-#include <bigint/BigIntegerLibrary.h>
 
 // ********************************************************************************
 

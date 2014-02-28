@@ -129,7 +129,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
+
+#include <main.hpp>
+
+#include <OTServer.hpp>
+
+#ifndef IMPORT
+#define IMPORT
+#endif
+
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTMessage.hpp>
+#include <OTEnvelope.hpp>
+
+#include <OTCachedKey.hpp>
+
+#include <zmq.hpp>
 
 // TODO: what about android for all the defaults here? Are there ini files in android? Revisit.
 // so far, treating it like unix since it is.
@@ -139,183 +156,20 @@
 #define SERVER_PATH_DEFAULT	"server_data" //should get programmatically
 #define SERVER_CONFIG_KEY	"server" //should get programmatically
 
-// ----------------------------------------------------------------
 
-
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-
-#include <iostream>
-#include <list>
-#include <string>
-//#include <unistd.h>
-
-
-#include <zmq.hpp>
-
-//#include "zhelpers.hpp"
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-
-#ifdef _WIN32
-#include <Shlobj.h>
-#endif
-
-extern "C" 
-{
-#ifdef _WIN32
-#else
-#include <netinet/in.h>
-#endif
-}
-
-// ------------------------------------
-
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include "simpleini/SimpleIni.h"
-#include "Timer.h"
-
-// ---------------------------------------------------------------------------
-
-//#include "ot_default_paths.h"
-
-// ---------------------------------------------------------------------------
-
-//#include "XmlRpc.h"
-
-#include "OTStorage.h"
-
-#include "main.h"
-
-#include "OTMessage.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-
-#include "OTServer.h"
-
-#include "OTLog.h"
+//extern "C" 
+//{
+//#ifdef _WIN32
+//#else
+//#include <netinet/in.h>
+//#endif
+//}
 
 
 // true  == YES, DISCONNECT m_pSocket, something must have gone wrong.
 // false ==  NO, do NOT disconnect m_pSocket, everything went wonderfully!
 //
 bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, std::string & str_Reply);
-
-// -------------------------------------------------------------
-
-//using namespace XmlRpc;
-
-
-// The HTTP server
-//XmlRpcServer theXmlRpcServer; // This object handles the network transport. (Over HHTP, in this case.)
-
-
-// The Open Transactions server
-//OTServer * g_pServer = NULL;  // This object handles all the actual OT notarization processing.
-
-
-// -------------------------------------------------------------
-
-// This function is called for every OT Message that is sent for processing.
-// One argument is passed, and a result string is passed back.
-//
-/*
-class OT_XML_RPC : public XmlRpcServerMethod
-{
-public:
-	OT_XML_RPC(XmlRpcServer* s) : XmlRpcServerMethod("OT_XML_RPC", s) 
-	{
-		// Do I need to do anything here? Doubt it.
-	}
-	
-	void execute(XmlRpcValue& params, XmlRpcValue& result)
-	{
-		OT_ASSERT(NULL != g_pServer);
-		
-		// return value.
-		std::string resultString = ""; // Whatever we put in this string is what will get returned.
-		
-		// First we grab the client's message (it's the first parameter.)
-		std::string str_Message = std::string(params[0]); // Here I read the string containing the message.
-		OTASCIIArmor ascMessage = str_Message.c_str();
-		
-		// ----------------------------------------------------------------------
-		
-		OTMessage theMsg, theReply; // we'll need these in a sec...
-
-		OTEnvelope theEnvelope(ascMessage); // Now the base64 is decoded and the envelope is in binary form again.
-		if (ascMessage.Exists())
-		{
-			OTLog::Output(2, "Successfully retrieved envelope from XmlRpc argument string...\n");
-			
-			OTString strEnvelopeContents;
-			
-			// Decrypt the Envelope.    
-			if (theEnvelope.Open(g_pServer->GetServerNym(), strEnvelopeContents)) // now strEnvelopeContents contains the decoded message.
-			{
-				// All decrypted--now let's load the results into an OTMessage.
-				// No need to call theMsg.ParseRawFile() after, since
-				// LoadContractFromString handles it.
-				//
-				if (strEnvelopeContents.Exists() && theMsg.LoadContractFromString(strEnvelopeContents))
-				{
-					
-					// In case you want to see all the incoming messages...
-//					OTLog::vOutput(0, "%s\n\n", strEnvelopeContents.Get());
-					
-					// By constructing this without a socket, I put it in XmlRpc/http mode, instead of tcp/ssl.
-					OTClientConnection theClient(*g_pServer); 
-
-					// By optionally passing in &theClient, the client Nym's public key will be
-					// set on it whenever verification is complete. (So for the reply, I'll 
-					// have the key and thus I'll be able to encrypt reply to the recipient.)
-					if (g_pServer->ProcessUserCommand(theMsg, theReply, &theClient))	
-					{	
-						// At this point the reply is ready to go, and theClient has the public key of the recipient...
-						
-						OTLog::vOutput(0, "Successfully processed user command: %s.\n", theMsg.m_strCommand.Get());
-						
-						// The transaction is now processed, and the server's reply message is in theReply.
-						// Let's seal it up to the recipient's nym (in an envelope) and send back to the user...
-						OTEnvelope theRecipientEnvelope;
-						
-						bool bSealed = theClient.SealMessageForRecipient(theReply, theRecipientEnvelope);
-
-						if (bSealed)
-						{
-							OTASCIIArmor ascReply(theRecipientEnvelope);
-							resultString = ascReply.Get();
-						}
-						else
-							OTLog::Output(0, "Unable to seal envelope in OT_XML_RPC.\n");
-					}
-					else
-						OTLog::Output(0, "Unable to process user command in OT_XML_RPC.\n");
-				}
-				else 
-					OTLog::Error("Error loading message from envelope contents.\n");
-			}
-			else 
-				OTLog::Error("Unable to open envelope.\n");
-		}
-		else 
-			OTLog::Error("Error retrieving envelope from rpc.\n");
-
-
-	// ----------------------------------------------------------------------
-			
-		result = resultString;
-		
-	}
-} theOTXmlRpc(&theXmlRpcServer);
-*/
-
-	
 
 
 #define	DEFAULT_LATENCY_SEND_MS				5000

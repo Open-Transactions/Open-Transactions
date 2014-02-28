@@ -130,29 +130,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTCronItem.hpp>
 
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTTrade.hpp>
+#include <OTSmartContract.hpp>
+#include <OTCron.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
 
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
-
-#include "OTStorage.h"
-
-
-#include "OTPseudonym.h"
-#include "OTLedger.h"
-#include "OTCronItem.h"
-#include "OTAgreement.h"
-#include "OTPaymentPlan.h"
-#include "OTTrade.h"
-#include "OTAccount.h"
-#include "OTSmartContract.h"
-#include "OTCron.h"
-#include "OTLog.h"
 
 
 // Base class for OTTrade and OTAgreement and OTPaymentPlan.

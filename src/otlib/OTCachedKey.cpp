@@ -130,31 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-// ------------------------------------------------------------------------
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
+#include <OTCachedKey.hpp>
 
+#include <OTSymmetricKey.hpp>
+#include <OTString.hpp>
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPassword.hpp>
+#include <OTCrypto.hpp>
+#include <OTKeyring.hpp>
+#include <OTAsymmetricKey.hpp>
+
+#include "tinythread.hpp"   // These are in the header already.
 using namespace tthread;
 
-// ----------------------------
-
-#include "OTStorage.h"
-
-#include "OTASCIIArmor.h"
-#include "OTIdentifier.h"
-#include "OTPassword.h"
-#include "OTCrypto.h"
-#include "OTKeyring.h"
-#include "OTAsymmetricKey.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-
-#include "OTLog.h"
-// ------------------------------------------------------------------------
 
 
 #define OT_DEFAULT_PASSWORD "test"
@@ -170,15 +162,6 @@ tthread::mutex  OTCachedKey::s_mutexCachedKeys;
 mapOfCachedKeys OTCachedKey::s_mapCachedKeys;
 
 // ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1089,8 +1072,8 @@ void OTCachedKey::ThreadTimeout(void * pArg)
     OTCachedKey_SharedPtr * pthreadSharedPtr = static_cast<OTCachedKey_SharedPtr *>(pArg);
     OTCachedKey_SharedPtr   pMyself = *pthreadSharedPtr;
     
-    OT_ASSERT_MSG((NULL != pMyself),
-                  "OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n");
+    if (!pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
+
     // --------------------------------------
 //    tthread::lock_guard<tthread::mutex> lock(*(pMyself->GetMutex())); // Multiple threads can't get inside here at the same time.
     // --------------------------------------

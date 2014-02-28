@@ -19,7 +19,7 @@ echo:
 goto :define
 
 :define
-SET SWIG_VER=2.0.11
+SET SWIG_VER=2.0.12
 SET SWIG_EXE=swig.exe
 SET SWIG_DIR=swigwin-%SWIG_VER%
 SET SWIG_DIR_PATH=..\%SWIG_DIR%
@@ -122,11 +122,13 @@ FOR %%x IN (csharp java perl5 php python ruby tcl d go) DO (
 	)
 	
 	for %%y IN (cpp cxx) DO (
-		IF EXIST "%OT_API_BASE%_wrap.%%y" SED -i s/"OTAPI_wrap.h"/"OTAPI-%%x.h"/g "%OT_API_BASE%_wrap.%%y"
+		IF EXIST "%OT_API_BASE%_wrap.%%y" SED -i s/"OTAPI_wrap.h"/"OTAPI-%%x.hpp"/g "%OT_API_BASE%_wrap.%%y"
 	)
 
-	for %%z IN (cpp cxx h) DO (
+	for %%z IN (cpp cxx hpp) DO (
+		IF EXIST "%OT_API_BASE%_wrap.h" MOVE /Y "%OT_API_BASE%_wrap.h" "%OT_API_BASE%-%%x.hpp"
 		IF EXIST "%OT_API_BASE%_wrap.%%z" MOVE /Y "%OT_API_BASE%_wrap.%%z" "%OT_API_BASE%-%%x.%%z"
+		
 	)
 )
 goto :done

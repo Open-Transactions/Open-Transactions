@@ -5,7 +5,7 @@ noinst_LTLIBRARIES = liblucre.la
 
 lucre_headers_dir	=	$(top_srcdir)/include/lucre
 
-lucre_headers		=	$(lucre_headers_dir)/bank.h
+lucre_headers		=	$(lucre_headers_dir)/bank.hpp
 
 lucre_sources		=	bankimp.cpp
 

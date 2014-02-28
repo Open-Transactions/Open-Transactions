@@ -14,8 +14,8 @@
  
  */
 
-#include "BigIntegerUtils.h"
-#include "BigUnsignedInABase.h"
+#include "BigIntegerUtils.hh"
+#include "BigUnsignedInABase.hh"
 
 // ---------------------------------
 

@@ -130,25 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPayload.hpp>
 
-
-#include "OTDataCheck.h"
-
-#include "irrxml/irrXML.h"
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTString.h"
-#include "OTIdentifier.h"
-
-#include "OTPayload.h"
-#include "OTEnvelope.h"
-#include "OTMessage.h"
-#include "OTLog.h"
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTDataCheck.hpp>
+#include <OTMessage.hpp>
 
 
 OTPayload::OTPayload() : OTData()
@@ -228,7 +217,7 @@ bool OTPayload::SetEnvelope(const OTEnvelope & theEnvelope)
 
 
 
-bool OTPayload::SetMessage(const OTMessage & theMessage)
+bool OTPayload::SetMessagePayload(const OTMessage & theMessage)
 {
 	uint32_t lSize = theMessage.m_strRawFile.GetLength()+1; //+1 for the null terminater
 	
@@ -290,15 +279,8 @@ bool OTPayload::GetEnvelope(OTEnvelope & theEnvelope) const
 	}	
 }
 
-#ifdef _WIN32
-bool OTPAYLOAD_GetMessage(OTPayload & thePayload, OTMessage & theMessage)
-{
-	return thePayload.GetMessage(theMessage);
-}
-#endif
-
 // Message retrieved from Payload
-bool OTPayload::GetMessage(OTMessage & theMessage) const
+bool OTPayload::GetMessagePayload(OTMessage & theMessage) const
 {
 	// validate checksum
 	uint32_t lSize	= GetSize();

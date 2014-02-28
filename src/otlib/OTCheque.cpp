@@ -130,20 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTCheque.hpp>
 
+#include <OTString.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTLog.hpp>
 
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTCheque.h"
-#include "OTLog.h"
 
 
 void OTCheque::UpdateContents()

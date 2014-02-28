@@ -131,58 +131,39 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
+#include <OTContract.hpp>
 
+#include <OTAssert.hpp>
+#include <OTAssetContract.hpp>
+#include <OTAsymmetricKey.hpp>
+#include <OTCheque.hpp>
+#include <OTCrypto.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTOffer.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPseudonym.hpp>
+#include <OTServerContract.hpp>
+#include <OTSignature.hpp>
+#include <OTSignedFile.hpp>
+#include <OTSmartContract.hpp>
+#include <OTStorage.hpp>
+#include <OTToken.hpp>
+#include <OTTrade.hpp>
 
-#include <cstdio>	
-#include <cstring>
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-
-#include "OTData.h"
-#include "OTString.h"
-#include "OTIdentifier.h"
-
-#include "OTStringXML.h"
-
-
-#include "OTStorage.h"
-
-#include "OTPseudonym.h"
-#include "OTContract.h"
-#include "OTLog.h"
-
-#include "OTAgreement.h"
-#include "OTPaymentPlan.h"
-#include "OTSmartContract.h"
-#include "OTTrade.h"
-#include "OTOffer.h"
-#include "OTAccount.h"
-#include "OTCheque.h"
-#include "OTMessage.h"
-#include "OTLedger.h"
-#include "OTTransaction.h"
-#include "OTItem.h"
-#include "OTMint.h"
-#include "OTPurse.h"
-#include "OTSignedFile.h"
-#include "OTToken.h"
-#include "OTServerContract.h"
-#include "OTAssetContract.h"
-
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
+
+#include <locale>
+#include <fstream>
+
 
 
 //static

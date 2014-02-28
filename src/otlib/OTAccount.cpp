@@ -130,71 +130,36 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OTAccount.hpp>
+
+#include <OTAssert.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTPayload.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
+
+#include <ostream>
+#include <sstream>
+#include <iomanip>
+#include <fstream>
 
 #ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-
-
-
-extern "C" 
-{
-
-#ifdef _WIN32
-#include <sys/timeb.h>
-#include <sys/types.h>
+#include <time.h>
 #include <Mmsystem.h>
-//#include <winsock.h>
-	/*
-void gettimeofday(struct timeval* t,void* timezone)
-{       struct _timeb timebuffer;
-        _ftime64_s( &timebuffer );
-        t->tv_sec=timebuffer.time;
-        t->tv_usec=1000*timebuffer.millitm;
-}
-*/
-
-int gettimeofday
-      (struct timeval* tp, void* tzp) {
-    DWORD t;
-    t = timeGetTime();
-    tp->tv_sec = t / 1000;
-    tp->tv_usec = t % 1000;
-    /* 0 indicates success. */
-    return 0;
-}
 #else
 #include <unistd.h>
 #include <sys/time.h>
 #endif
-}
 
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <iomanip>
-#include <cstring>
-
-#include "irrxml/irrXML.h"
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPayload.h"
-#include "OTAccount.h"
-#include "OTLedger.h"
-#include "OTPayload.h"
-#include "OTMessage.h"
-#include "OTStringXML.h"
-#include "OTPseudonym.h"
-#include "OTLog.h"
 
 
 char const * const __TypeStrings[] = 
@@ -547,46 +512,56 @@ bool OTAccount::VerifyOwnerByID(const OTIdentifier & theNymID) const
 
 char* myGetTimeOfDay(char* buffer, int bufferLength)
 {
-	using namespace std;
+    using namespace std;
 
-	OT_ASSERT(NULL != buffer);
-	
-	// this const was part of a class...
-	const int getTimeOfDayBufferLength = 27;
-	
-	if (bufferLength<getTimeOfDayBufferLength)
-	{
-		buffer[0] = '\0';
-	}
-	else
-	{
-		timeval tv;
-		gettimeofday( &tv, NULL );
+    OT_ASSERT(NULL != buffer);
 
+    // this const was part of a class...
+    const int getTimeOfDayBufferLength = 27;
+
+    if (bufferLength < getTimeOfDayBufferLength)
+    {
+        buffer[0] = '\0';
+    }
+    else
+    {
+        timeval tv;
 #ifdef _WIN32
-		time_t temp_Time = tv.tv_sec;
-		strftime( buffer, 20,
-				 "%Y/%m/%d %H:%M:%S", localtime(&temp_Time ));
+        {
+            DWORD t;
+            t = timeGetTime();
+            tv.tv_sec = t / 1000;
+            tv.tv_usec = t % 1000;
+        }
 #else
-		strftime( buffer, 20,
-				 "%Y/%m/%d %H:%M:%S", localtime(&tv.tv_sec) );
+        gettimeofday( &tv, NULL );
 #endif
-		ostringstream ostr;
-		ostr << ':' << setfill('0') << setw(6) << tv.tv_usec
-		<< ends;
-        
-        const std::string str_temp = ostr.str();
-		const char* sp = str_temp.c_str();
+
 
 #ifdef _WIN32
-		strcat_s(buffer, strlen(sp), sp);
+        time_t temp_Time = tv.tv_sec;
+        strftime(buffer, 20,
+            "%Y/%m/%d %H:%M:%S", localtime(&temp_Time));
 #else
-		strlcat(buffer, sp, strlen(sp));
+        strftime( buffer, 20,
+            "%Y/%m/%d %H:%M:%S", localtime(&tv.tv_sec) );
+#endif
+        ostringstream ostr;
+        ostr << ':' << setfill('0') << setw(6) << tv.tv_usec
+            << ends;
+
+        const std::string str_temp = ostr.str();
+        const char* sp = str_temp.c_str();
+
+#ifdef _WIN32
+        strcat_s(buffer, strlen(sp), sp);
+#else
+        strlcat(buffer, sp, strlen(sp));
 #endif		
-		
-//		delete [] sp; // wtf is this? Am I supposed to delete this? commenting it out for now. weird to see this here.
-	}
-	return buffer;
+
+        //		delete [] sp; // wtf is this? Am I supposed to delete this? commenting it out for now. weird to see this here.
+    }
+    return buffer;
 }
 
 

@@ -5,13 +5,13 @@ noinst_LTLIBRARIES = libbigint.la
 
 bigint_headers_dir	=	$(top_srcdir)/include/bigint
 
-bigint_headers		=	$(bigint_headers_dir)/BigInteger.h		\
-				$(bigint_headers_dir)/BigIntegerAlgorithms.h	\
-				$(bigint_headers_dir)/BigIntegerLibrary.h	\
-				$(bigint_headers_dir)/BigIntegerUtils.h		\
-				$(bigint_headers_dir)/BigUnsigned.h		\
-				$(bigint_headers_dir)/BigUnsignedInABase.h	\
-				$(bigint_headers_dir)/NumberlikeArray.h
+bigint_headers		=	$(bigint_headers_dir)/BigInteger.hh		\
+				$(bigint_headers_dir)/BigIntegerAlgorithms.hh	\
+				$(bigint_headers_dir)/BigIntegerLibrary.hh	\
+				$(bigint_headers_dir)/BigIntegerUtils.hh		\
+				$(bigint_headers_dir)/BigUnsigned.hh		\
+				$(bigint_headers_dir)/BigUnsignedInABase.hh	\
+				$(bigint_headers_dir)/NumberlikeArray.hh
 
 bigint_sources		=	BigInteger.cc			\
 				BigIntegerAlgorithms.cc		\

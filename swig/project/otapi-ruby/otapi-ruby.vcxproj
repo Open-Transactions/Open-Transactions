@@ -22,7 +22,7 @@
     <ClCompile Include="..\..\otapi\OTAPI-ruby.cxx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\otapi\OTAPI-ruby.h" />
+    <ClInclude Include="..\..\otapi\OTAPI-ruby.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C7F61F18-3D7F-4B24-9A92-B67EBC22F49A}</ProjectGuid>
@@ -120,6 +120,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>bigint.lib;irrxml.lib;lucre.lib;simpleini.lib;libzmq.lib;libprotobuf.lib;otapi.lib;otlib.lib;ws2_32.lib;winmm.lib;libeay32MDd.lib;ssleay32MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent />
@@ -132,6 +133,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>bigint.lib;irrxml.lib;lucre.lib;simpleini.lib;libzmq.lib;libprotobuf.lib;otapi.lib;otlib.lib;ws2_32.lib;winmm.lib;libeay32MDd.lib;ssleay32MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent />
@@ -148,6 +150,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>bigint.lib;irrxml.lib;lucre.lib;simpleini.lib;libzmq.lib;libprotobuf.lib;otapi.lib;otlib.lib;ws2_32.lib;winmm.lib;libeay32MD.lib;ssleay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent />
@@ -164,6 +167,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>bigint.lib;irrxml.lib;lucre.lib;simpleini.lib;libzmq.lib;libprotobuf.lib;otapi.lib;otlib.lib;ws2_32.lib;winmm.lib;libeay32MD.lib;ssleay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent />

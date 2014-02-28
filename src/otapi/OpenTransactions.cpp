@@ -137,123 +137,47 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OpenTransactions.hpp>
+#include <OTClient.hpp>
+#include <OTAPI.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
 
-#include <ctime>
-#include <cstdlib>
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTOffer.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
+#include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTSmartContract.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTTrade.hpp>
+#include <OTWallet.hpp>
 
-#include <string>
-#include <iostream>
 #include <fstream>
 
- // credit:stlplus library.
-#include "containers/simple_ptr.hpp"
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
+#include "simpleini/SimpleIni.hpp"
+#include "tinythread.hpp"
 
-#if defined (OT_ZMQ_MODE)
-#include <zmq.hpp>
-#endif
-
-extern "C" 
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+extern "C"
 {
-#ifdef _WIN32
-//#include <WinSock.h>
-#else
 #include <netinet/in.h>
-#endif
-	
-//#include "SSL-Example/SFSocket.h"
 }
-
-// ----------------------------------------------
-#ifdef _WIN32
-/*
- Minimum supported client    -- Windows XP
- Minimum supported server    -- Windows Server 2003
- Header                      -- WinBase.h (include Windows.h)
- Library                     -- Kernel32.lib
- DLL                         -- Kernel32.dll
- */
-//#include <windows.h>  // I'm assuming the above WinsockWrapper inclusion already covers this.
-// DWORD GetCurrentProcessId(void);
-#else
-// getpid
-#include <sys/types.h>
-#include <unistd.h>
-//pid_t getpid(void);
-//pid_t getppid(void);
 #endif
-// ----------------------------------------------
 
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include "simpleini/SimpleIni.h"
-
-// ----------------------------
-
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
-
-using namespace tthread;
-
-// ----------------------------
-
-#include <OTAPI.h>
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-#include "OTBasket.h"
-
-
-#include "OpenTransactions.h"
-
-
-#include "OTPseudonym.h"
-
-
-#include "OTPassword.h"
-#include "OTCrypto.h"
-#include "OTClient.h"
-#include "OTServerConnection.h"
-
-
-#include "OTServerContract.h"
-#include "OTMessage.h"
-#include "OTWallet.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-#include "OTCheque.h"
-#include "OTPaymentPlan.h"
-#include "OTAccount.h"
-#include "OTTransaction.h"
-#include "OTMint.h"
-#include "OTToken.h"
-#include "OTPurse.h"
-#include "OTLedger.h"
-#include "OTLog.h"
-#include "OTMessage.h"
-#include "OTMessageBuffer.h"
-#include "OTOffer.h"
-#include "OTTrade.h"
-#include "OTMarket.h"
-#include "OTKeyring.h"
-
-#include "OTSmartContract.h"
-
-#include "OTPayment.h"
-
-#include "OTSettings.h"
 
 #define CLIENT_CONFIG_KEY "client"
 #define CLIENT_DATA_DIR "client_data"

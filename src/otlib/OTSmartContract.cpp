@@ -456,35 +456,17 @@
       notes directly with the auditor and each other on the hashes for the various sequence numbers. Hm.
  */
 
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OTSmartContract.hpp>
 
+#include <OTLog.hpp>
+#include <OTScript.hpp>
+#include <OTCron.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
+#include <OTPaths.hpp>
 
-#include <map>
-#include <set>
-
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-
-#include "OTContract.h"
-
-#include "OTCron.h"
-#include "OTSmartContract.h"
-#include "OTLog.h"
-
-#include "OTScript.h"
-
-#include "OTBylaw.h"
-
-#include "OTTransactionType.h"
-#include "OTItem.h"
-#include "OTTransaction.h"
-#include "OTLedger.h"
-
-// -----------------------------------------------------------------
 
 
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL	
@@ -2204,20 +2186,17 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 	// Load up the actual Stash ACCOUNT
 	//
 	
-	OTAccount_SharedPtr pStashAccount;
+#ifndef OT_USE_TR1
+    OTAccount_SharedPtr pStashAccount(NULL);
+#else
+    OTAccount_SharedPtr pStashAccount;
+#endif
 	
 	bool bWasAcctCreated = false;	// GetOrCreateAccount() will verifyContractID and verifySignature on the account internally.
 	pStashAccount = m_StashAccts.GetOrCreateAccount(*pServerNym, SERVER_USER_ID, pPartyAssetAcct->GetAssetTypeID(), 
 													SERVER_ID, bWasAcctCreated, GetTransactionNum());
 	
-	if (!pStashAccount)
-	{
-#if !defined(OT_USE_TR1) && !defined(OT_USE_CXX11)
-		OT_ASSERT_MSG((0 < pStashAccount.use_count()), "ASSERT in OTSmartContract::StashFunds: returned NULL pointer (should never happen.)\n");
-#else
-		OT_ASSERT_MSG((NULL != pStashAccount), "ASSERT in OTSmartContract::StashFunds: returned NULL pointer (should never happen.)\n");
-#endif
-	}
+    if (!pStashAccount) { OT_FAIL_MSG("ASSERT in OTSmartContract::StashFunds: returned NULL pointer (should never happen.)\n"); }
 
 	if (bWasAcctCreated)
 	{
@@ -2232,11 +2211,9 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 		// to successfully do the transfer, AND I will already save at the end of this call, since funds are
 		// being moved.
 	}
-#if !defined(OT_USE_TR1) && !defined(OT_USE_CXX11)
-    OT_ASSERT_MSG((0 < pStashAccount.use_count()), "ASSERT in OTSmartContract::StashFunds: was somehow NULL.(should never happen.)\n");
-#else
-    OT_ASSERT_MSG((NULL != pStashAccount), "ASSERT in OTSmartContract::StashFunds: was somehow NULL. (should never happen.)\n");
-#endif
+
+    if (!pStashAccount) { OT_FAIL_MSG("ASSERT in OTSmartContract::StashFunds: returned NULL pointer (should never happen.)\n"); }
+
 	// ------------------------------------------------------------
 	//
 	// This code is similar to above, but it checks the stash ACCT itself instead of the stash entry.

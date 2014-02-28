@@ -130,64 +130,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <string>
+#include <OTEnvelope.hpp>
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTPassword.hpp>
+#include <OTIdentifier.hpp>
+#include <OTPseudonym.hpp>
 
-#include <algorithm>
 
-
-
-// ------------------------------------------------------------------------
 extern "C"
 {
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#else
-
-#if defined (OPENTXS_HAVE_SYS_TYPES_H)
-#include <sys/types.h>
-#endif
-
 #if defined (OPENTXS_HAVE_NETINET_IN_H)
 #include <netinet/in.h>
 #endif
-
-#endif
 }
-// ------------------------------------------------------------------------
-
-
-
-#include "OTStorage.h"
-
-#include "OTCrypto.h"
-#include "OTEnvelope.h"
-
-#include "OTSignature.h"
-
-#include "OTAsymmetricKey.h"
-#include "OTSymmetricKey.h"
-#include "OTASCIIArmor.h"
-#include "OTPseudonym.h"
-
-#include "OTKeyring.h"
-
-#include "OTLog.h"
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
 
 // ------------------------------------------------------------------------
 

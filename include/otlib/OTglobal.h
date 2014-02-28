@@ -134,10 +134,10 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
-#ifndef EXPORT
-#define EXPORT
-#endif
 #include <ExportWrapper.h>
+#include <WinsockWrapper.h>
+
+#include <inttypes.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\include\simpleini\ConvertUTF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\simpleini\SimpleIni.h">
+    <ClInclude Include="..\..\include\simpleini\SimpleIni.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
