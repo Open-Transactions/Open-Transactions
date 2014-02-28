@@ -136,8 +136,11 @@
 
 #include <stdafx.hpp>
 
+// Note: I added these includes because the compile was failing when keyring was configured ON.
+
 #include <OTData.hpp>
 #include <OTPayload.hpp>
+#include <OTASCIIArmor.hpp>
 #include <OTPassword.hpp>
 #include <OTKeyring.hpp>
 
