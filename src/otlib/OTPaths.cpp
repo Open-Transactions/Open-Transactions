@@ -203,6 +203,8 @@
 
 #ifdef _WIN32
 #define OT_SCRIPTS_DIR "scripts/ot"
+#elif defined(ANDROID)
+#define OT_SCRIPTS_DIR ""
 #else
 #define OT_SCRIPTS_DIR "lib/opentxs"
 #endif
@@ -455,7 +457,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
 }
 
 //static
-bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
+bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + [ if (NOT Android) "lib/opentxs/" ]
     (
     OTSettings & config, //optional
     const OTString & strScriptsFolder,    //optional

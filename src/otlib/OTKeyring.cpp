@@ -136,6 +136,9 @@
 
 #include <stdafx.hpp>
 
+#include <OTData.hpp>
+#include <OTPayload.hpp>
+#include <OTPassword.hpp>
 #include <OTKeyring.hpp>
 
 #include <OTLog.hpp>
