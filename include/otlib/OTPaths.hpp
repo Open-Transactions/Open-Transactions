@@ -188,7 +188,7 @@ public:
 		//const bool & bIsRelative = false
 		);
 
-	EXPORT static bool LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
+	EXPORT static bool LoadSetScriptsFolder  // ie. PrefixFolder() + [if (NOT Android) "lib/opentxs/" ]
 		(
 		OTSettings & config = s_settings, //optional
 		const OTString & strScriptsFolder = "",	//optional

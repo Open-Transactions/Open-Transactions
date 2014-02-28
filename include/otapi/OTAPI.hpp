@@ -213,9 +213,9 @@ public :
     // Certain platforms use this to override the Prefix folder.
     // Basically /usr/local is the prefix folder by default, meaning
     // /usr/local/lib/opentxs will be the location of the scripts. But
-    // if you override AppBinary folder to, say, "res/raw/files"
+    // if you override AppBinary folder to, say, "res/raw"
     // (Android does something like that) then even though the prefix remains
-    // as /usr/local, the scripts folder will be res/raw/lib/opentxs
+    // as /usr/local, the scripts folder will be res/raw
     //
     //
     EXPORT static void SetAppBinaryFolder(const std::string & strFolder);
