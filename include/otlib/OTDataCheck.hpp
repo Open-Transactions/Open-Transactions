@@ -136,8 +136,8 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
+#include <MemoryWrapper.hpp>
 
-#include <cinttypes>
 
 typedef unsigned char OT_BYTE;
 typedef bool OT_BOOL;

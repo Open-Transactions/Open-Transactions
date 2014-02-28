@@ -6,8 +6,6 @@
 
 #include <OTString.hpp>
 
-#include <cinttypes>
-
 // -----------------------------------------------
 
 #ifdef __cplusplus

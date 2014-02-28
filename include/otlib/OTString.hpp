@@ -136,6 +136,7 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
+#include <MemoryWrapper.hpp>
 
 #include <list>
 #include <map>
@@ -147,7 +148,6 @@
 #endif
 
 #include <cstdarg>
-#include <cinttypes>
 
 
 class OTIdentifier;

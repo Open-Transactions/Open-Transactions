@@ -16,8 +16,10 @@
 #endif
 
 #ifndef OT_USE_TR1
+#include <cinttypes>
 #include <memory>
 #else
+#include <tr1/cinttypes>
 #include <tr1/memory>
 #endif
 

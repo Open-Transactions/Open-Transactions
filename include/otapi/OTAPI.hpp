@@ -160,9 +160,9 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
+#include <MemoryWrapper.hpp>
 
 #include <string>
-#include <cinttypes>
 
 
 class OT_API;
