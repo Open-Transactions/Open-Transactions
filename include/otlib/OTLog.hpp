@@ -144,6 +144,7 @@
 
 #include <deque>
 #include <cerrno>
+#include <cstdlib>
 
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)
 #define PREDEF_PLATFORM_UNIX 1
