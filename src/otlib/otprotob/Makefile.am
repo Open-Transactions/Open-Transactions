@@ -15,7 +15,7 @@ libotprotob_la_LDFLAGS  =   -static
 
 ## Protobuf headers and packaging
 
-otprotob_headers_dir    =   $(top_srcdir)/include/otlib
+otprotob_headers_dir    =   $(top_builddir)/include/otlib
 
 otprotob_headers        =   $(otprotob_headers_dir)/Bitcoin.pb.h       \
                             $(otprotob_headers_dir)/Generics.pb.h      \
@@ -24,7 +24,7 @@ otprotob_headers        =   $(otprotob_headers_dir)/Bitcoin.pb.h       \
 
 BUILT_SOURCES           =   $(otprotob_headers)
 
-pkginclude_HEADERS      =   $(otprotob_headers)
+nodist_pkginclude_HEADERS      =   $(otprotob_headers)
 
 
 ## Extra rules to handle *.proto as autobuild inputs
@@ -41,6 +41,6 @@ otprotob_build_dir      =   $(top_builddir)/src/otlib/otprotob
 	$(AM_V_at)$(am__mv) $(otprotob_build_dir)/$(*F).pb.cc $(otprotob_build_dir)/$(@F)
 	$(AM_V_at)$(am__mv) $(otprotob_build_dir)/$(*F).pb.h $(otprotob_headers_dir)/$(*F).pb.h
 
-CLEANFILES              =   $(otprotob_build_dir)/*.h      \
+DISTCLEANFILES              =   $(otprotob_build_dir)/*.h      \
                             $(otprotob_build_dir)/*.cc     \
                             $(otprotob_headers_dir)/*.pb.h
