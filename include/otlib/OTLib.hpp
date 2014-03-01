@@ -134,8 +134,8 @@
 #ifndef OTLib_
 #define OTLib_
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)

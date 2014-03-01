@@ -137,10 +137,10 @@
 #ifndef __OTOFFER_HPP__
 #define __OTOFFER_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTInstrument.hpp>
+#include "OTInstrument.hpp"
 
 class OTTrade;
 

@@ -134,11 +134,11 @@
 #ifndef __OT_SYMMETRIC_KEY_HPP__
 #define __OT_SYMMETRIC_KEY_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTPayload.hpp>
-#include <OTIdentifier.hpp>
+#include "OTPayload.hpp"
+#include "OTIdentifier.hpp"
 
 
 class OTString;

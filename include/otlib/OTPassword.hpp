@@ -133,11 +133,11 @@
 #ifndef __OT_PASSWORD_HPP__
 #define __OT_PASSWORD_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
-#include <OTCachedKey.hpp>
+#include "OTCachedKey.hpp"
 
 #include <string>
 

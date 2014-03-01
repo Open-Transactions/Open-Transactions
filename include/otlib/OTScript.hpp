@@ -134,10 +134,10 @@
 #ifndef __OT_SCRIPT_HPP__
 #define __OT_SCRIPT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTBylaw.hpp>
+#include "OTBylaw.hpp"
 
 #if __clang__
 #pragma clang diagnostic push

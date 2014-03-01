@@ -134,11 +134,11 @@
 #ifndef __OT_TOKEN_HPP__
 #define __OT_TOKEN_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTInstrument.hpp>
-#include <OTASCIIArmor.hpp>
+#include "OTInstrument.hpp"
+#include "OTASCIIArmor.hpp"
 
 
 class OTString;

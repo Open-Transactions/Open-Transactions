@@ -140,10 +140,10 @@
 #ifndef __OTSETTINGS_HPP__
 #define __OTSETTINGS_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTString.hpp>
+#include "OTString.hpp"
 
 #include "simpleini/SimpleIni.hpp"
 

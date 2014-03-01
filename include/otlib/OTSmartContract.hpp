@@ -137,11 +137,11 @@
 #ifndef __OT_SMART_CONTRACT_HPP__
 #define __OT_SMART_CONTRACT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTCronItem.hpp>
-#include <OTAccount.hpp>
+#include "OTCronItem.hpp"
+#include "OTAccount.hpp"
 
 
 class OTParty;

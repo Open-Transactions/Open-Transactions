@@ -141,8 +141,8 @@
 #ifndef __OPEN_TRANSACTIONS_INTERFACE_HPP__
 #define __OPEN_TRANSACTIONS_INTERFACE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #ifndef SWIG
 #ifndef NOT_SWIG
@@ -163,14 +163,14 @@
 #endif
 #endif
 
-#include <OTString.hpp>
-#include <OTASCIIArmor.hpp>
+#include "OTString.hpp"
+#include "OTASCIIArmor.hpp"
 
 #ifdef IMPORT_SET
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include <ExportWrapper.h>
+#include "ExportWrapper.h"
 #endif
 #endif
 

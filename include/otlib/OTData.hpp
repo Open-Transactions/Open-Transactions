@@ -128,9 +128,9 @@
 #ifndef __OTDATA_HPP__
 #define __OTDATA_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
 #include <cstddef>
 

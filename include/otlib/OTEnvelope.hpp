@@ -134,10 +134,10 @@
 #ifndef __OTENVELOPE_HPP__
 #define __OTENVELOPE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTCrypto.hpp>
+#include "OTCrypto.hpp"
 
 class OTPseudonym;
 class OTString;

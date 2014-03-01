@@ -138,12 +138,12 @@
 #ifndef __OTMARKET_HPP__
 #define __OTMARKET_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
-#include <OTCron.hpp>
-#include <OTStorage.hpp>
+#include "OTContract.hpp"
+#include "OTCron.hpp"
+#include "OTStorage.hpp"
 
 class OTTrade;
 

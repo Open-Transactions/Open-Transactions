@@ -136,12 +136,12 @@
 #ifndef __OTCRON_HPP__
 #define __OTCRON_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTAssert.hpp>
+#include "OTAssert.hpp"
 
 class OTCronItem;
 class OTPseudonym;

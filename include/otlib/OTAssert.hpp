@@ -128,8 +128,8 @@
 #ifndef __OTASSERT_HPP__
 #define __OTASSERT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include <cstddef>
 #include <exception>

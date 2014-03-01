@@ -134,10 +134,10 @@
 #ifndef __OT_PAYMENT_PLAN__
 #define __OT_PAYMENT_PLAN__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTAgreement.hpp>
+#include "OTAgreement.hpp"
 
 
 #ifndef LENGTH_OF_DAY_IN_SECONDS

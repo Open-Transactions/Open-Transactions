@@ -135,10 +135,10 @@
 #ifndef __OTSCRIPTABLE_HPP__
 #define __OTSCRIPTABLE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
 
 class OTAccount;

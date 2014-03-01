@@ -134,8 +134,8 @@
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include "Timer.hpp"
 

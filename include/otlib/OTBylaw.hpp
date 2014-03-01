@@ -134,15 +134,15 @@
 #ifndef __OT_BYLAW_HPP__
 #define __OT_BYLAW_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTString.hpp>
+#include "OTString.hpp"
 
 #include <map>
 #include <string>
 
-#include "irrxml/irrXML.hpp"
+#include <irrxml/irrXML.hpp>
 
 class OTIdentifier;
 class OTNumList;

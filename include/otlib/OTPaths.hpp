@@ -139,11 +139,11 @@
 #ifndef __OTPATHS_HPP__
 #define __OTPATHS_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTSettings.hpp>
-#include <OTAssert.hpp>
+#include "OTSettings.hpp"
+#include "OTAssert.hpp"
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!

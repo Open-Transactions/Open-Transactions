@@ -136,10 +136,10 @@
 #ifndef __OTAGREEMENT_HPP__
 #define __OTAGREEMENT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTCronItem.hpp>
+#include "OTCronItem.hpp"
 
 
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.

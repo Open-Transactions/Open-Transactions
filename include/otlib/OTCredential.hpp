@@ -167,12 +167,12 @@
 #ifndef __OT_CREDENTIAL_HPP__
 #define __OT_CREDENTIAL_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTAsymmetricKey.hpp>
+#include "OTAsymmetricKey.hpp"
 
 
 // A nym contains a list of master credentials, via OTCredential.

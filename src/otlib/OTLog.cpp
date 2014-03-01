@@ -382,7 +382,6 @@ bool OTLog::CheckLogger(OTLog * pLogger)
     if (pLogger->m_bInitialized) return true;
 
     OT_FAIL;
-    return false;
 }
 
 

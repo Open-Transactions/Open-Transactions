@@ -134,12 +134,12 @@
 #ifndef __OTPSEUDONYM_HPP__
 #define __OTPSEUDONYM_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTASCIIArmor.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTIdentifier.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTIdentifier.hpp"
 
 #include <set>
 

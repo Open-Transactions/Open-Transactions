@@ -134,12 +134,12 @@
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTSettings.hpp>
-#include <OTPayload.hpp>
-#include <OTAssert.hpp>
+#include "OTSettings.hpp"
+#include "OTPayload.hpp"
+#include "OTAssert.hpp"
 
 #include <set>
 

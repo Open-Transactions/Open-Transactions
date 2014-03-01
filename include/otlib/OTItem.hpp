@@ -134,12 +134,12 @@
 #ifndef __OTITEM_HPP__
 #define __OTITEM_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTTransactionType.hpp>
+#include "OTTransactionType.hpp"
 
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
 
 
 class OTAccount;

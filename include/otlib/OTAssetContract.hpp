@@ -134,10 +134,10 @@
 #ifndef __OTASSETCONTRACT_HPP__
 #define __OTASSETCONTRACT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
 class OTBasket;
 class OTPseudonym;

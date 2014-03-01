@@ -139,10 +139,10 @@
 #ifndef __OT_PAYMENT_HPP__
 #define __OT_PAYMENT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
 class OTPurse;
 class OTTrackable;

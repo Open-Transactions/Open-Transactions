@@ -134,11 +134,11 @@
 #ifndef __OTSIGNATURE_HPP__
 #define __OTSIGNATURE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTString.hpp>
-#include <OTASCIIArmor.hpp>
+#include "OTString.hpp"
+#include "OTASCIIArmor.hpp"
 
 // ---------------------------------------------------------------------------
 

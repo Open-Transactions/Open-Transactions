@@ -134,9 +134,9 @@
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
 #include <list>
 #include <map>
