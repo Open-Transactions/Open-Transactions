@@ -6,9 +6,9 @@ TEST_F(OtMeTest, retrieve_nym_DefaultForced)
 {
 	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
 
-	EXPECT_getNymBox(true);
+	EXPECT_getNymBox(mock, index, true);
 
-	EXPECT_insureHaveAllBoxReceipts();
+	EXPECT_insureHaveAllBoxReceipts(mock, index);
 
 	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 
@@ -27,9 +27,9 @@ TEST_F(OtMeTest, retrieve_nym_Forced)
 {
 	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
 
-	EXPECT_getNymBox(true);
+	EXPECT_getNymBox(mock, index, true);
 
-	EXPECT_insureHaveAllBoxReceipts();
+	EXPECT_insureHaveAllBoxReceipts(mock, index);
 
 	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 
@@ -47,9 +47,9 @@ TEST_F(OtMeTest, retrieve_nym_Unforced)
 {
 	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
 
-	EXPECT_getNymBox(false);
+	EXPECT_getNymBox(mock, index, false);
 
-	EXPECT_insureHaveAllBoxReceipts();
+	EXPECT_insureHaveAllBoxReceipts(mock, index);
 
 	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 

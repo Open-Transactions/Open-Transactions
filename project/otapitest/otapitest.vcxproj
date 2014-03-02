@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\src\otapitest\Test_details_export_cash.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_discard_incoming_payments.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_export_cash.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getAndProcessNymbox_4.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getNymbox.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getNymboxLowLevel.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_get_payment_instrument.cpp" />
@@ -110,9 +111,12 @@
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_encrypt_key.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_mint.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_signing_key.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_make_sure_enough_trans_nums.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_insure_enough_nums.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getRequestNumber.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumbers.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumLowLevel.cpp" />
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_processNymbox.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_ReceiveReplyLowLevel.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_receiveReplySuccessLowLevel.cpp" />
     <ClCompile Include="..\..\src\otapitest\Test_register_nym.cpp" />
