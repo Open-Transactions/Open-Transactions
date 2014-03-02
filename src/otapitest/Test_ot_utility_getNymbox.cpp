@@ -60,7 +60,8 @@ void OtMeTest::EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, 
 	EXPECT_MOCK_RET(NYM_HASH2, GetNym_NymboxHash(SERVER_ID, NYM_ID));
 
 	// just need to tweak the outcome a little (error status)
-	EXPECT_ot_utility_getNymboxLowLevel(mock, errorPathway, SERVER_ID, NYM_ID);
+	int errorPathwayOnly = 0;
+	OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(mock, errorPathwayOnly, SERVER_ID, NYM_ID);
 
 	EXPECT_ot_utility_getRequestNumber(mock, noAltPathways, SERVER_ID, NYM_ID);
 

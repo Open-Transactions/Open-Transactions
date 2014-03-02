@@ -66,6 +66,7 @@
 	TEST_F(OtMeTest, _##name) { TestAllPathways(test_##name); } \
 	static void test_##name(Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index)
 
+#define INVERT_MOCK   (index-- < 0 ? index : (index >= 0 ?  0 : 1))
 
 
 static const char * ACCOUNT_FROM_ID				= "AccountFromId_______";
@@ -156,7 +157,6 @@ class Mock_OTAPI_Exec;
 class OT_ME;
 
 
-extern int errorPathway;
 extern int noAltPathways;
 
 
@@ -193,13 +193,19 @@ public:
 	static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
 	static void EXPECT_load_or_retrieve_contract(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * contractId);
 	static void EXPECT_load_or_retrieve_encrypt_key(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char *nymToId);
+	static void EXPECT_ot_utility_getAndProcessNymbox_4(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
 	static void EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
 	static void EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+	static void EXPECT_ot_utility_getTransactionNumbers(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+	static void EXPECT_ot_utility_getTransactionNumbers_part2(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool & returnValue);
+	static void EXPECT_ot_utility_getTransactionNumLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+	static void EXPECT_ot_utility_processNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_ot_utility_ReceiveReplyLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
 	static void EXPECT_ot_utility_receiveReplySuccessLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
+	static void EXPECT_ot_utility_sendProcessNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 
-	void EXPECT_getNymBox(bool bForced);
-	void EXPECT_insureHaveAllBoxReceipts();
+	static void EXPECT_getNymBox(Mock_OTAPI_Exec & mock, int & index, bool bForceDownload);
+	static void EXPECT_insureHaveAllBoxReceipts(Mock_OTAPI_Exec & mock, int & index);
 	
 	time_t GetTime();
 	virtual void SetUp();

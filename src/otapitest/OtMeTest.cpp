@@ -2,7 +2,6 @@
 #include "OtMeTest.hpp"
 
 
-int errorPathway = -1;
 int noAltPathways = INT_MAX;
 
 int OtMeTest::pathways = 0;
@@ -132,19 +131,19 @@ void OtMeTest::EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, 
 	EXPECT_MOCK_RET(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
 }
 
-void OtMeTest::EXPECT_getNymBox(bool bForced)
+void OtMeTest::EXPECT_getNymBox(Mock_OTAPI_Exec & mock, int & index, bool bForceDownload)
 {
 	EXPECT_MOCK_RET(NYM_HASH, GetNym_RecentHash(SERVER_ID, NYM_ID));
 
 	EXPECT_MOCK_RET(NYM_HASH, GetNym_NymboxHash(SERVER_ID, NYM_ID));
 
-	if (bForced)
+	if (bForceDownload)
 	{
 		EXPECT_REQUEST(MESSAGE_DATA, getNymbox(SERVER_ID, NYM_ID));
 	}
 }
 
-void OtMeTest::EXPECT_insureHaveAllBoxReceipts()
+void OtMeTest::EXPECT_insureHaveAllBoxReceipts(Mock_OTAPI_Exec & mock, int & index)
 {
 	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 

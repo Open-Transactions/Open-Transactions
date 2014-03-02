@@ -86,9 +86,6 @@
     <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_mint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\otapitest\Test_make_sure_enough_trans_nums.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\otapitest\Test_retrieve_account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -126,6 +123,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_receiveReplySuccessLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getAndProcessNymbox_4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_processNymbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_insure_enough_nums.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumbers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
