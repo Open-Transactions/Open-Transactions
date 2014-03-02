@@ -139,10 +139,12 @@
 
 #include "OTString.hpp"
 
+#include "irrxml/irrXML.hpp"
+
 #include <map>
 #include <string>
 
-#include <irrxml/irrXML.hpp>
+
 
 class OTIdentifier;
 class OTNumList;

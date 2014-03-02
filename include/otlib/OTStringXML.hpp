@@ -131,9 +131,9 @@
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
 
-#include "OTString.hpp"
+#include "irrxml/irrXML.hpp"
 
-#include <irrxml/irrXML.hpp>
+#include "OTString.hpp"
 
 class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 {
