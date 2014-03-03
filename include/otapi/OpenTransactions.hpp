@@ -221,8 +221,10 @@ class OTWallet;
 //
 class OTSocket
 {
+#if defined(OT_ZMQ_MODE)
 	zmq::context_t *	m_pContext;
 	zmq::socket_t *		m_pSocket;
+#endif
 
 	bool			m_bInitialized;
 	bool			m_HasContext;
