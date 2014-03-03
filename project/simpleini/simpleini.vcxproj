@@ -100,7 +100,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4267  /wd4127</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4267 </AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -127,7 +127,7 @@
       <Optimization>MinSpace</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4267  /wd4127</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -143,7 +143,7 @@
       <Optimization>MinSpace</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4267  /wd4127</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
