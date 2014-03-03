@@ -2,9 +2,9 @@
 #define __MEMORY_WRAPPER_HPP__
 
 #ifdef _MSC_VER
-//#include <ot_msvc.h>
+//#include "ot_msvc.h"
 #else
-#include <ot_config.h>
+#include "ot_config.h"
 #endif
 
 //  C++ Defines.

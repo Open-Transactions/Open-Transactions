@@ -128,12 +128,12 @@
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTString.hpp>
+#include "OTString.hpp"
 
-#include <OTStorage.hpp>
+#include "OTStorage.hpp"
 
 
 class OTData;

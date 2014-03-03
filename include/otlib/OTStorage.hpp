@@ -127,8 +127,8 @@
 #ifndef __OT_STORAGE_HPP__
 #define __OT_STORAGE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #if __clang__
 #pragma clang diagnostic push
@@ -141,40 +141,16 @@
 
 #ifndef SWIG
 
-#include <OTAssert.hpp>
+#include "OTAssert.hpp"
 
 #include <iostream>
 #include <deque>
 #include <map>
 #include <vector>
 
-//extern "C"
-//{
-//    
-//#ifdef _WIN32
-////#include <direct.h>
-////#include <sys/stat.h>
-//#else
-//#include <sys/stat.h>
-//#endif
-//}
-
 
 // credit:stlplus library.
 #include "containers/simple_ptr.hpp"
-
-
-//// Use Win or Posix
-//// IF I need this while porting, then uncomment it.
-//#ifdef _WIN32
-////#include <windows.h>
-////#else
-////#ifndef POSIX
-////#warning POSIX will be used (but you did not define it)
-////#endif
-////#include <unistd.h>
-//#endif
-
 
 
 // Which storage mechanism are we building?

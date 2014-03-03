@@ -134,14 +134,14 @@
 #ifndef __OTPURSE_HPP__
 #define __OTPURSE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTToken.hpp>
-#include <OTCachedKey.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTToken.hpp"
+#include "OTCachedKey.hpp"
 
 
 class OTPurse;

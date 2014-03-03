@@ -133,10 +133,10 @@
 #ifndef __MAIN_HPP__
 #define __MAIN_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTClientConnection.hpp>
+#include "OTClientConnection.hpp"
 
 typedef std::list<OTClientConnection *>	listOfConnections;
 

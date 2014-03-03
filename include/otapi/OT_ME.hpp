@@ -139,8 +139,8 @@ bool, int32_t, int64_t, std::string
 #ifndef __OT_ME_HPP__
 #define __OT_ME_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #ifndef IMPORT
 #define IMPORT
@@ -149,13 +149,13 @@ bool, int32_t, int64_t, std::string
 #endif
 #endif
 
-#include <OTScript.hpp>
+#include "OTScript.hpp"
 
 #ifdef IMPORT_SET
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include <ExportWrapper.h>
+#include "ExportWrapper.h"
 #endif
 #endif
 

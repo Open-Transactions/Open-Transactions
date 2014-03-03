@@ -138,10 +138,10 @@
 #ifndef __OTTRADE_HPP__
 #define __OTTRADE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTCronItem.hpp>
+#include "OTCronItem.hpp"
 
 class OTIdentifier;
 

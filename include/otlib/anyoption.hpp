@@ -1,8 +1,8 @@
 #ifndef _ANYOPTION_H
 #define _ANYOPTION_H
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include <iostream>
 #include <fstream>

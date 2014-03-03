@@ -133,10 +133,10 @@
 #ifndef __OT_SIGNED_FILE_HPP__
 #define __OT_SIGNED_FILE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
 
 class OTSignedFile : public OTContract 

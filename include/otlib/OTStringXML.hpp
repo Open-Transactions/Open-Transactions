@@ -128,12 +128,12 @@
 #ifndef __OTSTRING_XML_HPP__
 #define __OTSTRING_XML_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-
-#include <OTString.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include "irrxml/irrXML.hpp"
+
+#include "OTString.hpp"
 
 class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 {

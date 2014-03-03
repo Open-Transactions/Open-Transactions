@@ -134,12 +134,12 @@
 #ifndef __OTMESSAGE_HPP__
 #define __OTMESSAGE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
 
 class OTPseudonym;
 class OTPasswordData;

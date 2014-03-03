@@ -128,16 +128,16 @@
 #ifndef __OTCONTRACT_HPP__
 #define __OTCONTRACT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTStringXML.hpp>
-#include <OTIdentifier.hpp>
-#include <OTBylaw.hpp>
-
-#include <set>
+#include "OTStringXML.hpp"
+#include "OTIdentifier.hpp"
+#include "OTBylaw.hpp"
 
 #include "irrxml/irrXML.hpp"
+
+#include <set>
 
 class OTAsymmetricKey;
 class OTPasswordData;

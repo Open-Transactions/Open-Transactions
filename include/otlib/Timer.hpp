@@ -15,8 +15,8 @@
 #ifndef TIMER_H_DEF
 #define TIMER_H_DEF
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 
 #ifdef _WIN32   // Windows system specific

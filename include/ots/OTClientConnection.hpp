@@ -134,8 +134,8 @@
 #ifndef __OT_CLIENT_CONNECTION_HPP__
 #define __OT_CLIENT_CONNECTION_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #ifndef IMPORT
 #define IMPORT
@@ -144,14 +144,14 @@
 #endif
 #endif
 
-#include <OTData.hpp>
-#include <OTMessageBuffer.hpp>
+#include "OTData.hpp"
+#include "OTMessageBuffer.hpp"
 
 #ifdef IMPORT_SET
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include <ExportWrapper.h>
+#include "ExportWrapper.h"
 #endif
 #endif
 

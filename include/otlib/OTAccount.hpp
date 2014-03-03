@@ -133,11 +133,11 @@
 #ifndef __OTACCOUNT_HPP__
 #define __OTACCOUNT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
-#include <OTTransactionType.hpp>
+#include "OTTransactionType.hpp"
 
 
 class OTPseudonym;

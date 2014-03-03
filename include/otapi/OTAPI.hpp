@@ -158,9 +158,9 @@
 #ifndef __OTAPI_HPP__
 #define __OTAPI_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
 #include <string>
 

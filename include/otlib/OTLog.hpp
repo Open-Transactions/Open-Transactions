@@ -136,11 +136,11 @@
 #ifndef __OTLOG_HPP__
 #define __OTLOG_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTAssert.hpp>
-#include <OTString.hpp>
+#include "OTAssert.hpp"
+#include "OTString.hpp"
 
 #include <deque>
 #include <cerrno>

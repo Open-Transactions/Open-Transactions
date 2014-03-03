@@ -134,10 +134,10 @@
 #ifndef __OTTRANSACTION_HPP__
 #define __OTTRANSACTION_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTItem.hpp>
+#include "OTItem.hpp"
 
 
 //#include <ctime>

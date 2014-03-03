@@ -145,8 +145,8 @@ Every other type will be wrapped in a std::string.
 #ifndef __OT_MADE_EASY_HPP__
 #define __OT_MADE_EASY_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include <string>
 

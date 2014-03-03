@@ -134,10 +134,10 @@
 #ifndef __OT_INSTRUMENT_HPP__
 #define __OT_INSTRUMENT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTScriptable.hpp>
+#include "OTScriptable.hpp"
 
 
 class OTInstrument : public OTScriptable 

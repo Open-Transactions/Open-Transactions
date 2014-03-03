@@ -134,9 +134,9 @@
 #ifndef _DATA_CHECK_H_
 #define _DATA_CHECK_H_
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include <MemoryWrapper.hpp>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "MemoryWrapper.hpp"
 
 
 typedef unsigned char OT_BYTE;

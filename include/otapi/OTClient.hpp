@@ -133,10 +133,10 @@
 #ifndef __OTCLIENT_HPP__
 #define __OTCLIENT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTServerConnection.hpp>
+#include "OTServerConnection.hpp"
 
 #ifndef IMPORT
 #define IMPORT
@@ -145,13 +145,13 @@
 #endif
 #endif
 
-#include <OTMessageBuffer.hpp>
+#include "OTMessageBuffer.hpp"
 
 #ifdef IMPORT_SET
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include <ExportWrapper.h>
+#include "ExportWrapper.h"
 #endif
 #endif
 

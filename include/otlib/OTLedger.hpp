@@ -134,12 +134,12 @@
 #ifndef __OTLEDGER_HPP__
 #define __OTLEDGER_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTTransactionType.hpp>
+#include "OTTransactionType.hpp"
 
-#include <OTTransaction.hpp>
+#include "OTTransaction.hpp"
 
 
 class OTItem;

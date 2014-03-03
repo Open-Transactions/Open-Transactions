@@ -137,8 +137,8 @@
 #ifndef __OTKEYRING_HPP__
 #define __OTKEYRING_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include <string>
 

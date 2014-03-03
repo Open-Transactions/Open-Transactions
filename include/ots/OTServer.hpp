@@ -134,8 +134,8 @@
 #ifndef __OTSERVER_HPP__
 #define __OTSERVER_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #ifndef IMPORT
 #define IMPORT
@@ -144,19 +144,21 @@
 #endif
 #endif
 
-#include <OTAssetContract.hpp>
-#include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
-#include <OTCron.hpp>
-#include <OTTransaction.hpp>
+#include "OTAssetContract.hpp"
+#include "OTPseudonym.hpp"
+#include "OTAccount.hpp"
+#include "OTCron.hpp"
+#include "OTTransaction.hpp"
 
 #ifdef IMPORT_SET
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include <ExportWrapper.h>
+#include "ExportWrapper.h"
 #endif
 #endif
+
+#include <cstddef>
 
 class OTMessage;
 class OTClientConnection;

@@ -134,12 +134,12 @@
 #ifndef __OTMINT_HPP__
 #define __OTMINT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
 
 class OTToken;
 class OTAccount;

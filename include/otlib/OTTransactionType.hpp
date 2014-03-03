@@ -134,12 +134,12 @@
 #ifndef __OTTRANSACTION_TYPE_HPP__
 #define __OTTRANSACTION_TYPE_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
 
 
 class OTString;

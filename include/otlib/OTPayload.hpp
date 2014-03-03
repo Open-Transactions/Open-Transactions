@@ -133,10 +133,10 @@
 #ifndef __OTPAYLOAD_HPP__
 #define __OTPAYLOAD_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTData.hpp>
+#include "OTData.hpp"
 
 class OTMessage;
 class OTEnvelope;

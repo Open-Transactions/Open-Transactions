@@ -4,7 +4,7 @@
 #pragma once
 
 // Include the C one.
-#include <stdafx.h>
+#include "stdafx.h"
 
 #ifdef OT_USE_CXX11
 #undef OT_USE_CXX11
@@ -53,8 +53,8 @@
 
 #ifdef _WIN32
 #ifndef NO_OT_PCH
-//#include <OTStorage.h>
-//#include <OTSmartContract.h>
+//#include "OTStorage.h>
+//#include "OTSmartContract.h>
 #else
 #undef NO_OT_PCH
 #endif

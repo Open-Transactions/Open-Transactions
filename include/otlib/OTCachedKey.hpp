@@ -134,10 +134,10 @@
 #ifndef __OT_MASTER_KEY_HPP__
 #define __OT_MASTER_KEY_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <MemoryWrapper.hpp>
+#include "MemoryWrapper.hpp"
 
 
 #include <map>

@@ -134,10 +134,10 @@
 #ifndef __OTMESSAGEBUFFER_HPP__
 #define __OTMESSAGEBUFFER_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTString.hpp>
+#include "OTString.hpp"
 
 #include <list>
 #include <map>

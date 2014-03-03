@@ -144,8 +144,8 @@ Every other type will be wrapped in a std::string.
 #ifndef __OTAPI_BASIC_HPP__
 #define __OTAPI_BASIC_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
 #include <string>
 

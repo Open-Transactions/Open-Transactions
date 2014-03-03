@@ -134,10 +134,10 @@
 #ifndef __OTSERVERCONTRACT_HPP__
 #define __OTSERVERCONTRACT_HPP__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
 class OTString;
 
