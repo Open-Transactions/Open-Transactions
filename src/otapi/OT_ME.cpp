@@ -148,6 +148,10 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 #include <OTStorage.hpp>
 #include <OTPaths.hpp>
 
+#include "ot_me_switch.hpp"
+
+#if USE_OLD_CODE == 1
+
 
 #include <chaiscript/chaiscript.hpp>
 
@@ -2985,4 +2989,4 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
 	}
 }
 
-
+#endif
