@@ -216,69 +216,8 @@ class OTString;
 class OTToken;
 class OTWallet;
 
+class OTSocket;
 
-// --------------------------------------------------------------------
-// Client-side only. 
-// (OTServer has its own "OTSocket".)
-//
-class OTSocket
-{
-#if defined(OT_ZMQ_MODE)
-	zmq::context_t *	m_pContext;
-	zmq::socket_t *		m_pSocket;
-#endif
-
-	bool			m_bInitialized;
-	bool			m_HasContext;
-	bool			m_bConnected;
-
-	OTString		m_strConnectPath;
-
-	long		m_lLatencySendMs;
-	int			m_nLatencySendNoTries;
-	long		m_lLatencyReceiveMs;
-	int			m_nLatencyReceiveNoTries;
-	long		m_lLatencyDelayAfter;
-	bool		m_bIsBlocking;
-
-	OTASCIIArmor	m_ascLastMsgSent;
-
-	bool HandlePollingError();
-	bool HandleSendingError();
-	bool HandleReceivingError();
-
-public:
-
-	tthread::mutex * m_pMutex;
-
-	EXPORT	OTSocket();
-	EXPORT ~OTSocket();
-
-	EXPORT bool Init();
-
-	EXPORT bool Init(
-		const long	   & lLatencySendMs,
-		const int	   & nLatencySendNoTries,
-		const long	   & lLatencyReceiveMs,
-		const int	   & nLatencyReceiveNoTries,
-		const long	   & lLatencyDelayAfter,
-		const bool	   & bIsBlocking
-		);
-
-	EXPORT bool Init(OTSettings * pSettings);
-
-	EXPORT bool NewContext();
-
-	EXPORT bool Connect(const OTString & strConnectPath);
-
-	EXPORT bool Send(OTASCIIArmor & ascEnvelope, const OTString & strConnectPath);
-	EXPORT bool Receive(OTString & strServerReply); // -----BEGIN OT ARMORED ENVELOPE  (or MESSAGE)
-
-	EXPORT const bool &		IsInitialized()		 const { return m_bInitialized;	  }
-	EXPORT const bool &		HasContext()		 const { return m_HasContext;	  }
-	EXPORT const bool &		IsConnected()		 const { return m_bConnected;	  }
-	EXPORT const OTString & CurrentConnectPath() const { return m_strConnectPath; }
-};
 
 
 // --------------------------------------------------------------------
@@ -326,13 +265,13 @@ private:
 		bool IsPidOpen() const;
 	};
     // --------------------------------------------------------------------
-    Pid & m_refPid;  // only one pid reference per instance, must not change
+    Pid * const m_pPid;  // only one pid reference per instance, must not change
 
 	bool		m_bInitialized;
 	bool		m_bDefaultStore;
 
 	TransportCallback * m_pTransportCallback;
-    // --------------------------------------------------------------------
+    //--------------------------------------------------------------------
 	OTSocket    *   m_pSocket;
 
 	OTString        m_strDataPath;

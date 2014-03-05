@@ -165,6 +165,8 @@
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>
 
+#include <OTSocket.hpp>
+
 #include <fstream>
 
 
@@ -179,6 +181,14 @@ extern "C"
 #endif
 
 
+#define	CLIENT_DEFAULT_LATENCY_SEND_MS				200
+#define	CLIENT_DEFAULT_LATENCY_SEND_NO_TRIES		7
+#define	CLIENT_DEFAULT_LATENCY_RECEIVE_MS			200
+#define	CLIENT_DEFAULT_LATENCY_RECEIVE_NO_TRIES	7
+#define	CLIENT_DEFAULT_LATENCY_DELAY_AFTER			50
+#define	CLIENT_DEFAULT_IS_BLOCKING					false
+
+
 #define CLIENT_CONFIG_KEY "client"
 #define CLIENT_DATA_DIR "client_data"
 #define CLIENT_LOGFILE_FILENAME "log-client.log"
@@ -189,488 +199,12 @@ extern "C"
 #define CLIENT_PID_FILENAME "ot.pid"
 
 
-#define	DEFAULT_LATENCY_SEND_MS				200
-#define	DEFAULT_LATENCY_SEND_NO_TRIES		7
-#define	DEFAULT_LATENCY_RECEIVE_MS			200
-#define	DEFAULT_LATENCY_RECEIVE_NO_TRIES	7
-#define	DEFAULT_LATENCY_DELAY_AFTER			50
-#define	DEFAULT_IS_BLOCKING					false
-
-#define	KEY_LATENCY_SEND_MS					"latency_send_ms"
-#define	KEY_LATENCY_SEND_NO_TRIES			"latency_send_no_tries"
-#define	KEY_LATENCY_RECEIVE_MS				"latency_receive_ms"
-#define	KEY_LATENCY_RECEIVE_NO_TRIES		"latency_receive_no_tries"
-#define	KEY_LATENCY_DELAY_AFTER				"latency_delay_after"
-#define	KEY_IS_BLOCKING						"is_blocking"
 
 // ------------------------------------------------------------------------------
-
-// static
+//static
 bool OT_API::bInitOTApp = false;
-
-// static
+//static
 bool OT_API::bCleanupOTApp = false;
-
-// ------------------------------------------------------------------------------
-
-OTSocket::OTSocket()
-  : m_pMutex(new tthread::mutex),
-	m_pContext(NULL),
-	m_pSocket(NULL),
-
-	m_lLatencySendMs(DEFAULT_LATENCY_SEND_MS),
-	m_nLatencySendNoTries(DEFAULT_LATENCY_SEND_NO_TRIES),
-	m_lLatencyReceiveMs(DEFAULT_LATENCY_RECEIVE_MS),
-	m_nLatencyReceiveNoTries(DEFAULT_LATENCY_RECEIVE_NO_TRIES),
-	m_lLatencyDelayAfter(DEFAULT_LATENCY_DELAY_AFTER),
-	m_bIsBlocking(DEFAULT_IS_BLOCKING),
-
-	m_bInitialized(false),
-	m_HasContext(false),
-	m_bConnected(false),
-	m_strConnectPath("")
-{
-}
-
-OTSocket::~OTSocket()
-{
-	if (NULL != m_pSocket)  zmq_close(m_pSocket);
-	if (NULL != m_pContext) zmq_term(m_pContext);
-
-	if (NULL != m_pSocket)	delete m_pSocket;	m_pSocket	= NULL;
-	if (NULL != m_pContext)	delete m_pContext;	m_pContext	= NULL;
-	if (NULL != m_pMutex)	delete m_pMutex;	m_pMutex	= NULL;
-}
-
-bool OTSocket::Init()
-{
-	if (m_bInitialized) return false;
-	if (m_HasContext) return false;
-	if (m_bConnected) return false;
-
-	m_bInitialized =  true;
-	return true;
-}
-
-bool OTSocket::Init(
-		const long	   & lLatencySendMs,
-		const int	   & nLatencySendNoTries,
-		const long	   & lLatencyReceiveMs,
-		const int	   & nLatencyReceiveNoTries,
-		const long	   & lLatencyDelayAfter,
-		const bool	   & bIsBlocking
-		)
-{
-	if (m_bInitialized) return false;
-	if (m_HasContext) return false;
-	if (m_bConnected) return false;
-
-	m_lLatencySendMs		 = lLatencySendMs;
-	m_nLatencySendNoTries	 = nLatencySendNoTries;
-	m_lLatencyReceiveMs		 = lLatencyReceiveMs;
-	m_nLatencyReceiveNoTries = nLatencyReceiveNoTries;
-	m_lLatencyDelayAfter	 = lLatencyDelayAfter;
-	m_bIsBlocking			 = bIsBlocking;
-
-	m_bInitialized =  true;
-	return true;
-}
-
-bool OTSocket::Init(OTSettings * pSettings)
-{
-	if (m_bInitialized) return false;
-	if (m_HasContext) return false;
-	if (m_bConnected) return false;
-
-	if (NULL == pSettings) { OT_FAIL; }
-
-	bool bIsNew;
-	{
-		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_SEND_MS,		m_lLatencySendMs,		m_lLatencySendMs,		bIsNew)) { OT_FAIL; }
-	}
-	{
-		long lResult = 0;
-		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_SEND_NO_TRIES,	m_nLatencySendNoTries,	lResult,				bIsNew)) { OT_FAIL;  }
-		m_nLatencySendNoTries = static_cast<int>(lResult);
-	}
-	{
-		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_MS,		m_lLatencyReceiveMs,	m_lLatencyReceiveMs,	bIsNew)) { OT_FAIL;  }
-	}
-	{
-		long lResult = 0;
-		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_NO_TRIES, m_nLatencyReceiveNoTries, lResult,			bIsNew)) { OT_FAIL;  }
-		m_nLatencyReceiveNoTries = static_cast<int>(lResult);
-	}
-	{
-		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_DELAY_AFTER,	m_lLatencyDelayAfter,	m_lLatencyDelayAfter,	bIsNew)) { OT_FAIL;  }
-	}
-	{
-		if(!pSettings->CheckSet_bool("latency", KEY_IS_BLOCKING,			m_bIsBlocking,			m_bIsBlocking,			bIsNew)) { OT_FAIL;  }
-	}
-
-	m_bInitialized = true;
-
-	return true;
-}
-
-
-
-bool OTSocket::NewContext()
-{
-	if (!m_bInitialized) return false;
-
-	m_HasContext = false;
-
-	if (NULL != m_pSocket)  zmq_close(m_pSocket);
-	if (NULL != m_pContext) zmq_term(m_pContext);
-
-	if (NULL != m_pSocket)	delete m_pSocket;	m_pSocket	= NULL;
-	if (NULL != m_pContext)	delete m_pContext;	m_pContext	= NULL;
-	
-	m_pContext = new zmq::context_t(1);
-
-	m_HasContext = true;
-	return true;
-}
-
-bool OTSocket::Connect(const OTString & strConnectPath)
-{
-	OT_ASSERT(NULL != m_pContext);
-
-	if (NULL != m_pSocket)  zmq_close(m_pSocket);
-	if (NULL != m_pSocket)	delete m_pSocket;	m_pSocket	= NULL; // cleanup old socket (if we have one);
-
-	if (!strConnectPath.Exists())		{ OTLog::vError("%s: Error: %s dosn't exist!\n", __FUNCTION__, "strConnectPath");	OT_FAIL;}
-	if (5 > strConnectPath.GetLength()) { OTLog::vError("%s: Error: %s is too short!\n", __FUNCTION__, "strConnectPath");	OT_FAIL;}
-
-	if (!m_bInitialized) return false;
-	if (!m_HasContext) return false;
-
-	m_bConnected = false;
-
-	m_strConnectPath = strConnectPath;  // set the connection path.
-
-	m_pSocket = new zmq::socket_t(*m_pContext, ZMQ_REQ);  // make a new socket
-
-	OT_ASSERT_MSG(NULL != m_pSocket, "OTSocket::ConnectSocket: new zmq::socket(context, ZMQ_REQ)");
-
-	const int linger = 0; // close immediately
-	m_pSocket->setsockopt (ZMQ_LINGER, &linger, sizeof (linger));
-    /*
-     int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
-     
-     Caution: All options, with the exception of ZMQ_SUBSCRIBE, ZMQ_UNSUBSCRIBE and ZMQ_LINGER, only take effect for subsequent socket bind/connects.     
-     */
-
-	if (!m_strConnectPath.Exists()) { OT_FAIL; }
-	m_pSocket->connect(m_strConnectPath.Get());
-	m_bConnected = true;
-	return true;
-}
-
-
-
-// The bool means true == try again soon, false == don't try again.
-bool OTSocket::HandlePollingError()
-{
-	bool bRetVal = false;
-	
-	switch (errno) {
-			// At least one of the members of the items array refers to a socket whose associated ØMQ context was terminated.
-		case ETERM:
-			OTLog::Error("OTSocket::HandlePollingError: Failure: At least one of the members of the items array refers to a socket whose associated ØMQ context was terminated. (Deleting and re-creating the context.)\n");
-			//this->NewContext();
-			this->NewContext();
-			break;		
-			// The provided items was not valid (NULL).
-		case EFAULT:
-			OTLog::Error("OTSocket::HandlePollingError: Failed: The provided polling items were not valid (NULL).\n");
-			break;
-			// The operation was interrupted by delivery of a signal before any events were available.
-		case EINTR:
-			OTLog::Error("OTSocket::HandlePollingError: The operation was interrupted by delivery of a signal before any events were available. Re-trying...\n");
-			bRetVal = true;
-			break;
-		default:
-			OTLog::Error("OTSocket::HandlePollingError: Default case. Re-trying...\n");
-			bRetVal = true;
-			break;
-	}
-	return bRetVal;
-}
-
-// return value bool, true == try again, false == error, failed.
-//
-bool OTSocket::HandleSendingError()
-{
-	bool bRetVal = false;
-	
-	switch (errno) {
-			// Non-blocking mode was requested and the message cannot be sent at the moment.
-		case EAGAIN:
-			OTLog::vOutput(0, "OTSocket::HandleSendingError: Non-blocking mode was requested and the message cannot be sent at the moment. Re-trying...\n");
-			bRetVal = true;
-			break;
-			// The zmq_send() operation is not supported by this socket type.
-		case ENOTSUP:
-			OTLog::Error("OTSocket::HandleSendingError: failure: The zmq_send() operation is not supported by this socket type.\n");
-			break;
-			// The zmq_send() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state. This error may occur with socket types that switch between several states, such as ZMQ_REP. See the messaging patterns section of zmq_socket(3) for more information.
-		case EFSM:
-			OTLog::vOutput(0, "OTSocket::HandleSendingError: The zmq_send() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state. Deleting socket and re-trying...\n");
-			this->Connect(m_strConnectPath);
-			bRetVal = true;
-			break;
-			// The ØMQ context associated with the specified socket was terminated.
-		case ETERM:
-			OTLog::Error("OTSocket::HandleSendingError: The ØMQ context associated with the specified socket was terminated. (Deleting and re-creating the context and the socket, and trying again.)\n");
-			this->NewContext();
-			this->Connect(m_strConnectPath);
-			bRetVal = true;			
-			break;
-			// The provided socket was invalid.
-		case ENOTSOCK:
-			OTLog::Error("OTSocket::HandleSendingError: The provided socket was invalid. (Deleting socket and re-trying...)\n");
-			this->Connect(m_strConnectPath);
-			bRetVal = true;			
-			break;
-			// The operation was interrupted by delivery of a signal before the message was sent. Re-trying...
-		case EINTR:
-			OTLog::Error("OTSocket::HandleSendingError: The operation was interrupted by delivery of a signal before the message was sent. (Re-trying...)\n");
-			bRetVal = true;
-			break;
-			// Invalid message.
-		case EFAULT:
-			OTLog::Error("OTSocket::HandleSendingError: Failure: The provided pollitems were not valid (NULL).\n");
-			break;
-		default:
-			OTLog::Error("OTSocket::HandleSendingError: Default case. Re-trying...\n");
-			bRetVal = true;
-			break;
-	}
-	return bRetVal;
-}
-
-
-bool OTSocket::HandleReceivingError()
-{
-	bool bRetVal = false;
-	
-	switch (errno) {
-			// Non-blocking mode was requested and no messages are available at the moment.
-		case EAGAIN:
-			OTLog::vOutput(0, "OTSocket::HandleReceivingError: Non-blocking mode was requested and no messages are available at the moment. Re-trying...\n");
-			bRetVal = true;
-			break;
-			// The zmq_recv() operation is not supported by this socket type.
-		case ENOTSUP:
-			OTLog::Error("OTSocket::HandleReceivingError: Failure: The zmq_recv() operation is not supported by this socket type.\n");
-			break;
-			// The zmq_recv() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state. This error may occur with socket types that switch between several states, such as ZMQ_REP. See the messaging patterns section of zmq_socket(3) for more information.
-		case EFSM:
-			OTLog::vOutput(0, "OTSocket::HandleReceivingError: The zmq_recv() operation cannot be performed on this socket at the moment due to the socket not being in the appropriate state. (Deleting socket and re-trying...)\n");
-		{ OTASCIIArmor ascTemp(m_ascLastMsgSent); bRetVal = this->Send(ascTemp, m_strConnectPath); }
-			break;
-			// The ØMQ context associated with the specified socket was terminated.
-		case ETERM:
-			OTLog::Error("OTSocket::HandleReceivingError: The ØMQ context associated with the specified socket was terminated. (Re-creating the context, and trying again...)\n");
-			this->NewContext();
-		{ OTASCIIArmor ascTemp(m_ascLastMsgSent); bRetVal = this->Send(ascTemp, m_strConnectPath); }
-			break;
-			// The provided socket was invalid.
-		case ENOTSOCK:
-			OTLog::Error("OTSocket::HandleReceivingError: The provided socket was invalid. (Deleting socket and re-trying.)\n");
-		{ OTASCIIArmor ascTemp(m_ascLastMsgSent); bRetVal = this->Send(ascTemp, m_strConnectPath); }
-			break;
-			// The operation was interrupted by delivery of a signal before a message was available.
-		case EINTR:
-			OTLog::Error("OTSocket::HandleSendingError: The operation was interrupted by delivery of a signal before the message was sent. (Re-trying...)\n");
-			bRetVal = true;
-			break;
-			// The message passed to the function was invalid.
-		case EFAULT:
-			OTLog::Error("OTSocket::HandleReceivingError: Failure: The message passed to the function was invalid.\n");
-			break;
-		default:
-			OTLog::Error("OTSocket::HandleReceivingError: Default case. Re-trying...\n");
-			bRetVal = true;
-			break;
-	}
-	return bRetVal;
-}
-
-
-bool OTSocket::Send(OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
-{
-	OT_ASSERT_MSG(ascEnvelope.GetLength() > 0, "ascEnvelope.GetLength() > 0");
-	OT_ASSERT_MSG(NULL != m_pContext, "m_pContext == NULL in OTSocket::Send()");
-	m_ascLastMsgSent.Set(ascEnvelope); // In case we need to re-send.
-
-	// -----------------------------------
-	if (m_strConnectPath.Compare(strConnectPath) && this->IsConnected())
-	{
-		// no need to reconnect.
-	}
-	else
-	{
-		this->Connect(strConnectPath); // connect
-	}
-	
-	if (NULL == m_pSocket) // This should have been set in the Connect() call just above.
-	{
-		OTLog::Error("OTSocket::Send: Failed connecting socket.\n");
-		return false;
-	}
-
-	if (!m_bInitialized) return false;
-	if (!m_HasContext) return false;
-	if (!m_bConnected) return false;
-
-	// -----------------------------------	
-	const long lLatencySendMilliSec	= m_lLatencySendMs;
-	const long lLatencySendMicroSec	= lLatencySendMilliSec*1000; // Microsecond is 1000 times smaller than millisecond.
-	
-	zmq::message_t request(ascEnvelope.GetLength());
-	memcpy((void*)request.data(), ascEnvelope.Get(), ascEnvelope.GetLength());
-	
-	bool bSuccessSending	= false;
-	
-	if (m_bIsBlocking)
-	{
-		bSuccessSending = m_pSocket->send(request); // Blocking.
-	}
-	else // not blocking
-	{
-		int		nSendTries	= m_nLatencySendNoTries;
-		long	lDoubling	= lLatencySendMicroSec;		
-		bool	bKeepTrying = true;
-		
-		while (bKeepTrying && (nSendTries > 0))
-		{
-			zmq::pollitem_t items [] = {
-				{ (*m_pSocket), 0, ZMQ_POLLOUT,	0 }
-			};
-			
-			const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)					
-			lDoubling *= 2;
-			
-			if (items[0].revents & ZMQ_POLLOUT)
-			{
-				bSuccessSending = m_pSocket->send(request, ZMQ_NOBLOCK); // <=========== SEND ===============
-				OTLog::SleepMilliseconds( 1 );
-				
-				if (!bSuccessSending)
-				{
-					if (false == HandleSendingError())
-						bKeepTrying = false;
-				}
-				else
-					break; // (Success -- we're done in this loop.)
-			}
-			else if ((-1) == nPoll) // error.
-			{
-				if (false == HandlePollingError())
-					bKeepTrying = false;
-			}
-			
-			--nSendTries;
-		}
-	}
-	/*
-	 Normally, we try to send...
-	 If the send fails, we wait X ms and then try again (Y times).
-	 
-	 BUT -- what if the failure was an errno==EAGAIN ?
-	 In that case, it's not a REAL failure, but rather, a "failure right now, try again in a sec."
-	 */
-	// ***********************************
-	
-	if (bSuccessSending)
-		OTLog::SleepMilliseconds( m_lLatencyDelayAfter > 0 ? m_lLatencyDelayAfter : 1 );
-	
-	return bSuccessSending;
-}
-// -----------------------------------
-
-bool OTSocket::Receive(OTString & strServerReply)
-{
-	OT_ASSERT_MSG(NULL != m_pContext, "m_pContext == NULL in OTSocket::Receive()");
-	OT_ASSERT_MSG(NULL != m_pSocket, "m_pSocket == NULL in OTSocket::Receive()");
-
-	OT_ASSERT_MSG(true == m_bConnected, "true != m_bConnected in OTSocket::Receive()");
-
-	// -----------------------------------	
-	const long lLatencyRecvMilliSec	= m_lLatencyReceiveMs;
-	const long lLatencyRecvMicroSec	= lLatencyRecvMilliSec*1000;
-	
-	if (!m_bInitialized) return false;
-	if (!m_HasContext) return false;
-	if (!m_bConnected) return false;
-
-	// ***********************************
-	//  Get the reply.
-	zmq::message_t reply;
-	
-	bool bSuccessReceiving = false;
-	
-	// If failure receiving, re-tries 2 times, with 4000 ms max delay between each (Doubling every time.)
-	//
-	if (m_bIsBlocking)
-	{
-		bSuccessReceiving = m_pSocket->recv(&reply); // Blocking.
-	}
-	else	// not blocking
-	{
-		long	lDoubling = lLatencyRecvMicroSec;
-		int		nReceiveTries = m_nLatencyReceiveNoTries;
-		bool	expect_reply = true;
-		while (expect_reply) 
-		{
-			//  Poll socket for a reply, with timeout
-			zmq::pollitem_t items[] = { { *m_pSocket, 0, ZMQ_POLLIN, 0 } };
-			
-			const int nPoll = zmq::poll (&items[0], 1, lDoubling);
-			lDoubling *= 2;
-			
-			//  If we got a reply, process it
-			if (items[0].revents & ZMQ_POLLIN) 
-			{
-				bSuccessReceiving = m_pSocket->recv(&reply, ZMQ_NOBLOCK); // <=========== RECEIVE ===============
-				OTLog::SleepMilliseconds( 1 );
-				
-				if (!bSuccessReceiving)
-				{
-					if (false == HandleReceivingError())
-						expect_reply = false;
-				}
-				else
-					break; // (Success -- we're done in this loop.)				
-			}
-			else if (nReceiveTries == 0) 
-			{
-				OTLog::Error("OTSocket::Receive: server seems to be offline, abandoning.\n");
-				expect_reply = false;
-				break;
-			}
-			else if ((-1) == nPoll) // error.
-			{
-				if (false == HandlePollingError())
-					expect_reply = false;
-			}
-			
-			--nReceiveTries;
-		}
-	}
-	// ***********************************
-	
-	if (bSuccessReceiving && (reply.size() > 0))
-		strServerReply.MemSet(static_cast<const char*>(reply.data()), static_cast<uint32_t> (reply.size()));
-
-	return (bSuccessReceiving && (reply.size() > 0));
-}
-
-
-// ------------------------------------------------------------------------------
 
 
 TransportCallback::TransportCallback(OT_API & refOT_API)
@@ -810,9 +344,9 @@ bool OT_API::CleanupOTApp()
 
 // The API begins here...
 OT_API::OT_API() :
-	m_refPid(*new Pid()),
+    m_pPid(new Pid()),
 	m_pTransportCallback(NULL),
-	m_pSocket(new OTSocket()),
+	m_pSocket(new OTSocket_ZMQ_2()),
 	m_pWallet(NULL),
 	m_pClient(NULL),
 	m_bInitialized(false)
@@ -836,20 +370,20 @@ OT_API::~OT_API()
 {
     // DELETE AND SET NULL
     //
-	if (NULL != m_pSocket) delete m_pSocket; m_pSocket = NULL;
+    if (NULL != m_pSocket) delete m_pSocket; m_pSocket = NULL;
 
-	if (NULL != m_pTransportCallback) delete m_pTransportCallback; m_pTransportCallback = NULL;
-	if (NULL != m_pWallet) delete m_pWallet; m_pWallet = NULL;
-	if (NULL != m_pClient) delete m_pClient; m_pClient = NULL;
+    if (NULL != m_pTransportCallback) delete m_pTransportCallback; m_pTransportCallback = NULL;
+    if (NULL != m_pWallet) delete m_pWallet; m_pWallet = NULL;
+    if (NULL != m_pClient) delete m_pClient; m_pClient = NULL;
 
-	if (m_bInitialized)
-		if(!(this->Cleanup())) // we only cleanup if we need to
-		{
-			OT_FAIL;
-		}
+    if (m_bInitialized)
+    if (!(this->Cleanup())) // we only cleanup if we need to
+    {
+        OT_FAIL;
+    }
 
-	// this must be last!
-	if (NULL != &m_refPid) delete &m_refPid;
+    // this must be last!
+    if (NULL != m_pPid) delete m_pPid;
 }
 
 
@@ -1034,8 +568,8 @@ bool OT_API::Init()
 	OTString strPIDPath = "";
 	OTPaths::AppendFile(strPIDPath,strDataPath,CLIENT_PID_FILENAME);
 
-	if (bGetDataFolderSuccess) this->m_refPid.OpenPid(strPIDPath);
-	if (!this->m_refPid.IsPidOpen()) { this->m_bInitialized = false; return false; }  // failed loading
+    if (bGetDataFolderSuccess) this->m_pPid->OpenPid(strPIDPath);
+    if (!this->m_pPid->IsPidOpen()) { this->m_bInitialized = false; return false; }  // failed loading
 
 
     // --------------------------------------
@@ -1069,10 +603,10 @@ bool OT_API::Init()
 
 bool OT_API::Cleanup()
 {
-	if (!this->m_refPid.IsPidOpen()) { return false; } // pid isn't open, just return false.
+    if (!this->m_pPid->IsPidOpen()) { return false; } // pid isn't open, just return false.
 
-	this->m_refPid.ClosePid();
-	if (this->m_refPid.IsPidOpen()) { OT_FAIL; }  // failed loading
+    this->m_pPid->ClosePid();
+    if (this->m_pPid->IsPidOpen()) { OT_FAIL; }  // failed loading
 	return true;
 }
 
@@ -1155,35 +689,45 @@ bool OT_API::LoadConfigFile()
 		p_Config -> CheckSet_str("wallet","wallet_filename",CLIENT_WALLET_FILENAME,strValue,bIsNewKey);
 		OT_API::SetWalletFilename(strValue);
 		OTLog::vOutput(1,"Using Wallet: %s\n",strValue.Get());
-	}
+    }
 
-	// -----------------------------------
-	// LATENCY
-	{
-		const char * szComment =
-			";; LATENCY:\n\n"
-			";; For sending and receiving:\n"
-			";; blocking=true (usually not recommended) means OT will hang on the send/receive\n"
-			";; call, and wait indefinitely until the send or receive has actually occurred.\n"
-			";; IF BLOCKING IS FALSE (normal, default):\n"
-			";; - no_tries is the number of times OT will try to send or receive a message.\n"
-			";; - ms is the number of milliseconds it will wait between each attempt.\n"
-			";; UPDATE: send_ms and receive_ms now DOUBLE after each failed attempt! (up to 3 tries)\n"
-			";; Meaning that after 3 tries, it's already waited over 21 seconds trying to get\n"
-			";; the message. \n"
-			";; send_delay_after happens after EVERY SINGLE server request/reply, which can be\n"
-			";; multiple times per use case. (They can add up quick...)\n";
+    // -----------------------------------
+    // LATENCY
+    {
+        const char * szComment =
+            ";; LATENCY:\n\n"
+            ";; For sending and receiving:\n"
+            ";; blocking=true (usually not recommended) means OT will hang on the send/receive\n"
+            ";; call, and wait indefinitely until the send or receive has actually occurred.\n"
+            ";; IF BLOCKING IS FALSE (normal, default):\n"
+            ";; - no_tries is the number of times OT will try to send or receive a message.\n"
+            ";; - ms is the number of milliseconds it will wait between each attempt.\n"
+            ";; UPDATE: send_ms and receive_ms now DOUBLE after each failed attempt! (up to 3 tries)\n"
+            ";; Meaning that after 3 tries, it's already waited over 21 seconds trying to get\n"
+            ";; the message. \n"
+            ";; send_delay_after happens after EVERY SINGLE server request/reply, which can be\n"
+            ";; multiple times per use case. (They can add up quick...)\n";
 
-		bool b_SectionExist;
-		p_Config -> CheckSetSection("latency",szComment,b_SectionExist);
-	}
+        bool b_SectionExist;
+        p_Config->CheckSetSection("latency", szComment, b_SectionExist);
+    }
 
 
-	{
-		if (NULL == m_pSocket) { OT_FAIL; }
+    {
+        if (NULL == m_pSocket) { OT_FAIL; }
 
-		m_pSocket->Init(p_Config);  // setup the socket.
-	}
+        const OTSocket::Defaults socketDefaults(
+            CLIENT_DEFAULT_LATENCY_SEND_MS,
+            CLIENT_DEFAULT_LATENCY_SEND_NO_TRIES,
+            CLIENT_DEFAULT_LATENCY_RECEIVE_MS,
+            CLIENT_DEFAULT_LATENCY_RECEIVE_NO_TRIES,
+            CLIENT_DEFAULT_LATENCY_DELAY_AFTER,
+            CLIENT_DEFAULT_IS_BLOCKING
+            );
+
+
+        m_pSocket->Init(socketDefaults, p_Config);  // setup the socket.
+    }
 
 
 	// ---------------------------------------------
@@ -1399,10 +943,10 @@ bool OT_API::TransportFunction(OTServerContract & theServerContract, OTEnvelope 
 	OTPseudonym * pNym(m_pClient -> m_pConnection -> GetNym());
 	if (NULL == pNym)							{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "pNym");				OT_FAIL;}
 	if (NULL == this->m_pSocket)				{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_Socket");			OT_FAIL;}
-	if (NULL == this->m_pSocket->m_pMutex)		{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_Socket");			OT_FAIL;}
+	if (NULL == this->m_pSocket->GetMutex())		{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_Socket");			OT_FAIL;}
 	if (!m_pSocket->IsInitialized())			{ OTLog::vError("%s: Error: %s is not Initialized!\n", __FUNCTION__, "m_Socket");	OT_FAIL;}
 	// ----------------------------------------------
-	tthread::lock_guard<tthread::mutex>  lock(*m_pSocket->m_pMutex);
+    tthread::lock_guard<tthread::mutex>  lock(*m_pSocket->GetMutex());
 	// ----------------------------------------------
 	const char * szFunc = "OT_API::TransportCallback";
 	// ----------------------------------------------
