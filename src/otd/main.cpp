@@ -1317,14 +1317,12 @@ int main(int argc, char* argv[])
 
             OTLog::Output(1, "Script output:\n\n");
 
-
-			// OT SCRIPT PROMPT --------------------------------------------
-            nReturnValue = madeEasy.ExecuteScript_ReturnInt(results, strFilename);
-			// OT SCRIPT PROMPT --------------------------------------------
-
-
-			return nReturnValue;
-			
+            // OT SCRIPT PROMPT --------------------------------------------
+            if (strFilename.find("scripts\\opentxs") >= 0 || strFilename.find("scripts/opentxs") >= 0)
+            {
+                return OT_ME::opentxs_main_loop();
+            }
+            return madeEasy.ExecuteScript_ReturnInt(results, strFilename);
 		}
         // ------------------------------------------------------------------------
 		// OT SCRIPT ABOVE.

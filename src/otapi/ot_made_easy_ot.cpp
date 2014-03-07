@@ -162,7 +162,7 @@ string OT_MADE_EASY_OT MadeEasy::check_user(const string & SERVER_ID, const stri
 //
 string OT_MADE_EASY_OT MadeEasy::create_pseudonym(const int nKeybits, const string & strNymIDSource, const string & strAltLocation)
 {
-    string strLocation ="OT_ME::create_pseudonym";
+    string strLocation = "OT_ME::create_pseudonym";
 
     string strNymID = OTAPI_Wrap::CreateNym(nKeybits, strNymIDSource, strAltLocation);// returns new Nym ID;
 
@@ -530,38 +530,27 @@ string OT_MADE_EASY_OT MadeEasy::get_payment_instrument(const string & SERVER_ID
         OTAPI_Wrap::Output(1, "\n\n get_payment_instrument:  OT_API_LoadPaymentInbox Failed. (Probably just doesn't exist yet.)\n\n");
         return "";
     }
-    else // Success!
+
+    int nCount = OTAPI_Wrap::Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, strInbox);
+    if (!VerifyIntVal(nCount))
     {
-        int nCount = OTAPI_Wrap::Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, strInbox);
-
-        if (VerifyIntVal(nCount))
-        {
-            if (nIndex > (nCount - 1))
-            {
-                OTAPI_Wrap::Output(0, "Index " + to_string(nIndex) + " out of bounds. (The last index is: " + to_string(nCount - 1) + ". The first is 0.)\n");
-                return "";
-            }
-        }
-
-        else
-        {
-            OTAPI_Wrap::Output(0, "Unable to retrieve size of payments inbox ledger. (Failure.)\n");
-            return "";
-        }
-
-        strInstrument = OTAPI_Wrap::Ledger_GetInstrument(SERVER_ID, NYM_ID, NYM_ID, strInbox, nIndex);
-
-        if (!VerifyStringVal(strInstrument))
-        {
-            OTAPI_Wrap::Output(0, "Failed trying to get payment instrument from payments box.\n");
-            return "";
-        }
-        else
-        {
-            return strInstrument;
-        }
+        OTAPI_Wrap::Output(0, "Unable to retrieve size of payments inbox ledger. (Failure.)\n");
+        return "";
     }
-    return "";
+    if (nIndex > (nCount - 1))
+    {
+        OTAPI_Wrap::Output(0, "Index " + to_string(nIndex) + " out of bounds. (The last index is: " + to_string(nCount - 1) + ". The first is 0.)\n");
+        return "";
+    }
+
+    strInstrument = OTAPI_Wrap::Ledger_GetInstrument(SERVER_ID, NYM_ID, NYM_ID, strInbox, nIndex);
+    if (!VerifyStringVal(strInstrument))
+    {
+        OTAPI_Wrap::Output(0, "Failed trying to get payment instrument from payments box.\n");
+        return "";
+    }
+
+    return strInstrument;
 }
 
 // GET BOX RECEIPT
@@ -619,7 +608,7 @@ string OT_MADE_EASY_OT MadeEasy::load_or_retrieve_mint(const string & SERVER_ID,
     // expired or missing.
     if (!OTAPI_Wrap::Mint_IsStillGood(SERVER_ID, ASSET_ID))
     {
-        OTAPI_Wrap::Output(1,"OT_ME::load_or_retrieve_mint: Mint file is missing or expired. Downloading from server...\n");
+        OTAPI_Wrap::Output(1, "OT_ME::load_or_retrieve_mint: Mint file is missing or expired. Downloading from server...\n");
 
         string strResponse = retrieve_mint(SERVER_ID, NYM_ID, ASSET_ID);
 

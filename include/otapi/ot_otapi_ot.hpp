@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "OTStorage.hpp"
+
 
 #define OT_OTAPI_OT
 
@@ -20,6 +22,22 @@ inline int to_int(const string & strValue) { return std::stoi(strValue); }
 inline int64_t to_long(const string & strValue) { return std::stoll(strValue); }
 inline string to_string(const bool bValue) { return bValue ? "true" : "false"; }
 inline string to_string(const int64_t nValue) { return std::to_string(nValue); }
+
+
+class the_lambda_struct;
+
+typedef std::map<string, OTDB::OfferDataNym *> SubMap;
+typedef std::map<string, SubMap *> MapOfMaps;
+
+
+extern MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
+extern int OT_OTAPI_OT find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+extern int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda); // low level. map_of_maps must be good. (assumed.)
+extern int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
+extern int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda);
+extern int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals);
+extern OTDB::OfferListNym * OT_OTAPI_OT loadNymOffers(const string & serverID, const string & nymID);
+extern int OT_OTAPI_OT output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
 
 
 extern string Args;
@@ -73,12 +91,12 @@ typedef enum
 class the_lambda_struct
 {
 public:
-    string the_vector;        // used for returning a list of something.
-    string the_asset_acct;    // for newoffer, we want to remove existing offers for the same accounts in certain cases.
-    string the_currency_acct; // for newoffer, we want to remove existing offers for the same accounts in certain cases.
-    string the_scale;         // for newoffer as well.
-    string the_price;         // for newoffer as well.
-    bool bSelling;            // for newoffer as well.
+    std::vector<string> the_vector;     // used for returning a list of something.
+    string the_asset_acct;              // for newoffer, we want to remove existing offers for the same accounts in certain cases.
+    string the_currency_acct;           // for newoffer, we want to remove existing offers for the same accounts in certain cases.
+    string the_scale;                   // for newoffer as well.
+    string the_price;                   // for newoffer as well.
+    bool bSelling;                      // for newoffer as well.
 
     the_lambda_struct();
 };

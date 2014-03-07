@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D325429A-E47E-4B08-B841-77D4AD339950}</ProjectGuid>
+    <ProjectGuid>{1760444F-DC25-4348-9746-0EBD9A91E91D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>otapitest</RootNamespace>
+    <RootNamespace>opentxs</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,10 +41,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(SystemDrive)\boost_1_53_0;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otapi;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\;$(SystemDrive)\boost_1_53_0\stage\lib\$(PlatformName);$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\lib\VC;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(SystemDrive)\boost_1_53_0;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otapi;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\;$(SystemDrive)\boost_1_53_0\stage\lib\$(PlatformName);$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\lib\VC;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -55,13 +55,11 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
       <AdditionalOptions>-Zm400</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <StackReserveSize>4096000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -72,7 +70,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,69 +79,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\otapitest\OtMeTest.hpp" />
-    <ClInclude Include="..\..\src\otapitest\OtMeExtra.hpp" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\otapitest\AllTransactions.cpp" />
-    <ClCompile Include="..\..\src\otapitest\otapitest.cpp" />
-    <ClCompile Include="..\..\src\otapitest\OtMeTest.cpp" />
-    <ClCompile Include="..\..\src\otapitest\AllRequests.cpp" />
-    <ClCompile Include="..\..\src\otapitest\OtMeExtra.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_accept_from_paymentbox.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_accept_inbox_items.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_cancel_outgoing_payments.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_create_pseudonym.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_deposit_cash.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_deposit_local_purse.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_details_deposit_cheque.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_details_export_cash.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_discard_incoming_payments.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_export_cash.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getAndProcessNymbox_4.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getNymbox.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getNymboxLowLevel.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_get_payment_instrument.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_handle_payment_index.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_contract.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_encrypt_key.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_mint.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_load_or_retrieve_signing_key.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_insure_enough_nums.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getRequestNumber.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumbers.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumLowLevel.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_processNymbox.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_ReceiveReplyLowLevel.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_receiveReplySuccessLowLevel.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_register_nym.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_retrieve_account.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_retrieve_nym.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_stat_asset_account.cpp" />
-    <ClCompile Include="..\..\src\otapitest\Test_withdraw_and_send_cash.cpp" />
+    <ClCompile Include="..\..\src\opentxs\opentxs.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gmock\gmock.vcxproj">
-      <Project>{181346be-fc21-433b-81ea-182eb62078f2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\gtest\gtest.vcxproj">
-      <Project>{1f39dfd0-cb8e-4728-bd89-836325467a49}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\otapi\otapi.vcxproj">
       <Project>{bc1d1dc1-6af7-4c38-a270-7f79a2888054}</Project>
     </ProjectReference>
     <ProjectReference Include="..\otlib\otlib.vcxproj">
       <Project>{0455e434-a635-448a-996e-448583fd3a37}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\src\otapitest\CallStructure.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

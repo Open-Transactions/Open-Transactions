@@ -513,8 +513,19 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
 
 
 
-int OT_OPENTXS_OT main_loop()
+int OT_OPENTXS_OT OT_ME::opentxs_main_loop()
 {
+    OT_ME me;
+    OTVariable *pVar;
+    if (pVar = me.FindVariable("Args"    )) Args     = pVar->GetValueString();
+    if (pVar = me.FindVariable("HisAcct" )) HisAcct  = pVar->GetValueString();
+    if (pVar = me.FindVariable("HisNym"  )) HisNym   = pVar->GetValueString();
+    if (pVar = me.FindVariable("HisPurse")) HisPurse = pVar->GetValueString();
+    if (pVar = me.FindVariable("MyAcct"  )) MyAcct   = pVar->GetValueString();
+    if (pVar = me.FindVariable("MyNym"   )) MyNym    = pVar->GetValueString();
+    if (pVar = me.FindVariable("MyPurse" )) MyPurse  = pVar->GetValueString();
+    if (pVar = me.FindVariable("Server"  )) Server   = pVar->GetValueString();
+
     // See if the command was passed in on the command line.
     if (VerifyExists("Args", false))
     {

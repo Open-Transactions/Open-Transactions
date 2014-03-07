@@ -1306,35 +1306,29 @@ int32_t OT_ME::InterpretTransactionMsgReply(const string & SERVER_ID,
 
 bool OT_ME::HaveWorkingScript()
 {
-    bool bHaveWorkingScript = false;
+    if (m_pScript)
+    {
+        // already initialized
+        return true;
+    }
 
+    // note: if there's a choice of language, you must specify here. Perhaps add as a parameter above, when the time comes to add another scripting language.
+    m_pScript = OTScriptFactory("noscript");
     if (!m_pScript)
     {
-        m_pScript = OTScriptFactory(); // note: if there's a choice of language, you must specify here. Perhaps add as a parameter above, when the time comes to add another scripting language.
-
-        if (!m_pScript)
-            OTLog::vError("%s: Error instantiating script.\n", __FUNCTION__);
-        else
-        {
-            if (!SetupScriptObject())
-            {
-                OTLog::vError("%s: Error setting up script object.\n", __FUNCTION__);
-                m_pScript.reset(); // Erase the one we just created, since we failed setting it up.
-            }
-            else
-            {
-                // Success instantiating and setting up OTScript object.
-                //
-                bHaveWorkingScript = true;
-            }
-        }
-    }
-    else
-    {
-        bHaveWorkingScript = true;
+        OTLog::vError("%s: Error instantiating script.\n", __FUNCTION__);
+        return false;
     }
 
-    return bHaveWorkingScript;
+    // note: since we disabled script this part is commented out
+    //if (!SetupScriptObject())
+    //{
+    //    OTLog::vError("%s: Error setting up script object.\n", __FUNCTION__);
+    //    m_pScript.reset(); // Erase the one we just created, since we failed setting it up.
+    //    return false;
+    //}
+
+    return true;
 }
 
 
@@ -1342,23 +1336,21 @@ bool OT_ME::HaveWorkingScript()
 //
 void OT_ME::AddVariable(const std::string & str_var_name, OTVariable & theVar)
 {
-    bool bHaveWorkingScript = HaveWorkingScript();
-
-    if (bHaveWorkingScript)
+    if (HaveWorkingScript())
     {
         theVar.RegisterForExecution(*m_pScript); // This sets a pointer to the script so the var can remove itself on destruction.
-        //      m_pScript->AddVariable(str_var_name, theVar);
     }
-
 }
 
+OTVariable * OT_ME::FindVariable(const std::string & str_var_name)
+{
+    return HaveWorkingScript() ? m_pScript->FindVariable(str_var_name) : NULL;
+}
 
 string OT_ME::ExecuteScript_ReturnString(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
 {
-    string  str_Return("");
-    bool    bHaveWorkingScript = HaveWorkingScript();
-
-    if (bHaveWorkingScript)
+    string str_Return = "";
+    if (HaveWorkingScript())
     {
         OTVariable the_return_value("ret_val", str_Return);
 
@@ -1376,10 +1368,8 @@ string OT_ME::ExecuteScript_ReturnString(const string & str_Code, string str_Dis
 
 bool OT_ME::ExecuteScript_ReturnBool(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
 {
-    bool    bReturn = false;
-    bool    bHaveWorkingScript = HaveWorkingScript();
-
-    if (bHaveWorkingScript)
+    bool bReturn = false;
+    if (HaveWorkingScript())
     {
         OTVariable the_return_value("ret_val", bReturn);
 
@@ -1396,10 +1386,8 @@ bool OT_ME::ExecuteScript_ReturnBool(const string & str_Code, string str_Display
 
 int OT_ME::ExecuteScript_ReturnInt(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
 {
-    int     nReturn = (-1);
-    bool    bHaveWorkingScript = HaveWorkingScript();
-
-    if (bHaveWorkingScript)
+    int nReturn = -1;
+    if (HaveWorkingScript())
     {
         OTVariable the_return_value("ret_val", nReturn);
 
@@ -1416,9 +1404,7 @@ int OT_ME::ExecuteScript_ReturnInt(const string & str_Code, string str_DisplayNa
 
 void OT_ME::ExecuteScript_ReturnVoid(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
 {
-    bool bHaveWorkingScript = HaveWorkingScript();
-
-    if (bHaveWorkingScript)
+    if (HaveWorkingScript())
     {
         m_pScript->SetScript(str_Code);
         m_pScript->SetDisplayFilename(str_DisplayName);
