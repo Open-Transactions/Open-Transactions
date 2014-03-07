@@ -58,7 +58,7 @@ public int      nRequestNum;
 */
 
 
-void OT_OTAPI_OT OTAPI_Func::InitCustom()
+OT_OTAPI_OT void OTAPI_Func::InitCustom()
 {
     bBool = false;
     nData = 0;
@@ -636,7 +636,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
 // **********************************************************************
 
 
-int OT_OTAPI_OT OTAPI_Func::Run()
+OT_OTAPI_OT int OTAPI_Func::Run()
 {
     // -1 means error, no message was sent.
     //  0 means NO error, yet still no message was sent.
@@ -723,7 +723,7 @@ int OT_OTAPI_OT OTAPI_Func::Run()
 // **********************************************************************
 
 
-int OT_OTAPI_OT OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION)
+OT_OTAPI_OT int OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION)
 {
     Utility MsgUtil;
     string strLocation = concat("OTAPI_Func::SendRequestLowLevel: ", IN_FUNCTION);
@@ -769,13 +769,13 @@ int OT_OTAPI_OT OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const 
 
 // **********************************************************************
 
-string OT_OTAPI_OT OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION)
+OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION)
 {
     int nTotalRetries = 2;
     return SendTransaction(theFunction, IN_FUNCTION, nTotalRetries);
 }
 
-string OT_OTAPI_OT OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries)
+OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries)
 {
     Utility MsgUtil;
     string strLocation = concat("OTAPI_Func::SendTransaction: ", IN_FUNCTION);
@@ -934,7 +934,7 @@ string OT_OTAPI_OT OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const s
 // **********************************************************************
 
 
-string OT_OTAPI_OT OTAPI_Func::SendRequest(OTAPI_Func & theFunction, const string & IN_FUNCTION)
+OT_OTAPI_OT string OTAPI_Func::SendRequest(OTAPI_Func & theFunction, const string & IN_FUNCTION)
 {
     Utility MsgUtil;
 
@@ -956,7 +956,7 @@ string OT_OTAPI_OT OTAPI_Func::SendRequest(OTAPI_Func & theFunction, const strin
 // **********************************************************************
 
 
-string OT_OTAPI_OT OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const string & IN_FUNCTION, const bool bIsTransaction, const bool bWillRetryAfterThis, bool & bCanRetryAfterThis)
+OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const string & IN_FUNCTION, const bool bIsTransaction, const bool bWillRetryAfterThis, bool & bCanRetryAfterThis)
 {
     Utility MsgUtil;
     string strLocation = concat("OTAPI_Func::SendRequestOnce: ", IN_FUNCTION);
@@ -1248,7 +1248,7 @@ the_lambda_struct::the_lambda_struct()
 }
 
 
-OTDB::OfferListNym * OT_OTAPI_OT loadNymOffers(const string & serverID, const string & nymID)
+OT_OTAPI_OT OTDB::OfferListNym * loadNymOffers(const string & serverID, const string & nymID)
 {
     OTDB::OfferListNym * offerList = NULL;
 
@@ -1277,7 +1277,7 @@ OTDB::OfferListNym * OT_OTAPI_OT loadNymOffers(const string & serverID, const st
 }
 
 
-MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList)
+OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList)
 {
     string strLocation = "convert_offerlist_to_maps";
 
@@ -1294,19 +1294,19 @@ MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList
         for (int nIndex = 0; nIndex < nCount; ++nIndex)
         {
             nTemp = nIndex; // convert from int to size_t;
-            OTDB::OfferDataNym * offerData = offerList.GetOfferDataNym(nTemp);
+            OTDB::OfferDataNym & offerData = *offerList.GetOfferDataNym(nTemp);
 
-            if (!VerifyStorable(offerData, "OTDB::OfferDataNym"))
+            if (!VerifyStorable(&offerData, "OTDB::OfferDataNym"))
             {
                 OTAPI_Wrap::Output(0, strLocation + ": Unable to reference (nym) offerData on offerList, at index: " + to_string(nIndex) + "\n");
                 return map_of_maps;
             }
 
-            string strScale = to_string(offerData->scale);
-            string strAssetTypeID = offerData->asset_type_id;
-            string strCurrencyTypeID = offerData->currency_type_id;
-            string strSellStatus = offerData->selling ? "SELL" : "BUY";
-            string strTransactionID = offerData->transaction_id;
+            string strScale = to_string(offerData.scale);
+            string strAssetTypeID = offerData.asset_type_id;
+            string strCurrencyTypeID = offerData.currency_type_id;
+            string strSellStatus = offerData.selling ? "SELL" : "BUY";
+            string strTransactionID = offerData.transaction_id;
 
             string strMapKey = strScale + "-" + strAssetTypeID + "-" + strCurrencyTypeID;
 
@@ -1328,7 +1328,7 @@ MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList
                 // offerData.
                 //
 
-                (*sub_map)[strTransactionID] = offerData;
+                (*sub_map)[strTransactionID] = &offerData;
             }
             else // submap does NOT already exist for this market. (Create it...)
             {
@@ -1338,7 +1338,7 @@ MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList
                 // to the main map.
                 //
                 sub_map = new SubMap();
-                (*sub_map)[strTransactionID] = offerData;
+                (*sub_map)[strTransactionID] = &offerData;
                 
                 if (map_of_maps == NULL)
                 {
@@ -1362,7 +1362,7 @@ MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList
 }
 
 
-int OT_OTAPI_OT output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
+OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
 { // extra_vals unused in this function, but not in others that share this parameter profile.
     // (It's used as a lambda.)
 
@@ -1414,7 +1414,7 @@ int OT_OTAPI_OT output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int 
 
 // RETURN VALUE: extra_vals will contain a list of offers that need to be removed AFTER
 
-int OT_OTAPI_OT find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
+OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
 {
     string strLocation = "find_strange_offers";
     /*
@@ -1488,7 +1488,7 @@ int OT_OTAPI_OT find_strange_offers(OTDB::OfferDataNym & offer_data, const int n
 }
 
 
-int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda)
+OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda)
 {
     the_lambda_struct extra_vals;
     return iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda, extra_vals);
@@ -1500,7 +1500,7 @@ int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
 // extra_vals allows you to pass any extra data you want into your
 // lambda, for when it is called. (Like a functor.)
 //
-int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals)
+OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals)
 {
     // the_lambda must be good (assumed) and must have the parameter profile like this sample:
     // def the_lambda(offer_data, nIndex, map_of_maps, sub_map, extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
@@ -1510,14 +1510,14 @@ int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
     // Looping through the map_of_maps, we are now on a valid sub_map in this iteration.
     // Therefore let's loop through the offers on that sub_map and output them!
     //
-    var range_sub_map = sub_map.range();
+    //var range_sub_map = sub_map.range();
 
-    if (!VerifyNotNull(range_sub_map))
-    {
-        OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from sub_map. It must be non-existent, I guess.\n");
-        return -1;
-    }
-    if (range_sub_map.empty())
+    //if (!VerifyNotNull(range_sub_map))
+    //{
+    //    OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from sub_map. It must be non-existent, I guess.\n");
+    //    return -1;
+    //}
+    if (sub_map.empty())
     {
         // Should never happen since we already made sure all the sub_maps
         // have data on them. Therefore if this range is empty now, it's a chaiscript
@@ -1528,40 +1528,38 @@ int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
     }
 
     int nIndex = -1;
-    while (!range_sub_map.empty())
+    for (SubMap::iterator it = sub_map.begin(); it != sub_map.end(); it++)
     {
         ++nIndex;
-        var offer_data_pair = range_sub_map.front();
+        //var offer_data_pair = range_sub_map.front();
 
-        if (!VerifyNotNull(offer_data_pair))
+        //if (!VerifyNotNull(offer_data_pair))
+        //{
+        //    OTAPI_Wrap::Output(0, strLocation + ": Looping through range_sub_map range, and first offer_data_pair fails to verify.\n");
+        //    return -1;
+        //}
+
+        OTDB::OfferDataNym & offer_data = *it->second;
+        if (!VerifyStorable(&offer_data, "OTDB::OfferDataNym"))
         {
-            OTAPI_Wrap::Output(0, strLocation + ": Looping through range_sub_map range, and first offer_data_pair fails to verify.\n");
+            OTAPI_Wrap::Output(0, strLocation + ": Error: offer_data is not an OTDB::OfferDataNym.\n");
             return -1;
         }
 
-        var offer_data = offer_data_pair.second.the_ref;
-        if (!VerifyStorable(offer_data, "OTDB::OfferDataNym"))
-        {
-            OTAPI_Wrap::Output(0, strLocation + ": Error: offer_data is not an OTDB::OfferDataNym. Type: " + offer_data.get_type_info().name() + "\n");
-            return -1;
-        }
-
-        int nLambda = the_lambda(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9;
+        int nLambda = (*the_lambda)(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9;
         if (-1 == nLambda)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: the_lambda failed.\n");
             return -1;
         }
-
-        range_sub_map.pop_front()
-
-    } // while (!range_sub_map.empty())
+    }
+    sub_map.clear();
 
     return 1;
 }
 
 
-int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda) // low level. map_of_maps must be good. (assumed.)
+OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda) // low level. map_of_maps must be good. (assumed.)
 {
     the_lambda_struct extra_vals;
     return iterate_nymoffers_maps(map_of_maps, the_lambda, extra_vals);
@@ -1571,7 +1569,7 @@ int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struc
 // extra_vals allows you to pass any extra data you want into your
 // lambda, for when it is called. (Like a functor.)
 //
-int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals) // low level. map_of_maps must be good. (assumed.)
+OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals) // low level. map_of_maps must be good. (assumed.)
 {
     // the_lambda must be good (assumed) and must have the parameter profile like this sample:
     // def the_lambda(offer_data, nIndex, map_of_maps, sub_map, extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
@@ -1580,34 +1578,34 @@ int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struc
 
     // Next let's loop through the map_of_maps and output the offers for each market therein...
     //
-    var range_map_of_maps = map_of_maps.range();
-    if (!VerifyType(range_map_of_maps, "Map_Range"))
-    {
-        OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from map_of_maps. Type is: " + range_map_of_maps.get_type_info().name() + "\n");
-        return -1;
-    }
-    if (range_map_of_maps.empty())
+    //var range_map_of_maps = map_of_maps.range();
+    //if (!VerifyType(range_map_of_maps, "Map_Range"))
+    //{
+    //    OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from map_of_maps. Type is: " + range_map_of_maps.get_type_info().name() + "\n");
+    //    return -1;
+    //}
+    if (map_of_maps.empty())
     {
         OTAPI_Wrap::Output(0, strLocation + ": A range was retrieved for the map_of_maps, but the range is empty.\n");
         return -1;
     }
 
     int nMainIndex = -1;
-    while (!range_map_of_maps.empty())
+    for (MapOfMaps::iterator it = map_of_maps.begin(); it != map_of_maps.end(); it++)
     {
         ++nMainIndex; // so we can output a header on the FIRST one only.
 
-        var sub_map_pair = range_map_of_maps.front();
-        if (!VerifyType(sub_map_pair, "Map_Pair"))
-        {
-            OTAPI_Wrap::Output(0, strLocation + ": Looping through map_of_maps range, and first sub_map_pair fails to verify.\n");
-            return -1;
-        }
+        //var sub_map_pair = range_map_of_maps.front();
+        //if (!VerifyType(sub_map_pair, "Map_Pair"))
+        //{
+        //    OTAPI_Wrap::Output(0, strLocation + ": Looping through map_of_maps range, and first sub_map_pair fails to verify.\n");
+        //    return -1;
+        //}
 
-        string strMapKey = sub_map_pair.first;
+        string strMapKey = it->first;
 
-        var sub_map = sub_map_pair.second;
-        if (!VerifyNotNull(sub_map))
+        SubMap & sub_map = *it->second;
+        if (&sub_map == NULL)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: Sub_map is not a map. (Then how is it even here?? Submaps are only added based on existing offers.)\n");
             return -1;
@@ -1629,10 +1627,8 @@ int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struc
             OTAPI_Wrap::Output(0, strLocation + ": Error: while trying to iterate_nymoffers_sub_map.\n");
             return -1;
         }
-
-        range_map_of_maps.pop_front()
-
-    } // while !range_map_of_maps.empty()
+    }
+    map_of_maps.clear();
 
     return 1;
 }

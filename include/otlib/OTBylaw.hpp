@@ -332,7 +332,7 @@ EXPORT	bool GetNymID(OTIdentifier& theOutput) const;		// If IsIndividual(), then
     //
 	bool GetEntityID(OTIdentifier& theOutput) const; // IF represents an entity, this is its ID. Else fail.
     
-EXPORT	const OTString & GetName() { return m_strName; } // agent's name as used in a script.
+	const OTString & GetName() { return m_strName; } // agent's name as used in a script.
     // ------------------------------------------    
 	// For when the agent is a voting group:
     //
@@ -467,7 +467,7 @@ EXPORT	void RegisterForExecution(OTScript& theScript);
 	OTParty * GetParty() { return m_pForParty; }
 	void SetParty(OTParty & theOwnerParty); // This happens when the partyaccount is added to the party. (so I have a ptr back)
 
-EXPORT	const OTString & GetName()			const	{ return m_strName; }			// account's name as used in a script.
+     	const OTString & GetName()			const	{ return m_strName; }			// account's name as used in a script.
         const OTString & GetAgentName()		const	{ return m_strAgentName; }		// agent's name as used in a script.
         const OTString & GetAcctID()		const	{ return m_strAcctID; }			// account's ID as used internal to OT.
         const OTString & GetAssetTypeID()	const	{ return m_strAssetTypeID; }	// asset type ID for the account.
@@ -841,7 +841,7 @@ EXPORT  void UnregisterScript(); // If the script destructs before the variable 
 	bool SetValue(const bool bValue);
 	bool SetValue(const std::string & str_Value);
 	// -------------------------------------
-EXPORT	const OTString & GetName() const { return m_strName; } // variable's name as used in a script.
+	const OTString & GetName() const { return m_strName; } // variable's name as used in a script.
 	// -------------------------------------
 	OTVariable_Type		GetType  () const { return m_Type;   }
 	OTVariable_Access	GetAccess() const { return m_Access; }
@@ -886,7 +886,7 @@ class OTClause
 public:
 	void SetBylaw(OTBylaw& theBylaw) { m_pBylaw = &theBylaw; }
     //------------------
-EXPORT	const OTString & GetName() const { return m_strName; }
+	const OTString & GetName() const { return m_strName; }
     //------------------
 	OTBylaw	* GetBylaw() const { return m_pBylaw; }
     //------------------
@@ -993,7 +993,7 @@ class OTBylaw
 
 	OTScriptable *	m_pOwnerAgreement; // This Bylaw is owned by an agreement (OTScriptable-derived.)
 public:
-	EXPORT	const OTString & GetName()     const { return m_strName; }
+		const OTString & GetName()     const { return m_strName; }
 	EXPORT  const char     * GetLanguage() const;
 	// ---------------------
 	EXPORT  bool AddVariable(OTVariable& theVariable);
@@ -1019,10 +1019,10 @@ public:
 	// ---------------------
 	EXPORT	bool GetHooks(const std::string str_HookName, mapOfClauses & theResults); // Look up all clauses matching a specific hook.
 	// ---------------------
-	EXPORT int GetVariableCount() const { return static_cast<int> (m_mapVariables.size()); }
-	EXPORT int GetClauseCount  () const { return static_cast<int> (m_mapClauses.size());   }
-	EXPORT int GetCallbackCount() const { return static_cast<int> (m_mapCallbacks.size()); }
-	EXPORT int GetHookCount    () const { return static_cast<int> (m_mapHooks.size());     }
+	int GetVariableCount() const { return static_cast<int> (m_mapVariables.size()); }
+	int GetClauseCount  () const { return static_cast<int> (m_mapClauses.size());   }
+	int GetCallbackCount() const { return static_cast<int> (m_mapCallbacks.size()); }
+	int GetHookCount    () const { return static_cast<int> (m_mapHooks.size());     }
 	// ---------------------
 	EXPORT  OTVariable        * GetVariableByIndex    (int nIndex);
 	EXPORT  OTClause          * GetClauseByIndex      (int nIndex);
@@ -1040,8 +1040,8 @@ public:
 	// ---------------------
 	// This pointer isn't owned -- just stored for convenience.
 	//
-	EXPORT	OTScriptable * GetOwnerAgreement() { return m_pOwnerAgreement; }
-	EXPORT	void SetOwnerAgreement(OTScriptable& theOwner) { m_pOwnerAgreement = &theOwner; }
+	OTScriptable * GetOwnerAgreement() { return m_pOwnerAgreement; }
+	void SetOwnerAgreement(OTScriptable& theOwner) { m_pOwnerAgreement = &theOwner; }
 	// ---------------------
 	EXPORT  OTBylaw();
 	EXPORT	OTBylaw(const char * szName, const char * szLanguage);

@@ -220,6 +220,8 @@ public:
     EXPORT OT_ME();
     EXPORT ~OT_ME();
 
+    EXPORT static int opentxs_main_loop();
+
     EXPORT bool make_sure_enough_trans_nums(
         const int32_t nNumberNeeded,
         const std::string & SERVER_ID,
@@ -572,6 +574,7 @@ public:
     EXPORT void ExecuteScript_ReturnVoid(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
 
     EXPORT void AddVariable(const std::string & str_var_name, OTVariable & theVar);
+    EXPORT  OTVariable *  FindVariable(const std::string & str_var_name);
 
 };
 

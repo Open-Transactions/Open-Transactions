@@ -1350,7 +1350,7 @@ OT_COMMAND_OT int main_trigger_clause()
 }
 
 
-string OT_COMMAND_OT find_revokedID_for_subcred(const string & strMyNymID, const string & strInputID)
+OT_COMMAND_OT string find_revokedID_for_subcred(const string & strMyNymID, const string & strInputID)
 {
     int nCredCount = OTAPI_Wrap::GetNym_RevokedCredCount(strMyNymID);
 
@@ -1386,7 +1386,7 @@ string OT_COMMAND_OT find_revokedID_for_subcred(const string & strMyNymID, const
 }
 
 
-string OT_COMMAND_OT find_masterID_for_subcred(const string & strMyNymID, const string & strInputID)
+OT_COMMAND_OT string find_masterID_for_subcred(const string & strMyNymID, const string & strInputID)
 {
     int nCredCount = OTAPI_Wrap::GetNym_CredentialCount(strMyNymID);
 
@@ -1428,7 +1428,7 @@ string OT_COMMAND_OT find_masterID_for_subcred(const string & strMyNymID, const 
 // It also might be a revoked credential.
 // Handle all cases.
 //
-bool OT_COMMAND_OT details_show_credential(const string & strMyNymID, const string & strCredID)
+OT_COMMAND_OT bool details_show_credential(const string & strMyNymID, const string & strCredID)
 {
     string strCredContents = OTAPI_Wrap::GetNym_CredentialContents(strMyNymID, strCredID);
 
@@ -1633,7 +1633,7 @@ OT_COMMAND_OT int main_show_credentials()
 }
 
 
-bool OT_COMMAND_OT stat_partyagent(const string & strSmartContract, const string & strPartyName, const string & strAgentName, const int nIndex)
+OT_COMMAND_OT bool stat_partyagent(const string & strSmartContract, const string & strPartyName, const string & strAgentName, const int nIndex)
 {
     string strDisplayIndex = "*";
 
@@ -1656,7 +1656,7 @@ bool OT_COMMAND_OT stat_partyagent(const string & strSmartContract, const string
     return true;
 }
 
-bool OT_COMMAND_OT stat_partyagent_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAgent)
+OT_COMMAND_OT bool stat_partyagent_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAgent)
 {
     string strAgentName = OTAPI_Wrap::Party_GetAgentNameByIndex(strSmartContract, strPartyName, nCurrentAgent);
 
@@ -1668,7 +1668,7 @@ bool OT_COMMAND_OT stat_partyagent_index(const string & strSmartContract, const 
     return stat_partyagent(strSmartContract, strPartyName, strAgentName, nCurrentAgent);
 }
 
-bool OT_COMMAND_OT stat_partyagents(const string & strSmartContract, const string & strPartyName, const int nDepth)
+OT_COMMAND_OT bool stat_partyagents(const string & strSmartContract, const string & strPartyName, const int nDepth)
 {
     int nAgentCount = OTAPI_Wrap::Party_GetAgentCount(strSmartContract, strPartyName);
 
@@ -1696,7 +1696,7 @@ bool OT_COMMAND_OT stat_partyagents(const string & strSmartContract, const strin
 }
 
 
-bool OT_COMMAND_OT stat_partyaccount(const string & strSmartContract, const string & strPartyName, const string & strAcctName, const int nCurrentAccount)
+OT_COMMAND_OT bool stat_partyaccount(const string & strSmartContract, const string & strPartyName, const string & strAcctName, const int nCurrentAccount)
 {
     string strAcctAssetID = OTAPI_Wrap::Party_GetAcctAssetID(strSmartContract, strPartyName, strAcctName);
     string strAcctID = OTAPI_Wrap::Party_GetAcctID(strSmartContract, strPartyName, strAcctName);
@@ -1731,7 +1731,7 @@ bool OT_COMMAND_OT stat_partyaccount(const string & strSmartContract, const stri
     return true;
 }
 
-bool OT_COMMAND_OT stat_partyaccount_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAccount)
+OT_COMMAND_OT bool stat_partyaccount_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAccount)
 {
     string strAcctName = OTAPI_Wrap::Party_GetAcctNameByIndex(strSmartContract, strPartyName, nCurrentAccount);
 
@@ -1744,7 +1744,7 @@ bool OT_COMMAND_OT stat_partyaccount_index(const string & strSmartContract, cons
 }
 
 
-bool OT_COMMAND_OT stat_partyaccounts(const string & strSmartContract, const string & strPartyName, const int nDepth)
+OT_COMMAND_OT bool stat_partyaccounts(const string & strSmartContract, const string & strPartyName, const int nDepth)
 {
     int nAccountCount = OTAPI_Wrap::Party_GetAcctCount(strSmartContract, strPartyName);
 
@@ -1772,14 +1772,14 @@ bool OT_COMMAND_OT stat_partyaccounts(const string & strSmartContract, const str
 }
 
 
-bool OT_COMMAND_OT show_unconfirmed_parties(const string & strSmartContract)
+OT_COMMAND_OT bool show_unconfirmed_parties(const string & strSmartContract)
 {
     int nPartyCount = 0;
     return show_unconfirmed_parties(strSmartContract, nPartyCount);
 }
 
 
-bool OT_COMMAND_OT show_unconfirmed_parties(const string & strSmartContract, int & nPartyCount)
+OT_COMMAND_OT bool show_unconfirmed_parties(const string & strSmartContract, int & nPartyCount)
 {
     if (!VerifyIntVal(nPartyCount) || (0 == nPartyCount))
     {
@@ -3301,7 +3301,7 @@ OT_COMMAND_OT int main_password_decrypt()
 }
 
 
-bool OT_COMMAND_OT details_import_nym(const string & strNymImportFile, string & strOutNymID)
+OT_COMMAND_OT bool details_import_nym(const string & strNymImportFile, string & strOutNymID)
 {
     strOutNymID = OTAPI_Wrap::Wallet_ImportNym(strNymImportFile);
 
@@ -3345,7 +3345,7 @@ OT_COMMAND_OT int main_import_nym()
 }
 
 
-string OT_COMMAND_OT details_export_nym(const string & strNymID)
+OT_COMMAND_OT string details_export_nym(const string & strNymID)
 {
     string strExportedNym = OTAPI_Wrap::Wallet_ExportNym(strNymID);
 
@@ -4662,9 +4662,9 @@ OT_COMMAND_OT int details_create_offer(const string & strScale, const string & s
     This is done here:
     */
 
-    OTDB::OfferListNym * offerList = loadNymOffers(strMyServerID, strMyNymID);
+    OTDB::OfferListNym & offerList = *loadNymOffers(strMyServerID, strMyNymID);
 
-    if (!VerifyStorable(offerList, "OTDB::OfferListNym"))
+    if (!VerifyStorable(&offerList, "OTDB::OfferListNym"))
     {
         OTAPI_Wrap::Output(0, strLocation + ": Unable to load up a (nym) offerList from local storage. Probably doesn't exist.\n");
     }
@@ -4674,12 +4674,12 @@ OT_COMMAND_OT int details_create_offer(const string & strScale, const string & s
         // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
         // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
         //
-        int nCount = offerList->GetOfferDataNymCount(); // size_t
+        int nCount = offerList.GetOfferDataNymCount(); // size_t
         int nTemp = nCount; // so it's created as size_t
 
         if (VerifyIntVal(nCount) && (nCount > 0))
         {
-            MapOfMaps * map_of_maps = convert_offerlist_to_maps(*offerList);
+            MapOfMaps * map_of_maps = convert_offerlist_to_maps(offerList);
 
             if (map_of_maps == NULL)
             {
@@ -4719,13 +4719,13 @@ OT_COMMAND_OT int details_create_offer(const string & strScale, const string & s
                     OTAPI_Wrap::Output(0, strLocation + ": FYI, about to cancel at least one market offer, before placing the new one, due to price inconsistencies between the two...\n");
                 }
 
-                while (extra_vals.the_vector.size() > 0)
+                for (int i = 0; i < extra_vals.the_vector.size(); i++)
                 {
                     OTAPI_Wrap::Output(0, strLocation + ": Canceling market offer with transaction number: " + extra_vals.the_vector[0] + "\n");
 
                     details_kill_offer(strMyServerID, strMyNymID, MyAcct, extra_vals.the_vector[0]);
-                    extra_vals.the_vector.erase_at(0);
                 }
+                extra_vals.the_vector.clear();
             }
         }
         else
@@ -6092,7 +6092,7 @@ OT_COMMAND_OT int main_accept_all()
 // returns the server response string (or null.)
 // Use VerifyStringVal and/or VerifyMessageSuccess on it, for more info.
 //
-string OT_COMMAND_OT details_check_user(const string & strServerID, const string & strMyNymID, const string & strHisNymID)
+OT_COMMAND_OT string details_check_user(const string & strServerID, const string & strMyNymID, const string & strHisNymID)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6445,7 +6445,7 @@ OT_COMMAND_OT int main_register_nym()
 }
 
 
-bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string & strMyNymID, const bool bForceDownload)
+OT_COMMAND_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, const bool bForceDownload)
 {
     bool bWasMsgSent = false;
 
@@ -6453,7 +6453,7 @@ bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string 
 }
 
 
-bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload)
+OT_COMMAND_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload)
 {
     MadeEasy madeEasy;
 
@@ -6494,7 +6494,7 @@ bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string 
     return bReturnVal;
 }
 
-bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string & strMyNymID)
+OT_COMMAND_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID)
 {
     bool bForceDownload = true;
 
@@ -7290,9 +7290,9 @@ OT_COMMAND_OT int main_show_market_list()
 {
     if (VerifyExists("Server"))
     {
-        OTDB::MarketList * marketList = loadMarketList(Server);
+        OTDB::MarketList & marketList = *loadMarketList(Server);
 
-        if (!VerifyStorable(marketList, "OTDB::MarketList"))
+        if (!VerifyStorable(&marketList, "OTDB::MarketList"))
         {
             OTAPI_Wrap::Output(0, "Unable to load up marketlist from local storage.\n");
             return -1;
@@ -7300,7 +7300,7 @@ OT_COMMAND_OT int main_show_market_list()
 
         // LOOP THROUGH THE MARKETS AND PRINT THEM OUT.
 
-        int nCount = marketList->GetMarketDataCount();
+        int nCount = marketList.GetMarketDataCount();
         int nTemp = nCount;  // this way, nTemp is initialized as a size_t.
 
         if (!VerifyIntVal(nCount))
@@ -7318,9 +7318,7 @@ OT_COMMAND_OT int main_show_market_list()
 
             for (int nIndex = 0; nIndex < nCount; ++nIndex)
             {
-                nTemp = nIndex; // convert nIndex from int to size_t
-                OTDB::MarketData & marketData = *marketList.GetMarketData(nTemp); // can't pass an int here--it expects size_t. (It'll crash..)
-
+                OTDB::MarketData & marketData = *marketList.GetMarketData(nIndex);
                 if (!VerifyStorable(&marketData, "OTDB::MarketData"))
                 {
                     OTAPI_Wrap::Output(0, "Unable to reference marketData on marketList, at index: " + to_string(nIndex) + "\n");
@@ -7332,7 +7330,6 @@ OT_COMMAND_OT int main_show_market_list()
                 print(to_string(nIndex) + "\t" + marketData.scale + "\tM " + marketData.market_id + "\tA " + marketData.asset_type_id + "\tC " + marketData.currency_type_id);
             }
         }
-
 
         return 1;
     }
@@ -7383,7 +7380,7 @@ OT_COMMAND_OT int main_get_market_list()
 }
 
 
-OT_COMMAND_OT OTDB::OfferListMarket loadMarketOffers(const string & serverID, const string & marketID)
+OT_COMMAND_OT OTDB::OfferListMarket * loadMarketOffers(const string & serverID, const string & marketID)
 {
     OTDB::OfferListMarket * offerList = NULL;
     OTDB::Storable * storable = NULL;
@@ -7391,7 +7388,7 @@ OT_COMMAND_OT OTDB::OfferListMarket loadMarketOffers(const string & serverID, co
     if (OTDB::Exists("markets", serverID, "offers", marketID + ".bin"))
     {
         OTAPI_Wrap::Output(1, "Offers file exists... Querying file for market offers...\n");
-        storable = OTDB::QueryObject(STORED_OBJ_OFFER_LIST_MARKET, "markets", serverID, "offers", marketID + ".bin");
+        storable = OTDB::QueryObject(OTDB::STORED_OBJ_OFFER_LIST_MARKET, "markets", serverID, "offers", marketID + ".bin");
 
         if (!VerifyStorable(storable, "OTDB::Storable"))
         {
@@ -7400,7 +7397,7 @@ OT_COMMAND_OT OTDB::OfferListMarket loadMarketOffers(const string & serverID, co
         }
 
         OTAPI_Wrap::Output(1, "QueryObject worked. Now dynamic casting from storable to a (market) offerList...\n");
-        offerList = dynamic_cast<OTDB::OfferListMarket>(storable);
+        offerList = dynamic_cast<OTDB::OfferListMarket *>(storable);
 
         if (!VerifyStorable(offerList, "OTDB::OfferListMarket"))
         {
@@ -7415,9 +7412,9 @@ OT_COMMAND_OT OTDB::OfferListMarket loadMarketOffers(const string & serverID, co
 
 OT_COMMAND_OT int details_show_market_offers(const string & strServerID, const string & strMarketID)
 {
-    var offerList : = loadMarketOffers(strServerID, strMarketID);
+    OTDB::OfferListMarket & offerList = *loadMarketOffers(strServerID, strMarketID);
 
-    if (!VerifyStorable(offerList, "OTDB::OfferListMarket"))
+    if (!VerifyStorable(&offerList, "OTDB::OfferListMarket"))
     {
         OTAPI_Wrap::Output(0, "Unable to load up a (market) offerList from local storage.\n");
         return -1;
@@ -7433,10 +7430,8 @@ OT_COMMAND_OT int details_show_market_offers(const string & strServerID, const s
 
         for (int nIndex = 0; nIndex < nBidCount; ++nIndex)
         {
-            nTemp = nIndex;
-            var offerData : = offerList.GetBidData(nTemp);
-
-            if (!VerifyStorable(offerData, "OTDB::BidData"))
+            OTDB::BidData & offerData = *offerList.GetBidData(nIndex);
+            if (!VerifyStorable(&offerData, "OTDB::BidData"))
             {
                 OTAPI_Wrap::Output(0, "Unable to reference bidData on offerList, at index: " + to_string(nIndex) + "\n");
                 return -1;
@@ -7458,9 +7453,9 @@ OT_COMMAND_OT int details_show_market_offers(const string & strServerID, const s
         for (int nIndex = 0; nIndex < nAskCount; ++nIndex)
         {
             nTemp = nIndex;
-            var offerData : = offerList.GetAskData(nTemp);
+            OTDB::AskData & offerData = *offerList.GetAskData(nTemp);
 
-            if (!VerifyStorable(offerData, "OTDB::AskData"))
+            if (!VerifyStorable(&offerData, "OTDB::AskData"))
             {
                 OTAPI_Wrap::Output(0, "Unable to reference askData on offerList, at index: " + to_string(nIndex) + "\n");
                 return -1;
@@ -7471,7 +7466,6 @@ OT_COMMAND_OT int details_show_market_offers(const string & strServerID, const s
             print(to_string(nIndex) + "\t" + offerData.transaction_id + "\t" + offerData.price_per_scale + "\t" + offerData.available_assets);
         }
     }
-
 
     return 1;
 }
@@ -7794,9 +7788,9 @@ OT_COMMAND_OT int details_show_nym_offers(const string & strServerID, const stri
 {
     string strLocation = "details_show_nym_offers";
 
-    OTDB::OfferListNym * offerList = loadNymOffers(strServerID, strNymID);
+    OTDB::OfferListNym & offerList = *loadNymOffers(strServerID, strNymID);
 
-    if (!VerifyStorable(offerList, "OTDB::OfferListNym"))
+    if (!VerifyStorable(&offerList, "OTDB::OfferListNym"))
     {
         OTAPI_Wrap::Output(0, strLocation + ": Unable to load up a (nym) offerList from local storage. Probably doesn't exist.\n");
         return -1;
@@ -7805,14 +7799,14 @@ OT_COMMAND_OT int details_show_nym_offers(const string & strServerID, const stri
     // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
     // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
     //
-    int nCount = offerList->GetOfferDataNymCount(); // size_t
+    int nCount = offerList.GetOfferDataNymCount(); // size_t
     int nTemp = nCount; // so it's created as size_t
 
     if (VerifyIntVal(nCount) && (nCount > 0))
     {
-        var map_of_maps : = convert_offerlist_to_maps(offerList);
+        MapOfMaps & map_of_maps = *convert_offerlist_to_maps(offerList);
 
-        if (!VerifyType(map_of_maps, "Map"))
+        if (&map_of_maps == NULL)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Unable to convert offer list to map of offers. Perhaps it's empty?\n");
             return -1;
@@ -7859,7 +7853,7 @@ OT_COMMAND_OT int main_show_nym_offers()
 }
 
 
-string OT_COMMAND_OT details_get_nym_market_offers(const string & strServerID, const string & strNymID)
+OT_COMMAND_OT string details_get_nym_market_offers(const string & strServerID, const string & strNymID)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7868,10 +7862,8 @@ string OT_COMMAND_OT details_get_nym_market_offers(const string & strServerID, c
 
     string strResponse;
 
-
     if (VerifyStringVal(strServerID) && VerifyStringVal(strNymID))
     {
-
         // Send the request.
         //
         strResponse = madeEasy.get_nym_market_offers(strServerID, strNymID);
@@ -7879,8 +7871,6 @@ string OT_COMMAND_OT details_get_nym_market_offers(const string & strServerID, c
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
         // handled at a lower level!  Instead, simply check for success or failure:
-
-        // ***************************************************************
     }
 
     return strResponse;
@@ -7893,7 +7883,6 @@ OT_COMMAND_OT int main_get_nym_market_offers()
     string strUsage = "\n\n USAGE: getmyoffers --server SERVER_ID --mynym YOUR_NYM_ID\n";
 
     OTAPI_Wrap::Output(0, strUsage);
-
 
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {
@@ -8887,7 +8876,7 @@ OT_COMMAND_OT int main_import_cash()
 // and one that downloads an asset contract if not already in the wallet
 
 
-string OT_COMMAND_OT details_export_cash(const string & strServerID, const string & strFromNymID, const string & strAssetTypeID, string & strHisNymID, const string & strIndices, const bool bPasswordProtected, string & strRetainedCopy)
+OT_COMMAND_OT string details_export_cash(const string & strServerID, const string & strFromNymID, const string & strAssetTypeID, string & strHisNymID, const string & strIndices, const bool bPasswordProtected, string & strRetainedCopy)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -9110,7 +9099,7 @@ OT_COMMAND_OT int main_export_cash()
 // determine the indices that would create lAmount, if they were selected. If it
 // returns true, strIndices, will contain the result, at the end of it all.
 //
-bool OT_COMMAND_OT purse_get_indices_or_amount(const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, int64_t & lAmount, string & strIndices) // If strIndices is input, lAmount is output. (And vice-versa.)
+OT_COMMAND_OT bool purse_get_indices_or_amount(const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, int64_t & lAmount, string & strIndices) // If strIndices is input, lAmount is output. (And vice-versa.)
 {
 
     string strLocation = "\n purse_get_indices_or_amount";
@@ -9328,7 +9317,7 @@ bool OT_COMMAND_OT purse_get_indices_or_amount(const string & strServerID, const
 }
 
 
-bool OT_COMMAND_OT withdraw_and_send_cash(const string & strMyAcctID, string & strHisNymID, const string & strMemo, const string & strAmount)
+OT_COMMAND_OT bool withdraw_and_send_cash(const string & strMyAcctID, string & strHisNymID, const string & strMemo, const string & strAmount)
 {
     string strLocation = "withdraw_and_send_cash";
 
@@ -11628,7 +11617,7 @@ OT_COMMAND_OT int main_del_outmail()
 }
 
 
-bool OT_COMMAND_OT show_outpayment(const string & strMyNym, const int nIndex, const bool bShowInFull)
+OT_COMMAND_OT bool show_outpayment(const string & strMyNym, const int nIndex, const bool bShowInFull)
 {
     bool bMailVerified = OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex(strMyNym, nIndex);
 
@@ -11727,7 +11716,7 @@ bool OT_COMMAND_OT show_outpayment(const string & strMyNym, const int nIndex, co
     return true;
 }
 
-bool OT_COMMAND_OT show_outpayment(const string & strMyNym, const int nIndex)
+OT_COMMAND_OT bool show_outpayment(const string & strMyNym, const int nIndex)
 {
     bool bShowInFull = true;
 
