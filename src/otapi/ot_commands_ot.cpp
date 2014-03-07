@@ -23,30 +23,11 @@
 #include "ot_utility_ot.hpp"
 
 
-// defining these ones will include functions I skipped for now due to weird constructs
-//#define SKIP_FOR_NOW2
-//#define SKIP_FOR_NOW3
-//#define SKIP_FOR_NOW4
-//#define SKIP_FOR_NOW5
-//#define SKIP_FOR_NOW6
-//#define SKIP_FOR_NOW7
-
-
 extern string OT_CLI_GetValueByKey(string, string);
 
 
-//int OT_OTAPI_OT the_lambda_struct::the_lambda_struct();
-int OT_OTAPI_OT loadNymOffers(const string & serverID, const string & nymID);
-//int OT_OTAPI_OT convert_offerlist_to_maps(offerList);
-//int OT_OTAPI_OT output_nymoffer_data(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
-//int OT_OTAPI_OT find_strange_offers(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
-//int OT_OTAPI_OT iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda);
-//int OT_OTAPI_OT iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda, extra_vals);
-//int OT_OTAPI_OT iterate_nymoffers_maps(map_of_maps, the_lambda); // low level. map_of_maps must be good. (assumed.);
-//int OT_OTAPI_OT iterate_nymoffers_maps(map_of_maps, the_lambda, extra_vals); // low level. map_of_maps must be good. (assumed.);
 
-
-int OT_COMMAND_OT main_revoke_credential()
+OT_COMMAND_OT int main_revoke_credential()
 {
     OTAPI_Wrap::Output(0, "\nThis command not coded yet. We need to use the OT_API_RevokeSubcredential API call here.\n\n");
 
@@ -54,7 +35,7 @@ int OT_COMMAND_OT main_revoke_credential()
 }
 
 
-int OT_COMMAND_OT main_new_credential()
+OT_COMMAND_OT int main_new_credential()
 {
     OTAPI_Wrap::Output(0, "\nThis command not coded yet. A Nym is created with credentials already,\nbut to add MORE credentials to an existing Nym, I need to use the OT_API_AddSubcredential API call.\n\n");
 
@@ -70,7 +51,7 @@ int OT_COMMAND_OT main_new_credential()
 
 // BASKETS
 
-int OT_COMMAND_OT main_show_basket()
+OT_COMMAND_OT int main_show_basket()
 {
     string strUsage = "Usage:    opentxs showbasket\nOPTIONAL:   --args \"index BASKET_INDEX\"\n\nNOTE: If you leave off the index, then it lists all the basket currencies.\nBut if an index is provided, this command will zoom in and show the details\nfor that specific basket currency.\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -78,7 +59,7 @@ int OT_COMMAND_OT main_show_basket()
     return details_show_basket();
 }
 
-int OT_COMMAND_OT details_show_basket()
+OT_COMMAND_OT int details_show_basket()
 {
     bool bOnFirstIteration = true;
     int nAssetCount = OTAPI_Wrap::GetAssetTypeCount();
@@ -222,7 +203,7 @@ int OT_COMMAND_OT details_show_basket()
 }
 
 
-int OT_COMMAND_OT main_new_basket()
+OT_COMMAND_OT int main_new_basket()
 {
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {
@@ -232,7 +213,7 @@ int OT_COMMAND_OT main_new_basket()
     return -1;
 }
 
-int OT_COMMAND_OT details_new_basket(const string & strServer, const string & strNym)
+OT_COMMAND_OT int details_new_basket(const string & strServer, const string & strNym)
 {
     MadeEasy madeEasy;
 
@@ -395,7 +376,7 @@ int OT_COMMAND_OT details_new_basket(const string & strServer, const string & st
 }
 
 
-int OT_COMMAND_OT details_exchange_basket(const string & strServer, const string & strNym, const string & strAcct, const string & strBasketType)
+OT_COMMAND_OT int details_exchange_basket(const string & strServer, const string & strNym, const string & strAcct, const string & strBasketType)
 {
     // NOTE: details_exchange_basket ASSUMES that strAcct has a server of strServer and
     // a NymID of strNym and an asset type of strBasketType. (These are already verified
@@ -632,7 +613,7 @@ int OT_COMMAND_OT details_exchange_basket(const string & strServer, const string
     return nInterpretReply;
 }
 
-int OT_COMMAND_OT main_exchange_basket()
+OT_COMMAND_OT int main_exchange_basket()
 {
     string strUsage = "Usage:   opentxs exchange --myacct BASKET_ACCT_ID\n\nThis command exchanges in or out of a basket currency.\nYou must already have an asset account which has a basket currency as its asset type.\nYou must also have accounts for all the subcurrencies in that basket.\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -697,14 +678,14 @@ int OT_COMMAND_OT main_exchange_basket()
     return -1;
 }
 
-int OT_COMMAND_OT stat_basket_accounts()
+OT_COMMAND_OT int stat_basket_accounts()
 {
     string strServer = "";
     string strNym = "";
     return stat_basket_accounts(strServer, strNym);
 }
 
-int OT_COMMAND_OT stat_basket_accounts(const string & strServer, const string & strNym)
+OT_COMMAND_OT int stat_basket_accounts(const string & strServer, const string & strNym)
 {
     bool bFilter = false; //unused in this case
     string strBasketType = "";
@@ -721,7 +702,7 @@ int OT_COMMAND_OT stat_basket_accounts(const string & strServer, const string & 
 // Also: if strServer exists, the accounts are filtered by that server.
 // Also: if strNym exists, the accounts are filtered by that Nym.
 //
-int OT_COMMAND_OT stat_basket_accounts(const string & strServer, const string & strNym, const bool bFilter, const string & strBasketType)
+OT_COMMAND_OT int stat_basket_accounts(const string & strServer, const string & strNym, const bool bFilter, const string & strBasketType)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -792,7 +773,7 @@ int OT_COMMAND_OT stat_basket_accounts(const string & strServer, const string & 
 //
 
 
-int OT_COMMAND_OT details_discard_incoming(const string & strServer, const string & strMyNym, const string & strIndices)
+OT_COMMAND_OT int details_discard_incoming(const string & strServer, const string & strMyNym, const string & strIndices)
 {
     if (!VerifyStringVal(strIndices)) { return -1; }
 
@@ -859,7 +840,7 @@ int OT_COMMAND_OT details_discard_incoming(const string & strServer, const strin
     return nSuccess;
 }
 
-int OT_COMMAND_OT main_discard_incoming()
+OT_COMMAND_OT int main_discard_incoming()
 {
     string strUsage = "Usage:   opentxs discard --mynym NYM_ID --server SERVER_ID --args \"index|indices INDICES_GO_HERE\"\n\nThis command discards an incoming instrument from the payments inbox.\n(Usually used for discarding an invoice, for when you don't want to pay it.)\nYou can also use 'all' for the index, for it to process ALL instruments.\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -935,7 +916,7 @@ const char * OTAPI_Wrap::Instrmnt_GetRecipientUserID(const char * THE_INSTRUMENT
 const char * OTAPI_Wrap::Instrmnt_GetRecipientAcctID(const char * THE_INSTRUMENT);
 */
 
-int OT_COMMAND_OT details_cancel_outgoing(const string & strMyNym, const string & strMyAcct, const string & strIndices)
+OT_COMMAND_OT int details_cancel_outgoing(const string & strMyNym, const string & strMyAcct, const string & strIndices)
 {
     int nIndicesCount = OTAPI_Wrap::NumList_Count(strIndices);
     int nCount = OTAPI_Wrap::GetNym_OutpaymentsCount(strMyNym);
@@ -1177,7 +1158,7 @@ int OT_COMMAND_OT details_cancel_outgoing(const string & strMyNym, const string 
 }
 
 
-int OT_COMMAND_OT main_cancel_outgoing()
+OT_COMMAND_OT int main_cancel_outgoing()
 {
     string strUsage = "Usage:   opentxs cancel --mynym NYM_ID --args \"index INDEX_GOES_HERE\"\n\nThis command cancels an outgoing instrument from the outpayment box.\n(Usually used for cancelling a cheque, payment plan, or smart contract.)\nThis, of course, will fail on the server side, if the recipient has already deposited the cheque.\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -1252,7 +1233,7 @@ ascertain the transaction number of the one whose clause we wish
 to trigger.)
 */
 
-int OT_COMMAND_OT details_trigger_clause(const string & strServerID, const string & strMyNymID, const string & strTransNum, const string & strClause, const string & strParam)
+OT_COMMAND_OT int details_trigger_clause(const string & strServerID, const string & strMyNymID, const string & strTransNum, const string & strClause, const string & strParam)
 {
     MadeEasy madeEasy;
     string strResponse = madeEasy.trigger_clause(strServerID, strMyNymID, strTransNum, strClause, strParam);
@@ -1275,7 +1256,7 @@ int OT_COMMAND_OT details_trigger_clause(const string & strServerID, const strin
 //{; }
 
 
-int OT_COMMAND_OT main_trigger_clause()
+OT_COMMAND_OT int main_trigger_clause()
 {
     string strUsage = "USAGE STRING GOES HERE";
     OTAPI_Wrap::Output(0, strUsage);
@@ -1509,7 +1490,7 @@ bool OT_COMMAND_OT details_show_credential(const string & strMyNymID, const stri
 }
 
 
-int OT_COMMAND_OT main_show_credential()
+OT_COMMAND_OT int main_show_credential()
 {
     string strUsage = "Usage:   opentxs showcred --mynym NYM_ID --args \"id CREDENTIAL_ID\"\n\nThis command displays the contents of a given credential (for a given Nym.)\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -1554,7 +1535,7 @@ int OT_COMMAND_OT main_show_credential()
 }
 
 
-int OT_COMMAND_OT details_show_credentials(const string & strMyNymID)
+OT_COMMAND_OT int details_show_credentials(const string & strMyNymID)
 {
     int nReturnVal = -1;
 
@@ -1565,7 +1546,7 @@ int OT_COMMAND_OT details_show_credentials(const string & strMyNymID)
         return -1;
     }
 
-    else if (nCredCount >= 1)
+    if (nCredCount >= 1)
     {
         nReturnVal = 1;
 
@@ -1605,7 +1586,7 @@ int OT_COMMAND_OT details_show_credentials(const string & strMyNymID)
         return -1;
     }
 
-    else if (nCredCount >= 1)
+    if (nCredCount >= 1)
     {
         nReturnVal = 1;
 
@@ -1638,7 +1619,7 @@ int OT_COMMAND_OT details_show_credentials(const string & strMyNymID)
 }
 
 
-int OT_COMMAND_OT main_show_credentials()
+OT_COMMAND_OT int main_show_credentials()
 {
     string strUsage = "Usage:   opentxs credentials --mynym NYM_ID\n\nThis command displays the list of credentials for a given Nym.\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -1675,7 +1656,7 @@ bool OT_COMMAND_OT stat_partyagent(const string & strSmartContract, const string
     return true;
 }
 
-int OT_COMMAND_OT stat_partyagent_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAgent)
+bool OT_COMMAND_OT stat_partyagent_index(const string & strSmartContract, const string & strPartyName, const int nCurrentAgent)
 {
     string strAgentName = OTAPI_Wrap::Party_GetAgentNameByIndex(strSmartContract, strPartyName, nCurrentAgent);
 
@@ -1687,7 +1668,7 @@ int OT_COMMAND_OT stat_partyagent_index(const string & strSmartContract, const s
     return stat_partyagent(strSmartContract, strPartyName, strAgentName, nCurrentAgent);
 }
 
-int OT_COMMAND_OT stat_partyagents(const string & strSmartContract, const string & strPartyName, const int nDepth)
+bool OT_COMMAND_OT stat_partyagents(const string & strSmartContract, const string & strPartyName, const int nDepth)
 {
     int nAgentCount = OTAPI_Wrap::Party_GetAgentCount(strSmartContract, strPartyName);
 
@@ -1853,7 +1834,7 @@ bool OT_COMMAND_OT show_unconfirmed_parties(const string & strSmartContract, int
 // to the customer (recipient of proposal / payer of proposal.) So this function is
 // called by the merchant.
 //
-int OT_COMMAND_OT details_propose_plan(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const string & strHisNymID, const string & strHisAcctID, const string & strDates, const string & strConsideration, const string & strInitialPayment, const string & strPaymentPlan, const string & strExpiry)
+OT_COMMAND_OT int details_propose_plan(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const string & strHisNymID, const string & strHisAcctID, const string & strDates, const string & strConsideration, const string & strInitialPayment, const string & strPaymentPlan, const string & strExpiry)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -1931,7 +1912,7 @@ int OT_COMMAND_OT details_propose_plan(const string & strServerID, const string 
 }
 
 
-int OT_COMMAND_OT main_propose_plan() // payment plan -- called by recipient. (Who generates the proposal.)
+OT_COMMAND_OT int main_propose_plan() // payment plan -- called by recipient. (Who generates the proposal.)
 {
     string strUsage1 = "Usage: opentxs propose   (For a merchant to propose a payment plan to a customer.)\nMandatory: --server SERVER_ID --mynym PAYEE_NYM_ID --hisnym PAYER_NYM_ID\nMandatory: --myacct PAYEE_ACCT_ID --hisacct PAYER_NYM_ID\nAdditional arguments:\n Date Range: --args \" date_range \\\"from,to\\\" \"\nFROM should be in seconds from Jan 1970, and TO is added to that number.\nDefault FROM is the current time, and default TO is 'no expiry.'\n";
     string strUsage2 = concat(strUsage1, "Also: --args \" consideration \\\"like a memo\\\" \" \n");
@@ -2004,7 +1985,7 @@ int OT_COMMAND_OT main_propose_plan() // payment plan -- called by recipient. (W
 // the serverID must be found on the instrument, or must be provided as Server, or we must ask
 // the user to enter it.
 //
-int OT_COMMAND_OT details_confirm_plan(const string & strPlan, const int nIndex)
+OT_COMMAND_OT int details_confirm_plan(const string & strPlan, const int nIndex)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -2118,7 +2099,7 @@ int OT_COMMAND_OT details_confirm_plan(const string & strPlan, const int nIndex)
 //
 
 
-int OT_COMMAND_OT details_confirm_smart_contract(string & strSmartContract, const int nIndex)
+OT_COMMAND_OT int details_confirm_smart_contract(string & strSmartContract, const int nIndex)
 {
     string strLocation = "details_confirm_smart_contract";
 
@@ -2922,7 +2903,7 @@ int OT_COMMAND_OT details_confirm_smart_contract(string & strSmartContract, cons
 }
 
 
-int OT_COMMAND_OT main_confirm() // smart contract and payment plan
+OT_COMMAND_OT int main_confirm() // smart contract and payment plan
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -3106,7 +3087,7 @@ int OT_COMMAND_OT main_confirm() // smart contract and payment plan
 }
 
 
-int OT_COMMAND_OT main_encode()
+OT_COMMAND_OT int main_encode()
 {
     OTAPI_Wrap::Output(0, "Please enter multiple lines of input to be encoded, followed by an EOF or a ~ by itself on a blank line:\n\n");
 
@@ -3140,7 +3121,7 @@ int OT_COMMAND_OT main_encode()
 }
 
 
-int OT_COMMAND_OT main_decode()
+OT_COMMAND_OT int main_decode()
 {
     OTAPI_Wrap::Output(0, "Please enter multiple lines of OT-armored text to be decoded, followed by an EOF or a ~ by itself on a blank line:\n\n");
 
@@ -3174,7 +3155,7 @@ int OT_COMMAND_OT main_decode()
 }
 
 
-int OT_COMMAND_OT main_encrypt()
+OT_COMMAND_OT int main_encrypt()
 {
     if (VerifyExists("HisNym"))
     {
@@ -3210,7 +3191,7 @@ int OT_COMMAND_OT main_encrypt()
 }
 
 
-int OT_COMMAND_OT main_decrypt()
+OT_COMMAND_OT int main_decrypt()
 {
     if (VerifyExists("MyNym"))
     {
@@ -3246,7 +3227,7 @@ int OT_COMMAND_OT main_decrypt()
 }
 
 
-int OT_COMMAND_OT main_password_encrypt()
+OT_COMMAND_OT int main_password_encrypt()
 {
     OTAPI_Wrap::Output(0, "Please enter a symmetric key, followed by a ~ by itself on a blank line:\n\n");
 
@@ -3283,7 +3264,7 @@ int OT_COMMAND_OT main_password_encrypt()
 }
 
 
-int OT_COMMAND_OT main_password_decrypt()
+OT_COMMAND_OT int main_password_decrypt()
 {
     OTAPI_Wrap::Output(0, "Please enter a symmetric key, followed by a ~ by itself on a blank line:\n\n");
 
@@ -3330,7 +3311,7 @@ bool OT_COMMAND_OT details_import_nym(const string & strNymImportFile, string & 
 }
 
 
-int OT_COMMAND_OT main_import_nym()
+OT_COMMAND_OT int main_import_nym()
 {
     string strUsage = "\n\n USAGE: importnym\n";
 
@@ -3371,7 +3352,7 @@ string OT_COMMAND_OT details_export_nym(const string & strNymID)
     return strExportedNym;
 }
 
-int OT_COMMAND_OT main_export_nym()
+OT_COMMAND_OT int main_export_nym()
 {
     string strUsage = "\n\n USAGE: exportnym --mynym NYM_ID\n";
 
@@ -3399,7 +3380,7 @@ int OT_COMMAND_OT main_export_nym()
 }
 
 
-int OT_COMMAND_OT main_change_passphrase()
+OT_COMMAND_OT int main_change_passphrase()
 {
     if (OTAPI_Wrap::Wallet_ChangePassphrase())
     {
@@ -3415,7 +3396,7 @@ int OT_COMMAND_OT main_change_passphrase()
 //
 
 
-int OT_COMMAND_OT details_send_transfer(const string & strMyAcctID, const string & strHisAcctID, const string & strAmount, const string & strNote)
+OT_COMMAND_OT int details_send_transfer(const string & strMyAcctID, const string & strHisAcctID, const string & strAmount, const string & strNote)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -3519,7 +3500,7 @@ int OT_COMMAND_OT details_send_transfer(const string & strMyAcctID, const string
 // HERE, WE GET ALL THE ARGUMENTS TOGETHER,
 // and then call the above function.
 //
-int OT_COMMAND_OT main_transfer()
+OT_COMMAND_OT int main_transfer()
 {
     string strUsage1 = concat("\n\n  USAGE: transfer --myacct YOUR_ASSET_ACCT --hisacct RECIPIENT_ASSET_ACCT\n\n",
         "Also NECESSARY: --args \"amount PUT_AMOUNT_HERE\"\n");
@@ -3607,7 +3588,7 @@ int OT_COMMAND_OT main_transfer()
 // SET NAME!!
 
 
-int OT_COMMAND_OT main_edit_nym()
+OT_COMMAND_OT int main_edit_nym()
 {
     string strUsage = concat("\n\n USAGE: editnym --mynym YOUR_NYM_ID\n",
         "Also optionally:         --args \"label \\\"PUT LABEL HERE\\\"\"\n");
@@ -3678,7 +3659,7 @@ int OT_COMMAND_OT main_edit_nym()
 }
 
 
-int OT_COMMAND_OT main_edit_account()
+OT_COMMAND_OT int main_edit_account()
 {
     string strUsage = concat("\n\n USAGE: editacct --myacct YOUR_ACCT_ID\n",
         "Also optionally:          --args \"label \\\"PUT LABEL HERE\\\"\"\n");
@@ -3769,7 +3750,7 @@ int OT_COMMAND_OT main_edit_account()
 }
 
 
-int OT_COMMAND_OT main_edit_asset()
+OT_COMMAND_OT int main_edit_asset()
 {
     string strUsage = concat("\n\n USAGE: editasset --mypurse ASSET_TYPE_ID\n",
         "Also optionally:           --args \"label \\\"PUT LABEL HERE\\\"\"\n");
@@ -3840,7 +3821,7 @@ int OT_COMMAND_OT main_edit_asset()
 }
 
 
-int OT_COMMAND_OT main_edit_server()
+OT_COMMAND_OT int main_edit_server()
 {
     string strUsage = concat("\n\n USAGE: editserver --server SERVER_ID\n",
         "Also optionally:            --args \"label \\\"PUT LABEL HERE\\\"\"\n");
@@ -3911,7 +3892,7 @@ int OT_COMMAND_OT main_edit_server()
 }
 
 
-int OT_COMMAND_OT main_sendmsg()
+OT_COMMAND_OT int main_sendmsg()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -3958,7 +3939,7 @@ int OT_COMMAND_OT main_sendmsg()
 }
 
 
-int OT_COMMAND_OT details_write_cheque(string & strCheque, const bool bIsInvoice) // strCheque is output.
+OT_COMMAND_OT int details_write_cheque(string & strCheque, const bool bIsInvoice) // strCheque is output.
 {
     Utility MsgUtil;
 
@@ -4181,7 +4162,7 @@ int OT_COMMAND_OT details_write_cheque(string & strCheque, const bool bIsInvoice
 }
 
 
-int OT_COMMAND_OT main_write_cheque()
+OT_COMMAND_OT int main_write_cheque()
 {
     string strUsage1 = "Usage:  writecheque  --myacct <MY_ACCT_ID> --hisnym <HIS_NYM_ID>\n";
     string strUsage2 = "This command WRITES but DOES NOT SEND the cheque. (Use sendcheque for that.)\n\n";
@@ -4207,7 +4188,7 @@ int OT_COMMAND_OT main_write_cheque()
 }
 
 
-int OT_COMMAND_OT main_write_invoice()
+OT_COMMAND_OT int main_write_invoice()
 {
     string strUsage1 = "Usage:  writeinvoice  --myacct <MY_ACCT_ID> --hisnym <HIS_NYM_ID>\n";
     string strUsage2 = "This command WRITES but DOES NOT SEND the invoice. (Use sendinvoice for that.)\n";
@@ -4232,7 +4213,7 @@ int OT_COMMAND_OT main_write_invoice()
 }
 
 
-int OT_COMMAND_OT main_sendcash()
+OT_COMMAND_OT int main_sendcash()
 {
 
     string strUsage1 = "Usage:  sendcash  --[myacct|mypurse] <ID> --hisnym <RECIPIENT_NYM_ID>\nFor mypurse, the server and nym are also required: --server <SERVER_ID> --mynym <NYM_ID> \n";
@@ -4454,7 +4435,7 @@ int OT_COMMAND_OT main_sendcash()
 }
 
 
-int OT_COMMAND_OT main_sendcheque()
+OT_COMMAND_OT int main_sendcheque()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -4536,7 +4517,7 @@ int OT_COMMAND_OT main_sendcheque()
 }
 
 
-int OT_COMMAND_OT main_sendinvoice()
+OT_COMMAND_OT int main_sendinvoice()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -4611,9 +4592,8 @@ int OT_COMMAND_OT main_sendinvoice()
     return nReturnVal;
 }
 
-#ifdef SKIP_FOR_NOW2
 
-int OT_COMMAND_OT details_create_offer(const string & strScale, const string & strMinIncrement, const string & strQuantity, const string & strPrice, const bool bSelling, const string & strLifespan)
+OT_COMMAND_OT int details_create_offer(const string & strScale, const string & strMinIncrement, const string & strQuantity, const string & strPrice, const bool bSelling, const string & strLifespan)
 {
     // NOTE: The top half of this function has nothing to do with placing a new offer.
     // Instead, as a convenience for knotwork, it first checks to see if there are any
@@ -4627,8 +4607,7 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
     // Instantiate the "OT Made Easy" object.
     //
     MadeEasy madeEasy;
-
-
+    
     string strMyNymID = OTAPI_Wrap::GetAccountWallet_NymID(MyAcct);
     string strMyNymID2 = OTAPI_Wrap::GetAccountWallet_NymID(HisAcct);
 
@@ -4638,7 +4617,6 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
         OTAPI_Wrap::Output(0, "Also, both accounts must be owned by the same Nym (you.)\n\n");
         return -1;
     }
-
 
     string strMyServerID = OTAPI_Wrap::GetAccountWallet_ServerID(MyAcct);
     string strMyServerID2 = OTAPI_Wrap::GetAccountWallet_ServerID(HisAcct);
@@ -4658,8 +4636,7 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
     // up, in case we don't even have the current list of them.
 
     details_get_nym_market_offers(strMyServerID, strMyNymID);
-
-
+    
     /*
     me: How about this — when you do "opentxs newoffer" I can alter that
     script to automatically cancel any sell offers for a lower amount
@@ -4685,9 +4662,9 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
     This is done here:
     */
 
-    var offerList : = loadNymOffers(strMyServerID, strMyNymID);
+    OTDB::OfferListNym * offerList = loadNymOffers(strMyServerID, strMyNymID);
 
-    if (!VerifyStorable(offerList, "OTDB_OfferListNym"))
+    if (!VerifyStorable(offerList, "OTDB::OfferListNym"))
     {
         OTAPI_Wrap::Output(0, strLocation + ": Unable to load up a (nym) offerList from local storage. Probably doesn't exist.\n");
     }
@@ -4697,27 +4674,26 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
         // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
         // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
         //
-        int nCount = offerList.GetOfferDataNymCount(); // size_t
+        int nCount = offerList->GetOfferDataNymCount(); // size_t
         int nTemp = nCount; // so it's created as size_t
 
         if (VerifyIntVal(nCount) && (nCount > 0))
         {
-            var map_of_maps : = convert_offerlist_to_maps(offerList);
+            MapOfMaps * map_of_maps = convert_offerlist_to_maps(*offerList);
 
-            if (!VerifyType(map_of_maps, "Map"))
+            if (map_of_maps == NULL)
             {
                 OTAPI_Wrap::Output(0, strLocation + ": Unable to convert offer list to map of offers. Perhaps it's empty?\n");
             }
             else
             {
-
                 // find_strange_offers is called for each offer, for this nym,
                 // as it iterates through the maps. When it's done, extra_vals.the_vector
                 // will contain a vector of all the transaction numbers for offers that we
                 // should cancel, before placing the new offer. (Such as an offer to sell for
                 // 30 clams when our new offer buys for 40...)
                 //
-                var extra_vals = the_lambda_struct();
+                the_lambda_struct extra_vals;
 
                 extra_vals.the_asset_acct = MyAcct;
                 extra_vals.the_currency_acct = HisAcct;
@@ -4725,7 +4701,7 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
                 extra_vals.the_price = strPrice;
                 extra_vals.bSelling = bSelling;
 
-                int nIterated = iterate_nymoffers_maps(map_of_maps, find_strange_offers, extra_vals);
+                int nIterated = iterate_nymoffers_maps(*map_of_maps, find_strange_offers, extra_vals);
 
                 if (-1 == nIterated)
                 {
@@ -4785,11 +4761,8 @@ int OT_COMMAND_OT details_create_offer(const string & strScale, const string & s
     return nInterpretReply;
 }
 
-#endif
 
-#ifdef SKIP_FOR_NOW
-
-int OT_COMMAND_OT main_create_offer()
+OT_COMMAND_OT int main_create_offer()
 {
     string strUsage = concat("\n\n USAGE: newoffer --myacct <YOUR_ASSET_ACCT> --hisacct <YOUR_CURRENCY_ACCT>\n\n",
         " Optional: --args \"type <bid|ask> scale 1 quantity 100 price 101\"\n Optional: --args \"lifespan 86400\"   (in seconds: 86400 is 1 day--the default.)\n\nWARNING: a price of 0 is a market order, which means 'purchase/sell at ANY price'\n\n");
@@ -4933,9 +4906,8 @@ int OT_COMMAND_OT main_create_offer()
     return -1;
 }
 
-#endif
 
-int OT_COMMAND_OT main_create_server_contract()
+OT_COMMAND_OT int main_create_server_contract()
 {
     if (VerifyExists("MyNym"))
     {
@@ -4980,7 +4952,7 @@ int OT_COMMAND_OT main_create_server_contract()
 }
 
 
-int OT_COMMAND_OT main_create_asset_contract()
+OT_COMMAND_OT int main_create_asset_contract()
 {
     // bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
 
@@ -5027,7 +4999,7 @@ int OT_COMMAND_OT main_create_asset_contract()
 }
 
 
-int OT_COMMAND_OT main_create_acct()
+OT_COMMAND_OT int main_create_acct()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5075,7 +5047,7 @@ int OT_COMMAND_OT main_create_acct()
 }
 
 
-int OT_COMMAND_OT main_add_signature()
+OT_COMMAND_OT int main_add_signature()
 {
     // SignContract erases all signatures and affixes a new one alone.
     // But AddSignature, on the other hand, leaves all signatures in place, and simply adds yours to the list.
@@ -5113,7 +5085,7 @@ int OT_COMMAND_OT main_add_signature()
 }
 
 
-int OT_COMMAND_OT main_sign_contract()
+OT_COMMAND_OT int main_sign_contract()
 {
     // SignContract erases all signatures and affixes a new one alone.
     // But AddSignature, on the other hand, leaves all signatures in place, and simply adds yours to the list.
@@ -5191,7 +5163,7 @@ int OT_COMMAND_OT main_sign_contract()
 }
 
 
-int OT_COMMAND_OT details_kill_offer(const string & strServerID, const string & strNymID, const string & strAcctID, const string & strTransNum)
+OT_COMMAND_OT int details_kill_offer(const string & strServerID, const string & strNymID, const string & strAcctID, const string & strTransNum)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5238,7 +5210,7 @@ int OT_COMMAND_OT details_kill_offer(const string & strServerID, const string & 
 }
 
 
-int OT_COMMAND_OT main_kill_offer()
+OT_COMMAND_OT int main_kill_offer()
 {
 
 
@@ -5271,7 +5243,7 @@ int OT_COMMAND_OT main_kill_offer()
 }
 
 
-int OT_COMMAND_OT main_kill_plan()
+OT_COMMAND_OT int main_kill_plan()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5336,7 +5308,7 @@ int OT_COMMAND_OT main_kill_plan()
 }
 
 
-int OT_COMMAND_OT main_verify_signature()
+OT_COMMAND_OT int main_verify_signature()
 {
     if (VerifyExists("HisNym"))
     {
@@ -5371,7 +5343,7 @@ int OT_COMMAND_OT main_verify_signature()
 }
 
 
-int OT_COMMAND_OT stat_nyms()
+OT_COMMAND_OT int stat_nyms()
 {
     print("------------------------------------------------------------------");
     print(" ** PSEUDONYMS: \n");
@@ -5390,7 +5362,7 @@ int OT_COMMAND_OT stat_nyms()
     return 1;
 }
 
-int OT_COMMAND_OT stat_servers()
+OT_COMMAND_OT int stat_servers()
 {
     print("------------------------------------------------------------------");
     print(" ** SERVERS: \n");
@@ -5409,7 +5381,7 @@ int OT_COMMAND_OT stat_servers()
 }
 
 
-int OT_COMMAND_OT stat_assets()
+OT_COMMAND_OT int stat_assets()
 {
     print("------------------------------------------------------------------");
     print(" ** ASSET TYPES: \n");
@@ -5427,7 +5399,7 @@ int OT_COMMAND_OT stat_assets()
 }
 
 
-int OT_COMMAND_OT stat_accounts()
+OT_COMMAND_OT int stat_accounts()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5461,7 +5433,7 @@ int OT_COMMAND_OT stat_accounts()
     return 1;
 }
 
-int OT_COMMAND_OT main_stat()
+OT_COMMAND_OT int main_stat()
 {
     print("");
 
@@ -5474,7 +5446,7 @@ int OT_COMMAND_OT main_stat()
 }
 
 
-int OT_COMMAND_OT details_stat_account(const string & strID)
+OT_COMMAND_OT int details_stat_account(const string & strID)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5504,7 +5476,7 @@ int OT_COMMAND_OT details_stat_account(const string & strID)
 }
 
 
-int OT_COMMAND_OT main_stat_acct()
+OT_COMMAND_OT int main_stat_acct()
 {
     if (VerifyExists("MyAcct"))
     {
@@ -5514,7 +5486,7 @@ int OT_COMMAND_OT main_stat_acct()
 }
 
 
-int OT_COMMAND_OT details_account_balance(const string & strID)
+OT_COMMAND_OT int details_account_balance(const string & strID)
 {
     string strName = OTAPI_Wrap::GetAccountWallet_Name(strID);
     string strAssetID = OTAPI_Wrap::GetAccountWallet_AssetTypeID(strID);
@@ -5527,7 +5499,7 @@ int OT_COMMAND_OT details_account_balance(const string & strID)
     return 1;
 }
 
-int OT_COMMAND_OT main_balance()
+OT_COMMAND_OT int main_balance()
 {
     if (VerifyExists("MyAcct"))
     {
@@ -5537,7 +5509,7 @@ int OT_COMMAND_OT main_balance()
 }
 
 
-int OT_COMMAND_OT details_nym_stat(const string & strID)
+OT_COMMAND_OT int details_nym_stat(const string & strID)
 {
     //  string strName    = OTAPI_Wrap::GetNym_Name(strID)
     string strStats = OTAPI_Wrap::GetNym_Stats(strID);
@@ -5548,7 +5520,7 @@ int OT_COMMAND_OT details_nym_stat(const string & strID)
 }
 
 
-int OT_COMMAND_OT main_nym_stat()
+OT_COMMAND_OT int main_nym_stat()
 {
     if (VerifyExists("MyNym"))
     {
@@ -5558,7 +5530,7 @@ int OT_COMMAND_OT main_nym_stat()
 }
 
 
-int OT_COMMAND_OT main_show_mint()
+OT_COMMAND_OT int main_show_mint()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5609,7 +5581,7 @@ int OT_COMMAND_OT main_show_mint()
 //
 // Returns 1 for success, 0 for failure.
 //
-int OT_COMMAND_OT details_create_nym(const int nKeybits, const string & strName, const string & strSourceForNymID, const string & strAltLocation)
+OT_COMMAND_OT int details_create_nym(const int nKeybits, const string & strName, const string & strSourceForNymID, const string & strAltLocation)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -5641,7 +5613,7 @@ int OT_COMMAND_OT details_create_nym(const int nKeybits, const string & strName,
 }
 
 
-int OT_COMMAND_OT main_create_nym()
+OT_COMMAND_OT int main_create_nym()
 {
     string strUsage1 = "\nUsage:    newnym --args \"keybits 1024 name \\\"Bob's New Nym\\\"\"  \n";
     string strUsage2 = "Optional: newnym --args \"source \\\"http://test.com/credential_IDs\\\" \"  \n";
@@ -5734,7 +5706,7 @@ If the message was successful, then use OTAPI_Wrap::Message_GetBalanceAgreementS
 // nItemType  == 0 for all, 1 for transfers only, 2 for receipts only.
 // strIndices == "" for "all indices"
 //
-int OT_COMMAND_OT accept_inbox_items(const string & strMyAcctID, const int nItemType, const string & strIndices)
+OT_COMMAND_OT int accept_inbox_items(const string & strMyAcctID, const int nItemType, const string & strIndices)
 {
     // Instantiate the "OT Made Easy" object.
     //
@@ -5964,7 +5936,7 @@ int OT_COMMAND_OT accept_inbox_items(const string & strMyAcctID, const int nItem
 }
 
 
-int OT_COMMAND_OT main_accept_receipts()
+OT_COMMAND_OT int main_accept_receipts()
 {
     string strUsage1 = "\nUsage:  acceptreceipts --myacct FOR_ACCT --args \"indices 3,6,8\"  \n (Sample indices are shown.)\n";
     string strUsage2 = "If indices are not specified for myacct's inbox, then OT will\n";
@@ -5991,7 +5963,7 @@ int OT_COMMAND_OT main_accept_receipts()
 }
 
 
-int OT_COMMAND_OT main_accept_inbox()
+OT_COMMAND_OT int main_accept_inbox()
 {
     string strUsage1 = "\nUsage:  acceptinbox --myacct FOR_ACCT --args \"indices 3,6,8\"  \n (Sample indices are shown.)\n";
     string strUsage2 = "If indices are not specified for myacct's inbox, then OT will\n";
@@ -6018,7 +5990,7 @@ int OT_COMMAND_OT main_accept_inbox()
 }
 
 
-int OT_COMMAND_OT main_accept_transfers()
+OT_COMMAND_OT int main_accept_transfers()
 {
     string strUsage1 = "\nUsage:  accepttransfers --myacct FOR_ACCT --args \"indices 3,6,8\"  \n (Sample indices are shown.)\n";
     string strUsage2 = "If indices are not specified for myacct's inbox, then OT will\n";
@@ -6047,7 +6019,7 @@ int OT_COMMAND_OT main_accept_transfers()
 
 // Accept incoming payments and transfers. (NOT receipts or invoices.)
 //
-int OT_COMMAND_OT main_accept_money()
+OT_COMMAND_OT int main_accept_money()
 {
     string strUsage = "\nUsage:  acceptmoney --myacct INTO_ACCT\n";
 
@@ -6079,7 +6051,7 @@ int OT_COMMAND_OT main_accept_money()
 
 // Accept all incoming transfers, receipts, payments, and invoices.
 //
-int OT_COMMAND_OT main_accept_all()
+OT_COMMAND_OT int main_accept_all()
 {
     string strUsage = "\nUsage:  acceptall --myacct INTO_ACCT\n";
 
@@ -6184,7 +6156,7 @@ string OT_COMMAND_OT details_check_user(const string & strServerID, const string
 }
 
 
-int OT_COMMAND_OT main_check_user()
+OT_COMMAND_OT int main_check_user()
 {
     string strUsage = "Usage:   opentxs checknym --mynym MY_NYM_ID --hisnym HIS_NYM_ID \n Downloads the public key for HisNym.\n\n";
 
@@ -6227,7 +6199,7 @@ int OT_COMMAND_OT main_check_user()
 }
 
 
-int OT_COMMAND_OT download_acct_files()
+OT_COMMAND_OT int download_acct_files()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6256,7 +6228,7 @@ int OT_COMMAND_OT download_acct_files()
 }
 
 
-int OT_COMMAND_OT main_dl_acct_files()
+OT_COMMAND_OT int main_dl_acct_files()
 {
     string strUsage = "\n\n Usage:  refreshacct --server SERVER_ID --myacct YOUR_ACCT_ID\n\n";
 
@@ -6271,7 +6243,7 @@ int OT_COMMAND_OT main_dl_acct_files()
 }
 
 
-int OT_COMMAND_OT main_refresh_all()
+OT_COMMAND_OT int main_refresh_all()
 {
     string strUsage = "Usage:  refresh --server SERVER_ID --mynym YOUR_NYM_ID --myacct YOUR_ACCT_ID\n\n";
 
@@ -6293,7 +6265,7 @@ int OT_COMMAND_OT main_refresh_all()
 }
 
 
-int OT_COMMAND_OT details_download_contract(const string & strServerID, const string & strNymID, const string & strContractID)
+OT_COMMAND_OT int details_download_contract(const string & strServerID, const string & strNymID, const string & strContractID)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6324,7 +6296,7 @@ int OT_COMMAND_OT details_download_contract(const string & strServerID, const st
 }
 
 
-int OT_COMMAND_OT main_download_contract()
+OT_COMMAND_OT int main_download_contract()
 {
     string strUsage = concat("\n\nUsage:  getcontract --server SERVER_ID --mynym YOUR_NYM_ID \n",
         "                    --args \"contract_id CONTRACT_ID_HERE\"\n\n");
@@ -6371,7 +6343,7 @@ int OT_COMMAND_OT main_download_contract()
 }
 
 
-int OT_COMMAND_OT main_verify_last_receipt()
+OT_COMMAND_OT int main_verify_last_receipt()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6418,7 +6390,7 @@ int OT_COMMAND_OT main_verify_last_receipt()
 }
 
 
-int OT_COMMAND_OT main_register_nym()
+OT_COMMAND_OT int main_register_nym()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6530,7 +6502,7 @@ bool OT_COMMAND_OT details_refresh_nym(const string & strServerID, const string 
 }
 
 
-int OT_COMMAND_OT main_refresh_nym()
+OT_COMMAND_OT int main_refresh_nym()
 {
     string strUsage = concat("\n\nUsage: refreshnym --server SERVER_ID --mynym NYM_ID\n\n",
         "(If you don't have a NymID, then use the newnym command first.)\n\n");
@@ -6569,7 +6541,7 @@ int OT_COMMAND_OT main_refresh_nym()
 //; }
 
 
-int OT_COMMAND_OT details_download_box_receipt(const string & strID, const int nBoxType)
+OT_COMMAND_OT int details_download_box_receipt(const string & strID, const int nBoxType)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6655,7 +6627,7 @@ int OT_COMMAND_OT details_download_box_receipt(const string & strID, const int n
 }
 
 
-int OT_COMMAND_OT main_get_box_receipt()
+OT_COMMAND_OT int main_get_box_receipt()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6736,7 +6708,7 @@ int OT_COMMAND_OT main_get_box_receipt()
 //
 // (from asset account on server to cash purse on client.)
 //
-int OT_COMMAND_OT details_withdraw_cash(const string & strMyAcctID, const int64_t lAmount)
+OT_COMMAND_OT int details_withdraw_cash(const string & strMyAcctID, const int64_t lAmount)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -6852,7 +6824,7 @@ int OT_COMMAND_OT details_withdraw_cash(const string & strMyAcctID, const int64_
 // HERE, WE GET ALL THE ARGUMENTS TOGETHER,
 // and then call the above function.
 //
-int OT_COMMAND_OT main_withdraw_cash()
+OT_COMMAND_OT int main_withdraw_cash()
 {
     string strUsage = concat("\n\n  USAGE: withdraw --myacct YOUR_ASSET_ACCT \n",
         "You can provide an amount:  --args \"amount PUT_AMOUNT_HERE\"\n\n");
@@ -6935,7 +6907,7 @@ pScript->chai.add(fun(&OTAPI_Wrap::Wallet_GetAccountIDFromPartial), "OT_API_Wall
 //
 
 
-int OT_COMMAND_OT details_withdraw_voucher(string & strOutput)
+OT_COMMAND_OT int details_withdraw_voucher(string & strOutput)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7160,7 +7132,7 @@ int OT_COMMAND_OT details_withdraw_voucher(string & strOutput)
 // HERE, WE GET ALL THE ARGUMENTS TOGETHER,
 // and then call the above function.
 //
-int OT_COMMAND_OT main_withdraw_voucher()
+OT_COMMAND_OT int main_withdraw_voucher()
 {
     string strUsage1 = concat("\n\n  USAGE: buyvoucher --myacct YOUR_ASSET_ACCT --hisnym RECIPIENT_NYM_ID\n\n",
         "Also NECESSARY: --args \"amount PUT_AMOUNT_HERE\"\n");
@@ -7180,7 +7152,7 @@ int OT_COMMAND_OT main_withdraw_voucher()
 }
 
 
-int OT_COMMAND_OT main_sendvoucher()
+OT_COMMAND_OT int main_sendvoucher()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7261,50 +7233,41 @@ int OT_COMMAND_OT main_sendvoucher()
 }
 
 
-#ifdef SKIP_FOR_NOW3
-
-
-int OT_COMMAND_OT loadMarketList(const string & serverID)
+OT_COMMAND_OT OTDB::MarketList * loadMarketList(const string & serverID)
 {
-    var vUndefRetVal;
-    var marketList;
-    var storable;
-
-    if (OTDB_Exists("markets", serverID, "market_data.bin", ""))
-    {
-        OTAPI_Wrap::Output(1, "Markets file exists...Querying list of markets...\n");
-    storable: = OTDB_QueryObject(STORED_OBJ_MARKET_LIST, "markets", serverID, "market_data.bin", "");
-
-        if (!VerifyStorable(storable, "OTDB_Storable"))
-        {
-            OTAPI_Wrap::Output(0, "Failed to verify storable object. Probably doesn't exist.\n");
-            return vUndefRetVal;
-        }
-
-        OTAPI_Wrap::Output(1, "QueryObject worked. Now dynamic casting from storable to marketlist...\n");
-    marketList: = OTDB_CAST_MARKET_LIST(storable);
-
-        if (!VerifyStorable(marketList, "OTDB_MarketList"))
-        {
-            OTAPI_Wrap::Output(0, "Unable to dynamic cast a storable to a marketlist.\n");
-            return vUndefRetVal;
-        }
-
-
-        return marketList;  // success.
-    }
-    else
+    if (!OTDB::Exists("markets", serverID, "market_data.bin", ""))
     {
         OTAPI_Wrap::Output(0, "The market list file doesn't exist.\n");
-        return vUndefRetVal;
+        return NULL;
     }
+
+    OTAPI_Wrap::Output(1, "Markets file exists...Querying list of markets...\n");
+
+    OTDB::Storable * storable = OTDB::QueryObject(OTDB::STORED_OBJ_MARKET_LIST, "markets", serverID, "market_data.bin", "");
+    if (!VerifyStorable(storable, "OTDB::Storable"))
+    {
+        OTAPI_Wrap::Output(0, "Failed to verify storable object. Probably doesn't exist.\n");
+        return NULL;
+    }
+
+    OTAPI_Wrap::Output(1, "QueryObject worked. Now dynamic casting from storable to marketlist...\n");
+
+    OTDB::MarketList * marketList = dynamic_cast<OTDB::MarketList *>(storable);
+    if (!VerifyStorable(marketList, "OTDB::MarketList"))
+    {
+        OTAPI_Wrap::Output(0, "Unable to dynamic cast a storable to a marketlist.\n");
+        return NULL;
+    }
+
+    return marketList;  // success.
+
     // This WAS a "load or create" sort of function, but I commented out the "create" part because
     // you will literally NEVER need to create this list.
     //
     //    else
     //    {
     //        OTAPI_Wrap::Output(0, "Didn't exist. Creating market list object...\n");
-    //        storable := OTDB_CreateObject(STORED_OBJ_MARKET_LIST)
+    //        storable := OTDB::CreateObject(STORED_OBJ_MARKET_LIST)
     //
     //        if (!VerifyStorable(storable))
     //        {
@@ -7313,36 +7276,31 @@ int OT_COMMAND_OT loadMarketList(const string & serverID)
     //; }
     //
     //        OTAPI_Wrap::Output(0, "CreateObject worked. Now dynamic casting from storable to marketlist...\n");
-    //        marketList := OTDB_CAST_MARKET_LIST(storable)
+    //        marketList := OTDB::CAST_MARKET_LIST(storable)
     //
     //        if (!VerifyStorable(marketList))
     //        {
     //            OTAPI_Wrap::Output(0, "Failed to dynamic cast from storable to marketlist.\n");
     //; }
     //; }
-
-    return vUndefRetVal;
 }
 
-#endif
-#ifdef SKIP_FOR_NOW4
 
-int OT_COMMAND_OT main_show_market_list()
+OT_COMMAND_OT int main_show_market_list()
 {
     if (VerifyExists("Server"))
     {
-        var marketList : = loadMarketList(Server);
+        OTDB::MarketList * marketList = loadMarketList(Server);
 
-        if (!VerifyStorable(marketList, "OTDB_MarketList"))
+        if (!VerifyStorable(marketList, "OTDB::MarketList"))
         {
             OTAPI_Wrap::Output(0, "Unable to load up marketlist from local storage.\n");
             return -1;
         }
 
-
         // LOOP THROUGH THE MARKETS AND PRINT THEM OUT.
 
-        int nCount = marketList.GetMarketDataCount();
+        int nCount = marketList->GetMarketDataCount();
         int nTemp = nCount;  // this way, nTemp is initialized as a size_t.
 
         if (!VerifyIntVal(nCount))
@@ -7361,9 +7319,9 @@ int OT_COMMAND_OT main_show_market_list()
             for (int nIndex = 0; nIndex < nCount; ++nIndex)
             {
                 nTemp = nIndex; // convert nIndex from int to size_t
-                var marketData : = marketList.GetMarketData(nTemp); // can't pass an int here--it expects size_t. (It'll crash..)
+                OTDB::MarketData & marketData = *marketList.GetMarketData(nTemp); // can't pass an int here--it expects size_t. (It'll crash..)
 
-                if (!VerifyStorable(marketData, "OTDB_MarketData"))
+                if (!VerifyStorable(&marketData, "OTDB::MarketData"))
                 {
                     OTAPI_Wrap::Output(0, "Unable to reference marketData on marketList, at index: " + to_string(nIndex) + "\n");
                     return -1;
@@ -7382,10 +7340,8 @@ int OT_COMMAND_OT main_show_market_list()
     return -1;
 }
 
-#endif
-#ifdef SKIP_FOR_NOW
 
-int OT_COMMAND_OT main_get_market_list()
+OT_COMMAND_OT int main_get_market_list()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7426,47 +7382,42 @@ int OT_COMMAND_OT main_get_market_list()
     return -1;
 }
 
-#endif
-#ifdef SKIP_FOR_NOW5
 
-int OT_COMMAND_OT loadMarketOffers(const string & serverID, const string & marketID)
+OT_COMMAND_OT OTDB::OfferListMarket loadMarketOffers(const string & serverID, const string & marketID)
 {
-    var offerList;
-    var storable;
-    var vUndefRetVal; // for returning "null"
+    OTDB::OfferListMarket * offerList = NULL;
+    OTDB::Storable * storable = NULL;
 
-    if (OTDB_Exists("markets", serverID, "offers", marketID + ".bin"))
+    if (OTDB::Exists("markets", serverID, "offers", marketID + ".bin"))
     {
         OTAPI_Wrap::Output(1, "Offers file exists... Querying file for market offers...\n");
-    storable: = OTDB_QueryObject(STORED_OBJ_OFFER_LIST_MARKET, "markets", serverID, "offers", marketID + ".bin");
+        storable = OTDB::QueryObject(STORED_OBJ_OFFER_LIST_MARKET, "markets", serverID, "offers", marketID + ".bin");
 
-        if (!VerifyStorable(storable, "OTDB_Storable"))
+        if (!VerifyStorable(storable, "OTDB::Storable"))
         {
             OTAPI_Wrap::Output(0, "Unable to verify storable object. Probably doesn't exist.\n");
-            return vUndefRetVal; // containing null or undef
+            return NULL; // containing null or undef
         }
 
         OTAPI_Wrap::Output(1, "QueryObject worked. Now dynamic casting from storable to a (market) offerList...\n");
-    offerList: = OTDB_CAST_OFFER_LIST_MARKET(storable);
+        offerList = dynamic_cast<OTDB::OfferListMarket>(storable);
 
-        if (!VerifyStorable(offerList, "OTDB_OfferListMarket"))
+        if (!VerifyStorable(offerList, "OTDB::OfferListMarket"))
         {
             OTAPI_Wrap::Output(0, "Unable to dynamic cast a storable to a (market) offerList.\n");
-            return vUndefRetVal; // containing null or undef
+            return NULL; // containing null or undef
         }
     }
 
     return offerList;  // possibly containing the offerList (if success), or possibly containing a null/undef value (if failure.)
 }
 
-#endif
-#ifdef SKIP_FOR_NOW6
 
-int OT_COMMAND_OT details_show_market_offers(const string & strServerID, const string & strMarketID)
+OT_COMMAND_OT int details_show_market_offers(const string & strServerID, const string & strMarketID)
 {
     var offerList : = loadMarketOffers(strServerID, strMarketID);
 
-    if (!VerifyStorable(offerList, "OTDB_OfferListMarket"))
+    if (!VerifyStorable(offerList, "OTDB::OfferListMarket"))
     {
         OTAPI_Wrap::Output(0, "Unable to load up a (market) offerList from local storage.\n");
         return -1;
@@ -7485,7 +7436,7 @@ int OT_COMMAND_OT details_show_market_offers(const string & strServerID, const s
             nTemp = nIndex;
             var offerData : = offerList.GetBidData(nTemp);
 
-            if (!VerifyStorable(offerData, "OTDB_BidData"))
+            if (!VerifyStorable(offerData, "OTDB::BidData"))
             {
                 OTAPI_Wrap::Output(0, "Unable to reference bidData on offerList, at index: " + to_string(nIndex) + "\n");
                 return -1;
@@ -7509,7 +7460,7 @@ int OT_COMMAND_OT details_show_market_offers(const string & strServerID, const s
             nTemp = nIndex;
             var offerData : = offerList.GetAskData(nTemp);
 
-            if (!VerifyStorable(offerData, "OTDB_AskData"))
+            if (!VerifyStorable(offerData, "OTDB::AskData"))
             {
                 OTAPI_Wrap::Output(0, "Unable to reference askData on offerList, at index: " + to_string(nIndex) + "\n");
                 return -1;
@@ -7525,10 +7476,8 @@ int OT_COMMAND_OT details_show_market_offers(const string & strServerID, const s
     return 1;
 }
 
-#endif
-#ifdef SKIP_FOR_NOW
 
-int OT_COMMAND_OT impl_show_market_offers(string & strMarket)
+OT_COMMAND_OT int impl_show_market_offers(string & strMarket)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7590,17 +7539,15 @@ int OT_COMMAND_OT impl_show_market_offers(string & strMarket)
 }
 
 
-int OT_COMMAND_OT main_show_market_offers()
+OT_COMMAND_OT int main_show_market_offers()
 {
     string strMarket;
 
     return impl_show_market_offers(strMarket);
 }
 
-#endif
-#ifdef SKIP_FOR_NOW
 
-int OT_COMMAND_OT main_get_market_offers()
+OT_COMMAND_OT int main_get_market_offers()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7700,9 +7647,8 @@ int OT_COMMAND_OT main_get_market_offers()
     return -1;
 }
 
-#endif
 
-int OT_COMMAND_OT main_adjust_usage_credits()
+OT_COMMAND_OT int main_adjust_usage_credits()
 {
     //  def OT_ME::adjust_usage_credits(SERVER_ID, USER_NYM_ID, TARGET_NYM_ID, ADJUSTMENT)
 
@@ -7843,15 +7789,14 @@ pScript->chai.add(fun(&OTDB::OfferDataNym::stop_price),         "stop_price");
 OT_CHAI_CONTAINER(OfferListNym, OfferDataNym);
 */
 
-#ifdef SKIP_FOR_NOW7
 
-int OT_COMMAND_OT details_show_nym_offers(const string & strServerID, const string & strNymID)
+OT_COMMAND_OT int details_show_nym_offers(const string & strServerID, const string & strNymID)
 {
     string strLocation = "details_show_nym_offers";
 
-    var offerList : = loadNymOffers(strServerID, strNymID);
+    OTDB::OfferListNym * offerList = loadNymOffers(strServerID, strNymID);
 
-    if (!VerifyStorable(offerList, "OTDB_OfferListNym"))
+    if (!VerifyStorable(offerList, "OTDB::OfferListNym"))
     {
         OTAPI_Wrap::Output(0, strLocation + ": Unable to load up a (nym) offerList from local storage. Probably doesn't exist.\n");
         return -1;
@@ -7860,7 +7805,7 @@ int OT_COMMAND_OT details_show_nym_offers(const string & strServerID, const stri
     // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
     // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
     //
-    int nCount = offerList.GetOfferDataNymCount(); // size_t
+    int nCount = offerList->GetOfferDataNymCount(); // size_t
     int nTemp = nCount; // so it's created as size_t
 
     if (VerifyIntVal(nCount) && (nCount > 0))
@@ -7892,10 +7837,8 @@ int OT_COMMAND_OT details_show_nym_offers(const string & strServerID, const stri
     return 1;
 }
 
-#endif
-#ifdef SKIP_FOR_NOW
 
-int OT_COMMAND_OT main_show_nym_offers()
+OT_COMMAND_OT int main_show_nym_offers()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -7915,7 +7858,6 @@ int OT_COMMAND_OT main_show_nym_offers()
     return -1;
 }
 
-#endif
 
 string OT_COMMAND_OT details_get_nym_market_offers(const string & strServerID, const string & strNymID)
 {
@@ -7944,9 +7886,8 @@ string OT_COMMAND_OT details_get_nym_market_offers(const string & strServerID, c
     return strResponse;
 }
 
-#ifdef SKIP_FOR_NOW
 
-int OT_COMMAND_OT main_get_nym_market_offers()
+OT_COMMAND_OT int main_get_nym_market_offers()
 {
 
     string strUsage = "\n\n USAGE: getmyoffers --server SERVER_ID --mynym YOUR_NYM_ID\n";
@@ -7983,7 +7924,6 @@ int OT_COMMAND_OT main_get_nym_market_offers()
     return -1;
 }
 
-#endif
 
 //
 // PAY DIVIDEND
@@ -7992,7 +7932,7 @@ int OT_COMMAND_OT main_get_nym_market_offers()
 // it removes the total dividend payout from your account, and then divides it up amongst the
 // shareholders, sending them EACH a voucher cheque in the amount of strAmount * number of shares owned.
 //
-int OT_COMMAND_OT details_pay_dividend(const string & strAmount, const string & strMemo)
+OT_COMMAND_OT int details_pay_dividend(const string & strAmount, const string & strMemo)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -8088,7 +8028,7 @@ int OT_COMMAND_OT details_pay_dividend(const string & strAmount, const string & 
 // HERE, WE GET ALL THE ARGUMENTS TOGETHER,
 // and then call the above function.
 //
-int OT_COMMAND_OT main_pay_dividend()
+OT_COMMAND_OT int main_pay_dividend()
 {
     string strUsage1 = concat("\n\n  USAGE: paydividend --server SERVER_ID --mynym SHARES_ISSUER_NYM_ID\n",
         "             --myacct DIVIDEND_SOURCE_ACCT_ID --hispurse SHARES_ASSET_TYPE_ID\n\n");
@@ -8172,7 +8112,7 @@ int OT_COMMAND_OT main_pay_dividend()
 }
 
 
-int OT_COMMAND_OT main_show_purse()
+OT_COMMAND_OT int main_show_purse()
 {
     string strUsage = "\n\n  USAGE: showpurse --mypurse ASSET_TYPE_ID --mynym YOUR_NYM_ID --server SERVER_ID \n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -8315,7 +8255,7 @@ int OT_COMMAND_OT main_show_purse()
 //const char * OTAPI_Wrap::Instrmnt_GetRecipientAcctID(const char * SERVER_ID, const char * THE_INSTRUMENT);
 //
 
-int OT_COMMAND_OT details_deposit_cheque(const string & strServerID, const string & strMyAcct, const string & strMyNymID, const string & strInstrument, const string & strType)
+OT_COMMAND_OT int details_deposit_cheque(const string & strServerID, const string & strMyAcct, const string & strMyNymID, const string & strInstrument, const string & strType)
 {
     string strAssetTypeID = OTAPI_Wrap::Instrmnt_GetAssetID(strInstrument);
 
@@ -8371,7 +8311,7 @@ int OT_COMMAND_OT details_deposit_cheque(const string & strServerID, const strin
 }
 
 
-int OT_COMMAND_OT details_deposit_purse(const string & strServerID, const string & strMyAcct, const string & strFromNymID, const string & strInstrument, const string & strIndices)
+OT_COMMAND_OT int details_deposit_purse(const string & strServerID, const string & strMyAcct, const string & strFromNymID, const string & strInstrument, const string & strIndices)
 {
     string strTHE_Instrument = "";
 
@@ -8535,7 +8475,7 @@ int OT_COMMAND_OT details_deposit_purse(const string & strServerID, const string
 //{ nRetVal = OTAPI_Wrap::depositPaymentPlan(this.serverID, this.nymID, this.strData);  break; }
 
 
-int OT_COMMAND_OT details_deposit(const string & strServerID, const string & strMyAcctID)
+OT_COMMAND_OT int details_deposit(const string & strServerID, const string & strMyAcctID)
 {
     string strInstrument = "";
 
@@ -8668,7 +8608,7 @@ int OT_COMMAND_OT details_deposit(const string & strServerID, const string & str
 }
 
 
-int OT_COMMAND_OT main_deposit()
+OT_COMMAND_OT int main_deposit()
 {
     string strUsage1 = "\n\n  USAGE: deposit --myacct YOUR_ACCT_ID  \n(OT will ask you to paste the instrument.)\n";
     string strUsage2 = concat(strUsage1, "Optionally:    --mynym YOUR_NYM_ID \n");
@@ -8758,7 +8698,7 @@ pScript->chai.add(fun(&OTAPI_Wrap::Purse_HasPassword), "OT_API_Purse_HasPassword
 */
 
 
-int OT_COMMAND_OT details_import_purse(const string & strInstrument, const bool bHasPassword, const string & strPurseOwner)
+OT_COMMAND_OT int details_import_purse(const string & strInstrument, const bool bHasPassword, const string & strPurseOwner)
 {
     if (!VerifyStringVal(strInstrument))
     {
@@ -8801,7 +8741,7 @@ int OT_COMMAND_OT details_import_purse(const string & strInstrument, const bool 
 }
 
 
-int OT_COMMAND_OT details_import_cash(const string & strInstrument)
+OT_COMMAND_OT int details_import_cash(const string & strInstrument)
 {
     if (!VerifyStringVal(strInstrument))
     {
@@ -8902,7 +8842,7 @@ int OT_COMMAND_OT details_import_cash(const string & strInstrument)
 }
 
 
-int OT_COMMAND_OT main_import_cash()
+OT_COMMAND_OT int main_import_cash()
 {
     string strUsage1 = "\n\n  USAGE: importcash   (OT will ask you to paste the instrument.)\n";
     string strUsage2 = concat(strUsage1, "Optionally: importcash --mynym YOUR_NYM_ID\n\n");
@@ -9092,7 +9032,7 @@ string OT_COMMAND_OT details_export_cash(const string & strServerID, const strin
 }
 
 
-int OT_COMMAND_OT main_export_cash()
+OT_COMMAND_OT int main_export_cash()
 {
     string strUsage1 = "\n\n  USAGE: exportcash --mypurse ASSET_TYPE_ID --mynym YOUR_NYM_ID --hisnym RECIPIENT_NYM_ID --server SERVER_ID\n";
     string strUsage2 = concat(strUsage1, "Optionally:    --args \"indices 4,6,9\"\n");
@@ -9457,7 +9397,7 @@ bool OT_COMMAND_OT withdraw_and_send_cash(const string & strMyAcctID, string & s
     return false;
 }
 
-int OT_COMMAND_OT details_send_cash(string & strResponse, const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, const string & strMyAcctID, string & strHisNymID, const string & strMemo, const string & strAmount, string & strIndices, const bool bPasswordProtected)
+OT_COMMAND_OT int details_send_cash(string & strResponse, const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, const string & strMyAcctID, string & strHisNymID, const string & strMemo, const string & strAmount, string & strIndices, const bool bPasswordProtected)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -9563,7 +9503,7 @@ int OT_COMMAND_OT details_send_cash(string & strResponse, const string & strServ
 }
 
 
-int OT_COMMAND_OT main_new_symmetric_key()
+OT_COMMAND_OT int main_new_symmetric_key()
 {
     string strKey = OTAPI_Wrap::CreateSymmetricKey();
 
@@ -9592,13 +9532,13 @@ int OT_COMMAND_OT main_new_symmetric_key()
 // type itself to only succeed for that type. (If only paying invoices, then only handle it
 // if it's actually an invoice.)
 //
-int OT_COMMAND_OT handle_payment_index(const string & strMyAcctID, const int nIndex) // (If nIndex is -1, then it will ask user to paste an invoice.)
+OT_COMMAND_OT int handle_payment_index(const string & strMyAcctID, const int nIndex) // (If nIndex is -1, then it will ask user to paste an invoice.)
 {
     string strPaymentType = "ANY";
     return handle_payment_index(strMyAcctID, nIndex, strPaymentType);
 }
 
-int OT_COMMAND_OT handle_payment_index(const string & strMyAcctID, const int nIndex, const string & strPaymentType) // (If nIndex is -1, then it will ask user to paste an invoice.)
+OT_COMMAND_OT int handle_payment_index(const string & strMyAcctID, const int nIndex, const string & strPaymentType) // (If nIndex is -1, then it will ask user to paste an invoice.)
 {
     string strInbox = "";
     return handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox);
@@ -9614,7 +9554,7 @@ int OT_COMMAND_OT handle_payment_index(const string & strMyAcctID, const int nIn
 // But if "ANY" is passed in, then the payment will be handled for any of them.
 //
 
-int OT_COMMAND_OT handle_payment_index(const string & strMyAcctID, const int nIndex, const string & strPaymentType, const string & strInbox) // (If nIndex is -1, then it will ask user to paste an invoice.)
+OT_COMMAND_OT int handle_payment_index(const string & strMyAcctID, const int nIndex, const string & strPaymentType, const string & strInbox) // (If nIndex is -1, then it will ask user to paste an invoice.)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -9844,14 +9784,14 @@ EXPORT static int32_t NumList_Count (const std::string & strNumList);
 
 // COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
 
-int OT_COMMAND_OT accept_from_paymentbox(const string & strMyAcctID, const string & strIndices)
+OT_COMMAND_OT int accept_from_paymentbox(const string & strMyAcctID, const string & strIndices)
 {
     string strPaymentType = "ANY";
     return accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType);
 }
 
 // COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
-int OT_COMMAND_OT accept_from_paymentbox(const string & strMyAcctID, const string & strIndices, const string & strPaymentType)
+OT_COMMAND_OT int accept_from_paymentbox(const string & strMyAcctID, const string & strIndices, const string & strPaymentType)
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -9935,19 +9875,19 @@ int OT_COMMAND_OT accept_from_paymentbox(const string & strMyAcctID, const strin
     return 1;
 }
 
-int OT_COMMAND_OT details_accept_invoices(const string & strMyAcctID) // Use this function when you want to loop through all accounts and accept all invoices for them.
+OT_COMMAND_OT int details_accept_invoices(const string & strMyAcctID) // Use this function when you want to loop through all accounts and accept all invoices for them.
 {
     string strIndices = "";
     return details_accept_invoices(strMyAcctID, strIndices);
 }
 
-int OT_COMMAND_OT details_accept_invoices(const string & strMyAcctID, const string & strIndices)
+OT_COMMAND_OT int details_accept_invoices(const string & strMyAcctID, const string & strIndices)
 {
     return accept_from_paymentbox(strMyAcctID, strIndices, "INVOICE");
 }
 
 
-int OT_COMMAND_OT main_accept_invoices()
+OT_COMMAND_OT int main_accept_invoices()
 {
     string strUsage1 = "\nUsage:  acceptinvoices --myacct FROM_ACCT --args \"indices 3,6,8\"  \n (Sample indices are shown.)\n";
     string strUsage2 = "The invoice and myacct must both have same asset type. If indices\nare not specified for the payments inbox, ";
@@ -9976,13 +9916,13 @@ int OT_COMMAND_OT main_accept_invoices()
 
 // Accepts all incoming "payments" from the payments inbox. (NOT Invoices.)
 //
-int OT_COMMAND_OT details_accept_payments(const string & strMyAcctID)
+OT_COMMAND_OT int details_accept_payments(const string & strMyAcctID)
 {
     string strIndices = "";
     return details_accept_payments(strMyAcctID, strIndices);
 }
 
-int OT_COMMAND_OT details_accept_payments(const string & strMyAcctID, const string & strIndices)
+OT_COMMAND_OT int details_accept_payments(const string & strMyAcctID, const string & strIndices)
 {
 
     int nAcceptedPurses = accept_from_paymentbox(strMyAcctID, strIndices, "PURSE");
@@ -10006,7 +9946,7 @@ int OT_COMMAND_OT details_accept_payments(const string & strMyAcctID, const stri
 }
 
 
-int OT_COMMAND_OT main_accept_payments()
+OT_COMMAND_OT int main_accept_payments()
 {
     string strUsage1 = "\nUsage:  acceptpayments --myacct INTO_ACCT --args \"indices 3,6,8\"  \n (Sample indices are shown.)\n";
     string strUsage2 = "The payment instrument and myacct must both have same asset type. If indices\nare not specified for the payments inbox, ";
@@ -10035,7 +9975,7 @@ int OT_COMMAND_OT main_accept_payments()
 
 // Pay an invoice
 //
-int OT_COMMAND_OT main_payinvoice()
+OT_COMMAND_OT int main_payinvoice()
 {
     string strUsage1 = "\nUsage:  payinvoice --myacct FROM_ACCT --args \"index INVOICE_INDEX\" \n";
     string strUsage2 = "The invoice and myacct must both have same asset type. If an index is not\n";
@@ -10164,7 +10104,7 @@ int OT_COMMAND_OT main_payinvoice()
 
 // Show an individual payment in detail.
 //
-int OT_COMMAND_OT main_show_payment()
+OT_COMMAND_OT int main_show_payment()
 {
     string strUsage = "\nUsage:  showpayment --args \"index PAYMENT_INDEX showmemo true|false\"\n Default index is 0. Default showmemo is false.\n";
 
@@ -10348,7 +10288,7 @@ int OT_COMMAND_OT main_show_payment()
 }
 
 
-int OT_COMMAND_OT main_show_incoming()
+OT_COMMAND_OT int main_show_incoming()
 {
     int nShowPayments = -1;
     int nShowInbox = -1;
@@ -10380,7 +10320,7 @@ int OT_COMMAND_OT main_show_incoming()
 }
 
 
-int OT_COMMAND_OT main_show_outgoing()
+OT_COMMAND_OT int main_show_outgoing()
 {
     int nShowPayments = -1;
     int nShowOutbox = -1;
@@ -10412,7 +10352,7 @@ int OT_COMMAND_OT main_show_outgoing()
 }
 
 
-int OT_COMMAND_OT main_show_payments_inbox()
+OT_COMMAND_OT int main_show_payments_inbox()
 {
 
     // Instantiate the "OT Made Easy" object.
@@ -10529,7 +10469,7 @@ int OT_COMMAND_OT main_show_payments_inbox()
 // loading the record box from storage for EACH record, instead
 // of loading it once for ALL the records in your loop.)
 //
-int OT_COMMAND_OT details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int nIndex)
+OT_COMMAND_OT int details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int nIndex)
 {
     string strRecordBox = OTAPI_Wrap::LoadRecordBox(strServerID, strMyNymID, strMyAcctID); // Returns NULL, or a record box.
 
@@ -10544,7 +10484,7 @@ int OT_COMMAND_OT details_show_record(const string & strServerID, const string &
 }
 
 
-int OT_COMMAND_OT details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int nIndex, const string & strRecordBox)
+OT_COMMAND_OT int details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int nIndex, const string & strRecordBox)
 {
     if (!VerifyStringVal(strRecordBox))
     {
@@ -10601,7 +10541,7 @@ int OT_COMMAND_OT details_show_record(const string & strServerID, const string &
 }
 
 
-int OT_COMMAND_OT details_show_records(const string & strServerID, const string & strMyNymID, const string & strMyAcctID)
+OT_COMMAND_OT int details_show_records(const string & strServerID, const string & strMyNymID, const string & strMyAcctID)
 {
     string strRecordBox = OTAPI_Wrap::LoadRecordBox(strServerID, strMyNymID, strMyAcctID); // Returns NULL, or a record box.
 
@@ -10636,7 +10576,7 @@ int OT_COMMAND_OT details_show_records(const string & strServerID, const string 
 }
 
 
-int OT_COMMAND_OT main_show_records()
+OT_COMMAND_OT int main_show_records()
 {
     string strLocation = "main_show_records";
 
@@ -10742,7 +10682,7 @@ int OT_COMMAND_OT main_show_records()
 }
 
 
-int OT_COMMAND_OT details_clear_records(const string & strServerID, const string & strMyNymID, const string & strMyAcctID)
+OT_COMMAND_OT int details_clear_records(const string & strServerID, const string & strMyNymID, const string & strMyAcctID)
 {
     bool bTrue = true;
     bool bCleared = OTAPI_Wrap::ClearRecord(strServerID, strMyNymID, strMyAcctID, 0, bTrue); // nIndex=0 (ignored when clearing all), ClearAll = true.
@@ -10751,7 +10691,7 @@ int OT_COMMAND_OT details_clear_records(const string & strServerID, const string
 }
 
 
-int OT_COMMAND_OT main_clear_records()
+OT_COMMAND_OT int main_clear_records()
 {
     string strLocation = "main_clear_records";
 
@@ -10848,7 +10788,7 @@ int OT_COMMAND_OT main_clear_records()
 }
 
 
-int OT_COMMAND_OT details_clear_expired(const string & strServerID, const string & strMyNymID)
+OT_COMMAND_OT int details_clear_expired(const string & strServerID, const string & strMyNymID)
 {
     bool bTrue = true;
     bool bCleared = OTAPI_Wrap::ClearExpired(strServerID, strMyNymID, 0, bTrue); // nIndex=0 (ignored when clearing all), ClearAll = true.
@@ -10857,7 +10797,7 @@ int OT_COMMAND_OT details_clear_expired(const string & strServerID, const string
 }
 
 
-int OT_COMMAND_OT main_clear_expired()
+OT_COMMAND_OT int main_clear_expired()
 {
     OTAPI_Wrap::Output(0, " Usage:      opentxs clearexpired\n\n");
 
@@ -10885,7 +10825,7 @@ int OT_COMMAND_OT main_clear_expired()
 // loading the expired box from storage for EACH record, instead
 // of loading it once for ALL the expired records in your loop.)
 //
-int OT_COMMAND_OT details_show_expired(const string & strServerID, const string & strMyNymID, const int nIndex)
+OT_COMMAND_OT int details_show_expired(const string & strServerID, const string & strMyNymID, const int nIndex)
 {
     string strExpiredBox = OTAPI_Wrap::LoadExpiredBox(strServerID, strMyNymID); // Returns NULL, or an expired box.
 
@@ -10907,7 +10847,7 @@ int OT_COMMAND_OT details_show_expired(const string & strServerID, const string 
 // will also want to update details_show_record to do the same thing, in cases where the nymID and
 // the account ID are the same.
 //
-int OT_COMMAND_OT details_show_expired(const string & strServerID, const string & strMyNymID, const int nIndex, const string & strExpiredBox)
+OT_COMMAND_OT int details_show_expired(const string & strServerID, const string & strMyNymID, const int nIndex, const string & strExpiredBox)
 {
     if (!VerifyStringVal(strExpiredBox))
     {
@@ -10961,7 +10901,7 @@ int OT_COMMAND_OT details_show_expired(const string & strServerID, const string 
 }
 
 
-int OT_COMMAND_OT details_show_expired_records(const string & strServerID, const string & strMyNymID)
+OT_COMMAND_OT int details_show_expired_records(const string & strServerID, const string & strMyNymID)
 {
     string strExpiredBox = OTAPI_Wrap::LoadExpiredBox(strServerID, strMyNymID); // Returns NULL, or an expired box.
 
@@ -10996,7 +10936,7 @@ int OT_COMMAND_OT details_show_expired_records(const string & strServerID, const
 }
 
 
-int OT_COMMAND_OT main_show_expired()
+OT_COMMAND_OT int main_show_expired()
 {
     string strLocation = "main_show_expired";
 
@@ -11019,7 +10959,7 @@ int OT_COMMAND_OT main_show_expired()
 }
 
 
-int OT_COMMAND_OT main_show_inbox()
+OT_COMMAND_OT int main_show_inbox()
 {
 
     // SHOW INBOX
@@ -11134,7 +11074,7 @@ int OT_COMMAND_OT main_show_inbox()
 }
 
 
-int OT_COMMAND_OT main_show_outbox()
+OT_COMMAND_OT int main_show_outbox()
 {
 
     // SHOW OUTPUT
@@ -11249,7 +11189,7 @@ int OT_COMMAND_OT main_show_outbox()
 }
 
 
-int OT_COMMAND_OT show_mail_message(const string & strMyNymID, const int nIndex, const bool bShowContents)
+OT_COMMAND_OT int show_mail_message(const string & strMyNymID, const int nIndex, const bool bShowContents)
 {
     bool bMailVerified = OTAPI_Wrap::Nym_VerifyMailByIndex(strMyNymID, nIndex);
 
@@ -11295,7 +11235,7 @@ int OT_COMMAND_OT show_mail_message(const string & strMyNymID, const int nIndex,
 }
 
 
-int OT_COMMAND_OT details_del_mail(const string & strMyNymID, const string & strIndices)
+OT_COMMAND_OT int details_del_mail(const string & strMyNymID, const string & strIndices)
 {
 
     int nCount = OTAPI_Wrap::GetNym_MailCount(strMyNymID);
@@ -11363,7 +11303,7 @@ int OT_COMMAND_OT details_del_mail(const string & strMyNymID, const string & str
 }
 
 
-int OT_COMMAND_OT main_del_mail()
+OT_COMMAND_OT int main_del_mail()
 {
     string strUsage = "USAGE:   delmail --mynym MY_NYM_ID --args \"index 5\"  (To delete message 5.)\n Also, try: --args \"indices all\" (for all messages)\n As well as: --args \"indices 3,5,6\" (for messages 3, 5, and 6)\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -11404,7 +11344,7 @@ int OT_COMMAND_OT main_del_mail()
 }
 
 
-int OT_COMMAND_OT main_show_mail()
+OT_COMMAND_OT int main_show_mail()
 {
     string strUsage = "USAGE:   mail --mynym MY_NYM_ID   (To list all the mail messages for mynym.)\n Also:   mail --args \"index 5\"  (To examine a specific message.)\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -11473,7 +11413,7 @@ int OT_COMMAND_OT main_show_mail()
 //pScript->chai.add(fun(&OTAPI_Wrap::Nym_RemoveMailByIndex), "OT_API_Nym_RemoveMailByIndex");
 
 
-int OT_COMMAND_OT show_outmail_message(const string & strMyNymID, const int nIndex, const bool bShowContents)
+OT_COMMAND_OT int show_outmail_message(const string & strMyNymID, const int nIndex, const bool bShowContents)
 {
     bool bMailVerified = OTAPI_Wrap::Nym_VerifyOutmailByIndex(strMyNymID, nIndex);
 
@@ -11514,7 +11454,7 @@ int OT_COMMAND_OT show_outmail_message(const string & strMyNymID, const int nInd
 }
 
 
-int OT_COMMAND_OT main_show_outmail()
+OT_COMMAND_OT int main_show_outmail()
 {
     string strUsage = "USAGE:   outmail --mynym MY_NYM_ID   (To list all the sent mail messages for mynym.)\n Also:   outmail --args \"index 5\"  (To examine a specific message.)\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -11579,7 +11519,7 @@ int OT_COMMAND_OT main_show_outmail()
 }
 
 
-int OT_COMMAND_OT details_del_outmail(const string & strMyNymID, const string & strIndices)
+OT_COMMAND_OT int details_del_outmail(const string & strMyNymID, const string & strIndices)
 {
 
     int nCount = OTAPI_Wrap::GetNym_OutmailCount(strMyNymID);
@@ -11647,7 +11587,7 @@ int OT_COMMAND_OT details_del_outmail(const string & strMyNymID, const string & 
 }
 
 
-int OT_COMMAND_OT main_del_outmail()
+OT_COMMAND_OT int main_del_outmail()
 {
     string strUsage = "USAGE:   deloutmail --mynym MY_NYM_ID --args \"index 5\"  (To delete outmail message 5.)\n Also, try: --args \"indices all\" (for all outgoing messages)\n As well as: --args \"indices 3,5,6\" (for outgoing messages 3, 5, and 6)\n\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -11795,7 +11735,7 @@ bool OT_COMMAND_OT show_outpayment(const string & strMyNym, const int nIndex)
 }
 
 
-int OT_COMMAND_OT main_show_outpayment()
+OT_COMMAND_OT int main_show_outpayment()
 {
     string strUsage = "USAGE:   outpayment --mynym MY_NYM_ID --args \"index 5\"   (for example)\nIf no index is specified, all outgoing payments are listed.\n";
     OTAPI_Wrap::Output(0, strUsage);
@@ -11864,7 +11804,7 @@ int OT_COMMAND_OT main_show_outpayment()
 }
 
 
-int OT_COMMAND_OT main_add_server()
+OT_COMMAND_OT int main_add_server()
 {
     OTAPI_Wrap::Output(0, "Please paste a server contract, followed by an EOF or a ~ by itself on a blank line:\n\n");
 
@@ -11895,7 +11835,7 @@ int OT_COMMAND_OT main_add_server()
 }
 
 
-int OT_COMMAND_OT main_add_asset()
+OT_COMMAND_OT int main_add_asset()
 {
     OTAPI_Wrap::Output(0, "Please paste a currency contract, followed by an EOF or a ~ by itself on a blank line:\n\n");
 
@@ -11926,7 +11866,7 @@ int OT_COMMAND_OT main_add_asset()
 }
 
 
-int OT_COMMAND_OT main_issue_asset()
+OT_COMMAND_OT int main_issue_asset()
 {
 
     // Instantiate the "OT Made Easy" object.

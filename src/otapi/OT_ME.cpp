@@ -708,7 +708,7 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
 }
 
 
-bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
+bool OT_ME::retrieve_nym(const std::string  & SERVER_ID, AddVariable
                          const std::string  & NYM_ID,
                          const bool      bForceDownload)
 {
@@ -1850,6 +1850,12 @@ void OT_ME::AddVariable(const std::string & str_var_name, OTVariable & theVar)
     // --------------------------------------------    
 }
 
+OTVariable * OT_ME::FindVariable(const std::string & str_var_name)
+{
+    bool bHaveWorkingScript = HaveWorkingScript();
+
+    return bHaveWorkingScript ? m_pScript->FindVariable(str_var_name) : NULL;
+}
 
 std::string OT_ME::ExecuteScript_ReturnString(const std::string & str_Code,std::string str_DisplayName/*="<BLANK>"*/)
 {

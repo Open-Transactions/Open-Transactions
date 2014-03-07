@@ -210,20 +210,18 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type/*=NULL*/)
 {  
     // if the type is explicitly set to "chai", or if the type is 0 length, then 
     // use chaiscript as the default interpreter in that case as well.
-    //
-    if (  (NULL == p_script_type) || 
-          ( (NULL != p_script_type) &&
-           (
-           (0 == p_script_type->size()) || 
-           (0 == p_script_type->compare("chai")) // todo no hardcoding.
-           )
-          ) 
-       ) 
+    if (NULL == p_script_type || 0 == p_script_type->size() || *p_script_type =="chai") // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai);
         return pChaiScript;
     }
-    
+
+    if (*p_script_type == "noscript")
+    {
+        _SharedPtr<OTScript> pNoScript(new OTScript);
+        return pNoScript;
+    }
+
     // Here's how it would look for various scripting languages:
     //
 //    else if (0 == p_script_type->compare("lua"))
@@ -249,19 +247,18 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents,
     
     // if the type is explicitly set to "chai", or if the type is 0 length, then 
     // use chaiscript as the default interpreter in that case as well.
-    if (  (NULL == p_script_type) || 
-          ( (NULL != p_script_type) &&
-           (
-           (0 == p_script_type->size()) || 
-           (0 == p_script_type->compare("chai")) // todo no hardcoding.
-           )
-          ) 
-       ) 
+    if (NULL == p_script_type || 0 == p_script_type->size() || 0 == p_script_type->compare("chai")) // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai(script_contents));
         return pChaiScript;
     }
     
+    if (*p_script_type == "noscript")
+    {
+        _SharedPtr<OTScript> pNoScript(new OTScript);
+        return pNoScript;
+    }
+
     // Here's how it would look for various scripting languages:
     //
 //    else if (0 == p_script_type->compare("lua"))
@@ -397,6 +394,12 @@ void OTScript::AddVariable (const std::string str_var_name, OTVariable & theVar)
     // variables, and isn't responsible to clean them up.
 }
 
+OTVariable * OTScript::FindVariable(const std::string str_var_name)
+{
+    mapOfVariables::iterator it_var = m_mapVariables.find(str_var_name);
+    return it_var != m_mapVariables.end() ? it_var->second : NULL;
+}
+
 // If a variable is set onto a script, it sets an internal pointer to that script.
 // Later, when the variable destructs, if that pointer is set, it removes itself
 // from the script by calling this function. (Yes, this would be better with smart
@@ -411,6 +414,14 @@ void OTScript::RemoveVariable (OTVariable & theVar)
     {
         m_mapVariables.erase(it_var); // no need to delete the variable pointer since the script doesn't own it anyway. 
     }
+}
+
+
+
+bool OTScript::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
+{
+    OTLog::vError("OTScript::ExecuteScript: Ecxecuting NO SCRIPT ????\n");
+    return true;
 }
 
 

@@ -3,11 +3,14 @@
 
 #include <string>
 
+#include "OTStorage.hpp"
+
 
 #define OT_UTILITY_OT
 
 
 using std::string;
+
 
 inline bool OT_UTILITY_OT VerifyBoolVal(const bool bValue) { return true; }
 inline bool OT_UTILITY_OT VerifyIntVal(const int64_t nValue) { return true; }
@@ -18,6 +21,7 @@ extern bool OT_UTILITY_OT VerifyExists(const string & name, const bool bFlag = t
 extern int OT_UTILITY_OT VerifyMessageSuccess(const string & message);
 extern int OT_UTILITY_OT VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage);  // For when an OTMessage is the input.
 extern int OT_UTILITY_OT VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage);
+extern int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType);
 
 
 class OTfourbool
