@@ -309,9 +309,9 @@ MapFunction map_functions[] =
     { "exportnym", main_export_nym },               // Export an OT Nym as a single importable file.
     { "getboxreceipt", main_get_box_receipt },      // downloads a box receipt based on transaction ID.
     { "getcontract", main_download_contract },      // download an asset or server contract by its ID.
-//    { "getmarkets", main_get_market_list },         // download the list of markets.
-//    { "getmyoffers", main_get_nym_market_offers },  // download the list of market offers placed by mynym.
-//    { "getoffers", main_get_market_offers },        // download the list of market offers.
+    { "getmarkets", main_get_market_list },         // download the list of markets.
+    { "getmyoffers", main_get_nym_market_offers },  // download the list of market offers placed by mynym.
+    { "getoffers", main_get_market_offers },        // download the list of market offers.
     { "importcash", main_import_cash },             // Import a cash purse.
     { "importnym", main_import_nym },               // Import an OT Nym that was previously exported.
     { "inbox", main_show_inbox },                   // display inbox of a particular account.
@@ -325,7 +325,7 @@ MapFunction map_functions[] =
     { "newcred", main_new_credential },             // create a new credential for a specific nym.
     { "newkey", main_new_symmetric_key },           // create a new symmetric key.
     { "newnym", main_create_nym },                  // create a new nym.
-//    { "newoffer", main_create_offer },              // create a new market offer.
+    { "newoffer", main_create_offer },              // create a new market offer.
     { "newserver", main_create_server_contract },   // create a new server contract.
     { "outbox", main_show_outbox },                 // display outbox of a particular account.
     { "outmail", main_show_outmail },               // display out-mail for a particular nym.
@@ -353,12 +353,12 @@ MapFunction map_functions[] =
     { "showbasket", main_show_basket },             // show basket currencies available in the wallet.
     { "showcred", main_show_credential },           // show a specific credential in detail.
     { "showincoming", main_show_incoming },         // show incoming payments for mynym+server and/or inbox for myacct.
-//    { "showmarkets", main_show_market_list },       // display the list of markets.
+    { "showmarkets", main_show_market_list },       // display the list of markets.
     { "showmint", main_show_mint },                 // show a mint file for specific asset ID. Download if necessary.
-//    { "showmyoffers", main_show_nym_offers },       // show mynym's offers on a particular server and market.
+    { "showmyoffers", main_show_nym_offers },       // show mynym's offers on a particular server and market.
     { "shownym", main_nym_stat },                   // show the statistics for a specific nym.
     { "shownyms", stat_nyms },                      // show the nyms in the wallet.
-//    { "showoffers", main_show_market_offers },      // show all offers on a particular server and market.
+    { "showoffers", main_show_market_offers },      // show all offers on a particular server and market.
     { "showoutgoing", main_show_outgoing },         // show outgoing payments for mynym and/or outbox for myacct.
     { "showpayment", main_show_payment },           // show the details of a payment in the payments inbox.
     { "showpurse", main_show_purse },               // show contents of cash purse.

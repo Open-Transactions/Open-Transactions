@@ -22,12 +22,12 @@
 #include "ot_utility_ot.hpp"
 
 
-bool OT_UTILITY_OT VerifyExists(const string & theObjectNameAsStr)
+OT_UTILITY_OT bool VerifyExists(const string & theObjectNameAsStr)
 {
     return VerifyExists(theObjectNameAsStr, true);
 }
 
-bool OT_UTILITY_OT VerifyExists(const string & theObjectNameAsStr, const bool bDisplayError)
+OT_UTILITY_OT bool VerifyExists(const string & theObjectNameAsStr, const bool bDisplayError)
 {
    //var objs = get_objects();
 
@@ -77,7 +77,7 @@ bool OT_UTILITY_OT VerifyExists(const string & theObjectNameAsStr, const bool bD
 // ********************************************************************************
 
 //// ---------------------------------------
-//int OT_UTILITY_OT VerifyOTIntegerRef(nValue) // used for OTInteger
+//OT_UTILITY_OT int VerifyOTIntegerRef(nValue) // used for OTInteger
 //{
 //    if (nValue.is_var_null() || nValue.is_var_undef() || !nValue.is_type("OTInteger"))
 //    {
@@ -87,7 +87,7 @@ bool OT_UTILITY_OT VerifyExists(const string & theObjectNameAsStr, const bool bD
 //}
 //
 //// ---------------------------------------
-//int OT_UTILITY_OT VerifyOTBoolRef(bValue) // used for OTBool class
+//OT_UTILITY_OT int VerifyOTBoolRef(bValue) // used for OTBool class
 //{
 //    if (bValue.is_var_null() || bValue.is_var_undef() || !bValue.is_type("OTBool"))
 //    {
@@ -97,7 +97,7 @@ bool OT_UTILITY_OT VerifyExists(const string & theObjectNameAsStr, const bool bD
 //}
 //// ---------------------------------------
 
-bool OT_UTILITY_OT VerifyMessage(const string & strMessage)
+OT_UTILITY_OT bool VerifyMessage(const string & strMessage)
 {
     if (10 > strMessage.length())
     {
@@ -108,7 +108,7 @@ bool OT_UTILITY_OT VerifyMessage(const string & strMessage)
 }
 
 
-int OT_UTILITY_OT VerifyMessageSuccess(const string & strMessage)
+OT_UTILITY_OT int VerifyMessageSuccess(const string & strMessage)
 {
     if (!VerifyMessage(strMessage))
     {
@@ -137,7 +137,7 @@ int OT_UTILITY_OT VerifyMessageSuccess(const string & strMessage)
 }
 
 //
-//bool OT_UTILITY_OT VerifyNotNull(theObjectRef)
+//OT_UTILITY_OT bool VerifyNotNull(theObjectRef)
 //{
 //    bool bNull = theObjectRef.is_var_null();
 //    bool bUndef = theObjectRef.is_var_undef();
@@ -153,7 +153,7 @@ int OT_UTILITY_OT VerifyMessageSuccess(const string & strMessage)
 //}
 
 //// ---------------------------------------
-//bool OT_UTILITY_OT VerifyType(theObjectRef, const string & strType)
+//OT_UTILITY_OT bool VerifyType(theObjectRef, const string & strType)
 //{
 //    if (VerifyNotNull(theObjectRef))
 //    {
@@ -180,7 +180,7 @@ int OT_UTILITY_OT VerifyMessageSuccess(const string & strMessage)
 
 
 
-int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType)
+OT_UTILITY_OT int VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType)
 {
     // Put this in a separate function VerifyType so I can use it for non-storable
     // types such as std::map.
@@ -196,14 +196,14 @@ int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const st
 //attr ObjRef::the_ref  // this is our "pointer" to an object we do NOT want to clone. (ObjRef can be passed in and cloned, with all clones retaining same pointer, theoretically.)
 //
 //
-//int OT_UTILITY_OT ObjRef::ObjRef() // todo remove this?
+//OT_UTILITY_OT int ObjRef::ObjRef() // todo remove this?
 //{
 //    OTAPI_Wrap::Output(1, "(Version of ObjRef::ObjRef with 0 arguments. Must call setRef next...)\n");
 //}
 //// ---------------------------------------
 //
 ////def ObjRef::ObjRef(rhs)
-//int OT_UTILITY_OT ObjRef::ObjRef(rhs)
+//OT_UTILITY_OT int ObjRef::ObjRef(rhs)
 //{
 //    OTAPI_Wrap::Output(1, "Supposedly: Copy constructor. rhs type actually is: " + rhs.get_type_info().name() + "\n");
 //
@@ -213,13 +213,13 @@ int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const st
 //
 //// ---------------------------------------
 //
-//int OT_UTILITY_OT ObjRef::setRef(rhs) : rhs.is_type("ObjRef")
+//OT_UTILITY_OT int ObjRef::setRef(rhs) : rhs.is_type("ObjRef")
 //{
 //    OTAPI_Wrap::Output(1, "(Version of ObjRef::setRef with ObjRef arg.\n");
 //the_ref: = rhs.the_ref // by REFERENCE :-)
 //}
 //
-//int OT_UTILITY_OT ObjRef::setRef(rhs) : !rhs.is_type("ObjRef")
+//OT_UTILITY_OT int ObjRef::setRef(rhs) : !rhs.is_type("ObjRef")
 //{
 //    // By this point we know that rhs is NOT an ObjRef.
 //
@@ -249,7 +249,7 @@ int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const st
 //}
 //// -------------------------------------------
 //
-//int OT_UTILITY_OT clone(rhs) : rhs.is_type("ObjRef")
+//OT_UTILITY_OT int clone(rhs) : rhs.is_type("ObjRef")
 //{
 //    print("clone ObjRef")
 //        var new_o : = ObjRef(rhs);
@@ -264,13 +264,13 @@ int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const st
 //// ---------------------------------------
 //// All OTDB_ objects are not cloned, but instead return a;
 ////
-//int OT_UTILITY_OT clone(rhs) : (0 == rhs.get_type_info().name().find("OTDB_"))
+//OT_UTILITY_OT int clone(rhs) : (0 == rhs.get_type_info().name().find("OTDB_"))
 //{
 //    return rhs;
 //}
 //
 //// ---------------------------------------
-//int OT_UTILITY_OT ObjRef::assign(rhs)
+//OT_UTILITY_OT int ObjRef::assign(rhs)
 //{
 //    print("assign")
 //        setRef(rhs)
@@ -287,7 +287,7 @@ int OT_UTILITY_OT VerifyStorable(OTDB::Storable * theStorableObjectRef, const st
 //pScript->chai.add(fun(&OTAPI_Wrap::Transaction_GetBlnceAgrmntSuccess), "OT_API_Transaction_GetBlnceAgrmntSuccess");
 
 
-int OT_UTILITY_OT VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)  // For when an OTMessage is the input.
+OT_UTILITY_OT int VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)  // For when an OTMessage is the input.
 {
     if (!VerifyMessage(strMessage))
     {
@@ -316,7 +316,7 @@ int OT_UTILITY_OT VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const 
 }
 
 
-int OT_UTILITY_OT VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)
+OT_UTILITY_OT int VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)
 {
     if (!VerifyMessage(strMessage))
     {
@@ -347,7 +347,7 @@ int OT_UTILITY_OT VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & 
 //
 // This code was repeating a lot, so I just added a function for it.
 //
-int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strAttempt, const string & strResponse)
+OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strAttempt, const string & strResponse)
 {
     int nMessageSuccess = VerifyMessageSuccess(strResponse);
     if (-1 == nMessageSuccess)
@@ -393,7 +393,7 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //// Provides the functionality of the ? : operator.
 //// NOTE: the chai team have since added ? :, so this is deprecated now.
 //
-//int OT_UTILITY_OT ifB(the_expression, X, Y)
+//OT_UTILITY_OT int ifB(the_expression, X, Y)
 //{
 //    if (!(VerifyBoolVal(the_expression)))
 //    {
@@ -427,7 +427,7 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTfourbool::four
 //
 //// ----------------------------
-//int OT_UTILITY_OT OTfourbool::OTfourbool()
+//OT_UTILITY_OT int OTfourbool::OTfourbool()
 //{
 //    one = false;
 //    two = false;
@@ -435,7 +435,7 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    four = false;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTfourbool::OTfourbool(param_one, param_two, param_three, param_four)
+//OT_UTILITY_OT int OTfourbool::OTfourbool(param_one, param_two, param_three, param_four)
 //{
 //    if (!VerifyBoolVal(param_one) || !VerifyBoolVal(param_two) || !VerifyBoolVal(param_three) || !VerifyBoolVal(param_four))
 //    {
@@ -453,13 +453,13 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTBool::value2
 //
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::OTBool()
+//OT_UTILITY_OT int OTBool::OTBool()
 //{
 //    value = false;
 //    value2 = false;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::OTBool(param_value)
+//OT_UTILITY_OT int OTBool::OTBool(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -469,14 +469,14 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value2 = false;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::getBooleanValue()
+//OT_UTILITY_OT int OTBool::getBooleanValue()
 //{
 //
 //    return value;
 //
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::setBooleanValue(param_value)
+//OT_UTILITY_OT int OTBool::setBooleanValue(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -485,14 +485,14 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value = param_value;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::getSecondValue()
+//OT_UTILITY_OT int OTBool::getSecondValue()
 //{
 //
 //    return value2;
 //
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTBool::setSecondValue(param_value)
+//OT_UTILITY_OT int OTBool::setSecondValue(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -506,12 +506,12 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTInteger::value
 //
 //// ----------------------------
-//int OT_UTILITY_OT OTInteger::OTInteger()
+//OT_UTILITY_OT int OTInteger::OTInteger()
 //{
 //    value = 0;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTInteger::OTInteger(param_value)
+//OT_UTILITY_OT int OTInteger::OTInteger(param_value)
 //{
 //    if (!VerifyIntVal(param_value))
 //    {
@@ -520,7 +520,7 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value = param_value;
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTInteger::getIntegerValue()
+//OT_UTILITY_OT int OTInteger::getIntegerValue()
 //{
 //    // Returning...
 //    //
@@ -529,7 +529,7 @@ int OT_UTILITY_OT InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //
 //}
 //// ----------------------------
-//int OT_UTILITY_OT OTInteger::setIntegerValue(param_value)
+//OT_UTILITY_OT int OTInteger::setIntegerValue(param_value)
 //{
 //    if (!VerifyIntVal(param_value))
 //    {
@@ -551,38 +551,38 @@ Utility::~Utility()
 {
 }
 
-void OT_UTILITY_OT Utility::delay()
+OT_UTILITY_OT void Utility::delay()
 {
     OTAPI_Wrap::Sleep(delay_ms);
 }
 
-void OT_UTILITY_OT Utility::longDelay()
+OT_UTILITY_OT void Utility::longDelay()
 {
     OTAPI_Wrap::Sleep(delay_ms + 200);
 }
 
-int OT_UTILITY_OT Utility::getNbrTransactionCount()
+OT_UTILITY_OT int Utility::getNbrTransactionCount()
 {
     return max_trans_dl;
 }
 
-void OT_UTILITY_OT Utility::setNbrTransactionCount(int new_trans_dl)
+OT_UTILITY_OT void Utility::setNbrTransactionCount(int new_trans_dl)
 {
     max_trans_dl = new_trans_dl;
 }
 
-string OT_UTILITY_OT Utility::getLastReplyReceived()
+OT_UTILITY_OT string Utility::getLastReplyReceived()
 {
     return strLastReplyReceived;
 }
 
-void OT_UTILITY_OT Utility::setLastReplyReceived(const string & strReply)
+OT_UTILITY_OT void Utility::setLastReplyReceived(const string & strReply)
 {
     strLastReplyReceived = strReply;
 }
 
 
-int OT_UTILITY_OT Utility::getNymboxLowLevel(const string & serverID, const string & nymID)
+OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const string & nymID)
 {
     bool bWasSent = false;
     return getNymboxLowLevel(serverID, nymID, bWasSent);
@@ -593,7 +593,7 @@ int OT_UTILITY_OT Utility::getNymboxLowLevel(const string & serverID, const stri
 // (It cannot return 0;
 // Called by getAndProcessNymbox.
 //
-int OT_UTILITY_OT Utility::getNymboxLowLevel(const string & serverID, const string & nymID, bool & bWasSent)
+OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const string & nymID, bool & bWasSent)
 {
     string strLocation = "Utility::getNymboxLowLevel";
 
@@ -672,14 +672,14 @@ int OT_UTILITY_OT Utility::getNymboxLowLevel(const string & serverID, const stri
 }
 
 
-int OT_UTILITY_OT Utility::getNymbox(const string & serverID, const string & nymID)
+OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nymID)
 {
     bool bForceDownload = false;
     return getNymbox(serverID, nymID, bForceDownload);
 }
 
 
-int OT_UTILITY_OT Utility::getNymbox(const string & serverID, const string & nymID, const bool bForceDownload)
+OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nymID, const bool bForceDownload)
 {
     string strLocation = "Utility::getNymbox";
 
@@ -863,7 +863,7 @@ int OT_UTILITY_OT Utility::getNymbox(const string & serverID, const string & nym
 
 //var nGetAndProcessNymbox = getAndProcessNymbox_8(serverID, nymID, bWasMsgSent, bForceDownload, nRequestNumber, bFoundNymboxItem, bHarvestingForRetry, the_foursome);
 
-int OT_UTILITY_OT Utility::getAndProcessNymbox_8(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload, const int nRequestNumber, bool & bFoundNymboxItem, const bool bHarvestingForRetry, const OTfourbool & bMsgFoursome)
+OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload, const int nRequestNumber, bool & bFoundNymboxItem, const bool bHarvestingForRetry, const OTfourbool & bMsgFoursome)
 {
     string strLocation = "Utility::getAndProcessNymbox";
 
@@ -1357,7 +1357,7 @@ int OT_UTILITY_OT Utility::getAndProcessNymbox_8(const string & serverID, const 
 
 //  def Utility::getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload)
 //
-int OT_UTILITY_OT Utility::getAndProcessNymbox_4(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload)
+OT_UTILITY_OT int Utility::getAndProcessNymbox_4(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload)
 {
     string strLocation = "Utility::getAndProcessNymbox_4";
 
@@ -1391,7 +1391,7 @@ int OT_UTILITY_OT Utility::getAndProcessNymbox_4(const string & serverID, const 
 
 
 //  def Utility::getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent)
-int OT_UTILITY_OT Utility::getAndProcessNymbox_3(const string & serverID, const string & nymID, bool & bWasMsgSent)
+OT_UTILITY_OT int Utility::getAndProcessNymbox_3(const string & serverID, const string & nymID, bool & bWasMsgSent)
 {
     bool bForceDownload = false;
     return getAndProcessNymbox_4(serverID, nymID, bWasMsgSent, bForceDownload);
@@ -1416,7 +1416,7 @@ int OT_UTILITY_OT Utility::getAndProcessNymbox_3(const string & serverID, const 
 //                                OTInteger nBalanceSuccessOut,
 //                                OTInteger nTransSuccessOut)
 
-int OT_UTILITY_OT Utility::processNymbox(const string & serverID, const string & nymID, bool & bWasMsgSent, int & nMsgSentRequestNumOut, int & nReplySuccessOut, int & nBalanceSuccessOut, int & nTransSuccessOut)
+OT_UTILITY_OT int Utility::processNymbox(const string & serverID, const string & nymID, bool & bWasMsgSent, int & nMsgSentRequestNumOut, int & nReplySuccessOut, int & nBalanceSuccessOut, int & nTransSuccessOut)
 {
     bWasMsgSent = false;
     string strLocation = "Utility::processNymbox";
@@ -1508,7 +1508,7 @@ int OT_UTILITY_OT Utility::processNymbox(const string & serverID, const string &
 // OR returns -1 if there was an error.
 //
 // DONE
-int OT_UTILITY_OT Utility::sendProcessNymboxLowLevel(const string & serverID, const string & nymID) // bWasSent is an output param allowing to return whether;
+OT_UTILITY_OT int Utility::sendProcessNymboxLowLevel(const string & serverID, const string & nymID) // bWasSent is an output param allowing to return whether;
 {
     string strLocation = "Utility::sendProcessNymboxLowLevel";
 
@@ -1545,7 +1545,7 @@ int OT_UTILITY_OT Utility::sendProcessNymboxLowLevel(const string & serverID, co
 //  0 for server reply of failure,
 //  1 for server reply of success
 //
-int OT_UTILITY_OT Utility::receiveReplySuccessLowLevel(const string & serverID18, const string & nymID, const int nRequestNumber7, const string & IN_FUNCTION)
+OT_UTILITY_OT int Utility::receiveReplySuccessLowLevel(const string & serverID18, const string & nymID, const int nRequestNumber7, const string & IN_FUNCTION)
 {
     string strReply = ReceiveReplyLowLevel(serverID18, nymID, nRequestNumber7, "receiveReplySuccessLowLevel: " + IN_FUNCTION); // <=============== Here we RECEIVE the REPLY...
 
@@ -1567,7 +1567,7 @@ int OT_UTILITY_OT Utility::receiveReplySuccessLowLevel(const string & serverID18
 // "success=true" or "success=false" message, the caller will have to figure
 // that out for himself.)
 //
-string OT_UTILITY_OT Utility::ReceiveReplyLowLevel(const string & serverID17, const string & nymID, const int nRequestNumber8, const string & IN_FUNCTION)
+OT_UTILITY_OT string Utility::ReceiveReplyLowLevel(const string & serverID17, const string & nymID, const int nRequestNumber8, const string & IN_FUNCTION)
 {
     delay();
     setLastReplyReceived("");
@@ -1590,7 +1590,7 @@ string OT_UTILITY_OT Utility::ReceiveReplyLowLevel(const string & serverID17, co
 }
 
 
-int OT_UTILITY_OT Utility::getRequestNumber(const string & serverID, const string & nymID)
+OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const string & nymID)
 {
     bool bWasSent = false;
     return getRequestNumber(serverID, nymID, bWasSent);
@@ -1607,7 +1607,7 @@ int OT_UTILITY_OT Utility::getRequestNumber(const string & serverID, const strin
 // return value;
 // server reply, AND its status.
 // DONE
-int OT_UTILITY_OT Utility::getRequestNumber(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is an output param allowing to return whether;
+OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is an output param allowing to return whether;
 {
     string strLocation = "Utility::getRequestNumber";
 
@@ -1657,7 +1657,7 @@ int OT_UTILITY_OT Utility::getRequestNumber(const string & serverID, const strin
 
 
 // called by getBoxReceiptWithErrorCorrection   DONE
-bool OT_UTILITY_OT Utility::getBoxReceiptLowLevel(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum, bool & bWasSent) // bWasSent is OTBool
+OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum, bool & bWasSent) // bWasSent is OTBool
 {
     string strLocation = "Utility::getBoxReceiptLowLevel";
 
@@ -1720,7 +1720,7 @@ bool OT_UTILITY_OT Utility::getBoxReceiptLowLevel(const string & serverID, const
 }
 
 // called by insureHaveAllBoxReceipts     DONE
-bool OT_UTILITY_OT Utility::getBoxReceiptWithErrorCorrection(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum) // nBoxType is int
+OT_UTILITY_OT bool Utility::getBoxReceiptWithErrorCorrection(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum) // nBoxType is int
 {
     string strLocation = "Utility::getBoxReceiptWithErrorCorrection";
 
@@ -1752,7 +1752,7 @@ bool OT_UTILITY_OT Utility::getBoxReceiptWithErrorCorrection(const string & serv
 // not necessarily loaded into memory. (Yet.)
 // NOTE: If nBoxType is 0 (nymbox) then pass nymID as the accountID as well!
 //
-bool OT_UTILITY_OT Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType) // nBoxType is int
+OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType) // nBoxType is int
 {
     bool bFoundIt = false;
     int nRequestSeeking = 0;
@@ -1760,7 +1760,7 @@ bool OT_UTILITY_OT Utility::insureHaveAllBoxReceipts(const string & serverID, co
 }
 
 
-bool OT_UTILITY_OT Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int nRequestSeeking, bool & bFoundIt)
+OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int nRequestSeeking, bool & bFoundIt)
 {
     string strLocation = "Utility::insureHaveAllBoxReceipts";
 
@@ -2011,7 +2011,7 @@ const std::string TRANSACTION_NUMBER);
 // even if your request number IS out of sync. Sorry :-)
 //
 
-int OT_UTILITY_OT Utility::getTransactionNumLowLevel(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is OTBool
+OT_UTILITY_OT int Utility::getTransactionNumLowLevel(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is OTBool
 {
     string strLocation = "Utility::getTransactionNumLowLevel";
 
@@ -2092,12 +2092,12 @@ int OT_UTILITY_OT Utility::getTransactionNumLowLevel(const string & serverID, co
 
 
 // DONE
-bool OT_UTILITY_OT Utility::getTransactionNumbers(const string & serverID, const string & nymID)
+OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const string & nymID)
 {
     return getTransactionNumbers(serverID, nymID, true); //bForceFirstCall = = true (by default) but in special cases you can override it and set it to false.
 }
 
-bool OT_UTILITY_OT Utility::getTransactionNumbers(const string & serverID, const string & nymID, const bool bForceFirstCall) // boolean bForceFirstCall defaults to true.
+OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const string & nymID, const bool bForceFirstCall) // boolean bForceFirstCall defaults to true.
 {
     string strLocation = "Utility::getTransactionNumbers";
 
@@ -2375,14 +2375,14 @@ bool OT_UTILITY_OT Utility::getTransactionNumbers(const string & serverID, const
 }
 
 
-bool OT_UTILITY_OT Utility::getIntermediaryFiles(const string & serverID, const string & nymID, const string & accountID)
+OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const string & nymID, const string & accountID)
 {
     bool bForceDownload = false;
     return getIntermediaryFiles(serverID, nymID, accountID, bForceDownload);
 }
 
 // DEPRECATED
-bool OT_UTILITY_OT Utility::getIntermediaryFiles_old(const string & serverID, const string & nymID, const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
+OT_UTILITY_OT bool Utility::getIntermediaryFiles_old(const string & serverID, const string & nymID, const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
 {
     string strLocation = "Utility::getIntermediaryFiles_old";
 
@@ -2521,7 +2521,7 @@ bool OT_UTILITY_OT Utility::getIntermediaryFiles_old(const string & serverID, co
 
 // NOTE: This is a new version, that uses getInboxAccount new version, which
 // uses getAccountFiles instead of getAccount, getInbox, and getOutbox.
-bool OT_UTILITY_OT Utility::getIntermediaryFiles(const string & serverID, const string & nymID, const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
+OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const string & nymID, const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
 {
     string strLocation = "Utility::getIntermediaryFiles";
 
@@ -2629,7 +2629,7 @@ bool OT_UTILITY_OT Utility::getIntermediaryFiles(const string & serverID, const 
 
 // NOTE: This is a new version that uses the new server message, getAccountFiles
 // (Which combines getAccount, getInbox, and getOutbox into a single message.)
-int OT_UTILITY_OT Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
+OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
 {
     string strLocation = "Utility::getInboxAccount";
 
@@ -2731,13 +2731,13 @@ int OT_UTILITY_OT Utility::getInboxAccount(const string & serverID, const string
 // Same as the above function, except you only have to pass the accountID.
 // (instead of 3 IDs...)
 //
-int OT_UTILITY_OT Utility::getInboxOutboxAccount(const string & accountID)
+OT_UTILITY_OT int Utility::getInboxOutboxAccount(const string & accountID)
 {
     bool bForceDownload = false;
     return getInboxOutboxAccount(accountID, bForceDownload);
 }
 
-int OT_UTILITY_OT Utility::getInboxOutboxAccount(const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
+OT_UTILITY_OT int Utility::getInboxOutboxAccount(const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
 {
     string strLocation = "Utility::getInboxOutboxAccount";
 
@@ -2774,14 +2774,14 @@ int OT_UTILITY_OT Utility::getInboxOutboxAccount(const string & accountID, const
 // versions in separate files. These are retrieved individually from the server after the inbox itself
 // is, and then each is verified against a hash kept inside its abbreviated version.)
 // DONE
-int OT_UTILITY_OT Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount)
+OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount)
 {
     bool bForceDownload = false;
     return getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
 }
 
 // DEPRECATED
-int OT_UTILITY_OT Utility::getInboxAccount_old(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
+OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
 {
     string strLocation = "Utility::getInboxAccount_old";
 
@@ -2891,14 +2891,14 @@ int OT_UTILITY_OT Utility::getInboxAccount_old(const string & serverID, const st
 //  bWasSent gets set to TRUE once the message is confirmed as sent.
 //
 // DEPRECATED
-int OT_UTILITY_OT Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
+OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
 {
     bool bForceDownload = false;
     return getInboxLowLevel(serverID, nymID, accountID, bWasSent, bForceDownload);
 }
 
 // DEPRECATED
-int OT_UTILITY_OT Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
+OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
 {
     string strLocation = "Utility::getInboxLowLevel";
 
@@ -3015,7 +3015,7 @@ int OT_UTILITY_OT Utility::getInboxLowLevel(const string & serverID, const strin
 //  bWasSent gets set to TRUE once the message is confirmed as sent.
 //
 // DEPRECATED
-int OT_UTILITY_OT Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
+OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
 {
     bool bForceDownload = false;
     return getOutboxLowLevel(serverID, nymID, accountID, bWasSent, bForceDownload);
@@ -3023,7 +3023,7 @@ int OT_UTILITY_OT Utility::getOutboxLowLevel(const string & serverID, const stri
 
 // DEPRECATED
 //public static int getOutboxLowLevel(String serverID, String nymID, String accountID, OTBool bWasSent, boolean bForce) // bForce defaults to FALSE
-int OT_UTILITY_OT Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
+OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
 {
     bWasSent = false;
 

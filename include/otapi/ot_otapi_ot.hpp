@@ -28,16 +28,17 @@ class the_lambda_struct;
 
 typedef std::map<string, OTDB::OfferDataNym *> SubMap;
 typedef std::map<string, SubMap *> MapOfMaps;
+typedef int (*LambdaFunc)(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals);
 
 
-extern MapOfMaps * OT_OTAPI_OT convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
-extern int OT_OTAPI_OT find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
-extern int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda); // low level. map_of_maps must be good. (assumed.)
-extern int OT_OTAPI_OT iterate_nymoffers_maps(MapOfMaps & map_of_maps, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
-extern int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda);
-extern int OT_OTAPI_OT iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & the_lambda, the_lambda_struct & extra_vals);
-extern OTDB::OfferListNym * OT_OTAPI_OT loadNymOffers(const string & serverID, const string & nymID);
-extern int OT_OTAPI_OT output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+extern OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
+extern OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+extern OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda); // low level. map_of_maps must be good. (assumed.)
+extern OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
+extern OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda);
+extern OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals);
+extern OT_OTAPI_OT OTDB::OfferListNym * loadNymOffers(const string & serverID, const string & nymID);
+extern OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
 
 
 extern string Args;
@@ -139,13 +140,13 @@ public:
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & assetAccountID, const string & currencyAcctID, const string & scale, const string & minIncrement, const string & quantity, const string & price, const bool bSelling); // 10 args
     ~OTAPI_Func();
 
-    void OT_OTAPI_OT InitCustom();
-    int OT_OTAPI_OT Run();
-    string OT_OTAPI_OT SendRequest(OTAPI_Func & theFunction, const string & IN_FUNCTION);
-    int OT_OTAPI_OT SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION);
-    string OT_OTAPI_OT SendRequestOnce(OTAPI_Func & theFunction, const string & IN_FUNCTION, const bool bIsTransaction, const bool bWillRetryAfterThis, bool & bCanRetryAfterThis);
-    string OT_OTAPI_OT SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION);
-    string OT_OTAPI_OT SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries);
+    OT_OTAPI_OT void InitCustom();
+    OT_OTAPI_OT int Run();
+    OT_OTAPI_OT string SendRequest(OTAPI_Func & theFunction, const string & IN_FUNCTION);
+    OT_OTAPI_OT int SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION);
+    OT_OTAPI_OT string SendRequestOnce(OTAPI_Func & theFunction, const string & IN_FUNCTION, const bool bIsTransaction, const bool bWillRetryAfterThis, bool & bCanRetryAfterThis);
+    OT_OTAPI_OT string SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION);
+    OT_OTAPI_OT string SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries);
 };
 
 #endif
