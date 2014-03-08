@@ -68,11 +68,11 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[
 #ifndef __clang__
 	   not clang
 #endif
-	]])],[acv_ot_clang=true],[acv_ot_clang=false])
+	]])],[ac_cv_ot_clang=true],[ac_cv_ot_clang=false])
 
-AC_MSG_RESULT([$acv_ot_clang])
+AC_MSG_RESULT([$ac_cv_ot_clang])
 
-if test x"$GCC" == x"true" -a x"$acv_ot_clang" == x"false"; then
+if test x"$ac_cv_ot_clang" == x"false"; then
 	AC_MSG_CHECKING([whether gcc version is sufficient])
 	gcc_major=0
 	gcc_minor=0
@@ -84,24 +84,24 @@ if test x"$GCC" == x"true" -a x"$acv_ot_clang" == x"false"; then
 	fi
 
 	## test if we have a version of gcc that suports c++11
-	acv_ot_gcc11=false
+	ac_cv_ot_gcc11=false
 
 	if test $gcc_major -ge 4 -a $gcc_minor -ge 7 ; then
-		acv_ot_gcc11=true
+		ac_cv_ot_gcc11=true
 		AC_MSG_RESULT([yes, and supports c++11])
 	elif test $gcc_major -ge 4 -a $gcc_minor -ge 2 ; then
-		acv_ot_gcc11=false
-		AC_MSG_RESULT([yes])
+		ac_cv_ot_gcc11=false
+		AC_MSG_RESULT([yes, but no c++11 support])
 	else
 		AC_MSG_ERROR([If using GCC, version 4.2.0 or later is required.])
 		AC_MSG_RESULT([no])
 	fi
 fi
 
-if test x"$acv_ot_clang" == x"false" -a x"$acv_ot_gcc11" == x"false"; then
-	acv_ot_cxx11=false
+if test x"$ac_cv_ot_clang" == x"false" -a x"$ac_cv_ot_gcc11" == x"false"; then
+	ac_cv_ot_cxx11=false
 else
-	acv_ot_cxx11=true
+	ac_cv_ot_cxx11=true
 fi
 
 ######## Prelims end, Custom checks begin #######
@@ -114,14 +114,14 @@ fi
 ## Chaiscript & Boost & C++11
 #
 
-if test x"$acv_ot_cxx11" == x"true"; then
+if test x"$ac_cv_ot_cxx11" == x"true"; then
 	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
 	AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-	AC_SUBST([CHAI_CFLAGS],["-I$(top_builddir)/include/chai5"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_builddir)/include/chai5"])
 	AC_DEFINE([CHAISCRIPT_5], [1], [Building with Chaiscript 5])
 else
 	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
-	AC_SUBST([CHAI_CFLAGS],["-I$(top_builddir)/include/chai4"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_builddir)/include/chai4"])
 	AC_DEFINE([CHAISCRIPT_4], [1], [Building with Chaiscript 4])
 	AX_BOOST_BASE([1.25.0])
 	AX_BOOST_THREAD
@@ -468,7 +468,7 @@ if test x"$debug" == x"false" -a x"$release" == x"false"; then
 fi
 
 if test x"$debug" == x"true"; then
-	if test x"$acv_ot_clang" == x"true"; then
+	if test x"$ac_cv_ot_clang" == x"true"; then
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
 	else
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
@@ -477,7 +477,7 @@ if test x"$debug" == x"true"; then
 fi
 
 if test x"$release" == x"true"; then
-	if test x"$acv_ot_clang" == x"true"; then
+	if test x"$ac_cv_ot_clang" == x"true"; then
 		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
 	else
 		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])

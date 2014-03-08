@@ -28,7 +28,9 @@ $ git clone git://github.com/Open-Transactions/Open-Transactions.git
 $ cd Open-Transactions
 $ ./autogen.sh
 
-$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
+
+$ ./configure
+
 
 #########   Configure Options:   #########
 
@@ -38,9 +40,6 @@ Warnings:        --enable-warnings
 
 Release Mode:    --enable-release
 (default)
-
-No Boost:        --disable-boost
-No C++11:        --disable-cxx11
 
 (Optional)
 System Keyring:  --with-keyring=ARG
