@@ -173,17 +173,14 @@ using namespace std;
 OTScript_SharedPtr OT_ME::m_pScript;
 
 
-OT_ME::OT_ME()
+OT_ME::OT_ME(const std::string & _scriptName)
+: scriptName(_scriptName)
 {
-
 }
 
 OT_ME::~OT_ME()
 {
-
 }
-
-
 
 
 typedef std::map<std::string, std::string>  mapOfArguments;
@@ -660,7 +657,7 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
 }
 
 
-bool OT_ME::retrieve_nym(const std::string  & SERVER_ID, AddVariable
+bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const bool      bForceDownload)
 {

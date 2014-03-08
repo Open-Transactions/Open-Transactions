@@ -205,7 +205,7 @@
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\otapi\ot_me_switch.hpp">
+    <ClInclude Include="..\..\include\otapi\ot_me_switch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
