@@ -177,7 +177,8 @@ using namespace std;
 _SharedPtr<OTScript> OT_ME::m_pScript;
 
 
-OT_ME::OT_ME()
+OT_ME::OT_ME(const std::string & _scriptName)
+: scriptName(_scriptName)
 {
 }
 
@@ -1290,20 +1291,19 @@ bool OT_ME::HaveWorkingScript()
     }
 
     // note: if there's a choice of language, you must specify here. Perhaps add as a parameter above, when the time comes to add another scripting language.
-    m_pScript = OTScriptFactory("noscript");
+    m_pScript = OTScriptFactory(scriptName);
     if (!m_pScript)
     {
         OTLog::vError("%s: Error instantiating script.\n", __FUNCTION__);
         return false;
     }
 
-    // note: since we disabled script this part is commented out
-    //if (!SetupScriptObject())
-    //{
-    //    OTLog::vError("%s: Error setting up script object.\n", __FUNCTION__);
-    //    m_pScript.reset(); // Erase the one we just created, since we failed setting it up.
-    //    return false;
-    //}
+    if (scriptName != "noscript" && !SetupScriptObject())
+    {
+        OTLog::vError("%s: Error setting up script object.\n", __FUNCTION__);
+        m_pScript.reset(); // Erase the one we just created, since we failed setting it up.
+        return false;
+    }
 
     return true;
 }

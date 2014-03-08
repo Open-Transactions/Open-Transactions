@@ -206,17 +206,17 @@
 
 
 
-_SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type/*=NULL*/)
+_SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
 {  
     // if the type is explicitly set to "chai", or if the type is 0 length, then 
     // use chaiscript as the default interpreter in that case as well.
-    if (NULL == p_script_type || 0 == p_script_type->size() || *p_script_type =="chai") // todo no hardcoding.
+    if (script_type == "" || script_type =="chai") // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai);
         return pChaiScript;
     }
 
-    if (*p_script_type == "noscript")
+    if (script_type == "noscript")
     {
         _SharedPtr<OTScript> pNoScript(new OTScript);
         return pNoScript;
@@ -230,30 +230,27 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type/*=NULL*/)
 //        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptAngel>(script_contents));
 //    else if (0 == p_script_type->compare("guru"))
 //        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptGuru>(script_contents));
-    else
-        OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", p_script_type->c_str());
+
+    OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", script_type.c_str());
     
     _SharedPtr<OTScript> retVal;
-
     return retVal;
 }
 
 
-
-
-_SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents, 
-                                   const std::string * p_script_type/*=NULL*/)
+_SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
+                                   const std::string & script_contents)
 {
     
     // if the type is explicitly set to "chai", or if the type is 0 length, then 
     // use chaiscript as the default interpreter in that case as well.
-    if (NULL == p_script_type || 0 == p_script_type->size() || 0 == p_script_type->compare("chai")) // todo no hardcoding.
+    if (script_type == "" || script_type == "chai") // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai(script_contents));
         return pChaiScript;
     }
     
-    if (*p_script_type == "noscript")
+    if (script_type == "noscript")
     {
         _SharedPtr<OTScript> pNoScript(new OTScript);
         return pNoScript;
@@ -267,12 +264,10 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents,
 //        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptAngel>(script_contents));
 //    else if (0 == p_script_type->compare("guru"))
 //        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptGuru>(script_contents));
-    else
-        OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", p_script_type->c_str());
-    
+
+    OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", script_type.c_str());
     
     _SharedPtr<OTScript> retVal;
-
     return retVal;
 }
 

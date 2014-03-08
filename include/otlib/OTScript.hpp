@@ -233,11 +233,9 @@ EXPORT	void SetScript(const std::string & new_string);
 
 // -----------------------------------
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents,
-                                          const std::string * p_script_type=NULL);
-
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type=NULL);
-
+EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
+EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
+                                          const std::string & script_contents);
 
 
 // ********************************************************************
