@@ -191,9 +191,9 @@
     <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\OT_ME.h" />
     <ClInclude Include="..\..\include\otapi\OT_ME.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_me_switch.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_otapi_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_utility_ot.hpp" />
-    <ClInclude Include="..\..\src\otapi\ot_me_switch.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\otapi\OpenTransactions.cpp" />

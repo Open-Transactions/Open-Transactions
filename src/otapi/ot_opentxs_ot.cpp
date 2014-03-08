@@ -482,6 +482,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
             if (func.function != NULL)
             {
                 int nReturn = (*func.function)();
+                OTAPI_Wrap::Output(0, "\n Returning error code: \"" + to_string(nReturn) + "\".\n\n");
                 switch (nReturn)
                 {
                 case 0:
@@ -499,6 +500,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
                     // return -1 (UNIX failures tend to be non-zero values.)
                     return -1;
                 default:
+                    OTAPI_Wrap::Output(0, "\n Undefined error code: \"" + to_string(nReturn) + "\".\n\n");
                     return -1;
                 }
             }
