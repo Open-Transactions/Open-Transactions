@@ -1311,12 +1311,12 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
             string strMapKey = strScale + "-" + strAssetTypeID + "-" + strCurrencyTypeID;
 
             SubMap * sub_map = NULL;
-            if (map_of_maps != NULL)
+            if (VerifyType(map_of_maps, "Map") && !map_of_maps->empty() && (map_of_maps->count(strMapKey) > 0))
             {
                 sub_map = (*map_of_maps)[strMapKey];
             }
 
-            if (sub_map != NULL) // the submap already exists for this market.
+            if (VerifyType(sub_map, "Map")) // the submap already exists for this market.
             {
                 OTAPI_Wrap::Output(1, strLocation + ": The sub-map already exists!\n");
 
@@ -1340,7 +1340,7 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
                 sub_map = new SubMap();
                 (*sub_map)[strTransactionID] = &offerData;
                 
-                if (map_of_maps == NULL)
+                if (VerifyType(map_of_maps, "Map"))
                 {
                     map_of_maps = new MapOfMaps;
                 }
@@ -1512,11 +1512,11 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
     //
     //var range_sub_map = sub_map.range();
 
-    //if (!VerifyNotNull(range_sub_map))
-    //{
-    //    OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from sub_map. It must be non-existent, I guess.\n");
-    //    return -1;
-    //}
+    if (!VerifyNotNull(&sub_map))
+    {
+        OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from sub_map. It must be non-existent, I guess.\n");
+        return -1;
+    }
     if (sub_map.empty())
     {
         // Should never happen since we already made sure all the sub_maps
@@ -1533,11 +1533,11 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
         ++nIndex;
         //var offer_data_pair = range_sub_map.front();
 
-        //if (!VerifyNotNull(offer_data_pair))
-        //{
-        //    OTAPI_Wrap::Output(0, strLocation + ": Looping through range_sub_map range, and first offer_data_pair fails to verify.\n");
-        //    return -1;
-        //}
+        if (!VerifyNotNull(it->second))
+        {
+            OTAPI_Wrap::Output(0, strLocation + ": Looping through range_sub_map range, and first offer_data_pair fails to verify.\n");
+            return -1;
+        }
 
         OTDB::OfferDataNym & offer_data = *it->second;
         if (!VerifyStorable(&offer_data, "OTDB::OfferDataNym"))
@@ -1579,11 +1579,11 @@ OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_l
     // Next let's loop through the map_of_maps and output the offers for each market therein...
     //
     //var range_map_of_maps = map_of_maps.range();
-    //if (!VerifyType(range_map_of_maps, "Map_Range"))
-    //{
-    //    OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from map_of_maps. Type is: " + range_map_of_maps.get_type_info().name() + "\n");
-    //    return -1;
-    //}
+    if (!VerifyType(&map_of_maps, "Map_Range"))
+    {
+        OTAPI_Wrap::Output(0, strLocation + ": No range retrieved from map_of_maps.\n");
+        return -1;
+    }
     if (map_of_maps.empty())
     {
         OTAPI_Wrap::Output(0, strLocation + ": A range was retrieved for the map_of_maps, but the range is empty.\n");
@@ -1596,16 +1596,16 @@ OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_l
         ++nMainIndex; // so we can output a header on the FIRST one only.
 
         //var sub_map_pair = range_map_of_maps.front();
-        //if (!VerifyType(sub_map_pair, "Map_Pair"))
-        //{
-        //    OTAPI_Wrap::Output(0, strLocation + ": Looping through map_of_maps range, and first sub_map_pair fails to verify.\n");
-        //    return -1;
-        //}
+        if (!VerifyType(it->second, "Map_Pair"))
+        {
+            OTAPI_Wrap::Output(0, strLocation + ": Looping through map_of_maps range, and first sub_map_pair fails to verify.\n");
+            return -1;
+        }
 
         string strMapKey = it->first;
 
         SubMap & sub_map = *it->second;
-        if (&sub_map == NULL)
+        if (!VerifyNotNull(&sub_map))
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: Sub_map is not a map. (Then how is it even here?? Submaps are only added based on existing offers.)\n");
             return -1;

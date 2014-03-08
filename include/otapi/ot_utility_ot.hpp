@@ -13,6 +13,10 @@ using std::string;
 
 
 inline OT_UTILITY_OT bool VerifyBoolVal(const bool bValue) { return true; }
+extern OT_UTILITY_OT bool VerifyBoolVal(const int bValue);
+extern OT_UTILITY_OT bool VerifyBoolVal(const int64_t bValue);
+extern OT_UTILITY_OT bool VerifyIntVal(const bool nValue);
+inline OT_UTILITY_OT bool VerifyIntVal(const int nValue) { return true; }
 inline OT_UTILITY_OT bool VerifyIntVal(const int64_t nValue) { return true; }
 inline OT_UTILITY_OT bool VerifyStringVal(const string & nValue) { return 0 < nValue.length(); }
 
@@ -21,7 +25,9 @@ extern OT_UTILITY_OT bool VerifyExists(const string & name, const bool bFlag = t
 extern OT_UTILITY_OT int VerifyMessageSuccess(const string & message);
 extern OT_UTILITY_OT int VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage);  // For when an OTMessage is the input.
 extern OT_UTILITY_OT int VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage);
-extern OT_UTILITY_OT int VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType);
+extern OT_UTILITY_OT bool VerifyNotNull(const void * theObjectRef);
+extern OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType);
+extern OT_UTILITY_OT bool VerifyType(const void * theObjectRef, const string & strType);
 
 
 class OTfourbool
