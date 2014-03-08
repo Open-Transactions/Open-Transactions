@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\otapi\OTAPI-java.h">
+    <ClInclude Include="..\..\otapi\OTAPI-java.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

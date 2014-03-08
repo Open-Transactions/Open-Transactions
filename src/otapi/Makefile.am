@@ -48,7 +48,7 @@ lib_LTLIBRARIES			+=	libotapi-java.la
 endif
 
 libotapi_java_la_SOURCES	=	$(opentxs_swig_dir)/otapi/OTAPI-java.cxx	\
-					$(opentxs_swig_dir)/otapi/OTAPI-java.h
+					$(opentxs_swig_dir)/otapi/OTAPI-java.hpp
 
 libotapi_java_la_CXXFLAGS	=	$(common_includes) $(JNI_CPPFLAGS)
 
@@ -85,7 +85,7 @@ lib_LTLIBRARIES			+=	libotapi-php.la
 endif
 
 libotapi_php_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-php.cpp	\
-					$(opentxs_swig_dir)/otapi/OTAPI-php.h
+					$(opentxs_swig_dir)/otapi/OTAPI-php.hpp
 libotapi_php_la_CXXFLAGS	=	$(common_includes)			\
 					-I$(opentxs_swig_dir)/glue/php		\
 					$(PHP_INCLUDES)
@@ -104,7 +104,7 @@ lib_LTLIBRARIES			+=	_otapi.la
 endif
 
 _otapi_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-python.cxx	\
-					$(opentxs_swig_dir)/otapi/OTAPI-python.h
+					$(opentxs_swig_dir)/otapi/OTAPI-python.hpp
 
 _otapi_la_CXXFLAGS		= 	$(common_includes)				\
 					$(PYTHON_CPPFLAGS)				\
@@ -127,7 +127,7 @@ lib_LTLIBRARIES			+=	libotapi-ruby.la
 endif
 
 libotapi_ruby_la_SOURCES	=	$(opentxs_swig_dir)/otapi/OTAPI-ruby.cxx	\
-					$(opentxs_swig_dir)/otapi/OTAPI-ruby.h
+					$(opentxs_swig_dir)/otapi/OTAPI-ruby.hpp
 libotapi_ruby_la_CXXFLAGS	=	$(common_includes)				\
 					$(RUBY_CPPFLAGS)				\
 					$(RUBY_EXTRA_LIBS)
@@ -162,7 +162,7 @@ lib_LTLIBRARIES                 +=      libotapi-csharp.la
 endif
 
 libotapi_csharp_la_SOURCES      =       $(opentxs_swig_dir)/otapi/OTAPI-csharp.cxx      \
-                                        $(opentxs_swig_dir)/otapi/OTAPI-csharp.h
+                                        $(opentxs_swig_dir)/otapi/OTAPI-csharp.hpp
 libotapi_csharp_la_CXXFLAGS     =       $(common_includes)
 libotapi_csharp_la_LIBADD       =       libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
 libotapi_csharp_la_DEPENDENCIES =       libotapi.la $(otlib_build_dir)/libot.la
@@ -179,7 +179,7 @@ lib_LTLIBRARIES                 +=      libotapi-d.la
 endif
 
 libotapi_d_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-d.cxx		\
-					$(opentxs_swig_dir)/otapi/OTAPI-d.h
+					$(opentxs_swig_dir)/otapi/OTAPI-d.hpp
 libotapi_d_la_CXXFLAGS		=	$(common_includes)
 libotapi_d_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
 libotapi_d_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
@@ -195,8 +195,8 @@ if WANT_GO
 lib_LTLIBRARIES			+=	libotapi-go.la
 endif
 
-libotapi_go_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-go.cxx
-	\				$(opentxs_swig_dir)/otapi/OTAPI-go.h
+libotapi_go_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-go.cxx		\
+					$(opentxs_swig_dir)/otapi/OTAPI-go.hpp
 libotapi_go_la_CXXFLAGS		=	$(common_includes)
 libotapi_go_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
 libotapi_go_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
@@ -213,7 +213,7 @@ endif
 simpleini_headers_dir	=	$(opentxs_include_dir)/simpleini
 
 simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h		\
-				$(simpleini_headers_dir)/SimpleIni.h
+				$(simpleini_headers_dir)/SimpleIni.hpp
 
 simpleini_sources_dir	= 	$(opentxs_source_dir)/simpleini
 
@@ -235,15 +235,15 @@ otapi_sources		=	OpenTransactions.cpp		\
 
 otapi_headers_dir	=	$(opentxs_include_dir)/otapi
 
-otapi_headers		=	$(otapi_headers_dir)/main.h		\
-				$(otapi_headers_dir)/OTClient.h		\
-				$(otapi_headers_dir)/OTServerConnection.h\
+otapi_headers		=	$(otapi_headers_dir)/main.hpp		\
+				$(otapi_headers_dir)/OTClient.hpp		\
+				$(otapi_headers_dir)/OTServerConnection.hpp\
 				$(otapi_headers_ext)
 
-otapi_headers_ext	=	$(otapi_headers_dir)/OpenTransactions.h	\
-				$(otapi_headers_dir)/OTAPI.h		\
-				$(otapi_headers_dir)/OTAPI_Basic.h	\
-				$(otapi_headers_dir)/OTMadeEasy.h	\
-				$(otapi_headers_dir)/OT_ME.h
+otapi_headers_ext	=	$(otapi_headers_dir)/OpenTransactions.hpp	\
+				$(otapi_headers_dir)/OTAPI.hpp		\
+				$(otapi_headers_dir)/OTAPI_Basic.hpp	\
+				$(otapi_headers_dir)/OTMadeEasy.hpp	\
+				$(otapi_headers_dir)/OT_ME.hpp
 
 pkginclude_HEADERS	=	$(otapi_headers_ext)

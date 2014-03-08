@@ -130,36 +130,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstdio>
-#include <cstring> // The C one 
-#include <cstdlib>
-#include <cctype>
+#include <OTString.hpp>
 
-#include <string> // The C++ one 
-#include <fstream> // The C++ one
-#include <iostream>
+#include <OTAssert.hpp>
+#include <OTPassword.hpp>
+#include <OTIdentifier.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTSignature.hpp>
+#include <OTContract.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLog.hpp>
+
 #include <sstream>
 
-#include <cstdarg>
-// -------------------------------------------
-#if !defined(_WIN32) && !defined(ANDROID)
+#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
 #include <wordexp.h>
 #endif
-// -------------------------------------------
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-#include "OTPassword.h"
-#include "OTIdentifier.h"
-#include "OTContract.h"
-#include "OTPseudonym.h"
-
-#include "OTLog.h"
-
-
 
 /*
  int vsnprintf(char *str, size_t size, const char *format, va_list ap);

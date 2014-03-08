@@ -21,10 +21,17 @@
 
 // ALL
 %{
-#include "../../include/otlib/OTAsymmetricKey.h"
-#include "../../include/otapi/OTAPI_Basic.h"
-#include "../../include/otapi/OTMadeEasy.h"
-#include "../../include/otlib/OTStorage.h"
+
+#ifndef IMPORT
+#define IMPORT
+#endif
+
+#include "../../include/otlib/OTPassword.hpp"
+#include "../../include/otapi/OTAPI_Basic.hpp"
+#include "../../include/otapi/OTMadeEasy.hpp"
+#include "../../include/otlib/OTStorage.hpp"
+#include "../../include/otlib/OTAsymmetricKey.hpp"
+
 %}
 
 
@@ -563,10 +570,11 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 
 /* Parse the header file to generate wrappers */
 
-%include "../../include/otlib/OTPassword.h"
-%include "../../include/otapi/OTAPI_Basic.h"
-%include "../../include/otapi/OTMadeEasy.h"
-%include "../../include/otlib/OTStorage.h"
+%include "../../include/otlib/ExportWrapper.h"
+%include "../../include/otlib/OTPassword.hpp"
+%include "../../include/otapi/OTAPI_Basic.hpp"
+%include "../../include/otapi/OTMadeEasy.hpp"
+%include "../../include/otlib/OTStorage.hpp"
 
 
 bool OT_API_Set_PasswordCallback(OTCaller & theCaller);

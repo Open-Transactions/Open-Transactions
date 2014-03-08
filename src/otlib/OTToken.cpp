@@ -131,44 +131,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
+#include <OTToken.hpp>
 
-// -------------------------------------------------------------------------
-
-extern "C" 
-{
-
-#ifdef _WIN32
-#include <direct.h>
-#include <sys/stat.h>	
-#else
-#include <sys/stat.h>	
-#endif
-}
-// -------------------------------------------------------------------------
-
-#include "irrxml/irrXML.h"
-
-// -------------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTToken.h"
-#include "OTEnvelope.h"
-#include "OTMint.h"
-#include "OTPseudonym.h"
-#include "OTPurse.h"
-
-#include "OTLog.h"
-
-// -------------------------------------------------------------------------
-
-using namespace irr;
-using namespace io;
-
-// -------------------------------------------------------------------------
-
+#include <OTLog.hpp>
+#include <OTPurse.hpp>
+#include <OTPaths.hpp>
+#include <OTEnvelope.hpp>
+#include <OTMint.hpp>
+#include <OTDigitalCash.hpp>
 
 
 // The current implementation for withdrawals (using Lucre) requires only a single proto-token
@@ -833,7 +805,7 @@ void OTToken::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTToken::ProcessXMLNode(IrrXMLReader*& xml)
+int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	static int nPublicTokenCount  = 0;
 	static int nPrivateTokenCount = 0;

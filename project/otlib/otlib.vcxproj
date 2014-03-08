@@ -19,76 +19,79 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\otlib\anyoption.h" />
+    <ClInclude Include="..\..\include\otlib\anyoption.hpp" />
     <ClInclude Include="..\..\include\otlib\Bitcoin.pb.h" />
     <ClInclude Include="..\..\include\otlib\constants.h" />
     <ClInclude Include="..\..\include\otlib\ExportWrapper.h" />
     <ClInclude Include="..\..\include\otlib\fast_mutex.h" />
     <ClInclude Include="..\..\include\otlib\Generics.pb.h" />
     <ClInclude Include="..\..\include\otlib\Markets.pb.h" />
+    <ClInclude Include="..\..\include\otlib\MemoryWrapper.hpp" />
     <ClInclude Include="..\..\include\otlib\Moneychanger.pb.h" />
-    <ClInclude Include="..\..\include\otlib\OTAccount.h" />
-    <ClInclude Include="..\..\include\otlib\OTAgreement.h" />
-    <ClInclude Include="..\..\include\otlib\OTASCIIArmor.h" />
-    <ClInclude Include="..\..\include\otlib\OTAssetContract.h" />
-    <ClInclude Include="..\..\include\otlib\OTAsymmetricKey.h" />
-    <ClInclude Include="..\..\include\otlib\OTBasket.h" />
-    <ClInclude Include="..\..\include\otlib\OTBylaw.h" />
-    <ClInclude Include="..\..\include\otlib\OTCachedKey.h" />
-    <ClInclude Include="..\..\include\otlib\OTCheque.h" />
-    <ClInclude Include="..\..\include\otlib\OTContract.h" />
-    <ClInclude Include="..\..\include\otlib\OTCredential.h" />
-    <ClInclude Include="..\..\include\otlib\OTCron.h" />
-    <ClInclude Include="..\..\include\otlib\OTCronItem.h" />
-    <ClInclude Include="..\..\include\otlib\OTCrypto.h" />
-    <ClInclude Include="..\..\include\otlib\OTData.h" />
-    <ClInclude Include="..\..\include\otlib\OTDataCheck.h" />
-    <ClInclude Include="..\..\include\otlib\OTDigitalCash.h" />
-    <ClInclude Include="..\..\include\otlib\OTEnvelope.h" />
+    <ClInclude Include="..\..\include\otlib\OTAccount.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAgreement.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTASCIIArmor.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAssert.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAssetContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAsymmetricKey.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTBasket.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTBylaw.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCachedKey.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCheque.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCredential.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCron.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCronItem.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCrypto.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTData.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTDataCheck.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTDigitalCash.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTEnvelope.hpp" />
     <ClInclude Include="..\..\include\otlib\OTglobal.h" />
-    <ClInclude Include="..\..\include\otlib\OTIdentifier.h" />
-    <ClInclude Include="..\..\include\otlib\OTInstrument.h" />
-    <ClInclude Include="..\..\include\otlib\OTItem.h" />
-    <ClInclude Include="..\..\include\otlib\OTKeyring.h" />
-    <ClInclude Include="..\..\include\otlib\OTLedger.h" />
-    <ClInclude Include="..\..\include\otlib\OTLib.h" />
-    <ClInclude Include="..\..\include\otlib\OTLibPriv.h" />
-    <ClInclude Include="..\..\include\otlib\OTLog.h" />
-    <ClInclude Include="..\..\include\otlib\OTMarket.h" />
-    <ClInclude Include="..\..\include\otlib\OTMessage.h" />
-    <ClInclude Include="..\..\include\otlib\OTMessageBuffer.h" />
-    <ClInclude Include="..\..\include\otlib\OTMint.h" />
-    <ClInclude Include="..\..\include\otlib\OTOffer.h" />
-    <ClInclude Include="..\..\include\otlib\OTPassword.h" />
-    <ClInclude Include="..\..\include\otlib\OTPaths.h" />
-    <ClInclude Include="..\..\include\otlib\OTPayload.h" />
-    <ClInclude Include="..\..\include\otlib\OTPayment.h" />
-    <ClInclude Include="..\..\include\otlib\OTPaymentPlan.h" />
-    <ClInclude Include="..\..\include\otlib\OTPseudonym.h" />
-    <ClInclude Include="..\..\include\otlib\OTPurse.h" />
-    <ClInclude Include="..\..\include\otlib\OTScript.h" />
-    <ClInclude Include="..\..\include\otlib\OTScriptable.h" />
-    <ClInclude Include="..\..\include\otlib\OTServerContract.h" />
-    <ClInclude Include="..\..\include\otlib\OTSettings.h" />
-    <ClInclude Include="..\..\include\otlib\OTSignature.h" />
-    <ClInclude Include="..\..\include\otlib\OTSignedFile.h" />
-    <ClInclude Include="..\..\include\otlib\OTSmartContract.h" />
-    <ClInclude Include="..\..\include\otlib\OTStorage.h" />
-    <ClInclude Include="..\..\include\otlib\OTString.h" />
-    <ClInclude Include="..\..\include\otlib\OTStringXML.h" />
-    <ClInclude Include="..\..\include\otlib\OTSymmetricKey.h" />
-    <ClInclude Include="..\..\include\otlib\OTToken.h" />
-    <ClInclude Include="..\..\include\otlib\OTTrackable.h" />
-    <ClInclude Include="..\..\include\otlib\OTTrade.h" />
-    <ClInclude Include="..\..\include\otlib\OTTransaction.h" />
-    <ClInclude Include="..\..\include\otlib\OTTransactionType.h" />
-    <ClInclude Include="..\..\include\otlib\OTWallet.h" />
+    <ClInclude Include="..\..\include\otlib\OTIdentifier.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTInstrument.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTItem.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTKeyring.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTLedger.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTLib.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTLibPriv.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTLog.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMarket.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMessage.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMessageBuffer.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMint.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTOffer.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPassword.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPaths.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPayload.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPayment.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPaymentPlan.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPseudonym.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPurse.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTScript.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTScriptable.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTServerContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSettings.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSignature.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSignedFile.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSmartContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStorage.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTString.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStringXML.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSymmetricKey.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTToken.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTTrackable.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTTrade.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTTransaction.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTTransactionType.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTWallet.hpp" />
     <ClInclude Include="..\..\include\otlib\stacktrace.h" />
     <ClInclude Include="..\..\include\otlib\stdafx.h" />
-    <ClInclude Include="..\..\include\otlib\Timer.h" />
-    <ClInclude Include="..\..\include\otlib\tinythread.h" />
-    <ClInclude Include="..\..\include\otlib\win32_utf8conv.h" />
-    <ClInclude Include="..\..\include\otlib\win32_utf8conv_inl.h" />
+    <ClInclude Include="..\..\include\otlib\stdafx.hpp" />
+    <ClInclude Include="..\..\include\otlib\Timer.hpp" />
+    <ClInclude Include="..\..\include\otlib\tinythread.hpp" />
+    <ClInclude Include="..\..\include\otlib\win32_utf8conv.hpp" />
+    <ClInclude Include="..\..\include\otlib\win32_utf8conv_inl.hpp" />
     <ClInclude Include="..\..\include\otlib\WinsockWrapper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +153,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAssert.cpp" />
     <ClCompile Include="..\..\src\otlib\OTAssetContract.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -601,10 +605,11 @@
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;libeay32MDd.lib;ssleay32MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -615,10 +620,11 @@
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_DEBUG;DEBUG;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;libeay32MDd.lib;ssleay32MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -632,12 +638,13 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;libeay32MD.lib;ssleay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -650,12 +657,13 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>_UNICODE;UNICODE;_WIN64;_AMD64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libprotobuf.lib;ws2_32.lib;winmm.lib;libeay32MD.lib;ssleay32MD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>

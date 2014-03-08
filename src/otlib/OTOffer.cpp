@@ -130,24 +130,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTOffer.hpp>
 
+#include <OTLog.hpp>
 
-#include "irrxml/irrXML.h"
+#include <time.h>
 
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTOffer.h"
-#include "OTLog.h"
 
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
-
 
 // Also allows for x == 1.
 //

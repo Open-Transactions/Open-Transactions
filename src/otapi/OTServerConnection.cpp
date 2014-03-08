@@ -130,51 +130,30 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
-#include <cstdio>
+#include <OTServerConnection.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
+#include <OTClient.hpp>
+#include <OpenTransactions.hpp>
+
+#ifndef IMPORT
+#define IMPORT
 #endif
 
-extern "C" 
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTMessage.hpp>
+#include <OTDataCheck.hpp>
+#include <OTPseudonym.hpp>
+#include <OTWallet.hpp>
+
+extern "C"
 {
-#ifdef _WIN32
-//#include <WinSock.h>
-#define strcasecmp _stricmp
-#else
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
 #include <netinet/in.h>
 #endif
-
-//#include "SSL-Example/SFSocket.h"
 }
-
-
-#include "OTStorage.h"
-
-
-#include "OTServerConnection.h"
-#include "OpenTransactions.h"
-
-
-#include "OTIdentifier.h"
-#include "OTDataCheck.h"
-#include "OTPayload.h"
-#include "OTWallet.h"
-#include "OTPseudonym.h"
-#include "OTMessage.h"
-#include "OTMessageBuffer.h"
-#include "OTWallet.h"
-#include "OTClient.h"
-#include "OTEnvelope.h"
-
-#include "OTLog.h"
-
-
-
-
 
 int allow_debug = 1;
 
@@ -576,11 +555,7 @@ bool OTServerConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theServe
 	// a signed OTMessage
 	if (TYPE_1_CMD_1 == theCMD.fields.command_id) 
 	{
-#ifdef _WIN32
-		if (OTPAYLOAD_GetMessage(thePayload, theServerReply))
-#else
-		if (thePayload.GetMessage(theServerReply))
-#endif
+		if (thePayload.GetMessagePayload(theServerReply))
 		{
 			OTLog::Output(4, "Successfully retrieved payload message...\n");
 			
@@ -756,7 +731,7 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 	// else, for whatever reason, we just send an UNencrypted message... (This shouldn't happen anymore...) TODO remove.
 	else 
     {
-		thePayload.SetMessage(theMessage);
+        thePayload.SetMessagePayload(theMessage);
 		
 		// Now that the payload is ready, we'll set up the header.
 		SetupHeader(theCMD, CMD_TYPE_1, TYPE_1_CMD_1, thePayload);

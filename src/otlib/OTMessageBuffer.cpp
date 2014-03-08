@@ -130,24 +130,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstddef>
+#include <OTMessageBuffer.hpp>
 
-#include <list>
-#include <map>
-
-#include "OTStorage.h"
-
-
-#include "OTString.h"
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTMessage.h"
-#include "OTTransaction.h"
-#include "OTMessageBuffer.h"
-
-
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
+#include <OTTransaction.hpp>
+#include <OTPseudonym.hpp>
 
 
 // --------------------------------------------------------------------------------

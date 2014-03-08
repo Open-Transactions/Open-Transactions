@@ -131,42 +131,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPayment.hpp>
 
-#include <string>
+#include <OTLog.hpp>
+#include <OTCheque.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTSmartContract.hpp>
+#include <OTPurse.hpp>
 
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-#include "OTPayment.h"
-
-#include "OTData.h"
-#include "OTIdentifier.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-
-#include "OTPseudonym.h"
-
-#include "OTEnvelope.h"
-
-#include "OTTrackable.h"
-#include "OTCheque.h"
-
-#include "OTPurse.h"
-
-#include "OTCronItem.h"
-#include "OTPaymentPlan.h"
-#include "OTSmartContract.h"
-
-#include "OTLog.h"
+#include <time.h>
 
 
 

@@ -130,10 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include "OTString.h"
-#include "OTStringXML.h"
+#include <OTStringXML.hpp>
+
+//#include "OTString.h"
+//#include "OTStringXML.h"
 
 OTStringXML::OTStringXML() : OTString(), irr::io::IFileReadCallBack()
 {

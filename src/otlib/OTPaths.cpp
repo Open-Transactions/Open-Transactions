@@ -130,44 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
+#include <OTPaths.hpp>
 
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
 
-
-#include <stdafx.h>
-
-// The long-awaited paths class.
-
-#include <cstdarg>
-#include <cstdio>
-#include <cstring> // The C one 
-#include <cstdlib>
-#include <cctype>
-#include <cassert>
-#include <cerrno>
-
-#include <iostream>
-#include <exception>
-#include <stdexcept>
-#include <sys/types.h>
-#include <sys/stat.h>
-
-#ifndef S_ISDIR
-#define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
-#endif
-
-#ifndef S_ISREG
-#define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
-#endif
-
-#include <string> // The C++ one 
 #include <vector>
 
+#include <sys/stat.h>
+
 #ifdef _WIN32
-#include <WinsockWrapper.h>
-#include <Shlobj.h>
 #include <direct.h>
-#else
+#include <shlobj.h>
+#endif
+
+#ifndef _WIN32
 #include <libgen.h>
 #include <unistd.h>
 #endif
@@ -180,6 +159,16 @@
 #include <mach-o/dyld.h>
 #include <limits.h>
 #endif
+
+
+#ifndef S_ISDIR
+#define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
+#endif
+
+#ifndef S_ISREG
+#define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
+#endif
+
 
 #ifdef _WIN32
 #define OT_APPDATA_DIR "OpenTransactions"
@@ -214,12 +203,11 @@
 
 #ifdef _WIN32
 #define OT_SCRIPTS_DIR "scripts/ot"
+#elif defined(ANDROID)
+#define OT_SCRIPTS_DIR ""
 #else
 #define OT_SCRIPTS_DIR "lib/opentxs"
 #endif
-
-#include "OTPaths.h"
-#include "OTLog.h"
 
 #ifdef ANDROID
 OTSettings OTPaths::s_settings;
@@ -469,7 +457,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
 }
 
 //static
-bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + lib/opentxs/
+bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + [ if (NOT Android) "lib/opentxs/" ]
     (
     OTSettings & config, //optional
     const OTString & strScriptsFolder,    //optional

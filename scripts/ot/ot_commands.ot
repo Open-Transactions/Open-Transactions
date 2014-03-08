@@ -3971,6 +3971,12 @@ def main_sendmsg()
 
         var strMessage = OT_CLI_ReadUntilEOF()
         
+        if (!VerifyStringVal(strMessage))
+        {
+            OT_API_Output(0, "send_user_msg: Failed (no message submitted).\n")
+            return -1
+        }
+
         // Send the request.
         //
         var strResponse = madeEasy.send_user_msg(Server, MyNym, HisNym, strMessage)

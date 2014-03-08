@@ -12,13 +12,13 @@ irrxml_sources		=	irrXML.cpp
 
 irrxml_headers_dir	=	$(top_srcdir)/include/irrxml
 
-irrxml_headers		=	$(irrxml_headers_dir)/CXMLReaderImpl.h	\
-				$(irrxml_headers_dir)/fast_atof.h		\
-				$(irrxml_headers_dir)/heapsort.h		\
-				$(irrxml_headers_dir)/irrArray.h		\
-				$(irrxml_headers_dir)/irrString.h		\
-				$(irrxml_headers_dir)/irrTypes.h		\
-				$(irrxml_headers_dir)/irrXML.h
+irrxml_headers		=	$(irrxml_headers_dir)/CXMLReaderImpl.hpp	\
+				$(irrxml_headers_dir)/fast_atof.hpp		\
+				$(irrxml_headers_dir)/heapsort.hpp		\
+				$(irrxml_headers_dir)/irrArray.hpp		\
+				$(irrxml_headers_dir)/irrString.hpp		\
+				$(irrxml_headers_dir)/irrTypes.hpp		\
+				$(irrxml_headers_dir)/irrXML.hpp
 
 
 pkginclude_irrxmldir	=	$(pkgincludedir)/irrxml

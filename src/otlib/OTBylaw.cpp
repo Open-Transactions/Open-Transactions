@@ -130,30 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include "OTStorage.h"
+#include <OTBylaw.hpp>
 
-#include "OTString.h"
-
-#include "OTASCIIArmor.h"
-#include "OTIdentifier.h"
-
-#include "OTPseudonym.h"
-
-#include "OTBylaw.h"
-#include "OTScriptable.h"
-#include "OTSmartContract.h"
-
-#include "OTAgreement.h"
-#include "OTAccount.h"
-
-
-#include "OTLog.h"
-
-
-
-
+#include <OTLog.hpp>
+#include <OTContract.hpp>
+#include <OTPseudonym.hpp>
+#include <OTAccount.hpp>
+#include <OTScriptable.hpp>
+#include <OTSmartContract.hpp>
+#include <OTAgreement.hpp>
+#include <OTScript.hpp>
 
 
 // Have the agent try to verify his own signature against any contract.
@@ -4980,7 +4968,7 @@ int OTStash::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strSt
 			}
 			// --------------------------------------
 			
-			if ((xml->getNodeType() == EXN_ELEMENT) && (!strcmp("stashItem", xml->getNodeName())))
+			if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("stashItem", xml->getNodeName())))
 			{
 				OTString strAssetTypeID	= xml->getAttributeValue("assetTypeID"); // Asset Type ID of this account.
 				OTString strAmount		= xml->getAttributeValue("balance"); // Account ID for this account.

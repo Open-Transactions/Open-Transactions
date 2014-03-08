@@ -130,36 +130,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The long-awaited logging class.
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OTLog.hpp>
 
-#include <cstdarg>
-#include <cstdio>
-#include <cstring> // The C one 
-#include <cstdlib>
-#include <cctype>
-#include <cassert>
-#include <cerrno>
+#include <OTSettings.hpp>
+#include <OTPaths.hpp>
+#include <OTAssert.hpp>
+
+#include "tinythread.hpp"
 
 #include <iostream>
+#include <fstream>
 #include <exception>
-#include <stdexcept>
-#include <sys/types.h>
-#include <sys/stat.h>
 
-#ifndef S_ISDIR
-#define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
-#endif
-
-#ifndef S_ISREG
-#define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
-#endif
-
-#include <string> // The C++ one 
+#include <constants.h>
+#include <stacktrace.h>
 
 #ifdef _WIN32
-#include <WinsockWrapper.h>
 #include <Shlobj.h>
 #include <direct.h>
 #else
@@ -178,22 +166,6 @@
 
 #define LOG_DEQUE_SIZE 1024
 
-// ----------------------------------------
-// OpenSSL for Windows
-//
-#ifdef _WIN32
-
-#ifdef _DEBUG
-#pragma comment( lib, "libeay32MDd.lib" )
-#pragma comment( lib, "ssleay32MDd.lib" )
-#else
-#pragma comment( lib, "libeay32MD.lib" )
-#pragma comment( lib, "ssleay32MD.lib" )
-
-#endif
-
-
-#endif
 // ----------------------------------------
 
 extern "C"
@@ -272,18 +244,7 @@ extern "C"
 } // extern C
 // ---------------------------
 
-// TinyThread++
-//
-#include "tinythread.h"   // These are in the header already.
-//#include "fast_mutex.h"
 
-using namespace tthread;
-
-// ---------------------------------------------------------------------------
-
-//#include "ot_default_paths.h"
-
-// ---------------------------------------------------------------------------
 
 
 
@@ -291,14 +252,10 @@ using namespace tthread;
 #include <android/log.h>
 #endif
 
-#include "OTString.h"
-#include "OTLog.h"
 
 #ifndef _WIN32  // No Windows for now.
 #include "stacktrace.h"
 #endif
-
-#include <constants.h>
 
 
 #define LOGFILE_PRE "log-"
@@ -331,6 +288,10 @@ const OTString OTLog::m_strPathSeparator = "/";
 //
 //  OTLog Init, must run this befor useing any OTLog function.
 //
+
+
+
+
 
 //static
 bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
@@ -380,6 +341,11 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 		pLogger->m_bInitialized = true;
 
+        // Set the new log-assert function pointer.
+        OTAssert * pLogAssert = new OTAssert(OTLog::logAssert);
+        std::swap(pLogAssert, OTAssert::s_pOTAssert);
+        delete pLogAssert; pLogAssert = NULL;
+
 		return true;
 	}
 	else
@@ -409,6 +375,14 @@ bool OTLog::Cleanup()
 	else return false;
 }
 
+//static
+bool OTLog::CheckLogger(OTLog * pLogger)
+{
+    if (NULL != pLogger)
+    if (pLogger->m_bInitialized) return true;
+
+    OT_FAIL;
+}
 
 
 
@@ -666,8 +640,8 @@ bool OTLog::SleepMilliseconds(long lMilliseconds)
 // This function is for things that should NEVER happen.
 // In fact you should never even call it -- use the OT_ASSERT() macro instead.
 // This Function is now only for logging, you 
-
-int OTLog::Assert(const char * szFilename, int nLinenumber, const char * szMessage)
+//static private
+size_t OTLog::logAssert(const char * szFilename, size_t nLinenumber, const char * szMessage)
 {
 	if (NULL != szMessage)
 	{
@@ -681,41 +655,31 @@ int OTLog::Assert(const char * szFilename, int nLinenumber, const char * szMessa
 		__android_log_write(ANDROID_LOG_FATAL,"OT Assert (or Fail)", szMessage);
 #endif
 
-#ifndef _WIN32
 		print_stacktrace();
-#endif
 	}
 
-	return OTLog::Assert(szFilename, nLinenumber);
-}
-
-int OTLog::Assert(const char * szFilename, int nLinenumber)
-{
-	if ((NULL != szFilename))
-	{
+    if ((NULL != szFilename))
+    {
 #ifndef ANDROID // if NOT android
-		// -----------------------------
-		// Pass it to LogToFile, as this always logs.
-		//
-		OTString strTemp;
-		strTemp.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
-		LogToFile(strTemp.Get());
-		// -----------------------------
+        // -----------------------------
+        // Pass it to LogToFile, as this always logs.
+        //
+        OTString strTemp;
+        strTemp.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
+        LogToFile(strTemp.Get());
+        // -----------------------------
 
 #else // if Android
-		OTString strAndroidAssertMsg;
-		strAndroidAssertMsg.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
-		__android_log_write(ANDROID_LOG_FATAL,"OT Assert", (const char *)strAndroidAssertMsg.Get());
+        OTString strAndroidAssertMsg;
+        strAndroidAssertMsg.Format("\nOT_ASSERT in %s at line %d\n", szFilename, nLinenumber);
+        __android_log_write(ANDROID_LOG_FATAL, "OT Assert", (const char *)strAndroidAssertMsg.Get());
 #endif
+    }
 
-#ifndef _WIN32
-		print_stacktrace();
-#endif
-	}
-	return 1; // normal
+        print_stacktrace();
+
+        return 1; // normal
 }
-
-
 
 // -------------------------------------------------------
 
@@ -825,11 +789,10 @@ void OTLog::vOutput(int nVerbosity, const char *szOutput, ...)
 
 	va_end(args);
 	// -------------------
-	if (bFormatted)
-		OTLog::Output(nVerbosity, strOutput.c_str());
-	else
-		if (bHaveLogger) { OT_FAIL; }
-		else assert(false); //error
+    if (bFormatted)
+        OTLog::Output(nVerbosity, strOutput.c_str());
+    else
+        OT_FAIL;
 		return;
 }
 
@@ -1057,8 +1020,19 @@ bool OTLog::StringFill(OTString & out_strString, const char * szString, const in
 void ot_terminate(void);
 
 namespace {
-	// invoke set_terminate as part of global constant initialization
-	static const bool SET_TERMINATE = std::set_terminate(ot_terminate);
+
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4800 )  // warning C4800: forcing constant value.
+#endif
+
+    // invoke set_terminate as part of global constant initialization
+    static const bool SET_TERMINATE = std::set_terminate(ot_terminate);
+
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
+
 }
 
 // This is our custom std::terminate handler for SIGABRT (and any std::terminate() call)
@@ -1551,7 +1525,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 	tthread::lock_guard<tthread::mutex> lock(the_Mutex);
 
 
-	assert(NULL != v);
+	OT_ASSERT(NULL != v);
 
 	int read = 0;
 

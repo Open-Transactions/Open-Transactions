@@ -130,50 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OTCron.hpp>
 
-// OTCron has a list of OTCronItems. (Really subclasses of that such as OTTrade and OTAgreement.)
+#include <OTPaths.hpp>
+#include <OTLog.hpp>
+#include <OTStorage.hpp>
+#include <OTMarket.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTCronItem.hpp>
 
-#include <map>
-#include <list>
+#include <Timer.hpp>
 
-#include <string>
-#include <sstream>
-#include <iostream>
-
-#include <cstring>
-
-
-
-#include "Timer.h"
-
-
-
-#include "irrxml/irrXML.h"
-
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-
-#include "OTCron.h"
-#include "OTCronItem.h"
-
-#include "OTOffer.h"
-#include "OTTrade.h"
-#include "OTMarket.h"
-#include "OTPaymentPlan.h"
-
-#include "OTLog.h"
-
-
+#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
-
-using namespace std;
-
 
 // Note: these are only code defaults -- the values are actually loaded from ~/.ot/server.cfg.
 

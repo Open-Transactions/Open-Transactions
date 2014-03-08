@@ -4,11 +4,11 @@
 
 #include <cstdio>
 
-#include "irrXML.h"
-#include "irrString.h"
-#include "irrArray.h"
-#include "fast_atof.h"
-#include "CXMLReaderImpl.h"
+#include "irrXML.hpp"
+#include "irrString.hpp"
+#include "irrArray.hpp"
+#include "fast_atof.hpp"
+#include "CXMLReaderImpl.hpp"
 
 namespace irr
 {

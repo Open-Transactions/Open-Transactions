@@ -131,14 +131,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstdio>
+#include <OTDataCheck.hpp>
 
+#include <OTAssert.hpp>
 
-#include "OTDataCheck.h"
-
-#include "OTLog.h"
 
 void AppendChecksum( OT_BYTE* buffer, uint32_t & size )
 {

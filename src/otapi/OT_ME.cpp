@@ -134,38 +134,19 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
+#include <OT_ME.hpp>
 
-#ifndef EXPORT
-#define EXPORT
+#include <OTAPI.hpp>
+
+#ifndef IMPORT
+#define IMPORT
 #endif
-#ifndef NOEXPORT
-#include <ExportWrapper.h>
-#endif
 
-
-#include <string>
-
-
-
-#include <OTStorage.h>
-
-#include <OTData.h>
-#include <OTString.h>
-#include <OTBylaw.h>
-#include <OTScript.h>
-
-#include <OTAPI.h>
-#include <OT_ME.h>
-
-#include <OTLog.h>
-
-
-
-using namespace std;
-
-
+#include <OTLog.hpp>
+#include <OTStorage.hpp>
+#include <OTPaths.hpp>
 
 
 OT_ME::OT_ME()
@@ -346,10 +327,10 @@ std::string OT_CLI_ReadUntilEOF()
     
 	//	std::ostringstream oss;
 	//
-	//	oss << std::cin;   // Convert value into a string.
+	//	oss << std::cin;   // Convert value into astd::string.
 	//	s = outs.str();
     
-	// use stream iterators to copy the stream to a string
+	// use stream iterators to copy the stream to astd::string
 	//	std::istream_iterator<std::string> it(std::cin);
 	//	std::istream_iterator<std::string> end;
 	//	std::istream_iterator<char> it(std::cin);
@@ -386,7 +367,7 @@ std::string OT_CLI_ReadUntilEOF()
 		}
 		else
 		{
-			OTLog::Error("OT_CLI_ReadUntilEOF: getline() was unable to read a string from std::cin\n");
+			OTLog::Error("OT_CLI_ReadUntilEOF: getline() was unable to read astd::string from std::cin\n");
 			break;
 		}
 		// ---------------------------------
@@ -450,7 +431,7 @@ bool OT_ME::make_sure_enough_trans_nums(const int32_t        nNumberNeeded,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var bResult = madeEasy.insure_enough_nums(int32_t(%" PRId32 "), \"%s\", \"%s\"); }",
                   nNumberNeeded, SERVER_ID.c_str(), NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     
     
@@ -464,13 +445,13 @@ bool OT_ME::make_sure_enough_trans_nums(const int32_t        nNumberNeeded,
 // -----------------------------------------------------------------------------------------------
 //	REGISTER NYM AT SERVER (or download nymfile, if nym already registered.)
 //
-string OT_ME::register_nym(const string  & SERVER_ID,
-                           const string  & NYM_ID)
+std::string OT_ME::register_nym(const std::string  & SERVER_ID,
+                           const std::string  & NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.register_nym(\"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -480,14 +461,14 @@ string OT_ME::register_nym(const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 //	CHECK USER (download a public key)
 //
-string OT_ME::check_user( const string  & SERVER_ID,
-                          const string  & NYM_ID,
-                          const string  & TARGET_NYM_ID)
+std::string OT_ME::check_user(const std::string  & SERVER_ID,
+                          const std::string  & NYM_ID,
+                          const std::string  & TARGET_NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.check_user(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), TARGET_NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -498,7 +479,7 @@ string OT_ME::check_user( const string  & SERVER_ID,
 //  CREATE NYM (pseudonym)
 //  returns new Nym ID
 //
-string OT_ME::create_pseudonym(const int32_t  nKeybits, const string & NYM_ID_SOURCE, const string & ALT_LOCATION)
+std::string OT_ME::create_pseudonym(const int32_t  nKeybits, const std::string & NYM_ID_SOURCE, const std::string & ALT_LOCATION)
 {
     // These strings contain newlines, so we create script variables to pass them as.
     //
@@ -513,7 +494,7 @@ string OT_ME::create_pseudonym(const int32_t  nKeybits, const string & NYM_ID_SO
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.create_pseudonym(int32_t(%"  PRId32"), %s, %s); }",
                   nKeybits, str_var_name1.c_str(), str_var_name2.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -523,9 +504,9 @@ string OT_ME::create_pseudonym(const int32_t  nKeybits, const string & NYM_ID_SO
 // -----------------------------------------------------------------------------------------------
 //  ISSUE ASSET TYPE
 //
-string OT_ME::issue_asset_type( const string  & SERVER_ID,
-                                const string  & NYM_ID,
-                                const string  & THE_CONTRACT)
+std::string OT_ME::issue_asset_type(const std::string  & SERVER_ID,
+                                const std::string  & NYM_ID,
+                                const std::string  & THE_CONTRACT)
 {
     // This strings contains newlines, so we create script variables to pass it as.
     //
@@ -536,7 +517,7 @@ string OT_ME::issue_asset_type( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.issue_asset_type(\"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), str_var_name1.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -546,9 +527,9 @@ string OT_ME::issue_asset_type( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 //  ISSUE BASKET CURRENCY
 //
-string OT_ME::issue_basket_currency( const string  & SERVER_ID,
-                                     const string  & NYM_ID,
-                                     const string  & THE_BASKET)
+std::string OT_ME::issue_basket_currency(const std::string  & SERVER_ID,
+                                     const std::string  & NYM_ID,
+                                     const std::string  & THE_BASKET)
 {
     // This strings contains newlines, so we create script variables to pass it as.
     //
@@ -559,7 +540,7 @@ string OT_ME::issue_basket_currency( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.issue_basket_currency(\"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), str_var_name1.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -570,7 +551,7 @@ string OT_ME::issue_basket_currency( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 //  EXCHANGE BASKET CURRENCY
 //
-string OT_ME::exchange_basket_currency(const std::string   & SERVER_ID,
+std::string OT_ME::exchange_basket_currency(const std::string   & SERVER_ID,
                                        const std::string   & NYM_ID,
                                        const std::string   & ASSET_TYPE_ID,
                                        const std::string   & THE_BASKET,
@@ -588,7 +569,7 @@ string OT_ME::exchange_basket_currency(const std::string   & SERVER_ID,
                   "madeEasy.exchange_basket_currency(\"%s\", \"%s\", \"%s\", %s, \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ASSET_TYPE_ID.c_str(), str_var_name1.c_str(),
                   ACCOUNT_ID.c_str(), IN_OR_OUT ? "true" : "false");
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -600,14 +581,14 @@ string OT_ME::exchange_basket_currency(const std::string   & SERVER_ID,
 //  RETRIEVE CONTRACT
 //
 
-string OT_ME::retrieve_contract( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & CONTRACT_ID)
+std::string OT_ME::retrieve_contract(const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & CONTRACT_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.retrieve_contract(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), CONTRACT_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -617,14 +598,14 @@ string OT_ME::retrieve_contract( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 //  LOAD OR RETRIEVE CONTRACT
 //
-string OT_ME::load_or_retrieve_contract( const string  & SERVER_ID,
-                                         const string  & NYM_ID,
-                                         const string  & CONTRACT_ID)
+std::string OT_ME::load_or_retrieve_contract(const std::string  & SERVER_ID,
+                                         const std::string  & NYM_ID,
+                                         const std::string  & CONTRACT_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_or_retrieve_contract(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), CONTRACT_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -634,14 +615,14 @@ string OT_ME::load_or_retrieve_contract( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 //  CREATE ASSET ACCOUNT
 //
-string OT_ME::create_asset_acct( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & ASSET_TYPE_ID)
+std::string OT_ME::create_asset_acct(const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & ASSET_TYPE_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.create_asset_acct(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ASSET_TYPE_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -650,12 +631,12 @@ string OT_ME::create_asset_acct( const string  & SERVER_ID,
 
 // -----------------------------------------------------------------------------------------------
 
-string OT_ME::stat_asset_account( const string  & ACCOUNT_ID)
+std::string OT_ME::stat_asset_account(const std::string  & ACCOUNT_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.stat_asset_account(\"%s\"); }",
                   ACCOUNT_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -668,14 +649,14 @@ string OT_ME::stat_asset_account( const string  & ACCOUNT_ID)
 //
 
 // returns true/false
-bool OT_ME::retrieve_account( const string  & SERVER_ID,
-                              const string  & NYM_ID,
-                              const string  & ACCOUNT_ID)
+bool OT_ME::retrieve_account( const std::string  & SERVER_ID,
+                              const std::string  & NYM_ID,
+                              const std::string  & ACCOUNT_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.retrieve_account(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCOUNT_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -683,15 +664,15 @@ bool OT_ME::retrieve_account( const string  & SERVER_ID,
 }
 
 // returns true/false
-bool OT_ME::retrieve_account( const string  & SERVER_ID,
-                              const string  & NYM_ID,
-                              const string  & ACCOUNT_ID,
+bool OT_ME::retrieve_account( const std::string  & SERVER_ID,
+                              const std::string  & NYM_ID,
+                              const std::string  & ACCOUNT_ID,
                               const bool      bForceDownload) // bForceDownload=false
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.retrieve_account(\"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCOUNT_ID.c_str(), bForceDownload ? "true" : "false");
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -706,7 +687,7 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
     OTString   strRaw;
     strRaw.Format("{ var bResult = details_refresh_nym(\"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), bForceDownload ? "true" : "false");
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -721,7 +702,7 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var bResult = details_refresh_nym(\"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), bForceDownload ? "true" : "false");
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -732,12 +713,12 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
 // --------------------------------------------------------------
 // SEND TRANSFER  -- TRANSACTION
 
-string OT_ME::send_transfer( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & ACCT_FROM,
-                             const string  & ACCT_TO,
+std::string OT_ME::send_transfer(const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & ACCT_FROM,
+                             const std::string  & ACCT_TO,
                              const int64_t   AMOUNT,
-                             const string  & NOTE)
+                             const std::string  & NOTE)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varNote");
@@ -749,7 +730,7 @@ string OT_ME::send_transfer( const string  & SERVER_ID,
                   "(\"%s\", \"%s\", \"%s\", \"%s\", int64_t(%" PRId64"), %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_FROM.c_str(), ACCT_TO.c_str(),
                   AMOUNT, str_var_name1.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -759,10 +740,10 @@ string OT_ME::send_transfer( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 // PROCESS INBOX  -- TRANSACTION
 
-string OT_ME::process_inbox( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & ACCOUNT_ID,
-                             const string  & RESPONSE_LEDGER)
+std::string OT_ME::process_inbox(const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & ACCOUNT_ID,
+                             const std::string  & RESPONSE_LEDGER)
 {
     const std::string str_var_name("varResponse");
     OTVariable varResponse(str_var_name, RESPONSE_LEDGER);
@@ -771,7 +752,7 @@ string OT_ME::process_inbox( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.process_inbox(\"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCOUNT_ID.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -789,7 +770,7 @@ bool OT_ME::accept_inbox_items(const std::string  & ACCOUNT_ID,  // this method 
     OTString strRaw;
     strRaw.Format("{ var nResult = accept_inbox_items(\"%s\", int32_t(%" PRId32"), \"%s\"); var bResult = ((1 == nResult) ? true : false); }",
                   ACCOUNT_ID.c_str(), nItemType, INDICES.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -805,7 +786,7 @@ bool OT_ME::discard_incoming_payments(const std::string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var nResult = details_discard_incoming(\"%s\", \"%s\", \"%s\"); var bResult = ((1 == nResult) ? true : false); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), INDICES.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -821,7 +802,7 @@ bool OT_ME::cancel_outgoing_payments (const std::string  & NYM_ID,
     OTString strRaw;
     strRaw.Format("{ var nResult = details_cancel_outgoing(\"%s\", \"%s\", \"%s\"); var bResult = ((1 == nResult) ? true : false); }",
                   NYM_ID.c_str(), ACCOUNT_ID.c_str(), INDICES.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -837,7 +818,7 @@ int32_t OT_ME::accept_from_paymentbox(const std::string  & ACCOUNT_ID, // This a
     OTString strRaw;
     strRaw.Format("{ var nResult = accept_from_paymentbox(\"%s\", \"%s\", \"%s\"); }",
                   ACCOUNT_ID.c_str(), INDICES.c_str(), PAYMENT_TYPE.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -850,24 +831,24 @@ int32_t OT_ME::accept_from_paymentbox(const std::string  & ACCOUNT_ID, // This a
 //
 // Load a public key from local storage, and return it (or null).
 //
-string OT_ME::load_public_encryption_key( const string  & NYM_ID)	// from local storage.
+std::string OT_ME::load_public_encryption_key(const std::string  & NYM_ID)	// from local storage.
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_public_encryption_key(\"%s\"); }",
                   NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
     return ExecuteScript_ReturnString(str_Code, __FUNCTION__);
 }
 
-string OT_ME::load_public_signing_key( const string  & NYM_ID)	// from local storage.
+std::string OT_ME::load_public_signing_key(const std::string  & NYM_ID)	// from local storage.
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_public_signing_key(\"%s\"); }",
                   NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -883,28 +864,28 @@ string OT_ME::load_public_signing_key( const string  & NYM_ID)	// from local sto
 // using NYM_ID to send check_user request. Then re-load
 // and return. (Might still return null.)
 //
-string OT_ME::load_or_retrieve_encrypt_key(const string  & SERVER_ID,
-                                           const string  & NYM_ID,
-                                           const string  & TARGET_NYM_ID)
+std::string OT_ME::load_or_retrieve_encrypt_key(const std::string  & SERVER_ID,
+                                           const std::string  & NYM_ID,
+                                           const std::string  & TARGET_NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_or_retrieve_encrypt_key(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), TARGET_NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
     return ExecuteScript_ReturnString(str_Code, __FUNCTION__);
 }
 
-string OT_ME::load_or_retrieve_signing_key( const string  & SERVER_ID,
-                                            const string  & NYM_ID,
-                                            const string  & TARGET_NYM_ID)
+std::string OT_ME::load_or_retrieve_signing_key(const std::string  & SERVER_ID,
+                                            const std::string  & NYM_ID,
+                                            const std::string  & TARGET_NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_or_retrieve_signing_key(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), TARGET_NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -915,11 +896,11 @@ string OT_ME::load_or_retrieve_signing_key( const string  & SERVER_ID,
 
 // SEND USER MESSAGE  (requires recipient public key)
 //
-string OT_ME::send_user_msg_pubkey( const string  & SERVER_ID,
-                                    const string  & NYM_ID,
-                                    const string  & RECIPIENT_NYM_ID,
-                                    const string  & RECIPIENT_PUBKEY,
-                                    const string  & THE_MESSAGE)
+std::string OT_ME::send_user_msg_pubkey(const std::string  & SERVER_ID,
+                                    const std::string  & NYM_ID,
+                                    const std::string  & RECIPIENT_NYM_ID,
+                                    const std::string  & RECIPIENT_PUBKEY,
+                                    const std::string  & THE_MESSAGE)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varPubkey");
@@ -933,7 +914,7 @@ string OT_ME::send_user_msg_pubkey( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_msg_pubkey(\"%s\", \"%s\", \"%s\", %s, %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name1.c_str(), str_var_name2.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -943,11 +924,11 @@ string OT_ME::send_user_msg_pubkey( const string  & SERVER_ID,
 // ---------------------------
 // SEND USER INSTRUMENT  (requires recipient public key)
 //
-string OT_ME::send_user_pmnt_pubkey( const string  & SERVER_ID,
-                                     const string  & NYM_ID,
-                                     const string  & RECIPIENT_NYM_ID,
-                                     const string  & RECIPIENT_PUBKEY,
-                                     const string  & THE_INSTRUMENT)
+std::string OT_ME::send_user_pmnt_pubkey(const std::string  & SERVER_ID,
+                                     const std::string  & NYM_ID,
+                                     const std::string  & RECIPIENT_NYM_ID,
+                                     const std::string  & RECIPIENT_PUBKEY,
+                                     const std::string  & THE_INSTRUMENT)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varPubkey");
@@ -961,7 +942,7 @@ string OT_ME::send_user_pmnt_pubkey( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_pmnt_pubkey(\"%s\", \"%s\", \"%s\", %s, %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name1.c_str(), str_var_name2.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -971,12 +952,12 @@ string OT_ME::send_user_pmnt_pubkey( const string  & SERVER_ID,
 // ---------------------------
 // SEND USER CASH  (requires recipient public key)
 //
-string OT_ME::send_user_cash_pubkey( const string  & SERVER_ID,
-                                     const string  & NYM_ID,
-                                     const string  & RECIPIENT_NYM_ID,
-                                     const string  & RECIPIENT_PUBKEY,
-                                     const string  & THE_INSTRUMENT,
-                                     const string  & INSTRUMENT_FOR_SENDER)
+std::string OT_ME::send_user_cash_pubkey(const std::string  & SERVER_ID,
+                                     const std::string  & NYM_ID,
+                                     const std::string  & RECIPIENT_NYM_ID,
+                                     const std::string  & RECIPIENT_PUBKEY,
+                                     const std::string  & THE_INSTRUMENT,
+                                     const std::string  & INSTRUMENT_FOR_SENDER)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varPubkey");
@@ -994,7 +975,7 @@ string OT_ME::send_user_cash_pubkey( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_cash_pubkey(\"%s\", \"%s\", \"%s\", %s, %s, %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name1.c_str(), str_var_name2.c_str(), str_var_name3.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1004,10 +985,10 @@ string OT_ME::send_user_cash_pubkey( const string  & SERVER_ID,
 // ---------------------------
 // SEND USER MESSAGE  (only requires recipient's ID, and retrieves pubkey automatically)
 //
-string OT_ME::send_user_msg( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & RECIPIENT_NYM_ID,
-                             const string  & THE_MESSAGE)
+std::string OT_ME::send_user_msg(const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & RECIPIENT_NYM_ID,
+                             const std::string  & THE_MESSAGE)
 {
     // This variable contains newlines..
     const std::string str_var_name("varNote");
@@ -1017,7 +998,7 @@ string OT_ME::send_user_msg( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_msg(\"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1027,10 +1008,10 @@ string OT_ME::send_user_msg( const string  & SERVER_ID,
 // ---------------------------
 // SEND USER PAYMENT  (only requires recipient's ID, and retrieves pubkey automatically)
 //
-string OT_ME::send_user_payment( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & RECIPIENT_NYM_ID,
-                                 const string  & THE_PAYMENT)
+std::string OT_ME::send_user_payment(const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & RECIPIENT_NYM_ID,
+                                 const std::string  & THE_PAYMENT)
 {
     // This variable contains newlines..
     const std::string str_var_name("varNote");
@@ -1040,7 +1021,7 @@ string OT_ME::send_user_payment( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_payment(\"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1050,11 +1031,11 @@ string OT_ME::send_user_payment( const string  & SERVER_ID,
 // --------------------------------------------------------------
 // SEND USER CASH  (only requires recipient's ID, and retrieves pubkey automatically)
 //
-string OT_ME::send_user_cash( const string  & SERVER_ID,
-                              const string  & NYM_ID,
-                              const string  & RECIPIENT_NYM_ID,
-                              const string  & THE_PAYMENT,
-                              const string  & SENDERS_COPY)
+std::string OT_ME::send_user_cash(const std::string  & SERVER_ID,
+                              const std::string  & NYM_ID,
+                              const std::string  & RECIPIENT_NYM_ID,
+                              const std::string  & THE_PAYMENT,
+                              const std::string  & SENDERS_COPY)
 {
     // This variable contains newlines..
     const std::string str_var_name("varNote");
@@ -1069,7 +1050,7 @@ string OT_ME::send_user_cash( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.send_user_cash(\"%s\", \"%s\", \"%s\", %s, %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name.c_str(), str_var_name2.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1077,9 +1058,9 @@ string OT_ME::send_user_cash( const string  & SERVER_ID,
 }
 
 
-bool OT_ME::withdraw_and_send_cash(const string & ACCT_ID,
-                                   const string & RECIPIENT_NYM_ID,
-                                   const string & MEMO,
+bool OT_ME::withdraw_and_send_cash(const std::string & ACCT_ID,
+                                   const std::string & RECIPIENT_NYM_ID,
+                                   const std::string & MEMO,
                                    const int64_t  AMOUNT)
 {
     // This variable contains newlines..
@@ -1090,7 +1071,7 @@ bool OT_ME::withdraw_and_send_cash(const string & ACCT_ID,
     OTString strRaw;
     strRaw.Format("{ var bResult = withdraw_and_send_cash(\"%s\", \"%s\", %s, \"%" PRId64"\"); }",
                   ACCT_ID.c_str(), RECIPIENT_NYM_ID.c_str(), str_var_name.c_str(), AMOUNT);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1100,24 +1081,24 @@ bool OT_ME::withdraw_and_send_cash(const string & ACCT_ID,
 // --------------------------------------------------------------
 // GET PAYMENT INSTRUMENT (from payments inbox, by index.)
 //
-string OT_ME::get_payment_instrument( const string  & SERVER_ID,
-                                      const string  & NYM_ID,
+std::string OT_ME::get_payment_instrument(const std::string  & SERVER_ID,
+                                      const std::string  & NYM_ID,
                                       const int32_t  nIndex)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_payment_instrument(\"%s\", \"%s\", int32_t(%" PRId32")); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), nIndex);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
     return ExecuteScript_ReturnString(str_Code, __FUNCTION__);
 }
 
-string OT_ME::get_payment_instrument( const string  & SERVER_ID,
-                                      const string  & NYM_ID,
+std::string OT_ME::get_payment_instrument(const std::string  & SERVER_ID,
+                                      const std::string  & NYM_ID,
                                       const int32_t   nIndex,
-                                      const string  & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
+                                      const std::string  & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
 {
     // This variable contains newlines..
     const std::string str_var_name("varBox");
@@ -1127,7 +1108,7 @@ string OT_ME::get_payment_instrument( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_payment_instrument(\"%s\", \"%s\", int32_t(%" PRId32"), %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), nIndex, str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1141,9 +1122,9 @@ string OT_ME::get_payment_instrument( const string  & SERVER_ID,
 // argument, as well as the NYM_ID argument (you have to pass it twice...)
 // Otherwise for inbox/outbox, pass the actual ACCT_ID there as normal.
 //
-string OT_ME::get_box_receipt( const string  & SERVER_ID,
-                               const string  & NYM_ID,
-                               const string  & ACCT_ID,
+std::string OT_ME::get_box_receipt(const std::string  & SERVER_ID,
+                               const std::string  & NYM_ID,
+                               const std::string  & ACCT_ID,
                                const int32_t   nBoxType,
                                const int64_t   TRANS_NUM)
 {
@@ -1151,7 +1132,7 @@ string OT_ME::get_box_receipt( const string  & SERVER_ID,
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_box_receipt"
                   "(\"%s\", \"%s\", \"%s\", int32_t(%" PRId32"), \"%" PRId64"\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), nBoxType, TRANS_NUM);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1161,14 +1142,14 @@ string OT_ME::get_box_receipt( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 // DOWNLOAD PUBLIC MINT
 //
-string OT_ME::retrieve_mint( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & ASSET_ID)
+std::string OT_ME::retrieve_mint(const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & ASSET_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.retrieve_mint(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ASSET_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1188,14 +1169,14 @@ string OT_ME::retrieve_mint( const string  & SERVER_ID,
 //
 // Returns the mint, or null.
 
-string OT_ME::load_or_retrieve_mint( const string  & SERVER_ID,
-                                     const string  & NYM_ID,
-                                     const string  & ASSET_ID)
+std::string OT_ME::load_or_retrieve_mint(const std::string  & SERVER_ID,
+                                     const std::string  & NYM_ID,
+                                     const std::string  & ASSET_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.load_or_retrieve_mint(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ASSET_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1207,9 +1188,9 @@ string OT_ME::load_or_retrieve_mint( const string  & SERVER_ID,
 //
 // See if some asset types are issued on the server.
 //
-string OT_ME::query_asset_types( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & ENCODED_MAP)
+std::string OT_ME::query_asset_types(const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & ENCODED_MAP)
 {
     // This variable contains newlines..
     const std::string str_var_name("varMap");
@@ -1219,7 +1200,7 @@ string OT_ME::query_asset_types( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.query_asset_types(\"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1229,7 +1210,7 @@ string OT_ME::query_asset_types( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 // CREATE MARKET OFFER  -- TRANSACTION
 
-string OT_ME::create_market_offer(const std::string  &  ASSET_ACCT_ID,
+std::string OT_ME::create_market_offer(const std::string  &  ASSET_ACCT_ID,
                                   const std::string  &  CURRENCY_ACCT_ID,
                                   const int64_t         scale,
                                   const int64_t         minIncrement,
@@ -1248,7 +1229,7 @@ string OT_ME::create_market_offer(const std::string  &  ASSET_ACCT_ID,
                   scale, minIncrement, quantity, price, bSelling ? "true" : "false", lLifespanInSeconds,
                   STOP_SIGN.c_str(), ACTIVATION_PRICE
                   );
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1258,15 +1239,15 @@ string OT_ME::create_market_offer(const std::string  &  ASSET_ACCT_ID,
 // --------------------------------------------------------------
 // KILL MARKET OFFER  -- TRANSACTION
 //
-string OT_ME::kill_market_offer( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & ASSET_ACCT_ID,
+std::string OT_ME::kill_market_offer(const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & ASSET_ACCT_ID,
                                  const int64_t   TRANS_NUM)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.kill_market_offer(\"%s\", \"%s\", \"%s\", \"%" PRId64"\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ASSET_ACCT_ID.c_str(), TRANS_NUM);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1276,15 +1257,15 @@ string OT_ME::kill_market_offer( const string  & SERVER_ID,
 // --------------------------------------------------------------
 // KILL (ACTIVE) PAYMENT PLAN  -- TRANSACTION
 //
-string OT_ME::kill_payment_plan( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & ACCT_ID,
+std::string OT_ME::kill_payment_plan( const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & ACCT_ID,
                                  const int64_t   TRANS_NUM)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.kill_payment_plan(\"%s\", \"%s\", \"%s\", \"%" PRId64"\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), TRANS_NUM);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1294,9 +1275,9 @@ string OT_ME::kill_payment_plan( const string  & SERVER_ID,
 // --------------------------------------------------------------
 // CANCEL (NOT-YET-RUNNING) PAYMENT PLAN  -- TRANSACTION
 //
-string OT_ME::cancel_payment_plan( const string  & SERVER_ID,
-                                   const string  & NYM_ID,
-                                   const string  & THE_PAYMENT_PLAN)
+std::string OT_ME::cancel_payment_plan( const std::string  & SERVER_ID,
+                                   const std::string  & NYM_ID,
+                                   const std::string  & THE_PAYMENT_PLAN)
 {
     // This variable contains newlines..
     const std::string str_var_name("varContract");
@@ -1306,7 +1287,7 @@ string OT_ME::cancel_payment_plan( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.cancel_payment_plan(\"%s\", \"%s\", varContract); }",
                   SERVER_ID.c_str(), NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1316,11 +1297,11 @@ string OT_ME::cancel_payment_plan( const string  & SERVER_ID,
 
 // ACTIVATE SMART CONTRACT  -- TRANSACTION
 //
-string OT_ME::activate_smart_contract( const string  & SERVER_ID,
-                                       const string  & NYM_ID,
-                                       const string  & ACCT_ID,
-                                       const string  & AGENT_NAME,
-                                       const string  & THE_SMART_CONTRACT)
+std::string OT_ME::activate_smart_contract( const std::string  & SERVER_ID,
+                                       const std::string  & NYM_ID,
+                                       const std::string  & ACCT_ID,
+                                       const std::string  & AGENT_NAME,
+                                       const std::string  & THE_SMART_CONTRACT)
 {
     // This variable contains newlines..
     const std::string str_var_name("varContract");
@@ -1330,7 +1311,7 @@ string OT_ME::activate_smart_contract( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.activate_smart_contract(\"%s\", \"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), AGENT_NAME.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1341,11 +1322,11 @@ string OT_ME::activate_smart_contract( const string  & SERVER_ID,
 
 // TRIGGER CLAUSE (on running smart contract)  -- TRANSACTION
 //
-string OT_ME::trigger_clause( const string  & SERVER_ID,
-                              const string  & NYM_ID,
+std::string OT_ME::trigger_clause( const std::string  & SERVER_ID,
+                              const std::string  & NYM_ID,
                               const int64_t   TRANS_NUM,
-                              const string  & CLAUSE_NAME,
-                              const string  & STR_PARAM)
+                              const std::string  & CLAUSE_NAME,
+                              const std::string  & STR_PARAM)
 {
     // This variable contains newlines..
     const std::string str_var_name("varParameter");
@@ -1355,7 +1336,7 @@ string OT_ME::trigger_clause( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.trigger_clause(\"%s\", \"%s\", \"%" PRId64"\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), TRANS_NUM, CLAUSE_NAME.c_str(), str_var_name.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1367,15 +1348,15 @@ string OT_ME::trigger_clause( const string  & SERVER_ID,
 
 // WITHDRAW CASH  -- TRANSACTION
 //
-string OT_ME::withdraw_cash( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & ACCT_ID,
+std::string OT_ME::withdraw_cash( const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & ACCT_ID,
                              const int64_t   AMOUNT)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.withdraw_cash(\"%s\", \"%s\", \"%s\", int64_t(%" PRId64")); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), AMOUNT);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1393,7 +1374,7 @@ int32_t OT_ME::easy_withdraw_cash(const std::string  & ACCT_ID,
     OTString strRaw;
     strRaw.Format("{ details_withdraw_cash(\"%s\", int64_t(%" PRId64")); }",
                   ACCT_ID.c_str(), AMOUNT);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1403,15 +1384,15 @@ int32_t OT_ME::easy_withdraw_cash(const std::string  & ACCT_ID,
 
 // EXPORT CASH (FROM PURSE)
 //
-string OT_ME::export_cash(const string  & SERVER_ID,
-                          const string  & FROM_NYM_ID,
-                          const string  & ASSET_TYPE_ID,
-                          const string  & TO_NYM_ID,
-                          const string  & STR_INDICES,
+std::string OT_ME::export_cash(const std::string  & SERVER_ID,
+                          const std::string  & FROM_NYM_ID,
+                          const std::string  & ASSET_TYPE_ID,
+                          const std::string  & TO_NYM_ID,
+                          const std::string  & STR_INDICES,
                                 bool      bPasswordProtected,
-                                string  & STR_RETAINED_COPY) // output
+                               std::string  & STR_RETAINED_COPY) // output
 {
-    const string str_var_name1("varRetained");
+    const std::string str_var_name1("varRetained");
     OTVariable varRetained(str_var_name1, STR_RETAINED_COPY);
     this->AddVariable(str_var_name1, varRetained);
     // -------------------------------------
@@ -1422,11 +1403,11 @@ string OT_ME::export_cash(const string  & SERVER_ID,
                   bPasswordProtected ? "true" : "false",
                   str_var_name1.c_str()
                   );
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
-    const string str_result = ExecuteScript_ReturnString(str_Code, __FUNCTION__);
+    const std::string str_result = ExecuteScript_ReturnString(str_Code, __FUNCTION__);
     
     if (!str_result.empty())
         STR_RETAINED_COPY = varRetained.GetValueString();
@@ -1438,11 +1419,11 @@ string OT_ME::export_cash(const string  & SERVER_ID,
 
 // WITHDRAW VOUCHER  -- TRANSACTION
 //
-string OT_ME::withdraw_voucher( const string  & SERVER_ID,
-                                const string  & NYM_ID,
-                                const string  & ACCT_ID,
-                                const string  & RECIP_NYM_ID,
-                                const string  & STR_MEMO,
+std::string OT_ME::withdraw_voucher( const std::string  & SERVER_ID,
+                                const std::string  & NYM_ID,
+                                const std::string  & ACCT_ID,
+                                const std::string  & RECIP_NYM_ID,
+                                const std::string  & STR_MEMO,
                                 const int64_t   AMOUNT)
 {
     // This variable contains newlines..
@@ -1454,7 +1435,7 @@ string OT_ME::withdraw_voucher( const string  & SERVER_ID,
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = "
                   "madeEasy.withdraw_voucher(\"%s\", \"%s\", \"%s\", \"%s\", %s, int64_t(%" PRId64")); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), RECIP_NYM_ID.c_str(), str_var_name1.c_str(), AMOUNT);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1465,11 +1446,11 @@ string OT_ME::withdraw_voucher( const string  & SERVER_ID,
 
 // PAY DIVIDEND  -- TRANSACTION
 //
-string OT_ME::pay_dividend( const string  & SERVER_ID,
-                            const string  & NYM_ID,
-                            const string  & SOURCE_ACCT_ID,
-                            const string  & SHARES_ASSET_ID,
-                            const string  & STR_MEMO,
+std::string OT_ME::pay_dividend( const std::string  & SERVER_ID,
+                            const std::string  & NYM_ID,
+                            const std::string  & SOURCE_ACCT_ID,
+                            const std::string  & SHARES_ASSET_ID,
+                            const std::string  & STR_MEMO,
                             const int64_t   AMOUNT_PER_SHARE)
 {
     // This variable contains newlines..
@@ -1480,7 +1461,7 @@ string OT_ME::pay_dividend( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.pay_dividend(\"%s\", \"%s\", \"%s\", \"%s\", %s, int64_t(%" PRId64")); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), SOURCE_ACCT_ID.c_str(), SHARES_ASSET_ID.c_str(), str_var_name1.c_str(), AMOUNT_PER_SHARE);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1490,10 +1471,10 @@ string OT_ME::pay_dividend( const string  & SERVER_ID,
 // -----------------------------------------------------------------------------------------------
 
 
-string OT_ME::deposit_cheque( const string  & SERVER_ID,
-                              const string  & NYM_ID,
-                              const string  & ACCT_ID,
-                              const string  & STR_CHEQUE)
+std::string OT_ME::deposit_cheque( const std::string  & SERVER_ID,
+                              const std::string  & NYM_ID,
+                              const std::string  & ACCT_ID,
+                              const std::string  & STR_CHEQUE)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varNote");
@@ -1503,7 +1484,7 @@ string OT_ME::deposit_cheque( const string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.deposit_cheque(\"%s\", \"%s\", \"%s\", %s); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), ACCT_ID.c_str(), str_var_name1.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1512,10 +1493,10 @@ string OT_ME::deposit_cheque( const string  & SERVER_ID,
 
 // -----------------------------------------------------------------------------------------------
 
-int32_t OT_ME::deposit_cash( const string  & SERVER_ID,
-                             const string  & NYM_ID,
-                             const string  & ACCT_ID,
-                             const string  & STR_PURSE)
+int32_t OT_ME::deposit_cash( const std::string  & SERVER_ID,
+                             const std::string  & NYM_ID,
+                             const std::string  & ACCT_ID,
+                             const std::string  & STR_PURSE)
 {
     // This variable contains newlines..
     const std::string str_var_name1("varNote");
@@ -1525,7 +1506,7 @@ int32_t OT_ME::deposit_cash( const string  & SERVER_ID,
     OTString strRaw;    
     strRaw.Format("{ details_deposit_purse(\"%s\", \"%s\", \"%s\", %s, \"\"); }",
                   SERVER_ID.c_str(), ACCT_ID.c_str(), NYM_ID.c_str(), str_var_name1.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1542,7 +1523,7 @@ int32_t OT_ME::deposit_local_purse(const std::string  & SERVER_ID,
     OTString strRaw;
     strRaw.Format("{ details_deposit_purse(\"%s\", \"%s\", \"%s\", \"\", \"%s\"); }",
                   SERVER_ID.c_str(), ACCT_ID.c_str(), NYM_ID.c_str(), STR_INDICES.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1551,13 +1532,13 @@ int32_t OT_ME::deposit_local_purse(const std::string  & SERVER_ID,
 
 // -----------------------------------------------------------------------------------------------
 
-string OT_ME::get_market_list( const string  & SERVER_ID,
-                               const string  & NYM_ID)
+std::string OT_ME::get_market_list( const std::string  & SERVER_ID,
+                               const std::string  & NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_market_list(\"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1565,28 +1546,28 @@ string OT_ME::get_market_list( const string  & SERVER_ID,
 }
 
 
-string OT_ME::get_market_offers( const string  & SERVER_ID,
-                                 const string  & NYM_ID,
-                                 const string  & MARKET_ID,
+std::string OT_ME::get_market_offers( const std::string  & SERVER_ID,
+                                 const std::string  & NYM_ID,
+                                 const std::string  & MARKET_ID,
                                  const int64_t   MAX_DEPTH)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_market_offers(\"%s\", \"%s\", \"%s\", int64_t(%" PRId64")); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), MARKET_ID.c_str(), MAX_DEPTH);
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
     return ExecuteScript_ReturnString(str_Code, __FUNCTION__);
 }
 
-string OT_ME::get_nym_market_offers( const string  & SERVER_ID,
-                                     const string  & NYM_ID)
+std::string OT_ME::get_nym_market_offers( const std::string  & SERVER_ID,
+                                     const std::string  & NYM_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_nym_market_offers(\"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1594,14 +1575,14 @@ string OT_ME::get_nym_market_offers( const string  & SERVER_ID,
 }
 
 
-string OT_ME::get_market_recent_trades( const string  & SERVER_ID,
-                                        const string  & NYM_ID,
-                                        const string  & MARKET_ID)
+std::string OT_ME::get_market_recent_trades( const std::string  & SERVER_ID,
+                                        const std::string  & NYM_ID,
+                                        const std::string  & MARKET_ID)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.get_market_recent_trades(\"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), NYM_ID.c_str(), MARKET_ID.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1610,15 +1591,15 @@ string OT_ME::get_market_recent_trades( const string  & SERVER_ID,
 
 
 
-string OT_ME::adjust_usage_credits( const string  & SERVER_ID,
-                                    const string  & USER_NYM_ID,
-                                    const string  & TARGET_NYM_ID,
-                                    const string  & ADJUSTMENT)
+std::string OT_ME::adjust_usage_credits( const std::string  & SERVER_ID,
+                                    const std::string  & USER_NYM_ID,
+                                    const std::string  & TARGET_NYM_ID,
+                                    const std::string  & ADJUSTMENT)
 {
     OTString strRaw;
     strRaw.Format("{ var madeEasy = OT_ME(); var strResult = madeEasy.adjust_usage_credits(\"%s\", \"%s\", \"%s\", \"%s\"); }",
                   SERVER_ID.c_str(), USER_NYM_ID.c_str(), TARGET_NYM_ID.c_str(), ADJUSTMENT.c_str());
-    string str_Code = strRaw.Get();
+   std::string str_Code = strRaw.Get();
     // -------------------------------------
     // Execute the script here.
     //
@@ -1630,7 +1611,7 @@ string OT_ME::adjust_usage_credits( const string  & SERVER_ID,
 
 
 
-int32_t OT_ME::VerifyMessageSuccess(const string & str_Message)
+int32_t OT_ME::VerifyMessageSuccess(const std::string & str_Message)
 {
     if (str_Message.size() < 10)
     {
@@ -1665,10 +1646,10 @@ int32_t OT_ME::VerifyMessageSuccess(const string & str_Message)
 }
 
 
-int32_t OT_ME::VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID,
-                                             const string & USER_ID,
-                                             const string & ACCOUNT_ID,
-                                             const string & str_Message)
+int32_t OT_ME::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
+                                             const std::string & USER_ID,
+                                             const std::string & ACCOUNT_ID,
+                                             const std::string & str_Message)
 {
     if (str_Message.size() < 10)
     {
@@ -1703,10 +1684,10 @@ int32_t OT_ME::VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID,
 }
 
 
-int32_t OT_ME::VerifyMsgTrnxSuccess(const string & SERVER_ID,
-                                    const string & USER_ID,
-                                    const string & ACCOUNT_ID,
-                                    const string & str_Message)
+int32_t OT_ME::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
+                                    const std::string & USER_ID,
+                                    const std::string & ACCOUNT_ID,
+                                    const std::string & str_Message)
 {
     if (str_Message.size() < 10)
     {
@@ -1745,11 +1726,11 @@ int32_t OT_ME::VerifyMsgTrnxSuccess(const string & SERVER_ID,
 //
 // It uses the above functions.
 //
-int32_t OT_ME::InterpretTransactionMsgReply(const string & SERVER_ID,
-                                            const string & USER_ID,
-                                            const string & ACCOUNT_ID,
-                                            const string & str_Attempt,
-                                            const string & str_Response)
+int32_t OT_ME::InterpretTransactionMsgReply(const std::string & SERVER_ID,
+                                            const std::string & USER_ID,
+                                            const std::string & ACCOUNT_ID,
+                                            const std::string & str_Attempt,
+                                            const std::string & str_Response)
 {
     int32_t nMessageSuccess = VerifyMessageSuccess(str_Response);
     
@@ -1857,9 +1838,9 @@ void OT_ME::AddVariable(const std::string & str_var_name, OTVariable & theVar)
 }
 
 
-string OT_ME::ExecuteScript_ReturnString(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
+std::string OT_ME::ExecuteScript_ReturnString(const std::string & str_Code,std::string str_DisplayName/*="<BLANK>"*/)
 {
-    string  str_Return("");
+   std::string  str_Return("");
     bool    bHaveWorkingScript = HaveWorkingScript();    
     // ------------------------------------
     if (bHaveWorkingScript)
@@ -1878,7 +1859,7 @@ string OT_ME::ExecuteScript_ReturnString(const string & str_Code, string str_Dis
 }
 
 
-bool OT_ME::ExecuteScript_ReturnBool(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
+bool OT_ME::ExecuteScript_ReturnBool(const std::string & str_Code,std::string str_DisplayName/*="<BLANK>"*/)
 {
     bool    bReturn = false;
     bool    bHaveWorkingScript = HaveWorkingScript();    
@@ -1898,7 +1879,7 @@ bool OT_ME::ExecuteScript_ReturnBool(const string & str_Code, string str_Display
     return bReturn;
 }
 
-int OT_ME::ExecuteScript_ReturnInt(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
+int OT_ME::ExecuteScript_ReturnInt(const std::string & str_Code,std::string str_DisplayName/*="<BLANK>"*/)
 {
     int     nReturn = (-1);
     bool    bHaveWorkingScript = HaveWorkingScript();    
@@ -1918,7 +1899,7 @@ int OT_ME::ExecuteScript_ReturnInt(const string & str_Code, string str_DisplayNa
     return nReturn;
 }
 
-void OT_ME::ExecuteScript_ReturnVoid(const string & str_Code, string str_DisplayName/*="<BLANK>"*/)
+void OT_ME::ExecuteScript_ReturnVoid(const std::string & str_Code,std::string str_DisplayName/*="<BLANK>"*/)
 {
     bool bHaveWorkingScript = HaveWorkingScript();     
     // ------------------------------------
@@ -2359,10 +2340,10 @@ bool OT_ME::Register_CLI_With_Script_Chai(OTScriptChai & theScript)
 		theScript.chai.add(fun(&OT_CLI_ReadUntilEOF),    "OT_CLI_ReadUntilEOF");	// String OT_CLI_ReadUntilEOF()	// Reads from cin until EOF or ~ on a line by itself.
 		// ------------------------------------------------------------------
 		// For command-line option (for SCRIPTS):  ot --script <filename> [--args "key value key value ..."]
-		theScript.chai.add(fun(&OT_CLI_GetArgsCount),    "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from a string. Returns int.
-		theScript.chai.add(fun(&OT_CLI_GetValueByKey),   "OT_CLI_GetValueByKey");	// Returns a VALUE as string, BY KEY, from a map of key/value pairs (stored in a string.)
-		theScript.chai.add(fun(&OT_CLI_GetValueByIndex), "OT_CLI_GetValueByIndex");	// Returns a VALUE as string, BY INDEX, from a map of key/value pairs (stored in a string.)
-		theScript.chai.add(fun(&OT_CLI_GetKeyByIndex),   "OT_CLI_GetKeyByIndex");	// Returns a KEY as string, BY INDEX, from a map of key/value pairs (stored in a string.)
+		theScript.chai.add(fun(&OT_CLI_GetArgsCount),    "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from astd::string. Returns int.
+		theScript.chai.add(fun(&OT_CLI_GetValueByKey),   "OT_CLI_GetValueByKey");	// Returns a VALUE asstd::string, BY KEY, from a map of key/value pairs (stored in astd::string.)
+		theScript.chai.add(fun(&OT_CLI_GetValueByIndex), "OT_CLI_GetValueByIndex");	// Returns a VALUE asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
+		theScript.chai.add(fun(&OT_CLI_GetKeyByIndex),   "OT_CLI_GetKeyByIndex");	// Returns a KEY asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
 		// ------------------------------------------------------------------
 		return true; // Success (hopefully!)
 	}
@@ -2794,7 +2775,7 @@ bool NewScriptExists(const OTString & strScriptFilename, bool bIsHeader, OTStrin
 		OT_FAIL;
 	}
 
-	OTString strScriptsFolder(OTPaths::ScriptsFolder()); //	/usr/local   /   lib    /  opentxs
+	OTString strScriptsFolder(OTPaths::ScriptsFolder()); //	/usr/local / lib / opentxs  OR (android) res/raw
 	{ bool bGetFolderSuccess = strScriptsFolder.Exists() && 3 < strScriptsFolder.GetLength();
 	OT_ASSERT_MSG(bGetFolderSuccess,"NewScriptHeaderExists: Unalbe to Get Scripts Path"); }
 
@@ -2850,7 +2831,7 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
 		/// want to withdraw some cash, or put an offer on a market, you don't have to deal
 		/// with timeouts, retries, flushing the message buffer, popping the server reply after
 		/// a set delay, blah blah blah. Instead, you just invoke a single functor call, and
-		/// it returns either a string containing the server's reply, or null.
+		/// it returns either astd::string containing the server's reply, or null.
 		/// Finally, an ULTRA-HIGH LEVEL interface is added on top of that, in ot_made_easy.ot
 		/// which aims to provide one-call interfaces for an entire script-based OT client.
 		/// (Whereas otapi.ot offers one-call interfaces to all of the OTAPI server messages

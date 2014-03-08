@@ -130,36 +130,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstdio>
-#include <cstring>	
+#include <OTWallet.hpp>
 
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-#include "OTStorage.h"
-
-
-#include "OTIdentifier.h"
-#include "OTString.h"
-#include "OTPseudonym.h"
-
-#include "OTWallet.h"
-#include "OTLog.h"
-
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-#include "OTContract.h"
-#include "OTAccount.h"
-#include "OTCachedKey.h"
-#include "OTEnvelope.h"
-#include "OTPurse.h"
-
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTServerContract.hpp>
+#include <OTPassword.hpp>
+#include <OTPurse.hpp>
 
 
 OTWallet::OTWallet() : m_strDataFolder(OTDataFolder::Get())
@@ -1478,7 +1458,7 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
             return false;
         }
         // --------------------------------------------------------------------        
-        IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
+        irr::io::IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
 
         // parse the file until end reached
         while(xml && xml->read())
@@ -1503,15 +1483,15 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
             
             switch(xml->getNodeType())
             {
-                case EXN_NONE:
-                case EXN_TEXT:
-                case EXN_COMMENT:
-                case EXN_ELEMENT_END:
-                case EXN_CDATA:
+            case irr::io::EXN_NONE:
+            case irr::io::EXN_TEXT:
+            case irr::io::EXN_COMMENT:
+            case irr::io::EXN_ELEMENT_END:
+            case irr::io::EXN_CDATA:
                     // in this xml file, the only text which occurs is the messageText
                     //messageText = xml->getNodeData();
                     break;
-                case EXN_ELEMENT:
+            case irr::io::EXN_ELEMENT:
                 {
                     if (strNodeName.Compare("wallet"))	// -------------------------------------------------------------
                     {

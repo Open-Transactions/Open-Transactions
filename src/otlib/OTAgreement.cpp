@@ -130,28 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
-#include <stdafx.h>
+#include <OTAgreement.hpp>
+
+#include <OTPseudonym.hpp>
+#include <OTLog.hpp>
+#include <OTLedger.hpp>
+#include <OTAccount.hpp>
+#include <OTCron.hpp>
+
+#include <time.h>
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTPseudonym.h"
-#include "OTCron.h"
-#include "OTAgreement.h"
-
-#include "OTAccount.h"
-
-#include "OTLedger.h"
-#include "OTTransaction.h"
-#include "OTItem.h"
-
-#include "OTLog.h"
-
-
-
 
 bool OTAgreement::SendNoticeToAllParties(bool bSuccessMsg,
                                          OTPseudonym & theServerNym,

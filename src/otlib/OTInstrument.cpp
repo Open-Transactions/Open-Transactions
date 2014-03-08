@@ -130,24 +130,11 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include "irrxml/irrXML.h"
+#include <OTInstrument.hpp>
 
-using namespace irr;
-using namespace io;
-
-#include "OTStorage.h"
-
-#include "OTIdentifier.h"
-#include "OTInstrument.h"
-
-using namespace std;
-
-
-
-
-
+#include <time.h>
 
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.

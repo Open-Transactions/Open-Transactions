@@ -1,7 +1,7 @@
 ####### AC-AM Package Preliminaries #######
 
 AC_PREREQ([2.61])
-AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[Fellow-Traveler],[opentxs],[https://github.com/Open-Transactions/Open-Transactions])
+AC_INIT([opentxs],m4_esyscmd(tr -d '\n' <VERSION),[FellowTraveler@rayservers.net],[opentxs],[http://opentransactions.org])
 AC_CONFIG_SRCDIR([src/otd/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 AX_PREFIX_CONFIG_H(include/otlib/ot_config.h)
@@ -200,13 +200,13 @@ AC_ARG_ENABLE(
 	[case "${enableval}" in
 		yes) boost=true  ;;
 		no)  boost=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --disable-boost]) ;; esac],
+		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-boost]) ;; esac],
 	[boost=true])
 
 AM_CONDITIONAL([WANT_BOOST], [test x"$boost" == x"true"])
 
 if test x"$with_script" == x"chai4" -a x"$boost" == x"false"; then
-	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4   (change to: --with-script=chai5 or remove --disable-boost).])
+	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4 (change to: --with-script=chai5 or remove --disable-boost).])
 fi
 
 if test x"$boost" == x"true"; then

@@ -134,14 +134,20 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
-// -------------------------------------------------------
+// Note: I added these includes because the compile was failing when keyring was configured ON.
 
-#include <string>
+#include <OTKeyring.hpp>
+
+#include <OTLog.hpp>
+#include <OTCachedKey.hpp>
+#include <OTPassword.hpp>
+#include <OTPayload.hpp>
+#include <OTASCIIArmor.hpp>
+
+#include <fstream>
+
 
 // ***************************************************************
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)
@@ -226,24 +232,6 @@ extern "C"
 
 
 #endif
-// ***************************************************************
-
-
-// OPEN-TRANSACTIONS HEADERS...
-
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-#include "OTEnvelope.h"
-#include "OTAsymmetricKey.h"
-#include "OTCachedKey.h"
-
-#include "OTKeyring.h"
-
-#include "OTLog.h"
-
 
 // ***************************************************************
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)

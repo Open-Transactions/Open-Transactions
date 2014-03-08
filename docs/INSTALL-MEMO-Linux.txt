@@ -20,7 +20,6 @@ $ wget -c http://sourceforge.net/projects/opentxs/files/latest/download
 $ tar -zxvf opentxs-*
 $ cd opentxs-*
 $ ./autogen.sh
-$ mkdir build && cd build
 
 
 # git pull latest development source method
@@ -28,11 +27,8 @@ $ mkdir build && cd build
 $ git clone git://github.com/Open-Transactions/Open-Transactions.git
 $ cd Open-Transactions
 $ ./autogen.sh
-$ mkdir -p build && cd build
 
-$ make uninstall (to cleanup anything in your ~/.local dir)
-
-$ ../configure
+$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
 
 #########   Configure Options:   #########
 
@@ -63,10 +59,21 @@ Enable OTAPI support for swig wrapper:
 
 ##########################################
 
-$ make
-(can add -j2 option for speedy build)
+$ sudo make uninstall (cleanup from possible previous build)
 
-$ make install
+$ make
+
+Build Multithreaded, need about 1gb of ram per thread.
+-j (int)
+
+Install to system
+
+$ sudo make install
+
+Link the libraries
+
+$ sudo ldconfig
+
 
 # then to start up OT server 
 $ otserver
@@ -102,12 +109,12 @@ $ git clone https://github.com/randy-waterhouse/opentxs.git
 $ cd opentxs
 $ ./autogen.sh
 $ ./configure
-$ sudo make distcheck
-$ mv opentxs-0.90.b.tar.gz opentxs_0.90.b.orig.tar.gz
-$ tar xf opentxs_0.90.b.orig.tar.gz
-$ cd opentxs-0.90.b
+$ make distcheck
+$ mv opentxs-0.90.d.tar.gz opentxs_0.90.d.orig.tar.gz
+$ tar xf opentxs_0.90.d.orig.tar.gz
+$ cd opentxs-0.90.d
 $ cp -r ../debian .
 $ debuild -us -uc -d
 
 To install deb package:
-$ sudo dpkg -i opentxs_0.90.b_<arch>.deb
+$ sudo dpkg -i opentxs_0.90.d_<arch>.deb

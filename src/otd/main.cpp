@@ -130,10 +130,28 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
-#define CLIENT_PATH_DEFAULT	"client_data" //should get programmatically
+#ifndef IMPORT
+#define IMPORT
+#endif
+
+#include <OTAPI.hpp>
+#include <OpenTransactions.hpp>
+#include <OT_ME.hpp>
+#include <OTClient.hpp>
+
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTWallet.hpp>
+#include <OTServerContract.hpp>
+#include <OTMessage.hpp>
+#include <OTPurse.hpp>
+#include <OTEnvelope.hpp>
+
+#include <OTAccount.hpp>  //included in OTSmartContract.hpp
+
+#include <anyoption.hpp>
 
 
 #ifdef __APPLE__
@@ -141,120 +159,17 @@
 #endif
 
 
+
+#define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
+#define CLIENT_PATH_DEFAULT	"client_data" //should get programmatically
+
+
+
+
+
 #define CA_FILE             "certs/special/ca.crt"
 #define KEY_FILE            "certs/special/client.pem"
 
-#include <cstring>
-#include <cstdio>
-#include <cstdlib>
-
-
-#include <string>
-
-#include <iostream>
-
-#include <istream>
-#include <ostream>
-#include <iterator>
-
-#ifdef _WIN32
-#include <WinsockWrapper.h> 
-#endif
-
-#ifdef _WIN32
-#include <Shlobj.h>
-#endif
-
-
-extern "C" 
-{
-#ifdef _WIN32
-#else
-#include <netinet/in.h>
-#endif
-}
-
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include "simpleini/SimpleIni.h"
-
-
-
-// ---------------------------------------------------------------------------
-
-#if defined(OT_ZMQ_MODE)
-
-#include <zmq.hpp>
-
-
-#endif
-// ---------------------------------------------------------------------------
-
-#ifdef _WIN32
-void OT_Sleep(int nMS);
-#endif
-
-// ---------------------------------------------------------------------------
-
-#include "OTStorage.h"
-
-#include "OTString.h"
-#include "OTASCIIArmor.h"
-#include "OTClient.h"
-#include "OTServerConnection.h"
-#include "OTMessage.h"
-#include "OTString.h"
-#include "OTWallet.h"
-#include "OTPseudonym.h"
-#include "OTEnvelope.h"
-#include "OTPurse.h"
-#include "OTCheque.h"
-#include "OpenTransactions.h"
-#include "OTPaymentPlan.h"
-#include "OTLog.h"
-
-#include "OTScript.h"
-
-
-//  Just Include OTAPI_Wrapper, as it is now our pure C++ api.
-//
-
-#include "OTAPI.h"
-#include "OT_ME.h"
-
-// ---------------------------------------------------------------------------
-
-// This global variable contains an OTWallet, an OTClient, etc. 
-// It's the C++ high-level interace to OT. 
-// Any client software will have an instance of this.
-//
-// Use OTAPI_Wrap::OTAPI()->
-//
-// Note: In the main function, before using OT, must call OT_API::InitOTAPI--(which
-// calls OTLog::OT_Init())--then after calling that, must call OTAPI_Wrap::OTAPI()->Init() in
-// the main function.
-
-// ---------------------------------------------------------------------------
-
-/*
-OT by default will look here: "~/.ot/ot_init.cfg"
-
-Inside that file are these contents:
-[paths]
-client_path=~/.ot/client_data
-server_path=~/.ot/server_data
-
-If none of the snazzy ini files or config files, or client_data/server_data folders
-are found, then the default locations are ./client_data and ./server_data
-MEANING: If it can't find it in your $HOME/.ot/ot_init.cfg file, then it looks
-in the current directory instead.
-
-(I'm REMOVING the option to pass the location in on the command line, at least without a switch.)
-*/
-
-
-#include "anyoption.h"
 
 
 void HandleCommandLineArguments( int argc, char* argv[], AnyOption * opt );

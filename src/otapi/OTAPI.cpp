@@ -132,70 +132,35 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-// A C++ class, low-level interface to OT.
-#include "OTAPI.h"
+#include <OTAPI.hpp>
 
-#include <cstring>
-#include <list>
-#include <set>
-#include <string>
+#include <OpenTransactions.hpp>
 
-extern "C"
-{
-#ifndef _WIN32
-#include <inttypes.h>
-#else
-    
-#ifndef PRId64
-#define PRId64 "I64d"
-#endif
-    
-#ifndef PRId32
-#define PRId32 "I32d"
-#endif
-    
-#endif
-}
-
-
-#if defined (OT_ZMQ_MODE)
-#include <zmq.hpp>
+#ifndef IMPORT
+#define IMPORT
 #endif
 
-#include "OTStorage.h"
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
+#include <OTCredential.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
+#include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTServerContract.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTWallet.hpp>
 
-#include "OTIdentifier.h"
-#include "OTString.h"
-#include "OTPseudonym.h"
-#include "OTCredential.h"
-#include "OTAssetContract.h"
-#include "OTServerContract.h"
-#include "OTSymmetricKey.h"
-#include "OTCheque.h"
-#include "OTPaymentPlan.h"
-#include "OTEnvelope.h"
-#include "OTMint.h"
-#include "OTLedger.h"
-#include "OTAccount.h"
-#include "OTWallet.h"
-#include "OTPurse.h"
-#include "OTBasket.h"
-#include "OTMessage.h"
-#include "OTTransaction.h"
-#include "OTSmartContract.h"
+#include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
-// For juggling cheques/invoices/payment plans/purses, etc.
-// Used in sendUserInstrument (to wrap the instrument.)
-//
-#include "OTPayment.h"
-
-
-// A C++ class, high-level interface to OT. The class-based API.
-#include "OpenTransactions.h"
-
-// ---------------------------------------------------------------
 
 #ifndef OT_BOOL
 #define OT_BOOL int32_t
@@ -312,9 +277,9 @@ bool OTAPI_Wrap::AppCleanup() // Call this ONLY ONCE, when your App is shutting 
 // Certain platforms use this to override the Prefix folder.
 // Basically /usr/local is the prefix folder by default, meaning
 // /usr/local/lib/opentxs will be the location of the scripts. But
-// if you override AppBinary folder to, say, "res/raw/files"
+// if you override AppBinary folder to, say, "res/raw"
 // (Android does something like that) then even though the prefix remains
-// as /usr/local, the scripts folder will be res/raw/lib/opentxs
+// as /usr/local, the scripts folder will be res/raw
 //
 //
 void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)

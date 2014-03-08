@@ -131,32 +131,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTPurse.hpp>
 
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-using namespace irr;
-using namespace io;
-
-
-
-#include "OTStorage.h"
-
-#include "OTData.h"
-#include "OTToken.h"
-#include "OTPurse.h"
-#include "OTPseudonym.h"
-#include "OTEnvelope.h"
-#include "OTSymmetricKey.h"
-#include "OTCachedKey.h"
-#include "OTASCIIArmor.h"
-#include "OTLog.h"
-
-
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTEnvelope.hpp>
+#include <OTPaths.hpp>
 
 bool OTPurse::GetNymID(OTIdentifier & theOutput) const
 {
@@ -199,7 +182,7 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
     }
     // -------------------------------------------
     OTCachedKey_SharedPtr pCachedKey(this->GetInternalMaster());
-    OT_ASSERT(NULL != pCachedKey);
+    if (!pCachedKey) OT_FAIL;
     // -------------------------------------------
     const OTString strReason((NULL == szDisplay) ? szFunc : szDisplay);
     // -------------------------------------------

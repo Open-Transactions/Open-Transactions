@@ -131,26 +131,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.h>
+#include <stdafx.hpp>
 
-#include <cstring>
+#include <OTServerContract.hpp>
 
+#include <OTLog.hpp>
+#include <OTASCIIArmor.hpp>
 
-#include <iostream>
 #include <fstream>
-#include <sstream>
-#include <string>
-
-#include "irrxml/irrXML.h"
-
-#include "OTStorage.h"
-
-#include "OTServerContract.h"
-#include "OTStringXML.h"
-#include "OTLog.h"
-
-using namespace irr;
-using namespace io;
 
 
 OTServerContract::OTServerContract() : OTContract()
@@ -264,7 +252,7 @@ void OTServerContract::CreateContents()
 
 // This is the serialization code for READING FROM THE CONTRACT
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTServerContract::ProcessXMLNode(IrrXMLReader*& xml)
+int OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
 	
