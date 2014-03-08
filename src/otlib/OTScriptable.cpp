@@ -141,6 +141,13 @@
 #include <OTPseudonym.hpp>
 
 
+#include <chaiscript/chaiscript.hpp>
+
+#ifdef OT_USE_CHAI5
+#include <chaiscript/chaiscript_stdlib.hpp>
+#endif
+
+
 // -----------------------------------------------------------------
 
 // CALLBACKS
@@ -281,9 +288,11 @@ void OTScriptable::RegisterOTNativeCallsWithScript(OTScript & theScript)
 	
 	if (NULL != pScript)
 	{
-		pScript->chai.add(fun(&OTScriptable::GetTime), "get_time");
+        OT_ASSERT(NULL != pScript->chai)
+
+		pScript->chai->add(fun(&OTScriptable::GetTime), "get_time");
 		// ---------------------------------------------------------------------------------
-		pScript->chai.add(fun(&OTScriptable::CanExecuteClause, this), "party_may_execute_clause");		
+		pScript->chai->add(fun(&OTScriptable::CanExecuteClause, this), "party_may_execute_clause");		
 //		pScript->chai.add(fun(&OTScriptable::CanExecuteClause, (*this)), "party_may_execute_clause");		
 	}
 //	else if (NULL != (pScript = dynamic_cast<OTScriptSomeOtherScriptingLanguageSubClass_GOES_HERE *> (&theScript)) )
