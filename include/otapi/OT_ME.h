@@ -163,6 +163,7 @@ EXPORT std::string OT_CLI_ReadUntilEOF();
 // -------------------------------------------------------
 
 class OTVariable;
+class OTScriptChai;
 
 // -------------------------------------------------------
 
@@ -171,6 +172,9 @@ class OT_ME
 private:
     
     static _SharedPtr<OTScript>     m_pScript;
+
+    std::string scriptName;
+
     // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();
@@ -203,15 +207,15 @@ private:
     
 public:
     
-    EXPORT OT_ME();
+    EXPORT OT_ME(const std::string & _scriptName = "noscript");
     EXPORT ~OT_ME();
 
     EXPORT static int opentxs_main_loop();
 
     // --------------------------------------
-    EXPORT  bool make_sure_enough_trans_nums(const int32_t        nNumberNeeded,
-                                             const std::string  & SERVER_ID,
-                                             const std::string  & NYM_ID);
+    EXPORT  bool make_sure_enough_trans_nums(const int32_t nNumberNeeded,
+                                             const std::string & SERVER_ID,
+                                             const std::string & NYM_ID);
     // --------------------------------------
     EXPORT  std::string register_nym(const std::string  & SERVER_ID,
                                      const std::string  & NYM_ID);

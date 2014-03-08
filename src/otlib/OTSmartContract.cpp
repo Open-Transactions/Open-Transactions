@@ -3494,7 +3494,8 @@ void OTSmartContract::ExecuteClauses (mapOfClauses & theClauses, OTString * pPar
 		const std::string str_code		=	pClause->GetCode();		// source code for the script.
 		const std::string str_language	=	pBylaw->GetLanguage();	// language it's in. (Default is "chai")
 		
-		_SharedPtr<OTScript> pScript = OTScriptFactory(str_code, &str_language);
+
+        _SharedPtr<OTScript> pScript = OTScriptFactory(str_language, str_code);
 
         OTCleanup<OTVariable> theVarAngel;
 		// ---------------------------------------------------------------

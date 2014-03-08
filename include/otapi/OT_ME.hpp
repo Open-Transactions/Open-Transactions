@@ -185,6 +185,9 @@ class OT_ME
 private:
 
     static _SharedPtr<OTScript> m_pScript;
+
+    std::string scriptName;
+
     // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();
@@ -217,7 +220,7 @@ private:
 
 public:
 
-    EXPORT OT_ME();
+    EXPORT OT_ME(const std::string & _scriptName = "noscript");
     EXPORT ~OT_ME();
 
     EXPORT static int opentxs_main_loop();
