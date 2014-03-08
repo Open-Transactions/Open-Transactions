@@ -267,12 +267,13 @@ fi
 
 AC_ARG_WITH(	[keyring],
 		[AS_HELP_STRING([--with-keyring@<:@=ARG@:>@],
-		[Choose one keyring ARG from: windows, mac, gnome, kwallet])],
+		[Choose one keyring ARG from: windows, mac, gnome, kwallet, flatfile])],
 		[case "${withval}" in
 ##			windows) true ;;
 			mac) true ;;
 			gnome) true ;;
 			kwallet) true ;;
+			flatfile) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-keyring]) ;;
 			esac],
 		[])
@@ -281,6 +282,7 @@ AM_CONDITIONAL([KEYRING_WINDOWS],	[test x"$with_keyring" == x"windows"])
 AM_CONDITIONAL([KEYRING_MAC],		[test x"$with_keyring" == x"mac"])
 AM_CONDITIONAL([KEYRING_GNOME],		[test x"$with_keyring" == x"gnome"])
 AM_CONDITIONAL([KEYRING_KWALLET],	[test x"$with_keyring" == x"kwallet"])
+AM_CONDITIONAL([KEYRING_FLATFILE],  [test x"$with_keyring" == x"flatfile"])
 
 AS_IF(	[test x"$with_keyring" == x"windows"],
 	[
@@ -309,6 +311,13 @@ AS_IF(	[test "$with_keyring" == x"kwallet"],
 	AC_SUBST(KRG_LIBS,	["-L/usr/lib -lkwalletclient"])
 	AC_DEFINE([KEYRING_KWALLET], [1], [Using KWallet Keyring])
 	])
+	
+AS_IF(  [test "$with_keyring" == x"flatfile"],
+    [
+    AC_SUBST(KRG_CFLAGS,  [""])
+    AC_SUBST(KRG_LIBS,  [""])
+    AC_DEFINE([KEYRING_FLATFILE], [1], [Using flatfile Keyring])
+    ])
 
 
 #### More Configure Options ####
