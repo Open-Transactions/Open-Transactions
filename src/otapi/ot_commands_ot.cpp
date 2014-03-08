@@ -4681,7 +4681,7 @@ OT_COMMAND_OT int details_create_offer(const string & strScale, const string & s
         {
             MapOfMaps * map_of_maps = convert_offerlist_to_maps(offerList);
 
-            if (map_of_maps == NULL)
+            if (!VerifyType(map_of_maps, "Map"))
             {
                 OTAPI_Wrap::Output(0, strLocation + ": Unable to convert offer list to map of offers. Perhaps it's empty?\n");
             }
@@ -7806,7 +7806,7 @@ OT_COMMAND_OT int details_show_nym_offers(const string & strServerID, const stri
     {
         MapOfMaps & map_of_maps = *convert_offerlist_to_maps(offerList);
 
-        if (&map_of_maps == NULL)
+        if (!VerifyType(&map_of_maps, "Map"))
         {
             OTAPI_Wrap::Output(0, strLocation + ": Unable to convert offer list to map of offers. Perhaps it's empty?\n");
             return -1;

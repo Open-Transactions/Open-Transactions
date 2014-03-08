@@ -136,57 +136,56 @@ OT_UTILITY_OT int VerifyMessageSuccess(const string & strMessage)
     return nStatus;
 }
 
-//
-//OT_UTILITY_OT bool VerifyNotNull(theObjectRef)
-//{
-//    bool bNull = theObjectRef.is_var_null();
-//    bool bUndef = theObjectRef.is_var_undef();
-//
-//    if (bNull || bUndef)
-//    {
-//        OTAPI_Wrap::Output(1, "VerifyNotNull: false\n");
-//        return false;
-//    }
-//
-//    OTAPI_Wrap::Output(1, "VerifyNotNull: true\n");
-//    return true;
-//}
 
-//// ---------------------------------------
-//OT_UTILITY_OT bool VerifyType(theObjectRef, const string & strType)
-//{
-//    if (VerifyNotNull(theObjectRef))
-//    {
-//        if (!strType.is_type("string"))
-//        {
-//            OTAPI_Wrap::Output(0, "VerifyType: Expected strType to contain a string. (Failed.)\n");
-//
-//            return false;
-//        }
-//
-//        bool bType = theObjectRef.is_type(strType);
-//
-//        if (!bType)
-//        {
-//            OTAPI_Wrap::Output(0, "VerifyType: Expected object of type: " + strType + " (failed type match.)\n");
-//
-//            return false;
-//        }
-//
-//        return true;
-//    }
-//    return false;
-//}
+OT_UTILITY_OT bool VerifyNotNull(const void * theObjectRef)
+{
+    //bool bNull = theObjectRef.is_var_null();
+    //bool bUndef = theObjectRef.is_var_undef();
+
+    if (theObjectRef == NULL)
+    {
+        OTAPI_Wrap::Output(1, "VerifyNotNull: false\n");
+        return false;
+    }
+
+    OTAPI_Wrap::Output(1, "VerifyNotNull: true\n");
+    return true;
+}
 
 
+OT_UTILITY_OT bool VerifyType(const void * theObjectRef, const string & strType)
+{
+    if (VerifyNotNull(theObjectRef))
+    {
+        //if (!strType.is_type("string"))
+        //{
+        //    OTAPI_Wrap::Output(0, "VerifyType: Expected strType to contain a string. (Failed.)\n");
 
-OT_UTILITY_OT int VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType)
+        //    return false;
+        //}
+
+        //bool bType = theObjectRef.is_type(strType);
+
+        //if (!bType)
+        //{
+        //    OTAPI_Wrap::Output(0, "VerifyType: Expected object of type: " + strType + " (failed type match.)\n");
+
+        //    return false;
+        //}
+
+        return true;
+    }
+    return false;
+}
+
+
+OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType)
 {
     // Put this in a separate function VerifyType so I can use it for non-storable
     // types such as std::map.
     // This function can still customize on top of that, if/when we need to.
     //
-    return theStorableObjectRef != NULL;
+    return VerifyType(theStorableObjectRef, strType);
 }
 
 
