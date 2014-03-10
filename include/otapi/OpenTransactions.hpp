@@ -188,6 +188,7 @@
 #endif
 
 // --------------------------------------
+#include "OTASCIIArmor.h"
 
 class OT_API;
 class OTAccount;
