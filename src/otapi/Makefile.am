@@ -243,6 +243,10 @@ otapi_sources		=	OpenTransactions.cpp		\
 otapi_headers_dir	=	$(opentxs_include_dir)/otapi
 
 otapi_headers		=	$(otapi_headers_dir)/main.hpp		\
+                $(otapi_headers_dir)ot_commands_ot.hpp          \
+                $(otapi_headers_dir)ot_made_easy_ot.hpp          \
+                $(otapi_headers_dir)ot_otapi_ot.hpp          \
+                $(otapi_headers_dir)ot_utility_ot.hpp          \
 				$(otapi_headers_dir)/OTClient.hpp		\
 				$(otapi_headers_dir)/OTServerConnection.hpp\
 				$(otapi_headers_ext)
@@ -251,6 +255,7 @@ otapi_headers_ext	=	$(otapi_headers_dir)/OpenTransactions.hpp	\
 				$(otapi_headers_dir)/OTAPI.hpp		\
 				$(otapi_headers_dir)/OTAPI_Basic.hpp	\
 				$(otapi_headers_dir)/OTMadeEasy.hpp	\
+				$(otapi_headers_dir)/ot_me_switch.hpp	\
 				$(otapi_headers_dir)/OT_ME.hpp
 
 pkginclude_HEADERS	=	$(otapi_headers_ext)
