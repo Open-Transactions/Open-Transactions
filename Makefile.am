@@ -7,23 +7,18 @@ ACLOCAL_AMFLAGS =		-I build-aux/m4
 
 SUBDIRS                 =	src
 
-## Default distcheck configure options
-
-DISTCHECK_CONFIGURE_FLAGS = --with-script=chai4
-
-
 ## Open-Transactions Installs        ##
 
 #### autogen.sh, opentxs script CLI utility
 
-dist_bin_SCRIPTS		=	autogen.sh	\
+dist_bin_SCRIPTS		=	autogen.sh		\
 					scripts/opentxs
 
 #### OT SCRIPTS (headers)
 
 opentxslibdir			=	$(pkglibdir)
 
-dist_opentxslib_SCRIPTS =   scripts/ot/ot_commands.ot	\
+dist_opentxslib_SCRIPTS =   scripts/ot/ot_commands.ot		\
                             scripts/ot/otapi.ot			\
                             scripts/ot/ot_made_easy.ot		\
                             scripts/ot/ot_utility.ot
@@ -32,7 +27,7 @@ dist_opentxslib_SCRIPTS =   scripts/ot/ot_commands.ot	\
 
 opentxsdocdir			=	$(docdir)
 
-dist_opentxsdoc_DATA    =   docs/INSTALL-Android.txt	\
+dist_opentxsdoc_DATA    =   docs/INSTALL-Android.txt		\
                             docs/INSTALL-Fedora.txt		\
                             docs/INSTALL-Debian_Ubuntu.txt	\
                             docs/INSTALL-OSX-Homebrew.txt	\
@@ -47,8 +42,8 @@ dist_opentxsdoc_DATA    =   docs/INSTALL-Android.txt	\
 
 opentxsdatadir          =	$(pkgdatadir)
 dist_opentxsdata_DATA	=	sample-data/command-line-ot.opt	\
-                            sample-data/user-samples.tar.gz
+				sample-data/user-samples.tar.gz
 
 
-pkgconfigdir			=	$(libdir)/pkgconfig
-pkgconfig_DATA			=	src/opentxs.pc
+pkgconfigdir		=	$(libdir)/pkgconfig
+pkgconfig_DATA		=	src/opentxs.pc
