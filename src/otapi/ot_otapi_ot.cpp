@@ -711,6 +711,8 @@ OT_OTAPI_OT int OTAPI_Func::Run()
         return OTAPI_Wrap::issueMarketOffer(accountID, accountID2, to_long(strData), to_long(strData2), to_long(strData3), to_long(strData4), bBool, tData, strData5, lData);
     case ADJUST_USAGE_CREDITS:
         return OTAPI_Wrap::usageCredits(serverID, nymID, nymID2, to_long(strData));
+    default:
+        break;
     }
 
     OTAPI_Wrap::Output(0, "ERROR! OTAPI_Func.Send() activated, with bad function type: ");
@@ -1194,6 +1196,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
                 //  bMsgTransSuccess,    // bMsgTransSuccess is INPUT, and is in case nlocalRequestNum needs to be HARVESTED before a FLUSH happens.
                 //  bMsgTransFailure)    // Etc.
 
+                //FIX: Add '(' and ')' here to silence warning. But where?
                 if ((bWasSent && (1 == nProcessNymboxResult)) || !bWasSent && (0 == nProcessNymboxResult))// success processing Nymbox.
                 {
                     bCanRetryAfterThis = true;

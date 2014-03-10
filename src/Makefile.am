@@ -63,13 +63,24 @@ ot_sources              =   otd/main.cpp
 
 otapi_headers_dir       =   $(opentxs_include_dir)/otapi
 
+<<<<<<< HEAD
 otapi_headers           =   $(otapi_headers_dir)/main.hpp             \
                             $(otapi_headers_dir)/OpenTransactions.hpp \
                             $(otapi_headers_dir)/OTAPI.hpp            \
                             $(otapi_headers_dir)/OT_ME.hpp            \
+                            $(otapi_headers_dir)/ot_switch_me.hpp   \
                             $(otapi_headers_dir)/OTClient.hpp         \
                             $(otapi_headers_dir)/OTServerConnection.hpp
                     
+=======
+otapi_headers           =   $(otapi_headers_dir)/main.h             \
+                            $(otapi_headers_dir)/OpenTransactions.h \
+                            $(otapi_headers_dir)/OTAPI.h            \
+                            $(otapi_headers_dir)/OT_ME.h            \
+                            $(otapi_headers_dir)/ot_switch_me.hpp   \
+                            $(otapi_headers_dir)/OTClient.h         \
+                            $(otapi_headers_dir)/OTServerConnection.h
+>>>>>>> dfc1f19... Nade nakefiles aware of new headers
 
 #### OT Server
 
