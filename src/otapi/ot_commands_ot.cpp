@@ -10200,7 +10200,7 @@ OT_COMMAND_OT int main_show_payment()
                 bool bHasAmount = VerifyIntVal(lAmount);
 
 
-                if (bMemoExists && (strMemo.find("\n") >= 0) && !bShowLargeMemo)
+                if (bMemoExists && (strMemo.find("\n") != string::npos) && !bShowLargeMemo)
                 {
                     strMemo = "<too large to display here>";
                 }
