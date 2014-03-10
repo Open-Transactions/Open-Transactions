@@ -1321,7 +1321,7 @@ int main(int argc, char* argv[])
 
             // OT SCRIPT PROMPT --------------------------------------------
 #if USE_OLD_CODE == 0
-            if (strFilename.find("scripts\\opentxs") >= 0 || strFilename.find("scripts/opentxs") >= 0)
+            if (strFilename.find("scripts\\opentxs") != string::npos || strFilename.find("scripts/opentxs") != string::npos)
             {
                 return OT_ME::opentxs_main_loop();
             }
