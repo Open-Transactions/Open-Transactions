@@ -225,9 +225,16 @@ simpleini_sources	=	$(simpleini_sources_dir)/ConvertUTF.cpp		\
 otapi_sources_dir	= 	$(top_srcdir)/src/otapi
 
 otapi_sources		=	OpenTransactions.cpp		\
+                ot_commands_ot.cpp          \
+                ot_made_easy_ot.cpp          \
+                ot_opentxs_ot.cpp          \
+                ot_otapi_ot.cpp          \
+                ot_utility_ot.cpp          \
 				OTAPI.cpp           		\
 				OT_ME.cpp           		\
+				OT_ME_NEW.cpp          		\
 				OTAPI_Basic.cpp			\
+				OTAPI_Exec.cpp			\
 				OTMadeEasy.cpp			\
 				OTClient.cpp			\
 				OTServerConnection.cpp
