@@ -13,11 +13,12 @@ using std::string;
 
 
 inline OT_UTILITY_OT bool VerifyBoolVal(const bool bValue) { return true; }
-extern OT_UTILITY_OT bool VerifyBoolVal(const int bValue);
-extern OT_UTILITY_OT bool VerifyBoolVal(const int64_t bValue);
-extern OT_UTILITY_OT bool VerifyIntVal(const bool nValue);
-inline OT_UTILITY_OT bool VerifyIntVal(const int nValue) { return true; }
+//extern OT_UTILITY_OT bool VerifyBoolVal(const int bValue);
+//extern OT_UTILITY_OT bool VerifyBoolVal(const int64_t bValue);
+//extern OT_UTILITY_OT bool VerifyIntVal(const bool nValue);
+//inline OT_UTILITY_OT bool VerifyIntVal(const int nValue) { return true; }
 inline OT_UTILITY_OT bool VerifyIntVal(const int64_t nValue) { return true; }
+//inline OT_UTILITY_OT bool VerifyIntVal(const time_t nValue) { return true; }
 inline OT_UTILITY_OT bool VerifyStringVal(const string & nValue) { return 0 < nValue.length(); }
 
 extern OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strAttempt, const string & strResponse);
