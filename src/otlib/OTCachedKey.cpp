@@ -1072,7 +1072,7 @@ void OTCachedKey::ThreadTimeout(void * pArg)
     _SharedPtr<OTCachedKey> * pthreadSharedPtr = static_cast<_SharedPtr<OTCachedKey> *>(pArg);
     _SharedPtr<OTCachedKey>   pMyself = *pthreadSharedPtr;
     
-    if (!pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
+    if (NULL != pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
 
     // --------------------------------------
 //    tthread::lock_guard<tthread::mutex> lock(*(pMyself->GetMutex())); // Multiple threads can't get inside here at the same time.
