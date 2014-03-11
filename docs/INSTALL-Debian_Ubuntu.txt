@@ -138,6 +138,7 @@ to run otserver as a background process, configure it using:
 ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --with-keyring=flatfile plus any other desired options, compile and install as usual,
 
 cp dev/Open-Transactions/sample-data/ot-sample-data/background_server.cfg $HOME/.ot/server.cfg
+and change the password_folder path to a location appropriate for your system.
 
 mkdir $HOME/.ot/server_data/passphrase
 
