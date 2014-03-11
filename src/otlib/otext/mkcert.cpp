@@ -132,7 +132,6 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
             x = *x509p;
         // -----------------------------------------
 //		pRsaKey = RSA_generate_key(1024, 0x010001, NULL, NULL);
-
 #ifdef ANDROID
         rsa         = RSA_new();
         BIGNUM * e1 = BN_new();

@@ -6,7 +6,7 @@ opentxs_source_dir      =   $(top_srcdir)/src
 common_includes         =   $(AM_CXXFLAGS)			\
 			    -I$(top_builddir)/include/otlib	\
 			    -I$(opentxs_include_dir)		\
-			    -I$(opentxs_include_dir)/otlib
+			    -I$(opentxs_include_dir)/otlib    
 
 ## Open Transactions Bin Build  ##
 
@@ -20,7 +20,6 @@ ot_CXXFLAGS             =  $(common_includes) -I$(otapi_headers_dir)
 
 ot_LDADD                =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
 ot_DEPENDENCIES         =  otapi/libotapi.la otlib/libot.la
-
 
 #### OT Server
 
@@ -67,6 +66,7 @@ otapi_headers           =   $(otapi_headers_dir)/main.hpp             \
                             $(otapi_headers_dir)/OT_ME.hpp            \
                             $(otapi_headers_dir)/OTClient.hpp         \
                             $(otapi_headers_dir)/OTServerConnection.hpp
+                    
 
 #### OT Server
 
@@ -78,6 +78,13 @@ otserver_headers_dir    =   $(opentxs_include_dir)/ots
 otserver_headers        =   $(otserver_headers_dir)/main.hpp   \
                             $(otserver_headers_dir)/OTClientConnection.hpp \
                             $(otserver_headers_dir)/OTServer.hpp
+                            
+if KEYRING_FLATFILE
+
+otserver_CXXFLAGS       += -DOT_KEYRING_FLATFILE
+
+endif
+                            
 
 #### OT Create Mint
 
