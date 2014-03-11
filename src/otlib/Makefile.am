@@ -1,4 +1,7 @@
-SUBDIRS = otprotob bigint irrxml lucre otext
+
+AUTOMAKE_OPTIONS 	=	subdir-objects
+
+SUBDIRS 		= 	otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 

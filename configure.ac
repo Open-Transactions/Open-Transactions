@@ -74,25 +74,25 @@ AC_MSG_RESULT([$ac_cv_ot_clang])
 
 if test x"$ac_cv_ot_clang" == x"true"; then
 	AC_MSG_CHECKING([if compiling with clang -std=c++11])
+	AC_LANG_PUSH([C++])
 	AC_COMPILE_IFELSE(
-		[AC_LANG_PROGRAM([[#include <cinttypes>
-					#include <memory>]],
+		[AC_LANG_PROGRAM([[#include <cinttypes>]],
 			[[]])],
 		[ac_cv_ot_clang11=true],
 		[ac_cv_ot_clang11=false])
-
+	AC_LANG_POP
 	AC_MSG_RESULT([$ac_cv_ot_clang11])
 fi
 
 if test x"$ac_cv_ot_clang" == x"true"; then
         AC_MSG_CHECKING([if compiling with clang TR1])
+	AC_LANG_PUSH([C++])
         AC_COMPILE_IFELSE(
-                [AC_LANG_PROGRAM([[#include <tr1/cinttypes>
-                                        #include <tr1/memory>]],
+                [AC_LANG_PROGRAM([[#include <tr1/memory>]],
                         [[]])],
                 [ac_cv_ot_clangtr1=true],
                 [ac_cv_ot_clangtr1=false])
-
+	AC_LANG_POP
         AC_MSG_RESULT([$ac_cv_ot_clangtr1])
 fi
 

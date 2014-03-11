@@ -20,7 +20,7 @@
 $ sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
 # install brew:
-$ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+$ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 # check brew works
 $ brew doctor
 
@@ -39,7 +39,7 @@ $ brew update
 $ echo 'export CPP=cpp; export CC=clang; export CXX=clang++' >> ~/.profile
 $ source ~/.profile
 
-$ brew install --cc=clang cmake automake autoconf libtool
+$ brew install --cc=clang automake autoconf libtool
 $ brew install --cc=clang protobuf msgpack zeromq22 openssl
 
 ## If you are NOT on Mavericks !!
@@ -66,28 +66,6 @@ $ sudo bash -c 'echo '$HOMEBREW_PREFIX/share/aclocal' >> `aclocal --print-ac-dir
 $ export PATH=$HOMEBREW_PREFIX/bin:$PATH
 
 
-
-#############
-
-## CHAISCRIPT ##
-
-# fetch chaiscript
-$ mkdir -p ~/Scratch/Sources; cd ~/Scratch/Sources
-$ git clone git://github.com/ChaiScript/ChaiScript.git
-
-# build chaiscript  (Now using non-boost version)
-$ cd ChaiScript
-$ git checkout ChaiScript_5_0_CPP_11
-$ git clean -fxd
-$ cmake . -DCMAKE_INSTALL_PREFIX=$HOMEBREW_PREFIX
-$ make -j2
-$ make test
-$ make install
-$ cd ..
-
-########################################
-
-
 ## OPEN TRANSACTIONS ##
 
 # fetch Open Transactions and prepare your copy for build
@@ -100,10 +78,7 @@ $ cd Open-Transactions
 
 $ ./autogen.sh
 
-## If you are NOT on Mavericks !!
-## remove "--with-chai5 --enable-cxx11 --disable-cxxtr1” from your configure options.
-
-$ ./configure --prefix=$HOMEBREW_PREFIX --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --with-openssl=/usr/local/opt/openssl
+$ ./configure --prefix=$HOMEBREW_PREFIX --with-openssl=/usr/local/opt/openssl
 
 
 (NB: Default without the "--prefix=$HOMEBREW_PREFIX" installs sytem-wide  
@@ -112,9 +87,6 @@ and will require admin privileges for "$ sudo make install" step below)
 
 #########   Configure Options:   #########
 
-Chaiscript 4:    --with-script=chai4
-Chaiscript 5:    --with-script=chai5
-
 32bit Mode:      --target=i686-apple-darwin11
 
 Debug Mode:      --enable-debug
@@ -122,10 +94,7 @@ Signal Handling: --enable-sighandler
 Warnings:        --enable-warnings
 
 Release Mode:    --enable-release
-
-No Boost:        --disable-boost
-No TR1:          --disable-cxxtr1
-No C++11:        --disable-cxx11
+(default)
 
 (Optional)
 System Keyring:  --with-keyring=ARG
