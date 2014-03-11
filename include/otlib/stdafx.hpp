@@ -16,7 +16,7 @@
 #ifdef OT_USE_CHAI5
 #undef OT_USE_CHAI5
 #endif
-#if defined(_MSC_VER) || defined(OPENTXS_CHAISCRIPT_5)
+#ifdef OPENTXS_CHAISCRIPT_5
 #define OT_USE_CHAI5
 #endif
 
