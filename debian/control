@@ -3,7 +3,7 @@ Section: utils
 Priority: extra
 Maintainer: randy waterhouse <noone@yodasan>
 Uploaders: randy-waterhouse
-Build-Depends: debhelper, cdbs, autotools-dev, dh-autoreconf, pkg-config, chaiscript (>= 3.1.0), libboost-thread-dev (>= 1.25.0), libzmq-dev (>= 2.1.4), libmsgpack-dev, libprotobuf-dev (>= 2.4.1), libssl-dev (>= 1.0.0)
+Build-Depends: debhelper, cdbs, autotools-dev, dh-autoreconf, pkg-config, libboost-thread-dev (>= 1.25.0), libzmq-dev (>= 2.1.4), libmsgpack-dev, libprotobuf-dev (>= 2.4.1), libssl-dev (>= 1.0.0)
 Standards-Version: 3.9.3
 Homepage: http://opentransactions.org
 Vcs-Git: git://github.com/Open-Transactions/Open-Transactions.git

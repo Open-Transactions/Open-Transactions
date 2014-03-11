@@ -66,13 +66,37 @@ AC_MSG_CHECKING([if compiling with clang])
 
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[
 #ifndef __clang__
-	   not clang
+	not clang
 #endif
-	]])],[acv_ot_clang=true],[acv_ot_clang=false])
+	]])],[ac_cv_ot_clang=true],[ac_cv_ot_clang=false])
 
-AC_MSG_RESULT([$acv_ot_clang])
+AC_MSG_RESULT([$ac_cv_ot_clang])
 
-if test x"$GCC" == x"true" -a x"$acv_ot_clang" == x"false"; then
+if test x"$ac_cv_ot_clang" == x"true"; then
+	AC_MSG_CHECKING([if compiling with clang -std=c++11])
+	AC_LANG_PUSH([C++])
+	AC_COMPILE_IFELSE(
+		[AC_LANG_PROGRAM([[#include <cinttypes>]],
+			[[]])],
+		[ac_cv_ot_clang11=true],
+		[ac_cv_ot_clang11=false])
+	AC_LANG_POP
+	AC_MSG_RESULT([$ac_cv_ot_clang11])
+fi
+
+if test x"$ac_cv_ot_clang" == x"true"; then
+        AC_MSG_CHECKING([if compiling with clang TR1])
+	AC_LANG_PUSH([C++])
+        AC_COMPILE_IFELSE(
+                [AC_LANG_PROGRAM([[#include <tr1/memory>]],
+                        [[]])],
+                [ac_cv_ot_clangtr1=true],
+                [ac_cv_ot_clangtr1=false])
+	AC_LANG_POP
+        AC_MSG_RESULT([$ac_cv_ot_clangtr1])
+fi
+
+if test x"$ac_cv_ot_clang" == x"false"; then
 	AC_MSG_CHECKING([whether gcc version is sufficient])
 	gcc_major=0
 	gcc_minor=0
@@ -84,24 +108,26 @@ if test x"$GCC" == x"true" -a x"$acv_ot_clang" == x"false"; then
 	fi
 
 	## test if we have a version of gcc that suports c++11
-	acv_ot_gcc11=false
+	ac_cv_ot_gcc11=false
 
 	if test $gcc_major -ge 4 -a $gcc_minor -ge 7 ; then
-		acv_ot_gcc11=true
+		ac_cv_ot_gcc11=true
 		AC_MSG_RESULT([yes, and supports c++11])
 	elif test $gcc_major -ge 4 -a $gcc_minor -ge 2 ; then
-		acv_ot_gcc11=false
-		AC_MSG_RESULT([yes])
+		ac_cv_ot_gcc11=false
+		AC_MSG_RESULT([yes, but no c++11 support])
 	else
 		AC_MSG_ERROR([If using GCC, version 4.2.0 or later is required.])
 		AC_MSG_RESULT([no])
 	fi
 fi
 
-if test x"$acv_ot_clang" == x"false" -a x"$acv_ot_gcc11" == x"false"; then
-	acv_ot_cxx11=false
+if test x"$ac_cv_ot_clang" == x"true" -a x"$ac_cv_ot_clang11" == x"false"; then
+	ac_cv_ot_cxx11=false
+elif test x"$ac_cv_ot_clang" == x"false" -a x"$ac_cv_ot_gcc11" == x"false"; then
+	ac_cv_ot_cxx11=false
 else
-	acv_ot_cxx11=true
+	ac_cv_ot_cxx11=true
 fi
 
 ######## Prelims end, Custom checks begin #######
@@ -109,54 +135,27 @@ fi
 ##### Dependencies, packages, libs ####
 #
 ## Main packages deps ##
-
-## Chaiscript
+#
+#
+## Chaiscript & Boost & C++11
 #
 
-AC_ARG_WITH(
-	[script],
-	[AS_HELP_STRING(
-		[--with-script@<:@=none@:>@],
-		[Choose what script support (available: chai4, chai5)])],
-	[case "${withval}" in
-		chai4) true ;;
-		chai5) true ;;
-		*) AC_MSG_ERROR([bad value ${withval} for --with-script]) ;;
-		esac],
-	[with_script=none])
-
-PKG_CHECK_EXISTS([chaiscript >= 3.1.0],[],[AC_MSG_ERROR([cannot find ANY version of chaiscript! please install chaiscript and check pkg-config.])])
-PKG_CHECK_EXISTS([chaiscript >= 5.2.0],[ot_chai=chai5],[ot_chai=chai4])
-
-if test x"$with_script" == x"none"; then
-	if test x"$ot_chai" == x"chai5"; then
-		AC_MSG_ERROR([Compiling without scripting support is not yet implemented. Found Chaiscript 5: use --with-script=chai5])
-	else
-		AC_MSG_ERROR([Compiling without scripting support is not yet implemented. Found Chaiscript 4: use --with-script=chai4])
-	fi
-fi
-
-if test x"$with_script" == x"chai5"; then
-	if test x"$acv_ot_cxx11" == x"false"; then
-		AC_MSG_ERROR([You must use a C++11 compiler if you intend to use ChaiScript 5 (--with-script=chai5).])
-	fi
-	if test x"$ot_chai" == x"chai4"; then
-		AC_MSG_ERROR([You have specified Chaiscript 5, but we found version 4, use: (--with-script=chai4).])
-	fi
-
-	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 5.2.0])
+if test x"$ac_cv_ot_cxx11" == x"true"; then
+	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
+	AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai5"])
 	AC_DEFINE([CHAISCRIPT_5], [1], [Building with Chaiscript 5])
-fi
-
-if test x"$with_script" == x"chai4"; then
-	if test x"$ot_chai" == x"chai5"; then
-		AC_MSG_ERROR([You have specified Chaiscript 4, but we found version 5, use: (--with-script=chai5).])
-	fi
-
-	PKG_CHECK_MODULES([CHAISCRIPT],[chaiscript >= 3.1.0])
+else
+	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai4"])
 	AC_DEFINE([CHAISCRIPT_4], [1], [Building with Chaiscript 4])
+	AX_BOOST_BASE([1.25.0])
+	AX_BOOST_THREAD
+	AX_BOOST_DATE_TIME
+	AX_BOOST_SYSTEM
+	AC_SUBST([BOOST_LIBS],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
+	AC_DEFINE([HAVE_BOOST], [1], [We have boost])
 fi
-
 
 
 ## Protobuff
@@ -190,33 +189,6 @@ AC_ARG_WITH(
 		[openssl >= 1.0.0],
 		[],
 		[AC_MSG_RESULT([Warning: openssl version >= 1.0.0 not found!])])])
-
-
-## BOOST ##
-
-AC_ARG_ENABLE(
-	[boost],
-	[AS_HELP_STRING([--enable-boost],[enable boost, default: yes])],
-	[case "${enableval}" in
-		yes) boost=true  ;;
-		no)  boost=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-boost]) ;; esac],
-	[boost=true])
-
-AM_CONDITIONAL([WANT_BOOST], [test x"$boost" == x"true"])
-
-if test x"$with_script" == x"chai4" -a x"$boost" == x"false"; then
-	AC_MSG_ERROR([Boost must not be disabled if using Chaiscript 4 (change to: --with-script=chai5 or remove --disable-boost).])
-fi
-
-if test x"$boost" == x"true"; then
-	AX_BOOST_BASE([1.25.0])
-	AX_BOOST_THREAD
-	AX_BOOST_DATE_TIME
-	AX_BOOST_SYSTEM
-	AC_SUBST([BOOST_LIBS],["$BOOST_LDFLAGS $BOOST_THREAD_LIB $BOOST_DATE_TIME_LIB $BOOST_SYSTEM_LIB"])
-	AC_DEFINE([HAVE_BOOST], [1], [We have boost])
-fi
 
 
 ## MsgPack ##
@@ -522,7 +494,7 @@ if test x"$debug" == x"false" -a x"$release" == x"false"; then
 fi
 
 if test x"$debug" == x"true"; then
-	if test x"$acv_ot_clang" == x"true"; then
+	if test x"$ac_cv_ot_clang" == x"true"; then
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
 	else
 		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
@@ -531,66 +503,19 @@ if test x"$debug" == x"true"; then
 fi
 
 if test x"$release" == x"true"; then
-	if test x"$acv_ot_clang" == x"true"; then
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
+	if test x"$ac_cv_ot_clang" == x"true"; then
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2"])
 	else
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
 	fi
 	AC_DEFINE([RELEASE], [1], [Building in Release Mode])
 fi
 
-## (Option) Build In C++11 Mode ##
-
-AC_ARG_ENABLE([cxx11],
-	AS_HELP_STRING([--enable-cxx11],[enable cxx11, default: no]),
-	[case "${enableval}" in
-		yes) cxx11=true ;;
-		no)  cxx11=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxx11]) ;;
-		esac],[cxx11=false])
-AM_CONDITIONAL([USE_CXX11], [test x$cxx11 == x"true"])
-
-if test x"$cxx11" == x"true" -a x"$acv_ot_cxx11" == x"false"; then
-	AC_MSG_ERROR([Your compiler doesn't support C++11. If you want C++11 support (--enable-cxx11), you must update!])
-fi
-
-if test x"$with_script" == x"chai5" -a x"$cxx11" == x"false"; then
-	AC_MSG_ERROR([If you want Chaiscript 5 (--with-script=chai5), you must enable C++11 (--enable-cxx11)!])
-fi
-
-if test x"$cxx11" == x"true"; then
-
-	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
-	AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-else
-	AC_DEFINE([NO_CXX11],   [1], [Not Using C++11])
-fi
-
-## (Option) Build In C++03 TR1 Mode ##
-
-AC_ARG_ENABLE([cxxtr1],
-	AS_HELP_STRING([--enable-cxxtr1],[enable cxxtr1, default: yes]),
-	[case "${enableval}" in
-		yes) cxxtr1=true ;;
-		no)  cxxtr1=false ;;
-		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-cxxtr1]) ;;
-		esac],[cxxtr1=true])
-AM_CONDITIONAL([USE_CXXTR1], [test x$cxxtr1 == x"true"])
-
-if test x"$cxxtr1" == x"true" -a x"$cxx11" == x"true"; then
-	AC_MSG_ERROR([If you are using C++11 (--enable-cxx11), you must disable TR1 (--disable-cxxtr1).])
-fi
-
-if test x"$cxxtr1" == x"true" -a x"$cxx11" == x"false"; then
-	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
-fi
-
-
 #####   Output to AM   #####
 
-AC_SUBST([DEPS_CFLAGS],	["$PROTOBUF_CFLAGS $CHAISCRIPT_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $OPENSSL_CFLAGS $OPENSSL_INCLUDES $BOOST_CPPFLAGS $PTHREAD_CFLAGS"])
+AC_SUBST([DEPS_CFLAGS],	["$PROTOBUF_CFLAGS $CHAI_CFLAGS $ZMQ_CFLAGS $KRG_CFLAGS $OPENSSL_CFLAGS $OPENSSL_INCLUDES $BOOST_CPPFLAGS $PTHREAD_CFLAGS"])
 
-AC_SUBST([DEPS_LIBS],	["$PROTOBUF_LIBS $CHAISCRIPT_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS $BOOST_LIBS -ldl $PTHREAD_LIBS"])
+AC_SUBST([DEPS_LIBS],	["$PROTOBUF_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LDFLAGS $OPENSSL_LIBS $BOOST_LIBS -ldl $PTHREAD_LIBS"])
 
 AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_CFLAGS"])
 

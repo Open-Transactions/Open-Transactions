@@ -40,14 +40,14 @@ do
         swig -c++ -$x -intgosize 64 -soname libotapi-go.so -outdir glue/$x otapi/OTAPI.i
     fi
 
-    # Move and clean up wrapper files
-    for ext in cxx cpp hpp h; do
-	if [ -f otapi/OTAPI-$x.$ext ]; then rm otapi/OTAPI-$x.$ext; fi
-	if [ -f otapi/OTAPI_wrap.$ext ]; then mv otapi/OTAPI_wrap.$ext otapi/OTAPI-$x.$ext; fi
-	if [ -f otapi/OTAPI-$x.h ]; then mv otapi/OTAPI-$x.h otapi/OTAPI-$x.hpp; fi
-    done
+    # Remove old and rename header wrapper files
+    if [ -f otapi/OTAPI-$x.h ]; then rm otapi/OTAPI-$x.h; fi
+    if [ -f otapi/OTAPI_wrap.h ]; then mv otapi/OTAPI_wrap.h otapi/OTAPI-$x.hpp; fi
 
+    # Remove old, rename and clean up source wrapper files
     for ext in cxx cpp; do
+        if [ -f otapi/OTAPI-$x.$ext ]; then rm otapi/OTAPI-$x.$ext; fi
+        if [ -f otapi/OTAPI_wrap.$ext ]; then mv otapi/OTAPI_wrap.$ext otapi/OTAPI-$x.$ext; fi
 	if [ -f otapi/OTAPI-$x.$ext ]; then printf '%s\n' "g/OTAPI_wrap\.h/s//OTAPI-$x.hpp/g" w | ed -s "otapi/OTAPI-$x.$ext"; fi
     done
 
