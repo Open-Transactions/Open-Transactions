@@ -19,10 +19,11 @@ otlib_build_dir		=	$(top_builddir)/src/otlib
 
 common_includes		=	$(AM_CXXFLAGS)          	\
 				-I$(top_builddir)/include/otlib	\
-				-I$(opentxs_include_dir)	\
+                -I$(top_builddir)/project/otapitest		\
+								-I$(opentxs_include_dir)	\
 				-I$(opentxs_include_dir)/otlib	\
 				-I$(opentxs_include_dir)/otapi  \
-                                -I$(opentxs_include_dir)/otapitest \
+                -I$(opentxs_include_dir)/otapitest \
 				-I$(top_builddir)/include/gmock	\
 				-I$(top_builddir)/include/gtest
 
