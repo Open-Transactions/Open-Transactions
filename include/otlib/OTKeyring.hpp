@@ -152,7 +152,7 @@
 //#define OT_KEYRING_MAC      1
 //#define OT_KEYRING_GNOME    1
 //#define OT_KEYRING_KWALLET  1
-#define OT_KEYRING_FLATFILE 1
+//#define OT_KEYRING_FLATFILE 1
 
 
 class OTString;

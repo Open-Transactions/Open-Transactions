@@ -158,6 +158,7 @@
 #include <OTServerContract.hpp>
 #include <OTPassword.hpp>
 #include <OTMarket.hpp>
+#include <OTKeyring.hpp>
 
 #include <fstream>
 
