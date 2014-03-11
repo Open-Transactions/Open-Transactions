@@ -297,7 +297,7 @@ def interpret_command(map_functions, map_help, strInput)
             if (!the_function.is_var_undef()) // found it!
             {
                 var nReturn = the_function()
-                OT_API_Output(0, "\n Returning error code: \"" + nReturn.to_string() + "\".\n\n");
+                OT_API_Output(2, "\n Returning error code: \"" + nReturn.to_string() + "\".\n\n");
                 switch (nReturn)
                 {
                         // This means "no error, but also didn't do anything."
@@ -345,6 +345,7 @@ def main_loop(map_functions, map_help)
     //
     if (VerifyExists("Args", false))
     {
+        OT_API_Output(1, "\nCommand: " + Args + "\n\n");
         var strCommand = OT_CLI_GetValueByKey(Args, "ot_cli_command")
         
         if (VerifyStringVal(strCommand)) // command was passed in on the command line...

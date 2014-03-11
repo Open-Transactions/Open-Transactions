@@ -415,7 +415,7 @@ void OTScript::RemoveVariable (OTVariable & theVar)
 
 bool OTScript::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 {
-    OTLog::vError("OTScript::ExecuteScript: Ecxecuting NO SCRIPT ????\n");
+    OTLog::vError("OTScript::ExecuteScript: Executing NO SCRIPT ????\n");
     return true;
 }
 
