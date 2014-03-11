@@ -16,10 +16,11 @@ opentxs_include_dir	=	$(top_srcdir)/include
 opentxs_swig_dir	=	$(top_srcdir)/swig
 
 otlib_build_dir		=	$(top_builddir)/src/otlib
+otapi_build_dir		=	$(top_builddir)/src/otapi
 
 common_includes		=	$(AM_CXXFLAGS)          	\
-				-I$(top_builddir)/include/otlib	\
                 -I$(top_builddir)/project/otapitest		\
+				-I$(top_builddir)/include/otlib	\
 								-I$(opentxs_include_dir)	\
 				-I$(opentxs_include_dir)/otlib	\
 				-I$(opentxs_include_dir)/otapi  \
@@ -37,18 +38,17 @@ otapitest_SOURCES		= 	($libotapitest_la_SOURCES)
 libotapitest_la_CXXFLAGS	=	$(common_includes)
 otapitest_CXXFLAGS		=       $(common_includes)
 
-libotapitest_la_LIBADD		=	$(otlib_build_dir)/libot.la $(DEPS_LIBS)
-otapitest_LDADD			=	$(libotapitest_la_LIBADD)
+libotapitest_la_LIBADD		=	$$(libotapitest_la_DEPENDENCIES) $(DEPS_LIBS)
+otapitest_LDADD			=	libotapitest.la $(libotapitest_la_LIBADD)
 
 libotapitest_la_DEPENDENCIES	=       $(otlib_build_dir)/libot.la     \
-                                        $(otlib_build_dir)/libotapi.la  \
-                                        $(top_builddir)/include/gmock/gmock.la  \
-                                        $(top_builddir)/include/gtest/gtest.la
+                                        $(otapi_build_dir)/libotapi.la  \
+                                        $(top_builddir)/src/gmock/libgmock.la  \
+                                        $(top_builddir)/src/gtest/libgtest.la
 otapitest_DEPENDENCIES		=       $(libotapitest_la_DEPENDENCIES)
 
 libotapitest_la_LDFLAGS		=	--no-undefined -g
-otapitest_LDFLAGS		= 	--no-undefined -g
-
+otapitest_LDFLAGS		= 	-g -v
 if TRANSPORT_ZMQ
 libotapitest_la_CXXFLAGS		+=	-DOT_ZMQ_MODE
 otapitest_CXXFLAGS			+=      -DOT_ZMQ_MODE
