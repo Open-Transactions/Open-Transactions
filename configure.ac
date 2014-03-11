@@ -66,11 +66,35 @@ AC_MSG_CHECKING([if compiling with clang])
 
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[
 #ifndef __clang__
-	   not clang
+	not clang
 #endif
 	]])],[ac_cv_ot_clang=true],[ac_cv_ot_clang=false])
 
 AC_MSG_RESULT([$ac_cv_ot_clang])
+
+if test x"$ac_cv_ot_clang" == x"true"; then
+	AC_MSG_CHECKING([if compiling with clang -std=c++11])
+	AC_COMPILE_IFELSE(
+		[AC_LANG_PROGRAM([[#include <cinttypes>
+					#include <memory>]],
+			[[]])],
+		[ac_cv_ot_clang11=true],
+		[ac_cv_ot_clang11=false])
+
+	AC_MSG_RESULT([$ac_cv_ot_clang11])
+fi
+
+if test x"$ac_cv_ot_clang" == x"true"; then
+        AC_MSG_CHECKING([if compiling with clang TR1])
+        AC_COMPILE_IFELSE(
+                [AC_LANG_PROGRAM([[#include <tr1/cinttypes>
+                                        #include <tr1/memory>]],
+                        [[]])],
+                [ac_cv_ot_clangtr1=true],
+                [ac_cv_ot_clangtr1=false])
+
+        AC_MSG_RESULT([$ac_cv_ot_clangtr1])
+fi
 
 if test x"$ac_cv_ot_clang" == x"false"; then
 	AC_MSG_CHECKING([whether gcc version is sufficient])
@@ -98,7 +122,9 @@ if test x"$ac_cv_ot_clang" == x"false"; then
 	fi
 fi
 
-if test x"$ac_cv_ot_clang" == x"false" -a x"$ac_cv_ot_gcc11" == x"false"; then
+if test x"$ac_cv_ot_clang" == x"true" -a x"$ac_cv_ot_clang11" == x"false"; then
+	ac_cv_ot_cxx11=false
+elif test x"$ac_cv_ot_clang" == x"false" -a x"$ac_cv_ot_gcc11" == x"false"; then
 	ac_cv_ot_cxx11=false
 else
 	ac_cv_ot_cxx11=true
@@ -478,9 +504,9 @@ fi
 
 if test x"$release" == x"true"; then
 	if test x"$ac_cv_ot_clang" == x"true"; then
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2"])
 	else
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
 	fi
 	AC_DEFINE([RELEASE], [1], [Building in Release Mode])
 fi
