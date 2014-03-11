@@ -11,8 +11,9 @@ SUBDIRS                 =	src
 
 #### autogen.sh, opentxs script CLI utility
 
-dist_bin_SCRIPTS		=	autogen.sh		\
-					scripts/opentxs
+dist_bin_SCRIPTS		=	scripts/opentxs
+
+dist_noinst_SCRIPTS		=	autogen.sh
 
 #### OT SCRIPTS (headers)
 
