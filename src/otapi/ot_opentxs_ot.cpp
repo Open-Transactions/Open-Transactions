@@ -482,7 +482,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
             if (func.function != NULL)
             {
                 int nReturn = (*func.function)();
-                OTAPI_Wrap::Output(0, "\n Returning error code: \"" + to_string(nReturn) + "\".\n\n");
+                OTAPI_Wrap::Output(2, "\n Returning error code: \"" + to_string(nReturn) + "\".\n\n");
                 switch (nReturn)
                 {
                 case 0:
@@ -531,6 +531,7 @@ int OT_OPENTXS_OT OT_ME::opentxs_main_loop()
     // See if the command was passed in on the command line.
     if (VerifyExists("Args", false))
     {
+        OTAPI_Wrap::Output(1, "\nCommand: " + Args + "\n\n");
         string strCommand = OT_CLI_GetValueByKey(Args, "ot_cli_command");
 
         if (VerifyStringVal(strCommand)) // command was passed in on the command line...
