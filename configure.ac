@@ -506,7 +506,7 @@ if test x"$release" == x"true"; then
 	if test x"$ac_cv_ot_clang" == x"true"; then
 		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2"])
 	else
-		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -Wstack-protector"])
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
 	fi
 	AC_DEFINE([RELEASE], [1], [Building in Release Mode])
 fi
