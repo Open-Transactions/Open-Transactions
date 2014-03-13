@@ -1,42 +1,55 @@
-lib_LTLIBRARIES         =       libgtest.la
+lib_LTLIBRARIES             =   libgtest.la
 
-opentxs_include_dir 	=	$(top_srcdir)/include
-opentxs_source_dir 	=	$(top_srcdir)/src
+########################## STANDARD FOLDERS #########################
 
-gtest_source_dir	=	$(opentxs_source_dir)/gtest
-gtest_include_dir	=	$(opentxs_include_dir)/gtest
-gmock_source_dir	=	$(opentxs_source_dir)/gmock
-gmock_include_dir	=	$(opentxs_include_dir)/gmock
+opentxs_incdir              =   $(top_srcdir)/include
+opentxs_srcdir              =   $(top_srcdir)/src
 
-## COMMON FLAGS ###
+gmock_incdir                =   $(opentxs_incdir)/gmock
+gmock_srcdir                =   $(opentxs_srcdir)/gmock
+gtest_incdir                =   $(opentxs_incdir)/gtest
+gtest_srcdir                =   $(opentxs_srcdir)/gtest
+ot_incdir                   =   $(opentxs_incdir)/ot
+ot_srcdir                   =   $(opentxs_srcdir)/ot
+otapi_incdir                =   $(opentxs_incdir)/otapi
+otapi_srcdir                =   $(opentxs_srcdir)/otapi
+otapitest_incdir            =   $(opentxs_incdir)/otapitest
+otapitest_srcdir            =   $(opentxs_srcdir)/otapitest
+otlib_incdir                =   $(opentxs_incdir)/otlib
+otlib_srcdir                =   $(opentxs_srcdir)/otlib
+otmint_incdir               =   $(opentxs_incdir)/otmint
+otmint_srcdir               =   $(opentxs_srcdir)/otmint
+otserver_incdir             =   $(opentxs_incdir)/otserver
+otserver_srcdir             =   $(opentxs_srcdir)/otserver
 
-common_includes		=	$(AM_CXXFLAGS)				\
-				-I$(top_srcdir)/project/gtest	        \
-				-I$(top_srcdir)/project/gmock	        \
-				-I$(gtest_include_dir)			\
-				-I$(opentxs_include_dir)		\
-				-DOT_PREFIX_PATH="\"${prefix}\""	\
-				-DOT_VERSION="\"${VERSION}\""
+swig_dir                    =   $(top_srcdir)/swig
 
+common_includes             =   -I$(otapi_incdir) \
+                                -I$(otlib_incdir) \
+                                -I$(opentxs_incdir)
 
-#### Lib gtest build calls
+common_libraries            =   $(otapi_srcdir)/libotapi.la \
+                                $(otlib_incdir)/libotlib.la
+                                        
+######################## BUILD COMMANDS #############################
 
-libgtest_la_SOURCES	=	$(gtestlib_sources) $(gtestlib_headers)
+libgtest_la_SOURCES         =   $(gtestlib_sources) $(gtestlib_headers)
 
-libgtest_la_CXXFLAGS	=	$(common_includes)
+libgtest_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
+                                -I$(top_srcdir)/project/gtest \
+                                -I$(opentxs_incdir)
 
-libgtest_la_LDFLAGS	=	--no-undefined -g
+libgtest_la_LDFLAGS         =   --no-undefined -g
 
-####################################################################
+######################## DEPENDENCIES ###############################
 
-gtestlib_sources     =		$(gtest_source_dir)/gtest.cc	\
-				$(gtest_source_dir)/gtest-death-test.cc	\
-                                $(gtest_source_dir)/gtest-filepath.cc	\
-                                $(gtest_source_dir)/gtest-port.cc	\
-                                $(gtest_source_dir)/gtest-printers.cc	\
-                                $(gtest_source_dir)/gtest-test-part.cc	\
-                                $(gtest_source_dir)/gtest-typed-test.cc	\
-                                $(top_srcdir)/project/gtest/stdafx.cpp				
+gtestlib_sources            =   $(gtest_srcdir)/gtest.cc \
+                                $(gtest_srcdir)/gtest-death-test.cc \
+                                $(gtest_srcdir)/gtest-filepath.cc \
+                                $(gtest_srcdir)/gtest-port.cc \
+                                $(gtest_srcdir)/gtest-printers.cc \
+                                $(gtest_srcdir)/gtest-test-part.cc \
+                                $(gtest_srcdir)/gtest-typed-test.cc               
 
-gtestlib_headers	=	$(top_srcdir)/project/gtest/stdafx.h
+gtestlib_headers            =   $(top_srcdir)/project/gtest/stdafx.h
 

@@ -1,40 +1,52 @@
-lib_LTLIBRARIES         =       libgmock.la
+lib_LTLIBRARIES             =   libgmock.la
 
-opentxs_include_dir 	=	$(top_srcdir)/include
-opentxs_source_dir 	=	$(top_srcdir)/src
+########################## STANDARD FOLDERS #########################
 
-gtest_source_dir	=	$(opentxs_source_dir)/gtest
-gtest_include_dir	=	$(opentxs_include_dir)/gtest
-gmock_source_dir	=	$(opentxs_source_dir)/gmock
-gmock_include_dir	=	$(opentxs_include_dir)/gmock
+opentxs_incdir              =   $(top_srcdir)/include
+opentxs_srcdir              =   $(top_srcdir)/src
 
-## COMMON FLAGS ###
+gmock_incdir                =   $(opentxs_incdir)/gmock
+gmock_srcdir                =   $(opentxs_srcdir)/gmock
+gtest_incdir                =   $(opentxs_incdir)/gtest
+gtest_srcdir                =   $(opentxs_srcdir)/gtest
+ot_incdir                   =   $(opentxs_incdir)/ot
+ot_srcdir                   =   $(opentxs_srcdir)/ot
+otapi_incdir                =   $(opentxs_incdir)/otapi
+otapi_srcdir                =   $(opentxs_srcdir)/otapi
+otapitest_incdir            =   $(opentxs_incdir)/otapitest
+otapitest_srcdir            =   $(opentxs_srcdir)/otapitest
+otlib_incdir                =   $(opentxs_incdir)/otlib
+otlib_srcdir                =   $(opentxs_srcdir)/otlib
+otmint_incdir               =   $(opentxs_incdir)/otmint
+otmint_srcdir               =   $(opentxs_srcdir)/otmint
+otserver_incdir             =   $(opentxs_incdir)/otserver
+otserver_srcdir             =   $(opentxs_srcdir)/otserver
 
-common_includes		=	$(AM_CXXFLAGS)				\
-				-I$(top_srcdir)/project/gtest	        \
-				-I$(top_srcdir)/project/gmock	        \
-				-I$(gtest_include_dir)			\
-				-I$(opentxs_include_dir)		\
-				-DOT_PREFIX_PATH="\"${prefix}\""	\
-				-DOT_VERSION="\"${VERSION}\""
+swig_dir                    =   $(top_srcdir)/swig
 
+common_includes             =   -I$(otapi_incdir) \
+                                -I$(otlib_incdir) \
+                                -I$(opentxs_incdir)
 
-#### Lib gtest build calls
+common_libraries            =   $(otapi_srcdir)/libotapi.la \
+                                $(otlib_incdir)/libotlib.la
+                                        
+######################## BUILD COMMANDS #############################
 
-libgmock_la_SOURCES	=	$(gmocklib_sources) $(gmocklib_headers)
+libgmock_la_SOURCES         =   $(gmocklib_sources) $(gmocklib_headers)
 
-libgmock_la_CXXFLAGS	=	$(common_includes)
+libgmock_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
+                                -I$(top_srcdir)/project/gmock \
+                                -I$(opentxs_incdir)
 
-libgmock_la_LDFLAGS	=	--no-undefined -g
+libgmock_la_LDFLAGS         =   --no-undefined -g
 
-####################################################################
+######################## DEPENDENCIES ###############################
 
-gmocklib_sources     =		$(gmock_source_dir)/gmock.cc	\
-				$(gmock_source_dir)/gmock-cardinalities.cc	\
-                                $(gmock_source_dir)/gmock-internal-utils.cc	\
-                                $(gmock_source_dir)/gmock-matchers.cc	\
-                                $(gmock_source_dir)/gmock-spec-builders.cc	\
-                                $(top_srcdir)/project/gtest/stdafx.cpp				
+gmocklib_sources            =   $(gmock_srcdir)/gmock.cc \
+                                $(gmock_srcdir)/gmock-cardinalities.cc \
+                                $(gmock_srcdir)/gmock-internal-utils.cc \
+                                $(gmock_srcdir)/gmock-matchers.cc \
+                                $(gmock_srcdir)/gmock-spec-builders.cc                
 
-gmocklib_headers	=	$(top_srcdir)/project/gmock/stdafx.h
-
+gmocklib_headers            =   $(top_srcdir)/project/gmock/stdafx.h
