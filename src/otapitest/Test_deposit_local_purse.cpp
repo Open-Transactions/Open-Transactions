@@ -1,5 +1,4 @@
-#include "stdafx.h"
-#include "OtMeTest.hpp"
+#include "stdafx.hpp"
 
 
 //SEE ALSO: deposit_cash

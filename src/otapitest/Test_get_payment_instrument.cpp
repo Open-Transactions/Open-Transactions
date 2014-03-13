@@ -1,5 +1,4 @@
-#include "stdafx.h"
-#include "OtMeTest.hpp"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(get_payment_instrument_LoadDefaultInBox)

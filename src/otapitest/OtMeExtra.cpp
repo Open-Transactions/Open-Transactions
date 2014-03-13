@@ -1,5 +1,4 @@
-#include "stdafx.h"
-#include "OtMeExtra.hpp"
+#include "stdafx.hpp"
 
 
 OtMeExtra::OtMeExtra()

@@ -1,6 +1,5 @@
 #ifndef _H_OT_ME_TEST
 
-#include "stdafx.h"
 #include "OtMeExtra.hpp"
 
 
