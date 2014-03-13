@@ -29,9 +29,10 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
-#include "stdafx.h"
-#include "OtMeTest.hpp"
-#include "OTPaths.h"
+#include "stdafx.hpp"
+#include "OTPaths.hpp"
+#include <OpenTransactions.hpp>
+#include <OTAPI.hpp>
 
 
 // MS C++ compiler/linker has a bug on Windows (not on Windows CE), which

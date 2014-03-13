@@ -155,6 +155,7 @@ extern "C"
 
 
 
+
 void SetupHeader( union u_header * pCMD, int nTypeID, int nCmdID, OTPayload & thePayload)
 {
 	OT_ASSERT(NULL != pCMD);

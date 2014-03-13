@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "OtMeTest.hpp"
+#include "stdafx.hpp"
+
 
 #ifdef NOT_READY_YET
 
