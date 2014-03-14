@@ -470,7 +470,7 @@
 
 #include <chaiscript/chaiscript.hpp>
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_CHAI_STDLIB
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 

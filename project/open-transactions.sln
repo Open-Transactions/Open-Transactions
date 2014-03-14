@@ -33,6 +33,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "otmint", "otmint\otmint.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcxproj", "{ED9F5A89-F38C-4283-BF35-6808300DCA94}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chaiscript_stdlib", "chaiscript\chaiscript_stdlib.vcxproj", "{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -121,6 +123,14 @@ Global
 		{ED9F5A89-F38C-4283-BF35-6808300DCA94}.Release|Win32.Build.0 = Release|Win32
 		{ED9F5A89-F38C-4283-BF35-6808300DCA94}.Release|x64.ActiveCfg = Release|x64
 		{ED9F5A89-F38C-4283-BF35-6808300DCA94}.Release|x64.Build.0 = Release|x64
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Debug|Win32.Build.0 = Debug|Win32
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Debug|x64.ActiveCfg = Debug|x64
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Debug|x64.Build.0 = Debug|x64
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|Win32.ActiveCfg = Release|Win32
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|Win32.Build.0 = Release|Win32
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.ActiveCfg = Release|x64
+		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
