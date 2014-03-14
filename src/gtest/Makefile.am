@@ -9,8 +9,8 @@ gmock_incdir                =   $(opentxs_incdir)/gmock
 gmock_srcdir                =   $(opentxs_srcdir)/gmock
 gtest_incdir                =   $(opentxs_incdir)/gtest
 gtest_srcdir                =   $(opentxs_srcdir)/gtest
-ot_incdir                   =   $(opentxs_incdir)/ot
-ot_srcdir                   =   $(opentxs_srcdir)/ot
+ot_incdir                   =   $(opentxs_incdir)/otd
+ot_srcdir                   =   $(opentxs_srcdir)/otd
 otapi_incdir                =   $(opentxs_incdir)/otapi
 otapi_srcdir                =   $(opentxs_srcdir)/otapi
 otapitest_incdir            =   $(opentxs_incdir)/otapitest
@@ -19,8 +19,8 @@ otlib_incdir                =   $(opentxs_incdir)/otlib
 otlib_srcdir                =   $(opentxs_srcdir)/otlib
 otmint_incdir               =   $(opentxs_incdir)/otmint
 otmint_srcdir               =   $(opentxs_srcdir)/otmint
-otserver_incdir             =   $(opentxs_incdir)/otserver
-otserver_srcdir             =   $(opentxs_srcdir)/otserver
+otserver_incdir             =   $(opentxs_incdir)/ots
+otserver_srcdir             =   $(opentxs_srcdir)/ots
 
 swig_dir                    =   $(top_srcdir)/swig
 
@@ -36,7 +36,7 @@ common_libraries            =   $(otapi_srcdir)/libotapi.la \
 libgtest_la_SOURCES         =   $(gtestlib_sources) $(gtestlib_headers)
 
 libgtest_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
-                                -I$(gmock_incdir) \
+                                -I$(gtest_incdir) \
                                 -I$(opentxs_incdir)
 
 libgtest_la_LDFLAGS         =   --no-undefined -g
