@@ -10,7 +10,7 @@
 ## Guide for OT on Windows
 
 Note:
- You can run OT on Windows XP (sp3) or later, however you must compile
+ You can run OT on Windows Vista SP2 or later, however you must compile
  and build OT from the latest version of windows.  (building on old versions
  of windows may work however, is not supported by da2ce7).
 
