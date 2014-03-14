@@ -151,7 +151,7 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 
 #include <chaiscript/chaiscript.hpp>
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_CHAI_STDLIB
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 

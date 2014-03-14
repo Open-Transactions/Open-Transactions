@@ -141,7 +141,7 @@
 
 #include <chaiscript/chaiscript.hpp>
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_CHAI_STDLIB
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
@@ -728,7 +728,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 }
 
 
-#ifndef OT_USE_CHAI5
+#ifndef OT_USE_CHAI_STDLIB
 
 OTScriptChai::OTScriptChai() : OTScript(), chai(new chaiscript::ChaiScript())
 {

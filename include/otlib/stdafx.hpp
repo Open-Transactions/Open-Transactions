@@ -13,11 +13,11 @@
 #define OT_USE_CXX11
 #endif
 
-#ifdef OT_USE_CHAI5
-#undef OT_USE_CHAI5
+#ifdef OT_USE_CHAI_STDLIB
+#undef OT_USE_CHAI_STDLIB
 #endif
 #ifdef OPENTXS_CHAISCRIPT_5
-#define OT_USE_CHAI5
+#define OT_USE_CHAI_STDLIB
 #endif
 
 #ifndef OT_CRYPTO_USING_OPENSSL
