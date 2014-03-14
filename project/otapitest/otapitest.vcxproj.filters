@@ -140,8 +140,11 @@
     <ClInclude Include="..\..\include\otapitest\OtMeTest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\otapitest\stdafx.h">
+    <ClInclude Include="..\..\src\otapitest\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\otapitest\Makefile.am" />
   </ItemGroup>
 </Project>

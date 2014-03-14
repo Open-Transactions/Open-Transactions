@@ -81,9 +81,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\src\gmock\gmock-cardinalities.cc" />
     <ClCompile Include="..\..\src\gmock\gmock-internal-utils.cc" />
     <ClCompile Include="..\..\src\gmock\gmock-matchers.cc" />
@@ -93,6 +90,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\gmock\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\gmock\stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

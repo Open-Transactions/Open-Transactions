@@ -29,24 +29,24 @@ common_includes             =   -I$(otapi_incdir) \
                                 -I$(opentxs_incdir)
 
 common_libraries            =   $(otapi_srcdir)/libotapi.la \
-                                $(otlib_incdir)/libotlib.la
+                                $(otlib_srcdir)/libotlib.la
                                         
 ######################## BUILD COMMANDS #############################
 
 libgmock_la_SOURCES         =   $(gmocklib_sources) $(gmocklib_headers)
 
 libgmock_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
-                                -I$(top_srcdir)/project/gmock \
+                                -I$(gmock_incdir) \
                                 -I$(opentxs_incdir)
 
 libgmock_la_LDFLAGS         =   --no-undefined -g
 
 ######################## DEPENDENCIES ###############################
 
-gmocklib_sources            =   $(gmock_srcdir)/gmock.cc \
-                                $(gmock_srcdir)/gmock-cardinalities.cc \
-                                $(gmock_srcdir)/gmock-internal-utils.cc \
-                                $(gmock_srcdir)/gmock-matchers.cc \
-                                $(gmock_srcdir)/gmock-spec-builders.cc                
+gmocklib_sources            =   gmock.cc \
+                                gmock-cardinalities.cc \
+                                gmock-internal-utils.cc \
+                                gmock-matchers.cc \
+                                gmock-spec-builders.cc                
 
-gmocklib_headers            =   $(top_srcdir)/project/gmock/stdafx.h
+gmocklib_headers            =   stdafx.h

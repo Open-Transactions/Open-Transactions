@@ -29,27 +29,27 @@ common_includes             =   -I$(otapi_incdir) \
                                 -I$(opentxs_incdir)
 
 common_libraries            =   $(otapi_srcdir)/libotapi.la \
-                                $(otlib_incdir)/libotlib.la
+                                $(otlib_srcdir)/libotlib.la
                                         
 ######################## BUILD COMMANDS #############################
 
 libgtest_la_SOURCES         =   $(gtestlib_sources) $(gtestlib_headers)
 
 libgtest_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
-                                -I$(top_srcdir)/project/gtest \
+                                -I$(gmock_incdir) \
                                 -I$(opentxs_incdir)
 
 libgtest_la_LDFLAGS         =   --no-undefined -g
 
 ######################## DEPENDENCIES ###############################
 
-gtestlib_sources            =   $(gtest_srcdir)/gtest.cc \
-                                $(gtest_srcdir)/gtest-death-test.cc \
-                                $(gtest_srcdir)/gtest-filepath.cc \
-                                $(gtest_srcdir)/gtest-port.cc \
-                                $(gtest_srcdir)/gtest-printers.cc \
-                                $(gtest_srcdir)/gtest-test-part.cc \
-                                $(gtest_srcdir)/gtest-typed-test.cc               
+gtestlib_sources            =   gtest.cc \
+                                gtest-death-test.cc \
+                                gtest-filepath.cc \
+                                gtest-port.cc \
+                                gtest-printers.cc \
+                                gtest-test-part.cc \
+                                gtest-typed-test.cc               
 
-gtestlib_headers            =   $(top_srcdir)/project/gtest/stdafx.h
+gtestlib_headers            =   stdafx.h
 

@@ -51,6 +51,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
     </None>
+    <None Include="..\..\src\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\otd\ot.rc" />
