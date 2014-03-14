@@ -1,4 +1,4 @@
-########################################################################
+﻿########################################################################
 #                                                                      #
 #                                                                      #
 #                      ##  INSTALL - Windows   ##                      #
@@ -71,14 +71,6 @@ Note:
 
 $ git clone https://github.com/zeromq/zeromq2-x.git
 
-
-3. ChaiScript (latest git version on 5.x branch)
-    using the command prompt: open up ..\dev\ folder.
-
-$ git clone https://github.com/ChaiScript/ChaiScript.git
-$ cd ChaiScript
-$ git checkout ChaiScript_5_0_CPP_11
-$ git clean -fxd
 
 
 Note:
