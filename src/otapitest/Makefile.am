@@ -48,59 +48,59 @@ endif
 
 libotapitest_la_DEPENDENCIES=   $(common_libraries) \
                                 $(gmock_srcdir)/libgmock.la \
-                                $(gmock_srcdir)/libgtest.la
+                                $(gtest_srcdir)/libgtest.la
 
 libotapitest_la_LIBADD      =   $(libotapitest_la_DEPENDENCIES) \
                                 $(DEPS_LIBS)
 
 otapitest_SOURCES           =   otapitest.cpp $(otapitest_headers)
 
-otapitest_CXX_FLAGS         =   $(libotapitest_la_CXXFLAGS)
+otapitest_CXXFLAGS          =   $(libotapitest_la_CXXFLAGS)
 
 otapitest_DEPENDENCIES      =   libotapitest.la
 
-otapitest_LDFLAGS           =   -g
-
 otapitest_LDADD             =   $(otapitest_DEPENDENCIES) $(libotapitest_la_LIBADD)
+
+otapitest_LDFLAGS           =   -g
 
 ######################## DEPENDENCIES ###############################
 
 otapitest_sources           =   AllRequests.cpp \
-                                Test_insure_enough_nums.cpp \
                                 AllTransactions.cpp \
+                                OtMeExtra.cpp \
+                                OtMeTest.cpp \
+                                Test_accept_from_paymentbox.cpp \
+                                Test_accept_inbox_items.cpp \
+                                Test_cancel_outgoing_payments.cpp \
+                                Test_create_pseudonym.cpp \
+                                Test_deposit_cash.cpp \
+                                Test_deposit_local_purse.cpp \
+                                Test_details_deposit_cheque.cpp \
+                                Test_details_export_cash.cpp \
+                                Test_discard_incoming_payments.cpp \
+                                Test_export_cash.cpp \
+                                Test_get_payment_instrument.cpp \
+                                Test_handle_payment_index.cpp \
+                                Test_insure_enough_nums.cpp \
                                 Test_load_or_retrieve_contract.cpp \
                                 Test_load_or_retrieve_encrypt_key.cpp \
                                 Test_load_or_retrieve_mint.cpp \
                                 Test_load_or_retrieve_signing_key.cpp \
-                                OtMeExtra.cpp \
                                 Test_ot_utility.cpp \
+                                Test_ot_utility_ReceiveReplyLowLevel.cpp \
                                 Test_ot_utility_getAndProcessNymbox_4.cpp \
-                                OtMeTest.cpp \
                                 Test_ot_utility_getNymbox.cpp \
                                 Test_ot_utility_getNymboxLowLevel.cpp \
-                                Test_accept_from_paymentbox.cpp \
                                 Test_ot_utility_getRequestNumber.cpp \
-                                Test_accept_inbox_items.cpp \
-                                Test_ot_utility_getTransactionNumbers.cpp \
-                                Test_cancel_outgoing_payments.cpp \
                                 Test_ot_utility_getTransactionNumLowLevel.cpp \
-                                Test_create_pseudonym.cpp \
+                                Test_ot_utility_getTransactionNumbers.cpp \
                                 Test_ot_utility_processNymbox.cpp \
-                                Test_deposit_cash.cpp \
-                                Test_ot_utility_ReceiveReplyLowLevel.cpp \
-                                Test_deposit_local_purse.cpp \
                                 Test_ot_utility_receiveReplySuccessLowLevel.cpp \
-                                Test_details_deposit_cheque.cpp \
                                 Test_register_nym.cpp \
-                                Test_details_export_cash.cpp \
                                 Test_retrieve_account.cpp \
-                                Test_discard_incoming_payments.cpp \
                                 Test_retrieve_nym.cpp \
-                                Test_export_cash.cpp \
                                 Test_stat_asset_account.cpp \
-                                Test_get_payment_instrument.cpp \
-                                Test_withdraw_and_send_cash.cpp \
-                                Test_handle_payment_index.cpp
+                                Test_withdraw_and_send_cash.cpp
 
 otapitest_headers           =   stdafx.h \
                                 $(otapitest_incdir)/OtMeExtra.hpp \

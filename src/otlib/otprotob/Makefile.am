@@ -31,6 +31,9 @@ nodist_pkginclude_HEADERS      =   $(otprotob_headers)
 
 otprotob_build_dir      =   $(top_builddir)/src/otlib/otprotob
 
+## Note the following rules are direct makefile rules and NEED the indenting tab
+## So you want to avoid editing this in an editor that replaces tabs with spaces
+
 .proto.cc :
 	$(AM_V_at)$(PROTOC) --cpp_out=$(otprotob_build_dir) --proto_path=$(otprotob_source_dir) $(otprotob_source_dir)/$(*F).proto
 	$(AM_V_at)$(am__mv) $(otprotob_build_dir)/$(*F).pb.cc $(otprotob_build_dir)/$(@F)
