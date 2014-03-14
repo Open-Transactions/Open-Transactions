@@ -434,4 +434,7 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\otlib\Makefile.am" />
+  </ItemGroup>
 </Project>

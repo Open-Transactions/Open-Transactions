@@ -145,6 +145,7 @@
     <None Include="..\..\scripts\samples\write_cheque.ot">
       <Filter>Scripts\Sample</Filter>
     </None>
+    <None Include="..\..\src\otapi\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\scripts\samples\README.txt">

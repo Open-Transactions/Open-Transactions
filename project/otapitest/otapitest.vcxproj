@@ -148,7 +148,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\otapitest\OtMeExtra.hpp" />
     <ClInclude Include="..\..\include\otapitest\OtMeTest.hpp" />
-    <ClInclude Include="..\..\include\otapitest\stdafx.h" />
+    <ClInclude Include="..\..\src\otapitest\stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\otapitest\Makefile.am" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,22 +30,15 @@ common_includes             =   -I$(otapi_incdir) \
                                 -I$(opentxs_incdir)
 
 common_libraries            =   $(otapi_srcdir)/libotapi.la \
-                                $(otlib_incdir)/libotlib.la
+                                $(otlib_srcdir)/libotlib.la
                                         
 ######################## BUILD COMMANDS #############################
-
 
 libotapitest_la_SOURCES     =   $(otapitest_sources) $(otapitest_headers)
 
 libotapitest_la_CXXFLAGS    =   $(AM_CXXFLAGS) \
-                                -I$(opentxs_include_dir)/otapitest \
+                                -I$(otapitest_incdir) \
                                 $(common_includes)
-
-libotapitest_la_DEPENDENCIES    =   $(common_libraries) \
-                                    $(gmock_srcdir)/libgmock.la \
-                                    $(gmock_srcdir)/libgtest.la
-
-libotapitest_la_LIBADD      =   $(libotapitest_la_DEPENDENCIES) $(DEPS_LIBS)
 
 libotapitest_la_LDFLAGS     =   --no-undefined -g
 
@@ -53,46 +46,62 @@ if TRANSPORT_ZMQ
 libotapitest_la_CXXFLAGS   +=   -DOT_ZMQ_MODE
 endif
 
+libotapitest_la_DEPENDENCIES=   $(common_libraries) \
+                                $(gmock_srcdir)/libgmock.la \
+                                $(gmock_srcdir)/libgtest.la
+
+libotapitest_la_LIBADD      =   $(libotapitest_la_DEPENDENCIES) \
+                                $(DEPS_LIBS)
+
+otapitest_SOURCES           =   otapitest.cpp $(otapitest_headers)
+
+otapitest_CXX_FLAGS         =   $(libotapitest_la_CXXFLAGS)
+
+otapitest_DEPENDENCIES      =   libotapitest.la
+
+otapitest_LDFLAGS           =   -g
+
+otapitest_LDADD             =   $(otapitest_DEPENDENCIES) $(libotapitest_la_LIBADD)
+
 ######################## DEPENDENCIES ###############################
 
-otapitest_sources           =   $(otapitest_srcdir)/AllRequests.cpp \
-                                $(otapitest_srcdir)/Test_insure_enough_nums.cpp \
-                                $(otapitest_srcdir)/AllTransactions.cpp \
-                                $(otapitest_srcdir)/Test_load_or_retrieve_contract.cpp \
-                                $(otapitest_srcdir)/Test_load_or_retrieve_encrypt_key.cpp \
-                                $(otapitest_srcdir)/Test_load_or_retrieve_mint.cpp \
-                                $(otapitest_srcdir)/otapitest.cpp \
-                                $(otapitest_srcdir)/Test_load_or_retrieve_signing_key.cpp \
-                                $(otapitest_srcdir)/OtMeExtra.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getAndProcessNymbox_4.cpp \
-                                $(otapitest_srcdir)/OtMeTest.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getNymbox.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getNymboxLowLevel.cpp \
-                                $(otapitest_srcdir)/Test_accept_from_paymentbox.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getRequestNumber.cpp \
-                                $(otapitest_srcdir)/Test_accept_inbox_items.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getTransactionNumbers.cpp \
-                                $(otapitest_srcdir)/Test_cancel_outgoing_payments.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_getTransactionNumLowLevel.cpp \
-                                $(otapitest_srcdir)/Test_create_pseudonym.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_processNymbox.cpp \
-                                $(otapitest_srcdir)/Test_deposit_cash.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_ReceiveReplyLowLevel.cpp \
-                                $(otapitest_srcdir)/Test_deposit_local_purse.cpp \
-                                $(otapitest_srcdir)/Test_ot_utility_receiveReplySuccessLowLevel.cpp \
-                                $(otapitest_srcdir)/Test_details_deposit_cheque.cpp \
-                                $(otapitest_srcdir)/Test_register_nym.cpp \
-                                $(otapitest_srcdir)/Test_details_export_cash.cpp \
-                                $(otapitest_srcdir)/Test_retrieve_account.cpp \
-                                $(otapitest_srcdir)/Test_discard_incoming_payments.cpp \
-                                $(otapitest_srcdir)/Test_retrieve_nym.cpp \
-                                $(otapitest_srcdir)/Test_export_cash.cpp \
-                                $(otapitest_srcdir)/Test_stat_asset_account.cpp \
-                                $(otapitest_srcdir)/Test_get_payment_instrument.cpp \
-                                $(otapitest_srcdir)/Test_withdraw_and_send_cash.cpp \
-                                $(otapitest_srcdir)/Test_handle_payment_index.cpp
+otapitest_sources           =   AllRequests.cpp \
+                                Test_insure_enough_nums.cpp \
+                                AllTransactions.cpp \
+                                Test_load_or_retrieve_contract.cpp \
+                                Test_load_or_retrieve_encrypt_key.cpp \
+                                Test_load_or_retrieve_mint.cpp \
+                                Test_load_or_retrieve_signing_key.cpp \
+                                OtMeExtra.cpp \
+                                Test_ot_utility.cpp \
+                                Test_ot_utility_getAndProcessNymbox_4.cpp \
+                                OtMeTest.cpp \
+                                Test_ot_utility_getNymbox.cpp \
+                                Test_ot_utility_getNymboxLowLevel.cpp \
+                                Test_accept_from_paymentbox.cpp \
+                                Test_ot_utility_getRequestNumber.cpp \
+                                Test_accept_inbox_items.cpp \
+                                Test_ot_utility_getTransactionNumbers.cpp \
+                                Test_cancel_outgoing_payments.cpp \
+                                Test_ot_utility_getTransactionNumLowLevel.cpp \
+                                Test_create_pseudonym.cpp \
+                                Test_ot_utility_processNymbox.cpp \
+                                Test_deposit_cash.cpp \
+                                Test_ot_utility_ReceiveReplyLowLevel.cpp \
+                                Test_deposit_local_purse.cpp \
+                                Test_ot_utility_receiveReplySuccessLowLevel.cpp \
+                                Test_details_deposit_cheque.cpp \
+                                Test_register_nym.cpp \
+                                Test_details_export_cash.cpp \
+                                Test_retrieve_account.cpp \
+                                Test_discard_incoming_payments.cpp \
+                                Test_retrieve_nym.cpp \
+                                Test_export_cash.cpp \
+                                Test_stat_asset_account.cpp \
+                                Test_get_payment_instrument.cpp \
+                                Test_withdraw_and_send_cash.cpp \
+                                Test_handle_payment_index.cpp
 
-otapitest_headers           =   $(otapitest_incdir)/stdafx.h \
+otapitest_headers           =   stdafx.h \
                                 $(otapitest_incdir)/OtMeExtra.hpp \
                                 $(otapitest_incdir)/OtMeTest.hpp
