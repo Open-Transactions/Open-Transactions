@@ -130,6 +130,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTStringXML.hpp"
 #include "OTIdentifier.hpp"
@@ -137,6 +138,7 @@
 
 #include "irrxml/irrXML.hpp"
 
+#include _CINTTYPES
 #include <set>
 
 class OTAsymmetricKey;

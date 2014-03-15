@@ -17,7 +17,9 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
+#include _CINTTYPES
 
 #ifdef _WIN32   // Windows system specific
 #else          // Unix based system specific

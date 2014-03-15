@@ -136,10 +136,13 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTString.hpp"
 
 #include "irrxml/irrXML.hpp"
+
+#include _CINTTYPES
 
 #include <map>
 #include <string>

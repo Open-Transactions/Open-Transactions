@@ -136,8 +136,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "Timer.hpp"
+
+#include _CINTTYPES
 
 #include <list>
 #include <cstddef>

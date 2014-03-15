@@ -137,9 +137,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTContract.hpp"
 
+#include _CINTTYPES
 
 class OTAccount;
 

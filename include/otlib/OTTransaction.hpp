@@ -136,14 +136,12 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTItem.hpp"
 
+#include _CINTTYPES
 
-//#include <ctime>
-//
-//#include <list>
-//#include <fstream>
 
 /*
 WHEN THE server receives a transaction request, it receives a MESSAGE containing an ascii-armored LEDGER.

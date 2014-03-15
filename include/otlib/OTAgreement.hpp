@@ -138,8 +138,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTCronItem.hpp"
+
+#include _CINTTYPES
 
 
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.

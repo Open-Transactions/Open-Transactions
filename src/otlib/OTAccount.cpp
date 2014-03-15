@@ -1405,14 +1405,14 @@ OTAcctList::~OTAcctList()
 
 
 
-OTAccount_SharedPtr OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNym, 
+_SharedPtr<OTAccount> OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNym, 
 												   const OTIdentifier	& ACCOUNT_OWNER_ID, 
 												   const OTIdentifier	& ASSET_TYPE_ID, 
 												   const OTIdentifier	& SERVER_ID,
 												   bool					& bWasAcctCreated, // this will be set to true if the acct is created here. Otherwise set to false;
 												   const long             lStashTransNum/*=0*/)
 {
-	OTAccount_SharedPtr pRetVal;
+	_SharedPtr<OTAccount> pRetVal;
 	bWasAcctCreated = false;
 	// ------------------------------------------------
 	if (OTAccount::stash == m_AcctType)
@@ -1445,11 +1445,11 @@ OTAccount_SharedPtr OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNym,
 		{
 //			bool bSuccess = true;
 			
-			OTAccount_WeakPtr	pWeak	= (*it_weak).second; // first is acct ID, second is weak_ptr to account.
+			_WeakPtr<OTAccount>	pWeak	= (*it_weak).second; // first is acct ID, second is weak_ptr to account.
 			
 			try 
 			{
-				OTAccount_SharedPtr	pShared(pWeak);
+				_SharedPtr<OTAccount>	pShared(pWeak);
 				
 				// If success, then we have a shared pointer. But it's worrying (TODO) because this should have
 				// gone out of scope and been destroyed by whoever ELSE was using it. The fact that it's still here...
@@ -1510,8 +1510,8 @@ OTAccount_SharedPtr OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNym,
 			OTLog::vOutput(3, "Successfully loaded %s account ID: %s Asset Type ID: %s\n", 
 						   strAcctType.Get(), strAcctID.Get(), str_asset_type_id.c_str());
 			
-			pRetVal								= OTAccount_SharedPtr(pAccount); // Create a shared pointer to the account, so it will be cleaned up automatically.
-			m_mapWeakAccts [strAcctID.Get()]	= OTAccount_WeakPtr(pRetVal); // save a weak pointer to the acct, so we'll never load it twice, but we'll also know if it's been deleted.
+			pRetVal								= _SharedPtr<OTAccount>(pAccount); // Create a shared pointer to the account, so it will be cleaned up automatically.
+			m_mapWeakAccts [strAcctID.Get()]	= _WeakPtr<OTAccount>(pRetVal); // save a weak pointer to the acct, so we'll never load it twice, but we'll also know if it's been deleted.
 		}
 		return pRetVal;
 		//
@@ -1546,9 +1546,9 @@ OTAccount_SharedPtr OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNym,
 		OTLog::vOutput(0, "Successfully created %s account ID: %s Asset Type ID: %s\n", 
 					   strAcctType.Get(), strAcctID.Get(), str_asset_type_id.c_str());
 		
-		pRetVal = OTAccount_SharedPtr(pAccount); // Create a shared pointer to the account, so it will be cleaned up automatically.
+		pRetVal = _SharedPtr<OTAccount>(pAccount); // Create a shared pointer to the account, so it will be cleaned up automatically.
 		
-		m_mapWeakAccts	[strAcctID.Get()]				= OTAccount_WeakPtr(pRetVal); // save a weak pointer to the acct, so we'll never load it twice, but we'll also know if it's been deleted.
+		m_mapWeakAccts	[strAcctID.Get()]				= _WeakPtr<OTAccount>(pRetVal); // save a weak pointer to the acct, so we'll never load it twice, but we'll also know if it's been deleted.
 		m_mapAcctIDs	[theMessage.m_strAssetID.Get()]	= strAcctID.Get(); // Save the new acct ID in a map, keyed by asset type ID.
 		
 		bWasAcctCreated = true;

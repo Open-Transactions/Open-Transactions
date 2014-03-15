@@ -26,7 +26,6 @@
     <ClInclude Include="..\..\include\otlib\fast_mutex.h" />
     <ClInclude Include="..\..\include\otlib\Generics.pb.h" />
     <ClInclude Include="..\..\include\otlib\Markets.pb.h" />
-    <ClInclude Include="..\..\include\otlib\MemoryWrapper.hpp" />
     <ClInclude Include="..\..\include\otlib\Moneychanger.pb.h" />
     <ClInclude Include="..\..\include\otlib\OTAccount.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAgreement.hpp" />
@@ -90,6 +89,7 @@
     <ClInclude Include="..\..\include\otlib\stdafx.hpp" />
     <ClInclude Include="..\..\include\otlib\Timer.hpp" />
     <ClInclude Include="..\..\include\otlib\tinythread.hpp" />
+    <ClInclude Include="..\..\include\otlib\TR1_Wrapper.hpp" />
     <ClInclude Include="..\..\include\otlib\win32_utf8conv.hpp" />
     <ClInclude Include="..\..\include\otlib\win32_utf8conv_inl.hpp" />
     <ClInclude Include="..\..\include\otlib\WinsockWrapper.h" />

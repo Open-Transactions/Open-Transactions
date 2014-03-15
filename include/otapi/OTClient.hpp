@@ -135,6 +135,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTServerConnection.hpp"
 
@@ -154,6 +155,8 @@
 #include "ExportWrapper.h"
 #endif
 #endif
+
+#include _CINTTYPES
 
 struct TransportCallback;
 

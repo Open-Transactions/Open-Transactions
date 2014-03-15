@@ -139,9 +139,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTTrackable.hpp"
 
+#include _CINTTYPES
 #include <deque>
 
 class OTIdentifier;

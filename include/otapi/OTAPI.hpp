@@ -160,7 +160,9 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
-#include "MemoryWrapper.hpp"
+#include "TR1_Wrapper.hpp"
+
+#include _CINTTYPES
 
 #include <string>
 

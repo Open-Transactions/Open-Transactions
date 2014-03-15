@@ -136,9 +136,10 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
-#include "MemoryWrapper.hpp"
-
+#include _CINTTYPES
+#include _MEMORY
 
 #include <map>
 #include <string>
@@ -259,15 +260,7 @@ class OTIdentifier;
 
 // ------------------------------------------------------------------
 
-#ifndef OT_USE_TR1
-typedef std::shared_ptr	<OTCachedKey>         OTCachedKey_SharedPtr;
-typedef std::weak_ptr   <OTCachedKey>         OTCachedKey_WeakPtr;
-#else
-typedef std::tr1::shared_ptr <OTCachedKey>    OTCachedKey_SharedPtr;
-typedef std::tr1::weak_ptr   <OTCachedKey>    OTCachedKey_WeakPtr;
-#endif
-
-typedef std::map<std::string, OTCachedKey_SharedPtr> mapOfCachedKeys;
+typedef std::map<std::string, _SharedPtr<OTCachedKey>> mapOfCachedKeys;
 
 // ------------------------------------------------------------------
 class OTCachedKey
@@ -295,9 +288,9 @@ public:
 	EXPORT    OTCachedKey(const OTASCIIArmor & ascCachedKey);
 	EXPORT    ~OTCachedKey();
 	// -----------------------------------------------------------
-	EXPORT    static OTCachedKey_SharedPtr It(OTIdentifier * pIdentifier=NULL); // if you pass in a master key ID, it will look it up on an existing cached map of master keys. Otherwise it will use "the" global Master Key (the one used for the Nyms.)
+	EXPORT    static _SharedPtr<OTCachedKey> It(OTIdentifier * pIdentifier=NULL); // if you pass in a master key ID, it will look it up on an existing cached map of master keys. Otherwise it will use "the" global Master Key (the one used for the Nyms.)
 
-	EXPORT    static OTCachedKey_SharedPtr It(OTCachedKey & theSourceKey); // if you pass in a master key, it will look it up on an existing cached map of master keys, based on the ID of the master key passed in. If not there, it copies the one passed in, and returns a pointer to the copy. (Do NOT delete it.)
+	EXPORT    static _SharedPtr<OTCachedKey> It(OTCachedKey & theSourceKey); // if you pass in a master key, it will look it up on an existing cached map of master keys, based on the ID of the master key passed in. If not there, it copies the one passed in, and returns a pointer to the copy. (Do NOT delete it.)
 
 	EXPORT    static void Cleanup(); // Call on application shutdown. Called in CleanupOTAPI and also in OTServer wherever it cleans up.
 	// ------------------------------------------------------------------------
@@ -339,12 +332,12 @@ public:
 	// master key to get the passphrase, (which _would_ happen if the purse is encrypted to a nym) will
 	// instead use its own internal master key to get its passphrase (also retrieving from the user if
 	// necessary.)
-	EXPORT    bool   GetMasterPassword(OTCachedKey_SharedPtr & mySharedPtr,
+	EXPORT    bool   GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
                                              OTPassword      & theOutput,
                                        const char            * szDisplay=NULL,
                                              bool              bVerifyTwice=false);
 	// Caller must delete!
-	EXPORT  static OTCachedKey_SharedPtr CreateMasterPassword(OTPassword & theOutput,
+	EXPORT  static _SharedPtr<OTCachedKey> CreateMasterPassword(OTPassword & theOutput,
                                                               const char * szDisplay=NULL,
                                                               int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
 	// --------------------------------

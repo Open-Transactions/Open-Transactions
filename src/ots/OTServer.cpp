@@ -450,9 +450,9 @@ bool OTServer::LookupBasketAccountID(const OTIdentifier & BASKET_ID, OTIdentifie
 /// also will GENERATE it if it cannot be found, add it to the list, and return the pointer. Should
 /// always succeed.
 //
-OTAccount_SharedPtr OTServer::GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID)
+_SharedPtr<OTAccount> OTServer::GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID)
 {
-	OTAccount_SharedPtr pAccount;
+	_SharedPtr<OTAccount> pAccount;
 	const OTIdentifier SERVER_USER_ID(m_nymServer), SERVER_ID(m_strServerID);
 	// --------------------------------------------------
 	bool bWasAcctCreated = false;
@@ -1737,7 +1737,7 @@ bool OTServer::CreateMainFile()
 	if (!OTCachedKey::It()->HasHashCheck())
 	{
 		OTPassword tempPassword; tempPassword.zeroMemory();
-        OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+        _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
 		sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
                                      "We do not have a check hash yet for this password, "
                                      "please enter your password", true);
@@ -1926,7 +1926,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 							if (!OTCachedKey::It()->HasHashCheck())
 							{
 								OTPassword tempPassword; tempPassword.zeroMemory();
-                                OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+                                _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
 								bNeedToSaveAgain = sharedPtr->GetMasterPassword(sharedPtr, tempPassword,
                                                                                 "We do not have a check hash yet for this password, "
                                                                                 "please enter your password", true);
@@ -4440,7 +4440,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
 		
 //		OTAccount * pVoucherReserveAcct	= NULL;
-		OTAccount_SharedPtr	pVoucherReserveAcct; // contains the server's funds to back vouchers of a specific asset type.
+		_SharedPtr<OTAccount>	pVoucherReserveAcct; // contains the server's funds to back vouchers of a specific asset type.
 		// ----------------------------------------------------
 		OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
 		OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
@@ -5433,7 +5433,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                 OTCleanup<OTLedger>   theInboxAngel (pInbox);
                 OTCleanup<OTLedger>   theOutboxAngel(pOutbox);		
                 // ----------------------------------------------------
-                OTAccount_SharedPtr	pVoucherReserveAcct;        // contains the server's funds to back vouchers of a specific asset type.
+                _SharedPtr<OTAccount>	pVoucherReserveAcct;        // contains the server's funds to back vouchers of a specific asset type.
 //              OTAccount	*       pVoucherReserveAcct	= NULL;
                 // ----------------------------------------------------
                 //

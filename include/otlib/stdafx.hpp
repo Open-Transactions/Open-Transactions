@@ -6,6 +6,8 @@
 // Include the C one.
 #include "stdafx.h"
 
+#include "TR1_Wrapper.hpp"
+
 #ifdef OT_USE_CXX11
 #undef OT_USE_CXX11
 #endif

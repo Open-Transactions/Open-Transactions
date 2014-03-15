@@ -135,9 +135,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
-#include "MemoryWrapper.hpp"
+#include "TR1_Wrapper.hpp"
 
 #include "OTCachedKey.hpp"
+
+#include _CINTTYPES
 
 #include <string>
 
@@ -360,7 +362,7 @@ private:
     const std::string   m_strDisplay;
     bool                m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
     
-    OTCachedKey_SharedPtr m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
+    _SharedPtr<OTCachedKey> m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
 public:
     // --------------------------------
 EXPORT    bool            isForNormalNym()   const;
@@ -372,11 +374,11 @@ EXPORT    bool            isUsingOldSystem() const;
 EXPORT    void            setUsingOldSystem(bool bUsing=true);
     // --------------------------------
     OTPassword          * GetMasterPW () { return m_pMasterPW;  }
-    OTCachedKey_SharedPtr GetCachedKey() { return m_pCachedKey; }
+    _SharedPtr<OTCachedKey> GetCachedKey() { return m_pCachedKey; }
     // --------------------------------
-EXPORT    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
-EXPORT    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
-EXPORT    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL, OTCachedKey_SharedPtr pCachedKey=OTCachedKey_SharedPtr());
+EXPORT    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
+EXPORT    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
+EXPORT    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
 EXPORT    ~OTPasswordData();
 };
 

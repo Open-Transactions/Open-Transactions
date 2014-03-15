@@ -136,9 +136,12 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
+
+#include _CINTTYPES
 
 // ---------------------------------------------------------------------------
 

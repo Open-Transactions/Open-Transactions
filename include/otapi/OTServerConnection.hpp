@@ -137,6 +137,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #ifndef IMPORT
 #define IMPORT
@@ -155,6 +156,8 @@
 #include "ExportWrapper.h"
 #endif
 #endif
+
+#include _CINTTYPES
 
 struct TransportCallback;
 

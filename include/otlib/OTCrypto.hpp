@@ -136,14 +136,19 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTSettings.hpp"
 #include "OTPayload.hpp"
 #include "OTAssert.hpp"
 
+#include "tinythread.hpp"
+
+#include _CINTTYPES
+
 #include <set>
 
-#include "tinythread.hpp"
+
 
 class OTData;
 class OTIdentifier;

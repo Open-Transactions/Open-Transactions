@@ -150,7 +150,6 @@ OTMadeEasy::~OTMadeEasy()
 {
     if (NULL != m_pME)
         delete m_pME;
-    m_pME = NULL;
 }
 
 

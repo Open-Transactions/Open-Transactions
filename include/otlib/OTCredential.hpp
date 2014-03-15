@@ -169,10 +169,13 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTContract.hpp"
 
 #include "OTAsymmetricKey.hpp"
+
+#include _CINTTYPES
 
 
 // A nym contains a list of master credentials, via OTCredential.

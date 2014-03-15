@@ -143,6 +143,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #ifndef SWIG
 #ifndef NOT_SWIG
@@ -174,6 +175,7 @@
 #endif
 #endif
 
+#include _CINTTYPES
 
 #include <string>
 #include <functional>

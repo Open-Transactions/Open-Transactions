@@ -129,6 +129,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #if __clang__
 #pragma clang diagnostic push
@@ -142,6 +143,8 @@
 #ifndef SWIG
 
 #include "OTAssert.hpp"
+
+#include _CINTTYPES
 
 #include <iostream>
 #include <deque>
