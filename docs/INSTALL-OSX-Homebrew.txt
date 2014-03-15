@@ -47,7 +47,7 @@ section.
 
 # Add the open transactions tap to homebrew:
 $ brew tap mahyar/ot
-$ brew install --cc=clang open-transactions
+$ brew install --cc=clang --HEAD open-transactions
 
 ##########################################
 
