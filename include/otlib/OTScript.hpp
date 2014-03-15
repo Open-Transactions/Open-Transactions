@@ -150,11 +150,7 @@
 #pragma warning( disable : 4702 )  // warning C4702: unreachable code
 #endif
 
-#include <chaiscript/chaiscript.hpp>
 
-#ifdef OT_USE_CHAI5
-#include <chaiscript/chaiscript_stdlib.hpp>
-#endif
 
 #ifdef _MSC_VER
 #pragma warning( pop )
@@ -257,6 +253,9 @@ EXPORT OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type=NULL
 // ********************************************************************
 
 
+namespace chaiscript{
+    class ChaiScript;
+}
 
 class OTScriptChai : public OTScript
 {    
@@ -272,8 +271,8 @@ public:
 
     virtual bool ExecuteScript(OTVariable * pReturnVar=NULL);
     // ------------------------
-    
-    chaiscript::ChaiScript chai;
+
+    chaiscript::ChaiScript * const chai;
 };
 
 

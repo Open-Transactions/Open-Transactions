@@ -1,4 +1,7 @@
-SUBDIRS = otprotob bigint irrxml lucre otext
+
+AUTOMAKE_OPTIONS 	=	subdir-objects
+
+SUBDIRS 		= 	otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 
@@ -127,8 +130,8 @@ otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_ext)
 
 otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
-                	$(otlib_headers_dir)/ExportWrapper.h		\
-				$(otlib_headers_dir)/MemoryWrapper.hpp	\
+				$(otlib_headers_dir)/ExportWrapper.h		\
+				$(otlib_headers_dir)/MemoryWrapper.hpp		\
 				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_dir)/stacktrace.h		\
 				$(otlib_headers_dir)/stdafx.h			\
@@ -136,7 +139,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTAccount.hpp		\
 				$(otlib_headers_dir)/OTAgreement.hpp		\
 				$(otlib_headers_dir)/OTASCIIArmor.hpp		\
-				$(otlib_headers_dir)/OTAssert.hpp	\
+				$(otlib_headers_dir)/OTAssert.hpp		\
 				$(otlib_headers_dir)/OTAssetContract.hpp	\
 				$(otlib_headers_dir)/OTAsymmetricKey.hpp	\
 				$(otlib_headers_dir)/OTBasket.hpp		\
@@ -150,7 +153,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTCrypto.hpp         	\
 				$(otlib_headers_dir)/OTData.hpp			\
 				$(otlib_headers_dir)/OTDataCheck.hpp		\
-				$(otlib_headers_dir)/OTDigitalCash.hpp	\
+				$(otlib_headers_dir)/OTDigitalCash.hpp		\
 				$(otlib_headers_dir)/OTEnvelope.hpp		\
 				$(otlib_headers_dir)/OTKeyring.hpp		\
 				$(otlib_headers_dir)/OTglobal.h			\
@@ -170,7 +173,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTPaths.hpp		\
 				$(otlib_headers_dir)/OTPayload.hpp		\
 				$(otlib_headers_dir)/OTPayment.hpp		\
-				$(otlib_headers_dir)/OTPaymentPlan.hpp	\
+				$(otlib_headers_dir)/OTPaymentPlan.hpp		\
 				$(otlib_headers_dir)/OTPseudonym.hpp		\
 				$(otlib_headers_dir)/OTPurse.hpp		\
 				$(otlib_headers_dir)/OTScript.hpp		\
@@ -183,11 +186,11 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTStorage.hpp		\
 				$(otlib_headers_dir)/OTString.hpp		\
 				$(otlib_headers_dir)/OTStringXML.hpp		\
-				$(otlib_headers_dir)/OTSymmetricKey.hpp	\
+				$(otlib_headers_dir)/OTSymmetricKey.hpp		\
 				$(otlib_headers_dir)/OTToken.hpp		\
 				$(otlib_headers_dir)/OTTrackable.hpp		\
 				$(otlib_headers_dir)/OTTrade.hpp		\
-				$(otlib_headers_dir)/OTTransaction.hpp	\
+				$(otlib_headers_dir)/OTTransaction.hpp		\
 				$(otlib_headers_dir)/OTTransactionType.hpp	\
 				$(otlib_headers_dir)/OTWallet.hpp
 ####   Containers
@@ -195,13 +198,13 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 containers_headers_dir	=	$(opentxs_include_dir)/containers
 
 containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
-				$(containers_headers_dir)/containers_fixes.hpp\
+				$(containers_headers_dir)/containers_fixes.hpp	\
 				$(containers_headers_dir)/copy_functors.hpp	\
-				$(containers_headers_dir)/digraph.hpp	\
-				$(containers_headers_dir)/digraph.tpp	\
+				$(containers_headers_dir)/digraph.hpp		\
+				$(containers_headers_dir)/digraph.tpp		\
 				$(containers_headers_dir)/exceptions.hpp	\
-				$(containers_headers_dir)/foursome.hpp	\
-				$(containers_headers_dir)/foursome.tpp	\
+				$(containers_headers_dir)/foursome.hpp		\
+				$(containers_headers_dir)/foursome.tpp		\
 				$(containers_headers_dir)/hash.hpp		\
 				$(containers_headers_dir)/hash.tpp		\
 				$(containers_headers_dir)/matrix.hpp		\
@@ -212,8 +215,8 @@ containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 				$(containers_headers_dir)/safe_iterator.tpp	\
 				$(containers_headers_dir)/simple_ptr.hpp	\
 				$(containers_headers_dir)/simple_ptr.tpp	\
-				$(containers_headers_dir)/smart_ptr.hpp	\
-				$(containers_headers_dir)/smart_ptr.tpp	\
+				$(containers_headers_dir)/smart_ptr.hpp		\
+				$(containers_headers_dir)/smart_ptr.tpp		\
 				$(containers_headers_dir)/triple.hpp		\
 				$(containers_headers_dir)/triple.tpp
 
@@ -223,8 +226,8 @@ pkginclude_HEADERS		=	$(otlib_headers_ext)
 
 ## Extra rules to handle special ot_config.h
 
-nodist_pkginclude_HEADERS	= $(top_builddir)/include/otlib/ot_config.h
-DISTCLEANFILES			= $(top_builddir)/include/otlib/ot_config.h
+nodist_pkginclude_HEADERS	= 	$(top_builddir)/include/otlib/ot_config.h
+DISTCLEANFILES			= 	$(top_builddir)/include/otlib/ot_config.h
 
 ## Extra to package containers headers
 
@@ -233,11 +236,88 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 
 ## Extra to package simpleini headers
 
-simpleini_headers_dir	=	$(top_srcdir)/include/simpleini
+simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
 
-simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h  \
-				$(simpleini_headers_dir)/SimpleIni.hpp
+simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  				\
+					$(simpleini_headers_dir)/SimpleIni.hpp
 
-pkginclude_simpleinidir	=	$(pkgincludedir)/simpleini
+pkginclude_simpleinidir		=	$(pkgincludedir)/simpleini
 pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
 
+## Extra to package chai4 headers
+
+chai4hdrs_dir		=	$(top_srcdir)/include/chai4/chaiscript
+
+noinst_HEADERS		=	$(chai4hdrs_dir)/license.txt				\
+				$(chai4hdrs_dir)/chaiscript.hpp				\
+				$(chai4hdrs_dir)/chaiscript_threading.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/bad_boxed_cast.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/bind_first.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/bootstrap.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/bootstrap_stl.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/boxed_cast_helper.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/boxed_cast.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/boxed_number.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/boxed_value.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/dispatchkit.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/dynamic_cast_conversion.hpp\
+				$(chai4hdrs_dir)/dispatchkit/dynamic_object.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/exception_specification.hpp\
+				$(chai4hdrs_dir)/dispatchkit/function_call_detail.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/function_call.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/handle_return.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/operators.hpp		\
+				$(chai4hdrs_dir)/dispatchkit/proxy_constructors.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/proxy_functions_detail.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/proxy_functions.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/register_function.hpp	\
+				$(chai4hdrs_dir)/dispatchkit/type_info.hpp		\
+				$(chai4hdrs_dir)/language/chaiscript_algebraic.hpp	\
+				$(chai4hdrs_dir)/language/chaiscript_common.hpp		\
+				$(chai4hdrs_dir)/language/chaiscript_engine.hpp		\
+				$(chai4hdrs_dir)/language/chaiscript_eval.hpp		\
+				$(chai4hdrs_dir)/language/chaiscript_parser.hpp		\
+				$(chai4hdrs_dir)/language/chaiscript_prelude_docs.hpp	\
+				$(chai4hdrs_dir)/language/chaiscript_prelude.hpp	\
+				$(chai4hdrs_dir)/utility/utility.hpp
+
+
+## Extra to package chai5 headers
+
+chai5hdrs_dir		=	$(top_srcdir)/include/chai5/chaiscript
+
+noinst_HEADERS		+=	$(chai5hdrs_dir)/license.txt				\
+				$(chai5hdrs_dir)/chaiscript_defines.hpp			\
+				$(chai5hdrs_dir)/chaiscript.hpp				\
+				$(chai5hdrs_dir)/chaiscript_stdlib.hpp			\
+				$(chai5hdrs_dir)/chaiscript_threading.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/any.hpp			\
+				$(chai5hdrs_dir)/dispatchkit/bad_boxed_cast.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/bind_first.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/bootstrap.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/bootstrap_stl.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/boxed_cast_helper.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/boxed_cast.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/boxed_number.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/boxed_value.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/dispatchkit.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/dynamic_cast_conversion.hpp\
+				$(chai5hdrs_dir)/dispatchkit/dynamic_object.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/exception_specification.hpp\
+				$(chai5hdrs_dir)/dispatchkit/function_call_detail.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/function_call.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/handle_return.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/operators.hpp		\
+				$(chai5hdrs_dir)/dispatchkit/proxy_constructors.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/proxy_functions_detail.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/proxy_functions.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/register_function.hpp	\
+				$(chai5hdrs_dir)/dispatchkit/type_info.hpp		\
+				$(chai5hdrs_dir)/language/chaiscript_algebraic.hpp	\
+				$(chai5hdrs_dir)/language/chaiscript_common.hpp		\
+				$(chai5hdrs_dir)/language/chaiscript_engine.hpp		\
+				$(chai5hdrs_dir)/language/chaiscript_eval.hpp		\
+				$(chai5hdrs_dir)/language/chaiscript_parser.hpp		\
+				$(chai5hdrs_dir)/language/chaiscript_prelude.chai	\
+				$(chai5hdrs_dir)/language/chaiscript_prelude_docs.hpp	\
+				$(chai5hdrs_dir)/utility/utility.hpp

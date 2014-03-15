@@ -1,4 +1,4 @@
-########################################################################
+﻿########################################################################
 #                                                                      #
 #                                                                      #
 #                      ##  INSTALL - Windows   ##                      #
@@ -10,7 +10,7 @@
 ## Guide for OT on Windows
 
 Note:
- You can run OT on Windows XP (sp3) or later, however you must compile
+ You can run OT on Windows Vista SP2 or later, however you must compile
  and build OT from the latest version of windows.  (building on old versions
  of windows may work however, is not supported by da2ce7).
 
@@ -71,14 +71,6 @@ Note:
 
 $ git clone https://github.com/zeromq/zeromq2-x.git
 
-
-3. ChaiScript (latest git version on 5.x branch)
-    using the command prompt: open up ..\dev\ folder.
-
-$ git clone https://github.com/ChaiScript/ChaiScript.git
-$ cd ChaiScript
-$ git checkout ChaiScript_5_0_CPP_11
-$ git clean -fxd
 
 
 Note:

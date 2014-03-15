@@ -13,11 +13,11 @@
 #define OT_USE_CXX11
 #endif
 
-#ifdef OT_USE_CHAI5
-#undef OT_USE_CHAI5
+#ifdef OT_USE_CHAI_STDLIB
+#undef OT_USE_CHAI_STDLIB
 #endif
-#if defined(_MSC_VER) || defined(OPENTXS_CHAISCRIPT_5)
-#define OT_USE_CHAI5
+#ifdef OPENTXS_CHAISCRIPT_5
+#define OT_USE_CHAI_STDLIB
 #endif
 
 #ifndef OT_CRYPTO_USING_OPENSSL

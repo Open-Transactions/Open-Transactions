@@ -41,19 +41,6 @@ SWIG D:
 # find .rpm for "gdc" d-compiler front end for gcc
 # or build-install "gdc" yourself from source
 
-###########################################
-
-# now chaiscript  (for now we are using the development version)
-
-$ git clone git://github.com/ChaiScript/ChaiScript.git
-$ cd ChaiScript
-$ git checkout ChaiScript_5_0_CPP_11
-$ git clean -fxd
-$ cmake .
-$ make
-$ make test
-$ make install
-$ cd ..
 
 ######## Download opentxs #############
 # fetch O-T and prepare your copy for build
@@ -74,13 +61,10 @@ $ ./autogen.sh
 ########################################
 
 
-$ ./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --disable-boost
+$ ./configure
 
 
 #########   Configure Options:   #########
-
-Chaiscript 4:    --with-script=chai4
-Chaiscript 5:    --with-script=chai5
 
 Debug Mode:      --enable-debug
 Signal Handling: --enable-sighandler
@@ -88,10 +72,6 @@ Warnings:        --enable-warnings
 
 Release Mode:    --enable-release
 (default)
-
-No Boost:        --disable-boost
-No TR1:          --disable-cxxtr1
-No C++11:        --disable-cxx11
 
 (Optional)
 System Keyring:  --with-keyring=ARG
@@ -131,9 +111,6 @@ $ sudo ldconfig
 # to run otserver
 $ otserver
 
-# for python client api support export env variable
-$ export PYTHONPATH=/usr/local/lib:$PYTHONPATH
-
 # to look at an example wallet (WARNING :will reset all user data):
 $ mkdir -p ~/.ot && cp -R sample-data/ot-sample-data/* ~/.ot
 
@@ -141,4 +118,8 @@ $ mkdir -p ~/.ot && cp -R sample-data/ot-sample-data/* ~/.ot
 $ cd /usr/local/share/opentxs
 $ tar -xvf user-samples.tar.gz
 $ ls
+
+# for python client api support export env variable
+$ export PYTHONPATH=/usr/local/lib:$PYTHONPATH
+
 ################################################

@@ -149,6 +149,14 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 #include <OTPaths.hpp>
 
 
+#include <chaiscript/chaiscript.hpp>
+
+#ifdef OT_USE_CHAI_STDLIB
+#include <chaiscript/chaiscript_stdlib.hpp>
+#endif
+
+
+
 OT_ME::OT_ME()
 {
     
@@ -2028,192 +2036,194 @@ bool OT_ME::Register_Headers_With_Script()
 
 bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
 {
+    OT_ASSERT(NULL != theScript.chai)
+
 	using namespace chaiscript;
     // ----------------------------------------------------------------------
 	{
 		// ADD ENUMS
-		theScript.chai.add(user_type<OTDB::StoredObjectType>(), "OTDB_StoredObjectType");
+		theScript.chai->add(user_type<OTDB::StoredObjectType>(), "OTDB_StoredObjectType");
 
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_STRING), "STORED_OBJ_STRING");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_BLOB), "STORED_OBJ_BLOB");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_STRING_MAP), "STORED_OBJ_STRING_MAP");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_WALLET_DATA), "STORED_OBJ_WALLET_DATA");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_BID_DATA), "STORED_OBJ_BID_DATA");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_ASK_DATA), "STORED_OBJ_ASK_DATA");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_MARKET_DATA), "STORED_OBJ_MARKET_DATA");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_MARKET_LIST), "STORED_OBJ_MARKET_LIST");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_OFFER_LIST_MARKET), "STORED_OBJ_OFFER_LIST_MARKET");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_TRADE_DATA_MARKET), "STORED_OBJ_TRADE_DATA_MARKET");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_TRADE_LIST_MARKET), "STORED_OBJ_TRADE_LIST_MARKET");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_OFFER_DATA_NYM), "STORED_OBJ_OFFER_DATA_NYM");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_OFFER_LIST_NYM), "STORED_OBJ_OFFER_LIST_NYM");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_TRADE_DATA_NYM), "STORED_OBJ_TRADE_DATA_NYM");
-		theScript.chai.add_global_const(const_var(OTDB::STORED_OBJ_TRADE_LIST_NYM), "STORED_OBJ_TRADE_LIST_NYM");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_STRING), "STORED_OBJ_STRING");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_BLOB), "STORED_OBJ_BLOB");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_STRING_MAP), "STORED_OBJ_STRING_MAP");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_WALLET_DATA), "STORED_OBJ_WALLET_DATA");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_BID_DATA), "STORED_OBJ_BID_DATA");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_ASK_DATA), "STORED_OBJ_ASK_DATA");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_MARKET_DATA), "STORED_OBJ_MARKET_DATA");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_MARKET_LIST), "STORED_OBJ_MARKET_LIST");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_OFFER_LIST_MARKET), "STORED_OBJ_OFFER_LIST_MARKET");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_TRADE_DATA_MARKET), "STORED_OBJ_TRADE_DATA_MARKET");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_TRADE_LIST_MARKET), "STORED_OBJ_TRADE_LIST_MARKET");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_OFFER_DATA_NYM), "STORED_OBJ_OFFER_DATA_NYM");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_OFFER_LIST_NYM), "STORED_OBJ_OFFER_LIST_NYM");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_TRADE_DATA_NYM), "STORED_OBJ_TRADE_DATA_NYM");
+		theScript.chai->add_global_const(const_var(OTDB::STORED_OBJ_TRADE_LIST_NYM), "STORED_OBJ_TRADE_LIST_NYM");
 
 		// ADD OBJECT TYPES
 		// ----------------------------------------------------------------------
-		theScript.chai.add(user_type<OTDB::Storage>(),            "OTDB_Storage");
-		theScript.chai.add(user_type<OTDB::Storable>(),           "OTDB_Storable");
-		theScript.chai.add(user_type<OTDB::OTDBString>(),         "OTDB_String");
-		theScript.chai.add(user_type<OTDB::Blob>(),               "OTDB_Blob");
-		theScript.chai.add(user_type<OTDB::StringMap>(),          "OTDB_StringMap");
-		theScript.chai.add(user_type<OTDB::Displayable>(),        "OTDB_Displayable");
-		theScript.chai.add(user_type<OTDB::MarketData>(),         "OTDB_MarketData");
-		theScript.chai.add(user_type<OTDB::MarketList>(),         "OTDB_MarketList");
-		theScript.chai.add(user_type<OTDB::OfferDataMarket>(),    "OTDB_OfferDataMarket");
-		theScript.chai.add(user_type<OTDB::BidData>(),            "OTDB_BidData");
-		theScript.chai.add(user_type<OTDB::AskData>(),            "OTDB_AskData");
-		theScript.chai.add(user_type<OTDB::OfferListMarket>(),    "OTDB_OfferListMarket");
-		theScript.chai.add(user_type<OTDB::TradeDataMarket>(),    "OTDB_TradeDataMarket");
-		theScript.chai.add(user_type<OTDB::TradeListMarket>(),    "OTDB_TradeListMarket");
-		theScript.chai.add(user_type<OTDB::OfferDataNym>(),       "OTDB_OfferDataNym");
-		theScript.chai.add(user_type<OTDB::OfferListNym>(),       "OTDB_OfferListNym");
-		theScript.chai.add(user_type<OTDB::TradeDataNym>(),       "OTDB_TradeDataNym");
-		theScript.chai.add(user_type<OTDB::TradeListNym>(),       "OTDB_TradeListNym");
-//      theScript.chai.add(user_type<OTDB::Acct>(),               "OTDB_Acct");
-//      theScript.chai.add(user_type<OTDB::BitcoinAcct>(),        "OTDB_BitcoinAcct");
-//      theScript.chai.add(user_type<OTDB::ServerInfo>(),         "OTDB_ServerInfo");
-//      theScript.chai.add(user_type<OTDB::Server>(),             "OTDB_Server");
-//      theScript.chai.add(user_type<OTDB::BitcoinServer>(),      "OTDB_BitcoinServer");
-//      theScript.chai.add(user_type<OTDB::RippleServer>(),       "OTDB_RippleServer");
-//      theScript.chai.add(user_type<OTDB::LoomServer>(),         "OTDB_LoomServer");
-//      theScript.chai.add(user_type<OTDB::ContactNym>(),         "OTDB_ContactNym");
-//      theScript.chai.add(user_type<OTDB::WalletData>(),         "OTDB_WalletData");
-//      theScript.chai.add(user_type<OTDB::ContactAcct>(),        "OTDB_ContactAcct");
-//      theScript.chai.add(user_type<OTDB::Contact>(),            "OTDB_Contact");
-//      theScript.chai.add(user_type<OTDB::AddressBook>(),        "OTDB_AddressBook");        
+		theScript.chai->add(user_type<OTDB::Storage>(),            "OTDB_Storage");
+		theScript.chai->add(user_type<OTDB::Storable>(),           "OTDB_Storable");
+		theScript.chai->add(user_type<OTDB::OTDBString>(),         "OTDB_String");
+		theScript.chai->add(user_type<OTDB::Blob>(),               "OTDB_Blob");
+		theScript.chai->add(user_type<OTDB::StringMap>(),          "OTDB_StringMap");
+		theScript.chai->add(user_type<OTDB::Displayable>(),        "OTDB_Displayable");
+		theScript.chai->add(user_type<OTDB::MarketData>(),         "OTDB_MarketData");
+		theScript.chai->add(user_type<OTDB::MarketList>(),         "OTDB_MarketList");
+		theScript.chai->add(user_type<OTDB::OfferDataMarket>(),    "OTDB_OfferDataMarket");
+		theScript.chai->add(user_type<OTDB::BidData>(),            "OTDB_BidData");
+		theScript.chai->add(user_type<OTDB::AskData>(),            "OTDB_AskData");
+		theScript.chai->add(user_type<OTDB::OfferListMarket>(),    "OTDB_OfferListMarket");
+		theScript.chai->add(user_type<OTDB::TradeDataMarket>(),    "OTDB_TradeDataMarket");
+		theScript.chai->add(user_type<OTDB::TradeListMarket>(),    "OTDB_TradeListMarket");
+		theScript.chai->add(user_type<OTDB::OfferDataNym>(),       "OTDB_OfferDataNym");
+		theScript.chai->add(user_type<OTDB::OfferListNym>(),       "OTDB_OfferListNym");
+		theScript.chai->add(user_type<OTDB::TradeDataNym>(),       "OTDB_TradeDataNym");
+		theScript.chai->add(user_type<OTDB::TradeListNym>(),       "OTDB_TradeListNym");
+//      theScript.chai->add(user_type<OTDB::Acct>(),               "OTDB_Acct");
+//      theScript.chai->add(user_type<OTDB::BitcoinAcct>(),        "OTDB_BitcoinAcct");
+//      theScript.chai->add(user_type<OTDB::ServerInfo>(),         "OTDB_ServerInfo");
+//      theScript.chai->add(user_type<OTDB::Server>(),             "OTDB_Server");
+//      theScript.chai->add(user_type<OTDB::BitcoinServer>(),      "OTDB_BitcoinServer");
+//      theScript.chai->add(user_type<OTDB::RippleServer>(),       "OTDB_RippleServer");
+//      theScript.chai->add(user_type<OTDB::LoomServer>(),         "OTDB_LoomServer");
+//      theScript.chai->add(user_type<OTDB::ContactNym>(),         "OTDB_ContactNym");
+//      theScript.chai->add(user_type<OTDB::WalletData>(),         "OTDB_WalletData");
+//      theScript.chai->add(user_type<OTDB::ContactAcct>(),        "OTDB_ContactAcct");
+//      theScript.chai->add(user_type<OTDB::Contact>(),            "OTDB_Contact");
+//      theScript.chai->add(user_type<OTDB::AddressBook>(),        "OTDB_AddressBook");        
 
 
 		// ----------------------------------------------------------------------
 		// SHOW INHERITANCE
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::OTDBString>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::Blob>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::StringMap>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::Displayable>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::MarketData>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::MarketList>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::OfferDataMarket>());
-		theScript.chai.add(chaiscript::base_class<OTDB::OfferDataMarket,  OTDB::BidData>());
-		theScript.chai.add(chaiscript::base_class<OTDB::OfferDataMarket,  OTDB::AskData>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::OfferListMarket>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::TradeDataMarket>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::TradeListMarket>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::OfferDataNym>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::OfferListNym>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::TradeDataNym>());
-		theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::TradeListNym>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::Acct>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Acct,             OTDB::BitcoinAcct>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::ServerInfo>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::ServerInfo,       OTDB::Server>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Server,           OTDB::BitcoinServer>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Server,           OTDB::RippleServer>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Server,           OTDB::LoomServer>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactNym>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::WalletData>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactAcct>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Displayable,      OTDB::Contact>());
-//      theScript.chai.add(chaiscript::base_class<OTDB::Storable,         OTDB::AddressBook>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::OTDBString>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::Blob>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::StringMap>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::Displayable>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::MarketData>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::MarketList>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::OfferDataMarket>());
+		theScript.chai->add(chaiscript::base_class<OTDB::OfferDataMarket,  OTDB::BidData>());
+		theScript.chai->add(chaiscript::base_class<OTDB::OfferDataMarket,  OTDB::AskData>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::OfferListMarket>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::TradeDataMarket>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::TradeListMarket>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::OfferDataNym>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::OfferListNym>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::TradeDataNym>());
+		theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::TradeListNym>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Acct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Acct,             OTDB::BitcoinAcct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ServerInfo>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::ServerInfo,       OTDB::Server>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::BitcoinServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::RippleServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::LoomServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactNym>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::WalletData>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactAcct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Contact>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::AddressBook>());
 
 
 		// ----------------------------------------------------------------------
 
 
 		// ADD STORAGE FUNCTIONS
-		theScript.chai.add(fun(&OTDB::CreateObject),     "OTDB_CreateObject");        
+		theScript.chai->add(fun(&OTDB::CreateObject),     "OTDB_CreateObject");        
 
-//      theScript.chai.add(fun(&OTDB::Exists),           "OTDB_Exists");
-		theScript.chai.add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-//      theScript.chai.add(fun<bool (std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-//      theScript.chai.add(fun<bool (std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-//      theScript.chai.add(fun<bool (std::string)>(&OTDB::Exists), "OTDB_Exists");
-
-
-//      theScript.chai.add(fun(&OTDB::StoreString),      "OTDB_StoreString");
-		theScript.chai.add(fun<bool (std::string, std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-//      theScript.chai.add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-//      theScript.chai.add(fun<bool (std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-//      theScript.chai.add(fun<bool (std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun(&OTDB::Exists),           "OTDB_Exists");
+		theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string)>(&OTDB::Exists), "OTDB_Exists");
 
 
-//      theScript.chai.add(fun(&OTDB::QueryString),      "OTDB_QueryString");
-		theScript.chai.add(fun<std::string (std::string, std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-//      theScript.chai.add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-//      theScript.chai.add(fun<std::string (std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-//      theScript.chai.add(fun<std::string (std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun(&OTDB::StoreString),      "OTDB_StoreString");
+		theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
 
 
-//      theScript.chai.add(fun(&OTDB::StorePlainString), "OTDB_StorePlainString");
-		theScript.chai.add(fun<bool (std::string, std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-//      theScript.chai.add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-//      theScript.chai.add(fun<bool (std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-//      theScript.chai.add(fun<bool (std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun(&OTDB::QueryString),      "OTDB_QueryString");
+		theScript.chai->add(fun<std::string (std::string, std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryString), "OTDB_QueryString");
 
 
-//      theScript.chai.add(fun(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-		theScript.chai.add(fun<std::string (std::string, std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-//      theScript.chai.add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-//      theScript.chai.add(fun<std::string (std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-//      theScript.chai.add(fun<std::string (std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun(&OTDB::StorePlainString), "OTDB_StorePlainString");
+		theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
 
 
-//      theScript.chai.add(fun(&OTDB::StoreObject),      "OTDB_StoreObject");
-		theScript.chai.add(fun<bool (OTDB::Storable &, std::string, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-//      theScript.chai.add(fun<bool (OTDB::Storable &, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-//      theScript.chai.add(fun<bool (OTDB::Storable &, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-//      theScript.chai.add(fun<bool (OTDB::Storable &, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+		theScript.chai->add(fun<std::string (std::string, std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
 
 
-//      theScript.chai.add(fun(&OTDB::QueryObject),      "OTDB_QueryObject");
-		theScript.chai.add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-//      theScript.chai.add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-//      theScript.chai.add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-//      theScript.chai.add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun(&OTDB::StoreObject),      "OTDB_StoreObject");
+		theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
 
 
-		theScript.chai.add(fun(&OTDB::EncodeObject),     "OTDB_EncodeObject");
-		theScript.chai.add(fun(&OTDB::DecodeObject),     "OTDB_DecodeObject");
+//      theScript.chai->add(fun(&OTDB::QueryObject),      "OTDB_QueryObject");
+		theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
 
 
-//      theScript.chai.add(fun(&OTDB::EraseValueByKey),  "OTDB_EraseValueByKey");
+		theScript.chai->add(fun(&OTDB::EncodeObject),     "OTDB_EncodeObject");
+		theScript.chai->add(fun(&OTDB::DecodeObject),     "OTDB_DecodeObject");
+
+
+//      theScript.chai->add(fun(&OTDB::EraseValueByKey),  "OTDB_EraseValueByKey");
 
 
         // ----------------------------------------------------------------------
 		// ADD DYNAMIC CASTING.
         //
-//      theScript.chai.add(fun<OTDB::OTDBString * (OTDB::Storable *)>(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
-		theScript.chai.add(fun(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
-		theScript.chai.add(fun(&OTDB::Blob::ot_dynamic_cast),             "OTDB_CAST_BLOB");
-		theScript.chai.add(fun(&OTDB::StringMap::ot_dynamic_cast),        "OTDB_CAST_STRING_MAP");
-		theScript.chai.add(fun(&OTDB::Displayable::ot_dynamic_cast),      "OTDB_CAST_DISPLAYABLE");
-		theScript.chai.add(fun(&OTDB::MarketData::ot_dynamic_cast),       "OTDB_CAST_MARKET_DATA");
+//      theScript.chai->add(fun<OTDB::OTDBString * (OTDB::Storable *)>(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
+		theScript.chai->add(fun(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
+		theScript.chai->add(fun(&OTDB::Blob::ot_dynamic_cast),             "OTDB_CAST_BLOB");
+		theScript.chai->add(fun(&OTDB::StringMap::ot_dynamic_cast),        "OTDB_CAST_STRING_MAP");
+		theScript.chai->add(fun(&OTDB::Displayable::ot_dynamic_cast),      "OTDB_CAST_DISPLAYABLE");
+		theScript.chai->add(fun(&OTDB::MarketData::ot_dynamic_cast),       "OTDB_CAST_MARKET_DATA");
 
 
 
-//      theScript.chai.add(fun<OTDB::MarketList * (OTDB::Storable *)>(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
-		theScript.chai.add(fun(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::ot_dynamic_cast),  "OTDB_CAST_OFFER_DATA_MARKET");
-		theScript.chai.add(fun(&OTDB::BidData::ot_dynamic_cast),          "OTDB_CAST_BID_DATA");
-		theScript.chai.add(fun(&OTDB::AskData::ot_dynamic_cast),          "OTDB_CAST_ASK_DATA");
-		theScript.chai.add(fun(&OTDB::OfferListMarket::ot_dynamic_cast),  "OTDB_CAST_OFFER_LIST_MARKET");
-		theScript.chai.add(fun(&OTDB::TradeDataMarket::ot_dynamic_cast),  "OTDB_CAST_TRADE_DATA_MARKET");
-		theScript.chai.add(fun(&OTDB::TradeListMarket::ot_dynamic_cast),  "OTDB_CAST_TRADE_LIST_MARKET");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::ot_dynamic_cast),     "OTDB_CAST_OFFER_DATA_NYM");
-		theScript.chai.add(fun(&OTDB::OfferListNym::ot_dynamic_cast),     "OTDB_CAST_OFFER_LIST_NYM");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::ot_dynamic_cast),     "OTDB_CAST_TRADE_DATA_NYM");
-		theScript.chai.add(fun(&OTDB::TradeListNym::ot_dynamic_cast),     "OTDB_CAST_TRADE_LIST_NYM");
+//      theScript.chai->add(fun<OTDB::MarketList * (OTDB::Storable *)>(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
+		theScript.chai->add(fun(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::ot_dynamic_cast),  "OTDB_CAST_OFFER_DATA_MARKET");
+		theScript.chai->add(fun(&OTDB::BidData::ot_dynamic_cast),          "OTDB_CAST_BID_DATA");
+		theScript.chai->add(fun(&OTDB::AskData::ot_dynamic_cast),          "OTDB_CAST_ASK_DATA");
+		theScript.chai->add(fun(&OTDB::OfferListMarket::ot_dynamic_cast),  "OTDB_CAST_OFFER_LIST_MARKET");
+		theScript.chai->add(fun(&OTDB::TradeDataMarket::ot_dynamic_cast),  "OTDB_CAST_TRADE_DATA_MARKET");
+		theScript.chai->add(fun(&OTDB::TradeListMarket::ot_dynamic_cast),  "OTDB_CAST_TRADE_LIST_MARKET");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::ot_dynamic_cast),     "OTDB_CAST_OFFER_DATA_NYM");
+		theScript.chai->add(fun(&OTDB::OfferListNym::ot_dynamic_cast),     "OTDB_CAST_OFFER_LIST_NYM");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::ot_dynamic_cast),     "OTDB_CAST_TRADE_DATA_NYM");
+		theScript.chai->add(fun(&OTDB::TradeListNym::ot_dynamic_cast),     "OTDB_CAST_TRADE_LIST_NYM");
 		// ----------------------------------------------------------------------
 
 
-//      theScript.chai.add(fun(&OTDB::MarketList::GetMarketDataCount), "GetMarketDataCount");
-//      theScript.chai.add(fun(&OTDB::MarketList::GetMarketData),      "GetMarketData");
-//      theScript.chai.add(fun(&OTDB::MarketList::RemoveMarketData),   "RemoveMarketData");
-//      theScript.chai.add(fun(&OTDB::MarketList::AddMarketData),      "AddMarketData");
+//      theScript.chai->add(fun(&OTDB::MarketList::GetMarketDataCount), "GetMarketDataCount");
+//      theScript.chai->add(fun(&OTDB::MarketList::GetMarketData),      "GetMarketData");
+//      theScript.chai->add(fun(&OTDB::MarketList::RemoveMarketData),   "RemoveMarketData");
+//      theScript.chai->add(fun(&OTDB::MarketList::AddMarketData),      "AddMarketData");
 //
-//      theScript.chai.add(fun(&OTDB::MarketList::Get##name##Count), "Get" #name "Count");
-//      theScript.chai.add(fun(&OTDB::MarketList::Get##name),      "Get" #name );
-//      theScript.chai.add(fun(&OTDB::MarketList::Remove##name),   "Remove" #name);
-//      theScript.chai.add(fun(&OTDB::MarketList::Add##name),      "Add" #name);
+//      theScript.chai->add(fun(&OTDB::MarketList::Get##name##Count), "Get" #name "Count");
+//      theScript.chai->add(fun(&OTDB::MarketList::Get##name),      "Get" #name );
+//      theScript.chai->add(fun(&OTDB::MarketList::Remove##name),   "Remove" #name);
+//      theScript.chai->add(fun(&OTDB::MarketList::Add##name),      "Add" #name);
 //
 //      EXPORT	size_t Get##name##Count(); \
 //      EXPORT	name * Get##name(size_t nIndex); \
@@ -2222,103 +2232,103 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
 
 		// ----------------------------------------------------------------------        
 #define OT_CHAI_CONTAINER(container, name) \
-	theScript.chai.add(fun(&OTDB::container::Get##name##Count),   "Get" #name "Count"); \
-	theScript.chai.add(fun(&OTDB::container::Get##name),          "Get" #name ); \
-	theScript.chai.add(fun(&OTDB::container::Remove##name),       "Remove" #name); \
-	theScript.chai.add(fun(&OTDB::container::Add##name),          "Add" #name)
+	theScript.chai->add(fun(&OTDB::container::Get##name##Count),   "Get" #name "Count"); \
+	theScript.chai->add(fun(&OTDB::container::Get##name),          "Get" #name ); \
+	theScript.chai->add(fun(&OTDB::container::Remove##name),       "Remove" #name); \
+	theScript.chai->add(fun(&OTDB::container::Add##name),          "Add" #name)
 		// ----------------------------------------------------------------------
 
 		// ADD MEMBERS OF THE VARIOUS OBJECTS
 
-		theScript.chai.add(fun(&OTDB::OTDBString::m_string),  "m_string");
+		theScript.chai->add(fun(&OTDB::OTDBString::m_string),  "m_string");
 		// ----------------------------------------------------------------------
-		theScript.chai.add(fun(&OTDB::Blob::m_memBuffer),     "m_memBuffer");
+		theScript.chai->add(fun(&OTDB::Blob::m_memBuffer),     "m_memBuffer");
 		// ----------------------------------------------------------------------
-		theScript.chai.add(fun(&OTDB::StringMap::the_map),    "the_map");
-		theScript.chai.add(fun(&OTDB::StringMap::SetValue),   "SetValue");
-		theScript.chai.add(fun(&OTDB::StringMap::GetValue),   "GetValue");
+		theScript.chai->add(fun(&OTDB::StringMap::the_map),    "the_map");
+		theScript.chai->add(fun(&OTDB::StringMap::SetValue),   "SetValue");
+		theScript.chai->add(fun(&OTDB::StringMap::GetValue),   "GetValue");
 		// ----------------------------------------------------------------------
-		theScript.chai.add(fun(&OTDB::Displayable::gui_label), "gui_label");
+		theScript.chai->add(fun(&OTDB::Displayable::gui_label), "gui_label");
 		// ----------------------------------------------------------------------
-//      theScript.chai.add(fun(&OTDB::MarketData::gui_label),         "gui_label");
-		theScript.chai.add(fun(&OTDB::MarketData::server_id),         "server_id");
-		theScript.chai.add(fun(&OTDB::MarketData::market_id),         "market_id");
-		theScript.chai.add(fun(&OTDB::MarketData::asset_type_id),     "asset_type_id");
-		theScript.chai.add(fun(&OTDB::MarketData::currency_type_id),  "currency_type_id");
-		theScript.chai.add(fun(&OTDB::MarketData::scale),             "scale");
-		theScript.chai.add(fun(&OTDB::MarketData::total_assets),      "total_assets");
-		theScript.chai.add(fun(&OTDB::MarketData::number_bids),       "number_bids");
-		theScript.chai.add(fun(&OTDB::MarketData::number_asks),       "number_asks");
-		theScript.chai.add(fun(&OTDB::MarketData::last_sale_price),   "last_sale_price");
-		theScript.chai.add(fun(&OTDB::MarketData::last_sale_date),    "last_sale_date");
-		theScript.chai.add(fun(&OTDB::MarketData::current_bid),       "current_bid");
-		theScript.chai.add(fun(&OTDB::MarketData::current_ask),       "current_ask");
+//      theScript.chai->add(fun(&OTDB::MarketData::gui_label),         "gui_label");
+		theScript.chai->add(fun(&OTDB::MarketData::server_id),         "server_id");
+		theScript.chai->add(fun(&OTDB::MarketData::market_id),         "market_id");
+		theScript.chai->add(fun(&OTDB::MarketData::asset_type_id),     "asset_type_id");
+		theScript.chai->add(fun(&OTDB::MarketData::currency_type_id),  "currency_type_id");
+		theScript.chai->add(fun(&OTDB::MarketData::scale),             "scale");
+		theScript.chai->add(fun(&OTDB::MarketData::total_assets),      "total_assets");
+		theScript.chai->add(fun(&OTDB::MarketData::number_bids),       "number_bids");
+		theScript.chai->add(fun(&OTDB::MarketData::number_asks),       "number_asks");
+		theScript.chai->add(fun(&OTDB::MarketData::last_sale_price),   "last_sale_price");
+		theScript.chai->add(fun(&OTDB::MarketData::last_sale_date),    "last_sale_date");
+		theScript.chai->add(fun(&OTDB::MarketData::current_bid),       "current_bid");
+		theScript.chai->add(fun(&OTDB::MarketData::current_ask),       "current_ask");
 
 		OT_CHAI_CONTAINER(MarketList, MarketData);
 		// ----------------------------------------------------------------------
-//      theScript.chai.add(fun(&OTDB::OfferDataMarket::gui_label),         "gui_label");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::transaction_id),    "transaction_id");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::price_per_scale),   "price_per_scale");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::available_assets),  "available_assets");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::minimum_increment), "minimum_increment");
-		theScript.chai.add(fun(&OTDB::OfferDataMarket::date),              "date");
+//      theScript.chai->add(fun(&OTDB::OfferDataMarket::gui_label),         "gui_label");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::transaction_id),    "transaction_id");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::price_per_scale),   "price_per_scale");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::available_assets),  "available_assets");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::minimum_increment), "minimum_increment");
+		theScript.chai->add(fun(&OTDB::OfferDataMarket::date),              "date");
 
-//      theScript.chai.add(fun(&OTDB::BidData::gui_label),         "gui_label");
-//      theScript.chai.add(fun(&OTDB::BidData::transaction_id),    "transaction_id");
-//      theScript.chai.add(fun(&OTDB::BidData::price_per_scale),   "price_per_scale");
-//      theScript.chai.add(fun(&OTDB::BidData::available_assets),  "available_assets");
-//      theScript.chai.add(fun(&OTDB::BidData::minimum_increment), "minimum_increment");
+//      theScript.chai->add(fun(&OTDB::BidData::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::BidData::transaction_id),    "transaction_id");
+//      theScript.chai->add(fun(&OTDB::BidData::price_per_scale),   "price_per_scale");
+//      theScript.chai->add(fun(&OTDB::BidData::available_assets),  "available_assets");
+//      theScript.chai->add(fun(&OTDB::BidData::minimum_increment), "minimum_increment");
 
-//      theScript.chai.add(fun(&OTDB::AskData::gui_label),         "gui_label");
-//      theScript.chai.add(fun(&OTDB::AskData::transaction_id),    "transaction_id");
-//      theScript.chai.add(fun(&OTDB::AskData::price_per_scale),   "price_per_scale");
-//      theScript.chai.add(fun(&OTDB::AskData::available_assets),  "available_assets");
-//      theScript.chai.add(fun(&OTDB::AskData::minimum_increment), "minimum_increment");
+//      theScript.chai->add(fun(&OTDB::AskData::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::AskData::transaction_id),    "transaction_id");
+//      theScript.chai->add(fun(&OTDB::AskData::price_per_scale),   "price_per_scale");
+//      theScript.chai->add(fun(&OTDB::AskData::available_assets),  "available_assets");
+//      theScript.chai->add(fun(&OTDB::AskData::minimum_increment), "minimum_increment");
 		
         OT_CHAI_CONTAINER(OfferListMarket, BidData);
 		OT_CHAI_CONTAINER(OfferListMarket, AskData);
 		// ----------------------------------------------------------------------
-//      theScript.chai.add(fun(&OTDB::TradeDataMarket::gui_label),      "gui_label");
-		theScript.chai.add(fun(&OTDB::TradeDataMarket::transaction_id), "transaction_id");
-		theScript.chai.add(fun(&OTDB::TradeDataMarket::date),           "date");
-		theScript.chai.add(fun(&OTDB::TradeDataMarket::price),          "price");
-		theScript.chai.add(fun(&OTDB::TradeDataMarket::amount_sold),    "amount_sold");
+//      theScript.chai->add(fun(&OTDB::TradeDataMarket::gui_label),      "gui_label");
+		theScript.chai->add(fun(&OTDB::TradeDataMarket::transaction_id), "transaction_id");
+		theScript.chai->add(fun(&OTDB::TradeDataMarket::date),           "date");
+		theScript.chai->add(fun(&OTDB::TradeDataMarket::price),          "price");
+		theScript.chai->add(fun(&OTDB::TradeDataMarket::amount_sold),    "amount_sold");
 
 		OT_CHAI_CONTAINER(TradeListMarket, TradeDataMarket);
 		// ----------------------------------------------------------------------
-//      theScript.chai.add(fun(&OTDB::OfferDataNym::gui_label),      "gui_label");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::valid_from),     "valid_from");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::valid_to),       "valid_to");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::server_id),      "server_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::asset_type_id),  "asset_type_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::asset_acct_id),  "asset_acct_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::currency_type_id),  "currency_type_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::currency_acct_id),  "currency_acct_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::selling),        "selling");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::scale),          "scale");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::price_per_scale),"price_per_scale");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::transaction_id), "transaction_id");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::total_assets),   "total_assets");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::finished_so_far),"finished_so_far");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::minimum_increment),  "minimum_increment");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::stop_sign),      "stop_sign");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::stop_price),     "stop_price");
-		theScript.chai.add(fun(&OTDB::OfferDataNym::date),           "date");
+//      theScript.chai->add(fun(&OTDB::OfferDataNym::gui_label),      "gui_label");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::valid_from),     "valid_from");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::valid_to),       "valid_to");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::server_id),      "server_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::asset_type_id),  "asset_type_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::asset_acct_id),  "asset_acct_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::currency_type_id),  "currency_type_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::currency_acct_id),  "currency_acct_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::selling),        "selling");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::scale),          "scale");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::price_per_scale),"price_per_scale");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::transaction_id), "transaction_id");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::total_assets),   "total_assets");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::finished_so_far),"finished_so_far");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::minimum_increment),  "minimum_increment");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::stop_sign),      "stop_sign");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::stop_price),     "stop_price");
+		theScript.chai->add(fun(&OTDB::OfferDataNym::date),           "date");
 
 		OT_CHAI_CONTAINER(OfferListNym, OfferDataNym);
 		// ----------------------------------------------------------------------
-//      theScript.chai.add(fun(&OTDB::TradeDataNym::gui_label),       "gui_label");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::transaction_id),  "transaction_id");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::completed_count), "completed_count");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::date),            "date");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::price),           "price");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::amount_sold),     "amount_sold");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::updated_id),      "updated_id");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::offer_price),     "offer_price");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::finished_so_far), "finished_so_far");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::asset_id),        "asset_id");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::currency_id),     "currency_id");
-		theScript.chai.add(fun(&OTDB::TradeDataNym::currency_paid),   "currency_paid");
+//      theScript.chai->add(fun(&OTDB::TradeDataNym::gui_label),       "gui_label");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::transaction_id),  "transaction_id");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::completed_count), "completed_count");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::date),            "date");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::price),           "price");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::amount_sold),     "amount_sold");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::updated_id),      "updated_id");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::offer_price),     "offer_price");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::finished_so_far), "finished_so_far");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::asset_id),        "asset_id");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::currency_id),     "currency_id");
+		theScript.chai->add(fun(&OTDB::TradeDataNym::currency_paid),   "currency_paid");
 
 		OT_CHAI_CONTAINER(TradeListNym, TradeDataNym);
 		// ----------------------------------------------------------------------
@@ -2336,14 +2346,14 @@ bool OT_ME::Register_CLI_With_Script_Chai(OTScriptChai & theScript)
 	{
 		// ADD THE OT CLI FUNCTIONS
 		// ------------------------------------------------------------------
-		theScript.chai.add(fun(&OT_CLI_ReadLine),        "OT_CLI_ReadLine");			// String OT_CLI_ReadLine()		// Reads from cin until Newline.
-		theScript.chai.add(fun(&OT_CLI_ReadUntilEOF),    "OT_CLI_ReadUntilEOF");	// String OT_CLI_ReadUntilEOF()	// Reads from cin until EOF or ~ on a line by itself.
+		theScript.chai->add(fun(&OT_CLI_ReadLine),        "OT_CLI_ReadLine");			// String OT_CLI_ReadLine()		// Reads from cin until Newline.
+		theScript.chai->add(fun(&OT_CLI_ReadUntilEOF),    "OT_CLI_ReadUntilEOF");	// String OT_CLI_ReadUntilEOF()	// Reads from cin until EOF or ~ on a line by itself.
 		// ------------------------------------------------------------------
 		// For command-line option (for SCRIPTS):  ot --script <filename> [--args "key value key value ..."]
-		theScript.chai.add(fun(&OT_CLI_GetArgsCount),    "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from astd::string. Returns int.
-		theScript.chai.add(fun(&OT_CLI_GetValueByKey),   "OT_CLI_GetValueByKey");	// Returns a VALUE asstd::string, BY KEY, from a map of key/value pairs (stored in astd::string.)
-		theScript.chai.add(fun(&OT_CLI_GetValueByIndex), "OT_CLI_GetValueByIndex");	// Returns a VALUE asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
-		theScript.chai.add(fun(&OT_CLI_GetKeyByIndex),   "OT_CLI_GetKeyByIndex");	// Returns a KEY asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
+		theScript.chai->add(fun(&OT_CLI_GetArgsCount),    "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from astd::string. Returns int.
+		theScript.chai->add(fun(&OT_CLI_GetValueByKey),   "OT_CLI_GetValueByKey");	// Returns a VALUE asstd::string, BY KEY, from a map of key/value pairs (stored in astd::string.)
+		theScript.chai->add(fun(&OT_CLI_GetValueByIndex), "OT_CLI_GetValueByIndex");	// Returns a VALUE asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
+		theScript.chai->add(fun(&OT_CLI_GetKeyByIndex),   "OT_CLI_GetKeyByIndex");	// Returns a KEY asstd::string, BY INDEX, from a map of key/value pairs (stored in astd::string.)
 		// ------------------------------------------------------------------
 		return true; // Success (hopefully!)
 	}
@@ -2358,391 +2368,391 @@ bool OT_ME::Register_API_With_Script_Chai(OTScriptChai & theScript)
 	using namespace chaiscript;
     // ----------------------------------------------------------------------
 	{
-		theScript.chai.add(fun(&OTAPI_Wrap::Output), "OT_API_Output");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetTime), "OT_API_GetTime");
+		theScript.chai->add(fun(&OTAPI_Wrap::Output), "OT_API_Output");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetTime), "OT_API_GetTime");
         
 		// ------------------------------------------------------------------
 
-		theScript.chai.add(fun(&OTAPI_Wrap::NumList_Add), "OT_API_NumList_Add");
-		theScript.chai.add(fun(&OTAPI_Wrap::NumList_Remove), "OT_API_NumList_Remove");
-		theScript.chai.add(fun(&OTAPI_Wrap::NumList_VerifyQuery), "OT_API_NumList_VerifyQuery");
-		theScript.chai.add(fun(&OTAPI_Wrap::NumList_VerifyAll), "OT_API_NumList_VerifyAll");
-		theScript.chai.add(fun(&OTAPI_Wrap::NumList_Count), "OT_API_NumList_Count");
+		theScript.chai->add(fun(&OTAPI_Wrap::NumList_Add), "OT_API_NumList_Add");
+		theScript.chai->add(fun(&OTAPI_Wrap::NumList_Remove), "OT_API_NumList_Remove");
+		theScript.chai->add(fun(&OTAPI_Wrap::NumList_VerifyQuery), "OT_API_NumList_VerifyQuery");
+		theScript.chai->add(fun(&OTAPI_Wrap::NumList_VerifyAll), "OT_API_NumList_VerifyAll");
+		theScript.chai->add(fun(&OTAPI_Wrap::NumList_Count), "OT_API_NumList_Count");
 
 		// ------------------------------------------------------------------
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Encode), "OT_API_Encode");
-		theScript.chai.add(fun(&OTAPI_Wrap::Decode), "OT_API_Decode");
-		theScript.chai.add(fun(&OTAPI_Wrap::Encrypt), "OT_API_Encrypt");
-		theScript.chai.add(fun(&OTAPI_Wrap::Decrypt), "OT_API_Decrypt");
+		theScript.chai->add(fun(&OTAPI_Wrap::Encode), "OT_API_Encode");
+		theScript.chai->add(fun(&OTAPI_Wrap::Decode), "OT_API_Decode");
+		theScript.chai->add(fun(&OTAPI_Wrap::Encrypt), "OT_API_Encrypt");
+		theScript.chai->add(fun(&OTAPI_Wrap::Decrypt), "OT_API_Decrypt");
         
         // ------------------------------------------------------------------		
 		
-        theScript.chai.add(fun(&OTAPI_Wrap::CreateSymmetricKey), "OT_API_CreateSymmetricKey");
-        theScript.chai.add(fun(&OTAPI_Wrap::SymmetricEncrypt), "OT_API_SymmetricEncrypt");
-        theScript.chai.add(fun(&OTAPI_Wrap::SymmetricDecrypt), "OT_API_SymmetricDecrypt");
-        theScript.chai.add(fun(&OTAPI_Wrap::CreateServerContract), "OT_API_CreateServerContract");
-        theScript.chai.add(fun(&OTAPI_Wrap::CreateAssetContract), "OT_API_CreateAssetContract");
-        theScript.chai.add(fun(&OTAPI_Wrap::GetServer_Contract), "OT_API_GetServer_Contract");
-        theScript.chai.add(fun(&OTAPI_Wrap::GetAssetType_Contract), "OT_API_GetAssetType_Contract");
+        theScript.chai->add(fun(&OTAPI_Wrap::CreateSymmetricKey), "OT_API_CreateSymmetricKey");
+        theScript.chai->add(fun(&OTAPI_Wrap::SymmetricEncrypt), "OT_API_SymmetricEncrypt");
+        theScript.chai->add(fun(&OTAPI_Wrap::SymmetricDecrypt), "OT_API_SymmetricDecrypt");
+        theScript.chai->add(fun(&OTAPI_Wrap::CreateServerContract), "OT_API_CreateServerContract");
+        theScript.chai->add(fun(&OTAPI_Wrap::CreateAssetContract), "OT_API_CreateAssetContract");
+        theScript.chai->add(fun(&OTAPI_Wrap::GetServer_Contract), "OT_API_GetServer_Contract");
+        theScript.chai->add(fun(&OTAPI_Wrap::GetAssetType_Contract), "OT_API_GetAssetType_Contract");
         
-        theScript.chai.add(fun(&OTAPI_Wrap::FormatAmount), "OT_API_FormatAmount");
-        theScript.chai.add(fun(&OTAPI_Wrap::StringToAmount), "OT_API_StringToAmount");
+        theScript.chai->add(fun(&OTAPI_Wrap::FormatAmount), "OT_API_FormatAmount");
+        theScript.chai->add(fun(&OTAPI_Wrap::StringToAmount), "OT_API_StringToAmount");
         
         // ------------------------------------------------------------------		
         
-		theScript.chai.add(fun(&OTAPI_Wrap::FlatSign), "OT_API_FlatSign");
-		theScript.chai.add(fun(&OTAPI_Wrap::SignContract), "OT_API_SignContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::AddSignature), "OT_API_AddSignature");
-		theScript.chai.add(fun(&OTAPI_Wrap::VerifySignature), "OT_API_VerifySignature");
+		theScript.chai->add(fun(&OTAPI_Wrap::FlatSign), "OT_API_FlatSign");
+		theScript.chai->add(fun(&OTAPI_Wrap::SignContract), "OT_API_SignContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddSignature), "OT_API_AddSignature");
+		theScript.chai->add(fun(&OTAPI_Wrap::VerifySignature), "OT_API_VerifySignature");
 
 		// ------------------------------------------------------------------		
-		theScript.chai.add(fun(&OTAPI_Wrap::CreateNym), "OT_API_CreateNym");
+		theScript.chai->add(fun(&OTAPI_Wrap::CreateNym), "OT_API_CreateNym");
         
-        theScript.chai.add(fun(&OTAPI_Wrap::GetNym_SourceForID), "OT_API_GetNym_SourceForID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_AltSourceLocation), "OT_API_GetNym_AltSourceLocation");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_CredentialCount), "OT_API_GetNym_CredentialCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_CredentialID), "OT_API_GetNym_CredentialID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_CredentialContents), "OT_API_GetNym_CredentialContents");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_RevokedCredCount), "OT_API_GetNym_RevokedCredCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_RevokedCredID), "OT_API_GetNym_RevokedCredID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_RevokedCredContents), "OT_API_GetNym_RevokedCredContents");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_SubcredentialCount), "OT_API_GetNym_SubcredentialCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_SubCredentialID), "OT_API_GetNym_SubCredentialID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_SubCredentialContents), "OT_API_GetNym_SubCredentialContents");
+        theScript.chai->add(fun(&OTAPI_Wrap::GetNym_SourceForID), "OT_API_GetNym_SourceForID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_AltSourceLocation), "OT_API_GetNym_AltSourceLocation");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_CredentialCount), "OT_API_GetNym_CredentialCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_CredentialID), "OT_API_GetNym_CredentialID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_CredentialContents), "OT_API_GetNym_CredentialContents");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_RevokedCredCount), "OT_API_GetNym_RevokedCredCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_RevokedCredID), "OT_API_GetNym_RevokedCredID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_RevokedCredContents), "OT_API_GetNym_RevokedCredContents");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_SubcredentialCount), "OT_API_GetNym_SubcredentialCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_SubCredentialID), "OT_API_GetNym_SubCredentialID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_SubCredentialContents), "OT_API_GetNym_SubCredentialContents");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::AddSubcredential), "OT_API_AddSubcredential");
-		theScript.chai.add(fun(&OTAPI_Wrap::RevokeSubcredential), "OT_API_RevokeSubcredential");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddSubcredential), "OT_API_AddSubcredential");
+		theScript.chai->add(fun(&OTAPI_Wrap::RevokeSubcredential), "OT_API_RevokeSubcredential");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::AddServerContract), "OT_API_AddServerContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::AddAssetContract), "OT_API_AddAssetContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetServerCount), "OT_API_GetServerCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAssetTypeCount), "OT_API_GetAssetTypeCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountCount), "OT_API_GetAccountCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNymCount), "OT_API_GetNymCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetServer_ID), "OT_API_GetServer_ID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetServer_Name), "OT_API_GetServer_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAssetType_ID), "OT_API_GetAssetType_ID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAssetType_Name), "OT_API_GetAssetType_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddServerContract), "OT_API_AddServerContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddAssetContract), "OT_API_AddAssetContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetServerCount), "OT_API_GetServerCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAssetTypeCount), "OT_API_GetAssetTypeCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountCount), "OT_API_GetAccountCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNymCount), "OT_API_GetNymCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetServer_ID), "OT_API_GetServer_ID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetServer_Name), "OT_API_GetServer_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAssetType_ID), "OT_API_GetAssetType_ID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAssetType_Name), "OT_API_GetAssetType_Name");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_ID), "OT_API_GetAccountWallet_ID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_Name), "OT_API_GetAccountWallet_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_Balance), "OT_API_GetAccountWallet_Balance");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_Type), "OT_API_GetAccountWallet_Type");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_AssetTypeID), "OT_API_GetAccountWallet_AssetTypeID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_ServerID), "OT_API_GetAccountWallet_ServerID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_NymID), "OT_API_GetAccountWallet_NymID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_ID), "OT_API_GetAccountWallet_ID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_Name), "OT_API_GetAccountWallet_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_Balance), "OT_API_GetAccountWallet_Balance");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_Type), "OT_API_GetAccountWallet_Type");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_AssetTypeID), "OT_API_GetAccountWallet_AssetTypeID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_ServerID), "OT_API_GetAccountWallet_ServerID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_NymID), "OT_API_GetAccountWallet_NymID");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_InboxHash), "OT_API_GetAccountWallet_InboxHash");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetAccountWallet_OutboxHash), "OT_API_GetAccountWallet_OutboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_InboxHash), "OT_API_GetAccountWallet_InboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetAccountWallet_OutboxHash), "OT_API_GetAccountWallet_OutboxHash");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::VerifyAccountReceipt), "OT_API_VerifyAccountReceipt");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_TransactionNumCount), "OT_API_GetNym_TransactionNumCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::VerifyAccountReceipt), "OT_API_VerifyAccountReceipt");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_TransactionNumCount), "OT_API_GetNym_TransactionNumCount");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_ID), "OT_API_GetNym_ID");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_Name), "OT_API_GetNym_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_Stats), "OT_API_GetNym_Stats");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_NymboxHash), "OT_API_GetNym_NymboxHash");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_RecentHash), "OT_API_GetNym_RecentHash");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_InboxHash), "OT_API_GetNym_InboxHash");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutboxHash), "OT_API_GetNym_OutboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_ID), "OT_API_GetNym_ID");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_Name), "OT_API_GetNym_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_Stats), "OT_API_GetNym_Stats");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_NymboxHash), "OT_API_GetNym_NymboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_RecentHash), "OT_API_GetNym_RecentHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_InboxHash), "OT_API_GetNym_InboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutboxHash), "OT_API_GetNym_OutboxHash");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::IsNym_RegisteredAtServer), "OT_API_IsNym_RegisteredAtServer");
+		theScript.chai->add(fun(&OTAPI_Wrap::IsNym_RegisteredAtServer), "OT_API_IsNym_RegisteredAtServer");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_MailCount), "OT_API_GetNym_MailCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_MailContentsByIndex), "OT_API_GetNym_MailContentsByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_MailSenderIDByIndex), "OT_API_GetNym_MailSenderIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_MailServerIDByIndex), "OT_API_GetNym_MailServerIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_RemoveMailByIndex), "OT_API_Nym_RemoveMailByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_VerifyMailByIndex), "OT_API_Nym_VerifyMailByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutmailCount), "OT_API_GetNym_OutmailCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutmailContentsByIndex), "OT_API_GetNym_OutmailContentsByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex), "OT_API_GetNym_OutmailRecipientIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutmailServerIDByIndex), "OT_API_GetNym_OutmailServerIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_RemoveOutmailByIndex), "OT_API_Nym_RemoveOutmailByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_VerifyOutmailByIndex), "OT_API_Nym_VerifyOutmailByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutpaymentsCount), "OT_API_GetNym_OutpaymentsCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex), "OT_API_GetNym_OutpaymentsContentsByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex), "OT_API_GetNym_OutpaymentsRecipientIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex), "OT_API_GetNym_OutpaymentsServerIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex), "OT_API_Nym_RemoveOutpaymentsByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex), "OT_API_Nym_VerifyOutpaymentsByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_MailCount), "OT_API_GetNym_MailCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_MailContentsByIndex), "OT_API_GetNym_MailContentsByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_MailSenderIDByIndex), "OT_API_GetNym_MailSenderIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_MailServerIDByIndex), "OT_API_GetNym_MailServerIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_RemoveMailByIndex), "OT_API_Nym_RemoveMailByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_VerifyMailByIndex), "OT_API_Nym_VerifyMailByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutmailCount), "OT_API_GetNym_OutmailCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutmailContentsByIndex), "OT_API_GetNym_OutmailContentsByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex), "OT_API_GetNym_OutmailRecipientIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutmailServerIDByIndex), "OT_API_GetNym_OutmailServerIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_RemoveOutmailByIndex), "OT_API_Nym_RemoveOutmailByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_VerifyOutmailByIndex), "OT_API_Nym_VerifyOutmailByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutpaymentsCount), "OT_API_GetNym_OutpaymentsCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex), "OT_API_GetNym_OutpaymentsContentsByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex), "OT_API_GetNym_OutpaymentsRecipientIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex), "OT_API_GetNym_OutpaymentsServerIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex), "OT_API_Nym_RemoveOutpaymentsByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex), "OT_API_Nym_VerifyOutpaymentsByIndex");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_CanRemoveServer), "OT_API_Wallet_CanRemoveServer");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_RemoveServer), "OT_API_Wallet_RemoveServer");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_CanRemoveAssetType), "OT_API_Wallet_CanRemoveAssetType");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_RemoveAssetType), "OT_API_Wallet_RemoveAssetType");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_CanRemoveNym), "OT_API_Wallet_CanRemoveNym");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_RemoveNym), "OT_API_Wallet_RemoveNym");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_CanRemoveAccount), "OT_API_Wallet_CanRemoveAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_CanRemoveServer), "OT_API_Wallet_CanRemoveServer");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_RemoveServer), "OT_API_Wallet_RemoveServer");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_CanRemoveAssetType), "OT_API_Wallet_CanRemoveAssetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_RemoveAssetType), "OT_API_Wallet_RemoveAssetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_CanRemoveNym), "OT_API_Wallet_CanRemoveNym");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_RemoveNym), "OT_API_Wallet_RemoveNym");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_CanRemoveAccount), "OT_API_Wallet_CanRemoveAccount");
 
 
-        theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ChangePassphrase), "OT_API_Wallet_ChangePassphrase");
+        theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ChangePassphrase), "OT_API_Wallet_ChangePassphrase");
 
-        theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ExportNym), "OT_API_Wallet_ExportNym");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ImportNym), "OT_API_Wallet_ImportNym");
-        theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ImportCert), "OT_API_Wallet_ImportCert");
-        theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ExportCert), "OT_API_Wallet_ExportCert");
+        theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ExportNym), "OT_API_Wallet_ExportNym");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ImportNym), "OT_API_Wallet_ImportNym");
+        theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ImportCert), "OT_API_Wallet_ImportCert");
+        theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ExportCert), "OT_API_Wallet_ExportCert");
         
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_GetNymIDFromPartial), "OT_API_Wallet_GetNymIDFromPartial");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_GetServerIDFromPartial), "OT_API_Wallet_GetServerIDFromPartial");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_GetAssetIDFromPartial), "OT_API_Wallet_GetAssetIDFromPartial");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_GetAccountIDFromPartial), "OT_API_Wallet_GetAccountIDFromPartial");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_GetNymIDFromPartial), "OT_API_Wallet_GetNymIDFromPartial");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_GetServerIDFromPartial), "OT_API_Wallet_GetServerIDFromPartial");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_GetAssetIDFromPartial), "OT_API_Wallet_GetAssetIDFromPartial");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_GetAccountIDFromPartial), "OT_API_Wallet_GetAccountIDFromPartial");
 
 
-		theScript.chai.add(fun(&OTAPI_Wrap::SetNym_Name), "OT_API_SetNym_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::SetAccountWallet_Name), "OT_API_SetAccountWallet_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::SetAssetType_Name), "OT_API_SetAssetType_Name");
-		theScript.chai.add(fun(&OTAPI_Wrap::SetServer_Name), "OT_API_SetServer_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::SetNym_Name), "OT_API_SetNym_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::SetAccountWallet_Name), "OT_API_SetAccountWallet_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::SetAssetType_Name), "OT_API_SetAssetType_Name");
+		theScript.chai->add(fun(&OTAPI_Wrap::SetServer_Name), "OT_API_SetServer_Name");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::VerifyAndRetrieveXMLContents), "OT_API_VerifyAndRetrieveXMLContents");
-		theScript.chai.add(fun(&OTAPI_Wrap::WriteCheque), "OT_API_WriteCheque");
-		theScript.chai.add(fun(&OTAPI_Wrap::DiscardCheque), "OT_API_DiscardCheque");
-		theScript.chai.add(fun(&OTAPI_Wrap::EasyProposePlan), "OT_API_EasyProposePlan");
-		theScript.chai.add(fun(&OTAPI_Wrap::ConfirmPaymentPlan), "OT_API_ConfirmPaymentPlan");
+		theScript.chai->add(fun(&OTAPI_Wrap::VerifyAndRetrieveXMLContents), "OT_API_VerifyAndRetrieveXMLContents");
+		theScript.chai->add(fun(&OTAPI_Wrap::WriteCheque), "OT_API_WriteCheque");
+		theScript.chai->add(fun(&OTAPI_Wrap::DiscardCheque), "OT_API_DiscardCheque");
+		theScript.chai->add(fun(&OTAPI_Wrap::EasyProposePlan), "OT_API_EasyProposePlan");
+		theScript.chai->add(fun(&OTAPI_Wrap::ConfirmPaymentPlan), "OT_API_ConfirmPaymentPlan");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadUserPubkey_Encryption), "OT_API_LoadUserPubkey_Encryption");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadPubkey_Encryption), "OT_API_LoadPubkey_Encryption");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadUserPubkey_Signing), "OT_API_LoadUserPubkey_Signing");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadPubkey_Signing), "OT_API_LoadPubkey_Signing");
-		theScript.chai.add(fun(&OTAPI_Wrap::VerifyUserPrivateKey), "OT_API_VerifyUserPrivateKey");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadPurse), "OT_API_LoadPurse");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadMint), "OT_API_LoadMint");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadAssetContract), "OT_API_LoadAssetContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadServerContract), "OT_API_LoadServerContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::Mint_IsStillGood), "OT_API_Mint_IsStillGood");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadUserPubkey_Encryption), "OT_API_LoadUserPubkey_Encryption");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadPubkey_Encryption), "OT_API_LoadPubkey_Encryption");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadUserPubkey_Signing), "OT_API_LoadUserPubkey_Signing");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadPubkey_Signing), "OT_API_LoadPubkey_Signing");
+		theScript.chai->add(fun(&OTAPI_Wrap::VerifyUserPrivateKey), "OT_API_VerifyUserPrivateKey");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadPurse), "OT_API_LoadPurse");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadMint), "OT_API_LoadMint");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadAssetContract), "OT_API_LoadAssetContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadServerContract), "OT_API_LoadServerContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::Mint_IsStillGood), "OT_API_Mint_IsStillGood");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::IsBasketCurrency), "OT_API_IsBasketCurrency");
-		theScript.chai.add(fun(&OTAPI_Wrap::Basket_GetMemberCount), "OT_API_Basket_GetMemberCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Basket_GetMemberType), "OT_API_Basket_GetMemberType");
-		theScript.chai.add(fun(&OTAPI_Wrap::Basket_GetMinimumTransferAmount), "OT_API_Basket_GetMinimumTransferAmount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount), "OT_API_Basket_GetMemberMinimumTransferAmount");
+		theScript.chai->add(fun(&OTAPI_Wrap::IsBasketCurrency), "OT_API_IsBasketCurrency");
+		theScript.chai->add(fun(&OTAPI_Wrap::Basket_GetMemberCount), "OT_API_Basket_GetMemberCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Basket_GetMemberType), "OT_API_Basket_GetMemberType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Basket_GetMinimumTransferAmount), "OT_API_Basket_GetMinimumTransferAmount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount), "OT_API_Basket_GetMemberMinimumTransferAmount");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadAssetAccount), "OT_API_LoadAssetAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadAssetAccount), "OT_API_LoadAssetAccount");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadInbox), "OT_API_LoadInbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadOutbox), "OT_API_LoadOutbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadPaymentInbox), "OT_API_LoadPaymentInbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadRecordBox), "OT_API_LoadRecordBox");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadExpiredBox), "OT_API_LoadExpiredBox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadInbox), "OT_API_LoadInbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadOutbox), "OT_API_LoadOutbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadPaymentInbox), "OT_API_LoadPaymentInbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadRecordBox), "OT_API_LoadRecordBox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadExpiredBox), "OT_API_LoadExpiredBox");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadInboxNoVerify), "OT_API_LoadInboxNoVerify");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadOutboxNoVerify), "OT_API_LoadOutboxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadInboxNoVerify), "OT_API_LoadInboxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadOutboxNoVerify), "OT_API_LoadOutboxNoVerify");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadPaymentInboxNoVerify), "OT_API_LoadPaymentInboxNoVerify");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadRecordBoxNoVerify), "OT_API_LoadRecordBoxNoVerify");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadExpiredBoxNoVerify), "OT_API_LoadExpiredBoxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadPaymentInboxNoVerify), "OT_API_LoadPaymentInboxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadRecordBoxNoVerify), "OT_API_LoadRecordBoxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadExpiredBoxNoVerify), "OT_API_LoadExpiredBoxNoVerify");
 		
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_GetCount), "OT_API_Ledger_GetCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_CreateResponse), "OT_API_Ledger_CreateResponse");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_GetTransactionByIndex), "OT_API_Ledger_GetTransactionByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_GetTransactionByID), "OT_API_Ledger_GetTransactionByID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_GetTransactionIDByIndex), "OT_API_Ledger_GetTransactionIDByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_GetInstrument), "OT_API_Ledger_GetInstrument");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_GetCount), "OT_API_Ledger_GetCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_CreateResponse), "OT_API_Ledger_CreateResponse");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_GetTransactionByIndex), "OT_API_Ledger_GetTransactionByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_GetTransactionByID), "OT_API_Ledger_GetTransactionByID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_GetTransactionIDByIndex), "OT_API_Ledger_GetTransactionIDByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_GetInstrument), "OT_API_Ledger_GetInstrument");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_AddTransaction), "OT_API_Ledger_AddTransaction");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_CreateResponse), "OT_API_Transaction_CreateResponse");
-		theScript.chai.add(fun(&OTAPI_Wrap::Ledger_FinalizeResponse), "OT_API_Ledger_FinalizeResponse");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetType), "OT_API_Transaction_GetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_AddTransaction), "OT_API_Ledger_AddTransaction");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_CreateResponse), "OT_API_Transaction_CreateResponse");
+		theScript.chai->add(fun(&OTAPI_Wrap::Ledger_FinalizeResponse), "OT_API_Ledger_FinalizeResponse");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetType), "OT_API_Transaction_GetType");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::RecordPayment), "OT_API_RecordPayment");
-		theScript.chai.add(fun(&OTAPI_Wrap::ClearRecord), "OT_API_ClearRecord");
-		theScript.chai.add(fun(&OTAPI_Wrap::ClearExpired), "OT_API_ExpiredRecord");
+		theScript.chai->add(fun(&OTAPI_Wrap::RecordPayment), "OT_API_RecordPayment");
+		theScript.chai->add(fun(&OTAPI_Wrap::ClearRecord), "OT_API_ClearRecord");
+		theScript.chai->add(fun(&OTAPI_Wrap::ClearExpired), "OT_API_ExpiredRecord");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::ReplyNotice_GetRequestNum), "OT_API_ReplyNotice_GetRequestNum");
+		theScript.chai->add(fun(&OTAPI_Wrap::ReplyNotice_GetRequestNum), "OT_API_ReplyNotice_GetRequestNum");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetVoucher), "OT_API_Transaction_GetVoucher");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetSuccess), "OT_API_Transaction_GetSuccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_IsCanceled), "OT_API_Transaction_IsCanceled");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetBalanceAgreementSuccess), "OT_API_Transaction_GetBlnceAgrmntSuccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetDateSigned), "OT_API_Transaction_GetDateSigned");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetAmount), "OT_API_Transaction_GetAmount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Pending_GetNote), "OT_API_Pending_GetNote");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetVoucher), "OT_API_Transaction_GetVoucher");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetSuccess), "OT_API_Transaction_GetSuccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_IsCanceled), "OT_API_Transaction_IsCanceled");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetBalanceAgreementSuccess), "OT_API_Transaction_GetBlnceAgrmntSuccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetDateSigned), "OT_API_Transaction_GetDateSigned");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetAmount), "OT_API_Transaction_GetAmount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Pending_GetNote), "OT_API_Pending_GetNote");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetSenderUserID), "OT_API_Transaction_GetSenderUserID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetSenderAcctID), "OT_API_Transaction_GetSenderAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetRecipientUserID), "OT_API_Transaction_GetRecipientUserID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetRecipientAcctID), "OT_API_Transaction_GetRecipientAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Transaction_GetDisplayReferenceToNum), "OT_API_Transaction_GetDisplayReferenceToNum");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetSenderUserID), "OT_API_Transaction_GetSenderUserID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetSenderAcctID), "OT_API_Transaction_GetSenderAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetRecipientUserID), "OT_API_Transaction_GetRecipientUserID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetRecipientAcctID), "OT_API_Transaction_GetRecipientAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Transaction_GetDisplayReferenceToNum), "OT_API_Transaction_GetDisplayReferenceToNum");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetAmount), "OT_API_Instrmnt_GetAmount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetTransNum), "OT_API_Instrmnt_GetTransNum");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetValidFrom), "OT_API_Instrmnt_GetValidFrom");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetValidTo), "OT_API_Instrmnt_GetValidTo");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetMemo), "OT_API_Instrmnt_GetMemo");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetType), "OT_API_Instrmnt_GetType");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetServerID), "OT_API_Instrmnt_GetServerID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetAssetID), "OT_API_Instrmnt_GetAssetID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetAmount), "OT_API_Instrmnt_GetAmount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetTransNum), "OT_API_Instrmnt_GetTransNum");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetValidFrom), "OT_API_Instrmnt_GetValidFrom");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetValidTo), "OT_API_Instrmnt_GetValidTo");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetMemo), "OT_API_Instrmnt_GetMemo");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetType), "OT_API_Instrmnt_GetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetServerID), "OT_API_Instrmnt_GetServerID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetAssetID), "OT_API_Instrmnt_GetAssetID");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetSenderUserID), "OT_API_Instrmnt_GetSenderUserID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetSenderAcctID), "OT_API_Instrmnt_GetSenderAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetRemitterUserID), "OT_API_Instrmnt_GetRemitterUserID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetRemitterAcctID), "OT_API_Instrmnt_GetRemitterAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetRecipientUserID), "OT_API_Instrmnt_GetRecipientUserID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Instrmnt_GetRecipientAcctID), "OT_API_Instrmnt_GetRecipientAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetSenderUserID), "OT_API_Instrmnt_GetSenderUserID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetSenderAcctID), "OT_API_Instrmnt_GetSenderAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetRemitterUserID), "OT_API_Instrmnt_GetRemitterUserID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetRemitterAcctID), "OT_API_Instrmnt_GetRemitterAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetRecipientUserID), "OT_API_Instrmnt_GetRecipientUserID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Instrmnt_GetRecipientAcctID), "OT_API_Instrmnt_GetRecipientAcctID");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::CreatePurse), "OT_API_CreatePurse");
-		theScript.chai.add(fun(&OTAPI_Wrap::CreatePurse_Passphrase), "OT_API_CreatePurse_Passphrase");
-		theScript.chai.add(fun(&OTAPI_Wrap::SavePurse), "OT_API_SavePurse");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_GetTotalValue), "OT_API_Purse_GetTotalValue");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_HasPassword), "OT_API_Purse_HasPassword");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_Count), "OT_API_Purse_Count");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_Peek), "OT_API_Purse_Peek");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_Pop), "OT_API_Purse_Pop");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_Empty), "OT_API_Purse_Empty");
-		theScript.chai.add(fun(&OTAPI_Wrap::Purse_Push), "OT_API_Purse_Push");
-		theScript.chai.add(fun(&OTAPI_Wrap::Wallet_ImportPurse), "OT_API_Wallet_ImportPurse");
-		theScript.chai.add(fun(&OTAPI_Wrap::exchangePurse), "OT_API_exchangePurse");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_ChangeOwner), "OT_API_Token_ChangeOwner");
+		theScript.chai->add(fun(&OTAPI_Wrap::CreatePurse), "OT_API_CreatePurse");
+		theScript.chai->add(fun(&OTAPI_Wrap::CreatePurse_Passphrase), "OT_API_CreatePurse_Passphrase");
+		theScript.chai->add(fun(&OTAPI_Wrap::SavePurse), "OT_API_SavePurse");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_GetTotalValue), "OT_API_Purse_GetTotalValue");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_HasPassword), "OT_API_Purse_HasPassword");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_Count), "OT_API_Purse_Count");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_Peek), "OT_API_Purse_Peek");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_Pop), "OT_API_Purse_Pop");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_Empty), "OT_API_Purse_Empty");
+		theScript.chai->add(fun(&OTAPI_Wrap::Purse_Push), "OT_API_Purse_Push");
+		theScript.chai->add(fun(&OTAPI_Wrap::Wallet_ImportPurse), "OT_API_Wallet_ImportPurse");
+		theScript.chai->add(fun(&OTAPI_Wrap::exchangePurse), "OT_API_exchangePurse");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_ChangeOwner), "OT_API_Token_ChangeOwner");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetID), "OT_API_Token_GetID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetDenomination), "OT_API_Token_GetDenomination");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetSeries), "OT_API_Token_GetSeries");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetValidFrom), "OT_API_Token_GetValidFrom");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetValidTo), "OT_API_Token_GetValidTo");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetAssetID), "OT_API_Token_GetAssetID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Token_GetServerID), "OT_API_Token_GetServerID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetID), "OT_API_Token_GetID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetDenomination), "OT_API_Token_GetDenomination");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetSeries), "OT_API_Token_GetSeries");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetValidFrom), "OT_API_Token_GetValidFrom");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetValidTo), "OT_API_Token_GetValidTo");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetAssetID), "OT_API_Token_GetAssetID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Token_GetServerID), "OT_API_Token_GetServerID");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::checkServerID), "OT_API_checkServerID");
-		theScript.chai.add(fun(&OTAPI_Wrap::createUserAccount), "OT_API_createUserAccount");
-		theScript.chai.add(fun(&OTAPI_Wrap::deleteUserAccount), "OT_API_deleteUserAccount");
-		theScript.chai.add(fun(&OTAPI_Wrap::deleteAssetAccount), "OT_API_deleteAssetAccount");
-		theScript.chai.add(fun(&OTAPI_Wrap::checkUser), "OT_API_checkUser");
-		theScript.chai.add(fun(&OTAPI_Wrap::usageCredits), "OT_API_usageCredits");
-		theScript.chai.add(fun(&OTAPI_Wrap::sendUserMessage), "OT_API_sendUserMessage");
-		theScript.chai.add(fun(&OTAPI_Wrap::sendUserInstrument), "OT_API_sendUserInstrument");
+		theScript.chai->add(fun(&OTAPI_Wrap::checkServerID), "OT_API_checkServerID");
+		theScript.chai->add(fun(&OTAPI_Wrap::createUserAccount), "OT_API_createUserAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::deleteUserAccount), "OT_API_deleteUserAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::deleteAssetAccount), "OT_API_deleteAssetAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::checkUser), "OT_API_checkUser");
+		theScript.chai->add(fun(&OTAPI_Wrap::usageCredits), "OT_API_usageCredits");
+		theScript.chai->add(fun(&OTAPI_Wrap::sendUserMessage), "OT_API_sendUserMessage");
+		theScript.chai->add(fun(&OTAPI_Wrap::sendUserInstrument), "OT_API_sendUserInstrument");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::getRequest), "OT_API_getRequest");
-		theScript.chai.add(fun(&OTAPI_Wrap::getTransactionNumber), "OT_API_getTransactionNumber");
-		theScript.chai.add(fun(&OTAPI_Wrap::issueAssetType), "OT_API_issueAssetType");
-		theScript.chai.add(fun(&OTAPI_Wrap::getContract), "OT_API_getContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::getMint), "OT_API_getMint");
-		theScript.chai.add(fun(&OTAPI_Wrap::createAssetAccount), "OT_API_createAssetAccount");
-		theScript.chai.add(fun(&OTAPI_Wrap::getAccount), "OT_API_getAccount"); // Deprecated
-		theScript.chai.add(fun(&OTAPI_Wrap::getAccountFiles), "OT_API_getAccountFiles"); // Replaces getAccount, getInbox, getOutbox.
-		theScript.chai.add(fun(&OTAPI_Wrap::GenerateBasketCreation), "OT_API_GenerateBasketCreation");
+		theScript.chai->add(fun(&OTAPI_Wrap::getRequest), "OT_API_getRequest");
+		theScript.chai->add(fun(&OTAPI_Wrap::getTransactionNumber), "OT_API_getTransactionNumber");
+		theScript.chai->add(fun(&OTAPI_Wrap::issueAssetType), "OT_API_issueAssetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::getContract), "OT_API_getContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::getMint), "OT_API_getMint");
+		theScript.chai->add(fun(&OTAPI_Wrap::createAssetAccount), "OT_API_createAssetAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::getAccount), "OT_API_getAccount"); // Deprecated
+		theScript.chai->add(fun(&OTAPI_Wrap::getAccountFiles), "OT_API_getAccountFiles"); // Replaces getAccount, getInbox, getOutbox.
+		theScript.chai->add(fun(&OTAPI_Wrap::GenerateBasketCreation), "OT_API_GenerateBasketCreation");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::AddBasketCreationItem), "OT_API_AddBasketCreationItem");
-		theScript.chai.add(fun(&OTAPI_Wrap::issueBasket), "OT_API_issueBasket");
-		theScript.chai.add(fun(&OTAPI_Wrap::GenerateBasketExchange), "OT_API_GenerateBasketExchange");
-		theScript.chai.add(fun(&OTAPI_Wrap::AddBasketExchangeItem), "OT_API_AddBasketExchangeItem");
-		theScript.chai.add(fun(&OTAPI_Wrap::exchangeBasket), "OT_API_exchangeBasket");
-		theScript.chai.add(fun(&OTAPI_Wrap::notarizeWithdrawal), "OT_API_notarizeWithdrawal");
-		theScript.chai.add(fun(&OTAPI_Wrap::notarizeDeposit), "OT_API_notarizeDeposit");
-		theScript.chai.add(fun(&OTAPI_Wrap::notarizeTransfer), "OT_API_notarizeTransfer");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddBasketCreationItem), "OT_API_AddBasketCreationItem");
+		theScript.chai->add(fun(&OTAPI_Wrap::issueBasket), "OT_API_issueBasket");
+		theScript.chai->add(fun(&OTAPI_Wrap::GenerateBasketExchange), "OT_API_GenerateBasketExchange");
+		theScript.chai->add(fun(&OTAPI_Wrap::AddBasketExchangeItem), "OT_API_AddBasketExchangeItem");
+		theScript.chai->add(fun(&OTAPI_Wrap::exchangeBasket), "OT_API_exchangeBasket");
+		theScript.chai->add(fun(&OTAPI_Wrap::notarizeWithdrawal), "OT_API_notarizeWithdrawal");
+		theScript.chai->add(fun(&OTAPI_Wrap::notarizeDeposit), "OT_API_notarizeDeposit");
+		theScript.chai->add(fun(&OTAPI_Wrap::notarizeTransfer), "OT_API_notarizeTransfer");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::getInbox), "OT_API_getInbox"); // Deprecated
-		theScript.chai.add(fun(&OTAPI_Wrap::getOutbox), "OT_API_getOutbox"); // Deprecated
-		theScript.chai.add(fun(&OTAPI_Wrap::getNymbox), "OT_API_getNymbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::getInbox), "OT_API_getInbox"); // Deprecated
+		theScript.chai->add(fun(&OTAPI_Wrap::getOutbox), "OT_API_getOutbox"); // Deprecated
+		theScript.chai->add(fun(&OTAPI_Wrap::getNymbox), "OT_API_getNymbox");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Nymbox_GetReplyNotice), "OT_API_Nymbox_GetReplyNotice");
+		theScript.chai->add(fun(&OTAPI_Wrap::Nymbox_GetReplyNotice), "OT_API_Nymbox_GetReplyNotice");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::getBoxReceipt), "OT_API_getBoxReceipt");
-		theScript.chai.add(fun(&OTAPI_Wrap::DoesBoxReceiptExist), "OT_API_DoesBoxReceiptExist");
+		theScript.chai->add(fun(&OTAPI_Wrap::getBoxReceipt), "OT_API_getBoxReceipt");
+		theScript.chai->add(fun(&OTAPI_Wrap::DoesBoxReceiptExist), "OT_API_DoesBoxReceiptExist");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadNymbox), "OT_API_LoadNymbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::LoadNymboxNoVerify), "OT_API_LoadNymboxNoVerify");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadNymbox), "OT_API_LoadNymbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::LoadNymboxNoVerify), "OT_API_LoadNymboxNoVerify");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::processInbox), "OT_API_processInbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::processNymbox), "OT_API_processNymbox");
-		theScript.chai.add(fun(&OTAPI_Wrap::withdrawVoucher), "OT_API_withdrawVoucher");
-		theScript.chai.add(fun(&OTAPI_Wrap::payDividend), "OT_API_payDividend");
+		theScript.chai->add(fun(&OTAPI_Wrap::processInbox), "OT_API_processInbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::processNymbox), "OT_API_processNymbox");
+		theScript.chai->add(fun(&OTAPI_Wrap::withdrawVoucher), "OT_API_withdrawVoucher");
+		theScript.chai->add(fun(&OTAPI_Wrap::payDividend), "OT_API_payDividend");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::depositCheque), "OT_API_depositCheque");
-		theScript.chai.add(fun(&OTAPI_Wrap::depositPaymentPlan), "OT_API_depositPaymentPlan");
-		theScript.chai.add(fun(&OTAPI_Wrap::issueMarketOffer), "OT_API_issueMarketOffer");
-		theScript.chai.add(fun(&OTAPI_Wrap::getMarketList), "OT_API_getMarketList");
-		theScript.chai.add(fun(&OTAPI_Wrap::getMarketOffers), "OT_API_getMarketOffers");
-		theScript.chai.add(fun(&OTAPI_Wrap::getMarketRecentTrades), "OT_API_getMarketRecentTrades");
-		theScript.chai.add(fun(&OTAPI_Wrap::getNym_MarketOffers), "OT_API_getNym_MarketOffers");
-		theScript.chai.add(fun(&OTAPI_Wrap::killMarketOffer), "OT_API_killMarketOffer");
-		theScript.chai.add(fun(&OTAPI_Wrap::killPaymentPlan), "OT_API_killPaymentPlan");
+		theScript.chai->add(fun(&OTAPI_Wrap::depositCheque), "OT_API_depositCheque");
+		theScript.chai->add(fun(&OTAPI_Wrap::depositPaymentPlan), "OT_API_depositPaymentPlan");
+		theScript.chai->add(fun(&OTAPI_Wrap::issueMarketOffer), "OT_API_issueMarketOffer");
+		theScript.chai->add(fun(&OTAPI_Wrap::getMarketList), "OT_API_getMarketList");
+		theScript.chai->add(fun(&OTAPI_Wrap::getMarketOffers), "OT_API_getMarketOffers");
+		theScript.chai->add(fun(&OTAPI_Wrap::getMarketRecentTrades), "OT_API_getMarketRecentTrades");
+		theScript.chai->add(fun(&OTAPI_Wrap::getNym_MarketOffers), "OT_API_getNym_MarketOffers");
+		theScript.chai->add(fun(&OTAPI_Wrap::killMarketOffer), "OT_API_killMarketOffer");
+		theScript.chai->add(fun(&OTAPI_Wrap::killPaymentPlan), "OT_API_killPaymentPlan");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::PopMessageBuffer), "OT_API_PopMessageBuffer");
-		theScript.chai.add(fun(&OTAPI_Wrap::FlushMessageBuffer), "OT_API_FlushMessageBuffer");
+		theScript.chai->add(fun(&OTAPI_Wrap::PopMessageBuffer), "OT_API_PopMessageBuffer");
+		theScript.chai->add(fun(&OTAPI_Wrap::FlushMessageBuffer), "OT_API_FlushMessageBuffer");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::GetSentMessage), "OT_API_GetSentMessage");
-		theScript.chai.add(fun(&OTAPI_Wrap::RemoveSentMessage), "OT_API_RemoveSentMessage");
-		theScript.chai.add(fun(&OTAPI_Wrap::FlushSentMessages), "OT_API_FlushSentMessages");
+		theScript.chai->add(fun(&OTAPI_Wrap::GetSentMessage), "OT_API_GetSentMessage");
+		theScript.chai->add(fun(&OTAPI_Wrap::RemoveSentMessage), "OT_API_RemoveSentMessage");
+		theScript.chai->add(fun(&OTAPI_Wrap::FlushSentMessages), "OT_API_FlushSentMessages");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::HaveAlreadySeenReply), "OT_API_HaveAlreadySeenReply");
+		theScript.chai->add(fun(&OTAPI_Wrap::HaveAlreadySeenReply), "OT_API_HaveAlreadySeenReply");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Sleep), "OT_API_Sleep");
+		theScript.chai->add(fun(&OTAPI_Wrap::Sleep), "OT_API_Sleep");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::ResyncNymWithServer), "OT_API_ResyncNymWithServer");
+		theScript.chai->add(fun(&OTAPI_Wrap::ResyncNymWithServer), "OT_API_ResyncNymWithServer");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::queryAssetTypes), "OT_API_queryAssetTypes");
+		theScript.chai->add(fun(&OTAPI_Wrap::queryAssetTypes), "OT_API_queryAssetTypes");
         
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetPayload), "OT_API_Message_GetPayload");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetCommand), "OT_API_Message_GetCommand");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetSuccess), "OT_API_Message_GetSuccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetDepth), "OT_API_Message_GetDepth");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetUsageCredits), "OT_API_Message_GetUsageCredits");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetTransactionSuccess), "OT_API_Msg_GetTransactionSuccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_IsTransactionCanceled), "OT_API_Msg_IsTransactionCanceled");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetBalanceAgreementSuccess), "OT_API_Msg_GetBlnceAgrmntSuccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetLedger), "OT_API_Message_GetLedger");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetNewAssetTypeID), "OT_API_Message_GetNewAssetTypeID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetNewIssuerAcctID), "OT_API_Message_GetNewIssuerAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetNewAcctID), "OT_API_Message_GetNewAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Message_GetNymboxHash), "OT_API_Message_GetNymboxHash");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetPayload), "OT_API_Message_GetPayload");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetCommand), "OT_API_Message_GetCommand");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetSuccess), "OT_API_Message_GetSuccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetDepth), "OT_API_Message_GetDepth");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetUsageCredits), "OT_API_Message_GetUsageCredits");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetTransactionSuccess), "OT_API_Msg_GetTransactionSuccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_IsTransactionCanceled), "OT_API_Msg_IsTransactionCanceled");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetBalanceAgreementSuccess), "OT_API_Msg_GetBlnceAgrmntSuccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetLedger), "OT_API_Message_GetLedger");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetNewAssetTypeID), "OT_API_Message_GetNewAssetTypeID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetNewIssuerAcctID), "OT_API_Message_GetNewIssuerAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetNewAcctID), "OT_API_Message_GetNewAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Message_GetNymboxHash), "OT_API_Message_GetNymboxHash");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Create_SmartContract), "OT_API_Create_SmartContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::Create_SmartContract), "OT_API_Create_SmartContract");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddBylaw), "OT_API_SmartContract_AddBylaw");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddClause), "OT_API_SmartContract_AddClause");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddVariable), "OT_API_SmartContract_AddVariable");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddCallback), "OT_API_SmartContract_AddCallback");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddHook), "OT_API_SmartContract_AddHook");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddBylaw), "OT_API_SmartContract_AddBylaw");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddClause), "OT_API_SmartContract_AddClause");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddVariable), "OT_API_SmartContract_AddVariable");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddCallback), "OT_API_SmartContract_AddCallback");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddHook), "OT_API_SmartContract_AddHook");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddParty), "OT_API_SmartContract_AddParty");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_AddAccount), "OT_API_SmartContract_AddAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddParty), "OT_API_SmartContract_AddParty");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_AddAccount), "OT_API_SmartContract_AddAccount");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_ConfirmAccount), "OT_API_SmartContract_ConfirmAccount");
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_ConfirmParty), "OT_API_SmartContract_ConfirmParty");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_ConfirmAccount), "OT_API_SmartContract_ConfirmAccount");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_ConfirmParty), "OT_API_SmartContract_ConfirmParty");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::SmartContract_CountNumsNeeded), "OT_API_SmartContract_CountNumsNeeded");
+		theScript.chai->add(fun(&OTAPI_Wrap::SmartContract_CountNumsNeeded), "OT_API_SmartContract_CountNumsNeeded");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::Msg_HarvestTransactionNumbers), "OT_API_Msg_HarvestTransactionNumbers");
+		theScript.chai->add(fun(&OTAPI_Wrap::Msg_HarvestTransactionNumbers), "OT_API_Msg_HarvestTransactionNumbers");
 
-//		theScript.chai.add(fun(&OTAPI_Wrap::HarvestClosingNumbers), "OT_API_HarvestClosingNumbers");
-//		theScript.chai.add(fun(&OTAPI_Wrap::HarvestAllNumbers), "OT_API_HarvestAllNumbers");
+//		theScript.chai->add(fun(&OTAPI_Wrap::HarvestClosingNumbers), "OT_API_HarvestClosingNumbers");
+//		theScript.chai->add(fun(&OTAPI_Wrap::HarvestAllNumbers), "OT_API_HarvestAllNumbers");
 
-        theScript.chai.add(fun(&OTAPI_Wrap::Smart_AreAllPartiesConfirmed), "OT_API_Smart_AreAllPartiesConfirmed");
-		theScript.chai.add(fun(&OTAPI_Wrap::Smart_IsPartyConfirmed), "OT_API_Smart_IsPartyConfirmed");
-		theScript.chai.add(fun(&OTAPI_Wrap::Smart_GetBylawCount), "OT_API_Smart_GetBylawCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Smart_GetBylawByIndex), "OT_API_Smart_GetBylawByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Bylaw_GetLanguage), "OT_API_Bylaw_GetLanguage");
-		theScript.chai.add(fun(&OTAPI_Wrap::Bylaw_GetClauseCount), "OT_API_Bylaw_GetClauseCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Clause_GetNameByIndex), "OT_API_Clause_GetNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Clause_GetContents), "OT_API_Clause_GetContents");
-		theScript.chai.add(fun(&OTAPI_Wrap::Bylaw_GetVariableCount), "OT_API_Bylaw_GetVariableCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Variable_GetNameByIndex), "OT_API_Variable_GetNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Variable_GetType), "OT_API_Variable_GetType");
-		theScript.chai.add(fun(&OTAPI_Wrap::Variable_GetAccess), "OT_API_Variable_GetAccess");
-		theScript.chai.add(fun(&OTAPI_Wrap::Variable_GetContents), "OT_API_Variable_GetContents");
-		theScript.chai.add(fun(&OTAPI_Wrap::Bylaw_GetHookCount), "OT_API_Bylaw_GetHookCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Hook_GetNameByIndex), "OT_API_Hook_GetNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Hook_GetClauseCount), "OT_API_Hook_GetClauseCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Hook_GetClauseAtIndex), "OT_API_Hook_GetClauseAtIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Bylaw_GetCallbackCount), "OT_API_Bylaw_GetCallbackCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Callback_GetNameByIndex), "OT_API_Callback_GetNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Callback_GetClause), "OT_API_Callback_GetClause");
-		theScript.chai.add(fun(&OTAPI_Wrap::Smart_GetPartyCount), "OT_API_Smart_GetPartyCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Smart_GetPartyByIndex), "OT_API_Smart_GetPartyByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetID), "OT_API_Party_GetID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAcctCount), "OT_API_Party_GetAcctCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAcctNameByIndex), "OT_API_Party_GetAcctNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAcctID), "OT_API_Party_GetAcctID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAcctAssetID), "OT_API_Party_GetAcctAssetID");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAcctAgentName), "OT_API_Party_GetAcctAgentName");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAgentCount), "OT_API_Party_GetAgentCount");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAgentNameByIndex), "OT_API_Party_GetAgentNameByIndex");
-		theScript.chai.add(fun(&OTAPI_Wrap::Party_GetAgentID), "OT_API_Party_GetAgentID");
+        theScript.chai->add(fun(&OTAPI_Wrap::Smart_AreAllPartiesConfirmed), "OT_API_Smart_AreAllPartiesConfirmed");
+		theScript.chai->add(fun(&OTAPI_Wrap::Smart_IsPartyConfirmed), "OT_API_Smart_IsPartyConfirmed");
+		theScript.chai->add(fun(&OTAPI_Wrap::Smart_GetBylawCount), "OT_API_Smart_GetBylawCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Smart_GetBylawByIndex), "OT_API_Smart_GetBylawByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Bylaw_GetLanguage), "OT_API_Bylaw_GetLanguage");
+		theScript.chai->add(fun(&OTAPI_Wrap::Bylaw_GetClauseCount), "OT_API_Bylaw_GetClauseCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Clause_GetNameByIndex), "OT_API_Clause_GetNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Clause_GetContents), "OT_API_Clause_GetContents");
+		theScript.chai->add(fun(&OTAPI_Wrap::Bylaw_GetVariableCount), "OT_API_Bylaw_GetVariableCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Variable_GetNameByIndex), "OT_API_Variable_GetNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Variable_GetType), "OT_API_Variable_GetType");
+		theScript.chai->add(fun(&OTAPI_Wrap::Variable_GetAccess), "OT_API_Variable_GetAccess");
+		theScript.chai->add(fun(&OTAPI_Wrap::Variable_GetContents), "OT_API_Variable_GetContents");
+		theScript.chai->add(fun(&OTAPI_Wrap::Bylaw_GetHookCount), "OT_API_Bylaw_GetHookCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Hook_GetNameByIndex), "OT_API_Hook_GetNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Hook_GetClauseCount), "OT_API_Hook_GetClauseCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Hook_GetClauseAtIndex), "OT_API_Hook_GetClauseAtIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Bylaw_GetCallbackCount), "OT_API_Bylaw_GetCallbackCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Callback_GetNameByIndex), "OT_API_Callback_GetNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Callback_GetClause), "OT_API_Callback_GetClause");
+		theScript.chai->add(fun(&OTAPI_Wrap::Smart_GetPartyCount), "OT_API_Smart_GetPartyCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Smart_GetPartyByIndex), "OT_API_Smart_GetPartyByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetID), "OT_API_Party_GetID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAcctCount), "OT_API_Party_GetAcctCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAcctNameByIndex), "OT_API_Party_GetAcctNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAcctID), "OT_API_Party_GetAcctID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAcctAssetID), "OT_API_Party_GetAcctAssetID");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAcctAgentName), "OT_API_Party_GetAcctAgentName");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAgentCount), "OT_API_Party_GetAgentCount");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAgentNameByIndex), "OT_API_Party_GetAgentNameByIndex");
+		theScript.chai->add(fun(&OTAPI_Wrap::Party_GetAgentID), "OT_API_Party_GetAgentID");
 
-		theScript.chai.add(fun(&OTAPI_Wrap::activateSmartContract), "OT_API_activateSmartContract");
-		theScript.chai.add(fun(&OTAPI_Wrap::triggerClause), "OT_API_triggerClause");
+		theScript.chai->add(fun(&OTAPI_Wrap::activateSmartContract), "OT_API_activateSmartContract");
+		theScript.chai->add(fun(&OTAPI_Wrap::triggerClause), "OT_API_triggerClause");
 
 		// ******************************************************************
 
@@ -2895,10 +2905,10 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
 			// --------------------------------
 			try 
 			{
-				theScript.chai.use(str_UseFile1);
-				theScript.chai.use(str_UseFile2);
-				theScript.chai.use(str_UseFile3);
-				theScript.chai.use(str_UseFile4);
+				theScript.chai->use(str_UseFile1);
+				theScript.chai->use(str_UseFile2);
+				theScript.chai->use(str_UseFile3);
+				theScript.chai->use(str_UseFile4);
 			} 
 			// --------------------------------
 			catch (const chaiscript::exception::eval_error &ee)

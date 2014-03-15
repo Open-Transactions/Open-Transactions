@@ -468,6 +468,13 @@
 #include <OTPaths.hpp>
 
 
+#include <chaiscript/chaiscript.hpp>
+
+#ifdef OT_USE_CHAI_STDLIB
+#include <chaiscript/chaiscript_stdlib.hpp>
+#endif
+
+
 
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL	
 #define SMART_CONTRACT_PROCESS_INTERVAL		30		// 30 seconds, for testing. Should be: based on fees. Otherwise once per day should be enough... right?
@@ -690,42 +697,43 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 	// *******************************************************************
 	if (NULL != pScript)
 	{		
+        OT_ASSERT(NULL != pScript->chai)
 		// ---------------------------------------------------------
 		// OT NATIVE FUNCTIONS 
 		// (These functions can be called from INSIDE the scripted clauses.)
 		//																						// Parameters must match as described below. Return value will be as described below.
 		//																						// -------------------------------------------------------------
-//		pScript->chai.add(base_class<OTScriptable, OTSmartContract>());
+//		pScript->chai->add(base_class<OTScriptable, OTSmartContract>());
 		
-		pScript->chai.add(fun<OT_SM_RetBool_ThrStr>(&OTSmartContract::MoveAcctFundsStr,		this), "move_funds");	// bool MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
-//		pScript->chai.add(fun<OT_SM_RetBool_TwoStr_OneL>(&OTSmartContract::MoveAcctFundsL,	this), "move_funds_L");		// static bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const long& lAmount); // calls OTCronItem::MoveFunds()
-//		pScript->chai.add(fun<OT_SM_RetBool_ThrStr>(&OTSmartContract::MoveAcctFundsStr,		this), "move_funds_Str");	// static bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
-//		pScript->chai.add(fun<OT_SM_RetBool_TwoStr_OneL>(&g_MoveAcctFundsL,	this), "move_funds_L");		// global bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const long& lAmount); // calls OTCronItem::MoveFunds()
-//		pScript->chai.add(fun<OT_SM_RetBool_ThrStr>(&g_MoveAcctFundsStr,	this), "move_funds_Str");	// global bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
+		pScript->chai->add(fun<OT_SM_RetBool_ThrStr>(&OTSmartContract::MoveAcctFundsStr,		this), "move_funds");	// bool MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
+//		pScript->chai->add(fun<OT_SM_RetBool_TwoStr_OneL>(&OTSmartContract::MoveAcctFundsL,	this), "move_funds_L");		// static bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const long& lAmount); // calls OTCronItem::MoveFunds()
+//		pScript->chai->add(fun<OT_SM_RetBool_ThrStr>(&OTSmartContract::MoveAcctFundsStr,		this), "move_funds_Str");	// static bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
+//		pScript->chai->add(fun<OT_SM_RetBool_TwoStr_OneL>(&g_MoveAcctFundsL,	this), "move_funds_L");		// global bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const long& lAmount); // calls OTCronItem::MoveFunds()
+//		pScript->chai->add(fun<OT_SM_RetBool_ThrStr>(&g_MoveAcctFundsStr,	this), "move_funds_Str");	// global bool s_MoveAcctFunds(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount); // calls OTCronItem::MoveFunds()
 		
-		pScript->chai.add(fun(&OTSmartContract::StashAcctFunds,				this), "stash_funds");		// bool StashAcctFunds(const std::string from_acct_name, const std::string to_stash_name, const std::string str_Amount); // calls StashFunds()
-		pScript->chai.add(fun(&OTSmartContract::UnstashAcctFunds,			this), "unstash_funds");	// bool UnstashAcctFunds(const std::string to_acct_name, const std::string from_stash_name, const std::string str_Amount); // calls StashFunds( lAmount * (-1) )
+		pScript->chai->add(fun(&OTSmartContract::StashAcctFunds,				this), "stash_funds");		// bool StashAcctFunds(const std::string from_acct_name, const std::string to_stash_name, const std::string str_Amount); // calls StashFunds()
+		pScript->chai->add(fun(&OTSmartContract::UnstashAcctFunds,			this), "unstash_funds");	// bool UnstashAcctFunds(const std::string to_acct_name, const std::string from_stash_name, const std::string str_Amount); // calls StashFunds( lAmount * (-1) )
 				
-		pScript->chai.add(fun(&OTSmartContract::GetAcctBalance,				this), "get_acct_balance"); // std::string GetAcctBalance(const std::string acct_name);
-		pScript->chai.add(fun(&OTSmartContract::GetAssetTypeIDofAcct,		this), "get_acct_asset_type_id"); // std::string OTSmartContract::GetAssetTypeIDofAcct(const std::string from_acct_name)
-		pScript->chai.add(fun(&OTSmartContract::GetStashBalance,			this), "get_stash_balance");	// std::string GetStashBalance(const std::string stash_name, const std::string asset_type_id);
+		pScript->chai->add(fun(&OTSmartContract::GetAcctBalance,				this), "get_acct_balance"); // std::string GetAcctBalance(const std::string acct_name);
+		pScript->chai->add(fun(&OTSmartContract::GetAssetTypeIDofAcct,		this), "get_acct_asset_type_id"); // std::string OTSmartContract::GetAssetTypeIDofAcct(const std::string from_acct_name)
+		pScript->chai->add(fun(&OTSmartContract::GetStashBalance,			this), "get_stash_balance");	// std::string GetStashBalance(const std::string stash_name, const std::string asset_type_id);
 		
-		pScript->chai.add(fun(&OTSmartContract::SendNoticeToParty,			this), "send_notice");				// bool SendNoticeToParty(const std::string party_name);
-		pScript->chai.add(fun(&OTSmartContract::SendANoticeToAllParties,	this), "send_notice_to_parties");	// bool SendANoticeToAllParties();
+		pScript->chai->add(fun(&OTSmartContract::SendNoticeToParty,			this), "send_notice");				// bool SendNoticeToParty(const std::string party_name);
+		pScript->chai->add(fun(&OTSmartContract::SendANoticeToAllParties,	this), "send_notice_to_parties");	// bool SendANoticeToAllParties();
 
-		pScript->chai.add(fun(&OTSmartContract::SetRemainingTimer,			this), "set_seconds_until_timer");	// void SetNextProcessTime(const std::string str_seconds_from_now) // if this is <=0, then it sets next process date to 0.
-		pScript->chai.add(fun(&OTSmartContract::GetRemainingTimer,			this), "get_remaining_timer");	// std::string GetRemainingTimer() const
+		pScript->chai->add(fun(&OTSmartContract::SetRemainingTimer,			this), "set_seconds_until_timer");	// void SetNextProcessTime(const std::string str_seconds_from_now) // if this is <=0, then it sets next process date to 0.
+		pScript->chai->add(fun(&OTSmartContract::GetRemainingTimer,			this), "get_remaining_timer");	// std::string GetRemainingTimer() const
 		
-		pScript->chai.add(fun(&OTSmartContract::DeactivateSmartContract,	this), "deactivate_contract");	// void DeactivateSmartContract();
+		pScript->chai->add(fun(&OTSmartContract::DeactivateSmartContract,	this), "deactivate_contract");	// void DeactivateSmartContract();
 		
 		// ---------------------------------------------------------
 		// CALLBACKS 
 		// (Called by OT at key moments) todo security: What if these are recursive? Need to lock down, put the smack down, on these smart contracts.
 		//
-//FYI:	pScript->chai.add(fun(&(OTScriptable::CanExecuteClause),			(*this)), "party_may_execute_clause");	// From OTScriptable (FYI) param_party_name and param_clause_name will be available inside script. Script must return bool.
+//FYI:	pScript->chai->add(fun(&(OTScriptable::CanExecuteClause),			(*this)), "party_may_execute_clause");	// From OTScriptable (FYI) param_party_name and param_clause_name will be available inside script. Script must return bool.
 //FYI:	#define SCRIPTABLE_CALLBACK_PARTY_MAY_EXECUTE	"callback_party_may_execute_clause"   <=== THE CALLBACK WITH THIS NAME must be connected to a script clause, and then the clause will trigger when the callback is needed.	
 		
-		pScript->chai.add(fun(&OTSmartContract::CanCancelContract,			this), "party_may_cancel_contract"); // param_party_name will be available inside script. Script must return bool.
+		pScript->chai->add(fun(&OTSmartContract::CanCancelContract,			this), "party_may_cancel_contract"); // param_party_name will be available inside script. Script must return bool.
 //FYI:	#define SMARTCONTRACT_CALLBACK_PARTY_MAY_CANCEL	"callback_party_may_cancel_contract"  <=== THE CALLBACK WITH THIS NAME must be connected to a script clause, and then the clause will trigger when the callback is needed.
 
 		// Callback USAGE:	Your clause, in your smart contract, may have whatever name you want. (Within limits.)
@@ -760,7 +768,7 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 
 
 // Done.  Can be called from inside script.
-// pScript->chai.add(fun(&(OTSmartContract::DeactivateSmartContract),	(*this)), "deactivate_smart_contract");	// void DeactivateSmartContract();
+// pScript->chai->add(fun(&(OTSmartContract::DeactivateSmartContract),	(*this)), "deactivate_smart_contract");	// void DeactivateSmartContract();
 //
 void OTSmartContract::DeactivateSmartContract() // Called from within script.  
 {
@@ -988,7 +996,7 @@ void OTSmartContract::onActivate()
 
 // Done:
 //
-//pScript->chai.add(fun(&(OTSmartContract::GetAcctBalance),	(*this)), "get_acct_balance");	// long GetAcctBalance(const std::string acct_name);
+//pScript->chai->add(fun(&(OTSmartContract::GetAcctBalance),	(*this)), "get_acct_balance");	// long GetAcctBalance(const std::string acct_name);
 //
 std::string OTSmartContract::GetAcctBalance(const std::string from_acct_name)
 {
@@ -1403,7 +1411,7 @@ std::string OTSmartContract::GetAssetTypeIDofAcct(const std::string from_acct_na
 
 // done
 //
-//pScript->chai.add(fun(&(OTSmartContract::GetStashBalance),	(*this)), "get_stash_balance");	// long GetStashBalance(const std::string stash_name);
+//pScript->chai->add(fun(&(OTSmartContract::GetStashBalance),	(*this)), "get_stash_balance");	// long GetStashBalance(const std::string stash_name);
 //
 std::string OTSmartContract::GetStashBalance(const std::string from_stash_name, const std::string asset_type_id)
 {
@@ -1457,7 +1465,7 @@ std::string OTSmartContract::GetStashBalance(const std::string from_stash_name, 
 
 
 // done
-// pScript->chai.add(fun(&(OTSmartContract::SendANoticeToAllParties),	(*this)), "send_notice_to_parties");	// bool SendANoticeToAllParties();
+// pScript->chai->add(fun(&(OTSmartContract::SendANoticeToAllParties),	(*this)), "send_notice_to_parties");	// bool SendANoticeToAllParties();
 //
 bool OTSmartContract::SendANoticeToAllParties()
 {
@@ -1504,7 +1512,7 @@ bool OTSmartContract::SendANoticeToAllParties()
 
 
 // Done:
-// pScript->chai.add(fun(&(OTSmartContract::SendNoticeToParty),		(*this)), "send_notice");	// bool SendNoticeToParty(const std::string party_name);
+// pScript->chai->add(fun(&(OTSmartContract::SendNoticeToParty),		(*this)), "send_notice");	// bool SendNoticeToParty(const std::string party_name);
 //
 bool OTSmartContract::SendNoticeToParty(const std::string party_name)
 {
