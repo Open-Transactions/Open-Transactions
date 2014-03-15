@@ -136,10 +136,13 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTASCIIArmor.hpp"
 #include "OTAsymmetricKey.hpp"
 #include "OTIdentifier.hpp"
+
+#include _CINTTYPES
 
 #include <set>
 

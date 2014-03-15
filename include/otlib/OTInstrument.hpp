@@ -136,8 +136,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTScriptable.hpp"
+
+#include _CINTTYPES
 
 
 class OTInstrument : public OTScriptable 

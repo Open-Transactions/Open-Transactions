@@ -138,9 +138,12 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTAssert.hpp"
 #include "OTString.hpp"
+
+#include _CINTTYPES
 
 #include <deque>
 #include <cerrno>

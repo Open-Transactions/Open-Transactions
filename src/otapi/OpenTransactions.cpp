@@ -2144,7 +2144,7 @@ bool OT_API::Wallet_ChangePassphrase()
     // to make sure it happens, even if there are no Nyms to save below this point.
     //
     OTPassword temp_password;
-    OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+    _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
     const bool bRegenerate = sharedPtr->GetMasterPassword(sharedPtr, temp_password, strReason.Get(),
                                                           true); //bVerifyTwice=false by default.
     // ----------------------------------------------------

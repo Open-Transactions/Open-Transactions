@@ -136,6 +136,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #ifndef IMPORT
 #define IMPORT
@@ -155,6 +156,7 @@
 #endif
 #endif
 
+#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {

@@ -181,7 +181,7 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
         return false;
     }
     // -------------------------------------------
-    OTCachedKey_SharedPtr pCachedKey(this->GetInternalMaster());
+    _SharedPtr<OTCachedKey> pCachedKey(this->GetInternalMaster());
     if (!pCachedKey) OT_FAIL;
     // -------------------------------------------
     const OTString strReason((NULL == szDisplay) ? szFunc : szDisplay);
@@ -196,19 +196,19 @@ bool OTPurse::GetPassphrase(OTPassword & theOutput, const char * szDisplay/*=NUL
 // (It will save the user from having the type the password, for example, 50 times in 1 minute,
 // by using the cached one.)
 //
-OTCachedKey_SharedPtr OTPurse::GetInternalMaster()  // stores the passphrase for the symmetric key.
+_SharedPtr<OTCachedKey> OTPurse::GetInternalMaster()  // stores the passphrase for the symmetric key.
 {
     // -------------------------------------------
     if (!this->IsPasswordProtected() || (!m_pCachedKey)) // this second half of the logic should never happen.
     {
         OTLog::vOutput(0, "%s: Failed: no internal master key exists, in this purse.\n", __FUNCTION__);
-        return OTCachedKey_SharedPtr();
+        return _SharedPtr<OTCachedKey>();
     }
     // -------------------------------------------
     if (!m_pCachedKey->IsGenerated()) // should never happen, since the purse IS password-protected... then where's the master key?
     {
         OTLog::vOutput(0, "%s: Error: internal master key has not yet been generated.\n", __FUNCTION__);
-        return OTCachedKey_SharedPtr();
+        return _SharedPtr<OTCachedKey>();
     }
     // -------------------------------------------
     // By this point we know the purse is password protected, the internal master key
@@ -299,7 +299,7 @@ bool OTPurse::GenerateInternalKey()
     // -----------------
     m_bPasswordProtected = true;
     // -----------------
-    OTCachedKey_SharedPtr pCachedMaster(OTPurse::GetInternalMaster());
+    _SharedPtr<OTCachedKey> pCachedMaster(OTPurse::GetInternalMaster());
     if (!pCachedMaster)
         OTLog::vError("%s: Failed trying to cache the master key for this purse.\n", __FUNCTION__);
     // -----------------
@@ -1230,7 +1230,7 @@ int OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         //
         // (It's only now that I bother instantiating.)
         //
-        OTCachedKey_SharedPtr pCachedKey(new OTCachedKey(ascValue));
+        _SharedPtr<OTCachedKey> pCachedKey(new OTCachedKey(ascValue));
 //        OT_ASSERT_MSG(NULL != pCachedKey, "OTPurse::ProcessXMLNode: Assert: NULL != new OTCachedKey \n");
         // -----------------
         // NOTE: In the event of any error, need to delete pCachedKey before returning.

@@ -135,8 +135,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTClientConnection.hpp"
+
+#include _CINTTYPES
 
 typedef std::list<OTClientConnection *>	listOfConnections;
 

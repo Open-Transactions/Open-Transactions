@@ -202,11 +202,11 @@ bool OTCachedKey::HasHashCheck()
 // Otherwise it will use "the" global Master Key (the one used for the Nyms.)
 //
 //static
-OTCachedKey_SharedPtr OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
+_SharedPtr<OTCachedKey> OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
 {
     // For now we're only allowing a single global instance, unless you pass in an ID, in which case we keep a map.
     //
-    static OTCachedKey_SharedPtr s_theSingleton(new OTCachedKey);  // Default is 0 ("you have to type your PW a million times"), but it's overridden in config file.
+    static _SharedPtr<OTCachedKey> s_theSingleton(new OTCachedKey);  // Default is 0 ("you have to type your PW a million times"), but it's overridden in config file.
     
     if (NULL == pIdentifier)
         return s_theSingleton; // Notice if you pass NULL (no args) then it ALWAYS returns a good pointer here.
@@ -223,7 +223,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
     
     if (s_mapCachedKeys.end() != it_keys) // found it!
     {
-        OTCachedKey_SharedPtr pShared(it_keys->second);
+        _SharedPtr<OTCachedKey> pShared(it_keys->second);
         
         if (pShared)
         {
@@ -239,7 +239,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
     // Therefore you should normally pass in the master key (the same one that you want to cache a copy
     // of) using the below version of It(). That version creates the copy, if it's not already there.
     //
-    return OTCachedKey_SharedPtr();
+    return _SharedPtr<OTCachedKey>();
 }
 
 // if you pass in a master key, it will look it up on an existing cached map of master keys,
@@ -253,7 +253,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
 // and for saving.
 //
 //static
-OTCachedKey_SharedPtr OTCachedKey::It(OTCachedKey & theSourceKey) // Note: parameter no longer const due to need to lock its mutex.
+_SharedPtr<OTCachedKey> OTCachedKey::It(OTCachedKey & theSourceKey) // Note: parameter no longer const due to need to lock its mutex.
 {
 //    tthread::lock_guard<tthread::mutex> lock(*(theSourceKey.GetMutex()));
     // ----------------------------------------------------------------
@@ -267,7 +267,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTCachedKey & theSourceKey) // Note: param
     {
         OTLog::vError("OTCachedKey::%s: theSourceKey.IsGenerated() returned false. "
                       "(Returning NULL.)\n", __FUNCTION__);
-        return OTCachedKey_SharedPtr();
+        return _SharedPtr<OTCachedKey>();
     }
     // ----------------------------------
     tthread::lock_guard<tthread::mutex> lock_keys(OTCachedKey::s_mutexCachedKeys);
@@ -283,7 +283,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTCachedKey & theSourceKey) // Note: param
     
     if (s_mapCachedKeys.end() != it_keys) // found it!
     {
-        OTCachedKey_SharedPtr pMaster(it_keys->second);
+        _SharedPtr<OTCachedKey> pMaster(it_keys->second);
         
         if (pMaster)
             return pMaster;
@@ -300,11 +300,11 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTCachedKey & theSourceKey) // Note: param
     OTASCIIArmor ascCachedKey;
     if ((const_cast<OTCachedKey &>(theSourceKey)).SerializeTo(ascCachedKey)) //it's only not const due to the mutex inside
     {
-        OTCachedKey_SharedPtr pMaster(new OTCachedKey); //int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT;
+        _SharedPtr<OTCachedKey> pMaster(new OTCachedKey); //int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT;
         // ----------------------------------
         pMaster->SetCachedKey(ascCachedKey);
         // ----------------------------------
-        s_mapCachedKeys.insert(std::pair<std::string, OTCachedKey_SharedPtr>(str_identifier, pMaster)); // takes ownership here.
+        s_mapCachedKeys.insert(std::pair<std::string, _SharedPtr<OTCachedKey>>(str_identifier, pMaster)); // takes ownership here.
         return pMaster;
     }
     // theSourceKey WAS generated, but SerializeTo FAILED? Very strange...
@@ -312,7 +312,7 @@ OTCachedKey_SharedPtr OTCachedKey::It(OTCachedKey & theSourceKey) // Note: param
         OTLog::vError("%s: theSourceKey.SerializeTo(ascCachedKey) failed. "
                       "Returning NULL.\n", __FUNCTION__);
     // ----------------------------------
-    return OTCachedKey_SharedPtr();
+    return _SharedPtr<OTCachedKey>();
 }
 
 
@@ -601,11 +601,11 @@ bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
 
 // Caller must delete!
 //static
-OTCachedKey_SharedPtr OTCachedKey::CreateMasterPassword(OTPassword & theOutput,
+_SharedPtr<OTCachedKey> OTCachedKey::CreateMasterPassword(OTPassword & theOutput,
                                                         const char * szDisplay/*=NULL*/,
                                                         int nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/)
 {
-    OTCachedKey_SharedPtr pMaster(new OTCachedKey(nTimeoutSeconds));
+    _SharedPtr<OTCachedKey> pMaster(new OTCachedKey(nTimeoutSeconds));
     // -------------------
     const OTString strDisplay((NULL == szDisplay) ? "Creating a passphrase..." : szDisplay); // todo internationalization / hardcoding.
     
@@ -617,7 +617,7 @@ OTCachedKey_SharedPtr OTCachedKey::CreateMasterPassword(OTPassword & theOutput,
     // If we're still here, that means bGotPassphrase failed.
     //
 //    delete pMaster; pMaster = NULL;
-    return OTCachedKey_SharedPtr();
+    return _SharedPtr<OTCachedKey>();
 }
 
 
@@ -625,7 +625,7 @@ OTCachedKey_SharedPtr OTCachedKey::CreateMasterPassword(OTPassword & theOutput,
 // The password callback uses this to get the password for any individual Nym.
 // This will also generate the master password, if one does not already exist.
 //
-bool OTCachedKey::GetMasterPassword(OTCachedKey_SharedPtr & mySharedPtr,
+bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
                                     OTPassword            & theOutput,
 									const char            * szDisplay,
 									bool bVerifyTwice/*=false*/)
@@ -993,7 +993,7 @@ bool OTCachedKey::GetMasterPassword(OTCachedKey_SharedPtr & mySharedPtr,
 
 		OTLog::vOutput(2, "%s: Starting thread for Master Key...\n", szFunc);
 
-        OTCachedKey_SharedPtr * pthreadSharedPtr = new OTCachedKey_SharedPtr(mySharedPtr); // TODO: memory leak.
+        _SharedPtr<OTCachedKey> * pthreadSharedPtr = new _SharedPtr<OTCachedKey>(mySharedPtr); // TODO: memory leak.
         
 		m_pThread = new tthread::thread(OTCachedKey::ThreadTimeout, static_cast<void *>(pthreadSharedPtr));
 
@@ -1069,8 +1069,8 @@ void OTCachedKey::ThreadTimeout(void * pArg)
     // TODO: Save a copy of pArg, in the cached key object, and delete it whenever LowLevelRemoveThread
     // is called. Otherwise it's a memory leak.
     //
-    OTCachedKey_SharedPtr * pthreadSharedPtr = static_cast<OTCachedKey_SharedPtr *>(pArg);
-    OTCachedKey_SharedPtr   pMyself = *pthreadSharedPtr;
+    _SharedPtr<OTCachedKey> * pthreadSharedPtr = static_cast<_SharedPtr<OTCachedKey> *>(pArg);
+    _SharedPtr<OTCachedKey>   pMyself = *pthreadSharedPtr;
     
     if (!pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
 

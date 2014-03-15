@@ -136,6 +136,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #ifndef IMPORT
 #define IMPORT
@@ -158,7 +159,7 @@
 #endif
 #endif
 
-#include <cstddef>
+#include _CINTTYPES
 
 class OTMessage;
 class OTClientConnection;
@@ -336,7 +337,7 @@ public:
 	// to retrieve the cheques from the expired folders, and total them. The server operator is free to
 	// remove that total from the Voucher Account once the cheque has expired: it is his money now.
 	//OTAccount * GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID);
-	OTAccount_SharedPtr GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID);
+	_SharedPtr<OTAccount> GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID);
 	
 	// When a user uploads an asset contract, the server adds it to the list (and verifies the user's key against the
 	// contract.) This way the server has a directory with all the asset contracts that it supports, saved by their ID.

@@ -189,7 +189,7 @@
  // (Set up theParty here, with his asset accounts, etc)
  // Then...
  //
- OTScript_SharedPtr pScript = OTScript::Factory(default_script_language, strScript);
+ _SharedPtr<OTScript> pScript = OTScript::Factory(default_script_language, strScript);
  
  if (pScript)
  {
@@ -206,7 +206,7 @@
 
 
 
-OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type/*=NULL*/)
+_SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type/*=NULL*/)
 {  
     // if the type is explicitly set to "chai", or if the type is 0 length, then 
     // use chaiscript as the default interpreter in that case as well.
@@ -220,7 +220,7 @@ OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type/*=NULL*/)
           ) 
        ) 
     {
-        OTScript_SharedPtr pChaiScript(new OTScriptChai);
+        _SharedPtr<OTScript> pChaiScript(new OTScriptChai);
         return pChaiScript;
     }
     
@@ -235,7 +235,7 @@ OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type/*=NULL*/)
     else
         OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", p_script_type->c_str());
     
-    OTScript_SharedPtr retVal;
+    _SharedPtr<OTScript> retVal;
 
     return retVal;
 }
@@ -243,7 +243,7 @@ OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type/*=NULL*/)
 
 
 
-OTScript_SharedPtr OTScriptFactory(const std::string & script_contents, 
+_SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents, 
                                    const std::string * p_script_type/*=NULL*/)
 {
     
@@ -258,7 +258,7 @@ OTScript_SharedPtr OTScriptFactory(const std::string & script_contents,
           ) 
        ) 
     {
-        OTScript_SharedPtr pChaiScript(new OTScriptChai(script_contents));
+        _SharedPtr<OTScript> pChaiScript(new OTScriptChai(script_contents));
         return pChaiScript;
     }
     
@@ -274,7 +274,7 @@ OTScript_SharedPtr OTScriptFactory(const std::string & script_contents,
         OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", p_script_type->c_str());
     
     
-    OTScript_SharedPtr retVal;
+    _SharedPtr<OTScript> retVal;
 
     return retVal;
 }

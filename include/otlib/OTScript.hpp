@@ -136,8 +136,12 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTBylaw.hpp"
+
+#include _CINTTYPES
+#include _MEMORY
 
 #if __clang__
 #pragma clang diagnostic push
@@ -226,23 +230,12 @@ EXPORT  void RemoveVariable (OTVariable & theVar);
 
 
 
-#ifndef OT_USE_TR1
-typedef std::shared_ptr	<OTScript>         OTScript_SharedPtr;
-typedef std::weak_ptr   <OTScript>         OTScript_WeakPtr;
-#else
-typedef std::tr1::shared_ptr <OTScript>    OTScript_SharedPtr;
-typedef std::tr1::weak_ptr   <OTScript>    OTScript_WeakPtr;
-#endif
-
-typedef std::auto_ptr<OTScript>            OTScript_AutoPtr;
-
-
 // -----------------------------------
 
-EXPORT OTScript_SharedPtr OTScriptFactory(const std::string & script_contents,
+EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_contents,
                                           const std::string * p_script_type=NULL);
 
-EXPORT OTScript_SharedPtr OTScriptFactory(const std::string * p_script_type=NULL);
+EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string * p_script_type=NULL);
 
 
 
@@ -274,18 +267,6 @@ public:
 
     chaiscript::ChaiScript * const chai;
 };
-
-
-#ifndef OT_USE_TR1
-typedef std::shared_ptr	<OTScriptChai>         OTScriptChai_SharedPtr;
-typedef std::weak_ptr   <OTScriptChai>         OTScriptChai_WeakPtr;
-#else
-typedef std::tr1::shared_ptr <OTScriptChai>    OTScriptChai_SharedPtr;
-typedef std::tr1::weak_ptr   <OTScriptChai>    OTScriptChai_WeakPtr;
-#endif
-
-typedef std::auto_ptr<OTScriptChai>            OTScriptChai_AutoPtr;
-
 
 
 

@@ -136,8 +136,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTCrypto.hpp"
+
+#include _CINTTYPES
 
 class OTPseudonym;
 class OTString;

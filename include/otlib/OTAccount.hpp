@@ -135,10 +135,12 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
-#include "MemoryWrapper.hpp"
+#include "TR1_Wrapper.hpp"
 
 #include "OTTransactionType.hpp"
 
+#include _CINTTYPES
+#include _MEMORY
 
 class OTPseudonym;
 class OTAccount;
@@ -272,18 +274,10 @@ typedef std::list <OTAccount *> listOfAccounts;
 
 // -------------------------------------------------------------
 
-#ifndef OT_USE_TR1
-typedef std::shared_ptr	<OTAccount>         OTAccount_SharedPtr;
-typedef std::weak_ptr   <OTAccount>         OTAccount_WeakPtr;
-#else
-typedef std::tr1::shared_ptr <OTAccount>    OTAccount_SharedPtr;
-typedef std::tr1::weak_ptr   <OTAccount>    OTAccount_WeakPtr;
-#endif
-
 typedef std::auto_ptr<OTAccount>            OTAccount_AutoPtr;
 
 
-typedef std::map<std::string, OTAccount_WeakPtr>	mapOfWeakAccounts; // mapped by ACCT ID
+typedef std::map<std::string, _WeakPtr<OTAccount>>	mapOfWeakAccounts; // mapped by ACCT ID
 
 
 
@@ -318,7 +312,7 @@ EXPORT	int  ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcc
 	
         void SetType(OTAccount::AccountType eAcctType) { m_AcctType = eAcctType; }
 	
-EXPORT	OTAccount_SharedPtr GetOrCreateAccount(OTPseudonym			& theServerNym, 
+EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym, 
                                                const OTIdentifier	& ACCOUNT_OWNER_ID, 
                                                const OTIdentifier	& ASSET_TYPE_ID, 
                                                const OTIdentifier	& SERVER_ID,

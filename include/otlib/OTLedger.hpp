@@ -136,10 +136,13 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTTransactionType.hpp"
 
 #include "OTTransaction.hpp"
+
+#include _CINTTYPES
 
 
 class OTItem;

@@ -2175,7 +2175,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     OTPassword  thePassword;
     bool        bGotPassword = false;
     // -------------------------------------
-    OTCachedKey_SharedPtr pCachedKey(pPWData->GetCachedKey()); // Sometimes it's passed in, otherwise we use the global one.
+    _SharedPtr<OTCachedKey> pCachedKey(pPWData->GetCachedKey()); // Sometimes it's passed in, otherwise we use the global one.
     
     if (!pCachedKey)
     {

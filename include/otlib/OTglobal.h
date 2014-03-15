@@ -136,8 +136,9 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
+#include "TR1_Wrapper.hpp"
 
-#include <inttypes.h>
+#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {

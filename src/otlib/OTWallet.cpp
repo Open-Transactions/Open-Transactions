@@ -1524,7 +1524,7 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
 							{
 								OTPassword tempPassword; tempPassword.zeroMemory();
                                 
-                                OTCachedKey_SharedPtr sharedPtr(OTCachedKey::It());
+                                _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
                                 
 								bNeedToSaveAgain = sharedPtr->GetMasterPassword(sharedPtr,
                                                                                 tempPassword,

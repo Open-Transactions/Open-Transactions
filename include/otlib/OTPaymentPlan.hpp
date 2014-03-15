@@ -136,8 +136,11 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
 
 #include "OTAgreement.hpp"
+
+#include _CINTTYPES
 
 
 #ifndef LENGTH_OF_DAY_IN_SECONDS

@@ -146,6 +146,9 @@ Every other type will be wrapped in a std::string.
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
+
+#include _CINTTYPES
 
 #include <string>
 
