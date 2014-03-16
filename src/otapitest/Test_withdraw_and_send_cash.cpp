@@ -9,6 +9,7 @@ TEST_MOCK(easy_withdraw_cash)
 	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.easy_withdraw_cash(ACCOUNT_ID, AMOUNT));
 }
 
+
 TEST_MOCK(withdraw_and_send_cash_Fail_HasEmptyPurseEvenAfterCashWithdrawal)
 {
 	EXPECT_MOCK_STR("", NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));

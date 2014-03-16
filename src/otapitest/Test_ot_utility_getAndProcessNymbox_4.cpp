@@ -7,15 +7,20 @@ TEST_MOCK(ot_utility_getAndProcessNymbox_4)
 
 	if (index >= 0)
 	{
-		OtMeTest::EXPECT_insureHaveAllBoxReceipts(mock, index);
+        OtMeTest::EXPECT_ot_utility_insureHaveAllBoxReceipts(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, 0);
 
-		//FIX what if this one fails?
-		EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
+        if (index >= 0)
+        {
+            //FIX what if this one fails?
+            EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 
-		//FIX what if this one fails? VOID function, but can fail!
-		EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
+            //FIX what if this one fails? VOID function, but can fail!
+            EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
 
-		OtMeTest::EXPECT_ot_utility_processNymbox(mock, index, SERVER_ID, NYM_ID);
+            OtMeTest::EXPECT_ot_utility_processNymbox(mock, index, SERVER_ID, NYM_ID);
+
+            //FIX figure out how to get into the rest of the alternative pathways
+        }
 	}
 
 	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.ot_utility_getAndProcessNymbox_4(SERVER_ID, NYM_ID, false));
@@ -34,7 +39,7 @@ void OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(Mock_OTAPI_Exec & mock, i
 {
 	OtMeTest::EXPECT_ot_utility_getNymbox(mock, noAltPathways, SERVER_ID, NYM_ID, false);
 
-	OtMeTest::EXPECT_insureHaveAllBoxReceipts(mock, noAltPathways);
+    OtMeTest::EXPECT_ot_utility_insureHaveAllBoxReceipts(mock, noAltPathways, SERVER_ID, NYM_ID, ACCOUNT_ID, 0);
 
 	//FIX what if this one fails?
 	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));

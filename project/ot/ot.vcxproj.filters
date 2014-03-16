@@ -29,7 +29,6 @@
     <None Include="..\..\scripts\opentxs">
       <Filter>opentxs</Filter>
     </None>
-    <None Include="..\..\src\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\otd\ot.rc">

@@ -17,12 +17,8 @@ TEST_MOCK(ot_utility_getNymbox_NoForceDownloadGetNymbox)
 	EXPECT_MOCK_RET(NYM_HASH, GetNym_RecentHash(SERVER_ID, NYM_ID));
 	EXPECT_MOCK_RET(NYM_HASH2, GetNym_NymboxHash(SERVER_ID, NYM_ID));
 
-	//OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(mock, index, SERVER_ID, NYM_ID);
-	// just need to tweak the outcome a little (invert success status)
-	EXPECT_MOCK(FlushMessageBuffer());
-	EXPECT_MOCK_RET(REQUEST_NUMBER, getNymbox(SERVER_ID, NYM_ID));
-	OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(mock, noAltPathways, SERVER_ID, NYM_ID, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
-	EXPECT_MOCK_STR(OT_TRUE, OT_ERROR, Message_GetSuccess(MESSAGE_DATA));
+    int invertPathways = INVERT_MOCK;
+    OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(mock, invertPathways, SERVER_ID, NYM_ID);
 
 	if (index >= 0)
 	{
@@ -58,7 +54,6 @@ void OtMeTest::EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, 
 	EXPECT_MOCK_RET(NYM_HASH, GetNym_RecentHash(SERVER_ID, NYM_ID));
 	EXPECT_MOCK_RET(NYM_HASH2, GetNym_NymboxHash(SERVER_ID, NYM_ID));
 
-	// just need to tweak the outcome a little (error status)
 	int errorPathwayOnly = 0;
 	OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(mock, errorPathwayOnly, SERVER_ID, NYM_ID);
 
