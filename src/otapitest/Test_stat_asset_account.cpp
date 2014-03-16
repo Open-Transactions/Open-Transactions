@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
 
 
-TEST_F(OtMeTest, stat_asset_account)
+TEST_MOCK(stat_asset_account)
 {
 	//NOTE: Not important whether the retrieval functions will fail
 	//      The resulting empty strings are simply returned, too

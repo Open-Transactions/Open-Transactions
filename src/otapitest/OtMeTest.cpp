@@ -130,27 +130,6 @@ void OtMeTest::EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, 
 	EXPECT_MOCK_RET(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
 }
 
-void OtMeTest::EXPECT_getNymBox(Mock_OTAPI_Exec & mock, int & index, bool bForceDownload)
-{
-	EXPECT_MOCK_RET(NYM_HASH, GetNym_RecentHash(SERVER_ID, NYM_ID));
-
-	EXPECT_MOCK_RET(NYM_HASH, GetNym_NymboxHash(SERVER_ID, NYM_ID));
-
-	if (bForceDownload)
-	{
-		EXPECT_REQUEST(MESSAGE_DATA, getNymbox(SERVER_ID, NYM_ID));
-	}
-}
-
-void OtMeTest::EXPECT_insureHaveAllBoxReceipts(Mock_OTAPI_Exec & mock, int & index)
-{
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-	EXPECT_MOCK_RET(true, VerifySignature(NYM_ID, LEDGER_DATA));
-
-	EXPECT_MOCK_RET(0, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, LEDGER_DATA));
-}
-
 void OtMeTest::EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId)
 {
 	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));

@@ -145,7 +145,11 @@ static const int    TOKEN_SERIES				= 99;
 static const int    TOKEN_VALUE					= 5678;
 static const char * TRANSACTION_DATA			= "TransactionData_____";
 static const int    TRANSACTION_NUMBER			= 345;
-static const char * WALLET_NAME					= "WalletName__________";
+static const char * TYPE_BLANK                  = "blank";
+static const char * TYPE_MESSAGE                = "message";
+static const char * TYPE_NOTICE                 = "notice";
+static const char * TYPE_REPLY_NOTICE           = "replyNotice";
+static const char * WALLET_NAME                 = "WalletName__________";
 
 
 using namespace ::std;
@@ -184,28 +188,31 @@ public:
 	static void EXPECT_accept_from_paymentbox_HasNonEmptyLedger(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const char * indices, const char * paymentType);
 	static void EXPECT_details_deposit_cheque(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType);
 	static void EXPECT_details_export_cash(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymFromId, const char *assetId, const char *nymToId, const char *indices, bool password);
-	static void EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const int64_t amount);
+    static void EXPECT_details_refresh_nym(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const bool bForceDownload);
+    static void EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const int64_t amount);
 	static void EXPECT_get_payment_instrument(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int paymentIndex, const char * inboxData);
 	static void EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, bool bForced);
-	static void EXPECT_ot_utility_getRequestNumber(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_handle_payment_index(Mock_OTAPI_Exec & mock, int & index, const char * accountId, int paymentIndex, const char * paymentType, const char * inboxData);
-	static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
+    static void EXPECT_insure_enough_nums(Mock_OTAPI_Exec & mock, int & index, const int numberNeeded, const char * serverId, const char * nymId);
+    static void EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId);
 	static void EXPECT_load_or_retrieve_contract(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * contractId);
 	static void EXPECT_load_or_retrieve_encrypt_key(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char *nymToId);
 	static void EXPECT_ot_utility_getAndProcessNymbox_4(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
-	static void EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
+    static void EXPECT_ot_utility_getBoxReceiptLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, const int boxType, const int64_t transactionNumber);
+    static void EXPECT_ot_utility_getBoxReceiptWithErrorCorrection(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, const int boxType, const int64_t transactionNumber);
+    static void EXPECT_ot_utility_getNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool bForceDownload);
 	static void EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+	static void EXPECT_ot_utility_getRequestNumber(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_ot_utility_getTransactionNumbers(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_ot_utility_getTransactionNumbers_part2(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, bool & returnValue);
 	static void EXPECT_ot_utility_getTransactionNumLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+    static void EXPECT_ot_utility_insureHaveAllBoxReceipts(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, const int boxType);
 	static void EXPECT_ot_utility_processNymbox(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 	static void EXPECT_ot_utility_ReceiveReplyLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
 	static void EXPECT_ot_utility_receiveReplySuccessLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, int reqNr, const char * function);
 	static void EXPECT_ot_utility_sendProcessNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
+    static void EXPECT_retrieve_nym(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId);
 
-	static void EXPECT_getNymBox(Mock_OTAPI_Exec & mock, int & index, bool bForceDownload);
-	static void EXPECT_insureHaveAllBoxReceipts(Mock_OTAPI_Exec & mock, int & index);
-	
 	time_t GetTime();
 	virtual void SetUp();
 	virtual void TearDown();

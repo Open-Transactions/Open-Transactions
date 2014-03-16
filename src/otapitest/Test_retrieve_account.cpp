@@ -1,26 +1,26 @@
 #include "stdafx.hpp"
 
 
-TEST_F(OtMeTest, retrieve_account_DefaultUnforced)
+TEST_MOCK(retrieve_account_DefaultUnforced)
 {
-	EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
+	OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
 
 	// defaults to unforced version
-	ASSERT_TRUE(me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID));
+	ASSERT_MOCK_EQ(false, true, me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID));
 }
 
 
-TEST_F(OtMeTest, retrieve_account_Forced)
+TEST_MOCK(retrieve_account_Forced)
 {
-	EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, true);
+    OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, true);
 
-	ASSERT_TRUE(me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID, true));
+    ASSERT_MOCK_EQ(false, true, me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID, true));
 }
 
 
-TEST_F(OtMeTest, retrieve_account_Unforced)
+TEST_MOCK(retrieve_account_Unforced)
 {
-	EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
+    OtMeTest::EXPECT_getIntermediaryFiles(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID, false);
 
-	ASSERT_TRUE(me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID, false));
+    ASSERT_MOCK_EQ(false, true, me.retrieve_account(SERVER_ID, NYM_ID, ACCOUNT_ID, false));
 }

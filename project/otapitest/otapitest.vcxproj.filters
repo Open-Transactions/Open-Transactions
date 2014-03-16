@@ -129,6 +129,27 @@
     <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getTransactionNumbers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_load_public_encryption_key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_load_public_signing_key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_sendProcessNymboxLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_insureHaveAllBoxReceipts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getBoxReceiptLowLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_ot_utility_getBoxReceiptWithErrorCorrection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapitest\Test_details_refresh_nym.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\otapitest\CallStructure.txt" />

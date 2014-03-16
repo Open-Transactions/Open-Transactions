@@ -528,9 +528,6 @@
   <ItemGroup>
     <ResourceCompile Include="..\..\src\otlib\otlib.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\otlib\Makefile.am" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0455E434-A635-448A-996E-448583FD3A37}</ProjectGuid>
     <RootNamespace>otlib</RootNamespace>

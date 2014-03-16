@@ -64,9 +64,9 @@ GTEST_API_ int main(int argc, char** argv) {
 	InitGoogleMock(&argc, argv);
 	int success = RUN_ALL_TESTS();
 
-	cout << "             "
-		 << OtMeTest::pathways << " pathways executed ("
-		 << OtMeTest::singles << " singles).\n";
+    cout << "             "
+        << OtMeTest::pathways << " pathways executed.\n";
+    //    << " (" << OtMeTest::singles << " singles).\n";
 
 	OTAPI_Wrap::AppCleanup();
 	OTDataFolder::Cleanup();

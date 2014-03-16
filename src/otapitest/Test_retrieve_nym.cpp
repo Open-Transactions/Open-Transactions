@@ -1,62 +1,21 @@
 #include "stdafx.hpp"
 
 
-TEST_F(OtMeTest, retrieve_nym_DefaultForced)
+TEST_MOCK(retrieve_nym)
 {
-	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
+    OtMeTest::EXPECT_ot_utility_getRequestNumber(mock, index, SERVER_ID, NYM_ID);
 
-	EXPECT_getNymBox(mock, index, true);
-
-	EXPECT_insureHaveAllBoxReceipts(mock, index);
-
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-	EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
-
-	EXPECT_MOCK(FlushMessageBuffer());
-
-	EXPECT_MOCK_RET(0, processNymbox(SERVER_ID, NYM_ID));
+    if (index >= 0)
+    {
+        OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, index, SERVER_ID, NYM_ID, false);
+    }
 
 	// defaults to forced version
-	ASSERT_TRUE(me.retrieve_nym(SERVER_ID, NYM_ID));
+	ASSERT_MOCK_EQ(false, true, me.retrieve_nym(SERVER_ID, NYM_ID));
 }
 
-
-TEST_F(OtMeTest, retrieve_nym_Forced)
+void OtMeTest::EXPECT_retrieve_nym(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId)
 {
-	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
-
-	EXPECT_getNymBox(mock, index, true);
-
-	EXPECT_insureHaveAllBoxReceipts(mock, index);
-
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-	EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
-
-	EXPECT_MOCK(FlushMessageBuffer());
-
-	EXPECT_MOCK_RET(0, processNymbox(SERVER_ID, NYM_ID));
-
-	ASSERT_TRUE(me.retrieve_nym(SERVER_ID, NYM_ID, true));
-}
-
-
-TEST_F(OtMeTest, retrieve_nym_Unforced)
-{
-	EXPECT_REQUEST(MESSAGE_DATA, getRequest(SERVER_ID, NYM_ID));
-
-	EXPECT_getNymBox(mock, index, false);
-
-	EXPECT_insureHaveAllBoxReceipts(mock, index);
-
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-	EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
-
-	EXPECT_MOCK(FlushMessageBuffer());
-
-	EXPECT_MOCK_RET(0, processNymbox(SERVER_ID, NYM_ID));
-
-	ASSERT_TRUE(me.retrieve_nym(SERVER_ID, NYM_ID, false));
+    EXPECT_ot_utility_getRequestNumber(mock, noAltPathways, SERVER_ID, NYM_ID);
+    EXPECT_ot_utility_getAndProcessNymbox_4(mock, index, SERVER_ID, NYM_ID, false);
 }

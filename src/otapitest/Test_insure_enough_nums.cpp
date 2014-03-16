@@ -1,70 +1,42 @@
 #include "stdafx.hpp"
 
 
-#ifdef NOT_READY_YET
-
 TEST_MOCK(insure_enough_nums)
 {
 	int returnValue = true;
 
-	EXPECT_MOCK_STR(2, 1, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
+	EXPECT_MOCK_STR(2, 0, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
 
 	if (index >= 0)
 	{
 		returnValue = false;
 
-		OtMeTest::EXPECT_ot_utility_getTransactionNumbers(mock, index, SERVER_ID, NYM_ID);
+        //FIX what if this one fails?
+        OtMeTest::EXPECT_ot_utility_getTransactionNumbers(mock, noAltPathways, SERVER_ID, NYM_ID);
 
-		if (index >= 0)
+        OtMeTest::EXPECT_details_refresh_nym(mock, index, SERVER_ID, NYM_ID, false);
+
+        if (index >= 0)
 		{
-			//// getNymbox
-//			OtMeTest::EXPECT_getNymBox(mock, noAltPathways, true);
-
-			//OtMeTest::EXPECT_insureHaveAllBoxReceipts(mock, noAltPathways);
-
-			//EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
-
-			//EXPECT_MOCK(FlushMessageBuffer());
-
-			//EXPECT_MOCK_RET(0, processNymbox(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK(FlushMessageBuffer());
-
-			//EXPECT_MOCK_RET(REQUEST_NUMBER, getRequest(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK(Sleep(50));
-
-			//EXPECT_MOCK_RET(MESSAGE_DATA, PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
-
-			//EXPECT_MOCK_RET(NYM_HASH, GetNym_RecentHash(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK_RET(NYM_HASH, GetNym_NymboxHash(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK_RET(true, VerifySignature(NYM_ID, LEDGER_DATA));
-
-			//EXPECT_MOCK_RET(0, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, LEDGER_DATA));
-
-			//EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
-
-			//EXPECT_MOCK(FlushMessageBuffer());
-
-			//EXPECT_MOCK_RET(0, processNymbox(SERVER_ID, NYM_ID));
-
-			//EXPECT_MOCK_RET(2, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
-
-			returnValue = true;
-		}
+			EXPECT_MOCK_STR(0, 2, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
+            if (index >= 0)
+            {
+                returnValue = true;
+            }
+        }
 	}
 
 	ASSERT_EQ(returnValue, me.make_sure_enough_trans_nums(2, SERVER_ID, NYM_ID));
 }
 
-#endif
+
+void OtMeTest::EXPECT_insure_enough_nums(Mock_OTAPI_Exec & mock, int & index, const int numberNeeded, const char * serverId, const char * nymId)
+{
+    EXPECT_MOCK_RET(0, GetNym_TransactionNumCount(serverId, nymId));
+
+    EXPECT_ot_utility_getTransactionNumbers(mock, noAltPathways, serverId, nymId);
+
+    EXPECT_details_refresh_nym(mock, noAltPathways, serverId, nymId, false);
+
+    EXPECT_MOCK_STR(0, numberNeeded, GetNym_TransactionNumCount(serverId, nymId));
+}
