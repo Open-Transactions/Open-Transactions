@@ -133,6 +133,7 @@
 #include <OTASCIIArmor.hpp>
 #include <OTPayload.hpp>
 
+#include <typeinfo>
 #include <fstream>
 
 /*
