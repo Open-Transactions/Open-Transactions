@@ -260,7 +260,7 @@ class OTIdentifier;
 
 // ------------------------------------------------------------------
 
-typedef std::map<std::string, _SharedPtr<OTCachedKey>> mapOfCachedKeys;
+typedef std::map<std::string, _SharedPtr<OTCachedKey> > mapOfCachedKeys;
 
 // ------------------------------------------------------------------
 class OTCachedKey

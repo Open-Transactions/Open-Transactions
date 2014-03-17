@@ -277,7 +277,7 @@ typedef std::list <OTAccount *> listOfAccounts;
 typedef std::auto_ptr<OTAccount>            OTAccount_AutoPtr;
 
 
-typedef std::map<std::string, _WeakPtr<OTAccount>>	mapOfWeakAccounts; // mapped by ACCT ID
+typedef std::map<std::string, _WeakPtr<OTAccount> >	mapOfWeakAccounts; // mapped by ACCT ID
 
 
 

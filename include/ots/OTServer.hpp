@@ -161,6 +161,8 @@
 
 #include _CINTTYPES
 
+#include <cstddef>
+
 class OTMessage;
 class OTClientConnection;
 class OTPayment;
