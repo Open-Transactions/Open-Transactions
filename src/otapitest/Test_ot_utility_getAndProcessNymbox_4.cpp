@@ -27,11 +27,21 @@ TEST_MOCK(ot_utility_getAndProcessNymbox_4)
 }
 
 
+int OtMeChai::ot_utility_getAndProcessNymbox_4(const char * serverId, const char * nymId, bool bForceDownload)
+{
+    OTString code;
+    code.Format("{ var util = Utility(); var bWasSent = OTBool(false);"
+                "  util.getAndProcessNymbox_4(\"%s\", \"%s\", bWasSent, %s); }",
+                serverId, nymId, boolStr(bForceDownload));
+    return execInt(code.Get());
+}
+
+
 int OtMeExtra::ot_utility_getAndProcessNymbox_4(const char * serverId, const char * nymId, bool bForceDownload)
 {
-	OTString code;
-	code.Format("{ var util = Utility(); var bWasMsgSent = OTBool(false); util.getAndProcessNymbox_4(\"%s\", \"%s\", bWasMsgSent, %s); }", serverId, nymId, boolStr(bForceDownload));
-	return execInt(code.Get());
+    Utility util;
+    bool bWasSent = false;
+    return util.getAndProcessNymbox_4(serverId, nymId, bWasSent, bForceDownload);
 }
 
 

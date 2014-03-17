@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 
-
 #ifndef EXPORT
 #define EXPORT
 #endif

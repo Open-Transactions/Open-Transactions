@@ -13,11 +13,19 @@ TEST_MOCK(ot_utility_getRequestNumber)
 }
 
 
-int OtMeExtra::ot_utility_getRequestNumber(const char * serverId, const char * nymId)
+int OtMeChai::ot_utility_getRequestNumber(const char * serverId, const char * nymId)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.getRequestNumber(\"%s\", \"%s\"); }", serverId, nymId);
+	code.Format("{ var util = Utility(); util.getRequestNumber(\"%s\", \"%s\"); }",
+                serverId, nymId);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_getRequestNumber(const char * serverId, const char * nymId)
+{
+    Utility util;
+    return util.getRequestNumber(serverId, nymId);
 }
 
 

@@ -13,11 +13,19 @@ TEST_MOCK(ot_utility_getNymboxLowLevel)
 }
 
 
-int OtMeExtra::ot_utility_getNymboxLowLevel(const char * serverId, const char * nymId)
+int OtMeChai::ot_utility_getNymboxLowLevel(const char * serverId, const char * nymId)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.getNymboxLowLevel(\"%s\", \"%s\"); }", serverId, nymId);
+	code.Format("{ var util = Utility(); util.getNymboxLowLevel(\"%s\", \"%s\"); }",
+                serverId, nymId);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_getNymboxLowLevel(const char * serverId, const char * nymId)
+{
+    Utility util;
+    return util.getNymboxLowLevel(serverId, nymId);
 }
 
 

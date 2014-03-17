@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(ot_utility_getBoxReceiptLowLevel)
@@ -13,12 +13,21 @@ TEST_MOCK(ot_utility_getBoxReceiptLowLevel)
 }
 
 
+bool OtMeChai::ot_utility_getBoxReceiptLowLevel(const char * serverId, const char * nymId, const char * accountId, const int boxType, const int64_t transactionNumber)
+{
+    OTString code;
+    code.Format("{ var util = Utility(); var bWasSent = OTBool(false);"
+                "  util.getBoxReceiptLowLevel(\"%s\", \"%s\", \"%s\", %d, int64_t(%lld), bWasSent); }",
+                serverId, nymId, accountId, boxType, transactionNumber);
+    return execBool(code.Get());
+}
+
+
 bool OtMeExtra::ot_utility_getBoxReceiptLowLevel(const char * serverId, const char * nymId, const char * accountId, const int boxType, const int64_t transactionNumber)
 {
-	OTString code;
-    code.Format("{ var util = Utility(); var bWasSent = OTBool(false); util.getBoxReceiptLowLevel(\"%s\", \"%s\", \"%s\", %d, int64_t(%lld), bWasSent); }",
-                serverId, nymId, accountId, boxType, transactionNumber);
-	return execBool(code.Get());
+    Utility util;
+    bool bWasSent = false;
+    return util.getBoxReceiptLowLevel(serverId, nymId, accountId, boxType, transactionNumber, bWasSent);
 }
 
 

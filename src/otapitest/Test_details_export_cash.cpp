@@ -51,25 +51,43 @@ TEST_MOCK(details_export_cash)
 		}
 	}
 
-	string retainedCopy;
-	ASSERT_EQ(resultValue, me.details_export_cash(SERVER_ID, NYM_ID, ASSET_ID, NYM_TO_ID, INDICES_NONE, false, retainedCopy));
+    string hisNymId = NYM_TO_ID;
+    string retainedCopy;
+    ASSERT_EQ(resultValue, me.details_export_cash(SERVER_ID, NYM_ID, ASSET_ID, hisNymId, INDICES_NONE, false, retainedCopy));
 }
 
 
-string OtMeExtra::details_export_cash(const char * serverId, const char * nymFromId, const char *assetId, const char *nymToId, const char *indices, bool password, string & retainedCopy)
+string OtMeChai::details_export_cash(const char * serverId, const char * nymFromId, const char *assetId, string & hisNymId, const char *indices, bool password, string & retainedCopy)
 {
-	const string str_var_name1("varRetained");
-	OTVariable varRetained(str_var_name1, retainedCopy);
-	this->AddVariable(str_var_name1, varRetained);
+    const string str_var_name1("varHisNymId");
+    OTVariable varHisNymId(str_var_name1, hisNymId);
+    this->AddVariable(str_var_name1, varHisNymId);
 
-	OTString code;
-	code.Format("{ details_export_cash(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", %s, varRetained); }",
-				serverId, nymFromId, assetId, nymToId, indices, boolStr(password));
+    const string str_var_name2("varRetained");
+    OTVariable varRetained(str_var_name2, retainedCopy);
+    this->AddVariable(str_var_name2, varRetained);
 
-	const string result = ExecuteScript_ReturnString(code.Get(), __FUNCTION__);
+    OTString code;
+	code.Format("{ details_export_cash(\"%s\", \"%s\", \"%s\", varHisNymId, \"%s\", %s, varRetained); }",
+                serverId, nymFromId, assetId, indices, boolStr(password));
+
+	const string result = execStr(code.Get());
 	if (!result.empty())
 	{
-		retainedCopy = varRetained.GetValueString();
+        hisNymId = varHisNymId.GetValueString();
+        retainedCopy = varRetained.GetValueString();
+    }
+	return result;
+}
+
+
+string OtMeExtra::details_export_cash(const char * serverId, const char * nymFromId, const char *assetId, string & hisNymId, const char *indices, bool password, string & retainedCopy)
+{
+    string varRetained;
+	const string result = ::details_export_cash(serverId, nymFromId, assetId, hisNymId, indices, password, varRetained);
+	if (!result.empty())
+	{
+		retainedCopy = varRetained;
 	}
 	return result;
 }

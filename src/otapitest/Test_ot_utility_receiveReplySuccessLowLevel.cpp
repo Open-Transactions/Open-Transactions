@@ -11,11 +11,19 @@ TEST_MOCK(ot_utility_receiveReplySuccessLowLevel)
 }
 
 
-int OtMeExtra::ot_utility_receiveReplySuccessLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
+int OtMeChai::ot_utility_receiveReplySuccessLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.receiveReplySuccessLowLevel(\"%s\", \"%s\", %d, \"%s\"); }", serverId, nymId, reqNr, function);
+	code.Format("{ var util = Utility(); util.receiveReplySuccessLowLevel(\"%s\", \"%s\", %d, \"%s\"); }",
+                serverId, nymId, reqNr, function);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_receiveReplySuccessLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
+{
+    Utility util;
+    return util.receiveReplySuccessLowLevel(serverId, nymId, reqNr, function);
 }
 
 

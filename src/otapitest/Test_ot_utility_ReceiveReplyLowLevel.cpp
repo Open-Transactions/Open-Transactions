@@ -11,11 +11,19 @@ TEST_MOCK(ot_utility_ReceiveReplyLowLevel)
 }
 
 
-string OtMeExtra::ot_utility_ReceiveReplyLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
+string OtMeChai::ot_utility_ReceiveReplyLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.ReceiveReplyLowLevel(\"%s\", \"%s\", %d, \"%s\"); }", serverId, nymId, reqNr, function);
+	code.Format("{ var util = Utility(); util.ReceiveReplyLowLevel(\"%s\", \"%s\", %d, \"%s\"); }",
+                serverId, nymId, reqNr, function);
 	return execStr(code.Get());
+}
+
+
+string OtMeExtra::ot_utility_ReceiveReplyLowLevel(const char * serverId, const char * nymId, int reqNr, const char * function)
+{
+    Utility util;
+    return util.ReceiveReplyLowLevel(serverId, nymId, reqNr, function);
 }
 
 

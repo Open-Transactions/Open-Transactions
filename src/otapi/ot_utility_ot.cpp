@@ -716,18 +716,18 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
 
     if (!(bWasMsgSent) || ((nGetNymbox <= 0) && (-1 != nGetNymbox)))
     {
-        OTAPI_Wrap::Output(0, strLocation + ": Failure: getNymboxLowLevel returned unexpected value: " + to_string(nGetNymbox) + "\n");
+        OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymboxLowLevel returned unexpected value: " + to_string(nGetNymbox) + "\n");
         return -1;
     }   // NOTE: for getNymbox, there is no '0' return value;
 
     if (-1 == nGetNymbox) // we'll try re-syncing the request number, then try again.
     {
-        OTAPI_Wrap::Output(0, strLocation + ": FYI: getNymboxLowLevel returned -1. (Re-trying...)\n");
+        OTAPI_Wrap::Output(0, strLocation + ": FYI: this.getNymboxLowLevel returned -1. (Re-trying...)\n");
 
         int nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
-            OTAPI_Wrap::Output(0, strLocation + ": Failure: getNymboxLowLevel failed, then I tried to resync with getRequestNumber and then that failed too. (I give up.)\n");
+            OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymboxLowLevel failed, then I tried to resync with this.getRequestNumber and then that failed too. (I give up.)\n");
             return -1;
         }
 
@@ -736,7 +736,7 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
         // reply itself. But in this case, I needed it.
         if (!VerifyStringVal(strLastReplyReceived)) // THIS SHOULD NEVER HAPPEN.
         {
-            OTAPI_Wrap::Output(0, strLocation + ": ERROR in getLastReplyReceived(): why was this string not set, when getRequestNumber was otherwise an apparent success?\n");
+            OTAPI_Wrap::Output(0, strLocation + ": ERROR in getLastReplyReceived(): why was this string not set, when this.getRequestNumber was otherwise an apparent success?\n");
             return -1; // (SHOULD NEVER HAPPEN. This string is set in the getRequestNumber function.)
         }
 
@@ -802,13 +802,13 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
 
             if (!(bWasMsgSent) || ((nGetNymbox <= 0) && (-1 != nGetNymbox)))
             {
-                OTAPI_Wrap::Output(0, strLocation + ": Failure(2): getNymboxLowLevel returned unexpected value: " + to_string(nGetNymbox) + "\n");
+                OTAPI_Wrap::Output(0, strLocation + ": Failure(2): this.getNymboxLowLevel returned unexpected value: " + to_string(nGetNymbox) + "\n");
                 return -1;
             }
 
             if (-1 == nGetNymbox) // we'll try re-syncing the request number, then try again.
             {
-                OTAPI_Wrap::Output(0, strLocation + ": Failure: getNymboxLowLevel returned -1, even after syncing the request number successfully. (Giving up.)\n");
+                OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymboxLowLevel returned -1, even after syncing the request number successfully. (Giving up.)\n");
                 return -1;
             }
         }
@@ -930,7 +930,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
     int nGetNymbox = getNymbox(serverID, nymID, bForceDownload);
     if (!VerifyIntVal(nGetNymbox) || (nGetNymbox < 1))
     {
-        OTAPI_Wrap::Output(0, strLocation + ": Failure: getNymbox returned: " + to_string(nGetNymbox) + "\n");
+        OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymbox returned: " + to_string(nGetNymbox) + "\n");
         return -1;
     }
 
@@ -1224,7 +1224,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
 
             if (nGetNymbox < 1)
             {
-                OTAPI_Wrap::Output(0, strLocation + ": Failure: getNymbox returned: " + to_string(nGetNymbox) + "\n");
+                OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymbox returned: " + to_string(nGetNymbox) + "\n");
 
                 return -1;
             }

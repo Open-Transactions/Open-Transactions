@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(details_refresh_nym)
@@ -9,11 +9,18 @@ TEST_MOCK(details_refresh_nym)
 }
 
 
-bool OtMeExtra::details_refresh_nym(const char * serverId, const char * nymId, const bool bForceDownload)
+bool OtMeChai::details_refresh_nym(const char * serverId, const char * nymId, const bool bForceDownload)
 {
     OTString code;
-    code.Format("{ details_refresh_nym(\"%s\", \"%s\", %s); }", serverId, nymId, boolStr(bForceDownload));
+    code.Format("{ details_refresh_nym(\"%s\", \"%s\", %s); }",
+                serverId, nymId, boolStr(bForceDownload));
     return execBool(code.Get());
+}
+
+
+bool OtMeExtra::details_refresh_nym(const char * serverId, const char * nymId, const bool bForceDownload)
+{
+    return ::details_refresh_nym(serverId, nymId, bForceDownload);
 }
 
 
