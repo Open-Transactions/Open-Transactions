@@ -1,25 +1,25 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_processNymbox)
+TEST_MULTI(ot_utility_processNymbox)
 {
 	OtMeTest::EXPECT_ot_utility_sendProcessNymboxLowLevel(mock, index, SERVER_ID, NYM_ID);
 
 	OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, "processNymbox / sendProcessNymboxLowLevel / ReceiveReplyLowLevel");
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
 	if (index >= 0)
 	{
-		EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
+		EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
 
 		if (index >= 0)
 		{
-			EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
+			EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
 		}
 	}
 
-	ASSERT_MOCK_EQ(OT_ERROR, REQUEST_NUMBER, me.ot_utility_processNymbox(SERVER_ID, NYM_ID));
+	ASSERT_MULTI_EQ(OT_ERROR, REQUEST_NUMBER, me.ot_utility_processNymbox(SERVER_ID, NYM_ID));
 }
 
 
@@ -57,9 +57,9 @@ void OtMeTest::EXPECT_ot_utility_processNymbox(Mock_OTAPI_Exec & mock, int & ind
 
 	OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(mock, noAltPathways, SERVER_ID, NYM_ID, REQUEST_NUMBER, "processNymbox / sendProcessNymboxLowLevel / ReceiveReplyLowLevel");
 
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, NYM_ID, MESSAGE_DATA));
 }

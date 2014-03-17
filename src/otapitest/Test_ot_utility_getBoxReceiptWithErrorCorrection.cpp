@@ -1,11 +1,11 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getBoxReceiptWithErrorCorrection)
+TEST_MULTI(ot_utility_getBoxReceiptWithErrorCorrection)
 {
     bool returnValue = true;
 
-    int invertPathways = INVERT_MOCK;
+    int invertPathways = INVERT_MULTI_PATHS;
     OtMeTest::EXPECT_ot_utility_getBoxReceiptLowLevel(mock, invertPathways, SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER);
 
     if (index >= 0)

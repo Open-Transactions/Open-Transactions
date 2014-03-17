@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getTransactionNumbers_1)
+TEST_MULTI(ot_utility_getTransactionNumbers_1)
 {
 	bool returnValue = true;
 
@@ -9,7 +9,7 @@ TEST_MOCK(ot_utility_getTransactionNumbers_1)
 	OtMeTest::EXPECT_ot_utility_getTransactionNumLowLevel(mock, noAltPathways, SERVER_ID, NYM_ID);
 
 	// check 1
-	int invertPathways = INVERT_MOCK;
+	int invertPathways = INVERT_MULTI_PATHS;
 	OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, invertPathways, SERVER_ID, NYM_ID, true);
 
 	OtMeTest::EXPECT_ot_utility_getTransactionNumbers_part2(mock, index, SERVER_ID, NYM_ID, returnValue);
@@ -17,7 +17,7 @@ TEST_MOCK(ot_utility_getTransactionNumbers_1)
 	ASSERT_EQ(returnValue, me.ot_utility_getTransactionNumbers(SERVER_ID, NYM_ID));
 }
 
-TEST_MOCK(ot_utility_getTransactionNumbers_2)
+TEST_MULTI(ot_utility_getTransactionNumbers_2)
 {
 	bool returnValue = false;
 
@@ -41,7 +41,7 @@ TEST_MOCK(ot_utility_getTransactionNumbers_2)
 			OtMeTest::EXPECT_ot_utility_getTransactionNumLowLevel(mock, noAltPathways, SERVER_ID, NYM_ID);
 
 			// check 6
-			int invertPathways = INVERT_MOCK;
+			int invertPathways = INVERT_MULTI_PATHS;
 			OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, invertPathways, SERVER_ID, NYM_ID, true);
 
 			OtMeTest::EXPECT_ot_utility_getTransactionNumbers_part2(mock, index, SERVER_ID, NYM_ID, returnValue);
@@ -51,7 +51,7 @@ TEST_MOCK(ot_utility_getTransactionNumbers_2)
 	ASSERT_EQ(returnValue, me.ot_utility_getTransactionNumbers(SERVER_ID, NYM_ID));
 }
 
-TEST_MOCK(ot_utility_getTransactionNumbers_3)
+TEST_MULTI(ot_utility_getTransactionNumbers_3)
 {
 	bool returnValue = false;
 
@@ -81,7 +81,7 @@ TEST_MOCK(ot_utility_getTransactionNumbers_3)
 		OtMeTest::EXPECT_ot_utility_getTransactionNumLowLevel(mock, noAltPathways, SERVER_ID, NYM_ID);
 
 		// check 10
-		int invertPathways = INVERT_MOCK;
+		int invertPathways = INVERT_MULTI_PATHS;
 		OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, invertPathways, SERVER_ID, NYM_ID, true);
 
 		OtMeTest::EXPECT_ot_utility_getTransactionNumbers_part2(mock, index, SERVER_ID, NYM_ID, returnValue);
@@ -114,9 +114,9 @@ void OtMeTest::EXPECT_ot_utility_getTransactionNumbers(Mock_OTAPI_Exec & mock, i
 	int errorPathway = 0;
 	OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, errorPathway, SERVER_ID, NYM_ID, true);
 
-	EXPECT_MOCK_RET(NYM_HASH, Message_GetNymboxHash(MESSAGE_DATA));
+	EXPECT_CALL_RETURN(NYM_HASH, Message_GetNymboxHash(MESSAGE_DATA));
 
-	EXPECT_MOCK_RET(NYM_HASH2, GetNym_NymboxHash(serverId, nymId));
+	EXPECT_CALL_RETURN(NYM_HASH2, GetNym_NymboxHash(serverId, nymId));
 
 	OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(mock, index, serverId, nymId, true);
 }
@@ -129,10 +129,10 @@ void OtMeTest::EXPECT_ot_utility_getTransactionNumbers_part2(Mock_OTAPI_Exec & m
 		returnValue = true;
 
 		// check 12
-		EXPECT_MOCK_RET(NYM_HASH, Message_GetNymboxHash(MESSAGE_DATA));
+		EXPECT_CALL_RETURN(NYM_HASH, Message_GetNymboxHash(MESSAGE_DATA));
 
 		// check 13
-		EXPECT_MOCK_STR(NYM_HASH, NYM_HASH2, GetNym_NymboxHash(serverId, nymId));
+		EXPECT_MULTI_RETURN(NYM_HASH, NYM_HASH2, GetNym_NymboxHash(serverId, nymId));
 
 		if (index >= 0)
 		{

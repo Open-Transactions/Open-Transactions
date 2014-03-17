@@ -1,13 +1,13 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_receiveReplySuccessLowLevel)
+TEST_MULTI(ot_utility_receiveReplySuccessLowLevel)
 {
 	OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__);
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.ot_utility_receiveReplySuccessLowLevel(SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__));
+	ASSERT_MULTI_EQ(OT_ERROR, OT_TRUE, me.ot_utility_receiveReplySuccessLowLevel(SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__));
 }
 
 
@@ -33,6 +33,6 @@ void OtMeTest::EXPECT_ot_utility_receiveReplySuccessLowLevel(Mock_OTAPI_Exec & m
 	{
 		EXPECT_ot_utility_ReceiveReplyLowLevel(mock, noAltPathways, serverId, nymId, REQUEST_NUMBER, function);
 
-		EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+		EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 	}
 }

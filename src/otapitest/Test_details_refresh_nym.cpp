@@ -1,11 +1,11 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(details_refresh_nym)
+TEST_MULTI(details_refresh_nym)
 {
     OtMeTest::EXPECT_retrieve_nym(mock, index, SERVER_ID, NYM_ID);
 
-    ASSERT_MOCK_EQ(false, true, me.details_refresh_nym(SERVER_ID, NYM_ID, true));
+    ASSERT_MULTI_EQ(false, true, me.details_refresh_nym(SERVER_ID, NYM_ID, true));
 }
 
 

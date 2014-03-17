@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getAndProcessNymbox_4)
+TEST_MULTI(ot_utility_getAndProcessNymbox_4)
 {
 	OtMeTest::EXPECT_ot_utility_getNymbox(mock, index, SERVER_ID, NYM_ID, false);
 
@@ -12,10 +12,10 @@ TEST_MOCK(ot_utility_getAndProcessNymbox_4)
         if (index >= 0)
         {
             //FIX what if this one fails?
-            EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
+            EXPECT_CALL_RETURN(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 
             //FIX what if this one fails? VOID function, but can fail!
-            EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
+            EXPECT_CALL_VOID(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
 
             OtMeTest::EXPECT_ot_utility_processNymbox(mock, index, SERVER_ID, NYM_ID);
 
@@ -23,7 +23,7 @@ TEST_MOCK(ot_utility_getAndProcessNymbox_4)
         }
 	}
 
-	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.ot_utility_getAndProcessNymbox_4(SERVER_ID, NYM_ID, false));
+	ASSERT_MULTI_EQ(OT_ERROR, OT_TRUE, me.ot_utility_getAndProcessNymbox_4(SERVER_ID, NYM_ID, false));
 }
 
 
@@ -52,10 +52,10 @@ void OtMeTest::EXPECT_ot_utility_getAndProcessNymbox_4(Mock_OTAPI_Exec & mock, i
     OtMeTest::EXPECT_ot_utility_insureHaveAllBoxReceipts(mock, noAltPathways, SERVER_ID, NYM_ID, ACCOUNT_ID, 0);
 
 	//FIX what if this one fails?
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
+	EXPECT_CALL_RETURN(LEDGER_DATA, LoadNymboxNoVerify(SERVER_ID, NYM_ID));
 
 	//FIX what if this one fails? VOID function, but can fail!
-	EXPECT_MOCK(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
+	EXPECT_CALL_VOID(FlushSentMessages(false, SERVER_ID, NYM_ID, LEDGER_DATA));
 
 	OtMeTest::EXPECT_ot_utility_processNymbox(mock, index, SERVER_ID, NYM_ID);
 }
