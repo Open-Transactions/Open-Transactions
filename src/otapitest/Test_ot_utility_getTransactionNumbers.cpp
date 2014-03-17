@@ -91,11 +91,19 @@ TEST_MOCK(ot_utility_getTransactionNumbers_3)
 }
 
 
-bool OtMeExtra::ot_utility_getTransactionNumbers(const char * serverId, const char * nymId)
+bool OtMeChai::ot_utility_getTransactionNumbers(const char * serverId, const char * nymId)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.getTransactionNumbers(\"%s\", \"%s\", true); }", serverId, nymId);
+	code.Format("{ var util = Utility(); util.getTransactionNumbers(\"%s\", \"%s\", true); }",
+                serverId, nymId);
 	return execBool(code.Get());
+}
+
+
+bool OtMeExtra::ot_utility_getTransactionNumbers(const char * serverId, const char * nymId)
+{
+    Utility util;
+    return util.getTransactionNumbers(serverId, nymId, true);
 }
 
 

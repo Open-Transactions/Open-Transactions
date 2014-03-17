@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(ot_utility_insureHaveAllBoxReceipts_TypeNymbox_Receipts0)
@@ -92,12 +92,19 @@ TEST_MOCK(ot_utility_insureHaveAllBoxReceipts_TypeOutbox_Receipts0)
 }
 
 
-bool OtMeExtra::ot_utility_insureHaveAllBoxReceipts(const char * serverId, const char * nymId, const char * accountId, const int boxType)
+bool OtMeChai::ot_utility_insureHaveAllBoxReceipts(const char * serverId, const char * nymId, const char * accountId, const int boxType)
 {
 	OTString code;
 	code.Format("{ var util = Utility(); util.insureHaveAllBoxReceipts(\"%s\", \"%s\", \"%s\", %d); }",
-		serverId, nymId, accountId, boxType);
+		        serverId, nymId, accountId, boxType);
 	return execBool(code.Get());
+}
+
+
+bool OtMeExtra::ot_utility_insureHaveAllBoxReceipts(const char * serverId, const char * nymId, const char * accountId, const int boxType)
+{
+    Utility util;
+    return util.insureHaveAllBoxReceipts(serverId, nymId, accountId, boxType);
 }
 
 

@@ -1,12 +1,14 @@
 #ifndef _H_OT_UTILITY_OT
 #define _H_OT_UTILITY_OT
 
-#include <string>
+#include "stdafx.hpp"
 
 #include "OTStorage.hpp"
 
+#include <string>
 
-#define OT_UTILITY_OT
+
+#define OT_UTILITY_OT  EXPORT
 
 
 using std::string;
@@ -64,8 +66,8 @@ public:
     int delay_ms;
     int max_trans_dl;
 
-    Utility();
-    ~Utility();
+    OT_UTILITY_OT Utility();
+    OT_UTILITY_OT ~Utility();
 
     OT_UTILITY_OT void delay();
     OT_UTILITY_OT int getAndProcessNymbox_3(const string & serverID, const string & nymID, bool & bWasMsgSent);

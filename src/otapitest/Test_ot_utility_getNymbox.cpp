@@ -40,11 +40,19 @@ TEST_MOCK(ot_utility_getNymbox_NoForceDownloadGetNymbox)
 }
 
 
-int OtMeExtra::ot_utility_getNymbox(const char * serverId, const char * nymId, bool bForceDownload)
+int OtMeChai::ot_utility_getNymbox(const char * serverId, const char * nymId, bool bForceDownload)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.getNymbox(\"%s\", \"%s\", %s); }", serverId, nymId, boolStr(bForceDownload));
+	code.Format("{ var util = Utility(); util.getNymbox(\"%s\", \"%s\", %s); }",
+                serverId, nymId, boolStr(bForceDownload));
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_getNymbox(const char * serverId, const char * nymId, bool bForceDownload)
+{
+    Utility util;
+    return util.getNymbox(serverId, nymId, bForceDownload);
 }
 
 

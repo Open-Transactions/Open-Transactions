@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(load_public_encryption_key)

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.hpp"
 
 
 TEST_MOCK(ot_utility_sendProcessNymboxLowLevel)
@@ -11,11 +11,19 @@ TEST_MOCK(ot_utility_sendProcessNymboxLowLevel)
 }
 
 
-int OtMeExtra::ot_utility_sendProcessNymboxLowLevel(const char * serverId, const char * nymId)
+int OtMeChai::ot_utility_sendProcessNymboxLowLevel(const char * serverId, const char * nymId)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); util.sendProcessNymboxLowLevel(\"%s\", \"%s\"); }", serverId, nymId);
+	code.Format("{ var util = Utility(); util.sendProcessNymboxLowLevel(\"%s\", \"%s\"); }",
+                serverId, nymId);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_sendProcessNymboxLowLevel(const char * serverId, const char * nymId)
+{
+    Utility util;
+    return util.sendProcessNymboxLowLevel(serverId, nymId);
 }
 
 

@@ -13,11 +13,21 @@ TEST_MOCK(ot_utility_getTransactionNumLowLevel)
 }
 
 
-int OtMeExtra::ot_utility_getTransactionNumLowLevel(const char * serverId, const char * nymId)
+int OtMeChai::ot_utility_getTransactionNumLowLevel(const char * serverId, const char * nymId)
 {
 	OTString code;
-	code.Format("{ var util = Utility(); var bWasMsgSent = OTBool(false); util.getTransactionNumLowLevel(\"%s\", \"%s\", bWasMsgSent); }", serverId, nymId);
+	code.Format("{ var util = Utility(); var bWasSent = OTBool(false);"
+                "  util.getTransactionNumLowLevel(\"%s\", \"%s\", bWasSent); }",
+                serverId, nymId);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_getTransactionNumLowLevel(const char * serverId, const char * nymId)
+{
+    Utility util;
+    bool bWasSent = false;
+    return util.getTransactionNumLowLevel(serverId, nymId, bWasSent);
 }
 
 

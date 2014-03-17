@@ -8,33 +8,51 @@ OtMeExtra::OtMeExtra()
 OtMeExtra::~OtMeExtra()
 {
 }
-//
-//void OtMeExtra::AddVariable(OTVariable & var)
-//{
-//	OT_ME::AddVariable(var.GetName().Get(), var);
-//}
 
-const char * OtMeExtra::boolStr(bool bValue)
+
+OtMeChai::OtMeChai()
+{
+}
+
+OtMeChai::~OtMeChai()
+{
+}
+
+const char * OtMeChai::boolStr(bool bValue)
 {
 	return bValue ? "true" : "false";
 }
 
-void OtMeExtra::exec(const string & script)
+void OtMeChai::exec(const string & script)
 {
-	ExecuteScript_ReturnVoid(script, __FUNCTION__);
+#if USE_OLD_CODE
+    ExecuteScript_ReturnVoid(script, __FUNCTION__);
+#endif
 }
 
-bool OtMeExtra::execBool(const string & script)
+bool OtMeChai::execBool(const string & script)
 {
-	return ExecuteScript_ReturnBool(script, __FUNCTION__);
+#if USE_OLD_CODE
+    return ExecuteScript_ReturnBool(script, __FUNCTION__);
+#else
+    return false;
+#endif
 }
 
-int OtMeExtra::execInt(const string & script)
+int OtMeChai::execInt(const string & script)
 {
-	return ExecuteScript_ReturnInt(script, __FUNCTION__);
+#if USE_OLD_CODE
+    return ExecuteScript_ReturnInt(script, __FUNCTION__);
+#else
+    return 0;
+#endif
 }
 
-string OtMeExtra::execStr(const string & script)
+string OtMeChai::execStr(const string & script)
 {
-	return ExecuteScript_ReturnString(script, __FUNCTION__);
+#if USE_OLD_CODE
+    return ExecuteScript_ReturnString(script, __FUNCTION__);
+#else
+    return "";
+#endif
 }

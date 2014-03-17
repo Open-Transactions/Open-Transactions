@@ -40,13 +40,17 @@ TEST_MOCK(handle_payment_index)
 }
 
 
+int OtMeChai::handle_payment_index(const char * accountId, int32_t paymentIndex, const char * paymentType, const char * inboxData)
+{
+    OTString code;
+    code.Format("{ handle_payment_index(\"%s\", %d, \"%s\", \"%s\"); }",
+                accountId, paymentIndex, paymentType, inboxData);
+    return execInt(code.Get());
+}
+
 int OtMeExtra::handle_payment_index(const char * accountId, int32_t paymentIndex, const char * paymentType, const char * inboxData)
 {
-	OTString code;
-	code.Format("{ handle_payment_index(\"%s\", %d, \"%s\", \"%s\"); }",
-				accountId, paymentIndex, paymentType, inboxData);
-
-	return execInt(code.Get());
+    return ::handle_payment_index(accountId, paymentIndex, paymentType, inboxData);
 }
 
 

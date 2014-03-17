@@ -23,19 +23,31 @@ TEST_MOCK(ot_utility_processNymbox)
 }
 
 
-int OtMeExtra::ot_utility_processNymbox(const char * serverId, const char * nymId)
+int OtMeChai::ot_utility_processNymbox(const char * serverId, const char * nymId)
 {
 	OTString code;
 	code.Format("{ var util = Utility();"
-		"  var bWasMsgSent = OTBool(false);"
-		"  var nMsgSentRequestNumOut = OTInteger(-1);"
-		"  var nReplySuccessOut = OTInteger(-1);"
-		"  var nBalanceSuccessOut = OTInteger(-1);"
-		"  var nTransSuccessOut = OTInteger(-1);"
-		"  util.processNymbox(\"%s\", \"%s\", bWasMsgSent, nMsgSentRequestNumOut,"
-		" nReplySuccessOut, nBalanceSuccessOut, nTransSuccessOut); }",
-		serverId, nymId);
+		        "  var bWasSent = OTBool(false);"
+		        "  var nRequestNumOut = OTInteger(-1);"
+		        "  var nReplySuccessOut = OTInteger(-1);"
+		        "  var nBalanceSuccessOut = OTInteger(-1);"
+		        "  var nTransSuccessOut = OTInteger(-1);"
+		        "  util.processNymbox(\"%s\", \"%s\", bWasSent, nRequestNumOut,"
+		        " nReplySuccessOut, nBalanceSuccessOut, nTransSuccessOut); }",
+		        serverId, nymId);
 	return execInt(code.Get());
+}
+
+
+int OtMeExtra::ot_utility_processNymbox(const char * serverId, const char * nymId)
+{
+    Utility util;
+    bool bWasSent = false;
+    int nRequestNumOut = -1;
+    int nReplySuccessOut = -1;
+    int nBalanceSuccessOut = -1;
+    int nTransSuccessOut = -1;
+    return util.processNymbox(serverId, nymId, bWasSent, nRequestNumOut, nReplySuccessOut, nBalanceSuccessOut, nTransSuccessOut);
 }
 
 

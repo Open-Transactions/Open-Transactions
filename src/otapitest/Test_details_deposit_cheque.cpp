@@ -27,13 +27,18 @@ TEST_MOCK(details_deposit_cheque)
 }
 
 
-int OtMeExtra::details_deposit_cheque(const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType)
+int OtMeChai::details_deposit_cheque(const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType)
 {
 	OTString code;
 	code.Format("{ details_deposit_cheque(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\"); }",
 				serverId, accountId, nymId, paymentData, paymentType);
+	return execInt(code.Get());
+}
 
-	return ExecuteScript_ReturnInt(code.Get(), __FUNCTION__);
+
+int OtMeExtra::details_deposit_cheque(const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType)
+{
+	return ::details_deposit_cheque(serverId, accountId, nymId, paymentData, paymentType);
 }
 
 

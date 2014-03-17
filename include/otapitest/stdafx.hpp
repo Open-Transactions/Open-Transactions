@@ -53,6 +53,9 @@
 
 
 #include "OtMeTest.hpp"
+#include "OtMeExtra.hpp"
+#include "ot_utility_ot.hpp"
+#include "ot_command_ot.hpp"
 
 
 
