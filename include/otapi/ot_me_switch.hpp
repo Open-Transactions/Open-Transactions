@@ -1,7 +1,10 @@
 #ifndef _H_OT_ME_SWITCH
 #define _H_OT_ME_SWITCH
 
-// switch between old and new version of OT_ME
-#define USE_OLD_CODE  0
+ 
+//#define USE_OLD_CHAISCRIPT  0   // This will use the C++ conversion of the Chaiscript in OT_ME, OT command line, and otapitest unit tests
+//#define USE_OLD_CHAISCRIPT  1   // This will use the original Chaiscript in OT_ME, OT command line, and otapitest unit tests
+
+#define USE_OLD_CHAISCRIPT  1
 
 #endif

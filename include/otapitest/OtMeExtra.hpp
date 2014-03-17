@@ -41,7 +41,7 @@ class OtMeExtra : public OT_ME
 public:
 
     OtMeExtra();
-    ~OtMeExtra();
+    virtual ~OtMeExtra();
 
     EXTRA_FUNCTIONS
 };
@@ -60,7 +60,7 @@ private:
 public:
 
     OtMeChai();
-    ~OtMeChai();
+    virtual ~OtMeChai();
 
     EXTRA_FUNCTIONS
 };

@@ -1,7 +1,6 @@
 #ifndef _H_OT_ME_TEST
 
 #include "OtMeExtra.hpp"
-#include "ot_me_switch.hpp"
 
 
 #define EXPECT_MOCK(func) \
@@ -182,12 +181,8 @@ public:
 	OtMeTest();
 	virtual ~OtMeTest();
 
+	OtMeExtra & me;
 	StrictMock<Mock_OTAPI_Exec> & mock;
-#if USE_OLD_CODE
-	OtMeChai me;
-#else
-	OtMeExtra me;
-#endif
 	InSequence seq;
 
 	static void EXPECT_accept_from_paymentbox_HasNonEmptyLedger(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const char * indices, const char * paymentType);

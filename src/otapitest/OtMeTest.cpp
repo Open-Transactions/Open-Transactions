@@ -1,5 +1,7 @@
 #include "stdafx.hpp"
 
+#include "ot_me_switch.hpp"
+
 
 int noAltPathways = INT_MAX;
 
@@ -9,6 +11,11 @@ int OtMeTest::singles = 0;
 
 OtMeTest::OtMeTest()
 : mock(*new StrictMock<Mock_OTAPI_Exec>())
+#if USE_OLD_CHAISCRIPT
+, me(* new OtMeChai)
+#else
+, me(* new OtMeExtra)
+#endif
 {
 	// default behavior follows max positive path
 	index = INT_MAX;
@@ -24,6 +31,7 @@ OtMeTest::~OtMeTest()
 		pathways++;
 		singles++;
 	}
+    delete &me;
 	delete &mock;
 }
 

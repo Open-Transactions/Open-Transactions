@@ -1,5 +1,7 @@
 #include "stdafx.hpp"
 
+#include "ot_me_switch.hpp"
+
 
 OtMeExtra::OtMeExtra()
 {
@@ -25,14 +27,14 @@ const char * OtMeChai::boolStr(bool bValue)
 
 void OtMeChai::exec(const string & script)
 {
-#if USE_OLD_CODE
+#if USE_OLD_CHAISCRIPT
     ExecuteScript_ReturnVoid(script, __FUNCTION__);
 #endif
 }
 
 bool OtMeChai::execBool(const string & script)
 {
-#if USE_OLD_CODE
+#if USE_OLD_CHAISCRIPT
     return ExecuteScript_ReturnBool(script, __FUNCTION__);
 #else
     return false;
@@ -41,7 +43,7 @@ bool OtMeChai::execBool(const string & script)
 
 int OtMeChai::execInt(const string & script)
 {
-#if USE_OLD_CODE
+#if USE_OLD_CHAISCRIPT
     return ExecuteScript_ReturnInt(script, __FUNCTION__);
 #else
     return 0;
@@ -50,7 +52,7 @@ int OtMeChai::execInt(const string & script)
 
 string OtMeChai::execStr(const string & script)
 {
-#if USE_OLD_CODE
+#if USE_OLD_CHAISCRIPT
     return ExecuteScript_ReturnString(script, __FUNCTION__);
 #else
     return "";
