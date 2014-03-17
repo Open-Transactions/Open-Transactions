@@ -30,9 +30,11 @@
 // Author: wan@google.com (Zhanyong Wan)
 
 #include "stdafx.hpp"
+
+#include "OTAPI.hpp"
+
 #include "OTPaths.hpp"
-#include <OpenTransactions.hpp>
-#include <OTAPI.hpp>
+#include "ot_me_switch.hpp"
 
 
 // MS C++ compiler/linker has a bug on Windows (not on Windows CE), which
@@ -53,10 +55,12 @@ GTEST_API_ int main(int argc, char** argv) {
 	OTAPI_Wrap::AppInit();
 	OTDataFolder::Init("client");
 
+#if USE_OLD_CDE
     // note that we initialize chai because a number of tests actually execute code still
 	cout << "Initializing ChaiScript (about 10 seconds)\n";
 	OT_ME me("");
 	me.ExecuteScript_ReturnVoid("{ var madeEasy = OT_ME(); }", __FUNCTION__);
+#endif
 
 	// Since Google Mock depends on Google Test, InitGoogleMock() is
 	// also responsible for initializing Google Test.  Therefore there's

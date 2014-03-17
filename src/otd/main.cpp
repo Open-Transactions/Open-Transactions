@@ -161,16 +161,29 @@
 
 #include "OTScript.hpp"
 
+
+#include "OTAPI.hpp"
+#include "OT_ME.hpp"
+
 #include "ot_me_switch.hpp"
 
-//  Just Include OTAPI_Wrapper, as it is now our pure C++ api.
+
+// ---------------------------------------------------------------------------
+
+// This global variable contains an OTWallet, an OTClient, etc. 
+// It's the C++ high-level interace to OT. 
+// Any client software will have an instance of this.
 //
+// Use OTAPI_Wrap::OTAPI()->
+//
+// Note: In the main function, before using OT, must call OT_API::InitOTAPI--(which
+// calls OTLog::OT_Init())--then after calling that, must call OTAPI_Wrap::OTAPI()->Init() in
+// the main function.
+
+// ---------------------------------------------------------------------------
+
 
 #define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
-#define CLIENT_PATH_DEFAULT	"client_data" //should get programmatically
-
-
-
 
 
 #define CA_FILE             "certs/special/ca.crt"
@@ -1320,7 +1333,7 @@ int main(int argc, char* argv[])
             OTLog::Output(1, "Script output:\n\n");
 
             // OT SCRIPT PROMPT --------------------------------------------
-#if USE_OLD_CODE == 0
+#if USE_OLD_CHAISCRIPT == 0
             if (strFilename.find("scripts\\opentxs") != string::npos || strFilename.find("scripts/opentxs") != string::npos)
             {
                 return OT_ME::opentxs_main_loop();
