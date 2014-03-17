@@ -134,6 +134,8 @@
 
 #include _CINTTYPES
 
+#include <cstddef>
+
 
 
 class OTASCIIArmor;

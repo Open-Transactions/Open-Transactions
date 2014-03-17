@@ -304,7 +304,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTCachedKey & theSourceKey) // Note: par
         // ----------------------------------
         pMaster->SetCachedKey(ascCachedKey);
         // ----------------------------------
-        s_mapCachedKeys.insert(std::pair<std::string, _SharedPtr<OTCachedKey>>(str_identifier, pMaster)); // takes ownership here.
+        s_mapCachedKeys.insert(std::pair<std::string, _SharedPtr<OTCachedKey> >(str_identifier, pMaster)); // takes ownership here.
         return pMaster;
     }
     // theSourceKey WAS generated, but SerializeTo FAILED? Very strange...

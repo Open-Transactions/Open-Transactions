@@ -131,8 +131,8 @@ otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 
 otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/ExportWrapper.h		\
-				$(otlib_headers_dir)/MemoryWrapper.hpp		\
-				$(otlib_headers_dir)/TR1_Wrapper.h		\
+				$(otlib_headers_dir)/WinsockWrapper.h		\
+				$(otlib_headers_dir)/TR1_Wrapper.hpp		\
 				$(otlib_headers_dir)/stacktrace.h		\
 				$(otlib_headers_dir)/stdafx.h			\
 				$(otlib_headers_dir)/stdafx.hpp			\
