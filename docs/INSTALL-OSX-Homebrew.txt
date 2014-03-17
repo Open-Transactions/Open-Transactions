@@ -34,10 +34,25 @@ $ brew update
 
 #############
 
-# use CLANG by default (add to your profile)
+# use CLANG by default (add to your ~/.profile)
 
 $ echo 'export CPP=cpp; export CC=clang; export CXX=clang++' >> ~/.profile
 $ source ~/.profile
+
+###############
+## QUICK WAY ##
+
+Now you have 2 choices if you have osx 10.9 (Mavericks). Either do it the quick way by just doing the
+following two commands or the manual way below. (After "brew install open-transactions", jump to "Miscellaneous Notes")
+
+# Add the Open-Transactions tap to homebrew:
+$ brew tap Open-Transactions/ot
+$ brew install --cc=clang  --HEAD open-transactions
+
+##########################################
+
+################
+## MANUAL WAY ##
 
 $ brew install --cc=clang automake autoconf libtool
 $ brew install --cc=clang protobuf msgpack zeromq22 openssl
