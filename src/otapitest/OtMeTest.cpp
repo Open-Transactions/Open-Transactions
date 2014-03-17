@@ -72,32 +72,32 @@ void OtMeTest::TestFullPathway(TestFunc testFunc)
 
 void OtMeTest::EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const int64_t amount)
 {
-	EXPECT_MOCK_STR("", NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
 
-	EXPECT_MOCK_STR("", ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
 
-	EXPECT_MOCK_STR("", SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
 
 	if (index >= 0)
 	{
 		// force fail
-		EXPECT_MOCK_RET("", LoadAssetContract(ASSET_ID));
+		EXPECT_CALL_RETURN("", LoadAssetContract(ASSET_ID));
 
 		EXPECT_REQUEST(MESSAGE_DATA, getContract(SERVER_ID, NYM_ID, ASSET_ID));
 
-		EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+		EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-		EXPECT_MOCK_STR("", CONTRACT_DATA, LoadAssetContract(ASSET_ID));
+		EXPECT_MULTI_RETURN("", CONTRACT_DATA, LoadAssetContract(ASSET_ID));
 
-		EXPECT_MOCK_STR(true, false, Mint_IsStillGood(SERVER_ID, ASSET_ID));
+		EXPECT_MULTI_RETURN(true, false, Mint_IsStillGood(SERVER_ID, ASSET_ID));
 
 		if (index >= 0)
 		{
 			EXPECT_REQUEST(MESSAGE_DATA, getMint(SERVER_ID, NYM_ID, ASSET_ID));
 
-			EXPECT_MOCK_STR(OT_FALSE, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+			EXPECT_MULTI_RETURN(OT_FALSE, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-			EXPECT_MOCK_STR(false, true, Mint_IsStillGood(SERVER_ID, ASSET_ID));
+			EXPECT_MULTI_RETURN(false, true, Mint_IsStillGood(SERVER_ID, ASSET_ID));
 		}
 		else
 		{
@@ -105,7 +105,7 @@ void OtMeTest::EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index,
 			index++;
 		}
 
-		EXPECT_MOCK_STR("", MINT_DATA, LoadMint(SERVER_ID, ASSET_ID));
+		EXPECT_MULTI_RETURN("", MINT_DATA, LoadMint(SERVER_ID, ASSET_ID));
 
 		if (index >= 0)
 		{
@@ -123,26 +123,26 @@ void OtMeTest::EXPECT_details_withdraw_cash(Mock_OTAPI_Exec & mock, int & index,
 
 void OtMeTest::EXPECT_getIntermediaryFiles(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, bool bForced)
 {
-	EXPECT_REQUEST_SN(serverId, nymId, MESSAGE_DATA, getAccountFiles(serverId, nymId, accountId));
+	EXPECT_REQUEST_SN(MESSAGE_DATA, getAccountFiles(serverId, nymId, accountId), serverId, nymId);
 
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadInboxNoVerify(serverId, nymId, accountId));
+	EXPECT_CALL_RETURN(LEDGER_DATA, LoadInboxNoVerify(serverId, nymId, accountId));
 
-	EXPECT_MOCK_RET(true, VerifySignature(nymId, LEDGER_DATA));
+	EXPECT_CALL_RETURN(true, VerifySignature(nymId, LEDGER_DATA));
 
-	EXPECT_MOCK_RET(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
+	EXPECT_CALL_RETURN(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
 
-	EXPECT_MOCK_RET(LEDGER_DATA, LoadOutboxNoVerify(serverId, nymId, accountId));
+	EXPECT_CALL_RETURN(LEDGER_DATA, LoadOutboxNoVerify(serverId, nymId, accountId));
 
-	EXPECT_MOCK_RET(true, VerifySignature(nymId, LEDGER_DATA));
+	EXPECT_CALL_RETURN(true, VerifySignature(nymId, LEDGER_DATA));
 
-	EXPECT_MOCK_RET(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
+	EXPECT_CALL_RETURN(0, Ledger_GetCount(serverId, nymId, accountId, LEDGER_DATA));
 }
 
 void OtMeTest::EXPECT_InterpretTransactionMsgReply(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId)
 {
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(serverId, nymId, accountId, MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(serverId, nymId, accountId, MESSAGE_DATA));
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(serverId, nymId, accountId, MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(serverId, nymId, accountId, MESSAGE_DATA));
 }

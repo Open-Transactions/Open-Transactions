@@ -1,13 +1,13 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_ReceiveReplyLowLevel)
+TEST_MULTI(ot_utility_ReceiveReplyLowLevel)
 {
-	EXPECT_MOCK(Sleep(50));
+	EXPECT_CALL_VOID(Sleep(50));
 
-	EXPECT_MOCK_STR("", MESSAGE_DATA, PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, NYM_ID));
+	EXPECT_MULTI_RETURN("", MESSAGE_DATA, PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, NYM_ID));
 
-	ASSERT_MOCK_EQ("", MESSAGE_DATA, me.ot_utility_ReceiveReplyLowLevel(SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__));
+	ASSERT_MULTI_EQ("", MESSAGE_DATA, me.ot_utility_ReceiveReplyLowLevel(SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__));
 }
 
 
@@ -31,8 +31,8 @@ void OtMeTest::EXPECT_ot_utility_ReceiveReplyLowLevel(Mock_OTAPI_Exec & mock, in
 {
 	if (index >= 0)
 	{
-		EXPECT_MOCK(Sleep(50));
+		EXPECT_CALL_VOID(Sleep(50));
 
-		EXPECT_MOCK_STR("", MESSAGE_DATA, PopMessageBuffer(reqNr, serverId, nymId));
+		EXPECT_MULTI_RETURN("", MESSAGE_DATA, PopMessageBuffer(reqNr, serverId, nymId));
 	}
 }

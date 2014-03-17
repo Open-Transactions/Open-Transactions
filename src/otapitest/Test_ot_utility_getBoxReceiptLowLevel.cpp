@@ -1,15 +1,15 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getBoxReceiptLowLevel)
+TEST_MULTI(ot_utility_getBoxReceiptLowLevel)
 {
-    EXPECT_MOCK(FlushMessageBuffer());
+    EXPECT_CALL_VOID(FlushMessageBuffer());
 
-    EXPECT_MOCK_STR(OT_ERROR, REQUEST_NUMBER, getBoxReceipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
+    EXPECT_MULTI_RETURN(OT_ERROR, REQUEST_NUMBER, getBoxReceipt(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
 
     OtMeTest::EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, "Utility::getBoxReceiptLowLevel");
 
-    ASSERT_MOCK_EQ(false, true, me.ot_utility_getBoxReceiptLowLevel(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
+    ASSERT_MULTI_EQ(false, true, me.ot_utility_getBoxReceiptLowLevel(SERVER_ID, NYM_ID, ACCOUNT_ID, BOX_TYPE_NYMBOX, TRANSACTION_NUMBER));
 }
 
 
@@ -33,9 +33,9 @@ bool OtMeExtra::ot_utility_getBoxReceiptLowLevel(const char * serverId, const ch
 
 void OtMeTest::EXPECT_ot_utility_getBoxReceiptLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId, const char * accountId, const int boxType, const int64_t transactionNumber)
 {
-	EXPECT_MOCK(FlushMessageBuffer());
+	EXPECT_CALL_VOID(FlushMessageBuffer());
 
-    EXPECT_MOCK_RET(REQUEST_NUMBER, getBoxReceipt(serverId, nymId, accountId, boxType, transactionNumber));
+    EXPECT_CALL_RETURN(REQUEST_NUMBER, getBoxReceipt(serverId, nymId, accountId, boxType, transactionNumber));
 
 	EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, serverId, nymId, REQUEST_NUMBER, "Utility::getBoxReceiptLowLevel");
 }

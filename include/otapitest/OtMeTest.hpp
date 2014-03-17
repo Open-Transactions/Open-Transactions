@@ -3,69 +3,63 @@
 #include "OtMeExtra.hpp"
 
 
-#define EXPECT_MOCK(func) \
+#define EXPECT_CALL_VOID(func) \
 	EXPECT_CALL(mock, func)
 
-#define EXPECT_MOCK_FUNC(ret, func)	\
-	{ EXPECT_MOCK(FlushMessageBuffer()); EXPECT_MOCK_RET(ret, func); }
+#define EXPECT_CALL_RETURN(ret, func) \
+    EXPECT_CALL_VOID(func).WillOnce(Return(ret))
 
-#define EXPECT_MOCK_RET(ret, func) \
-	EXPECT_CALL(mock, func).WillOnce(Return(ret))
+#define EXPECT_CALL_FUNC(ret, func)	\
+	{ EXPECT_CALL_VOID(FlushMessageBuffer()); EXPECT_CALL_RETURN(ret, func); }
+
+#define EXPECT_REQUEST_SN(data, func, serverId, nymId) \
+	EXPECT_CALL_FUNC(REQUEST_NUMBER, func); \
+	EXPECT_CALL_VOID(Sleep(50)); \
+	EXPECT_CALL_RETURN(data, PopMessageBuffer(REQUEST_NUMBER, serverId, nymId)); \
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetSuccess(data));
 
 #define EXPECT_REQUEST(data, func) \
-	EXPECT_REQUEST_SN(SERVER_ID, NYM_ID, data, func)
+	EXPECT_REQUEST_SN(data, func, SERVER_ID, NYM_ID)
 
-#define EXPECT_REQUEST_SN(serverId, nymId, data, func) \
-	EXPECT_MOCK_FUNC(REQUEST_NUMBER, func); \
-	EXPECT_MOCK(Sleep(50)); \
-	EXPECT_MOCK_RET(data, PopMessageBuffer(REQUEST_NUMBER, serverId, nymId)); \
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(data));
-
-#define EXPECT_TRANSACTION(data, func) \
-	EXPECT_TRANSACTION_SNA(SERVER_ID, NYM_ID, ACCOUNT_ID, data, func)
-
-#define EXPECT_TRANSACTION_SNA(serverId, nymId, accountId, data, func) \
+#define EXPECT_TRANSACTION_SNA(data, func, serverId, nymId, accountId) \
 	OtMeTest::EXPECT_getIntermediaryFiles(mock, index, serverId, nymId, accountId, false); \
-	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
-	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
-	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
-	EXPECT_MOCK_RET(100, GetNym_TransactionNumCount(serverId, nymId)); \
-	EXPECT_REQUEST_SN(serverId, nymId, data, func); \
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetBalanceAgreementSuccess(serverId, nymId, accountId, data)); \
-	EXPECT_MOCK_RET(OT_FALSE, Message_IsTransactionCanceled(serverId, nymId, accountId, data)); \
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetTransactionSuccess(serverId, nymId, accountId, data)); \
+	EXPECT_CALL_RETURN(100, GetNym_TransactionNumCount(serverId, nymId)); \
+	EXPECT_CALL_RETURN(100, GetNym_TransactionNumCount(serverId, nymId)); \
+	EXPECT_CALL_RETURN(100, GetNym_TransactionNumCount(serverId, nymId)); \
+	EXPECT_CALL_RETURN(100, GetNym_TransactionNumCount(serverId, nymId)); \
+	EXPECT_REQUEST_SN(data, func, serverId, nymId); \
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetBalanceAgreementSuccess(serverId, nymId, accountId, data)); \
+	EXPECT_CALL_RETURN(OT_FALSE, Message_IsTransactionCanceled(serverId, nymId, accountId, data)); \
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetTransactionSuccess(serverId, nymId, accountId, data)); \
 	OtMeTest::EXPECT_getIntermediaryFiles(mock, index, serverId, nymId, accountId, true);
 
+#define EXPECT_TRANSACTION(data, func) \
+	EXPECT_TRANSACTION_SNA(data, func, SERVER_ID, NYM_ID, ACCOUNT_ID)
 
-#define ASSERT_MOCK_EQ(fail, ret, func) \
+
+#define ASSERT_MULTI_EQ(fail, ret, func) \
 	ASSERT_EQ((index >= 0 ? ret : fail), func);
 
-#define EXPECT_MOCK_INT(fail, ret, func) \
-	if (index-- >= 0) { EXPECT_MOCK_RET(index >= 0 ? ret : fail, func); }
-
-#define EXPECT_MOCK_REQ(data, func) \
-	if (index >= 0) { EXPECT_REQUEST(data, func); }
-
-#define EXPECT_MOCK_REQUEST(data, func) \
+#define EXPECT_MULTI_REQUEST(data, func) \
 	if (index-- >= 0) { if (index >= 0) { EXPECT_REQUEST(data, func); } \
-	else { EXPECT_MOCK_FUNC(OT_ERROR, func); } }
+	else { EXPECT_CALL_FUNC(OT_ERROR, func); } }
 
-#define EXPECT_MOCK_TRANSACTION(data, func) \
+#define EXPECT_MULTI_RETURN(fail, ret, func) \
+	if (index-- >= 0) { EXPECT_CALL_RETURN(index >= 0 ? ret : fail, func); }
+
+#define EXPECT_MULTI_TRANSACTION(data, func) \
 	if (index-- >= 0) { if (index >= 0) { EXPECT_TRANSACTION(data, func); } \
-	else { EXPECT_MOCK_FUNC(OT_ERROR, getAccountFiles(SERVER_ID, NYM_ID, ACCOUNT_ID)); }	}
+	else { EXPECT_CALL_FUNC(OT_ERROR, getAccountFiles(SERVER_ID, NYM_ID, ACCOUNT_ID)); }	}
 
-#define EXPECT_MOCK_SUB(func) \
-	if (index >= 0) { EXPECT_MOCK(func); }
+#define EXPECT_MULTI_VOID(func) \
+	if (index >= 0) { EXPECT_CALL_VOID(func); }
 
-#define EXPECT_MOCK_STR(fail, ret, func) \
-	if (index-- >= 0) { EXPECT_MOCK_RET(index >= 0 ? ret : fail, func); }
-
-#define TEST_MOCK(name) \
+#define TEST_MULTI(name) \
 	static void test_##name(Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index); \
 	TEST_F(OtMeTest, _##name) { TestAllPathways(test_##name); } \
 	static void test_##name(Mock_OTAPI_Exec & mock, OtMeExtra & me, int & index)
 
-#define INVERT_MOCK   (index-- < 0 ? index : (index >= 0 ?  0 : 1))
+#define INVERT_MULTI_PATHS   (index-- < 0 ? index : (index >= 0 ?  0 : 1))
 
 
 static const char * ACCOUNT_FROM_ID				= "AccountFromId_______";

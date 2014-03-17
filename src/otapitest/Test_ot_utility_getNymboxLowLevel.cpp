@@ -1,15 +1,15 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getNymboxLowLevel)
+TEST_MULTI(ot_utility_getNymboxLowLevel)
 {
-	EXPECT_MOCK(FlushMessageBuffer());
+	EXPECT_CALL_VOID(FlushMessageBuffer());
 
-	EXPECT_MOCK_STR(OT_ERROR, REQUEST_NUMBER, getNymbox(SERVER_ID, NYM_ID));
+	EXPECT_MULTI_RETURN(OT_ERROR, REQUEST_NUMBER, getNymbox(SERVER_ID, NYM_ID));
 
 	OtMeTest::EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
 
-	ASSERT_MOCK_EQ(OT_ERROR, REQUEST_NUMBER, me.ot_utility_getNymboxLowLevel(SERVER_ID, NYM_ID));
+	ASSERT_MULTI_EQ(OT_ERROR, REQUEST_NUMBER, me.ot_utility_getNymboxLowLevel(SERVER_ID, NYM_ID));
 }
 
 
@@ -31,9 +31,9 @@ int OtMeExtra::ot_utility_getNymboxLowLevel(const char * serverId, const char * 
 
 void OtMeTest::EXPECT_ot_utility_getNymboxLowLevel(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId)
 {
-	EXPECT_MOCK(FlushMessageBuffer());
+	EXPECT_CALL_VOID(FlushMessageBuffer());
 
-	EXPECT_MOCK_RET(REQUEST_NUMBER, getNymbox(serverId, nymId));
+	EXPECT_CALL_RETURN(REQUEST_NUMBER, getNymbox(serverId, nymId));
 
 	EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, serverId, nymId, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
 }

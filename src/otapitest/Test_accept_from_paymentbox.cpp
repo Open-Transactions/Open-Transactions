@@ -1,21 +1,21 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(accept_from_paymentbox)
+TEST_MULTI(accept_from_paymentbox)
 {
 	int returnValue = OT_ERROR;
-	EXPECT_MOCK_STR("", NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
 
-	EXPECT_MOCK_STR("", SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
 
-	EXPECT_MOCK_STR("", INBOX_DATA, LoadPaymentInbox(SERVER_ID, NYM_ID));
+	EXPECT_MULTI_RETURN("", INBOX_DATA, LoadPaymentInbox(SERVER_ID, NYM_ID));
 
 	if (index >= 0)
 	{
 		returnValue = OT_TRUE;
 
 		//FIX what if this one fails?
-		EXPECT_MOCK_STR(0, 1, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, INBOX_DATA));
+		EXPECT_MULTI_RETURN(0, 1, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, INBOX_DATA));
 
 		if (index >= 0)
 		{
@@ -31,14 +31,14 @@ TEST_MOCK(accept_from_paymentbox)
 
 void OtMeTest::EXPECT_accept_from_paymentbox_HasNonEmptyLedger(Mock_OTAPI_Exec & mock, int & index, const char * accountId, const char * indices, const char * paymentType)
 {
-	EXPECT_MOCK_STR("", NYM_ID, GetAccountWallet_NymID(accountId));
+	EXPECT_MULTI_RETURN("", NYM_ID, GetAccountWallet_NymID(accountId));
 
 	if (index >= 0)
 	{
-		EXPECT_MOCK_RET(SERVER_ID, GetAccountWallet_ServerID(accountId));
+		EXPECT_CALL_RETURN(SERVER_ID, GetAccountWallet_ServerID(accountId));
 
-		EXPECT_MOCK_RET(INBOX_DATA, LoadPaymentInbox(SERVER_ID, NYM_ID));
+		EXPECT_CALL_RETURN(INBOX_DATA, LoadPaymentInbox(SERVER_ID, NYM_ID));
 
-		EXPECT_MOCK_RET(0, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, INBOX_DATA));
+		EXPECT_CALL_RETURN(0, Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, INBOX_DATA));
 	}
 }

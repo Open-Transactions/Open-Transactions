@@ -1,18 +1,18 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(details_deposit_cheque)
+TEST_MULTI(details_deposit_cheque)
 {
 	int returnValue = OT_ERROR;
 
-	EXPECT_MOCK_STR("", ASSET_ID, Instrmnt_GetAssetID(PAYMENT_DATA));
+	EXPECT_MULTI_RETURN("", ASSET_ID, Instrmnt_GetAssetID(PAYMENT_DATA));
 
-	EXPECT_MOCK_STR("", ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
+	EXPECT_MULTI_RETURN("", ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
 
-	if (index >= 0)
+    EXPECT_MULTI_TRANSACTION(MESSAGE_DATA, depositCheque(SERVER_ID, NYM_ID, ACCOUNT_ID, PAYMENT_DATA));
+
+    if (index >= 0)
 	{
-		EXPECT_TRANSACTION(MESSAGE_DATA, depositCheque(SERVER_ID, NYM_ID, ACCOUNT_ID, PAYMENT_DATA));
-
 		OtMeTest::EXPECT_InterpretTransactionMsgReply(mock, index, SERVER_ID, NYM_ID, ACCOUNT_ID);
 
 		if (index >= 0)
@@ -44,13 +44,13 @@ int OtMeExtra::details_deposit_cheque(const char * serverId, const char * accoun
 
 void OtMeTest::EXPECT_details_deposit_cheque(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * accountId, const char * nymId, const char * paymentData, const char * paymentType)
 {
-	EXPECT_MOCK_STR("", ASSET_ID, Instrmnt_GetAssetID(paymentData));
+	EXPECT_MULTI_RETURN("", ASSET_ID, Instrmnt_GetAssetID(paymentData));
 
 	if (index >= 0)
 	{
-		EXPECT_MOCK_RET(ASSET_ID, GetAccountWallet_AssetTypeID(accountId));
+		EXPECT_CALL_RETURN(ASSET_ID, GetAccountWallet_AssetTypeID(accountId));
 
-		EXPECT_TRANSACTION_SNA(serverId, nymId, accountId, MESSAGE_DATA, depositCheque(serverId, nymId, accountId, paymentData));
+		EXPECT_TRANSACTION_SNA(MESSAGE_DATA, depositCheque(serverId, nymId, accountId, paymentData), serverId, nymId, accountId);
 
 		EXPECT_InterpretTransactionMsgReply(mock, noAltPathways, serverId, nymId, accountId);
 

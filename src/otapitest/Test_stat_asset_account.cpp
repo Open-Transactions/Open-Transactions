@@ -1,27 +1,27 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(stat_asset_account)
+TEST_MULTI(stat_asset_account)
 {
 	//NOTE: Not important whether the retrieval functions will fail
 	//      The resulting empty strings are simply returned, too
-	EXPECT_MOCK_RET(WALLET_NAME, GetAccountWallet_Name(ACCOUNT_ID));
+	EXPECT_CALL_RETURN(WALLET_NAME, GetAccountWallet_Name(ACCOUNT_ID));
 
-	EXPECT_MOCK_RET(NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
+	EXPECT_CALL_RETURN(NYM_ID, GetAccountWallet_NymID(ACCOUNT_ID));
 
-	EXPECT_MOCK_RET(SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
+	EXPECT_CALL_RETURN(SERVER_ID, GetAccountWallet_ServerID(ACCOUNT_ID));
 
-	EXPECT_MOCK_RET(ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
+	EXPECT_CALL_RETURN(ASSET_ID, GetAccountWallet_AssetTypeID(ACCOUNT_ID));
 
-	EXPECT_MOCK_RET(AMOUNT, GetAccountWallet_Balance(ACCOUNT_ID));
+	EXPECT_CALL_RETURN(AMOUNT, GetAccountWallet_Balance(ACCOUNT_ID));
 
-	EXPECT_MOCK_RET(ASSET_NAME, GetAssetType_Name(ASSET_ID));
+	EXPECT_CALL_RETURN(ASSET_NAME, GetAssetType_Name(ASSET_ID));
 
-	EXPECT_MOCK_RET(NYM_NAME, GetNym_Name(NYM_ID));
+	EXPECT_CALL_RETURN(NYM_NAME, GetNym_Name(NYM_ID));
 
-	EXPECT_MOCK_RET(SERVER_NAME, GetServer_Name(SERVER_ID));
+	EXPECT_CALL_RETURN(SERVER_NAME, GetServer_Name(SERVER_ID));
 
-	EXPECT_MOCK_RET("$12.34", FormatAmount(ASSET_ID, AMOUNT));
+	EXPECT_CALL_RETURN("$12.34", FormatAmount(ASSET_ID, AMOUNT));
 
 	std::string msgData = "   Balance: $12.34   (";
 	msgData = msgData + WALLET_NAME + ")\n"

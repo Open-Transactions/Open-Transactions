@@ -1,9 +1,9 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_delay)
+TEST_MULTI(ot_utility_delay)
 {
-	EXPECT_MOCK(Sleep(50));
+	EXPECT_CALL_VOID(Sleep(50));
 
     me.ot_utility_delay();
 }
@@ -20,9 +20,9 @@ void OtMeExtra::ot_utility_delay()
 }
 
 
-TEST_MOCK(ot_utility_longDelay)
+TEST_MULTI(ot_utility_longDelay)
 {
-	EXPECT_MOCK(Sleep(250));
+	EXPECT_CALL_VOID(Sleep(250));
 
     me.ot_utility_longDelay();
 }
@@ -39,7 +39,7 @@ void OtMeExtra::ot_utility_longDelay()
 }
 
 
-TEST_MOCK(ot_utility_getNbrTransactionCount)
+TEST_MULTI(ot_utility_getNbrTransactionCount)
 {
     ASSERT_EQ(10, me.ot_utility_getNbrTransactionCount());
 }
@@ -56,7 +56,7 @@ int OtMeExtra::ot_utility_getNbrTransactionCount()
 }
 
 
-TEST_MOCK(ot_utility_setNbrTransactionCount)
+TEST_MULTI(ot_utility_setNbrTransactionCount)
 {
     ASSERT_EQ(77, me.ot_utility_setNbrTransactionCount());
 }
@@ -74,7 +74,7 @@ int OtMeExtra::ot_utility_setNbrTransactionCount()
 }
 
 
-TEST_MOCK(ot_utility_getLastReplyReceived)
+TEST_MULTI(ot_utility_getLastReplyReceived)
 {
     ASSERT_EQ("", me.ot_utility_getLastReplyReceived());
 }
@@ -91,7 +91,7 @@ string OtMeExtra::ot_utility_getLastReplyReceived()
 }
 
 
-TEST_MOCK(ot_utility_setLastReplyReceived)
+TEST_MULTI(ot_utility_setLastReplyReceived)
 {
     ASSERT_EQ("test", me.ot_utility_setLastReplyReceived());
 }
@@ -109,17 +109,17 @@ string OtMeExtra::ot_utility_setLastReplyReceived()
 }
 
 
-TEST_MOCK(VerifyMessageSuccess)
+TEST_MULTI(VerifyMessageSuccess)
 {
     ASSERT_EQ(OT_ERROR, me.VerifyMessageSuccess(""));
 
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
     ASSERT_EQ(OT_TRUE, me.VerifyMessageSuccess(MESSAGE_DATA));
 
-	EXPECT_MOCK_RET(OT_FALSE, Message_GetSuccess(TOKEN_DATA));
+	EXPECT_CALL_RETURN(OT_FALSE, Message_GetSuccess(TOKEN_DATA));
     ASSERT_EQ(OT_FALSE, me.VerifyMessageSuccess(TOKEN_DATA));
 
-	EXPECT_MOCK_STR(77, OT_ERROR, Message_GetSuccess(PURSE_DATA));
+	EXPECT_MULTI_RETURN(77, OT_ERROR, Message_GetSuccess(PURSE_DATA));
     ASSERT_EQ(OT_ERROR, me.VerifyMessageSuccess(PURSE_DATA));
 }
 
@@ -136,17 +136,17 @@ int OtMeExtra::VerifyMessageSuccess(const char * messageData)
 }
 
 
-TEST_MOCK(VerifyMsgBalanceAgrmntSuccess)
+TEST_MULTI(VerifyMsgBalanceAgrmntSuccess)
 {
     ASSERT_EQ(OT_ERROR, me.VerifyMsgBalanceAgrmntSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, ""));
 
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
     ASSERT_EQ(OT_TRUE, me.VerifyMsgBalanceAgrmntSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
 
-	EXPECT_MOCK_RET(OT_FALSE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
+	EXPECT_CALL_RETURN(OT_FALSE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
     ASSERT_EQ(OT_FALSE, me.VerifyMsgBalanceAgrmntSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
 
-	EXPECT_MOCK_STR(77, OT_ERROR, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
+	EXPECT_MULTI_RETURN(77, OT_ERROR, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
     ASSERT_EQ(OT_ERROR, me.VerifyMsgBalanceAgrmntSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
 }
 
@@ -163,17 +163,17 @@ int OtMeExtra::VerifyMsgBalanceAgrmntSuccess(const char * serverId, const char *
 }
 
 
-TEST_MOCK(VerifyMsgTrnxSuccess)
+TEST_MULTI(VerifyMsgTrnxSuccess)
 {
     ASSERT_EQ(OT_ERROR, me.VerifyMsgTrnxSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, ""));
 
-	EXPECT_MOCK_RET(OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
+	EXPECT_CALL_RETURN(OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
     ASSERT_EQ(OT_TRUE, me.VerifyMsgTrnxSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
 
-	EXPECT_MOCK_RET(OT_FALSE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
+	EXPECT_CALL_RETURN(OT_FALSE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
     ASSERT_EQ(OT_FALSE, me.VerifyMsgTrnxSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, TOKEN_DATA));
 
-	EXPECT_MOCK_STR(77, OT_ERROR, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
+	EXPECT_MULTI_RETURN(77, OT_ERROR, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
     ASSERT_EQ(OT_ERROR, me.VerifyMsgTrnxSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, PURSE_DATA));
 }
 
@@ -190,15 +190,15 @@ int OtMeExtra::VerifyMsgTrnxSuccess(const char * serverId, const char * nymId, c
 }
 
 
-TEST_MOCK(InterpretTransactionMsgReply)
+TEST_MULTI(InterpretTransactionMsgReply)
 {
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetSuccess(MESSAGE_DATA));
 
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetBalanceAgreementSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
 	
-	EXPECT_MOCK_STR(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
+	EXPECT_MULTI_RETURN(OT_ERROR, OT_TRUE, Message_GetTransactionSuccess(SERVER_ID, NYM_ID, ACCOUNT_ID, MESSAGE_DATA));
 	
-    ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.InterpretTransactionMsgReply(SERVER_ID, NYM_ID, ACCOUNT_ID, __FUNCTION__, MESSAGE_DATA));
+    ASSERT_MULTI_EQ(OT_ERROR, OT_TRUE, me.InterpretTransactionMsgReply(SERVER_ID, NYM_ID, ACCOUNT_ID, __FUNCTION__, MESSAGE_DATA));
 }
 
 int OtMeChai::InterpretTransactionMsgReply(const char * serverId, const char * nymId, const char * accountId, const char * attempt, const char * response)

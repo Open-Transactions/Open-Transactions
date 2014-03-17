@@ -1,15 +1,15 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(ot_utility_getRequestNumber)
+TEST_MULTI(ot_utility_getRequestNumber)
 {
-	EXPECT_MOCK(FlushMessageBuffer());
+	EXPECT_CALL_VOID(FlushMessageBuffer());
 
-	EXPECT_MOCK_STR(OT_ERROR, REQUEST_NUMBER, getRequest(SERVER_ID, NYM_ID));
+	EXPECT_MULTI_RETURN(OT_ERROR, REQUEST_NUMBER, getRequest(SERVER_ID, NYM_ID));
 
 	OtMeTest::EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, SERVER_ID, NYM_ID, REQUEST_NUMBER, __FUNCTION__);
 
-	ASSERT_MOCK_EQ(OT_ERROR, OT_TRUE, me.ot_utility_getRequestNumber(SERVER_ID, NYM_ID));
+	ASSERT_MULTI_EQ(OT_ERROR, OT_TRUE, me.ot_utility_getRequestNumber(SERVER_ID, NYM_ID));
 }
 
 
@@ -31,9 +31,9 @@ int OtMeExtra::ot_utility_getRequestNumber(const char * serverId, const char * n
 
 void OtMeTest::EXPECT_ot_utility_getRequestNumber(Mock_OTAPI_Exec & mock, int & index, const char * serverId, const char * nymId)
 {
-	EXPECT_MOCK(FlushMessageBuffer());
+	EXPECT_CALL_VOID(FlushMessageBuffer());
 
-	EXPECT_MOCK_RET(REQUEST_NUMBER, getRequest(serverId, nymId));
+	EXPECT_CALL_RETURN(REQUEST_NUMBER, getRequest(serverId, nymId));
 
 	EXPECT_ot_utility_receiveReplySuccessLowLevel(mock, index, serverId, nymId, REQUEST_NUMBER, "Utility::getNymboxLowLevel");
 }

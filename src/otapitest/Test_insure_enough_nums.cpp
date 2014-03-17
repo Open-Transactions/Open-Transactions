@@ -1,11 +1,11 @@
 #include "stdafx.hpp"
 
 
-TEST_MOCK(insure_enough_nums)
+TEST_MULTI(insure_enough_nums)
 {
 	int returnValue = true;
 
-	EXPECT_MOCK_STR(2, 0, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
+	EXPECT_MULTI_RETURN(2, 0, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
 
 	if (index >= 0)
 	{
@@ -18,7 +18,7 @@ TEST_MOCK(insure_enough_nums)
 
         if (index >= 0)
 		{
-			EXPECT_MOCK_STR(0, 2, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
+			EXPECT_MULTI_RETURN(0, 2, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
             if (index >= 0)
             {
                 returnValue = true;
@@ -32,11 +32,14 @@ TEST_MOCK(insure_enough_nums)
 
 void OtMeTest::EXPECT_insure_enough_nums(Mock_OTAPI_Exec & mock, int & index, const int numberNeeded, const char * serverId, const char * nymId)
 {
-    EXPECT_MOCK_RET(0, GetNym_TransactionNumCount(serverId, nymId));
+    EXPECT_CALL_RETURN(0, GetNym_TransactionNumCount(serverId, nymId));
 
     EXPECT_ot_utility_getTransactionNumbers(mock, noAltPathways, serverId, nymId);
 
     EXPECT_details_refresh_nym(mock, noAltPathways, serverId, nymId, false);
 
-    EXPECT_MOCK_STR(0, numberNeeded, GetNym_TransactionNumCount(serverId, nymId));
+
+    EXPECT_MULTI_RETURN(0, numberNeeded, GetNym_TransactionNumCount(serverId, nymId));
 }
+
+
