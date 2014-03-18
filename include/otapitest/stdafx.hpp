@@ -49,7 +49,7 @@
 #include "gmock/gmock.h"
 
 
-#include "otapi/Mock_OTAPI_Exec.h"
+#include "otapi/Mock_OTAPI_Exec.hpp"
 
 
 #include "OtMeTest.hpp"

@@ -165,8 +165,9 @@
 #include "OTAPI.hpp"
 #include "OT_ME.hpp"
 
-#include "ot_me_switch.hpp"
 
+#define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
+#define CLIENT_PATH_DEFAULT	"client_data" //should get programmatically
 
 // ---------------------------------------------------------------------------
 
@@ -186,12 +187,13 @@
 #define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
 
 
+
 #define CA_FILE             "certs/special/ca.crt"
 #define KEY_FILE            "certs/special/client.pem"
 
 
 
-void HandleCommandLineArguments( int argc, char* argv[], AnyOption * opt );
+void HandleCommandLineArguments(int argc, char* argv[], AnyOption * opt);
 
 
 /*

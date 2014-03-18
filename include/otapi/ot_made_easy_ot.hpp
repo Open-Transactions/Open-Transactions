@@ -1,8 +1,11 @@
 #ifndef _H_OT_MADE_EASY_OT
 #define _H_OT_MADE_EASY_OT
 
+#include <ExportWrapper.h>
+
 #include <string>
 #include <vector>
+
 
 
 #define OT_MADE_EASY_OT
@@ -12,11 +15,11 @@ using std::string;
 using std::vector;
 
 
-extern OT_MADE_EASY_OT int depositCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, const string & accountID, const bool bReimportIfFailure); // So we don't re-import a purse that wasn't internal to begin with.
-extern OT_MADE_EASY_OT bool exchangeCashPurse(const string & serverID, const string & assetID, const string & nymID, string & oldPurse, const vector<string> & selectedTokens);
-extern OT_MADE_EASY_OT string exportCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, string & recipientNymID, const bool bPasswordProtected, string & strRetainedCopy);
-extern OT_MADE_EASY_OT bool importCashPurse(const string & serverID, const string & nymID, const string & assetID, string & userInput, const bool isPurse);
-extern OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSender, const string & serverID, const string & assetID, const string & nymID, string & oldPurse, const vector<string> & selectedTokens, const string & recipientNymID, const bool bPWProtectOldPurse, const bool bPWProtectNewPurse);
+EXPORT OT_MADE_EASY_OT int depositCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, const string & accountID, const bool bReimportIfFailure); // So we don't re-import a purse that wasn't internal to begin with.
+EXPORT OT_MADE_EASY_OT bool exchangeCashPurse(const string & serverID, const string & assetID, const string & nymID, string & oldPurse, const vector<string> & selectedTokens);
+EXPORT OT_MADE_EASY_OT string exportCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, string & recipientNymID, const bool bPasswordProtected, string & strRetainedCopy);
+EXPORT OT_MADE_EASY_OT bool importCashPurse(const string & serverID, const string & nymID, const string & assetID, string & userInput, const bool isPurse);
+EXPORT OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSender, const string & serverID, const string & assetID, const string & nymID, string & oldPurse, const vector<string> & selectedTokens, const string & recipientNymID, const bool bPWProtectOldPurse, const bool bPWProtectNewPurse);
 
 
 class MadeEasy

@@ -134,7 +134,8 @@
 
 #include <stdafx.hpp>
 
-#include <OTAPI_Exec.h>
+// A C++ class, low-level interface to OT.
+#include "OTAPI_Exec.hpp"
 
 
 #include <OpenTransactions.hpp>
@@ -143,24 +144,37 @@
 #define IMPORT
 #endif
 
-#include <OTBasket.hpp>
-#include <OTCheque.hpp>
-#include <OTCredential.hpp>
-#include <OTEnvelope.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTMint.hpp>
-#include <OTPassword.hpp>
-#include <OTPaths.hpp>
-#include <OTPayment.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTPurse.hpp>
-#include <OTServerContract.hpp>
-#include <OTSymmetricKey.hpp>
-#include <OTWallet.hpp>
+#include "OTStorage.hpp"
 
-#include <OTAccount.hpp>  //included in OTSmartContract.hpp
+#include "OTIdentifier.hpp"
+#include "OTString.hpp"
+#include "OTPseudonym.hpp"
+#include "OTCredential.hpp"
+#include "OTAssetContract.hpp"
+#include "OTServerContract.hpp"
+#include "OTSymmetricKey.hpp"
+#include "OTCheque.hpp"
+#include "OTPaymentPlan.hpp"
+#include "OTEnvelope.hpp"
+#include "OTMint.hpp"
+#include "OTLedger.hpp"
+#include "OTAccount.hpp"
+#include "OTWallet.hpp"
+#include "OTPurse.hpp"
+#include "OTBasket.hpp"
+#include "OTMessage.hpp"
+#include "OTTransaction.hpp"
+#include "OTSmartContract.hpp"
+
+// For juggling cheques/invoices/payment plans/purses, etc.
+// Used in sendUserInstrument (to wrap the instrument.)
+//
+#include "OTPayment.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+
+// A C++ class, high-level interface to OT. The class-based API.
+#include "OpenTransactions.hpp"
 
 
 #ifndef OT_BOOL

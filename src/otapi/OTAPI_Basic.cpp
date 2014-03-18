@@ -190,6 +190,22 @@ bool OTAPI_Basic::AppShutdown()
 }
 // -----------------------------------
 
+void OTAPI_Basic::SetAppBinaryFolder(const std::string & strFolder)
+{
+    OTAPI_Wrap::SetAppBinaryFolder(strFolder);
+}
+// -----------------------------------
+
+void OTAPI_Basic::SetHomeFolder(const std::string & strFolder)
+{
+    OTAPI_Wrap::SetHomeFolder(strFolder);
+}
+
+// -----------------------------------
+
+// NOTE: If you need to call SetAppBinaryFolder or SetHomeFolder, then you should probably
+// take care of that before calling this function, since it will assume they are already set.
+//
 bool OTAPI_Basic::Init()
 {
     // If this function fails, you can call it multiple times until it succeeds.
@@ -444,6 +460,8 @@ std::string OTAPI_Basic::GetActiveCronItem(const std::string & SERVER_ID, const 
                                          OTAPI_Wrap::StringToLong(TRANSACTION_NUMBER)
                                          );
 }
+
+
 
 std::string OTAPI_Basic::GetNym_SourceForID(const std::string & NYM_ID)
 {

@@ -1,10 +1,12 @@
 #ifndef _H_OT_OTAPI_OT
 #define _H_OT_OTAPI_OT
 
-#include <iostream>
-#include <string>
+#include <ExportWrapper.h>
 
+#include <string>
 #include "OTStorage.hpp"
+
+
 
 
 #define OT_OTAPI_OT
@@ -31,14 +33,14 @@ typedef std::map<string, SubMap *> MapOfMaps;
 typedef int (*LambdaFunc)(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals);
 
 
-extern OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
-extern OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
-extern OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda); // low level. map_of_maps must be good. (assumed.)
-extern OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
-extern OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda);
-extern OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals);
-extern OT_OTAPI_OT OTDB::OfferListNym * loadNymOffers(const string & serverID, const string & nymID);
-extern OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+EXPORT OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
+EXPORT OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+EXPORT OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda); // low level. map_of_maps must be good. (assumed.)
+EXPORT OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
+EXPORT OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda);
+EXPORT OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals);
+EXPORT OT_OTAPI_OT OTDB::OfferListNym * loadNymOffers(const string & serverID, const string & nymID);
+EXPORT OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
 
 
 extern string Args;

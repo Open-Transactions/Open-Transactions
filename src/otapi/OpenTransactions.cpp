@@ -203,7 +203,15 @@ extern "C"
 #define	KEY_LATENCY_DELAY_AFTER				"latency_delay_after"
 #define	KEY_IS_BLOCKING						"is_blocking"
 
+// ------------------------------------------------------------------------------
 
+// static
+bool OT_API::bInitOTApp = false;
+
+// static
+bool OT_API::bCleanupOTApp = false;
+
+// ------------------------------------------------------------------------------
 
 OTSocket::OTSocket()
   : m_pMutex(new tthread::mutex),
@@ -662,6 +670,8 @@ bool OTSocket::Receive(OTString & strServerReply)
 }
 
 
+// ------------------------------------------------------------------------------
+
 
 TransportCallback::TransportCallback(OT_API & refOT_API)
 	: m_refOT_API(refOT_API)
@@ -681,15 +691,7 @@ bool TransportCallback::operator() (OTServerContract& theserverContract,OTEnvelo
 	else return false;
 }
 
-
-
-// static
-bool OT_API::bInitOTApp = false;
-
-// static
-bool OT_API::bCleanupOTApp = false;
-
-// ------------------------------------
+// ***************************************************************************
 
 // Call this once per run of the software. (enforced by a static value)
 //
@@ -748,7 +750,6 @@ bool OT_API::InitOTApp()
 		// This is optional! You can always remove it using the OT_NO_SIGNAL_HANDLING
 		//  option, and plus, the internals only execute once anyway. (It keeps count.)
 #endif
-
 		// ------------------------------------
 		OTCrypto::It()->Init(); // (OpenSSL gets initialized here.)
 		// ------------------------------------
@@ -900,9 +901,13 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 				OTLog::vError("\n\n\nIS OPEN-TRANSACTIONS ALREADY RUNNING?\n\n"
 					"I found a PID (%lu) in the data lock file, located at: %s\n\n"
 					"If the OT process with PID %lu is truly not running anymore, "
-					"then just erase that file and restart.\n", lPID, this->m_strPidFilePath.Get(), lPID);
+					"then just erase that file and restart.\nThis is normally cleaned "
+                              "up during AppCleanup / AppShutdown. (Or should be.)\n",
+                              lPID, this->m_strPidFilePath.Get(), lPID);
+#ifndef ANDROID
 				this->m_bIsPidOpen = false;
 				return;
+#endif
 			}
 			// Otherwise, though the file existed, the PID within was 0.
 			// (Meaning the previous instance of OT already set it to 0 as it was shutting down.)
@@ -1386,27 +1391,23 @@ bool OT_API::LoadWallet()
 
 bool OT_API::TransportFunction(OTServerContract & theServerContract, OTEnvelope & theEnvelope)
 {
+    // ----------------------------------------------
 	if (!this->IsInitialized())					{ OTLog::vError("%s: Error: %s is not Initialized!\n", __FUNCTION__, "OT_API");		OT_FAIL;}
 	if (NULL == this->m_pClient)				{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_pClient");		OT_FAIL;}
 	if (NULL == this->m_pClient->m_pConnection) { OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_pConnection");	OT_FAIL;}
-
+	// ----------------------------------------------
 	OTPseudonym * pNym(m_pClient -> m_pConnection -> GetNym());
 	if (NULL == pNym)							{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "pNym");				OT_FAIL;}
 	if (NULL == this->m_pSocket)				{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_Socket");			OT_FAIL;}
 	if (NULL == this->m_pSocket->m_pMutex)		{ OTLog::vError("%s: Error: %s is a NULL!\n", __FUNCTION__, "m_Socket");			OT_FAIL;}
 	if (!m_pSocket->IsInitialized())			{ OTLog::vError("%s: Error: %s is not Initialized!\n", __FUNCTION__, "m_Socket");	OT_FAIL;}
-
-
-
+	// ----------------------------------------------
 	tthread::lock_guard<tthread::mutex>  lock(*m_pSocket->m_pMutex);
-
 	// ----------------------------------------------
 	const char * szFunc = "OT_API::TransportCallback";
 	// ----------------------------------------------
 	int			nServerPort = 0;
 	OTString	strServerHostname;
-
-
 
 	if (false == theServerContract.GetConnectInfo(strServerHostname, nServerPort))
 	{
@@ -2325,9 +2326,9 @@ bool OT_API::Wallet_CanRemoveServer(const OTIdentifier & SERVER_ID)
 {
     // -----------------------------------------------------
 	bool bInitialized = OTAPI_Wrap::OTAPI()->IsInitialized();
-	if (!bInitialized) { OTLog::vError("%s: Not initialized; call OT_API::Init first.\n",__FUNCTION__);	OT_FAIL; }
-
-	if (SERVER_ID.IsEmpty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SERVER_ID"			); OT_FAIL; }
+    // -----------------------------------------------------
+	if (!bInitialized)          { OTLog::vError("%s: Not initialized; call OT_API::Init first.\n",__FUNCTION__);	OT_FAIL; }
+	if (SERVER_ID.IsEmpty())    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SERVER_ID"			); OT_FAIL; }
     // -----------------------------------------------------
 	OTString strName;
 	// ------------------------------------------
@@ -2372,12 +2373,13 @@ bool OT_API::Wallet_CanRemoveServer(const OTIdentifier & SERVER_ID)
    }
 	return true;
 }
+// -----------------------------------------------------
 
-	// Can I remove this asset contract from my wallet?
-	//
-	// You cannot remove the asset contract from your wallet if there are accounts in there using it.
-	// This function tells you whether you can remove the asset contract or not.(Whether there are accounts...)
-	//
+// Can I remove this asset contract from my wallet?
+//
+// You cannot remove the asset contract from your wallet if there are accounts in there using it.
+// This function tells you whether you can remove the asset contract or not.(Whether there are accounts...)
+//
 bool OT_API::Wallet_CanRemoveAssetType(const OTIdentifier & ASSET_ID)
 {
     // -----------------------------------------------------
@@ -2411,6 +2413,7 @@ bool OT_API::Wallet_CanRemoveAssetType(const OTIdentifier & ASSET_ID)
 	return true;	
 }
 
+// -----------------------------------------------------
 // Can I remove this Nym from my wallet?
 //
 // You cannot remove the Nym from your wallet if there are accounts in there using it.
@@ -2496,6 +2499,7 @@ bool OT_API::Wallet_CanRemoveNym(const OTIdentifier & NYM_ID)
 	return true;	
 }
 
+// -----------------------------------------------------
 // Can I remove this Account from my wallet?
 //
 // You cannot remove the Account from your wallet if there are transactions still open.
@@ -2556,6 +2560,7 @@ bool OT_API::Wallet_CanRemoveAccount(const OTIdentifier & ACCOUNT_ID)
 }
 
 
+// -----------------------------------------------------
 
 // Remove this server contract from my wallet!
 //
@@ -2600,6 +2605,7 @@ bool OT_API::Wallet_RemoveServer(const OTIdentifier & SERVER_ID)
 	return false;
 }
 
+// -----------------------------------------------------
 
 // Remove this asset contract from my wallet!
 //
@@ -2633,6 +2639,7 @@ bool OT_API::Wallet_RemoveAssetType(const OTIdentifier & ASSET_ID)
 	return false;
 }
 
+// -----------------------------------------------------
 
 // Remove this Nym from my wallet!
 //
@@ -2660,7 +2667,6 @@ bool OT_API::Wallet_RemoveNym(const OTIdentifier & NYM_ID)
 	// presumably to be found in the server contract.
 	// ------------------------------------------
 	if (! Wallet_CanRemoveNym(NYM_ID)) return false;
-
 
 	if (NULL == m_pWallet)
     {
@@ -2853,6 +2859,7 @@ bool OT_API::Wallet_ExportNym(const OTIdentifier & NYM_ID, OTString & strOutput)
     return bReturnVal;
 }
 
+// -----------------------------------------------------
 
 
 // OT has the capability to export a Nym (normally stored in several files) as an encoded
@@ -6004,8 +6011,6 @@ OTPurse * OT_API::Purse_Pop(const OTIdentifier & SERVER_ID,
 {
 	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
 	// -----------------------------------------------------------------
-    const char * szFunc = "OT_API::Purse_Pop";
-    // -----------------------------------
     const OTString strReason1((NULL == pstrDisplay) ? "Enter your master passphrase for your wallet. (Purse_Pop)" : pstrDisplay->Get());
     const OTString strReason2((NULL == pstrDisplay) ? "Enter the passphrase for this purse. (Purse_Pop)"          : pstrDisplay->Get());
 //  OTPasswordData thePWData(strReason);
@@ -6040,7 +6045,7 @@ OTPurse * OT_API::Purse_Pop(const OTIdentifier & SERVER_ID,
     OTPurse * pReturnPurse = NULL;
 
     if (pPurse->IsEmpty())
-        OTLog::vOutput(0, "%s: Failed attempt to pop; purse is empty.\n", szFunc);
+        OTLog::vOutput(0, "%s: Failed attempt to pop; purse is empty.\n", __FUNCTION__);
     else
     {
         OTToken * pToken = pPurse->Pop(*pOwner);
@@ -6048,7 +6053,7 @@ OTPurse * OT_API::Purse_Pop(const OTIdentifier & SERVER_ID,
 
         if (NULL == pToken)
             OTLog::vOutput(0, "%s: Failed popping a token from a "
-                           "purse that supposedly had tokens on it...\n", szFunc);
+                           "purse that supposedly had tokens on it...\n", __FUNCTION__);
         else
         {
             pReturnPurse = pPurse;
@@ -6073,8 +6078,6 @@ OTPurse * OT_API::Purse_Empty(const OTIdentifier & SERVER_ID,
 {
 	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
 	// -----------------------------------------------------------------
-    const char * szFunc = "OT_API::Purse_Empty";
-    // -----------------------------------
     const OTString strReason((NULL == pstrDisplay) ? "Making an empty copy of a cash purse." : pstrDisplay->Get());
 //  OTPasswordData thePWData(strReason);
     // -----------------------------------
@@ -6083,7 +6086,7 @@ OTPurse * OT_API::Purse_Empty(const OTIdentifier & SERVER_ID,
     if (NULL == pPurse)
     {
         OTLog::vOutput(0, "%s: Error: THE_PURSE is an empty string. Please pass a "
-                       "real purse when calling this function.\n", szFunc);
+                       "real purse when calling this function.\n", __FUNCTION__);
         return NULL;
     }
 	// -----------------------------------------------------
@@ -6116,20 +6119,18 @@ OTPurse * OT_API::Purse_Push(const OTIdentifier & SERVER_ID,
 {
 	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
 	// -----------------------------------------------------------------
-    const char * szFunc = "OT_API::Purse_Push";
-    // -----------------------------------
     const OTString strReason1((NULL == pstrDisplay) ? "Enter your master passphrase for your wallet. (Purse_Push)" : pstrDisplay->Get());
     const OTString strReason2((NULL == pstrDisplay) ? "Enter the passphrase for this purse. (Purse_Push)"          : pstrDisplay->Get());
 //  OTPasswordData thePWData(strReason);
     // -----------------------------------
 	if (!THE_PURSE.Exists())
 	{
-		OTLog::vOutput(0, "%s: Purse does not exist.\n", szFunc);
+		OTLog::vOutput(0, "%s: Purse does not exist.\n", __FUNCTION__);
 		return NULL;
 	}
 	else if (!THE_TOKEN.Exists())
 	{
-		OTLog::vOutput(0, "%s: Token does not exist.\n", szFunc);
+		OTLog::vOutput(0, "%s: Token does not exist.\n", __FUNCTION__);
 		return NULL;
 	}
     // -----------------------------------
@@ -6140,7 +6141,7 @@ OTPurse * OT_API::Purse_Push(const OTIdentifier & SERVER_ID,
     if (NULL == pToken) // TokenFactory instantiates AND loads from string.
     {
 		OTLog::vOutput(0, "%s: Unable to instantiate or load token from string:\n\n%s\n\n",
-                       szFunc, THE_TOKEN.Get());
+                       __FUNCTION__, THE_TOKEN.Get());
 		return NULL;
     }
     // -----------------------------------
@@ -6176,7 +6177,7 @@ OTPurse * OT_API::Purse_Push(const OTIdentifier & SERVER_ID,
     const bool bPushed = pPurse->Push(*pOwner, *pToken);
 
     if (!bPushed)
-        OTLog::vOutput(0, "%s: Failed pushing a token onto a purse.\n", szFunc);
+        OTLog::vOutput(0, "%s: Failed pushing a token onto a purse.\n", __FUNCTION__);
     else
     {
         pReturnPurse = pPurse;
@@ -6201,14 +6202,12 @@ bool OT_API::Wallet_ImportPurse(const OTIdentifier & SERVER_ID,
 {
 	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
 	// -----------------------------------------------------------------
-    const char * szFunc = "OT_API::Wallet_ImportPurse";
-    // -----------------------------------
     OTString strPurseReason ((NULL == pstrDisplay) ? "Enter passphrase for purse being imported." : pstrDisplay->Get());
     OTPasswordData thePWDataWallet((NULL == pstrDisplay) ? OT_PW_DISPLAY : pstrDisplay->Get());
     // -----------------------------------
     OTPassword thePassword; // Only used in the case of password-protected purses.
 	// -----------------------------------------------------
-	OTPseudonym * pNym = this->GetOrLoadPrivateNym(SIGNER_ID, false, szFunc, &thePWDataWallet); // These copiously log, and ASSERT.
+	OTPseudonym * pNym = this->GetOrLoadPrivateNym(SIGNER_ID, false, __FUNCTION__, &thePWDataWallet); // These copiously log, and ASSERT.
 	if (NULL == pNym) return false;
 	// By this point, pNym is a good pointer, and is on the wallet. (No need to cleanup.)
 	// -----------------------------------------------------
@@ -6248,7 +6247,7 @@ bool OT_API::Wallet_ImportPurse(const OTIdentifier & SERVER_ID,
 	}
     else if (!pOldPurse->VerifySignature(*pNym))
     {
-        OTLog::vError("%s: Failed to verify signature on old purse. (Very strange...)\n", szFunc);
+        OTLog::vError("%s: Failed to verify signature on old purse. (Very strange...)\n", __FUNCTION__);
         return false;
     }
     // -----------------------------------------------------
@@ -6258,13 +6257,13 @@ bool OT_API::Wallet_ImportPurse(const OTIdentifier & SERVER_ID,
     //
     if (pOldPurse->GetServerID() != pNewPurse->GetServerID())
     {
-        OTLog::vOutput(0, "%s: Failure: ServerIDs don't match between these two purses.\n", szFunc);
+        OTLog::vOutput(0, "%s: Failure: ServerIDs don't match between these two purses.\n", __FUNCTION__);
         return false;
     }
     // -----------------------------------------------------------
     else if (pOldPurse->GetAssetID() != pNewPurse->GetAssetID())
     {
-        OTLog::vOutput(0, "%s: Failure: AssetIDs don't match between these two purses.\n", szFunc);
+        OTLog::vOutput(0, "%s: Failure: AssetIDs don't match between these two purses.\n", __FUNCTION__);
         return false;
     }
 	// -----------------------------------------------------
@@ -6293,7 +6292,7 @@ bool OT_API::Wallet_ImportPurse(const OTIdentifier & SERVER_ID,
         pNym->     GetIdentifier(strNymID1);
         pNewOwner->GetIdentifier(strNymID2);
         OTLog::vOutput(0, "%s: (OldNymID: %s.) (New Owner ID: %s.) Failure merging new "
-                       "purse:\n\n%s\n\n", szFunc, strNymID1.Get(), strNymID2.Get(),
+                       "purse:\n\n%s\n\n", __FUNCTION__, strNymID1.Get(), strNymID2.Get(),
                        THE_PURSE.Get());
     }
 	// -----------------------------------------------------
@@ -11799,14 +11798,13 @@ int OT_API::getMarketRecentTrades(const OTIdentifier & SERVER_ID,
                                   const OTIdentifier & USER_ID, 
                                   const OTIdentifier & MARKET_ID)
 {
-	const char * szFuncName = "OT_API::getMarketRecentTrades";
 	// -----------------------------------------------------
-	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, szFuncName); // This ASSERTs and logs already.
+	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pNym) return (-1);
 	// By this point, pNym is a good pointer, and is on the wallet.
 	//  (No need to cleanup.)
 	// -----------------------------------------------------
-	OTServerContract *	pServer = this->GetServer(SERVER_ID, szFuncName); // This ASSERTs and logs already.
+	OTServerContract *	pServer = this->GetServer(SERVER_ID, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pServer) return (-1);
 	// By this point, pServer is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------
@@ -11855,14 +11853,13 @@ int OT_API::getMarketRecentTrades(const OTIdentifier & SERVER_ID,
 ///
 int OT_API::getNym_MarketOffers(const OTIdentifier & SERVER_ID, const OTIdentifier & USER_ID)
 {
-	const char * szFuncName = "OT_API::getNym_MarketOffers";
 	// -----------------------------------------------------
-	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, szFuncName); // This ASSERTs and logs already.
+	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pNym) return (-1);
 	// By this point, pNym is a good pointer, and is on the wallet.
 	//  (No need to cleanup.)
 	// -----------------------------------------------------
-	OTServerContract *	pServer = this->GetServer(SERVER_ID, szFuncName); // This ASSERTs and logs already.
+	OTServerContract *	pServer = this->GetServer(SERVER_ID, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pServer) return (-1);
 	// By this point, pServer is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------
@@ -11913,18 +11910,17 @@ int OT_API::notarizeTransfer(OTIdentifier	& SERVER_ID,
 							  const long	& AMOUNT,
 							  OTString		& NOTE)
 {
-	const char * szFuncName = "OT_API::notarizeTransfer";
 	// -----------------------------------------------------
-	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, szFuncName);
+	OTPseudonym * pNym = this->GetOrLoadPrivateNym(USER_ID, false, __FUNCTION__);
 	if (NULL == pNym) return (-1);	
 	// By this point, pNym is a good pointer, and is on the wallet.
 	//  (No need to cleanup.)
 	// -----------------------------------------------------
-	OTServerContract *	pServer = this->GetServer(SERVER_ID, szFuncName); // This ASSERTs and logs already.
+	OTServerContract *	pServer = this->GetServer(SERVER_ID, __FUNCTION__); // This ASSERTs and logs already.
 	if (NULL == pServer) return (-1);
 	// By this point, pServer is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------
-	OTAccount * pAccount = this->GetOrLoadAccount(*pNym, ACCT_FROM, SERVER_ID, szFuncName);
+	OTAccount * pAccount = this->GetOrLoadAccount(*pNym, ACCT_FROM, SERVER_ID, __FUNCTION__);
 	if (NULL == pAccount) return (-1);
 	// By this point, pAccount is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------

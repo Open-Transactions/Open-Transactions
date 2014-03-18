@@ -160,7 +160,7 @@ kamH0Y/n11lCvo1oQxM+
 
 #include "gmock/gmock.h"
 
-#include "OTAPI_Exec.h"
+#include "OTAPI_Exec.hpp"
 
 
 class Mock_OTAPI_Exec : public OTAPI_Exec

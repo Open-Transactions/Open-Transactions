@@ -242,7 +242,7 @@ EXPORT	bool Connect(OTPseudonym & theNym, OTServerContract & theServerContract,
 	void ProcessMessageOut(char *buf, int * pnExpectReply);
 	void ProcessMessageOut(OTMessage & theMessage);
 	
-	EXPORT	bool ProcessInBuffer(OTMessage & theServerReply) {return false;}
+	bool ProcessInBuffer(OTMessage & theServerReply) {return false;}
 	bool ProcessReply(u_header & theCMD, OTMessage & theServerReply);
 	bool ProcessType1Cmd(u_header & theCMD, OTMessage & theServerReply);
 	
