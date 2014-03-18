@@ -135,7 +135,7 @@
 
 #include "ExportWrapper.h"
 #include "WinsockWrapper.h"
-#include "MemoryWrapper.hpp"
+#include "TR1_Wrapper.hpp"
 
 #include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
@@ -151,9 +151,7 @@
 #endif
 
 
-#ifdef OT_ZMQ_2_MODE
-#include <zmq.hpp>
-#endif // OT_ZMQ_2_MODE
+
 
 
 // --------------------------------------------------------------------
@@ -254,8 +252,8 @@ public:
 class OTSocket_ZMQ_2 : public OTSocket
 {
 private:
-    zmq::context_t	* m_pContext_zmq;
-    zmq::socket_t	* m_pSocket_zmq;
+    class ZMQ2; // defined in C++ file.
+    ZMQ2 * const m_pzmq;
 
 public:
     EXPORT OTSocket_ZMQ_2();
@@ -287,6 +285,8 @@ private:
 };
 
 #endif // OT_ZMQ_2_MODE
+
+
 
 
 
