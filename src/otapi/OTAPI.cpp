@@ -134,9 +134,9 @@
 
 #include <stdafx.hpp>
 
-#include <OTAPI.hpp>
+#include "OTAPI.hpp"
 
-#include <OTAPI_Exec.h>
+#include <OTAPI_Exec.hpp>
 
 #include <OpenTransactions.hpp>
 
@@ -256,6 +256,27 @@ bool OTAPI_Wrap::AppCleanup()
 
 	return exec->AppCleanup();
 }
+
+
+// --------------------------------------------------------------------
+// SetHomeFolder
+// OPTIONAL. Used in Android.
+//
+// The AppDataFolder, such as /Users/au/.ot, is constructed from the home
+// folder, such as /Users/au.
+//
+// Normally the home folder is auto-detected, but certain platforms, such as
+// Android, require us to explicitly set this folder from the Java code. Then
+// the AppDataFolder is constructed from it. (It's the only way it can be done.)
+//
+// In Android, you would SetAppBinaryFolder to the path to "/data/app/packagename/res/raw",
+// and you would SetHomeFolder to "/data/data/[app package]/files/"
+//
+void OTAPI_Wrap::SetHomeFolder(const std::string & strFolder)
+{
+    OTPaths::SetHomeFolder(strFolder.c_str());
+}
+
 
 OT_API * OTAPI_Wrap::OTAPI()
 {

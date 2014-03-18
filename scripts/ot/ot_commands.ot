@@ -9462,7 +9462,6 @@ def purse_get_indices_or_amount(strServerID, strAssetTypeID, strMyNymID, lAmount
     OT_API_Output(0, "strMyNymID: " + strMyNymID + "\n")
     
     var strLocalPurse  = OT_API_LoadPurse(strServerID, strAssetTypeID, strMyNymID) // returns "", or a purse.
-    OT_API_Output(0, "purse: " + strLocalPurse + "\n")
     
     var bLoadedPurse = VerifyStringVal(strLocalPurse)
     if (!bLoadedPurse)

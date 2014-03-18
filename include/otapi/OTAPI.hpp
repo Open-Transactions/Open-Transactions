@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************************
 * 
 * OTAPI.h --
 * This file is wrapped by ChaiScript (or any scripting engine...) for writing
@@ -171,33 +171,36 @@ class OT_API;
 class OTAPI_Exec;
 
 
-
 class OT_API;
 class OTAPI_Exec;
+class OTServerContract;
+class OTEnvelope;
 
 
 
 class OTAPI_Wrap
 {
+private:
 
-private :
+    // cannot instantiate this class
+    OTAPI_Wrap() { }
+    ~OTAPI_Wrap() { }
 
-	// cannot instantiate this class
-	OTAPI_Wrap() { }
-	~OTAPI_Wrap() { }
+public:
 
-public :
+    EXPORT static OTAPI_Exec * SetExecutor(OTAPI_Exec * exec);
 
-	EXPORT static OTAPI_Exec * SetExecutor(OTAPI_Exec * exec);
+    EXPORT static OTAPI_Exec * Exec();
 
-	EXPORT static OTAPI_Exec * Exec();
-
-	EXPORT static OT_API * OTAPI();
-
+    EXPORT static OT_API     *  OTAPI();
+	// --------------------------------------------------------------------
 //	EXPORT static bool & Cleanup();
 
 	EXPORT static int64_t     StringToLong(const std::string & strNumber);
 	EXPORT static std::string LongToString(const int64_t     & lNumber);
+
+    EXPORT static uint64_t    StringToUlong(const std::string &strNumber);
+    EXPORT static std::string UlongToString(const uint64_t & lNumber);
 
 	// --------------------------------------------------------------------
 	/**
@@ -3810,10 +3813,6 @@ public :
                             const std::string & SERVER_ID,
                             const std::string & USER_ID,
                             const std::string & THE_MESSAGE);
-
-
-
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE COMMAND TYPE
 	//
@@ -3823,9 +3822,6 @@ public :
 	// and if you send "getMint" the reply is "@getMint", and so on.
 	*/
 	EXPORT static std::string Message_GetCommand(const std::string & THE_MESSAGE);
-
-
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE SUCCESS (True or False)
 	//
@@ -3833,11 +3829,6 @@ public :
     // Returns -1 for Error condition.
 	*/
 	EXPORT static int32_t Message_GetSuccess(const std::string & THE_MESSAGE);
-
-
-
-
-
 	/** -----------------------------------------------------------
 	// QUERY ASSET TYPES (server message)
 	//
@@ -3855,10 +3846,6 @@ public :
 	EXPORT static int32_t queryAssetTypes(const std::string & SERVER_ID,
                                           const std::string & USER_ID,
                                           const std::string & ENCODED_MAP);
-
-
-
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE PAYLOAD
 	//
@@ -3868,9 +3855,6 @@ public :
 	// use the m_ascPayload field to transport it.
 	*/
 	EXPORT static std::string Message_GetPayload(const std::string & THE_MESSAGE);
-
-
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE "DEPTH" (USED FOR MARKET-SPECIFIC MESSAGES.)
 	//
@@ -3894,9 +3878,6 @@ public :
 	*/
 	EXPORT static int32_t Message_GetDepth(const std::string & THE_MESSAGE);
 
-
-
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE TRANSACTION SUCCESS (True or False)
 	// 
@@ -3916,9 +3897,6 @@ public :
                                                         const std::string & ACCOUNT_ID,
                                                         const std::string & THE_MESSAGE
                                                         );
-    
-
-
 	/** -----------------------------------------------------------
 	// GET BALANCE AGREEMENT SUCCESS (From a MESSAGE.)
 	// 
@@ -3931,7 +3909,6 @@ public :
                                                              const std::string & ACCOUNT_ID,
                                                              const std::string & THE_MESSAGE
                                                              );
-
 	/** -----------------------------------------------------------
 	// GET MESSAGE LEDGER 
 	//
@@ -3942,8 +3919,6 @@ public :
 	EXPORT static std::string Message_GetLedger(const std::string & THE_MESSAGE);
 
 
-
-
 	/** -----------------------------------------------------------
 	// GET NEW ASSET TYPE ID 
 	//
@@ -3952,7 +3927,6 @@ public :
 	// Otherwise how will you ever open accounts in that new type?
 	*/
 	EXPORT static std::string Message_GetNewAssetTypeID(const std::string & THE_MESSAGE);
-
 
 
 	/** -----------------------------------------------------------
@@ -3977,7 +3951,6 @@ public :
 	EXPORT static std::string Message_GetNewAcctID(const std::string & THE_MESSAGE);
 
 
-
 	/** -----------------------------------------------------------
 	// GET NYMBOX HASH 
 	//
@@ -3990,11 +3963,6 @@ public :
 
 
 	// ------------------------------------------------------------
-
-
-
-
-
 
 
 	// --------------------------------------------------------------------
@@ -4014,10 +3982,6 @@ public :
 
 	EXPORT static bool ProcessSockets();	// Not necessary in ZMQ mode.
 	// --------------------------------------------------------------------
-
-
-
-
 };
 
 

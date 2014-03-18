@@ -15,6 +15,8 @@
 // reasons.)
 //
 
+#include <stdafx.hpp>
+
 #include "OTAPI.hpp"
 #include "OT_ME.hpp"
 #include "ot_command_ot.hpp"
@@ -9139,8 +9141,7 @@ OT_COMMAND_OT bool purse_get_indices_or_amount(const string & strServerID, const
     OTAPI_Wrap::Output(0, "strAssetTypeID: " + strAssetTypeID + "\n");
     OTAPI_Wrap::Output(0, "strMyNymID: " + strMyNymID + "\n");
 
-    string strLocalPurse = OTAPI_Wrap::LoadPurse(strServerID, strAssetTypeID, strMyNymID); // returns "", or a purse.
-    OTAPI_Wrap::Output(0, "purse: " + strLocalPurse + "\n");
+    string strLocalPurse = OTAPI_Wrap::LoadPurse(strServerID, strAssetTypeID, strMyNymID);
 
     bool bLoadedPurse = VerifyStringVal(strLocalPurse);
     if (!bLoadedPurse)

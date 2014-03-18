@@ -1,4 +1,4 @@
-#include <string>
+#include <stdafx.hpp>
 
 #include "OTAPI.hpp"
 #include "OT_ME.hpp"

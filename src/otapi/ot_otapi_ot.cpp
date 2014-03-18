@@ -14,6 +14,8 @@
 
 // *************************************************************************************
 
+#include <stdafx.hpp>
+
 #include "OTAPI.hpp"
 #include "OT_ME.hpp"
 #include "ot_command_ot.hpp"
