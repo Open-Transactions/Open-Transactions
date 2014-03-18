@@ -3985,6 +3985,23 @@ std::string OTAPI_Wrap::GetAssetType_Name(const std::string & THE_ID)
 	return pBuf;
 }
 
+// Returns asset type TLA based on Asset Type ID
+std::string OTAPI_Wrap::GetAssetType_TLA(const std::string & THE_ID)
+{
+	if (THE_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_ID" ); OT_FAIL; }
+
+	OTIdentifier	theID(THE_ID);
+	// -------------------------
+	OTAssetContract * pContract = OTAPI_Wrap::OTAPI()->GetAssetType(theID, __FUNCTION__);
+	if (NULL == pContract) return "";
+	// -------------------------
+	OTString strTLA;
+	strTLA = pContract->GetCurrencyTLA();
+	std::string pBuf = strTLA.Get();
+	
+	return pBuf;
+}
+
 
 // -------------------------------------------------------------
 

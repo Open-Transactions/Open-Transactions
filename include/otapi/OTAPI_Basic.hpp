@@ -661,6 +661,7 @@ public:
     
 	EXPORT static std::string GetAssetType_ID(const long & nIndex); // returns Asset Type ID (based on index from GetAssetTypeCount)
 	EXPORT static std::string GetAssetType_Name(const std::string & ASSET_TYPE_ID); // Returns asset type name based on Asset Type ID
+	EXPORT static std::string GetAssetType_TLA(const std::string & ASSET_TYPE_ID); // Returns asset type TLA based on Asset Type ID
 	EXPORT static std::string GetAssetType_Contract(const std::string & ASSET_TYPE_ID); // Returns currency contract based on Asset Type ID
 
 
