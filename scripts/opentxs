@@ -1,5 +1,4 @@
 #!/usr/bin/env ot
-
 // ---------------------------------
 
 
@@ -351,34 +350,13 @@ def main_loop(map_functions, map_help)
             return interpret_command(map_functions, map_help, strCommand)
         }
     }
-
     // ---------------------------------
     //
-    // Otherwise, drop into the OT high-level prompt.
+    // Otherwise, show list.
     //
     else
     {
-        OT_API_Output(0, ".\n..\n...\n....\n.....\n\n")
-
-        while(true)
-        {
-            OT_API_Output(0, "opentxs> ")
-            var strInput =  OT_CLI_ReadLine()
-            var bDisplayGap = true
-            // ------------------------
-            var nInterpreted = interpret_command(map_functions, map_help, strInput)
-            
-            if (VerifyIntVal(nInterpreted) && ((-2) == nInterpreted))
-            {
-                break
-            }
-            // ------------------------
-            if (bDisplayGap)
-            {
-                OT_API_Output(0, ".\n..\n...\n....\n.....\n\n")
-            }
-            // ------------------------
-        } // while
+	return interpret_command(map_functions, map_help, "list");
     }
     
     0
