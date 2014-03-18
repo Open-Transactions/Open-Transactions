@@ -2617,6 +2617,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Name(char * jarg1)
 }
 
 
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_TLA(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
 SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Contract(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;

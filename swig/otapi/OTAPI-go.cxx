@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 #define SWIGMODULE otapi
 #define SWIG_DIRECTORS
@@ -3308,6 +3308,28 @@ _wrap_OTAPI_Basic_GetAssetType_Name(void *swig_v)
   
   
   result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OTAPI_Basic_GetAssetType_TLA(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    _gostring_ arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  
+  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
+  arg1 = &arg1_str;
+  
+  
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 

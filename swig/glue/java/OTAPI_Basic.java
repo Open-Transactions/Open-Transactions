@@ -299,6 +299,10 @@ public class OTAPI_Basic {
     return otapiJNI.OTAPI_Basic_GetAssetType_Name(ASSET_TYPE_ID);
   }
 
+  public static String GetAssetType_TLA(String ASSET_TYPE_ID) {
+    return otapiJNI.OTAPI_Basic_GetAssetType_TLA(ASSET_TYPE_ID);
+  }
+
   public static String GetAssetType_Contract(String ASSET_TYPE_ID) {
     return otapiJNI.OTAPI_Basic_GetAssetType_Contract(ASSET_TYPE_ID);
   }

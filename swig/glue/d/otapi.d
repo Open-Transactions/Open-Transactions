@@ -872,6 +872,12 @@ class OTAPI_Basic {
     return ret;
   }
 
+  public static char[] GetAssetType_TLA(char[] ASSET_TYPE_ID) {
+    char[] ret = tango.stdc.stringz.fromStringz(otapi_im.OTAPI_Basic_GetAssetType_TLA((ASSET_TYPE_ID ? tango.stdc.stringz.toStringz(ASSET_TYPE_ID) : null)));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
   public static char[] GetAssetType_Contract(char[] ASSET_TYPE_ID) {
     char[] ret = tango.stdc.stringz.fromStringz(otapi_im.OTAPI_Basic_GetAssetType_Contract((ASSET_TYPE_ID ? tango.stdc.stringz.toStringz(ASSET_TYPE_ID) : null)));
     if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();

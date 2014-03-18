@@ -408,6 +408,12 @@ public class OTAPI_Basic : global::System.IDisposable {
     return ret;
   }
 
+  public static string GetAssetType_TLA(string ASSET_TYPE_ID) {
+    string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_TLA(ASSET_TYPE_ID);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static string GetAssetType_Contract(string ASSET_TYPE_ID) {
     string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_Contract(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();

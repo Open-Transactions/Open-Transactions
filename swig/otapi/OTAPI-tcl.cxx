@@ -6156,6 +6156,34 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OTAPI_Basic_GetAssetType_TLA(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTAPI_Basic_GetAssetType_TLA ASSET_TYPE_ID ",(void *)0) == TCL_ERROR) SWIG_fail;
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[1], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTAPI_Basic_GetAssetType_TLA" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Basic_GetAssetType_TLA" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OTAPI_Basic_GetAssetType_Contract(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   std::string *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
@@ -41160,6 +41188,7 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTAPI_Basic_StringToAmount", (swig_wrapper_func) _wrap_OTAPI_Basic_StringToAmount, NULL},
     { SWIG_prefix "OTAPI_Basic_GetAssetType_ID", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAssetType_ID, NULL},
     { SWIG_prefix "OTAPI_Basic_GetAssetType_Name", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAssetType_Name, NULL},
+    { SWIG_prefix "OTAPI_Basic_GetAssetType_TLA", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAssetType_TLA, NULL},
     { SWIG_prefix "OTAPI_Basic_GetAssetType_Contract", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAssetType_Contract, NULL},
     { SWIG_prefix "OTAPI_Basic_GetAccountWallet_ID", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAccountWallet_ID, NULL},
     { SWIG_prefix "OTAPI_Basic_GetAccountWallet_Name", (swig_wrapper_func) _wrap_OTAPI_Basic_GetAccountWallet_Name, NULL},

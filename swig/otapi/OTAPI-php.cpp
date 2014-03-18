@@ -2031,7 +2031,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -2041,7 +2041,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -2239,7 +2239,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -2993,7 +2993,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
     arg4 = *tmp4;
   }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   arg5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -3196,7 +3196,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTPassword::BlockSize) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -3268,7 +3268,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -3284,7 +3284,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
     arg2 = *tmp2;
   }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3312,7 +3312,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -3362,7 +3362,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_5) {
     arg2 = *tmp2;
   }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3438,7 +3438,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_7) {
     arg2 = *tmp2;
   }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3709,7 +3709,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCallback_runOne) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3757,7 +3757,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCallback_runTwo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3923,7 +3923,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3933,7 +3933,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -4302,7 +4302,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Output) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -4525,7 +4525,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Encode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4561,7 +4561,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Decode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4949,7 +4949,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetMemlogAtIndex) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5053,7 +5053,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateNym) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5181,7 +5181,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5279,7 +5279,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5392,7 +5392,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubCredentialID) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -5479,7 +5479,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddSubcredential) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -5802,7 +5802,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5954,7 +5954,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5987,6 +5987,33 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_Name) {
   arg1 = &temp1;
   
   result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_TLA) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6036,7 +6063,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6358,7 +6385,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6649,7 +6676,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6685,7 +6712,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6721,7 +6748,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6757,7 +6784,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6793,7 +6820,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6856,7 +6883,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6892,7 +6919,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6928,7 +6955,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6964,7 +6991,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7000,7 +7027,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7063,7 +7090,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7099,7 +7126,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7135,7 +7162,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7171,7 +7198,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7207,7 +7234,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8055,7 +8082,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProposePaymentPlan) {
   arg14 = &temp14;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[14]);
   temp15 = (long) Z_LVAL_PP(args[14]);
   /*@SWIG@*/;
@@ -8944,7 +8971,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetBylawByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9057,7 +9084,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Clause_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9179,7 +9206,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9387,7 +9414,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9481,7 +9508,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseAtIndex) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -9561,7 +9588,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Callback_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9668,7 +9695,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetPartyByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -9781,7 +9808,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -9989,7 +10016,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10186,35 +10213,35 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -10607,7 +10634,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberType) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10670,7 +10697,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11093,14 +11120,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearRecord) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -11217,14 +11244,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearExpired) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -11384,7 +11411,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (long) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -11503,7 +11530,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (long) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -11629,7 +11656,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_CreateResponse) {
   arg5 = &temp5;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
@@ -11741,7 +11768,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetInstrument) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (long) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -11791,21 +11818,21 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RecordPayment) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -14723,7 +14750,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GenerateBasketExchange) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (long) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -14842,7 +14869,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangeBasket) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -15343,7 +15370,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getBoxReceipt) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -15403,7 +15430,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_DoesBoxReceiptExist) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -15802,7 +15829,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueMarketOffer) {
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -16268,7 +16295,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlushSentMessages) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[0]);
   temp1 = (bool) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -16942,7 +16969,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_make_sure_enough_trans_nums) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -17083,7 +17110,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_pseudonym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (long) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -17263,7 +17290,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_exchange_basket_currency) {
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   arg7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -17556,7 +17583,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_1) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   arg5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -17708,7 +17735,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_1) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   arg4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -17936,7 +17963,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_inbox_items) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (long) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -18754,7 +18781,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_0) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -18805,7 +18832,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_1) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (long) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -18928,7 +18955,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_box_receipt) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   arg5 = (long) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -19168,7 +19195,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_market_offer) {
   arg7 = &temp7;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[7]);
   arg8 = (bool) Z_LVAL_PP(args[7]);
   /*@SWIG@*/;
@@ -19660,7 +19687,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_export_cash) {
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   arg7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -20507,13 +20534,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storable_Create) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -20571,7 +20598,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_GetPacker__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22291,7 +22318,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22343,7 +22370,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22390,7 +22417,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_2) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22432,7 +22459,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_3) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22607,7 +22634,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_DecodeObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22891,7 +22918,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_CreateObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22918,13 +22945,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_Create) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22977,13 +23004,13 @@ ZEND_NAMED_FUNCTION(_wrap_InitDefaultStorage) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23028,13 +23055,13 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23060,7 +23087,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_1) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -23116,7 +23143,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateObject) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -23170,7 +23197,7 @@ ZEND_NAMED_FUNCTION(_wrap_CheckStringsExistInOrder__SWIG_0) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[4])->type==IS_NULL) {
     arg5 = (char *) 0;
   } else {
@@ -24657,7 +24684,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24702,7 +24729,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_1) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24742,7 +24769,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_2) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24777,7 +24804,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_3) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24914,7 +24941,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecodeObject) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -26741,7 +26768,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_GetMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -26774,7 +26801,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_RemoveMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28067,7 +28094,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28100,7 +28127,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28191,7 +28218,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28224,7 +28251,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28688,7 +28715,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_GetTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28721,7 +28748,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_RemoveTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -29285,7 +29312,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferDataNym_selling_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -29925,7 +29952,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_GetOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -29958,7 +29985,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_RemoveOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30821,7 +30848,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_GetTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30854,7 +30881,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_RemoveTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33748,7 +33775,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_GetServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33781,7 +33808,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_RemoveServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33916,7 +33943,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33949,7 +33976,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34040,7 +34067,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34073,7 +34100,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34164,7 +34191,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34197,7 +34224,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34288,7 +34315,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34321,7 +34348,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35241,7 +35268,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35274,7 +35301,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35365,7 +35392,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35398,7 +35425,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35533,7 +35560,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_GetContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35566,7 +35593,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_RemoveContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36179,6 +36206,9 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_id, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_name, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_tla, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_contract, 0, 0, 0)
@@ -39286,6 +39316,7 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otapi_basic_stringtoamount,_wrap_OTAPI_Basic_StringToAmount,swig_arginfo_otapi_basic_stringtoamount)
  SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_id,_wrap_OTAPI_Basic_GetAssetType_ID,swig_arginfo_otapi_basic_getassettype_id)
  SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_name,_wrap_OTAPI_Basic_GetAssetType_Name,swig_arginfo_otapi_basic_getassettype_name)
+ SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_tla,_wrap_OTAPI_Basic_GetAssetType_TLA,swig_arginfo_otapi_basic_getassettype_tla)
  SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_contract,_wrap_OTAPI_Basic_GetAssetType_Contract,swig_arginfo_otapi_basic_getassettype_contract)
  SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_id,_wrap_OTAPI_Basic_GetAccountWallet_ID,swig_arginfo_otapi_basic_getaccountwallet_id)
  SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_name,_wrap_OTAPI_Basic_GetAccountWallet_Name,swig_arginfo_otapi_basic_getaccountwallet_name)

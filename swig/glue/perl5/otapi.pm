@@ -327,6 +327,7 @@ sub DESTROY {
 *StringToAmount = *otapic::OTAPI_Basic_StringToAmount;
 *GetAssetType_ID = *otapic::OTAPI_Basic_GetAssetType_ID;
 *GetAssetType_Name = *otapic::OTAPI_Basic_GetAssetType_Name;
+*GetAssetType_TLA = *otapic::OTAPI_Basic_GetAssetType_TLA;
 *GetAssetType_Contract = *otapic::OTAPI_Basic_GetAssetType_Contract;
 *GetAccountWallet_ID = *otapic::OTAPI_Basic_GetAccountWallet_ID;
 *GetAccountWallet_Name = *otapic::OTAPI_Basic_GetAccountWallet_Name;
