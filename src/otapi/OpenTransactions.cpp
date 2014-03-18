@@ -346,7 +346,15 @@ bool OT_API::CleanupOTApp()
 OT_API::OT_API() :
     m_pPid(new Pid()),
 	m_pTransportCallback(NULL),
-	m_pSocket(new OTSocket_ZMQ_2()),
+
+#ifdef OT_ZMQ_2_MODE
+    m_pSocket(new OTSocket_ZMQ_2()),
+#endif
+
+#ifdef OT_ZMQ_4_MODE
+    m_pSocket(new OTSocket_ZMQ_4()),
+#endif
+
 	m_pWallet(NULL),
 	m_pClient(NULL),
 	m_bInitialized(false)

@@ -145,8 +145,8 @@
 
 
 #if defined(OPENTXS_HAVE_ZMQ_HPP) || defined(_WIN32)
-#ifndef OT_ZMQ_2_MODE
-#define OT_ZMQ_2_MODE
+#ifndef OT_ZMQ_4_MODE
+#define OT_ZMQ_4_MODE
 #endif
 #endif
 
@@ -287,6 +287,44 @@ private:
 #endif // OT_ZMQ_2_MODE
 
 
+#ifdef OT_ZMQ_4_MODE
+
+class OTSocket_ZMQ_4 : public OTSocket
+{
+private:
+    class ZMQ4; // defined in C++ file.
+    ZMQ4 * const m_pzmq;
+
+public:
+    EXPORT OTSocket_ZMQ_4();
+    EXPORT ~OTSocket_ZMQ_4();
+
+private:
+    bool CloseSocket(const bool bNewContext = false);
+    bool NewSocket(const bool bIsRequest);
+
+public:
+    EXPORT bool NewContext();
+    EXPORT bool RemakeSocket(const bool bNewContext = false);
+
+    EXPORT bool Connect();
+    EXPORT bool Listen();
+
+    EXPORT bool Connect(const OTString & strConnectPath);
+    EXPORT bool Listen(const OTString & strBindingPath);
+
+    EXPORT bool Send(const OTASCIIArmor & ascEnvelope);
+    EXPORT bool Send(const OTASCIIArmor & ascEnvelope, const OTString & strConnectPath);
+    EXPORT bool Receive(OTString & strServerReply);
+
+private:
+    bool HandlePollingError();
+    bool HandleSendingError();
+    bool HandleReceivingError();
+
+};
+
+#endif // OT_ZMQ_2_MODE
 
 
 

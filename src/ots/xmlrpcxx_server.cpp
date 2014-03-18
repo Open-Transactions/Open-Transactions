@@ -391,7 +391,14 @@ int main(int argc, char* argv[])
     //
 	// Prepare our context and listening socket...
 
+#ifdef OT_ZMQ_2_MODE
     OTSocket *  pSocket = new OTSocket_ZMQ_2();
+#endif
+
+#ifdef OT_ZMQ_4_MODE
+    OTSocket *  pSocket = new OTSocket_ZMQ_4();
+#endif
+
 
     if (!OTDataFolder::IsInitialized()) { OT_FAIL; };
 
