@@ -43,6 +43,19 @@ libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
 libot_la_LDFLAGS	=	--no-undefined
 
 
+
+#### Transport ZMQ 'option'
+
+if TRANSPORT_ZMQ4
+
+libot_la_LIBADD		+=	$(top_builddir)/src/zmq/libzmq.la
+
+libot_la_DEPENDENCIES	+=	$(top_builddir)/src/zmq/libzmq.la
+
+endif
+
+
+
 #### KEYRING Options
 
 if KEYRING_WINDOWS
