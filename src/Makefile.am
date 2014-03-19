@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS	=	subdir-objects
 
-SUBDIRS                 =	zmq otlib otapi
+SUBDIRS                 =	otlib otapi
 
 opentxs_include_dir     =	$(top_srcdir)/include
 opentxs_source_dir      =	$(top_srcdir)/src

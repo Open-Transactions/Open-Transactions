@@ -1,4 +1,4 @@
-lib_LTLIBRARIES = libzmq.la
+noinst_LTLIBRARIES = libzmq.la
 
 opentxs_include_dir	= $(top_srcdir)/include
 opentxs_source_dir	= $(top_srcdir)/src

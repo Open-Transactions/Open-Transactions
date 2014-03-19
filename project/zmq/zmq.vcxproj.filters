@@ -18,224 +18,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\zmq\address.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\clock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\ctx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\curve_client.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\curve_server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\dealer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\devpoll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\dist.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\epoll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\err.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\fq.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\io_object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\io_thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\ip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\ipc_address.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\ipc_connecter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\ipc_listener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\kqueue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\lb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\mailbox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\mechanism.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\msg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\mtrie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\norm_engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\null_mechanism.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\options.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\own.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pgm_receiver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pgm_sender.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pgm_socket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pipe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\plain_mechanism.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\poll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\poller_base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\precompiled.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\proxy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pub.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\pull.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\push.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\raw_decoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\raw_encoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\reaper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\rep.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\req.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\router.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\select.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\session_base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\signaler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\socket_base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\stream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\stream_engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\sub.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tcp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tcp_address.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tcp_connecter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tcp_listener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tipc_address.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tipc_connecter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\tipc_listener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\trie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\v1_decoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\v1_encoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\v2_decoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\v2_encoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\xpub.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\xsub.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\zmq.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\zmq\zmq_utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\include\zmq\zmq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -245,293 +27,511 @@
     <ClInclude Include="..\..\include\zmq\zmq_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\address.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\address.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\array.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\array.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\atomic_counter.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\atomic_counter.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\atomic_ptr.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\atomic_ptr.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\blob.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\blob.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\clock.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\clock.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\command.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\command.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\config.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\config.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ctx.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ctx.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\curve_client.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\curve_client.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\curve_server.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\curve_server.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\dbuffer.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\dbuffer.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\dealer.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\dealer.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\decoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\decoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\devpoll.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\devpoll.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\dist.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\dist.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\encoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\encoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\epoll.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\epoll.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\err.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\err.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\fd.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\fd.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\fq.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\fq.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\i_decoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\i_decoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\i_encoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\i_encoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\i_engine.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\i_engine.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\i_poll_events.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\i_poll_events.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\io_object.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\io_object.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\io_thread.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\io_thread.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ip.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ip.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ipc_address.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ipc_address.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ipc_connecter.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ipc_connecter.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ipc_listener.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ipc_listener.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\kqueue.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\kqueue.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\lb.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\lb.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\likely.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\likely.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\mailbox.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\mailbox.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\mechanism.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\mechanism.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\msg.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\msg.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\mtrie.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\mtrie.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\mutex.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\mutex.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\norm_engine.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\norm_engine.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\null_mechanism.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\null_mechanism.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\object.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\object.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\options.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\options.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\own.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\own.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pair.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pair.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pgm_receiver.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pgm_receiver.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pgm_sender.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pgm_sender.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pgm_socket.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pgm_socket.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pipe.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pipe.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\plain_mechanism.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\plain_mechanism.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\platform.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\platform.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\poll.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\poll.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\poller.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\poller.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\poller_base.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\poller_base.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\precompiled.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\precompiled.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\proxy.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\proxy.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pub.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pub.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\pull.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\pull.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\push.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\push.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\random.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\random.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\raw_decoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\raw_decoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\raw_encoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\raw_encoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\reaper.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\reaper.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\rep.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\rep.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\req.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\req.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\router.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\router.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\select.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\select.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\session_base.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\session_base.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\signaler.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\signaler.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\socket_base.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\socket_base.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\stdint.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\stdint.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\stream.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\stream.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\stream_engine.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\stream_engine.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\sub.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\sub.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tcp.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tcp.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tcp_address.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tcp_address.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tcp_connecter.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tcp_connecter.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tcp_listener.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tcp_listener.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\thread.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\thread.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tipc_address.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tipc_address.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tipc_connecter.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tipc_connecter.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\tipc_listener.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\tipc_listener.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\trie.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\trie.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\v1_decoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\v1_decoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\v1_encoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\v1_encoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\v2_decoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\v2_decoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\v2_encoder.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\v2_encoder.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\v2_protocol.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\v2_protocol.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\windows.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\windows.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\wire.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\wire.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\xpub.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\xpub.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\xsub.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\xsub.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ypipe.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ypipe.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ypipe_base.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ypipe_base.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\ypipe_conflate.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\ypipe_conflate.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\zmq\yqueue.hpp">
+    <ClInclude Include="..\..\src\otlib\zmq\yqueue.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\otlib\zmq\address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\ctx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\curve_client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\curve_server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\dealer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\devpoll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\dist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\epoll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\err.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\fq.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\io_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\io_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\ip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\ipc_address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\ipc_connecter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\ipc_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\kqueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\lb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\mailbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\mechanism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\msg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\mtrie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\norm_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\null_mechanism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\own.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pgm_receiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pgm_sender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pgm_socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pipe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\plain_mechanism.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\poll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\poller_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\precompiled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\proxy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\pull.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\push.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\raw_decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\raw_encoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\reaper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\rep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\req.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\router.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\select.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\session_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\signaler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\socket_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\stream_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\sub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tcp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tcp_address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tcp_connecter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tcp_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tipc_address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tipc_connecter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\tipc_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\trie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\v1_decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\v1_encoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\v2_decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\v2_encoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\xpub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\xsub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\zmq.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\zmq_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

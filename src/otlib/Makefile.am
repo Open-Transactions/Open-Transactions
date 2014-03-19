@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob bigint irrxml lucre otext
+SUBDIRS 		= 	zmq otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 
@@ -48,9 +48,9 @@ libot_la_LDFLAGS	=	--no-undefined
 
 if TRANSPORT_ZMQ4
 
-libot_la_LIBADD		+=	$(top_builddir)/src/zmq/libzmq.la
+libot_la_LIBADD		+=	zmq/libzmq.la
 
-libot_la_DEPENDENCIES	+=	$(top_builddir)/src/zmq/libzmq.la
+libot_la_DEPENDENCIES	+=	zmq/libzmq.la
 
 endif
 
