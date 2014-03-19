@@ -19,7 +19,7 @@ echo:
 goto :define
 
 :define
-SET SWIG_VER=2.0.12
+SET SWIG_VER=3.0.0
 SET SWIG_EXE=swig.exe
 SET SWIG_DIR=swigwin-%SWIG_VER%
 SET SWIG_DIR_PATH=..\%SWIG_DIR%
