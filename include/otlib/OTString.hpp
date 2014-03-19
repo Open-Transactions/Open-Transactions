@@ -474,8 +474,6 @@ EXPORT	void   Format      (const char     * fmt, ...);
    	// ----------------------------------------------
         void ConvertToLowerCase();
         void ConvertToUpperCase();
-    // ----------------------------------------------
-EXPORT	bool TokenizeIntoKeyValuePairs(mapOfStrings & mapOutput) const;
 	// ----------------------------------------------
 EXPORT	void OTfgets(std::istream & ofs);
 	// ----------------------------------------------

@@ -559,55 +559,6 @@ void fwrite_string(FILE *fl, const char *str)
 */
 // ----------------------------------------------------------------------
 
-// Note: UNIX-only (for now.)
-//
-bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & mapOutput) const
-{
-#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
-	if (!Exists())
-		return true;
-	// --------------
-	wordexp_t exp_result;
-    
-    exp_result.we_wordc = 0;
-    exp_result.we_wordv = NULL;
-    exp_result.we_offs  = 0;
-
-	if (wordexp(Get(), &exp_result, 0)) // non-zero == failure.
-	{
-		OTLog::vError("OTString::TokenizeIntoKeyValuePairs: Error calling wordexp() "
-                      "(to expand user-defined script args.)\nData: %s\n", Get());
-//		wordfree(&exp_result); 
-		return false;
-	}
-	// ----------------------------
-	
-    if ((exp_result.we_wordc > 0) && (NULL != exp_result.we_wordv))
-    {
-        // wordexp tokenizes by space (as well as expands, which is why I'm using it.)
-        // Therefore we need to iterate through the tokens, and create a single string
-        // with spaces between the tokens.
-        //
-        for (unsigned int i = 0; 
-             (i < (exp_result.we_wordc - 1))      && 
-             (exp_result.we_wordv[i]   != NULL)   && 
-             (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
-             i += 2)
-        {
-            const std::string str_key = exp_result.we_wordv[i];
-            const std::string str_val = exp_result.we_wordv[i+1];
-            
-            mapOutput.insert(std::pair<std::string, std::string>(str_key, str_val));		
-        }
-        
-        wordfree(&exp_result); 
-    }
-	// --------------
-	return true;
-#else
-	return false;
-#endif
-}
 // ----------------------------------------------------------------------
 
 

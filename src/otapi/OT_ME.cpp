@@ -187,17 +187,20 @@ typedef std::map<std::string, std::string>		mapOfArguments;
 //
 int OT_CLI_GetArgsCount(const std::string str_Args)
 {
-	const OTString strArgs(str_Args);
-	// ---------------------------------------
-	int nRetVal = 0;
-	mapOfArguments map_values;
-	// ---------------------------------------
-	const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-	// ---------------------------------------
-	if (bTokenized)
-		nRetVal = static_cast<int> (map_values.size());
-	// ---------------------------------------
-	return nRetVal;
+    std::vector<std::string> vArgs;
+    OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
+
+
+    size_t nMapIndex = 0;
+    std::vector<std::string>::iterator it = vArgs.begin();
+    for (; it <= vArgs.end() - 1;)
+    {
+        it++;
+        it++;
+        nMapIndex++;
+    }
+
+    return static_cast<int>(nMapIndex);
 }
 
 
@@ -209,19 +212,30 @@ int OT_CLI_GetArgsCount(const std::string str_Args)
 //
 std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string str_key)
 {
-	const OTString strArgs(str_Args);
+    std::vector<std::string> vArgs;
+    OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
+
+    mapOfArguments mArgs;
+    {
+        std::vector<std::string>::iterator it = vArgs.begin();
+        for (; it <= vArgs.end() - 1;)
+        {
+            std::string strKey = *it++;
+            std::string strValue = *it++;
+            mArgs.insert(std::make_pair(strKey, strValue));
+        }
+    }
+
+    // ---------------------------------------
+    std::string str_retval = "";
+
 	// ---------------------------------------
-	std::string str_retval = "";
-	mapOfArguments map_values;
-	// ---------------------------------------
-	const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-	// ---------------------------------------
-	if (bTokenized && (map_values.size() > 0))
+    if (mArgs.size() > 0)
 	{
 		// Okay we now have key/value pairs -- let's look it up!
-		mapOfArguments::iterator it = map_values.find(str_key);
+        mapOfArguments::iterator it = mArgs.find(str_key);
         
-		if (map_values.end() != it)	// found it
+        if (mArgs.end() != it)	// found it
 			str_retval = (*it).second;
 	}
 	// ---------------------------------------
@@ -234,36 +248,33 @@ std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string s
 // using:  --Args "key value key value key value"
 // then this function can retrieve any value (by index.)
 //
-std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int nIndex)
+std::string OT_CLI_GetValueByIndex(const std::string str_Args, const size_t nIndex)
 {
-	const OTString strArgs(str_Args);
-	// ---------------------------------------
-	std::string str_retval = "";
-	mapOfArguments map_values;
-	// ---------------------------------------
-	const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-	// ---------------------------------------
-	if (bTokenized && (nIndex < static_cast<int>(map_values.size())))
-	{
-		int nMapIndex = (-1);
-		FOR_EACH(mapOfArguments, map_values)
-		{
-			++nMapIndex;
-//			const std::string str_key = (*it).first;
-//			const std::string str_val = (*it).second;
-			// -------------------------------------
-			// BY this point, nMapIndex contains the index we're at on map_values
-			// (compare to nIndex.) And str_key and str_val contain the key/value
-			// pair for THAT index.
-			//
-			if (nIndex == nMapIndex)
-			{
-				str_retval = (*it).second; // Found it!
-				break;
-			}
-		}
-	}
-	// ---------------------------------------
+    std::vector<std::string> vArgs;
+    OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
+
+    mapOfArguments mArgs;
+    {
+        std::vector<std::string>::iterator it = vArgs.begin();
+        for (; it <= vArgs.end() - 1;)
+        {
+            std::string strKey = *it++;
+            std::string strValue = *it++;
+            mArgs.insert(std::make_pair(strKey, strValue));
+        }
+    }
+
+    std::string str_retval = "";
+
+    size_t nMapIndex = 0;
+    for (std::pair<std::string, std::string> s : mArgs)
+    {
+        if (nMapIndex == nIndex){
+            str_retval = s.second;
+            break;
+        }
+    }
+
 	return str_retval;
 }
 
@@ -274,37 +285,34 @@ std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int nIndex)
 // using:  --Args "key value key value key value"
 // then this function can retrieve any key (by index.)
 //
-std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const int nIndex)
+std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const size_t nIndex)
 {
-	const OTString strArgs(str_Args);
-	// ---------------------------------------
-	std::string str_retval = "";
-	mapOfArguments map_values;
-	// ---------------------------------------
-	const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-	// ---------------------------------------
-	if (bTokenized && (nIndex < static_cast<int>(map_values.size())))
-	{
-		int nMapIndex = (-1);
-		FOR_EACH(mapOfArguments, map_values)
-		{
-			++nMapIndex;
-//			const std::string str_key = (*it).first;
-//			const std::string str_val = (*it).second;
-			// -------------------------------------
-			// BY this point, nMapIndex contains the index we're at on map_values
-			// (compare to nIndex.) And str_key and str_val contain the key/value
-			// pair for THAT index.
-			//
-			if (nIndex == nMapIndex)
-			{
-				str_retval = (*it).first; // Found it!
-				break;
-			}
-		}
-	}
-	// ---------------------------------------
-	return str_retval;
+    std::vector<std::string> vArgs;
+    OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
+
+    mapOfArguments mArgs;
+    {
+        std::vector<std::string>::iterator it = vArgs.begin();
+        for (; it <= vArgs.end() - 1;)
+        {
+            std::string strKey = *it++;
+            std::string strValue = *it++;
+            mArgs.insert(std::make_pair(strKey, strValue));
+        }
+    }
+
+    std::string str_retval = "";
+
+    size_t nMapIndex = 0;
+    for (std::pair<std::string, std::string> s : mArgs)
+    {
+        if (nMapIndex == nIndex){
+            str_retval = s.first;
+            break;
+        }
+    }
+
+    return str_retval;
 }
 
 

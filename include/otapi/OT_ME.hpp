@@ -169,8 +169,8 @@ This file is used like OTAPI.h
 
 EXPORT int OT_CLI_GetArgsCount(const std::string str_Args);
 EXPORT std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string str_key);
-EXPORT std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int nIndex);
-EXPORT std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const int nIndex);
+EXPORT std::string OT_CLI_GetValueByIndex(const std::string str_Args, const size_t nIndex);
+EXPORT std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const size_t nIndex);
 EXPORT std::string OT_CLI_ReadLine();
 EXPORT std::string OT_CLI_ReadUntilEOF();
 
