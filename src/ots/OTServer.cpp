@@ -158,6 +158,7 @@
 #include <OTServerContract.hpp>
 #include <OTPassword.hpp>
 #include <OTMarket.hpp>
+#include <OTKeyring.hpp>
 
 #include <fstream>
 
@@ -1137,7 +1138,7 @@ bool OTServer::LoadConfigFile()
             if (strValue.Exists())
             {
                 OTKeyring::FlatFile_SetPasswordFolder(strValue.Get());
-                OTLog::vOutput(0," **DANGEROUS!**  Using password folder: %s\n",strValue.Get());
+                OTLog::vOutput(0," Using server password folder: %s\n",strValue.Get());
             }
         }
 #endif

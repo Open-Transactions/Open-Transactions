@@ -74,7 +74,7 @@ Release Mode:    --enable-release
 
 (Optional)
 System Keyring:  --with-keyring=ARG
-Arguments:       gnome, kwallet, windows or mac
+Arguments:       gnome, kwallet, windows, mac, or flatfile
 
 Enable OTAPI support for swig wrapper:
        Java:     --with-java
@@ -107,8 +107,43 @@ $ sudo ldconfig
 
 ###########   Miscellaneous Notes:   ###########
 
-# to run otserver
+# to run otserver as a foreground process:
 $ otserver
+
+to run otserver as a background process, configure it using:
+./configure --with-script=chai5 --enable-cxx11 --disable-cxxtr1 --with-keyring=flatfile plus any other desired options, compile and install as usual,
+
+cp dev/Open-Transactions/sample-data/ot-sample-data/background_server.cfg $HOME/.ot/server.cfg
+and change the password_folder path to a location appropriate for your system.
+
+mkdir $HOME/.ot/server_data/passphrase
+
+Run and create otserver as usual as a foreground process and enter the passphrase when requested.
+
+Then press Ctrl-c to exit the server, 
+
+cd to $HOME/.ot/server_data and rm ot.pid
+
+cd $HOME/.ot (or any other folder you want to run otserver from and store its log file in)
+
+The following command will run otserver as a daemon process in the background:
+
+nohup otserver &
+
+All server output will be redirected to a 'nohup.out' file in the folder you 
+launch otserver from. The pid of the daemon process will be listed after you 
+press return. It is also listed in $HOME/.ot/server_data/ot.pid, in case you forget it.
+
+To kill the server daemon process, enter:
+
+cd $HOME/.ot/server_data
+cat ot.pid to display the process id <pid> of the daemon process that is running the server
+kill <pid>
+rm ot.pid
+
+
+# for python client api support export env variable
+$ export PYTHONPATH=/usr/local/lib:$PYTHONPATH
 
 # to look at an example wallet (WARNING : will reset all user data):
 $ mkdir -p ~/.ot && cp -R sample-data/ot-sample-data/* ~/.ot

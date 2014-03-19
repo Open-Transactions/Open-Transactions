@@ -61,6 +61,10 @@ if KEYRING_KWALLET
 libot_la_CXXFLAGS		+=	-DOT_KEYRING_KWALLET
 endif
 
+if KEYRING_FLATFILE
+libot_la_CXXFLAGS       +=  -DOT_KEYRING_FLATFILE
+endif
+
 ####################################################################
 
 
