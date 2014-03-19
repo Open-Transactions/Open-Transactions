@@ -354,7 +354,7 @@ bool OTSocket::Connect(const OTString & strConnectPath)
 
 	OT_ASSERT_MSG(NULL != m_pSocket, "OTSocket::ConnectSocket: new zmq::socket(context, ZMQ_REQ)");
 
-    const int64_t linger = 0; // close immediately
+    const long linger = 0; // close immediately
 	m_pSocket->setsockopt (ZMQ_LINGER, &linger, sizeof (linger));
     /*
      int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
