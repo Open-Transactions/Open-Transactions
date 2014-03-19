@@ -212,7 +212,7 @@ AC_ARG_WITH(	[transport],
 			testclient) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-transport]) ;;
 			esac],
-		[with_transport=zmq4])
+		[with_transport="zmq4"])
 
 AM_CONDITIONAL(	[TRANSPORT_ZMQ],	[test x"$with_transport" == x"zmq"])
 AM_CONDITIONAL(	[TRANSPORT_ZMQ4],	[test x"$with_transport" == x"zmq4"])
@@ -230,9 +230,9 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		)
 	])
 	
-if test x"$with_transport" == x"zmq4"; then
+if test x"$with_transport" == x"zmq"; then
 	AC_DEFINE([TRANSPORT_ZMQ],  [1], [Using ZMQ 2 Transport])
-elif test x"$with_transport" == x"zmq"; then
+elif test x"$with_transport" == x"zmq4"; then
 	AC_DEFINE([TRANSPORT_ZMQ4], [1], [Using ZMQ 4 Transport])
 else
 	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])

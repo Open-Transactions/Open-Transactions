@@ -244,37 +244,6 @@ bool OT_API::InitOTApp()
 
 		OTLog::vOutput(1, "(transport build: OTMessage -> OTEnvelope -> ZMQ )\n");
 		// ------------------------------------
-#ifdef _WIN32
-		WSADATA wsaData;
-		WORD wVersionRequested = MAKEWORD( 2, 2 );
-		int err = WSAStartup( wVersionRequested, &wsaData );
-
-		/* Tell the user that we could not find a usable		*/
-		/* Winsock DLL.											*/		
-
-		OT_ASSERT_MSG((err == 0), "WSAStartup failed!\n");
-
-
-		/*	Confirm that the WinSock DLL supports 2.2.			*/
-		/*	Note that if the DLL supports versions greater		*/
-		/*	than 2.2 in addition to 2.2, it will still return	*/
-		/*	2.2 in wVersion since that is the version we		*/
-		/*	requested.											*/
-
-		bool bWinsock = (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2);
-
-		/* Tell the user that we could not find a usable */
-		/* WinSock DLL.                                  */
-
-		if (!bWinsock) WSACleanup();  // do cleanup.
-		OT_ASSERT_MSG((!bWinsock), "Could not find a usable version of Winsock.dll\n");
-
-		/* The Winsock DLL is acceptable. Proceed to use it. */
-		/* Add network programming using Winsock here */
-		/* then call WSACleanup when done using the Winsock dll */
-		OTLog::vOutput(1,"The Winsock 2.2 dll was found okay\n");
-#endif
-		// ------------------------------------
 		// SIGNALS
 		//
 #if defined(OT_SIGNAL_HANDLING)
@@ -324,11 +293,6 @@ bool OT_API::CleanupOTApp()
 		// like the best default, in absence of any brighter ideas.
 		//
 		OTCrypto::It()->Cleanup();  // (OpenSSL gets cleaned up here.)
-
-		// ------------------------------------
-#ifdef _WIN32
-		WSACleanup(); // Corresponds to WSAStartup() in InitOTAPI().
-#endif
 		// ------------------------------------
 
 		return true;

@@ -816,12 +816,25 @@ bool OTSocket_ZMQ_4::NewSocket(const bool bIsRequest)
 
     if (!this->CloseSocket()) return false;
 
-    m_pzmq->socket_zmq = new zmq::socket_t(*m_pzmq->context_zmq, bIsRequest ? ZMQ_REQ : ZMQ_REP);  // make a new socket
+    try {
+        m_pzmq->socket_zmq = new zmq::socket_t(*m_pzmq->context_zmq, bIsRequest ? ZMQ_REQ : ZMQ_REP);  // make a new socket
+    }
+    catch (std::exception& e) {
+        OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+        OT_FAIL;
+    }
 
     if (NULL == m_pzmq->socket_zmq)		{ OTLog::vError("%s: Error: %s failed to be created!\n", __FUNCTION__, "m_pzmq->socket_zmq");	OT_FAIL; }
 
     const int linger = 0; // close immediately
-    m_pzmq->socket_zmq->setsockopt(ZMQ_LINGER, &linger, sizeof (linger));
+
+    try {
+        m_pzmq->socket_zmq->setsockopt(ZMQ_LINGER, &linger, sizeof (linger));
+    }
+    catch (std::exception& e) {
+        OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+        OT_FAIL;
+    }
 
     m_bConnected = false;
     m_bListening = false;
@@ -840,7 +853,13 @@ bool OTSocket_ZMQ_4::NewContext()
     if (NULL != m_pzmq->context_zmq) zmq_term(m_pzmq->context_zmq);
     if (NULL != m_pzmq->context_zmq)	delete m_pzmq->context_zmq;	m_pzmq->context_zmq = NULL;
 
-    m_pzmq->context_zmq = new zmq::context_t(1);
+    try {
+        m_pzmq->context_zmq = new zmq::context_t(1,31); // Threads, Max Sockets. (31 is a sane default).
+    }
+    catch (std::exception& e) {
+        OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+        OT_FAIL;
+    }
 
     m_HasContext = true;
     return true;
@@ -951,7 +970,6 @@ bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope)
 
     // -----------------------------------	
     const long lLatencySendMilliSec = m_lLatencySendMs;
-    const long lLatencySendMicroSec = lLatencySendMilliSec * 1000; // Microsecond is 1000 times smaller than millisecond.
 
     zmq::message_t zmq_message(ascEnvelope.GetLength());
     memcpy((void*)zmq_message.data(), ascEnvelope.Get(), ascEnvelope.GetLength());
@@ -960,12 +978,18 @@ bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope)
 
     if (m_bIsBlocking)
     {
-        bSuccessSending = m_pzmq->socket_zmq->send(zmq_message); // Blocking.
+        try {
+            bSuccessSending = m_pzmq->socket_zmq->send(zmq_message); // Blocking.
+        }
+        catch (std::exception& e) {
+            OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+            OT_FAIL;
+        }
     }
     else // not blocking
     {
         int		nSendTries = m_nLatencySendNoTries;
-        long	lDoubling = lLatencySendMicroSec;
+        long	lDoubling = lLatencySendMilliSec;
         bool	bKeepTrying = true;
 
         while (bKeepTrying && (nSendTries > 0))
@@ -974,12 +998,27 @@ bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope)
                 { (*m_pzmq->socket_zmq), 0, ZMQ_POLLOUT, 0 }
             };
 
-            const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)					
+            int nPoll = 0;
+            try {
+                nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (milliseconds)	
+            }
+            catch (std::exception& e) {
+                OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+                OT_FAIL;
+            }
+
             lDoubling *= 2;
 
             if (items[0].revents & ZMQ_POLLOUT)
             {
-                bSuccessSending = m_pzmq->socket_zmq->send(zmq_message, ZMQ_NOBLOCK); // <=========== SEND ===============
+                try {
+                    bSuccessSending = m_pzmq->socket_zmq->send(zmq_message, ZMQ_NOBLOCK); // <=========== SEND ===============
+                }
+                catch (std::exception& e) {
+                    OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+                    OT_FAIL;
+                }
+
                 OTLog::SleepMilliseconds(1);
 
                 if (!bSuccessSending)
@@ -1038,7 +1077,6 @@ bool OTSocket_ZMQ_4::Receive(OTString & strServerReply)
 
     // -----------------------------------	
     const long lLatencyRecvMilliSec = m_lLatencyReceiveMs;
-    const long lLatencyRecvMicroSec = lLatencyRecvMilliSec * 1000;
 
     // ***********************************
     //  Get the reply.
@@ -1050,11 +1088,17 @@ bool OTSocket_ZMQ_4::Receive(OTString & strServerReply)
     //
     if (m_bIsBlocking)
     {
-        bSuccessReceiving = m_pzmq->socket_zmq->recv(&zmq_message); // Blocking.
+        try {
+            bSuccessReceiving = m_pzmq->socket_zmq->recv(&zmq_message); // Blocking.
+        }
+        catch (std::exception& e) {
+            OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+            OT_FAIL;
+        }
     }
     else	// not blocking
     {
-        long	lDoubling = lLatencyRecvMicroSec;
+        long	lDoubling = lLatencyRecvMilliSec;
         int		nReceiveTries = m_nLatencyReceiveNoTries;
         bool	expect_reply = true;
         while (expect_reply)
@@ -1062,13 +1106,27 @@ bool OTSocket_ZMQ_4::Receive(OTString & strServerReply)
             //  Poll socket for a reply, with timeout
             zmq::pollitem_t items[] = { { *m_pzmq->socket_zmq, 0, ZMQ_POLLIN, 0 } };
 
-            const int nPoll = zmq::poll(&items[0], 1, lDoubling);
+            int nPoll = 0;
+            try {
+                nPoll = zmq::poll(&items[0], 1, lDoubling);
+            }
+            catch (std::exception& e) {
+                OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+                OT_FAIL;
+            }
+
             lDoubling *= 2;
 
             //  If we got a reply, process it
             if (items[0].revents & ZMQ_POLLIN)
             {
+                try {
                 bSuccessReceiving = m_pzmq->socket_zmq->recv(&zmq_message, ZMQ_NOBLOCK); // <=========== RECEIVE ===============
+                }
+                catch (std::exception& e) {
+                    OTLog::vError("%s: Exception Caught: %s \n", __FUNCTION__, e.what());
+                    OT_FAIL;
+                }
                 OTLog::SleepMilliseconds(1);
 
                 if (!bSuccessReceiving)
