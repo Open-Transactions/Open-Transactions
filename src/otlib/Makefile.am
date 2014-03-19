@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob bigint irrxml lucre otext
+SUBDIRS 		= 	zmq otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 
@@ -41,6 +41,19 @@ libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
 				otext/libotext.la
 
 libot_la_LDFLAGS	=	--no-undefined
+
+
+
+#### Transport ZMQ 'option'
+
+if TRANSPORT_ZMQ4
+
+libot_la_LIBADD		+=	zmq/libzmq.la
+
+libot_la_DEPENDENCIES	+=	zmq/libzmq.la
+
+endif
+
 
 
 #### KEYRING Options
