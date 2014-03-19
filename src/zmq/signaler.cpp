@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -17,30 +17,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "platform.hpp"
-
-#if defined ZMQ_FORCE_SELECT
-#define ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
-#elif defined ZMQ_FORCE_POLL
-#define ZMQ_SIGNALER_WAIT_BASED_ON_POLL
-#elif defined ZMQ_HAVE_LINUX || defined ZMQ_HAVE_FREEBSD ||\
-    defined ZMQ_HAVE_OPENBSD || defined ZMQ_HAVE_SOLARIS ||\
-    defined ZMQ_HAVE_OSX || defined ZMQ_HAVE_QNXNTO ||\
-    defined ZMQ_HAVE_HPUX || defined ZMQ_HAVE_AIX ||\
-    defined ZMQ_HAVE_NETBSD
-#define ZMQ_SIGNALER_WAIT_BASED_ON_POLL
-#elif defined ZMQ_HAVE_WINDOWS || defined ZMQ_HAVE_OPENVMS ||\
-	defined ZMQ_HAVE_CYGWIN
-#define ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
-#endif
+#include "poller.hpp"
 
 //  On AIX, poll.h has to be included before zmq.h to get consistent
 //  definition of pollfd structure (AIX uses 'reqevents' and 'retnevents'
 //  instead of 'events' and 'revents' and defines macros to map from POSIX-y
 //  names to AIX-specific names).
-#if defined ZMQ_SIGNALER_WAIT_BASED_ON_POLL
+#if defined ZMQ_POLL_BASED_ON_POLL
 #include <poll.h>
-#elif defined ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
+#elif defined ZMQ_POLL_BASED_ON_SELECT
 #if defined ZMQ_HAVE_WINDOWS
 #include "windows.hpp"
 #elif defined ZMQ_HAVE_HPUX
@@ -69,6 +54,7 @@
 
 #if defined ZMQ_HAVE_WINDOWS
 #include "windows.hpp"
+#include <tchar.h>
 #else
 #include <unistd.h>
 #include <netinet/tcp.h>
@@ -118,7 +104,7 @@ zmq::fd_t zmq::signaler_t::get_fd ()
 
 void zmq::signaler_t::send ()
 {
-#if HAVE_FORK
+#if defined(HAVE_FORK)
     if (unlikely(pid != getpid())) {
         //printf("Child process %d signaler_t::send returning without sending #1\n", getpid());
         return; // do not send anything in forked child context
@@ -139,7 +125,7 @@ void zmq::signaler_t::send ()
         ssize_t nbytes = ::send (w, &dummy, sizeof (dummy), 0);
         if (unlikely (nbytes == -1 && errno == EINTR))
             continue;
-#if HAVE_FORK
+#if defined(HAVE_FORK)
         if (unlikely(pid != getpid())) {
             //printf("Child process %d signaler_t::send returning without sending #2\n", getpid());
             errno = EINTR;
@@ -165,7 +151,7 @@ int zmq::signaler_t::wait (int timeout_)
     }
 #endif
 
-#ifdef ZMQ_SIGNALER_WAIT_BASED_ON_POLL
+#ifdef ZMQ_POLL_BASED_ON_POLL
 
     struct pollfd pfd;
     pfd.fd = r;
@@ -193,7 +179,7 @@ int zmq::signaler_t::wait (int timeout_)
     zmq_assert (pfd.revents & POLLIN);
     return 0;
 
-#elif defined ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
+#elif defined ZMQ_POLL_BASED_ON_SELECT
 
     fd_set fds;
     FD_ZERO (&fds);
@@ -306,16 +292,39 @@ int zmq::signaler_t::make_fdpair (fd_t *r_, fd_t *w_)
     //  Note that if the event object already exists, the CreateEvent requests
     //  EVENT_ALL_ACCESS access right. If this fails, we try to open
     //  the event object asking for SYNCHRONIZE access only.
-#   if !defined _WIN32_WCE
-    HANDLE sync = CreateEvent (&sa, FALSE, TRUE, TEXT ("Global\\zmq-signaler-port-sync"));
-#   else
-    HANDLE sync = CreateEvent (NULL, FALSE, TRUE, TEXT ("Global\\zmq-signaler-port-sync"));
-#   endif
-    if (sync == NULL && GetLastError () == ERROR_ACCESS_DENIED)
-        sync = OpenEvent (SYNCHRONIZE | EVENT_MODIFY_STATE,
-                          FALSE, TEXT ("Global\\zmq-signaler-port-sync"));
+    HANDLE sync = NULL;
 
-    win_assert (sync != NULL);
+    //  Create critical section only if using fixed signaler port
+    //  Use problematic Event implementation for compatibility if using old port 5905.
+    //  Otherwise use Mutex implementation.
+    int event_signaler_port = 5905;
+
+    if (signaler_port == event_signaler_port) {
+#       if !defined _WIN32_WCE
+        sync = CreateEvent (&sa, FALSE, TRUE, TEXT ("Global\\zmq-signaler-port-sync"));
+#       else
+        sync = CreateEvent (NULL, FALSE, TRUE, TEXT ("Global\\zmq-signaler-port-sync"));
+#       endif
+        if (sync == NULL && GetLastError () == ERROR_ACCESS_DENIED)
+            sync = OpenEvent (SYNCHRONIZE | EVENT_MODIFY_STATE,
+                              FALSE, TEXT ("Global\\zmq-signaler-port-sync"));
+
+        win_assert (sync != NULL);
+    }
+    else if (signaler_port != 0) {
+        TCHAR mutex_name[64];
+        _stprintf (mutex_name, TEXT ("Global\\zmq-signaler-port-%d"), signaler_port);
+
+#       if !defined _WIN32_WCE
+        sync = CreateMutex (&sa, FALSE, mutex_name);
+#       else
+        sync = CreateMutex (NULL, FALSE, mutex_name);
+#       endif
+        if (sync == NULL && GetLastError () == ERROR_ACCESS_DENIED)
+            sync = OpenMutex (SYNCHRONIZE, FALSE, mutex_name);
+
+        win_assert (sync != NULL);
+    }
 
     //  Windows has no 'socketpair' function. CreatePipe is no good as pipe
     //  handles cannot be polled on. Here we create the socketpair by hand.
@@ -353,12 +362,20 @@ int zmq::signaler_t::make_fdpair (fd_t *r_, fd_t *w_)
         (char *)&tcp_nodelay, sizeof (tcp_nodelay));
     wsa_assert (rc != SOCKET_ERROR);
 
-    //  Enter the critical section.
-    DWORD dwrc = WaitForSingleObject (sync, INFINITE);
-    zmq_assert (dwrc == WAIT_OBJECT_0);
+    if (sync != NULL) {
+        //  Enter the critical section.
+        DWORD dwrc = WaitForSingleObject (sync, INFINITE);
+        zmq_assert (dwrc == WAIT_OBJECT_0 || dwrc == WAIT_ABANDONED);
+    }
 
     //  Bind listening socket to signaler port.
     rc = bind (listener, (const struct sockaddr*) &addr, sizeof (addr));
+
+    if (rc != SOCKET_ERROR && signaler_port == 0) {
+        //  Retrieve ephemeral port number
+        int addrlen = sizeof (addr);
+        rc = getsockname (listener, (struct sockaddr*) &addr, &addrlen);
+    }
 
     //  Listen for incoming connections.
     if (rc != SOCKET_ERROR)
@@ -380,18 +397,24 @@ int zmq::signaler_t::make_fdpair (fd_t *r_, fd_t *w_)
     //  We don't need the listening socket anymore. Close it.
     closesocket (listener);
 
-    //  Exit the critical section.
-    BOOL brc = SetEvent (sync);
-    win_assert (brc != 0);
+    if (sync != NULL) {
+        //  Exit the critical section.
+        BOOL brc;
+        if (signaler_port == event_signaler_port)
+            brc = SetEvent (sync);
+        else
+            brc = ReleaseMutex (sync);
+        win_assert (brc != 0);
 
-    //  Release the kernel object
-    brc = CloseHandle (sync);
-    win_assert (brc != 0);
+        //  Release the kernel object
+        brc = CloseHandle (sync);
+        win_assert (brc != 0);
+    }
 
     if (*r_ != INVALID_SOCKET) {
 #   if !defined _WIN32_WCE
         //  On Windows, preventing sockets to be inherited by child processes.
-        brc = SetHandleInformation ((HANDLE) *r_, HANDLE_FLAG_INHERIT, 0);
+        BOOL brc = SetHandleInformation ((HANDLE) *r_, HANDLE_FLAG_INHERIT, 0);
         win_assert (brc);
 #   endif
         return 0;
@@ -478,11 +501,3 @@ int zmq::signaler_t::make_fdpair (fd_t *r_, fd_t *w_)
     }
 #endif
 }
-
-#if defined ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
-#undef ZMQ_SIGNALER_WAIT_BASED_ON_SELECT
-#endif
-#if defined ZMQ_SIGNALER_WAIT_BASED_ON_POLL
-#undef ZMQ_SIGNALER_WAIT_BASED_ON_POLL
-#endif
-

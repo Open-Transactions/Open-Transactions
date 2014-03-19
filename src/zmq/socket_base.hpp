@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -26,6 +26,7 @@
 
 #include "own.hpp"
 #include "array.hpp"
+#include "blob.hpp"
 #include "stdint.hpp"
 #include "poller.hpp"
 #include "atomic_counter.hpp"
@@ -106,6 +107,9 @@ namespace zmq
 
         int monitor (const char *endpoint_, int events_);
 
+        void set_fd(fd_t fd_);
+        fd_t fd();
+
         void event_connected (std::string &addr_, int fd_);
         void event_connect_delayed (std::string &addr_, int err_);
         void event_connect_retried (std::string &addr_, int interval_);
@@ -128,7 +132,7 @@ namespace zmq
             bool subscribe_to_all_ = false) = 0;
 
         //  The default implementation assumes there are no specific socket
-        //  options for the particular socket type. If not so, overload this
+        //  options for the particular socket type. If not so, override this
         //  method.
         virtual int xsetsockopt (int option_, const void *optval_,
             size_t optvallen_);
@@ -140,6 +144,11 @@ namespace zmq
         //  The default implementation assumes that recv in not supported.
         virtual bool xhas_in ();
         virtual int xrecv (zmq::msg_t *msg_);
+
+        //  Returns the credential for the peer from which we have received
+        //  the last message. If no message has been received yet,
+        //  the function returns empty credential.
+        virtual blob_t get_credential () const;
 
         //  i_pipe_events will be forwarded to these functions.
         virtual void xread_activated (pipe_t *pipe_);
@@ -155,6 +164,9 @@ namespace zmq
 
         // Monitor socket cleanup
         void stop_monitor ();
+        
+        // Next assigned name on a zmq_connect() call used by ROUTER and STREAM socket types
+        std::string connect_rid;
 
     private:
         //  Creates new endpoint ID and adds the endpoint to the map.
@@ -229,6 +241,9 @@ namespace zmq
 
         //  True if the last message received had MORE flag set.
         bool rcvmore;
+
+        // File descriptor if applicable
+        fd_t file_desc;
 
         //  Improves efficiency of time measurement.
         clock_t clock;

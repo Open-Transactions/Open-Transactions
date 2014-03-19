@@ -87,6 +87,9 @@
     <ClCompile Include="..\..\src\zmq\mtrie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\zmq\norm_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\zmq\null_mechanism.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -195,6 +198,15 @@
     <ClCompile Include="..\..\src\zmq\thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\zmq\tipc_address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\zmq\tipc_connecter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\zmq\tipc_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\zmq\trie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,6 +237,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\zmq\zmq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\zmq\zmq.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\zmq\zmq_utils.h">
@@ -347,6 +362,9 @@
     <ClInclude Include="..\..\src\zmq\mutex.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\zmq\norm_engine.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\zmq\null_mechanism.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
@@ -375,6 +393,9 @@
       <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\zmq\plain_mechanism.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\zmq\platform.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\zmq\poll.hpp">
@@ -461,6 +482,15 @@
     <ClInclude Include="..\..\src\zmq\thread.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\zmq\tipc_address.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\zmq\tipc_connecter.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\zmq\tipc_listener.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\zmq\trie.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
@@ -502,9 +532,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\zmq\yqueue.hpp">
       <Filter>Header Files\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\zmq\zmq.hpp">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

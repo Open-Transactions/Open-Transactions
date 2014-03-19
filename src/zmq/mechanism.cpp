@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -45,6 +45,16 @@ void zmq::mechanism_t::peer_identity (msg_t *msg_)
     errno_assert (rc == 0);
     memcpy (msg_->data (), identity.data (), identity.size ());
     msg_->set_flags (msg_t::identity);
+}
+
+void zmq::mechanism_t::set_user_id (const void *data_, size_t size_)
+{
+    user_id = blob_t (static_cast <const unsigned char*> (data_), size_);
+}
+
+zmq::blob_t zmq::mechanism_t::get_user_id () const
+{
+    return user_id;
 }
 
 const char *zmq::mechanism_t::socket_type_string (int socket_type) const
@@ -123,15 +133,15 @@ int zmq::mechanism_t::parse_metadata (const unsigned char *ptr_,
     return 0;
 }
 
-int zmq::mechanism_t::property (const std::string name_,
-                                const void *value_, size_t length_)
+int zmq::mechanism_t::property (const std::string& /* name_ */,
+                                const void * /* value_ */, size_t /* length_ */)
 {
     //  Default implementation does not check
     //  property values and returns 0 to signal success.
     return 0;
 }
 
-bool zmq::mechanism_t::check_socket_type (const std::string type_) const
+bool zmq::mechanism_t::check_socket_type (const std::string& type_) const
 {
     switch (options.type) {
         case ZMQ_REQ:

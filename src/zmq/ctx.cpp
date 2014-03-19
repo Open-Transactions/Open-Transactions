@@ -24,6 +24,7 @@
 #include <unistd.h>
 #endif
 
+#include <limits>
 #include <new>
 #include <string.h>
 
@@ -107,18 +108,16 @@ int zmq::ctx_t::terminate ()
     if (!starting) {
 
 #ifdef HAVE_FORK
-        if (pid != getpid())
-        {
+        if (pid != getpid ()) {
             // we are a forked child process. Close all file descriptors
             // inherited from the parent.
             for (sockets_t::size_type i = 0; i != sockets.size (); i++)
-            {
                 sockets[i]->get_mailbox()->forked();
-            }
 
             term_mailbox.forked();
         }
 #endif
+
         //  Check whether termination was already underway, but interrupted and now
         //  restarted.
         bool restarted = terminating;
@@ -126,7 +125,6 @@ int zmq::ctx_t::terminate ()
 
         //  First attempt to terminate the context.
         if (!restarted) {
-
             //  First send stop command to sockets so that any blocking calls
             //  can be interrupted. If there are no sockets we can ask reaper
             //  thread to stop.
@@ -206,6 +204,9 @@ int zmq::ctx_t::get (int option_)
     int rc = 0;
     if (option_ == ZMQ_MAX_SOCKETS)
         rc = max_sockets;
+    else
+    if (option_ == ZMQ_SOCKET_LIMIT)
+        rc = clipped_maxsocket (std::numeric_limits<int>::max());
     else
     if (option_ == ZMQ_IO_THREADS)
         rc = io_thread_count;
@@ -359,7 +360,6 @@ int zmq::ctx_t::register_endpoint (const char *addr_, endpoint_t &endpoint_)
         errno = EADDRINUSE;
         return -1;
     }
-
     return 0;
 }
 
@@ -377,7 +377,6 @@ void zmq::ctx_t::unregister_endpoints (socket_base_t *socket_)
         }
         ++it;
     }
-
     endpoints_sync.unlock ();
 }
 
@@ -409,17 +408,14 @@ void zmq::ctx_t::pend_connection (const char *addr_, pending_connection_t &pendi
     endpoints_sync.lock ();
 
     endpoints_t::iterator it = endpoints.find (addr_);
-    if (it == endpoints.end ())
-    {
+    if (it == endpoints.end ()) {
         // Still no bind.
         pending_connection_.endpoint.socket->inc_seqnum ();
         pending_connections.insert (pending_connections_t::value_type (std::string (addr_), pending_connection_));
     }
     else
-    {
         // Bind has happened in the mean time, connect directly
         connect_inproc_sockets(it->second.socket, it->second.options, pending_connection_, connect_side);
-    }
 
     endpoints_sync.unlock ();
 }
@@ -431,22 +427,19 @@ void zmq::ctx_t::connect_pending (const char *addr_, zmq::socket_base_t *bind_so
     std::pair<pending_connections_t::iterator, pending_connections_t::iterator> pending = pending_connections.equal_range(addr_);
 
     for (pending_connections_t::iterator p = pending.first; p != pending.second; ++p)
-    {
         connect_inproc_sockets(bind_socket_, endpoints[addr_].options, p->second, bind_side);
-    }
 
     pending_connections.erase(pending.first, pending.second);
-
     endpoints_sync.unlock ();
 }
 
-void zmq::ctx_t::connect_inproc_sockets(zmq::socket_base_t *bind_socket_, options_t& bind_options, pending_connection_t &pending_connection_, side side_)
+void zmq::ctx_t::connect_inproc_sockets (zmq::socket_base_t *bind_socket_,
+    options_t& bind_options, pending_connection_t &pending_connection_, side side_)
 {
     bind_socket_->inc_seqnum();
     pending_connection_.bind_pipe->set_tid(bind_socket_->get_tid());
 
-    if (side_ == bind_side)
-    {
+    if (side_ == bind_side) {
         command_t cmd;
         cmd.type = command_t::bind;
         cmd.args.bind.pipe = pending_connection_.bind_pipe;
@@ -454,13 +447,12 @@ void zmq::ctx_t::connect_inproc_sockets(zmq::socket_base_t *bind_socket_, option
         bind_socket_->send_inproc_connected(pending_connection_.endpoint.socket);
     }
     else
-    {
         pending_connection_.connect_pipe->send_bind(bind_socket_, pending_connection_.bind_pipe, false);
-    }
 
     int sndhwm = 0;
     if (pending_connection_.endpoint.options.sndhwm != 0 && bind_options.rcvhwm != 0)
         sndhwm = pending_connection_.endpoint.options.sndhwm + bind_options.rcvhwm;
+
     int rcvhwm = 0;
     if (pending_connection_.endpoint.options.rcvhwm != 0 && bind_options.sndhwm != 0)
         rcvhwm = pending_connection_.endpoint.options.rcvhwm + bind_options.sndhwm;
@@ -476,17 +468,14 @@ void zmq::ctx_t::connect_inproc_sockets(zmq::socket_base_t *bind_socket_, option
        pending_connection_.connect_pipe->set_hwms(hwms [1], hwms [0]);
        pending_connection_.bind_pipe->set_hwms(hwms [0], hwms [1]);
 
-    if (bind_options.recv_identity) {
-    
-        msg_t id;
-        int rc = id.init_size (pending_connection_.endpoint.options.identity_size);
+    if (!bind_options.recv_identity) {
+        msg_t msg;
+        const bool ok = pending_connection_.bind_pipe->read (&msg);
+        zmq_assert (ok);
+        const int rc = msg.close ();
         errno_assert (rc == 0);
-        memcpy (id.data (), pending_connection_.endpoint.options.identity, pending_connection_.endpoint.options.identity_size);
-        id.set_flags (msg_t::identity);
-        bool written = pending_connection_.connect_pipe->write (&id);
-        zmq_assert (written);
-        pending_connection_.connect_pipe->flush ();
     }
+
     if (pending_connection_.endpoint.options.recv_identity) {
         msg_t id;
         int rc = id.init_size (bind_options.identity_size);

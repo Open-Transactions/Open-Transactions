@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -38,7 +38,7 @@ namespace zmq
         stream_t (zmq::ctx_t *parent_, uint32_t tid_, int sid);
         ~stream_t ();
 
-        //  Overloads of functions from socket_base_t.
+        //  Overrides of functions from socket_base_t.
         void xattach_pipe (zmq::pipe_t *pipe_, bool subscribe_to_all_);
         int xsend (zmq::msg_t *msg_);
         int xrecv (zmq::msg_t *msg_);
@@ -47,7 +47,7 @@ namespace zmq
         void xread_activated (zmq::pipe_t *pipe_);
         void xwrite_activated (zmq::pipe_t *pipe_);
         void xpipe_terminated (zmq::pipe_t *pipe_);
-
+        int xsetsockopt (int option_, const void *optval_, size_t optvallen_); 
     private:
         //  Generate peer's id and update lookup map
         void identify_peer (pipe_t *pipe_);
@@ -84,9 +84,9 @@ namespace zmq
         //  If true, more outgoing message parts are expected.
         bool more_out;
 
-        //  Peer ID are generated. It's a simple increment and wrap-over
+        //  Routing IDs are generated. It's a simple increment and wrap-over
         //  algorithm. This value is the next ID to use (if not used already).
-        uint32_t next_peer_id;
+        uint32_t next_rid;
 
         stream_t (const stream_t&);
         const stream_t &operator = (const stream_t&);

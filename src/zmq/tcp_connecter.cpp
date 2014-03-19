@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -50,7 +50,7 @@
 
 zmq::tcp_connecter_t::tcp_connecter_t (class io_thread_t *io_thread_,
       class session_base_t *session_, const options_t &options_,
-      const address_t *addr_, bool delayed_start_) :
+      address_t *addr_, bool delayed_start_) :
     own_t (io_thread_, options_),
     io_object_t (io_thread_),
     addr (addr_),
@@ -124,6 +124,9 @@ void zmq::tcp_connecter_t::out_event ()
     tune_tcp_socket (fd);
     tune_tcp_keepalives (fd, options.tcp_keepalive, options.tcp_keepalive_cnt, options.tcp_keepalive_idle, options.tcp_keepalive_intvl);
 
+    // remember our fd for ZMQ_SRCFD in messages
+    socket->set_fd(fd);
+
     //  Create the engine object for this connection.
     stream_engine_t *engine = new (std::nothrow)
         stream_engine_t (fd, options, endpoint);
@@ -190,14 +193,14 @@ int zmq::tcp_connecter_t::get_new_reconnect_ivl ()
 
     //  Only change the current reconnect interval  if the maximum reconnect
     //  interval was set and if it's larger than the reconnect interval.
-    if (options.reconnect_ivl_max > 0 && 
+    if (options.reconnect_ivl_max > 0 &&
         options.reconnect_ivl_max > options.reconnect_ivl) {
 
         //  Calculate the next interval
         current_reconnect_ivl = current_reconnect_ivl * 2;
         if(current_reconnect_ivl >= options.reconnect_ivl_max) {
             current_reconnect_ivl = options.reconnect_ivl_max;
-        }   
+        }
     }
     return this_interval;
 }
@@ -205,6 +208,24 @@ int zmq::tcp_connecter_t::get_new_reconnect_ivl ()
 int zmq::tcp_connecter_t::open ()
 {
     zmq_assert (s == retired_fd);
+
+    //  Resolve the address
+    if (addr->resolved.tcp_addr != NULL) {
+        delete addr->resolved.tcp_addr;
+        addr->resolved.tcp_addr = NULL;
+    }
+    zmq_assert (addr->resolved.tcp_addr == NULL);
+
+    addr->resolved.tcp_addr = new (std::nothrow) tcp_address_t ();
+    alloc_assert (addr->resolved.tcp_addr);
+    int rc = addr->resolved.tcp_addr->resolve (
+        addr->address.c_str (), false, options.ipv6);
+    if (rc != 0) {
+        delete addr->resolved.tcp_addr;
+        addr->resolved.tcp_addr = NULL;
+        return -1;
+    }
+    zmq_assert (addr->resolved.tcp_addr != NULL);
 
     //  Create the socket.
     s = open_socket (addr->resolved.tcp_addr->family (), SOCK_STREAM, IPPROTO_TCP);
@@ -223,6 +244,10 @@ int zmq::tcp_connecter_t::open ()
     if (addr->resolved.tcp_addr->family () == AF_INET6)
         enable_ipv4_mapping (s);
 
+    // Set the IP Type-Of-Service priority for this socket
+    if (options.tos != 0)
+        set_ip_type_of_service (s, options.tos);
+
     // Set the socket to non-blocking mode so that we get async connect().
     unblock_socket (s);
 
@@ -232,8 +257,12 @@ int zmq::tcp_connecter_t::open ()
     if (options.rcvbuf != 0)
         set_tcp_receive_buffer (s, options.rcvbuf);
 
+    // Set the IP Type-Of-Service for the underlying socket
+    if (options.tos != 0)
+        set_ip_type_of_service (s, options.tos);
+
     //  Connect to the remote peer.
-    int rc = ::connect (
+    rc = ::connect (
         s, addr->resolved.tcp_addr->addr (),
         addr->resolved.tcp_addr->addrlen ());
 
@@ -279,6 +308,7 @@ zmq::fd_t zmq::tcp_connecter_t::connect ()
             err == WSAEHOSTUNREACH ||
             err == WSAENETUNREACH ||
             err == WSAENETDOWN ||
+            err == WSAEACCES ||
             err == WSAEINVAL)
             return retired_fd;
         wsa_assert_no (err);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -30,6 +30,7 @@
 
 //  Check whether the sizes of public representation of the message (zmq_msg_t)
 //  and private representation of the message (zmq::msg_t) match.
+
 typedef char zmq_msg_size_check
     [2 * ((sizeof (zmq::msg_t) == sizeof (zmq_msg_t)) != 0) - 1];
 
@@ -43,11 +44,13 @@ int zmq::msg_t::init ()
     u.vsm.type = type_vsm;
     u.vsm.flags = 0;
     u.vsm.size = 0;
+    file_desc = -1;
     return 0;
 }
 
 int zmq::msg_t::init_size (size_t size_)
 {
+    file_desc = -1;
     if (size_ <= max_vsm_size) {
         u.vsm.type = type_vsm;
         u.vsm.flags = 0;
@@ -77,8 +80,10 @@ int zmq::msg_t::init_data (void *data_, size_t size_, msg_free_fn *ffn_,
 {
     //  If data is NULL and size is not 0, a segfault
     //  would occur once the data is accessed
-    assert (data_ != NULL || size_ == 0);
+    zmq_assert (data_ != NULL || size_ == 0);
     
+    file_desc = -1;
+
     //  Initialize constant message if there's no need to deallocate
     if(ffn_ == NULL) {
         u.cmsg.type = type_cmsg;
@@ -247,12 +252,27 @@ void zmq::msg_t::reset_flags (unsigned char flags_)
     u.base.flags &= ~flags_;
 }
 
+int64_t zmq::msg_t::fd ()
+{
+    return file_desc;
+}
+
+void zmq::msg_t::set_fd (int64_t fd_)
+{
+    file_desc = fd_;
+}
+
 bool zmq::msg_t::is_identity () const
 {
     return (u.base.flags & identity) == identity;
 }
 
-bool zmq::msg_t::is_delimiter ()
+bool zmq::msg_t::is_credential () const
+{
+    return (u.base.flags & credential) == credential;
+}
+
+bool zmq::msg_t::is_delimiter () const
 {
     return u.base.type == type_delimiter;
 }

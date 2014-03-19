@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -20,6 +20,7 @@
 #ifndef __ZMQ_PAIR_HPP_INCLUDED__
 #define __ZMQ_PAIR_HPP_INCLUDED__
 
+#include "blob.hpp"
 #include "socket_base.hpp"
 #include "session_base.hpp"
 
@@ -39,12 +40,13 @@ namespace zmq
         pair_t (zmq::ctx_t *parent_, uint32_t tid_, int sid);
         ~pair_t ();
 
-        //  Overloads of functions from socket_base_t.
+        //  Overrides of functions from socket_base_t.
         void xattach_pipe (zmq::pipe_t *pipe_, bool subscribe_to_all_);
         int xsend (zmq::msg_t *msg_);
         int xrecv (zmq::msg_t *msg_);
         bool xhas_in ();
         bool xhas_out ();
+        blob_t get_credential () const;
         void xread_activated (zmq::pipe_t *pipe_);
         void xwrite_activated (zmq::pipe_t *pipe_);
         void xpipe_terminated (zmq::pipe_t *pipe_);
@@ -52,6 +54,10 @@ namespace zmq
     private:
 
         zmq::pipe_t *pipe;
+
+        zmq::pipe_t *last_in;
+
+        blob_t saved_credential;
 
         pair_t (const pair_t&);
         const pair_t &operator = (const pair_t&);

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -35,7 +35,7 @@ namespace zmq
     //  N is granularity of the pipe, i.e. how many items are needed to
     //  perform next memory allocation.
 
-    template <typename T, int N> class ypipe_t : public ypipe_base_t<T,N>
+    template <typename T, int N> class ypipe_t : public ypipe_base_t <T>
     {
     public:
 
@@ -166,7 +166,7 @@ namespace zmq
         //  Applies the function fn to the first elemenent in the pipe
         //  and returns the value returned by the fn.
         //  The pipe mustn't be empty or the function crashes.
-        inline bool probe (bool (*fn)(T &))
+        inline bool probe (bool (*fn)(const T &))
         {
                 bool rc = check_read ();
                 zmq_assert (rc);

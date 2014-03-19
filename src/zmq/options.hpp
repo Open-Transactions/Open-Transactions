@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -22,11 +22,16 @@
 
 #include <string>
 #include <vector>
+#include <set>
 
 #include "stddef.h"
 #include "stdint.hpp"
 #include "tcp_address.hpp"
 #include <zmq.h>
+
+#if defined ZMQ_HAVE_SO_PEERCRED || defined ZMQ_HAVE_LOCAL_PEERCRED
+#include <sys/types.h>
+#endif
 
 //  Normal base 256 key is 32 bytes
 #define CURVE_KEYSIZE       32
@@ -65,6 +70,9 @@ namespace zmq
         // SO_SNDBUF and SO_RCVBUF to be passed to underlying transport sockets.
         int sndbuf;
         int rcvbuf;
+
+        // Type of service (containing DSCP and ECN socket options)
+        int tos;
 
         //  Socket type.
         int type;
@@ -116,6 +124,19 @@ namespace zmq
         // TCP accept() filters
         typedef std::vector <tcp_address_mask_t> tcp_accept_filters_t;
         tcp_accept_filters_t tcp_accept_filters;
+
+        // IPC accept() filters
+#       if defined ZMQ_HAVE_SO_PEERCRED || defined ZMQ_HAVE_LOCAL_PEERCRED
+        bool zap_ipc_creds;
+        typedef std::set <uid_t> ipc_uid_accept_filters_t;
+        ipc_uid_accept_filters_t ipc_uid_accept_filters;
+        typedef std::set <gid_t> ipc_gid_accept_filters_t;
+        ipc_gid_accept_filters_t ipc_gid_accept_filters;
+#       endif
+#       if defined ZMQ_HAVE_SO_PEERCRED
+        typedef std::set <pid_t> ipc_pid_accept_filters_t;
+        ipc_pid_accept_filters_t ipc_pid_accept_filters;
+#       endif
 
         //  Security mechanism for all connections on this socket
         int mechanism;

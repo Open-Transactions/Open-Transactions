@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -32,6 +32,7 @@
 
 #include <string.h>
 #include <new>
+#include <sstream>
 
 #include "stream_engine.hpp"
 #include "io_thread.hpp"
@@ -83,8 +84,36 @@ zmq::stream_engine_t::stream_engine_t (fd_t fd_, const options_t &options_,
     //  Put the socket into non-blocking mode.
     unblock_socket (s);
 
-    if (!get_peer_ip_address (s, peer_address))
+    int family = get_peer_ip_address (s, peer_address);
+    if (family == 0)
         peer_address = "";
+#if defined ZMQ_HAVE_SO_PEERCRED
+    else
+    if (family == PF_UNIX) {
+        struct ucred cred;
+        socklen_t size = sizeof (cred);
+        if (!getsockopt (s, SOL_SOCKET, SO_PEERCRED, &cred, &size)) {
+            std::ostringstream buf;
+            buf << ":" << cred.uid << ":" << cred.gid << ":" << cred.pid;
+            peer_address += buf.str ();
+        }
+    }
+#elif defined ZMQ_HAVE_LOCAL_PEERCRED
+    else
+    if (family == PF_UNIX) {
+        struct xucred cred;
+        socklen_t size = sizeof (cred);
+        if (!getsockopt (s, 0, LOCAL_PEERCRED, &cred, &size)
+                && cred.cr_version == XUCRED_VERSION) {
+            std::ostringstream buf;
+            buf << ":" << cred.cr_uid << ":";
+            if (cred.cr_ngroups > 0)
+                buf << cred.cr_groups[0];
+            buf << ":";
+            peer_address += buf.str ();
+        }
+    }
+#endif
 
 #ifdef SO_NOSIGPIPE
     //  Make sure that SIGPIPE signal is not generated when writing to a
@@ -148,6 +177,14 @@ void zmq::stream_engine_t::plug (io_thread_t *io_thread_,
 
         read_msg = &stream_engine_t::pull_msg_from_session;
         write_msg = &stream_engine_t::push_msg_to_session;
+
+        //  For raw sockets, send an initial 0-length message to the
+        // application so that it knows a peer has connected.
+        msg_t connector;
+        connector.init();
+        (this->*write_msg) (&connector);
+        connector.close();
+        session->flush ();
     }
     else {
         //  Send the 'length' and 'flags' fields of the identity message.
@@ -188,7 +225,7 @@ void zmq::stream_engine_t::terminate ()
 
 void zmq::stream_engine_t::in_event ()
 {
-    assert (!io_error);
+    zmq_assert (!io_error);
 
     //  If still handshaking, receive and process the greeting message.
     if (unlikely (handshaking))
@@ -663,7 +700,7 @@ void zmq::stream_engine_t::mechanism_ready ()
     }
 
     read_msg = &stream_engine_t::pull_and_encode;
-    write_msg = &stream_engine_t::decode_and_push;
+    write_msg = &stream_engine_t::write_credential;
 }
 
 int zmq::stream_engine_t::pull_msg_from_session (msg_t *msg_)
@@ -674,6 +711,29 @@ int zmq::stream_engine_t::pull_msg_from_session (msg_t *msg_)
 int zmq::stream_engine_t::push_msg_to_session (msg_t *msg_)
 {
     return session->push_msg (msg_);
+}
+
+int zmq::stream_engine_t::write_credential (msg_t *msg_)
+{
+    zmq_assert (mechanism != NULL);
+    zmq_assert (session != NULL);
+
+    const blob_t credential = mechanism->get_user_id ();
+    if (credential.size () > 0) {
+        msg_t msg;
+        int rc = msg.init_size (credential.size ());
+        zmq_assert (rc == 0);
+        memcpy (msg.data (), credential.data (), credential.size ());
+        msg.set_flags (msg_t::credential);
+        rc = session->push_msg (&msg);
+        if (rc == -1) {
+            rc = msg.close ();
+            errno_assert (rc == 0);
+            return -1;
+        }
+    }
+    write_msg = &stream_engine_t::decode_and_push;
+    return decode_and_push (msg_);
 }
 
 int zmq::stream_engine_t::pull_and_encode (msg_t *msg_)
@@ -728,10 +788,18 @@ int zmq::stream_engine_t::write_subscription_msg (msg_t *msg_)
 
 void zmq::stream_engine_t::error ()
 {
+    if (options.raw_sock) {
+        //  For raw sockets, send a final 0-length message to the application
+        //  so that it knows the peer has been disconnected.
+        msg_t terminator;
+        terminator.init();
+        (this->*write_msg) (&terminator);
+        terminator.close();
+    }
     zmq_assert (session);
     socket->event_disconnected (endpoint, s);
     session->flush ();
-    session->detach ();
+    session->engine_error ();
     unplug ();
     delete this;
 }

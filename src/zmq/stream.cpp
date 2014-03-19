@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -30,7 +30,7 @@ zmq::stream_t::stream_t (class ctx_t *parent_, uint32_t tid_, int sid_) :
     identity_sent (false),
     current_out (NULL),
     more_out (false),
-    next_peer_id (generate_random ())
+    next_rid (generate_random ())
 {
     options.type = ZMQ_STREAM;
     options.raw_sock = true;
@@ -142,6 +142,8 @@ int zmq::stream_t::xsend (msg_t *msg_)
             current_out->terminate (false);
             int rc = msg_->close ();
             errno_assert (rc == 0);
+            rc = msg_->init ();
+            errno_assert (rc == 0);
             current_out = NULL;
             return 0;
         }
@@ -160,6 +162,23 @@ int zmq::stream_t::xsend (msg_t *msg_)
     errno_assert (rc == 0);
 
     return 0;
+}
+
+int zmq::stream_t::xsetsockopt (int option_, const void *optval_,
+    size_t optvallen_)
+{
+    switch (option_) {
+        case ZMQ_CONNECT_RID:
+            if (optval_ && optvallen_) {
+                connect_rid.assign ((char*) optval_, optvallen_);
+                return 0;
+            }
+            break;
+        default:
+            break;
+    }
+    errno = EINVAL;
+    return -1;
 }
 
 int zmq::stream_t::xrecv (msg_t *msg_)
@@ -242,12 +261,21 @@ void zmq::stream_t::identify_peer (pipe_t *pipe_)
     //  Always assign identity for raw-socket
     unsigned char buffer [5];
     buffer [0] = 0;
-    put_uint32 (buffer + 1, next_peer_id++);
-    blob_t identity = blob_t (buffer, sizeof buffer);
-
-    memcpy (options.identity, identity.data (), identity.size ());
-    options.identity_size = identity.size ();
-
+    blob_t identity;
+    if (connect_rid.length ()) {
+        identity = blob_t ((unsigned char*) connect_rid.c_str(),
+            connect_rid.length ());
+        connect_rid.clear ();
+        outpipes_t::iterator it = outpipes.find (identity);
+        if (it != outpipes.end ()) 
+            zmq_assert(false);
+    }
+    else {
+        put_uint32 (buffer + 1, next_rid++);
+        identity = blob_t (buffer, sizeof buffer);
+        memcpy (options.identity, identity.data (), identity.size ());
+        options.identity_size = identity.size ();
+    }
     pipe_->set_identity (identity);
     //  Add the record into output pipes lookup table
     outpipe_t outpipe = {pipe_, true};

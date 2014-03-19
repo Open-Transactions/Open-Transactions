@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -37,7 +37,10 @@ namespace zmq
 
     //  Returns string representation of peer's address.
     //  Socket sockfd_ must be connected. Returns true iff successful.
-    bool get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_);
+    int get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_);
+
+    // Sets the IP Type-Of-Service for the underlying socket
+    void set_ip_type_of_service (fd_t s_, int iptos);
 
 }
 

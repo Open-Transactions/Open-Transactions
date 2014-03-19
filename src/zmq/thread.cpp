@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -40,7 +40,7 @@ extern "C"
 void zmq::thread_t::start (thread_fn *tfn_, void *arg_)
 {
     tfn = tfn_;
-    arg =arg_;
+    arg = arg_;
 #if defined _WIN32_WCE
     descriptor = (HANDLE) CreateThread (NULL, 0,
         &::thread_routine, this, 0 , NULL);
@@ -86,7 +86,7 @@ extern "C"
 void zmq::thread_t::start (thread_fn *tfn_, void *arg_)
 {
     tfn = tfn_;
-    arg =arg_;
+    arg = arg_;
     int rc = pthread_create (&descriptor, NULL, thread_routine, this);
     posix_assert (rc);
 }

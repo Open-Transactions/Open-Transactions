@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -34,7 +34,7 @@ namespace zmq
     //  reader_awake flag is needed here to mimic ypipe delicate behaviour
     //  around the reader being asleep (see 'c' pointer being NULL in ypipe.hpp)
 
-    template <typename T, int N> class ypipe_conflate_t : public ypipe_base_t<T,N>
+    template <typename T> class ypipe_conflate_t : public ypipe_base_t <T>
     {
     public:
 
@@ -70,7 +70,7 @@ namespace zmq
 #endif
 
         // There are no incomplete items for conflate ypipe
-        inline bool unwrite (T *value_)
+        inline bool unwrite (T *)
         {
             return false;
         }
@@ -107,7 +107,7 @@ namespace zmq
         //  Applies the function fn to the first elemenent in the pipe
         //  and returns the value returned by the fn.
         //  The pipe mustn't be empty or the function crashes.
-        inline bool probe (bool (*fn)(T &))
+        inline bool probe (bool (*fn)(const T &))
         {
             return dbuffer.probe (fn);
         }

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -35,7 +35,7 @@ namespace zmq
     //  Helper base class for decoders that know the amount of data to read
     //  in advance at any moment. Knowing the amount in advance is a property
     //  of the protocol used. 0MQ framing protocol is based size-prefixed
-    //  paradigm, whixh qualifies it to be parsed by this class.
+    //  paradigm, which qualifies it to be parsed by this class.
     //  On the other hand, XML-based transports (like XMPP or SOAP) don't allow
     //  for knowing the size of data to read in advance and should use different
     //  decoding algorithms.

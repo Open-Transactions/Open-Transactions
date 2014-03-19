@@ -42,6 +42,7 @@
     <ClCompile Include="..\..\src\zmq\mechanism.cpp" />
     <ClCompile Include="..\..\src\zmq\msg.cpp" />
     <ClCompile Include="..\..\src\zmq\mtrie.cpp" />
+    <ClCompile Include="..\..\src\zmq\norm_engine.cpp" />
     <ClCompile Include="..\..\src\zmq\null_mechanism.cpp" />
     <ClCompile Include="..\..\src\zmq\object.cpp" />
     <ClCompile Include="..\..\src\zmq\options.cpp" />
@@ -54,7 +55,16 @@
     <ClCompile Include="..\..\src\zmq\plain_mechanism.cpp" />
     <ClCompile Include="..\..\src\zmq\poll.cpp" />
     <ClCompile Include="..\..\src\zmq\poller_base.cpp" />
-    <ClCompile Include="..\..\src\zmq\precompiled.cpp" />
+    <ClCompile Include="..\..\src\zmq\precompiled.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">precompiled.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">precompiled.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">precompiled.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">precompiled.hpp</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="..\..\src\zmq\proxy.cpp" />
     <ClCompile Include="..\..\src\zmq\pub.cpp" />
     <ClCompile Include="..\..\src\zmq\pull.cpp" />
@@ -78,6 +88,9 @@
     <ClCompile Include="..\..\src\zmq\tcp_connecter.cpp" />
     <ClCompile Include="..\..\src\zmq\tcp_listener.cpp" />
     <ClCompile Include="..\..\src\zmq\thread.cpp" />
+    <ClCompile Include="..\..\src\zmq\tipc_address.cpp" />
+    <ClCompile Include="..\..\src\zmq\tipc_connecter.cpp" />
+    <ClCompile Include="..\..\src\zmq\tipc_listener.cpp" />
     <ClCompile Include="..\..\src\zmq\trie.cpp" />
     <ClCompile Include="..\..\src\zmq\v1_decoder.cpp" />
     <ClCompile Include="..\..\src\zmq\v1_encoder.cpp" />
@@ -131,6 +144,7 @@
     <ClInclude Include="..\..\src\zmq\msg.hpp" />
     <ClInclude Include="..\..\src\zmq\mtrie.hpp" />
     <ClInclude Include="..\..\src\zmq\mutex.hpp" />
+    <ClInclude Include="..\..\src\zmq\norm_engine.hpp" />
     <ClInclude Include="..\..\src\zmq\null_mechanism.hpp" />
     <ClInclude Include="..\..\src\zmq\object.hpp" />
     <ClInclude Include="..\..\src\zmq\options.hpp" />
@@ -141,6 +155,7 @@
     <ClInclude Include="..\..\src\zmq\pgm_socket.hpp" />
     <ClInclude Include="..\..\src\zmq\pipe.hpp" />
     <ClInclude Include="..\..\src\zmq\plain_mechanism.hpp" />
+    <ClInclude Include="..\..\src\zmq\platform.hpp" />
     <ClInclude Include="..\..\src\zmq\poll.hpp" />
     <ClInclude Include="..\..\src\zmq\poller.hpp" />
     <ClInclude Include="..\..\src\zmq\poller_base.hpp" />
@@ -169,6 +184,9 @@
     <ClInclude Include="..\..\src\zmq\tcp_connecter.hpp" />
     <ClInclude Include="..\..\src\zmq\tcp_listener.hpp" />
     <ClInclude Include="..\..\src\zmq\thread.hpp" />
+    <ClInclude Include="..\..\src\zmq\tipc_address.hpp" />
+    <ClInclude Include="..\..\src\zmq\tipc_connecter.hpp" />
+    <ClInclude Include="..\..\src\zmq\tipc_listener.hpp" />
     <ClInclude Include="..\..\src\zmq\trie.hpp" />
     <ClInclude Include="..\..\src\zmq\v1_decoder.hpp" />
     <ClInclude Include="..\..\src\zmq\v1_encoder.hpp" />
@@ -258,9 +276,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4127 /wd4131 /wd4996 /wd4244</AdditionalOptions>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_WINDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;DLL_EXPORT;ZMQ_USE_SELECT;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precompiled.hpp</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -273,9 +293,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4127 /wd4131 /wd4996 /wd4244</AdditionalOptions>
-      <PreprocessorDefinitions>_DEBUG;DEBUG;_WINDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;DLL_EXPORT;ZMQ_USE_SELECT;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precompiled.hpp</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -285,12 +307,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>MinSpace</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4127 /wd4131 /wd4996 /wd4244</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>_WINDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;DLL_EXPORT;ZMQ_USE_SELECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precompiled.hpp</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -302,12 +325,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>MinSpace</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100 /wd4127 /wd4131 /wd4996 /wd4244</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>_WINDLL;DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;DLL_EXPORT;ZMQ_USE_SELECT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precompiled.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>precompiled.hpp</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

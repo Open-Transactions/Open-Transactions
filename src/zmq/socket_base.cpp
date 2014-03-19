@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -39,6 +39,7 @@
 #include "socket_base.hpp"
 #include "tcp_listener.hpp"
 #include "ipc_listener.hpp"
+#include "tipc_listener.hpp"
 #include "tcp_connecter.hpp"
 #include "io_thread.hpp"
 #include "session_base.hpp"
@@ -52,6 +53,7 @@
 #include "address.hpp"
 #include "ipc_address.hpp"
 #include "tcp_address.hpp"
+#include "tipc_address.hpp"
 #ifdef ZMQ_HAVE_OPENPGM
 #include "pgm_socket.hpp"
 #endif
@@ -119,10 +121,11 @@ zmq::socket_base_t *zmq::socket_base_t::create (int type_, class ctx_t *parent_,
             errno = EINVAL;
             return NULL;
     }
+
+    alloc_assert (s);
     if (s->mailbox.get_fd () == retired_fd)
         return NULL;
 
-    alloc_assert (s);
     return s;
 }
 
@@ -134,6 +137,7 @@ zmq::socket_base_t::socket_base_t (ctx_t *parent_, uint32_t tid_, int sid_) :
     last_tsc (0),
     ticks (0),
     rcvmore (false),
+    file_desc(-1),
     monitor_socket (NULL),
     monitor_events (0)
 {
@@ -186,11 +190,11 @@ int zmq::socket_base_t::check_protocol (const std::string &protocol_)
 {
     //  First check out whether the protcol is something we are aware of.
     if (protocol_ != "inproc" && protocol_ != "ipc" && protocol_ != "tcp" &&
-          protocol_ != "pgm" && protocol_ != "epgm") {
+          protocol_ != "pgm" && protocol_ != "epgm" && protocol_ != "tipc" &&
+          protocol_ != "norm") {
         errno = EPROTONOSUPPORT;
         return -1;
     }
-
     //  If 0MQ is not compiled with OpenPGM, pgm and epgm transports
     //  are not avaialble.
 #if !defined ZMQ_HAVE_OPENPGM
@@ -199,6 +203,13 @@ int zmq::socket_base_t::check_protocol (const std::string &protocol_)
         return -1;
     }
 #endif
+    
+#if !defined ZMQ_HAVE_NORM
+    if (protocol_ == "norm") {
+        errno = EPROTONOSUPPORT;
+        return -1;
+    }
+#endif // !ZMQ_HAVE_NORM
 
     //  IPC transport is not available on Windows and OpenVMS.
 #if defined ZMQ_HAVE_WINDOWS || defined ZMQ_HAVE_OPENVMS
@@ -209,10 +220,18 @@ int zmq::socket_base_t::check_protocol (const std::string &protocol_)
     }
 #endif
 
+    // TIPC transport is only available on Linux.
+#if !defined ZMQ_HAVE_TIPC
+    if (protocol_ == "tipc") {
+        errno = EPROTONOSUPPORT;
+        return -1;
+    }
+#endif
+
     //  Check whether socket type and transport protocol match.
     //  Specifically, multicast protocols can't be combined with
     //  bi-directional messaging patterns (socket types).
-    if ((protocol_ == "pgm" || protocol_ == "epgm") &&
+    if ((protocol_ == "pgm" || protocol_ == "epgm" || protocol_ == "norm") &&
           options.type != ZMQ_PUB && options.type != ZMQ_SUB &&
           options.type != ZMQ_XPUB && options.type != ZMQ_XSUB) {
         errno = ENOCOMPATPROTO;
@@ -350,9 +369,9 @@ int zmq::socket_base_t::bind (const char *addr_)
         return rc;
     }
 
-    if (protocol == "pgm" || protocol == "epgm") {
+    if (protocol == "pgm" || protocol == "epgm" || protocol == "norm") {
         //  For convenience's sake, bind can be used interchageable with
-        //  connect for PGM and EPGM transports.
+        //  connect for PGM, EPGM and NORM transports.
         return connect (addr_);
     }
 
@@ -393,6 +412,25 @@ int zmq::socket_base_t::bind (const char *addr_)
             event_bind_failed (address, zmq_errno());
             return -1;
         }
+
+        // Save last endpoint URI
+        listener->get_address (last_endpoint);
+
+        add_endpoint (addr_, (own_t *) listener, NULL);
+        return 0;
+    }
+#endif
+#if defined ZMQ_HAVE_TIPC
+    if (protocol == "tipc") {
+         tipc_listener_t *listener = new (std::nothrow) tipc_listener_t (
+              io_thread, this, options);
+         alloc_assert (listener);
+         int rc = listener->set_address (address.c_str ());
+         if (rc != 0) {
+             delete listener;
+             event_bind_failed (address, zmq_errno());
+             return -1;
+         }
 
         // Save last endpoint URI
         listener->get_address (last_endpoint);
@@ -470,8 +508,20 @@ int zmq::socket_base_t::connect (const char *addr_)
         //  Attach local end of the pipe to this socket object.
         attach_pipe (new_pipes [0]);
 
-        if (!peer.socket)
-        {
+        if (!peer.socket) {
+            //  The peer doesn't exist yet so we don't know whether
+            //  to send the identity message or not. To resolve this,
+            //  we always send our identity and drop it later if
+            //  the peer doesn't expect it.
+            msg_t id;
+            rc = id.init_size (options.identity_size);
+            errno_assert (rc == 0);
+            memcpy (id.data (), options.identity, options.identity_size);
+            id.set_flags (msg_t::identity);
+            bool written = new_pipes [0]->write (&id);
+            zmq_assert (written);
+            new_pipes [0]->flush ();
+
             endpoint_t endpoint = {this, options};
             pending_connection_t pending_connection = {endpoint, new_pipes [0], new_pipes [1]};
             pend_connection (addr_, pending_connection);
@@ -517,6 +567,18 @@ int zmq::socket_base_t::connect (const char *addr_)
 
         return 0;
     }
+    bool is_single_connect = (options.type == ZMQ_DEALER ||
+                              options.type == ZMQ_SUB ||
+                              options.type == ZMQ_REQ);
+    if (unlikely (is_single_connect)) {
+        endpoints_t::iterator it = endpoints.find (addr_);
+        if (it != endpoints.end ()) {
+            // There is no valid use for multiple connects for SUB-PUB nor
+            // DEALER-ROUTER nor REQ-REP. Multiple connects produces
+            // nonsensical results.
+            return 0;
+        }
+    }
 
     //  Choose the I/O thread to run the session in.
     io_thread_t *io_thread = choose_io_thread (options.affinity);
@@ -530,14 +592,8 @@ int zmq::socket_base_t::connect (const char *addr_)
 
     //  Resolve address (if needed by the protocol)
     if (protocol == "tcp") {
-        paddr->resolved.tcp_addr = new (std::nothrow) tcp_address_t ();
-        alloc_assert (paddr->resolved.tcp_addr);
-        int rc = paddr->resolved.tcp_addr->resolve (
-            address.c_str (), false, options.ipv6);
-        if (rc != 0) {
-            delete paddr;
-            return -1;
-        }
+        // Defer resolution until a socket is opened
+        paddr->resolved.tcp_addr = NULL;
     }
 #if !defined ZMQ_HAVE_WINDOWS && !defined ZMQ_HAVE_OPENVMS
     else
@@ -551,6 +607,9 @@ int zmq::socket_base_t::connect (const char *addr_)
         }
     }
 #endif
+    
+// TBD - Should we check address for ZMQ_HAVE_NORM???
+    
 #ifdef ZMQ_HAVE_OPENPGM
     if (protocol == "pgm" || protocol == "epgm") {
         struct pgm_addrinfo_t *res = NULL;
@@ -562,14 +621,27 @@ int zmq::socket_base_t::connect (const char *addr_)
             return -1;
     }
 #endif
+#if defined ZMQ_HAVE_TIPC
+    else
+    if (protocol == "tipc") {
+        paddr->resolved.tipc_addr = new (std::nothrow) tipc_address_t ();
+        alloc_assert (paddr->resolved.tipc_addr);
+        int rc = paddr->resolved.tipc_addr->resolve (address.c_str());
+        if (rc != 0) {
+            delete paddr;
+            return -1;
+        }
+    }
+#endif
+
     //  Create session.
     session_base_t *session = session_base_t::create (io_thread, true, this,
         options, paddr);
     errno_assert (session);
 
     //  PGM does not support subscription forwarding; ask for all data to be
-    //  sent to this pipe.
-    bool subscribe_to_all = protocol == "pgm" || protocol == "epgm";
+    //  sent to this pipe. (same for NORM, currently?)
+    bool subscribe_to_all = protocol == "pgm" || protocol == "epgm" || protocol == "norm";
     pipe_t *newpipe = NULL;
 
     if (options.immediate != 1 || subscribe_to_all) {
@@ -774,6 +846,8 @@ int zmq::socket_base_t::recv (msg_t *msg_, int flags_)
 
     //  If we have the message, return immediately.
     if (rc == 0) {
+        if (file_desc != retired_fd)
+            msg_->set_fd(file_desc);
         extract_flags (msg_);
         return 0;
     }
@@ -790,6 +864,8 @@ int zmq::socket_base_t::recv (msg_t *msg_, int flags_)
         rc = xrecv (msg_);
         if (rc < 0)
             return rc;
+        if (file_desc != retired_fd)
+            msg_->set_fd(file_desc);
         extract_flags (msg_);
         return 0;
     }
@@ -822,6 +898,8 @@ int zmq::socket_base_t::recv (msg_t *msg_, int flags_)
         }
     }
 
+    if (file_desc != retired_fd)
+        msg_->set_fd(file_desc);
     extract_flags (msg_);
     return 0;
 }
@@ -982,6 +1060,11 @@ int zmq::socket_base_t::xrecv (msg_t *)
     return -1;
 }
 
+zmq::blob_t zmq::socket_base_t::get_credential () const
+{
+    return blob_t ();
+}
+
 void zmq::socket_base_t::xread_activated (pipe_t *)
 {
     zmq_assert (false);
@@ -1132,6 +1215,16 @@ int zmq::socket_base_t::monitor (const char *addr_, int events_)
     if (rc == -1)
          stop_monitor ();
     return rc;
+}
+
+void zmq::socket_base_t::set_fd(zmq::fd_t fd_)
+{
+    file_desc = fd_;
+}
+
+zmq::fd_t zmq::socket_base_t::fd()
+{
+    return file_desc;
 }
 
 void zmq::socket_base_t::event_connected (std::string &addr_, int fd_)

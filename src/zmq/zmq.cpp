@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -18,22 +18,7 @@
 */
 #define ZMQ_TYPE_UNSAFE
 
-#include "platform.hpp"
-
-#if defined ZMQ_FORCE_SELECT
-#define ZMQ_POLL_BASED_ON_SELECT
-#elif defined ZMQ_FORCE_POLL
-#define ZMQ_POLL_BASED_ON_POLL
-#elif defined ZMQ_HAVE_LINUX || defined ZMQ_HAVE_FREEBSD ||\
-    defined ZMQ_HAVE_OPENBSD || defined ZMQ_HAVE_SOLARIS ||\
-    defined ZMQ_HAVE_OSX || defined ZMQ_HAVE_QNXNTO ||\
-    defined ZMQ_HAVE_HPUX || defined ZMQ_HAVE_AIX ||\
-    defined ZMQ_HAVE_NETBSD
-#define ZMQ_POLL_BASED_ON_POLL
-#elif defined ZMQ_HAVE_WINDOWS || defined ZMQ_HAVE_OPENVMS ||\
-     defined ZMQ_HAVE_CYGWIN
-#define ZMQ_POLL_BASED_ON_SELECT
-#endif
+#include "poller.hpp"
 
 //  On AIX platform, poll.h has to be included first to get consistent
 //  definition of pollfd structure (AIX uses 'reqevents' and 'retnevents'
@@ -635,11 +620,14 @@ int zmq_msg_more (zmq_msg_t *msg_)
     return zmq_msg_get (msg_, ZMQ_MORE);
 }
 
-int zmq_msg_get (zmq_msg_t *msg_, int option_)
+int zmq_msg_get (zmq_msg_t *msg_, int property_)
 {
-    switch (option_) {
+    switch (property_) {
         case ZMQ_MORE:
             return (((zmq::msg_t*) msg_)->flags () & zmq::msg_t::more)? 1: 0;
+        case ZMQ_SRCFD:
+            // warning: int64_t to int
+            return ((zmq::msg_t*) msg_)->fd ();
         default:
             errno = EINVAL;
             return -1;
@@ -648,9 +636,18 @@ int zmq_msg_get (zmq_msg_t *msg_, int option_)
 
 int zmq_msg_set (zmq_msg_t *, int, int)
 {
-    //  No options supported at present
+    //  No properties supported at present
     errno = EINVAL;
     return -1;
+}
+
+
+//  Get message metadata string
+
+char *zmq_msg_gets (zmq_msg_t *msg_, char *property_)
+{
+    //  All unknown properties return NULL
+    return NULL;
 }
 
 // Polling.
@@ -1007,16 +1004,9 @@ int zmq_poll (zmq_pollitem_t *items_, int nitems_, long timeout_)
 #endif
 }
 
-#if defined ZMQ_POLL_BASED_ON_SELECT
-#undef ZMQ_POLL_BASED_ON_SELECT
-#endif
-#if defined ZMQ_POLL_BASED_ON_POLL
-#undef ZMQ_POLL_BASED_ON_POLL
-#endif
-
 //  The proxy functionality
 
-int zmq_proxy (void *frontend_, void *backend_, void *control_)
+int zmq_proxy (void *frontend_, void *backend_, void *capture_)
 {
     if (!frontend_ || !backend_) {
         errno = EFAULT;
@@ -1025,6 +1015,19 @@ int zmq_proxy (void *frontend_, void *backend_, void *control_)
     return zmq::proxy (
         (zmq::socket_base_t*) frontend_,
         (zmq::socket_base_t*) backend_,
+        (zmq::socket_base_t*) capture_);
+}
+
+int zmq_proxy_steerable (void *frontend_, void *backend_, void *capture_, void *control_)
+{
+    if (!frontend_ || !backend_) {
+        errno = EFAULT;
+        return -1;
+    }
+    return zmq::proxy (
+        (zmq::socket_base_t*) frontend_,
+        (zmq::socket_base_t*) backend_,
+        (zmq::socket_base_t*) capture_,
         (zmq::socket_base_t*) control_);
 }
 

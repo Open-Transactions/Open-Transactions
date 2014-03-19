@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -25,7 +25,8 @@ namespace zmq
     int proxy (
         class socket_base_t *frontend_,
         class socket_base_t *backend_,
-        class socket_base_t *control_);
+        class socket_base_t *capture_,
+        class socket_base_t *control_ = NULL); // backward compatibility without this argument
 }
 
 #endif

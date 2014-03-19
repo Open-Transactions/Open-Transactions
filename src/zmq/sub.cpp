@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -68,13 +68,13 @@ int zmq::sub_t::xsetsockopt (int option_, const void *optval_,
 
 int zmq::sub_t::xsend (msg_t *)
 {
-    //  Overload the XSUB's send.
+    //  Override the XSUB's send.
     errno = ENOTSUP;
     return -1;
 }
 
 bool zmq::sub_t::xhas_out ()
 {
-    //  Overload the XSUB's send.
+    //  Override the XSUB's send.
     return false;
 }

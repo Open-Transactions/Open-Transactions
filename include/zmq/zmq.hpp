@@ -25,7 +25,7 @@
 #ifndef __ZMQ_HPP_INCLUDED__
 #define __ZMQ_HPP_INCLUDED__
 
-#include <zmq/zmq.h>
+#include "zmq.h"
 
 #include <algorithm>
 #include <cassert>
@@ -60,7 +60,7 @@
 #define ZMQ_NEW_MONITOR_EVENT_LAYOUT
 #endif
 
-#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 0, 5)
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 0, 4)
 #define ZMQ_HAS_PROXY_STEERABLE
 #endif
 

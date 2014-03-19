@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -53,8 +53,8 @@ int zmq::ipc_address_t::resolve (const char *path_)
     }
 #if defined ZMQ_HAVE_LINUX
     if (path_[0] == '@' && !path_[1]) {
-            errno = EINVAL;
-            return -1;
+        errno = EINVAL;
+        return -1;
     }
 #endif
 

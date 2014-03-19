@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -30,7 +30,7 @@
 #include <vector>
 
 #ifdef ZMQ_HAVE_WINDOWS
-#include "winsock2.h"
+#include <winsock2.h>
 #elif defined ZMQ_HAVE_OPENVMS
 #include <sys/types.h>
 #include <sys/time.h>

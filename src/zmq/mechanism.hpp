@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -46,9 +46,9 @@ namespace zmq
         //  Process the handshake command received from the peer.
         virtual int process_handshake_command (msg_t *msg_) = 0;
 
-        virtual int encode (msg_t *msg_) { return 0; }
+        virtual int encode (msg_t *) { return 0; }
 
-        virtual int decode (msg_t *msg_) { return 0; }
+        virtual int decode (msg_t *) { return 0; }
 
         //  Notifies mechanism about availability of ZAP message.
         virtual int zap_msg_available () { return 0; }
@@ -59,6 +59,10 @@ namespace zmq
         void set_peer_identity (const void *id_ptr, size_t id_size);
 
         void peer_identity (msg_t *msg_);
+
+        void set_user_id (const void *user_id, size_t size);
+
+        blob_t get_user_id () const;
 
     protected:
 
@@ -82,7 +86,7 @@ namespace zmq
         //  parsing remaining data.
         //  Derived classes are supposed to override this
         //  method to handle custom processing.
-        virtual int property (const std::string name_,
+        virtual int property (const std::string& name_,
                               const void *value_, size_t length_);
 
         options_t options;
@@ -91,9 +95,11 @@ namespace zmq
 
         blob_t identity;
 
+        blob_t user_id;
+
         //  Returns true iff socket associated with the mechanism
         //  is compatible with a given socket type 'type_'.
-        bool check_socket_type (const std::string type_) const;
+        bool check_socket_type (const std::string& type_) const;
     };
 
 }

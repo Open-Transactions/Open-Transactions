@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -41,7 +41,7 @@ namespace zmq
         //  then starts connection process.
         tcp_connecter_t (zmq::io_thread_t *io_thread_,
             zmq::session_base_t *session_, const options_t &options_,
-            const address_t *addr_, bool delayed_start_);
+            address_t *addr_, bool delayed_start_);
         ~tcp_connecter_t ();
 
     private:
@@ -82,7 +82,7 @@ namespace zmq
         fd_t connect ();
 
         //  Address to connect to. Owned by session_base_t.
-        const address_t *addr;
+        address_t *addr;
 
         //  Underlying socket.
         fd_t s;

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -30,8 +30,8 @@
 
 /*  Version macros for compile-time API version detection                     */
 #define ZMQ_VERSION_MAJOR 4
-#define ZMQ_VERSION_MINOR 0
-#define ZMQ_VERSION_PATCH 4
+#define ZMQ_VERSION_MINOR 1
+#define ZMQ_VERSION_PATCH 0
 
 #define ZMQ_MAKE_VERSION(major, minor, patch) \
     ((major) * 10000 + (minor) * 100 + (patch))
@@ -158,9 +158,6 @@ typedef unsigned __int8 uint8_t;
 #define ETERM (ZMQ_HAUSNUMERO + 53)
 #define EMTHREAD (ZMQ_HAUSNUMERO + 54)
 
-/*  Run-time API version detection                                            */
-ZMQ_EXPORT void zmq_version (int *major, int *minor, int *patch);
-
 /*  This function retrieves the errno as it is known to 0MQ library. The goal */
 /*  of this function is to make the code 100% portable, including where 0MQ   */
 /*  compiled with certain CRT library (on Windows) is linked to an            */
@@ -170,6 +167,9 @@ ZMQ_EXPORT int zmq_errno (void);
 /*  Resolves system errors and 0MQ errors to human-readable string.           */
 ZMQ_EXPORT const char *zmq_strerror (int errnum);
 
+/*  Run-time API version detection                                            */
+ZMQ_EXPORT void zmq_version (int *major, int *minor, int *patch);
+
 /******************************************************************************/
 /*  0MQ infrastructure (a.k.a. context) initialisation & termination.         */
 /******************************************************************************/
@@ -178,6 +178,7 @@ ZMQ_EXPORT const char *zmq_strerror (int errnum);
 /*  Context options                                                           */
 #define ZMQ_IO_THREADS  1
 #define ZMQ_MAX_SOCKETS 2
+#define ZMQ_SOCKET_LIMIT 3
 
 /*  Default for new contexts                                                  */
 #define ZMQ_IO_THREADS_DFLT  1
@@ -199,7 +200,7 @@ ZMQ_EXPORT int zmq_ctx_destroy (void *context);
 /*  0MQ message definition.                                                   */
 /******************************************************************************/
 
-typedef struct zmq_msg_t {unsigned char _ [32];} zmq_msg_t;
+typedef struct zmq_msg_t {unsigned char _ [40];} zmq_msg_t;
 
 typedef void (zmq_free_fn) (void *data, void *hint);
 
@@ -215,8 +216,9 @@ ZMQ_EXPORT int zmq_msg_copy (zmq_msg_t *dest, zmq_msg_t *src);
 ZMQ_EXPORT void *zmq_msg_data (zmq_msg_t *msg);
 ZMQ_EXPORT size_t zmq_msg_size (zmq_msg_t *msg);
 ZMQ_EXPORT int zmq_msg_more (zmq_msg_t *msg);
-ZMQ_EXPORT int zmq_msg_get (zmq_msg_t *msg, int option);
-ZMQ_EXPORT int zmq_msg_set (zmq_msg_t *msg, int option, int optval);
+ZMQ_EXPORT int zmq_msg_get (zmq_msg_t *msg, int property);
+ZMQ_EXPORT int zmq_msg_set (zmq_msg_t *msg, int property, int optval);
+ZMQ_EXPORT char *zmq_msg_gets (zmq_msg_t *msg, char *property);
 
 
 /******************************************************************************/
@@ -288,9 +290,16 @@ ZMQ_EXPORT int zmq_msg_set (zmq_msg_t *msg, int option, int optval);
 #define ZMQ_REQ_RELAXED 53
 #define ZMQ_CONFLATE 54
 #define ZMQ_ZAP_DOMAIN 55
+#define ZMQ_ROUTER_HANDOVER 56
+#define ZMQ_TOS 57
+#define ZMQ_IPC_FILTER_PID 58
+#define ZMQ_IPC_FILTER_UID 59
+#define ZMQ_IPC_FILTER_GID 60
+#define ZMQ_CONNECT_RID 61 
 
 /*  Message options                                                           */
 #define ZMQ_MORE 1
+#define ZMQ_SRCFD 2
 
 /*  Send/recv options.                                                        */
 #define ZMQ_DONTWAIT 1
@@ -373,7 +382,7 @@ ZMQ_EXPORT int zmq_recviov (void *s, struct iovec *iov, size_t *count, int flags
 #define ZMQ_POLLOUT 2
 #define ZMQ_POLLERR 4
 
-typedef struct
+typedef struct zmq_pollitem_t
 {
     void *socket;
 #if defined _WIN32
@@ -392,6 +401,7 @@ ZMQ_EXPORT int zmq_poll (zmq_pollitem_t *items, int nitems, long timeout);
 /*  Built-in message proxy (3-way) */
 
 ZMQ_EXPORT int zmq_proxy (void *frontend, void *backend, void *capture);
+ZMQ_EXPORT int zmq_proxy_steerable (void *frontend, void *backend, void *capture, void *control);
 
 /*  Encode a binary key as printable text using ZMQ RFC 32  */
 ZMQ_EXPORT char *zmq_z85_encode (char *dest, uint8_t *data, size_t size);

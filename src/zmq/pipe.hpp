@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -78,6 +78,8 @@ namespace zmq
         void set_identity (const blob_t &identity_);
         blob_t get_identity ();
 
+        blob_t get_credential () const;
+
         //  Returns true if there is at least one message to read in the pipe.
         bool check_read ();
 
@@ -118,7 +120,7 @@ namespace zmq
     private:
 
         //  Type of the underlying lock-free pipe.
-        typedef ypipe_base_t <msg_t, message_pipe_granularity> upipe_t;
+        typedef ypipe_base_t <msg_t> upipe_t;
 
         //  Command handlers.
         void process_activate_read ();
@@ -198,8 +200,11 @@ namespace zmq
         //  Identity of the writer. Used uniquely by the reader side.
         blob_t identity;
 
+        //  Pipe's credential.
+        blob_t credential;
+
         //  Returns true if the message is delimiter; false otherwise.
-        static bool is_delimiter (msg_t &msg_);
+        static bool is_delimiter (const msg_t &msg_);
 
         //  Computes appropriate low watermark from the given high watermark.
         static int compute_lwm (int hwm_);

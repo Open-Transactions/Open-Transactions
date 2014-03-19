@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -109,7 +109,7 @@ void zmq::enable_ipv4_mapping (fd_t s_)
 #endif
 }
 
-bool zmq::get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_)
+int zmq::get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_)
 {
     int rc;
     struct sockaddr_storage ss;
@@ -126,7 +126,7 @@ bool zmq::get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_)
                     WSAGetLastError () != WSAEFAULT &&
                     WSAGetLastError () != WSAEINPROGRESS &&
                     WSAGetLastError () != WSAENOTSOCK);
-        return false;
+        return 0;
     }
 #else
     if (rc == -1) {
@@ -134,7 +134,7 @@ bool zmq::get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_)
                       errno != EFAULT &&
                       errno != EINVAL &&
                       errno != ENOTSOCK);
-        return false;
+        return 0;
     }
 #endif
 
@@ -142,8 +142,26 @@ bool zmq::get_peer_ip_address (fd_t sockfd_, std::string &ip_addr_)
     rc = getnameinfo ((struct sockaddr*) &ss, addrlen, host, sizeof host,
         NULL, 0, NI_NUMERICHOST);
     if (rc != 0)
-        return false;
+        return 0;
 
     ip_addr_ = host;
-    return true;
+
+    union {
+        struct sockaddr sa;
+        struct sockaddr_storage sa_stor;
+    } u;
+
+    u.sa_stor = ss;
+    return (int) u.sa.sa_family;
+}
+
+void zmq::set_ip_type_of_service (fd_t s_, int iptos)
+{
+    int rc = setsockopt(s_, IPPROTO_IP, IP_TOS, reinterpret_cast<const char*>(&iptos), sizeof(iptos));
+
+#ifdef ZMQ_HAVE_WINDOWS
+    wsa_assert (rc != SOCKET_ERROR);
+#else
+    errno_assert (rc == 0);
+#endif
 }

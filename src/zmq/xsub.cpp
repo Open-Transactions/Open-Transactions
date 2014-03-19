@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -197,6 +197,11 @@ bool zmq::xsub_t::xhas_in ()
             errno_assert (rc == 0);
         }
     }
+}
+
+zmq::blob_t zmq::xsub_t::get_credential () const
+{
+    return fq.get_credential ();
 }
 
 bool zmq::xsub_t::match (msg_t *msg_)

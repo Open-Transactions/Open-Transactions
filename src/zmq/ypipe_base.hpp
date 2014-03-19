@@ -1,6 +1,6 @@
 
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -28,7 +28,7 @@ namespace zmq
     // classes, one is selected according to a the conflate
     // socket option
 
-    template <typename T, int N> class ypipe_base_t
+    template <typename T> class ypipe_base_t
     {
     public:
         virtual ~ypipe_base_t () {}
@@ -37,7 +37,7 @@ namespace zmq
         virtual bool flush () = 0;
         virtual bool check_read () = 0;
         virtual bool read (T *value_) = 0;
-        virtual bool probe (bool (*fn)(T &)) = 0;
+        virtual bool probe (bool (*fn)(const T &)) = 0;
     };
 }
 

@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -111,7 +111,7 @@ namespace zmq
             return has_msg;
         }
 
-        inline bool probe (bool (*fn)(msg_t &))
+        inline bool probe (bool (*fn)(const msg_t &))
         {
             scoped_lock_t lock (sync);
             return (*fn) (*front);

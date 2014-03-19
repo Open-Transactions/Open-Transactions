@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -59,4 +59,9 @@ int zmq::pull_t::xrecv (msg_t *msg_)
 bool zmq::pull_t::xhas_in ()
 {
     return fq.has_in ();
+}
+
+zmq::blob_t zmq::pull_t::get_credential () const
+{
+    return fq.get_credential ();
 }

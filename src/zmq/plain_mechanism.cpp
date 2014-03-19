@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -467,6 +467,9 @@ int zmq::plain_mechanism_t::receive_and_process_zap_reply ()
         errno = EACCES;
         goto error;
     }
+
+    //  Save user id
+    set_user_id (msg [5].data (), msg [5].size ());
 
     //  Process metadata frame
     rc = parse_metadata (static_cast <const unsigned char*> (msg [6].data ()),

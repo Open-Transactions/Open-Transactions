@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -44,7 +44,7 @@ namespace zmq
         router_t (zmq::ctx_t *parent_, uint32_t tid_, int sid);
         ~router_t ();
 
-        //  Overloads of functions from socket_base_t.
+        //  Overrides of functions from socket_base_t.
         void xattach_pipe (zmq::pipe_t *pipe_, bool subscribe_to_all_);
         int xsetsockopt (int option_, const void *optval_, size_t optvallen_);
         int xsend (zmq::msg_t *msg_);
@@ -59,6 +59,7 @@ namespace zmq
 
         //  Rollback any message parts that were sent but not yet flushed.
         int rollback ();
+        blob_t get_credential () const;
 
     private:
 
@@ -103,9 +104,9 @@ namespace zmq
         //  If true, more outgoing message parts are expected.
         bool more_out;
 
-        //  Peer ID are generated. It's a simple increment and wrap-over
+        //  Routing IDs are generated. It's a simple increment and wrap-over
         //  algorithm. This value is the next ID to use (if not used already).
-        uint32_t next_peer_id;
+        uint32_t next_rid;
 
         // If true, report EAGAIN to the caller instead of silently dropping 
         // the message targeting an unknown peer.
@@ -114,6 +115,11 @@ namespace zmq
 
         // if true, send an empty message to every connected router peer
         bool probe_router;
+
+        // If true, the router will reassign an identity upon encountering a
+        // name collision. The new pipe will take the identity, the old pipe
+        // will be terminated.
+        bool handover;
 
         router_t (const router_t&);
         const router_t &operator = (const router_t&);

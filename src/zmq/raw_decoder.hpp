@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -52,7 +52,7 @@ namespace zmq
 
         msg_t in_progress;
 
-        const int64_t bufsize;
+        const size_t bufsize;
 
         unsigned char *buffer;
 

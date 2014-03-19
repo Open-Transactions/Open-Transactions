@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -49,6 +49,7 @@ namespace zmq
         {
             more = 1,           //  Followed by more parts
             command = 2,        //  Command frame (see ZMTP spec)
+            credential = 32,
             identity = 64,
             shared = 128
         };
@@ -67,8 +68,11 @@ namespace zmq
         unsigned char flags ();
         void set_flags (unsigned char flags_);
         void reset_flags (unsigned char flags_);
+        int64_t fd ();
+        void set_fd (int64_t fd_);
         bool is_identity () const;
-        bool is_delimiter ();
+        bool is_credential () const;
+        bool is_delimiter () const;
         bool is_vsm ();
         bool is_cmsg ();
 
@@ -116,6 +120,9 @@ namespace zmq
             type_cmsg = 104,
             type_max = 104
         };
+  
+        // the file descriptor where this message originated, needs to be 64bit due to alignment
+        int64_t file_desc;
 
         //  Note that fields shared between different message types are not
         //  moved to tha parent class (msg_t). This way we ger tighter packing

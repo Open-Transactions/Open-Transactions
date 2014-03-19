@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -38,7 +38,7 @@ namespace zmq
         req_t (zmq::ctx_t *parent_, uint32_t tid_, int sid_);
         ~req_t ();
 
-        //  Overloads of functions from socket_base_t.
+        //  Overrides of functions from socket_base_t.
         int xsend (zmq::msg_t *msg_);
         int xrecv (zmq::msg_t *msg_);
         bool xhas_in ();
@@ -87,10 +87,10 @@ namespace zmq
 
         req_session_t (zmq::io_thread_t *io_thread_, bool connect_,
             zmq::socket_base_t *socket_, const options_t &options_,
-            const address_t *addr_);
+            address_t *addr_);
         ~req_session_t ();
 
-        //  Overloads of the functions from session_base_t.
+        //  Overrides of the functions from session_base_t.
         int push_msg (msg_t *msg_);
         void reset ();
 

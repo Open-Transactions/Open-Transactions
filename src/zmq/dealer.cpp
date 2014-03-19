@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2007-2013 Contributors as noted in the AUTHORS file
+    Copyright (c) 2007-2014 Contributors as noted in the AUTHORS file
 
     This file is part of 0MQ.
 
@@ -97,6 +97,12 @@ bool zmq::dealer_t::xhas_out ()
 {
     return lb.has_out ();
 }
+
+zmq::blob_t zmq::dealer_t::get_credential () const
+{
+    return fq.get_credential ();
+}
+
 
 void zmq::dealer_t::xread_activated (pipe_t *pipe_)
 {
