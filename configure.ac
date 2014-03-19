@@ -212,7 +212,7 @@ AC_ARG_WITH(	[transport],
 			testclient) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-transport]) ;;
 			esac],
-		[with_transport="zmq"])
+		[with_transport="zmq4"])
 
 AM_CONDITIONAL(	[TRANSPORT_ZMQ],	[test x"$with_transport" == x"zmq"])
 AM_CONDITIONAL(	[TRANSPORT_ZMQ4],	[test x"$with_transport" == x"zmq4"])
