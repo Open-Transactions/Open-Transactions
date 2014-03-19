@@ -616,8 +616,6 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 *Message_GetNewIssuerAcctID = *otapic::OTAPI_Wrap_Message_GetNewIssuerAcctID;
 *Message_GetNewAcctID = *otapic::OTAPI_Wrap_Message_GetNewAcctID;
 *Message_GetNymboxHash = *otapic::OTAPI_Wrap_Message_GetNymboxHash;
-*ConnectServer = *otapic::OTAPI_Wrap_ConnectServer;
-*ProcessSockets = *otapic::OTAPI_Wrap_ProcessSockets;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);

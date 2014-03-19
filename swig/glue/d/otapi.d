@@ -2623,17 +2623,6 @@ class OTAPI_Wrap {
     if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
     return ret;
   }
-
-  public static bool ConnectServer(char[] SERVER_ID, char[] USER_ID, char[] strCA_FILE, char[] strKEY_FILE, char[] strKEY_PASSWORD) {
-    bool ret = otapi_im.OTAPI_Wrap_ConnectServer((SERVER_ID ? tango.stdc.stringz.toStringz(SERVER_ID) : null), (USER_ID ? tango.stdc.stringz.toStringz(USER_ID) : null), (strCA_FILE ? tango.stdc.stringz.toStringz(strCA_FILE) : null), (strKEY_FILE ? tango.stdc.stringz.toStringz(strKEY_FILE) : null), (strKEY_PASSWORD ? tango.stdc.stringz.toStringz(strKEY_PASSWORD) : null)) ? true : false;
-    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
-    return ret;
-  }
-
-  public static bool ProcessSockets() {
-    bool ret = otapi_im.OTAPI_Wrap_ProcessSockets() ? true : false;
-    return ret;
-  }
 }
 
 int OT_CLI_GetArgsCount(char[] str_Args) {

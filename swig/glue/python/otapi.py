@@ -1006,10 +1006,6 @@ class OTAPI_Wrap(_object):
     if _newclass:Message_GetNewAcctID = staticmethod(_otapi.OTAPI_Wrap_Message_GetNewAcctID)
     __swig_getmethods__["Message_GetNymboxHash"] = lambda x: _otapi.OTAPI_Wrap_Message_GetNymboxHash
     if _newclass:Message_GetNymboxHash = staticmethod(_otapi.OTAPI_Wrap_Message_GetNymboxHash)
-    __swig_getmethods__["ConnectServer"] = lambda x: _otapi.OTAPI_Wrap_ConnectServer
-    if _newclass:ConnectServer = staticmethod(_otapi.OTAPI_Wrap_ConnectServer)
-    __swig_getmethods__["ProcessSockets"] = lambda x: _otapi.OTAPI_Wrap_ProcessSockets
-    if _newclass:ProcessSockets = staticmethod(_otapi.OTAPI_Wrap_ProcessSockets)
 OTAPI_Wrap_swigregister = _otapi.OTAPI_Wrap_swigregister
 OTAPI_Wrap_swigregister(OTAPI_Wrap)
 
@@ -2360,14 +2356,6 @@ OTAPI_Wrap_Message_GetNewAcctID = _otapi.OTAPI_Wrap_Message_GetNewAcctID
 def OTAPI_Wrap_Message_GetNymboxHash(*args):
   return _otapi.OTAPI_Wrap_Message_GetNymboxHash(*args)
 OTAPI_Wrap_Message_GetNymboxHash = _otapi.OTAPI_Wrap_Message_GetNymboxHash
-
-def OTAPI_Wrap_ConnectServer(*args):
-  return _otapi.OTAPI_Wrap_ConnectServer(*args)
-OTAPI_Wrap_ConnectServer = _otapi.OTAPI_Wrap_ConnectServer
-
-def OTAPI_Wrap_ProcessSockets():
-  return _otapi.OTAPI_Wrap_ProcessSockets()
-OTAPI_Wrap_ProcessSockets = _otapi.OTAPI_Wrap_ProcessSockets
 
 
 def OT_CLI_GetArgsCount(*args):

@@ -716,8 +716,6 @@ static this() {
   mixin(bindCode("OTAPI_Wrap_Message_GetNewIssuerAcctID", "D_OTAPI_Wrap_Message_GetNewIssuerAcctID"));
   mixin(bindCode("OTAPI_Wrap_Message_GetNewAcctID", "D_OTAPI_Wrap_Message_GetNewAcctID"));
   mixin(bindCode("OTAPI_Wrap_Message_GetNymboxHash", "D_OTAPI_Wrap_Message_GetNymboxHash"));
-  mixin(bindCode("OTAPI_Wrap_ConnectServer", "D_OTAPI_Wrap_ConnectServer"));
-  mixin(bindCode("OTAPI_Wrap_ProcessSockets", "D_OTAPI_Wrap_ProcessSockets"));
   mixin(bindCode("OT_CLI_GetArgsCount", "D_OT_CLI_GetArgsCount"));
   mixin(bindCode("OT_CLI_GetValueByKey", "D_OT_CLI_GetValueByKey"));
   mixin(bindCode("OT_CLI_GetValueByIndex", "D_OT_CLI_GetValueByIndex"));
@@ -2042,8 +2040,6 @@ extern(C) char* function(char* jarg1) OTAPI_Wrap_Message_GetNewAssetTypeID;
 extern(C) char* function(char* jarg1) OTAPI_Wrap_Message_GetNewIssuerAcctID;
 extern(C) char* function(char* jarg1) OTAPI_Wrap_Message_GetNewAcctID;
 extern(C) char* function(char* jarg1) OTAPI_Wrap_Message_GetNymboxHash;
-extern(C) uint function(char* jarg1, char* jarg2, char* jarg3, char* jarg4, char* jarg5) OTAPI_Wrap_ConnectServer;
-extern(C) uint function() OTAPI_Wrap_ProcessSockets;
 extern(C) int function(char* jarg1) OT_CLI_GetArgsCount;
 extern(C) char* function(char* jarg1, char* jarg2) OT_CLI_GetValueByKey;
 extern(C) char* function(char* jarg1, int jarg2) OT_CLI_GetValueByIndex;

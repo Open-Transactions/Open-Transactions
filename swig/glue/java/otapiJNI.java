@@ -428,8 +428,6 @@ public class otapiJNI {
   public final static native String OTAPI_Wrap_Message_GetNewIssuerAcctID(String jarg1);
   public final static native String OTAPI_Wrap_Message_GetNewAcctID(String jarg1);
   public final static native String OTAPI_Wrap_Message_GetNymboxHash(String jarg1);
-  public final static native boolean OTAPI_Wrap_ConnectServer(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5);
-  public final static native boolean OTAPI_Wrap_ProcessSockets();
   public final static native int OT_CLI_GetArgsCount(String jarg1);
   public final static native String OT_CLI_GetValueByKey(String jarg1, String jarg2);
   public final static native String OT_CLI_GetValueByIndex(String jarg1, int jarg2);

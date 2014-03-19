@@ -11939,68 +11939,6 @@ _wrap_OTAPI_Wrap_Message_GetNymboxHash(void *swig_v)
 
 
 void
-_wrap_OTAPI_Wrap_ConnectServer(void *swig_v)
-{
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  bool result;
-  
-  struct swigargs {
-    _gostring_ arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    _gostring_ arg4;
-    _gostring_ arg5;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
-  arg1 = &arg1_str;
-  
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  
-  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
-  arg4 = &arg4_str;
-  
-  
-  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
-  arg5 = &arg5_str;
-  
-  
-  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OTAPI_Wrap_ProcessSockets(void *swig_v)
-{
-  bool result;
-  
-  struct swigargs {
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  result = (bool)OTAPI_Wrap::ProcessSockets();
-  swig_a->result = result; 
-}
-
-
-void
 _wrap_OT_CLI_GetArgsCount(void *swig_v)
 {
   std::string arg1 ;

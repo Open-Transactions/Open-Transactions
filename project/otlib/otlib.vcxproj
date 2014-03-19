@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\include\otlib\OTSignatureMetadata.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSignedFile.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSmartContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSocket.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStash.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStashItem.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStorage.hpp" />
@@ -473,6 +474,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTSocket.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStash.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStashItem.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStorage.cpp">

@@ -146,6 +146,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTSignature.cpp		\
 			OTSignedFile.cpp	\
 			OTSmartContract.cpp	\
+			OTSocket.cpp		\
 			OTStash.cpp		\
 			OTStashItem.cpp		\
 			OTStorage.cpp		\
@@ -260,6 +261,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTSmartContract.hpp	\
 				$(otlib_headers_dir)/OTStash.hpp		\
 				$(otlib_headers_dir)/OTStashItem.hpp		\
+				$(otlib_headers_dir)/OTSocket.hpp		\
 				$(otlib_headers_dir)/OTStorage.hpp		\
 				$(otlib_headers_dir)/OTString.hpp		\
 				$(otlib_headers_dir)/OTStringXML.hpp		\

@@ -1978,14 +1978,6 @@ class OTAPI_Wrap {
 	static function Message_GetNymboxHash($THE_MESSAGE) {
 		return OTAPI_Wrap_Message_GetNymboxHash($THE_MESSAGE);
 	}
-
-	static function ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD) {
-		return OTAPI_Wrap_ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD);
-	}
-
-	static function ProcessSockets() {
-		return OTAPI_Wrap_ProcessSockets();
-	}
 }
 
 class OT_ME {

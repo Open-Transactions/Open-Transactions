@@ -289,7 +289,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -302,7 +302,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -317,7 +317,7 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -334,7 +334,7 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

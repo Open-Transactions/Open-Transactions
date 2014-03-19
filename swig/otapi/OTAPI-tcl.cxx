@@ -20921,107 +20921,6 @@ fail:
 }
 
 
-SWIGINTERN int
-_wrap_OTAPI_Wrap_ConnectServer(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooooo:OTAPI_Wrap_ConnectServer SERVER_ID USER_ID strCA_FILE strKEY_FILE strKEY_PASSWORD ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[1], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ConnectServer" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    arg5 = ptr;
-  }
-  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OTAPI_Wrap_ProcessSockets(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,":OTAPI_Wrap_ProcessSockets ") == TCL_ERROR) SWIG_fail;
-  result = (bool)OTAPI_Wrap::ProcessSockets();
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  return TCL_OK;
-fail:
-  return TCL_ERROR;
-}
-
-
 static swig_method swig_OTAPI_Wrap_methods[] = {
     {0,0}
 };
@@ -47586,8 +47485,6 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTAPI_Wrap_Message_GetNewIssuerAcctID", (swig_wrapper_func) _wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID, NULL},
     { SWIG_prefix "OTAPI_Wrap_Message_GetNewAcctID", (swig_wrapper_func) _wrap_OTAPI_Wrap_Message_GetNewAcctID, NULL},
     { SWIG_prefix "OTAPI_Wrap_Message_GetNymboxHash", (swig_wrapper_func) _wrap_OTAPI_Wrap_Message_GetNymboxHash, NULL},
-    { SWIG_prefix "OTAPI_Wrap_ConnectServer", (swig_wrapper_func) _wrap_OTAPI_Wrap_ConnectServer, NULL},
-    { SWIG_prefix "OTAPI_Wrap_ProcessSockets", (swig_wrapper_func) _wrap_OTAPI_Wrap_ProcessSockets, NULL},
     { SWIG_prefix "OTAPI_Wrap", (swig_wrapper_func) SWIG_ObjectConstructor, (ClientData)&_wrap_class_OTAPI_Wrap},
     { SWIG_prefix "OT_CLI_GetArgsCount", (swig_wrapper_func) _wrap_OT_CLI_GetArgsCount, NULL},
     { SWIG_prefix "OT_CLI_GetValueByKey", (swig_wrapper_func) _wrap_OT_CLI_GetValueByKey, NULL},
