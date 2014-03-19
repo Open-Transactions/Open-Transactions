@@ -1949,12 +1949,3 @@ OT_BOOL OTAPI_Wrap::Message_GetTransactionSuccess(const std::string & SERVER_ID,
     return Exec()->Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
 }
 
-bool OTAPI_Wrap::ConnectServer(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & strCA_FILE, const std::string & strKEY_FILE, const std::string & strKEY_PASSWORD)
-{
-    return Exec()->ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
-}
-
-bool OTAPI_Wrap::ProcessSockets(void)
-{
-    return Exec()->ProcessSockets();
-}

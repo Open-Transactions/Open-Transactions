@@ -780,12 +780,6 @@ void OTClientConnection::AddToInputList(OTMessage & theMessage)
 
 OTMessage * OTClientConnection::GetNextInputMessage()
 {
-//#if !defined(OT_ZMQ_MODE)
-//	return m_listIn.Pop();
-//#else
-//    OT_FAIL_MSG("OTClientConnection::GetNextInputMessage: ASSERT: Should not be calling this...");
-//#endif
-
     OT_FAIL_MSG("OTClientConnection::GetNextInputMessage: ASSERT: Should not be calling this...");
 }
 
@@ -799,25 +793,9 @@ void OTClientConnection::AddToOutputList(OTMessage & theMessage)
 
 OTMessage * OTClientConnection::GetNextOutputMessage()
 {
-//#if !defined(OT_ZMQ_MODE)
-//	return m_listOut.Pop();
-//#else
-//    OT_FAIL_MSG("OTClientConnection::GetNextOutputMessage: ASSERT: Should not be calling this...");
-//#endif
-
     OT_FAIL_MSG("OTClientConnection::GetNextOutputMessage: ASSERT: Should not be calling this...");
 }
 
-
-// For TCP / SSL mode.
-//OTClientConnection::OTClientConnection(SFSocket & theSocket, OTServer & theServer)
-//{
-//	m_pSocket		= &theSocket;
-//	m_pServer		= &theServer;
-//
-//	m_bHaveHeader	= false;
-//	m_bFocused		= false; // tcp over ssl mode
-//}
 
 // For XmlRpc / HTTP mode.
 OTClientConnection::OTClientConnection(OTServer & theServer)
