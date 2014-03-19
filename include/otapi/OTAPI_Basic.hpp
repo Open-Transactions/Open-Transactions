@@ -280,7 +280,7 @@ public:
 	EXPORT static std::string NumList_Remove (const std::string & strNumList, const std::string & strNumbers);
 	EXPORT static bool NumList_VerifyQuery(const std::string & strNumList, const std::string & strNumbers); // returns OT_BOOL
 	EXPORT static bool NumList_VerifyAll (const std::string & strNumList, const std::string & strNumbers); // returns OT_BOOL
-	EXPORT static long NumList_Count (const std::string & strNumList);
+	EXPORT static int32_t NumList_Count (const std::string & strNumList);
 
 
 	// --------------------------------------------------------------------
@@ -457,7 +457,7 @@ public:
 	// ----------------------------------------------------
 	/** The below functions are for retrieving log data programatically.
 	*/
-	EXPORT static long GetMemlogSize();
+	EXPORT static int32_t GetMemlogSize();
 
 	EXPORT static std::string GetMemlogAtIndex(const long & nIndex);
 
@@ -490,15 +490,15 @@ public:
     EXPORT static std::string GetNym_SourceForID          (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_AltSourceLocation    (const std::string & NYM_ID);
     
-    EXPORT static long        GetNym_CredentialCount      (const std::string & NYM_ID);
+    EXPORT static int32_t        GetNym_CredentialCount      (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_CredentialID         (const std::string & NYM_ID, const long & nIndex);
     EXPORT static std::string GetNym_CredentialContents   (const std::string & NYM_ID, const std::string & CREDENTIAL_ID);
     
-    EXPORT static long        GetNym_RevokedCredCount     (const std::string & NYM_ID);
+    EXPORT static int32_t        GetNym_RevokedCredCount     (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_RevokedCredID        (const std::string & NYM_ID, const long & nIndex);
     EXPORT static std::string GetNym_RevokedCredContents  (const std::string & NYM_ID, const std::string & CREDENTIAL_ID);
     
-    EXPORT static long        GetNym_SubcredentialCount   (const std::string & NYM_ID, const std::string & MASTER_CRED_ID);
+    EXPORT static int32_t        GetNym_SubcredentialCount   (const std::string & NYM_ID, const std::string & MASTER_CRED_ID);
 	EXPORT static std::string GetNym_SubCredentialID      (const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const long & nIndex);
 	EXPORT static std::string GetNym_SubCredentialContents(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const std::string & SUB_CRED_ID);
     
@@ -607,7 +607,7 @@ public:
 	// If you have a server contract that you'd like to add 
 	// to your wallet, call this function.
 	//
-	EXPORT static long AddServerContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
+	EXPORT static int32_t AddServerContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
 
 
 
@@ -618,7 +618,7 @@ public:
 	// If you have an asset contract that you'd like to add 
 	// to your wallet, call this function.
 	//
-	EXPORT static long AddAssetContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
+	EXPORT static int32_t AddAssetContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
 
 
 
@@ -632,10 +632,10 @@ public:
 	// These functions allow you to re-load that data so your GUI can reflect
 	// the updates to those files.
 	//
-	EXPORT static long GetServerCount();
-	EXPORT static long GetAssetTypeCount();
-	EXPORT static long GetAccountCount();
-	EXPORT static long GetNymCount();
+	EXPORT static int32_t GetServerCount();
+	EXPORT static int32_t GetAssetTypeCount();
+	EXPORT static int32_t GetAccountCount();
+	EXPORT static int32_t GetNymCount();
 
 
 
@@ -700,7 +700,7 @@ public:
 	// Returns a count (0 through N numbers available), 
 	// or -1 for error (no nym found.)
 	//
-	EXPORT static long GetNym_TransactionNumCount(const std::string & SERVER_ID, const std::string & NYM_ID);
+	EXPORT static int32_t GetNym_TransactionNumCount(const std::string & SERVER_ID, const std::string & NYM_ID);
 
 	EXPORT static std::string GetNym_ID(const long & nIndex); // based on Index (above 4 functions) this returns the Nym's ID
 	EXPORT static std::string GetNym_Name(const std::string & NYM_ID); // Returns Nym Name (based on NymID)
@@ -739,7 +739,7 @@ public:
 
 	*/
 
-	EXPORT static long	GetNym_MailCount(const std::string & NYM_ID);
+	EXPORT static int32_t	GetNym_MailCount(const std::string & NYM_ID);
 
 	EXPORT static std::string	GetNym_MailContentsByIndex(const std::string & NYM_ID, const long & nIndex); // returns the message itself (Subject: optionally as first line)
 
@@ -751,7 +751,7 @@ public:
     
 	// ---------------------------------------------------------
 
-	EXPORT static long	GetNym_OutmailCount(const std::string & NYM_ID);
+	EXPORT static int32_t	GetNym_OutmailCount(const std::string & NYM_ID);
 
 	EXPORT static std::string	GetNym_OutmailContentsByIndex(const std::string & NYM_ID, const long & nIndex); // returns the message itself (Subject: optionally as first line)
 
@@ -763,7 +763,7 @@ public:
 
 	// ---------------------------------------------------------
 
-	EXPORT static long	GetNym_OutpaymentsCount(const std::string & NYM_ID);
+	EXPORT static int32_t	GetNym_OutpaymentsCount(const std::string & NYM_ID);
 
 	EXPORT static std::string	GetNym_OutpaymentsContentsByIndex(const std::string & NYM_ID, const long & nIndex); // returns the message itself
 
@@ -1265,7 +1265,7 @@ public:
 	// agent is the authorizing agent, plus a closing number for every acct of which agent is the
 	// authorized agent.)
 	//
-	EXPORT static long SmartContract_CountNumsNeeded(
+	EXPORT static int32_t SmartContract_CountNumsNeeded(
 		const std::string & THE_CONTRACT,	// The smart contract, about to be queried by this function.
 		const std::string & AGENT_NAME
 		);
@@ -1301,41 +1301,41 @@ public:
     EXPORT static bool        Smart_AreAllPartiesConfirmed (const std::string & THE_CONTRACT);  // true or false?
     EXPORT static bool        Smart_IsPartyConfirmed       (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);  // true or false?
     // ----------------------------------------------------------
-    EXPORT static long        Smart_GetBylawCount          (const std::string & THE_CONTRACT);
+    EXPORT static int32_t        Smart_GetBylawCount          (const std::string & THE_CONTRACT);
     EXPORT static std::string Smart_GetBylawByIndex        (const std::string & THE_CONTRACT, const long & nIndex); // returns the name of the bylaw.
     // ----------------------------------------------------------
     EXPORT static std::string Bylaw_GetLanguage            (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
     // ----------------------------------------------------------
-    EXPORT static long        Bylaw_GetClauseCount         (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
+    EXPORT static int32_t        Bylaw_GetClauseCount         (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
     EXPORT static std::string Clause_GetNameByIndex        (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex); // returns the name of the clause.
     EXPORT static std::string Clause_GetContents           (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & CLAUSE_NAME); // returns the contents of the clause.
     // ----------------------------------------------------------
-    EXPORT static long        Bylaw_GetVariableCount       (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
+    EXPORT static int32_t        Bylaw_GetVariableCount       (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
     EXPORT static std::string Variable_GetNameByIndex      (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex); // returns the name of the variable.
     EXPORT static std::string Variable_GetType             (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & VARIABLE_NAME); // returns the type of the variable.
     EXPORT static std::string Variable_GetAccess           (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & VARIABLE_NAME); // returns the access level of the variable.
     EXPORT static std::string Variable_GetContents         (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & VARIABLE_NAME); // returns the contents of the variable.
     // ----------------------------------------------------------
-    EXPORT static long        Bylaw_GetHookCount           (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
+    EXPORT static int32_t        Bylaw_GetHookCount           (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
     EXPORT static std::string Hook_GetNameByIndex          (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex); // returns the name of the hook.
-    EXPORT static long        Hook_GetClauseCount          (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME); // for iterating clauses on a hook.
+    EXPORT static int32_t        Hook_GetClauseCount          (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME); // for iterating clauses on a hook.
     EXPORT static std::string Hook_GetClauseAtIndex        (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME, const long & nIndex);
     // ----------------------------------------------------------
-    EXPORT static long        Bylaw_GetCallbackCount       (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
+    EXPORT static int32_t        Bylaw_GetCallbackCount       (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME);
     EXPORT static std::string Callback_GetNameByIndex      (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex); // returns the name of the callback.
     EXPORT static std::string Callback_GetClause           (const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & CALLBACK_NAME); // returns name of clause attached to callback.
     // **********************************************************
-    EXPORT static long        Smart_GetPartyCount          (const std::string & THE_CONTRACT);
+    EXPORT static int32_t        Smart_GetPartyCount          (const std::string & THE_CONTRACT);
     EXPORT static std::string Smart_GetPartyByIndex        (const std::string & THE_CONTRACT, const long & nIndex); // returns the name of the party.
     EXPORT static std::string Party_GetID                  (const std::string & THE_CONTRACT, const std::string & PARTY_NAME); // returns either NymID or Entity ID.
     // ----------------------------------------------------------
-    EXPORT static long        Party_GetAcctCount           (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);
+    EXPORT static int32_t        Party_GetAcctCount           (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);
     EXPORT static std::string Party_GetAcctNameByIndex     (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const long & nIndex); // returns the name of the clause.
     EXPORT static std::string Party_GetAcctID              (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const std::string & ACCT_NAME); // returns account ID for a given acct name.
     EXPORT static std::string Party_GetAcctAssetID         (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const std::string & ACCT_NAME); // returns asset type ID for a given acct name.
     EXPORT static std::string Party_GetAcctAgentName       (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const std::string & ACCT_NAME); // returns agent name authorized to administer a given named acct. (If it's set...)
     // ----------------------------------------------------------
-    EXPORT static long        Party_GetAgentCount          (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);
+    EXPORT static int32_t        Party_GetAgentCount          (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);
     EXPORT static std::string Party_GetAgentNameByIndex    (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const long & nIndex); // returns the name of the agent.
     EXPORT static std::string Party_GetAgentID             (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const std::string & AGENT_NAME); // returns ID of the agent. (If there is one...)
     // ----------------------------------------------------------
@@ -1347,7 +1347,7 @@ public:
 	//
 	// See Create_SmartContract (etc.)
 	//
-	EXPORT static long activateSmartContract(
+	EXPORT static int32_t activateSmartContract(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & THE_SMART_CONTRACT
@@ -1366,7 +1366,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long triggerClause(
+	EXPORT static int32_t triggerClause(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & TRANSACTION_NUMBER,
@@ -1540,7 +1540,7 @@ public:
 	// Returns the number of asset types that make up this basket.
 	// (Or zero.)
 	//
-	EXPORT static long Basket_GetMemberCount(const std::string & BASKET_ASSET_TYPE_ID);
+	EXPORT static int32_t Basket_GetMemberCount(const std::string & BASKET_ASSET_TYPE_ID);
 
 
 	// --------------------------------------------------------------------
@@ -1687,7 +1687,7 @@ public:
 
 	// --------------------------------------------------------------
 	// Find out how many pending transactions (and receipts) are in this inbox.
-	EXPORT static long Ledger_GetCount(
+	EXPORT static int32_t Ledger_GetCount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
@@ -1909,14 +1909,14 @@ public:
     //
 	// Returns OT_BOOL. (Aka long, in this file.)
 	//
-	EXPORT static long Transaction_GetSuccess(
+	EXPORT static int32_t Transaction_GetSuccess(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
 		const std::string & THE_TRANSACTION
 		); 
 
-    EXPORT static long Transaction_IsCanceled(
+    EXPORT static int32_t Transaction_IsCanceled(
         const std::string & SERVER_ID,
         const std::string & USER_ID,
         const std::string & ACCOUNT_ID,
@@ -1926,7 +1926,7 @@ public:
 	// Gets the balance agreement success (from a transaction.)
     // Returns OT_BOOL -1, 0, or 1
 	//
-	EXPORT static long Transaction_GetBalanceAgreementSuccess(
+	EXPORT static int32_t Transaction_GetBalanceAgreementSuccess(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
@@ -2101,7 +2101,7 @@ public:
 	// ---
 	// returns a count of the number of cash tokens inside this purse.
 	//
-	EXPORT static long Purse_Count(
+	EXPORT static int32_t Purse_Count(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_PURSE
@@ -2213,7 +2213,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long exchangePurse(
+	EXPORT static int32_t exchangePurse(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & USER_ID,
@@ -2255,7 +2255,7 @@ public:
 		const std::string & THE_TOKEN
 		);
 
-	EXPORT static long Token_GetSeries(
+	EXPORT static int32_t Token_GetSeries(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_TOKEN
@@ -2370,7 +2370,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long checkServerID(const std::string & SERVER_ID, const std::string & USER_ID);
+	EXPORT static int32_t checkServerID(const std::string & SERVER_ID, const std::string & USER_ID);
 
 
 	// --------------------------------------------------------------------
@@ -2418,7 +2418,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long createUserAccount(
+	EXPORT static int32_t createUserAccount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -2437,7 +2437,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long deleteUserAccount(
+	EXPORT static int32_t deleteUserAccount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -2454,7 +2454,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long deleteAssetAccount(
+	EXPORT static int32_t deleteAssetAccount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID
@@ -2497,7 +2497,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long usageCredits(
+	EXPORT static int32_t usageCredits(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & USER_ID_CHECK,
@@ -2543,7 +2543,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long checkUser(
+	EXPORT static int32_t checkUser(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & USER_ID_CHECK
@@ -2571,7 +2571,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long sendUserMessage(
+	EXPORT static int32_t sendUserMessage(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & USER_ID_RECIPIENT,
@@ -2618,7 +2618,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long sendUserInstrument(
+	EXPORT static int32_t sendUserInstrument(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & USER_ID_RECIPIENT,
@@ -2657,7 +2657,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getRequest(
+	EXPORT static int32_t getRequest(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -2686,7 +2686,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getTransactionNumber(
+	EXPORT static int32_t getTransactionNumber(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -2708,7 +2708,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long issueAssetType(
+	EXPORT static int32_t issueAssetType(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & THE_CONTRACT
@@ -2727,7 +2727,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getContract(
+	EXPORT static int32_t getContract(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ASSET_ID
@@ -2749,7 +2749,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getMint(
+	EXPORT static int32_t getMint(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ASSET_ID
@@ -2770,7 +2770,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long createAssetAccount(
+	EXPORT static int32_t createAssetAccount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ASSET_ID
@@ -2792,13 +2792,13 @@ public:
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
     // NOTE: Deprecated. Replaced by getAccountFiles.
-	EXPORT static long getAccount(
+	EXPORT static int32_t getAccount(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID
 		);
 
-	EXPORT static long getAccountFiles(
+	EXPORT static int32_t getAccountFiles(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID
@@ -2869,7 +2869,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long issueBasket(
+	EXPORT static int32_t issueBasket(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & THE_BASKET
@@ -2950,7 +2950,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long exchangeBasket(
+	EXPORT static int32_t exchangeBasket(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & BASKET_ASSET_ID,
@@ -2995,7 +2995,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long notarizeWithdrawal(
+	EXPORT static int32_t notarizeWithdrawal(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID,
@@ -3017,7 +3017,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long notarizeDeposit(
+	EXPORT static int32_t notarizeDeposit(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID,
@@ -3044,7 +3044,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long notarizeTransfer(
+	EXPORT static int32_t notarizeTransfer(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_FROM,
@@ -3121,7 +3121,7 @@ public:
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
     // NOTE: Deprecated. Replaced by getAccountFiles.
-	EXPORT static long getInbox(
+	EXPORT static int32_t getInbox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID
@@ -3136,7 +3136,7 @@ public:
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
     // NOTE: Deprecated. Replaced by getAccountFiles.
-	EXPORT static long getOutbox(
+	EXPORT static int32_t getOutbox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID
@@ -3153,7 +3153,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getNymbox(
+	EXPORT static int32_t getNymbox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -3231,7 +3231,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getBoxReceipt(
+	EXPORT static int32_t getBoxReceipt(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,	// If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
@@ -3274,7 +3274,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long processInbox(
+	EXPORT static int32_t processInbox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID,
@@ -3294,7 +3294,7 @@ public:
 	// 1 or more: Count of items in Nymbox before processing.
 	//
 
-	EXPORT static long processNymbox(
+	EXPORT static int32_t processNymbox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
@@ -3318,7 +3318,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long withdrawVoucher(
+	EXPORT static int32_t withdrawVoucher(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID,
@@ -3330,7 +3330,7 @@ public:
 
 	// PAY DIVIDEND -- to shareholders
 	//
-	EXPORT static long payDividend(
+	EXPORT static int32_t payDividend(
 		const std::string & SERVER_ID,
 		const std::string & ISSUER_USER_ID, // must be issuer of SHARES_ASSET_TYPE_ID
 		const std::string & DIVIDEND_FROM_ACCT_ID, // if dollars paid for pepsi shares, then this is the issuer's dollars account.
@@ -3363,7 +3363,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long depositCheque(
+	EXPORT static int32_t depositCheque(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCT_ID,
@@ -3388,7 +3388,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long depositPaymentPlan(
+	EXPORT static int32_t depositPaymentPlan(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & THE_PAYMENT_PLAN
@@ -3410,7 +3410,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long issueMarketOffer(
+	EXPORT static int32_t issueMarketOffer(
 		const std::string & ASSET_ACCT_ID,          // Perhaps this is the wheat market.
 		const std::string & CURRENCY_ACCT_ID,       // Perhaps I'm buying the wheat with rubles.
 		// -------------------------------------------
@@ -3462,7 +3462,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getMarketList(const std::string & SERVER_ID, const std::string & USER_ID);
+	EXPORT static int32_t getMarketList(const std::string & SERVER_ID, const std::string & USER_ID);
 
 	// Gets all offers for a specific market and their details (up until maximum depth)
 	// Returns long:
@@ -3473,7 +3473,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getMarketOffers(
+	EXPORT static int32_t getMarketOffers(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID, 
 		const std::string & MARKET_ID,
@@ -3489,7 +3489,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getMarketRecentTrades(
+	EXPORT static int32_t getMarketRecentTrades(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID, 
 		const std::string & MARKET_ID
@@ -3504,7 +3504,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long getNym_MarketOffers(const std::string & SERVER_ID, const std::string & USER_ID); // Offers this Nym has out on market.
+	EXPORT static int32_t getNym_MarketOffers(const std::string & SERVER_ID, const std::string & USER_ID); // Offers this Nym has out on market.
 	// These may just be the Cron Receipts...
 
 
@@ -3519,7 +3519,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long killMarketOffer(
+	EXPORT static int32_t killMarketOffer(
 		const std::string & SERVER_ID, 
 		const std::string & USER_ID, 
 		const std::string & ASSET_ACCT_ID, 
@@ -3534,7 +3534,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long killPaymentPlan(
+	EXPORT static int32_t killPaymentPlan(
 		const std::string & SERVER_ID, 
 		const std::string & USER_ID, 
 		const std::string & FROM_ACCT_ID, 
@@ -3700,7 +3700,7 @@ public:
 	// Returns OT_TRUE (1) for Success and OT_FALSE (0) for Failure.
 	// Also returns OT_FALSE for error.
 	//
-	EXPORT static long Message_GetSuccess(const std::string & THE_MESSAGE);
+	EXPORT static int32_t Message_GetSuccess(const std::string & THE_MESSAGE);
 
 
 
@@ -3720,7 +3720,7 @@ public:
 	// ...and in fact the requestNum IS the return value!
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
-	EXPORT static long queryAssetTypes(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ENCODED_MAP);
+	EXPORT static int32_t queryAssetTypes(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ENCODED_MAP);
 
 
 
@@ -3758,7 +3758,7 @@ public:
 	// to unpack the non-existent, empty list of data items from the payload of your successful 
 	// reply.)
 	//
-	EXPORT static long Message_GetDepth(const std::string & THE_MESSAGE);
+	EXPORT static int32_t Message_GetDepth(const std::string & THE_MESSAGE);
 
 
 
@@ -3769,7 +3769,7 @@ public:
 	// Returns OT_TRUE (1) for Success and OT_FALSE (0) for Failure.
 	// Also returns OT_FALSE for error.
 	//
-	EXPORT static long Message_GetTransactionSuccess(
+	EXPORT static int32_t Message_GetTransactionSuccess(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
@@ -3777,7 +3777,7 @@ public:
 		);
 
 
-    EXPORT static long Message_IsTransactionCanceled(
+    EXPORT static int32_t Message_IsTransactionCanceled(
         const std::string & SERVER_ID,
         const std::string & USER_ID,
         const std::string & ACCOUNT_ID,
@@ -3790,7 +3790,7 @@ public:
 	// Returns OT_TRUE (1) for Success and OT_FALSE (0) for Failure.
 	// Also returns OT_FALSE for error. (Sorry.)
 	//
-	EXPORT static long Message_GetBalanceAgreementSuccess(
+	EXPORT static int32_t Message_GetBalanceAgreementSuccess(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,

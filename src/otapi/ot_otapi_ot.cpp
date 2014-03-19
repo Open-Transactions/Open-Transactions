@@ -53,10 +53,10 @@ public String   accountID2;
 public String   basket;
 public String   strData, strData2, strData3, strData4;
 public boolean  bBool;
-public int      nData;
-public long     lData;
-public int      nTransNumsNeeded;
-public int      nRequestNum;
+public int32_t      nData;
+public int64_t     lData;
+public int32_t      nTransNumsNeeded;
+public int32_t      nRequestNum;
 */
 
 
@@ -334,7 +334,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
         strData = p_strData; // the agent's name for that party, as listed on the contract.;
         strData2 = p_strData2; // the smart contract itself.;
 
-        int nNumsNeeded = OTAPI_Wrap::SmartContract_CountNumsNeeded(p_strData2, p_strData);
+        int32_t nNumsNeeded = OTAPI_Wrap::SmartContract_CountNumsNeeded(p_strData2, p_strData);
 
         if (VerifyIntVal(nNumsNeeded) && nNumsNeeded > 0)
         {
@@ -533,7 +533,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
 
 
 OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_assetID,  // 8 args
-    const string & p_basket, const string & p_accountID, const bool p_bBool, const int p_nTransNumsNeeded)
+    const string & p_basket, const string & p_accountID, const bool p_bBool, const int32_t p_nTransNumsNeeded)
 {
     // OTAPI_Wrap::Output(0, "(Version of OTAPI_Func with 8 arguments.)\n");
 
@@ -638,7 +638,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
 // **********************************************************************
 
 
-OT_OTAPI_OT int OTAPI_Func::Run()
+OT_OTAPI_OT int32_t OTAPI_Func::Run()
 {
     // -1 means error, no message was sent.
     //  0 means NO error, yet still no message was sent.
@@ -727,14 +727,14 @@ OT_OTAPI_OT int OTAPI_Func::Run()
 // **********************************************************************
 
 
-OT_OTAPI_OT int OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION)
+OT_OTAPI_OT int32_t OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION)
 {
     Utility MsgUtil;
     string strLocation = concat("OTAPI_Func::SendRequestLowLevel: ", IN_FUNCTION);
 
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRun = theFunction.Run(); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRun = theFunction.Run(); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
 
     if (nRun == -1)  // if the requestNumber returned by the send-attempt is -1, that means it DIDN'T SEND (error)
     {
@@ -748,7 +748,7 @@ OT_OTAPI_OT int OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const 
 
         theFunction.nRequestNum = 0;
     }
-    else if (nRun == (-2)) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+    else if (nRun == (-2)) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
 
@@ -775,11 +775,11 @@ OT_OTAPI_OT int OTAPI_Func::SendRequestLowLevel(OTAPI_Func & theFunction, const 
 
 OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION)
 {
-    int nTotalRetries = 2;
+    int32_t nTotalRetries = 2;
     return SendTransaction(theFunction, IN_FUNCTION, nTotalRetries);
 }
 
-OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries)
+OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int32_t nTotalRetries)
 {
     Utility MsgUtil;
     string strLocation = concat("OTAPI_Func::SendTransaction: ", IN_FUNCTION);
@@ -794,10 +794,10 @@ OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const s
     // **********************************************************************
     // GET TRANSACTION NUMBERS HERE IF NECESSARY.
     //
-    int getnym_trnsnum_count = OTAPI_Wrap::GetNym_TransactionNumCount(theFunction.serverID, theFunction.nymID);
-    int configTxnCount = MsgUtil.getNbrTransactionCount();
+    int32_t getnym_trnsnum_count = OTAPI_Wrap::GetNym_TransactionNumCount(theFunction.serverID, theFunction.nymID);
+    int32_t configTxnCount = MsgUtil.getNbrTransactionCount();
     bool b1 = (theFunction.nTransNumsNeeded > configTxnCount);
-    int comparative = 0;
+    int32_t comparative = 0;
 
     if (b1)
     {
@@ -897,7 +897,7 @@ OT_OTAPI_OT string OTAPI_Func::SendTransaction(OTAPI_Func & theFunction, const s
     // without verifying them also. Otherwise you could end up signing
     // a future bad receipt, based on malicious, planted intermediary files.
 
-    int nRetries = nTotalRetries;
+    int32_t nRetries = nTotalRetries;
 
     while ((nRetries > 0) && !VerifyStringVal(strResult) && bCanRetryAfterThis)
     {
@@ -968,7 +968,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
     bCanRetryAfterThis = false;
 
     string strReply = "";
-    int nlocalRequestNum = SendRequestLowLevel(theFunction, IN_FUNCTION); // <========   FIRST ATTEMPT!!!!!!;
+    int32_t nlocalRequestNum = SendRequestLowLevel(theFunction, IN_FUNCTION); // <========   FIRST ATTEMPT!!!!!!;
 
     if ((nlocalRequestNum == -1) || (nlocalRequestNum == 0))
     {
@@ -999,7 +999,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
     //
     // strReply contains the reply itself (or null.)
     //
-    int nReplySuccess = VerifyMessageSuccess(strReply);
+    int32_t nReplySuccess = VerifyMessageSuccess(strReply);
 
     bool bMsgReplyError = (!VerifyStringVal(strReply) || (nReplySuccess < 0));
 
@@ -1026,8 +1026,8 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
     // back, it will ONLY be for transactions, not normal messages. (Those
     // are the only ones that USE transaction numbers.)
     //
-    int nTransSuccess;
-    int nBalanceSuccess;
+    int32_t nTransSuccess;
+    int32_t nBalanceSuccess;
     //
     if (bIsTransaction) // This request contains a TRANSACTION...
     {
@@ -1047,7 +1047,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
                 // as the UI is concerned, even though behind the scenes, it is still "rejected" and transaction
                 // numbers were harvested from it.
                 //
-                int nTransCancelled = 1;
+                int32_t nTransCancelled = 1;
                 nTransCancelled = OTAPI_Wrap::Message_IsTransactionCanceled(theFunction.serverID, theFunction.nymID, theFunction.accountID, strReply);
 
                 // If it's not cancelled, then we assume it's a normal transaction (versus a cancellation)
@@ -1156,7 +1156,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
     else if (bMsgAnyError || bMsgAnyFailure) // let's resync, and clawback whatever transaction numbers we might have used on the Request...
     {
         bool bWasGetReqSent = false;
-        int nGetRequest = MsgUtil.getRequestNumber(theFunction.serverID, theFunction.nymID, bWasGetReqSent); // <==== RE-SYNC ATTEMPT...;
+        int32_t nGetRequest = MsgUtil.getRequestNumber(theFunction.serverID, theFunction.nymID, bWasGetReqSent); // <==== RE-SYNC ATTEMPT...;
 
         // GET REQUEST WAS A SUCCESS.
         //
@@ -1188,7 +1188,7 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
 
                 bForceDownload = false;
 
-                int nProcessNymboxResult = MsgUtil.getAndProcessNymbox_8(theFunction.serverID, theFunction.nymID, bWasSent, bForceDownload, nlocalRequestNum, bWasFound, bWillRetryAfterThis, the_foursome);
+                int32_t nProcessNymboxResult = MsgUtil.getAndProcessNymbox_8(theFunction.serverID, theFunction.nymID, bWasSent, bForceDownload, nlocalRequestNum, bWasFound, bWillRetryAfterThis, the_foursome);
 
                 // bHarvestingForRetry,// bHarvestingForRetry is INPUT, in the case nlocalRequestNum needs to be harvested before a flush occurs.
 
@@ -1291,14 +1291,14 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
     // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
     // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
     //
-    int nCount = offerList.GetOfferDataNymCount(); // size_t;
-    int nTemp = nCount; // so it's created as size_t;
+    int32_t nCount = offerList.GetOfferDataNymCount(); // size_t;
+    int32_t nTemp = nCount; // so it's created as size_t;
 
     if (VerifyIntVal(nCount) && (nCount > 0))
     {
-        for (int nIndex = 0; nIndex < nCount; ++nIndex)
+        for (int32_t nIndex = 0; nIndex < nCount; ++nIndex)
         {
-            nTemp = nIndex; // convert from int to size_t;
+            nTemp = nIndex; // convert from int32_t to size_t;
             OTDB::OfferDataNym & offerData = *offerList.GetOfferDataNym(nTemp);
 
             if (!VerifyStorable(&offerData, "OTDB::OfferDataNym"))
@@ -1367,7 +1367,7 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
 }
 
 
-OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
+OT_OTAPI_OT int32_t output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int32_t nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
 { // extra_vals unused in this function, but not in others that share this parameter profile.
     // (It's used as a lambda.)
 
@@ -1376,7 +1376,7 @@ OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int 
     string strCurrencyTypeID = offer_data.currency_type_id;
     string strSellStatus = offer_data.selling ? "SELL" : "BUY";
     string strTransactionID = offer_data.transaction_id;
-    string strAvailableAssets = to_string(to_int(offer_data.total_assets) - to_int(offer_data.finished_so_far));
+    string strAvailableAssets = to_string(to_long(offer_data.total_assets) - to_long(offer_data.finished_so_far));
 
     if (0 == nIndex) // first iteration! (Output a header.)
     {
@@ -1419,7 +1419,7 @@ OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int 
 
 // RETURN VALUE: extra_vals will contain a list of offers that need to be removed AFTER
 
-OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
+OT_OTAPI_OT int32_t find_strange_offers(OTDB::OfferDataNym & offer_data, const int32_t nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
 {
     string strLocation = "find_strange_offers";
     /*
@@ -1472,7 +1472,7 @@ OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int n
         // For each, see if it's a sell offer and if so, if the amount is lower than the amount on
         // the new buy offer, then cancel that sell offer from the market. (Because I don't want to buy-high, sell low.)
         //
-        if (!extra_vals.bSelling && offer_data.selling && (to_int(offer_data.price_per_scale) < to_int(extra_vals.the_price)))
+        if (!extra_vals.bSelling && offer_data.selling && (to_long(offer_data.price_per_scale) < to_long(extra_vals.the_price)))
         {
             extra_vals.the_vector.push_back(offer_data.transaction_id);
         }
@@ -1480,7 +1480,7 @@ OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int n
         // For each, see if it's a buy offer and if so, if the amount is higher than the amount of my new
         // sell offer, then cancel that buy offer from the market.
         //
-        else if (extra_vals.bSelling && !offer_data.selling && (to_int(offer_data.price_per_scale) > to_int(extra_vals.the_price)))
+        else if (extra_vals.bSelling && !offer_data.selling && (to_long(offer_data.price_per_scale) > to_long(extra_vals.the_price)))
         {
             extra_vals.the_vector.push_back(offer_data.transaction_id);
         }
@@ -1493,7 +1493,7 @@ OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int n
 }
 
 
-OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda)
+OT_OTAPI_OT int32_t iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda)
 {
     the_lambda_struct extra_vals;
     return iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda, extra_vals);
@@ -1505,7 +1505,7 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
 // extra_vals allows you to pass any extra data you want into your
 // lambda, for when it is called. (Like a functor.)
 //
-OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals)
+OT_OTAPI_OT int32_t iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals)
 {
     // the_lambda must be good (assumed) and must have the parameter profile like this sample:
     // def the_lambda(offer_data, nIndex, map_of_maps, sub_map, extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
@@ -1532,7 +1532,7 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
         return -1;
     }
 
-    int nIndex = -1;
+    int32_t nIndex = -1;
     for (SubMap::iterator it = sub_map.begin(); it != sub_map.end(); it++)
     {
         ++nIndex;
@@ -1551,7 +1551,7 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
             return -1;
         }
 
-        int nLambda = (*the_lambda)(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9;
+        int32_t nLambda = (*the_lambda)(offer_data, nIndex, map_of_maps, sub_map, extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9;
         if (-1 == nLambda)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: the_lambda failed.\n");
@@ -1564,7 +1564,7 @@ OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_
 }
 
 
-OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda) // low level. map_of_maps must be good. (assumed.)
+OT_OTAPI_OT int32_t iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda) // low level. map_of_maps must be good. (assumed.)
 {
     the_lambda_struct extra_vals;
     return iterate_nymoffers_maps(map_of_maps, the_lambda, extra_vals);
@@ -1574,7 +1574,7 @@ OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_l
 // extra_vals allows you to pass any extra data you want into your
 // lambda, for when it is called. (Like a functor.)
 //
-OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals) // low level. map_of_maps must be good. (assumed.)
+OT_OTAPI_OT int32_t iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals) // low level. map_of_maps must be good. (assumed.)
 {
     // the_lambda must be good (assumed) and must have the parameter profile like this sample:
     // def the_lambda(offer_data, nIndex, map_of_maps, sub_map, extra_vals) // if 10 offers are printed for the SAME market, nIndex will be 0..9
@@ -1595,7 +1595,7 @@ OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_l
         return -1;
     }
 
-    int nMainIndex = -1;
+    int32_t nMainIndex = -1;
     for (MapOfMaps::iterator it = map_of_maps.begin(); it != map_of_maps.end(); it++)
     {
         ++nMainIndex; // so we can output a header on the FIRST one only.
@@ -1626,7 +1626,7 @@ OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_l
             //          OTAPI_Wrap::Output(0, "\n** MY OFFERS **\n\n")
         }
 
-        int nSubMap = iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda, extra_vals);
+        int32_t nSubMap = iterate_nymoffers_sub_map(map_of_maps, sub_map, the_lambda, extra_vals);
         if (-1 == nSubMap)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: while trying to iterate_nymoffers_sub_map.\n");

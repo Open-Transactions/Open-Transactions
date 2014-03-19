@@ -161,8 +161,6 @@ bool, int32_t, int64_t, std::string
 
 #include <string>
 
-
-
 // -------------------------------------------------------
 
 EXPORT int         OT_CLI_GetArgsCount    (const std::string str_Args);

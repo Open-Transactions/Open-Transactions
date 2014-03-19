@@ -40,7 +40,7 @@ OT_MADE_EASY_OT MadeEasy::~MadeEasy()
 //  True if I have enough numbers, or if there was success getting more transaction numbers.
 //  False if I didn't have enough numbers, tried to get more, and failed somehow.
 //
-OT_MADE_EASY_OT bool MadeEasy::insure_enough_nums(const int nNumberNeeded, const string & strMyServerID, const string & strMyNymID)
+OT_MADE_EASY_OT bool MadeEasy::insure_enough_nums(const int32_t nNumberNeeded, const string & strMyServerID, const string & strMyNymID)
 {
     Utility MsgUtil;
     bool bReturnVal = true;
@@ -53,7 +53,7 @@ OT_MADE_EASY_OT bool MadeEasy::insure_enough_nums(const int nNumberNeeded, const
 
     // Make sure we have at least one transaction number (to write the cheque...)
     //
-    int nTransCount = OTAPI_Wrap::GetNym_TransactionNumCount(strMyServerID, strMyNymID);
+    int32_t nTransCount = OTAPI_Wrap::GetNym_TransactionNumCount(strMyServerID, strMyNymID);
 
     if (nTransCount < nNumberNeeded)
     {
@@ -95,7 +95,7 @@ OT_MADE_EASY_OT string MadeEasy::register_nym(const string & SERVER_ID, const st
 
     OTAPI_Func theRequest(CREATE_USER_ACCT, SERVER_ID, NYM_ID);
     string strResponse = theRequest.SendRequest(theRequest, "CREATE_USER_ACCT");
-    int nSuccess = VerifyMessageSuccess(strResponse);
+    int32_t nSuccess = VerifyMessageSuccess(strResponse);
 
     switch (nSuccess)
     {
@@ -125,7 +125,7 @@ OT_MADE_EASY_OT string MadeEasy::register_nym(const string & SERVER_ID, const st
 
 // RETRIEVE NYM INTERMEDIARY FILES
 
-OT_MADE_EASY_OT int MadeEasy::retrieve_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload)
+OT_MADE_EASY_OT int32_t MadeEasy::retrieve_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload)
 {
 
     Utility MsgUtil;
@@ -140,7 +140,7 @@ OT_MADE_EASY_OT int MadeEasy::retrieve_nym(const string & strServerID, const str
         OTAPI_Wrap::Output(0, "\n\n SUCCESS syncronizing the request number.\n");
     }
 
-    int nGetAndProcessNymbox = MsgUtil.getAndProcessNymbox_4(strServerID, strMyNymID, bWasMsgSent, bForceDownload);
+    int32_t nGetAndProcessNymbox = MsgUtil.getAndProcessNymbox_4(strServerID, strMyNymID, bWasMsgSent, bForceDownload);
 
     return nGetAndProcessNymbox;
 }
@@ -162,7 +162,7 @@ OT_MADE_EASY_OT string MadeEasy::check_user(const string & SERVER_ID, const stri
 //  CREATE NYM (pseudonym)
 //  returns new Nym ID
 //
-OT_MADE_EASY_OT string MadeEasy::create_pseudonym(const int nKeybits, const string & strNymIDSource, const string & strAltLocation)
+OT_MADE_EASY_OT string MadeEasy::create_pseudonym(const int32_t nKeybits, const string & strNymIDSource, const string & strAltLocation)
 {
     string strLocation = "OT_ME::create_pseudonym";
 
@@ -209,7 +209,7 @@ OT_MADE_EASY_OT string MadeEasy::exchange_basket_currency(const string & SERVER_
 {
     OTAPI_Func ot_Msg;
 
-    int nTransNumsNeeded = (OTAPI_Wrap::Basket_GetMemberCount(THE_BASKET) + 1);
+    int32_t nTransNumsNeeded = (OTAPI_Wrap::Basket_GetMemberCount(THE_BASKET) + 1);
 
     OTAPI_Func theRequest(EXCHANGE_BASKET, SERVER_ID, NYM_ID, ASSET_TYPE, THE_BASKET, ACCT_ID, IN_OR_OUT, nTransNumsNeeded);
     string strResponse = theRequest.SendTransaction(theRequest, "EXCHANGE_BASKET");
@@ -515,14 +515,14 @@ OT_MADE_EASY_OT string MadeEasy::send_user_cash(const string & SERVER_ID, const 
 
 // GET PAYMENT INSTRUMENT (from payments inbox, by index.)
 //
-OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID, const string & NYM_ID, const int nIndex)
+OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID, const string & NYM_ID, const int32_t nIndex)
 {
     string PRELOADED_INBOX = "";
     string strInstrument = get_payment_instrument(SERVER_ID, NYM_ID, nIndex, PRELOADED_INBOX);
     return strInstrument;
 }
 
-OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID, const string & NYM_ID, const int nIndex, const string & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
+OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID, const string & NYM_ID, const int32_t nIndex, const string & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
 {
     string strInstrument;
     string strInbox = VerifyStringVal(PRELOADED_INBOX) ? PRELOADED_INBOX : OTAPI_Wrap::LoadPaymentInbox(SERVER_ID, NYM_ID); // Returns NULL, or an inbox.
@@ -533,7 +533,7 @@ OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID
         return "";
     }
 
-    int nCount = OTAPI_Wrap::Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, strInbox);
+    int32_t nCount = OTAPI_Wrap::Ledger_GetCount(SERVER_ID, NYM_ID, NYM_ID, strInbox);
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Unable to retrieve size of payments inbox ledger. (Failure.)\n");
@@ -561,7 +561,7 @@ OT_MADE_EASY_OT string MadeEasy::get_payment_instrument(const string & SERVER_ID
 // argument, as well as the NYM_ID argument (you have to pass it twice...)
 // Otherwise for inbox/outbox, pass the actual ACCT_ID there as normal.
 //
-OT_MADE_EASY_OT string MadeEasy::get_box_receipt(const string & SERVER_ID, const string & NYM_ID, const string & ACCT_ID, const int nBoxType, const string & STR_TRANS_NUM)
+OT_MADE_EASY_OT string MadeEasy::get_box_receipt(const string & SERVER_ID, const string & NYM_ID, const string & ACCT_ID, const int32_t nBoxType, const string & STR_TRANS_NUM)
 {
     OTAPI_Func ot_Msg;
 
@@ -730,7 +730,7 @@ OT_MADE_EASY_OT string MadeEasy::activate_smart_contract(const string & SERVER_I
 {
     OTAPI_Func ot_Msg;
 
-    //      int OTAPI_Wrap::activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
+    //      int32_t OTAPI_Wrap::activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
 
     OTAPI_Func theRequest(ACTIVATE_SMART_CONTRACT, SERVER_ID, NYM_ID, ACCT_ID, AGENT_NAME, THE_SMART_CONTRACT);
     string strResponse = theRequest.SendTransaction(theRequest, "ACTIVATE_SMART_CONTRACT");
@@ -752,7 +752,7 @@ OT_MADE_EASY_OT string MadeEasy::deposit_payment_plan(const string & SERVER_ID, 
     //
     string strSenderAcctID = OTAPI_Wrap::Instrmnt_GetSenderAcctID(THE_PAYMENT_PLAN);
 
-    //      int OTAPI_Wrap::depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
+    //      int32_t OTAPI_Wrap::depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
     OTAPI_Func theRequest(DEPOSIT_PAYMENT_PLAN, SERVER_ID, NYM_ID, strSenderAcctID, THE_PAYMENT_PLAN);
     string strResponse = theRequest.SendTransaction(theRequest, "DEPOSIT_PAYMENT_PLAN");
     return strResponse;
@@ -799,7 +799,7 @@ OT_MADE_EASY_OT string MadeEasy::trigger_clause(const string & SERVER_ID, const 
     OTAPI_Func ot_Msg;
 
 
-    //      int OTAPI_Wrap::triggerClause(const char * SERVER_ID,
+    //      int32_t OTAPI_Wrap::triggerClause(const char * SERVER_ID,
     //                               const char * USER_ID,
     //                               const char * TRANSACTION_NUMBER,
     //                               const char * CLAUSE_NAME,
@@ -873,7 +873,7 @@ OT_MADE_EASY_OT string MadeEasy::get_market_list(const string & SERVER_ID, const
     return strResponse;
 }
 
-//int OTAPI_Wrap::getMarketOffers(const char * SERVER_ID,
+//int32_t OTAPI_Wrap::getMarketOffers(const char * SERVER_ID,
 //                           const char * USER_ID,
 //                           const char * MARKET_ID,
 //                           const char * MAX_DEPTH)
@@ -1027,10 +1027,10 @@ OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSen
 
         // Iterate through the OLD PURSE. (as tempOldPurse.)
         //
-        int count = OTAPI_Wrap::Purse_Count(serverID, assetID, oldPurse);
+        int32_t count = OTAPI_Wrap::Purse_Count(serverID, assetID, oldPurse);
         string tempOldPurse = oldPurse;
 
-        for (int i = 0; i < count; ++i)
+        for (int32_t i = 0; i < count; ++i)
         {
             // Peek into TOKEN, from the top token on the stack. (And it's STILL on top after this call.)
             //
@@ -1184,10 +1184,10 @@ OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSen
 
         // Iterate through oldPurse, using tempOldPurse as iterator.
         //
-        int count = OTAPI_Wrap::Purse_Count(serverID, assetID, oldPurse);
+        int32_t count = OTAPI_Wrap::Purse_Count(serverID, assetID, oldPurse);
         string tempOldPurse = oldPurse;
 
-        for (int i = 0; i < count; ++i)
+        for (int32_t i = 0; i < count; ++i)
         {
             // Peek at the token on top of the stack.
             // (Without removing it.)
@@ -1394,7 +1394,7 @@ OT_MADE_EASY_OT string exportCashPurse(const string & serverID, const string & a
 }
 
 
-OT_MADE_EASY_OT int depositCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, const string & accountID, const bool bReimportIfFailure) // So we don't re-import a purse that wasn't internal to begin with.
+OT_MADE_EASY_OT int32_t depositCashPurse(const string & serverID, const string & assetID, const string & nymID, const string & oldPurse, const vector<string> & selectedTokens, const string & accountID, const bool bReimportIfFailure) // So we don't re-import a purse that wasn't internal to begin with.
 {
     // Instantiate the "OT Made Easy" object.
     //
@@ -1430,7 +1430,7 @@ OT_MADE_EASY_OT int depositCashPurse(const string & serverID, const string & ass
 
     // HERE, WE INTERPRET THE SERVER REPLY, WHETHER SUCCESS, FAIL, OR ERROR...
 
-    int nInterpretReply = InterpretTransactionMsgReply(serverID, recipientNymID, accountID, strAttempt, strResponse);
+    int32_t nInterpretReply = InterpretTransactionMsgReply(serverID, recipientNymID, accountID, strAttempt, strResponse);
 
     if (1 == nInterpretReply)
     {

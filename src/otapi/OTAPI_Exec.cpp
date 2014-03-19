@@ -144,6 +144,10 @@
 #define IMPORT
 #endif
 
+#if defined (OT_ZMQ_MODE)
+#include <zmq.hpp>
+#endif
+
 #include "OTStorage.hpp"
 
 #include "OTIdentifier.hpp"

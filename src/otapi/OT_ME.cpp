@@ -155,6 +155,11 @@ kamH0Y/n11lCvo1oQxM+
 #include <OTStorage.hpp>
 #include <OTPaths.hpp>
 
+#include <chaiscript/chaiscript.hpp>
+
+#ifdef OT_USE_CHAI_STDLIB
+#include <chaiscript/chaiscript_stdlib.hpp>
+#endif
 
 
 

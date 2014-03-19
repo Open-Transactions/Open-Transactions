@@ -156,7 +156,7 @@
 #include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
 
-int OTClient::CalcReturnVal(const long & lRequestNumber)
+int32_t OTClient::CalcReturnVal(const int64_t & lRequestNumber)
 {
     m_lMostRecentRequestNumber = lRequestNumber;
     // --------------------------------------------
@@ -165,7 +165,7 @@ int OTClient::CalcReturnVal(const long & lRequestNumber)
     else if (0 == lRequestNumber)
         return 0;
 
-    const int nRequestNum = static_cast<int>(lRequestNumber);
+    const int nRequestNum = static_cast<int32_t>(lRequestNumber);
 
     if (lRequestNumber == nRequestNum) // In this case, it works!
         return nRequestNum;
@@ -6177,13 +6177,13 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 /// returns >0 for processInbox, containing the number that was there before processing.
 /// returns >0 for nearly everything else, containing the request number itself.
 ///
-int OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
+int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
                                  OTMessage & theMessage,
                                  OTPseudonym & theNym,
                                  //								  OTAssetContract & theContract,
                                  OTServerContract & theServer,
                                  OTAccount * pAccount/*=NULL*/,
-                                 long lTransactionAmount/*=0*/,
+                                 int64_t lTransactionAmount/*=0*/,
                                  OTAssetContract * pMyAssetContract/*=NULL*/,
                                  OTIdentifier * pHisNymID/*=NULL*/,
                                  OTIdentifier * pHisAcctID/*=NULL*/)
@@ -7181,7 +7181,7 @@ int OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
                 strAmount.OTfgets(std::cin);
             }
 
-            const long lTotalAmount	= (0 == lTransactionAmount) ?  // If nothing was passed in, then use atol(strAmount), 
+            const int64_t lTotalAmount	= (0 == lTransactionAmount) ?  // If nothing was passed in, then use atol(strAmount), 
                 (atol(strAmount.Exists() ? strAmount.Get() : "0")) : lTransactionAmount; // otherwise lTransactionAmount.
             // ----------------------------------------------
 

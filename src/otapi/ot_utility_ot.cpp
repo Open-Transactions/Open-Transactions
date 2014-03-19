@@ -80,7 +80,7 @@ OT_UTILITY_OT bool VerifyExists(const string & theObjectNameAsStr, const bool bD
 // ********************************************************************************
 
 //// ---------------------------------------
-//OT_UTILITY_OT int VerifyOTIntegerRef(nValue) // used for OTInteger
+//OT_UTILITY_OT bool VerifyOTIntegerRef(nValue) // used for OTInteger
 //{
 //    if (nValue.is_var_null() || nValue.is_var_undef() || !nValue.is_type("OTInteger"))
 //    {
@@ -90,7 +90,7 @@ OT_UTILITY_OT bool VerifyExists(const string & theObjectNameAsStr, const bool bD
 //}
 //
 //// ---------------------------------------
-//OT_UTILITY_OT int VerifyOTBoolRef(bValue) // used for OTBool class
+//OT_UTILITY_OT bool VerifyOTBoolRef(bValue) // used for OTBool class
 //{
 //    if (bValue.is_var_null() || bValue.is_var_undef() || !bValue.is_type("OTBool"))
 //    {
@@ -111,14 +111,14 @@ OT_UTILITY_OT bool VerifyMessage(const string & strMessage)
 }
 
 
-OT_UTILITY_OT int VerifyMessageSuccess(const string & strMessage)
+OT_UTILITY_OT int32_t VerifyMessageSuccess(const string & strMessage)
 {
     if (!VerifyMessage(strMessage))
     {
         return -1;
     }
 
-    int nStatus = OTAPI_Wrap::Message_GetSuccess(strMessage);
+    int32_t nStatus = OTAPI_Wrap::Message_GetSuccess(strMessage);
     switch (nStatus)
     {
     case -1:
@@ -198,14 +198,14 @@ OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const s
 //attr ObjRef::the_ref  // this is our "pointer" to an object we do NOT want to clone. (ObjRef can be passed in and cloned, with all clones retaining same pointer, theoretically.)
 //
 //
-//OT_UTILITY_OT int ObjRef::ObjRef() // todo remove this?
+//OT_UTILITY_OT int32_t ObjRef::ObjRef() // todo remove this?
 //{
 //    OTAPI_Wrap::Output(1, "(Version of ObjRef::ObjRef with 0 arguments. Must call setRef next...)\n");
 //}
 //// ---------------------------------------
 //
 ////def ObjRef::ObjRef(rhs)
-//OT_UTILITY_OT int ObjRef::ObjRef(rhs)
+//OT_UTILITY_OT int32_t ObjRef::ObjRef(rhs)
 //{
 //    OTAPI_Wrap::Output(1, "Supposedly: Copy constructor. rhs type actually is: " + rhs.get_type_info().name() + "\n");
 //
@@ -215,13 +215,13 @@ OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const s
 //
 //// ---------------------------------------
 //
-//OT_UTILITY_OT int ObjRef::setRef(rhs) : rhs.is_type("ObjRef")
+//OT_UTILITY_OT int32_t ObjRef::setRef(rhs) : rhs.is_type("ObjRef")
 //{
 //    OTAPI_Wrap::Output(1, "(Version of ObjRef::setRef with ObjRef arg.\n");
 //the_ref: = rhs.the_ref // by REFERENCE :-)
 //}
 //
-//OT_UTILITY_OT int ObjRef::setRef(rhs) : !rhs.is_type("ObjRef")
+//OT_UTILITY_OT int32_t ObjRef::setRef(rhs) : !rhs.is_type("ObjRef")
 //{
 //    // By this point we know that rhs is NOT an ObjRef.
 //
@@ -251,7 +251,7 @@ OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const s
 //}
 //// -------------------------------------------
 //
-//OT_UTILITY_OT int clone(rhs) : rhs.is_type("ObjRef")
+//OT_UTILITY_OT int32_t clone(rhs) : rhs.is_type("ObjRef")
 //{
 //    print("clone ObjRef")
 //        var new_o : = ObjRef(rhs);
@@ -266,13 +266,13 @@ OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const s
 //// ---------------------------------------
 //// All OTDB_ objects are not cloned, but instead return a;
 ////
-//OT_UTILITY_OT int clone(rhs) : (0 == rhs.get_type_info().name().find("OTDB_"))
+//OT_UTILITY_OT int32_t clone(rhs) : (0 == rhs.get_type_info().name().find("OTDB_"))
 //{
 //    return rhs;
 //}
 //
 //// ---------------------------------------
-//OT_UTILITY_OT int ObjRef::assign(rhs)
+//OT_UTILITY_OT int32_t ObjRef::assign(rhs)
 //{
 //    print("assign")
 //        setRef(rhs)
@@ -289,14 +289,14 @@ OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const s
 //pScript->chai.add(fun(&OTAPI_Wrap::Transaction_GetBlnceAgrmntSuccess), "OT_API_Transaction_GetBlnceAgrmntSuccess");
 
 
-OT_UTILITY_OT int VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)  // For when an OTMessage is the input.
+OT_UTILITY_OT int32_t VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)  // For when an OTMessage is the input.
 {
     if (!VerifyMessage(strMessage))
     {
         return -1;
     }
 
-    int nSuccess = OTAPI_Wrap::Message_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strMessage);
+    int32_t nSuccess = OTAPI_Wrap::Message_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strMessage);
     switch (nSuccess)
     {
     case -1:
@@ -318,14 +318,14 @@ OT_UTILITY_OT int VerifyMsgBalanceAgrmntSuccess(const string & SERVER_ID, const 
 }
 
 
-OT_UTILITY_OT int VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)
+OT_UTILITY_OT int32_t VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strMessage)
 {
     if (!VerifyMessage(strMessage))
     {
         return -1;
     }
 
-    int nSuccess = OTAPI_Wrap::Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strMessage);
+    int32_t nSuccess = OTAPI_Wrap::Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strMessage);
     switch (nSuccess)
     {
     case -1:
@@ -349,9 +349,9 @@ OT_UTILITY_OT int VerifyMsgTrnxSuccess(const string & SERVER_ID, const string & 
 //
 // This code was repeating a lot, so I just added a function for it.
 //
-OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strAttempt, const string & strResponse)
+OT_UTILITY_OT int32_t InterpretTransactionMsgReply(const string & SERVER_ID, const string & USER_ID, const string & ACCOUNT_ID, const string & strAttempt, const string & strResponse)
 {
-    int nMessageSuccess = VerifyMessageSuccess(strResponse);
+    int32_t nMessageSuccess = VerifyMessageSuccess(strResponse);
     if (-1 == nMessageSuccess)
     {
         OTAPI_Wrap::Output(0, "Message error: " + strAttempt + ".\n");
@@ -364,7 +364,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
         return 0;
     }
 
-    int nBalanceSuccess = VerifyMsgBalanceAgrmntSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strResponse);
+    int32_t nBalanceSuccess = VerifyMsgBalanceAgrmntSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strResponse);
     if (-1 == nBalanceSuccess)
     {
         OTAPI_Wrap::Output(0, "Balance agreement error: " + strAttempt + ".\n");
@@ -376,7 +376,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
         return 0;
     }
 
-    int nTransSuccess = VerifyMsgTrnxSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strResponse);
+    int32_t nTransSuccess = VerifyMsgTrnxSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, strResponse);
     if (-1 == nTransSuccess)
     {
         OTAPI_Wrap::Output(0, "Transaction error: " + strAttempt + ".\n");
@@ -395,7 +395,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //// Provides the functionality of the ? : operator.
 //// NOTE: the chai team have since added ? :, so this is deprecated now.
 //
-//OT_UTILITY_OT int ifB(the_expression, X, Y)
+//OT_UTILITY_OT int32_t ifB(the_expression, X, Y)
 //{
 //    if (!(VerifyBoolVal(the_expression)))
 //    {
@@ -429,7 +429,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTfourbool::four
 //
 //// ----------------------------
-//OT_UTILITY_OT int OTfourbool::OTfourbool()
+//OT_UTILITY_OT int32_t OTfourbool::OTfourbool()
 //{
 //    one = false;
 //    two = false;
@@ -437,7 +437,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    four = false;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTfourbool::OTfourbool(param_one, param_two, param_three, param_four)
+//OT_UTILITY_OT int32_t OTfourbool::OTfourbool(param_one, param_two, param_three, param_four)
 //{
 //    if (!VerifyBoolVal(param_one) || !VerifyBoolVal(param_two) || !VerifyBoolVal(param_three) || !VerifyBoolVal(param_four))
 //    {
@@ -455,13 +455,13 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTBool::value2
 //
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::OTBool()
+//OT_UTILITY_OT int32_t OTBool::OTBool()
 //{
 //    value = false;
 //    value2 = false;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::OTBool(param_value)
+//OT_UTILITY_OT int32_t OTBool::OTBool(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -471,14 +471,14 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value2 = false;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::getBooleanValue()
+//OT_UTILITY_OT int32_t OTBool::getBooleanValue()
 //{
 //
 //    return value;
 //
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::setBooleanValue(param_value)
+//OT_UTILITY_OT int32_t OTBool::setBooleanValue(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -487,14 +487,14 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value = param_value;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::getSecondValue()
+//OT_UTILITY_OT int32_t OTBool::getSecondValue()
 //{
 //
 //    return value2;
 //
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTBool::setSecondValue(param_value)
+//OT_UTILITY_OT int32_t OTBool::setSecondValue(param_value)
 //{
 //    if (!VerifyBoolVal(param_value))
 //    {
@@ -508,12 +508,12 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //attr OTInteger::value
 //
 //// ----------------------------
-//OT_UTILITY_OT int OTInteger::OTInteger()
+//OT_UTILITY_OT int32_t OTInteger::OTInteger()
 //{
 //    value = 0;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTInteger::OTInteger(param_value)
+//OT_UTILITY_OT int32_t OTInteger::OTInteger(param_value)
 //{
 //    if (!VerifyIntVal(param_value))
 //    {
@@ -522,7 +522,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //    value = param_value;
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTInteger::getIntegerValue()
+//OT_UTILITY_OT int32_t OTInteger::getIntegerValue()
 //{
 //    // Returning...
 //    //
@@ -531,7 +531,7 @@ OT_UTILITY_OT int InterpretTransactionMsgReply(const string & SERVER_ID, const s
 //
 //}
 //// ----------------------------
-//OT_UTILITY_OT int OTInteger::setIntegerValue(param_value)
+//OT_UTILITY_OT int32_t OTInteger::setIntegerValue(param_value)
 //{
 //    if (!VerifyIntVal(param_value))
 //    {
@@ -563,12 +563,12 @@ OT_UTILITY_OT void Utility::longDelay()
     OTAPI_Wrap::Sleep(delay_ms + 200);
 }
 
-OT_UTILITY_OT int Utility::getNbrTransactionCount()
+OT_UTILITY_OT int32_t Utility::getNbrTransactionCount()
 {
     return max_trans_dl;
 }
 
-OT_UTILITY_OT void Utility::setNbrTransactionCount(int new_trans_dl)
+OT_UTILITY_OT void Utility::setNbrTransactionCount(int32_t new_trans_dl)
 {
     max_trans_dl = new_trans_dl;
 }
@@ -584,7 +584,7 @@ OT_UTILITY_OT void Utility::setLastReplyReceived(const string & strReply)
 }
 
 
-OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const string & nymID)
+OT_UTILITY_OT int32_t Utility::getNymboxLowLevel(const string & serverID, const string & nymID)
 {
     bool bWasSent = false;
     return getNymboxLowLevel(serverID, nymID, bWasSent);
@@ -595,18 +595,18 @@ OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const stri
 // (It cannot return 0;
 // Called by getAndProcessNymbox.
 //
-OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const string & nymID, bool & bWasSent)
+OT_UTILITY_OT int32_t Utility::getNymboxLowLevel(const string & serverID, const string & nymID, bool & bWasSent)
 {
     string strLocation = "Utility::getNymboxLowLevel";
 
     OTAPI_Wrap::FlushMessageBuffer();
     bWasSent = false;
 
-    int nRequestNum = OTAPI_Wrap::getNymbox(serverID, nymID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getNymbox(serverID, nymID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
     if (-2 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.);
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.);
     }
     if (-1 == nRequestNum)
     {
@@ -628,7 +628,7 @@ OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const stri
 
     // ***************************************************
     //
-    int nResult = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
+    int32_t nResult = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
 
     //      OTAPI_Wrap::Output(0, strLocation + ": receiveReplySuccessLowLevel: " + nResult + "\n");
 
@@ -658,7 +658,7 @@ OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const stri
     // it's already been removed from the sent buffer. So we leave it there for now.)
     //
 
-    //      int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(to_string(nRequestNum), serverID, nymID);
+    //      int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(to_string(nRequestNum), serverID, nymID);
     //
     //      if (nRemovedSentMsg < 1)
     //      {
@@ -674,14 +674,14 @@ OT_UTILITY_OT int Utility::getNymboxLowLevel(const string & serverID, const stri
 }
 
 
-OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nymID)
+OT_UTILITY_OT int32_t Utility::getNymbox(const string & serverID, const string & nymID)
 {
     bool bForceDownload = false;
     return getNymbox(serverID, nymID, bForceDownload);
 }
 
 
-OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nymID, const bool bForceDownload)
+OT_UTILITY_OT int32_t Utility::getNymbox(const string & serverID, const string & nymID, const bool bForceDownload)
 {
     string strLocation = "Utility::getNymbox";
 
@@ -711,7 +711,7 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
     // -- SECTION 1: "GET NYMBOX"
     //
     bool bWasMsgSent = false;
-    int nGetNymbox = getNymboxLowLevel(serverID, nymID, bWasMsgSent); // bWasMsgSent is output from this call.;
+    int32_t nGetNymbox = getNymboxLowLevel(serverID, nymID, bWasMsgSent); // bWasMsgSent is output from this call.;
     if (bWasMsgSent)
     {
         OTAPI_Wrap::Output(1, strLocation + ": FYI: we just sent a getNymboxLowLevel msg. RequestNum: " + to_string(nGetNymbox) + "\n");
@@ -727,7 +727,7 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
     {
         OTAPI_Wrap::Output(0, strLocation + ": FYI: this.getNymboxLowLevel returned -1. (Re-trying...)\n");
 
-        int nGetRequest = getRequestNumber(serverID, nymID);
+        int32_t nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymboxLowLevel failed, then I tried to resync with this.getRequestNumber and then that failed too. (I give up.)\n");
@@ -830,7 +830,7 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
 // NEW ONES:
 
 
-//public static int getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload,
+//public static int32_t getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload,
 //                                      var nRequestNumber, // nRequestNumber refers to a PREVIOUS msg (like a cash withdrawal) that had an error and then called this while trying to resync. (The caller will want to know whether it was found in the Nymbox.)
 //                                      OTBool bFoundNymboxItem,  // bFoundNymboxItem is OUTPUT bool, telling caller whether it was found.
 //                                      boolean bHarvestingForRetry, // bHarvestingForRetry is INPUT, in the case nRequestNumber needs to be harvested before a flush occurs.
@@ -865,7 +865,7 @@ OT_UTILITY_OT int Utility::getNymbox(const string & serverID, const string & nym
 
 //var nGetAndProcessNymbox = getAndProcessNymbox_8(serverID, nymID, bWasMsgSent, bForceDownload, nRequestNumber, bFoundNymboxItem, bHarvestingForRetry, the_foursome);
 
-OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload, const int nRequestNumber, bool & bFoundNymboxItem, const bool bHarvestingForRetry, const OTfourbool & bMsgFoursome)
+OT_UTILITY_OT int32_t Utility::getAndProcessNymbox_8(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload, const int32_t nRequestNumber, bool & bFoundNymboxItem, const bool bHarvestingForRetry, const OTfourbool & bMsgFoursome)
 {
     string strLocation = "Utility::getAndProcessNymbox";
 
@@ -930,7 +930,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
     // fails.
     //
 
-    int nGetNymbox = getNymbox(serverID, nymID, bForceDownload);
+    int32_t nGetNymbox = getNymbox(serverID, nymID, bForceDownload);
     if (!VerifyIntVal(nGetNymbox) || (nGetNymbox < 1))
     {
         OTAPI_Wrap::Output(0, strLocation + ": Failure: this.getNymbox returned: " + to_string(nGetNymbox) + "\n");
@@ -970,7 +970,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
     // nBoxType = 0 aka nymbox;
     //
 
-    int nBoxType = 0;
+    int32_t nBoxType = 0;
 
     bool bInsured = insureHaveAllBoxReceipts(serverID, nymID, nymID, nBoxType, nRequestNumber, bFoundNymboxItem);   // ***************************;
     if (VerifyBoolVal(bInsured) && bInsured)
@@ -995,7 +995,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
                 // FIRST, before trying to remove.
                 // (Might want different messages in either case.)
                 //
-                int nRemovedMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nRequestNumber), serverID, nymID);
+                bool nRemovedMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nRequestNumber), serverID, nymID);
                 OTAPI_Wrap::Output(2, strLocation + ": OT_API_RemoveSentMessage: (Found server reply in Nymbox. Removing local sent msg.) Request number: " + to_string(nRemovedMsg) + "\n");
             }
             else // We DIDN'T find it in the nymbox, so we can harvest it:
@@ -1014,7 +1014,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
                 {
                     OTAPI_Wrap::Output(0, strLocation + ": FYI: Harvesting transaction numbers from failed Msg attempt...\n");
 
-                    int nHarvested = OTAPI_Wrap::Msg_HarvestTransactionNumbers(strSentMsg, nymID,
+                    bool nHarvested = OTAPI_Wrap::Msg_HarvestTransactionNumbers(strSentMsg, nymID,
                         bHarvestingForRetry, // bHarvestingForRetry.
                         bMsgReplySuccess,    // bReplyWasSuccess,       // RECEIVED server reply: explicit success.
                         bMsgReplyFailure,    // bReplyWasFailure,       // RECEIVED server reply: explicit failure.
@@ -1023,7 +1023,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
                     OTAPI_Wrap::Output(0, strLocation + ": OT_API_Msg_HarvestTransactionNumbers: " + to_string(nHarvested) + "\n");
 
 
-                    int nRemovedMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nRequestNumber), serverID, nymID);
+                    bool nRemovedMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nRequestNumber), serverID, nymID);
                     OTAPI_Wrap::Output(2, strLocation + ": OT_API_RemoveSentMessage: " + to_string(nRemovedMsg) + "\n");
                 } // strSentMsg NOT null!
             }
@@ -1044,7 +1044,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
         // all those other server messages send a copy of that hash back, not just the getNymbox msg.)
         //
         //
-        //            void OTAPI_Wrap::FlushSentMessages(const int bHarvestingForRetry, // bHarvestingForRetry is actually OT_BOOL
+        //            void OTAPI_Wrap::FlushSentMessages(const int32_t bHarvestingForRetry, // bHarvestingForRetry is actually OT_BOOL
         //                              const char * SERVER_ID,
         //                              const char * USER_ID,
         //                              const char * THE_NYMBOX);
@@ -1080,10 +1080,10 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
             OTAPI_Wrap::Output(0, strLocation + ": Error while trying to flush sent messages: Failed loading Nymbox for nym: " + nymID + "\n");
         }
 
-        int nMsgSentRequestNumOut = -1;
-        int nReplySuccessOut = -1;
-        int nBalanceSuccessOut = -1;
-        int nTransSuccessOut = -1;
+        int32_t nMsgSentRequestNumOut = -1;
+        int32_t nReplySuccessOut = -1;
+        int32_t nBalanceSuccessOut = -1;
+        int32_t nTransSuccessOut = -1;
 
 
         // PROCESS NYMBOX
@@ -1096,7 +1096,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
         // >0 If the Transaction status (from the server reply) is SUCCESS, then this function
         //    returns the REQUEST NUMBER from when it was originally sent.
 
-        int nProcess = processNymbox(serverID, nymID,
+        int32_t nProcess = processNymbox(serverID, nymID,
             bWasMsgSent,
 
             nMsgSentRequestNumOut,
@@ -1139,9 +1139,9 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
         //
 
         nProcess = nMsgSentRequestNumOut; // Sometimes this could be 0 still, so we fix it here.;
-        int nReplySuccess = nReplySuccessOut;
-        int nTransSuccess = nTransSuccessOut;
-        int nBalanceSuccess = nBalanceSuccessOut;
+        int32_t nReplySuccess = nReplySuccessOut;
+        int32_t nTransSuccess = nTransSuccessOut;
+        int32_t nBalanceSuccess = nBalanceSuccessOut;
 
 
         /*
@@ -1203,7 +1203,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
         // meantime, it allows us to store a record of EXACTLY which messages were MISSED.
         //
 
-        int nHarvested = -1;
+        int32_t nHarvested = -1;
 
         if (bProcessAllSuccess)
         {
@@ -1214,7 +1214,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
             // (Thus I RemoveSentMessage for the processNymbox message, since
             // I'm totally done with it now.)
             //
-            //         int nRemoved = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nProcess), serverID, nymID);
+            //         int32_t nRemoved = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nProcess), serverID, nymID);
 
             // NOTE: The above call is unnecessary, since a successful process means
             // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -1246,7 +1246,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
                     // since the server clearly already processed this processNymbox
                     // transaction, since I have a reply to it already sitting in my Nymbox.
                     //
-                    //                       int nRemoved = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nProcess), serverID, nymID);
+                    //                       int32_t nRemoved = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nProcess), serverID, nymID);
                     //
                     // NOTE: The above call is unnecessary, since a successful process means
                     // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -1286,7 +1286,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
 
                         OTAPI_Wrap::Output(0, strLocation + ": OT_API_Msg_HarvestTransactionNumbers: " + to_string(nHarvested) + "\n");
 
-                        int nRemovedProcessNymboxMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nProcess), serverID, nymID);
+                        bool nRemovedProcessNymboxMsg = OTAPI_Wrap::RemoveSentMessage(int64_t(nProcess), serverID, nymID);
 
                         OTAPI_Wrap::Output(2, strLocation + ": OT_API_RemoveSentMessage: " + to_string(nRemovedProcessNymboxMsg) + "\n");
                     } // strSentProcessNymboxMsg NOT null!
@@ -1359,7 +1359,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_8(const string & serverID, const 
 
 //  def Utility::getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload)
 //
-OT_UTILITY_OT int Utility::getAndProcessNymbox_4(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload)
+OT_UTILITY_OT int32_t Utility::getAndProcessNymbox_4(const string & serverID, const string & nymID, bool & bWasMsgSent, const bool bForceDownload)
 {
     string strLocation = "Utility::getAndProcessNymbox_4";
 
@@ -1378,7 +1378,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_4(const string & serverID, const 
     //   bool bMsgTransSuccess5 = false;
     //   bool bMsgTransFailure5 = false;
 
-    int nRequestNumber = 0;
+    int32_t nRequestNumber = 0;
     bool bHarvestingForRetry = false;
     OTfourbool the_foursome(false, false, false, false);
     bool bFoundNymboxItem = false; // bFoundNymboxItem is output bool, telling caller whether it was found.;
@@ -1387,13 +1387,13 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_4(const string & serverID, const 
 }
 
 
-//  public static int getNymboxLowLevel(String serverID, String nymID)
-//  public static int receiveNymboxLowLevel(String serverID, String nymID, var nRequestNum)
-//  public static int processNymboxLowLevel(String serverID, String nymID) {
+//  public static int32_t getNymboxLowLevel(String serverID, String nymID)
+//  public static int32_t receiveNymboxLowLevel(String serverID, String nymID, var nRequestNum)
+//  public static int32_t processNymboxLowLevel(String serverID, String nymID) {
 
 
 //  def Utility::getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent)
-OT_UTILITY_OT int Utility::getAndProcessNymbox_3(const string & serverID, const string & nymID, bool & bWasMsgSent)
+OT_UTILITY_OT int32_t Utility::getAndProcessNymbox_3(const string & serverID, const string & nymID, bool & bWasMsgSent)
 {
     bool bForceDownload = false;
     return getAndProcessNymbox_4(serverID, nymID, bWasMsgSent, bForceDownload);
@@ -1410,7 +1410,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_3(const string & serverID, const 
 // >0 If the Transaction status (from the server reply) is SUCCESS, then this function
 //    returns the REQUEST NUMBER from when it was originally sent.
 //
-//public static int processNymbox(String    serverID, String nymID,
+//public static int32_t processNymbox(String    serverID, String nymID,
 //                                OTBool    bWasMsgSent,
 //                                // --------------------------------
 //                                OTInteger nMsgSentRequestNumOut,
@@ -1418,7 +1418,7 @@ OT_UTILITY_OT int Utility::getAndProcessNymbox_3(const string & serverID, const 
 //                                OTInteger nBalanceSuccessOut,
 //                                OTInteger nTransSuccessOut)
 
-OT_UTILITY_OT int Utility::processNymbox(const string & serverID, const string & nymID, bool & bWasMsgSent, int & nMsgSentRequestNumOut, int & nReplySuccessOut, int & nBalanceSuccessOut, int & nTransSuccessOut)
+OT_UTILITY_OT int32_t Utility::processNymbox(const string & serverID, const string & nymID, bool & bWasMsgSent, int32_t & nMsgSentRequestNumOut, int32_t & nReplySuccessOut, int32_t & nBalanceSuccessOut, int32_t & nTransSuccessOut)
 {
     bWasMsgSent = false;
     string strLocation = "Utility::processNymbox";
@@ -1439,7 +1439,7 @@ OT_UTILITY_OT int Utility::processNymbox(const string & serverID, const string &
     // Next, we have to make sure we have all the BOX RECEIPTS downloaded
     // for this Nymbox.
 
-    int nProcess = sendProcessNymboxLowLevel(serverID, nymID); // <===================== SEND PROCESS NYMBOX!!;
+    int32_t nProcess = sendProcessNymboxLowLevel(serverID, nymID); // <===================== SEND PROCESS NYMBOX!!;
     if (-1 == nProcess)
     {
         OTAPI_Wrap::Output(0, strLocation + "(2): error (-1), when calling sendProcessNymboxLowLevel. (It couldn't send. I give up.)\n");
@@ -1475,9 +1475,9 @@ OT_UTILITY_OT int Utility::processNymbox(const string & serverID, const string &
     // ReceiveReplyLowLevel returns null unless there was a string returned.
     // So we can directly check it for success...
 
-    int nReplySuccess = VerifyMessageSuccess(strReplyProcess); // sendProcessNymboxLowLevel;
-    int nTransSuccess = -1;
-    int nBalanceSuccess = -1;;
+    int32_t nReplySuccess = VerifyMessageSuccess(strReplyProcess); // sendProcessNymboxLowLevel;
+    int32_t nTransSuccess = -1;
+    int32_t nBalanceSuccess = -1;;
     if (nReplySuccess > 0) // If message was success, then let's see if the transaction was, too.
     {
         nBalanceSuccess = OTAPI_Wrap::Message_GetBalanceAgreementSuccess(serverID, nymID, nymID, strReplyProcess); // the processNymbox transaction.;
@@ -1510,14 +1510,14 @@ OT_UTILITY_OT int Utility::processNymbox(const string & serverID, const string &
 // OR returns -1 if there was an error.
 //
 // DONE
-OT_UTILITY_OT int Utility::sendProcessNymboxLowLevel(const string & serverID, const string & nymID) // bWasSent is an output param allowing to return whether;
+OT_UTILITY_OT int32_t Utility::sendProcessNymboxLowLevel(const string & serverID, const string & nymID) // bWasSent is an output param allowing to return whether;
 {
     string strLocation = "Utility::sendProcessNymboxLowLevel";
 
     // Send message..
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::processNymbox(serverID, nymID);
+    int32_t nRequestNum = OTAPI_Wrap::processNymbox(serverID, nymID);
     if (-1 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": Failure sending. OT_API_processNymbox() returned -1. \n");
@@ -1547,7 +1547,7 @@ OT_UTILITY_OT int Utility::sendProcessNymboxLowLevel(const string & serverID, co
 //  0 for server reply of failure,
 //  1 for server reply of success
 //
-OT_UTILITY_OT int Utility::receiveReplySuccessLowLevel(const string & serverID18, const string & nymID, const int nRequestNumber7, const string & IN_FUNCTION)
+OT_UTILITY_OT int32_t Utility::receiveReplySuccessLowLevel(const string & serverID18, const string & nymID, const int32_t nRequestNumber7, const string & IN_FUNCTION)
 {
     string strReply = ReceiveReplyLowLevel(serverID18, nymID, nRequestNumber7, "receiveReplySuccessLowLevel: " + IN_FUNCTION); // <=============== Here we RECEIVE the REPLY...
 
@@ -1569,7 +1569,7 @@ OT_UTILITY_OT int Utility::receiveReplySuccessLowLevel(const string & serverID18
 // "success=true" or "success=false" message, the caller will have to figure
 // that out for himself.)
 //
-OT_UTILITY_OT string Utility::ReceiveReplyLowLevel(const string & serverID17, const string & nymID, const int nRequestNumber8, const string & IN_FUNCTION)
+OT_UTILITY_OT string Utility::ReceiveReplyLowLevel(const string & serverID17, const string & nymID, const int32_t nRequestNumber8, const string & IN_FUNCTION)
 {
     delay();
     setLastReplyReceived("");
@@ -1592,7 +1592,7 @@ OT_UTILITY_OT string Utility::ReceiveReplyLowLevel(const string & serverID17, co
 }
 
 
-OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const string & nymID)
+OT_UTILITY_OT int32_t Utility::getRequestNumber(const string & serverID, const string & nymID)
 {
     bool bWasSent = false;
     return getRequestNumber(serverID, nymID, bWasSent);
@@ -1609,13 +1609,13 @@ OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const strin
 // return value;
 // server reply, AND its status.
 // DONE
-OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is an output param allowing to return whether;
+OT_UTILITY_OT int32_t Utility::getRequestNumber(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is an output param allowing to return whether;
 {
     string strLocation = "Utility::getRequestNumber";
 
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nResult = OTAPI_Wrap::getRequest(serverID, nymID);
+    int32_t nResult = OTAPI_Wrap::getRequest(serverID, nymID);
     if (-1 == nResult)  // if error -1, that means it DIDN'T SEND (error)
     {
         OTAPI_Wrap::Output(0, strLocation + ": Failed to send getRequest message due to error.\n");
@@ -1635,7 +1635,7 @@ OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const strin
     bWasSent = true;
     // ***************************************************
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nResult, strLocation);
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nResult, strLocation);
     //      OTAPI_Wrap::Output(0, "IN getRequestNumber " + getLastReplyReceived());
 
     // BY this point, we definitely have the request number in nResult, which means
@@ -1659,7 +1659,7 @@ OT_UTILITY_OT int Utility::getRequestNumber(const string & serverID, const strin
 
 
 // called by getBoxReceiptWithErrorCorrection   DONE
-OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum, bool & bWasSent) // bWasSent is OTBool
+OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const string & nymID, const string & accountID, const int32_t nBoxType, const int64_t strTransactionNum, bool & bWasSent) // bWasSent is OTBool
 {
     string strLocation = "Utility::getBoxReceiptLowLevel";
 
@@ -1667,11 +1667,11 @@ OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const
 
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::getBoxReceipt(serverID, nymID, accountID, nBoxType, strTransactionNum); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getBoxReceipt(serverID, nymID, accountID, nBoxType, strTransactionNum); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
     if (-2 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return false; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.);
+        return false; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.);
     }
     if (-1 == nRequestNum)
     {
@@ -1697,10 +1697,10 @@ OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const
     //
     // ***************************************************
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
     OTAPI_Wrap::Output(1, strLocation + ": nRequestNum: " + to_string(nRequestNum) + " /  nReturn: " + to_string(nReturn) + "\n");
 
-    //     int nRemovedGetBoxReceipt = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedGetBoxReceipt = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      // NOTE: The above call is unnecessary, since a successful reply means
     //      // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -1722,7 +1722,7 @@ OT_UTILITY_OT bool Utility::getBoxReceiptLowLevel(const string & serverID, const
 }
 
 // called by insureHaveAllBoxReceipts     DONE
-OT_UTILITY_OT bool Utility::getBoxReceiptWithErrorCorrection(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int64_t strTransactionNum) // nBoxType is int
+OT_UTILITY_OT bool Utility::getBoxReceiptWithErrorCorrection(const string & serverID, const string & nymID, const string & accountID, const int32_t nBoxType, const int64_t strTransactionNum) // nBoxType is int32_t
 {
     string strLocation = "Utility::getBoxReceiptWithErrorCorrection";
 
@@ -1754,15 +1754,15 @@ OT_UTILITY_OT bool Utility::getBoxReceiptWithErrorCorrection(const string & serv
 // not necessarily loaded into memory. (Yet.)
 // NOTE: If nBoxType is 0 (nymbox) then pass nymID as the accountID as well!
 //
-OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType) // nBoxType is int
+OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int32_t nBoxType) // nBoxType is int32_t
 {
     bool bFoundIt = false;
-    int nRequestSeeking = 0;
+    int32_t nRequestSeeking = 0;
     return insureHaveAllBoxReceipts(serverID, nymID, accountID, nBoxType, nRequestSeeking, bFoundIt);
 }
 
 
-OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int nBoxType, const int nRequestSeeking, bool & bFoundIt)
+OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, const string & nymID, const string & accountID, const int32_t nBoxType, const int32_t nRequestSeeking, bool & bFoundIt)
 {
     string strLocation = "Utility::insureHaveAllBoxReceipts";
 
@@ -1809,10 +1809,10 @@ OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, co
     //
     bool bReturnValue = true; // Assuming an empty box, we return success;
 
-    int nReceiptCount = OTAPI_Wrap::Ledger_GetCount(serverID, nymID, accountID, ledger);
+    int32_t nReceiptCount = OTAPI_Wrap::Ledger_GetCount(serverID, nymID, accountID, ledger);
     if (VerifyIntVal(nReceiptCount) && (nReceiptCount > 0))
     {
-        for (int i_loop = 0; i_loop < nReceiptCount; ++i_loop) // ******** FOR LOOP ****************
+        for (int32_t i_loop = 0; i_loop < nReceiptCount; ++i_loop) // ******** FOR LOOP ****************
         {
             int64_t lTransactionNum = OTAPI_Wrap::Ledger_GetTransactionIDByIndex(serverID, nymID, accountID, ledger, i_loop);
             if (VerifyIntVal(lTransactionNum) && (lTransactionNum != -1))
@@ -1997,13 +1997,13 @@ OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, co
 static void getBoxReceipt(  const std::string SERVER_ID,
 const std::string USER_ID,
 const std::string ACCT_ID, // If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-const int  nBoxType, // 0/nymbox, 1/inbox, 2/outbox
+const int32_t  nBoxType, // 0/nymbox, 1/inbox, 2/outbox
 const std::string TRANSACTION_NUMBER);
 
 static bool DoesBoxReceiptExist(const std::string SERVER_ID,
 const std::string USER_ID,
 const std::string ACCT_ID, // If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-const int  nBoxType, // 0/nymbox, 1/inbox, 2/outbox
+const int32_t  nBoxType, // 0/nymbox, 1/inbox, 2/outbox
 const std::string TRANSACTION_NUMBER);
 */
 // If the transaction number requests fail, this function will try to resync
@@ -2013,18 +2013,18 @@ const std::string TRANSACTION_NUMBER);
 // even if your request number IS out of sync. Sorry :-)
 //
 
-OT_UTILITY_OT int Utility::getTransactionNumLowLevel(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is OTBool
+OT_UTILITY_OT int32_t Utility::getTransactionNumLowLevel(const string & serverID, const string & nymID, bool & bWasSent) // bWasSent is OTBool
 {
     string strLocation = "Utility::getTransactionNumLowLevel";
 
     OTAPI_Wrap::FlushMessageBuffer();
     bWasSent = false;
 
-    int nRequestNum = OTAPI_Wrap::getTransactionNumber(serverID, nymID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getTransactionNumber(serverID, nymID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
     if (-2 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     }
     if (-1 == nRequestNum)
     {
@@ -2046,7 +2046,7 @@ OT_UTILITY_OT int Utility::getTransactionNumLowLevel(const string & serverID, co
 
     // ***************************************************
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getTransactionNum");
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getTransactionNum");
     //      OTAPI_Wrap::Output(0, "IN getTransactionNum " + getLastReplyReceived());
 
     // BY this point, we definitely have the request number in nResult, which means
@@ -2077,7 +2077,7 @@ OT_UTILITY_OT int Utility::getTransactionNumLowLevel(const string & serverID, co
     //
     //
     //
-    //     int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      if (nRemovedSentMsg < 1)
     //      {
@@ -2104,7 +2104,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
     string strLocation = "Utility::getTransactionNumbers";
 
     bool bWasSent = false;
-    int nGetNumbers = -1;
+    int32_t nGetNumbers = -1;
     if (bForceFirstCall)
     {
         nGetNumbers = getTransactionNumLowLevel(serverID, nymID, bWasSent); // <============ FIRST TRY;
@@ -2117,7 +2117,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
         // Because it was successful, we have to now SIGN FOR those numbers we requested.
         //
         bool bForceDownload = true;
-        int nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
+        int32_t nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
 
         if ((bWasSent && (1 == nProcess)) || (!bWasSent && (0 == nProcess)))
         {
@@ -2150,7 +2150,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
             OTAPI_Wrap::Output(0, strLocation + ": FYI: getTransactionNumLowLevel did send, but returned failure (0). (Re-trying...)\n");
         }
 
-        int nGetRequest = getRequestNumber(serverID, nymID);
+        int32_t nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Failure: getTransactionNumLowLevel failed, then I tried to resync with getRequestNumber and then that failed too. (I give up.)\n");
@@ -2162,7 +2162,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
         bool bFoundNymboxItem = false;
 
         bool bForceDownload = true;
-        int nProcessNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
+        int32_t nProcessNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
 
         //          if ( (!bWasProcessSent && ((nProcessNymbox  < 0) || (nProcessNymbox  > 1))) ||
         //               ( bWasProcessSent && (nProcessNymbox  != 1)) ) // -1 error, 0 failed (harvesting success), 1 success, >1 failed (harvesting NOT done) RequestNum is returned.
@@ -2205,7 +2205,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
         if ((bWasSent && (nGetNumbers >= 1)) || (!bWasSent && (nGetNumbers == 0)))
         {
             bool bForceDownload = true;
-            int nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
+            int32_t nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
 
             //              if ( ( bWasSent && (1 == nProcess)) ||
             //                   (!bWasSent && (0 == nProcess)) )
@@ -2235,7 +2235,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
 
             bool bForceDownload = true;
 
-            int nLast = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
+            int32_t nLast = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
             //              if (
             //                  ((!bWasProcessSent) && ((nLast  < 0) || (nLast  > 1))) ||
             //                  ((true  == bWasProcessSent) &&  (nLast != 1))
@@ -2271,7 +2271,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
             if ((bWasSent && (nGetNumbers >= 1)) || ((!bWasSent && (nGetNumbers == 0))))
             {
                 bool bForceDownload = true;
-                int nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
+                int32_t nProcess = getAndProcessNymbox_4(serverID, nymID, bWasSent, bForceDownload); // bForceDownload=true;
 
                 //                  if ( ( bWasSent && (1 == nProcess)) ||
                 //                       (!bWasSent && (0 == nProcess)) )
@@ -2342,7 +2342,7 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
         bool bFoundNymboxItem = false;
 
         bool bForceDownload = true;
-        int nGetNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
+        int32_t nGetNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
 
         //          if ( ((!bWasProcessSent) && ((nGetNymbox  < 0) || (nGetNymbox  > 1))) ||
         //               ((true  == bWasProcessSent) && (nGetNymbox != 1)) ) // -1 error, 0 failed (harvesting success), 1 success, >1 failed (harvesting NOT done) RequestNum is returned.
@@ -2407,7 +2407,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles_old(const string & serverID, co
     bool bWasSentInbox = false;
     bool bWasSentAccount = false;
 
-    int nGetInboxAcct = getInboxAccount_old(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
+    int32_t nGetInboxAcct = getInboxAccount_old(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
 
     // if we received an error state, and the "getAccount" message wasn't even sent,
     // then no point doing a bunch of retries -- it failed.
@@ -2429,14 +2429,14 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles_old(const string & serverID, co
     {
         OTAPI_Wrap::Output(0, strLocation + ": getInboxAccount_old failed. (Trying one more time...)\n");
 
-        int nGetRequest = getRequestNumber(serverID, nymID);
+        int32_t nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Failure: getInboxAccount_old failed, then I tried to resync with getRequestNumber and then that failed too. (I give up.)\n");
             return false;
         }
 
-        int nSecondtry = getInboxAccount_old(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
+        int32_t nSecondtry = getInboxAccount_old(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
         if ((-1 == nSecondtry) && !bWasSentAccount)
         {
             // if we received an error state, and the "getAccount" message wasn't even sent,
@@ -2463,7 +2463,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles_old(const string & serverID, co
 
     bool bWasSentOutbox = false;
 
-    int nGetOutbox = getOutboxLowLevel(serverID, nymID, accountID, bWasSentOutbox, bForceDownload);
+    int32_t nGetOutbox = getOutboxLowLevel(serverID, nymID, accountID, bWasSentOutbox, bForceDownload);
 
     if (-1 == nGetOutbox && !bWasSentOutbox)
     {
@@ -2485,14 +2485,14 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles_old(const string & serverID, co
     {
         OTAPI_Wrap::Output(0, strLocation + ": getOutboxLowLevel failed. (Trying one more time...)\n");
 
-        int nGetRequest = getRequestNumber(serverID, nymID);
+        int32_t nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Failure: getOutboxLowLevel failed, then I tried to resync with getRequestNumber and then that failed too. (I give up.)\n");
             return false;
         }
 
-        int nSecondtry = getOutboxLowLevel(serverID, nymID, accountID, bWasSentOutbox, bForceDownload);
+        int32_t nSecondtry = getOutboxLowLevel(serverID, nymID, accountID, bWasSentOutbox, bForceDownload);
         if ((-1 == nSecondtry) && !bWasSentOutbox)
         {
             // if we received an error state, and the "getOutbox" message wasn't even sent,
@@ -2549,7 +2549,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const 
     // This is a new version of getInboxAccount that downloads ALL
     // THREE files (account/inbox/outbox) in a single server message.
     //
-    int nGetInboxAcct = getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
+    int32_t nGetInboxAcct = getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
 
     // if we received an error state, and the "getAccountFiles" message wasn't even sent,
     // then no point doing a bunch of retries -- it failed.
@@ -2575,7 +2575,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const 
     {
         OTAPI_Wrap::Output(0, strLocation + ": getInboxAccount failed. (Trying one more time...)\n");
 
-        int nGetRequest = getRequestNumber(serverID, nymID);
+        int32_t nGetRequest = getRequestNumber(serverID, nymID);
         if (1 != nGetRequest)
         {
             OTAPI_Wrap::Output(0, strLocation + ": Failure: getInboxAccount failed, then I tried to resync with getRequestNumber and then that failed too. (I give up.)\n");
@@ -2600,7 +2600,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const 
 
         // We sync'd the request number, so now we try the function again...
         //
-        int nSecondtry = getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
+        int32_t nSecondtry = getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
 
         if ((-1 == nSecondtry) && !bWasSentAccount)
         {
@@ -2631,7 +2631,7 @@ OT_UTILITY_OT bool Utility::getIntermediaryFiles(const string & serverID, const 
 
 // NOTE: This is a new version that uses the new server message, getAccountFiles
 // (Which combines getAccount, getInbox, and getOutbox into a single message.)
-OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
+OT_UTILITY_OT int32_t Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
 {
     string strLocation = "Utility::getInboxAccount";
 
@@ -2649,11 +2649,11 @@ OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string
     //
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::getAccountFiles(serverID, nymID, accountID); // <===== ATTEMPT TO SEND MESSAGE;
+    int32_t nRequestNum = OTAPI_Wrap::getAccountFiles(serverID, nymID, accountID); // <===== ATTEMPT TO SEND MESSAGE;
     if (-2 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     }
     if (-1 == nRequestNum)
     {
@@ -2679,7 +2679,7 @@ OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string
     //  0 for reply: failure
     //  1 for reply: success
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getInboxAccount"); // <============ RETURN VALUE;
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getInboxAccount"); // <============ RETURN VALUE;
     if (nReturn < 0) // error
     {
         OTAPI_Wrap::Output(0, strLocation + ": Error in getAccountFiles: " + to_string(nReturn) + ".  (I give up.)\n");
@@ -2694,7 +2694,7 @@ OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string
     // Let's go ahead, in this case, and remove that now:
     //
 
-    //     int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      // NOTE: The above call is unnecessary, since a successful process means
     //      // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -2733,13 +2733,13 @@ OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string
 // Same as the above function, except you only have to pass the accountID.
 // (instead of 3 IDs...)
 //
-OT_UTILITY_OT int Utility::getInboxOutboxAccount(const string & accountID)
+OT_UTILITY_OT bool Utility::getInboxOutboxAccount(const string & accountID)
 {
     bool bForceDownload = false;
     return getInboxOutboxAccount(accountID, bForceDownload);
 }
 
-OT_UTILITY_OT int Utility::getInboxOutboxAccount(const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
+OT_UTILITY_OT bool Utility::getInboxOutboxAccount(const string & accountID, const bool bForceDownload) // booleanbForceDownload = false;
 {
     string strLocation = "Utility::getInboxOutboxAccount";
 
@@ -2776,14 +2776,14 @@ OT_UTILITY_OT int Utility::getInboxOutboxAccount(const string & accountID, const
 // versions in separate files. These are retrieved individually from the server after the inbox itself
 // is, and then each is verified against a hash kept inside its abbreviated version.)
 // DONE
-OT_UTILITY_OT int Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount)
+OT_UTILITY_OT int32_t Utility::getInboxAccount(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount)
 {
     bool bForceDownload = false;
     return getInboxAccount(serverID, nymID, accountID, bWasSentInbox, bWasSentAccount, bForceDownload);
 }
 
 // DEPRECATED
-OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
+OT_UTILITY_OT int32_t Utility::getInboxAccount_old(const string & serverID, const string & nymID, const string & accountID, bool & bWasSentInbox, bool & bWasSentAccount, const bool bForceDownload) //bForceDownload=false
 {
     string strLocation = "Utility::getInboxAccount_old";
 
@@ -2801,12 +2801,12 @@ OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const st
     //
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::getAccount(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getAccount(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
 
     if ((-2) == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     }
     if (-1 == nRequestNum)
     {
@@ -2831,7 +2831,7 @@ OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const st
     //  0 for reply: failure
     //  1 for reply: success
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getInboxAccount"); // <============ RETURN VALUE;
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, "getInboxAccount"); // <============ RETURN VALUE;
 
     //      OTAPI_Wrap::Output(0, "IN getInboxAccount " + getLastReplyReceived());
 
@@ -2843,7 +2843,7 @@ OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const st
     // Let's go ahead, in this case, and remove that now:
     //
 
-    //     int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      // NOTE: The above call is unnecessary, since a successful process means
     //      // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -2867,7 +2867,7 @@ OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const st
         return nReturn;
     }
 
-    int nReturn2 = getInboxLowLevel(serverID, nymID, accountID, bWasSentInbox, bForceDownload);
+    int32_t nReturn2 = getInboxLowLevel(serverID, nymID, accountID, bWasSentInbox, bForceDownload);
 
     // If it wasn't sent, and 0 was returned, that means
     // no error: we already have the latest inbox. (Nothing done.)
@@ -2893,14 +2893,14 @@ OT_UTILITY_OT int Utility::getInboxAccount_old(const string & serverID, const st
 //  bWasSent gets set to TRUE once the message is confirmed as sent.
 //
 // DEPRECATED
-OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
+OT_UTILITY_OT int32_t Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
 {
     bool bForceDownload = false;
     return getInboxLowLevel(serverID, nymID, accountID, bWasSent, bForceDownload);
 }
 
 // DEPRECATED
-OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
+OT_UTILITY_OT int32_t Utility::getInboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
 {
     string strLocation = "Utility::getInboxLowLevel";
 
@@ -2943,12 +2943,12 @@ OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const strin
     //
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::getInbox(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getInbox(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
 
     if ((-2) == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     }
     if (-1 == nRequestNum) // if the requestNumber returned by the send-attempt is -1, that means it DIDN'T SEND (error)
     {
@@ -2971,7 +2971,7 @@ OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const strin
     // ***************************************************
     //
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
     //      OTAPI_Wrap::Output(0, "IN getInboxLowLevel " + getLastReplyReceived() + "\n");
 
     bool bInbox = 1 == nReturn;
@@ -2982,7 +2982,7 @@ OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const strin
     // Let's go ahead, in this case, and remove that now:
     //
 
-    //     int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      // NOTE: The above call is unnecessary, since a successful process means
     //      // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -2997,7 +2997,7 @@ OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const strin
     // Now let's make sure we have all the box receipts for this outbox.
     // (They will be needed when it is used for something.)
     //
-    int nBoxType = 1;
+    int32_t nBoxType = 1;
     if (bInbox && !insureHaveAllBoxReceipts(serverID, nymID, accountID, nBoxType)) // <===== nBoxType = 1 aka INBOX;
     {
         OTAPI_Wrap::Output(0, strLocation + ": getInbox succeeded, but then insureHaveAllBoxReceipts failed. (I give up.)\n");
@@ -3017,15 +3017,15 @@ OT_UTILITY_OT int Utility::getInboxLowLevel(const string & serverID, const strin
 //  bWasSent gets set to TRUE once the message is confirmed as sent.
 //
 // DEPRECATED
-OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
+OT_UTILITY_OT int32_t Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent)
 {
     bool bForceDownload = false;
     return getOutboxLowLevel(serverID, nymID, accountID, bWasSent, bForceDownload);
 }
 
 // DEPRECATED
-//public static int getOutboxLowLevel(String serverID, String nymID, String accountID, OTBool bWasSent, boolean bForce) // bForce defaults to FALSE
-OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
+//public static int32_t getOutboxLowLevel(String serverID, String nymID, String accountID, OTBool bWasSent, boolean bForce) // bForce defaults to FALSE
+OT_UTILITY_OT int32_t Utility::getOutboxLowLevel(const string & serverID, const string & nymID, const string & accountID, bool & bWasSent, const bool bForce) // bForce defaults to FALSE
 {
     bWasSent = false;
 
@@ -3066,11 +3066,11 @@ OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const stri
     //
     OTAPI_Wrap::FlushMessageBuffer();
 
-    int nRequestNum = OTAPI_Wrap::getOutbox(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
+    int32_t nRequestNum = OTAPI_Wrap::getOutbox(serverID, nymID, accountID); // <===== ATTEMPT TO SEND THE MESSAGE HERE...;
     if (-2 == nRequestNum)
     {
         OTAPI_Wrap::Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n");
-        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        return -1; // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
     }
     if (-1 == nRequestNum) // if the requestNumber returned by the send-attempt is -1, that means it DIDN'T SEND (error)
     {
@@ -3093,7 +3093,7 @@ OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const stri
     // ***************************************************
     //
     //
-    int nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
+    int32_t nReturn = receiveReplySuccessLowLevel(serverID, nymID, nRequestNum, strLocation);
     //      OTAPI_Wrap::Output(0, "IN getOutboxLowLevel " + getLastReplyReceived());
 
     bool bOutbox = 1 == nReturn;
@@ -3104,7 +3104,7 @@ OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const stri
     // Let's go ahead, in this case, and remove that now:
     //
 
-    //     int nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
+    //     int32_t nRemovedSentMsg = OTAPI_Wrap::RemoveSentMessage(Integer.toString(nRequestNum), serverID, nymID);
     //
     //      // NOTE: The above call is unnecessary, since a successful process means
     //      // we already received the successful server reply, and OT's "ProcessServerReply"
@@ -3121,7 +3121,7 @@ OT_UTILITY_OT int Utility::getOutboxLowLevel(const string & serverID, const stri
     // Now let's make sure we have all the box receipts for this outbox.
     // (They will be needed when it is used for something.)
     //
-    int nBoxType = 2;
+    int32_t nBoxType = 2;
     if (bOutbox && !insureHaveAllBoxReceipts(serverID, nymID, accountID, nBoxType)) // <===== nBoxType = 2 aka OUTBOX;
     {
         OTAPI_Wrap::Output(0, strLocation + ": getOutbox succeeded, but then insureHaveAllBoxReceipts failed. (I give up.)\n");

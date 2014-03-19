@@ -3,7 +3,7 @@
 
 TEST_MULTI(insure_enough_nums)
 {
-	int returnValue = true;
+	bool returnValue = true;
 
 	EXPECT_MULTI_RETURN(2, 0, GetNym_TransactionNumCount(SERVER_ID, NYM_ID));
 
