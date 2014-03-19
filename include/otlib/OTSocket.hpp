@@ -144,13 +144,16 @@
 #include "tinythread.hpp"
 
 
-#if defined(OPENTXS_HAVE_ZMQ_HPP) || defined(_WIN32)
+#if defined(OPENTXS_TRANSPORT_ZMQ)
+#ifndef OT_ZMQ_2_MODE
+#define OT_ZMQ_2_MODE
+#endif
+
+#elif defined(OPENTXS_TRANSPORT_ZMQ4) || defined(_WIN32)
 #ifndef OT_ZMQ_4_MODE
 #define OT_ZMQ_4_MODE
 #endif
 #endif
-
-
 
 
 

@@ -922,16 +922,6 @@ bool OT_API::LoadWallet()
 // use your own transport mechanism instead of the xmlrpc in this example.
 // Of course, the server would also have to support this transport layer...
 
-#if defined(OT_ZMQ_MODE)
-
-// If you build in tcp/ssl mode, this file will build even if you don't have this library.
-// But if you build in xml/rpc/http mode, 
-//#ifdef _WIN32
-//#include "timxmlrpc.h" // XmlRpcC4Win
-//#else
-//#include "XmlRpc.h"  // xmlrpcpp
-//using namespace XmlRpc;
-//#endif
 
 // The Callback so OT can give us messages to send using our xmlrpc transport.
 // Whenever OT needs to pop a message on over to the server, it calls this so we
@@ -1075,7 +1065,7 @@ bool OT_API::TransportFunction(OTServerContract & theServerContract, OTEnvelope 
 
 }
 
-#endif  // (OT_ZMQ_MODE)
+
 // -------------------------------------------------------------------------
 
 
@@ -7965,109 +7955,6 @@ bool OT_API::HaveAlreadySeenReply(OTIdentifier & SERVER_ID, OTIdentifier & USER_
 
 
 
-
-// NOTE: This is only for Message->TCP->SSL mode, NOT for Message->XmlRpc->HTTP mode...
-//
-// Eventually this connects to the server denoted by SERVER_ID
-// But for right now, it just connects to the first server in the list.
-// TODO: make it connect to the server ID instead of the first one in the list.
-//
-bool OT_API::ConnectServer(OTIdentifier & SERVER_ID, OTIdentifier	& USER_ID,
-						   OTString & strCA_FILE, OTString & strKEY_FILE, OTString & strKEY_PASSWORD)
-{
-	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
-	
-#if defined(OT_ZMQ_MODE)
-	OT_ASSERT_MSG(m_bInitialized, "OT_API::ConnectServer not necessary in ZMQ mode.");
-#endif
-	
-	// Wallet, after loading, should contain a list of server
-	// contracts. Let's pull the hostname and port out of
-	// the first contract, and connect to that server.
-	
-	OTPseudonym * pNym = m_pWallet->GetNymByID(USER_ID);
-	
-	if (!pNym)
-	{
-		OTLog::Error("No Nym loaded but tried to connect to server.\n");
-		return false;
-	}
-		
-	bool bConnected = m_pClient->ConnectToTheFirstServerOnList(*pNym, strCA_FILE, strKEY_FILE, strKEY_PASSWORD); 
-	
-	if (bConnected)
-	{
-		OTLog::Output(0, "Success. (Connected to the first notary server on your wallet's list.)\n");
-		return true;
-	}
-	
-	OTLog::Output(0, "Either the wallet is not loaded, or there was an error connecting to server.\n");
-	return false;
-}
-
-
-
-
-// NOTE: this function NOT needed in XmlRpc / HTTP (web services) mode.
-//
-// Open Transactions maintains a connection to the server(s)
-// The client should call THIS function after a message, and/or periodicallyt,
-// to listen on the connections for any server replies and process them.
-//
-// Perhaps once per second, and more often immediately following
-// a request.  (Usually only one response comes for each request.)
-//
-bool OT_API::ProcessSockets()
-{
-	OT_ASSERT_MSG(m_bInitialized, "Not initialized; call OT_API::Init first.");
-
-#if defined(OT_ZMQ_MODE)
-	OT_ASSERT_MSG(m_bInitialized, "OT_API::ProcessSockets not necessary in XmlRpc mode.");
-#endif
-	
-	bool bFoundMessage = false, bSuccess = false;
-	
-	do 
-	{
-		OTMessage * pMsg = new OTMessage;
-		
-		OT_ASSERT_MSG(NULL != pMsg, "Error allocating memory in the OT API");
-		
-		// If this returns true, that means a Message was
-		// received and processed into an OTMessage object (theMsg)
-		bFoundMessage = m_pClient->ProcessInBuffer(*pMsg);
-		
-		if (true == bFoundMessage)
-		{
-			bSuccess = true;
-			
-			//				OTString strReply;
-			//				theMsg.SaveContract(strReply);
-			//				OTLog::vError("\n\n**********************************************\n"
-			//						"Successfully in-processed server response.\n\n%s\n", strReply.Get());
-			m_pClient->ProcessServerReply(*pMsg); // the Client takes ownership and will handle cleanup.
-		}
-		else 
-		{
-			delete pMsg;
-			pMsg = NULL;
-		}
-
-		
-	} while (true == bFoundMessage);
-	
-	return bSuccess;
-}
-// NOTE: The above function only applies in Message / TCP / SSL mode, since server replies are instantly
-// received in XmlRpc / HTTP mode. (Both are request / response, it's the same protocol no matter what transport.)
-
-
-
-
-
-
-
-
 // --------------------------------------------------------------
 // IS BASKET CURRENCY ?
 //
@@ -8361,9 +8248,7 @@ int OT_API::issueBasket(OTIdentifier	& SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -8831,9 +8716,7 @@ int OT_API::exchangeBasket(OTIdentifier	& SERVER_ID,
                     theMessage.SaveContract();
                     
                     // (Send it)
-#if defined(OT_ZMQ_MODE)
                     m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
                     m_pClient->ProcessMessageOut(theMessage);
                     
                     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -8884,9 +8767,7 @@ int OT_API::getTransactionNumber(OTIdentifier & SERVER_ID,
                                                      NULL); // NULL pAccount on this command.
 	if (0 < nReturnValue) 
 	{				
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nReturnValue;
@@ -9128,9 +9009,7 @@ int OT_API::notarizeWithdrawal(OTIdentifier	& SERVER_ID,
         theMessage.SaveContract();
 
         // (Send it)
-#if defined(OT_ZMQ_MODE)
         m_pClient->SetFocusToServerAndNym(*pServer, *pNym, m_pTransportCallback);
-#endif	
         m_pClient->ProcessMessageOut(theMessage);
 
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -9367,9 +9246,7 @@ int OT_API::notarizeDeposit(OTIdentifier	& SERVER_ID,
         theMessage.SaveContract();
 
         // (Send it)
-#if defined(OT_ZMQ_MODE)
         m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
         m_pClient->ProcessMessageOut(theMessage);	
 
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -9632,9 +9509,7 @@ int OT_API::payDividend(OTIdentifier	& SERVER_ID,
 			theMessage.SaveContract();
 			
 			// (Send it)
-#if defined(OT_ZMQ_MODE)
-			m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
+			m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);	
 			m_pClient->ProcessMessageOut(theMessage);
             
             return m_pClient->CalcReturnVal(lRequestNumber);
@@ -9830,9 +9705,7 @@ int OT_API::withdrawVoucher(OTIdentifier	& SERVER_ID,
         theMessage.SaveContract();
         
         // (Send it)
-#if defined(OT_ZMQ_MODE)
         m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
         m_pClient->ProcessMessageOut(theMessage);
             
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -10191,9 +10064,7 @@ int OT_API::depositCheque(OTIdentifier	& SERVER_ID,
 			theMessage.SaveContract();
 			
 			// (Send it)
-#if defined(OT_ZMQ_MODE)
 			m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 			m_pClient->ProcessMessageOut(theMessage);
             
             return m_pClient->CalcReturnVal(lRequestNumber);
@@ -10356,9 +10227,7 @@ int OT_API::depositPaymentPlan(const OTIdentifier & SERVER_ID,
 		theMessage.SaveContract();
 		
 		// (Send it)
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);	
         
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -10435,9 +10304,7 @@ int OT_API::triggerClause(const OTIdentifier	& SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
 	
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -10734,9 +10601,7 @@ int OT_API::activateSmartContract(const OTIdentifier & SERVER_ID,
 		theMessage.SaveContract();
 		
 		// (Send it)
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         return m_pClient->CalcReturnVal(lRequestNumber);
         
@@ -10899,9 +10764,7 @@ int OT_API::cancelCronItem(const OTIdentifier & SERVER_ID,
         theMessage.SaveContract();
 			
         // (Send it)
-#if defined(OT_ZMQ_MODE)
         m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
         m_pClient->ProcessMessageOut(theMessage);
         
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11195,9 +11058,7 @@ int OT_API::issueMarketOffer( const OTIdentifier	& SERVER_ID,
 			theMessage.SaveContract();
 			
 			// (Send it)
-#if defined(OT_ZMQ_MODE)
 			m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 			m_pClient->ProcessMessageOut(theMessage);
             
             return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11269,9 +11130,7 @@ int OT_API::getMarketList(const OTIdentifier & SERVER_ID, const OTIdentifier & U
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
 	
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11328,9 +11187,7 @@ int OT_API::getMarketOffers(const OTIdentifier & SERVER_ID, const OTIdentifier &
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11386,9 +11243,7 @@ int OT_API::getMarketRecentTrades(const OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11441,9 +11296,7 @@ int OT_API::getNym_MarketOffers(const OTIdentifier & SERVER_ID, const OTIdentifi
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11608,9 +11461,7 @@ int OT_API::notarizeTransfer(OTIdentifier	& SERVER_ID,
 			theMessage.SaveContract();
 
 			// (Send it)
-	#if defined(OT_ZMQ_MODE)
 			m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-	#endif	
 			m_pClient->ProcessMessageOut(theMessage);
             
             return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11667,9 +11518,7 @@ int OT_API::getNymbox(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11720,9 +11569,7 @@ int OT_API::getInbox(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
 	
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11774,9 +11621,7 @@ int OT_API::getOutbox(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -11884,10 +11729,7 @@ int OT_API::processNymbox(OTIdentifier	& SERVER_ID,
         //
         nRequestNum = atoi(theMessage.m_strRequestNum.Get());
         
-        
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nRequestNum;
@@ -11960,9 +11802,7 @@ int OT_API::processInbox(OTIdentifier	& SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12076,9 +11916,7 @@ int OT_API::issueAssetType(OTIdentifier	&	SERVER_ID,
 		// ----------------------------
 		
 		// (Send it)
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12129,9 +11967,7 @@ int OT_API::getContract(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12186,9 +12022,7 @@ int OT_API::getMint(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12314,9 +12148,7 @@ int OT_API::queryAssetTypes(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12368,9 +12200,7 @@ int OT_API::createAssetAccount(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12422,9 +12252,7 @@ int OT_API::deleteAssetAccount(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12507,9 +12335,7 @@ int OT_API::getBoxReceipt(const OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12562,9 +12388,7 @@ int OT_API::getAccount( OTIdentifier	& SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12615,9 +12439,7 @@ int OT_API::getAccountFiles(OTIdentifier    & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12647,9 +12469,7 @@ int OT_API::getRequest(OTIdentifier	& SERVER_ID,
                                                      NULL); // NULL pAccount on this command.
 	if (0 < nReturnValue) 
 	{				
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nReturnValue;
@@ -12707,9 +12527,7 @@ int OT_API::usageCredits(const OTIdentifier &	SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12754,9 +12572,7 @@ int OT_API::checkUser(OTIdentifier & SERVER_ID,
 	theMessage.SaveContract();
 	
 	// (Send it)
-#if defined(OT_ZMQ_MODE)
 	m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 	m_pClient->ProcessMessageOut(theMessage);
     
     return m_pClient->CalcReturnVal(lRequestNumber);
@@ -12820,11 +12636,7 @@ int OT_API::sendUserMessage(OTIdentifier	& SERVER_ID,
 		theMessage.SaveContract();
 		
 		// (Send it)
-#if defined(OT_ZMQ_MODE)
-		// -----------------------------------------------------------------
-		
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
 				
 		// ----------------------------------------------
@@ -13004,9 +12816,7 @@ int OT_API::sendUserInstrument(OTIdentifier	& SERVER_ID,
             pNym->SaveSignedNymfile(*pSignerNym);  // <==== SAVED.
             // --------------------------------------------------------
             // (Send it)
-#if defined(OT_ZMQ_MODE)
             m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif
             m_pClient->ProcessMessageOut(theMessage);
             // -----------------------------------------------------------------
             nReturnValue = m_pClient->CalcReturnVal(lRequestNumber);
@@ -13097,9 +12907,7 @@ int OT_API::createUserAccount(OTIdentifier	& SERVER_ID,
                                                      NULL); // NULL pAccount on this command.
 	if (0 < nReturnValue)
 	{				
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nReturnValue;
@@ -13133,9 +12941,7 @@ int OT_API::deleteUserAccount(OTIdentifier	& SERVER_ID,
                                                      NULL); // NULL pAccount on this command.
 	if (0 < nReturnValue) 
 	{				
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nReturnValue;
@@ -13169,9 +12975,7 @@ int OT_API::checkServerID(OTIdentifier	& SERVER_ID,
                                                      NULL); // NULL pAccount on this command.
 	if (0 < nReturnValue) 
 	{				
-#if defined(OT_ZMQ_MODE)
 		m_pClient->SetFocusToServerAndNym(*pServer, *pNym, this->m_pTransportCallback);
-#endif	
 		m_pClient->ProcessMessageOut(theMessage);
         
         return nReturnValue;

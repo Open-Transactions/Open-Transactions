@@ -3494,26 +3494,5 @@ std::string OTAPI_Basic::Message_GetNymboxHash(const std::string & THE_MESSAGE)
 		);
 }
 
-bool OTAPI_Basic::ConnectServer(
-	const std::string & SERVER_ID,
-	const std::string & USER_ID, 
-	const std::string & strCA_FILE,
-	const std::string & strKEY_FILE, 
-	const std::string & strKEY_PASSWORD
-	)
-{
-	return OTAPI_Wrap::ConnectServer(
-		SERVER_ID,
-		USER_ID,
-		strCA_FILE,
-		strKEY_FILE,
-		strKEY_PASSWORD
-		);
-}
-
-bool OTAPI_Basic::ProcessSockets()
-{
-	return OTAPI_Wrap::ProcessSockets();
-}
 
 

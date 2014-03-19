@@ -183,10 +183,6 @@
 
 #include "tinythread.hpp"
 
-#if defined(OT_ZMQ_MODE)
-#include <zmq.hpp>
-#endif
-
 // --------------------------------------
 
 class OT_API;
@@ -311,14 +307,6 @@ public:
 	EXPORT	bool WalletExists();
 	EXPORT	bool LoadWallet();
 
-	// Note: these two functions are NOT used in ZMQ Mode
-	// ONLY for SSL/TCP mode (deprecated)...
-	EXPORT	bool ConnectServer(OTIdentifier & SERVER_ID,
-                               OTIdentifier	& USER_ID,
-                               OTString & strCA_FILE,
-                               OTString & strKEY_FILE, 
-                               OTString & strKEY_PASSWORD);
-	EXPORT	bool ProcessSockets();
 	// --------------------------------------------------
 	EXPORT	long  GetTime();
 	// --------------------------------------------------

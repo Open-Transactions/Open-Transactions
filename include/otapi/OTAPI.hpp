@@ -3956,24 +3956,6 @@ public :
 
 	// ------------------------------------------------------------
 
-
-	// --------------------------------------------------------------------
-	// CONNECT TO SERVER, and PROCESS SOCKETS
-	//
-	// NOTE: These two functions are NOT NECESSARY in ZMQ mode!
-	// They are only useful in TCP/SSL mode. --Otherwise IGNORE THEM.--
-	//
-	 // Not necessary in HTTP mode.
-	EXPORT static bool ConnectServer(
-		const std::string & SERVER_ID,
-		const std::string & USER_ID, 
-		const std::string & strCA_FILE,
-		const std::string & strKEY_FILE, 
-		const std::string & strKEY_PASSWORD
-		);
-
-	EXPORT static bool ProcessSockets();	// Not necessary in ZMQ mode.
-	// --------------------------------------------------------------------
 };
 
 
