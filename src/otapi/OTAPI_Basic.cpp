@@ -625,6 +625,13 @@ std::string OTAPI_Basic::GetAssetType_Name(const std::string & ASSET_TYPE_ID)
 		);
 }
 
+std::string OTAPI_Basic::GetAssetType_TLA(const std::string & ASSET_TYPE_ID)
+{
+	return OTAPI_Wrap::GetAssetType_TLA(
+		ASSET_TYPE_ID
+		);
+}
+
 std::string OTAPI_Basic::GetAssetType_Contract(const std::string & ASSET_TYPE_ID)
 {
 	return OTAPI_Wrap::GetAssetType_Contract(

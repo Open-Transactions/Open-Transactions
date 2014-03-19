@@ -786,6 +786,10 @@ class OTAPI_Basic {
 		return OTAPI_Basic_GetAssetType_Name($ASSET_TYPE_ID);
 	}
 
+	static function GetAssetType_TLA($ASSET_TYPE_ID) {
+		return OTAPI_Basic_GetAssetType_TLA($ASSET_TYPE_ID);
+	}
+
 	static function GetAssetType_Contract($ASSET_TYPE_ID) {
 		return OTAPI_Basic_GetAssetType_Contract($ASSET_TYPE_ID);
 	}

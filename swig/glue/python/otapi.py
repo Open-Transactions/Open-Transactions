@@ -354,6 +354,8 @@ class OTAPI_Basic(_object):
     if _newclass:GetAssetType_ID = staticmethod(_otapi.OTAPI_Basic_GetAssetType_ID)
     __swig_getmethods__["GetAssetType_Name"] = lambda x: _otapi.OTAPI_Basic_GetAssetType_Name
     if _newclass:GetAssetType_Name = staticmethod(_otapi.OTAPI_Basic_GetAssetType_Name)
+    __swig_getmethods__["GetAssetType_TLA"] = lambda x: _otapi.OTAPI_Basic_GetAssetType_TLA
+    if _newclass:GetAssetType_TLA = staticmethod(_otapi.OTAPI_Basic_GetAssetType_TLA)
     __swig_getmethods__["GetAssetType_Contract"] = lambda x: _otapi.OTAPI_Basic_GetAssetType_Contract
     if _newclass:GetAssetType_Contract = staticmethod(_otapi.OTAPI_Basic_GetAssetType_Contract)
     __swig_getmethods__["GetAccountWallet_ID"] = lambda x: _otapi.OTAPI_Basic_GetAccountWallet_ID
@@ -1144,6 +1146,10 @@ OTAPI_Basic_GetAssetType_ID = _otapi.OTAPI_Basic_GetAssetType_ID
 def OTAPI_Basic_GetAssetType_Name(*args):
   return _otapi.OTAPI_Basic_GetAssetType_Name(*args)
 OTAPI_Basic_GetAssetType_Name = _otapi.OTAPI_Basic_GetAssetType_Name
+
+def OTAPI_Basic_GetAssetType_TLA(*args):
+  return _otapi.OTAPI_Basic_GetAssetType_TLA(*args)
+OTAPI_Basic_GetAssetType_TLA = _otapi.OTAPI_Basic_GetAssetType_TLA
 
 def OTAPI_Basic_GetAssetType_Contract(*args):
   return _otapi.OTAPI_Basic_GetAssetType_Contract(*args)

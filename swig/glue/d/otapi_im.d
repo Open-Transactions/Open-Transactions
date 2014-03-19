@@ -432,6 +432,7 @@ static this() {
   mixin(bindCode("OTAPI_Basic_StringToAmount", "D_OTAPI_Basic_StringToAmount"));
   mixin(bindCode("OTAPI_Basic_GetAssetType_ID", "D_OTAPI_Basic_GetAssetType_ID"));
   mixin(bindCode("OTAPI_Basic_GetAssetType_Name", "D_OTAPI_Basic_GetAssetType_Name"));
+  mixin(bindCode("OTAPI_Basic_GetAssetType_TLA", "D_OTAPI_Basic_GetAssetType_TLA"));
   mixin(bindCode("OTAPI_Basic_GetAssetType_Contract", "D_OTAPI_Basic_GetAssetType_Contract"));
   mixin(bindCode("OTAPI_Basic_GetAccountWallet_ID", "D_OTAPI_Basic_GetAccountWallet_ID"));
   mixin(bindCode("OTAPI_Basic_GetAccountWallet_Name", "D_OTAPI_Basic_GetAccountWallet_Name"));
@@ -1571,6 +1572,7 @@ extern(C) char* function(char* jarg1, char* jarg2) OTAPI_Basic_FormatAmount;
 extern(C) char* function(char* jarg1, char* jarg2) OTAPI_Basic_StringToAmount;
 extern(C) char* function(tango.stdc.config.c_long jarg1) OTAPI_Basic_GetAssetType_ID;
 extern(C) char* function(char* jarg1) OTAPI_Basic_GetAssetType_Name;
+extern(C) char* function(char* jarg1) OTAPI_Basic_GetAssetType_TLA;
 extern(C) char* function(char* jarg1) OTAPI_Basic_GetAssetType_Contract;
 extern(C) char* function(tango.stdc.config.c_long jarg1) OTAPI_Basic_GetAccountWallet_ID;
 extern(C) char* function(char* jarg1) OTAPI_Basic_GetAccountWallet_Name;

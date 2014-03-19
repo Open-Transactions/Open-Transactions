@@ -8484,6 +8484,35 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_OTAPI_Basic_GetAssetType_TLA(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  PyObject * obj0 = 0 ;
+  std::string result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:OTAPI_Basic_GetAssetType_TLA",&obj0)) SWIG_fail;
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(obj0, &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTAPI_Basic_GetAssetType_TLA" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Basic_GetAssetType_TLA" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return resultobj;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_OTAPI_Basic_GetAssetType_Contract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
@@ -45025,6 +45054,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"OTAPI_Basic_StringToAmount", _wrap_OTAPI_Basic_StringToAmount, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Basic_GetAssetType_ID", _wrap_OTAPI_Basic_GetAssetType_ID, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Basic_GetAssetType_Name", _wrap_OTAPI_Basic_GetAssetType_Name, METH_VARARGS, NULL},
+	 { (char *)"OTAPI_Basic_GetAssetType_TLA", _wrap_OTAPI_Basic_GetAssetType_TLA, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Basic_GetAssetType_Contract", _wrap_OTAPI_Basic_GetAssetType_Contract, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Basic_GetAccountWallet_ID", _wrap_OTAPI_Basic_GetAccountWallet_ID, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Basic_GetAccountWallet_Name", _wrap_OTAPI_Basic_GetAccountWallet_Name, METH_VARARGS, NULL},

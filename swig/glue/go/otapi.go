@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 package otapi
 
@@ -764,6 +764,7 @@ func OTAPI_BasicFormatAmount(string, string) string
 func OTAPI_BasicStringToAmount(string, string) string
 func OTAPI_BasicGetAssetType_ID(int64) string
 func OTAPI_BasicGetAssetType_Name(string) string
+func OTAPI_BasicGetAssetType_TLA(string) string
 func OTAPI_BasicGetAssetType_Contract(string) string
 func OTAPI_BasicGetAccountWallet_ID(int64) string
 func OTAPI_BasicGetAccountWallet_Name(string) string

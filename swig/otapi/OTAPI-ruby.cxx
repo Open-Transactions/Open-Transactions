@@ -2376,7 +2376,7 @@ SWIG_ruby_failed(void)
 } 
 
 
-/*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -2493,7 +2493,7 @@ SWIG_From_size_t  (size_t value)
 }
 
 
-/*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -7146,6 +7146,37 @@ _wrap_OTAPI_Basic_GetAssetType_Name(int argc, VALUE *argv, VALUE self) {
     arg1 = ptr;
   }
   result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTAPI_Basic_GetAssetType_TLA(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Basic::GetAssetType_TLA", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Basic::GetAssetType_TLA", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   return vresult;
@@ -43899,6 +43930,7 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "StringToAmount", VALUEFUNC(_wrap_OTAPI_Basic_StringToAmount), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAssetType_ID", VALUEFUNC(_wrap_OTAPI_Basic_GetAssetType_ID), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAssetType_Name", VALUEFUNC(_wrap_OTAPI_Basic_GetAssetType_Name), -1);
+  rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAssetType_TLA", VALUEFUNC(_wrap_OTAPI_Basic_GetAssetType_TLA), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAssetType_Contract", VALUEFUNC(_wrap_OTAPI_Basic_GetAssetType_Contract), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAccountWallet_ID", VALUEFUNC(_wrap_OTAPI_Basic_GetAccountWallet_ID), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetAccountWallet_Name", VALUEFUNC(_wrap_OTAPI_Basic_GetAccountWallet_Name), -1);

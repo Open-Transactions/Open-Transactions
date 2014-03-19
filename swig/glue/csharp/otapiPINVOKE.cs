@@ -594,6 +594,9 @@ class otapiPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_Name")]
   public static extern string OTAPI_Basic_GetAssetType_Name(string jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_TLA")]
+  public static extern string OTAPI_Basic_GetAssetType_TLA(string jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_Contract")]
   public static extern string OTAPI_Basic_GetAssetType_Contract(string jarg1);
 
