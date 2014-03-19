@@ -201,9 +201,9 @@ public:
 	/// -2 instead, and then another function can be called that returns lMostRecentRequestNumber
 	/// in string form, or whatever is easiest.
 	///
-	long m_lMostRecentRequestNumber;
+	int64_t m_lMostRecentRequestNumber;
 	// ---------------------------------------------
-	int  CalcReturnVal(const long & lRequestNumber);
+	int32_t  CalcReturnVal(const int64_t & lRequestNumber);
 	// ---------------------------------------------
 	bool IsRunningAsScript() const { return m_bRunningAsScript; }
 	void SetRunningAsScript()      { m_bRunningAsScript = true; } // (default is false.)
@@ -339,14 +339,14 @@ public:
 	// ------------------------------------------------------------
 	// These functions are for command processing:
 
-	EXPORT int ProcessUserCommand(
+	EXPORT int32_t ProcessUserCommand(
 		OT_CLIENT_CMD_TYPE requestedCommand,
 		OTMessage & theMessage,
 		OTPseudonym & theNym,
 		// OTAssetContract & theContract,
 		OTServerContract & theServer,
 		OTAccount * pAccount=NULL,
-		long lTransactionAmount = 0,
+		int64_t lTransactionAmount = 0,
 		OTAssetContract * pMyAssetContract=NULL,
 		OTIdentifier * pHisNymID=NULL,
 		OTIdentifier * pHisAcctID=NULL

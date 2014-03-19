@@ -20,7 +20,7 @@ using std::string;
 
 inline string concat(const string & str1, const string & str2) { return str1 + str2; }
 inline void print(const string & text) { std::cout << text << "\n"; }
-inline int to_int(const string & strValue) { return std::stoi(strValue); }
+inline int32_t to_int(const string & strValue) { return static_cast<int32_t>(std::stoi(strValue)); }
 inline int64_t to_long(const string & strValue) { return std::stoll(strValue); }
 inline string to_string(const bool bValue) { return bValue ? "true" : "false"; }
 inline string to_string(const int64_t nValue) { return std::to_string(nValue); }
@@ -30,17 +30,17 @@ class the_lambda_struct;
 
 typedef std::map<string, OTDB::OfferDataNym *> SubMap;
 typedef std::map<string, SubMap *> MapOfMaps;
-typedef int (*LambdaFunc)(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals);
+typedef int32_t (*LambdaFunc)(OTDB::OfferDataNym & offer_data, const int32_t nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals);
 
 
 EXPORT OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList);
-EXPORT OT_OTAPI_OT int find_strange_offers(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
-EXPORT OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda); // low level. map_of_maps must be good. (assumed.)
-EXPORT OT_OTAPI_OT int iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
-EXPORT OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda);
-EXPORT OT_OTAPI_OT int iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals);
+EXPORT OT_OTAPI_OT int32_t find_strange_offers(OTDB::OfferDataNym & offer_data, const int32_t nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+EXPORT OT_OTAPI_OT int32_t iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda); // low level. map_of_maps must be good. (assumed.)
+EXPORT OT_OTAPI_OT int32_t iterate_nymoffers_maps(MapOfMaps & map_of_maps, LambdaFunc the_lambda, the_lambda_struct & extra_vals); // low level. map_of_maps must be good. (assumed.)
+EXPORT OT_OTAPI_OT int32_t iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda);
+EXPORT OT_OTAPI_OT int32_t iterate_nymoffers_sub_map(MapOfMaps & map_of_maps, SubMap & sub_map, LambdaFunc the_lambda, the_lambda_struct & extra_vals);
 EXPORT OT_OTAPI_OT OTDB::OfferListNym * loadNymOffers(const string & serverID, const string & nymID);
-EXPORT OT_OTAPI_OT int output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
+EXPORT OT_OTAPI_OT int32_t output_nymoffer_data(OTDB::OfferDataNym & offer_data, const int32_t nIndex, MapOfMaps & map_of_maps, SubMap & sub_map, the_lambda_struct & extra_vals); // if 10 offers are printed for the SAME market, nIndex will be 0..9
 
 
 extern string Args;
@@ -123,11 +123,11 @@ public:
     string strData4;
     string strData5;
     bool bBool;
-    int nData;
+    int32_t nData;
     int64_t lData;
     time_t tData;
-    int nTransNumsNeeded;
-    int nRequestNum;
+    int32_t nTransNumsNeeded;
+    int32_t nRequestNum;
 
     OTAPI_Func();
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID); // 3 args
@@ -138,17 +138,17 @@ public:
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_accountID, const string & p_strParam, const int64_t p_lData, const string & p_strData2); // 7 args
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_accountID, const string & p_strParam, const string & p_strData, const int64_t p_lData2); // 7 args
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_accountID, const string & p_strParam, const string & p_strData, const string & p_strData2); // 7 args
-    OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_assetID, const string & p_basket, const string & p_accountID, const bool p_bBool, const int p_nTransNumsNeeded);  // 8 args
+    OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & p_assetID, const string & p_basket, const string & p_accountID, const bool p_bBool, const int32_t p_nTransNumsNeeded);  // 8 args
     OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID, const string & p_nymID, const string & assetAccountID, const string & currencyAcctID, const string & scale, const string & minIncrement, const string & quantity, const string & price, const bool bSelling); // 10 args
     ~OTAPI_Func();
 
     OT_OTAPI_OT void InitCustom();
-    OT_OTAPI_OT int Run();
+    OT_OTAPI_OT int32_t Run();
     OT_OTAPI_OT string SendRequest(OTAPI_Func & theFunction, const string & IN_FUNCTION);
-    OT_OTAPI_OT int SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION);
+    OT_OTAPI_OT int32_t SendRequestLowLevel(OTAPI_Func & theFunction, const string & IN_FUNCTION);
     OT_OTAPI_OT string SendRequestOnce(OTAPI_Func & theFunction, const string & IN_FUNCTION, const bool bIsTransaction, const bool bWillRetryAfterThis, bool & bCanRetryAfterThis);
     OT_OTAPI_OT string SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION);
-    OT_OTAPI_OT string SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int nTotalRetries);
+    OT_OTAPI_OT string SendTransaction(OTAPI_Func & theFunction, const string & IN_FUNCTION, const int32_t nTotalRetries);
 };
 
 #endif

@@ -257,22 +257,22 @@ endif
 otapi_sources                   =   OpenTransactions.cpp \
                                     ot_commands_ot.cpp \
                                     ot_made_easy_ot.cpp \
+                                    OT_ME.cpp \
+                                    OT_ME_NEW.cpp \
                                     ot_opentxs_ot.cpp \
                                     ot_otapi_ot.cpp \
                                     ot_utility_ot.cpp \
                                     OTAPI.cpp \
-                                    OT_ME.cpp \
-                                    OT_ME_NEW.cpp \
                                     OTAPI_Basic.cpp \
                                     OTAPI_Exec.cpp \
-                                    OTMadeEasy.cpp \
                                     OTClient.cpp \
-                                    OTServerConnection.cpp
-
+                                    OTMadeEasy.cpp \
+                                    OTServerConnection.cpp \
 
 otapi_headers                   =   $(otapi_incdir)/main.hpp \
                                     $(otapi_incdir)/ot_commands_ot.hpp \
                                     $(otapi_incdir)/ot_made_easy_ot.hpp \
+                                    $(otapi_incdir)/ot_me_switch.hpp \
                                     $(otapi_incdir)/ot_otapi_ot.hpp \
                                     $(otapi_incdir)/ot_utility_ot.hpp \
                                     $(otapi_incdir)/OTClient.hpp \
@@ -280,12 +280,11 @@ otapi_headers                   =   $(otapi_incdir)/main.hpp \
                                     $(otapi_headers_ext)
 
 otapi_headers_ext               =   $(otapi_incdir)/OpenTransactions.hpp \
+                                    $(otapi_incdir)/OT_ME.hpp \
                                     $(otapi_incdir)/OTAPI.hpp \
                                     $(otapi_incdir)/OTAPI_Basic.hpp \
                                     $(otapi_incdir)/OTAPI_Exec.hpp \
                                     $(otapi_incdir)/OTMadeEasy.hpp \
-                                    $(otapi_incdir)/ot_me_switch.hpp \
-                                    $(otapi_incdir)/OT_ME.hpp
 
 pkginclude_HEADERS              =   $(otapi_headers_ext)
 >>>>>>> c2bd81d... Merged with latest FellowTraveler fork

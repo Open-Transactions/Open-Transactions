@@ -67,6 +67,7 @@ otapitest_LDFLAGS           =   -g
 
 otapitest_sources           =   AllRequests.cpp \
                                 AllTransactions.cpp \
+                                otapitest.cpp \
                                 OtMeExtra.cpp \
                                 OtMeTest.cpp \
                                 Test_accept_from_paymentbox.cpp \
@@ -77,6 +78,7 @@ otapitest_sources           =   AllRequests.cpp \
                                 Test_deposit_local_purse.cpp \
                                 Test_details_deposit_cheque.cpp \
                                 Test_details_export_cash.cpp \
+                                Test_details_refresh_nym.cpp \
                                 Test_discard_incoming_payments.cpp \
                                 Test_export_cash.cpp \
                                 Test_get_payment_instrument.cpp \
@@ -86,22 +88,30 @@ otapitest_sources           =   AllRequests.cpp \
                                 Test_load_or_retrieve_encrypt_key.cpp \
                                 Test_load_or_retrieve_mint.cpp \
                                 Test_load_or_retrieve_signing_key.cpp \
+                                Test_load_public_encryption_key.cpp \
+                                Test_load_public_signing_key.cpp \
                                 Test_ot_utility.cpp \
-                                Test_ot_utility_ReceiveReplyLowLevel.cpp \
                                 Test_ot_utility_getAndProcessNymbox_4.cpp \
+                                Test_ot_utility_getBoxReceiptLowLevel.cpp \
+                                Test_ot_utility_getBoxReceiptWithErrorCorrection.cpp \
                                 Test_ot_utility_getNymbox.cpp \
                                 Test_ot_utility_getNymboxLowLevel.cpp \
                                 Test_ot_utility_getRequestNumber.cpp \
-                                Test_ot_utility_getTransactionNumLowLevel.cpp \
                                 Test_ot_utility_getTransactionNumbers.cpp \
+                                Test_ot_utility_getTransactionNumLowLevel.cpp \
+                                Test_ot_utility_insureHaveAllBoxReceipts.cpp \
                                 Test_ot_utility_processNymbox.cpp \
+                                Test_ot_utility_ReceiveReplyLowLevel.cpp \
                                 Test_ot_utility_receiveReplySuccessLowLevel.cpp \
+                                Test_ot_utility_sendProcessNymboxLowLevel.cpp \
                                 Test_register_nym.cpp \
                                 Test_retrieve_account.cpp \
                                 Test_retrieve_nym.cpp \
                                 Test_stat_asset_account.cpp \
-                                Test_withdraw_and_send_cash.cpp
+                                Test_withdraw_and_send_cash.cpp \
+
 
 otapitest_headers           =   stdafx.h \
                                 $(otapitest_incdir)/OtMeExtra.hpp \
-                                $(otapitest_incdir)/OtMeTest.hpp
+                                $(otapitest_incdir)/OtMeTest.hpp \
+                                $(otapi_incdir)/Mock_OTAPI_Exec.hpp \

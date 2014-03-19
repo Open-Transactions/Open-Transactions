@@ -145,6 +145,7 @@
 #include <OTEnvelope.hpp>
 
 #include <OTCachedKey.hpp>
+#include <OTClientConnection.hpp>
 
 #include <zmq.hpp>
 
