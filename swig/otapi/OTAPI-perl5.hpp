@@ -11,21 +11,29 @@
 #ifndef SWIG_otapi_WRAP_H_
 #define SWIG_otapi_WRAP_H_
 
+#include <map>
+#include <string>
+
+
 class SwigDirector_OTCallback : public OTCallback, public Swig::Director {
 
 public:
-    void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
-    SwigDirector_OTCallback(JNIEnv *jenv);
+    SwigDirector_OTCallback(SV *self);
     virtual ~SwigDirector_OTCallback();
     virtual void runOne(char const *szDisplay, OTPassword &theOutput);
     virtual void runTwo(char const *szDisplay, OTPassword &theOutput);
-public:
-    bool swig_overrides(int n) {
-      return (n < 2 ? swig_override[n] : false);
-    }
-protected:
-    bool swig_override[2];
-};
 
+/* Internal director utilities */
+public:
+    bool swig_get_inner(const char *swig_protected_method_name) const {
+      std::map<std::string, bool>::const_iterator iv = swig_inner.find(swig_protected_method_name);
+      return (iv != swig_inner.end() ? iv->second : false);
+    }
+    void swig_set_inner(const char *swig_protected_method_name, bool val) const {
+      swig_inner[swig_protected_method_name] = val;
+    }
+private:
+    mutable std::map<std::string, bool> swig_inner;
+};
 
 #endif
