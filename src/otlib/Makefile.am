@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob bigint irrxml lucre otext
+SUBDIRS 		= 	zmq otprotob bigint irrxml lucre otext
 
 lib_LTLIBRARIES		=	libot.la
 
@@ -41,6 +41,19 @@ libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
 				otext/libotext.la
 
 libot_la_LDFLAGS	=	--no-undefined
+
+
+
+#### Transport ZMQ 'option'
+
+if TRANSPORT_ZMQ4
+
+libot_la_LIBADD		+=	zmq/libzmq.la
+
+libot_la_DEPENDENCIES	+=	zmq/libzmq.la
+
+endif
+
 
 
 #### KEYRING Options
@@ -112,6 +125,7 @@ otlib_sources     =	OTAccount.cpp		\
 				OTSignature.cpp		\
 				OTSignedFile.cpp		\
 				OTSmartContract.cpp		\
+				OTSocket.cpp	\
 				OTStorage.cpp		\
 				OTString.cpp		\
 				OTStringXML.cpp		\
@@ -187,6 +201,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTSignature.hpp		\
 				$(otlib_headers_dir)/OTSignedFile.hpp		\
 				$(otlib_headers_dir)/OTSmartContract.hpp	\
+				$(otlib_headers_dir)/OTSocket.hpp		\
 				$(otlib_headers_dir)/OTStorage.hpp		\
 				$(otlib_headers_dir)/OTString.hpp		\
 				$(otlib_headers_dir)/OTStringXML.hpp		\

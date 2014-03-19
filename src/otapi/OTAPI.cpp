@@ -14405,48 +14405,4 @@ OT_BOOL OTAPI_Wrap::Message_GetTransactionSuccess(const std::string & SERVER_ID,
 
 
 
-// -----------------------------------------------------------
-// NOT necessary in XmlRpc->HTTP mode (the preferred way.)
-// Only TCP/SSL mode maintains a connection to the server, and was for testing.
-bool OTAPI_Wrap::ConnectServer(const std::string & SERVER_ID,
-                               const std::string & USER_ID,
-                               const std::string & strCA_FILE,
-                               const std::string & strKEY_FILE,
-                               const std::string & strKEY_PASSWORD)
-{
-	if (SERVER_ID.empty())       { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SERVER_ID"       ); OT_FAIL; }
-	if (USER_ID.empty())         { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "USER_ID"         ); OT_FAIL; }
-	if (strCA_FILE.empty())      { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strCA_FILE"      ); OT_FAIL; }
-	if (strKEY_FILE.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strKEY_FILE"     ); OT_FAIL; }
-	if (strKEY_PASSWORD.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strKEY_PASSWORD" ); OT_FAIL; }
-
-	OTIdentifier theServerID(SERVER_ID), theUserID(USER_ID);
-
-	OTString strCA(strCA_FILE), strKeyFile(strKEY_FILE), strKeyPassword(strKEY_PASSWORD);
-
-	bool bConnected = OTAPI_Wrap::OTAPI()->ConnectServer(theServerID, theUserID, strCA, strKeyFile, strKeyPassword);
-
-	if (bConnected)
-		return true;
-
-	return false;
-}
-
-
-// Not necessary in HTTP mode. 
-// (Request/Response; no need to check sockets periodically in that mode.)
-// If you use TCP/SSL mode, you have to call this in order to check for
-// server replies and process them.
-bool OTAPI_Wrap::ProcessSockets(void) 
-{
-	bool bProcess = OTAPI_Wrap::OTAPI()->ProcessSockets();
-
-	if (bProcess)
-		return true;
-
-	return false;
-}
-
-
-
 

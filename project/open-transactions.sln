@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chaiscript_stdlib", "chaiscript\chaiscript_stdlib.vcxproj", "{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zmq", "zmq\zmq.vcxproj", "{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -131,6 +133,14 @@ Global
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|Win32.Build.0 = Release|Win32
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.ActiveCfg = Release|x64
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.Build.0 = Release|x64
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Debug|Win32.Build.0 = Debug|Win32
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Debug|x64.ActiveCfg = Debug|x64
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Debug|x64.Build.0 = Debug|x64
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Release|Win32.ActiveCfg = Release|Win32
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Release|Win32.Build.0 = Release|Win32
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Release|x64.ActiveCfg = Release|x64
+		{BFE44F12-F1B5-4298-A3DF-5A6B3CE7CDFB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
