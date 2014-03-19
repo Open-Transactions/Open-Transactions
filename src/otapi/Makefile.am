@@ -267,7 +267,7 @@ otapi_sources                   =   OpenTransactions.cpp \
                                     OTAPI_Exec.cpp \
                                     OTClient.cpp \
                                     OTMadeEasy.cpp \
-                                    OTServerConnection.cpp \
+                                    OTServerConnection.cpp
 
 otapi_headers                   =   $(otapi_incdir)/main.hpp \
                                     $(otapi_incdir)/ot_commands_ot.hpp \
@@ -284,7 +284,7 @@ otapi_headers_ext               =   $(otapi_incdir)/OpenTransactions.hpp \
                                     $(otapi_incdir)/OTAPI.hpp \
                                     $(otapi_incdir)/OTAPI_Basic.hpp \
                                     $(otapi_incdir)/OTAPI_Exec.hpp \
-                                    $(otapi_incdir)/OTMadeEasy.hpp \
+                                    $(otapi_incdir)/OTMadeEasy.hpp
 
 pkginclude_HEADERS              =   $(otapi_headers_ext)
 >>>>>>> c2bd81d... Merged with latest FellowTraveler fork

@@ -61,144 +61,9 @@ if KEYRING_KWALLET
 libot_la_CXXFLAGS		+=	-DOT_KEYRING_KWALLET
 endif
 
-<<<<<<< HEAD
 if KEYRING_FLATFILE
 libot_la_CXXFLAGS       +=  -DOT_KEYRING_FLATFILE
 endif
-=======
-######################## DEPENDENCIES ###############################
-
-
-otlib_sources               =   OTAccount.cpp \
-                                OTAgreement.cpp \
-                                OTASCIIArmor.cpp \
-                                OTAssert.cpp \
-                                OTAssetContract.cpp \
-                                OTAsymmetricKey.cpp \
-                                OTBasket.cpp \
-                                OTBylaw.cpp \
-                                OTCachedKey.cpp \
-                                OTCheque.cpp \
-                                OTContract.cpp \
-                                OTCredential.cpp \
-                                OTCron.cpp \
-                                OTCronItem.cpp \
-                                OTCrypto.cpp \
-                                OTData.cpp \
-                                OTDataCheck.cpp \
-                                OTDigitalCash.cpp \
-                                OTEnvelope.cpp \
-                                OTIdentifier.cpp \
-                                OTInstrument.cpp \
-                                OTItem.cpp \
-                                OTKeyring.cpp \
-                                OTLedger.cpp \
-                                OTLog.cpp \
-                                OTMarket.cpp \
-                                OTMessage.cpp \
-                                OTMessageBuffer.cpp \
-                                OTMint.cpp \
-                                OTOffer.cpp \
-                                OTPassword.cpp \
-                                OTPaths.cpp \
-                                OTPayload.cpp \
-                                OTPayment.cpp \
-                                OTPaymentPlan.cpp \
-                                OTPseudonym.cpp \
-                                OTPurse.cpp \
-                                OTScript.cpp \
-                                OTScriptable.cpp \
-                                OTServerContract.cpp \
-                                OTSettings.cpp \
-                                OTSignature.cpp \
-                                OTSignedFile.cpp \
-                                OTSmartContract.cpp \
-                                OTStorage.cpp \
-                                OTString.cpp \
-                                OTStringXML.cpp \
-                                OTSymmetricKey.cpp \
-                                OTToken.cpp \
-                                OTTrackable.cpp \
-                                OTTrade.cpp \
-                                OTTransaction.cpp \
-                                OTTransactionType.cpp \
-                                OTWallet.cpp \
-
-otlib_headers               =   $(otlib_incdir)/constants.h \
-                                $(otlib_incdir)/fast_mutex.h \
-                                $(otlib_incdir)/WinsockWrapper.h \
-                                $(otlib_incdir)/tinythread.h \
-                                $(otlib_incdir)/Timer.h \
-                                $(otlib_headers_ext)
-
-otlib_headers_ext           =   $(otlib_incdir)/anyoption.hpp \
-                                $(otlib_incdir)/Bitcoin.pb.h \
-                                $(otlib_incdir)/ExportWrapper.h \
-                                $(otlib_incdir)/Generics.pb.h \
-                                $(otlib_incdir)/Markets.pb.h \
-                                $(otlib_incdir)/MemoryWrapper.hpp \
-                                $(otlib_incdir)/Moneychanger.pb.h \
-                                $(otlib_incdir)/OTAccount.hpp \
-                                $(otlib_incdir)/OTAgreement.hpp \
-                                $(otlib_incdir)/OTASCIIArmor.hpp \
-                                $(otlib_incdir)/OTAssert.hpp \
-                                $(otlib_incdir)/OTAssetContract.hpp \
-                                $(otlib_incdir)/OTAsymmetricKey.hpp \
-                                $(otlib_incdir)/OTBasket.hpp \
-                                $(otlib_incdir)/OTBylaw.hpp \
-                                $(otlib_incdir)/OTCachedKey.hpp \
-                                $(otlib_incdir)/OTCheque.hpp \
-                                $(otlib_incdir)/OTContract.hpp \
-                                $(otlib_incdir)/OTCredential.hpp \
-                                $(otlib_incdir)/OTCron.hpp \
-                                $(otlib_incdir)/OTCronItem.hpp \
-                                $(otlib_incdir)/OTCrypto.hpp \
-                                $(otlib_incdir)/OTData.hpp \
-                                $(otlib_incdir)/OTDataCheck.hpp \
-                                $(otlib_incdir)/OTDigitalCash.hpp \
-                                $(otlib_incdir)/OTEnvelope.hpp \
-                                $(otlib_incdir)/OTglobal.h \
-                                $(otlib_incdir)/OTIdentifier.hpp \
-                                $(otlib_incdir)/OTInstrument.hpp \
-                                $(otlib_incdir)/OTItem.hpp \
-                                $(otlib_incdir)/OTKeyring.hpp \
-                                $(otlib_incdir)/OTLedger.hpp \
-                                $(otlib_incdir)/OTLib.hpp \
-                                $(otlib_incdir)/OTLibPriv.hpp \
-                                $(otlib_incdir)/OTLog.hpp \
-                                $(otlib_incdir)/OTMarket.hpp \
-                                $(otlib_incdir)/OTMessage.hpp \
-                                $(otlib_incdir)/OTMessageBuffer.hpp \
-                                $(otlib_incdir)/OTMint.hpp \
-                                $(otlib_incdir)/OTOffer.hpp \
-                                $(otlib_incdir)/OTPassword.hpp \
-                                $(otlib_incdir)/OTPaths.hpp \
-                                $(otlib_incdir)/OTPayload.hpp \
-                                $(otlib_incdir)/OTPayment.hpp \
-                                $(otlib_incdir)/OTPaymentPlan.hpp \
-                                $(otlib_incdir)/OTPseudonym.hpp \
-                                $(otlib_incdir)/OTPurse.hpp \
-                                $(otlib_incdir)/OTScript.hpp \
-                                $(otlib_incdir)/OTScriptable.hpp \
-                                $(otlib_incdir)/OTServerContract.hpp \
-                                $(otlib_incdir)/OTSettings.hpp \
-                                $(otlib_incdir)/OTSignature.hpp \
-                                $(otlib_incdir)/OTSignedFile.hpp \
-                                $(otlib_incdir)/OTSmartContract.hpp \
-                                $(otlib_incdir)/OTStorage.hpp \
-                                $(otlib_incdir)/OTString.hpp \
-                                $(otlib_incdir)/OTStringXML.hpp \
-                                $(otlib_incdir)/OTSymmetricKey.hpp \
-                                $(otlib_incdir)/OTToken.hpp \
-                                $(otlib_incdir)/OTTrackable.hpp \
-                                $(otlib_incdir)/OTTrade.hpp \
-                                $(otlib_incdir)/OTTransaction.hpp \
-                                $(otlib_incdir)/OTTransactionType.hpp \
-                                $(otlib_incdir)/OTWallet.hpp \
-                                $(otlib_incdir)/stacktrace.h \
-                                $(otlib_incdir)/stdafx.h \
-                                $(otlib_incdir)/stdafx.hpp \
->>>>>>> 2b68d1e... Merged Ryan's int32/int64 modifications and got it to compile
 
 ####################################################################
 
@@ -375,7 +240,6 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 
 ## Extra to package simpleini headers
 
-<<<<<<< HEAD
 simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
 
 simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  				\
@@ -461,12 +325,3 @@ noinst_HEADERS		+=	$(chai5hdrs_dir)/license.txt				\
 				$(chai5hdrs_dir)/language/chaiscript_prelude.chai	\
 				$(chai5hdrs_dir)/language/chaiscript_prelude_docs.hpp	\
 				$(chai5hdrs_dir)/utility/utility.hpp
-=======
-simpleini_headers_dir       =   $(top_srcdir)/include/simpleini
-
-simpleini_headers           =   $(simpleini_headers_dir)/ConvertUTF.h \
-                                $(simpleini_headers_dir)/SimpleIni.hpp
-    
-pkginclude_simpleinidir     =   $(pkgincludedir)/simpleini
-pkginclude_simpleini_HEADERS    =   $(simpleini_headers)
->>>>>>> 2b68d1e... Merged Ryan's int32/int64 modifications and got it to compile

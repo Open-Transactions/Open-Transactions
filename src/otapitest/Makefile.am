@@ -108,10 +108,10 @@ otapitest_sources           =   AllRequests.cpp \
                                 Test_retrieve_account.cpp \
                                 Test_retrieve_nym.cpp \
                                 Test_stat_asset_account.cpp \
-                                Test_withdraw_and_send_cash.cpp \
+                                Test_withdraw_and_send_cash.cpp
 
 
 otapitest_headers           =   stdafx.h \
                                 $(otapitest_incdir)/OtMeExtra.hpp \
                                 $(otapitest_incdir)/OtMeTest.hpp \
-                                $(otapi_incdir)/Mock_OTAPI_Exec.hpp \
+                                $(otapi_incdir)/Mock_OTAPI_Exec.hpp
