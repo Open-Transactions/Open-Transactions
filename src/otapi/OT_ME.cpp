@@ -187,16 +187,16 @@ typedef std::map<std::string, std::string>		mapOfArguments;
 //
 int OT_CLI_GetArgsCount(const std::string str_Args)
 {
-    std::vector<std::string> vArgs;
+    std::vector<std::string> vArgs = std::vector<std::string>();
     OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
 
 
     size_t nMapIndex = 0;
     std::vector<std::string>::iterator it = vArgs.begin();
-    for (; it <= vArgs.end() - 1;)
+    for (;;)
     {
-        it++;
-        it++;
+        if (it == vArgs.end()) break; it++;
+        if (it == vArgs.end()) break; it++;
         nMapIndex++;
     }
 
@@ -212,16 +212,16 @@ int OT_CLI_GetArgsCount(const std::string str_Args)
 //
 std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string str_key)
 {
-    std::vector<std::string> vArgs;
+    std::vector<std::string> vArgs = std::vector<std::string>();;
     OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
 
-    mapOfArguments mArgs;
+    mapOfArguments mArgs = mapOfArguments();
     {
         std::vector<std::string>::iterator it = vArgs.begin();
-        for (; it <= vArgs.end() - 1;)
+        for (;;)
         {
-            std::string strKey = *it++;
-            std::string strValue = *it++;
+            if (it == vArgs.end()) break; std::string strKey = *it++;
+            if (it == vArgs.end()) break; std::string strValue = *it++;
             mArgs.insert(std::make_pair(strKey, strValue));
         }
     }
@@ -250,16 +250,16 @@ std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string s
 //
 std::string OT_CLI_GetValueByIndex(const std::string str_Args, const size_t nIndex)
 {
-    std::vector<std::string> vArgs;
+    std::vector<std::string> vArgs = std::vector<std::string>();;
     OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
 
-    mapOfArguments mArgs;
+    mapOfArguments mArgs = mapOfArguments();
     {
         std::vector<std::string>::iterator it = vArgs.begin();
-        for (; it <= vArgs.end() - 1;)
+        for (;;)
         {
-            std::string strKey = *it++;
-            std::string strValue = *it++;
+            if (it == vArgs.end()) break; std::string strKey = *it++;
+            if (it == vArgs.end()) break; std::string strValue = *it++;
             mArgs.insert(std::make_pair(strKey, strValue));
         }
     }
@@ -267,8 +267,10 @@ std::string OT_CLI_GetValueByIndex(const std::string str_Args, const size_t nInd
     std::string str_retval = "";
 
     size_t nMapIndex = 0;
-    for (std::pair<std::string, std::string> s : mArgs)
+    for (mapOfArguments::iterator it = mArgs.begin(); it != mArgs.end(); ++it)
     {
+        std::pair<std::string, std::string> s = *it;
+
         if (nMapIndex == nIndex){
             str_retval = s.second;
             break;
@@ -287,16 +289,16 @@ std::string OT_CLI_GetValueByIndex(const std::string str_Args, const size_t nInd
 //
 std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const size_t nIndex)
 {
-    std::vector<std::string> vArgs;
+    std::vector<std::string> vArgs = std::vector<std::string>();;
     OTString::split_byChar(vArgs, str_Args, " ", OTString::split::no_empties);
 
-    mapOfArguments mArgs;
+    mapOfArguments mArgs = mapOfArguments();
     {
         std::vector<std::string>::iterator it = vArgs.begin();
-        for (; it <= vArgs.end() - 1;)
+        for (;;)
         {
-            std::string strKey = *it++;
-            std::string strValue = *it++;
+            if (it == vArgs.end()) break; std::string strKey = *it++;
+            if (it == vArgs.end()) break; std::string strValue = *it++;
             mArgs.insert(std::make_pair(strKey, strValue));
         }
     }
@@ -304,8 +306,10 @@ std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const size_t nIndex
     std::string str_retval = "";
 
     size_t nMapIndex = 0;
-    for (std::pair<std::string, std::string> s : mArgs)
+    for (mapOfArguments::iterator it = mArgs.begin(); it != mArgs.end(); ++it)
     {
+        std::pair<std::string, std::string> s = *it;
+
         if (nMapIndex == nIndex){
             str_retval = s.first;
             break;
