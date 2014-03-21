@@ -52,7 +52,12 @@ GTEST_API_ int main(int argc, char** argv) {
 	cout << "Running main() from gmock_main.cc\n";
 
 	remove("C:/Users/Eric/AppData/Roaming/OpenTransactions/client_data/ot.pid");
-	OTAPI_Wrap::AppInit();
+    if (!OTAPI_Wrap::AppInit())
+    {
+	    cout << "AppInit failed!!!\n";
+        return 0;
+    }
+
 	OTDataFolder::Init("client");
 
 #if USE_OLD_CDE
