@@ -1759,6 +1759,7 @@ bool OT_ME::SetupScriptObject()
 
 bool OT_ME::Register_OTDB_With_Script()
 {
+#ifdef OT_USE_CHAI5
     // See if it's ChaiScript.
     //
     OTScriptChai * pScript = dynamic_cast<OTScriptChai *> (m_pScript.get());
@@ -1767,16 +1768,16 @@ bool OT_ME::Register_OTDB_With_Script()
     {
         return Register_OTDB_With_Script_Chai(*pScript);
     }
-    else
-    {
-        OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
-    }
+#endif // OT_USE_CHAI5
+
+    OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
     return false;
 }
 
 
 bool OT_ME::Register_CLI_With_Script()
 {
+#ifdef OT_USE_CHAI5
     // See if it's ChaiScript.
     //
     OTScriptChai * pScript = dynamic_cast<OTScriptChai *> (m_pScript.get());
@@ -1785,15 +1786,15 @@ bool OT_ME::Register_CLI_With_Script()
     {
         return Register_CLI_With_Script_Chai(*pScript);
     }
-    else
-    {
-        OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
-    }
+#endif // OT_USE_CHAI5
+
+    OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
     return false;
 }
 
 bool OT_ME::Register_API_With_Script()
 {
+#ifdef OT_USE_CHAI5
     // See if it's ChaiScript.
     //
     OTScriptChai * pScript = dynamic_cast<OTScriptChai *> (m_pScript.get());
@@ -1802,15 +1803,15 @@ bool OT_ME::Register_API_With_Script()
     {
         return Register_API_With_Script_Chai(*pScript);
     }
-    else
-    {
-        OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
-    }
+#endif // OT_USE_CHAI5
+    
+    OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
     return false;
 }
 
 bool OT_ME::Register_Headers_With_Script()
 {
+#ifdef OT_USE_CHAI5
     // See if it's ChaiScript.
     //
     OTScriptChai * pScript = dynamic_cast<OTScriptChai *> (m_pScript.get());
@@ -1819,10 +1820,9 @@ bool OT_ME::Register_Headers_With_Script()
     {
         return Register_Headers_With_Script_Chai(*pScript);
     }
-    else
-    {
-        OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
-    }
+#endif // OT_USE_CHAI5
+    
+    OTLog::vError("%s: Failed dynamic casting OTScript to OTScriptChai \n", __FUNCTION__);
     return false;
 }
 
@@ -1832,6 +1832,7 @@ bool OT_ME::Register_Headers_With_Script()
 
 
 
+#ifdef OT_USE_CHAI5
 
 
 
@@ -2537,6 +2538,7 @@ bool OT_ME::Register_API_With_Script_Chai(OTScriptChai & theScript)
     }
 }
 
+#endif // OT_USE_CHAI5
 
 
 // ********************************************************************
@@ -2599,6 +2601,8 @@ bool NewScriptExists(const OTString & strScriptFilename, bool bIsHeader, OTStrin
     }
 }
 
+
+#ifdef OT_USE_CHAI5
 
 //bool OT_ME::Register_Headers_With_Script_Lua(OTScriptLua & theScript)
 
@@ -2754,5 +2758,6 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
         return true; // Success (hopefully!)
     }
 }
+#endif // OT_USE_CHAI5
 
 #endif
