@@ -193,6 +193,8 @@ private:
     bool Register_CLI_With_Script();
     bool Register_API_With_Script();
     bool Register_Headers_With_Script();
+
+#ifdef OT_USE_CHAI5
     // --------------------------------------
     // For ChaiScript:
     //
@@ -200,6 +202,7 @@ private:
     bool Register_CLI_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_API_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_Headers_With_Script_Chai (OTScriptChai & theScript);
+#endif
     
     // For Lua (etc.)
 //  bool Register_OTDB_With_Script_Lua     (OTScriptLua & theScript);
