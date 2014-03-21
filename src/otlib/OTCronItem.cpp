@@ -242,24 +242,20 @@ OTCronItem * OTCronItem::LoadCronReceipt(const long & lTransactionNum)
 	
 	const char * szFoldername	= OTFolders::Cron().Get();
 	const char * szFilename		= strFilename.Get();
-	
 	// --------------------------------------------------------------------
-	
 	if (false == OTDB::Exists(szFoldername, szFilename))
 	{
-		OTLog::vError("OTCronItem::LoadCronReceipt: File does not exist: %s%s%s\n", 
-					  szFoldername, OTLog::PathSeparator(), szFilename);
+		OTLog::vError("OTCronItem::%s: File does not exist: %s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return NULL;
 	}
-	
 	// --------------------------------------------------------------------
-	//
 	OTString strFileContents(OTDB::QueryPlainString(szFoldername, szFilename)); // <=== LOADING FROM DATA STORE.
 	
 	if (strFileContents.GetLength() < 2)
 	{
-		OTLog::vError("OTCronItem::LoadCronReceipt: Error reading file: %s%s%s\n", 
-					  szFoldername, OTLog::PathSeparator(), szFilename);
+		OTLog::vError("OTCronItem::%s: Error reading file: %s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return NULL;
 	}
 	else
@@ -270,6 +266,291 @@ OTCronItem * OTCronItem::LoadCronReceipt(const long & lTransactionNum)
 		return OTCronItem::NewCronItem(strFileContents);
 }
 
+
+//static
+OTCronItem * OTCronItem::LoadActiveCronReceipt(const long & lTransactionNum, const OTIdentifier & serverID) // Client-side only.
+{
+    OTString strFilename, strServerID(serverID);
+	strFilename.Format("%ld.crn", lTransactionNum);
+	
+	const char * szFoldername	= OTFolders::Cron().Get();
+	const char * szFilename		= strFilename.Get();
+	// --------------------------------------------------------------------
+	if (false == OTDB::Exists(szFoldername, strServerID.Get(), szFilename))
+	{
+		OTLog::vError("OTCronItem::%s: File does not exist: %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return NULL;
+	}
+	// --------------------------------------------------------------------
+	OTString strFileContents(OTDB::QueryPlainString(szFoldername, strServerID.Get(), szFilename)); // <=== LOADING FROM DATA STORE.
+	
+	if (strFileContents.GetLength() < 2)
+	{
+		OTLog::vError("OTCronItem::%s: Error reading file: %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return NULL;
+	}
+	else
+        // NOTE: NewCronItem can handle the normal cron item contracts, as well as the OT ARMORED version
+        // (It will decode the armor before instantiating the contract.) Therefore there's no need HERE in
+        // THIS function to do any decoding...
+        //
+		return OTCronItem::NewCronItem(strFileContents);
+}
+
+
+//static
+// Client-side only.
+bool OTCronItem::GetActiveCronTransNums(      OTNumList    & output,
+                                        const OTIdentifier & nymID,
+                                        const OTIdentifier & serverID)
+{
+	const char * szFoldername = OTFolders::Cron().Get();
+	// --------------------------------------------------------------------
+    output.Release();
+    // ------------------------------
+    // We need to load up the local list of active (recurring) transactions.
+    //
+    OTString strListFilename(nymID), strServerID(serverID);
+    strListFilename.Concatenate(".lst");  // nymID.lst
+    
+    if (OTDB::Exists(szFoldername, strServerID.Get(), strListFilename.Get()))
+    {
+        // Load up existing list, if it exists.
+        //
+        OTString strNumlist(OTDB::QueryPlainString(szFoldername, strServerID.Get(), strListFilename.Get()));
+        
+        if (strNumlist.Exists())
+        {
+            if (false == strNumlist.DecodeIfArmored(false)) // bEscapedIsAllowed=true by default.
+            {
+                OTLog::vError("%s: List of recurring transactions; string apparently was encoded "
+                              "and then failed decoding. Contents: \n%s\n",
+                              __FUNCTION__, strNumlist.Get());
+                return false;
+            }
+            // ------------------------------------------
+            else
+                output.Add(strNumlist);
+        }
+    }
+    // ------------------------------------
+    return true;
+}
+
+
+//static
+// Client-side only.
+bool OTCronItem::EraseActiveCronReceipt(const long         & lTransactionNum,
+                                        const OTIdentifier & nymID,
+                                        const OTIdentifier & serverID)
+{
+    OTString strFilename, strServerID(serverID);
+	strFilename.Format("%ld.crn", lTransactionNum);
+	
+	const char * szFoldername	= OTFolders::Cron().Get();
+	const char * szFilename		= strFilename.Get();
+	// --------------------------------------------------------------------
+    // Before we remove the cron item receipt itself, first we need to load up
+    // the local list of active (recurring) transactions, and remove the number
+    // from that list. Otherwise the GUI will continue thinking the transaction
+    // is active in cron.
+    //
+    OTString strListFilename(nymID);
+    strListFilename.Concatenate(".lst");  // nymID.lst
+    
+    if (OTDB::Exists(szFoldername, strServerID.Get(), strListFilename.Get()))
+    {
+        // Load up existing list, to remove the transaction num from it.
+        //
+        OTNumList numlist;
+
+        OTString strNumlist(OTDB::QueryPlainString(szFoldername, strServerID.Get(), strListFilename.Get()));
+        
+        if (strNumlist.Exists())
+        {
+            if (false == strNumlist.DecodeIfArmored(false)) // bEscapedIsAllowed=true by default.
+            {
+                OTLog::vError("%s: List of recurring transactions; string apparently was encoded "
+                              "and then failed decoding. Contents: \n%s\n",
+                              __FUNCTION__, strNumlist.Get());
+            }
+            // ------------------------------------------
+            else
+                numlist.Add(strNumlist);
+        }
+        // ------------------------------------
+        strNumlist.Release();
+        // ------------------------------------
+        if (numlist.Count() > 0)
+            numlist.Remove(lTransactionNum);
+        // ------------------------------------
+        if (0 == numlist.Count())
+        {
+            if (!OTDB::EraseValueByKey(szFoldername, strServerID.Get(), strListFilename.Get()))
+            {
+                OTLog::vOutput(0, "OTCronItem::%s: FYI, failure erasing recurring IDs file: %s%s%s%s%s\n",
+                              __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                              strServerID.Get(), OTLog::PathSeparator(), strListFilename.Get());
+            }
+        }
+        // ------------------------------------
+        else
+        {
+            numlist.Output(strNumlist);
+            // ------------------------------------
+            OTString strFinal;
+            
+            OTASCIIArmor ascTemp(strNumlist);
+            
+            if (false == ascTemp.WriteArmoredString(strFinal, "ACTIVE CRON ITEMS")) // todo hardcoding
+            {
+                OTLog::vError("OTCronItem::%s: Error re-saving recurring IDs (failed writing armored string): %s%s%s%s%s\n",
+                              __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                              strServerID.Get(), OTLog::PathSeparator(), strListFilename.Get());
+                return false;
+            }
+            // --------------------------------------------------------------------
+            else
+            {
+                bool bSaved = OTDB::StorePlainString(strFinal.Get(),    szFoldername,
+                                                     strServerID.Get(), strListFilename.Get());
+                
+                if (!bSaved)
+                {
+                    OTLog::vError("OTCronItem::%s: Error re-saving recurring IDs: %s%s%s%s%s\n",
+                                  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                                  strServerID.Get(), OTLog::PathSeparator(), strListFilename.Get());
+                    return false;
+                }
+            }
+        }
+    }
+	// --------------------------------------------------------------------
+    // Now that the list is updated, let's go ahead and erase the actual cron item itself.
+    //
+	if (false == OTDB::Exists(szFoldername, strServerID.Get(), szFilename))
+	{
+		OTLog::vError("OTCronItem::%s: File does not exist: %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return false;
+	}
+	// --------------------------------------------------------------------
+	if (!OTDB::EraseValueByKey(szFoldername, strServerID.Get(), szFilename))
+	{
+		OTLog::vError("OTCronItem::%s: Error erasing file: %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return false;
+	}
+	// --------------------------------------------------------------------
+    return true;
+}
+
+
+bool OTCronItem::SaveActiveCronReceipt(const OTIdentifier & theNymID) // Client-side only.
+{
+    const long lOpeningNum = GetOpeningNumber(theNymID);
+	// --------------------------------------------------------------------
+	OTString strFilename, strServerID(GetServerID());
+	strFilename.Format("%ld.crn", lOpeningNum);
+	
+	const char * szFoldername	= OTFolders::Cron().Get();  // cron
+	const char * szFilename		= strFilename.Get();        // cron/TRANSACTION_NUM.crn
+	// --------------------------------------------------------------------
+	if (OTDB::Exists(szFoldername, strServerID.Get(), szFilename))
+	{
+		OTLog::vOutput(2, "OTCronItem::%s: Cron Record already exists for transaction %ld %s%s%s%s%s, "
+                      "overwriting.\n",
+					  __FUNCTION__, GetTransactionNum(), szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+        // NOTE: We could just return here. But what if the record we have is corrupted somehow?
+        // Might as well just write it there again, so I let this continue running.
+	}
+	// --------------------------------------------------------------------
+    else // It wasn't there already, so we need to save the number in our local list of trans nums.
+    {
+        OTString strListFilename(theNymID);
+        strListFilename.Concatenate(".lst");  // nymID.lst
+        
+        OTNumList numlist;
+        
+        if (OTDB::Exists(szFoldername, strServerID.Get(), strListFilename.Get()))
+        {
+            // Load up existing list, to add the new transaction num to it.
+            //
+            OTString strNumlist(OTDB::QueryPlainString(szFoldername, strServerID.Get(), strListFilename.Get()));
+            
+            if (strNumlist.Exists())
+            {
+                if (false == strNumlist.DecodeIfArmored(false)) // bEscapedIsAllowed=true by default.
+                {
+                    OTLog::vError("%s: Input string apparently was encoded and then failed decoding. Contents: \n%s\n",
+                                  __FUNCTION__, strNumlist.Get());
+                }
+                // ------------------------------------------
+                else
+                    numlist.Add(strNumlist);
+            }
+        }
+        // ------------------------------------
+        numlist.Add(lOpeningNum);
+        // ------------------------------------
+        OTString strNumlist;
+        
+        if (numlist.Output(strNumlist))
+        {
+            OTString strFinal;
+            OTASCIIArmor ascTemp(strNumlist);
+            
+            if (false == ascTemp.WriteArmoredString(strFinal, "ACTIVE CRON ITEMS")) // todo hardcoding
+            {
+                OTLog::vError("OTCronItem::%s: Error saving recurring IDs (failed writing armored string): %s%s%s%s%s\n",
+                              __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                              strServerID.Get(), OTLog::PathSeparator(), strListFilename.Get());
+                return false;
+            }
+            // --------------------------------------------------------------------
+            bool bSaved = OTDB::StorePlainString(strFinal.Get(),    szFoldername,
+                                                 strServerID.Get(), strListFilename.Get());
+            
+            if (!bSaved)
+            {
+                OTLog::vError("OTCronItem::%s: Error saving recurring IDs: %s%s%s%s%s\n",
+                              __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                              strServerID.Get(), OTLog::PathSeparator(), strListFilename.Get());
+                return false;
+            }
+        }
+    }
+	// --------------------------------------------------------------------
+	OTString strFinal;
+    OTASCIIArmor ascTemp(m_strRawFile);
+    
+    if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
+    {
+		OTLog::vError("OTCronItem::%s: Error saving file (failed writing armored string): %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return false;
+    }
+    // --------------------------------------------------------------------
+	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFoldername, strServerID.Get(), szFilename);
+	
+	if (!bSaved)
+	{
+		OTLog::vError("OTCronItem::%s: Error saving file: %s%s%s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(),
+                      strServerID.Get(), OTLog::PathSeparator(), szFilename);
+		return false;
+	}
+	// --------------------------------------------------------------------
+	return bSaved;
+}
 
 
 
@@ -286,27 +567,23 @@ bool OTCronItem::SaveCronReceipt()
 	strFilename.Format("%ld.crn", GetTransactionNum());
 	
 	const char * szFoldername	= OTFolders::Cron().Get();  // cron
-	const char * szFilename		= strFilename.Get();    // cron/TRANSACTION_NUM.crn
-	
+	const char * szFilename		= strFilename.Get();        // cron/TRANSACTION_NUM.crn
 	// --------------------------------------------------------------------
-	
 	if (OTDB::Exists(szFoldername, szFilename))
 	{
-		OTLog::vError("OTCronItem::SaveCronReceipt: Cron Record already exists for transaction %ld %s%s%s,\n"
+		OTLog::vError("OTCronItem::%s: Cron Record already exists for transaction %ld %s%s%s,\n"
                       "yet inexplicably attempted to record it again.\n",
-					  GetTransactionNum(), szFoldername, OTLog::PathSeparator(), szFilename);
+					  __FUNCTION__, GetTransactionNum(), szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
-	
 	// --------------------------------------------------------------------
-
 	OTString strFinal;
     OTASCIIArmor ascTemp(m_strRawFile);
     
     if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
     {
-		OTLog::vError("OTCronItem::SaveCronReceipt: Error saving file (failed writing armored string): %s%s%s\n", 
-					  szFoldername, OTLog::PathSeparator(), szFilename);
+		OTLog::vError("OTCronItem::%s: Error saving file (failed writing armored string): %s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
     }
     // --------------------------------------------------------------------
@@ -314,12 +591,11 @@ bool OTCronItem::SaveCronReceipt()
 	
 	if (!bSaved)
 	{
-		OTLog::vError("OTCronItem::SaveCronReceipt: Error saving file: %s%s%s\n", 
-					  szFoldername, OTLog::PathSeparator(), szFilename);
+		OTLog::vError("OTCronItem::%s: Error saving file: %s%s%s\n",
+					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
 	// --------------------------------------------------------------------
-	
 	return bSaved;
 }
 

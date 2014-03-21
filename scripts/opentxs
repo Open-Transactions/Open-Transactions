@@ -82,6 +82,7 @@ def interpret_command(map_functions, map_help, strInput)
                          "delmail":6,//catOtherUsers,
                          "deloutmail":6,//catOtherUsers,
                          "showpayment":6,//catOtherUsers,
+                         "showactive":7,//catInstruments
                          "payments":6,//catOtherUsers,
                          "outpayment":6,//catOtherUsers,
                          "records":3,//catMisc,
@@ -445,6 +446,7 @@ def main_opentxs()
                          "delmail":main_del_mail,               // delete an in-mail item
                          "deloutmail":main_del_outmail,         // delete an out-mail item
                          "showpayment":main_show_payment,       // show the details of a payment in the payments inbox.
+                         "showactive":main_show_active,         // show the active cron item IDs, or the details of one by ID.
                          "payments":main_show_payments_inbox,   // display contents of incoming payments box.
                          "outpayment":main_show_outpayment,     // display contents of outgoing payments box.
                          "records":main_show_records,           // display contents of record box.
@@ -546,6 +548,7 @@ def main_opentxs()
                          "delmail":                             "delete an in-mail item.",
                          "deloutmail":                          "delete an out-mail item.",
                          "showpayment":                         "show the details of an incoming payment in the payments inbox.",
+                         "showactive":                          "show the active cron item IDs, or the details of one by ID.",
                          "payments":                            "display contents of incoming payments box.",
                          "outpayment":                          "display contents of outgoing payments box.",
                          "records":                             "display contents of record box.",

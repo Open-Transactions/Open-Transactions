@@ -444,6 +444,23 @@ std::string OTAPI_Basic::CreateNym(const long & nKeySize, // must be 1024, 2048,
 		nKeySize, NYM_ID_SOURCE, ALT_LOCATION);
 }
 
+
+std::string OTAPI_Basic::GetNym_ActiveCronItemIDs(const std::string & NYM_ID, const std::string & SERVER_ID)
+{
+    return OTAPI_Wrap::GetNym_ActiveCronItemIDs(
+                                     NYM_ID,
+                                     SERVER_ID
+                                     );
+}
+
+std::string OTAPI_Basic::GetActiveCronItem(const std::string & SERVER_ID, const std::string & TRANSACTION_NUMBER)
+{
+    return OTAPI_Wrap::GetActiveCronItem(
+                                         SERVER_ID,
+                                         OTAPI_Wrap::StringToLong(TRANSACTION_NUMBER)
+                                         );
+}
+
 std::string OTAPI_Basic::GetNym_SourceForID(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_SourceForID(NYM_ID);

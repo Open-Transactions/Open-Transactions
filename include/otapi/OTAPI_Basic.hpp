@@ -484,6 +484,8 @@ public:
 	//
 	EXPORT static std::string CreateNym(const long & nKeySize, const std::string & NYM_ID_SOURCE, const std::string & ALT_LOCATION); // must be 1024, 2048, 4096, or 8192
 
+    EXPORT static std::string GetNym_ActiveCronItemIDs    (const std::string & NYM_ID,    const std::string & SERVER_ID);
+    EXPORT static std::string GetActiveCronItem           (const std::string & SERVER_ID, const std::string & TRANSACTION_NUMBER);
     
     EXPORT static std::string GetNym_SourceForID          (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_AltSourceLocation    (const std::string & NYM_ID);

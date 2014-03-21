@@ -359,7 +359,7 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
         {
             OTLog::vError("%sx: Error: Unexpected abbreviated receipt in Nymbox, even after supposedly "
                 "loading all box receipts. (And it's not a replyNotice, either!)\n", __FUNCTION__);
-            //			return false;			
+//			return false;
         }
         // -----------------------------------------------------	
         //		OTString strTransaction(*pTransaction);
@@ -457,8 +457,8 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
             pAcceptItem->SignContract(*pNym);
             pAcceptItem->SaveContract();
 
-            //			OTLog::vOutput(0, "%s: Received a server notification in your Nymbox:\n%s\n", 
-            //                         __FUNCTION__, strRespTo.Get());
+//			OTLog::vOutput(0, "%s: Received a server notification in your Nymbox:\n%s\n",
+//                         __FUNCTION__, strRespTo.Get());
 
             // Todo: stash these somewhere, just like messages are in the pNym->AddMail() feature.
             // NOTE: Most likely we still stash these in the paymentInbox just the same as instrumentNotice (above)
@@ -715,8 +715,25 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
             // pNym won't actually save unless it actually removes that #. If the #'s already NOT THERE,
             // then the removal will fail, and thus it won't bother saving here.
 
-            // --------------------------------------------
-
+            // ----------------------------------------------
+            // The client side keeps a list of active (recurring) transactions.
+            // That is, smart contracts and payment plans. I don't think it keeps
+            // market offers in that list, since we already have a list of active
+            // market offers separately. And market offers produce final receipts,
+            // so basically this piece of code will be executed for all final receipts.
+            // It's not really necessary that it be called for market offers, but whatever.
+            // It is for the others.
+            //
+            // Notice even though the final receipt hasn't yet been cleared out of the box,
+            // we are already removing the record of the active cron receipt. Why?
+            // Because regardless of when the user processes the finalReceipt, we know for
+            // a fact the transaction is no longer actively running on Cron. So we don't want
+            // to keep it on our list of "active" cron items if we know it's already inactive.
+            //
+            OTCronItem::EraseActiveCronReceipt(pTransaction->GetReferenceToNum(),
+                                               pNym->GetConstID(),
+                                               pTransaction->GetPurportedServerID());
+            // ----------------------------------------------
             OTItem * pAcceptItem = OTItem::CreateItemFromTransaction(*pAcceptTransaction, OTItem::acceptFinalReceipt);
 
             // the transaction will handle cleaning up the transaction item.
@@ -1077,12 +1094,31 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                     else
                         OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
                         pTransaction->GetReferenceToNum());
+                    
+                    // ----------------------------------------------
+                    // The client side keeps a list of active (recurring) transactions.
+                    // That is, smart contracts and payment plans. I don't think it keeps
+                    // market offers in that list, since we already have a list of active
+                    // market offers separately. And market offers produce final receipts,
+                    // so basically this piece of code will be executed for all final receipts.
+                    // It's not really necessary that it be called for market offers, but whatever.
+                    // It is for the others.
+                    //
+                    // Notice even though the final receipt hasn't yet been cleared out of the box,
+                    // we are already removing the record of the active cron receipt. Why?
+                    // Because regardless of when the user processes the finalReceipt, we know for
+                    // a fact the transaction is no longer actively running on Cron. So we don't want
+                    // to keep it on our list of "active" cron items if we know it's already inactive.
+                    //
+                    OTCronItem::EraseActiveCronReceipt(pTransaction->GetReferenceToNum(),
+                                                       pNym->GetConstID(),
+                                                       pTransaction->GetPurportedServerID());
+                   
                 }
-
+                // ----------------------------------------------
                 //
                 // pNym won't actually save unless it actually removes that #. If the #'s already NOT THERE,
                 // then the removal will fail, and thus it won't bother saving here.
-
 
                 // If I accept the finalReceipt or basketReceipt, that will remove its CLOSING NUM from my issued list.
                 // (Its "in reference to" num is already closed by now.)
@@ -1859,8 +1895,8 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
                                     // burning the transaction number, but leaving it open if success. Perfect.
                                     //
                                     if (false == pNym->RemoveIssuedNum(*pNym, strServerID,
-                                        lNymOpeningNumber,
-                                        true)) // bool bSave=true
+                                                                       lNymOpeningNumber,
+                                                                       true)) // bool bSave=true
                                     {
                                         OTLog::vError("%s: Error removing issued number from user nym (for a cron item.)\n",
                                             __FUNCTION__);
@@ -1884,9 +1920,17 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
 
                                 OTString strInstrument; // If the instrument is in the outpayments box, we put a copy of it here.
 
-                                if ((OTTransaction::atPaymentPlan   == pTransaction->GetType()) || // No need to do this for market offers. (Because they
-                                    (OTTransaction::atSmartContract == pTransaction->GetType()))   // don't go into the outpayments box in the first place.)
+                                if ((OTTransaction::atPaymentPlan   == pTransaction->GetType()) || // No need to do this for market offers. (Because they don't
+                                    (OTTransaction::atSmartContract == pTransaction->GetType()))   // go into the outpayments box in the first place.)
                                 {
+                                    // --------------------------------------------
+                                    // If success, save a copy in my "active cron items" folder.
+                                    //
+                                    if (OTItem::acknowledgement == pReplyItem->GetStatus())
+                                    {
+                                        pCronItem->SaveActiveCronReceipt(pNym->GetConstID());
+                                    }
+                                    // --------------------------------------------
                                     OTNumList   numlistOutpayment(lNymOpeningNumber);
                                     const int   nOutpaymentIndex = pNym->GetOutpaymentsIndexByTransNum(lNymOpeningNumber);
                                     OTMessage * pMsg             = NULL;
@@ -1942,7 +1986,7 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
                                     // Normally wouldn't we expect that a successful activation of an inbox item, should remove
                                     // that inbox item? Especially if there's already a copy in the outbox as well...
                                     //
-                                    //                                  if (OTItem::rejection == pReplyItem->GetStatus()) // REJECTION
+//                                  if (OTItem::rejection == pReplyItem->GetStatus()) // REJECTION
                                     {
                                         // -----------------------------------------------------
                                         const bool bExists1   = OTDB::Exists(OTFolders::PaymentInbox().Get(), strServerID.Get(), strNymID.Get());
@@ -4114,7 +4158,18 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                         else
                                             OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
                                             pServerTransaction->GetReferenceToNum());
-
+                                        // ----------------------------------------------
+                                        // The client side keeps a list of active (recurring) transactions.
+                                        // That is, smart contracts and payment plans. I don't think it keeps
+                                        // market offers in that list, since we already have a list of active
+                                        // market offers separately. And market offers produce final receipts,
+                                        // so basically this piece of code will be executed for all final receipts.
+                                        // It's not really necessary that it be called for market offers, but whatever.
+                                        // It is for the others.
+                                        //
+                                        OTCronItem::EraseActiveCronReceipt(pServerTransaction->GetReferenceToNum(),
+                                                                           pNym->GetConstID(),
+                                                                           pServerTransaction->GetPurportedServerID());
                                     } // OTItem::atAcceptFinalReceipt
 
                                     break;
@@ -4623,13 +4678,19 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                     //
                                                     pCronItem->HarvestClosingNumbers(*pNym); // saves.
                                                 }
-                                                // ------------------------------------------------------
+                                                // --------------------------------------------
+                                                // If success, save a copy in my "active cron items" folder.
+                                                //
+                                                else //if (OTItem::acknowledged == pReplyItem->GetStatus())
+                                                {
+                                                    pCronItem->SaveActiveCronReceipt(pNym->GetConstID());
+                                                }
+                                                // --------------------------------------------
                                                 // When party receives notice that smart contract has been activated,
                                                 // remove the instrument from outpayments box. (If it's there -- it can be.)
                                                 //
                                                 // (This happens for acknowledged AND rejected smart contracts.)
                                                 //
-
                                                 OTNumList   numlistOutpayment(lNymOpeningNumber);
                                                 OTString    strInstrument; // If the instrument is in the outpayments box, we put a copy of it here.
                                                 const int   nOutpaymentIndex = pNym->GetOutpaymentsIndexByTransNum(lNymOpeningNumber);
@@ -4686,7 +4747,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                 // Normally wouldn't we expect that a successful activation of an inbox item, should remove
                                                 // that inbox item? Especially if there's already a copy in the outbox as well...
                                                 //
-                                                //                                                  if (OTItem::rejection == pReplyItem->GetStatus()) // REJECTION
+//                                              if (OTItem::rejection == pReplyItem->GetStatus()) // REJECTION
                                                 {
                                                     // -----------------------------------------------------
                                                     const bool bExists1   = OTDB::Exists(OTFolders::PaymentInbox().Get(), strServerID.Get(), strNymID.Get());
@@ -4701,14 +4762,14 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                     if (bExists1 && bSuccessLoading1)
                                                         bSuccessLoading1  = (thePmntInbox.VerifyContractID() &&
                                                         thePmntInbox.VerifySignature(*pNym));
-                                                    //                                                      bSuccessLoading1	  = (thePmntInbox.VerifyAccount(*pNym)); // (No need to load all the Box Receipts using VerifyAccount)
+//                                                      bSuccessLoading1	  = (thePmntInbox.VerifyAccount(*pNym)); // (No need to load all the Box Receipts using VerifyAccount)
                                                     else if (!bExists1)
                                                         bSuccessLoading1  = thePmntInbox.GenerateLedger(USER_ID, SERVER_ID, OTLedger::paymentInbox, true); // bGenerateFile=true
                                                     // -----------------------------------------------------
                                                     if (bExists2 && bSuccessLoading2)
                                                         bSuccessLoading2  = (theRecordBox.VerifyContractID() &&
                                                         theRecordBox.VerifySignature(*pNym));
-                                                    //                                                      bSuccessLoading2      = (theRecordBox.VerifyAccount(*pNym)); // (No need to load all the Box Receipts using VerifyAccount)
+//                                                      bSuccessLoading2      = (theRecordBox.VerifyAccount(*pNym)); // (No need to load all the Box Receipts using VerifyAccount)
                                                     else if (!bExists2)
                                                         bSuccessLoading2  = theRecordBox.GenerateLedger(USER_ID, SERVER_ID, OTLedger::recordBox, true); // bGenerateFile=true
                                                     // -----------------------------------------------------
@@ -4947,21 +5008,42 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                             case OTItem::atAcceptFinalReceipt:
                                 OTLog::vOutput(2, "%s: Successfully removed finalReceipt "
-                                    "from Nymbox with opening num: %ld\n", __FUNCTION__,
-                                    pServerTransaction->GetReferenceToNum());
+                                               "from Nymbox with opening num: %ld\n", __FUNCTION__,
+                                               pServerTransaction->GetReferenceToNum());
 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
                                     OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
-                                    pServerTransaction->GetReferenceToNum());
+                                                   pServerTransaction->GetReferenceToNum());
                                 else
                                     OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
-                                    pServerTransaction->GetReferenceToNum());
+                                                   pServerTransaction->GetReferenceToNum());
 
                                 // BUG: RemoveIssuedNum shouldn't be here. In Nymbox, finalReceipt is only a notice, and I shoulda
                                 // removed the number the instant that I saw it. (Back when processing the Nymbox, before even
                                 // calculating the request.) Therefore, this is moved to AcceptEntireNymbox and Finalize for Process Inbox.
                                 //
-                                //                                  pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true); // bool bSave=true	
+//                              pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true); // bool bSave=true
+                                    
+                                // ----------------------------------------------
+                                // The client side keeps a list of active (recurring) transactions.
+                                // That is, smart contracts and payment plans. I don't think it keeps
+                                // market offers in that list, since we already have a list of active
+                                // market offers separately. And market offers produce final receipts,
+                                // so basically this piece of code will be executed for all final receipts.
+                                // It's not really necessary that it be called for market offers, but whatever.
+                                // It is for the others.
+                                //
+                                // Notice even though the final receipt hasn't yet been cleared out of the box,
+                                // we are already removing the record of the active cron receipt. Why?
+                                // Because regardless of when the user processes the finalReceipt, we know for
+                                // a fact the transaction is no longer actively running on Cron. So we don't want
+                                // to keep it on our list of "active" cron items if we know it's already inactive.
+                                //
+                                OTCronItem::EraseActiveCronReceipt(pServerTransaction->GetReferenceToNum(),
+                                                                   pNym->GetConstID(),
+                                                                   pServerTransaction->GetPurportedServerID());
+                                // ----------------------------------------------
+
                                 break;
 
                             default:
@@ -4980,7 +5062,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                             // to delete the box receipt, which is stored as a separate file.
                             //
                             pServerTransaction->DeleteBoxReceipt(*pNymbox); // faster.
-                            //							pNymbox->DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
+//							pNymbox->DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
                             pNymbox->RemoveTransaction(pServerTransaction->GetTransactionNum());
 
                         } // for loop (reply items)
@@ -5222,7 +5304,20 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                    pTempTrans->GetReferenceToNum());
                                 
 //                              pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true); // bSave = true;
-                                
+                                // ----------------------------------------------
+                                // The client side keeps a list of active (recurring) transactions.
+                                // That is, smart contracts and payment plans. I don't think it keeps
+                                // market offers in that list, since we already have a list of active
+                                // market offers separately. And market offers produce final receipts,
+                                // so basically this piece of code will be executed for all final receipts.
+                                // It's not really necessary that it be called for market offers, but whatever.
+                                // It is for the others.
+                                //
+                                OTCronItem::EraseActiveCronReceipt(pTempTrans->GetReferenceToNum(),
+                                                                   pNym->GetConstID(),
+                                                                   pTempTrans->GetPurportedServerID());
+                                // ----------------------------------------------
+
                             } // We also do this in AcceptEntireNymbox
                         }
                         
@@ -5395,13 +5490,33 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                         OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
                         pTempTrans->GetReferenceToNum());
 
-                    //                  pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true); // bSave = true;
+//                  pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true); // bSave = true;
+
+                    // ----------------------------------------------
+                    // The client side keeps a list of active (recurring) transactions.
+                    // That is, smart contracts and payment plans. I don't think it keeps
+                    // market offers in that list, since we already have a list of active
+                    // market offers separately. And market offers produce final receipts,
+                    // so basically this piece of code will be executed for all final receipts.
+                    // It's not really necessary that it be called for market offers, but whatever.
+                    // It is for the others.
+                    //
+                    // Notice even though the final receipt hasn't yet been cleared out of the box,
+                    // we are already removing the record of the active cron receipt. Why?
+                    // Because regardless of when the user processes the finalReceipt, we know for
+                    // a fact the transaction is no longer actively running on Cron. So we don't want
+                    // to keep it on our list of "active" cron items if we know it's already inactive.
+                    //
+                    OTCronItem::EraseActiveCronReceipt(pTempTrans->GetReferenceToNum(),
+                                                       pNym->GetConstID(),
+                                                       pTempTrans->GetPurportedServerID());
+                    // ----------------------------------------------
 
                 } // We also do this in AcceptEntireNymbox
             }
 
             // -----------------------------------------------
-            // Now I'm keeping the server signature, and just adding my own. 
+            // Now I'm keeping the server signature, and just adding my own.
             theInbox.ReleaseSignatures(); // This is back. Why? Because we have receipts functional now.
             theInbox.SignContract(*pNym);
             theInbox.SaveContract();
