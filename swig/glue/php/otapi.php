@@ -666,6 +666,14 @@ class OTAPI_Basic {
 		return OTAPI_Basic_CreateNym($nKeySize,$NYM_ID_SOURCE,$ALT_LOCATION);
 	}
 
+	static function GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID) {
+		return OTAPI_Basic_GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID);
+	}
+
+	static function GetActiveCronItem($SERVER_ID,$TRANSACTION_NUMBER) {
+		return OTAPI_Basic_GetActiveCronItem($SERVER_ID,$TRANSACTION_NUMBER);
+	}
+
 	static function GetNym_SourceForID($NYM_ID) {
 		return OTAPI_Basic_GetNym_SourceForID($NYM_ID);
 	}

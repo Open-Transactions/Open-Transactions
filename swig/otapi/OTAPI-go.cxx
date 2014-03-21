@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: otapi/OTAPI.i
+// source: swig\otapi\OTAPI.i
 
 #define SWIGMODULE otapi
 #define SWIG_DIRECTORS
@@ -2576,6 +2576,62 @@ _wrap_OTAPI_Basic_CreateNym(void *swig_v)
   
   
   result = OTAPI_Basic::CreateNym((long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    _gostring_ arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  
+  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
+  arg1 = &arg1_str;
+  
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = OTAPI_Basic::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OTAPI_Basic_GetActiveCronItem(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    _gostring_ arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  
+  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
+  arg1 = &arg1_str;
+  
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = OTAPI_Basic::GetActiveCronItem((std::string const &)*arg1,(std::string const &)*arg2);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 

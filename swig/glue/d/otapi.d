@@ -698,6 +698,18 @@ class OTAPI_Basic {
     return ret;
   }
 
+  public static char[] GetNym_ActiveCronItemIDs(char[] NYM_ID, char[] SERVER_ID) {
+    char[] ret = tango.stdc.stringz.fromStringz(otapi_im.OTAPI_Basic_GetNym_ActiveCronItemIDs((NYM_ID ? tango.stdc.stringz.toStringz(NYM_ID) : null), (SERVER_ID ? tango.stdc.stringz.toStringz(SERVER_ID) : null)));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
+  public static char[] GetActiveCronItem(char[] SERVER_ID, char[] TRANSACTION_NUMBER) {
+    char[] ret = tango.stdc.stringz.fromStringz(otapi_im.OTAPI_Basic_GetActiveCronItem((SERVER_ID ? tango.stdc.stringz.toStringz(SERVER_ID) : null), (TRANSACTION_NUMBER ? tango.stdc.stringz.toStringz(TRANSACTION_NUMBER) : null)));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
   public static char[] GetNym_SourceForID(char[] NYM_ID) {
     char[] ret = tango.stdc.stringz.fromStringz(otapi_im.OTAPI_Basic_GetNym_SourceForID((NYM_ID ? tango.stdc.stringz.toStringz(NYM_ID) : null)));
     if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();

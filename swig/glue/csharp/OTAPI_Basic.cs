@@ -234,6 +234,18 @@ public class OTAPI_Basic : global::System.IDisposable {
     return ret;
   }
 
+  public static string GetNym_ActiveCronItemIDs(string NYM_ID, string SERVER_ID) {
+    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_ActiveCronItemIDs(NYM_ID, SERVER_ID);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string GetActiveCronItem(string SERVER_ID, string TRANSACTION_NUMBER) {
+    string ret = otapiPINVOKE.OTAPI_Basic_GetActiveCronItem(SERVER_ID, TRANSACTION_NUMBER);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static string GetNym_SourceForID(string NYM_ID) {
     string ret = otapiPINVOKE.OTAPI_Basic_GetNym_SourceForID(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();

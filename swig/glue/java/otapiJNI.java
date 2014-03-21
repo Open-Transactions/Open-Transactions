@@ -118,6 +118,8 @@ public class otapiJNI {
   public final static native boolean OTAPI_Basic_PopMemlogFront();
   public final static native boolean OTAPI_Basic_PopMemlogBack();
   public final static native String OTAPI_Basic_CreateNym(int jarg1, String jarg2, String jarg3);
+  public final static native String OTAPI_Basic_GetNym_ActiveCronItemIDs(String jarg1, String jarg2);
+  public final static native String OTAPI_Basic_GetActiveCronItem(String jarg1, String jarg2);
   public final static native String OTAPI_Basic_GetNym_SourceForID(String jarg1);
   public final static native String OTAPI_Basic_GetNym_AltSourceLocation(String jarg1);
   public final static native int OTAPI_Basic_GetNym_CredentialCount(String jarg1);
