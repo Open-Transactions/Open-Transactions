@@ -648,6 +648,50 @@ std::string OTAPI_Wrap::CreateNym(const int32_t     & nKeySize, // must be 1024,
 	return "";
 }
 
+std::string OTAPI_Wrap::GetNym_ActiveCronItemIDs(const std::string & NYM_ID,
+                                                 const std::string & SERVER_ID)
+{
+    if (NYM_ID.empty())    { OTLog::vError("%s: NULL %s passed in!\n", __FUNCTION__, "NYM_ID");    OT_FAIL; }
+    if (SERVER_ID.empty()) { OTLog::vError("%s: NULL %s passed in!\n", __FUNCTION__, "SERVER_ID"); OT_FAIL; }
+	// ---------------------------------------------------------
+    const OTIdentifier nymId(NYM_ID), serverId(SERVER_ID);
+	// ---------------------------------------------------------
+    OTNumList   numlist;
+    std::string str_return;
+    
+    if (OTCronItem::GetActiveCronTransNums(numlist, nymId, serverId))
+    {
+        OTString strOutput;
+        numlist.Output(strOutput);
+        str_return = strOutput.Get();
+    }
+
+    return str_return;
+}
+
+std::string OTAPI_Wrap::GetActiveCronItem(const std::string & SERVER_ID, int64_t lTransNum)
+{
+    if (SERVER_ID.empty()) { OTLog::vError("%s: NULL %s passed in!\n",      __FUNCTION__, "SERVER_ID"); OT_FAIL; }
+	if (0 > lTransNum)     { OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "lTransNum"); OT_FAIL; }
+	// --------------------------------------
+    const OTIdentifier serverId(SERVER_ID);
+    std::string        str_return;
+	// --------------------------------------
+    const long lTransactionNum = static_cast<long>(lTransNum);
+    
+    OTCronItem * pCronItem = OTCronItem::LoadActiveCronReceipt(lTransactionNum, serverId);
+    OTCleanup<OTCronItem> theCronItemAngel(pCronItem);
+	// --------------------------------------
+    if (NULL != pCronItem)
+    {
+        const OTString strCronItem(*pCronItem);
+        
+        str_return = strCronItem.Get();
+    }
+	// --------------------------------------
+    return str_return;
+}
+
 
 std::string OTAPI_Wrap::GetNym_SourceForID(const std::string & NYM_ID)
 {
@@ -2085,15 +2129,10 @@ std::string OTAPI_Wrap::Wallet_ImportNym(const std::string & FILE_CONTENTS)
 	// 
 	//
 	//
-
 	if (bImported)
 	{
 		const OTString strNymID(theNymID);
-
 		std::string pBuf = strNymID.Get();
-
-		
-
 		return pBuf;
 	}
 

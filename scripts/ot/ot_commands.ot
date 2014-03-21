@@ -10425,7 +10425,174 @@ def main_payinvoice()
 }
 
 
+def tokenize(str, delimiters, trimEmpty)
+{
+    var pos     = 0
+    var lastPos = 0
+    var tokens  = Vector()
+    
+    while (true)
+    {
+        pos = str.find_first_of(delimiters, lastPos)
+        
+        if ((-1) == pos)
+        {
+            pos = str.size()
+            
+            if ((pos != lastPos) || !trimEmpty)
+            {
+                tokens.push_back(str.substr(lastPos, pos-lastPos))
+            }
+            return tokens
+        }
+        else
+        {
+            if ((pos != lastPos) || !trimEmpty)
+            {
+                tokens.push_back(str.substr(lastPos, pos-lastPos ))
+            }
+        }
+        
+        lastPos = pos + 1
+    }
+}
 
+
+
+// Show the active cron item IDs, or the details of one by ID.
+//
+def main_show_active()
+{
+    var strUsage2 = concat("\nUsage:  showactive --server SERVER_ID --mynym NYM_ID   (To display a list of IDs.)\n",
+                             "OR:     showactive --server SERVER_ID --args \"id TRANSACTION_ID\"\n")
+    
+    var strUsage = concat(strUsage2, "\nLists the transaction numbers of currently active payment plans\n" +
+                          "and smart contracts. Also useful for displaying contents by ID.\n\n")
+    
+    OT_API_Output(0, strUsage)
+    // --------------------------------------------------------------------
+    //
+    var lTransNum   = int64_t(0)
+    var bDetailMode = false
+    
+    var strError = "\nPlease provide either:  --mynym NYM_ID   (to view a list of active transactions)\n" +
+                   "or, to view details for a specific transaction, use --args \"id TRANSACTION_ID\" \n\n"
+    
+    if (VerifyExists("Server"))
+    {
+        if (VerifyExists("Args", false))
+        {
+            var strTransNum = OT_CLI_GetValueByKey(Args, "id") // transaction number.
+            // -----------------------------
+            if (VerifyStringVal(strTransNum))
+            {
+                lTransNum = int64_t(strTransNum.to_int())
+                
+                if (lTransNum > 0)
+                {
+                    bDetailMode = true
+                }
+                else
+                {
+                    OT_API_Output(0, "Missing argument (1): " + strError)
+                    return (-1)
+                }
+            }
+        }
+        // -----------------------------
+        if (!bDetailMode && !VerifyExists("MyNym"))
+        {
+            OT_API_Output(0, "Missing argument (2): " + strError)
+            return (-1)
+        }
+        // -----------------------------
+        // By this point, we know for a fact that either MyNym was supplied, and thus we need to display a list
+        // of active transactions for the given nym/server, or otherwise, bDetailMode will be true, and lTransNum
+        // contains a greater-than-zero value in int64_t form, in which case, we need to display the details
+        // of that cron item.
+        //
+        // ***************************************************************
+        
+        if (bDetailMode)
+        {
+            var strCronItem = OT_API_GetActiveCronItem(Server, lTransNum)
+            
+            if (VerifyStringVal(strCronItem))
+            {
+                var strType = ""
+                
+                strType = OT_API_Instrmnt_GetType(strCronItem)
+
+                if (!VerifyStringVal(strType))
+                {
+                    strType = "UNKNOWN"
+                }
+                
+                OT_API_Output(0, "Found an active transaction!\n")
+                OT_API_Output(0, "ID: " + lTransNum.to_string() + "  Type: " + strType + "\n\nContents:\n\n")
+                
+                print (strCronItem)
+                
+                OT_API_Output(0, "\n")
+            }
+        }
+        else
+        {
+            var strIDs = OT_API_GetNym_ActiveCronItemIDs(MyNym, Server)
+            
+            if (VerifyStringVal(strIDs) && (OT_API_NumList_Count(strIDs) > 0))
+            {
+                var vecIDs = Vector()
+                vecIDs     = tokenize(strIDs, ",", true)
+
+                for (var nIndex = 0; nIndex < vecIDs.size(); ++nIndex)
+                {
+                    var strTransNum = vecIDs[nIndex]
+                    // -----------------------------
+                    if (VerifyStringVal(strTransNum))
+                    {
+                        lTransNum = int64_t(strTransNum.to_int())
+                        
+                        if (lTransNum > 0)
+                        {
+                            var strCronItem = OT_API_GetActiveCronItem(Server, lTransNum)
+                            
+                            if (VerifyStringVal(strCronItem))
+                            {
+                                var strType = ""
+                                
+                                strType = OT_API_Instrmnt_GetType(strCronItem)
+                                
+                                if (!VerifyStringVal(strType))
+                                {
+                                    strType = "UNKNOWN"
+                                }
+                                // ----------------------------------
+                                if (0 == nIndex)
+                                {
+                                    OT_API_Output(0, "\n Found " + vecIDs.size().to_string() + " active transactions:\n\n")
+                                }
+                                // ----------------------------------
+                                print("ID: " + strTransNum + "  Type: " + strType + "\n")
+                            }
+                        }
+                    }
+                } // for
+                // -----------------------------------
+                OT_API_Output(0, "\n")
+            }
+            else
+            {
+                OT_API_Output(0, "\nFound no active transactions. Perhaps try 'opentxs refresh' first?\n")
+            }
+        } // list mode (not detail mode.)
+        // -----------------------------------
+        return 1
+
+    } // if (VerifyExists("Server"))
+    // -------------------
+    return (-1)
+}
 
 
 // Show an individual payment in detail.

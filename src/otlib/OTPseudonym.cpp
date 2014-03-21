@@ -5266,8 +5266,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
                     OTLog::vOutput(3, "This nym has been MARKED_FOR_DELETION (at some point prior.)\n");
 				}
                 // -------------------------------------
-                
-				else if (!!strNodeName.Compare("hasOpenCronItem"))
+				else if (strNodeName.Compare("hasOpenCronItem"))
 				{
                     OTString strID = xml->getAttributeValue("ID");
 					

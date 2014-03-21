@@ -355,8 +355,8 @@ public :
 	//
 	EXPORT static std::string NumList_Add (const std::string & strNumList, const std::string & strNumbers);
 	EXPORT static std::string NumList_Remove (const std::string & strNumList, const std::string & strNumbers);
-	EXPORT static bool NumList_VerifyQuery(const std::string & strNumList, const std::string & strNumbers); // returns OT_BOOL
-	EXPORT static bool NumList_VerifyAll (const std::string & strNumList, const std::string & strNumbers); // returns OT_BOOL
+	EXPORT static bool NumList_VerifyQuery(const std::string & strNumList, const std::string & strNumbers);
+	EXPORT static bool NumList_VerifyAll (const std::string & strNumList, const std::string & strNumbers);
 	EXPORT static int32_t NumList_Count (const std::string & strNumList);
 
 
@@ -572,6 +572,9 @@ public :
     // is that master credentials be signed by the corresponding private key.
 	*/
     EXPORT static std::string CreateNym(const int32_t & nKeySize, const std::string & NYM_ID_SOURCE, const std::string & ALT_LOCATION);  // source and location can be empty. (OT will generate a Nym with a public key as the source.)
+    
+    EXPORT static std::string GetNym_ActiveCronItemIDs    (const std::string & NYM_ID, const std::string & SERVER_ID);
+    EXPORT static std::string GetActiveCronItem           (const std::string & SERVER_ID, int64_t lTransNum);
     
 	EXPORT static std::string GetNym_SourceForID          (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_AltSourceLocation    (const std::string & NYM_ID);

@@ -229,9 +229,17 @@ public:
     // -----------------------------------------------------------------
 	inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
-EXPORT	static OTCronItem * NewCronItem(const OTString & strCronItem);
-        static OTCronItem * LoadCronReceipt(const long & lTransactionNum);
-	
+EXPORT	static OTCronItem * NewCronItem           (const OTString & strCronItem);
+EXPORT  static OTCronItem * LoadCronReceipt       (const long     & lTransactionNum); // Server-side only.
+EXPORT  static OTCronItem * LoadActiveCronReceipt (const long     & lTransactionNum, const OTIdentifier & serverID); // Client-side only.
+EXPORT  static bool         EraseActiveCronReceipt(const long     & lTransactionNum,
+                                                   const OTIdentifier & nymID,
+                                                   const OTIdentifier & serverID); // Client-side only.
+    // -----------------------------------------------------------------
+EXPORT  static bool         GetActiveCronTransNums(      OTNumList    & output, // Client-side only.
+                                                   const OTIdentifier & nymID,
+                                                   const OTIdentifier & serverID);
+    // -----------------------------------------------------------------
 	inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
 	inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
 	
@@ -244,10 +252,11 @@ EXPORT	bool SetDateRange(const time_t VALID_FROM=0,  const time_t VALID_TO=0);
 	inline const time_t & GetProcessInterval() const { return m_PROCESS_INTERVAL; }
 	
 	inline OTCron * GetCron() { return m_pCron; }
-	
+    // -----------------------------------------------------------------
 	// When first adding anything to Cron, a copy needs to be saved in a folder somewhere.
-	bool SaveCronReceipt();
-	
+EXPORT	bool SaveCronReceipt(); // server side only
+EXPORT	bool SaveActiveCronReceipt(const OTIdentifier & theNymID); // client side only
+    // -----------------------------------------------------------------
 	// For moving money from one nym's account to another.
 	// Specifically used in Smart Contracts, and it is also nearly identically copied in OTPaymentPlan.
 	//

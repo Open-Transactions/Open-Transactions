@@ -2408,7 +2408,10 @@ bool OT_ME::Register_API_With_Script_Chai(OTScriptChai & theScript)
 
 		// ------------------------------------------------------------------		
 		theScript.chai->add(fun(&OTAPI_Wrap::CreateNym), "OT_API_CreateNym");
-        
+
+        theScript.chai->add(fun(&OTAPI_Wrap::GetNym_ActiveCronItemIDs), "OT_API_GetNym_ActiveCronItemIDs");
+        theScript.chai->add(fun(&OTAPI_Wrap::GetActiveCronItem), "OT_API_GetActiveCronItem");
+
         theScript.chai->add(fun(&OTAPI_Wrap::GetNym_SourceForID), "OT_API_GetNym_SourceForID");
 		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_AltSourceLocation), "OT_API_GetNym_AltSourceLocation");
 		theScript.chai->add(fun(&OTAPI_Wrap::GetNym_CredentialCount), "OT_API_GetNym_CredentialCount");
