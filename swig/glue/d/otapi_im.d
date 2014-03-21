@@ -402,6 +402,8 @@ static this() {
   mixin(bindCode("OTAPI_Basic_PopMemlogFront", "D_OTAPI_Basic_PopMemlogFront"));
   mixin(bindCode("OTAPI_Basic_PopMemlogBack", "D_OTAPI_Basic_PopMemlogBack"));
   mixin(bindCode("OTAPI_Basic_CreateNym", "D_OTAPI_Basic_CreateNym"));
+  mixin(bindCode("OTAPI_Basic_GetNym_ActiveCronItemIDs", "D_OTAPI_Basic_GetNym_ActiveCronItemIDs"));
+  mixin(bindCode("OTAPI_Basic_GetActiveCronItem", "D_OTAPI_Basic_GetActiveCronItem"));
   mixin(bindCode("OTAPI_Basic_GetNym_SourceForID", "D_OTAPI_Basic_GetNym_SourceForID"));
   mixin(bindCode("OTAPI_Basic_GetNym_AltSourceLocation", "D_OTAPI_Basic_GetNym_AltSourceLocation"));
   mixin(bindCode("OTAPI_Basic_GetNym_CredentialCount", "D_OTAPI_Basic_GetNym_CredentialCount"));
@@ -1542,6 +1544,8 @@ extern(C) char* function() OTAPI_Basic_PeekMemlogBack;
 extern(C) uint function() OTAPI_Basic_PopMemlogFront;
 extern(C) uint function() OTAPI_Basic_PopMemlogBack;
 extern(C) char* function(tango.stdc.config.c_long jarg1, char* jarg2, char* jarg3) OTAPI_Basic_CreateNym;
+extern(C) char* function(char* jarg1, char* jarg2) OTAPI_Basic_GetNym_ActiveCronItemIDs;
+extern(C) char* function(char* jarg1, char* jarg2) OTAPI_Basic_GetActiveCronItem;
 extern(C) char* function(char* jarg1) OTAPI_Basic_GetNym_SourceForID;
 extern(C) char* function(char* jarg1) OTAPI_Basic_GetNym_AltSourceLocation;
 extern(C) tango.stdc.config.c_long function(char* jarg1) OTAPI_Basic_GetNym_CredentialCount;

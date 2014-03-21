@@ -504,6 +504,12 @@ class otapiPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreateNym")]
   public static extern string OTAPI_Basic_CreateNym(int jarg1, string jarg2, string jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_ActiveCronItemIDs")]
+  public static extern string OTAPI_Basic_GetNym_ActiveCronItemIDs(string jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetActiveCronItem")]
+  public static extern string OTAPI_Basic_GetActiveCronItem(string jarg1, string jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_SourceForID")]
   public static extern string OTAPI_Basic_GetNym_SourceForID(string jarg1);
 

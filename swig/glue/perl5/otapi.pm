@@ -297,6 +297,8 @@ sub DESTROY {
 *PopMemlogFront = *otapic::OTAPI_Basic_PopMemlogFront;
 *PopMemlogBack = *otapic::OTAPI_Basic_PopMemlogBack;
 *CreateNym = *otapic::OTAPI_Basic_CreateNym;
+*GetNym_ActiveCronItemIDs = *otapic::OTAPI_Basic_GetNym_ActiveCronItemIDs;
+*GetActiveCronItem = *otapic::OTAPI_Basic_GetActiveCronItem;
 *GetNym_SourceForID = *otapic::OTAPI_Basic_GetNym_SourceForID;
 *GetNym_AltSourceLocation = *otapic::OTAPI_Basic_GetNym_AltSourceLocation;
 *GetNym_CredentialCount = *otapic::OTAPI_Basic_GetNym_CredentialCount;
