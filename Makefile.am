@@ -24,6 +24,12 @@ dist_opentxslib_SCRIPTS =   scripts/ot/ot_commands.ot		\
                             scripts/ot/ot_made_easy.ot		\
                             scripts/ot/ot_utility.ot
 
+## opentxs prompt autocomplete
+
+bashcompletiondir		=	$(BASH_COMPLETIONDIR)
+
+dist_bashcompletion_SCRIPTS	=	scripts/bash_completion.d/opentxs-bash-completion.sh
+
 #### OT docs, licences, info, etc.
 
 opentxsdocdir			=	$(docdir)

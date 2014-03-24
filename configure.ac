@@ -425,6 +425,20 @@ AC_ARG_WITH(
 
 AM_CONDITIONAL([WANT_GO], [test x"$with_go" == x"yes"])
 
+## (Option) Add opentxs prompt bash-completion ##
+
+AC_ARG_WITH(
+	[bashcompletion],
+	[AS_HELP_STRING([--with-bashcompletion=DIR], [opentxs prompt bash-completion script install directory])],
+	[ case "$withval" in "" | y | ye | yes | n | no) AC_MSG_ERROR([Invalid --with-bashcompletion value]);;
+		*) ac_cv_ot_bashcompletiondir="$withval"
+		;;
+		esac
+	AC_SUBST([BASH_COMPLETIONDIR], ["$ac_cv_ot_bashcompletiondir"])
+	],
+	[])
+
+
 ##############################
 ## Build Configuration Options
 
