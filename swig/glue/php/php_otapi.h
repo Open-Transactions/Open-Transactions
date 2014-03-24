@@ -107,6 +107,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PeekMemlogBack);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogFront);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogBack);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateNym);
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs);
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetActiveCronItem);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SourceForID);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_AltSourceLocation);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialCount);

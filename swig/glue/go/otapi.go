@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: otapi/OTAPI.i
+// source: swig\otapi\OTAPI.i
 
 package otapi
 
@@ -734,6 +734,8 @@ func OTAPI_BasicPeekMemlogBack() string
 func OTAPI_BasicPopMemlogFront() bool
 func OTAPI_BasicPopMemlogBack() bool
 func OTAPI_BasicCreateNym(int64, string, string) string
+func OTAPI_BasicGetNym_ActiveCronItemIDs(string, string) string
+func OTAPI_BasicGetActiveCronItem(string, string) string
 func OTAPI_BasicGetNym_SourceForID(string) string
 func OTAPI_BasicGetNym_AltSourceLocation(string) string
 func OTAPI_BasicGetNym_CredentialCount(string) int64

@@ -179,6 +179,14 @@ public class OTAPI_Basic {
     return otapiJNI.OTAPI_Basic_CreateNym(nKeySize, NYM_ID_SOURCE, ALT_LOCATION);
   }
 
+  public static String GetNym_ActiveCronItemIDs(String NYM_ID, String SERVER_ID) {
+    return otapiJNI.OTAPI_Basic_GetNym_ActiveCronItemIDs(NYM_ID, SERVER_ID);
+  }
+
+  public static String GetActiveCronItem(String SERVER_ID, String TRANSACTION_NUMBER) {
+    return otapiJNI.OTAPI_Basic_GetActiveCronItem(SERVER_ID, TRANSACTION_NUMBER);
+  }
+
   public static String GetNym_SourceForID(String NYM_ID) {
     return otapiJNI.OTAPI_Basic_GetNym_SourceForID(NYM_ID);
   }

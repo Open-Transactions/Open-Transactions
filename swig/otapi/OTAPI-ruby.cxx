@@ -2376,7 +2376,7 @@ SWIG_ruby_failed(void)
 } 
 
 
-/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -2493,7 +2493,7 @@ SWIG_From_size_t  (size_t value)
 }
 
 
-/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -6056,6 +6056,98 @@ _wrap_OTAPI_Basic_CreateNym(int argc, VALUE *argv, VALUE self) {
 fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Basic::GetNym_ActiveCronItemIDs", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Basic::GetNym_ActiveCronItemIDs", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Basic::GetNym_ActiveCronItemIDs", 2, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Basic::GetNym_ActiveCronItemIDs", 2, argv[1])); 
+    }
+    arg2 = ptr;
+  }
+  result = OTAPI_Basic::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTAPI_Basic_GetActiveCronItem(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Basic::GetActiveCronItem", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Basic::GetActiveCronItem", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Basic::GetActiveCronItem", 2, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Basic::GetActiveCronItem", 2, argv[1])); 
+    }
+    arg2 = ptr;
+  }
+  result = OTAPI_Basic::GetActiveCronItem((std::string const &)*arg1,(std::string const &)*arg2);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 }
 
@@ -43900,6 +43992,8 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "PopMemlogFront", VALUEFUNC(_wrap_OTAPI_Basic_PopMemlogFront), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "PopMemlogBack", VALUEFUNC(_wrap_OTAPI_Basic_PopMemlogBack), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "CreateNym", VALUEFUNC(_wrap_OTAPI_Basic_CreateNym), -1);
+  rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetNym_ActiveCronItemIDs", VALUEFUNC(_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs), -1);
+  rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetActiveCronItem", VALUEFUNC(_wrap_OTAPI_Basic_GetActiveCronItem), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetNym_SourceForID", VALUEFUNC(_wrap_OTAPI_Basic_GetNym_SourceForID), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetNym_AltSourceLocation", VALUEFUNC(_wrap_OTAPI_Basic_GetNym_AltSourceLocation), -1);
   rb_define_singleton_method(SwigClassOTAPI_Basic.klass, "GetNym_CredentialCount", VALUEFUNC(_wrap_OTAPI_Basic_GetNym_CredentialCount), -1);

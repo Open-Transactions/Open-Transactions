@@ -294,6 +294,10 @@ class OTAPI_Basic(_object):
     if _newclass:PopMemlogBack = staticmethod(_otapi.OTAPI_Basic_PopMemlogBack)
     __swig_getmethods__["CreateNym"] = lambda x: _otapi.OTAPI_Basic_CreateNym
     if _newclass:CreateNym = staticmethod(_otapi.OTAPI_Basic_CreateNym)
+    __swig_getmethods__["GetNym_ActiveCronItemIDs"] = lambda x: _otapi.OTAPI_Basic_GetNym_ActiveCronItemIDs
+    if _newclass:GetNym_ActiveCronItemIDs = staticmethod(_otapi.OTAPI_Basic_GetNym_ActiveCronItemIDs)
+    __swig_getmethods__["GetActiveCronItem"] = lambda x: _otapi.OTAPI_Basic_GetActiveCronItem
+    if _newclass:GetActiveCronItem = staticmethod(_otapi.OTAPI_Basic_GetActiveCronItem)
     __swig_getmethods__["GetNym_SourceForID"] = lambda x: _otapi.OTAPI_Basic_GetNym_SourceForID
     if _newclass:GetNym_SourceForID = staticmethod(_otapi.OTAPI_Basic_GetNym_SourceForID)
     __swig_getmethods__["GetNym_AltSourceLocation"] = lambda x: _otapi.OTAPI_Basic_GetNym_AltSourceLocation
@@ -1026,6 +1030,14 @@ OTAPI_Basic_PopMemlogBack = _otapi.OTAPI_Basic_PopMemlogBack
 def OTAPI_Basic_CreateNym(*args):
   return _otapi.OTAPI_Basic_CreateNym(*args)
 OTAPI_Basic_CreateNym = _otapi.OTAPI_Basic_CreateNym
+
+def OTAPI_Basic_GetNym_ActiveCronItemIDs(*args):
+  return _otapi.OTAPI_Basic_GetNym_ActiveCronItemIDs(*args)
+OTAPI_Basic_GetNym_ActiveCronItemIDs = _otapi.OTAPI_Basic_GetNym_ActiveCronItemIDs
+
+def OTAPI_Basic_GetActiveCronItem(*args):
+  return _otapi.OTAPI_Basic_GetActiveCronItem(*args)
+OTAPI_Basic_GetActiveCronItem = _otapi.OTAPI_Basic_GetActiveCronItem
 
 def OTAPI_Basic_GetNym_SourceForID(*args):
   return _otapi.OTAPI_Basic_GetNym_SourceForID(*args)
