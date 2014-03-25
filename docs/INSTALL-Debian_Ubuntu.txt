@@ -20,6 +20,10 @@ $ sudo aptitude install wget git build-essential libtool automake cmake pkg-conf
 $ sudo aptitude install libzmq-dev libmsgpack-dev libssl-dev 
 $ sudo aptitude install protobuf-compiler libprotobuf-dev
 
+# On Ubuntu 12.04 (or any other system that doesn't have a compiler with C++11 support
+# (GCC version lower than 4.7) you also need to install boost:
+$ sudo aptitude install libboost-all-dev
+
 (NB: may need "libprotoc" if "protobuf-compiler" pkg not available on debian-like sytems)
 
 #########    Optional API deps:   #########
