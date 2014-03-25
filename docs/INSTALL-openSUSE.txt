@@ -61,7 +61,7 @@ $ ./autogen.sh
 ########################################
 
 
-$ ./configure --with-bashcompletion=/etc/bash_completion.d/
+$ ./configure
 
 
 #########   Configure Options:   #########
