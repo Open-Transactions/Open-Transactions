@@ -76,6 +76,9 @@ Release Mode:    --enable-release
 System Keyring:  --with-keyring=ARG
 Arguments:       gnome, kwallet, windows or mac
 
+opentxs Autocompletion: --with-bashcompletion=
+path depending on the system e.g. /etc/bash_completion.d/
+
 Enable OTAPI support for swig wrapper:
        Java:     --with-java
        Perl 5:   --with-perl5
