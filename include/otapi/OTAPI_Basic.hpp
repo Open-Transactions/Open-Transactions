@@ -6,18 +6,18 @@ This class wraps OTAPI_Wrap
 In this class only following types are accepted:
 bool, long, std::string
 Every other type will be wrapped in a std::string.
- 
+
  long is used where OTAPI.h would use int32_t
  string is used where OTAPI.h would use int64_t
 
  This file is wrapped by SWIG (Python, Ruby, Java, PHP, etc.)
- 
+
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -120,10 +120,10 @@ Every other type will be wrapped in a std::string.
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -144,11 +144,7 @@ Every other type will be wrapped in a std::string.
 #ifndef __OTAPI_BASIC_HPP__
 #define __OTAPI_BASIC_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
+#include "OTCommon.hpp"
 
 #include <string>
 
@@ -168,16 +164,16 @@ public:
 
 	EXPORT static bool AppStartup();  // Call once at startup.
 	EXPORT static bool AppShutdown(); // Call once at shutdown.
-    
+
 	// --------------------------------------------------------------------
     // Optional. Used by Qt, Android. Call these (if necessary) before calling Init.
     //
     EXPORT static void SetAppBinaryFolder(const std::string & strFolder);
     EXPORT static void SetHomeFolder     (const std::string & strFolder);
 	// --------------------------------------------------------------------
-    
+
 	EXPORT static bool Init(); // Call until it returns true. Call AppStartup() first.
-    
+
 	// --------------------------------------------------------------------
 	/**
 	SET WALLET (optional)
@@ -189,7 +185,7 @@ public:
 	e.g. SetWallet("wallet2.xml");
 
 	*/
-	EXPORT static bool SetWallet(const std::string & strWalletFilename); 
+	EXPORT static bool SetWallet(const std::string & strWalletFilename);
 
 
 	// --------------------------------------------------------------------
@@ -216,7 +212,7 @@ public:
 	LoadWallet();
 
 	*/
-	EXPORT static bool LoadWallet(); 
+	EXPORT static bool LoadWallet();
 
 
 
@@ -291,12 +287,12 @@ public:
 	This will pack, compress, and base64-encode a plain string.
 	Returns the base64-encoded string, or NULL.
 
-	internally: 
+	internally:
 	OTString	strPlain(strPlaintext);
 	OTASCIIArmor	ascEncoded(thePlaintext);	// ascEncoded now contains the OT-encoded string.
 	return	ascEncoded.Get();	// We return it.
 	*/
-	EXPORT static std::string Encode(const std::string & strPlaintext, const bool & bLineBreaks); 
+	EXPORT static std::string Encode(const std::string & strPlaintext, const bool & bLineBreaks);
 
 
 
@@ -310,12 +306,12 @@ public:
 	This will base64-decode, uncompress, and unpack an OT-encoded string.
 	Returns the plainext string, or NULL.
 
-	internally: 
+	internally:
 	OTASCIIArmor	ascEncoded(strEncoded);
 	OTString	strPlain(ascEncoded);	// strPlain now contains the decoded plainext string.
 	return	strPlain.Get();	// We return it.
 	*/
-	EXPORT static std::string Decode(const std::string & strEncoded, const bool & bLineBreaks); 
+	EXPORT static std::string Decode(const std::string & strEncoded, const bool & bLineBreaks);
 
 
 
@@ -329,9 +325,9 @@ public:
 	This will encode, ENCRYPT, and encode a plain string.
 	Returns the base64-encoded ciphertext, or NULL.
 
-	internally the C++ code is: 
+	internally the C++ code is:
 	OTString	strPlain(strPlaintext);
-	OTEnvelope	theEnvelope;	
+	OTEnvelope	theEnvelope;
 	if (theEnvelope.Seal(RECIPIENT_NYM, strPlain)) {	// Now it's encrypted (in binary form, inside the envelope), to the recipient's nym.
 	OTASCIIArmor	ascCiphertext(theEnvelope);	// ascCiphertext now contains the base64-encoded ciphertext (as a string.)
 	return ascCiphertext.Get();
@@ -351,7 +347,7 @@ public:
 	Decrypts the base64-encoded ciphertext back into a normal string plainext.
 	Returns the plainext string, or NULL.
 
-	internally the C++ code is: 
+	internally the C++ code is:
 	OTEnvelope	theEnvelope;	// Here is the envelope object. (The ciphertext IS the data for an OTEnvelope.)
 	OTASCIIArmor	ascCiphertext(strCiphertext);	// The base64-encoded ciphertext passed in. Next we'll try to attach it to envelope object...
 	if (theEnvelope.SetAsciiArmoredData(ascCiphertext)) {	// ...so that we can open it using the appropriate Nym, into a plain string object:
@@ -486,27 +482,27 @@ public:
 
     EXPORT static std::string GetNym_ActiveCronItemIDs    (const std::string & NYM_ID,    const std::string & SERVER_ID);
     EXPORT static std::string GetActiveCronItem           (const std::string & SERVER_ID, const std::string & TRANSACTION_NUMBER);
-    
+
     EXPORT static std::string GetNym_SourceForID          (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_AltSourceLocation    (const std::string & NYM_ID);
-    
+
     EXPORT static int32_t        GetNym_CredentialCount      (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_CredentialID         (const std::string & NYM_ID, const long & nIndex);
     EXPORT static std::string GetNym_CredentialContents   (const std::string & NYM_ID, const std::string & CREDENTIAL_ID);
-    
+
     EXPORT static int32_t        GetNym_RevokedCredCount     (const std::string & NYM_ID);
 	EXPORT static std::string GetNym_RevokedCredID        (const std::string & NYM_ID, const long & nIndex);
     EXPORT static std::string GetNym_RevokedCredContents  (const std::string & NYM_ID, const std::string & CREDENTIAL_ID);
-    
+
     EXPORT static int32_t        GetNym_SubcredentialCount   (const std::string & NYM_ID, const std::string & MASTER_CRED_ID);
 	EXPORT static std::string GetNym_SubCredentialID      (const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const long & nIndex);
 	EXPORT static std::string GetNym_SubCredentialContents(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const std::string & SUB_CRED_ID);
-    
+
     EXPORT static std::string AddSubcredential            (const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const long & nKeySize);
     EXPORT static bool        RevokeSubcredential         (const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const std::string & SUB_CRED_ID);
 
 
-	// Creates a contract based on the contents passed in, 
+	// Creates a contract based on the contents passed in,
 	// then sets the contract key based on the NymID,
 	// and signs it with that Nym.
 	// This function will also ADD the contract to the wallet.
@@ -532,11 +528,11 @@ public:
 	<?xml version="1.0"?>
 	<digitalAssetContract version="1.0">
 
-	<entity shortname="Just testing" 
-	longname="I need user feedback to help design the contract tags the server must support..." 
+	<entity shortname="Just testing"
+	longname="I need user feedback to help design the contract tags the server must support..."
 	email="F3llowTraveler (at) gmail.com"/>
 
-	<issue company="Chuck-E-Cheese, Inc" 
+	<issue company="Chuck-E-Cheese, Inc"
 	email="games@chuckecheese.com"
 	contractUrl="https://chuckecheese.com/games/contract/"
 	type="currency"/>
@@ -550,12 +546,12 @@ public:
 	<?xml version="1.0"?>
 	<notaryProviderContract version="1.0">
 
-	<entity shortname="Transactions.com" 
-	longname="Transactions.com, LLC" 
+	<entity shortname="Transactions.com"
+	longname="Transactions.com, LLC"
 	email="serverfarm@cloudcomputing.com"
 	serverURL="https://transactions.com/vers/1/"/>
 
-	<notaryServer hostname="localhost" 
+	<notaryServer hostname="localhost"
 	port="7085"
 	URL="https://transactions.com/vers/1/" />
 
@@ -589,8 +585,8 @@ public:
 
 	/*
 	EXPORT static std::string Contract_AddTag(const std::string & NYM_ID, const std::string & THE_CONTRACT,
-	const std::string & TAG_NAME, const std::string & SUBTAG_NAME, 
-	const std::string & SUBTAG_VALUE, const std::string & TAG_VALUE); 
+	const std::string & TAG_NAME, const std::string & SUBTAG_NAME,
+	const std::string & SUBTAG_VALUE, const std::string & TAG_VALUE);
 	key == TAG_NAME
 	name == SUBTAG_NAME
 	"contract" == SUBTAG_VALUE
@@ -604,7 +600,7 @@ public:
 	// --------------------------------------------------
 	// ADD SERVER CONTRACT (to wallet)
 	//
-	// If you have a server contract that you'd like to add 
+	// If you have a server contract that you'd like to add
 	// to your wallet, call this function.
 	//
 	EXPORT static int32_t AddServerContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
@@ -615,7 +611,7 @@ public:
 	// --------------------------------------------------
 	// ADD ASSET CONTRACT (to wallet)
 	//
-	// If you have an asset contract that you'd like to add 
+	// If you have an asset contract that you'd like to add
 	// to your wallet, call this function.
 	//
 	EXPORT static int32_t AddAssetContract(const std::string & strContract); // returns OT_TRUE (1) or OT_FALSE(0)
@@ -651,7 +647,7 @@ public:
      // Returns formatted string for output, for a given amount, based on currency contract and locale.
      */
 	EXPORT static std::string FormatAmount(const std::string & ASSET_TYPE_ID, const std::string & THE_AMOUNT);
-    
+
 	/** StringToAmount:
      // Input: currency contract, formatted string. (And locale, internally.)
      // Output: "$5.45" becomes 545 (for example.)
@@ -660,7 +656,7 @@ public:
      */
     EXPORT static std::string StringToAmount(const std::string & ASSET_TYPE_ID, const std::string & str_input);
 
-    
+
 	EXPORT static std::string GetAssetType_ID(const long & nIndex); // returns Asset Type ID (based on index from GetAssetTypeCount)
 	EXPORT static std::string GetAssetType_Name(const std::string & ASSET_TYPE_ID); // Returns asset type name based on Asset Type ID
 	EXPORT static std::string GetAssetType_TLA(const std::string & ASSET_TYPE_ID); // Returns asset type TLA based on Asset Type ID
@@ -697,7 +693,7 @@ public:
 	// transactions will work until you call getTransactionNumber()
 	// to replenish your Nym's supply for that ServerID...
 	//
-	// Returns a count (0 through N numbers available), 
+	// Returns a count (0 through N numbers available),
 	// or -1 for error (no nym found.)
 	//
 	EXPORT static int32_t GetNym_TransactionNumCount(const std::string & SERVER_ID, const std::string & NYM_ID);
@@ -713,7 +709,7 @@ public:
 
 
 
-	EXPORT static bool IsNym_RegisteredAtServer(const std::string & NYM_ID, const std::string & SERVER_ID); 
+	EXPORT static bool IsNym_RegisteredAtServer(const std::string & NYM_ID, const std::string & SERVER_ID);
 
 
 	// Each Nym has mail messages, they can come from different servers.
@@ -748,7 +744,7 @@ public:
 
 	EXPORT static bool	Nym_RemoveMailByIndex(const std::string & NYM_ID, const long & nIndex);
 	EXPORT static bool	Nym_VerifyMailByIndex(const std::string & NYM_ID, const long & nIndex);
-    
+
 	// ---------------------------------------------------------
 
 	EXPORT static int32_t	GetNym_OutmailCount(const std::string & NYM_ID);
@@ -855,7 +851,7 @@ public:
 	/*
 	CHANGE MASTER KEY and PASSWORD.
 
-	Normally your passphrase is used to derive a key, which is used to unlock 
+	Normally your passphrase is used to derive a key, which is used to unlock
 	a random number (a symmetric key), which is used as the passphrase to open the
 	master key, which is used as the passphrase to any given Nym.
 
@@ -870,7 +866,7 @@ public:
 	at the same time here, by loading up all the private nyms, destroying the master key,
 	and then saving all the private Nyms. (With master key never actually being "paused.")
 	This will automatically cause it to generate a new master key during the saving process.
-	(Make sure to save the wallet also.) 
+	(Make sure to save the wallet also.)
 	*/
 	EXPORT static bool Wallet_ChangePassphrase(); // actually returns OT_BOOL (OT_TRUE for success and OT_FALSE for error.)
 
@@ -892,7 +888,7 @@ public:
 
 	// Attempts to find a full ID in the wallet, based on a partial of the same ID.
 	// Returns NULL on failure, otherwise returns the full ID.
-	// 
+	//
 	EXPORT static std::string Wallet_GetNymIDFromPartial (const std::string & PARTIAL_ID);
 	EXPORT static std::string Wallet_GetServerIDFromPartial (const std::string & PARTIAL_ID);
 	EXPORT static std::string Wallet_GetAssetIDFromPartial (const std::string & PARTIAL_ID);
@@ -911,33 +907,33 @@ public:
 	// Signer Nym?
 	// When testing, there is only one nym, so you just pass it
 	// twice. But in real production, a user will have a default
-	// signing nym, the same way that he might have a default 
+	// signing nym, the same way that he might have a default
 	// signing key in PGP, and that must be passed in whenever
 	// he changes the name on any of the other nyms in his wallet.
 	// (In order to properly sign and save the change.)
     //
 	EXPORT static bool SetNym_Name(
-		const std::string & NYM_ID, 
-		const std::string & SIGNER_NYM_ID, 
+		const std::string & NYM_ID,
+		const std::string & SIGNER_NYM_ID,
 		const std::string & NYM_NEW_NAME
 		);
 
 	// The asset account's name is merely a client-side label.
 	EXPORT static bool SetAccountWallet_Name(
-		const std::string & ACCT_ID, 
-		const std::string & SIGNER_NYM_ID, 
+		const std::string & ACCT_ID,
+		const std::string & SIGNER_NYM_ID,
 		const std::string & ACCT_NEW_NAME
-		); 
+		);
 
 	EXPORT static bool SetAssetType_Name(
-		const std::string & ASSET_ID, 
+		const std::string & ASSET_ID,
 		const std::string & STR_NEW_NAME
 		);
 
 	EXPORT static bool SetServer_Name(
-		const std::string & SERVER_ID, 
+		const std::string & SERVER_ID,
 		const std::string & STR_NEW_NAME
-		); 
+		);
 
 
 	// (Above) IMPORTANT: USE the above functions for setting the CLIENT-SIDE
@@ -946,7 +942,7 @@ public:
 	//
 	// If you just added the contract, it will SET the label for you based on the contract type.
 	// like if it's an asset contract, it uses the currency name field from the asset contract.
-	// If it's a server contract it uses the entity short name. After that, it's 
+	// If it's a server contract it uses the entity short name. After that, it's
 	// configurable for the user, and stays on client side, and persists via wallet.
 	//
 	// EVEN WHEN OT has to re-download one of those files, it will make sure to save
@@ -970,13 +966,13 @@ public:
 
 	WRITE A CHEQUE --- (Returns the cheque in string form.)
 
-	==> WriteCheque() internally constructs an OTCheque 
+	==> WriteCheque() internally constructs an OTCheque
 	and issues it, like so:
 
 	OTCheque theCheque( SERVER_ID, ASSET_TYPE_ID );
 
 	theCheque.IssueCheque( AMOUNT // The amount of the cheque, in string form, which OTAPI
-	// will convert to a long integer. Negative amounts 
+	// will convert to a long integer. Negative amounts
 	// allowed, since that is how OT implements invoices.
 	// (An invoice is just a cheque with a negative amount.)
 
@@ -995,12 +991,12 @@ public:
 	*/
 	EXPORT static std::string WriteCheque(
 		const std::string & SERVER_ID,
-		const std::string & CHEQUE_AMOUNT, 
-		const std::string & VALID_FROM, 
+		const std::string & CHEQUE_AMOUNT,
+		const std::string & VALID_FROM,
 		const std::string & VALID_TO,
 		const std::string & SENDER_ACCT_ID,
 		const std::string & SENDER_USER_ID,
-		const std::string & CHEQUE_MEMO, 
+		const std::string & CHEQUE_MEMO,
 		const std::string & RECIPIENT_USER_ID
 		);
 
@@ -1017,7 +1013,7 @@ public:
 
 	Why does it matter to get the transaction number back? Because once you sign
 	that number out, you will have to CONTINUE signing it out on EVERY RECEIPT until
-	that transaction is finally closed out. You are still responsible for that 
+	that transaction is finally closed out. You are still responsible for that
 	transaction number, until then.
 
 	So most likely, if the cheque is going nowhere, then you will want to RETRIEVE
@@ -1062,13 +1058,13 @@ public:
 
 	FYI, here are all the OT library calls that are performed by this single API call:
 
-	OTPaymentPlan * pPlan = new OTPaymentPlan(pAccount->GetRealServerID(), 
+	OTPaymentPlan * pPlan = new OTPaymentPlan(pAccount->GetRealServerID(),
 	pAccount->GetAssetTypeID(),
 	pAccount->GetRealAccountID(),	pAccount->GetUserID(),
 	RECIPIENT_ACCT_ID, RECIPIENT_USER_ID);
 
 	----------------------------------------------------------------------------------------
-	From OTAgreement: (This must be called first, before the other two methods below can be called.)	
+	From OTAgreement: (This must be called first, before the other two methods below can be called.)
 
 	bool	OTAgreement::SetProposal(	const OTPseudonym & MERCHANT_NYM,	const OTString & strConsideration,
 	const time_t & VALID_FROM=0, const time_t & VALID_TO=0);
@@ -1078,12 +1074,12 @@ public:
 	bool	OTPaymentPlan::SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
 	----------------------------------------------------------------------------------------
 
-	These two (above and below) can be called independent of each other. You can 
+	These two (above and below) can be called independent of each other. You can
 	have an initial payment, AND/OR a payment plan.
 
 	----------------------------------------------------------------------------------------
 	(Optional regular payments):
-	bool	OTPaymentPlan::SetPaymentPlan(const long & lPaymentAmount, 
+	bool	OTPaymentPlan::SetPaymentPlan(const long & lPaymentAmount,
 	time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS, // Default: 1st payment in 30 days
 	time_t tBetweenPayments=LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
 	time_t tPlanLength=0, long nMaxPayments=0);
@@ -1102,19 +1098,19 @@ public:
 		// ----------------------------------------
 		const std::string & RECIPIENT_ACCT_ID,	// NOT optional.
 		const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
-		// -------------------------------	
+		// -------------------------------
 		const std::string & INITIAL_PAYMENT_AMOUNT,	// zero or NULL == no initial payment.
 		const std::string & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
-		// ---------------------------------------- 
+		// ----------------------------------------
 		const std::string & PAYMENT_PLAN_AMOUNT,	// zero or NULL == no regular payments.
 		const std::string & PAYMENT_PLAN_DELAY,     // No. of seconds from creation date. Default is zero or NULL.
 		const std::string & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL.
-		// --------------------------------------- 
+		// ---------------------------------------
 		const std::string & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
 		const long & PAYMENT_PLAN_MAX_PAYMENTS      // integer. Defaults to 0 or NULL (no maximum payments.)
-		);	
+		);
 
-    
+
     // The above version has too many arguments for boost::function apparently (for Chaiscript.)
     // So this is a version of it that compresses those into a fewer number of arguments.
     // (Then it expands them and calls the above version.)
@@ -1134,13 +1130,13 @@ public:
 		// ----------------------------------------
 		const std::string & RECIPIENT_ACCT_ID,	// NOT optional.
 		const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
-		// -------------------------------	
+		// -------------------------------
         const std::string & INITIAL_PAYMENT,	// "amount,delay"  Default 'amount' (0 or "") == no initial payment. Default 'delay' (0 or NULL) is seconds from creation date.
-		// -------------------------------	
+		// -------------------------------
         const std::string & PAYMENT_PLAN,       // "amount,delay,period" 'amount' is a recurring payment. 'delay' and 'period' cause 30 days if you pass 0 or "".
 		// -------------------------------
         const std::string & PLAN_EXPIRY         // "length,number" 'length' is maximum lifetime in seconds. 'number' is maximum number of payments in seconds. 0 or "" is unlimited (for both.)
-		);	
+		);
 
 
 	// Called by Customer. Pass in the plan obtained in the above call.
@@ -1171,7 +1167,7 @@ public:
 
 	//
 	// todo: Someday add a parameter here BYLAW_LANGUAGE so that people can use
-	// custom languages in their scripts. For now I have a default language, so 
+	// custom languages in their scripts. For now I have a default language, so
 	// I'll just make that the default. (There's only one language right now anyway.)
 	//
 	// returns: the updated smart contract (or NULL)
@@ -1260,7 +1256,7 @@ public:
 
 	// ----------------------------------------
 
-	// This function returns the count of how many trans#s a Nym needs in order to confirm as 
+	// This function returns the count of how many trans#s a Nym needs in order to confirm as
 	// a specific agent for a contract. (An opening number is needed for every party of which
 	// agent is the authorizing agent, plus a closing number for every acct of which agent is the
 	// authorized agent.)
@@ -1292,11 +1288,11 @@ public:
 		const std::string & THE_CONTRACT,	// The smart contract, about to be changed by this function.
 		const std::string & PARTY_NAME,	// Should already be on the contract. This way we can find it.
 		// ----------------------------------------
-		const std::string & NYM_ID			// Nym ID for the party, the actual owner, 
+		const std::string & NYM_ID			// Nym ID for the party, the actual owner,
 		);
 	// ===> AS WELL AS for the default AGENT of that party.
 
-    
+
     // ----------------------------------------------------------
     EXPORT static bool        Smart_AreAllPartiesConfirmed (const std::string & THE_CONTRACT);  // true or false?
     EXPORT static bool        Smart_IsPartyConfirmed       (const std::string & THE_CONTRACT, const std::string & PARTY_NAME);  // true or false?
@@ -1339,7 +1335,7 @@ public:
     EXPORT static std::string Party_GetAgentNameByIndex    (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const long & nIndex); // returns the name of the agent.
     EXPORT static std::string Party_GetAgentID             (const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const std::string & AGENT_NAME); // returns ID of the agent. (If there is one...)
     // ----------------------------------------------------------
-    
+
 	// --------------------------------------------------
 	// ACTIVATE SMART CONTRACT
 	// Take an existing smart contract, which has already been set up, confirmed, etc,
@@ -1395,7 +1391,7 @@ public:
 	other hand, are still valid for retrieval. (I have to double check this.)
 
 	HOWEVER, what if the MESSAGE failed, before it even TRIED the transaction? In which case,
-	the opening number is still good also, and should be retrieved. 
+	the opening number is still good also, and should be retrieved.
 
 	Remember, I have to keep signing for my transaction numbers until they are finally closed out.
 	They will appear on EVERY balance agreement and transaction statement from here until the end
@@ -1423,7 +1419,7 @@ public:
 		const bool & bReplyWasSuccess,
 		const bool & bReplyWasFailure,
 		const bool & bTransactionWasSuccess,
-		const bool & bTransactionWasFailure 
+		const bool & bTransactionWasFailure
 		);
 
 
@@ -1453,10 +1449,10 @@ public:
 	// MEANT TO BE USED in cases where a private key is also available.
 	//
 	EXPORT static std::string LoadUserPubkey_Encryption(const std::string & USER_ID); // returns NULL, or a public key.
-    
+
 	EXPORT static std::string LoadUserPubkey_Signing(const std::string & USER_ID); // returns NULL, or a public key.
-    
-    
+
+
 
 	// -----------------------------------------------------------------
 	// LOAD PUBLIC KEY -- from local storage
@@ -1466,9 +1462,9 @@ public:
 	// MEANT TO BE USED in cases where a private key is NOT available.
 	//
 	EXPORT static std::string LoadPubkey_Encryption(const std::string & USER_ID); // returns NULL, or a public key.
-    
+
 	EXPORT static std::string LoadPubkey_Signing(const std::string & USER_ID); // returns NULL, or a public key.
-    
+
 
 
 
@@ -1476,7 +1472,7 @@ public:
 
 	// ------------------------------------------------------------------------
 	//
-	// Verify that USER_ID (including its Private Key) is an 
+	// Verify that USER_ID (including its Private Key) is an
 	// available and verified user in local storage.
 	//
 	// Loads the user's private key, verifies, then returns OT_TRUE or OT_FALSE.
@@ -1559,7 +1555,7 @@ public:
 	// Returns a long (as string) containing the minimum transfer
 	// amount for the entire basket.
 	//
-	// FOR EXAMPLE: 
+	// FOR EXAMPLE:
 	// If the basket is defined as 10 Rands == 2 Silver, 5 Gold, 8 Euro,
 	// then the minimum transfer amount for the basket is 10. This function
 	// would return a string containing "10", in that example.
@@ -1574,11 +1570,11 @@ public:
 	// Returns a long (as string) containing the minimum transfer
 	// amount for one of the member currencies in the basket.
 	//
-	// FOR EXAMPLE: 
+	// FOR EXAMPLE:
 	// If the basket is defined as 10 Rands == 2 Silver, 5 Gold, 8 Euro,
 	// then the minimum transfer amount for the member currency at index
 	// 0 is 2, the minimum transfer amount for the member currency at
-	// index 1 is 5, and the minimum transfer amount for the member 
+	// index 1 is 5, and the minimum transfer amount for the member
 	// currency at index 2 is 8.
 	//
 	EXPORT static std::string Basket_GetMemberMinimumTransferAmount(
@@ -1696,7 +1692,7 @@ public:
 
 	// -----------------------------------------------------------------------
 	// Creates a new 'response' ledger, set up with the right Server ID, etc, so you can
-	// add the 'response' transactions to it, one by one. (Pass in the original ledger 
+	// add the 'response' transactions to it, one by one. (Pass in the original ledger
 	// that you are responding to, as it uses the data from it to set up the response.)
 	//
 	EXPORT static std::string Ledger_CreateResponse(
@@ -1704,7 +1700,7 @@ public:
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
 		const std::string & ORIGINAL_LEDGER
-		); 
+		);
 
 
 	// -------------------------------------------------------------------------
@@ -1801,11 +1797,11 @@ public:
 	-- (1) gets added to recipient's Nymbox as "in ref to" string on a "instrumentNotice" transaction.
 	-- When recipient processes Nymbox, the "instrumentNotice" transaction (containing (1) in its "in ref to"
 	field) is copied and added to the recipient's paymentInbox.
-	-- When recipient iterates through paymentInbox transactions, they are ALL "instrumentNotice"s. Each 
-	transaction contains an OTMessage in its "in ref to" field, and that OTMessage object contains an 
+	-- When recipient iterates through paymentInbox transactions, they are ALL "instrumentNotice"s. Each
+	transaction contains an OTMessage in its "in ref to" field, and that OTMessage object contains an
 	encrypted payload of the instrument itself (an OTPayment object containing a cheque or payment plan
 	or invoice etc.)
-	-- When sender gets Outpayments contents, the original instrument (inside an OTPayment) is stored IN THE 
+	-- When sender gets Outpayments contents, the original instrument (inside an OTPayment) is stored IN THE
 	CLEAR as payload on an OTMessage.
 
 	THEREFORE:
@@ -1816,7 +1812,7 @@ public:
 	OTPayment in the payload field, which then contains the instrument itself.
 	-- *** Therefore, this function, based purely on ledger index (as we iterate) extracts the
 	OTMessage from the Transaction "in ref to" field (for the transaction at that index), then decrypts
-	the payload on that message and returns the decrypted cleartext. 
+	the payload on that message and returns the decrypted cleartext.
 	*/
 	EXPORT static std::string Ledger_GetInstrument(
 		const std::string & SERVER_ID,
@@ -1867,7 +1863,7 @@ public:
 	// If you withdrew into a voucher instead of cash, this function allows
 	// you to retrieve the actual voucher cheque from the reply transaction.
 	// (A voucher is a cheque drawn on an int server account instead
-	// of a user's asset account, so the voucher cannot ever bounce due to 
+	// of a user's asset account, so the voucher cannot ever bounce due to
 	// insufficient funds. We are accustomed to this functionality already
 	// in our daily lives, via "money orders" and "cashier's cheques".)
 	//
@@ -1879,7 +1875,7 @@ public:
 	//
 	// Then, call PopMessageBuffer() to retrieve any server reply.
 	//
-	// If there is a message from the server in reply, then call 
+	// If there is a message from the server in reply, then call
 	// Message_GetCommand to verify that it's a reply to the message
 	// that you sent, and call Message_GetSuccess to verify whether
 	// the message was a success.
@@ -1914,7 +1910,7 @@ public:
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
 		const std::string & THE_TRANSACTION
-		); 
+		);
 
     EXPORT static int32_t Transaction_IsCanceled(
         const std::string & SERVER_ID,
@@ -1931,7 +1927,7 @@ public:
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
 		const std::string & THE_TRANSACTION
-		); 
+		);
 
 
 	// --------------------------------------------------
@@ -1943,7 +1939,7 @@ public:
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
 		const std::string & THE_TRANSACTION
-		); 
+		);
 
 	EXPORT static std::string Transaction_GetAmount(
 		const std::string & SERVER_ID,
@@ -2037,7 +2033,7 @@ public:
 	The purse would thus contain 2763 cents worth of digital cash tokens, all
 	neatly wrapped up in the same purse, all encrypted to the same owner or key.
 
-	(The fact that 2763 displays as $27.63 should be purely the result of a 
+	(The fact that 2763 displays as $27.63 should be purely the result of a
 	mask applied by the currency contract.)
 
 	(above a bit.)
@@ -2155,11 +2151,11 @@ public:
 
 	// Makes an exact copy of a purse, except with no tokens inside. (Value of zero.)
 	// Useful when you need to create a temporary purse for moving tokens around, and
-	// you don't want some new symmetric/master key being generated for that purse as 
+	// you don't want some new symmetric/master key being generated for that purse as
 	// though it were really some new "other purse."
 	// For example, if you have a password-protected purse, you might want to pop all of
 	// the tokens off of it, and as you iterate, re-assign half of them to new ownership,
-	// push those onto a new purse owned by that new owner. But you only want to do this 
+	// push those onto a new purse owned by that new owner. But you only want to do this
 	// with half of the tokens... the other half of the tokens, you just want to push onto
 	// a temp purse (for the loop) that's owned by the original owner, so you can then save
 	// it back over the original in storage (since it contains "all the tokens that WEREN'T
@@ -2344,7 +2340,7 @@ public:
 	sible to change the contract, without also changing the ID.)
 
 	Then it will connect to the server based on the connection information
-	in that contract, send the message, get the reply, and disconnect. 
+	in that contract, send the message, get the reply, and disconnect.
 	(That's in HTTP mode -- in TCP mode it maintains the connection.)
 
 	It will also encrypt the message to the public key found inside that
@@ -2399,11 +2395,11 @@ public:
 	-- A user may use the same public key at multiple servers, and he
 	creates his own keys inside the wallet. So this function is less
 	about "creating" the user account, and more about simply register-
-	ing a public key on a specific server. 
+	ing a public key on a specific server.
 
 	-- (Wallet software is capable, in OT, of distributing assets across
 	multiple servers seamlessly, which means it's a requirement that
-	the user generate his own keys and register them on whichever 
+	the user generate his own keys and register them on whichever
 	servers that he sees fit to trust.
 
 	Since the server contract and public key are both presumed to have
@@ -2511,7 +2507,7 @@ public:
 	// passed as a string). If you adjusted the balance using the usageCredits
 	// command (THE_MESSAGE being the server's reply to that) then you will see
 	// the balance AFTER the adjustment. (The current "Usage Credits" balance.)
-	// 
+	//
 	EXPORT static std::string Message_GetUsageCredits(const std::string & THE_MESSAGE);
 
 
@@ -2523,7 +2519,7 @@ public:
 
 	ServerID -- Must be included with every message.
 	USER_ID -- You must include your own userID so the server can reply.
-	USER_CHECK_ID -- This is a SECOND user's ID. 
+	USER_CHECK_ID -- This is a SECOND user's ID.
 
 	In this message, you are requesting the server to send you the
 	public key for another user, denoted by his ID in USER_ID_CHECK.
@@ -2760,7 +2756,7 @@ public:
 
 
 	// ---------------------------------------------------------------------------
-	// CREATE ASSET ACCOUNT -- of any asset type, (just pass in the Asset Type ID.) 
+	// CREATE ASSET ACCOUNT -- of any asset type, (just pass in the Asset Type ID.)
 	//
 	// Returns long:
 	// -1 means error; no message was sent.
@@ -2820,7 +2816,7 @@ public:
 	// (returns the basket in string form.)
 	//
 	// Call AddBasketCreationItem multiple times to add
-	// the various currencies to the basket, and then call 
+	// the various currencies to the basket, and then call
 	// issueBasket to send the request to the server.
 	//
 	EXPORT static std::string GenerateBasketCreation(
@@ -2836,7 +2832,7 @@ public:
 	//
 	// Call GenerateBasketCreation first (above), then
 	// call this function multiple times to add the various
-	// currencies to the basket, and then call issueBasket 
+	// currencies to the basket, and then call issueBasket
 	// to send the request to the server.
 	//
 	EXPORT static std::string AddBasketCreationItem(
@@ -2919,7 +2915,7 @@ public:
 	EXPORT static std::string AddBasketExchangeItem(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
-		const std::string & THE_BASKET, 
+		const std::string & THE_BASKET,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & ASSET_ACCT_ID
 		);
@@ -2929,7 +2925,7 @@ public:
 	//
 	// Send a request to the server asking to exchange in or out of a basket
 	// currency.
-	// 
+	//
 	// For example, maybe you have 3 gold, 2 silver, and 5 dollars, and those are
 	// the ingredients of the "Rand" basket currency. This message allows you to
 	// ask the server to convert from your gold, silver, and dollar accounts into
@@ -2981,10 +2977,10 @@ public:
 	// Therefore, any transactions involving cash withdrawals or deposits,
 	// you are actually using an OTPurse, rather than manipulating the individual
 	// tokens.
-	// 
+	//
 	// If Open Transactions receives a purse in reply from the server, it
 	// will automatically save the tokens in that purse into your purse
-	// file for that asset type. You can then reload the purse using 
+	// file for that asset type. You can then reload the purse using
 	// LoadPurse, if you want to see the updated contents.
 	//
 	// Returns long:
@@ -3030,7 +3026,7 @@ public:
 	// Send a request to the server to initiate a transfer from my account to
 	// another account's inbox. (With "transfer pending" notice in my outbox).
 	// Until the recipient accepts the transfer, I have the option to cancel
-	// it while it is still sitting in my outbox. But once he accepts it, it 
+	// it while it is still sitting in my outbox. But once he accepts it, it
 	// cannot be reversed.
 	// The server has signatures from BOTH parties requesting the transfer, and
 	// each party has the signature on the other party's request. Receipts are
@@ -3061,12 +3057,12 @@ public:
 	// that. This message asks the server to send me the latest copy of the inbox
 	// for any given account (and will save it to my local storage, so I can then
 	// load it using LoadInbox, which I haven't written yet.
-	/* 
-	NOTE: the test client, upon receiving a @getInbox response from the server, 
-	will automatically process that into a processInbox command back to the server, 
-	automatically accepting all of the transactions, resulting in a final 
-	@processInbox reply from the server. Obviously a real GUI client would merely 
-	display the inbox to the user, where the user could choose to accept the items 
+	/*
+	NOTE: the test client, upon receiving a @getInbox response from the server,
+	will automatically process that into a processInbox command back to the server,
+	automatically accepting all of the transactions, resulting in a final
+	@processInbox reply from the server. Obviously a real GUI client would merely
+	display the inbox to the user, where the user could choose to accept the items
 	individually.
 	*/
 	/**
@@ -3081,21 +3077,21 @@ public:
 	-- Then you call LoadInbox to load it from local storage.
 
 	During this time, your user has the opportunity to peruse the
-	inbox, and to decide which transactions therein he wishes to 
+	inbox, and to decide which transactions therein he wishes to
 	accept or reject. If you want to display the inbox items on
 	the screen, use these functions to loop through them:
 	Ledger_GetCount
 	Ledger_GetTransactionByIndex
 	Ledger_GetTransactionIDByIndex
 
-	You will probably ask me for more introspection on the transactions themselves. 
+	You will probably ask me for more introspection on the transactions themselves.
 	(Just ask -- No problem.) Here's what you have right now:
 	Transaction_GetType
 
 	-- Then call Ledger_CreateResponse in order to create a
 	'response' ledger for that inbox, which will be sent to the server.
 
-	-- Then call Ledger_GetCount (pass it the inbox) to find out how many 
+	-- Then call Ledger_GetCount (pass it the inbox) to find out how many
 	transactions are inside of it. Use that count to LOOP through them...
 
 	-- Use Ledger_GetTransactionByIndex to grab each transaction as
@@ -3258,7 +3254,7 @@ public:
 	You must include a copy of the ledger, which contains your accept or
 	reject requests for the various inbox items. In other words, you will
 	need to use some other function call first to set up that ledger with
-	the various requests (accept transfer, accept receipt, etc) before you 
+	the various requests (accept transfer, accept receipt, etc) before you
 	can then use THIS function call to actually send those requests to
 	the server. (See all the Ledger functions.)
 
@@ -3283,7 +3279,7 @@ public:
 
 	// I use this automatically to save the API developers the hassle (for now)
 	// added here for completeness.
-	// UPDATE: It was a mistake for me to automatically call this, which can 
+	// UPDATE: It was a mistake for me to automatically call this, which can
 	// mess up the client's expectation of which messages are being sent/received.
 	// It was causing network problems. Now clients NEED to call this themselves,
 	// after getting the Nymbox. I can't call it for them anymore.
@@ -3433,7 +3429,7 @@ public:
 
 	What objects are actually stored in local storage after a successful server call?
 
-	A "MarketList", which contains a list of Market Datas. Load this up and you can get 
+	A "MarketList", which contains a list of Market Datas. Load this up and you can get
 	pointers to the elements as needed. THERE IS ONLY ONE OF THESE.
 
 	An "OfferList" which contains "all" offers for a specific Market ID. There may be
@@ -3475,7 +3471,7 @@ public:
 	//
 	EXPORT static int32_t getMarketOffers(
 		const std::string & SERVER_ID,
-		const std::string & USER_ID, 
+		const std::string & USER_ID,
 		const std::string & MARKET_ID,
 		const std::string & MAX_DEPTH  // Market Depth
 		);
@@ -3491,7 +3487,7 @@ public:
 	//
 	EXPORT static int32_t getMarketRecentTrades(
 		const std::string & SERVER_ID,
-		const std::string & USER_ID, 
+		const std::string & USER_ID,
 		const std::string & MARKET_ID
 		);
 
@@ -3520,9 +3516,9 @@ public:
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
 	EXPORT static int32_t killMarketOffer(
-		const std::string & SERVER_ID, 
-		const std::string & USER_ID, 
-		const std::string & ASSET_ACCT_ID, 
+		const std::string & SERVER_ID,
+		const std::string & USER_ID,
+		const std::string & ASSET_ACCT_ID,
 		const std::string & TRANSACTION_NUMBER
 		);
 
@@ -3535,9 +3531,9 @@ public:
 	// ===> In 99% of cases, this LAST option is what actually happens!!
 	//
 	EXPORT static int32_t killPaymentPlan(
-		const std::string & SERVER_ID, 
-		const std::string & USER_ID, 
-		const std::string & FROM_ACCT_ID, 
+		const std::string & SERVER_ID,
+		const std::string & USER_ID,
+		const std::string & FROM_ACCT_ID,
 		const std::string & TRANSACTION_NUMBER
 		);
 
@@ -3547,7 +3543,7 @@ public:
 
 	// -----------------------------------------------------------
 	// POP MESSAGE BUFFER
-	// 
+	//
 	// If there are any replies from the server, they are stored in
 	// the message buffer. This function will return those messages
 	// (and remove them from the list) one-by-one, newest first.
@@ -3565,7 +3561,7 @@ public:
 	// on this function returning the one EXPECTED... outgoing messages flush
 	// the incoming buffer anyway, so the client will have assumed the wrong
 	// reply was flushed by now anyway.)
-	// 
+	//
 	// However, if the Server ID and the User ID are wrong, this just means that
 	// some other code is still expecting that reply, and hasn't even popped yet!
 	// Therefore, we do NOT want to discard THOSE replies, but put them back if
@@ -3573,7 +3569,7 @@ public:
 	//
 	EXPORT static std::string PopMessageBuffer(
 		const std::string & REQUEST_NUMBER,
-		const std::string & SERVER_ID, 
+		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
 
@@ -3585,20 +3581,20 @@ public:
 
 	EXPORT static std::string GetSentMessage(
 		const std::string & REQUEST_NUMBER,
-		const std::string & SERVER_ID, 
+		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
 
 	EXPORT static bool RemoveSentMessage(
 		const std::string & REQUEST_NUMBER,
-		const std::string & SERVER_ID, 
+		const std::string & SERVER_ID,
 		const std::string & USER_ID
 		);
 
 	// Note: Might remove this from API. Basically, the sent messages queue must store
 	// messages (by request number) until we know for SURE whether we have a success, a failure,
 	// or a lost/rejected message. That is, until we DOWNLOAD the Nymbox, and thus know for SURE
-	// that a response to a given message is there...or not. Why do we care? For making this 
+	// that a response to a given message is there...or not. Why do we care? For making this
 	// choice:
 	//
 	// Messages that DO have a reply are therefore already "in the system" and will be handled
@@ -3608,7 +3604,7 @@ public:
 	// have processed) and the reply must have been dropped on the network, OR the server never
 	// even received the message in the first place. EITHER WAY the trans #s can be harvested
 	// accordingly and then removed from the sent buffer. In a perfect world (read: iteration 2)
-	// these sent messages will be serialized somehow along with the Nym, and not just stored in 
+	// these sent messages will be serialized somehow along with the Nym, and not just stored in
 	// RAM like this version does.
 	//
 	// -----------------------------------------------------------
@@ -3642,10 +3638,10 @@ public:
 	//
 	EXPORT static void FlushSentMessages(
 		const bool & bHarvestingForRetry,
-		const std::string & SERVER_ID, 
+		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & THE_NYMBOX
-		); 
+		);
 
 
 
@@ -3665,7 +3661,7 @@ public:
 	/* For emergency/testing use only. This call forces you to trust the server.
 	You should never need to call this for any normal use, and hopefully
 	you should never need to actually call it at all, ever. But if your Nym
-	ever gets out of sync with the server, this will resync it based on 
+	ever gets out of sync with the server, this will resync it based on
 	the server's version of the data.
 
 	Note: actually returns OT_BOOL.
@@ -3746,8 +3742,8 @@ public:
 	// The "depth" variable stores the count of items being returned.
 	// For example, if I call getMarketList, and 10 markets are returned,
 	// then depth will be set to 10. OR, if I call getNym_MarketOffers, and
-	// the Nym has 16 offers on the various markets, then the depth will be 16. 
-	// 
+	// the Nym has 16 offers on the various markets, then the depth will be 16.
+	//
 	// This value is important when processing server replies to market inquiries.
 	// If the depth is 0, then you are done. End. BUT! if it contains a number, such as 10,
 	// then that means you will want to next READ those 10 markets (or offers, or trades, etc)
@@ -3755,7 +3751,7 @@ public:
 	//
 	// Whereas if success is TRUE, but depth is 0, that means while the message processed
 	// successfully, the list was simply empty (and thus it would be a waste of time trying
-	// to unpack the non-existent, empty list of data items from the payload of your successful 
+	// to unpack the non-existent, empty list of data items from the payload of your successful
 	// reply.)
 	//
 	EXPORT static int32_t Message_GetDepth(const std::string & THE_MESSAGE);
@@ -3765,7 +3761,7 @@ public:
 
 	// -----------------------------------------------------------
 	// GET MESSAGE TRANSACTION SUCCESS (True or False)
-	// 
+	//
 	// Returns OT_TRUE (1) for Success and OT_FALSE (0) for Failure.
 	// Also returns OT_FALSE for error.
 	//
@@ -3786,7 +3782,7 @@ public:
 
 	// -----------------------------------------------------------
 	// GET BALANCE AGREEMENT SUCCESS (From a MESSAGE.)
-	// 
+	//
 	// Returns OT_TRUE (1) for Success and OT_FALSE (0) for Failure.
 	// Also returns OT_FALSE for error. (Sorry.)
 	//
@@ -3798,7 +3794,7 @@ public:
 		);
 
 	// -----------------------------------------------------------
-	// GET MESSAGE LEDGER 
+	// GET MESSAGE LEDGER
 	//
 	// If you just received a server response to a transaction, and
 	// you want to actually iterate through the response ledger for
@@ -3810,7 +3806,7 @@ public:
 
 
 	// -----------------------------------------------------------
-	// GET NEW ASSET TYPE ID 
+	// GET NEW ASSET TYPE ID
 	//
 	// If you just issued a new asset type, you'll want to read the
 	// server reply and get the new asset type ID out of it.
@@ -3821,7 +3817,7 @@ public:
 
 
 	// -----------------------------------------------------------
-	// GET NEW ISSUER ACCOUNT ID 
+	// GET NEW ISSUER ACCOUNT ID
 	//
 	// If you just issued a new asset type, you'll want to read the
 	// server reply and get the new issuer acct ID out of it.
@@ -3831,7 +3827,7 @@ public:
 
 
 	// -----------------------------------------------------------
-	// GET NEW ACCOUNT ID 
+	// GET NEW ACCOUNT ID
 	//
 	// If you just opened a new asset account, you'll want to read the
 	// server reply and get the new acct ID out of it.
@@ -3844,7 +3840,7 @@ public:
 
 
 	// -----------------------------------------------------------
-	// GET NYMBOX HASH 
+	// GET NYMBOX HASH
 	//
 	// Some messages include a copy of the Nymbox Hash. This helps the
 	// server to quickly ascertain whether some messages will fail, and
@@ -3868,9 +3864,9 @@ public:
 	// Not necessary in HTTP mode.
 	EXPORT static bool ConnectServer(
 		const std::string & SERVER_ID,
-		const std::string & USER_ID, 
+		const std::string & USER_ID,
 		const std::string & strCA_FILE,
-		const std::string & strKEY_FILE, 
+		const std::string & strKEY_FILE,
 		const std::string & strKEY_PASSWORD
 		);
 

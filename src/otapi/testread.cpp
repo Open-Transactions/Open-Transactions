@@ -5,20 +5,20 @@
 using namespace std;
 
 // Iterates though all people in the Wallet and prints info about them.
-void ListBitcoinAccts(const OT_GUI::Wallet& wallet) 
+void ListBitcoinAccts(const OT_GUI::Wallet& wallet)
 {
-  for (int i = 0; i < wallet.bitcoin_acct_size(); i++) 
+  for (int i = 0; i < wallet.bitcoin_acct_size(); i++)
   {
     const OT_GUI::BitcoinAcct& bitcoin_acct = wallet.bitcoin_acct(i);
 
     cout << "BitcoinAcct ID: " << bitcoin_acct.bitcoin_id() << endl;
-	      
-	  if (bitcoin_acct.has_bitcoin_name()) 
+
+	  if (bitcoin_acct.has_bitcoin_name())
 	  {
 		  cout << "  Name: " << bitcoin_acct.bitcoin_name() << endl;
 	  }
-	  
-	  if (bitcoin_acct.has_gui_label()) 
+
+	  if (bitcoin_acct.has_gui_label())
 	  {
 		  cout << "  GUI Label: " << bitcoin_acct.gui_label() << endl;
 	  }

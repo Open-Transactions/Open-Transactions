@@ -1,17 +1,17 @@
 /*
  C++ Big Integer Library
  (see ChangeLog for version)
- 
+
  http://mattmccutchen.net/bigint/
- 
+
  Written and maintained by Matt McCutchen <matt@mattmccutchen.net>
- 
+
  Legal
  -----
  I, Matt McCutchen, the sole author of the original Big Integer Library, waive my
  copyright to it, placing it in the public domain.  The library comes with
  absolutely no warranty.
- 
+
  */
 
 #ifndef __BIGINTEGER_HH__
@@ -127,7 +127,7 @@ public:
 	 * are involved. */
 	void divideWithRemainder(const BigInteger &b, BigInteger &q);
 	void negate(const BigInteger &a);
-	
+
 	/* Bitwise operators are not provided for BigIntegers.  Use
 	 * getMagnitude to get the magnitude and operate on that instead. */
 
@@ -193,7 +193,7 @@ inline BigInteger BigInteger::operator -() const {
 
 /*
  * ASSIGNMENT OPERATORS
- * 
+ *
  * Now the responsibility for making a temporary copy if necessary
  * belongs to the put-here operations.  See Assignment Operators in
  * BigUnsigned.hh.

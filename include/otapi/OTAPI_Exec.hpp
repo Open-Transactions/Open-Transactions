@@ -162,16 +162,14 @@ kamH0Y/n11lCvo1oQxM+
 #define EXPORT
 #endif
 #ifndef NOEXPORT
-#include <ExportWrapper.h>
+#include "OTCommon.hpp"
 #endif
 
 #include <string>
 
 #include <stdint.h>
 
-
 class OT_API;
-
 
 class OTAPI_Exec
 {
@@ -195,6 +193,9 @@ public:
 	EXPORT virtual int64_t     StringToLong(const std::string & strNumber);
 	EXPORT virtual std::string LongToString(const int64_t     & lNumber);
 
+    EXPORT virtual uint64_t    StringToUlong(const std::string & strNumber);
+    EXPORT virtual std::string UlongToString(const uint64_t    & lNumber);
+
 	// --------------------------------------------------------------------
 	/**
 	INITIALIZE the OTAPI library
@@ -207,6 +208,35 @@ public:
 	EXPORT virtual bool AppCleanup(); // Call this ONLY ONCE, when your App is shutting down.
 
 	// --------------------------------------------------------------------
+    // SetAppBinaryFolder
+    // OPTIONAL. Used in Android and Qt.
+    //
+    // Certain platforms use this to override the Prefix folder.
+    // Basically /usr/local is the prefix folder by default, meaning
+    // /usr/local/lib/opentxs will be the location of the scripts. But
+    // if you override AppBinary folder to, say, "res/raw"
+    // (Android does something like that) then even though the prefix remains
+    // as /usr/local, the scripts folder will be res/raw
+    //
+    //
+    EXPORT virtual void SetAppBinaryFolder(const std::string & strFolder);
+
+    // --------------------------------------------------------------------
+    // SetHomeFolder
+    // OPTIONAL. Used in Android.
+    //
+    // The AppDataFolder, such as /Users/au/.ot, is constructed from the home
+    // folder, such as /Users/au.
+    //
+    // Normally the home folder is auto-detected, but certain platforms, such as
+    // Android, require us to explicitly set this folder from the Java code. Then
+    // the AppDataFolder is constructed from it. (It's the only way it can be done.)
+    //
+    // In Android, you would SetAppBinaryFolder to the path to "/data/app/packagename/res/raw",
+    // and you would SetHomeFolder to "/data/data/[app package]/files/"
+    //
+    EXPORT virtual void SetHomeFolder(const std::string & strFolder);
+    // --------------------------------------------------------------------
 	// Then:
 
 	/**
@@ -945,7 +975,7 @@ public:
 
 	//! Attempts to find a full ID in the wallet, based on a partial of the same ID.
 	//! Returns NULL on failure, otherwise returns the full ID.
-	// 
+	//
 	EXPORT virtual std::string Wallet_GetNymIDFromPartial(const std::string & PARTIAL_ID);
 	EXPORT virtual std::string Wallet_GetServerIDFromPartial(const std::string & PARTIAL_ID);
 	EXPORT virtual std::string Wallet_GetAssetIDFromPartial(const std::string & PARTIAL_ID);
@@ -1162,14 +1192,14 @@ public:
 		// ----------------------------------------
 		const std::string & RECIPIENT_ACCT_ID,	// NOT optional.
 		const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
-		// -------------------------------	
+		// -------------------------------
 		const int64_t & INITIAL_PAYMENT_AMOUNT,	// zero or NULL == no initial payment.
 		const time_t  & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
 		// ----------------------------------------
 		const int64_t & PAYMENT_PLAN_AMOUNT,	// Zero or NULL == no regular payments.
 		const time_t  & PAYMENT_PLAN_DELAY,	    // No. of seconds from creation date. Default is zero or NULL. (Causing 30 days.)
 		const time_t  & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL. (Causing 30 days.)
-		// --------------------------------------- 
+		// ---------------------------------------
 		const time_t  & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
 		const int32_t & PAYMENT_PLAN_MAX_PAYMENTS	// integer. Defaults to 0 or NULL (no maximum payments.)
 		);
@@ -1194,9 +1224,9 @@ public:
 		// ----------------------------------------
 		const std::string & RECIPIENT_ACCT_ID,	// NOT optional.
 		const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
-		// -------------------------------	
+		// -------------------------------
 		const std::string & INITIAL_PAYMENT,	// "amount,delay"  Default 'amount' (0 or "") == no initial payment. Default 'delay' (0 or NULL) is seconds from creation date.
-		// -------------------------------	
+		// -------------------------------
 		const std::string & PAYMENT_PLAN,       // "amount,delay,period" 'amount' is a recurring payment. 'delay' and 'period' cause 30 days if you pass 0 or "".
 		// -------------------------------
 		const std::string & PLAN_EXPIRY         // "length,number" 'length' is maximum lifetime in seconds. 'number' is maximum number of payments in seconds. 0 or "" is unlimited (for both.)
@@ -1233,7 +1263,7 @@ public:
 
 	//
 	// todo: Someday add a parameter here BYLAW_LANGUAGE so that people can use
-	// custom languages in their scripts. For now I have a default language, so 
+	// custom languages in their scripts. For now I have a default language, so
 	// I'll just make that the default. (There's only one language right now anyway.)
 	//
 	// returns: the updated smart contract (or NULL)
@@ -1357,7 +1387,7 @@ public:
 		const std::string & THE_CONTRACT,	// The smart contract, about to be changed by this function.
 		const std::string & PARTY_NAME,     // Should already be on the contract. This way we can find it.
 		// ----------------------------------------
-		const std::string & NYM_ID			// Nym ID for the party, the actual owner, 
+		const std::string & NYM_ID			// Nym ID for the party, the actual owner,
 		);
 	// ===> AS WELL AS for the default AGENT of that party.
 
@@ -1759,7 +1789,7 @@ public:
 	// if the instrument is expired BEFORE being recorded, it goes into the expired
 	// box -- whereas if it goes into the record box and THEN expires, then we know
 	// it wasn't expired at the time that it was recorded.)
-	// 
+	//
 	EXPORT virtual std::string LoadExpiredBox(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID
@@ -1792,7 +1822,7 @@ public:
 
 	// -----------------------------------------------------------------------
 	//! Creates a new 'response' ledger, set up with the right Server ID, etc, so you can
-	//! add the 'response' transactions to it, one by one. (Pass in the original ledger 
+	//! add the 'response' transactions to it, one by one. (Pass in the original ledger
 	//! that you are responding to, as it uses the data from it to set up the response.)
 	//
 	EXPORT virtual std::string Ledger_CreateResponse(
@@ -3693,7 +3723,7 @@ public:
 	// Note: Might remove this from API. Basically, the sent messages queue must store
 	// messages (by request number) until we know for SURE whether we have a success, a failure,
 	// or a lost/rejected message. That is, until we DOWNLOAD the Nymbox, and thus know for SURE
-	// that a response to a given message is there...or not. Why do we care? For making this 
+	// that a response to a given message is there...or not. Why do we care? For making this
 	// choice:
 	//
 	// Messages that DO have a reply are therefore already "in the system" and will be handled
@@ -3703,7 +3733,7 @@ public:
 	// have processed) and the reply must have been dropped on the network, OR the server never
 	// even received the message in the first place. EITHER WAY the trans #s can be harvested
 	// accordingly and then removed from the sent buffer. In a perfect world (read: iteration 2)
-	// these sent messages will be serialized somehow along with the Nym, and not just stored in 
+	// these sent messages will be serialized somehow along with the Nym, and not just stored in
 	// RAM like this version does.
 
 	/** -----------------------------------------------------------

@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTTransactionType.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,11 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include <OTTransactionType.hpp>
+#include "OTTransactionType.hpp"
 
-#include <OTLog.hpp>
-#include <OTLedger.hpp>
-#include <OTAccount.hpp>
+#include "OTLog.hpp"
+#include "OTLedger.hpp"
+#include "OTAccount.hpp"
 
 
 // static -- class factory.
@@ -151,19 +151,19 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
     if (bProcessed)
     {
         OTTransactionType * pContract = NULL;
-        
+
         if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION-----"))  // this string is 34 chars long.
         {	pContract = new OTTransaction();	OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION ITEM-----"))  // this string is 39 chars long.
         {	pContract = new OTItem();           OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED LEDGER-----"))  // this string is 29 chars long.
         {	pContract = new OTLedger();			OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED ACCOUNT-----"))  // this string is 30 chars long.
         {	pContract = new OTAccount();		OT_ASSERT(NULL != pContract); }
-        
+
         // ----------------------------------------------
         // The string didn't match any of the options in the factory.
         //
@@ -174,14 +174,14 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
                            szFunc, strFirstLine.Get());
             return NULL;
         }
-        
+
         // This causes pItem to load ASSUMING that the PurportedAcctID and PurportedServerID are correct.
         // The object is still expected to be internally consistent with its sub-items, regarding those IDs,
         // but the big difference is that it will SET the Real Acct and Real Server IDs based on the purported
         // values. This way you can load a transaction without knowing the account in advance.
         //
         pContract->m_bLoadSecurely = false;
-        
+
         // Does the contract successfully load from the string passed in?
         if (pContract->LoadContractFromString(strContract))
         {
@@ -201,7 +201,7 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
             pContract = NULL;
         }
     }
-    // --------------------------------------------------------------------    
+    // --------------------------------------------------------------------
     return NULL;
 }
 
@@ -212,7 +212,7 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
 // ----------------------------------------------------------------------------------------
 
 void OTTransactionType::GetNumList(OTNumList & theOutput)
-{    
+{
     theOutput.Release();
     theOutput.Add(m_Numlist);
 }
@@ -232,41 +232,41 @@ bool OTTransactionType::Contains(const char * szContains)
 
 
 
-// keeping constructor private in order to force people to use the other constructors and 
+// keeping constructor private in order to force people to use the other constructors and
 // therefore provide the requisite IDs.
-OTTransactionType::OTTransactionType() : OTContract(), 
+OTTransactionType::OTTransactionType() : OTContract(),
     m_lTransactionNum(0), m_lInReferenceToTransaction(0), m_lNumberOfOrigin(0), m_bLoadSecurely(true)
 {
- // this function is private to prevent people from using it.	
+ // this function is private to prevent people from using it.
 	// Should never actually get called.
-	
+
 //	InitTransactionType(); // Just in case.
 }
 
 
-OTTransactionType::OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, 
-									 const OTIdentifier & theServerID) : OTContract(theAccountID), 
+OTTransactionType::OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID,
+									 const OTIdentifier & theServerID) : OTContract(theAccountID),
     m_lTransactionNum(0), m_lInReferenceToTransaction(0), m_lNumberOfOrigin(0), m_bLoadSecurely(true)
 {
 //	InitTransactionType();
-	
+
 //  m_ID            = theAccountID  -- This happens in OTContract, no need to do it twice.
 	m_ServerID      = theServerID;
 	m_AcctUserID    = theUserID;
-	
+
 	// do NOT set m_AcctID and m_AcctServerID here.  Let the child classes LOAD them or GENERATE them.
 }
 
-OTTransactionType::OTTransactionType(const OTIdentifier & theUserID, 
-                                     const OTIdentifier & theAccountID, 
-									 const OTIdentifier & theServerID, 
-                                     long lTransactionNum) : OTContract(theAccountID), 
+OTTransactionType::OTTransactionType(const OTIdentifier & theUserID,
+                                     const OTIdentifier & theAccountID,
+									 const OTIdentifier & theServerID,
+                                     long lTransactionNum) : OTContract(theAccountID),
     m_lTransactionNum(0), m_lInReferenceToTransaction(0), m_lNumberOfOrigin(0), m_bLoadSecurely(true)
 {
-	// This initializes m_lTransactionNum, so it must come FIRST. 
+	// This initializes m_lTransactionNum, so it must come FIRST.
 	// In fact, that's the general rule with this function.
 //	InitTransactionType();
-	
+
 //  m_ID                = theAccountID  -- This happens in OTContract, no need to do it twice.
 	m_ServerID          = theServerID;
 	m_AcctUserID        = theUserID;
@@ -296,28 +296,28 @@ OTTransactionType::~OTTransactionType()
 void OTTransactionType::Release_TransactionType()
 {
 	// If there were any dynamically allocated objects, clean them up here.
-    
+
 //  m_ID.Release();
     m_AcctID.Release();         // Compare m_AcctID to m_ID after loading it from string or file. They should match, and signature should verify.
-	
+
 //	m_ServerID.Release();       // Server ID as used to instantiate the transaction, based on expected ServerID.
 	m_AcctServerID.Release();   // Actual ServerID within the signed portion. (Compare to m_ServerID upon loading.)
-	
+
 //	m_AcctUserID.Release();
 
-	m_lTransactionNum           = 0;	
-	m_lInReferenceToTransaction = 0;  
+	m_lTransactionNum           = 0;
+	m_lInReferenceToTransaction = 0;
     m_lNumberOfOrigin           = 0;
 
 	m_ascInReferenceTo.Release();	// This item may be in reference to a different item
-	
-    
+
+
     // This was causing OTLedger to fail loading. Can't set this to true until the END
     // of loading. Todo: Starting reading the END TAGS during load. For example, the OTLedger
     // END TAG could set this back to true...
     //
 //  m_bLoadSecurely = true; // defaults to true.
-    
+
 	m_Numlist.Release();
 }
 
@@ -325,7 +325,7 @@ void OTTransactionType::Release_TransactionType()
 void OTTransactionType::Release()
 {
 	Release_TransactionType();
-    
+
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
 
@@ -335,7 +335,7 @@ void OTTransactionType::Release()
 // -------------------------------------------
 // OTAccount, OTTransaction, OTItem, and OTLedger are all derived from
 // this class (OTTransactionType). Therefore they can all quickly identify
-// whether one of the other components belongs to the same account, using 
+// whether one of the other components belongs to the same account, using
 // this method.
 //
 bool OTTransactionType::IsSameAccount(const OTTransactionType & rhs) const
@@ -368,7 +368,7 @@ bool OTTransactionType::SaveContractWallet(std::ofstream & ofs)
 }
 
 
-// Make sure this contract checks out. Very high level. 
+// Make sure this contract checks out. Very high level.
 // Verifies ID and signature.
 // I do NOT call VerifyOwner() here, because the server may
 // wish to verify its signature on this account, even though
@@ -388,7 +388,7 @@ bool OTTransactionType::VerifyAccount(OTPseudonym & theNym)
 		OTLog::Error("Error verifying signature in OTTransactionType::VerifyAccount.\n");
 		return false;
 	}
-	
+
 	OTLog::Output(4, "\nWe now know that...\n"
 			"1) The expected Account ID matches the ID that was found on the object.\n"
 			"2) The SIGNATURE VERIFIED on the object.\n\n");
@@ -398,31 +398,31 @@ bool OTTransactionType::VerifyAccount(OTPseudonym & theNym)
 
 
 bool OTTransactionType::VerifyContractID()
-{	
+{
 	//m_AcctID contains the number we read from the xml file
 	//we can compare it to the existing and actual identifier.
-	
-	// m_AcctID  contains the "IDENTIFIER" of the object, according to the xml file. 
-	// 
+
+	// m_AcctID  contains the "IDENTIFIER" of the object, according to the xml file.
+	//
 	// Meanwhile m_ID contains the same identifier, except it was generated.
 	//
 	// Now let's compare the two and make sure they match...
-	
+
 	// Also, for this class, we compare ServerID as well.  They go hand in hand.
-	
-	if ((m_ID		!= m_AcctID)		|| 
+
+	if ((m_ID		!= m_AcctID)		||
 		(m_ServerID	!= m_AcctServerID))
-	{		
+	{
 		OTString str1(m_ID), str2(m_AcctID), str3(m_ServerID), str4(m_AcctServerID);
 		OTLog::vError("Identifiers do NOT match in OTTransactionType::VerifyContractID.\n"
 				"m_ID: %s\n m_AcctID: %s\n m_ServerID: %s\n m_AcctServerID: %s\n",
 				str1.Get(), str2.Get(), str3.Get(), str4.Get());
-        
+
 //        OT_FAIL;  // I was debugging.
-        
+
 		return false;
 	}
-	else 
+	else
 	{
 //		OTString str1(m_AcctID), str2(m_AcctServerID);
 //		OTLog::vError("Expected Account ID and Server ID both *SUCCESSFUL* match to "
@@ -440,8 +440,8 @@ bool OTTransactionType::VerifyContractID()
 // Need to know the transaction number of this transaction? Call this.
 long OTTransactionType::GetTransactionNum() const
 {
-	return m_lTransactionNum; 
-}	
+	return m_lTransactionNum;
+}
 
 
 void OTTransactionType::SetTransactionNum(const long lTransactionNum)
@@ -463,7 +463,7 @@ long OTTransactionType::GetNumberOfOrigin()
 {
     if (0 == m_lNumberOfOrigin)
         this->CalculateNumberOfOrigin();
-    
+
     return m_lNumberOfOrigin;
 }
 

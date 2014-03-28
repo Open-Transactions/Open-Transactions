@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTPayload.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,36 +133,32 @@
 #ifndef __OTPAYLOAD_HPP__
 #define __OTPAYLOAD_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTData.hpp"
-
-#include _CINTTYPES
 
 class OTMessage;
 class OTEnvelope;
 class OTASCIIArmor;
 
-class OTPayload : public OTData 
+class OTPayload : public OTData
 {
 public:
 EXPORT	OTPayload();
 	OTPayload(const void * pNewData, uint32_t nNewSize);
 	OTPayload(const OTPayload & rhs);
 	OTPayload(const OTASCIIArmor & theSource);
-	
+
 EXPORT	virtual ~OTPayload();
 
 	using OTData::swap;
 	using OTData::operator=;
 
 EXPORT	uint32_t ReadBytesFrom(OTData & theData, uint32_t lSize);
-	
+
 EXPORT	void SetPayloadSize(uint32_t lNewSize);
 EXPORT	const void * GetPayloadPointer() const;
-	
+
 	// pass in an OTMessage and if the Payload
 	// contains a message, and checksum validates,
 	// it will set it for you and return true.
@@ -173,7 +169,7 @@ EXPORT	bool GetEnvelope(OTEnvelope & theEnvelope) const; // Envelope retrieved f
 EXPORT	bool SetEnvelope(const OTEnvelope & theEnvelope); // Envelope copied into payload to prepare for sending.
 };
 
-#endif // __OTPAYLOAD_HPP__ 
+#endif // __OTPAYLOAD_HPP__
 
 
 

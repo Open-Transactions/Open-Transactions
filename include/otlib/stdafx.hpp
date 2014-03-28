@@ -6,13 +6,20 @@
 // Include the C one.
 #include "stdafx.h"
 
-#include "TR1_Wrapper.hpp"
 
 #ifdef OT_USE_CXX11
 #undef OT_USE_CXX11
 #endif
 #if defined(_MSC_VER) || !defined(OPENTXS_NO_CXX11)
 #define OT_USE_CXX11
+#endif
+
+#ifndef OT_USE_CHAI5
+#define OT_USE_CHAI5
+#endif
+#if defined(ANDROID) || defined(OT_KEYRING_IOS)
+// DON'T use ChaiScript on mobile devices
+#undef OT_USE_CHAI5
 #endif
 
 #ifdef OT_USE_CHAI_STDLIB
@@ -55,8 +62,8 @@
 
 #ifdef _WIN32
 #ifndef NO_OT_PCH
-//#include "OTStorage.h>
-//#include "OTSmartContract.h>
+//#include "OTStorage.h"
+//#include "OTSmartContract.h"
 #else
 #undef NO_OT_PCH
 #endif

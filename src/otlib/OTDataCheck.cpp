@@ -1,14 +1,14 @@
 
 /*************************************************************
- *    
+ *
  *  OTDataCheck.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,16 +133,16 @@
 
 #include <stdafx.hpp>
 
-#include <OTDataCheck.hpp>
+#include "OTDataCheck.hpp"
 
-#include <OTAssert.hpp>
+#include "OTAssert.hpp"
 
 
 void AppendChecksum( OT_BYTE* buffer, uint32_t & size )
 {
 	uint32_t i;
 	OT_BYTE total = 0;
-	
+
 	OT_ASSERT(NULL != buffer);
 //	OTLog::vError("Appending checksum. Size: %d ", size);
 
@@ -151,7 +151,7 @@ void AppendChecksum( OT_BYTE* buffer, uint32_t & size )
 		total += buffer[i];
 //		OTLog::vError("%d ", buffer[i]);
 	}
-	
+
 //	OTLog::vError("  VALUE: %d\n", (255 - total));
 
 	buffer[size++] = 255 - total;
@@ -162,18 +162,18 @@ OT_BYTE CalcChecksum( OT_BYTE* buffer, uint32_t size )
 {
 	uint32_t i;
 	OT_BYTE total = 0;
-	
+
 	OT_ASSERT(NULL != buffer);
 
 //	OTLog::vError("Calculating checksum. Size: %d ", size);
-	
+
 	for( i = 0; i < size; i++ )
 	{
 		total += buffer[i];
 //		OTLog::vError("%d ", buffer[i]);
 	}
 //	OTLog::vError( "  VALUE: %d\n", (255 - total));
-	
+
 	return (255 - total);
 }
 
@@ -181,18 +181,18 @@ OT_BYTE CalcChecksum( const OT_BYTE * const buffer, const uint32_t size )
 {
 	uint32_t i;
 	OT_BYTE total = 0;
-	
+
 	OT_ASSERT(NULL != buffer);
 
 //	OTLog::vError("Calculating checksum. Size: %d\n", size);
-	
+
 	for( i = 0; i < size; i++ )
 	{
 		total += buffer[i];
 //		OTLog::vError("%d ", buffer[i]);
 	}
 //	OTLog::vError("  TOTAL: %d\n", (255 - total));
-	
+
 	return (255 - total);
 }
 
@@ -208,7 +208,7 @@ OT_BOOL IsChecksumValid( OT_BYTE* buffer, uint32_t size )
 	for( i = 0; i < size; i++ )
 	{
 		total += buffer[i];
-		
+
 //		OTLog::vError("%d ", buffer[i]);
 	}
 	if( total == 255 )

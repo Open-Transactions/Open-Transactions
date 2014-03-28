@@ -1,7 +1,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -104,10 +104,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -128,12 +128,12 @@
 
 #include <main.hpp>
 
-#include <OTServer.hpp>
+#include "OTServer.hpp"
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTCrypto.hpp>
-#include <OTMint.hpp>
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
+#include "OTCrypto.hpp"
+#include "OTMint.hpp"
 
 
 // TODO: what about android for all the defaults here? Are there ini files in android? Revisit.
@@ -185,7 +185,7 @@ int main (int argc, char * const argv[])
 		{
 			if(!OTLog::Init(SERVER_CONFIG_KEY,0)) { assert(false); };  // setup the logger.
 
-			OTLog::vOutput(0, "\n\nWelcome to Open Transactions -- 'createmint', version %s\n", 
+			OTLog::vOutput(0, "\n\nWelcome to Open Transactions -- 'createmint', version %s\n",
 				OTLog::Version());
 			// ------------------------------------
 #ifdef _WIN32
@@ -194,7 +194,7 @@ int main (int argc, char * const argv[])
 			int err = WSAStartup( wVersionRequested, &wsaData );
 
 			/* Tell the user that we could not find a usable		*/
-			/* Winsock DLL.											*/		
+			/* Winsock DLL.											*/
 
 			OT_ASSERT_MSG((err == 0), "WSAStartup failed!\n");
 
@@ -242,7 +242,7 @@ int main (int argc, char * const argv[])
 				OT_ASSERT_MSG(bSetupPathsSuccess, "main(): Assert failed: Failed to set OT Path");
 			}
 
-			// -----------------------------------------------------------------------    
+			// -----------------------------------------------------------------------
 
 			OTCrypto::It()->Init(); // (OpenSSL gets initialized here.)
 
@@ -283,7 +283,7 @@ int main (int argc, char * const argv[])
 
 	//	std::string strDataFolderPath(argv[4]), strNotaryFile("notaryServer.xml");
 
-	OTLog::vOutput(0, 
+	OTLog::vOutput(0,
 		"\nNow loading the server nym, which will also ask you for a password, to unlock\n"
 		"its private key. (Default password is \"%s\".)\n", KEY_PASSWORD);
 
@@ -296,8 +296,8 @@ int main (int argc, char * const argv[])
 	//  call to theServer.Init(), which has the InitDefaultStorage inside of it, and
 	//  which uses OTLog::Path(), which the above new code should be setting properly
 	//  before theServer.Init() actually gets called. (So this should work....)
-	//  
-	//	bool bSuccessInitDefault = OTDB::InitDefaultStorage(OTDB_DEFAULT_STORAGE, 
+	//
+	//	bool bSuccessInitDefault = OTDB::InitDefaultStorage(OTDB_DEFAULT_STORAGE,
 	//														OTDB_DEFAULT_PACKER, strDataFolderPath, strNotaryFile);
 	//    if (!bSuccessInitDefault)
 	//    {
@@ -308,7 +308,7 @@ int main (int argc, char * const argv[])
 	// -----------------------------------------
 
 	OTString strMintPath;
-	bool bFileIsPresent = false;		
+	bool bFileIsPresent = false;
 	int nSeries = 0;
 
 	for (nSeries = 0; nSeries < 10000; ++nSeries)
@@ -323,8 +323,8 @@ int main (int argc, char * const argv[])
                                       strFilename.Get());
 
 		// Old Code
-		//strMintPath.Format("%s%s%s%s%s%s%s%s%d", 
-		//	OTLog::Path(), 
+		//strMintPath.Format("%s%s%s%s%s%s%s%s%d",
+		//	OTLog::Path(),
 		//	OTLog::PathSeparator(),
 		//	OTFolders::Mint().Get(),
 		//	OTLog::PathSeparator(),
@@ -337,7 +337,7 @@ int main (int argc, char * const argv[])
 			break;
 	}
 
-	// if bFileIsPresent is STILL true, that means we got all the way up to 1000 and the 
+	// if bFileIsPresent is STILL true, that means we got all the way up to 1000 and the
 	// file was present every time.
 	// Geez, there must be 10000 mints on this computer.  At one new Mint per 3 months,
 	// that's 4 per year, that's 2500 years already!!
@@ -363,16 +363,16 @@ int main (int argc, char * const argv[])
 	{
 		OTLog::Output(0, "\n\nSorry, that mint already exists. Delete it first if you wish to re-create it.\n\n");
 	}
-	else 
+	else
 	{
-		OTLog::vOutput(0, "\n\nMint file does not (yet) exist for series %d and asset type:\n%s\n Creating......\n\n", 
+		OTLog::vOutput(0, "\n\nMint file does not (yet) exist for series %d and asset type:\n%s\n Creating......\n\n",
 			nSeries, strAssetTypeID.Get());
 
 		// TODO: read the denominations out of the asset contract itself, instead of hardcoding them here.
 
 
-		// Calculate FROM as Today, Now, 
-		// then calculate TO as 6 months from now, 
+		// Calculate FROM as Today, Now,
+		// then calculate TO as 6 months from now,
 		// and EXPIRATION as 3 months from now.
 		//
 		// TODO: Let these numbers be configured either in server operator contract, or issuer contract.
@@ -393,8 +393,8 @@ int main (int argc, char * const argv[])
 		// make a mint available to the client.  The client has to wait a day or
 		// until the operator is able to run this script and type the passphrase.
 		if (theNym.Loadx509CertAndPrivateKey(false))
-		{								
-			const time_t	CURRENT_TIME	= time(NULL), 
+		{
+			const time_t	CURRENT_TIME	= time(NULL),
 				VALID_TO		= CURRENT_TIME + 15552000,	// Tokens generated by this mint are valid from today until 6 months from today
 				MINT_EXPIRATION	= CURRENT_TIME + 7776000;	// The mint itself will expire in 3 months from today, and be replaced with a new one.
 
@@ -405,18 +405,18 @@ int main (int argc, char * const argv[])
 
 			// ---------------------------------------
 
-//			OTString strFilename;// strPUBLICFilename;		
+//			OTString strFilename;// strPUBLICFilename;
 //			strFilename.		Format("%s%s%s",		strServerID.Get(), OTLog::PathSeparator(), strAssetTypeID.Get());
 //			strPUBLICFilename.	Format("%s%s%s%sPUBLIC",strServerID.Get(), OTLog::PathSeparator(), strAssetTypeID.Get(), ".");
 
 			if (!OTDataFolder::IsInitialized()) { OT_FAIL; }
 
 			OTString strServerFolder(""), strMintFolder("");
-            
+
 //            OTLog::vError("DEBUGGING: OTDataFolder::Get().Get(): %s \n", OTDataFolder::Get().Get());
 //            OTLog::vError("DEBUGGING: OTFolders::Mint().Get(): %s \n",   OTFolders::Mint().Get());
 //            OTLog::vError("DEBUGGING: strServerID.Get(): %s \n",   strServerID.Get());
-            
+
 			if (!OTPaths::AppendFolder(strMintFolder,	OTDataFolder::Get(), OTFolders::Mint())) { OT_FAIL; } // mint/
 			if (!OTPaths::AppendFolder(strServerFolder,	strMintFolder,		 strServerID.Get())) { OT_FAIL; } // mint/serverID
 
@@ -433,7 +433,7 @@ int main (int argc, char * const argv[])
 				pMint->SaveMint(strSeries.Get()); // save the private mint file as: path/mints/server_id/Asset_TypeID.nSeries (These accumulate.)
 
 				// When the server needs to reference the "current" private keys, then it just loads the
-				// mint without specifying the series number. Since this file is overwritten with each new 
+				// mint without specifying the series number. Since this file is overwritten with each new
 				// mint, it is thus always the latest one.  (Similarly, the latest public is always asset_id.PUBLIC)
 				// On the other hand, if I need to load the keys for a specific series, (since more than one may be
 				// redeemable, even if only the latest one is being issued) then they are all also saved by series

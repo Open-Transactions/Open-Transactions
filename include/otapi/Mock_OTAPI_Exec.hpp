@@ -162,7 +162,6 @@ kamH0Y/n11lCvo1oQxM+
 
 #include "OTAPI_Exec.hpp"
 
-
 class Mock_OTAPI_Exec : public OTAPI_Exec
 {
 private:
@@ -183,11 +182,15 @@ public:
 	// seriously, Sleep(50) in every SendRequest? Ignore it here. It should be removed
 	MOCK_METHOD1(Sleep, void(const int64_t & MILLISECONDS));
 
-	MOCK_METHOD1(StringToLong, int64_t (const std::string & strNumber));
-	MOCK_METHOD1(LongToString, std::string (const int64_t & lNumber));
-	MOCK_METHOD0(AppInit, bool ());
+    MOCK_METHOD1(StringToUlong, uint64_t(const std::string & strNumber));
+    MOCK_METHOD1(UlongToString, std::string(const uint64_t & lNumber));
+    MOCK_METHOD1(StringToLong, int64_t(const std::string & strNumber));
+    MOCK_METHOD1(LongToString, std::string(const int64_t & lNumber));
+    MOCK_METHOD0(AppInit, bool());
 	MOCK_METHOD0(AppCleanup, bool ());
-	MOCK_METHOD1(SetWallet, bool (const std::string & strWalletFilename));
+    MOCK_METHOD1(SetAppBinaryFolder, void(const std::string & strFolder));
+    MOCK_METHOD1(SetHomeFolder, void(const std::string & strFolder));
+    MOCK_METHOD1(SetWallet, bool(const std::string & strWalletFilename));
 	MOCK_METHOD0(WalletExists, bool ());
 	MOCK_METHOD0(LoadWallet, bool ());
 	MOCK_METHOD0(SwitchWallet, bool ());
@@ -214,8 +217,10 @@ public:
 	MOCK_METHOD0(PeekMemlogBack, std::string ());
 	MOCK_METHOD0(PopMemlogFront, bool ());
 	MOCK_METHOD0(PopMemlogBack, bool ());
-	MOCK_METHOD3(CreateNym, std::string (const int32_t & nKeySize, const std::string & NYM_ID_SOURCE, const std::string & ALT_LOCATION));
-	MOCK_METHOD1(GetNym_SourceForID, std::string (const std::string & NYM_ID));
+    MOCK_METHOD3(CreateNym, std::string(const int32_t & nKeySize, const std::string & NYM_ID_SOURCE, const std::string & ALT_LOCATION));
+    MOCK_METHOD2(GetNym_ActiveCronItemIDs, std::string(const std::string & NYM_ID, const std::string & SERVER_ID));
+    MOCK_METHOD2(GetActiveCronItem, std::string(const std::string & SERVER_ID, int64_t lTransNum));
+    MOCK_METHOD1(GetNym_SourceForID, std::string(const std::string & NYM_ID));
 	MOCK_METHOD1(GetNym_AltSourceLocation, std::string (const std::string & NYM_ID));
 	MOCK_METHOD1(GetNym_CredentialCount, int32_t (const std::string & NYM_ID));
 	MOCK_METHOD2(GetNym_CredentialID, std::string (const std::string & NYM_ID, const int32_t & nIndex));
@@ -245,7 +250,8 @@ public:
 	MOCK_METHOD2(StringToAmount, int64_t (const std::string & ASSET_TYPE_ID, const std::string & str_input));
 	MOCK_METHOD1(GetAssetType_ID, std::string (const int32_t & nIndex));
 	MOCK_METHOD1(GetAssetType_Name, std::string (const std::string & ASSET_TYPE_ID));
-	MOCK_METHOD1(GetAssetType_Contract, std::string (const std::string & ASSET_TYPE_ID));
+    MOCK_METHOD1(GetAssetType_TLA, std::string(const std::string & THE_ID));
+    MOCK_METHOD1(GetAssetType_Contract, std::string(const std::string & ASSET_TYPE_ID));
 	MOCK_METHOD1(GetAccountWallet_ID, std::string (const int32_t & nIndex));
 	MOCK_METHOD1(GetAccountWallet_Name, std::string (const std::string & ACCOUNT_ID));
 	MOCK_METHOD1(GetAccountWallet_Balance, int64_t (const std::string & ACCOUNT_ID));

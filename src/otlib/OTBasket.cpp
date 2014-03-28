@@ -1,13 +1,13 @@
 /****************************************************************
- *    
+ *
  *  OTBasket.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,16 +132,16 @@
 
 #include <stdafx.hpp>
 
-#include <OTBasket.hpp>
+#include "OTBasket.hpp"
 
-#include <OTAssert.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
+#include "OTAssert.hpp"
+#include "OTPseudonym.hpp"
+#include "OTLog.hpp"
 
 BasketItem::BasketItem() :
-    lMinimumTransferAmount(0), 
+    lMinimumTransferAmount(0),
     lClosingTransactionNo(0)
-{ 
+{
 
 }
 
@@ -179,12 +179,12 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
 {
     const OTString strServerID(theServerID);
     bool bNeedToSave = false;
-    
+
     // *************************************************************************
     // The SUB-CURRENCIES first...
     //
     const unsigned int nCount = static_cast<unsigned int>(this->Count());
-    
+
     for (unsigned int i = 0; i < nCount; i++)
     {
         BasketItem * pRequestItem = this->At(i);
@@ -200,7 +200,7 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
 
         if (bClawedBack)
             bNeedToSave = true;
-//		else 
+//		else
 //			OTLog::vError("OTBasket::HarvestClosingNumbers: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
 //						  lClosingTransNo);
     } // for
@@ -209,12 +209,12 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
     //
     const long lClosingTransNo = this->GetClosingNum();
     // --------------------------------
-    
+
     // This function will only "add it back" if it was really there in the first place.
     // (Verifies it is on issued list first, before adding to available list.)
     //
     const bool bClawedBack = theNym.ClawbackTransactionNumber(theServerID, lClosingTransNo, false); // bSave=false
-    
+
     if (bClawedBack)
         bNeedToSave = true;
 
@@ -241,19 +241,19 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
 
 // For generating a user request to EXCHANGE in/out of a basket.
 // Assumes that SetTransferMultiple has already been called.
-void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
+void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
                                      const OTIdentifier & SUB_ACCOUNT_ID,
                                      const long & lClosingTransactionNo)
 {
 	BasketItem * pItem = new BasketItem;
-	
-	OT_ASSERT_MSG(NULL != pItem, 
+
+	OT_ASSERT_MSG(NULL != pItem,
                   "Error allocating memory in OTBasket::AddRequestSubContract\n");
-		
+
 	// Minimum transfer amount is not set on a request. The server already knows its value.
 	// Also there is no multiple on the item, only on the basket as a whole.
 	// ALL items are multiplied by the same multiple. Even the basket amount itself is also.
-	
+
 	m_dequeItems.push_back(pItem);
 
 	pItem->SUB_CONTRACT_ID		= SUB_CONTRACT_ID;
@@ -268,16 +268,16 @@ void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 
 
 // For generating a real basket
-void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
+void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID,
                               long lMinimumTransferAmount)
 {
 	BasketItem * pItem = new BasketItem;
-	
+
 	OT_ASSERT_MSG(NULL != pItem, "Error allocating memory in OTBasket::AddSubContract\n");
-	
+
 	pItem->SUB_CONTRACT_ID			= SUB_CONTRACT_ID;
 	// server adds this later. Client can't know it in advance.
-//	pItem->SUB_ACCOUNT_ID			= SUB_ACCOUNT_ID; 
+//	pItem->SUB_ACCOUNT_ID			= SUB_ACCOUNT_ID;
 	pItem->lMinimumTransferAmount	= lMinimumTransferAmount;
 
 	m_dequeItems.push_back(pItem);
@@ -289,12 +289,12 @@ void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 //
 long OTBasket::GetClosingTransactionNoAt(unsigned int nIndex)
 {
-    OT_ASSERT_MSG((nIndex < m_dequeItems.size()) && (nIndex >= 0), 
+    OT_ASSERT_MSG((nIndex < m_dequeItems.size()) && (nIndex >= 0),
                   "OTBasket::GetClosingTransactionNoAt: index out of bounds.");
 
     BasketItem * pItem = m_dequeItems.at(nIndex);
 
-    OT_ASSERT_MSG(NULL != pItem, 
+    OT_ASSERT_MSG(NULL != pItem,
                   "OTBasket::GetClosingTransactionNoAt: basket item was NULL at that index.");
 
     return pItem->lClosingTransactionNo;
@@ -306,7 +306,7 @@ BasketItem * OTBasket::At(unsigned int nIndex)
 {
 	if (nIndex < m_dequeItems.size())
 		return m_dequeItems.at(nIndex);
-	
+
 	return NULL;
 }
 
@@ -316,13 +316,13 @@ int OTBasket::Count() const
 }
 
 
-/* 
- struct BasketItem 
+/*
+ struct BasketItem
  {
  OTIdentifier SUB_CONTRACT_ID;
  OTIdentifier SUB_ACCOUNT_ID;
  long		lMinimumTransferAmount;
- 
+
  BasketItem() { lMinimumTransferAmount = 0; }
  ~BasketItem();
  };
@@ -336,27 +336,27 @@ int OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
     const OTString strNodeName(xml->getNodeName());
 
 	if (strNodeName.Compare("currencyBasket"))
-	{		
+	{
 		OTString strSubCount, strMinTrans;
 		strSubCount			= xml->getAttributeValue("contractCount");
-		strMinTrans			= xml->getAttributeValue("minimumTransfer"); 
-		
+		strMinTrans			= xml->getAttributeValue("minimumTransfer");
+
 		m_nSubCount			= atoi(strSubCount.Get());
-		m_lMinimumTransfer	= atol(strMinTrans.Get()); 
-		
+		m_lMinimumTransfer	= atol(strMinTrans.Get());
+
 		OTLog::Output(1, "Loading currency basket...\n");
-		
+
 		return 1;
 	}
 	else if (strNodeName.Compare("requestExchange"))
-	{		
+	{
 		OTString strTransferMultiple, strRequestAccountID, strDirection, strTemp;
-		
+
 		strTransferMultiple	= xml->getAttributeValue("transferMultiple");
 		strRequestAccountID	= xml->getAttributeValue("transferAccountID");
-        strDirection        = xml->getAttributeValue("direction"); 
+        strDirection        = xml->getAttributeValue("direction");
         strTemp             = xml->getAttributeValue("closingTransactionNo");
-		
+
         if (strTransferMultiple.Exists())
             m_nTransferMultiple	= atoi(strTransferMultiple.Get());
         if (strRequestAccountID.Exists())
@@ -369,17 +369,17 @@ int OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		OTLog::vOutput(2, "Basket Transfer multiple is %d. Direction is %s. Closing number is %ld. "
                        "Target account is:\n%s\n", m_nTransferMultiple, strDirection.Get(),
                        m_lClosingTransactionNo, strRequestAccountID.Get());
-		
+
 		return 1;
 	}
 	else if (strNodeName.Compare("basketItem"))
 	{
 		BasketItem * pItem = new BasketItem;
-		
+
 		OT_ASSERT_MSG(NULL != pItem, "Error allocating memory in OTBasket::ProcessXMLNode\n");
-		
+
         OTString strTemp;
-        
+
 		strTemp = xml->getAttributeValue("minimumTransfer");
         if (strTemp.Exists())
             pItem->lMinimumTransferAmount	= atol(	strTemp.Get()	);
@@ -387,32 +387,32 @@ int OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         strTemp = xml->getAttributeValue("closingTransactionNo");
         if (strTemp.Exists())
             pItem->lClosingTransactionNo	= atol(	strTemp.Get()	);
-        
+
 		OTString	strSubAccountID(xml->getAttributeValue("accountID")),
 					strContractID(xml->getAttributeValue("assetID"));
-		pItem->SUB_ACCOUNT_ID.SetString(strSubAccountID); 
+		pItem->SUB_ACCOUNT_ID.SetString(strSubAccountID);
 		pItem->SUB_CONTRACT_ID.SetString(strContractID);
-		
+
 		m_dequeItems.push_back(pItem);
 
 		OTLog::Output(2, "Loaded basket item.\n");
-		
+
 		return 1;
 	}
-	
-	return 0;	
+
+	return 0;
 }
 
 
-void OTBasket::UpdateContents() // Before transmission or serialization, this is where the basket updates its contents 
-{		
+void OTBasket::UpdateContents() // Before transmission or serialization, this is where the basket updates its contents
+{
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-	
-	m_xmlUnsigned.Concatenate("<currencyBasket contractCount=\"%d\"\n" 
-							  " minimumTransfer=\"%ld\" >\n\n", 
+
+	m_xmlUnsigned.Concatenate("<currencyBasket contractCount=\"%d\"\n"
+							  " minimumTransfer=\"%ld\" >\n\n",
 							  m_nSubCount, m_lMinimumTransfer);
-	
+
     // Only uesd in Request Basket (requesting an exchange in/out.)
     // (Versus a basket object used for ISSUING a basket currency, this is EXCHANGING instead.)
     //
@@ -422,8 +422,8 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		m_xmlUnsigned.Concatenate("<requestExchange "
                                   "transferMultiple=\"%d\"\n "
                                   "transferAccountID=\"%s\"\n "
-                                  "closingTransactionNo=\"%ld\"\n "                               
-                                  "direction=\"%s\" />\n\n", 
+                                  "closingTransactionNo=\"%ld\"\n "
+                                  "direction=\"%s\" />\n\n",
 								  m_nTransferMultiple,
                                   strRequestAcctID.Get(),
                                   m_lClosingTransactionNo,
@@ -433,16 +433,16 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 	for (int i = 0; i < Count(); i++)
 	{
 		BasketItem * pItem = m_dequeItems[i];
-		
+
 		OT_ASSERT_MSG(NULL != pItem, "Error allocating memory in OTBasket::UpdateContents\n");
-		
+
 		OTString strAcctID(pItem->SUB_ACCOUNT_ID), strContractID(pItem->SUB_CONTRACT_ID);
-		
+
         if (IsExchanging())
             m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
                                   " closingTransactionNo=\"%ld\"\n"
                                   " accountID=\"%s\"\n"
-                                  " assetID=\"%s\" />\n\n", 
+                                  " assetID=\"%s\" />\n\n",
                                   pItem->lMinimumTransferAmount,
                                   pItem->lClosingTransactionNo,
                                   m_bHideAccountID ? "" : strAcctID.Get(),
@@ -450,13 +450,13 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		else
             m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
                                   " accountID=\"%s\"\n"
-                                  " assetID=\"%s\" />\n\n", 
+                                  " assetID=\"%s\" />\n\n",
                                   pItem->lMinimumTransferAmount,
                                   m_bHideAccountID ? "" : strAcctID.Get(),
                                   strContractID.Get());
 	}
-	
-	m_xmlUnsigned.Concatenate("</currencyBasket>\n");					
+
+	m_xmlUnsigned.Concatenate("</currencyBasket>\n");
 }
 
 // Most contracts calculate their ID by hashing the Raw File (signatures and all).
@@ -465,13 +465,13 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 void OTBasket::CalculateContractID(OTIdentifier & newID)
 {
 	const OTString strContents(m_xmlUnsigned);
-	
+
 	// Produce a version of the file without account IDs (which are different from server to server.)
 	//
 	m_bHideAccountID	= true;
-	
+
 	UpdateContents();  // <=========
-	
+
 	newID.CalculateDigest(m_xmlUnsigned);
 
 	// Put it back the way it was.
@@ -514,16 +514,16 @@ OTBasket::~OTBasket()
 void OTBasket::Release_Basket()
 {
 	BasketItem * pItem = NULL;
-	
+
 	m_RequestAccountID.Release();
-	
-	while (!m_dequeItems.empty()) 
+
+	while (!m_dequeItems.empty())
 	{
 		pItem = m_dequeItems.front();
 		m_dequeItems.pop_front();
 		delete pItem;
 	}
-    
+
 	m_nSubCount			= 0;
 	m_lMinimumTransfer	= 0;
 	m_nTransferMultiple	= 0;

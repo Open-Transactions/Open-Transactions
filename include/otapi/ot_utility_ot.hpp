@@ -1,9 +1,7 @@
 #ifndef _H_OT_UTILITY_OT
 #define _H_OT_UTILITY_OT
 
-#include "stdafx.hpp"
-
-#include <ExportWrapper.h>
+#include "OTCommon.hpp"
 
 #include "OTStorage.hpp"
 
@@ -36,7 +34,6 @@ EXPORT OT_UTILITY_OT bool VerifyNotNull(const void * theObjectRef);
 EXPORT OT_UTILITY_OT bool VerifyStorable(OTDB::Storable * theStorableObjectRef, const string & strType);
 EXPORT OT_UTILITY_OT bool VerifyType(const void * theObjectRef, const string & strType);
 
-
 class OTfourbool
 {
 public:
@@ -61,7 +58,6 @@ public:
         four = param_four;
     }
 };
-
 
 class Utility
 {

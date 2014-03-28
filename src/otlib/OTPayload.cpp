@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  OTPayload.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,33 +132,33 @@
 
 #include <stdafx.hpp>
 
-#include <OTPayload.hpp>
+#include "OTPayload.hpp"
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
-#include <OTDataCheck.hpp>
-#include <OTMessage.hpp>
+#include "OTLog.hpp"
+#include "OTEnvelope.hpp"
+#include "OTDataCheck.hpp"
+#include "OTMessage.hpp"
 
 
 OTPayload::OTPayload() : OTData()
 {
-	
+
 }
 
 OTPayload::OTPayload(const void * pNewData, uint32_t nNewSize) : OTData(pNewData, nNewSize)
 {
-    
+
 }
 
 OTPayload::OTPayload(const OTPayload & rhs) : OTData(rhs)
 {
-	
+
 }
 
 
 OTPayload::OTPayload(const OTASCIIArmor & theSource) : OTData(theSource)
 {
-	
+
 }
 
 
@@ -171,22 +171,22 @@ OTPayload::~OTPayload()
 uint32_t OTPayload::ReadBytesFrom(OTData & theData, uint32_t lSize)
 {
     OT_ASSERT(theData.GetSize() >= lSize);
-    
+
 	// The size requested to read MUST be less or equal to size of theData
 	if (theData.GetSize() < lSize)
 		abort();
 
 	OTPayload & refPayload = (OTPayload &)theData; // todo fix this cast.
-	
+
 	// Copy from theData to this, up until lSize
 	Assign(refPayload.GetPayloadPointer(), lSize);
-	
+
 	// Create a temp var, starting from theData+lSize, copying to the end of theData
 	OTData TEMPdata((unsigned char *)refPayload.GetPayloadPointer() + lSize, theData.GetSize() - lSize);
-	
+
 	// theData is assigned to TEMPdata (thus removing from it the bytes that we just read into this.)
 	theData.Assign(TEMPdata);
-	
+
 	return lSize;
 }
 
@@ -195,18 +195,18 @@ uint32_t OTPayload::ReadBytesFrom(OTData & theData, uint32_t lSize)
 bool OTPayload::SetEnvelope(const OTEnvelope & theEnvelope)
 {
 	OTASCIIArmor theArmor;
-	
+
 	if (theEnvelope.GetAsciiArmoredData(theArmor))
 	{
 		uint32_t lSize = theArmor.GetLength()+1; //+1 for the null terminater
-		
+
 		if (theArmor.GetLength())
 		{
 			SetPayloadSize(lSize + 1); // +1 for the checksum byte.
-			
+
 			// Copy it in.
 			memcpy((void *)GetPointer(), theArmor.Get(), lSize);
-			
+
 			// Add the checksum, success.
 			AppendChecksum( (OT_BYTE*)GetPointer(), lSize );
 			return true;
@@ -220,12 +220,12 @@ bool OTPayload::SetEnvelope(const OTEnvelope & theEnvelope)
 bool OTPayload::SetMessagePayload(const OTMessage & theMessage)
 {
 	uint32_t lSize = theMessage.m_strRawFile.GetLength()+1; //+1 for the null terminater
-	
+
 	if (theMessage.m_strRawFile.GetLength())
 	{
 		SetPayloadSize(lSize + 1); // +1 for the checksum byte.
 		memcpy((void *)GetPointer(), theMessage.m_strRawFile.Get(), lSize);
-		
+
 		// Add the checksum
 		AppendChecksum( (OT_BYTE*)GetPointer(), lSize );
 		return true;
@@ -242,19 +242,19 @@ bool OTPayload::GetEnvelope(OTEnvelope & theEnvelope) const
 	uint32_t lSize = GetSize();
 	uint32_t lIndex = lSize-2; // the index to where the NULL terminator SHOULD be if they
 						  // sent us a base64-encoded string, containing an encrypted message. (which we expect...)
-	
+
 	// (lSize-1 would be the location of the checksum at the end.)
 	if (0 == lSize)
 		return false;
-	
+
 	if (IsChecksumValid((OT_BYTE*)GetPointer(), (uint32_t)lSize))
 	{
 		// We add the null-terminator ourselves at this point, for security reasons,
 		// since we will process the data, soon after this function, as a string.
 		((OT_BYTE *)GetPointer())[lIndex] = 0;
-		
+
 		theEnvelope.m_dataContents.Release();
-		
+
 		OTASCIIArmor theArmor;
 		// Why is this safe, where I cast the Payload data pointer as
 		// a char * and tell the data object to set itself from that?
@@ -266,17 +266,17 @@ bool OTPayload::GetEnvelope(OTEnvelope & theEnvelope) const
 
 		// Todo NOTE: If I ever want to process bookends here instead of assuming they aren't there,
 		// IT'S VERY EASY!! All I have to do is call theArmor.LoadFromString instead of theArmor.Set.
-		
+
 		// Now the ascii-armored string that was sent across is decoded back to binary into the
 		// Envelope object.
 		theEnvelope.SetAsciiArmoredData(theArmor);
 		return true;
 	}
-	else 
+	else
     {
 		OTLog::Error("Invalid Checksum in OTPayload::GetEnvelope\n");
 		return false;
-	}	
+	}
 }
 
 // Message retrieved from Payload
@@ -289,15 +289,15 @@ bool OTPayload::GetMessagePayload(OTMessage & theMessage) const
 						  // (nSize-1 would be the location of the checksum at the end.)
 	if (0 == lSize)
 		return false;
-	
+
 	if (IsChecksumValid((OT_BYTE*)GetPointer(), (uint32_t)lSize))
 	{
 		// We add the null-terminator ourselves at this point, for security reasons,
 		// since we will process the data, after this point, as a string.
 		((OT_BYTE *)GetPointer())[lIndex] = 0;
-		
+
 		theMessage.Release();
-		
+
 		// Why is this safe, where I cast the Payload data pointer as
 		// a char * and tell the string to set itself from that?
 		// Because (1) I just validated the checksum, and
@@ -307,7 +307,7 @@ bool OTPayload::GetMessagePayload(OTMessage & theMessage) const
 		theMessage.m_strRawFile.Set((const char *)GetPointer());
 		return true;
 	}
-	else 
+	else
     {
 		OTLog::Error("Invalid Checksum in OTPayload::GetMessage\n");
 		return false;

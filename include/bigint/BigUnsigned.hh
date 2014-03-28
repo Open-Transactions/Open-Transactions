@@ -1,17 +1,17 @@
 /*
  C++ Big Integer Library
  (see ChangeLog for version)
- 
+
  http://mattmccutchen.net/bigint/
- 
+
  Written and maintained by Matt McCutchen <matt@mattmccutchen.net>
- 
+
  Legal
  -----
  I, Matt McCutchen, the sole author of the original Big Integer Library, waive my
  copyright to it, placing it in the public domain.  The library comes with
  absolutely no warranty.
- 
+
  */
 
 #ifndef __BIGUNSIGNED_HH__
@@ -43,7 +43,7 @@ protected:
 	BigUnsigned(int, Index c) : NumberlikeArray<Blk>(0, c) {}
 
 	// Decreases len to eliminate any leading zero blocks.
-	void zapLeadingZeros() { 
+	void zapLeadingZeros() {
 		while (len > 0 && blk[len - 1] == 0)
 			len--;
 	}
@@ -69,7 +69,7 @@ public:
 
 	// Destructor.  NumberlikeArray does the delete for us.
 	virtual ~BigUnsigned() {}
-	
+
 	// Constructors from primitive integer types
 	BigUnsigned(unsigned long  x);
 	BigUnsigned(         long  x);
@@ -174,7 +174,7 @@ public:
 	 * object in which to store the quotient.  NOTE: If you are wondering
 	 * why these don't return a value, you probably mean to use the
 	 * overloaded return-by-value operators instead.
-	 * 
+	 *
 	 * Examples:
 	 *     BigInteger a(43), b(7), c, d;
 	 *
@@ -186,7 +186,7 @@ public:
 	 *
 	 *     // ``Aliased'' calls now do the right thing using a temporary
 	 *     // copy, but see note on `divideWithRemainder'.
-	 *     a.add(a, b); 
+	 *     a.add(a, b);
 	 */
 
 	// COPY-LESS OPERATIONS

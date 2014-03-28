@@ -83,14 +83,14 @@ public int hashCode() {
 // TODO: Fix this since "this" doesn't work at static level.
 // (Anyway, doesn't it already have a pointer to its container?)
 %define OT_BEFORE_STORABLE_TYPE(STORABLE_TYPE_A)
-//%typemap(javaout) STORABLE_TYPE_A * ot_dynamic_cast { 
-//    long cPtr = $jnicall; 
-//    $javaclassname ret = null; 
-//    if (cPtr != 0) { 
+//%typemap(javaout) STORABLE_TYPE_A * ot_dynamic_cast {
+//    long cPtr = $jnicall;
+//    $javaclassname ret = null;
+//    if (cPtr != 0) {
 //		ret = new $javaclassname(cPtr, $owner);
-//		ret.addReference(this); 
-//    } 
-//    return ret; 
+//		ret.addReference(this);
+//    }
+//    return ret;
 //}
 %enddef
 
@@ -109,7 +109,7 @@ public int hashCode() {
 // where a reference is added each time you use the "Add" method, so
 // that none of its elements are erased out from under it by the Java Garbage Collector.
 //
-%define OT_CONTAINER_TYPE_MEMBERS 
+%define OT_CONTAINER_TYPE_MEMBERS
 	private List elementList = new ArrayList();
 %enddef
 
@@ -117,7 +117,7 @@ public int hashCode() {
 // If a class is meant to be used as an element inside a container, then use this
 // macro to create the necessary typemap for that class's GET method.
 //
-// Put it: With the rest of the TYPEMAP for the class in question. (Above the class 
+// Put it: With the rest of the TYPEMAP for the class in question. (Above the class
 // definition itself, and above the container typemaps.)
 //
 // Swig uses it: Any container that defines a get method for that class based on
@@ -158,7 +158,7 @@ public int hashCode() {
 %define OT_CAN_BE_CONTAINED_BY(CONTAINER_TYPE_A)
 	// Ensure that the GC doesn't collect any OT_CONTAINER instance set from Java
 	private CONTAINER_TYPE_A containerRef##CONTAINER_TYPE_A;
-	// ----------------	
+	// ----------------
 	protected void addReference(CONTAINER_TYPE_A theContainer) {  // This is Java code
 		containerRef##CONTAINER_TYPE_A = theContainer;
 	}
@@ -188,7 +188,7 @@ public int hashCode() {
 
 %define OT_ADD_ELEMENT(THE_ELEMENT_TYPE_B)  // THIS BLOCK CONTAINS JAVA CODE.
 private long removeRef##THE_ELEMENT_TYPE_B(long lIndex) {
-	// 
+	//
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
 	// the corresponding reference for that element.
@@ -197,26 +197,26 @@ private long removeRef##THE_ELEMENT_TYPE_B(long lIndex) {
 
 	if (refActualElement == null)
 		return lIndex; // oh well.
-	
+
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
 	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
-		
+
 		if ((theObject == null) || !(theObject instanceof THE_ELEMENT_TYPE_B))
 			continue;
 
 		THE_ELEMENT_TYPE_B tempRef = (THE_ELEMENT_TYPE_B)(theObject);
-		
+
 		if ((THE_ELEMENT_TYPE_B.getCPtr(tempRef) == THE_ELEMENT_TYPE_B.getCPtr(refActualElement)))
 		{
 			elementList.remove(tempRef);
 			break;
 		}
 	}
-	
+
 	return lIndex;
 }
 
@@ -230,9 +230,9 @@ private long getCPtrAddRef##THE_ELEMENT_TYPE_B(THE_ELEMENT_TYPE_B element) {
 
 		if ((theObject == null) || !(theObject instanceof THE_ELEMENT_TYPE_B))
 			continue;
-		
+
 		THE_ELEMENT_TYPE_B tempRef = (THE_ELEMENT_TYPE_B)(theObject);
-		
+
 		if ((THE_ELEMENT_TYPE_B.getCPtr(tempRef) == THE_ELEMENT_TYPE_B.getCPtr(element)))
 		{
 			elementList.remove(tempRef); // It was already there, so let's remove it before adding (below.)

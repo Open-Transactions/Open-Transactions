@@ -4609,7 +4609,7 @@ OT_COMMAND_OT int32_t details_create_offer(const string & strScale, const string
     // Instantiate the "OT Made Easy" object.
     //
     MadeEasy madeEasy;
-    
+
     string strMyNymID = OTAPI_Wrap::GetAccountWallet_NymID(MyAcct);
     string strMyNymID2 = OTAPI_Wrap::GetAccountWallet_NymID(HisAcct);
 
@@ -4638,7 +4638,7 @@ OT_COMMAND_OT int32_t details_create_offer(const string & strScale, const string
     // up, in case we don't even have the current list of them.
 
     details_get_nym_market_offers(strMyServerID, strMyNymID);
-    
+
     /*
     me: How about this — when you do "opentxs newoffer" I can alter that
     script to automatically cancel any sell offers for a lower amount

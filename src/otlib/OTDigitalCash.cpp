@@ -1,14 +1,14 @@
 
 /*************************************************************
- *    
+ *
  *  OTDigitalCash.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,11 +133,11 @@
 
 #include <stdafx.hpp>
 
-#include <OTDigitalCash.hpp>
+#include "OTDigitalCash.hpp"
 
-#include <OTAssert.hpp>
-#include <OTString.hpp>
-#include <OTPaths.hpp>
+#include "OTAssert.hpp"
+#include "OTString.hpp"
+#include "OTPaths.hpp"
 
 
 
@@ -171,7 +171,7 @@ _OT_Lucre_Dumper::_OT_Lucre_Dumper()
 #endif
 #else
     SetDumper(stderr);
-#endif     
+#endif
 }
 
 _OT_Lucre_Dumper::~_OT_Lucre_Dumper()
@@ -180,7 +180,7 @@ _OT_Lucre_Dumper::~_OT_Lucre_Dumper()
 #ifdef _DEBUG
     CleanupDumpFile(m_str_dumpfile.c_str());
 #endif
-#endif            
+#endif
 }
 
 // -------------------------------------------------------------------------------------------
