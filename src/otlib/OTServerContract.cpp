@@ -1,14 +1,14 @@
 /************************************************************
- *    
+ *
  *  OTServerContract.cpp
- *  
+ *
  */
 
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,10 +133,10 @@
 
 #include <stdafx.hpp>
 
-#include <OTServerContract.hpp>
+#include "OTServerContract.hpp"
 
-#include <OTLog.hpp>
-#include <OTASCIIArmor.hpp>
+#include "OTLog.hpp"
+#include "OTASCIIArmor.hpp"
 
 #include <fstream>
 
@@ -146,7 +146,7 @@ OTServerContract::OTServerContract() : OTContract()
 	m_nPort = 0;
 }
 
-OTServerContract::OTServerContract(OTString & name, OTString & foldername, OTString & filename, OTString & strID) 
+OTServerContract::OTServerContract(OTString & name, OTString & foldername, OTString & filename, OTString & strID)
 : OTContract(name, foldername, filename, strID)
 {
 	m_nPort = 0;
@@ -173,14 +173,14 @@ bool OTServerContract::GetConnectInfo(OTString & strHostname, int & nPort)
 bool OTServerContract::DisplayStatistics(OTString & strContents) const
 {
 	const OTString strID(m_ID);
-	
+
 	strContents.Concatenate(
 							" Notary Provider: %s\n"
 							" ServerID: %s\n"
 							"\n",
 							m_strName.Get(),
 							strID.Get());
-	
+
 	return true;
 }
 
@@ -189,7 +189,7 @@ bool OTServerContract::SaveContractWallet(OTString & strContents) const
 {
 	const OTString strID(m_ID);
 	OTASCIIArmor   ascName;
-	
+
 	if (m_strName.Exists()) // name is in the clear in memory, and base64 in storage.
 	{
 		ascName.SetString(m_strName, false); // linebreaks == false
@@ -198,7 +198,7 @@ bool OTServerContract::SaveContractWallet(OTString & strContents) const
 							" serverID=\"%s\" />\n\n",
 							m_strName.Exists() ? ascName.Get() : "",
 							strID.Get());
-	
+
 	return true;
 }
 
@@ -206,13 +206,13 @@ bool OTServerContract::SaveContractWallet(OTString & strContents) const
 bool OTServerContract::SaveContractWallet(std::ofstream & ofs)
 {
 	OTString strOutput;
-	
+
 	if (SaveContractWallet(strOutput))
 	{
 		ofs << strOutput.Get();
 		return true;
 	}
-		
+
 	return false;
 }
 
@@ -255,7 +255,7 @@ void OTServerContract::CreateContents()
 int OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
-	
+
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -263,33 +263,33 @@ int OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	//
 	// -- Note you can choose not to call the parent if
 	// you don't want to use any of those xml tags.
-	
+
 	nReturnVal = OTContract::ProcessXMLNode(xml);
 	if (nReturnVal)
 		return nReturnVal;
-	
+
 	if (!strcmp("notaryProviderContract", xml->getNodeName()))
 	{
-		m_strVersion = xml->getAttributeValue("version");					
-		
+		m_strVersion = xml->getAttributeValue("version");
+
 		OTLog::vOutput(1, "\n"
 				"===> Loading XML portion of server contract into memory structures...\n\n"
 				"Notary Server Name: %s\nContract version: %s\n----------\n", m_strName.Get(), m_strVersion.Get());
 		nReturnVal = 1;
 	}
-	
+
 	else if (!strcmp("notaryServer", xml->getNodeName()))
 	{
-		m_strHostname	= xml->getAttributeValue("hostname");					
-		m_nPort			= atoi(xml->getAttributeValue("port"));					
-		m_strURL		= xml->getAttributeValue("URL");					
-		
+		m_strHostname	= xml->getAttributeValue("hostname");
+		m_nPort			= atoi(xml->getAttributeValue("port"));
+		m_strURL		= xml->getAttributeValue("URL");
+
 		OTLog::vOutput(1, "\n"
-				"Notary Server connection info:\n --- Hostname: %s\n --- Port: %d\n --- URL:%s\n\n", 
+				"Notary Server connection info:\n --- Hostname: %s\n --- Port: %d\n --- URL:%s\n\n",
 				m_strHostname.Get(), m_nPort, m_strURL.Get());
 		nReturnVal = 1;
 	}
-	
+
 	return nReturnVal;
 }
 

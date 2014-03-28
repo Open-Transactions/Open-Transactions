@@ -3,7 +3,7 @@
 // =========
 // High Resolution Timer.
 // This timer is able to measure the elapsed time with 1 micro-second accuracy
-// in both Windows, Linux and Unix system 
+// in both Windows, Linux and Unix system
 //
 //  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
 // CREATED: 2003-01-13
@@ -21,7 +21,7 @@
 Timer::Timer(bool bStart/*=false*/)
 {
     clear();
-    
+
 	// -------------------------
 	// FT: Added this part:
 	//
@@ -63,7 +63,7 @@ void Timer::start()
 void Timer::stop()
 {
     stopped = 1; // set timer stopped flag
-    
+
 #ifdef WIN32
     QueryPerformanceCounter(&endCount);
 #else
@@ -85,7 +85,7 @@ void Timer::clear()
     startCount.tv_sec = startCount.tv_usec = 0;
     endCount.tv_sec = endCount.tv_usec = 0;
 #endif
-    
+
     stopped = 0;
     startTimeInMicroSec = 0;
     endTimeInMicroSec = 0;

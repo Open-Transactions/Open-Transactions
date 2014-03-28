@@ -1,14 +1,14 @@
 
 /************************************************************
- *    
+ *
  *  OTToken.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,14 +133,14 @@
 
 #include <stdafx.hpp>
 
-#include <OTToken.hpp>
+#include "OTToken.hpp"
 
-#include <OTLog.hpp>
-#include <OTPurse.hpp>
-#include <OTPaths.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMint.hpp>
-#include <OTDigitalCash.hpp>
+#include "OTLog.hpp"
+#include "OTPurse.hpp"
+#include "OTPaths.hpp"
+#include "OTEnvelope.hpp"
+#include "OTMint.hpp"
+#include "OTDigitalCash.hpp"
 
 
 // The current implementation for withdrawals (using Lucre) requires only a single proto-token
@@ -158,7 +158,7 @@
 // or 1 out of 500
 // or 1 out of 5
 // Basically this number determines how many blinded prototokens must be sent to the
-// server in order for the server to accept the withdrawal request and sign one of them. 
+// server in order for the server to accept the withdrawal request and sign one of them.
 // (more prototokens == more resource cost, but more security.)
 const int OTToken__nMinimumPrototokenCount = 1;
 
@@ -170,8 +170,8 @@ const int OTToken::GetMinimumPrototokenCount()
 // Lucre, in fact, only sends a single blinded token, and the bank signs it blind and returns it.
 // With Chaum, I thought the bank had to open some of the proto-tokens to verify the amount was
 // correct, etc. But now I realize that was probably just a metaphor used for news interviews.
-// 
-// With Lucre, only the ID is blinded. The bank can already see the amount--it's not blinded. So 
+//
+// With Lucre, only the ID is blinded. The bank can already see the amount--it's not blinded. So
 // there's no need to verify it.  The client can send an ill-formed token if he wishes, but only
 // hurts himself.
 //
@@ -183,13 +183,13 @@ const int OTToken::GetMinimumPrototokenCount()
 
 void OTToken::InitToken()
 {
-//	m_lDenomination	= 0; 
+//	m_lDenomination	= 0;
 //	m_nTokenCount	= 0;
 //	m_nChosenIndex	= 0;
 //	m_nSeries		= 0;
 //	m_State			= blankToken;
 //	m_bSavePrivateKeys = false;
-		
+
 	m_strContractType.Set("CASH TOKEN"); // todo internationalization.
 }
 
@@ -198,9 +198,9 @@ OTToken::OTToken()
     m_bPasswordProtected(false),
     m_lDenomination(0),
     m_nTokenCount(0),
-    m_nChosenIndex(0), 
-    m_nSeries(0), 
-    m_State(blankToken), 
+    m_nChosenIndex(0),
+    m_nSeries(0),
+    m_State(blankToken),
     m_bSavePrivateKeys(false)
 {
     InitToken();
@@ -216,17 +216,17 @@ OTToken::OTToken()
 
 
 OTToken::OTToken(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
-  : ot_super(SERVER_ID, ASSET_ID), 
+  : ot_super(SERVER_ID, ASSET_ID),
     m_bPasswordProtected(false),
-    m_lDenomination(0), 
-    m_nTokenCount(0), 
-    m_nChosenIndex(0), 
-    m_nSeries(0), 
-    m_State(blankToken), 
+    m_lDenomination(0),
+    m_nTokenCount(0),
+    m_nChosenIndex(0),
+    m_nSeries(0),
+    m_State(blankToken),
     m_bSavePrivateKeys(false)
 {
 	InitToken();
-	
+
 	// m_ServerID and m_AssetTypeID are now in the parent class (OTInstrument)
 	// So they are initialized there now.
 }
@@ -234,17 +234,17 @@ OTToken::OTToken(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
 OTToken::OTToken(const OTPurse & thePurse)
   : ot_super(),
     m_bPasswordProtected(false),
-    m_lDenomination(0), 
-    m_nTokenCount(0), 
-    m_nChosenIndex(0), 
-    m_nSeries(0), 
-    m_State(blankToken), 
+    m_lDenomination(0),
+    m_nTokenCount(0),
+    m_nChosenIndex(0),
+    m_nSeries(0),
+    m_State(blankToken),
     m_bSavePrivateKeys(false)
 {
 	InitToken();
 
 	// These are in the parent class, OTInstrument.
-	// I set them here because the "Purse" argument only exists 
+	// I set them here because the "Purse" argument only exists
 	// in this subclass constructor, not the base.
 	m_ServerID		= thePurse.GetServerID();
 	m_AssetTypeID	= thePurse.GetAssetID();
@@ -257,7 +257,7 @@ void OTToken::Release_Token()
 	m_ascSpendable.Release();
     // -------------------------
 //  InitToken();
-    // -------------------------    
+    // -------------------------
 	ReleasePrototokens();
     // -------------------------
 }
@@ -265,7 +265,7 @@ void OTToken::Release_Token()
 void OTToken::Release()
 {
 	Release_Token();
-    
+
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
 
@@ -276,7 +276,7 @@ OTToken::~OTToken()
     m_bPasswordProtected = false;
 
     // todo: optimization (probably just remove these here.)
-	m_lDenomination	= 0; 
+	m_lDenomination	= 0;
 //	m_nTokenCount	= 0;  // this happens in ReleasePrototokens. (Called by Release_Token above.)
 	m_nChosenIndex	= 0;
 	m_nSeries		= 0;
@@ -288,21 +288,21 @@ OTToken::~OTToken()
 void OTToken::ReleasePrototokens()
 {
 	FOR_EACH(mapOfPrototokens, m_mapPublic)
-	{		
+	{
 		OTASCIIArmor * pPrototoken = (*it).second;
 		OT_ASSERT_MSG(NULL != pPrototoken, "NULL OTASCIIArmor pointer in OTToken::ReleasePrototokens.");
-		
+
 		delete pPrototoken; pPrototoken	= NULL;
 	}
 	// ------------------------------------------------
 	FOR_EACH(mapOfPrototokens, m_mapPrivate)
-	{		
+	{
 		OTASCIIArmor * pPrototoken = (*it).second;
 		OT_ASSERT_MSG(NULL != pPrototoken, "NULL OTASCIIArmor pointer in OTToken::ReleasePrototokens.");
-		
+
 		delete pPrototoken; pPrototoken	= NULL;
 	}
-	// ------------------------------------------------    
+	// ------------------------------------------------
 	m_mapPublic.clear();
 	m_mapPrivate.clear();
     // ------------------------------------------------
@@ -326,14 +326,14 @@ bool OTToken::SaveContractWallet(std::ofstream & ofs)
 OTToken * OTToken::LowLevelInstantiate(const OTString & strFirstLine, const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
 {
     OTToken * pToken = NULL;
-    
+
 #if defined (OT_CASH_USING_LUCRE)
     if (strFirstLine.Contains("-----BEGIN SIGNED CASH-----"))  // this string is 27 chars long.
 	{	pToken = new OTToken_Lucre(SERVER_ID, ASSET_ID);		OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED CASH TOKEN-----"))  // this string is 33 chars long.
 	{	pToken = new OTToken_Lucre(SERVER_ID, ASSET_ID);      OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED LUCRE CASH TOKEN-----"))  // this string is 39 chars long.
 	{	pToken = new OTToken_Lucre(SERVER_ID, ASSET_ID);		OT_ASSERT(NULL != pToken); }
 #else
@@ -351,10 +351,10 @@ OTToken * OTToken::LowLevelInstantiate(const OTString & strFirstLine, const OTPu
 #if defined (OT_CASH_USING_LUCRE)
     if (strFirstLine.Contains("-----BEGIN SIGNED CASH-----"))  // this string is 27 chars long.
 	{	pToken = new OTToken_Lucre(thePurse);		OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED CASH TOKEN-----"))  // this string is 33 chars long.
 	{	pToken = new OTToken_Lucre(thePurse);     OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED LUCRE CASH TOKEN-----"))  // this string is 39 chars long.
 	{	pToken = new OTToken_Lucre(thePurse);		OT_ASSERT(NULL != pToken); }
 #else
@@ -368,7 +368,7 @@ OTToken * OTToken::LowLevelInstantiate(const OTString & strFirstLine, const OTPu
 OTToken * OTToken::LowLevelInstantiate(const OTPurse & thePurse)
 {
     OTToken * pToken = NULL;
-    
+
 #if defined (OT_CASH_USING_LUCRE)
     pToken = new OTToken_Lucre(thePurse);
     OT_ASSERT(NULL != pToken);
@@ -387,10 +387,10 @@ OTToken * OTToken::LowLevelInstantiate(const OTString & strFirstLine)
 #if defined (OT_CASH_USING_LUCRE)
     if (strFirstLine.Contains("-----BEGIN SIGNED CASH-----"))  // this string is 27 chars long.
 	{	pToken = new OTToken_Lucre;		OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED CASH TOKEN-----"))  // this string is 33 chars long.
 	{	pToken = new OTToken_Lucre;     OT_ASSERT(NULL != pToken); }
-	
+
 	else if (strFirstLine.Contains("-----BEGIN SIGNED LUCRE CASH TOKEN-----"))  // this string is 39 chars long.
 	{	pToken = new OTToken_Lucre;		OT_ASSERT(NULL != pToken); }
 #else
@@ -414,18 +414,18 @@ OTToken * OTToken::TokenFactory(OTString strInput, const OTIdentifier & SERVER_I
     if (bProcessed)
     {
         OTToken * pToken = OTToken::LowLevelInstantiate(strFirstLine, SERVER_ID, ASSET_ID);
-        
+
         // The string didn't match any of the options in the factory.
         if (NULL == pToken)
             return NULL;
-        
+
         // Does the contract successfully load from the string passed in?
         if (pToken->LoadContractFromString(strContract))
             return pToken;
         else
             delete pToken;
     }
-	
+
 	return NULL;
 }
 
@@ -441,18 +441,18 @@ OTToken * OTToken::TokenFactory(OTString strInput, const OTPurse & thePurse)
     if (bProcessed)
     {
         OTToken * pToken = OTToken::LowLevelInstantiate(strFirstLine, thePurse);
-        
+
         // The string didn't match any of the options in the factory.
         if (NULL == pToken)
             return NULL;
-        
+
         // Does the contract successfully load from the string passed in?
         if (pToken->LoadContractFromString(strContract))
             return pToken;
         else
             delete pToken;
     }
-	
+
 	return NULL;
 }
 
@@ -468,18 +468,18 @@ OTToken * OTToken::TokenFactory(OTString strInput)
     if (bProcessed)
     {
         OTToken * pToken = OTToken::LowLevelInstantiate(strFirstLine);
-        
+
         // The string didn't match any of the options in the factory.
         if (NULL == pToken)
             return NULL;
-        
+
         // Does the contract successfully load from the string passed in?
         if (pToken->LoadContractFromString(strContract))
             return pToken;
         else
             delete pToken;
     }
-	
+
 	return NULL;
 }
 
@@ -505,29 +505,29 @@ OTToken * OTToken::TokenFactory(OTString strInput)
 bool OTToken::IsTokenAlreadySpent(OTString & theCleartextToken)
 {
 	OTString strAssetID(GetAssetID());
-	// ----------------------------------------------------------------------------		
+	// ----------------------------------------------------------------------------
 	// Calculate the filename (a hash of the Lucre cleartext token ID)
 	OTIdentifier theTokenHash;
 	theTokenHash.CalculateDigest(theCleartextToken);
-	
+
 	// Grab the new hash into a string (for use as a filename)
 	OTString strTokenHash(theTokenHash);
-	// ----------------------------------------------------------------------------	
+	// ----------------------------------------------------------------------------
 	OTString strAssetFolder;
 	strAssetFolder.Format("%s.%d", strAssetID.Get(), GetSeries());
-	
+
 	bool bTokenIsPresent = OTDB::Exists(OTFolders::Spent().Get(), strAssetFolder.Get(), strTokenHash.Get());
 	// --------------------------------------------------------------------
 	if (bTokenIsPresent)
 	{
-		OTLog::vOutput(0, "\nOTToken::IsTokenAlreadySpent: Token was already spent: %s%s%s%s%s\n", 
-					   OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(), 
+		OTLog::vOutput(0, "\nOTToken::IsTokenAlreadySpent: Token was already spent: %s%s%s%s%s\n",
+					   OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(),
 					   OTLog::PathSeparator(), strTokenHash.Get());
 		return true;	// all errors must return true in this function.
 						// But this is not an error. Token really WAS already
 	}					// spent, and this true is for real. The others are just
 						// for security reasons because of this one.
-	
+
 	// This is the ideal case: the token was NOT already spent, it was good,
 	// so we can return false and the depositor can be credited appropriately.
 	// IsTokenAlreadySpent?  NO-it was NOT already spent. You can only POSSIBLY
@@ -547,23 +547,23 @@ bool OTToken::RecordTokenAsSpent(OTString & theCleartextToken)
 
 	// Grab the new hash into a string (for use as a filename)
 	OTString strTokenHash(theTokenHash);
-		
+
 	OTString strAssetFolder;
 	strAssetFolder.Format("%s.%d", strAssetID.Get(), GetSeries());
 	// --------------------------------------------------------------------
 	// See if the spent token file ALREADY EXISTS...
 	bool bTokenIsPresent = OTDB::Exists(OTFolders::Spent().Get(), strAssetFolder.Get(), strTokenHash.Get());
-	
+
 	// If so, we're trying to record a token that was already recorded...
 	if (bTokenIsPresent)
 	{
 		OTLog::vError("OTToken::RecordTokenAsSpent: Trying to record token as spent,"
-					  " but it was already recorded: %s%s%s%s%s\n", 
-					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(), 
+					  " but it was already recorded: %s%s%s%s%s\n",
+					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(),
 					  OTLog::PathSeparator(), strTokenHash.Get());
 		return false;
 	}
-	// ----------------------------------------------------------------------	
+	// ----------------------------------------------------------------------
 	// FINISHED:
 	//
 	// We actually save the token itself into the file, which is named based
@@ -573,25 +573,25 @@ bool OTToken::RecordTokenAsSpent(OTString & theCleartextToken)
 	//
 	OTString strFinal;
     OTASCIIArmor ascTemp(m_strRawFile);
-    
+
     if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
     {
 		OTLog::vError("OTToken::RecordTokenAsSpent: Error recording token as "
                       "spent (failed writing armored string):\n%s%s%s%s%s\n",
-					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(), 
+					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(),
 					  OTLog::PathSeparator(), strTokenHash.Get());
 		return false;
     }
     // --------------------------------------------------------------------
-	const bool bSaved = OTDB::StorePlainString(strFinal.Get(), OTFolders::Spent().Get(), 
+	const bool bSaved = OTDB::StorePlainString(strFinal.Get(), OTFolders::Spent().Get(),
                                                strAssetFolder.Get(), strTokenHash.Get());
 	if (!bSaved)
 	{
-		OTLog::vError("OTToken::RecordTokenAsSpent: Error saving file: %s%s%s%s%s\n", 
-					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(), 
+		OTLog::vError("OTToken::RecordTokenAsSpent: Error saving file: %s%s%s%s%s\n",
+					  OTFolders::Spent().Get(), OTLog::PathSeparator(), strAssetFolder.Get(),
 					  OTLog::PathSeparator(), strTokenHash.Get());
 	}
-	
+
 	return bSaved;
 }
 
@@ -628,7 +628,7 @@ bool OTToken::RecordTokenAsSpent(OTString & theCleartextToken)
  is able to construct itself from either one. This can be convenient. However, if
  you don't use an OTPassword when you construct the OTNym_or_SymmetricKey, and it needs
  one internally for its symmetric key, then it will create one and store it, and delete it
- upon destruction. 
+ upon destruction.
  Therefore it can be useful to pass the SAME OTNym_or_SymmetricKey into a function multiple
  times (say, during a loop) since it is storing its password internally, and this makes that PW
  available to every call, without having to create it EACH TIME (forcing user to enter passphrase
@@ -650,7 +650,7 @@ bool OTToken::ReassignOwnership(OTNym_or_SymmetricKey & oldOwner,  // must be pr
 {
 	const char *   szFunc = "OTToken::ReassignOwnership";
     const OTString strDisplay(szFunc);
-    // --------------------------    
+    // --------------------------
     bool bSuccess = true;
 
     if (!oldOwner.CompareID(newOwner)) // only re-assign if they don't ALREADY have the same owner.
@@ -688,16 +688,16 @@ bool OTToken::GetSpendableString(OTNym_or_SymmetricKey theOwner, OTString & theS
     if (m_ascSpendable.Exists())
     {
         OTEnvelope theEnvelope(m_ascSpendable);
-        
+
         // Decrypt the Envelope into strContents
         const OTString strDisplay(szFunc);
-        
+
         if (theOwner.Open_or_Decrypt(theEnvelope, theString, &strDisplay))
             return true;
     }
     else
         OTLog::vError("%s: m_ascSpendable is empty... (failure.)\n", szFunc);
-    
+
     return false;
 }
 
@@ -707,9 +707,9 @@ void OTToken::UpdateContents()
 {
 	if (m_State == OTToken::spendableToken)
 		m_strContractType.Set("CASH TOKEN");
-	
+
 	OTString ASSET_TYPE_ID(m_AssetTypeID), SERVER_ID(m_ServerID);
-	
+
 	OTString strState;
 	switch (m_State) {
 		case OTToken::blankToken:
@@ -737,29 +737,29 @@ void OTToken::UpdateContents()
 
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-	
-	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
-	
+
+	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
+
 	m_xmlUnsigned.Concatenate("<token\n version=\"%s\"\n state=\"%s\"\n denomination=\"%ld\"\n"
 							  " assetTypeID=\"%s\"\n"
 							  " serverID=\"%s\"\n"
 							  " series=\"%d\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\""
-							  " >\n\n", 
-							  m_strVersion.Get(), strState.Get(), GetDenomination(), 
-							  ASSET_TYPE_ID.Get(), 
+							  " >\n\n",
+							  m_strVersion.Get(), strState.Get(), GetDenomination(),
+							  ASSET_TYPE_ID.Get(),
 							  SERVER_ID.Get(),
-							  m_nSeries, lFrom, lTo );		
+							  m_nSeries, lFrom, lTo );
 
 	// signed tokens, as well as spendable tokens, both carry a TokenID
 	// (The spendable token contains the unblinded version.)
-	if (OTToken::signedToken	== m_State || 
+	if (OTToken::signedToken	== m_State ||
 		OTToken::spendableToken	== m_State)
 	{
 		m_xmlUnsigned.Concatenate("<tokenID>\n%s</tokenID>\n\n", m_ascSpendable.Get());
 	}
-	
+
 	// Only signedTokens carry the signature, which is discarded in spendable tokens.
 	// (Because it is not used past the unblinding stage anyway, and because it could
 	// be used to track the token.)
@@ -767,39 +767,39 @@ void OTToken::UpdateContents()
 	{
 		m_xmlUnsigned.Concatenate("<tokenSignature>\n%s</tokenSignature>\n\n", m_Signature.Get());
 	}
-	
-	if ((OTToken::protoToken == m_State || 
+
+	if ((OTToken::protoToken == m_State ||
 		 OTToken::signedToken == m_State)	&& m_nTokenCount)
 	{
 		m_xmlUnsigned.Concatenate("<protopurse count=\"%d\" chosenIndex=\"%d\">\n\n", m_nTokenCount, m_nChosenIndex);
-		
+
 		FOR_EACH(mapOfPrototokens, m_mapPublic)
 		{
 			OTASCIIArmor * pPrototoken = (*it).second;
 			OT_ASSERT(NULL != pPrototoken);
-			
+
 			m_xmlUnsigned.Concatenate("<prototoken>\n%s</prototoken>\n\n", pPrototoken->Get());
-		}		
+		}
 		m_xmlUnsigned.Concatenate("</protopurse>\n\n");
 	}
-	
+
 	if (m_bSavePrivateKeys)
 	{
 		m_bSavePrivateKeys = false; // set it back to false;
-		
+
 		m_xmlUnsigned.Concatenate("<privateProtopurse>\n\n");
-		
+
 		FOR_EACH(mapOfPrototokens, m_mapPrivate)
 		{
 			OTASCIIArmor * pPrototoken = (*it).second;
 			OT_ASSERT(NULL != pPrototoken);
-			
+
 			m_xmlUnsigned.Concatenate("<privatePrototoken>\n%s</privatePrototoken>\n\n", pPrototoken->Get());
-		}		
+		}
 		m_xmlUnsigned.Concatenate("</privateProtopurse>\n\n");
 	}
-	
-	m_xmlUnsigned.Concatenate("</token>\n");			
+
+	m_xmlUnsigned.Concatenate("</token>\n");
 }
 
 
@@ -809,9 +809,9 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	static int nPublicTokenCount  = 0;
 	static int nPrivateTokenCount = 0;
-	
+
 	int nReturnVal = 0;
-	
+
     const OTString strNodeName(xml->getNodeName());
 
 	// Here we call the parent class first.
@@ -824,25 +824,25 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// As I do below, in the case of OTAccount.
 	//if (nReturnVal = OTContract::ProcessXMLNode(xml))
 	//	return nReturnVal;
-	
-	if ( strNodeName.Compare("token")  ) 
+
+	if ( strNodeName.Compare("token")  )
 	{
 		OTString strState;
 
-		m_strVersion	= xml->getAttributeValue("version");					
+		m_strVersion	= xml->getAttributeValue("version");
 		strState		= xml->getAttributeValue("state");
 
 		m_nSeries		= atoi(xml->getAttributeValue("series"));
-        
+
         const OTString str_from = xml->getAttributeValue("validFrom");
         const OTString str_to   = xml->getAttributeValue("validTo");
-        
+
         int64_t tFrom = str_from.ToLong();
         int64_t tTo   = str_to.ToLong();
-        
+
 		m_VALID_FROM	= static_cast<time_t>(tFrom);
 		m_VALID_TO		= static_cast<time_t>(tTo);
-		
+
 		SetDenomination(atol(xml->getAttributeValue("denomination")));
 
 		if (strState.Compare("blankToken"))
@@ -857,25 +857,25 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_State = OTToken::verifiedToken;
 		else
 			m_State = OTToken::errorToken;
-		
+
         if (m_State == OTToken::spendableToken)
             m_strContractType.Set("CASH TOKEN");
 
 		OTString	strAssetTypeID(xml->getAttributeValue("assetTypeID")),
 					strServerID(xml->getAttributeValue("serverID"));
-		
+
 		m_AssetTypeID.SetString(strAssetTypeID);
 		m_ServerID.SetString(strServerID);
 
 		OTLog::vOutput(4,
 				//	"\n===> Loading XML for token into memory structures..."
 				"\n\nToken State: %s\n Denomination: %ld\n"
-				" AssetTypeID: %s\nServerID: %s\n", 
+				" AssetTypeID: %s\nServerID: %s\n",
 				strState.Get(), GetDenomination(), strAssetTypeID.Get(), strServerID.Get());
-		
+
 		nReturnVal = 1;
 	}
-	
+
 	else if ( strNodeName.Compare("tokenID")  )
 	{
 		if (false == OTContract::LoadEncodedTextField(xml, m_ascSpendable))
@@ -883,21 +883,21 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			OTLog::Error("Error in OTToken::ProcessXMLNode: token ID without value.\n");
 			return (-1); // error condition
 		}
-		
+
 		return 1;
 	}
-	
+
 	else if ( strNodeName.Compare("tokenSignature")  )
-	{		
+	{
 		if (false == OTContract::LoadEncodedTextField(xml, m_Signature))
 		{
 			OTLog::Error("Error in OTToken::ProcessXMLNode: token Signature without value.\n");
 			return (-1); // error condition
 		}
-		
+
 		return 1;
 	}
-	
+
 	else if ( strNodeName.Compare("protopurse")  )
 	{	// TODO for security, if the count here doesn't match what's loaded up, that should be part of
 		// what is verified in each token when it's verified..
@@ -905,65 +905,65 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_nChosenIndex	= atoi(xml->getAttributeValue("chosenIndex"));
 
 		nPublicTokenCount = 0;
-		
+
 		return 1;
 	}
-	
+
 	else if ( strNodeName.Compare("prototoken")  )
 	{
 		OTASCIIArmor * pArmoredPrototoken = new OTASCIIArmor;
 		OT_ASSERT(NULL != pArmoredPrototoken);
-		
+
 		if (!OTContract::LoadEncodedTextField(xml, *pArmoredPrototoken) || !pArmoredPrototoken->Exists())
 		{
 			OTLog::Error("Error in OTToken::ProcessXMLNode: prototoken field without value.\n");
-			
+
 			delete pArmoredPrototoken;
 			pArmoredPrototoken = NULL;
-			
+
 			return (-1); // error condition
 		}
-		else 
-		{			
+		else
+		{
 			m_mapPublic[nPublicTokenCount] = pArmoredPrototoken;
 			nPublicTokenCount++;
 		}
-		
+
 		return 1;
 	}
-		
+
 	else if ( strNodeName.Compare("privateProtopurse")  )
-	{	
+	{
 		nPrivateTokenCount = 0;
-		
+
 		return 1;
 	}
-	
+
 	else if ( strNodeName.Compare("privatePrototoken")  )
 	{
 		OTASCIIArmor * pArmoredPrototoken = new OTASCIIArmor;
 		OT_ASSERT(NULL != pArmoredPrototoken);
-		
+
 		if (!OTContract::LoadEncodedTextField(xml, *pArmoredPrototoken) || !pArmoredPrototoken->Exists())
 		{
 			OTLog::Error("Error in OTToken::ProcessXMLNode: privatePrototoken field without value.\n");
-			
+
 			delete pArmoredPrototoken;
 			pArmoredPrototoken = NULL;
-			
+
 			return (-1); // error condition
 		}
-		else 
-		{			
+		else
+		{
 			m_mapPrivate[nPrivateTokenCount] = pArmoredPrototoken;
 			nPrivateTokenCount++;
-			
+
 			OTLog::vOutput(4, "Loaded prototoken and adding to m_mapPrivate at index: %d\n", nPrivateTokenCount-1);
 		}
-		
+
 		return 1;
 	}
-		
+
 	return nReturnVal;
 }
 
@@ -971,7 +971,7 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 
 /*
- 
+
  enum tokenState {
      blankToken,
      protoToken,
@@ -996,9 +996,9 @@ bool OTToken::GetPrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
 	{
 		OTASCIIArmor * pPrototoken = (*it).second;
 		OT_ASSERT(NULL != pPrototoken);
-		
+
 		const bool bSuccess = (nTokenIndex == (*it).first);
-		
+
 		if (bSuccess)
 		{
 			ascPrototoken.Set(*pPrototoken);
@@ -1006,7 +1006,7 @@ bool OTToken::GetPrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
 			return true;
 		}
 	}
-	return false;	
+	return false;
 }
 
 bool OTToken::GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
@@ -1017,21 +1017,21 @@ bool OTToken::GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex
 	{
 		return false;
 	}
-		
+
 	FOR_EACH(mapOfPrototokens, m_mapPrivate)
 	{
 		OTASCIIArmor * pPrototoken = (*it).second;
 		OT_ASSERT(NULL != pPrototoken);
-		
+
 		const bool bSuccess = (nTokenIndex == (*it).first);
-		
+
 		if (bSuccess)
 		{
 			ascPrototoken.Set(*pPrototoken);
 			return true;
 		}
 	}
-	return false;	
+	return false;
 }
 
 //static
@@ -1045,14 +1045,14 @@ OTToken * OTToken::InstantiateAndGenerateTokenRequest(const OTPurse & thePurse,
     OT_ASSERT(NULL != pToken); // Just for good measure.
 
     const bool bGeneratedRequest = pToken->GenerateTokenRequest(theNym, theMint, lDenomination, nTokenCount);
-    
+
     if (!bGeneratedRequest)
     {
         OTLog::vError("%s: Failed trying to generate token request.\n", __FUNCTION__);
         delete pToken;
         pToken = NULL;
     }
-    
+
     return pToken;
 }
 
@@ -1061,20 +1061,20 @@ OTToken * OTToken::InstantiateAndGenerateTokenRequest(const OTPurse & thePurse,
 
 
 
-inline bool OTToken::ChooseIndex(const int nIndex) 
-{ 
-	if (nIndex > (m_nTokenCount-1) || nIndex < 0) 
-		return false; 
-	else 
-	{ 
-		m_nChosenIndex = nIndex; 
+inline bool OTToken::ChooseIndex(const int nIndex)
+{
+	if (nIndex > (m_nTokenCount-1) || nIndex < 0)
+		return false;
+	else
+	{
+		m_nChosenIndex = nIndex;
 		return true;
-	} 
-} 
+	}
+}
 
 
 
-// The Mint has signed the token, and is sending it back to the client. 
+// The Mint has signed the token, and is sending it back to the client.
 // (we're near Lucre step 3 with this function)
 void OTToken::SetSignature(const OTASCIIArmor & theSignature, int nTokenIndex)
 {
@@ -1086,14 +1086,14 @@ void OTToken::SetSignature(const OTASCIIArmor & theSignature, int nTokenIndex)
 	// on the client if we're signing -- we're on the server -- who doesn't have
 	// those private coins anyway.
 	ReleasePrototokens();
-	
+
 	// We now officially have the bank's signature on this token.
 	m_Signature.Set(theSignature);
-	
+
 //	OTLog::vError("DEBUG OTToken::SetSignature. nTokenIndex is %d.\nm_Signature is:\n%s\n"
 //			"-------------------------------------\n",
 //			nTokenIndex, m_Signature.Get());
-	
+
 	// We have to flag which index was signed by the mint, so that
 	// the client knows which private coin to use for unblinding.
 	// (Once the coin is unblinded, it will be ready to spend.)
@@ -1105,7 +1105,7 @@ void OTToken::SetSignature(const OTASCIIArmor & theSignature, int nTokenIndex)
 bool OTToken::GetSignature(OTASCIIArmor & theSignature) const
 {
 	theSignature = m_Signature;
-	
+
 	return true;
 }
 
@@ -1121,27 +1121,27 @@ bool OTToken::GetSignature(OTASCIIArmor & theSignature) const
 bool OTToken::VerifyToken(OTPseudonym & theNotary, OTMint & theMint)
 {
 	//OTLog::vError("%s <bank info> <coin>\n",argv[0]);
-	
+
 	if (OTToken::spendableToken != m_State)
 	{
 		OTLog::Error("Expected spendable token in OTToken::VerifyToken\n");
-        
+
 
 		return false;
 	}
-	
+
 //  _OT_Lucre_Dumper setDumper; // OTMint::VerifyToken already does this. Unnecessary here?
 
 	// load the bank and coin info into the bios
 	// The Mint private info is encrypted in m_ascPrivate. So I need to extract that
 	// first before I can use it.
 	OTEnvelope theEnvelope(m_ascSpendable);
-	
+
 	OTString strContents; // output from opening the envelope.
-	// Decrypt the Envelope into strContents    
+	// Decrypt the Envelope into strContents
 	if (!theEnvelope.Open(theNotary, strContents))
 		return false; // todo log error, etc.
-	
+
 	// Verify that the series is correct...
 	// (Otherwise, someone passed us the wrong Mint and the
 	// thing won't verify anyway, since we'd have the wrong keys.)
@@ -1159,7 +1159,7 @@ bool OTToken::VerifyToken(OTPseudonym & theNotary, OTMint & theMint)
 		OTLog::vOutput(0, "Token series information doesn't match Mint series information!\n");
 		return false;
 	}
-	
+
 	// Verify whether token has expired...expiration date is validated here.
 	// We know the series is correct or the key wouldn't verify below... and
 	// we know that the dates are correct because we compared them against the
@@ -1170,7 +1170,7 @@ bool OTToken::VerifyToken(OTPseudonym & theNotary, OTMint & theMint)
 		OTLog::Output(0, "Token is expired!\n");
 		return false;
 	}
-	
+
 	// pass the cleartext Lucre spendable coin data to the Mint to be verified.
     if (theMint.VerifyToken(theNotary, strContents, GetDenomination()))  // Here's the boolean output: coin is verified!
 	{
@@ -1219,7 +1219,7 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
                                          OTMint & theMint,
                                          long lDenomination,
                                          int nTokenCount/*=OTToken::nMinimumPrototokenCount*/)
-{		
+{
 	//	OTLog::vError("%s <bank public info> <coin request private output file> <coin request public output file>\n", argv[0]);
     //
 	if (OTToken::blankToken != m_State)
@@ -1231,22 +1231,22 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
     _OT_Lucre_Dumper setDumper;  // todo security.
     // -----------------------------------------------------------------
     OpenSSL_BIO bioBank		=	BIO_new(BIO_s_mem()); // Input. We must supply the bank's public lucre info
-	
+
 	// This version base64-DECODES the ascii-armored string passed in,
 	// and then sets the decoded plaintext string onto the string.
 	//OTString::OTString(const OTASCIIArmor & strValue)
 	OTASCIIArmor ascPublicMint;
-	
+
 	theMint.GetPublic(ascPublicMint, lDenomination);
 //	OTLog::vError("DEBUG: OTToken  public asc: \n%s\n", ascPublicMint.Get());
-	
+
 	OTString strPublicMint(ascPublicMint);
 //	OTLog::vError("DEBUG: OTToken  public str: \n%s\n", strPublicMint.Get());
-	
+
 	// Get the bank's public key (now decoded in strPublicMint)
 	// and put it into bioBank so we can use it with Lucre.
 	BIO_puts(bioBank, strPublicMint.Get());
-	
+
 	// Instantiate a PublicBank (Lucre) object.
 	// We will use it to generate all the prototokens in the loop below.
     PublicBank bank;
@@ -1268,10 +1268,10 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
     //
 	SetSeriesAndExpiration(theMint.GetSeries(), theMint.GetValidFrom(), theMint.GetValidTo());
     // -----------------------------------------------------------------
-	const int nFinalTokenCount = (nTokenCount < OTToken::GetMinimumPrototokenCount()) ? 
-					OTToken::GetMinimumPrototokenCount() : nTokenCount; 
-	
-	// Token count is actually 1 (always) with Lucre, although this lib has potential to work with 
+	const int nFinalTokenCount = (nTokenCount < OTToken::GetMinimumPrototokenCount()) ?
+					OTToken::GetMinimumPrototokenCount() : nTokenCount;
+
+	// Token count is actually 1 (always) with Lucre, although this lib has potential to work with
 	// multiple proto-tokens, you can see this loop as though it always executes just once.
 	for (int i = 0; i < nFinalTokenCount; i++)
 	{
@@ -1282,35 +1282,35 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
 
 		// write the private coin request to BIO
 		req.WriteBIO(bioCoin);
-		
+
 		// write the public coin request to BIO
 		((PublicCoinRequest *)&req)->WriteBIO(bioPublicCoin);
-		
+
 		// Convert the two bios to our format
 		char privateCoinBuffer[4096], publicCoinBuffer[4096];   // todo stop hardcoding these string lengths
 		int privatecoinLen	= BIO_read(bioCoin, privateCoinBuffer, 4000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
-		int publiccoinLen	= BIO_read(bioPublicCoin, publicCoinBuffer, 4000); 
-		
+		int publiccoinLen	= BIO_read(bioPublicCoin, publicCoinBuffer, 4000);
+
 		if (privatecoinLen && publiccoinLen)
 		{
 			// With this, we have the Lucre public and private bank info converted to OTStrings
 			OTString strPublicCoin;		strPublicCoin.Set(publicCoinBuffer, publiccoinLen);
 			OTString strPrivateCoin;	strPrivateCoin.Set(privateCoinBuffer, privatecoinLen);
-			
+
 			OTASCIIArmor * pArmoredPublic	= new OTASCIIArmor(strPublicCoin);
 			OTASCIIArmor * pArmoredPrivate	= new OTASCIIArmor();
-			
+
 			OT_ASSERT_MSG(((NULL != pArmoredPublic) && (NULL != pArmoredPrivate)), "ERROR: Unable to allocate memory in OTToken_Lucre::GenerateTokenRequest\n");
-			
+
 			// Change the state. It's no longer a blank token, but a prototoken.
 			m_State = OTToken::protoToken;
 
-			// Seal the private coin info up into an encrypted Envelope 
+			// Seal the private coin info up into an encrypted Envelope
 			// and set it onto pArmoredPrivate (which was just added to our internal map, above.)
 			OTEnvelope theEnvelope;
 			theEnvelope.Seal(theNym, strPrivateCoin);	// Todo check the return values on these two functions
 			theEnvelope.GetAsciiArmoredData(*pArmoredPrivate);
-			
+
 			m_mapPublic[i]	= pArmoredPublic;
 			m_mapPrivate[i]	= pArmoredPrivate;
 
@@ -1322,7 +1322,7 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
 			// Error condition todo
 		}
 	}
-	
+
 	return true;
 }
 
@@ -1334,7 +1334,7 @@ bool OTToken_Lucre::ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 {
 //	OTLog::vError("%s <bank public info> <private coin request> <signed coin request> <coin>\n",
 	bool bReturnValue = false;
-	
+
 	// When the Mint has signed a token and sent it back to the client,
 	// the client must unblind the token and set it as spendable. Thus,
 	// this function is only performed on tokens in the signedToken state.
@@ -1343,15 +1343,15 @@ bool OTToken_Lucre::ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 		OTLog::Error("Signed token expected in OTToken_Lucre::ProcessToken\n");
 		return false;
 	}
-	
+
 	// Lucre
     _OT_Lucre_Dumper setDumper; // todo security.
-    
+
     OpenSSL_BIO bioBank			= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioSignature		= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioPrivateRequest	= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioCoin			= BIO_new(BIO_s_mem()); // output
-	
+
 	// Get the bank's public key (decoded into strPublicMint)
 	// and put it into bioBank so we can use it with Lucre.
     //
@@ -1364,80 +1364,80 @@ bool OTToken_Lucre::ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 //	OTLog::vError("DEBUGGING, m_Signature: -------------%s--------------\n", m_Signature.Get());
 	OTString strSignature(m_Signature);
 	BIO_puts(bioSignature, strSignature.Get());
-	
+
 	// I need the Private coin request also. (Only the client has this private coin request data.)
 	OTASCIIArmor thePrototoken;		// The server sets m_nChosenIndex when it signs the token.
 	bool bFoundToken = theRequest.GetPrivatePrototoken(thePrototoken, m_nChosenIndex);
-	
+
 	if (bFoundToken)
 	{
 //		OTLog::vError("THE PRIVATE REQUEST ARMORED CONTENTS:\n------------------>%s<-----------------------\n",
 //				thePrototoken.Get());
-		
+
 		// Decrypt the prototoken
 		OTString strPrototoken;
 		OTEnvelope theEnvelope(thePrototoken);
 		theEnvelope.Open(theNym, strPrototoken); // todo check return value.
-		
+
 //		OTLog::vError("THE PRIVATE REQUEST CONTENTS:\n------------------>%s<-----------------------\n",
 //				strPrototoken.Get());
-		
+
 		// copy strPrototoken to a BIO
 		BIO_puts(bioPrivateRequest, strPrototoken.Get());
-		
+
 		// ------- Okay, the BIOs are all loaded.... let's process...
-		
+
 		PublicBank	bank(bioBank);
 		CoinRequest	req(bioPrivateRequest);
-		
+
 		// TODO make sure I'm not leaking memory with these ReadNumbers
 		// Probably need to be calling some free function for each one.
-		
+
 		// Apparently reading the request id here and then just discarding it...
 		ReadNumber(bioSignature,"request=");
-		
+
 		// Versus the signature data, which is read into bnSignature apparently.
 		BIGNUM * bnSignature	= ReadNumber(bioSignature,"signature=");
 		DumpNumber("signature=", bnSignature);
-		
+
 		// Produce the final unblinded token in Coin coin, and write it to bioCoin...
 		Coin coin; // Coin Request, processes into Coin, with Bank and Signature passed in.
 		req.ProcessResponse(&coin, bank, bnSignature); // Notice still apparently "request" info is discarded.
 		coin.WriteBIO(bioCoin);
-		
+
 		// convert bioCoin to a C-style string...
 		char CoinBuffer[1024];   // todo stop hardcoding these string lengths
 		int coinLen	= BIO_read(bioCoin, CoinBuffer, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
-		
+
 		if (coinLen)
 		{
 			// ...to OTString...
-			OTString strCoin;	
+			OTString strCoin;
 			strCoin.Set(CoinBuffer, coinLen);
-			
+
 //			OTLog::vError("Processing token...\n%s\n", strCoin.Get());
-			
+
 			// ...to Envelope stored in m_ascSpendable (encrypted and base64-encoded)
 			OTEnvelope theEnvelope;
 			theEnvelope.Seal(theNym, strCoin);	// Todo check the return values on these two functions
 			theEnvelope.GetAsciiArmoredData(m_ascSpendable); // Here's the final product.
-			
+
 //			OTLog::vError("NEW SPENDABLE token...\n--------->%s<----------------\n", m_ascSpendable.Get());
 
 			// Now the coin is encrypted from here on out, and otherwise ready-to-spend.
 			m_State			= OTToken::spendableToken;
 			bReturnValue	= true;
-			
+
 			// Lastly, we free the signature data, which is no longer needed, and which could be
 			// otherwise used to trace the token. (Which we don't want.)
 			m_Signature.Release();
 		}
-		
+
 	}
 	// Todo log error here if the private prototoken is not found. (Very strange if so!!)
 	//  else {}
 
-	return bReturnValue;	
+	return bReturnValue;
 }
 
 

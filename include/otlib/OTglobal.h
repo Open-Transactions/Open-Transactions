@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTGlobal.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -136,9 +136,7 @@
 
 #include <ExportWrapper.h>
 #include <WinsockWrapper.h>
-#include "TR1_Wrapper.hpp"
 
-#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {
@@ -148,14 +146,14 @@ extern "C" {
 #define TYPE_1_CMD_2	2
 #define TYPE_1_CMD_3	3
 #define TYPE_1_CMD_4	4
-	
+
 #define CMD_TYPE_1		1
-	
+
 #define OT_CMD_HEADER_SIZE  9
-	
+
 	typedef unsigned char	BYTE;
 	typedef unsigned short	USHORT;
-	
+
 	union u_header
 	{
 		BYTE buf[OT_CMD_HEADER_SIZE];
@@ -167,12 +165,12 @@ extern "C" {
 			BYTE		checksum;	// 1 byte
 		} fields;	// total of 9 bytes
 	};
-	
+
 #ifdef __cplusplus
 }
 #endif
 
 
 
-		
+
 #endif // __GLOBAL_H__

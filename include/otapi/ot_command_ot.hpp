@@ -1,21 +1,13 @@
 #ifndef _H_OT_COMMAND_OT
 #define _H_OT_COMMAND_OT
 
-#include <string>
-#include <vector>
 
-#ifndef EXPORT
-#define EXPORT
-#endif
-#ifndef NOEXPORT
-#include <ExportWrapper.h>
-#endif
-
-
+#include "OTCommon.hpp"
 #include "OTStorage.hpp"
 
+#include <string>
 
-#define OT_COMMAND_OT 
+#define OT_COMMAND_OT
 
 
 using std::map;

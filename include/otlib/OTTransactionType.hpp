@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTTransactionType.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,16 +134,11 @@
 #ifndef __OTTRANSACTION_TYPE_HPP__
 #define __OTTRANSACTION_TYPE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
 #include "OTASCIIArmor.hpp"
-
-#include _CINTTYPES
-
 
 class OTString;
 class OTIdentifier;
@@ -151,17 +146,17 @@ class OTIdentifier;
 
 // OTTransactionType is a base class for OTLedger, OTTransaction, and OTItem.
 //
-class OTTransactionType : public OTContract 
-{	
+class OTTransactionType : public OTContract
+{
 private:  // Private prevents erroneous use by other classes.
     typedef OTContract ot_super;
-	
+
 protected:
-	// keeping constructor protected in order to force people to use the other constructors and 
+	// keeping constructor protected in order to force people to use the other constructors and
 	// therefore provide the requisite IDs.
 	OTTransactionType();
 
-	
+
 	// Basically what I want here is, SERVER ID and ACCOUNT ID.
 	// That way, all the child classes can also have a server ID and account ID,
 	// and they can compare to the internal ones to make sure they match.
@@ -171,7 +166,7 @@ protected:
 	//
 	// Fortunately, OTContract already handles the ID, which is the Account ID in
 	// the context of all transaction objects. If your "bank account" is acct #350, then
-	// ALL of your transactions will have m_ID of #350 as a rule, and once loaded from 
+	// ALL of your transactions will have m_ID of #350 as a rule, and once loaded from
 	// storage and signature verified, m_AcctID should also contain #350. The transaction
 	// number is a separate value, m_lTransactionNum, which uniquely identifies a transaction.
 	// The idea is to prevent a file from loading up into the same variable and overwriting
@@ -185,7 +180,7 @@ protected:
 	// values when INSTANTIATING the objects, BEFORE they have been loaded. ===> Then the loading
 	// occurs, and we see the server ID, acct ID, user ID, etc that were ACTUALLY in the file,
 	// whose signature we have now verified, stored as SEPARATE VALUES, so we can compare.
-	// After loading there is a separate, "VERIFY" process, where a transaction type can be 
+	// After loading there is a separate, "VERIFY" process, where a transaction type can be
 	// verified, make sure all the right IDs are in order, etc.
 	// Why is this important? Primarily because these IDs *are* set, for most objects, before
 	// they are loaded, and they should NEVER be different than what they are set to at the
@@ -211,7 +206,7 @@ protected:
 	// not any of the other transaction items (such as the balance agreement) and not a copy
 	// of the overall depositCheque transaction itself, that he originally submitted to the
 	// server. Fortunately, each individual transaction item is signed, and is verified to have
-	// all the same IDs as the overall transaction that it belongs to. And while although there are 
+	// all the same IDs as the overall transaction that it belongs to. And while although there are
 	// individual transaction items for any given transaction#, there is only a single transaction.
 	// And no item can ever be substituted onto another transaction without failing this verification,
 	// since the IDs wouldn't match--just as none of the IDs themselves can be changed later without
@@ -252,7 +247,7 @@ protected:
 	// forcing the server to sign that I am no longer responsible for transaction #3.
 	// ===> Therefore, should a receipt ever appear in my inbox in the future, featuring transaction #3,
 	// it would again be provably invalid, EVEN IF MY SIGNATURE IS GOOD, since I am no longer responsible
-	// for transaction #3, as I can prove by waving my last (server-signed) receipt around, which 
+	// for transaction #3, as I can prove by waving my last (server-signed) receipt around, which
 	// contains a list of exactly the transaction #s that are still signed out to me. If the server
 	// wishes to dispute this, then let it produce a newer receipt with my signature on it. (It cannot.)
 	//
@@ -295,11 +290,11 @@ protected:
 	// it is coming from an "account A" ledger, which already has the acct# built it, and thus it sets that
 	// account # onto the transaction before the transaction is even loaded. Once the transaction is loaded,
 	// the # inside is available (we now have both) and we can compare them to make sure they are the same,
-	// which we do before ever actually using that transaction object. This is why it's important not to 
+	// which we do before ever actually using that transaction object. This is why it's important not to
 	// simply "load up" the transaction and go with whatever IDs are in there, or allow them to overwrite
-	// the ones we are expecting to be there. 
+	// the ones we are expecting to be there.
 	//
-	// 
+	//
 	// Basically: We set the number beforehand, and verify after loading to make sure each thing loaded has the
 	// IDs expected. The # cannot be changed after signing, without invalidating the signature, so we verify the
 	// signature. This means the transaction item cannot be used on any OTHER transaction except for the one
@@ -312,17 +307,17 @@ protected:
 	// and then accidentally overwrite "A" over the "B" and sign it again. (Meaning I cannot be tricked, by
 	// a valid signature on "B", into loading it up mistakenly as an "A" and then signing it as an "A" when it
 	// was secretly a "B" the whole time.)
-	// 
+	//
 	// The idea is that whatever number appears inside a transaction (and all its items) when you LOAD the file
 	// will always be the same number that you write out when you SAVE the file. But that this number might
 	// not be the same as the number that it was when you first generated the transaction, or that you are
-	// expecting it to be when you load the transaction up. You keep them separate, and you compare them to 
-	// make sure they are the same. 
+	// expecting it to be when you load the transaction up. You keep them separate, and you compare them to
+	// make sure they are the same.
 	// Put another way: You don't want to load up a bad number and then accidentally save a bad transaction with
 	// a GOOD ID, simply because you were EXPECTING it to be the right number (and had thus forced that # as the only
 	// one you're willing to write), and you also don't want to FAIL TO EXPECT A SPECIFIC NUMBER and thus allow
 	// it to be determined by what is loaded up, in complete disregard of what number was expected to be there before
-	// 
+	//
 	// Put another way:
 	// 1. You normally want to force specific IDs when you sign a contract, to prevent any others from being substituted,
 	//    because you want to choose the IDs that you sign.
@@ -332,7 +327,7 @@ protected:
 	//    forced IDs. You normally never want to save a transaction any differently than how it appeared when you loaded
 	//    it up.
 	// For example: If you give me transaction #3, but it secretly has an item #5 in its list (where all other items are
-	// supposed to be for #3), and then I load it up, I don't want to save #5 as a 3 when I save it again. 
+	// supposed to be for #3), and then I load it up, I don't want to save #5 as a 3 when I save it again.
 	// ------------------
 	// =========>  And I must reset the XML contents at the time the contract is signed! THAT is the
 	// critical time when all  the data members are taken from the data object, and put into XML form -- just before
@@ -343,7 +338,7 @@ protected:
 	// XML as part of the signing process, just before the signing itself. At this time, I do not want to write any Server ID
 	// other than the right one -- the one it is supposed to be (the one I am expecting) but simultaneously, I cannot just
 	// force my own
-	// server ID into that spot, or Acct ID, or transaction ID, because I don't want to ever be tricked by way of 
+	// server ID into that spot, or Acct ID, or transaction ID, because I don't want to ever be tricked by way of
 	// an otherwise good instrument (but with a wrong Acct ID) from being re-signed with my actual acct ID substituted.
 	// Rather, if I load it up and it has the wrong ID, then when I WRITE IT OUT it should CONTINUE to have the wrong ID.
 	//
@@ -360,7 +355,7 @@ protected:
 	// want that to ever cause me to get tricked into turning "auto-fixing" an instrument from a different # by substituting
 	// the correct # onto it just prior to signing, because someone had tricked me into loading it at the wrong time,
 	// by swapping it for the contract that was meant to be there, etc. That's why I have to compare IDs.
-	// 
+	//
 	// The "Real" server ID is set when the item is first generated. SINCE it was first generated, we go ahead at that one
 	// time and set the Purported Server ID to match. Ever thereafter, they are separated in a way, with the "real" ID being
 	// only set as an "expected to load number" and the "purported" ID being "the one we actually loaded" number.
@@ -370,16 +365,16 @@ protected:
 	// you one instrument and "trick" you into signing it with your "expected" IDs substituted. If you slip me a 69, then
 	// I will also save it as a 69, not as a 5 just because I thought it would be a 5.
 	// -- We only load from storage to the purported number, not to the real one. This prevents the software from actually
-	// using the number for anything internally. 
+	// using the number for anything internally.
 	// We never load to the real number. (This prevents anyone from "fucking with" your actual ID by something
 	// they put into a file, since nothing in the datafile will ever be used as the "real" number.)
 	// We never save the real number. (This insures that we will only save the same number we loaded.)
-	// 
+	//
 	// -- If you slip me a #69 when I expected a #5, you can never trick me into using "#69" on any of my stuff by doing so,
 	// since I will only use numbers that are what I expected them to be, which is the "real" number that I force (#5)
 	// and not the "purported" number that I load.
 	// -- You also cannot trick me into signing an old "#69" instrument where I accidentally force the # to 5 just before
-	// signing, since I would have an error at the time of first loading up the instrument, when the 69 would fail to match 
+	// signing, since I would have an error at the time of first loading up the instrument, when the 69 would fail to match
 	// the expected 5, which would in fact cause the transaction to entirely fail loading.
 	// -- If I ONLY EVER load/save to/from the purported number, I will only ever pass it on the same as how I found it.
 	// If there is a bad 69 on an instrument, then that bad 69 will stay there, and nothing will trick me into putting a
@@ -405,7 +400,7 @@ protected:
 	// will load, and therefore I will only ever SAVE a correct #5 as well. After all, there are only two times that value
 	// gets set: Upon generation, and upon loading
 	//
-	// 
+	//
 	//	Another example:
 	//	OTAccount THE_ACCOUNT(USER_ID, GetRealAccountID(), GetRealServerID());
 	//
@@ -423,9 +418,9 @@ protected:
 	//
 	// It's important to keep the server (or any party) from being tricked into signing
 	// a transaction #, or any other ID, that is different than what he EXPECTED it to be.
-	// 
+	//
 	// It may be strange to think of the "purported" account # as the one that actually appears
-	// in the signed file, while the "real" account # is the one that I'm EXPECTING, whether it's in 
+	// in the signed file, while the "real" account # is the one that I'm EXPECTING, whether it's in
 	// the file or not. But the "REAL" account most importantly is the account that I'm ACTUALLY using
 	// for the transaction, that I've actually requested, and been verified for that account, and provided
 	// signed receipts for that account -- THAT is the real account as far as anyone is concerned, when it
@@ -452,7 +447,7 @@ protected:
 	//
 	/*
 	 this code segment, btw, completely illustrates that philsophy:
-	 
+
 	// When actually doing something, we use the real IDs...
 	OTAccount THE_ACCOUNT(USER_ID, GetRealAccountID(), GetRealServerID());
 
@@ -463,10 +458,10 @@ protected:
 	{
 		// error, return.
 		OTLog::Output(0, "Failed loading or verifying account in OTTransaction::VerifyBalanceReceipt.\n");
-		return false;		
+		return false;
 	}
 	// the account, inbox, and outbox all have the same Server ID. But does it match *this receipt?
-	else if (THE_ACCOUNT.GetPurportedServerID() != GetPurportedServerID()) 
+	else if (THE_ACCOUNT.GetPurportedServerID() != GetPurportedServerID())
 	{
 		// error, return.
 		OTLog::Output(0, "Account, inbox or outbox server ID fails to match receipt server ID.\n");
@@ -480,9 +475,9 @@ protected:
 	}
 	// -------------------------------------------------
 
-	 
+
 	 */
-	// 
+	//
 	//
 	// So therefore I just need to add the Server ID, and I have both.
 	// Then all child classes should ALSO implement their own copy of both, and compare the
@@ -491,13 +486,13 @@ protected:
 	//
 	// That's really the whole point of this software -- comparing IDs and verifying
 	// signatures.
-	
+
 //	OTIdentifier	m_ID;			// Account ID. This is in OTContract (parent class). Here we use it for the REAL ACCOUNT ID (set before loading.)
 	OTIdentifier	m_AcctID;		// Compare m_AcctID to m_ID after loading it from string or file. They should match, and signature should verify.
-	
+
 	OTIdentifier	m_ServerID;		// Server ID as used to instantiate the transaction, based on expected ServerID.
 	OTIdentifier	m_AcctServerID;	// Actual ServerID within the signed portion. (Compare to m_ServerID upon loading.)
-	
+
 	// Update: instead of in the child classes, like OTLedger, OTTransaction, OTItem, etc, I put the
 	// "purported acct ID" and "purported server ID" here in the base class, to manage it all centrally.
 
@@ -506,7 +501,7 @@ protected:
     // ----------------------------------------------------------------
 	// I put this in protected because there are now Get/Set methods...so use them!
 	long	m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	long	m_lInReferenceToTransaction;  
+	long	m_lInReferenceToTransaction;
 								// Sometimes an item is in reference to some other transaction, which does NOT need to be
 								// included in the item (since the server already has it) but instead can be referenced by
 								// transaction ID.
@@ -536,9 +531,9 @@ protected:
     // If the server goes to ADD MORE, it first checks to see if one is ALREADY THERE, and then simply
     // adds the number to the existing blank or successNotice (whichever is appropriate) that's already
     // in your Nymbox, where an entire list of those numbers might already be.
-    // 
+    //
     // THIS is where that list is stored:
-    // 
+    //
 	OTNumList   m_Numlist;  // blanks and successNotice use this instead of having a separate transaction for EVERY NUMBER.
     // (Had to fix that... way too many box receipts were being downloaded.)
     // Note: I moved this to OTTransactionType so I can use it from within OTItem as well, so when I accept transaction
@@ -557,7 +552,7 @@ EXPORT	bool Contains(const char * szContains);			// Allows you to string-search 
     // whether one of the other components belongs to the same account.
     //
     bool IsSameAccount(const OTTransactionType & rhs) const;
-    
+
     // -------------------------------------------
 	// This means, "I don't know the 'Real' IDs when I'm about to load this contract, so just
 	// read the purported IDs (the ones inside the contract itself) and set the real IDs to match."
@@ -567,39 +562,39 @@ EXPORT	bool Contains(const char * szContains);			// Allows you to string-search 
 	// the IDs are correct, or when you have no "real" ID other than what is in the file itself.)
 	//
 	void	SetLoadInsecure() { m_bLoadSecurely = false; }
-	
-    // Someday I'll add EntityID and RoleID here (in lieu of UserID, 
+
+    // Someday I'll add EntityID and RoleID here (in lieu of UserID,
 	// in cases when the account is owned by an Entity and not a Nym.)
 	//
 	inline const OTIdentifier & GetUserID() const { return m_AcctUserID; }
 	inline void					SetUserID(const OTIdentifier & theID) {  m_AcctUserID = theID; }
-	
+
 	// Used for: Load an account based on this ID
 	inline const OTIdentifier & GetRealAccountID() const { return m_ID; }
 	inline void					SetRealAccountID(const OTIdentifier & theID) {  m_ID = theID; }
-	
+
 	// Used for: Verify this ID on a transaction to make sure it matches the one above.
 	inline const OTIdentifier & GetPurportedAccountID() const { return m_AcctID; }
 	inline void					SetPurportedAccountID(const OTIdentifier & theID) {  m_AcctID = theID; }
-	
+
 	// Used for: Load or save a filename based on this ID.
 	inline const OTIdentifier & GetRealServerID() const { return m_ServerID; }
 	inline void					SetRealServerID(const OTIdentifier & theID) { m_ServerID = theID; }
-	
+
 	// Used for: Load or save the ID in the file contents into/out of this ID.
 	inline const OTIdentifier & GetPurportedServerID() const { return m_AcctServerID; }
 	inline void					SetPurportedServerID(const OTIdentifier & theID) {  m_AcctServerID = theID; }
 
-	
+
 	// Compares the m_AcctID from the xml portion of the contract
 	// with m_ID (supposedly the same number.)
 	// Also Verifies the ServerID, since this object type is all about the both of those IDs.
-EXPORT	virtual bool VerifyContractID();  
-	
-	// This calls VerifyContractID() as well as VerifySignature() 
+EXPORT	virtual bool VerifyContractID();
+
+	// This calls VerifyContractID() as well as VerifySignature()
 	// Use this instead of OTContract::VerifyContract, which expects/uses a pubkey from inside the contract.
-	virtual bool VerifyAccount(OTPseudonym & theNym); 
-	
+	virtual bool VerifyAccount(OTPseudonym & theNym);
+
 	// The parameters to the constructor are supposed to be the ACTUAL account ID and server ID.
 	// Whereas the child classes contain their own copies of those IDs which they load into their
 	// own member variables. When that happens, they can then be compared to the ones that were
@@ -607,7 +602,7 @@ EXPORT	virtual bool VerifyContractID();
 	// Thus, while OTContract instituted a constructor with an ID, OTTransactionType will require
 	// both the Account ID and the ServerID.
 	OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID);
-	OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID, 
+	OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID,
 					  long lTransactionNum);
 
 	void InitTransactionType();
@@ -618,27 +613,27 @@ EXPORT	virtual bool VerifyContractID();
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
 //	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 //	void UpdateContents(); // I don't think I need this here. My parent and child classes do well enough.
-    
+
 	// need to know the transaction number of this transaction? Call this.
 EXPORT	long GetTransactionNum() const;
         void SetTransactionNum(const long lTransactionNum);
 
 EXPORT  virtual void CalculateNumberOfOrigin();  // Calculates number of origin.
 EXPORT	virtual long GetNumberOfOrigin();  // Calculates IF NECESSARY.
-    
+
 EXPORT  long GetRawNumberOfOrigin() const;       // Gets WITHOUT calculating.
-    
+
 EXPORT	void SetNumberOfOrigin(const long lTransactionNum);
 EXPORT	void SetNumberOfOrigin(OTTransactionType & setFrom);
 
 EXPORT  bool VerifyNumberOfOrigin(OTTransactionType & compareTo);
-    
+
 EXPORT	long GetReferenceToNum() const;
 EXPORT	void SetReferenceToNum(const long lTransactionNum);
-	
+
 EXPORT	void GetReferenceString(OTString & theStr) const;
 EXPORT	void SetReferenceString(const OTString & theStr);
-	
+
 //	virtual bool SaveContractWallet(FILE * fl);
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };

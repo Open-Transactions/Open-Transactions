@@ -1,8 +1,9 @@
-# -*- fill-column: 72 -*-
+## Top Level Automake ##
+
 AUTOMAKE_OPTIONS        =   subdir-objects
 ACLOCAL_AMFLAGS         =   -I build-aux/m4
 
-## Main Automake Call to subdirs ##
+## Call to automake subdirs     ##
 
 SUBDIRS                 =   src
 
@@ -10,8 +11,9 @@ SUBDIRS                 =   src
 
 #### autogen.sh, opentxs script CLI utility
 
-dist_bin_SCRIPTS        =   autogen.sh \
-                            scripts/opentxs
+dist_bin_SCRIPTS		=	scripts/opentxs
+
+dist_noinst_SCRIPTS		=	autogen.sh
 
 #### OT SCRIPTS (headers)
 

@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTCheque.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,13 +134,9 @@
 #ifndef __OT_CHEQUE_HPP__
 #define __OT_CHEQUE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
-
-#include _CINTTYPES
 
 class OTCheque : public OTTrackable
 {
@@ -157,7 +153,7 @@ protected:
 	OTIdentifier	m_REMITTER_USER_ID; // In the case of vouchers (cashier's cheques) we store the Remitter's ID.
 	OTIdentifier	m_REMITTER_ACCT_ID;
 	bool			m_bHasRemitter;
-	
+
 public:
 	inline void  SetAsVoucher(const OTIdentifier & remitterUserID, const OTIdentifier & remitterAcctID)
     { m_REMITTER_USER_ID = remitterUserID; m_REMITTER_ACCT_ID = remitterAcctID;
@@ -174,21 +170,21 @@ public:
 	inline bool                 HasRemitter()         const { return m_bHasRemitter;      }
 
     // A cheque HAS NO "Recipient Asset Acct ID", since the recipient's account (where he deposits
-    // the cheque) is not known UNTIL the time of the deposit. It's certain not known at the time 
+    // the cheque) is not known UNTIL the time of the deposit. It's certain not known at the time
     // that the cheque is written...
     // --------------------------------------------------
-	
+
 	// Calling this function is like writing a check...
 EXPORT	bool IssueCheque(const long	  & lAmount,    const long   & lTransactionNum,
                          const time_t & VALID_FROM, const time_t & VALID_TO, // The expiration date (valid from/to dates.)
                          const OTIdentifier & SENDER_ACCT_ID,                // The asset account the cheque is drawn on.
-                         const OTIdentifier & SENDER_USER_ID,                // This ID must match the user ID on the asset account, 
+                         const OTIdentifier & SENDER_USER_ID,                // This ID must match the user ID on the asset account,
                                                                              // AND must verify the cheque signature with that user's key.
                          const OTString & strMemo,	// Optional memo field.
                          const OTIdentifier * pRECIPIENT_USER_ID=NULL);	// Recipient optional. (Might be a blank cheque.)
 
 EXPORT  void CancelCheque(); // You still need to re-sign the cheque after doing this.
-    
+
 	// From OTTrackable (parent class of this)
 	/*
 	 // A cheque can be written offline, provided you have a transaction
@@ -197,27 +193,27 @@ EXPORT  void CancelCheque(); // You still need to re-sign the cheque after doing
 	 inline const OTIdentifier &	GetSenderAcctID()		   { return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier &	GetSenderUserID()		   { return m_SENDER_USER_ID; }
 	 */
-	
+
 	// From OTInstrument (parent class of OTTrackable, parent class of this)
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
-	 
+
 	 inline const OTIdentifier & GetAssetID()  const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID;    }
-	 
+
 	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
 	 inline time_t GetValidTo()		const { return m_VALID_TO;   }
-	 
+
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
 EXPORT	OTCheque();
 EXPORT	OTCheque(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
 EXPORT	virtual ~OTCheque();
-	
+
 			void InitCheque();
 	virtual void Release();
 	void Release_Cheque();
-	virtual void UpdateContents(); // Before transmission or serialization, this is where the token saves its contents 	
+	virtual void UpdateContents(); // Before transmission or serialization, this is where the token saves its contents
 
 //	virtual bool SaveContractWallet(FILE * fl);
 	virtual bool SaveContractWallet(std::ofstream & ofs);

@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTCrypto.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,9 +134,7 @@
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTSettings.hpp"
 #include "OTPayload.hpp"
@@ -144,11 +142,7 @@
 
 #include "tinythread.hpp"
 
-#include _CINTTYPES
-
 #include <set>
-
-
 
 class OTData;
 class OTIdentifier;
@@ -184,11 +178,11 @@ extern "C"
 #include <openssl/sha.h>
 #include <openssl/conf.h>
 #include <openssl/x509v3.h>
-	
+
 #ifndef OPENSSL_NO_ENGINE
 #include <openssl/engine.h>
 #endif
-	
+
 	int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days);
 	int add_ext(X509 *cert, int nid, char *value);
 }
@@ -282,7 +276,7 @@ class OTCrypto_Decrypt_Output
 private:
 	OTPassword * m_pPassword;
 	OTPayload  * m_pPayload;
-    
+
 	OTCrypto_Decrypt_Output();
 public:
 EXPORT	~OTCrypto_Decrypt_Output();
@@ -314,15 +308,14 @@ typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 // We are now officially at the point where we can easily swap crypto libs!
 // Just make a subclass of OTCrypto (copy an existing subclass such as OTCrypto_OpenSSL)
 
-
 class OTCrypto
 {
 private:
     static  int  s_nCount;   // Instance count, should never exceed 1.
 protected:
     OTCrypto();
-    
-    virtual void Init_Override();     
+
+    virtual void Init_Override();
     virtual void Cleanup_Override();
 public:
     virtual ~OTCrypto();
@@ -357,7 +350,7 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
     //
     virtual bool Base64Encode(const OTData   & theInput, OTString & strOutput, bool bLineBreaks=true) const;
     virtual bool Base64Decode(const OTString & strInput, OTData   & theOutput, bool bLineBreaks=true) const;
-    
+
     // Lower-level version:
     // Caller is responsible to delete. Todo: return a unqiue pointer.
     virtual char    * Base64Encode(const uint8_t * input, int       in_len, bool bLineBreaks) const=0; // NOTE: the 'int' here is very worrying to me. The reason it's here is because that's what OpenSSL uses. So we may need to find another way of doing it, so we can use a safer parameter here than what it currently is. Todo security.
@@ -387,12 +380,12 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
     // Todo: return a smart pointer here.
     //
     virtual OTPassword * DeriveKey(const OTPassword &   userPassword,
-                                   const OTPayload  &   dataSalt,    
+                                   const OTPayload  &   dataSalt,
                                    const uint32_t       uIterations,
 								   const OTPayload  &   dataCheckHash = OTPayload()) const=0;
 
 	virtual OTPassword * DeriveNewKey(const OTPassword &   userPassword,
-                                      const OTPayload  &   dataSalt,    
+                                      const OTPayload  &   dataSalt,
                                       const uint32_t       uIterations,
                                       OTPayload        &   dataCheckHash) const=0;
 
@@ -424,7 +417,7 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
     // Asymmetric (public key) encryption / decryption
     //
     virtual bool Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString & theInput, OTData & dataOutput) const=0;
-    
+
     virtual bool Open(OTData & dataInput, const OTPseudonym & theRecipient, OTString & theOutput, OTPasswordData * pPWData=NULL) const=0;
     // ----------------------------------
     // SIGN / VERIFY
@@ -436,9 +429,9 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
                               OTSignature           & theSignature, // output
                               const OTString        & strHashType,
                               OTPasswordData        * pPWData=NULL) const=0;
-    
+
     virtual bool VerifySignature(const OTString        & strContractToVerify,
-                                 const OTAsymmetricKey & theKey, 
+                                 const OTAsymmetricKey & theKey,
                                  const OTSignature     & theSignature,
                                  const OTString        & strHashType,
                                  OTPasswordData        * pPWData=NULL) const=0;
@@ -447,20 +440,20 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
     //
     virtual bool SignContract(const OTString    & strContractUnsigned,
                               const OTString    & strSigHashType,
-                              const std::string & strCertFileContents, 
+                              const std::string & strCertFileContents,
                               OTSignature       & theSignature, // output
                               OTPasswordData    * pPWData=NULL) const=0;
-    
+
     virtual bool VerifySignature(const OTString    & strContractToVerify,
                                  const OTString    & strSigHashType,
-                                 const std::string & strCertFileContents, 
+                                 const std::string & strCertFileContents,
                                  const OTSignature & theSignature,
                                  OTPasswordData    * pPWData=NULL) const=0;
     // ----------------------------------
 EXPORT    static OTCrypto * It();
-    
-EXPORT    void Init();     
-EXPORT    void Cleanup();    
+
+EXPORT    void Init();
+EXPORT    void Cleanup();
     // ----------------------------------
 };
 
@@ -495,16 +488,14 @@ extern "C"
 #include <openssl/evp.h>
 }
 
-
-
 class OTCrypto_OpenSSL : public OTCrypto
 {
     friend class OTCrypto;
-    
+
 protected:
     OTCrypto_OpenSSL();
-    // ----------------------------------    
-    virtual void Init_Override();     
+    // ----------------------------------
+    virtual void Init_Override();
     virtual void Cleanup_Override();
     // ----------------------------------
     // These are protected because they contain OpenSSL-specific parameters.
@@ -513,7 +504,7 @@ protected:
                                  const EVP_PKEY    * pkey,
                                  OTSignature       & theSignature, // output
                                  OTPasswordData    * pPWData=NULL) const;
-    
+
     bool VerifyContractDefaultHash(const OTString    & strContractToVerify,
                                    const EVP_PKEY    * pkey,
                                    const OTSignature & theSignature,
@@ -526,7 +517,7 @@ protected:
                       OTSignature       & theSignature, // output
                       const OTString    & strHashType,
                       OTPasswordData    * pPWData=NULL) const;
-    
+
     bool VerifySignature(const OTString    & strContractToVerify,
                          const EVP_PKEY    * pkey,
                          const OTSignature & theSignature,
@@ -534,7 +525,7 @@ protected:
                          OTPasswordData    * pPWData=NULL) const;
     // --------------------------------------------------------------
     static const EVP_MD * GetOpenSSLDigestByName(const OTString & theName);
-    
+
 public:
     static tthread::mutex * s_arrayMutex;
     // ----------------------------------
@@ -556,7 +547,7 @@ public:
     // Lower-level version:
     // Caller is responsible to delete. Todo: return a unqiue pointer.
     virtual char    * Base64Encode(const uint8_t * input, int       in_len, bool bLineBreaks) const; // todo security ('int')
-    virtual uint8_t * Base64Decode(const char    * input, size_t * out_len, bool bLineBreaks) const;    
+    virtual uint8_t * Base64Decode(const char    * input, size_t * out_len, bool bLineBreaks) const;
     // ----------------------------------
     // KEY DERIVATION
     // userPassword argument contains the user's password which is used to
@@ -566,12 +557,12 @@ public:
     // Todo: return a smart pointer here.
     //
     virtual OTPassword * DeriveKey(const OTPassword &   userPassword,
-                                   const OTPayload  &   dataSalt,    
+                                   const OTPayload  &   dataSalt,
                                    const uint32_t       uIterations,
 								   const OTPayload  &   dataCheckHash = OTPayload()) const;
 
 	virtual OTPassword * DeriveNewKey(const OTPassword &   userPassword,
-                                      const OTPayload  &   dataSalt,    
+                                      const OTPayload  &   dataSalt,
                                       const uint32_t       uIterations,
                                             OTPayload  &   dataCheckHash) const;
     // ------------------------------------------------------------------------
@@ -598,7 +589,7 @@ public:
     // SEAL / OPEN
     // Asymmetric (public key) encryption / decryption
     virtual bool Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString & theInput, OTData & dataOutput) const;
-    
+
     virtual bool Open(OTData & dataInput, const OTPseudonym & theRecipient, OTString & theOutput, OTPasswordData * pPWData=NULL) const;
     // ----------------------------------
     // SIGN / VERIFY
@@ -608,9 +599,9 @@ public:
                               OTSignature           & theSignature, // output
                               const OTString        & strHashType,
                               OTPasswordData        * pPWData=NULL) const;
-    
+
     virtual bool VerifySignature(const OTString        & strContractToVerify,
-                                 const OTAsymmetricKey & theKey, 
+                                 const OTAsymmetricKey & theKey,
                                  const OTSignature     & theSignature,
                                  const OTString        & strHashType,
                                  OTPasswordData        * pPWData=NULL) const;
@@ -618,23 +609,23 @@ public:
     // Sign or verify using the contents of a Certfile.
     virtual bool SignContract(const OTString    & strContractUnsigned,
                               const OTString    & strSigHashType,
-                              const std::string & strCertFileContents, 
+                              const std::string & strCertFileContents,
                               OTSignature       & theSignature, // output
                               OTPasswordData    * pPWData=NULL) const;
-    
+
     virtual bool VerifySignature(const OTString    & strContractToVerify,
                                  const OTString    & strSigHashType,
-                                 const std::string & strCertFileContents, 
+                                 const std::string & strCertFileContents,
                                  const OTSignature & theSignature,
                                  OTPasswordData    * pPWData=NULL) const;
     // ----------------------------------
     void thread_setup();
     void thread_cleanup();
-    
+
     virtual ~OTCrypto_OpenSSL();
 };
 
-// is immutable 
+// is immutable
 class OpenSSL_BIO {
 private:
     BIO & m_refBIO;
@@ -657,7 +648,7 @@ public:
 
 
 // ------------------------------------------------------------------------
-#else // Apparently NO crypto engine is defined! 
+#else // Apparently NO crypto engine is defined!
 
 
 // Perhaps error out here...
@@ -672,42 +663,42 @@ public:
 
 /*
  ftp://ftp.rsasecurity.com/pub/pkcs/pkcs-5v2/pkcs5v2_1.pdf
- 
+
  4.2 Iteration count
- 
+
  An iteration count has traditionally served the purpose of increasing
  the cost of producing keys from a password, thereby also increasing
  the difficulty of attack. For the methods in this document, a minimum
  of 1000 iterations is recommended. This will increase the cost of
  exhaustive search for passwords significantly, without a noticeable
  impact in the cost of deriving individual keys.
- 
+
  Time the KDF on your systems and see how many iterations are practical
  without signficant resource impact on legitimate use cases. If it is
  practical to make the count configurable, do so, otherwise hard-code
  a sensible value that is at least 1000.
- 
+
  The iteration count is a multiplier on the CPU cost of brute-force
  dictionary attacks. If you are not sure that users are choosing "strong"
  passwords (they rarely do), you want to make dictionary attacks difficult
  by making individual password->key calculations sufficiently slow thereby
  limiting the throughput of brute-force attacks.
- 
+
  If no legitimate system is computing multiple password-based keys per
  second, you could set the iteration count to consume 10-100ms of CPU
  on 2008 processors, this is likely much more than 1000 iterations.
  At a guess 1000 iterations will be O(1ms) per key on a typical modern CPU.
  This is based on "openssl speed sha1" reporting:
- 
+
  type             16 bytes     64 bytes    256 bytes   1024 bytes   8192 bytes
  sha1             18701.67k    49726.06k   104600.90k   141349.84k   157502.27k
- 
+
  or about 10^6 16-byte SHA1 ops per second, doing 1000 iterations of HMAC
  is approximately 2000 SHA1 ops and so should take about 2ms. In many
  applications 10,000 or even 100,000 may be practical provided no
  legitimate "actor" needs to perform password->key comptutations at
  a moderately high rate.
- 
+
  */
 // ------------------------------------------------------------------------
 
@@ -716,15 +707,15 @@ public:
  int PKCS5_PBKDF2_HMAC_SHA1	(
     const void * 	password,
     size_t          password_len,
- 
+
     const void * 	salt,
     size_t          salt_len,
- 
+
     unsigned long 	iter,
- 
+
     size_t          keylen,
-    void *          key 
-)	
+    void *          key
+)
 */
 
 

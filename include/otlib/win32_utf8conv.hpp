@@ -2,14 +2,14 @@
 //
 // FILE: win32_utf8conv.h
 //
-// Header file defining prototypes of helper functions for converting 
+// Header file defining prototypes of helper functions for converting
 // strings between Unicode UTF-8 and UTF-16.
 // (The implementation file is "utf8conv_inl.h").
 //
-// UTF-8 text is stored in std::string; 
+// UTF-8 text is stored in std::string;
 // UTF-16 text is stored in std::wstring.
 //
-// This code just uses Win32 Platform SDK and C++ standard library; 
+// This code just uses Win32 Platform SDK and C++ standard library;
 // so it can be used also with the Express editions of Visual Studio.
 //
 //
@@ -37,12 +37,8 @@
 
 #pragma once
 
+#include "OTCommon.hpp"
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
 
 
 //------------------------------------------------------------------------
@@ -61,11 +57,11 @@ namespace utf8util {
 //------------------------------------------------------------------------
 // Exception class representing an error occurred during UTF-8 conversion.
 //------------------------------------------------------------------------
-class utf8_conversion_error 
+class utf8_conversion_error
     : public std::runtime_error
 {
 public:
-  
+
     //
     // Naming convention note:
     // -----------------------
@@ -76,7 +72,7 @@ public:
     //
 
 
-    // Error code type 
+    // Error code type
     // (a DWORD, as the return value type from ::GetLastError())
     typedef unsigned long error_code_type;
 
@@ -88,20 +84,20 @@ public:
     };
 
 
-    // Constructs an UTF-8 conversion error exception 
+    // Constructs an UTF-8 conversion error exception
     // with a raw C string message, conversion type and error code.
     utf8_conversion_error(
-        const char * message, 
-        conversion_type conversion, 
+        const char * message,
+        conversion_type conversion,
         error_code_type error_code
     );
 
 
-    // Constructs an UTF-8 conversion error exception 
+    // Constructs an UTF-8 conversion error exception
     // with a std::string message, conversion type and error code.
     utf8_conversion_error(
-        const std::string & message, 
-        conversion_type conversion, 
+        const std::string & message,
+        conversion_type conversion,
         error_code_type error_code
     );
 
@@ -159,8 +155,6 @@ EXPORT std::string UTF8FromUTF16(const wchar_t * utf16);
 
 
 } // namespace utf8util
-
-
 
 #include "win32_utf8conv_inl.hpp"     // inline implementations
 

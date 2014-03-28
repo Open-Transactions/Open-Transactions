@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  OTSignature.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,10 +132,10 @@
 
 #include <stdafx.hpp>
 
-#include <OTSignature.hpp>
+#include "OTSignature.hpp"
 
-#include <OTLog.hpp>
-#include <OTCrypto.hpp>
+#include "OTLog.hpp"
+#include "OTCrypto.hpp"
 
 
 bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char cMetaMasterCredID, char cMetaSubCredID)
@@ -146,7 +146,7 @@ bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char c
         case 'E':  // encryption (unusual BTW, to see this in a signature. Should never actually happen, or at least should be rare and strange when it does.)
         case 'S':  // signing (a "legal signature.")
             break;
-            
+
         default:
             OTLog::vError("%s: Expected key type of A, E, or S, but instead found: %c (bad data or error)\n",
                           __FUNCTION__, cMetaKeyType);
@@ -154,11 +154,11 @@ bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char c
     }
     // -------------------------
     std::string str_verify_base62;
-    
-    str_verify_base62 += cMetaNymID;         
-    str_verify_base62 += cMetaMasterCredID;  
+
+    str_verify_base62 += cMetaNymID;
+    str_verify_base62 += cMetaMasterCredID;
     str_verify_base62 += cMetaSubCredID;
-    
+
     if (false == OTCrypto::It()->IsBase62(str_verify_base62))
     {
         OTLog::vError("%s: Metadata for signature failed base62 validation: %s\n",
@@ -179,7 +179,7 @@ bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char c
 OTSignatureMetadata::OTSignatureMetadata() :
     m_cMetaKeyType(0), m_cMetaNymID(0), m_cMetaMasterCredID(0), m_cMetaSubCredID(0), m_bHasMetadata(false)
 {
-	
+
 }
 
 // -----------------------------------------------------
@@ -198,28 +198,28 @@ bool OTSignatureMetadata::operator==(const OTSignatureMetadata & rhs) const
 
 OTSignature::OTSignature() : ot_super()
 {
-	
+
 }
 
 OTSignature::~OTSignature()
 {
-	
+
 }
 
 OTSignature::OTSignature(const OTString & strValue) : ot_super(strValue)
 {
-	
+
 }
 
 OTSignature::OTSignature(const OTASCIIArmor & strValue) : ot_super(strValue)
 {
-	
+
 }
 
 
 OTSignature::OTSignature(const char * szValue) : ot_super(szValue)
 {
-	
+
 }
 
 
@@ -231,7 +231,7 @@ EVP_Seal... and EVP_Open... provide public key encryption and decryption to impl
 
 The EVP_Sign... and EVP_Verify... functions implement digital signatures.
 
-Symmetric encryption is available with the EVP_Encrypt... functions. 
+Symmetric encryption is available with the EVP_Encrypt... functions.
 
 The EVP_Digest... functions provide message digests.
 
@@ -258,36 +258,36 @@ Keys will be stored in OTASCIIArmor -> OTKey
 
 
 
-void do_cipher(char *pw, int operation,char * InBuf,int InLen,char * 
+void do_cipher(char *pw, int operation,char * InBuf,int InLen,char *
 			   OutBuf,int *OutBuflen)
 {
 	//operation:    0:DECRYPT
-	//              1:ENCRYPT 
-	
-	
+	//              1:ENCRYPT
+
+
     unsigned char iv[EVP_MAX_IV_LENGTH], key[EVP_MAX_KEY_LENGTH];
 	const unsigned char salt[] = "thesaltgoeshere1982w";
-	
+
 	// unsigned int ekeylen, net_ekeylen;
 	EVP_CIPHER_CTX ectx;
-	
+
 	EVP_BytesToKey(EVP_idea_cbc(), EVP_md5(), salt, pw, strlen(pw), 1, key, iv);
-	
+
 	EVP_CipherInit(&ectx, EVP_idea_cbc(), key, iv, operation);
-	
+
 	EVP_CipherUpdate(&ectx, OutBuf, OutBuflen, InBuf, InLen);
-	
-    EVP_CipherFinal(&ectx, OutBuf, OutBuflen); 
-	
+
+    EVP_CipherFinal(&ectx, OutBuf, OutBuflen);
+
 }
 void main(void)
 {
 	char InBuf[512],OutBuf[512+8],OutBuf2[512+8];
 	int i, OutLen;
-	
+
 	for ( i = 0 ; i < 8 ; i++ )
 		InBuf[i] = 30+i;
-	
+
 	do_cipher("test",1,InBuf,8,OutBuf,&OutLen);  //OutLen=8
 	do_cipher("test",0,OutBuf,8,OutBuf2,&OutLen); //but now OutLen=0
 }
@@ -313,11 +313,11 @@ You don't need to specify an iv value as this function creates it.
 /* Deprecated code:
  SHA256_CTX context;
  unsigned char md[SHA256_DIGEST_LENGTH];
- 
+
  SHA256_Init(&context);
  SHA256_Update(&context, (unsigned char*)input, length);
  SHA256_Final(md, &context);
- 
+
  Replaced with:
  */
 //TODO: stop hardcoding the digest algorithm
@@ -325,44 +325,44 @@ You don't need to specify an iv value as this function creates it.
 bool OTSignature::CalculateDigest(OTData & dataInput)
 {
 	Release();
-	
+
 	EVP_MD_CTX mdctx;
 	const EVP_MD *md;
 	const char * hashAlgorithm = "sha256";
-	
+
 	unsigned int md_len, i;
-	unsigned char md_value[EVP_MAX_MD_SIZE];	
-	
+	unsigned char md_value[EVP_MAX_MD_SIZE];
+
 	if (s_bFirstTime)
 	{
 		s_bFirstTime = false;
 		OpenSSL_add_all_digests();
 	}
-	
+
 	md = EVP_get_digestbyname(hashAlgorithm);
-	
-	if(!md) 
+
+	if(!md)
 	{
-		OTLog::vError("Unknown message digest algorithm in OTSignature::CalculateDigest: %s\n", 
+		OTLog::vError("Unknown message digest algorithm in OTSignature::CalculateDigest: %s\n",
 				hashAlgorithm);
 		return false;
 	}
-	
+
 	EVP_MD_CTX_init(&mdctx);
 	EVP_DigestInit_ex(&mdctx, md, NULL);
 	EVP_DigestUpdate(&mdctx, dataInput.GetPointer(), dataInput.GetSize());
 	EVP_DigestFinal_ex(&mdctx, md_value, &md_len);
 	EVP_MD_CTX_cleanup(&mdctx);
-	
+
 	OTLog::Output(5, "Calculated digest: ");
-	
+
 	for (i = 0; i < md_len; i++)
 		OTLog::vOutput(5, "%02x", md_value[i]);
-		
+
 	OTLog::Output(5, "\n");
-	
+
 	Assign(md_value, md_len);
-	
+
 	return true;
 }
 

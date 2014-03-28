@@ -20,7 +20,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -123,10 +123,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -145,13 +145,13 @@
 
 #include <stdafx.hpp>
 
-#include <OTCredential.hpp>
+#include "OTCredential.hpp"
 
-#include <OTAssert.hpp>
-#include <OTSignature.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTPassword.hpp>
+#include "OTAssert.hpp"
+#include "OTSignature.hpp"
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
+#include "OTPassword.hpp"
 
 
 
@@ -181,7 +181,7 @@ OTKeypair::OTKeypair() :
     m_pkeyPublic (OTAsymmetricKey::KeyFactory()),
     m_pkeyPrivate(OTAsymmetricKey::KeyFactory())
 {
-    
+
 }
 
 OTKeypair::~OTKeypair()
@@ -251,13 +251,13 @@ bool OTKeypair::SaveCertToString(OTString & strOutput, const OTString * pstrReas
     OT_ASSERT(NULL != m_pkeyPublic);
     // ---------------------------------------------------------------
     OTString strCert, strReason(NULL == pstrReason ? "OTKeypair::SaveCertToString" : pstrReason->Get());
-    
+
     const bool bSaved = m_pkeyPublic->SaveCertToString(strCert, &strReason, pImportPassword);
     // ---------------------------------------------------------------
 	if (bSaved)
         strOutput = strCert;
-	
-	return bSaved;    
+
+	return bSaved;
 }
 // ---------------------------------------------------------------
 
@@ -266,12 +266,12 @@ bool OTKeypair::SavePrivateKeyToString(OTString & strOutput, const OTString * ps
     OT_ASSERT(NULL != m_pkeyPrivate);
     // ---------------------------------------------------------------
     OTString strPrivateKey;
-    
+
     const bool bSaved = m_pkeyPrivate->SavePrivateKeyToString(strPrivateKey, pstrReason, pImportPassword);
     // ---------------------------------------------------------------
 	if (bSaved)
         strOutput = strPrivateKey;
-	
+
 	return bSaved;
 }
 // ------------------------------------------------
@@ -279,13 +279,13 @@ bool OTKeypair::SavePrivateKeyToString(OTString & strOutput, const OTString * ps
 bool OTKeypair::SaveCertAndPrivateKeyToString(OTString & strOutput, const OTString * pstrReason/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 {
     OTString strCert, strPrivateKey;
-    
+
     const bool bSaved1 = this->SaveCertToString      (strCert,       pstrReason, pImportPassword);
     const bool bSaved2 = this->SavePrivateKeyToString(strPrivateKey, pstrReason, pImportPassword);
     // ---------------------------------------------------------------
 	if (bSaved1 && bSaved2)
 		strOutput.Format(const_cast<char*>("%s%s"), strPrivateKey.Get(), strCert.Get());
-	
+
 	return (bSaved1 && bSaved2);
 }
 // ------------------------------------------------
@@ -344,7 +344,7 @@ bool OTKeypair::SaveAndReloadBothKeysFromTempFile(      OTString   * pstrOutputC
         // todo security. Revisit this part during security audit.
         //
 		const OTString strFilename("temp.nym"); // todo stop hardcoding. Plus this maybe should select a random number too.
-        
+
 		if (false == OTDB::StorePlainString(strOutput.Get(), OTFolders::Cert().Get(), strFilename.Get())) // temp.nym
 		{
 			OTLog::vError("%s: Failure storing new cert in temp file: %s\n", __FUNCTION__, strFilename.Get());
@@ -357,8 +357,8 @@ bool OTKeypair::SaveAndReloadBothKeysFromTempFile(      OTString   * pstrOutputC
         if (NULL != pstrOutputCert)
             pstrOutputCert->Set(strOutput); // Success!
 	}
-	
-	return bSuccess;   
+
+	return bSuccess;
 }
 
 
@@ -427,7 +427,7 @@ bool OTKeypair::MakeNewKeypair(int nBits/*=1024*/)
     OT_ASSERT(NULL != m_pkeyPublic);
     // ---------------------------------------------------------------
     OTLowLevelKeyData lowLevelData;
-    
+
     if (!lowLevelData.MakeNewKeypair(nBits))
     {
         OTLog::vError("%s: Failed in a call to OTLowLevelKeyData::MakeNewKeypair(%d).\n",
@@ -436,7 +436,7 @@ bool OTKeypair::MakeNewKeypair(int nBits/*=1024*/)
     }
     // ---------------------------------------------------------------
     return lowLevelData.SetOntoKeypair(*this);
-    
+
     // If true is returned:
     // Success! At this point, theKeypair's public and private keys have been set.
     // Keep in mind though, they still won't be "quite right" until saved and loaded
@@ -458,7 +458,7 @@ bool OTKeypair::LoadBothKeysFromCertFile(const OTString   & strFoldername,
     // ---------------------------------------------------------------
     bool bPublic  = false;
     bool bPrivate = false;
-    
+
     bPublic  = m_pkeyPublic-> LoadPublicKeyFromCertFile (strFoldername.Get(), strFilename.Get(),
                                                          pstrReason, pImportPassword);
     bPrivate = m_pkeyPrivate->LoadPrivateKey            (strFoldername.Get(), strFilename.Get(),
@@ -541,12 +541,12 @@ bool OTKeypair::SetPublicKey(const OTASCIIArmor & strKey)
 bool OTKeypair::SetPublicKey(const OTString & strKey, bool bEscaped/*=false*/)
 {
     OT_ASSERT(NULL != m_pkeyPublic);
-    
+
     // ---------------------------------------------------------------
     if (strKey.Contains("PGP PUBLIC KEY"))
 	{
 		OTASCIIArmor theArmor;
-		
+
 		if (theArmor.LoadFromString(const_cast<OTString &>(strKey), bEscaped))
 		{
 			// This function expects that the bookends are already removed.
@@ -596,7 +596,7 @@ bool OTKeypair::SetPrivateKey(const OTString & strKey, bool bEscaped/*=false*/)
 	if (strKey.Contains(szOverride))
 	{
 		OTASCIIArmor theArmor;
-        
+
 		if (theArmor.LoadFromString(const_cast<OTString &>(strKey), bEscaped,
                                     szOverride)) // szOverride == "PGP PRIVATE KEY"
 		{
@@ -609,7 +609,7 @@ bool OTKeypair::SetPrivateKey(const OTString & strKey, bool bEscaped/*=false*/)
 //                           strKey.Get());
 			return false;
 		}
-		else 
+		else
         {
 			OTLog::vOutput(0, "OTKeypair::SetPrivateKey 2: Failure: PGP private keys are NOT YET SUPPORTED.\n\n");
 //			OTLog::vOutput(0, "OTKeypair::SetPrivateKey 2: Failure: PGP private keys are NOT YET SUPPORTED:\n\n%s\n\n",
@@ -664,7 +664,7 @@ OTSubcredential::OTSubcredential(OTCredential & theOwner)
 OTSubcredential::~OTSubcredential()
 {
     Release_Subcredential();
-    
+
 }
 
 // ----------------------------------------------------------------
@@ -673,17 +673,17 @@ OTSubcredential::~OTSubcredential()
 void OTSubcredential::Release()
 {
     Release_Subcredential();  // My own cleanup is done here.
-    
+
     // Next give the base class a chance to do the same...
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
 
 // ----------------------------------------------------------------
 
-    
+
 void OTSubcredential::Release_Subcredential()
 {
-    // Release any dynamically allocated members here. (Normally.) 
+    // Release any dynamically allocated members here. (Normally.)
 }
 
 // ----------------------------------------------------------------
@@ -731,7 +731,7 @@ void OTSubcredential::UpdatePublicContentsToString(OTString & strAppendTo) // Us
     if (m_mapPublicInfo.size() > 0)
     {
         strAppendTo.Concatenate("<publicContents count=\"%d\">\n\n", m_mapPublicInfo.size());
-        
+
         FOR_EACH(mapOfStrings, m_mapPublicInfo)
         {
             OTString     strInfo((*it).second);
@@ -752,7 +752,7 @@ void OTSubcredential::UpdatePublicCredentialToString(OTString & strAppendTo) // 
         if (ascContents.Exists())
             strAppendTo.Concatenate("<publicCredential>\n%s</publicCredential>\n\n",
                                     ascContents.Get());
-    }    
+    }
 }
 
 void OTSubcredential::UpdatePrivateContentsToString(OTString & strAppendTo) // Used in UpdateContents.
@@ -760,7 +760,7 @@ void OTSubcredential::UpdatePrivateContentsToString(OTString & strAppendTo) // U
     if (m_mapPrivateInfo.size() > 0)
     {
         strAppendTo.Concatenate("<privateContents count=\"%d\">\n\n", m_mapPrivateInfo.size());
-        
+
         FOR_EACH(mapOfStrings, m_mapPrivateInfo)
         {
             OTString     strInfo((*it).second);
@@ -775,11 +775,11 @@ void OTSubcredential::UpdatePrivateContentsToString(OTString & strAppendTo) // U
 void OTSubcredential::UpdateContents()
 {
 	m_xmlUnsigned.Release();
-    
+
 	m_xmlUnsigned.Concatenate("<subCredential nymID=\"%s\"\n" // a hash of the nymIDSource
 							  " masterCredentialID=\"%s\" >\n\n", // Hash of the master credential that signed this subcredential.
 							  this->GetNymID().Get(), this->GetMasterCredID().Get());
-    
+
     if (this->GetNymIDSource().Exists())
     {
         OTASCIIArmor ascSource;
@@ -798,14 +798,14 @@ void OTSubcredential::UpdateContents()
     }
 	// -------------------------------------------------
     // If we're saving the private credential info...
-    // 
+    //
     if (OTSubcredential::credPrivateInfo == m_StoreAs)
     {
         this->UpdatePublicCredentialToString(m_xmlUnsigned);
         // -------------------------------------
         this->UpdatePrivateContentsToString(m_xmlUnsigned);
     }
-	// -------------------------------------------------	
+	// -------------------------------------------------
 	m_xmlUnsigned.Concatenate("</subCredential>\n");
     // --------------------------------------------
     m_StoreAs = OTSubcredential::credPrivateInfo;  // <=== SET IT BACK TO DEFAULT BEHAVIOR. Any other state processes ONCE, and then goes back to this again.
@@ -820,7 +820,7 @@ void OTSubcredential::UpdateContents()
 int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
-	
+
     const OTString strNodeName(xml->getNodeName());
 
 	// Here we call the parent class first.
@@ -834,22 +834,22 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
     //
 	// if (nReturnVal = OTContract::ProcessXMLNode(xml))
     //	  return nReturnVal;
-	
+
     // --------------------------------------------------
 	if (strNodeName.Compare("subCredential"))
 	{
 		m_strNymID			= xml->getAttributeValue("nymID");
 		m_strMasterCredID	= xml->getAttributeValue("masterCredentialID");
-		
+
 		OTLog::Output(1, "Loading subcredential...\n");
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
 	else if (strNodeName.Compare("nymIDSource"))
-	{		
+	{
 		OTLog::Output(1, "Loading nymIDSource...\n");
-		
+
         OTASCIIArmor ascTemp;
         if (false == OTContract::LoadEncodedTextField(xml, ascTemp))
 		{
@@ -866,7 +866,7 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	else if (strNodeName.Compare("masterPublic"))
 	{
         OTString strMasterPublicCredential;
-        
+
 		if (false == OTContract::LoadEncodedTextField(xml, strMasterPublicCredential))
 		{
 			OTLog::vError("Error in %s line %d: failed loading expected master public credential while loading subcredential.\n",
@@ -884,7 +884,7 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                           __FILE__, __LINE__);
 			return (-1); // error condition
         }
-		
+
 		nReturnVal = 1;
 	}
 	// ------------------------------------------------------------------------------------
@@ -897,20 +897,20 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         {
             int nTempCount = nCount;
             mapOfStrings mapPublic;
-            
+
             while (nTempCount-- > 0)
             {
-                // -----------------------------------------------                
+                // -----------------------------------------------
                 const char	*	pElementExpected	= "publicInfo";
                 OTString		strPublicInfo;
-                
+
                 // This map contains values we will also want, when we read the info...
                 // (The OTContract::LoadEncodedTextField call below will read all the values
                 // as specified in this map.)
                 //
                 mapOfStrings	temp_MapAttributes;
                 temp_MapAttributes.insert(std::pair<std::string, std::string>("key", "")); // Value should be "A" or "E" or "S" after reading.
-                
+
                 if (false == OTContract::LoadEncodedTextFieldByName(xml, strPublicInfo, pElementExpected, &temp_MapAttributes)) // </publicInfo>
                 {
                     OTLog::vError("%s: Error: "
@@ -919,11 +919,11 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     return (-1); // error condition
                 }
                 // ------------------------------------------
-                mapOfStrings::iterator it = temp_MapAttributes.find("key");                
+                mapOfStrings::iterator it = temp_MapAttributes.find("key");
                 if ((it != temp_MapAttributes.end())) // We expected this much.
                 {
                     std::string & str_key = (*it).second;
-                    
+
                     if (str_key.size() > 0) // Success finding key type ('A' 'E' or 'S')
                     {
                         // ---------------------------------------
@@ -957,13 +957,13 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             {
                 OTLog::vError("%s, %s, %d: Subcredential failed setting public contents while loading.\n",
                               __FUNCTION__, __FILE__, __LINE__);
-                return (-1); // error condition    
+                return (-1); // error condition
             }
-            // --------------------------------            
+            // --------------------------------
         } // if strCount.Exists() && nCount > 0
         // -------------------------------------------------------------------------------
 		OTLog::Output(2, "Loaded publicContents for subcredential.\n");
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
@@ -975,7 +975,7 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                           __FILE__, __LINE__);
 			return (-1); // error condition
 		}
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
@@ -988,20 +988,20 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         {
             int nTempCount = nCount;
             mapOfStrings mapPrivate;
-            
+
             while (nTempCount-- > 0)
             {
-                // -----------------------------------------------                
+                // -----------------------------------------------
                 const char	*	pElementExpected	= "privateInfo";
                 OTString		strPrivateInfo;
-                
+
                 // This map contains values we will also want, when we read the info...
                 // (The OTContract::LoadEncodedTextField call below will read all the values
                 // as specified in this map.)
                 //
                 mapOfStrings	temp_MapAttributes;
                 temp_MapAttributes.insert(std::pair<std::string, std::string>("key", "")); // Value should be "A" or "E" or "S" after reading.
-                
+
                 if (false == OTContract::LoadEncodedTextFieldByName(xml, strPrivateInfo, pElementExpected, &temp_MapAttributes)) // </privateInfo>
                 {
                     OTLog::vError("%s: Error: "
@@ -1010,11 +1010,11 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     return (-1); // error condition
                 }
                 // ------------------------------------------
-                mapOfStrings::iterator it = temp_MapAttributes.find("key");                
+                mapOfStrings::iterator it = temp_MapAttributes.find("key");
                 if ((it != temp_MapAttributes.end())) // We expected this much.
                 {
                     std::string & str_key = (*it).second;
-                    
+
                     if (str_key.size() > 0) // Success finding key type ('A' 'E' or 'S')
                     {
                         // ---------------------------------------
@@ -1045,7 +1045,7 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             }
             // --------------------------------
             OT_ASSERT(NULL != m_pOwner);
-            
+
             // Sometimes we are supposed to use a specific, pre-specified password (versus just
             // blindly asking the user to type a password when it's not cached alrady.) For example,
             // when importing a Nym, the exported version of the Nym is not encrypted to the cached
@@ -1062,18 +1062,18 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             //
             // So we just pass it in either way (sometimes it's NULL and the wallet cached master key is used, and
             // sometimes an actual passphrase is passed in, so we use it.)
-            
+
             if (false == this->SetPrivateContents(mapPrivate, m_pOwner->GetImportPassword()))
             {
                 OTLog::vError("%s, %s, %d: Subcredential failed setting private contents while loading.\n",
                               __FUNCTION__, __FILE__, __LINE__);
-                return (-1); // error condition    
+                return (-1); // error condition
             }
-            // --------------------------------            
+            // --------------------------------
         } // if strCount.Exists() && nCount > 0
         // -------------------------------------------------------------------------------
 		OTLog::Output(2, "Loaded privateContents for subcredential.\n");
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
@@ -1089,7 +1089,7 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 int OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = ot_super::ProcessXMLNode(xml);
-	
+
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -1109,9 +1109,9 @@ int OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
 		m_strNymID			= xml->getAttributeValue("nymID");
 		m_strMasterCredID	= xml->getAttributeValue("masterCredentialID");
-		
+
 		OTLog::Output(1, "Loading keyCredential...\n");
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
@@ -1123,7 +1123,7 @@ int OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                           __FILE__, __LINE__);
 			return (-1); // error condition
 		}
-		
+
 		nReturnVal = 1;
 	}
 	// ------------------
@@ -1136,11 +1136,11 @@ int OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 void OTSubkey::UpdateContents()
 {
 	m_xmlUnsigned.Release();
-    
+
 	m_xmlUnsigned.Concatenate("<keyCredential nymID=\"%s\"\n" // a hash of the nymIDSource
 							  " masterCredentialID=\"%s\" >\n\n", // Hash of the master credential that signed this subcredential.
 							  this->GetNymID().Get(), this->GetMasterCredID().Get());
-    
+
     if (this->GetNymIDSource().Exists())
     {
         OTASCIIArmor ascSource;
@@ -1172,14 +1172,14 @@ void OTSubkey::UpdateContents()
     // PRIVATE INFO
     //
     // If we're saving the private credential info...
-    // 
+    //
     if (OTSubcredential::credPrivateInfo == m_StoreAs)  // PRIVATE INFO
     {
         this->UpdatePublicCredentialToString(m_xmlUnsigned);
         // -------------------------------------
         this->UpdatePrivateContentsToString(m_xmlUnsigned);
     }
-	// -------------------------------------------------	
+	// -------------------------------------------------
 	m_xmlUnsigned.Concatenate("</keyCredential>\n");
     // --------------------------------------------
     m_StoreAs = OTSubcredential::credPrivateInfo;  // <=== SET IT BACK TO DEFAULT BEHAVIOR. Any other state processes ONCE, and then goes back to this again.
@@ -1193,7 +1193,7 @@ void OTSubkey::UpdateContents()
 int OTMasterkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = ot_super::ProcessXMLNode(xml);
-	
+
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -1214,9 +1214,9 @@ int OTMasterkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID = xml->getAttributeValue("nymID");
 
 		m_strMasterCredID.Release();
-		
+
 		OTLog::Output(1, "Loading masterCredential...\n");
-		
+
 		nReturnVal = 1;
 	}
 	// ----------------------------------
@@ -1226,13 +1226,13 @@ int OTMasterkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 // -------------------------------------------------------------------
 
-void OTMasterkey::UpdateContents() 
+void OTMasterkey::UpdateContents()
 {
 	m_xmlUnsigned.Release();
-    
+
 	m_xmlUnsigned.Concatenate("<masterCredential nymID=\"%s\" >\n\n", // a hash of the nymIDSource
 							  this->GetNymID().Get());
-    
+
     if (this->GetNymIDSource().Exists())
     {
         OTASCIIArmor ascSource;
@@ -1243,21 +1243,21 @@ void OTMasterkey::UpdateContents()
     // PUBLIC INFO
     //
 //  if (OTSubcredential::credPublicInfo == m_StoreAs)   // PUBLIC INFO  (Always save this in every state.)
-    {        
+    {
         this->UpdatePublicContentsToString(m_xmlUnsigned);
     }
 	// -------------------------------------------------
     // PRIVATE INFO
     //
     // If we're saving the private credential info...
-    // 
+    //
     if (OTSubcredential::credPrivateInfo == m_StoreAs)   // PRIVATE INFO
     {
         this->UpdatePublicCredentialToString(m_xmlUnsigned);
         // -------------------------------------
         this->UpdatePrivateContentsToString(m_xmlUnsigned);
     }
-	// -------------------------------------------------	
+	// -------------------------------------------------
 	m_xmlUnsigned.Concatenate("</masterCredential>\n");
     // --------------------------------------------
     m_StoreAs = OTSubcredential::credPrivateInfo;  // <=== SET IT BACK TO DEFAULT BEHAVIOR. Any other state processes ONCE, and then goes back to this again.
@@ -1327,7 +1327,7 @@ bool OTSubcredential::VerifyInternally()
     const bool bCalcMasterCredID = theActualMasterID.CalculateDigest(m_pOwner->GetPubCredential());
     OT_ASSERT(bCalcMasterCredID);
     const OTString strActualMasterID(theActualMasterID);
- 
+
     if (false == m_strMasterCredID.Compare(strActualMasterID))
     {
         OTLog::vOutput(0, "%s: Failure: When the actual Master Credential is hashed, the "
@@ -1384,30 +1384,30 @@ bool OTSubkey::VerifySignedByMaster()
     // See if m_strMasterSigned was signed by my master credential.
     //
     OTSubkey theMasterSigned(*(this->m_pOwner));
-    
+
     if (m_strMasterSigned.Exists() && theMasterSigned.LoadContractFromString(m_strMasterSigned))
     {
         // Here we need to MAKE SURE that the "master signed" version contains the same
         // CONTENTS as the actual version.
-        
+
         if (false == this->GetNymID().Compare(theMasterSigned.GetNymID()))
         {
             OTLog::vOutput(0, "%s: Failure, NymID of this key credential doesn't match NymID of master-signed version of this key credential.\n", __FUNCTION__);
             return false;
         }
-        
+
         if (false == this->GetNymIDSource().Compare(theMasterSigned.GetNymIDSource()))
         {
             OTLog::vOutput(0, "%s: Failure, NymIDSource of this key credential doesn't match NymIDSource of master-signed version of this key credential.\n", __FUNCTION__);
             return false;
         }
-        
+
         if (false == this->GetMasterCredID().Compare(theMasterSigned.GetMasterCredID()))
         {
             OTLog::vOutput(0, "%s: Failure, MasterCredID of this key credential doesn't match MasterCredID of master-signed version of this key credential.\n", __FUNCTION__);
             return false;
         }
-        
+
         if ((this->GetPublicMap().size() > 0) && (this->GetPublicMap() != theMasterSigned.GetPublicMap()))
         {
             OTLog::vOutput(0, "%s: Failure, public info of this key credential doesn't match public info of master-signed version of this key credential.\n", __FUNCTION__);
@@ -1423,9 +1423,9 @@ bool OTSubkey::VerifySignedByMaster()
 //            OTLog::vOutput(0, "%s: Failure, private info of this key credential doesn't match private info of master-signed version of this key credential.\n", __FUNCTION__);
 //            return false;
 //        }
-        
+
         const bool bVerifiedWithKey = theMasterSigned.VerifyWithKey(m_pOwner->GetMasterkey().m_SigningKey.GetPublicKey());
-        
+
         // ON SERVER SIDE, THE ACTUAL SUBKEY doesn't have any public key, only the master-signed version of it.
         // (The master-signed version being basically the only contents of the public version.)
         // So we need to be able to, after verifying, load up those contents so they are available on the
@@ -1439,7 +1439,7 @@ bool OTSubkey::VerifySignedByMaster()
 
         return bVerifiedWithKey;
     } // if (m_strMasterSigned.Exists() && theMasterSigned.LoadContractFromString(m_strMasterSigned))
-    
+
     return false;
 }
 
@@ -1450,7 +1450,7 @@ int OTKeypair::GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // Inc
 {
     OT_ASSERT(NULL != m_pkeyPublic);
     OT_ASSERT(NULL != m_pkeyPublic->m_pMetadata);
-    
+
     // We know that EITHER exact metadata matches must occur, and the signature MUST have metadata, (bInclusive=false)
     // OR if bInclusive=true, we know that metadata is still used to eliminate keys where possible, but that otherwise,
     // if the signature has no metadata, then the key is still returned, "just in case."
@@ -1570,7 +1570,7 @@ int OTCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
 //
 bool OTKeyCredential::VerifyInternally()
 {
-    // Verify that m_strNymID is the same as the hash of m_strSourceForNymID. 
+    // Verify that m_strNymID is the same as the hash of m_strSourceForNymID.
     if (false == ot_super::VerifyInternally())
         return false;
     // ---------------------------------------
@@ -1759,7 +1759,7 @@ bool OTMasterkey::VerifyAgainstSource() const
     // ---------------------------------
     const std::string str_raw_source(m_strSourceForNymID.Get());
     std::string str_source;
-    
+
     // It's a URL.
     if (str_raw_source.compare(0,5,"http:")  == 0)
     {
@@ -1823,11 +1823,11 @@ bool OTMasterkey::VerifySource_HTTP(const OTString strSource) const
      If I download files from there, will I find my own masterkey inside?
      If so, then I verify.
      */
-    
+
     OTLog::vError("%s: Failure: this function has not yet been written, so this HTTP source cannot be verified.\n",
                   __FUNCTION__);
 //    return false;
-    
+
     // Todo security
     OTLog::vError("\nNOTE: Returning TRUE for TESTING PURPOSES, as if HTTP source had verified."
                   "\n\n\n ----------------------- \n\n");
@@ -1850,7 +1850,7 @@ bool OTMasterkey::VerifySource_HTTPS(const OTString strSource) const
     // Todo security
     OTLog::vError("\nNOTE: Returning TRUE for TESTING PURPOSES, as if HTTPS source had verified."
                   "\n\n\n ----------------------- \n\n");
-    
+
     return true;
 }
 
@@ -1872,7 +1872,7 @@ bool OTMasterkey::VerifySource_Bitcoin(const OTString strSource) const
     // Todo security
     OTLog::vError("\nNOTE: Returning TRUE for TESTING PURPOSES, as if Bitcoin had verified."
                   "\n\n\n ----------------------- \n\n");
-    
+
     return true;
 }
 
@@ -1891,7 +1891,7 @@ bool OTMasterkey::VerifySource_Namecoin(const OTString strSource) const
     // Todo security
     OTLog::vError("\nNOTE: Returning TRUE for TESTING PURPOSES, as if Namecoin had verified."
                   "\n\n\n ----------------------- \n\n");
-    
+
     return true;
 }
 
@@ -1918,14 +1918,14 @@ bool OTMasterkey::VerifySource_I2P(const OTString strSource) const
 
 bool OTMasterkey::VerifySource_CA(const OTString strSource) const
 {
-    
+
     /*
      The Source is the DN info on the Cert.
      Therefore look at the Cert being used in this Masterkey.
      Does it have the same DN info? Does it verify through its CA ?
      Then it verifies.
      */
-    
+
     OTLog::vError("%s: Failure: this function has not yet been written, so this CA source cannot be verified.\n",
                   __FUNCTION__);
     return false;
@@ -1961,11 +1961,11 @@ OTKeyCredential::~OTKeyCredential()
 void OTKeyCredential::Release()
 {
     Release_Subkey();   // My own cleanup is done here.
-    
+
     // Next give the base class a chance to do the same...
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
-    
+
 void OTKeyCredential::Release_Subkey()
 {
     // Release any dynamically allocated members here. (Normally.)
@@ -1991,10 +1991,10 @@ bool OTKeyCredential::GenerateKeys(int nBits/*=1024*/)       // Gotta start some
     mapOfStrings mapPublic,    mapPrivate;
     // ------------------------------------------
     const OTString strReason("Generating keys for new credential...");
-    // ------------------------------------------                
+    // ------------------------------------------
     const bool b1 = m_SigningKey.GetPublicKey(strPublicKey, false); // bEscaped=true by default.
     const bool b2 = m_SigningKey.SaveCertAndPrivateKeyToString(strPrivateCert, &strReason);
-    
+
     if (b1)
         mapPublic. insert(std::pair<std::string, std::string>("S", strPublicKey.Get()));
     if (b2)
@@ -2003,8 +2003,8 @@ bool OTKeyCredential::GenerateKeys(int nBits/*=1024*/)       // Gotta start some
     strPublicKey.  Release();
     strPrivateCert.Release();
     const bool b3 = m_AuthentKey.GetPublicKey(strPublicKey, false); // bEscaped=true by default.
-    const bool b4 = m_AuthentKey.SaveCertAndPrivateKeyToString(strPrivateCert, &strReason);                
-    
+    const bool b4 = m_AuthentKey.SaveCertAndPrivateKeyToString(strPrivateCert, &strReason);
+
     if (b3)
         mapPublic. insert(std::pair<std::string, std::string>("A", strPublicKey.Get()));
     if (b4)
@@ -2014,7 +2014,7 @@ bool OTKeyCredential::GenerateKeys(int nBits/*=1024*/)       // Gotta start some
     strPrivateCert.Release();
     const bool b5 = m_EncryptKey.GetPublicKey(strPublicKey, false); // bEscaped=true by default.
     const bool b6 = m_EncryptKey.SaveCertAndPrivateKeyToString(strPrivateCert, &strReason);
-    
+
     if (b5)
         mapPublic. insert(std::pair<std::string, std::string>("E", strPublicKey.Get()));
     if (b6)
@@ -2169,7 +2169,7 @@ bool OTKeyCredential::SetPrivateContents(const mapOfStrings & mapPrivate,
         // -------------------------------------------------
         OTString strPrivate;
         strPrivate.Set((*iiAuth).second.c_str()); // strPrivate now contains the private Cert string.
-        
+
         if (false == m_AuthentKey.LoadPrivateKeyFromCertString(strPrivate, false /*bEscaped true by default*/,  &strReason, pImportPassword))
         {
             OTLog::vError("%s line %d: Failure: Unable to set private authentication key based on string.\n",
@@ -2196,7 +2196,7 @@ bool OTKeyCredential::SetPrivateContents(const mapOfStrings & mapPrivate,
         // -------------------------------------------------
         strPrivate.Release();
         strPrivate.Set((*iiEncr).second.c_str());
-        
+
         if (false == m_EncryptKey.LoadPrivateKeyFromCertString(strPrivate, false /*bEscaped true by default*/,  &strReason, pImportPassword))
         {
             OTLog::vError("%s line %d: Failure: Unable to set private encryption key based on string.\n",
@@ -2208,7 +2208,7 @@ bool OTKeyCredential::SetPrivateContents(const mapOfStrings & mapPrivate,
         else // Success loading the private key. Let's grab the public key here.
         {
             OTString strPublic;
-            
+
             if ((false == m_EncryptKey.LoadPublicKeyFromCertString(strPrivate, false /* bEscaped true by default */, &strReason, pImportPassword)) ||
                 (false == m_EncryptKey.GetPublicKey(strPublic, false /* bEscaped true by default */)))
             {
@@ -2223,7 +2223,7 @@ bool OTKeyCredential::SetPrivateContents(const mapOfStrings & mapPrivate,
         // -------------------------------------------------
         strPrivate.Release();
         strPrivate.Set((*iiSign).second.c_str());
-        
+
         if (false == m_SigningKey.LoadPrivateKeyFromCertString(strPrivate, false /*bEscaped true by default*/,  &strReason, pImportPassword))
         {
             OTLog::vError("%s line %d: Failure: Unable to set private signing key based on string.\n",
@@ -2235,7 +2235,7 @@ bool OTKeyCredential::SetPrivateContents(const mapOfStrings & mapPrivate,
         else // Success loading the private key. Let's grab the public key here.
         {
             OTString strPublic;
-            
+
             if ((false == m_SigningKey.LoadPublicKeyFromCertString(strPrivate, false /* bEscaped true by default */, &strReason, pImportPassword)) ||
                 (false == m_SigningKey.GetPublicKey(strPublic, false /* bEscaped true by default */)))
             {
@@ -2278,7 +2278,7 @@ OTSubkey::OTSubkey() : ot_super()
 
 OTSubkey::OTSubkey(OTCredential & theOwner) : ot_super(theOwner)
 {
-    m_strContractType = "KEY CREDENTIAL";    
+    m_strContractType = "KEY CREDENTIAL";
 }
 
 OTSubkey::~OTSubkey() { }
@@ -2287,12 +2287,12 @@ OTSubkey::~OTSubkey() { }
 
 OTMasterkey::OTMasterkey() : ot_super()
 {
-    m_strContractType = "MASTER KEY CREDENTIAL";    
+    m_strContractType = "MASTER KEY CREDENTIAL";
 }
 
 OTMasterkey::OTMasterkey(OTCredential & theOwner) : ot_super(theOwner)
 {
-    m_strContractType = "MASTER KEY CREDENTIAL";    
+    m_strContractType = "MASTER KEY CREDENTIAL";
 }
 
 OTMasterkey::~OTMasterkey() { }
@@ -2336,7 +2336,7 @@ void OTCredential::SetSourceForNymID(const OTString & strSourceForNymID)
     theTempID.GetString(m_strNymID);
     // ------------------------------
     m_Masterkey.SetNymIDandSource(m_strNymID, m_strSourceForNymID); // The key in here must somehow verify against its own source.
-    
+
     // Success! By this point, m_strSourceForNymID and m_strNymID
     // are both set.
 }
@@ -2446,7 +2446,7 @@ bool OTCredential::SignNewMaster(OTPasswordData * pPWData/*=NULL*/)
         // Future verifiers can hash it and the output should match the master credential ID.
         //
         OTString strPublicCredential;
-        
+
         if (m_Masterkey.SaveContractRaw(strPublicCredential))
         {
             m_Masterkey.SetContents(strPublicCredential); // <=== The "master public credential" string.
@@ -2530,7 +2530,7 @@ bool OTKeypair::ReEncrypt(OTPassword & theExportPassword, bool bImporting, OTStr
     //
     // But if we were exporting, then we were in the internal format and just re-encrypted to the
     // export format. So we'd want to pass the export passphrase when saving.
-    //    
+    //
     const OTString strReasonAbove(bImporting ?
                                   "Enter the new export passphrase. (Above ReEncryptPrivateKey in OTKeypair::ReEncrypt)" :
                                   "Enter your wallet's master passphrase. (Above ReEncryptPrivateKey in OTKeypair::ReEncrypt)");
@@ -2554,12 +2554,12 @@ bool OTKeypair::ReEncrypt(OTPassword & theExportPassword, bool bImporting, OTStr
     // asset and server contracts. But even in those cases, there will be times when
     // only a pubkey is available, not a cert, so I'll probably still find myself having
     // to do this. Hmm...
-    
+
     // ---------------------------------------
-    
+
     const bool bReEncrypted = m_pkeyPrivate->ReEncryptPrivateKey(theExportPassword, bImporting); // <==== IMPORT or EXPORT occurs here.
           bool bGotCert = false;
-    
+
     if (bReEncrypted)
     {
         // ------------------------------------------------
@@ -2567,7 +2567,7 @@ bool OTKeypair::ReEncrypt(OTPassword & theExportPassword, bool bImporting, OTStr
         bGotCert = this->SaveAndReloadBothKeysFromTempFile(&strOutput, &strReasonBelow,
                                                            bImporting ? NULL : &theExportPassword);
     }
-    
+
     const bool bSuccess = (bReEncrypted && bGotCert);
     // --------------------------------------
     if (!bSuccess)
@@ -2590,7 +2590,7 @@ bool OTKeyCredential::ReEncryptKeys(OTPassword & theExportPassword, bool bImport
     const bool bSign = m_SigningKey.ReEncrypt(theExportPassword, bImporting, strSign);
           bool bAuth = false;
           bool bEncr = false;
-    // ----------------------------------------    
+    // ----------------------------------------
     if (bSign)
     {
         bAuth = m_AuthentKey.ReEncrypt(theExportPassword, bImporting, strAuth);
@@ -2603,10 +2603,10 @@ bool OTKeyCredential::ReEncryptKeys(OTPassword & theExportPassword, bool bImport
           bool bSuccess = false;
     // ----------------------------------------
     // If success, we now have the updated versions of the private certs.
-    // 
+    //
     if (bSuccessReEncrypting)
     {
-        mapOfStrings mapPrivate;        
+        mapOfStrings mapPrivate;
         // ----------------------------------------
         FOR_EACH(mapOfStrings, m_mapPrivateInfo)
         {
@@ -2662,7 +2662,7 @@ bool OTKeyCredential::ReEncryptKeys(OTPassword & theExportPassword, bool bImport
 // save them to string again, re-encrypting them to the export passphrase (and not to
 // any "master key" from the wallet.) And you have to release all the signatures on
 // the private credentials, since the private info is being re-encrypted, and re-sign
-// them all. Joy. 
+// them all. Joy.
 //
 bool OTCredential::ReEncryptPrivateCredentials(OTPassword & theExportPassword, bool bImporting)
 {
@@ -2676,7 +2676,7 @@ bool OTCredential::ReEncryptPrivateCredentials(OTPassword & theExportPassword, b
         //
         const bool bReEncryptMaster = m_Masterkey.ReEncryptKeys(theExportPassword, bImporting);
               bool bSignedMaster    = false;
-        
+
         if (bReEncryptMaster)
         {
             m_Masterkey.ReleaseSignatures(); // This time we'll sign it in private mode.
@@ -2767,8 +2767,8 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
     // --------------------------------------------------------------
 	// If it's not a subkey, but rather, a normal subcredential with no keys, then it doesn't need to contain a "master signed" version,
 	// since the entire subcredential will already be master signed, since there's no subkey to sign in that case.
-    if (!bIsSubkey) 
-        theSubCred.SetMasterSigned(OTString("")); 
+    if (!bIsSubkey)
+        theSubCred.SetMasterSigned(OTString(""));
     // ------------------------
     // ELSE It's a subkey...
     else // Subkeys must be self-signed, and must contain a master-signed version of themselves where the data is actually stored.
@@ -2791,7 +2791,7 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
             // Make a copy of the "master signed" version of the public subcredential.
             //
             OTString strMasterSigned;
-            
+
             if (pSubkey->SaveContractRaw(strMasterSigned)) // <=== The "master signed" version of the "public credential" string. Captured here
                 pSubkey->SetMasterSigned(strMasterSigned); // so that the (subkey-signed) public version of the subcredential will contain it.
             else
@@ -2806,7 +2806,7 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
     }
     // ***********************************************************
     theSubCred.StoreAsPublic(); // So the version we create here only contains public keys, not private.
-    
+
     // Here, dynamic cast theSubCred to a subkey and if successful, use it to sign itself.
     // Otherwise, sign it with the master. (If it's a real subkey, then it will contain the
     // master-signed version, and it will be signed with itself, its own subkey. Whereas if
@@ -2816,7 +2816,7 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
     // So in that case, it must be signed by the master.)
     //
     bool bSignedPublic = false;
-    
+
     if (bIsSubkey) // If it's a subkey, its keys are already generated by the time we got here. So use it to sign its own public version.
         bSignedPublic = pSubkey->   SignContract(theSubCred, NULL == pPWData ? &thePWData : pPWData);
     else // It's not a subkey, but some other conventional subcredential. So we sign with master key, since that's all we've got.
@@ -2866,12 +2866,12 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
         //
         theSubCred.ReleaseSignatures(); // This time we'll sign it in private mode.
         bool bSignedPrivate = false;
-        
+
         if (bIsSubkey) // If it's a subkey, its keys are already generated by the time we got here. So use it to sign its own private version.
             bSignedPrivate = pSubkey->   SignContract(theSubCred, NULL == pPWData ? &thePWData : pPWData);
         else // It's not a subkey, but some other conventional subcredential. So we sign the private info with the master key, since that's all we've got.
             bSignedPrivate = m_Masterkey.SignContract(theSubCred, NULL == pPWData ? &thePWData : pPWData);
-        
+
         if (bSignedPrivate)
             theSubCred.SaveContract();
         else
@@ -2912,9 +2912,9 @@ bool OTCredential::Load_MasterFromString(const OTString & strInput,
     // NULL here, that's why it was passed in.
     //
     // --------------------------------------
-    
+
     this->SetImportPassword(pImportPassword); // might be NULL.
-    
+
     // --------------------------------------
     const bool bLoaded = m_Masterkey.LoadContractFromString(strInput);
     if (!bLoaded)
@@ -2925,7 +2925,7 @@ bool OTCredential::Load_MasterFromString(const OTString & strInput,
     // --------------------------------------
 
     this->SetImportPassword(NULL); // It was only set during the m_Masterkey.LoadContractFromString (which references it.)
-    
+
     // --------------------------------------
     m_strNymID          = m_Masterkey.GetNymID();
     m_strSourceForNymID = m_Masterkey.GetNymIDSource();
@@ -2950,7 +2950,7 @@ bool OTCredential::Load_Master(const OTString & strNymID,
     if (false == OTDB::Exists(str_Folder, strNymID.Get(), strMasterCredID.Get()))
     {
         str_Folder = OTFolders::Pubcred().Get();
-        
+
         if (false == OTDB::Exists(str_Folder, strNymID.Get(), strMasterCredID.Get()))
         {
             OTLog::vError("%s: Failure: Master Credential %s doesn't exist for Nym %s\n",
@@ -2967,7 +2967,7 @@ bool OTCredential::Load_Master(const OTString & strNymID,
         OTLog::vError("%s: Failed trying to load master credential from local storage.\n", __FUNCTION__);
         return false;
     }
-    // ---------------------------------------    
+    // ---------------------------------------
     if (false == strFileContents.DecodeIfArmored()) // bEscapedIsAllowed=true by default.
     {
         OTLog::vError("%s: File contents apparently were encoded and then failed decoding. Contents: \n%s\n",
@@ -3044,7 +3044,7 @@ bool OTCredential::LoadSubkeyFromString(const OTString & strInput, const OTStrin
     pSub->SetNymIDandSource(this->GetNymID(), this->GetSourceForNymID()); // Set NymID and source string that hashes to it.
     pSub->SetMasterCredID  (this->GetMasterCredID());         // Set master credential ID (onto this new subcredential...)
     // --------------------------------------
-    
+
     this->SetImportPassword(pImportPassword); // might be NULL.
 
     // --------------------------------------
@@ -3054,9 +3054,9 @@ bool OTCredential::LoadSubkeyFromString(const OTString & strInput, const OTStrin
         return false;
     }
     // --------------------------------------
-    
+
     this->SetImportPassword(NULL); // Only set long enough for LoadContractFromString above to use it.
-    
+
     // --------------------------------------
     pSub->SetMetadata();
     // -------------------------------------
@@ -3074,7 +3074,7 @@ bool OTCredential::LoadSubkey(const OTString & strSubID)
     if (false == OTDB::Exists(str_Folder, this->GetNymID().Get(), strSubID.Get()))
     {
         str_Folder = OTFolders::Pubcred().Get();
-        
+
         if (false == OTDB::Exists(str_Folder, this->GetNymID().Get(), strSubID.Get()))
         {
             OTLog::vError("%s: Failure: Key Credential %s doesn't exist for Nym %s\n",
@@ -3082,11 +3082,11 @@ bool OTCredential::LoadSubkey(const OTString & strSubID)
             return false;
         }
     }
-    // ----------------------------------------------------    
+    // ----------------------------------------------------
     OTString strFileContents(OTDB::QueryPlainString(str_Folder,
                                                     this->GetNymID().Get(),
                                                     strSubID.Get()));
-    
+
     if (false == strFileContents.Exists())
     {
         OTLog::vError("%s: Failed trying to load keyCredential from local storage.\n", __FUNCTION__);
@@ -3126,9 +3126,9 @@ bool OTCredential::LoadSubcredentialFromString(const OTString & strInput, const 
     pSub->SetNymIDandSource(this->GetNymID(), this->GetSourceForNymID()); // Set NymID and source string that hashes to it.
     pSub->SetMasterCredID  (this->GetMasterCredID());         // Set master credential ID (onto this new subcredential...)
     // --------------------------------------
-    
+
     this->SetImportPassword(pImportPassword); // might be NULL.
-    
+
     // --------------------------------------
     if (false == pSub->LoadContractFromString(strInput))
     {
@@ -3136,9 +3136,9 @@ bool OTCredential::LoadSubcredentialFromString(const OTString & strInput, const 
         return false;
     }
     // --------------------------------------
-    
+
     this->SetImportPassword(NULL); // This is only set long enough for LoadContractFromString to use it. (Then back to NULL.)
-    
+
     // --------------------------------------
     m_mapSubcredentials.insert(std::pair<std::string, OTSubcredential *>(strSubID.Get(), pSub));
     theSubAngel.SetCleanupTargetPointer(NULL);
@@ -3153,7 +3153,7 @@ bool OTCredential::LoadSubcredential(const OTString & strSubID)
     if (false == OTDB::Exists(str_Folder, this->GetNymID().Get(), strSubID.Get()))
     {
         str_Folder = OTFolders::Pubcred().Get();
-        
+
         if (false == OTDB::Exists(str_Folder, this->GetNymID().Get(), strSubID.Get()))
         {
             OTLog::vError("%s: Failure: Credential %s doesn't exist for Nym %s\n",
@@ -3220,7 +3220,7 @@ bool OTCredential::AddNewSubkey(const int            nBits       /*=1024*/, // I
          // sign it...
         OTPasswordData thePWData("Signing new subkey... OTCredential::AddNewSubkey");
         OTIdentifier   theSubCredID;
-        
+
         // SignNewSubcredential uses m_Masterkey's actual signing key to sign "pSub the contract."
         //
         if (false == this->SignNewSubcredential(*pSub, theSubCredID, NULL == pPWData ? &thePWData : pPWData))
@@ -3245,7 +3245,7 @@ bool OTCredential::AddNewSubkey(const int            nBits       /*=1024*/, // I
         {
             *ppSubkey = pSub;
         }
-        
+
         return true;
     }
 }
@@ -3285,7 +3285,7 @@ bool OTCredential::AddNewSubcredential(const mapOfStrings & mapPrivate,
          // it...
         OTPasswordData thePWData("Signing new subcredential... OTCredential::AddNewSubcredential");
         OTIdentifier   theSubCredID;
-        
+
         // SignNewSubcredential uses m_Masterkey's actual signing key to sign "pSub the contract."
         //
         if (false == this->SignNewSubcredential(*pSub, theSubCredID, NULL == pPWData ? &thePWData : pPWData))
@@ -3326,7 +3326,7 @@ OTCredential * OTCredential::CreateMaster(const OTString     & strSourceForNymID
     pCredential->SetSourceForNymID(strSourceForNymID); // This also recalculates and sets  ** m_strNymID **
     // -------------------------------------
     // OTKeyCredential::SetPrivateContents will already set the public keys, which is why this argument is optional. But not all credentials are keys, so we must still retain the ability to explicitly set the public info. Even so, in the case of keys, private is below, so it will overwrite this.
-    
+
     if ((NULL != pmapPublic) &&
         (NULL != pmapPrivate)) // You cannot pass public info in here unless you also pass private info.
     {
@@ -3343,7 +3343,7 @@ OTCredential * OTCredential::CreateMaster(const OTString     & strSourceForNymID
     // Private info must be passed in to create a credential. This saves a copy of the map, and for keys also loads the map all up into the OTKeypair objects (in the case of OTKeyCredentials anyway -- not all credentials are keys.)
     //
     bool bContentsReady = false;
-    
+
     if (NULL != pmapPrivate) // Pre-generated keys were passed in for us to use.
         bContentsReady = pCredential->SetPrivateContents(*pmapPrivate); // So let's set them onto the master key.
     else
@@ -3361,7 +3361,7 @@ OTCredential * OTCredential::CreateMaster(const OTString     & strSourceForNymID
     else
     {
         OTPasswordData thePWData("Signing new master credential... OTCredential::CreateMaster");
-        
+
         // Using m_Masterkey's actual signing key to sign "m_Masterkey the contract."
         //
         if (false == pCredential->SignNewMaster(NULL == pPWData ? &thePWData : pPWData))
@@ -3373,7 +3373,7 @@ OTCredential * OTCredential::CreateMaster(const OTString     & strSourceForNymID
             return NULL;
         }
     }
-    
+
     // By this point, we have instantiated a new OTCredential, set the source string, hashed that
     // source string to get the NymID for this credential, and set the public and private info for
     // this credential (each a map of strings.) Since pCredential->m_Masterkey is derived from
@@ -3436,7 +3436,7 @@ const OTSubcredential * OTCredential::GetSubcredentialByIndex(int nIndex) const
     else
     {
         int nLoopIndex = -1;
-        
+
         FOR_EACH_CONST(mapOfSubcredentials, m_mapSubcredentials)
         {
             const std::string str_cred_id = (*it).first;
@@ -3464,7 +3464,7 @@ const std::string OTCredential::GetSubcredentialIDByIndex(size_t nIndex) const
     else
     {
         int nLoopIndex = -1;
-        
+
         FOR_EACH_CONST(mapOfSubcredentials, m_mapSubcredentials)
         {
             const std::string str_cred_id = (*it).first;
@@ -3511,7 +3511,7 @@ const OTKeypair & OTCredential::GetAuthKeypair(const listOfStrings * plistRevoke
         //
         return pKey->m_AuthentKey;
     }
-    
+
     // Didn't find any subcredentials we can use? For now, we'll return the master key instead.
     // This is purely for backwards compatibility reasons and eventually should be removed. That is,
     // masters should only be able to verify subkeys, and only subkeys should be able to do actions.
@@ -3545,7 +3545,7 @@ const OTKeypair & OTCredential::GetEncrKeypair(const listOfStrings * plistRevoke
         //
         return pKey->m_EncryptKey;
     }
-    
+
     // Didn't find any subcredentials we can use? For now, we'll return the master key instead.
     // This is purely for backwards compatibility reasons and eventually should be removed. That is,
     // masters should only be able to verify subkeys, and only subkeys should be able to do actions.
@@ -3579,7 +3579,7 @@ const OTKeypair & OTCredential::GetSignKeypair(const listOfStrings * plistRevoke
         //
         return pKey->m_SigningKey;
     }
-    
+
     // Didn't find any subcredentials we can use? For now, we'll return the master key instead.
     // This is purely for backwards compatibility reasons and eventually should be removed. That is,
     // masters should only be able to verify subkeys, and only subkeys should be able to do actions.
@@ -3647,7 +3647,7 @@ void OTCredential::ClearSubcredentials()
         // -----------
 		m_mapSubcredentials.erase(m_mapSubcredentials.begin());
 	} // while
-    // --------------------------- 
+    // ---------------------------
 }
 
 
@@ -3655,7 +3655,7 @@ void OTCredential::ClearSubcredentials()
 const OTString & OTSubcredential::GetPriCredential() const
 {
     OT_ASSERT_MSG(m_mapPrivateInfo.size() > 0, "ASSERT: GetPriCredential can only be called on private subcredentials.");
-    
+
     return m_strRawFile;
 }
 
@@ -3669,7 +3669,7 @@ const OTString & OTSubcredential::GetPubCredential()  const  // More intelligent
     // then the public version is stored in GetContents(), and return that.
     if ((m_mapPrivateInfo.size() > 0) && this->GetContents().Exists())
         return this->GetContents();
-    
+
     // Otherwise this is a server-side copy of a Nym's credential, with no private keys inside it.
     // In which case public info that would have been in GetContents (making room so we can have
     // the private keys in m_strRawFile) is now directly found in m_strRawFile, since that's all the
@@ -3717,7 +3717,7 @@ void OTCredential::SerializeIDs(OTString & strOutput, listOfStrings & listRevoke
         // If so, we'll skip serializing it here.
         //
         listOfStrings::iterator iter = std::find(listRevokedIDs.begin(), listRevokedIDs.end(), str_cred_id);
-        
+
         // Was it on the 'revoked' list?
         // If not, then the subcredential isn't revoked, so it's still valid.
         //
@@ -3726,7 +3726,7 @@ void OTCredential::SerializeIDs(OTString & strOutput, listOfStrings & listRevoke
         if (bSubcredValid || bShowRevoked)
         {
             const OTSubkey * pSubkey = dynamic_cast<const OTSubkey *>(pSub);
-            
+
             if (NULL != pSubkey)
                 strOutput.Concatenate("<keyCredential\n"
                                       " ID=\"%s\"\n"

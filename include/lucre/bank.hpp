@@ -157,7 +157,7 @@ public:
 
 	assert(BN_num_bytes(m_bnCoinID) == nCoinLength);
 	}
-	
+
     BIGNUM *ID()
 	{ return m_bnCoinID; }
     LAURIE_BOOLEAN GenerateCoinNumber(BIGNUM *bnNumber,const PublicBank &bank)
@@ -186,13 +186,13 @@ public:
 		theHash.CalculateDigest(theContents);
 		theHash.CopyTo(&xplusd[nCoinLength+DIGEST_LENGTH*n]);
 		*/
-		
+
 	    SHA1(xplusd,
-			 nCoinLength+DIGEST_LENGTH*n, 
+			 nCoinLength+DIGEST_LENGTH*n,
 			 &xplusd[nCoinLength+DIGEST_LENGTH*n]
 			 );
 	}
-		
+
 	HexDump("x|hash(x)=",xplusd,
 		nCoinLength+nDigestIterations*DIGEST_LENGTH);
 

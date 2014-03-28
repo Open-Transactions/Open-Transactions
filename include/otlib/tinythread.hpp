@@ -534,11 +534,11 @@ class thread {
 
     /// Return the thread ID of a thread object.
     id get_id() const;
-    
+
     // FellowTraveler: I had to add this function, for OpenSSL's multi-threaded code to work in OT.
     //
     unsigned long int get_raw_id() const;
-    
+
     /// Get the native handle for this thread.
     /// @note Under Windows, this is a @c HANDLE, and under POSIX systems, this
     /// is a @c pthread_t.
@@ -630,7 +630,7 @@ class thread::id {
 
     // FellowTraveler: I had to add this function, for OpenSSL's multi-threaded code to work in OT.
     //
-    unsigned long int get_raw_id() const { return mId; } 
+    unsigned long int get_raw_id() const { return mId; }
 
   private:
     unsigned long int mId;
@@ -684,10 +684,10 @@ namespace chrono {
 namespace this_thread {
   /// Return the thread ID of the calling thread.
 thread::id get_id();
-    
+
     // FellowTraveler: I had to add this function, for OpenSSL's multi-threaded code to work in OT.
 unsigned long int get_raw_id();
-    
+
   /// Yield execution to another thread.
   /// Offers the operating system the opportunity to schedule another thread
   /// that is ready to run on the current processor.

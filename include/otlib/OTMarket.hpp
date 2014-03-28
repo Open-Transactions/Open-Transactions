@@ -1,14 +1,14 @@
 /**************************************************************
- *    
+ *
  *  OTMarket.h
- *  
+ *
  */
 
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -138,15 +138,11 @@
 #ifndef __OTMARKET_HPP__
 #define __OTMARKET_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 #include "OTCron.hpp"
 #include "OTStorage.hpp"
-
-#include _CINTTYPES
 
 class OTTrade;
 
@@ -162,47 +158,46 @@ typedef std::multimap<long, OTOffer *>	mapOfOffers;
 // The same offers are also mapped (uniquely) to transaction number.
 typedef std::map  <long, OTOffer *>	mapOfOffersTrnsNum;
 
-
 class OTMarket : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.
     typedef OTContract ot_super;
 
-private:	
+private:
 	OTCron *	m_pCron;	// The Cron object that owns this Market.
 
 	OTDB::TradeListMarket * m_pTradeList;
 
 	mapOfOffers			m_mapBids;		// The buyers, ordered by price limit
 	mapOfOffers			m_mapAsks;		// The sellers, ordered by price limit
-	
+
 	mapOfOffersTrnsNum	m_mapOffers;	// All of the offers on a single list, ordered by transaction number.
-	
+
 	OTIdentifier	m_SERVER_ID;	// Always store this in any object that's associated with a specific server.
 
 	// Every market involves a certain asset type being traded in a certain currency.
 	OTIdentifier	m_ASSET_TYPE_ID;	// This is the GOLD market. (Say.)	| (GOLD for
 	OTIdentifier	m_CURRENCY_TYPE_ID;	// Gold is trading for DOLLARS.		|  DOLLARS, for example.)
-	
+
 	// Each Offer on the market must have a minimum increment that this divides equally into.
 	// (There is a "gold for dollars, minimum 1 oz" market, a "gold for dollars, min 500 oz" market, etc.)
 	long            m_lScale;
-	
+
 	long            m_lLastSalePrice;
     std::string     m_strLastSaleDate;
-	
+
 	// The server stores a map of markets, one for each unique combination of asset types.
 	// That's what this market class represents: one asset type being traded and priced in another.
 	// It could be wheat for dollars, wheat for yen, or gold for dollars, or gold for wheat, or
-	// gold for oil, or oil for wheat.  REALLY, THE TWO ARE JUST ARBITRARY ASSET TYPES. But in 
+	// gold for oil, or oil for wheat.  REALLY, THE TWO ARE JUST ARBITRARY ASSET TYPES. But in
 	// order to keep terminology clear, I will refer to one as the "asset type" and the other as
 	// the "currency type" so that it stays VERY clear which asset type is up for sale, and which
 	// asset type (currency type) it is being priced in. Other than that, the two are technically
 	// interchangeable.
-	
-public: 
+
+public:
 	bool ValidateOfferForMarket(OTOffer & theOffer, OTString * pReason=NULL);
-	
+
 	OTOffer *	GetOffer(const long & lTransactionNum);
 	bool		AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile=true, time_t tDateAddedToMarket=0);
 	bool		RemoveOffer(const long & lTransactionNum);
@@ -210,10 +205,10 @@ public:
 	// returns general information about offers on the market
 EXPORT	bool GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferCount);
 EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
-	
+
 	// Returns more detailed information about offers for a specific Nym.
 	bool GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int & nNymOfferCount);
-	
+
 	// Assumes a few things: Offer is part of Trade, and both have been
 	// proven already to be a part of this market.
 	// Basically the Offer is looked up on the Market by the Trade, and
@@ -232,21 +227,21 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
     void SetAssetID    (const OTIdentifier    & ASSET_ID) { m_ASSET_TYPE_ID    = ASSET_ID;    }
 	void SetCurrencyID (const OTIdentifier & CURRENCY_ID) { m_CURRENCY_TYPE_ID = CURRENCY_ID; }
 	void SetServerID   (const OTIdentifier   & SERVER_ID) { m_SERVER_ID        = SERVER_ID;   }
-	
+
 	inline const OTIdentifier & GetAssetID()	const { return m_ASSET_TYPE_ID; }
 	inline const OTIdentifier & GetCurrencyID()	const { return m_CURRENCY_TYPE_ID; }
-	inline const OTIdentifier & GetServerID()	const { return m_SERVER_ID; }	
-	
-	inline const long & GetScale() 
+	inline const OTIdentifier & GetServerID()	const { return m_SERVER_ID; }
+
+	inline const long & GetScale()
 		{ if (m_lScale < 1) m_lScale = 1; return m_lScale; }
-	inline void SetScale(const long & lScale) 
+	inline void SetScale(const long & lScale)
 		{ m_lScale = lScale; if (m_lScale < 1) m_lScale = 1; }
-	
-	inline const long & GetLastSalePrice() 
+
+	inline const long & GetLastSalePrice()
 		{ if (m_lLastSalePrice < 1) m_lLastSalePrice = 1; return m_lLastSalePrice; }
-	inline void SetLastSalePrice(const long & lLastSalePrice) 
+	inline void SetLastSalePrice(const long & lLastSalePrice)
 		{ m_lLastSalePrice = lLastSalePrice; if (m_lLastSalePrice < 1) m_lLastSalePrice = 1; }
-	
+
     const std::string & GetLastSaleDate() { return m_strLastSaleDate; }
 	// -----------------------------
 	long GetTotalAvailableAssets();
@@ -255,30 +250,30 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
 	OTMarket(const char * szFilename);
 	OTMarket(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_TYPE_ID,
 			 const OTIdentifier & CURRENCY_TYPE_ID, const long & lScale);
-	
+
 	virtual ~OTMarket();
-	
-	
+
+
 	// Overridden from OTContract.
 	virtual void GetIdentifier(OTIdentifier & theIdentifier);
-	
-	inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }	
+
+	inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 	inline OTCron * GetCron() { return m_pCron; }
 	// -----------------------------------------------------
 	bool LoadMarket();
 	bool SaveMarket();
-	
+
 	void InitMarket();
-	
+
 	virtual void Release();
 	void Release_Market();
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
 	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
-	
-	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents 
-	
-	virtual bool SaveContractWallet(std::ofstream & ofs);	
+
+	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
+
+	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
 #endif // __OTMARKET_HPP__

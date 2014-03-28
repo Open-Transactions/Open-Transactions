@@ -1287,7 +1287,7 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
     string strLocation = "convert_offerlist_to_maps";
 
     MapOfMaps * map_of_maps = NULL; // return value. (currently undefined or null or whatever. VerifyType("Map") will return false at this point.;
-    
+
     // LOOP THROUGH THE OFFERS and sort them into a map_of_maps, key is: scale-assetID-currencyID
     // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
     //
@@ -1344,7 +1344,7 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
                 //
                 sub_map = new SubMap();
                 (*sub_map)[strTransactionID] = &offerData;
-                
+
                 if (VerifyType(map_of_maps, "Map"))
                 {
                     map_of_maps = new MapOfMaps;

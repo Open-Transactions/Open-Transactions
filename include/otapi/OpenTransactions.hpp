@@ -141,9 +141,7 @@
 #ifndef __OPEN_TRANSACTIONS_INTERFACE_HPP__
 #define __OPEN_TRANSACTIONS_INTERFACE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #ifndef SWIG
 #ifndef NOT_SWIG

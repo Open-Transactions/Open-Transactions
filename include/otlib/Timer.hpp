@@ -3,7 +3,7 @@
 // =======
 // High Resolution Timer.
 // This timer is able to measure the elapsed time with 1 micro-second accuracy
-// in both Windows, Linux and Unix system 
+// in both Windows, Linux and Unix system
 //
 //  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
 // CREATED: 2003-01-13
@@ -15,17 +15,13 @@
 #ifndef TIMER_H_DEF
 #define TIMER_H_DEF
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
-#include _CINTTYPES
 
 #ifdef _WIN32   // Windows system specific
 #else          // Unix based system specific
 #include <sys/time.h>
 #endif
-
 
 class Timer
 {
@@ -36,7 +32,7 @@ EXPORT    ~Timer();                                   // default destructor
 EXPORT    void   start();                             // start timer
           void   stop();                              // stop the timer
           void   clear();                             // stop the timer and clear the contents.
-    
+
           double getElapsedTime();                    // get elapsed time in second
           double getElapsedTimeInSec();               // get elapsed time in second (same as getElapsedTime)
 EXPORT    double getElapsedTimeInMilliSec();          // get elapsed time in milli-second
@@ -49,7 +45,7 @@ protected:
 private:
     double startTimeInMicroSec;                 // starting time in micro-second
     double endTimeInMicroSec;                   // ending time in micro-second
-    int    stopped;                             // stop flag 
+    int    stopped;                             // stop flag
 #ifdef WIN32
     LARGE_INTEGER frequency;                    // ticks per second
     LARGE_INTEGER startCount;                   //

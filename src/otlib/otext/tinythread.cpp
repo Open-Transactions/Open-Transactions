@@ -268,16 +268,16 @@ thread::id thread::get_id() const
   return _pthread_t_to_ID(mHandle);
 #endif
 }
-    
+
     // FellowTraveler: I had to add this function, for OpenSSL's multi-threaded code to work in OT.
     //
 unsigned long int thread::get_raw_id() const
 {
     const thread::id the_id = this->get_id();
-    
+
     return the_id.get_raw_id();
 }
-    
+
 
 unsigned thread::hardware_concurrency()
 {
@@ -306,10 +306,10 @@ unsigned thread::hardware_concurrency()
     unsigned long int this_thread::get_raw_id()
     {
         thread::id the_id = this_thread::get_id();
-        
-        return the_id.get_raw_id();        
+
+        return the_id.get_raw_id();
     }
-    
+
     thread::id this_thread::get_id()
     {
 #if defined(_TTHREAD_WIN32_)
@@ -318,17 +318,17 @@ unsigned thread::hardware_concurrency()
         return _pthread_t_to_ID(pthread_self());
 #endif
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

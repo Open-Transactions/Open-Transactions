@@ -179,17 +179,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\otapi\main.hpp" />
-    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.h" />
+    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OpenTransactions.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI_Basic.hpp" />
-    <ClInclude Include="..\..\include\otapi\OTAPI_Exec.h" />
+    <ClInclude Include="..\..\include\otapi\OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OTClient.hpp" />
     <ClInclude Include="..\..\include\otapi\OTMadeEasy.hpp" />
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_command_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp" />
-    <ClInclude Include="..\..\include\otapi\OT_ME.h" />
     <ClInclude Include="..\..\include\otapi\OT_ME.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_me_switch.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_otapi_ot.hpp" />

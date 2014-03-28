@@ -1,13 +1,13 @@
 /************************************************************************
- *    
+ *
  *  OTLedger.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,20 +132,20 @@
 
 #include <stdafx.hpp>
 
-#include <OTLedger.hpp>
+#include "OTLedger.hpp"
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTAccount.hpp>
-#include <OTCheque.hpp>
-#include <OTPayment.hpp>
-#include <OTPseudonym.hpp>
-#include <OTMessage.hpp>
-#include <OTEnvelope.hpp>
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
+#include "OTAccount.hpp"
+#include "OTCheque.hpp"
+#include "OTPayment.hpp"
+#include "OTPseudonym.hpp"
+#include "OTMessage.hpp"
+#include "OTEnvelope.hpp"
 
 
 
-char const * const __TypeStrings[] = 
+char const * const __TypeStrings[] =
 {
 	"nymbox",           // the nymbox is per user account (versus per asset account) and is used to receive new transaction numbers (and messages.)
 	"inbox",            // each asset account has an inbox, with pending transfers as well as receipts inside.
@@ -163,7 +163,7 @@ char const * OTLedger::_GetTypeString(ledgerType theType) {
 }
 
 // ------------------------------------
-// This calls OTTransactionType::VerifyAccount(), which calls 
+// This calls OTTransactionType::VerifyAccount(), which calls
 // VerifyContractID() as well as VerifySignature().
 //
 // But first, this OTLedger version also loads the box receipts,
@@ -188,7 +188,7 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 		{
 			std::set<long> setUnloaded;
 			// if psetUnloaded passed in, then use it to return the #s that weren't there as box receipts.
-//			bool bLoadedBoxReceipts = 
+//			bool bLoadedBoxReceipts =
 			this->LoadBoxReceipts(&setUnloaded); // Note: Also useful for suppressing errors here.
 		}
 				break;
@@ -204,7 +204,7 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 		}
 			return false;
 	}
-	
+
 	return OTTransactionType::VerifyAccount(theNym);
 }
 /*
@@ -222,7 +222,7 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 		OTLog::Error("Error verifying signature in OTTransactionType::VerifyAccount.\n");
 		return false;
 	}
-	
+
 	OTLog::Output(4, "\nWe now know that...\n"
 			"1) The expected Account ID matches the ID that was found on the object.\n"
 			"2) The SIGNATURE VERIFIED on the object.\n\n");
@@ -243,13 +243,13 @@ bool OTLedger::SaveBoxReceipts()	// For ALL full transactions, save the actual b
         OTTransaction * pTransaction = (*it).second;
         OT_ASSERT(NULL != pTransaction);
         // -------------------------------
-        
+
         // We only save full versions of transactions as box receipts, not abbreviated versions.
         // (If it's not abbreviated, therefore it's the full version.)
         //
         if (false == pTransaction->IsAbbreviated()) // This way we won't see an error if it's not abbreviated.
             bRetVal = pTransaction->SaveBoxReceipt(*this);
-        
+
         if (!bRetVal)
         {
             OTLog::vError("OTLedger::SaveBoxReceipts: Failed calling SaveBoxReceipt on transaction: %ld.\n",
@@ -267,16 +267,16 @@ bool OTLedger::SaveBoxReceipt(const long & lTransactionNum)
 {
     // --------------------------------------------------------
     // First, see if the transaction itself exists on this ledger.
-    // Get a pointer to it. 
+    // Get a pointer to it.
     OTTransaction * pTransaction  = this->GetTransaction(lTransactionNum);
-    
+
     if (NULL == pTransaction)
     {
         OTLog::vOutput(0, "OTLedger::SaveBoxReceipt: Unable to save box receipt %ld: "
                        "couldn't find the transaction on this ledger.\n", lTransactionNum);
         return false;
     }
-    
+
     return  pTransaction->SaveBoxReceipt(*this);
 }
 // --------------------------------------------------------
@@ -286,16 +286,16 @@ bool OTLedger::DeleteBoxReceipt(const long & lTransactionNum)
 {
     // --------------------------------------------------------
     // First, see if the transaction itself exists on this ledger.
-    // Get a pointer to it. 
+    // Get a pointer to it.
     OTTransaction * pTransaction  = this->GetTransaction(lTransactionNum);
-    
+
     if (NULL == pTransaction)
     {
         OTLog::vOutput(0, "OTLedger::DeleteBoxReceipt: Unable to delete (overwrite) box receipt %ld: "
                        "couldn't find the transaction on this ledger.\n", lTransactionNum);
         return false;
     }
-    
+
     return  pTransaction->DeleteBoxReceipt(*this);
 }
 // --------------------------------------------------------
@@ -315,7 +315,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
     // Grab a copy of all the transaction #s stored inside this ledger.
     //
     std::set<long> the_set;
-    
+
     FOR_EACH(mapOfTransactions, m_mapTransactions)
     {
         OTTransaction * pTransaction = (*it).second;
@@ -326,7 +326,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
     // Now iterate through those numbers and for each, load the box receipt.
     //
     bool bRetVal = true;
-    
+
     FOR_EACH(std::set<long>, the_set)
 	{
 		long lSetNum = *it;
@@ -337,7 +337,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
 		// Failed loading the boxReceipt
 		//
         if ((true	==	pTransaction->IsAbbreviated()) &&
-			(false	==	this->LoadBoxReceipt(lSetNum))) 
+			(false	==	this->LoadBoxReceipt(lSetNum)))
         {
 			// WARNING: pTransaction must be re-Get'd below this point if needed, since pointer
 			// is bad if success on LoadBoxReceipt() call.
@@ -363,11 +363,11 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
         }
 		// else (success), no need for a block in that case.
 	}
-    
+
     // You might ask, why didn't I just iterate through the transactions directly and just call
     // LoadBoxReceipt on each one? Answer: Because that function actually deletes the transaction
     // and replaces it with a different object, if successful.
-    
+
     return bRetVal;
 }
 
@@ -382,7 +382,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
 bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
 {
     // First, see if the transaction itself exists on this ledger.
-    // Get a pointer to it. 
+    // Get a pointer to it.
     // Next, see if the appropriate file exists, and load it up from
     // local storage, into a string.
     // Finally, try to load the transaction from that string and see if successful.
@@ -390,7 +390,7 @@ bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
     // --------------------------------------------------------
 
     // First, see if the transaction itself exists on this ledger.
-    // Get a pointer to it. 
+    // Get a pointer to it.
     //
     OTTransaction * pTransaction  = this->GetTransaction(lTransactionNum);
 
@@ -407,12 +407,12 @@ bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
     // amount are correct. (The hash is actually a zero knowledge proof of this already.) This is good for speedier
     // optimization but may be worth revisiting in case any security holes.
     // UPDATE: We'll save this for optimization needs in the future.
-//  pBoxReceipt->SetAbbrevAdjustment(       pTransaction->GetAbbrevAdjustment() );    
+//  pBoxReceipt->SetAbbrevAdjustment(       pTransaction->GetAbbrevAdjustment() );
 //  pBoxReceipt->SetAbbrevDisplayAmount(    pTransaction->GetAbbrevDisplayAmount() );
  	// -------------------------------------------------
-	
+
 //  OTLog::vOutput(0, "DEBUGGING:  OTLedger::LoadBoxReceipt: ledger type: %s \n", GetTypeString());
-    
+
 	// OTTransaction::LoadBoxReceipt already checks pTransaction to see if it's abbreviated
 	// (which it must be.) So I don't bother checking twice.
 	//
@@ -431,7 +431,7 @@ bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
 		// -------------------------------------------------
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -445,9 +445,9 @@ bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
 bool OTLedger::LoadInbox()
 {
 //	print_stacktrace();
-	
+
 	bool bRetVal = LoadGeneric(OTLedger::inbox);
-	
+
 	return bRetVal;
 }
 
@@ -458,29 +458,29 @@ bool OTLedger::LoadInbox()
 
 bool OTLedger::LoadOutbox()
 {
-	return LoadGeneric(OTLedger::outbox);	
+	return LoadGeneric(OTLedger::outbox);
 }
 
 bool OTLedger::LoadNymbox()
 {
-	return LoadGeneric(OTLedger::nymbox);		
+	return LoadGeneric(OTLedger::nymbox);
 }
 // ---------------------------------------
 
 
 bool OTLedger::LoadInboxFromString(const OTString & strBox)
-{	
+{
 	return LoadGeneric(OTLedger::inbox, &strBox);
 }
 
 bool OTLedger::LoadOutboxFromString(const OTString & strBox)
 {
-	return LoadGeneric(OTLedger::outbox, &strBox);	
+	return LoadGeneric(OTLedger::outbox, &strBox);
 }
 
 bool OTLedger::LoadNymboxFromString(const OTString & strBox)
 {
-	return LoadGeneric(OTLedger::nymbox, &strBox);		
+	return LoadGeneric(OTLedger::nymbox, &strBox);
 }
 
 
@@ -488,7 +488,7 @@ bool OTLedger::LoadNymboxFromString(const OTString & strBox)
 
 bool OTLedger::LoadPaymentInbox()
 {
-	return LoadGeneric(OTLedger::paymentInbox);		
+	return LoadGeneric(OTLedger::paymentInbox);
 }
 
 bool OTLedger::LoadRecordBox()
@@ -504,7 +504,7 @@ bool OTLedger::LoadExpiredBox()
 
 
 bool OTLedger::LoadPaymentInboxFromString(const OTString & strBox)
-{	
+{
 	return LoadGeneric(OTLedger::paymentInbox, &strBox);
 }
 
@@ -523,7 +523,7 @@ bool OTLedger::LoadExpiredBoxFromString(const OTString & strBox)
 /**
   OTLedger::LoadGeneric is called by LoadInbox, LoadOutbox, and LoadNymbox.
   Does NOT VerifyAccount after loading -- caller is responsible to do that.
- 
+
   pString -- optional argument, for when  you prefer to load from a string
   instead of from a file.
  */
@@ -534,7 +534,7 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 	const char * pszType	= GetTypeString();
 	const char * pszFolder	= NULL;
     // --------------------------------------------------------
-	switch (theType) 
+	switch (theType)
 	{
 		case OTLedger::nymbox:			pszFolder = OTFolders::Nymbox()      .Get();    break;
 		case OTLedger::inbox:			pszFolder = OTFolders::Inbox()       .Get();    break;
@@ -550,7 +550,7 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 	m_strFoldername = pszFolder;
 	// --------------------------------------------------------
 	OTString strID;
-	GetIdentifier(strID);	
+	GetIdentifier(strID);
     // --------------------------------------------------------
 	const OTString strServerID(GetRealServerID());
 
@@ -559,11 +559,11 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 	// --------------------------------------------------------------------
 	OTString strFilename;
 	strFilename = strID.Get();
-	
+
 	const char * szFolder1name	= m_strFoldername.Get(); // "nymbox" (or "inbox" or "outbox")
 	const char * szFolder2name	= strServerID.Get();     // "nymbox/SERVER_ID"
 	const char * szFilename		= strFilename.Get();     // "nymbox/SERVER_ID/USER_ID"  (or "inbox/SERVER_ID/ACCT_ID" or "outbox/SERVER_ID/ACCT_ID")
-	// --------------------------------------------------------------------	
+	// --------------------------------------------------------------------
 	OTString strRawFile;
 
 	if (NULL != pString)	// Loading FROM A STRING.
@@ -573,8 +573,8 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 		if (false == OTDB::Exists(szFolder1name, szFolder2name, szFilename))
 		{
 			OTLog::vOutput(3, "%s does not exist in OTLedger::Load%s: %s%s%s%s%s\n",
-						   pszType,			pszType, 
-						   szFolder1name,	OTLog::PathSeparator(), 
+						   pszType,			pszType,
+						   szFolder1name,	OTLog::PathSeparator(),
 						   szFolder2name,	OTLog::PathSeparator(), szFilename);
 			return false;
 		}
@@ -582,45 +582,45 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 		// Try to load the ledger from local storage.
 		//
 		std::string strFileContents(OTDB::QueryPlainString(szFolder1name, szFolder2name, szFilename)); // <=== LOADING FROM DATA STORE.
-		
+
 		if (strFileContents.length() < 2)
 		{
-			OTLog::vError("OTLedger::LoadGeneric: Error reading file: %s%s%s%s%s\n", 
+			OTLog::vError("OTLedger::LoadGeneric: Error reading file: %s%s%s%s%s\n",
 						  szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 			return false;
 		}
 		// --------------------------------------------------------------------
 		strRawFile.Set(strFileContents.c_str());
 	}
-    // NOTE: No need to deal with OT ARMORED INBOX file format here, since 
+    // NOTE: No need to deal with OT ARMORED INBOX file format here, since
     //       LoadContractFromString already handles that automatically.
-	// --------------------------------------------------------------------	
+	// --------------------------------------------------------------------
 	if (false == strRawFile.Exists())
 	{
-		OTLog::vError("OTLedger::LoadGeneric: Unable to load box (%s%s%s%s%s) from empty string.\n", 
-					  szFolder1name, OTLog::PathSeparator(), 
+		OTLog::vError("OTLedger::LoadGeneric: Unable to load box (%s%s%s%s%s) from empty string.\n",
+					  szFolder1name, OTLog::PathSeparator(),
 					  szFolder2name, OTLog::PathSeparator(), szFilename);
 		return false;
-	}	
-	// --------------------------------------------------------------------	
+	}
+	// --------------------------------------------------------------------
 	bool bSuccess = this->LoadContractFromString(strRawFile);
-		
+
 	if (false == bSuccess)
 	{
-		OTLog::vError("Failed loading %s %s in OTLedger::Load%s: %s%s%s%s%s\n", 
-					  pszType, (NULL != pString) ? "from string" : "from file", pszType, 
-					  szFolder1name, OTLog::PathSeparator(), 
+		OTLog::vError("Failed loading %s %s in OTLedger::Load%s: %s%s%s%s%s\n",
+					  pszType, (NULL != pString) ? "from string" : "from file", pszType,
+					  szFolder1name, OTLog::PathSeparator(),
 					  szFolder2name, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
-	else 
+	else
 	{
-		OTLog::vOutput(2, "Successfully loaded %s %s in OTLedger::Load%s: %s%s%s%s%s\n", 
-					   pszType, (NULL != pString) ? "from string" : "from file", pszType, 
-					   szFolder1name, OTLog::PathSeparator(), 
+		OTLog::vOutput(2, "Successfully loaded %s %s in OTLedger::Load%s: %s%s%s%s%s\n",
+					   pszType, (NULL != pString) ? "from string" : "from file", pszType,
+					   szFolder1name, OTLog::PathSeparator(),
 					   szFolder2name, OTLog::PathSeparator(), szFilename);
 	}
-	
+
 	return bSuccess;
 }
 
@@ -630,11 +630,11 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 {
 	m_Type = theType;
-	
+
 	const char * pszFolder = NULL;
 	const char * pszType = GetTypeString();
-	
-	switch (theType) 
+
+	switch (theType)
 	{
 		case OTLedger::nymbox:			pszFolder = OTFolders::Nymbox().Get();			break;
 		case OTLedger::inbox:			pszFolder = OTFolders::Inbox().Get();			break;
@@ -647,29 +647,29 @@ bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 			OTLog::Error("OTLedger::SaveGeneric: Error: unknown box type. (This should never happen.)\n");
 			return false;
 	}
-	
+
 	m_strFoldername = pszFolder;  // <=======
 	// --------------------------------------------------------
 	OTString strID;
 	GetIdentifier(strID);
 	const OTString strServerID(GetRealServerID());
-	
+
 	if (false == m_strFilename.Exists())
-		m_strFilename.Format("%s%s%s", strServerID.Get(), OTLog::PathSeparator(), strID.Get()); 
-	
+		m_strFilename.Format("%s%s%s", strServerID.Get(), OTLog::PathSeparator(), strID.Get());
+
 	// --------------------------------------------------------------------
 	OTString strFilename;
 	strFilename = strID.Get();
-	
+
 	const char * szFolder1name	= m_strFoldername.Get(); // "nymbox" (or "inbox" or "outbox")
 	const char * szFolder2name	= strServerID.Get();     // "nymbox/SERVER_ID"
 	const char * szFilename		= strFilename.Get();     // "nymbox/SERVER_ID/USER_ID"  (or "inbox/SERVER_ID/ACCT_ID" or "outbox/SERVER_ID/ACCT_ID")
-	
+
 	OT_ASSERT(m_strFoldername.GetLength() > 2);
 	OT_ASSERT(m_strFilename.GetLength()   > 2);
 	// --------------------------------------------------------------------
 	OTString strRawFile;
-	
+
 	if (!SaveContractRaw(strRawFile))
 	{
 		OTLog::vError("OTLedger::SaveGeneric: Error saving %s (to string):\n%s%s%s%s%s\n", pszType,
@@ -680,7 +680,7 @@ bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 	//
 	OTString strFinal;
     OTASCIIArmor ascTemp(strRawFile);
-    
+
     if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
     {
 		OTLog::vError("OTLedger::SaveGeneric: Error saving %s (failed writing armored string):\n%s%s%s%s%s\n", pszType,
@@ -688,19 +688,19 @@ bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 		return false;
     }
     // --------------------------------------------------------------------
-	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFolder1name, 
+	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFolder1name,
 										 szFolder2name, szFilename); // <=== SAVING TO DATA STORE.
 	if (!bSaved)
 	{
 		OTLog::vError("OTLedger::SaveGeneric: Error writing %s to file: %s%s%s%s%s\n", pszType,
-					  szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);	
+					  szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
-	else 
-		OTLog::vOutput(2, "Successfully saved %s: %s%s%s%s%s\n", pszType, 
+	else
+		OTLog::vOutput(2, "Successfully saved %s: %s%s%s%s%s\n", pszType,
 					   szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 	// --------------------------------------------------------------------
-	
+
 	return bSaved;
 }
 
@@ -714,15 +714,15 @@ bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 bool OTLedger::CalculateHash(OTIdentifier & theOutput)
 {
     theOutput.Release();
-    
+
     bool bCalcDigest = theOutput.CalculateDigest(m_xmlUnsigned);
     if (false == bCalcDigest)
     {
         theOutput.Release();
-        OTLog::vError("OTLedger::CalculateHash: Failed trying to calculate hash (for a %s)\n", 
+        OTLog::vError("OTLedger::CalculateHash: Failed trying to calculate hash (for a %s)\n",
                       GetTypeString());
     }
-    
+
     return bCalcDigest;
 }
 
@@ -770,7 +770,7 @@ bool OTLedger::SaveNymbox(OTIdentifier * pNymboxHash/*=NULL*/) // If you pass th
 		OTLog::Error("Wrong ledger type passed to OTLedger::SaveNymbox.\n");
 		return false;
 	}
-	
+
     const bool bSaved = SaveGeneric(m_Type);
     // -----------------------------------
     // Sometimes the caller, when saving the Nymbox, wants to know what the
@@ -781,14 +781,14 @@ bool OTLedger::SaveNymbox(OTIdentifier * pNymboxHash/*=NULL*/) // If you pass th
     if (bSaved && (NULL != pNymboxHash))
     {
         pNymboxHash->Release();
-        
+
         if (!this->CalculateNymboxHash(*pNymboxHash))
             OTLog::Error("OTLedger::SaveNymbox: Failed trying to calculate nymbox hash.\n");
-//        
+//
 //        if (!pNymboxHash->CalculateDigest(m_xmlUnsigned))
 //            OTLog::Error("OTLedger::SaveNymbox: Failed trying to calculate nymbox hash.\n");
     }
-    
+
     // -----------------------------------
 	return bSaved;
 }
@@ -797,14 +797,14 @@ bool OTLedger::SaveNymbox(OTIdentifier * pNymboxHash/*=NULL*/) // If you pass th
 // If you're going to save this, make sure you sign it first.
 bool OTLedger::SaveInbox(OTIdentifier * pInboxHash/*=NULL*/) // If you pass the identifier in, the hash is recorded there.
 {
-	
+
 //	OTString strTempBlah, strTempBlah2(*this);
 //	GetIdentifier(strTempBlah);
 //	OTLog::vError("OTLedger::SaveInbox: DEBUGGING: SAVING INBOX for account: %s, number of transactions currently in the inbox: %d \n\n STACK TRACE:\n\n",
 //				  strTempBlah.Get(), GetTransactionCount());
 //
 //	print_stacktrace();
-	
+
 //	OTLog::vError("OTLedger::SaveInbox: (CONTINUED DEBUGGING):  INBOX CONTENTS: \n\n%s\n\n",
 //				  strTempBlah2.Get());
 
@@ -813,7 +813,7 @@ bool OTLedger::SaveInbox(OTIdentifier * pInboxHash/*=NULL*/) // If you pass the 
 		OTLog::Error("Wrong ledger type passed to OTLedger::SaveInbox.\n");
 		return false;
 	}
-	
+
     const bool bSaved = SaveGeneric(m_Type);
     // -----------------------------------
     // Sometimes the caller, when saving the Inbox, wants to know what the
@@ -824,12 +824,12 @@ bool OTLedger::SaveInbox(OTIdentifier * pInboxHash/*=NULL*/) // If you pass the 
     if (bSaved && (NULL != pInboxHash))
     {
         pInboxHash->Release();
-        
+
         if (!this->CalculateInboxHash(*pInboxHash))
 //      if (!pInboxHash->CalculateDigest(m_xmlUnsigned))
             OTLog::Error("OTLedger::SaveInbox: Failed trying to calculate Inbox hash.\n");
     }
-    
+
     // -----------------------------------
 	return bSaved;
 }
@@ -843,7 +843,7 @@ bool OTLedger::SaveOutbox(OTIdentifier * pOutboxHash/*=NULL*/) // If you pass th
 		OTLog::Error("Wrong ledger type passed to OTLedger::SaveOutbox.\n");
 		return false;
 	}
-	
+
     const bool bSaved = SaveGeneric(m_Type);
     // -----------------------------------
     // Sometimes the caller, when saving the Outbox, wants to know what the
@@ -854,12 +854,12 @@ bool OTLedger::SaveOutbox(OTIdentifier * pOutboxHash/*=NULL*/) // If you pass th
     if (bSaved && (NULL != pOutboxHash))
     {
         pOutboxHash->Release();
-        
+
         if (!this->CalculateOutboxHash(*pOutboxHash))
 //      if (!pOutboxHash->CalculateDigest(m_xmlUnsigned))
             OTLog::Error("OTLedger::SaveOutbox: Failed trying to calculate Outbox hash.\n");
     }
-    
+
     // -----------------------------------
 	return bSaved;
 }
@@ -876,7 +876,7 @@ bool OTLedger::SavePaymentInbox()
 		OTLog::Error("Wrong ledger type passed to OTLedger::SavePaymentInbox.\n");
 		return false;
 	}
-	
+
 	return SaveGeneric(m_Type);
 }
 
@@ -889,7 +889,7 @@ bool OTLedger::SaveRecordBox()
 		OTLog::Error("Wrong ledger type passed to OTLedger::SaveRecordBox.\n");
 		return false;
 	}
-	
+
 	return SaveGeneric(m_Type);
 }
 
@@ -901,7 +901,7 @@ bool OTLedger::SaveExpiredBox()
 		OTLog::Error("Wrong ledger type passed to OTLedger::SaveExpiredBox.\n");
 		return false;
 	}
-	
+
 	return SaveGeneric(m_Type);
 }
 
@@ -911,13 +911,13 @@ bool OTLedger::SaveExpiredBox()
 //static
 OTLedger * OTLedger::GenerateLedger(const OTIdentifier & theUserID,
 									const OTIdentifier & theAcctID, // AcctID should be "OwnerID" since could be acct OR Nym (with nymbox)
-									const OTIdentifier & theServerID, 
+									const OTIdentifier & theServerID,
 									const ledgerType theType,
 									bool  bCreateFile/*=false*/)
 {
 	OTLedger * pLedger = new OTLedger(theUserID, theAcctID, theServerID);
 	OT_ASSERT(NULL != pLedger);
-	
+
 	pLedger->GenerateLedger(theAcctID, theServerID, theType, bCreateFile);
 	pLedger->SetUserID(theUserID);
 
@@ -926,13 +926,13 @@ OTLedger * OTLedger::GenerateLedger(const OTIdentifier & theUserID,
 
 
 
-bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID, 
+bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 							  const OTIdentifier & theServerID, const ledgerType theType,
 							  bool bCreateFile/*=false*/)
-{	
+{
 	// First we set the "Safe" ID and try to load the file, to make sure it doesn't already exist.
 	OTString strID(theAcctID), strServerID(theServerID);
-	
+
 	switch (theType) {
 		case OTLedger::nymbox:	// stored by NymID ONLY.
 			m_strFoldername = OTFolders::Nymbox().Get();
@@ -969,7 +969,7 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 		default:
 			OT_FAIL_MSG("OTLedger::GenerateLedger: GenerateLedger is only for message, nymbox, inbox, outbox, and paymentInbox ledgers.\n");
 	}
-	
+
 	m_Type	= theType; // Todo make this Get/Set methods
 
 	SetRealAccountID(theAcctID); // set this before calling LoadContract... (In this case, will just be the Nym ID as well...)
@@ -980,22 +980,22 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 		// --------------------------------------------------------------------
 		OTString strFilename;
 		strFilename = strID.Get();
-		
+
 		const char * szFolder1name	= m_strFoldername.Get(); // "nymbox" (or "inbox" or "outbox")
 		const char * szFolder2name	= strServerID.Get();     // "nymbox/SERVER_ID"
 		const char * szFilename		= strFilename.Get();     // "nymbox/SERVER_ID/USER_ID"  (or "inbox/SERVER_ID/ACCT_ID" or "outbox/SERVER_ID/ACCT_ID")
-		// --------------------------------------------------------------------	
-		
+		// --------------------------------------------------------------------
+
 		if (OTDB::Exists(szFolder1name, szFolder2name, szFilename))
 		{
-			OTLog::vOutput(0, "ERROR: trying to generate ledger that already exists: %s%s%s%s%s\n", 
+			OTLog::vOutput(0, "ERROR: trying to generate ledger that already exists: %s%s%s%s%s\n",
 						   szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 			return false;
 		}
 		// --------------------------------------------------------------------
-	
+
 		// Okay, it doesn't already exist. Let's generate it.
-		OTLog::vOutput(0, "Generating %s%s%s%s%s\n", 
+		OTLog::vOutput(0, "Generating %s%s%s%s%s\n",
 					   szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 	}
 	// --------------------------------------------------
@@ -1005,10 +1005,10 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 		// Plus it helps verify things.
 		OTAccount * pAccount = OTAccount::LoadExistingAccount(theAcctID, theServerID);
 		OTCleanup<OTAccount> theAccountGuardian(pAccount); // No worries about having to clean it up.
-		
+
 		if (NULL != pAccount)
 			SetUserID(pAccount->GetUserID());
-		else 
+		else
 		{
 			OTLog::Error("OTLedger::GenerateLedger: Failed in OTAccount::LoadExistingAccount().\n");
 			return false;
@@ -1021,7 +1021,7 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 		//
 		OTAccount * pAccount = OTAccount::LoadExistingAccount(theAcctID, theServerID);
 		OTCleanup<OTAccount> theAccountGuardian(pAccount); // No worries about having to clean it up.
-		
+
 		if (NULL != pAccount) // Found it!
 			SetUserID(pAccount->GetUserID());
 		else // Must be based on NymID, not AcctID (like Nymbox. But RecordBox can go either way.)
@@ -1029,7 +1029,7 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 			SetUserID(theAcctID); // In the case of nymbox, and sometimes with recordBox, the acct ID IS the user ID.
 		}
 	}
-	else 
+	else
 	{
         // In the case of paymentInbox, expired box, and nymbox, the acct ID IS the user ID.
         // (Should change it to "owner ID" to make it sound right either way.)
@@ -1037,7 +1037,7 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 		SetUserID(theAcctID);
 	}
 
-	// Notice I still don't actually create the file here.  The programmer still has to call 
+	// Notice I still don't actually create the file here.  The programmer still has to call
 	// "SaveNymbox", "SaveInbox" or "SaveOutbox" or "SaveRecordBox" or "SavePaymentInbox" to
     // actually save the file. But he cannot do that unless he generates it first here, and
     // the "bCreateFile" parameter insures that he isn't overwriting one that is already there
@@ -1045,8 +1045,8 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 	//
 	SetPurportedAccountID(theAcctID);
 	SetPurportedServerID(theServerID);
-	
-	return true;	
+
+	return true;
 }
 
 
@@ -1055,13 +1055,13 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 
 void OTLedger::InitLedger()
 {
-	m_strContractType	= "LEDGER"; // CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM 
-	
+	m_strContractType	= "LEDGER"; // CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM
+
 	// This is the default type for a ledger.
 	// Inboxes and Outboxes are generated with the right type, with files.
 	// Until the GenerateLedger function is called, message is the default type.
 	m_Type = OTLedger::message;
-	
+
 	m_bLoadedLegacyData = false;
 }
 
@@ -1083,7 +1083,7 @@ OTLedger::OTLedger(const OTIdentifier & theAccountID, const OTIdentifier & theSe
 : OTTransactionType(), m_Type(OTLedger::message), m_bLoadedLegacyData(false)
 {
 	InitLedger();
-	
+
 	SetRealAccountID(theAccountID);
 	SetRealServerID(theServerID);
 }
@@ -1108,10 +1108,10 @@ mapOfTransactions & OTLedger::GetTransactionMap()
 bool OTLedger::RemoveTransaction(long lTransactionNum, bool bDeleteIt/*=true*/)
 {
     const char * szFunc = "OTLedger::RemoveTransaction";
-    
+
 	// See if there's something there with that transaction number.
 	mapOfTransactions::iterator it = m_mapTransactions.find(lTransactionNum);
-	
+
 	// If it's not already on the list, then there's nothing to remove.
 	if ( it == m_mapTransactions.end() )
 	{
@@ -1120,12 +1120,12 @@ bool OTLedger::RemoveTransaction(long lTransactionNum, bool bDeleteIt/*=true*/)
 		return false;
 	}
 	// Otherwise, if it WAS already there, remove it properly.
-	else 
+	else
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
 		m_mapTransactions.erase(it);
-        
+
         if (bDeleteIt)
         {
             delete pTransaction;
@@ -1140,7 +1140,7 @@ bool OTLedger::AddTransaction(OTTransaction & theTransaction)
 {
 	// See if there's something else already there with the same transaction number.
 	mapOfTransactions::iterator it = m_mapTransactions.find(theTransaction.GetTransactionNum());
-	
+
 	// If it's not already on the list, then add it...
 	if ( it == m_mapTransactions.end() )
 	{
@@ -1149,12 +1149,12 @@ bool OTLedger::AddTransaction(OTTransaction & theTransaction)
 		return true;
 	}
 	// Otherwise, if it was already there, log an error.
-	else 
+	else
 	{
 		OTLog::vError("Attempt to add Transaction to ledger when already there for that number: %ld\n",
 					  theTransaction.GetTransactionNum());
 	}
-	
+
 	return false;
 }
 
@@ -1162,19 +1162,19 @@ bool OTLedger::AddTransaction(OTTransaction & theTransaction)
 
 
 
-OTTransaction * OTLedger::GetTransaction(const OTTransaction::transactionType theType) 
+OTTransaction * OTLedger::GetTransaction(const OTTransaction::transactionType theType)
 {
 	// loop through the items that make up this transaction
-	
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
 		if (theType == pTransaction->GetType())
 			return pTransaction;
 	}
-	
+
 	return NULL;
 }
 
@@ -1187,14 +1187,14 @@ int OTLedger::GetTransactionIndex(long lTransactionNum)
     // If a specific transaction is found, returns its index inside the ledger
     //
     int nIndex = -1;
-    
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-        
+
         ++nIndex; // 0 on first iteration.
-        
+
 		if (pTransaction->GetTransactionNum() == lTransactionNum)
         {
 			return nIndex;
@@ -1209,12 +1209,12 @@ int OTLedger::GetTransactionIndex(long lTransactionNum)
 OTTransaction * OTLedger::GetTransaction(long lTransactionNum)
 {
 	// loop through the transactions inside this ledger
-    
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-        
+
 		if (pTransaction->GetTransactionNum() == lTransactionNum)
         {
 			return pTransaction;
@@ -1232,16 +1232,16 @@ OTTransaction * OTLedger::GetTransaction(long lTransactionNum)
 int OTLedger::GetTransactionCountInRefTo(const long lReferenceNum)
 {
     int nCount = 0;
-    
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
         if (pTransaction->GetReferenceToNum() == lReferenceNum)
             nCount++;
 	}
-	
+
 	return nCount;
 }
 
@@ -1255,20 +1255,20 @@ OTTransaction * OTLedger::GetTransactionByIndex(int nIndex)
 	// Out of bounds.
 	if ((nIndex < 0) || (nIndex >= GetTransactionCount()))
 		return NULL;
-	
+
 	int nIndexCount = -1;
-	
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		nIndexCount++; // On first iteration, this is now 0, same as nIndex.
-		OTTransaction * pTransaction = (*it).second; 
+		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT((NULL != pTransaction)); // Should always be good.
-		
+
 		// If this transaction is the one at the requested index
 		if (nIndexCount == nIndex)
 			return pTransaction;
 	}
-	
+
 	return NULL; // Should never reach this point, since bounds are checked at the top.
 }
 
@@ -1284,14 +1284,14 @@ OTTransaction * OTLedger::GetReplyNotice(const long & lRequestNum)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
         if (OTTransaction::replyNotice != pTransaction->GetType()) // <=======
             continue;
         // ---------------------------------
 		if (pTransaction->GetRequestNum() == lRequestNum)
 			return pTransaction;
 	}
-	
+
 	return NULL;
 }
 
@@ -1303,25 +1303,25 @@ OTTransaction * OTLedger::GetTransferReceipt(long lNumberOfOrigin)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
 		if (OTTransaction::transferReceipt == pTransaction->GetType())
 		{
 			OTString strReference;
 			pTransaction->GetReferenceString(strReference);
-			
-			OTItem * pOriginalItem = OTItem::CreateItemFromString(strReference, 
-																  pTransaction->GetPurportedServerID(), 
-																  pTransaction->GetReferenceToNum()); 
+
+			OTItem * pOriginalItem = OTItem::CreateItemFromString(strReference,
+																  pTransaction->GetPurportedServerID(),
+																  pTransaction->GetReferenceToNum());
 			OT_ASSERT(NULL != pOriginalItem);
 			OTCleanup<OTItem> theItemAngel(*pOriginalItem);
-			
-			if (pOriginalItem->GetType() != OTItem::acceptPending) 
+
+			if (pOriginalItem->GetType() != OTItem::acceptPending)
 			{
 				OTLog::vError("OTLedger::%s: Wrong item type attached to transferReceipt!\n",
                               __FUNCTION__);
 				return NULL;
 			}
-			else 
+			else
 			{
                 // Note: the acceptPending USED to be "in reference to" whatever the pending
                 // was in reference to. (i.e. the original transfer.) But since the KacTech
@@ -1343,7 +1343,7 @@ OTTransaction * OTLedger::GetTransferReceipt(long lNumberOfOrigin)
 			}
 		}
 	}
-	
+
 	return NULL;
 }
 
@@ -1368,18 +1368,18 @@ OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
     {
         OTTransaction * pCurrentReceipt = (*it).second;
         OT_ASSERT(NULL != pCurrentReceipt);
-        
+
         if ((pCurrentReceipt->GetType() != OTTransaction::chequeReceipt) &&
             (pCurrentReceipt->GetType() != OTTransaction::voucherReceipt))
             continue;
         // ----------------------------------------
         OTString strDepositChequeMsg;
         pCurrentReceipt->GetReferenceString(strDepositChequeMsg);
-        
+
         OTItem * pOriginalItem = OTItem::CreateItemFromString(strDepositChequeMsg, GetPurportedServerID(),
                                                               pCurrentReceipt->GetReferenceToNum());
         OTCleanup<OTItem> theItemAngel(pOriginalItem);
-        
+
         if (NULL == pOriginalItem)
         {
             OTLog::vError("%s: Expected original depositCheque request item to be inside the chequeReceipt "
@@ -1402,7 +1402,7 @@ OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
             OTCheque * pCheque = new OTCheque;
             OT_ASSERT(NULL != pCheque);
             OTCleanup<OTCheque> theChequeAngel(pCheque);
-            
+
             if (false == ((strCheque.GetLength() > 2) &&
                           pCheque->LoadContractFromString(strCheque)))
             {
@@ -1417,14 +1417,14 @@ OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
             // (at least optionally), so we might as well just load it up, verify it,
             // and return it. (That's why we are still loading the cheque here instead
             // of checking the number of origin.)
-            else 
+            else
             {
                 // Success loading the cheque.
                 // Let's see if it's the right cheque...
                 if (pCheque->GetTransactionNum() == lChequeNum)
                 {
                     // We found it! Let's return a pointer to pCurrentReceipt
-                    
+
                     // Also return pCheque, if the caller wants it (otherwise delete it.)
                     //
                     if (NULL != ppChequeOut) // caller wants us to return the cheque pointer as well.
@@ -1432,7 +1432,7 @@ OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
                         (*ppChequeOut) = pCheque; // now caller is responsible to delete.
                         theChequeAngel.SetCleanupTargetPointer(NULL); // we will no longer clean it up.
                     }
-                    
+
                     return pCurrentReceipt;
                 }
             }
@@ -1458,14 +1458,14 @@ OTTransaction * OTLedger::GetFinalReceipt(long lReferenceNum)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
         if (OTTransaction::finalReceipt != pTransaction->GetType()) // <=======
             continue;
         // ---------------------------------
 		if (pTransaction->GetReferenceToNum() == lReferenceNum)
 			return pTransaction;
 	}
-	
+
 	return NULL;
 }
 
@@ -1482,7 +1482,7 @@ OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the o
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
         if (OTTransaction::paymentReceipt != pTransaction->GetType()) // <=======
             continue;
         // ---------------------------------
@@ -1492,12 +1492,12 @@ OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the o
             {
                 OTString strPayment;
                 pTransaction->GetReferenceString(strPayment);
-                
+
                 if (!strPayment.Exists())
                 {
                     OTPayment * pPayment = new OTPayment(strPayment);
                     OT_ASSERT(NULL != pPayment);
-                    
+
                     if (pPayment->IsValid() && pPayment->SetTempValues())
                         *ppPaymentOut = pPayment; // CALLER RESPONSIBLE TO DELETE.
                     else
@@ -1513,11 +1513,11 @@ OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the o
                     OTLog::vError("%s: Error: Unexpected: payment instrument was empty string, on a paymentReceipt.\n",
                                   __FUNCTION__);
             }
-            
+
 			return pTransaction;
         }
 	}
-	
+
 	return NULL;
 }
 
@@ -1532,19 +1532,19 @@ OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the o
 ///
 /// returns a new balance statement item containing the inbox report
 /// CALLER IS RESPONSIBLE TO DELETE.
-OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTransaction & theOwner, 
-											OTPseudonym & theNym, const OTAccount & theAccount, OTLedger & theOutbox) 
+OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTransaction & theOwner,
+											OTPseudonym & theNym, const OTAccount & theAccount, OTLedger & theOutbox)
 {
 	if (OTLedger::inbox != GetType())
 	{
 		OTLog::Error("OTLedger::GenerateBalanceStatement: Wrong ledger type.\n");
 		return NULL;
 	}
-	
+
 	// ------------------------------------------------------
-	
+
 	const OTIdentifier theNymID(theNym);
-	
+
 	if (
 		(theAccount.GetPurportedAccountID()	!= GetPurportedAccountID()) ||
 		(theAccount.GetPurportedServerID()	!= GetPurportedServerID()) ||
@@ -1578,10 +1578,10 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 		return NULL;
 	// ---------------------------------------------------------
 	// COPY THE ISSUED TRANSACTION NUMBERS FROM THE NYM to the MESSAGE NYM.
-	
+
 	OTPseudonym theMessageNym;
-	    
-	theMessageNym.HarvestIssuedNumbers(this->GetPurportedServerID(), 
+
+	theMessageNym.HarvestIssuedNumbers(this->GetPurportedServerID(),
                                        theNym /*unused in this case, not saving to disk*/, theNym, false); // bSave = false;
 	// -------------------------------------
 
@@ -1600,7 +1600,7 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 			theMessageNym.RemoveIssuedNum(theOwner.GetRealServerID(), theOwner.GetTransactionNum());  // a transaction number is being used, and REMOVED from my list of responsibility,
 			theMessageNym.RemoveTransactionNum(theOwner.GetRealServerID(), theOwner.GetTransactionNum());  // a transaction number is being used, and REMOVED from my list of  available numbers.
 			break;
-            
+
         case OTTransaction::transfer:
 		case OTTransaction::marketOffer:
 		case OTTransaction::paymentPlan:
@@ -1612,51 +1612,51 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 			// Since the Balance Statement ANTICIPATES SUCCESS, NOT FAILURE, it assumes the number
 			// to be "in play" here, and thus DOES NOT remove it (vs the cases above, which do.)
 			break;
-		default: 
+		default:
 			// Error
 			OTLog::vError("OTLedger::%s: wrong owner transaction type: %s\n",
 						  __FUNCTION__, theOwner.GetTypeString());
 			break;
 	}
-	
+
 	OTString	strMessageNym(theMessageNym); // Okay now we have the transaction numbers in this MessageNym string.
 
 	pBalanceItem->SetAttachment(strMessageNym);				// <======== This is where the server will read the transaction numbers from (A nym in item.m_ascAttachment)
-	
+
 	// ---------------------------------------------------------
 
 	long lCurrentBalance = theAccount.GetBalance();
-	
+
 	pBalanceItem->SetAmount(lCurrentBalance + lAdjustment);  // <==== Here's the new (predicted) balance for after the transaction is complete. (item.GetAmount)
-	
+
 	// ---------------------------------------------------------
 	// loop through the INBOX transactions, and produce a sub-item onto pBalanceItem for each, which will
 	// be a report on each transaction in this inbox, therefore added to the balance item.
 	// (So the balance item contains a complete report on the receipts in this inbox.)
-	
+
 	OTLog::Output(2, "About to loop through the inbox items and produce a report for each one...\n");
-	
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
 		OTLog::Output(2, "Producing a report...\n");
 
 		// it only reports receipts where we don't yet have balance agreement.
 //      pTransaction->ProduceInboxReportItem(*pBalanceItem, const_cast<OTTransaction &>(theOwner));
 		pTransaction->ProduceInboxReportItem(*pBalanceItem);	// <======= This function adds a receipt sub-item to pBalanceItem, where appropriate for INBOX items.
 	}
-	
+
 	// ---------------------------------------------------------
-	
+
 	theOutbox.ProduceOutboxReport(*pBalanceItem);	// <======= This function adds receipt sub-items to pBalanceItem, where appropriate for the OUTBOX items.
-	
+
 	// ---------------------------------------------------------
-	
+
 	pBalanceItem->SignContract(theNym); // <=== Sign, save, and return. OTTransactionType needs to weasel in a "date signed" variable.
 	pBalanceItem->SaveContract();
-	
+
 	return pBalanceItem;
 }
 
@@ -1669,39 +1669,39 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 long OTLedger::GetTotalPendingValue()
 {
 	long lTotalPendingValue = 0;
-	
+
 	if (OTLedger::inbox != GetType())
 	{
 		OTLog::Error("OTLedger::GetTotalPendingValue: Wrong ledger type (expected inbox).\n");
 		return 0;
 	}
-	
+
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
 		if (pTransaction->GetType() == OTTransaction::pending)
 			lTotalPendingValue += pTransaction->GetReceiptAmount(); // this actually loads up the original item and reads the amount.
-	}	
-	
+	}
+
 	return lTotalPendingValue;
 }
 
 
 
 // Called by the above function.
-// This ledger is an outbox, and it is creating a report of itself, 
+// This ledger is an outbox, and it is creating a report of itself,
 // adding each report item to this balance item.
 // DO NOT call this, it's meant to be used only by above function.
-void OTLedger::ProduceOutboxReport(OTItem & theBalanceItem)  
+void OTLedger::ProduceOutboxReport(OTItem & theBalanceItem)
 {
 	if (OTLedger::outbox != GetType())
 	{
 		OTLog::vError("%s: Wrong ledger type.\n");
 		return;
 	}
-	
+
 	// loop through the OUTBOX transactions, and produce a sub-item onto theBalanceItem for each, which will
 	// be a report on each pending transfer in this outbox, therefore added to the balance item.
 	// (So the balance item contains a complete report on the outoing transfers in this outbox.)
@@ -1709,7 +1709,7 @@ void OTLedger::ProduceOutboxReport(OTItem & theBalanceItem)
 	{
 		OTTransaction * pTransaction = (*it).second;
 		OT_ASSERT(NULL != pTransaction);
-		
+
 		// it only reports receipts where we don't yet have balance agreement.
 		pTransaction->ProduceOutboxReportItem(theBalanceItem);	// <======= This function adds a pending transfer sub-item to theBalanceItem, where appropriate.
 	}
@@ -1747,7 +1747,7 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 	const int64_t lTransactionNum = pTransaction->GetTransactionNum();
 
 	// Update: for transactions in ABBREVIATED form, the string is empty, since it has never actually
-	// been signed (in fact the whole point32_t with abbreviated transactions in a ledger is that they 
+	// been signed (in fact the whole point32_t with abbreviated transactions in a ledger is that they
 	// take up very little room, and have no signature of their own, but exist merely as XML tags on
 	// their parent ledger.)
 	//
@@ -1762,7 +1762,7 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: good index but uncovered NULL "
-				"pointer after trying to load full version of receipt (from abbreviated) at index: %d\n", 
+				"pointer after trying to load full version of receipt (from abbreviated) at index: %d\n",
 				__FUNCTION__, nIndex);
 			return NULL; // Weird. Clearly I need the full box receipt, if I'm to get the instrument out of it.
 		}
@@ -1775,8 +1775,8 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 	-- Each transaction contains (1) OTMessage in "in ref to" field, which in turn contains an encrypted
 	OTPayment in the payload field, which contains the actual financial instrument.
 	-- *** Therefore, this function, based purely on ledger index (as we iterate):
-	1. extracts the OTMessage from the Transaction "in ref to" field (for the transaction at that index), 
-	2. then decrypts the payload on that message, producing an OTPayment object, 
+	1. extracts the OTMessage from the Transaction "in ref to" field (for the transaction at that index),
+	2. then decrypts the payload on that message, producing an OTPayment object,
 	3. ...which contains the actual instrument.
 	*/
 	// ------------------------------------------------
@@ -1816,14 +1816,14 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 		// ------------------------------------------------
 		// By this point, the original OTMessage has been loaded from string successfully.
 		// Now we need to decrypt the payment on that message (which contains the instrument
-		// itself that we need to return.) We decrypt it the same way as we do in 
+		// itself that we need to return.) We decrypt it the same way as we do in
 		// OTAPI_Wrap::GetNym_MailContentsByIndex():
 		//
 
 		// SENDER:     pMsg->m_strNymID
 		// RECIPIENT:  pMsg->m_strNymID2
 		// INSTRUMENT: pMsg->m_ascPayload (in an OTEnvelope)
-		//	
+		//
 		OTEnvelope	theEnvelope;
 		OTString	strEnvelopeContents;
 
@@ -1843,7 +1843,7 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 			OTPayment * pPayment = new OTPayment(strEnvelopeContents);  // strEnvelopeContents contains a PURSE or CHEQUE (etc) and not specifically a PAYMENT.
             OT_ASSERT(NULL != pPayment);
             OTCleanup<OTPayment> thePaymentAngel(pPayment);
-            
+
 			if (!pPayment->IsValid())
 				OTLog::vOutput(0, "%s: Failed: after decryption, payment is invalid. "
 				"Contents:\n\n%s\n\n", __FUNCTION__, strEnvelopeContents.Get());
@@ -1873,7 +1873,7 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 bool OTLedger::LoadLedgerFromString(const OTString & theStr)
 {
 	bool bLoaded = false;
-	
+
 	// Todo security: Look how this is done...
 	// Any vulnerabilities?
 	//
@@ -1900,17 +1900,17 @@ bool OTLedger::LoadLedgerFromString(const OTString & theStr)
 
 
 // SignContract will call this function at the right time.
-void OTLedger::UpdateContents() // Before transmission or serialization, this is where the ledger saves its contents 
+void OTLedger::UpdateContents() // Before transmission or serialization, this is where the ledger saves its contents
 {
 	bool	bSavingAbbreviated	= true;	// The default. Only OTLedger::message changes this to false.
 	int		nPartialRecordCount	= 0;	// We store this, so we know how many abbreviated records to read back later.
-	
+
 	// --------------------------------
-	switch (this->GetType()) 
+	switch (this->GetType())
 	{
 			// a message ledger stores the full receipts directly inside itself. (No separate files.)
 		case OTLedger::message:
-			bSavingAbbreviated	= false; 
+			bSavingAbbreviated	= false;
 			nPartialRecordCount	= 0; // In this case (OTLedger::message), they are all FULL records, not abbreviated.
 			break;
 			// -----------------------------
@@ -1937,20 +1937,20 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 	// I don't want to inadvertantly substitute the real ID for a bad one and then sign it.
 	// So if there's a bad one in there when I read it, THAT's the one that I write as well!
 	//
-	OTString	strType(GetTypeString()), 
-				strLedgerAcctID(GetPurportedAccountID()), 
+	OTString	strType(GetTypeString()),
+				strLedgerAcctID(GetPurportedAccountID()),
 				strLedgerAcctServerID(GetPurportedServerID()),
 				strUserID(GetUserID());
 	// -----------------------------------------
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-	
-//	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
-	// ------------------------------------------------------    
+
+//	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
+	// ------------------------------------------------------
     OTString strLedgerContents = "";
-    
+
     int nPartialACTUALCount = 0;
-    
+
 	// loop through the transactions and print them out here.
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
@@ -1970,7 +1970,7 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 		// ------------------------------
 		else // true == bSavingAbbreviated	// ALL OTHER ledger types are saved here in abbreviated form.
 		{
-			switch (this->GetType()) 
+			switch (this->GetType())
 			{
 					// -----------------------------
 				case OTLedger::nymbox:          pTransaction->SaveAbbreviatedNymboxRecord(strTransaction);	break;
@@ -1982,21 +1982,21 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 					// -----------------------------
 				default: // todo: possibly change this to an OT_ASSERT. security.
 					OTLog::Error("OTLedger::UpdateContents: Error: unexpected box type (2nd block). (This should never happen. Skipping.)\n");
-                    
+
                     OT_FAIL_MSG("ASSERT: OTLedger::UpdateContents: Unexpected ledger type.");
-                    
+
 					continue;
 			}
-            
+
             nPartialACTUALCount++; // Just in case the number actually written matches the count in the map.
-            
+
 			strLedgerContents.Concatenate("%s", strTransaction.Get());
 		} // ------------------------------
 	}// FOR_EACH(transactions)
     // ------------------------------------------------------
-    
+
     OT_ASSERT_MSG(nPartialACTUALCount == nPartialRecordCount, "ASSERT: OTLedger::UpdateContents: OT_ASSERT_MSG(nPartialACTUALCount == nPartialRecordCount)");
-    
+
     // ------------------------------------------------------
     // HERE IS WHERE WE ACTUALLY BUILD THE STRING:
     //
@@ -2005,15 +2005,15 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
                               "numPartialRecords=\"%d\"\n "
                               "accountID=\"%s\"\n "
                               "userID=\"%s\"\n "
-                              "serverID=\"%s\" >\n\n", m_strVersion.Get(), 
+                              "serverID=\"%s\" >\n\n", m_strVersion.Get(),
                               strType.Get(),
                               nPartialRecordCount,
-                              strLedgerAcctID.Get(), 
-                              strUserID.Get(), 
-                              strLedgerAcctServerID.Get());		
+                              strLedgerAcctID.Get(),
+                              strUserID.Get(),
+                              strLedgerAcctServerID.Get());
 	// ------------------------------------------------------
-	m_xmlUnsigned.Concatenate("%s", strLedgerContents.Get());				
-	m_xmlUnsigned.Concatenate("</accountLedger>\n");				
+	m_xmlUnsigned.Concatenate("%s", strLedgerContents.Get());
+	m_xmlUnsigned.Concatenate("</accountLedger>\n");
 }
 
 
@@ -2022,13 +2022,13 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 // LoadContract will call this function at the right time.
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
-{	
+{
     const char * szFunc = "OTLedger::ProcessXMLNode";
     // -------------------------------
     const OTString strNodeName = xml->getNodeName();
-    
+
 	if (strNodeName.Compare("accountLedger"))
-	{	
+	{
 		OTString	strType,  // ledger type
 					strLedgerAcctID, // purported
 					strLedgerAcctServerID, // purported
@@ -2058,14 +2058,14 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		strLedgerAcctID			= xml->getAttributeValue("accountID");
 		strLedgerAcctServerID	= xml->getAttributeValue("serverID");
 		strUserID				= xml->getAttributeValue("userID");
-        
+
 		if (!strLedgerAcctID.Exists() || !strLedgerAcctServerID.Exists() || !strUserID.Exists())
 		{
 			OTLog::vOutput(0, "%s: Failure: missing strLedgerAcctID (%s) or "
 						   "strLedgerAcctServerID (%s) or strUserID (%s) while loading transaction "
-						   "from %s ledger. \n", szFunc, strLedgerAcctID.Get(), strLedgerAcctServerID.Get(), 
+						   "from %s ledger. \n", szFunc, strLedgerAcctID.Get(), strLedgerAcctServerID.Get(),
 						   strUserID.Get(), strType.Get());
-			return (-1);			
+			return (-1);
 		}
 		// --------------------------------------------------------------
 		OTIdentifier	ACCOUNT_ID(strLedgerAcctID),
@@ -2074,16 +2074,16 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// --------------------------------------------------------------
 						SetPurportedAccountID(ACCOUNT_ID);
 						SetPurportedServerID(SERVER_ID);
-						SetUserID(USER_ID);		
-		
+						SetUserID(USER_ID);
+
 		if (false ==  m_bLoadSecurely)
 		{
 			SetRealAccountID(ACCOUNT_ID);
 			SetRealServerID(SERVER_ID);
 //            OTString str1(GetRealAccountID()), str2(GetRealServerID());
 //            OTLog::vError("DEBUGGING:\nReal Acct ID: %s\nReal Server ID: %s\n",
-//                          str1.Get(), str2.Get());            
-		}		
+//                          str1.Get(), str2.Get());
+		}
 		// ------------------------------------------------------------------
 		// Load up the partial records, based on the expected count...
 		//
@@ -2093,7 +2093,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		OTString strExpected;	// The record type has a different name for each box.
         OTNumList   theNumList;
         OTNumList * pNumList = NULL;
-		switch (m_Type) 
+		switch (m_Type)
 		{
 			case OTLedger::nymbox:          strExpected.Set("nymboxRecord");pNumList = &theNumList; break;
 			case OTLedger::inbox:           strExpected.Set("inboxRecord");                         break;
@@ -2102,7 +2102,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			case OTLedger::recordBox:		strExpected.Set("recordBoxRecord");                     break;
 			case OTLedger::expiredBox:		strExpected.Set("expiredBoxRecord");                    break;
 				/* --- BREAK --- */
-			case OTLedger::message:	
+			case OTLedger::message:
                 if (nPartialRecordCount > 0) // -------------------
                 {
 					OTLog::vError("%s: Error: There are %d unexpected abbreviated records in an "
@@ -2115,7 +2115,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                   "ledger for account: %s)\n", strType.Get(), strLedgerAcctID.Get());
 					return (-1);
 		} // switch (to set strExpected to the abbreviated record type.)
-		// -------------------------		
+		// -------------------------
 		if (nPartialRecordCount > 0) // message ledger will never enter this block due to switch block (above.)
 		{
 			// -------------------------------
@@ -2143,7 +2143,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                 // We're loading here either a nymboxRecord, inboxRecord, or outboxRecord...
                 //
                 const OTString strLoopNodeName = xml->getNodeName();
-                
+
 				if (strLoopNodeName.Exists() && (xml->getNodeType() == irr::io::EXN_ELEMENT) && (strExpected.Compare(strLoopNodeName)))
 				{
 					long lNumberOfOrigin	= 0;
@@ -2187,40 +2187,40 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					if (NULL != pExistingTrans) // Uh-oh, it's already there!
 					{
 						OTLog::vOutput(0, "%s: Error loading transaction %ld (%s), since one was "
-									   "already there, in box for account: %s.\n", szFunc, 
-                                       lTransactionNum, strExpected.Get(), 
+									   "already there, in box for account: %s.\n", szFunc,
+                                       lTransactionNum, strExpected.Get(),
 									   strLedgerAcctID.Get());
 						return (-1);
 					}
 					// ----------------------------------
 					//
 					// CONSTRUCT THE ABBREVIATED RECEIPT HERE...
-										
-					// Set all the values we just loaded here during actual construction of transaction 
+
+					// Set all the values we just loaded here during actual construction of transaction
                     // (as abbreviated transaction) i.e. make a special constructor for abbreviated transactions
                     // which is ONLY used here.
                     //
-					OTTransaction * pTransaction = new OTTransaction(USER_ID, 
-																	 ACCOUNT_ID, 
+					OTTransaction * pTransaction = new OTTransaction(USER_ID,
+																	 ACCOUNT_ID,
 																	 SERVER_ID,
                                                                      lNumberOfOrigin,
 																	 lTransactionNum,
 																	 lInRefTo,			// lInRefTo
-																	 lInRefDisplay, 
-																	 the_DATE_SIGNED, 
+																	 lInRefDisplay,
+																	 the_DATE_SIGNED,
 																	 theType,
 																	 strHash,
 																	 lAdjustment,
 																	 lDisplayValue,
 																	 lClosingNum,
                                                                      lRequestNum,
-                                                                     bReplyTransSuccess,                                                                     
+                                                                     bReplyTransSuccess,
                                                                      pNumList); // This is for "OTTransaction::blank" and "OTTransaction::successNotice", otherwise NULL.
 					OT_ASSERT(NULL != pTransaction); // --------------------------------
 					//
 					// NOTE: For THIS CONSTRUCTOR ONLY, we DO set the purported AcctID and purported ServerID.
 					// WHY? Normally you set the "real" IDs at construction, and then set the "purported" IDs
-					// when loading from string. But this constructor (only this one) is actually used when 
+					// when loading from string. But this constructor (only this one) is actually used when
 					// loading abbreviated receipts as you load their inbox/outbox/nymbox.
 					// Abbreviated receipts are not like real transactions, which have serverID, AcctID, userID,
 					// and signature attached, and the whole thing is base64-encoded and then added to the ledger
@@ -2242,7 +2242,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     // --------------------------------------------------------------------
  					// Add it to the ledger's list of transactions...
 					//
-                    
+
 					if (pTransaction->VerifyContractID())
 					{
                         // Add it to the ledger...
@@ -2251,20 +2251,20 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						pTransaction->SetParent(*this);
 //                      OTLog::Output(5, "Loaded abbreviated transaction and adding to m_mapTransactions in OTLedger\n");
 					}
-					else 
+					else
 					{
 						OTLog::vError("%s: ERROR: verifying contract ID on abbreviated transaction %ld\n",
 									  szFunc, pTransaction->GetTransactionNum());
 						delete pTransaction;
 						pTransaction = NULL;
 						return (-1);
-					}					
+					}
 //					xml->read(); // <==================
 					// MIGHT need to add "skip after element" here.
 					//
 					// Update: Nope.
 				}
-				else 
+				else
 				{
 					OTLog::vError("%s: Expected abbreviated record element.\n", szFunc);
 					return (-1); // error condition
@@ -2272,8 +2272,8 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			} // while
 		} //if (number of partial records > 0)
 		// --------------------------------
-		
-		
+
+
 		// ------------------------------------------------------------------
 		OTLog::vOutput(4, "%s: Loading account ledger of type \"%s\", version: %s\n", szFunc,
 //				"accountID: %s\n userID: %s\n serverID: %s\n----------\n",  szFunc,
@@ -2281,22 +2281,22 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				m_strVersion.Get()
 //				strLedgerAcctID.Get(), strUserID.Get(), strLedgerAcctServerID.Get()
 				);
-			
+
 		// Since we just loaded this stuff, let's verify it.
 		// We may have to remove this verification here and do it outside this call.
 		// But for now...
-				
+
 		if (VerifyContractID())
 			return 1;
-		else 
+		else
 			return (-1);
 	}
-	
+
 	// Todo: When loading abbreviated list of records, set the m_bAbbreviated to true.
 	// Then in THIS block below, if that is set to true, then seek an existing transaction instead of
 	// instantiating a new one. Then repopulate the new one and verify the new values against the ones
 	// that were already there before overwriting anything.
-	
+
 	// Hmm -- technically this code should only execute for OTLedger::message, and thus only if
 	// m_bIsAbbreviated is FALSE. When the complete receipt is loaded, "LoadBoxReceipt()" will be
 	// called, and it will directly load the transaction starting in OTTransaction::ProcessXMLNode().
@@ -2304,15 +2304,15 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// here in this spot, we basically want to error out if it's not a message ledger.
 	// UPDATE: However, I must consider legacy data. For now, I'll allow this to load in any type of box.
     // I also need to check and see if the box receipt already exists (since its normal creation point
-    // may not have happened, when taking legacy data into account.) If it doesn't already exist, then I 
+    // may not have happened, when taking legacy data into account.) If it doesn't already exist, then I
     // should save it again at this point.
     //
-	
+
     else if (strNodeName.Compare("transaction"))
 	{
 		OTString		strTransaction;
 		OTASCIIArmor	ascTransaction;
-				
+
 		// go to the next node and read the text.
 //		xml->read(); // <==================
 		if (false == SkipToTextField(xml))
@@ -2322,16 +2322,16 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			return (-1);
 		}
 		// -----------------------------------------------
-		
+
         if (irr::io::EXN_TEXT == xml->getNodeType())
 		{
 			// the ledger contains a series of transactions.
 			// Each transaction is initially stored as an OTASCIIArmor string.
             const OTString strLoopNodeData = xml->getNodeData();
-            
+
             if (strLoopNodeData.Exists())
                 ascTransaction.Set(strLoopNodeData);		// Put the ascii-armored node data into the ascii-armor object
-			
+
 			// Decode that into strTransaction, so we can load the transaction object from that string.
 			if (!ascTransaction.Exists() || !ascTransaction.GetString(strTransaction))
 			{
@@ -2356,13 +2356,13 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 //			OTTransaction * pTransaction = new OTTransaction(GetUserID(), GetRealAccountID(),      GetRealServerID());
 			OTTransaction * pTransaction = new OTTransaction(GetUserID(), GetPurportedAccountID(), GetPurportedServerID());
             OT_ASSERT(NULL != pTransaction);
-            
+
 			// Need this set before the LoadContractFromString().
 			//
 			if (false ==  m_bLoadSecurely)
 				pTransaction->SetLoadInsecure();
 			// -------------------------------------------
-			
+
 			// If we're able to successfully base64-decode the string and load it up as
 			// a transaction, then let's add it to the ledger's list of transactions
 			if (strTransaction.Exists() &&
@@ -2377,7 +2377,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                 {
                     const OTString strPurportedAcctID(this->GetPurportedAccountID());
                     OTLog::vOutput(0, "%s: Error loading full transaction %ld, since one was "
-                                   "already there, in box for account: %s.\n", szFunc, 
+                                   "already there, in box for account: %s.\n", szFunc,
                                    pTransaction->GetTransactionNum(), strPurportedAcctID.Get());
                     delete pTransaction; pTransaction = NULL;
                     return (-1);
@@ -2389,10 +2389,10 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				m_mapTransactions[pTransaction->GetTransactionNum()] = pTransaction;
 				pTransaction->SetParent(*this);
 //				OTLog::Output(5, "Loaded full transaction and adding to m_mapTransactions in OTLedger\n");
-                
+
                 switch (this->GetType())
 				{
-					case OTLedger::message:		
+					case OTLedger::message:
 						break;
 					case OTLedger::nymbox:
 					case OTLedger::inbox:
@@ -2406,10 +2406,10 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						//
 						OTLog::vOutput(0, "--- Apparently this is old data (the transaction is still stored inside the ledger itself)... \n");
 						m_bLoadedLegacyData = true; // Only place this is set true.
-						
+
 						const int nBoxType = static_cast<int>(this->GetType());
-						
-						const bool bBoxReceiptAlreadyExists = 
+
+						const bool bBoxReceiptAlreadyExists =
 							OTTransaction::VerifyBoxReceiptExists(pTransaction->GetRealServerID(),
 																  pTransaction->GetUserID(),
 																  pTransaction->GetRealAccountID(),	// If Nymbox (vs inbox/outbox) the USER_ID will be in this field also.
@@ -2420,22 +2420,22 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 							// Okay then, let's create it...
 							//
 							OTLog::vOutput(0, "--- The BoxReceipt doesn't exist separately (yet.) Creating it in local storage...\n");
-							
+
 							const long lBoxType = static_cast<long>(nBoxType);
-							
+
 							if (false == pTransaction->SaveBoxReceipt(lBoxType)) //  <======== SAVE BOX RECEIPT
 								OTLog::Error("--- FAILED trying to save BoxReceipt from legacy data to local storage!\n");
 						}
 					}
 						break;
 					default:
-						OTLog::vError("%s: Unknown ledger type while loading transaction! (Should never happen.)\n", 
+						OTLog::vError("%s: Unknown ledger type while loading transaction! (Should never happen.)\n",
                                       szFunc); // todo: assert here? "should never happen" ...
 						return (-1);
 				} // switch (this->GetType())
                 // ---------------------------------------------
 			}	// if transaction loads and verifies.
-			else 
+			else
 			{
 				OTLog::Error("ERROR: loading or verifying transaction in OTLedger::ProcessXMLNode\n");
 				if (NULL != pTransaction)
@@ -2446,14 +2446,14 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				return (-1);
 			}
 		}
-		else 
+		else
 		{
 			OTLog::Error("Error in OTLedger::ProcessXMLNode: transaction without value.\n");
 			return (-1); // error condition
 		}
 		return 1;
 	}
-	
+
 	return 0;
 }
 
@@ -2467,14 +2467,14 @@ OTLedger::~OTLedger()
 void OTLedger::ReleaseTransactions()
 {
 	// If there were any dynamically allocated objects, clean them up here.
-	
+
 	while (!m_mapTransactions.empty())
-	{		
+	{
 		OTTransaction * pTransaction = m_mapTransactions.begin()->second;
 		m_mapTransactions.erase(m_mapTransactions.begin());
 		delete pTransaction;
 		pTransaction = NULL;
-	}	
+	}
 }
 
 void OTLedger::Release_Ledger()
@@ -2485,7 +2485,7 @@ void OTLedger::Release_Ledger()
 void OTLedger::Release()
 {
 	Release_Ledger();
-	
+
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
 

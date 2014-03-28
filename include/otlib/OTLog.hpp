@@ -1,13 +1,13 @@
 /**************************************************************
- *    
+ *
  *  OTLog.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -136,14 +136,10 @@
 #ifndef __OTLOG_HPP__
 #define __OTLOG_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTAssert.hpp"
 #include "OTString.hpp"
-
-#include _CINTTYPES
 
 #include <deque>
 #include <cerrno>
@@ -170,7 +166,7 @@ private:
 	static const OTString m_strPathSeparator;
 
 	dequeOfStrings logDeque;
-	
+
 
 	OTString	m_strThreadContext;
 	OTString	m_strLogFileName;
@@ -180,7 +176,7 @@ private:
 
 	bool		m_bInitialized;
 
-    // For things that represent internal inconsistency in the code. 
+    // For things that represent internal inconsistency in the code.
     // Normally should NEVER happen even with bad input from user.
     // (Don't call this directly. Use the above #defined macro instead.)
     static OTAssert::fpt_Assert_sz_n_sz(logAssert);
@@ -228,10 +224,10 @@ public:
 
 	// --------------------------------------------------
 	// We keep 1024 logs in memory, to make them available via the API.
-	EXPORT static int		GetMemlogSize(); 
+	EXPORT static int		GetMemlogSize();
 	EXPORT static const OTString	GetMemlogAtIndex(const int nIndex);
 	EXPORT static const OTString	PeekMemlogFront();
-	EXPORT static const OTString	PeekMemlogBack(); 
+	EXPORT static const OTString	PeekMemlogBack();
 	EXPORT static bool		PopMemlogFront();
 	EXPORT static bool		PopMemlogBack();
 	EXPORT static bool		PushMemlogFront(const OTString & strLog);
