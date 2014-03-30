@@ -132,18 +132,18 @@
 
 #include <stdafx.hpp>
 
-#include "OTClientConnection.hpp"
+#include <OTClientConnection.hpp>
 
-#include "OTServer.hpp"
+#include <OTServer.hpp>
 
 #ifndef IMPORT
 #define IMPORT
 #endif
 
-#include "OTLog.hpp"
-#include "OTEnvelope.hpp"
-#include "OTDataCheck.hpp"
-#include "OTMessage.hpp"
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTDataCheck.hpp>
+#include <OTMessage.hpp>
 
 
 extern "C"

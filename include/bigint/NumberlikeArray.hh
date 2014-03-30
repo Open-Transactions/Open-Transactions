@@ -1,17 +1,17 @@
 /*
  C++ Big Integer Library
  (see ChangeLog for version)
-
+ 
  http://mattmccutchen.net/bigint/
-
+ 
  Written and maintained by Matt McCutchen <matt@mattmccutchen.net>
-
+ 
  Legal
  -----
  I, Matt McCutchen, the sole author of the original Big Integer Library, waive my
  copyright to it, placing it in the public domain.  The library comes with
  absolutely no warranty.
-
+ 
  */
 
 #ifndef __NUMBERLIKEARRAY_HH__
@@ -56,7 +56,7 @@ public:
 	Blk *blk;
 
 	// Constructs a ``zero'' NumberlikeArray with the given capacity.
-	NumberlikeArray(Index c) : cap(c), len(0), blk(NULL) {
+	NumberlikeArray(Index c) : cap(c), len(0), blk(NULL) { 
 		blk = (cap > 0) ? (new Blk[cap]) : NULL;
 	}
 
@@ -176,7 +176,7 @@ NumberlikeArray<Blk>& NumberlikeArray<Blk>::operator=(const NumberlikeArray<Blk>
 template <class Blk>
 NumberlikeArray<Blk>::NumberlikeArray(const Blk *b, Index blen)
 		: cap(blen), len(blen) {
-
+		
 		assert(NULL != b);
 	// Create array
 	blk = new Blk[cap];

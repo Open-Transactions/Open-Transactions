@@ -1,13 +1,13 @@
 /************************************************************************************
- *
+ *    
  *  OTStringXML.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,24 +132,24 @@
 
 #include <stdafx.hpp>
 
-#include "OTStringXML.hpp"
+#include <OTStringXML.hpp>
 
 //#include "OTString.h"
 //#include "OTStringXML.h"
 
 OTStringXML::OTStringXML() : OTString(), irr::io::IFileReadCallBack()
 {
-
+	
 }
 
 OTStringXML::OTStringXML(const OTString & strValue) : OTString(strValue), irr::io::IFileReadCallBack()
 {
-
+	
 }
 
 OTStringXML::OTStringXML(const OTStringXML & strValue) : OTString(strValue), irr::io::IFileReadCallBack(strValue)
 {
-
+	
 }
 
 
@@ -161,7 +161,7 @@ OTStringXML::OTStringXML(const OTStringXML & strValue) : OTString(strValue), irr
 	← do the rest of your assignment operator here...
 	...do the rest of your assignment operator here...
 	return *this;
- }
+ } 
  */
 OTStringXML& OTStringXML::operator=(const OTString & rhs)
 {
@@ -194,7 +194,7 @@ int OTStringXML::read(void* buffer, unsigned sizeToRead)
 	if (buffer && sizeToRead && Exists())
 	{
 		char * pBuf = (char *) buffer;
-
+		
 		int nBytesToCopy = (sizeToRead > GetLength() ? GetLength() : sizeToRead);
 		int i;
 		for (i = 0; i < nBytesToCopy; i++) {
@@ -202,7 +202,7 @@ int OTStringXML::read(void* buffer, unsigned sizeToRead)
 		}
 		return i;
 	}
-	else
+	else 
 	{
 		return 0;
 	}

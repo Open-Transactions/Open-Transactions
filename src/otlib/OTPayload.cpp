@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *
  *  OTPayload.cpp
  *
@@ -132,12 +132,12 @@
 
 #include <stdafx.hpp>
 
-#include "OTPayload.hpp"
+#include <OTPayload.hpp>
 
-#include "OTLog.hpp"
-#include "OTEnvelope.hpp"
-#include "OTDataCheck.hpp"
-#include "OTMessage.hpp"
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTDataCheck.hpp>
+#include <OTMessage.hpp>
 
 
 OTPayload::OTPayload() : OTData()

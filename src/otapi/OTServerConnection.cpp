@@ -132,21 +132,21 @@
 
 #include <stdafx.hpp>
 
-#include "OTServerConnection.hpp"
+#include <OTServerConnection.hpp>
 
-#include "OTClient.hpp"
+#include <OTClient.hpp>
 #include <OpenTransactions.hpp>
 
 #ifndef IMPORT
 #define IMPORT
 #endif
 
-#include "OTLog.hpp"
-#include "OTEnvelope.hpp"
-#include "OTMessage.hpp"
-#include "OTDataCheck.hpp"
-#include "OTPseudonym.hpp"
-#include "OTWallet.hpp"
+#include <OTLog.hpp>
+#include <OTEnvelope.hpp>
+#include <OTMessage.hpp>
+#include <OTDataCheck.hpp>
+#include <OTPseudonym.hpp>
+#include <OTWallet.hpp>
 
 extern "C"
 {

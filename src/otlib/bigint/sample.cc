@@ -37,25 +37,25 @@ int main() {
 		//BigInteger e(3141592653589793238462643383279);
 
 		std::string server_ID("4CC4DD50CB6A7D9C7D05240E09DAF2BEFCD189331D69A07F7DD117D4299AD6DE");
-
+		
 		BigUnsignedInABase theBaseConverter(server_ID, 16); // base16
-
-		std::string strBASE62_VERSION = bigUnsignedToStringBase62(theBaseConverter);
+		
+		std::string strBASE62_VERSION = bigUnsignedToStringBase62(theBaseConverter); 
 
 		std::cout << server_ID << '\n' << strBASE62_VERSION << '\n' ;
-
+		
 		BigUnsignedInABase theConvertBack(strBASE62_VERSION, 62);
-
-		std::string strBACK = bigUnsignedToStringBase16(theConvertBack);
-
+		
+		std::string strBACK = bigUnsignedToStringBase16(theConvertBack); 
+		
 		std::cout << strBACK << '\n'  << std::endl;
-
+		
 		// Instead you can convert the number from a string.
 		std::string s("3141592653589793238462643383279");
 		BigInteger f = stringToBigInteger(s);
 
 		// You can convert the other way too.
-		std::string s2 = bigIntegerToString(f);
+		std::string s2 = bigIntegerToString(f); 
 
 		// f is implicitly stringified and sent to std::cout.
 		std::cout << f << std::endl;

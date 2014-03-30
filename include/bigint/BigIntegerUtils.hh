@@ -1,17 +1,17 @@
 /*
  C++ Big Integer Library
  (see ChangeLog for version)
-
+ 
  http://mattmccutchen.net/bigint/
-
+ 
  Written and maintained by Matt McCutchen <matt@mattmccutchen.net>
-
+ 
  Legal
  -----
  I, Matt McCutchen, the sole author of the original Big Integer Library, waive my
  copyright to it, placing it in the public domain.  The library comes with
  absolutely no warranty.
-
+ 
  */
 
 #ifndef __BIGINTEGERUTILS_HH__
@@ -80,7 +80,7 @@ std::ostream &operator <<(std::ostream &os, const BigInteger &x);
 template <class T>
 BigInteger dataToBigInteger(const T* data, BigInteger::Index length, BigInteger::Sign sign) {
 	assert (NULL != data);
-
+	
 	// really ceiling(numBytes / sizeof(BigInteger::Blk))
 	unsigned int pieceSizeInBits = 8 * sizeof(T);
 	unsigned int piecesPerBlock = sizeof(BigInteger::Blk) / sizeof(T);

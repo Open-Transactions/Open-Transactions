@@ -180,10 +180,15 @@ class OT_ME
 {
 private:
 
+    // initialization under Windows takes about 10 seconds
+    // so we want to avoid re-initializing Chai
+#ifdef _WIN32
     static _SharedPtr<OTScript> m_pScript;
+#else
+    _SharedPtr<OTScript> m_pScript;
+#endif
 
     std::string scriptName;
-
     // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();
@@ -193,7 +198,7 @@ private:
     bool Register_API_With_Script();
     bool Register_Headers_With_Script();
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_SCRIPT_CHAI
     // --------------------------------------
     // For ChaiScript:
     //
@@ -218,7 +223,6 @@ private:
     // via their swig wrappers of these functions.
 
 public:
-
     EXPORT OT_ME(const std::string & _scriptName = "noscript");
     EXPORT ~OT_ME();
 
@@ -276,7 +280,7 @@ public:
         const std::string  & NYM_ID,
         const std::string  & ASSET_TYPE_ID);
 
-    EXPORT std::string stat_asset_account(
+    EXPORT  std::string stat_asset_account(
         const std::string & ACCOUNT_ID);
 
     EXPORT  bool retrieve_account(
@@ -313,7 +317,7 @@ public:
         const std::string  & ACCOUNT_ID,
         const std::string  & RESPONSE_LEDGER);
 
-    EXPORT bool accept_inbox_items(
+    EXPORT  bool accept_inbox_items(
         const std::string & ACCOUNT_ID, // this method specific to asset account inbox.
         int32_t        nItemType,
         const std::string  & INDICES);
@@ -323,12 +327,12 @@ public:
         const std::string  & NYM_ID,
         const std::string  & INDICES);
 
-    EXPORT bool cancel_outgoing_payments(
+    EXPORT  bool cancel_outgoing_payments(
         const std::string & NYM_ID,
         const std::string  & ACCOUNT_ID, // can be blank if a cheque. But if a voucher, smart contract or payment plan, you need to provide this. And it better match for the chosen indices. For example for a voucher, must have the same asset type.
         const std::string  & INDICES);
 
-    EXPORT int32_t accept_from_paymentbox(
+    EXPORT  int32_t accept_from_paymentbox(
         const std::string & ACCOUNT_ID, // This acct better have the right asset type, based on chosen indices.
         const std::string  & INDICES,
         const std::string  & PAYMENT_TYPE);
@@ -388,7 +392,7 @@ public:
         const std::string  & THE_PAYMENT,
         const std::string  & SENDERS_COPY);
 
-    EXPORT bool withdraw_and_send_cash(
+    EXPORT  bool withdraw_and_send_cash(
         const std::string & ACCT_ID,
         const std::string & RECIPIENT_NYM_ID,
         const std::string & MEMO,
@@ -427,7 +431,7 @@ public:
         const std::string  & NYM_ID,
         const std::string  & ENCODED_MAP);
 
-    EXPORT std::string create_market_offer(
+    EXPORT  std::string create_market_offer(
         const std::string & ASSET_ACCT_ID,
         const std::string  & CURRENCY_ACCT_ID,
         const int64_t  scale,
@@ -476,7 +480,7 @@ public:
         const std::string  & ACCT_ID,
         const int64_t   AMOUNT);
 
-    EXPORT int32_t easy_withdraw_cash(
+    EXPORT  int32_t easy_withdraw_cash(
         const std::string & ACCT_ID,
         const int64_t        AMOUNT);
 

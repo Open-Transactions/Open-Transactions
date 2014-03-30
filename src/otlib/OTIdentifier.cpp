@@ -1,14 +1,14 @@
 
 /************************************************************************************
- *
+ *    
  *  OTIdentifier.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,15 +133,15 @@
 
 #include <stdafx.hpp>
 
-#include "OTIdentifier.hpp"
+#include <OTIdentifier.hpp>
 
-#include "OTAssert.hpp"
-#include "OTPseudonym.hpp"
-#include "OTSymmetricKey.hpp"
-#include "OTOffer.hpp"
-#include "OTMarket.hpp"
-#include "OTCachedKey.hpp"
-#include "OTCrypto.hpp"
+#include <OTAssert.hpp>
+#include <OTPseudonym.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTOffer.hpp>
+#include <OTMarket.hpp>
+#include <OTCachedKey.hpp>
+#include <OTCrypto.hpp>
 
 
 OTIdentifier::OTIdentifier() : OTData()  { }
@@ -193,7 +193,7 @@ OTIdentifier::OTIdentifier(const OTSymmetricKey &theKey)  : OTData() // Get the 
 OTIdentifier::OTIdentifier(const OTCachedKey &theKey)  : OTData() // Cached Key stores a symmetric key inside, so this actually captures the ID for that symmetrickey.
 {
 	const bool bSuccess = (const_cast<OTCachedKey &>(theKey)).GetIdentifier(*this);
-
+    
     OT_ASSERT(bSuccess); // should never fail. If it does, then we are calling this function at a time we shouldn't, when we aren't sure the master key has even been generated yet. (If this asserts, need to examine the line of code that tried to do this, and figure out where its logic went wrong, since it should have made sure this would not happen, before constructing like this.)
 }
 
@@ -207,22 +207,22 @@ void OTIdentifier::SetString(const char * szString)
 bool OTIdentifier::operator==(const OTIdentifier &s2) const
 {
 	const OTString ots1(*this), ots2(s2);
-	return ots1.Compare(ots2);
+	return ots1.Compare(ots2);	
 }
 
 bool OTIdentifier::operator!=(const OTIdentifier &s2) const
 {
 	const OTString ots1(*this), ots2(s2);
-	return !(ots1.Compare(ots2));
+	return !(ots1.Compare(ots2));	
 }
 
-bool OTIdentifier::operator >(const OTIdentifier &s2) const
+bool OTIdentifier::operator >(const OTIdentifier &s2) const 
 {
     const OTString ots1(*this), ots2(s2);
 	return ots1.operator>(ots2);
 }
 
-bool OTIdentifier::operator <(const OTIdentifier &s2)  const
+bool OTIdentifier::operator <(const OTIdentifier &s2)  const 
 {
     const OTString ots1(*this), ots2(s2);
 	return ots1.operator<(ots2);
@@ -252,7 +252,7 @@ void OTIdentifier::CopyTo(unsigned char * szNewLocation) const
 
 // On the advice of SAMY, our default hash algorithm will be an XOR
 // of two reputable algorithms. This way, if one of them gets broken,
-// our signatures are still safe.
+// our signatures are still safe. 
 // Smart, eh?  So I named it in his honor.
 // (I have chosen SHA-256 and RIPEMD-256.)
 // UPDATE: SHA-512 and WHIRLPOOL
@@ -276,12 +276,12 @@ bool OTIdentifier::CalculateDigest(const OTString & strInput)
 {
 //#ifndef ANDROID // If NOT Android...
 	OTIdentifier idSecondHash;
-
+	
 	if (idSecondHash.CalculateDigest(strInput, HashAlgorithm2) &&
 		CalculateDigest(strInput, HashAlgorithm1))
 	{
-		// At this point, we have successfully generated the WHRLPOOL hash in
-		// idSecondHash, and we've successfully generated the SHA-256 hash in
+		// At this point, we have successfully generated the WHRLPOOL hash in 
+		// idSecondHash, and we've successfully generated the SHA-256 hash in 
 		// this object.
 		// Next we XOR them together for the final product.
 		return XOR(idSecondHash);
@@ -290,9 +290,9 @@ bool OTIdentifier::CalculateDigest(const OTString & strInput)
 //	if (CalculateDigest(strInput, HashAlgorithm1))
 //	{
 //		return true;
-//	}
+//	}	
 //#endif // ANDROID
-
+	
 	return false;
 }
 
@@ -302,12 +302,12 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput)
 {
 //#ifndef ANDROID // SHA256 on Android; no whirlpool until OpenSSL 1.0.0 is added.
 	OTIdentifier idSecondHash;
-
+	
 	if (idSecondHash.CalculateDigest(dataInput, HashAlgorithm2) &&
 		CalculateDigest(dataInput, HashAlgorithm1))
 	{
-		// At this point, we have successfully generated the WHRLPOOL hash in
-		// idSecondHash, and we've successfully generated the SHA-256 hash in
+		// At this point, we have successfully generated the WHRLPOOL hash in 
+		// idSecondHash, and we've successfully generated the SHA-256 hash in 
 		// this object.
 		// Next we XOR them together for the final product.
 		return XOR(idSecondHash);
@@ -316,9 +316,9 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput)
 //	if (CalculateDigest(dataInput, HashAlgorithm1)) // SHA256 only until I add the new OpenSSL 1.0 for Android
 //	{
 //		return true;
-//	}
+//	}	
 //#endif // ANDROID
-
+	
 	return false;
 }
 
@@ -332,11 +332,11 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput)
 bool OTIdentifier::CalculateDigestInternal(const OTString & strInput, const OTString & strHashAlgorithm)
 {
 	// See if they wanted to use the SAMY hash
-	if (strHashAlgorithm.Compare(DefaultHashAlgorithm))
+	if (strHashAlgorithm.Compare(DefaultHashAlgorithm)) 
 	{
 		return CalculateDigest(strInput);
 	}
-
+	
 	return false;
 }
 
@@ -351,12 +351,12 @@ bool OTIdentifier::CalculateDigestInternal(const OTString & strInput, const OTSt
 bool OTIdentifier::CalculateDigestInternal(const OTData & dataInput, const OTString & strHashAlgorithm)
 {
 	// See if they wanted to use the SAMY hash
-	if (strHashAlgorithm.Compare(DefaultHashAlgorithm))
+	if (strHashAlgorithm.Compare(DefaultHashAlgorithm)) 
 	{
 		return CalculateDigest(dataInput);
 	}
-
-	return false;
+	
+	return false;	
 }
 
 
@@ -380,11 +380,11 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput, const OTString & st
 // So we can implement the SAMY hash, which is currently an XOR of SHA-256 with WHRLPOOL
 //
 // Originally, it was SHA512 and WHRLPOOL, which both have a 512-bit output-size.
-// I was then going to cut the result in half and XOR together again. But then I
+// I was then going to cut the result in half and XOR together again. But then I 
 // though, for now, instead of doing all that extra work, I'll just change the
 // two "HashAlgorithms" from SHA512 and WHRLPOOL to SHA256 and WHIRLPOOL.
 //
-// This was very much easier, as I only had to change the little "512" to say
+// This was very much easier, as I only had to change the little "512" to say 
 // "256" instead, and basically the job was done. Of course, this means that OT
 // is generating a 256-bit hash in THIS object, and a 512-bit WHIRLPOOL hash in
 // the other object. i.e. There is still one 512-bit hash that you are forced to
@@ -393,11 +393,11 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput, const OTString & st
 // Since the main object has a 256-bit hash, the XOR() function below was already
 // coded to XOR the minimum length based on the smallest of the two objects.
 // Therefore, it will XOR 256 bits of the WHRLPOOL output into the 256 bits of
-// the main output (SHA256) and stop there: we now have a 256 bit ID.
+// the main output (SHA256) and stop there: we now have a 256 bit ID. 
 //
 // The purpose here is to reduce the ID size so that it will work on Windows with
 // the filenames. The current 512bit output is 64 bytes, or 128 characters when
-// exported to a hex string (in all the OT contracts for example, over and over
+// exported to a hex string (in all the OT contracts for example, over and over 
 // again.)
 //
 // The new size will be 256bit, which is 32 bytes of binary. In hex string that
@@ -426,13 +426,13 @@ bool OTIdentifier::XOR(const OTIdentifier & theInput)
 {
 	// Go with the smallest of the two
 	const long lSize = (GetSize() > theInput.GetSize() ? theInput.GetSize() : GetSize());
-
+	
 	for (int i = 0; i < lSize; i++)
 	{
 		// When converting to BigInteger internally, this will be a bit more efficient.
 		((char*)GetPointer())[i] ^= ((char*)theInput.GetPointer())[i]; // todo cast
 	}
-
+	
 	return true;
 }
 

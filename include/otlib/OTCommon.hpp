@@ -7,4 +7,4 @@
 #include _CINTTYPES
 #include _MEMORY
 
-#endif _OTCOMMON_HPP_
+#endif //_OTCOMMON_HPP_

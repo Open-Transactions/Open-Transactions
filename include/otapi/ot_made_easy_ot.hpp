@@ -6,8 +6,6 @@
 #include <string>
 #include <vector>
 
-
-
 #define OT_MADE_EASY_OT
 
 

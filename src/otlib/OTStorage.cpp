@@ -126,12 +126,12 @@
 
 #include <stdafx.hpp>
 
-#include "OTStorage.hpp"
+#include <OTStorage.hpp>
 
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTPayload.hpp"
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPayload.hpp>
 
 #include <typeinfo>
 #include <fstream>

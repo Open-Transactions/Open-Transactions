@@ -1,13 +1,13 @@
 /************************************************************
- *
+ *    
  *  OTTrackable.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,7 +132,7 @@
 
 #include <stdafx.hpp>
 
-#include "OTTrackable.hpp"
+#include <OTTrackable.hpp>
 
 
 
@@ -140,25 +140,25 @@
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
 
 
-OTTrackable::OTTrackable() :
+OTTrackable::OTTrackable() : 
 			ot_super(), m_lTransactionNum(0)
 {
 	InitTrackable();
 }
 
 
-OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
+OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : 
 			ot_super(SERVER_ID, ASSET_ID), m_lTransactionNum(0)
 {
 	InitTrackable();
 }
 
 OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID,
-						 const OTIdentifier & ACCT_ID, const OTIdentifier & USER_ID) :
+						 const OTIdentifier & ACCT_ID, const OTIdentifier & USER_ID) : 
 			ot_super(SERVER_ID, ASSET_ID), m_lTransactionNum(0)
 {
 	InitTrackable();
-
+	
 	SetSenderAcctID(ACCT_ID);
 	SetSenderUserID(USER_ID);
 }
@@ -190,18 +190,18 @@ void OTTrackable::GetAllTransactionNumbers(OTNumList & numlistOutput) const
 void OTTrackable::Release_Trackable()
 {
 	// If there were any dynamically allocated objects, clean them up here.
-	m_SENDER_ACCT_ID.Release();
+	m_SENDER_ACCT_ID.Release();	
 	m_SENDER_USER_ID.Release();
 }
 
 void OTTrackable::Release()
 {
     Release_Trackable();
-
+    
 	ot_super::Release(); // since I've overridden the base class, I call it now...
-
+	
 	// Then I call this to re-initialize everything for myself.
-	InitTrackable();
+	InitTrackable(); 	
 }
 
 
@@ -210,9 +210,9 @@ void OTTrackable::Release()
 int OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 //    OTLog::Error("OTTrackable::ProcessXMLNode...\n");
-
+    
 	int nReturnVal = 0;
-
+    
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -221,26 +221,26 @@ int OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// -- Note you can choose not to call the parent if
 	// you don't want to use any of those xml tags.
 	//
-
-	// In this case, I don't need to call the parent. But I'm going to
+	
+	// In this case, I don't need to call the parent. But I'm going to 
 	// call the grand-grand-parent (scriptable.)
 	//
 	nReturnVal = ot_super::ProcessXMLNode(xml);
-
+	
 	if (nReturnVal != 0) // -1 is error, and 1 is "found it". Either way, return.
 		return nReturnVal;	// 0 means "nothing happened, keep going."
-
+    
 	// ---------
 	// From OTCronItem (only as sample code.)
     //
-//    if (!strcmp("closingTransactionNumber", xml->getNodeName()))
-//	{
+//    if (!strcmp("closingTransactionNumber", xml->getNodeName())) 
+//	{		
 //        OTString strClosingNumber = xml->getAttributeValue("value");
-//
+//        
 //        if (strClosingNumber.Exists())
 //        {
-//            const long lClosingNumber = atol(strClosingNumber.Get());
-//
+//            const long lClosingNumber = atol(strClosingNumber.Get());					
+//            
 //            this->AddClosingTransactionNo(lClosingNumber);
 //        }
 //        else
@@ -248,17 +248,17 @@ int OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 //			OTLog::Error("Error in OTCronItem::ProcessXMLNode: closingTransactionNumber field without value.\n");
 //			return (-1); // error condition
 //		}
-//
+//        
 //		nReturnVal = 1;
 //	}
-
+    
 	return nReturnVal;
 }
 
 
 void OTTrackable::UpdateContents()
 {
-
+	
 }
 
 

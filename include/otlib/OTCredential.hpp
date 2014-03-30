@@ -1,7 +1,7 @@
 /*************************************************************
- *
+ *    
  *  OTCredential.h
- *
+ *  
  */
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -40,7 +40,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -143,10 +143,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -172,7 +172,6 @@
 #include "OTContract.hpp"
 
 #include "OTAsymmetricKey.hpp"
-
 
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -295,7 +294,7 @@ public:
 
     // ***************************************************************************************
     // PRIVATE KEY
-    // Get the private key in ASCII-armored format with bookends
+    // Get the private key in ASCII-armored format with bookends 
     // - ------- BEGIN ENCRYPTED PRIVATE KEY --------
     // Notice the "- " before the rest of the bookend starts.
     EXPORT bool GetPrivateKey(OTString & strKey, bool bEscaped=true) const;
@@ -340,7 +339,7 @@ protected:
         credPublicInfo   = 1, // For saving a version with public keys only.
         credMasterSigned = 2  // For saving a version with the master signature included, so the subkey can then countersign on top of that. (To prove that the subkey authorizes the master key's signature.) Only used by subkeys.
     };
-    CredStoreAs     m_StoreAs; // Not serialized.
+    CredStoreAs     m_StoreAs; // Not serialized. 
 // ------------------------------
 protected:
     OTCredential  * m_pOwner;  // a pointer for convenience only. Do not cleanup.
@@ -384,7 +383,7 @@ public:
 
 EXPORT    const OTString & GetPubCredential()  const;  // More intelligent version of GetContents. Higher level.
     const OTString & GetPriCredential()  const;  // I needed this for exporting a Nym (with credentials) from the wallet.
-
+        
     const OTString & GetMasterSigned()   const { return m_strMasterSigned;   } // For subkeys, the master credential signs first, then the subkey signs a version which contains the "master signed" version. (This proves the subkey really authorizes all this.) That "master signed" version is stored here in m_strMasterSigned. But the final actual public credential (which must be hashed to get the credential ID) is the contents, not the master signed. The contents is the public version, signed by the subkey, which contains the master-signed version inside of it as a data member (this variable in fact, m_strMasterSigned.) You might ask: then what's in m_strRawContents? Answer: the version that includes the private keys. Well at least, on the client side. On the server side, the raw contents will contain only the public version because that's all the client will send it. Que sera sera.
     // ------------------------------
     virtual bool VerifyInternally();    // Call VerifyNymID. Also verify m_strMasterCredID against the hash of m_pOwner->m_MasterKey (the master credential.) Verify that m_pOwner->m_MasterKey and *this have the same NymID. Then verify the signature of m_pOwner->m_MasterKey on m_strMasterSigned.
@@ -395,7 +394,7 @@ EXPORT    const OTString & GetPubCredential()  const;  // More intelligent versi
     // to account for that.
     //
 EXPORT virtual void CalculateContractID(OTIdentifier & newID);
-
+    
     // We also inherit OTContract::VerifyContract() which tries to find the "contract" key. Of course, there is no
     // "contract" key in this case, so we should override it and provide our own version. What should it do? Well, it
     // should call VerifyContractID, VerifyInternally, VerifyMaster, and VerifyAgainstSource. (If that last step later
@@ -613,14 +612,14 @@ typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 //    the hashes posted at that URL.
 //
 class OTCredential
-{
+{ 
 private:
     OTMasterkey m_Masterkey;
     mapOfSubcredentials m_mapSubcredentials;
     // --------------------------------------
     OTString m_strNymID;
     OTString m_strSourceForNymID;
-    // --------------------------------------
+    // -------------------------------------- 
     OTString m_strMasterCredID; // This can't be stored in the master itself since it's a hash of that master. But this SHOULD be found in every subcredential signed by that master.
 
     OTPassword * m_pImportPassword; // Not owned. Just here for convenience. Sometimes it will be set, so that when loading something up (and decrypting it) the password is already available, so the user doesn't have to type it a million times (such as during import.) So we use it when it's available. And usually whoever set it, will immediately set it back to NULL when he's done.
@@ -669,7 +668,7 @@ public:
                                                      OTPassword     * pImportPassword=NULL);
     // -------------------------------------------------------------------------------
     // For subcredentials that are specifically *subkeys*. Meaning it will
-    // contain 3 keypairs: signing, authentication, and encryption.
+    // contain 3 keypairs: signing, authentication, and encryption. 
     //
     EXPORT bool AddNewSubkey       (const int                nBits = 1024, // Ignored unless pmapPrivate is NULL
                                     const mapOfStrings     * pmapPrivate = NULL, // Public keys are derived from the private.
@@ -773,19 +772,19 @@ public:
 
 
 /*
-
+ 
  http://stackoverflow.com/questions/9749560/how-to-calculate-x-509-certificates-sha-1-fingerprint-in-c-c-objective-c
-
-
-
+ 
+ 
+ 
  Question:
-
+ 
  How do you calculate the SHA1 hash/fingerprint of an X509 cert stored within
  a PEM file using C/C++/Objective-C?
-
-
+ 
+ 
  Answer:
-
+ 
  Here is a solution I found using the OpenSSL libraries.
  I am posting the question and answer on stack overflow
  in the hopes that it will save others the trouble and
@@ -903,29 +902,29 @@ int main(int argc, char * argv[])
 
    return(0);
 }
-
-
+ 
+ 
  ---------------------------------------------
 
 Here is the compiling and output of the above program:
 
 $ cc -pedantic -W -Wall -Werror -O2  -Wno-deprecated -o peminfo  peminfo.c \
 > -lcrypto -lssl
-$ ./peminfo /usr/local/etc/openldap/keys/ca-certs.pem
-
+$ ./peminfo /usr/local/etc/openldap/keys/ca-certs.pem 
+ 
 serial:      98:61:EB:C4:F2:C9:59:72
 Fingerprint: 1d:59:d3:d4:4f:c9:e3:dc:f3:d7:66:b0:b8:7e:87:0b:01:73:c2:7e
-
+ 
  ---------------------------------------------
-
+ 
 Here is the output from the openssl utility:
 
 $ openssl x509 -noout -in /usr/local/etc/openldap/keys/ca-certs.pem \
 > -fingerprint -serial
-
+ 
 SHA1 Fingerprint=1D:59:D3:D4:4F:C9:E3:DC:F3:D7:66:B0:B8:7E:87:0B:01:73:C2:7E
 serial=9861EBC4F2C95972
-
+ 
  ---------------------------------------------
 
  */

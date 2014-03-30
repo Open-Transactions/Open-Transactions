@@ -132,9 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include "OTServer.hpp"
+#include <stdafx.hpp>
 
-#include "OTClientConnection.hpp"
+#include <OTServer.hpp>
+
+#include <OTClientConnection.hpp>
 
 #ifndef IMPORT
 #define IMPORT

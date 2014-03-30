@@ -128,12 +128,12 @@
 
 #include <main.hpp>
 
-#include "OTServer.hpp"
+#include <OTServer.hpp>
 
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
-#include "OTCrypto.hpp"
-#include "OTMint.hpp"
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTCrypto.hpp>
+#include <OTMint.hpp>
 
 
 // TODO: what about android for all the defaults here? Are there ini files in android? Revisit.

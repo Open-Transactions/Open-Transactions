@@ -1,13 +1,13 @@
 /************************************************************
- *
+ *    
  *  OTOffer.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,9 +132,9 @@
 
 #include <stdafx.hpp>
 
-#include "OTOffer.hpp"
+#include <OTOffer.hpp>
 
-#include "OTLog.hpp"
+#include <OTLog.hpp>
 
 #include <time.h>
 
@@ -147,10 +147,10 @@ bool isPowerOfTen( const long & x )
 {
 	if (1 == x)
 		return true;
-
+	
 	const long lBase = 10;
 	long lIt = lBase;
-
+	
 	for (int i = 1; i < 23; i++)
 	{
 		if (x == lIt)
@@ -165,22 +165,22 @@ bool isPowerOfTen( const long & x )
  Let's say you wanted to add an Offer to a Market. But you don't know
  which market.  There are different markets for different combinations
  of asset and currency. There are also higher and lower level markets
- for different trade minimums.
-
+ for different trade minimums.  
+ 
  The server has to be able to match up your Offer to the Right Market,
  so that it can trade with similar offers.
-
+ 
  So in this method, I combine the Asset Type ID, the Currency Type ID,
  and the minimum increment, and use them to generate a UNIQUE ID, which
  will also be the same, given the same input.
-
+ 
  That is the ID I will use for looking up the offers on the market.
  Basically it's the Market ID, and the Offer just has the SAME ID,
  and that's how you match it up to the market.
-
+ 
  (This is analogous to how Transactions and Transaction Items have the
  same transaction number.)
-
+ 
  THIS MEANS that the user cannot simply set his minimum increment to
  a "divide-into equally" with the market minimum increment. Why not?
  Because since his number will be different from the next guy, they
@@ -190,32 +190,32 @@ bool isPowerOfTen( const long & x )
  of the market he wishes to trade on. There's no other way. However,
  I CAN allow the user to ALSO provide a second minimum, which must be
  a multiple of the first.
-
+ 
  TODO: Should add this same method to the Market object as well.
-
-
+ 
+ 
  To use OTOffer::GetIdentifier is simple:
-
+ 
  void blah (OTOffer & theOffer)
  {
 	OTIdentifier MARKET_ID(theOffer); // the magic happens right here.
-
+ 
 	// (Done.)
  }
  */
 void OTOffer::GetIdentifier(OTIdentifier & theIdentifier)
-{
+{	
 	OTString	strTemp, strAsset(GetAssetID()), strCurrency(GetCurrencyID());
 
 	long		lScale = GetScale();
-
+	
 	// In this way we generate a unique ID that will always be consistent
 	// for the same asset ID, currency ID, and market scale.
 	strTemp.Format("ASSET TYPE:\n%s\nCURRENCY TYPE:\n%s\nMARKET SCALE:\n%ld\n",
 				   strAsset.Get(), strCurrency.Get(), lScale);
-
+	
 	m_ID.CalculateDigest(strTemp);
-
+	
 	OTContract::GetIdentifier(theIdentifier);
 }
 
@@ -236,7 +236,7 @@ bool OTOffer::IsLimitOrder () const
 int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
-
+	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -247,10 +247,10 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// As I do below, in the case of OTAccount.
 	//if (nReturnVal = OTContract::ProcessXMLNode(xml))
 	//	return nReturnVal;
-
+	
 	if (!strcmp("marketOffer", xml->getNodeName()))
-	{
-		m_strVersion		= xml->getAttributeValue("version");
+	{		
+		m_strVersion		= xml->getAttributeValue("version");					
 
 		OTString strIsSelling;
 		strIsSelling		= xml->getAttributeValue("isSelling");
@@ -258,24 +258,24 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSelling = true;
 		else
 			m_bSelling = false;
-
+				
 		m_strContractType.Set((m_bSelling ? "ASK" : "BID"));
 
 		const OTString	strServerID(xml->getAttributeValue("serverID")),
 						strAssetTypeID(xml->getAttributeValue("assetTypeID")),
 						strCurrencyTypeID(xml->getAttributeValue("currencyTypeID"));
-
-		const OTIdentifier	SERVER_ID(strServerID),
-                            ASSET_ID(strAssetTypeID),
+		
+		const OTIdentifier	SERVER_ID(strServerID),	
+                            ASSET_ID(strAssetTypeID),		
 							CURRENCY_TYPE_ID(strCurrencyTypeID);
-
+		
 		SetServerID(SERVER_ID);
 		SetAssetID(ASSET_ID);
 		SetCurrencyID(CURRENCY_TYPE_ID);
 		// ------------------------------------
 		const OTString strScale	= xml->getAttributeValue("marketScale");
 		const long lScale		= strScale.Exists() ? atol(strScale.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
-
+				
 		if (false == isPowerOfTen( lScale ))
 		{
 			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: marketScale *must* be 1, or a power of 10. Instead I got: %ld.\n",
@@ -287,7 +287,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// ------------------------------------
 		const OTString strPriceLimit = xml->getAttributeValue("priceLimit");
 		const long lPriceLimit       = strPriceLimit.Exists() ? atol(strPriceLimit.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
-
+        
         // NOTE: Market Orders (new) have a 0 price, so this error condition was changed.
 		if (!strPriceLimit.Exists())
 //      if (lPriceLimit < 1)
@@ -335,15 +335,15 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// -----------------------------------
 		const OTString strTransNum = xml->getAttributeValue("transactionNum");
 		const long lTransNum = strTransNum.Exists() ? atol(strTransNum.Get()) : 0;
-
+		
 		SetTransactionNum(lTransNum);
 		// ----------------------------------------------------------------
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
-
+        
         int64_t tValidFrom  = str_valid_from.Exists() ? str_valid_from.ToLong() : 0;
 		int64_t tValidTo    = str_valid_to.Exists  () ? str_valid_to.ToLong()   : 0;
-
+        
 		if ((tValidTo < tValidFrom) && (tValidTo != 0))
 		{
 			OTLog::vOutput(0, "OTOffer::%s: Failure: validTo date (%" PRId64") cannot be earlier than "
@@ -358,11 +358,11 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					   "\n\nOffer. Transaction Number: %ld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
 					   " AssetTypeID: %s\n  CurrencyTypeID: %s\n ServerID: %s\n"
 					   " Price Limit: %ld,  Total Assets on Offer: %ld,  %s so far: %ld\n "
-					   " Scale: %ld.   Minimum Increment: %ld.  This offer is a%s.\n",
+					   " Scale: %ld.   Minimum Increment: %ld.  This offer is a%s.\n", 
 					   m_lTransactionNum, tValidFrom, tValidTo,
 					   strAssetTypeID.Get(), strCurrencyTypeID.Get(), strServerID.Get(),
-					   GetPriceLimit(), GetTotalAssetsOnOffer(),  (m_bSelling ? "sold" : "bought"),
-					   GetFinishedSoFar(), GetScale(), GetMinimumIncrement(),
+					   GetPriceLimit(), GetTotalAssetsOnOffer(),  (m_bSelling ? "sold" : "bought"), 
+					   GetFinishedSoFar(), GetScale(), GetMinimumIncrement(), 
 					   (m_bSelling ? "n ASK" : " BID"));
         // ----------------------------------------------------------------
 		nReturnVal = 1;
@@ -375,10 +375,10 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 
 void OTOffer::UpdateContents()
-{
-	const OTString	SERVER_ID(GetServerID()), ASSET_TYPE_ID(GetAssetID()),
+{	
+	const OTString	SERVER_ID(GetServerID()), ASSET_TYPE_ID(GetAssetID()), 
 					CURRENCY_TYPE_ID(GetCurrencyID());
-
+	
     const int64_t lFrom                 = static_cast<int64_t> (GetValidFrom()),
                   lTo                   = static_cast<int64_t> (GetValidTo());
 	const long    lPriceLimit           = GetPriceLimit(),
@@ -387,12 +387,12 @@ void OTOffer::UpdateContents()
                   lScale                = GetScale(),
                   lMinimumIncrement     = GetMinimumIncrement(),
                   lTransactionNum       = GetTransactionNum();
-
+	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-
-	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
-
+	
+	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
+	
 	m_xmlUnsigned.Concatenate("<marketOffer\n version=\"%s\"\n"
 							  " isSelling=\"%s\"\n"		// true or false.
 							  " serverID=\"%s\"\n"
@@ -410,16 +410,16 @@ void OTOffer::UpdateContents()
 							  m_strVersion.Get(),
 							  (IsBid() ? "false" : "true"),
 							  SERVER_ID.Get(),
-							  ASSET_TYPE_ID.Get(),
-							  CURRENCY_TYPE_ID.Get(),
+							  ASSET_TYPE_ID.Get(), 
+							  CURRENCY_TYPE_ID.Get(), 
 							  lPriceLimit,
 							  lTotalAssetsOnOffer,
 							  lFinishedSoFar,
 							  lScale,
 							  lMinimumIncrement,
 							  lTransactionNum,
-							  lFrom, lTo );
-
+							  lFrom, lTo );	
+	
 //	m_xmlUnsigned.Concatenate("</marketOffer>\n");	// ^^^ Tag already ended above.
 }
 
@@ -437,7 +437,7 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 	m_bSelling				= bBuyingOrSelling;		// Bid or Ask?
 	SetTransactionNum		(lTransactionNum);
 	SetTotalAssetsOnOffer	(lTotalAssetsOffer);	// 500 bushels for sale.
-
+	
 	m_strContractType.Set((m_bSelling ? "ASK" : "BID"));
 
 	// Make sure minimum increment isn't bigger than total Assets.
@@ -446,25 +446,25 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 	if (lMinimumIncrement > lTotalAssetsOffer)		// Once the total, minus finish so far, is smaller than the minimum increment,
 		lRealMinInc = lTotalAssetsOffer;			// then the OTTrade object I am linked to will expire and remove me from the market.
 													// OR it could set the minimum increment to the remainder. But then need to calc price.
-
+	
 	SetMinimumIncrement		(lRealMinInc);			// Must sell in 50 bushel increments. (Perhaps on the 10-bushel market it will sell in 5 increments of 10.)
 	SetPriceLimit			(lPriceLimit);			// Won't sell for any less than $10 per increment. (Always get best market price.)
 	SetFinishedSoFar		(0);					// So far have already sold 350 bushels. Actual amount available is (total - finished).
-
+	
 	time_t REAL_VALID_FROM	= VALID_FROM;
 	time_t REAL_VALID_TO	= VALID_TO;
-
+	
 	if (0 >= VALID_FROM)
 	{
 		REAL_VALID_FROM	= time(NULL); // This time is set to TODAY NOW
 	}
-
+	
 	if (0 >= VALID_TO)
 	{
 		// (All offers default to a "DAY ORDER" if valid dates not specified.)
-		REAL_VALID_TO	= REAL_VALID_FROM + 86400; // 1 day.
+		REAL_VALID_TO	= REAL_VALID_FROM + 86400; // 1 day. 
 	}
-
+	
 	SetValidFrom(REAL_VALID_FROM);
 	SetValidTo(REAL_VALID_TO);
 
@@ -500,7 +500,7 @@ OTOffer::OTOffer()
 
 
 
-OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const long & lScale)
+OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const long & lScale) 
 : ot_super(SERVER_ID, ASSET_ID), m_tDateAddedToMarket(0), m_pTrade(NULL), // No need to free m_pTrade, not responsible. Only here for convenience.
     m_bSelling			(false),
     m_lPriceLimit		(0),
@@ -509,11 +509,11 @@ OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, 
     m_lFinishedSoFar	(0),
     m_lScale			(1), // This must be 1 or greater. CANNOT be zero. Enforced.
     m_lMinimumIncrement	(1) // This must be 1 or greater. CANNOT be zero. Enforced.
-{
+{	
 	InitOffer();
-
+	
 	SetScale(lScale);
-
+	
 	m_CURRENCY_TYPE_ID = CURRENCY_ID;
 }
 
@@ -535,9 +535,9 @@ void OTOffer::Release()
 {
 	// If there were any dynamically allocated objects, clean them up here.
 	Release_Offer();
-
+	
 	ot_super::Release(); // since I've overridden the base class, I call it now...
-
+	
 	// Then I call this to re-initialize everything
 	InitOffer();
 }
@@ -546,7 +546,7 @@ void OTOffer::Release()
 void OTOffer::InitOffer()
 {
 	m_strContractType.Set("OFFER"); // in practice should never appear. BID/ASK will overwrite.
-
+	
 	// This pointer will get wiped anytime Release() is called... which means anytime LoadContractFromString()
 	// is called. For some objects, that screws them up because suddenly the pointer went NULL when they needed it.
 	// In the case of this object, the pointer is reset whenever Cron processes, so this is safe. But in
@@ -572,4 +572,4 @@ bool OTOffer::SaveContractWallet(std::ofstream & ofs)
 }
 
 
-
+ 

@@ -1,4 +1,4 @@
-/*******************************************************************
+/************************************************************
 *
 *  OTPaths.cpp
 *
@@ -132,10 +132,10 @@
 
 #include <stdafx.hpp>
 
-#include "OTPaths.hpp"
+#include <OTPaths.hpp>
 
-#include "OTAssert.hpp"
-#include "OTLog.hpp"
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
 
 #include <vector>
 

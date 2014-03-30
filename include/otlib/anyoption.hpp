@@ -20,31 +20,31 @@
 #define COMMAND_OPTION_TYPE  	1
 #define COMMAND_FLAG_TYPE 	2
 #define FILE_OPTION_TYPE  	3
-#define FILE_FLAG_TYPE 		4
+#define FILE_FLAG_TYPE 		4 
 #define UNKNOWN_TYPE 		5
 
 #define DEFAULT_MAXOPTS 	10
 #define MAX_LONG_PREFIX_LENGTH 	2
 
 #define DEFAULT_MAXUSAGE	3
-#define DEFAULT_MAXHELP         10
+#define DEFAULT_MAXHELP         10	
 
-#define TRUE_FLAG "true"
+#define TRUE_FLAG "true" 
 
 using namespace std;
 
-class AnyOption
+class AnyOption 
 {
 
 public: /* the public interface */
 EXPORT	AnyOption();
-	AnyOption(int maxoptions );
-	AnyOption(int maxoptions , int maxcharoptions);
+	AnyOption(int maxoptions ); 
+	AnyOption(int maxoptions , int maxcharoptions); 
 EXPORT	~AnyOption();
 
-	/*
-         * following set methods specifies the
-	 * special characters and delimiters
+	/* 
+         * following set methods specifies the  
+	 * special characters and delimiters 
 	 * if not set traditional defaults will be used
          */
 
@@ -53,47 +53,47 @@ EXPORT	~AnyOption();
 	void setFileCommentChar( char _comment );    /* '#' in shellscripts */
 	void setFileDelimiterChar( char _delimiter );/* ':' in "width : 100" */
 
-	/*
+	/* 
 	 * provide the input for the options
-         * like argv[] for commndline and the
+         * like argv[] for commndline and the 
          * option file name  to use;
 	 */
 
 	void useCommandArgs( int _argc, char **_argv );
 	void useFiileName( const char *_filename );
 
-	/*
-         * turn off the POSIX style options
+	/* 
+         * turn off the POSIX style options 
          * this means anything starting with a '-' or "--"
-         * will be considered a valid option
-         * which alo means you cannot add a bunch of
+         * will be considered a valid option 
+         * which alo means you cannot add a bunch of 
          * POIX options chars together like "-lr"  for "-l -r"
-         *
+         * 
          */
 
 	void noPOSIX();
 
 	/*
-         * prints warning verbose if you set anything wrong
+         * prints warning verbose if you set anything wrong 
          */
 	void setVerbose();
 
 
-	/*
-         * there are two types of options
+	/* 
+         * there are two types of options  
          *
          * Option - has an associated value ( -w 100 )
          * Flag  - no value, just a boolean flag  ( -nogui )
-         *
+         * 
 	 * the options can be either a string ( GNU style )
-         * or a character ( traditional POSIX style )
+         * or a character ( traditional POSIX style ) 
          * or both ( --width, -w )
          *
-         * the options can be common to the commandline and
-         * the optionfile, or can belong only to either of
+         * the options can be common to the commandline and 
+         * the optionfile, or can belong only to either of 
          * commandline and optionfile
          *
-         * following set methods, handle all the aboove
+         * following set methods, handle all the aboove 
 	 * cases of options.
          */
 
@@ -122,24 +122,24 @@ EXPORT	void setFileOption( const char *opt_string );
 	void setFileFlag( const char *opt_string , char opt_char );
 
 	/*
-         * process the options, registerd using
+         * process the options, registerd using 
          * useCommandArgs() and useFileName();
          */
-	void processOptions();
+	void processOptions();  
 	void processCommandArgs();
 EXPORT	void processCommandArgs( int max_args );
 EXPORT	bool processFile();
 
 	/*
-         * process the specified options
+         * process the specified options 
          */
 EXPORT	void processCommandArgs( int _argc, char **_argv );
 	void processCommandArgs( int _argc, char **_argv, int max_args );
 EXPORT	bool processFile( const char *_filename );
-
+	
 	/*
-         * get the value of the options
-	 * will return NULL if no value is set
+         * get the value of the options 
+	 * will return NULL if no value is set 
          */
 EXPORT	char *getValue( const char *_option );
 EXPORT	bool  getFlag( const char *_option );
@@ -155,8 +155,8 @@ EXPORT	void addUsage( const char *line );
 	void printHelp();
         /* print auto usage printing for unknown options or flag */
 	void autoUsagePrint(bool flag);
-
-	/*
+	
+	/* 
          * get the argument count and arguments sans the options
          */
 EXPORT	int   getArgc();
@@ -204,7 +204,7 @@ private: /* the hidden data structure */
 	bool verbose;		/* silent|verbose */
 	bool print_usage;	/* usage verbose */
 	bool print_help;	/* help verbose */
-
+	
 	char opt_prefix_char;		/*  '-' in "-w" */
 	char long_opt_prefix[MAX_LONG_PREFIX_LENGTH + 1]; /* '--' in "--width" */
 	char file_delimiter_char;	/* ':' in width : 100 */
@@ -218,13 +218,13 @@ private: /* the hidden data structure */
 
 	bool set;   //was static member
 	bool once;  //was static member
-
+	
 	bool hasoptions;
 	bool autousage;
 
 private: /* the hidden utils */
-	void init();
-	void init(int maxopt, int maxcharopt );
+	void init();	
+	void init(int maxopt, int maxcharopt );	
 	bool alloc();
 	void cleanup();
 	bool valueStoreOK();
@@ -260,7 +260,7 @@ private: /* the hidden utils */
 	bool consumeFile( char *buffer );
 	void processLine( char *theline, int length );
 	char *chomp( char *str );
-	void valuePairs( char *type, char *value );
+	void valuePairs( char *type, char *value ); 
 	void justValue( char *value );
 
 	void printVerbose( const char *msg );

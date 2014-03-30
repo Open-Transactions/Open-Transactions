@@ -16,11 +16,8 @@
 
 #include <stdafx.hpp>
 
-#include "OTAPI.hpp"
-#include "OT_ME.hpp"
-#include "ot_command_ot.hpp"
-#include "ot_made_easy_ot.hpp"
 #include "ot_otapi_ot.hpp"
+
 #include "ot_utility_ot.hpp"
 
 string Args;
@@ -1199,7 +1196,8 @@ OT_OTAPI_OT string OTAPI_Func::SendRequestOnce(OTAPI_Func & theFunction, const s
                 //  bMsgTransFailure)    // Etc.
 
                 //FIX: Add '(' and ')' here to silence warning. But where?
-                if ((bWasSent && (1 == nProcessNymboxResult)) || !bWasSent && (0 == nProcessNymboxResult))// success processing Nymbox.
+                if (( bWasSent && (1 == nProcessNymboxResult))  ||
+                    (!bWasSent && (0 == nProcessNymboxResult))) // success processing Nymbox.
                 {
                     bCanRetryAfterThis = true;
                 }

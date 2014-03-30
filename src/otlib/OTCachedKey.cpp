@@ -132,17 +132,17 @@
 
 #include <stdafx.hpp>
 
-#include "OTCachedKey.hpp"
+#include <OTCachedKey.hpp>
 
-#include "OTSymmetricKey.hpp"
-#include "OTString.hpp"
-#include "OTLog.hpp"
-#include "OTIdentifier.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTPassword.hpp"
-#include "OTCrypto.hpp"
-#include "OTKeyring.hpp"
-#include "OTAsymmetricKey.hpp"
+#include <OTSymmetricKey.hpp>
+#include <OTString.hpp>
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPassword.hpp>
+#include <OTCrypto.hpp>
+#include <OTKeyring.hpp>
+#include <OTAsymmetricKey.hpp>
 
 #include "tinythread.hpp"   // These are in the header already.
 using namespace tthread;

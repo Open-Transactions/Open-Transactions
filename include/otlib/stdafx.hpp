@@ -6,28 +6,47 @@
 // Include the C one.
 #include "stdafx.h"
 
-
 #ifdef OT_USE_CXX11
 #undef OT_USE_CXX11
 #endif
-#if defined(_MSC_VER) || !defined(OPENTXS_NO_CXX11)
+
+#if defined(_MSC_VER)
+#define OT_USE_CXX11
+#elif (!defined(OPENTXS_NO_CXX11) && (__cplusplus >= 201103L))
 #define OT_USE_CXX11
 #endif
 
-#ifndef OT_USE_CHAI5
-#define OT_USE_CHAI5
+// ------------------------------------
+#ifndef OT_USE_SCRIPT_CHAI
+
+#if defined(OPENTXS_CHAISCRIPT_5) || defined(OPENTXS_CHAISCRIPT_4)
+#define OT_USE_SCRIPT_CHAI
 #endif
+
+#endif
+// ------------------------------------
+
 #if defined(ANDROID) || defined(OT_KEYRING_IOS)
+
 // DON'T use ChaiScript on mobile devices
-#undef OT_USE_CHAI5
+#undef OT_USE_SCRIPT_CHAI
+
+#undef OPENTXS_CHAISCRIPT_4
+#undef OPENTXS_CHAISCRIPT_5
+
 #endif
+
+// ------------------------------------
 
 #ifdef OT_USE_CHAI_STDLIB
 #undef OT_USE_CHAI_STDLIB
 #endif
+
 #ifdef OPENTXS_CHAISCRIPT_5
 #define OT_USE_CHAI_STDLIB
 #endif
+
+// ------------------------------------
 
 #ifndef OT_CRYPTO_USING_OPENSSL
 #define OT_CRYPTO_USING_OPENSSL 1
@@ -37,6 +56,7 @@
 #define OT_CASH_USING_LUCRE 1
 #endif
 
+// ------------------------------------
 
 // for mac, this enables deprecated functions. (aka, for pthread)
 #ifdef _XOPEN_SOURCE

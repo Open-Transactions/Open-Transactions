@@ -66,7 +66,7 @@ AC_MSG_CHECKING([if compiling with clang])
 
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[
 #ifndef __clang__
-       not clang
+	not clang
 #endif
 	]])],[ac_cv_ot_clang=true],[ac_cv_ot_clang=false])
 
@@ -97,15 +97,15 @@ if test x"$ac_cv_ot_clang" == x"true"; then
 fi
 
 if test x"$ac_cv_ot_clang" == x"false"; then
-    AC_MSG_CHECKING([whether gcc version is sufficient])
+	AC_MSG_CHECKING([whether gcc version is sufficient])
 	gcc_major=0
 	gcc_minor=0
 
-    GCC_VERSION=`$CC -dumpversion`
-    if test $? -eq 0; then
+	GCC_VERSION=`$CC -dumpversion`
+	if test $? -eq 0; then
 		gcc_major=`echo $GCC_VERSION | cut -d. -f1`
 		gcc_minor=`echo $GCC_VERSION | cut -d. -f2`
-    fi
+	fi
 
 	## test if we have a version of gcc that suports c++11
 	ac_cv_ot_gcc11=false
@@ -116,10 +116,10 @@ if test x"$ac_cv_ot_clang" == x"false"; then
 	elif test $gcc_major -ge 4 -a $gcc_minor -ge 2 ; then
 		ac_cv_ot_gcc11=false
 		AC_MSG_RESULT([yes, but no c++11 support])
-    else
+	else
 		AC_MSG_ERROR([If using GCC, version 4.2.0 or later is required.])
 		AC_MSG_RESULT([no])
-    fi
+	fi
 fi
 
 if test x"$ac_cv_ot_clang" == x"true" -a x"$ac_cv_ot_clang11" == x"false"; then
@@ -167,9 +167,9 @@ AC_ARG_WITH(
 	[protoc],
 	[AS_HELP_STRING(
 		[--with-protoc=PATH],	
-        [location of the protoc protocol buffer compiler binary, defaults to protoc])],
-    [PROTOC="$withval"],
-    [PROTOC='protoc'])
+		[location of the protoc protocol buffer compiler binary, defaults to protoc])],
+	[PROTOC="$withval"],
+	[PROTOC='protoc'])
 AC_SUBST([PROTOC])
 
 
@@ -178,7 +178,7 @@ AC_SUBST([PROTOC])
 
 AC_ARG_WITH(
 	[openssl],
-		[],
+	[],
 	[ case "$withval" in "" | y | ye | yes | n | no) AC_MSG_ERROR([Invalid --with-openssl value]);;
 		*) AX_CHECK_OPENSSL(
 			[AC_MSG_RESULT([Custom openssl found!])],
@@ -228,11 +228,11 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		[AC_MSG_RESULT([Warning: libzmq version >= 2.1.4 not found!])]
 		)
 	])
-    
+
 if test x"$with_transport" == x"zmq"; then
-    AC_DEFINE([TRANSPORT_ZMQ], [1], [Using ZMQ Transport])
+	AC_DEFINE([TRANSPORT_ZMQ], [1], [Using ZMQ Transport])
 else
-    AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
+	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
 fi
 
 ## Keyring Options ##
@@ -260,7 +260,7 @@ AS_IF(	[test x"$with_keyring" == x"windows"],
 	[
 	AC_SUBST(KRG_CFLAGS,[""])
 	AC_SUBST(KRG_LIBS,[""])
-    AC_DEFINE([KEYRING_WINDOWS], [1], [Using Windows Keyring])
+	AC_DEFINE([KEYRING_WINDOWS], [1], [Using Windows Keyring])
 	])
 ##  WINDOWS build flags needed here #
 
@@ -268,21 +268,28 @@ AS_IF(	[test x"$with_keyring" == x"mac"],
 	[
 	AC_SUBST(KRG_CFLAGS,["-isysroot /Developer/SDKs/MacOSX10.6.sdk -arch ppc -arch i386"])
 	AC_SUBST(KRG_LIBS,["-syslibroot /Developer/SDKs/MacOSX10.6.sdk -arch ppc -arch i386"])
-    AC_DEFINE([KEYRING_MAC], [1], [Using Mac Keyring])
+	AC_DEFINE([KEYRING_MAC], [1], [Using Mac Keyring])
 	])
 
 AS_IF(	[test x"$with_keyring" == x"gnome"],
 	[
 	PKG_CHECK_MODULES([KRG],[glib-2.0 >= 2.28.6 gnome-keyring-1])
-    AC_DEFINE([KEYRING_GNOME], [1], [Using Gnome Keyring])
+	AC_DEFINE([KEYRING_GNOME], [1], [Using Gnome Keyring])
 	])
 
 AS_IF(	[test "$with_keyring" == x"kwallet"],
 	[
 	AC_SUBST(KRG_CFLAGS,	["-I/usr/include/kde"])
 	AC_SUBST(KRG_LIBS,	["-L/usr/lib -lkwalletclient"])
-    AC_DEFINE([KEYRING_KWALLET], [1], [Using KWallet Keyring])
+	AC_DEFINE([KEYRING_KWALLET], [1], [Using KWallet Keyring])
 	])
+	
+AS_IF(  [test "$with_keyring" == x"flatfile"],
+    [
+    AC_SUBST(KRG_CFLAGS,  [""])
+    AC_SUBST(KRG_LIBS,  [""])
+    AC_DEFINE([KEYRING_FLATFILE], [1], [Using flatfile Keyring])
+    ])
 
 AS_IF(  [test "$with_keyring" == x"flatfile"],
     [
@@ -312,7 +319,7 @@ if test x"$with_java" == x"yes"; then
 	for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
 		do
 			JNI_CPPFLAGS="$JNI_CPPFLAGS -I$JNI_INCLUDE_DIR"
-    		done
+			done
 
 	AC_SUBST([JNI_CPPFLAGS],[$JNI_CPPFLAGS])
 fi
@@ -391,9 +398,9 @@ fi
 ## (Option) Add SWIG CSHARP ##
 
 AC_ARG_WITH(
-        [csharp],
-        [AS_HELP_STRING([--with-csharp], [build Csharp SWIG wrapper])],
-        [])
+		[csharp],
+		[AS_HELP_STRING([--with-csharp], [build Csharp SWIG wrapper])],
+		[])
 
 AM_CONDITIONAL([WANT_CSHARP], [test x"$with_csharp" == x"yes"])
 
@@ -405,9 +412,9 @@ fi
 ## (Option) Add SWIG D ##
 
 AC_ARG_WITH(
-        [d],
-        [AS_HELP_STRING([--with-d], [build D SWIG wrapper])],
-        [])
+		[d],
+		[AS_HELP_STRING([--with-d], [build D SWIG wrapper])],
+		[])
 
 AM_CONDITIONAL([WANT_D], [test x"$with_d" == x"yes"])
 
@@ -419,9 +426,9 @@ fi
 ## (Option) Add SWIG Go ##
 
 AC_ARG_WITH(
-        [go],
-        [AS_HELP_STRING([--with-go], [build Go SWIG wrapper])],
-        [])
+		[go],
+		[AS_HELP_STRING([--with-go], [build Go SWIG wrapper])],
+		[])
 
 AM_CONDITIONAL([WANT_GO], [test x"$with_go" == x"yes"])
 
@@ -473,7 +480,7 @@ AC_ARG_ENABLE(
 AM_CONDITIONAL(ENABLE_OT_SIGNAL_HANDLING, test x"$sighandler" == x"true")
 
 if test x"$sighandler" == x"true"; then
-    AC_DEFINE([OT_SIGNAL_HANDLING], [1], [Using OT Signal Handling])
+	AC_DEFINE([OT_SIGNAL_HANDLING], [1], [Using OT Signal Handling])
 fi
 
 ## (Option) Warnings ##
@@ -507,7 +514,7 @@ AC_ARG_ENABLE([debug],
 		yes) debug=true ;;
 		no)  debug=false ;;
 		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
-        esac],[debug=false])
+		esac],[debug=false])
 AM_CONDITIONAL([ENABLE_DEBUG], [test x$debug == x"true"])
 
 
@@ -517,7 +524,7 @@ AC_ARG_ENABLE([release],
 		yes) release=true ;;
 		no)  release=false ;;
 		*)   AC_MSG_ERROR([bad value ${enableval} for --enable-release]) ;;
-        esac],[release=false])
+		esac],[release=false])
 AM_CONDITIONAL([ENABLE_RELEASE], [test x$release == x"true"])
 
 if test x"$debug" == x"true" -a x"$release" == x"true"; then
@@ -525,27 +532,27 @@ if test x"$debug" == x"true" -a x"$release" == x"true"; then
 fi
 
 if test x"$debug" == x"false" -a x"$release" == x"false"; then
-    AC_MSG_RESULT([defaulting to RELEASE mode!])
-    release=true
+	AC_MSG_RESULT([defaulting to RELEASE mode!])
+	release=true
 	AM_CONDITIONAL([ENABLE_RELEASE], [test x$release == x"true"])
 fi
 
 if test x"$debug" == x"true"; then
 	if test x"$ac_cv_ot_clang" == x"true"; then
-        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
-    else
-        AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
-    fi
-    AC_DEFINE([DEBUG], [1], [Building in Debug Mode])
+		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC"])
+	else
+		AC_SUBST([DBG_CXXFLAGS],["-g3 -O0 -fPIC -DPIC"])
+	fi
+	AC_DEFINE([DEBUG], [1], [Building in Debug Mode])
 fi
 
 if test x"$release" == x"true"; then
 	if test x"$ac_cv_ot_clang" == x"true"; then
 		AC_SUBST([REL_CXXFLAGS],["-g0 -O3 -fPIC -D_FORTIFY_SOURCE=2"])
-    else
-        AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
-    fi
-    AC_DEFINE([RELEASE], [1], [Building in Release Mode])
+	else
+		AC_SUBST([REL_CXXFLAGS],["-g0 -O0 -fPIC -D_FORTIFY_SOURCE=2 --param ssp-buffer-size=4 -fstack-protector-all -fstack-check -Wstack-protector"])
+	fi
+	AC_DEFINE([RELEASE], [1], [Building in Release Mode])
 fi
 
 #####   Output to AM   #####

@@ -3,13 +3,13 @@
 * OTAPI.cpp   --	A C++ Low-Level API (wraps OT_API)
 *
 * This is a C++ class that contains many helper functions.
-*
+*  
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -112,10 +112,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -140,23 +140,45 @@
 
 #include <OpenTransactions.hpp>
 
-
-extern "C"
-{
-#ifndef _WIN32
-#include <inttypes.h>
-#else
-
-#ifndef PRId64
-#define PRId64 "I64d"
+#ifndef IMPORT
+#define IMPORT
 #endif
+    
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
+#include <OTCredential.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
+#include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTServerContract.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTWallet.hpp>
 
-#ifndef PRId32
-#define PRId32 "I32d"
-#endif
+#include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
-#endif
-}
+//extern "C"
+//{
+//#ifndef _WIN32
+//#include <inttypes.h>
+//#else
+//
+//#ifndef PRId64
+//#define PRId64 "I64d"
+//#endif
+//
+//#ifndef PRId32
+//#define PRId32 "I32d"
+//#endif
+//
+//#endif
+//}
 
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
@@ -416,7 +438,6 @@ std::string OTAPI_Wrap::GetNym_ActiveCronItemIDs(const std::string & NYM_ID, con
 std::string OTAPI_Wrap::GetActiveCronItem(const std::string & SERVER_ID, int64_t lTransNum)
 {
     return Exec()->GetActiveCronItem(SERVER_ID, lTransNum);
-
 }
 
 std::string OTAPI_Wrap::GetNym_SourceForID(const std::string & NYM_ID)

@@ -132,12 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include "OTTransactionType.hpp"
+#include <OTTransactionType.hpp>
 
-#include "OTLog.hpp"
-#include "OTLedger.hpp"
-#include "OTAccount.hpp"
-
+#include <OTLog.hpp>
+#include <OTLedger.hpp>
+#include <OTAccount.hpp>
 
 // static -- class factory.
 //

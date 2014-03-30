@@ -1,13 +1,13 @@
 /*****************************************************************
- *
+ *    
  *  OTInstrument.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,7 +132,7 @@
 
 #include <stdafx.hpp>
 
-#include "OTInstrument.hpp"
+#include <OTInstrument.hpp>
 
 #include <time.h>
 
@@ -146,7 +146,7 @@
 bool OTInstrument::IsExpired()
 {
 	const time_t CURRENT_TIME =	time(NULL);
-
+	
 	// If the current time is AFTER the valid-TO date,
 	// AND the valid_to is a nonzero number (0 means "doesn't expire")
 	// THEN return true (it's expired.)
@@ -162,8 +162,8 @@ bool OTInstrument::IsExpired()
 bool OTInstrument::VerifyCurrentDate()
 {
 	const time_t CURRENT_TIME =	time(NULL);
-
-	if ((CURRENT_TIME >= m_VALID_FROM) &&
+	
+	if ((CURRENT_TIME >= m_VALID_FROM) && 
 		((CURRENT_TIME <= m_VALID_TO) || (0 == m_VALID_TO)))
 		return true;
 	else
@@ -176,7 +176,7 @@ time_t OTInstrument::GetCurrentTime() const
 }
 
 void OTInstrument::InitInstrument()
-{
+{	
 	m_strContractType.Set("INSTRUMENT");
 }
 
@@ -198,24 +198,24 @@ OTInstrument::OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & 
 OTInstrument::~OTInstrument()
 {
     Release_Instrument();
-
+    
 	m_VALID_FROM	= 0;
-	m_VALID_TO		= 0;
+	m_VALID_TO		= 0;	
 }
 
 
 void OTInstrument::Release_Instrument()
 {
-	// Release any dynamically allocated instrument members here.
+	// Release any dynamically allocated instrument members here.    
 }
 
 void OTInstrument::Release()
-{
+{		
 	Release_Instrument(); // My own cleanup is performed here.
-
+    
 	// Next give the base class a chance to do the same...
 	ot_super::Release(); // since I've overridden the base class, I call it now...
-
+    
 	// Initialize everything back to 0
 //	InitInstrument(); // unnecessary.
 }
@@ -232,7 +232,7 @@ int OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 //    OTLog::Error("OTInstrument::ProcessXMLNode...\n");
 	int nReturnVal = 0;
-
+    
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -241,24 +241,24 @@ int OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// -- Note you can choose not to call the parent if
 	// you don't want to use any of those xml tags.
 	//
-
+	
 	nReturnVal = ot_super::ProcessXMLNode(xml);
-
+	
 	if (nReturnVal != 0) // -1 is error, and 1 is "found it". Either way, return.
 		return nReturnVal;	// 0 means "nothing happened, keep going."
-
+    
 	// ---------
-
+	
     // This is from OTCronItem. It's only here as sample code.
     //
-//  if (!strcmp("closingTransactionNumber", xml->getNodeName()))
-//	{
+//  if (!strcmp("closingTransactionNumber", xml->getNodeName())) 
+//	{		
 //        OTString strClosingNumber = xml->getAttributeValue("value");
-//
+//        
 //        if (strClosingNumber.Exists())
 //        {
-//            const long lClosingNumber = atol(strClosingNumber.Get());
-//
+//            const long lClosingNumber = atol(strClosingNumber.Get());					
+//            
 //            this->AddClosingTransactionNo(lClosingNumber);
 //        }
 //        else
@@ -266,10 +266,10 @@ int OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 //			OTLog::Error("Error in OTCronItem::ProcessXMLNode: closingTransactionNumber field without value.\n");
 //			return (-1); // error condition
 //		}
-//
+//        
 //		nReturnVal = 1;
 //	}
-
+    
 	return nReturnVal;
 }
 

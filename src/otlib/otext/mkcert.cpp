@@ -8,10 +8,6 @@
 
 // -----------------------------------------------
 
-// -----------------------------------------------
-
-// -----------------------------------------------
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -110,8 +106,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
             if ((pk = EVP_PKEY_new()) == NULL)
             {
                 abort();  // todo
-
-                //return(0); undeeded after abort.
+                //return(0); unneeded after abort.
             }
             bCreatedKey = true;
         }
