@@ -232,7 +232,7 @@ EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
                                           const std::string & script_contents);
 
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_SCRIPT_CHAI
 
 
 // ********************************************************************
@@ -260,11 +260,10 @@ public:
 
     virtual bool ExecuteScript(OTVariable * pReturnVar=NULL);
     // ------------------------
-
     chaiscript::ChaiScript * const chai;
 };
 
-#endif // OT_USE_CHAI5
+#endif // OT_USE_SCRIPT_CHAI
 
 
 #if __clang__

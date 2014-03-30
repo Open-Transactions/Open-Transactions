@@ -140,32 +140,33 @@
 #include <stdafx.hpp>
 
 #include <OpenTransactions.hpp>
-#include "OTClient.hpp"
-#include "OTAPI.hpp"
+#include <OTClient.hpp>
+#include <OTAPI.hpp>
 
 #ifndef IMPORT
 #define IMPORT
 #endif
 
-#include "OTBasket.hpp"
-#include "OTCheque.hpp"
-#include "OTEnvelope.hpp"
-#include "OTLedger.hpp"
-#include "OTLog.hpp"
-#include "OTMessage.hpp"
-#include "OTMint.hpp"
-#include "OTOffer.hpp"
-#include "OTPassword.hpp"
-#include "OTPaths.hpp"
-#include "OTPayment.hpp"
-#include "OTPaymentPlan.hpp"
-#include "OTPurse.hpp"
-#include "OTSmartContract.hpp"
-#include "OTSymmetricKey.hpp"
-#include "OTTrade.hpp"
-#include "OTWallet.hpp"
+#include <OTBasket.hpp>
+#include <OTCheque.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTOffer.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
+#include <OTPayment.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTPurse.hpp>
+#include <OTSmartContract.hpp>
+#include <OTSymmetricKey.hpp>
+#include <OTTrade.hpp>
+#include <OTWallet.hpp>
 
 #include <fstream>
+
 
 #include "simpleini/SimpleIni.hpp"
 #include "tinythread.hpp"

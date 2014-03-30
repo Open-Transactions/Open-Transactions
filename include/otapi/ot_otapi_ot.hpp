@@ -4,12 +4,19 @@
 
 #include "OTCommon.hpp"
 
+
+
 #include "OTStorage.hpp"
 
+#include "OTAPI.hpp"
+#include "OT_ME.hpp"
+
 #include <string>
+#include <iostream>
 
-
-
+#ifndef OT_USE_CXX11
+#include <cstdlib>
+#endif
 
 
 #define OT_OTAPI_OT
@@ -21,12 +28,21 @@
 using std::string;
 
 
-inline string concat(const string & str1, const string & str2) { return str1 + str2; }
-inline void print(const string & text) { std::cout << text << "\n"; }
-inline int32_t to_int(const string & strValue) { return static_cast<int32_t>(std::stoi(strValue)); }
-inline int64_t to_long(const string & strValue) { return std::stoll(strValue); }
-inline string to_string(const bool bValue) { return bValue ? "true" : "false"; }
-inline string to_string(const int64_t nValue) { return std::to_string(nValue); }
+inline string concat   (const string & str1, const string & str2) { return str1 + str2; }
+inline void   print    (const string & text)   { std::cout << text << "\n"; }
+inline string to_string(const bool     bValue) { return bValue ? "true" : "false"; }
+// --------------------------------------------------------------
+#ifdef OT_USE_CXX11
+inline string  to_string(const int64_t  nValue)   { return std::to_string(nValue); }
+inline int32_t to_int   (const string & strValue) { return static_cast<int32_t>(std::stoi(strValue)); }
+inline int64_t to_long  (const string & strValue) { return std::stoll(strValue); }
+// --------------------------------------------------------------
+#else
+inline string  to_string(const int64_t  nValue)   { return OTAPI_Wrap::LongToString(nValue); }
+inline int32_t to_int   (const string & strValue) { return static_cast<int32_t>(std::atoi(strValue.c_str())); }
+inline int64_t to_long  (const string & strValue) { return OTAPI_Wrap::StringToLong(strValue); }
+#endif
+// --------------------------------------------------------------
 
 class the_lambda_struct;
 

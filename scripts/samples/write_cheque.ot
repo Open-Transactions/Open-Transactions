@@ -1,10 +1,10 @@
 #!/usr/bin/env ot
 
 // "Write Cheque"
-// This happens offline. OT must know the Server when it signs the cheque, but it doesn't have
+// This happens offline. OT must know the Server when it signs the cheque, but it doesn't have 
 // to talk to the server. Instead, you just hand the cheque directly to your friend, and the
 // server sees nothing until later when he deposits it. (Just like a real cheque.)
-// Ideally this script will not just output the cheque, but also save a copy of it into the
+// Ideally this script will not just output the cheque, but also save a copy of it into the 
 // recordBox so that if it is never cashed, we can still recover the transaction number later
 // and use it somewhere else, discarding the cheque.
 //

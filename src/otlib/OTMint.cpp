@@ -1,13 +1,13 @@
 /************************************************************
- *
+ *    
  *  OTMint.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,18 +132,18 @@
 
 #include <stdafx.hpp>
 
-#include "OTMint.hpp"
+#include <OTMint.hpp>
 
-#include "OTToken.hpp"
-#include "OTPseudonym.hpp"
+#include <OTToken.hpp>
+#include <OTPseudonym.hpp>
 
-#include "OTLog.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTPaths.hpp"
-#include "OTAccount.hpp"
-#include "OTMessage.hpp"
-#include "OTDigitalCash.hpp"
-#include "OTEnvelope.hpp"
+#include <OTLog.hpp>
+#include <OTAsymmetricKey.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTMessage.hpp>
+#include <OTDigitalCash.hpp>
+#include <OTEnvelope.hpp>
 
 #include <time.h>
 
@@ -152,7 +152,7 @@
 OTMint * OTMint::MintFactory()
 {
     OTMint * pMint = NULL;
-
+    
 #if defined (OT_CASH_USING_LUCRE)
     pMint = new OTMint_Lucre;
 #elif defined (OT_CASH_USING_MAGIC_MONEY)
@@ -170,7 +170,7 @@ OTMint * OTMint::MintFactory()
 OTMint * OTMint::MintFactory(const OTString & strServerID, const OTString & strAssetTypeID)
 {
     OTMint * pMint = NULL;
-
+    
 #if defined (OT_CASH_USING_LUCRE)
     pMint = new OTMint_Lucre(strServerID, strAssetTypeID);
 #elif defined (OT_CASH_USING_MAGIC_MONEY)
@@ -188,7 +188,7 @@ OTMint * OTMint::MintFactory(const OTString & strServerID, const OTString & strA
 OTMint * OTMint::MintFactory(const OTString & strServerID, const OTString & strServerNymID, const OTString & strAssetTypeID)
 {
     OTMint * pMint = NULL;
-
+    
 #if defined (OT_CASH_USING_LUCRE)
     pMint = new OTMint_Lucre(strServerID, strServerNymID, strAssetTypeID);
 #elif defined (OT_CASH_USING_MAGIC_MONEY)
@@ -234,7 +234,7 @@ OTMint_Lucre::~OTMint_Lucre() { }
 bool OTMint::Expired() const
 {
 	const time_t CURRENT_TIME =	time(NULL);
-
+	
 	if ((CURRENT_TIME >= m_VALID_FROM) && (CURRENT_TIME <= m_EXPIRATION))
 		return false;
 	else
@@ -244,14 +244,14 @@ bool OTMint::Expired() const
 void OTMint::ReleaseDenominations()
 {
 	while (!m_mapPublic.empty())
-	{
+	{		
 		OTASCIIArmor * pArmor = m_mapPublic.begin()->second;
 		m_mapPublic.erase(m_mapPublic.begin());
 		delete pArmor;
 		pArmor = NULL;
 	}
 	while (!m_mapPrivate.empty())
-	{
+	{		
 		OTASCIIArmor * pArmor = m_mapPrivate.begin()->second;
 		m_mapPrivate.erase(m_mapPrivate.begin());
 		delete pArmor;
@@ -268,9 +268,9 @@ void OTMint::ReleaseDenominations()
 void OTMint::Release_Mint()
 {
 	ReleaseDenominations();
-
+	
 	m_CashAccountID.Release();
-
+	
 	if (m_pReserveAcct)
 	{
 		delete m_pReserveAcct;
@@ -281,9 +281,9 @@ void OTMint::Release_Mint()
 void OTMint::Release()
 {
 	Release_Mint();
-
+    
 	ot_super::Release(); // I overrode the parent, so now I give him a chance to clean up.
-
+    
     InitMint();
 }
 
@@ -291,7 +291,7 @@ void OTMint::Release()
 OTMint::~OTMint()
 {
     Release_Mint();
-
+    
     if (NULL != m_pKeyPublic)
     {
         delete m_pKeyPublic;
@@ -305,17 +305,17 @@ OTMint::~OTMint()
 void OTMint::InitMint()
 {
 	m_strContractType.Set("MINT");
-
+	    
 	m_nDenominationCount = 0;
-
+	
 	m_bSavePrivateKeys = false; // Determines whether it serializes private keys (no if false)
-
+    
 	// Mints expire and new ones are rotated in.
 	// All tokens have the same series, and validity dates,
 	// of the mint that created them.
 	m_nSeries		= 0;
 	m_VALID_FROM	= 0;
-	m_VALID_TO		= 0;
+	m_VALID_TO		= 0;	
 	m_EXPIRATION	= 0;
 
 	m_pReserveAcct	= NULL;
@@ -324,8 +324,8 @@ void OTMint::InitMint()
 
 
 OTMint::OTMint(const OTString & strServerID, const OTString & strServerNymID, const OTString & strAssetTypeID)
-: ot_super(strAssetTypeID),
-	m_ServerID(strServerID),
+: ot_super(strAssetTypeID), 
+	m_ServerID(strServerID), 
 	m_ServerNymID(strServerNymID),
     m_pKeyPublic(OTAsymmetricKey::KeyFactory()),
 	m_AssetID(strAssetTypeID),
@@ -339,14 +339,14 @@ OTMint::OTMint(const OTString & strServerID, const OTString & strServerNymID, co
 {
 	m_strFoldername.Set(OTFolders::Mint().Get());
 	m_strFilename.Format("%s%s%s", strServerID.Get(), OTLog::PathSeparator(), strAssetTypeID.Get());
-
+	
 	InitMint();
 }
 
 
 OTMint::OTMint(const OTString & strServerID, const OTString & strAssetTypeID)
-: ot_super(strAssetTypeID),
-	m_ServerID(strServerID),
+: ot_super(strAssetTypeID), 
+	m_ServerID(strServerID), 
     m_pKeyPublic(OTAsymmetricKey::KeyFactory()),
 	m_AssetID(strAssetTypeID),
     m_nDenominationCount(0),
@@ -359,7 +359,7 @@ OTMint::OTMint(const OTString & strServerID, const OTString & strAssetTypeID)
 {
 	m_strFoldername.Set(OTFolders::Mint().Get());
 	m_strFilename.Format("%s%s%s", strServerID.Get(), OTLog::PathSeparator(), strAssetTypeID.Get());
-
+	
 	InitMint();
 }
 
@@ -388,7 +388,7 @@ bool OTMint::LoadMint(const char * szAppend/*=NULL*/) // todo: server should alw
 {
 	if (!m_strFoldername.Exists())
 		m_strFoldername.Set(OTFolders::Mint().Get());
-
+	
 	const OTString strServerID(m_ServerID), strAssetTypeID(m_AssetID);
 
 	if (!m_strFilename.Exists())
@@ -412,27 +412,27 @@ bool OTMint::LoadMint(const char * szAppend/*=NULL*/) // todo: server should alw
 	// --------------------------------------------------------------------
 	if (false == OTDB::Exists(szFolder1name, szFolder2name, szFilename))
 	{
-		OTLog::vOutput(0, "OTMint::LoadMint: File does not exist: %s%s%s%s%s\n",
+		OTLog::vOutput(0, "OTMint::LoadMint: File does not exist: %s%s%s%s%s\n", 
 					   szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
 	// --------------------------------------------------------------------
 	std::string strFileContents(OTDB::QueryPlainString(szFolder1name, szFolder2name, szFilename)); // <=== LOADING FROM DATA STORE.
-
+	
 	if (strFileContents.length() < 2)
 	{
-		OTLog::vError("OTMint::LoadMint: Error reading file: %s%s%s%s%s\n",
+		OTLog::vError("OTMint::LoadMint: Error reading file: %s%s%s%s%s\n", 
 					  szFolder1name, OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
 	// --------------------------------------------------------------------
 	// NOTE: No need to worry about the OT ARMORED file format, since
     // LoadContractFromString already handles that internally.
-
+    
 	OTString strRawFile(strFileContents.c_str());
-
+	
 	bool bSuccess = LoadContractFromString(strRawFile); // Note: This handles OT ARMORED file format.
-
+	
 	return bSuccess;
 }
 
@@ -441,9 +441,9 @@ bool OTMint::SaveMint(const char * szAppend/*=NULL*/)
 {
 	if (!m_strFoldername.Exists())
 		m_strFoldername.Set(OTFolders::Mint().Get());
-
+	
 	const OTString strServerID(m_ServerID), strAssetTypeID(m_AssetID);
-
+	
 	if (!m_strFilename.Exists())
 	{
 		if (NULL != szAppend)
@@ -452,13 +452,13 @@ bool OTMint::SaveMint(const char * szAppend/*=NULL*/)
 		else
 			m_strFilename.Format("%s%s%s", strServerID.Get(), OTLog::PathSeparator(), strAssetTypeID.Get()); // client side
 	}
-
+	
 	OTString strFilename;
-	if (NULL != szAppend)
+	if (NULL != szAppend) 
 		strFilename.Format("%s%s", strAssetTypeID.Get(), szAppend);
 	else
 		strFilename = strAssetTypeID.Get();
-
+	
 	const char * szFolder1name	= OTFolders::Mint().Get();
 	const char * szFolder2name	= strServerID.Get();
 	const char * szFilename		= strFilename.Get();
@@ -474,7 +474,7 @@ bool OTMint::SaveMint(const char * szAppend/*=NULL*/)
 	// --------------------------------------------------------------------
 	OTString strFinal;
     OTASCIIArmor ascTemp(strRawFile);
-
+    
     if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
     {
 		OTLog::vError("OTMint::SaveMint: Error saving mint (failed writing armored string):\n%s%s%s%s%s\n",
@@ -482,16 +482,16 @@ bool OTMint::SaveMint(const char * szAppend/*=NULL*/)
 		return false;
     }
     // --------------------------------------------------------------------
-	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFolder1name,
+	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFolder1name, 
 										 szFolder2name, szFilename); // <=== SAVING TO LOCAL DATA STORE.
 	if (!bSaved)
 	{
-		if (NULL != szAppend)
+		if (NULL != szAppend) 
 			OTLog::vError("OTMint::SaveMint: Error writing to file: %s%s%s%s%s%s\n", szFolder1name,
 					  OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename, szAppend);
 		else
 			OTLog::vError("OTMint::SaveMint: Error writing to file: %s%s%s%s%s\n", szFolder1name,
-						  OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);
+						  OTLog::PathSeparator(), szFolder2name, OTLog::PathSeparator(), szFilename);	
 
 		return false;
 	}
@@ -503,7 +503,7 @@ bool OTMint::SaveMint(const char * szAppend/*=NULL*/)
 
 
 
-// Make sure this contract checks out. Very high level.
+// Make sure this contract checks out. Very high level. 
 // Verifies ID and signature.
 bool OTMint::VerifyMint(const OTPseudonym & theOperator)
 {
@@ -519,7 +519,7 @@ bool OTMint::VerifyMint(const OTPseudonym & theOperator)
 		OTLog::Error("Error verifying signature on mint in OTMint::VerifyMint.\n");
 		return false;
 	}
-
+	
 	OTLog::Output(3, "\nWe now know that...\n"
 			"1) The Asset Contract ID matches the Mint ID loaded from the Mint file.\n"
 			"2) The SIGNATURE VERIFIED.\n\n");
@@ -538,7 +538,7 @@ bool OTMint::VerifyContractID()
 	if (!(m_ID == m_AssetID))
 	{
 		OTString str1(m_ID), str2(m_AssetID);
-
+		
 		OTLog::vError("\nMint ID does NOT match Asset Type ID in OTMint::VerifyContractID.\n%s\n%s\n"
 				//				"\nRAW FILE:\n--->%s<---"
 				"\n",
@@ -564,15 +564,15 @@ bool OTMint::GetPrivate(OTASCIIArmor & theArmor, long lDenomination)
 	{
 		OTASCIIArmor * pArmor = (*it).second;
 		OT_ASSERT_MSG(NULL != pArmor, "NULL mint pointer in OTMint::GetPrivate.\n");
-
+	
 		if ((*it).first == lDenomination) // if this denomination (say, 50) matches the one passed in...
-		{
+		{							   
 			theArmor.Set(*pArmor);
 			return true;
 		}
 	}
-
-	return false;
+	
+	return false;	
 }
 
 // The mint has a different key pair for each denomination.
@@ -583,14 +583,14 @@ bool OTMint::GetPublic(OTASCIIArmor & theArmor, long lDenomination)
 	{
 		OTASCIIArmor * pArmor = (*it).second;
 		OT_ASSERT_MSG(NULL != pArmor, "NULL mint pointer in OTMint::GetPublic.\n");
-
+		
 		if ((*it).first == lDenomination) // if this denomination (say, 50) matches the one passed in...
 		{
 			theArmor.Set(*pArmor);
 			return true;
 		}
 	}
-
+	
 	return false;
 }
 
@@ -606,11 +606,11 @@ long OTMint::GetLargestDenomination(long lAmount)
 	for (int nIndex = GetDenominationCount()-1; nIndex >= 0; nIndex--)
 	{
 		long lDenom = GetDenomination(nIndex);
-
+		
 		if (lDenom <= lAmount)
 			return lDenom;
 	}
-
+	
 	return 0;
 }
 
@@ -625,20 +625,20 @@ long OTMint::GetDenomination(int nIndex)
 	{
 		return 0;
 	}
-
+	
 	int nIterateIndex	= 0;
-
-	for (mapOfArmor::iterator ii = m_mapPublic.begin();
-		 ii != m_mapPublic.end();
+	
+	for (mapOfArmor::iterator ii = m_mapPublic.begin(); 
+		 ii != m_mapPublic.end(); 
 		 ++ii, nIterateIndex++)
-	{
+	{		
 		OTASCIIArmor *	pArmor = (*ii).second;
 		OT_ASSERT_MSG(NULL != pArmor, "NULL mint pointer in OTMint::GetDenomination.\n");
-
+		
 		if (nIndex == nIterateIndex)
 			return (*ii).first;
 	}
-
+	
 	return 0;
 }
 
@@ -653,9 +653,9 @@ long OTMint::GetDenomination(int nIndex)
 bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, int nPrimeLength/*=1024*/)
 {
     OT_ASSERT(NULL != m_pKeyPublic);
-
+    
 	bool bReturnValue = false;
-
+	
 	// Let's make sure it doesn't already exist
 	OTASCIIArmor theArmor;
 	if (GetPublic(theArmor, lDenomination))
@@ -670,69 +670,69 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, 
 		OTLog::Error("Error: Denomination private already exists in OTMint::AddDenomination\n");
 		return false;
 	}
-
+	
 	//		OTLog::Error("%s <size of bank prime in bits> <bank data file> <bank public data file>\n",
-
+	
     if ((nPrimeLength/8) < (MIN_COIN_LENGTH+DIGEST_LENGTH))
 	{
 		OTLog::vError("Prime must be at least %d bits\n",
 				(MIN_COIN_LENGTH+DIGEST_LENGTH)*8);
 		return false;
 	}
-
+	
     if (nPrimeLength%8)
 	{
 		OTLog::Error("Prime length must be a multiple of 8\n");
 		return false;
 	}
-
+	
 #ifdef _WIN32
 	SetMonitor("openssl.dump");
 #else
 	SetMonitor(stderr);
 #endif
-
+	
     OpenSSL_BIO bio		=	BIO_new(BIO_s_mem());
     OpenSSL_BIO bioPublic	=	BIO_new(BIO_s_mem());
-
+	
 	// Generate the mint private key information
     Bank bank(nPrimeLength/8);
     bank.WriteBIO(bio);
-
+	
 	// Generate the mint public key information
     PublicBank pbank(bank);
-    pbank.WriteBIO(bioPublic);
-
-	// Copy from BIO back to a normal OTString or Ascii-Armor
+    pbank.WriteBIO(bioPublic);	
+	
+	// Copy from BIO back to a normal OTString or Ascii-Armor  
 	char privateBankBuffer[4096], publicBankBuffer[4096];   // todo stop hardcoding these string lengths
 	int  privatebankLen	= BIO_read(bio, privateBankBuffer, 4000); // cutting it a little short on purpose, with the buffer.
 	int  publicbankLen	= BIO_read(bioPublic, publicBankBuffer, 4000); // Just makes me feel more comfortable for some reason.
-
+	
 	if (privatebankLen && publicbankLen)
 	{
 		// With this, we have the Lucre public and private bank info converted to OTStrings
 		OTString strPublicBank;		strPublicBank.Set(publicBankBuffer, publicbankLen);
 		OTString strPrivateBank;	strPrivateBank.Set(privateBankBuffer, privatebankLen);
-
+		
 		OTASCIIArmor * pPublic	= new OTASCIIArmor();
 		OTASCIIArmor * pPrivate	= new OTASCIIArmor();
-
+		
 		OT_ASSERT(NULL != pPublic);
 		OT_ASSERT(NULL != pPrivate);
-
+		
 		// Set the public bank info onto pPublic
 		pPublic->SetString(strPublicBank, true); // linebreaks = true
-
-		// Seal the private bank info up into an encrypted Envelope
+		
+		// Seal the private bank info up into an encrypted Envelope 
 		// and set it onto pPrivate
 		OTEnvelope theEnvelope;
 		theEnvelope.Seal(theNotary, strPrivateBank);	// Todo check the return values on these two functions
 		theEnvelope.GetAsciiArmoredData(*pPrivate);
-
+		
 		// Add the new key pair to the maps, using denomination as the key
 		m_mapPublic[lDenomination]	= pPublic;
 		m_mapPrivate[lDenomination]	= pPrivate;
-
+		
 		// Grab the Server Nym ID and save it with this Mint
 		theNotary.GetIdentifier(m_ServerNymID);
         // ---------------------------
@@ -743,12 +743,12 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, 
         m_pKeyPublic = theNotaryPubKey.ClonePubKey();
         // ---------------------------
 		m_nDenominationCount++;
-        // ---------------------------
+        // ---------------------------		
 		// Success!
 		bReturnValue = true;
 		OTLog::vOutput(1, "Successfully added denomination: %ld\n", lDenomination);
 	}
-
+	
 	return bReturnValue;
 }
 #endif // defined (OT_CASH_USING_LUCRE)
@@ -765,19 +765,19 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, 
 void OTMint::UpdateContents()
 {
     OT_ASSERT(NULL != m_pKeyPublic);
-
+    
 	OTString SERVER_ID(m_ServerID), SERVER_NYM_ID(m_ServerNymID),
              ASSET_ID(m_AssetID),   CASH_ACCOUNT_ID(m_CashAccountID);
-
+	
 	int64_t lFrom       = static_cast<int64_t> (m_VALID_FROM),
             lTo         = static_cast<int64_t> (m_VALID_TO),
             lExpiration = static_cast<int64_t> (m_EXPIRATION);
-
+	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-
-	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
-
+	
+	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
+	
 	m_xmlUnsigned.Concatenate("<mint version=\"%s\"\n"
 							  " serverID=\"%s\"\n"
 							  " serverNymID=\"%s\"\n"
@@ -787,47 +787,47 @@ void OTMint::UpdateContents()
 							  " expiration=\"%" PRId64"\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\""
-							  " >\n\n",
-							  m_strVersion.Get(),
-							  SERVER_ID.Get(),
-							  SERVER_NYM_ID.Get(),
+							  " >\n\n", 
+							  m_strVersion.Get(), 
+							  SERVER_ID.Get(), 
+							  SERVER_NYM_ID.Get(), 
 							  ASSET_ID.Get(),
 							  CASH_ACCOUNT_ID.Get(),
-							  m_nSeries,
+							  m_nSeries, 
                               lExpiration, lFrom, lTo );
-
+	
 	OTASCIIArmor	armorPublicKey;
 	m_pKeyPublic->GetPublicKey(armorPublicKey);
 	m_xmlUnsigned.Concatenate("<mintPublicKey>\n%s</mintPublicKey>\n\n", armorPublicKey.Get());
-
+	
 	if (m_nDenominationCount)
 	{
 		if (m_bSavePrivateKeys)
 		{
 			m_bSavePrivateKeys = false;  // reset this back to false again. Use SetSavePrivateKeys() to set it true.
-
+			
 			FOR_EACH(mapOfArmor, m_mapPrivate)
-			{
+			{	
 				OTASCIIArmor * pArmor = (*it).second;
 				OT_ASSERT_MSG(NULL != pArmor, "NULL private mint pointer in OTMint::UpdateContents.\n");
-
+				
 				m_xmlUnsigned.Concatenate("<mintPrivateInfo denomination=\"%ld\">\n"
-										  "%s</mintPrivateInfo>\n\n",
+										  "%s</mintPrivateInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 			}
 		}
 		FOR_EACH(mapOfArmor, m_mapPublic)
-		{
+		{		
 			OTASCIIArmor * pArmor = (*it).second;
 			OT_ASSERT_MSG(NULL != pArmor, "NULL public mint pointer in OTMint::UpdateContents.\n");
-
+			
 			m_xmlUnsigned.Concatenate("<mintPublicInfo denomination=\"%ld\">\n"
-										  "%s</mintPublicInfo>\n\n",
+										  "%s</mintPublicInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 		}
 	}
-
-	m_xmlUnsigned.Concatenate("</mint>\n");
+	
+	m_xmlUnsigned.Concatenate("</mint>\n");			
 }
 
 
@@ -838,9 +838,9 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
     OT_ASSERT(NULL != m_pKeyPublic);
 
 	int nReturnVal = 0;
-
+	
     const OTString strNodeName(xml->getNodeName());
-
+    
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -851,37 +851,37 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// As I do below, in the case of OTAccount.
 	//if (nReturnVal = ot_super::ProcessXMLNode(xml))
 	//	return nReturnVal;
-
+	
 	if (strNodeName.Compare("mint"))
 	{
 		OTString strServerID, strServerNymID, strAssetID, strCashAcctID;
-
-		m_strVersion	= xml->getAttributeValue("version");
+		
+		m_strVersion	= xml->getAttributeValue("version");					
 		strServerID		= xml->getAttributeValue("serverID");
 		strServerNymID	= xml->getAttributeValue("serverNymID");
 		strAssetID		= xml->getAttributeValue("assetTypeID");
 		strCashAcctID	= xml->getAttributeValue("cashAcctID");
-
+		
 		m_nSeries		= atoi(xml->getAttributeValue("series"));
 		m_EXPIRATION	= atol(xml->getAttributeValue("expiration"));
-
+        
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
-
+        
 		m_VALID_FROM = static_cast<time_t>(str_valid_from.ToLong());
 		m_VALID_TO   = static_cast<time_t>(str_valid_to.ToLong());
-
+		
 		m_ServerID.SetString(strServerID);
 		m_ServerNymID.SetString(strServerNymID);
 		m_AssetID.SetString(strAssetID);
 		m_CashAccountID.SetString(strCashAcctID);
-
+				
 		if (m_pReserveAcct)
 		{
 			delete m_pReserveAcct;
 			m_pReserveAcct = NULL;
 		}
-
+		
 		// Every Mint has its own cash account. Here we load ours so it's ready for transactions.
 		if (strCashAcctID.Exists())
 			m_pReserveAcct = OTAccount::LoadExistingAccount(m_CashAccountID, m_ServerID);
@@ -889,8 +889,8 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		int64_t nValidFrom  = static_cast<int64_t> (m_VALID_FROM),
                 nValidTo    = static_cast<int64_t> (m_VALID_TO),
                 nExpiration = static_cast<int64_t> (m_EXPIRATION);
-
-		OTLog::vOutput(1,
+		
+		OTLog::vOutput(1,  
 				//	"\n===> Loading XML for mint into memory structures..."
 				"\n\nMint version: %s\n Server ID: %s\n Asset Type ID: %s\n Cash Acct ID: %s\n"
 				"%s loading Cash Account into memory for pointer: OTMint::m_pReserveAcct\n"
@@ -898,12 +898,12 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				m_strVersion.Get(), strServerID.Get(), strAssetID.Get(), strCashAcctID.Get(),
 				(m_pReserveAcct != NULL) ? "SUCCESS" : "FAILURE",
 				m_nSeries, nExpiration, nValidFrom, nValidTo);
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	else if (strNodeName.Compare("mintPublicKey"))
-	{
+	{		
 		OTASCIIArmor armorPublicKey;
 
 		if (false == OTContract::LoadEncodedTextField(xml, armorPublicKey) || !armorPublicKey.Exists())
@@ -911,65 +911,65 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			OTLog::Error("Error in OTMint::ProcessXMLNode: mintPublicKey field without value.\n");
 			return (-1); // error condition
 		}
-		else
+		else 
 		{
 			m_pKeyPublic->SetPublicKey(armorPublicKey); // todo check this for failure.
 		}
-
+		
 		return 1;
 	}
 
 	else if (strNodeName.Compare("mintPrivateInfo"))
-	{
-		long lDenomination = atol(xml->getAttributeValue("denomination"));
-
+	{		
+		long lDenomination = atol(xml->getAttributeValue("denomination"));					
+		
 		OTASCIIArmor * pArmor = new OTASCIIArmor;
-
+		
 		OT_ASSERT(NULL != pArmor);
-
+		
 		if (!OTContract::LoadEncodedTextField(xml, *pArmor) || !pArmor->Exists())
 		{
 			OTLog::Error("Error in OTMint::ProcessXMLNode: mintPrivateInfo field without value.\n");
-
+			
 			delete pArmor;
 			pArmor = NULL;
-
+			
 			return (-1); // error condition
 		}
-		else
-		{
+		else 
+		{			
 			m_mapPrivate[lDenomination] = pArmor;
 		}
-
+		
 		return 1;
 	}
-
+	
 	else if (strNodeName.Compare("mintPublicInfo"))
-	{
-		long lDenomination = atol(xml->getAttributeValue("denomination"));
-
+	{		
+		long lDenomination = atol(xml->getAttributeValue("denomination"));					
+		
 		OTASCIIArmor * pArmor = new OTASCIIArmor;
-
+		
 		OT_ASSERT(NULL != pArmor);
-
+		
 		if (!OTContract::LoadEncodedTextField(xml, *pArmor) || !pArmor->Exists())
 		{
 			OTLog::Error("Error in OTMint::ProcessXMLNode: mintPublicInfo field without value.\n");
-
+			
 			delete pArmor;
 			pArmor = NULL;
-
+			
 			return (-1); // error condition
 		}
-		else
-		{
+		else 
+		{			
 			m_mapPublic[lDenomination] = pArmor;
 			m_nDenominationCount++; // Whether client or server, both sides have public. Each public denomination should increment this count.
 		}
-
+		
 		return 1;
 	}
-
+		
 	return nReturnVal;
 }
 
@@ -978,7 +978,7 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 
 /*
-
+ 
  enum tokenState {
  blankToken,
  protoToken,
@@ -987,23 +987,23 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
  verifiedToken,
  errorToken
  };
-
-
+ 
+ 
  Create a memory BIO and write some data to it:
-
+ 
  OpenSSL_BIO mem = BIO_new(BIO_s_mem());
  BIO_puts(mem, "Hello World\n");
-
-
+ 
+ 
  Create a read only memory BIO:
-
+ 
  char data[] = "Hello World";
  OpenSSL_BIO mem;
  mem = BIO_new_mem_buf(data, -1);
-
-
+ 
+ 
  Extract the BUF_MEM structure from a memory BIO and then free up the BIO:
-
+ 
  BUF_MEM *bptr;
  BIO_get_mem_ptr(mem, &bptr);
  BIO_set_close(mem, BIO_NOCLOSE); // So BIO_free() leaves BUF_MEM alone
@@ -1018,37 +1018,37 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 #if defined(OT_CASH_USING_LUCRE) && defined(OT_CRYPTO_USING_OPENSSL)
 
 // Lucre step 3: the mint signs the token
-//
+// 
 bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int nTokenIndex)
 {
 	bool bReturnValue = false;
-
+	
 	//OTLog::Error("%s <bank file> <coin request> <coin signature> [<signature repeats>]\n",
     _OT_Lucre_Dumper setDumper;
-
+	
 //	OTLog::vError("OTMint::SignToken!!\nnTokenIndex: %d\n Denomination: %ld\n", nTokenIndex, theToken.GetDenomination());
-
+	
     OpenSSL_BIO bioBank		= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioRequest		= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioSignature	= BIO_new(BIO_s_mem()); // output
-
+	
 	OTASCIIArmor thePrivate;
 	GetPrivate(thePrivate, theToken.GetDenomination());
-
-	// The Mint private info is encrypted in m_mapPrivates[theToken.GetDenomination()].
+	
+	// The Mint private info is encrypted in m_mapPrivates[theToken.GetDenomination()]. 
 	// So I need to extract that first before I can use it.
 	OTEnvelope theEnvelope(thePrivate);
 
 	OTString strContents; // output from opening the envelope.
-	// Decrypt the Envelope into strContents
+	// Decrypt the Envelope into strContents    
 	if (!theEnvelope.Open(theNotary, strContents))
 		return false;
 
 	// copy strContents to a BIO
 	BIO_puts(bioBank, strContents.Get());
-
+	
 //	OTLog::vError("BANK CONTENTS:\n%s--------------------------------------\n", strContents.Get());
-
+	
 	// Instantiate the Bank with its private key
     Bank bank(bioBank);
 //	OTLog::vError("BANK INSTANTIATED.--------------------------------------\n");
@@ -1056,15 +1056,15 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 	// I need the request. the prototoken.
 	OTASCIIArmor ascPrototoken;
 	bool bFoundToken = theToken.GetPrototoken(ascPrototoken, nTokenIndex);
-
+	
 	if (bFoundToken)
 	{
 		// base64-Decode the prototoken
 		OTString strPrototoken(ascPrototoken);
-
+		
 //		OTLog::vError("\n--------------------------------------\nDEBUG:  PROTOTOKEN CONTENTS:\n"
 //				"-----------------%s---------------------\n", strPrototoken.Get() );
-
+		
 		// copy strPrototoken to a BIO
 		BIO_puts(bioRequest, strPrototoken.Get());
 
@@ -1080,8 +1080,8 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 		{
 			OTLog::Error("MAJOR ERROR!: Bank.SignRequest failed in OTMint_Lucre::SignToken\n");
 		}
-
-		else
+		
+		else 
 		{
 //			OTLog::Error("BANK.SIGNREQUEST SUCCESSFUL.--------------------------------------\n");
 
@@ -1094,31 +1094,31 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 			// Read the signature bio into a C-style buffer...
 			char sig_buf[1024];   // todo stop hardcoding these string lengths
 //			memset(sig_buf, 0, 1024); // zero it out. (I had this commented out, but the size was 2048, so maybe it's safe now at 1024.)
-
+			
 			int sig_len	= BIO_read(bioSignature, sig_buf, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
-
-
+			
+			
 			// Add the null terminator by hand (just in case.)
 			sig_buf[sig_len]	= '\0';
-
+			
 			if (sig_len)
 			{ // ***********************************************
 //				OTLog::vError("\n--------------------------------------\n"
 //						"*** Siglen is %d. sig_str_len is %d.\nsig buf:\n------------%s------------\nLAST "
-//						"CHARACTER IS '%c'  SECOND TO LAST CHARACTER IS '%c'\n",
+//						"CHARACTER IS '%c'  SECOND TO LAST CHARACTER IS '%c'\n", 
 //						sig_len, sig_str_len, sig_buf, sig_buf[sig_str_len-1], sig_buf[sig_str_len-2]);
-
+				
 				// Copy the original coin request into the spendable field of the token object.
 				// (It won't actually be spendable until the client processes it, though.)
 				theToken.SetSpendable(ascPrototoken);
-
+				
 //				OTLog::vError("*** SPENDABLE:\n-----------%s---------------------\n", ascPrototoken.Get());
-
-
+						
+						
 				// Base64-encode the signature contents into theToken.m_Signature.
 				OTString	strSignature(sig_buf);
 	//			strSignature.Set(sig_buf, sig_len-1); // sig_len includes null terminator, whereas Set() adds 1 for it.
-
+				
 //				OTLog::vError("SIGNATURE:\n--------------------%s"
 //						"------------------\n", strSignature.Get());
 
@@ -1126,7 +1126,7 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 				// He will probably set it onto the token.
 				theOutput.Set(sig_buf, sig_len);
 				bReturnValue = true;
-
+				
 				// This is also where we set the expiration date on the token.
 				// The client should have already done this, but we are explicitly
 				// setting the values here to prevent any funny business.
@@ -1146,37 +1146,37 @@ bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextT
 	bool bReturnValue = false;
 //	OTLog::Error("%s <bank info> <coin>\n", argv[0]);
     _OT_Lucre_Dumper setDumper;
-
+	
 	OpenSSL_BIO bioBank	= BIO_new(BIO_s_mem()); // input
 	OpenSSL_BIO bioCoin	= BIO_new(BIO_s_mem()); // input
-
+	
 	// --- copy theCleartextToken to bioCoin so lucre can load it
 	BIO_puts(bioCoin, theCleartextToken.Get());
-
-	// --- The Mint private info is encrypted in m_mapPrivate[lDenomination].
+		
+	// --- The Mint private info is encrypted in m_mapPrivate[lDenomination]. 
 	// So I need to extract that first before I can use it.
 	OTASCIIArmor theArmor;
 	GetPrivate(theArmor, lDenomination);
 	OTEnvelope theEnvelope(theArmor);
-
+	
 	OTString strContents; // will contain output from opening the envelope.
-	// Decrypt the Envelope into strContents
+	// Decrypt the Envelope into strContents    
 	if (theEnvelope.Open(theNotary, strContents))
 	{
 		// copy strContents to a BIO
 		BIO_puts(bioBank, strContents.Get());
-
-		// ---- Now the bank and coin bios are both ready to go...
-
+		
+		// ---- Now the bank and coin bios are both ready to go... 
+		
 		Bank bank(bioBank);
 		Coin coin(bioCoin);
-
+		
 		if (bank.Verify(coin))  // Here's the boolean output: coin is verified!
 		{
 			bReturnValue = true;
-
+			
 			// (Done): When a token is redeemed, need to store it in the spent token database.
-			// Right now I can verify the token, but unless I check it against a database, then
+			// Right now I can verify the token, but unless I check it against a database, then 
 			// even though the signature verifies, it doesn't stop people from redeeming the same
 			// token again and again and again.
 			//
@@ -1201,24 +1201,24 @@ bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextT
 
 
 /*
-
+ 
  // Just make sure theMessage has these members populated:
  //
  // theMessage.m_strNymID;
- // theMessage.m_strAssetID;
+ // theMessage.m_strAssetID; 
  // theMessage.m_strServerID;
-
+ 
  // static method (call it without an instance, using notation: OTAccount::GenerateNewAccount)
- OTAccount * OTAccount::GenerateNewAccount(	const OTIdentifier & theUserID,	const OTIdentifier & theServerID,
+ OTAccount * OTAccount::GenerateNewAccount(	const OTIdentifier & theUserID,	const OTIdentifier & theServerID, 
 											const OTPseudonym & theServerNym,	const OTMessage & theMessage,
 											const OTAccount::AccountType eAcctType=OTAccount::simple)
-
-
+ 
+ 
  // The above method uses this one internally...
  bool OTAccount::GenerateNewAccount(const OTPseudonym & theServer, const OTMessage & theMessage,
 									const OTAccount::AccountType eAcctType=OTAccount::simple)
-
-
+ 
+ 
  OTAccount * pAcct = NULL;
  pAcct = OTAccount::LoadExistingAccount(ACCOUNT_ID, SERVER_ID);
  */
@@ -1229,16 +1229,16 @@ bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextT
 // Make sure the issuer here has a private key
 // theMint.GenerateNewMint(nSeries, VALID_FROM, VALID_TO, ASSET_ID, m_nymServer, 1, 5, 10, 20, 50, 100, 500, 1000, 10000, 100000);
 void OTMint::GenerateNewMint(int nSeries, time_t VALID_FROM, time_t VALID_TO, time_t MINT_EXPIRATION,
-							 const OTIdentifier & theAssetID, const OTIdentifier & theServerID,
-							 OTPseudonym & theNotary,
+							 const OTIdentifier & theAssetID, const OTIdentifier & theServerID, 
+							 OTPseudonym & theNotary, 
 							 long nDenom1, long nDenom2, long nDenom3, long nDenom4, long nDenom5,
 							 long nDenom6, long nDenom7, long nDenom8, long nDenom9, long nDenom10)
 {
 	Release();
-
+	
 	m_AssetID		= theAssetID;
 	m_ServerID		= theServerID;
-
+	
 	OTIdentifier SERVER_NYM_ID(theNotary);
 	m_ServerNymID	= SERVER_NYM_ID;
 
@@ -1246,17 +1246,17 @@ void OTMint::GenerateNewMint(int nSeries, time_t VALID_FROM, time_t VALID_TO, ti
 	m_VALID_FROM	= VALID_FROM;
 	m_VALID_TO		= VALID_TO;
 	m_EXPIRATION	= MINT_EXPIRATION;
-
-	// Normally asset accounts are created based on an incoming message,
+	
+	// Normally asset accounts are created based on an incoming message, 
 	// so I'm just simulating that in order to make sure it gets its
 	// necessary input values, such as asset type, server ID, etc.
 	OTMessage theMessage;
 	SERVER_NYM_ID.GetString(theMessage.m_strNymID);
 	theAssetID.GetString(	theMessage.m_strAssetID);
 	theServerID.GetString(	theMessage.m_strServerID);
-
+	 
 	/* OTAccount::
-	 GenerateNewAccount(const OTIdentifier & theUserID, const OTIdentifier & theServerID,
+	 GenerateNewAccount(const OTIdentifier & theUserID, const OTIdentifier & theServerID, 
 						const OTPseudonym & theServerNym, const OTMessage & theMessage,
 						const AccountType eAcctType=simple);
 	 */

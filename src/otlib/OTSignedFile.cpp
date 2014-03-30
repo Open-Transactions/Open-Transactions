@@ -132,11 +132,10 @@
 
 #include <stdafx.hpp>
 
-#include "OTSignedFile.hpp"
+#include <OTSignedFile.hpp>
 
-#include "OTLog.hpp"
-#include "OTASCIIArmor.hpp"
-
+#include <OTLog.hpp>
+#include <OTASCIIArmor.hpp>
 
 
 void OTSignedFile::UpdateContents()

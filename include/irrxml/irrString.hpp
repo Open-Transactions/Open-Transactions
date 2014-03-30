@@ -1,3 +1,4 @@
+
 // Copyright (C) 2002-2005 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine" and the "irrXML" project.
 // For conditions of distribution and use, see copyright notice in irrlicht.h and irrXML.h

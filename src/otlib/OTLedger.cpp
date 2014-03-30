@@ -132,20 +132,20 @@
 
 #include <stdafx.hpp>
 
-#include "OTLedger.hpp"
+#include <OTLedger.hpp>
 
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
-#include "OTAccount.hpp"
-#include "OTCheque.hpp"
-#include "OTPayment.hpp"
-#include "OTPseudonym.hpp"
-#include "OTMessage.hpp"
-#include "OTEnvelope.hpp"
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTAccount.hpp>
+#include <OTCheque.hpp>
+#include <OTPayment.hpp>
+#include <OTPseudonym.hpp>
+#include <OTMessage.hpp>
+#include <OTEnvelope.hpp>
 
 
 
-char const * const __TypeStrings[] =
+char const * const __TypeStrings[] = 
 {
 	"nymbox",           // the nymbox is per user account (versus per asset account) and is used to receive new transaction numbers (and messages.)
 	"inbox",            // each asset account has an inbox, with pending transfers as well as receipts inside.
@@ -2322,7 +2322,6 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			return (-1);
 		}
 		// -----------------------------------------------
-
         if (irr::io::EXN_TEXT == xml->getNodeType())
 		{
 			// the ledger contains a series of transactions.

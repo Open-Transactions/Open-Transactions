@@ -132,21 +132,13 @@
 
 #include <stdafx.hpp>
 
-#include "OTPassword.hpp"
+#include <OTPassword.hpp>
 
-#include "OTAssert.hpp"
-#include "OTString.hpp"
-#include "OTLog.hpp"
-#include "OTCrypto.hpp"
+#include <OTAssert.hpp>
+#include <OTString.hpp>
+#include <OTLog.hpp>
+#include <OTCrypto.hpp>
 
-//// size_t
-//#include <cstddef>
-//
-//#include <iostream>
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
 
 // ------------------------------
 // For SecureZeroMemory

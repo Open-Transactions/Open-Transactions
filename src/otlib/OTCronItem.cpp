@@ -132,17 +132,17 @@
 
 #include <stdafx.hpp>
 
-#include "OTCronItem.hpp"
+#include <OTCronItem.hpp>
 
-#include "OTAssert.hpp"
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
-#include "OTPaymentPlan.hpp"
-#include "OTTrade.hpp"
-#include "OTSmartContract.hpp"
-#include "OTCron.hpp"
-#include "OTPseudonym.hpp"
-#include "OTLedger.hpp"
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTPaymentPlan.hpp>
+#include <OTTrade.hpp>
+#include <OTSmartContract.hpp>
+#include <OTCron.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
 
 #include "irrxml/irrXML.hpp"
 
@@ -403,7 +403,6 @@ bool OTCronItem::EraseActiveCronReceipt(const long         & lTransactionNum,
             numlist.Output(strNumlist);
             // ------------------------------------
             OTString strFinal;
-
             OTASCIIArmor ascTemp(strNumlist);
 
             if (false == ascTemp.WriteArmoredString(strFinal, "ACTIVE CRON ITEMS")) // todo hardcoding
@@ -476,7 +475,6 @@ bool OTCronItem::SaveActiveCronReceipt(const OTIdentifier & theNymID) // Client-
     {
         OTString strListFilename(theNymID);
         strListFilename.Concatenate(".lst");  // nymID.lst
-
         OTNumList numlist;
 
         if (OTDB::Exists(szFoldername, strServerID.Get(), strListFilename.Get()))
@@ -567,7 +565,7 @@ bool OTCronItem::SaveCronReceipt()
 	strFilename.Format("%ld.crn", GetTransactionNum());
 
 	const char * szFoldername	= OTFolders::Cron().Get();  // cron
-	const char * szFilename		= strFilename.Get();    // cron/TRANSACTION_NUM.crn
+	const char * szFilename		= strFilename.Get();        // cron/TRANSACTION_NUM.crn
 	// --------------------------------------------------------------------
 	if (OTDB::Exists(szFoldername, szFilename))
 	{

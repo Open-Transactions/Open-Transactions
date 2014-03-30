@@ -68,60 +68,60 @@ endif
 ####################################################################
 
 
-otlib_sources               =   OTAccount.cpp \
-                                OTAgreement.cpp \
-                                OTASCIIArmor.cpp \
-                                OTAssert.cpp \
-                                OTAssetContract.cpp \
-                                OTAsymmetricKey.cpp \
-                                OTBasket.cpp \
-                                OTBylaw.cpp \
-                                OTCachedKey.cpp \
-                                OTCheque.cpp \
-                                OTContract.cpp \
-                                OTCredential.cpp \
-                                OTCron.cpp \
-                                OTCronItem.cpp \
-                                OTCrypto.cpp \
-                                OTData.cpp \
-                                OTDataCheck.cpp \
-                                OTDigitalCash.cpp \
-                                OTEnvelope.cpp \
-                                OTIdentifier.cpp \
-                                OTInstrument.cpp \
-                                OTItem.cpp \
-                                OTKeyring.cpp \
-                                OTLedger.cpp \
-                                OTLog.cpp \
-                                OTMarket.cpp \
-                                OTMessage.cpp \
-                                OTMessageBuffer.cpp \
-                                OTMint.cpp \
-                                OTOffer.cpp \
-                                OTPassword.cpp \
-                                OTPaths.cpp \
-                                OTPayload.cpp \
-                                OTPayment.cpp \
-                                OTPaymentPlan.cpp \
-                                OTPseudonym.cpp \
-                                OTPurse.cpp \
-                                OTScript.cpp \
-                                OTScriptable.cpp \
-                                OTServerContract.cpp \
-                                OTSettings.cpp \
-                                OTSignature.cpp \
-                                OTSignedFile.cpp \
-                                OTSmartContract.cpp \
-                                OTStorage.cpp \
-                                OTString.cpp \
-                                OTStringXML.cpp \
-                                OTSymmetricKey.cpp \
-                                OTToken.cpp \
-                                OTTrackable.cpp \
-                                OTTrade.cpp \
-                                OTTransaction.cpp \
-                                OTTransactionType.cpp \
-                                OTWallet.cpp
+otlib_sources     =	OTAccount.cpp		\
+				OTAgreement.cpp		\
+				OTASCIIArmor.cpp		\
+				OTAssert.cpp		\
+				OTAssetContract.cpp		\
+				OTAsymmetricKey.cpp		\
+				OTBasket.cpp		\
+				OTBylaw.cpp		\
+				OTCachedKey.cpp		\
+				OTCheque.cpp		\
+				OTContract.cpp		\
+				OTCredential.cpp		\
+				OTCron.cpp		\
+				OTCronItem.cpp		\
+				OTCrypto.cpp		\
+				OTData.cpp		\
+				OTDataCheck.cpp		\
+				OTDigitalCash.cpp		\
+				OTEnvelope.cpp		\
+				OTIdentifier.cpp		\
+				OTInstrument.cpp		\
+				OTItem.cpp		\
+				OTKeyring.cpp		\
+				OTLedger.cpp		\
+				OTLog.cpp		\
+				OTMarket.cpp		\
+				OTMessage.cpp		\
+				OTMessageBuffer.cpp		\
+				OTMint.cpp		\
+				OTOffer.cpp		\
+				OTPassword.cpp		\
+				OTPaths.cpp		\
+				OTPayload.cpp		\
+				OTPayment.cpp		\
+				OTPaymentPlan.cpp		\
+				OTPseudonym.cpp		\
+				OTPurse.cpp		\
+				OTScript.cpp		\
+				OTScriptable.cpp		\
+				OTServerContract.cpp		\
+				OTSettings.cpp		\
+				OTSignature.cpp		\
+				OTSignedFile.cpp		\
+				OTSmartContract.cpp		\
+				OTStorage.cpp		\
+				OTString.cpp		\
+				OTStringXML.cpp		\
+				OTSymmetricKey.cpp		\
+				OTToken.cpp		\
+				OTTrackable.cpp		\
+				OTTrade.cpp		\
+				OTTransaction.cpp		\
+				OTTransactionType.cpp		\
+				OTWallet.cpp			
 
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
@@ -226,7 +226,7 @@ containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 
 ####	Global headers for dist.
 
-pkginclude_HEADERS          =   $(otlib_headers_ext)
+pkginclude_HEADERS		=	$(otlib_headers_ext)
 
 ## Extra rules to handle special ot_config.h
 
@@ -235,18 +235,13 @@ DISTCLEANFILES			= 	$(top_builddir)/include/otlib/ot_config.h
 
 ## Extra to package containers headers
 
-pkginclude_containersdir    =   $(pkgincludedir)/containers
-pkginclude_containers_HEADERS   =   $(containers_headers)
+simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
 
-## Extra to package simpleini headers
+simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  				\
+					$(simpleini_headers_dir)/SimpleIni.hpp
 
-simpleini_headers_dir       =   $(top_srcdir)/include/simpleini
-
-simpleini_headers           =   $(simpleini_headers_dir)/ConvertUTF.h \
-                                $(simpleini_headers_dir)/SimpleIni.hpp
-
-pkginclude_simpleinidir     =   $(pkgincludedir)/simpleini
-pkginclude_simpleini_HEADERS    =   $(simpleini_headers)
+pkginclude_simpleinidir		=	$(pkgincludedir)/simpleini
+pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
 
 ## Extra to package chai4 headers
 

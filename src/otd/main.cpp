@@ -136,23 +136,24 @@
 #define IMPORT
 #endif
 
-#include "OTAPI.hpp"
+#include <OTAPI.hpp>
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>
-#include "OTClient.hpp"
+#include <OTClient.hpp>
 
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
-#include "OTWallet.hpp"
-#include "OTServerContract.hpp"
-#include "OTMessage.hpp"
-#include "OTPurse.hpp"
-#include "OTEnvelope.hpp"
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTWallet.hpp>
+#include <OTServerContract.hpp>
+#include <OTMessage.hpp>
+#include <OTPurse.hpp>
+#include <OTEnvelope.hpp>
 
-#include "OTAccount.hpp"  //included in OTSmartContract.hpp
+#include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
 #include <anyoption.hpp>
 
+#include "ot_me_switch.hpp"
 
 #ifdef __APPLE__
 #include "TargetConditionals.h"
@@ -183,10 +184,7 @@
 
 // ---------------------------------------------------------------------------
 
-
 #define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
-
-
 
 #define CA_FILE             "certs/special/ca.crt"
 #define KEY_FILE            "certs/special/client.pem"

@@ -132,11 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include "OTLog.hpp"
+#include <OTLog.hpp>
 
-#include "OTSettings.hpp"
-#include "OTPaths.hpp"
-#include "OTAssert.hpp"
+#include <OTSettings.hpp>
+#include <OTPaths.hpp>
+#include <OTAssert.hpp>
 
 #include "tinythread.hpp"
 

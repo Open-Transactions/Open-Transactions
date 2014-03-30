@@ -132,20 +132,17 @@
 
 #include <stdafx.hpp>
 
-#include "OTScriptable.hpp"
+#include <OTScriptable.hpp>
 
-#include "OTLog.hpp"
-#include "OTAssert.hpp"
-#include "OTSmartContract.hpp"
-#include "OTScript.hpp"
-#include "OTPseudonym.hpp"
+#include <OTLog.hpp>
+#include <OTAssert.hpp>
+#include <OTSmartContract.hpp>
+#include <OTScript.hpp>
+#include <OTPseudonym.hpp>
 
-#include <chaiscript/chaiscript.hpp>
 
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-#endif
-
+// ---------------------------------------------------
+#ifdef OT_USE_SCRIPT_CHAI
 
 #include <chaiscript/chaiscript.hpp>
 
@@ -153,8 +150,8 @@
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
-
-// -----------------------------------------------------------------
+#endif
+// ---------------------------------------------------
 
 // CALLBACKS
 //
@@ -285,7 +282,7 @@ bool OTScriptable::ValidateName(const std::string str_name)
 //
 void OTScriptable::RegisterOTNativeCallsWithScript(OTScript & theScript)
 {
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_SCRIPT_CHAI
 	using namespace chaiscript;
 
 	// In the future, this will be polymorphic.
@@ -305,7 +302,7 @@ void OTScriptable::RegisterOTNativeCallsWithScript(OTScript & theScript)
 //	else if (NULL != (pScript = dynamic_cast<OTScriptSomeOtherScriptingLanguageSubClass_GOES_HERE *> (&theScript)) )
 //	{ }
 	else
-#endif // OT_USE_CHAI5
+#endif // OT_USE_SCRIPT_CHAI
     {
 		OTLog::Error("OTScriptable::RegisterOTNativeCallsWithScript: Failed dynamic casting OTScript to OTScriptChai \n");
 	}
@@ -2349,7 +2346,6 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 return (-1);
                             }
                             // -----------------------------------------------
-
                             if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("agent", xml->getNodeName())))
                             {
                                 OTString strAgentName		= xml->getAttributeValue("name"); // Agent name (if needed in script code)
@@ -2448,7 +2444,6 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 return (-1);
                             }
                             // -----------------------------------------------
-
                             if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("assetAccount", xml->getNodeName())))
                             {
                                 OTString strAcctName		= xml->getAttributeValue("name"); // Acct name (if needed in script code)
@@ -2619,7 +2614,6 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 return (-1);
                             }
                             // -----------------------------------------------
-
                             if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("variable", xml->getNodeName())))
                             {
                                 OTString strVarName		= xml->getAttributeValue("name"); // Variable name (if needed in script code)
@@ -2914,7 +2908,6 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 return (-1);
                             }
                             // --------------------------------------
-
                             if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("hook", xml->getNodeName())))
                             {
                                 OTString strHookName	= xml->getAttributeValue("name"); // Name of standard hook such as hook_activate or cron_process, etc
@@ -2967,7 +2960,6 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 return (-1);
                             }
                             // --------------------------------------
-
                             if ((xml->getNodeType() == irr::io::EXN_ELEMENT) && (!strcmp("callback", xml->getNodeName())))
                             {
                                 OTString strCallbackName	= xml->getAttributeValue("name"); // Name of standard callback such as OnActivate, OnDeactivate, etc

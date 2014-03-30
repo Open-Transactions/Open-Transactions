@@ -1,13 +1,13 @@
 /*************************************************************
- *
+ *    
  *  OTMessageBuffer.cpp
- *
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,14 +132,14 @@
 
 #include <stdafx.hpp>
 
-#include "OTMessageBuffer.hpp"
+#include <OTMessageBuffer.hpp>
 
-#include "OTAssert.hpp"
-#include "OTLog.hpp"
-#include "OTMessage.hpp"
-#include "OTPaths.hpp"
-#include "OTTransaction.hpp"
-#include "OTPseudonym.hpp"
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
+#include <OTTransaction.hpp>
+#include <OTPseudonym.hpp>
 
 
 // --------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ void OTMessageBuffer::Push(OTMessage & theMessage)
 // on this function returning the one EXPECTED... outgoing messages flush
 // the incoming buffer anyway, so the client will have assumed the wrong
 // reply was flushed by now anyway.)
-//
+// 
 // However, if the Server ID and the User ID are wrong, this just means that
 // some other code is still expecting that reply, and hasn't even popped yet!
 // Therefore, we do NOT want to discard THOSE replies, but put them back if
@@ -187,12 +187,12 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
     OTMessage * pReturnValue = NULL;
 
     listOfMessages temp_list;
-
+    
     while (!m_listMessages.empty())
     {
         // ----------------------------
         OTMessage * pMsg = m_listMessages.front();
-
+        
         m_listMessages.pop_front();
 
         if (NULL == pMsg)
@@ -202,7 +202,7 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
             continue;
         }
         // ----------------------------
-        // Below this point, pMsg has been popped, and it's NOT NULL, and it
+        // Below this point, pMsg has been popped, and it's NOT NULL, and it 
         // will be lost if not tracked or returned.
         //
         if (!strServerID.Compare(pMsg->m_strServerID) ||
@@ -213,7 +213,7 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
         }
         // Below this point, we KNOW that pMsg has the CORRECT ServerID and NymID.
         // (And that all others, though popped, were pushed to temp_list in order.)
-        // -------------------------------------------------
+        // -------------------------------------------------        
         const long lMsgRequest = atol(pMsg->m_strRequestNum.Get());
         // ----------------------------
         // Now we only need to see if the request number matches...
@@ -233,10 +233,10 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
             delete pMsg; pMsg = NULL;
             continue;
         }
-
+        
     } // while
     // ----------------------------
-
+    
     // Put the other messages back, in order...
     //
     while (!temp_list.empty())
@@ -261,11 +261,11 @@ OTMessageBuffer::~OTMessageBuffer()
 
 void OTMessageBuffer::Clear()
 {
-	while (!m_listMessages.empty())
+	while (!m_listMessages.empty()) 
     {
         OTMessage * pMsg = m_listMessages.front();
         m_listMessages.pop_front();
-
+        
         if (NULL != pMsg)
             delete pMsg;
         pMsg = NULL;
@@ -299,7 +299,7 @@ OTMessageOutbuffer::OTMessageOutbuffer() : m_strDataFolder(OTDataFolder::Get())
 void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap allocated.
 {
     long lRequestNum = 0;
-
+    
     if (theMessage.m_strRequestNum.Exists())
         lRequestNum = atol(theMessage.m_strRequestNum.Get()); // The map index is the request number on the message itself.
     // ----------------
@@ -308,7 +308,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
     // that here, before removing any old ones with the same number and IDs.
     //
     mapOfMessages::iterator it = m_mapMessages.begin();
-
+    
     for (; it != m_mapMessages.end(); ++it)
     {
         // -----------------------------
@@ -371,10 +371,10 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
 	OTPaths::ConfirmCreateFolder(strFolderPath,bAlreadyExists,bIsNewFolder);
 	OTPaths::ConfirmCreateFolder(strFolder1Path,bAlreadyExists,bIsNewFolder);
 	OTPaths::ConfirmCreateFolder(strFolder2Path,bAlreadyExists,bIsNewFolder);
-
+    
     OTString strFile;
     strFile.Format("%s.msg", theMessage.m_strRequestNum.Get());
-
+    
     theMessage.SaveContract(strFolder.Get(), strFile.Get());
     // ----------------------------------
     // We also keep a list of the request numbers, so let's load it up, add the number
@@ -425,7 +425,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
     //
     OTString strOutput;
     theNumList.Output(strOutput);
-
+    
     if (!OTDB::StorePlainString(strOutput.Get(), strFolder.Get(), str_data_filename)) // todo hardcoding.
     {
         OTLog::Error("OTMessageOutbuffer::AddSentMessage: Error: failed writing list of request numbers to storage.\n");
@@ -440,7 +440,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
 OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const OTString & strServerID, const OTString & strNymID)
 {
     mapOfMessages::iterator it = m_mapMessages.begin();
-
+    
     for ( ; it != m_mapMessages.end(); ++it)
     {
         // -----------------------------
@@ -486,10 +486,10 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const O
     if (OTDB::Exists(strFolder.Get(), str_data_filename)) // todo hardcoding.
     {
         OTString strNumList(OTDB::QueryPlainString(strFolder.Get(), str_data_filename));
-
+        
         if (strNumList.Exists())
             theNumList.Add(strNumList);
-
+        
         if (theNumList.Verify(lRequestNum))
         {
             // Even if the outgoing message was stored, we still act like it
@@ -500,7 +500,7 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const O
             OTMessage * pMsg = new OTMessage;
             OT_ASSERT(NULL != pMsg);
             OTCleanup<OTMessage> theMsgAngel(pMsg);
-
+            
             if (OTDB::Exists(strFolder.Get(), strFile.Get()) && pMsg->LoadContract(strFolder.Get(), strFile.Get()))
             {
                 // Since we had to load it from local storage, let's add it to
@@ -530,9 +530,9 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
 {
 //  const char * szFuncName		= "OTMessageOutbuffer::Clear";
     // -----------------------------------------------
-
+    
     mapOfMessages::iterator it = m_mapMessages.begin();
-
+    
     while (it != m_mapMessages.end())
     {
         // -----------------------------
@@ -563,13 +563,13 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
              CLEAR (this function) and cleared ALL the sent messages from the buffer
              (for the appropriate server and nym IDs...clear without those IDs is
              only for the destructor.)
-
+             
              This Clear, where we are now, HARVESTS the transaction numbers back
              from any messages left in the sent buffer. We are able to do this with
              confidence because we know that this function is only called in @getNymbox
              on client side, and only after the ones with actual replies (as evidenced
              by the Nymbox) have already been removed from *this "sent buffer."
-
+             
              Why were they removed in advance? Because clearly: if the server HAS replied
              to them already, then there's no need to harvest anything: just let it
              process as normal, whether the transaction inside is a success or fail.
@@ -577,19 +577,19 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
              a notice in the Nymbox. So this is about the transaction inside.)
 
              So we remove the ones that we DEFINITELY know the server HAS replied to.
-
+             
              And the ones remaining? We know for those, the server definitely has NOT
              replied to them (the message must have been dropped by the network or
              something.) How do we know this? Because there would be a notice in the
              Nymbox! So at the moment of successful @getNymbox, we are able to loop through
              those receipts and know FOR SURE, WHICH ones definitely have a reply, and
              which ones definitely DO NOT.
-
+             
              The ones where we definitely do NOT have a reply--that is, the ones that are in
              the "sent messages" buffer, but are not in the Nymbox with the same request
              number--we harvest those numbers, since the server clearly never saw them, or
              rejected the message before the transaction itself even had a chance to run.
-
+             
              */
             if (NULL != pNym)
             {
@@ -604,18 +604,18 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                 /*
                  getNymbox			-- client is NOT sending hash, server is NOT rejecting bad hashes, server IS SENDING HASH in the @getNymbox reply
                  getRequest			-- client is NOT sending hash, server is NOT rejecting bad hashes, server IS SENDING HASH in the @getRequest reply
-
+                 
                  processNymbox		-- client is SENDING HASH, server is REJECTING BAD HASHES, server is SENDING HASH in the @processNymbox  reply
                  notarizeTransactions	-- client is SENDING HASH, server is REJECTING BAD HASHES, server is SENDING HASH in the @notarizeTransactions  reply
                  processInbox 		-- client is SENDING HASH, server is REJECTING BAD HASHES, server is SENDING HASH in the @processInbox  reply
                  triggerClause 		-- client is SENDING HASH, server is REJECTING BAD HASHES, server is SENDING HASH in the @triggerClause reply
-
+                 
                  getTransactionNum 	-- client is SENDING HASH, server is REJECTING BAD HASHES, server is SENDING HASH in the @getTransactionNum reply
-
-                 Already covered in NotarizeTransaction:
+                 
+                 Already covered in NotarizeTransaction: 
                     transfer, withdrawal, deposit, marketOffer, paymentPlan, smartContract, cancelCronItem, exchangeBasket
                  */
-
+                
                 if (pThisMsg->m_ascPayload.Exists() &&
                     (
                      pThisMsg->m_strCommand.Compare("processNymbox")        ||
@@ -625,12 +625,12 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                     )
                    )
                 {
-                    //
+                    // 
                     // If we are here in the first place (i.e. after @getNymbox just removed
                     // all the messages in this sent buffer that already had a reply sitting
                     // in the nymbox) therefore we KNOW any messages in here never got a reply
-                    // from the server,
-
+                    // from the server, 
+                    
                     const bool bReplyWasSuccess        = false; // If the msg had been a success, the reply (whether transaction within succeeded or failed) would have been dropped into my Nymbox, and thus removed from this "sent buffer" in @getNymbox.
                     const bool bReplyWasFailure        = true; // If the msg had been an explicit failure, the reply (without the transaction inside of it even having a chance to succeed or fail) would definitely NOT have been dropped into my Nymbox, and thus removed from this "sent buffer" in @getNymbox. However, IN THIS ONE CASE, since we DID just download the Nymbox and verify there ARE NO REPLIES for this request number (before calling this function), and since a dropped message is basically identical to a rejected message, since in either case, the transaction itself never even had a chance to run, we are able to now harvest the message AS IF the server HAD explicitly rejected the message. This is why I pass true here, where anywhere else in the code I would always pass false unless I had explicitly received a failure from the server. This place in the code, where we are now, is the failsafe endpoint for missed/dropped messages! IF they STILL haven't been found by this point, they are cleaned up as if the message was explicitly rejected by the server before the transaction even had a chance to run.
 
@@ -729,7 +729,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                 OTMessage * pMsg = new OTMessage;
                 OT_ASSERT(NULL != pMsg);
                 OTCleanup<OTMessage> theMsgAngel(pMsg);
-
+                
                 if (OTDB::Exists(strFolder.Get(), strFile.Get()) && pMsg->LoadContract(strFolder.Get(), strFile.Get()))
                 {
                     OTDB::EraseValueByKey(strFolder.Get(), strFile.Get());
@@ -757,9 +757,9 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
     strFile.Format("%ld.msg", lRequestNum);
     // ------------------------------------------------
     mapOfMessages::iterator it = m_mapMessages.begin();
-
+    
     bool bReturnValue = false;
-
+    
     while (it != m_mapMessages.end())
     {
         // -----------------------------
@@ -863,7 +863,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
     OTMessage * pMsg = new OTMessage;
     OT_ASSERT(NULL != pMsg);
     OTCleanup<OTMessage> theMsgAngel(pMsg);
-
+    
     if (OTDB::Exists(strFolder.Get(), strFile.Get()) && pMsg->LoadContract(strFolder.Get(), strFile.Get()))
     {
         OTDB::EraseValueByKey(strFolder.Get(), strFile.Get());

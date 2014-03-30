@@ -353,16 +353,10 @@ def main_loop(map_functions, map_help)
             return interpret_command(map_functions, map_help, strCommand)
         }
     }
-    // ---------------------------------
-    //
-    // Otherwise, show list.
-    //
-    else
-    {
-	return interpret_command(map_functions, map_help, "list");
-    }
 
-    0
+
+    // Otherwise, show list.
+	return interpret_command(map_functions, map_help, "list");
 }
 
 

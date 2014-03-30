@@ -7,7 +7,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,11 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include "OTMessage.hpp"
+#include <OTMessage.hpp>
 
-#include "OTLedger.hpp"
-#include "OTLog.hpp"
-#include "OTPseudonym.hpp"
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
 
 #include <fstream>
 
@@ -207,14 +207,14 @@ bool OTMessage::HarvestTransactionNumbers(      OTPseudonym &  theNym,
             // UPDATE: The logic is now all inside OTTransaction::Harvest...Numbers, you just have to tell it,
             // when you call it, the state of certain things (message success, transaction success, etc.)
             //
-
+            
             pTransaction->HarvestOpeningNumber(theNym,
                                                bHarvestingForRetry,
                                                bReplyWasSuccess,
                                                bReplyWasFailure,
                                                bTransactionWasSuccess,
                                                bTransactionWasFailure);
-
+            
             // -----------------------------------------------
             // We grab the closing numbers no matter what (whether message succeeded or failed.)
             // It bears mentioning one more time that you would NEVER harvest in the first place unless
@@ -229,7 +229,7 @@ bool OTMessage::HarvestTransactionNumbers(      OTPseudonym &  theNym,
                                                 bTransactionWasFailure);
         } // FOR_EACH (ledger->pTransaction)
     } // else (ledger is loaded up.)
-
+    
     return true;
 }
 
@@ -247,24 +247,24 @@ void OTMessage::SetAcknowledgments(OTPseudonym & theNym)
 {
     m_AcknowledgedReplies.Release();
     // -------------------
-
+    
     const OTIdentifier theServerID(m_strServerID);
-
+    
     FOR_EACH(mapOfTransNums, theNym.GetMapAcknowledgedNum())
 	{
         std::string	strServerID		= (*it).first;
 		dequeOfTransNums * pDeque	= (it->second);
         OT_ASSERT(NULL != pDeque);
-
+		
         OTString OTstrServerID = strServerID.c_str();
         const OTIdentifier theTempID(OTstrServerID);
-
+		
 		if (!(pDeque->empty()) && (theServerID == theTempID) ) // only for the matching serverID.
 		{
 			for (unsigned i = 0; i < pDeque->size(); i++)
 			{
 				const long lAckRequestNumber = pDeque->at(i);
-
+				
                 m_AcknowledgedReplies.Add(lAckRequestNumber);
 			}
             break;  // We found it! Might as well break out.
@@ -284,16 +284,16 @@ void OTMessage::SetAcknowledgments(OTPseudonym & theNym)
 void OTMessage::UpdateContents()
 {
     bool bFoundMessage = false;
-
+    
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-
+    
     m_lTime = static_cast<long>(time(NULL));
-
+    
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
 	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%ld\">\n\n",
                               m_strVersion.Get(), m_lTime);
-
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("getMarketList"))
 	{
@@ -308,11 +308,11 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+    
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@getMarketList"))
 	{
@@ -331,17 +331,17 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
                                   m_lDepth
 								  );
-
+		
 		if (m_bSuccess && (m_ascPayload.GetLength() > 2) && (m_lDepth > 0))
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
 		else if (!m_bSuccess && (m_ascInReferenceTo.GetLength() > 2))
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
-
+        
         //        std::cerr << m_xmlUnsigned.Get() << std::endl;
 	} // ------------------------------------------------------------------------
-
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("getMarketOffers"))
 	{
@@ -360,10 +360,10 @@ void OTMessage::UpdateContents()
 								  m_strNymID2.Get(),	// Storing Market ID
 								  m_lDepth
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@getMarketOffers"))
 	{
@@ -384,16 +384,16 @@ void OTMessage::UpdateContents()
 								  m_strNymID2.Get(),		// Storing Market ID
                                   m_lDepth
 								  );
-
+		
 		if (m_bSuccess && (m_ascPayload.GetLength() > 2) && (m_lDepth > 0))
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
 		else if (!m_bSuccess && (m_ascInReferenceTo.GetLength() > 2))
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("getMarketRecentTrades"))
 	{
@@ -410,11 +410,11 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strNymID2.Get()	// Storing Market ID
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+    
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@getMarketRecentTrades"))
 	{
@@ -435,16 +435,16 @@ void OTMessage::UpdateContents()
 								  m_strNymID2.Get(),		// Storing Market ID
                                   m_lDepth
 								  );
-
+		
 		if (m_bSuccess && (m_ascPayload.GetLength() > 2) && (m_lDepth > 0))
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
 		else if (!m_bSuccess && (m_ascInReferenceTo.GetLength() > 2))
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("getNym_MarketOffers"))
 	{
@@ -459,10 +459,10 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@getNym_MarketOffers"))
 	{
@@ -481,15 +481,15 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
                                   m_lDepth
 								  );
-
+		
 		if (m_bSuccess && (m_ascPayload.GetLength() > 2) && (m_lDepth > 0))
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
 		else if (!m_bSuccess && (m_ascInReferenceTo.GetLength() > 2))
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("checkServerID"))
 	{
@@ -504,14 +504,14 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("<publicAuthentKey>\n%s</publicAuthentKey>\n\n",       m_strNymPublicKey.Get());
 		m_xmlUnsigned.Concatenate("<publicEncryptionKey>\n%s</publicEncryptionKey>\n\n", m_strNymID2.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@checkServerID"))
 	{
@@ -528,10 +528,10 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("createUserAccount"))
 	{
@@ -550,10 +550,10 @@ void OTMessage::UpdateContents()
             m_xmlUnsigned.Concatenate("<credentialList>\n%s</credentialList>\n\n", m_ascPayload.Get());
         if (m_ascPayload2.Exists())
             m_xmlUnsigned.Concatenate("<credentials>\n%s</credentials>\n\n", m_ascPayload2.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@createUserAccount"))
 	{
@@ -570,17 +570,17 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_bSuccess && (m_ascPayload.GetLength() > 2))
 			m_xmlUnsigned.Concatenate("<nymfile>\n%s</nymfile>\n\n", m_ascPayload.Get());
-
+        
 		if (m_ascInReferenceTo.GetLength() > 2)
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+    
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("deleteUserAccount"))
 	{
@@ -595,10 +595,10 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+	
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@deleteUserAccount"))
 	{
@@ -615,16 +615,16 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength() > 2)
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("checkUser"))
 	{
         bFoundMessage = true;
@@ -640,17 +640,17 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@checkUser"))
 	{
         // This means new-style credentials are being sent, not just the public key as before.
         const bool bCredentials = (m_ascPayload.Exists() && m_ascPayload2.Exists());
-
+        
         bFoundMessage = true;
 		m_xmlUnsigned.Concatenate("<%s\n"
 								  " requestNum=\"%s\"\n"
@@ -668,13 +668,13 @@ void OTMessage::UpdateContents()
                                   (bCredentials ? "true" : "false"),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_bSuccess)
         {
             // Old style. (Deprecated.)
             if (m_strNymPublicKey.Exists())
                 m_xmlUnsigned.Concatenate("<nymPublicKey>\n%s</nymPublicKey>\n\n", m_strNymPublicKey.Get());
-
+            
             // New style:
             if (bCredentials)
             {
@@ -684,14 +684,14 @@ void OTMessage::UpdateContents()
         }
 		else
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("usageCredits"))
 	{
         bFoundMessage = true;
@@ -709,11 +709,11 @@ void OTMessage::UpdateContents()
 								  m_lDepth,
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@usageCredits"))
 	{
@@ -734,12 +734,12 @@ void OTMessage::UpdateContents()
 								  m_lDepth,
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+	
 	// ------------------------------------------------------------------------
 	// This one isn't part of the message protocol, but is used for outmail storage.
 	// (Because outmail isn't encrypted like the inmail is, since the Nymfile itself
@@ -761,16 +761,16 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength() > 2)
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("sendUserMessage"))
 	{
         bFoundMessage = true;
@@ -786,14 +786,14 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength() > 2)
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+    
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@sendUserMessage"))
 	{
@@ -812,11 +812,11 @@ void OTMessage::UpdateContents()
 								  m_strNymID2.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
 	// ------------------------------------------------------------------------
-
+    
 	if (m_strCommand.Compare("sendUserInstrument") || // sendUserInstrument is sent from one user to the server, which then attaches that message as a payment, onto a transaction on the Nymbox of the recipient.
         m_strCommand.Compare("payDividend")) // payDividend is not a normal user message. Rather, the sender uses notarizeTransactions to do a payDividend transaction. On the server side, this creates a new message of type "payDividend" for each recipient, in order to attach a voucher to it (for each recipient) and then that (artificially created payDividend msg) is added to the Nymbox of each recipient.
 	{
@@ -833,14 +833,14 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength() > 2)
 			m_xmlUnsigned.Concatenate("<messagePayload>\n%s</messagePayload>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@sendUserInstrument"))
 	{
@@ -859,11 +859,11 @@ void OTMessage::UpdateContents()
 								  m_strNymID2.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("getRequest"))
 	{
@@ -878,12 +878,12 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
 	// This is the ONE command where you see a request number coming back from the server.
 	// In all the other commands, it should be SENT to the server, not received from the server.
@@ -906,13 +906,13 @@ void OTMessage::UpdateContents()
                                   m_lNewRequestNum,
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("issueAssetType"))
 	{
         bFoundMessage = true;
@@ -928,14 +928,14 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strAssetID.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<assetContract>\n%s</assetContract>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@issueAssetType"))
 	{
@@ -956,19 +956,19 @@ void OTMessage::UpdateContents()
 								  m_strAssetID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<issuerAccount>\n%s</issuerAccount>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("queryAssetTypes"))
 	{
         bFoundMessage = true;
@@ -982,15 +982,15 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<stringMap>\n%s</stringMap>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@queryAssetTypes"))
 	{
@@ -1007,19 +1007,19 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<stringMap>\n%s</stringMap>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+    
 	if (m_strCommand.Compare("issueBasket"))
 	{
         bFoundMessage = true;
@@ -1033,14 +1033,14 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<currencyBasket>\n%s</currencyBasket>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@issueBasket"))
 	{
@@ -1061,16 +1061,16 @@ void OTMessage::UpdateContents()
 								  m_strAssetID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("createAccount"))
 	{
         bFoundMessage = true;
@@ -1086,13 +1086,13 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strAssetID.Get()
 								  );
-
+		
         //		OTLog::vError("DEBUG: Asset Type length: %d, Value:\n%s\n", m_strAssetID.GetLength(),  m_strAssetID.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@createAccount"))
 	{
@@ -1111,19 +1111,19 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.Exists())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n",
                                       m_ascInReferenceTo.Get());
-
+		
 		if (m_bSuccess && m_ascPayload.Exists())
 			m_xmlUnsigned.Concatenate("<newAccount>\n%s</newAccount>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getBoxReceipt"))
 	{
         bFoundMessage = true;
@@ -1143,10 +1143,10 @@ void OTMessage::UpdateContents()
 								  (m_lDepth == 0) ? "nymbox" : ((m_lDepth == 1) ? "inbox" : "outbox"), // outbox is 2.
 								  m_strAcctID.Get()
 								  );
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@getBoxReceipt"))
 	{
@@ -1169,20 +1169,20 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<boxReceipt>\n%s</boxReceipt>\n\n", m_ascPayload.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("deleteAssetAccount"))
 	{
         bFoundMessage = true;
@@ -1198,12 +1198,12 @@ void OTMessage::UpdateContents()
 								  m_strRequestNum.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+    
 	// ------------------------------------------------------------------------
 	if (m_strCommand.Compare("@deleteAssetAccount"))
 	{
@@ -1222,16 +1222,16 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("notarizeTransactions"))
 	{
@@ -1250,20 +1250,20 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<accountLedger>\n%s</accountLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
-
+    
+    
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@notarizeTransactions"))
 	{
@@ -1282,22 +1282,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<responseLedger>\n%s</responseLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getTransactionNum"))
 	{
         bFoundMessage = true;
@@ -1313,14 +1313,14 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("@getTransactionNum"))
 	{
         bFoundMessage = true;
@@ -1338,14 +1338,14 @@ void OTMessage::UpdateContents()
                                   m_strNymboxHash.Get(),
 								  m_strServerID.Get()
 								  );
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getNymbox"))
 	{
         bFoundMessage = true;
@@ -1359,13 +1359,13 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@getNymbox"))
 	{
@@ -1384,23 +1384,23 @@ void OTMessage::UpdateContents()
                                   m_strNymboxHash.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<nymboxLedger>\n%s</nymboxLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
-
+	
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("getInbox"))
 	{
@@ -1417,13 +1417,13 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@getInbox"))
 	{
@@ -1444,22 +1444,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<inboxLedger>\n%s</inboxLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("getOutbox"))
 	{
@@ -1476,14 +1476,14 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@getOutbox"))
 	{
@@ -1504,23 +1504,23 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<outboxLedger>\n%s</outboxLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
-
+	
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getAccount"))
 	{
         bFoundMessage = true;
@@ -1536,14 +1536,14 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTAccount object.
 	if (m_strCommand.Compare("@getAccount"))
 	{
@@ -1562,22 +1562,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<assetAccount>\n%s</assetAccount>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+    
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getAccountFiles"))
 	{
         bFoundMessage = true;
@@ -1593,14 +1593,14 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains a STRING_MAP containing the OTAccount,
     // plus the inbox and outbox for that acct..
     //
@@ -1625,24 +1625,24 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// Famous last words.
         //
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<acctFiles>\n%s</acctFiles>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
-
+	
+    
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getContract"))
 	{
         bFoundMessage = true;
@@ -1658,13 +1658,13 @@ void OTMessage::UpdateContents()
 								  m_strAssetID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTAssetContract object.
 	if (m_strCommand.Compare("@getContract"))
 	{
@@ -1683,22 +1683,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAssetID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<assetContract>\n%s</assetContract>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("getMint"))
 	{
         bFoundMessage = true;
@@ -1714,13 +1714,13 @@ void OTMessage::UpdateContents()
 								  m_strAssetID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTMint object.
 	if (m_strCommand.Compare("@getMint"))
 	{
@@ -1739,22 +1739,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAssetID.Get()
 								  );
-
+		
 		if (!m_bSuccess && m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_bSuccess && m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<mint>\n%s</mint>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("processInbox"))
 	{
@@ -1773,18 +1773,18 @@ void OTMessage::UpdateContents()
 								  m_strAcctID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<processLedger>\n%s</processLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@processInbox"))
 	{
@@ -1803,22 +1803,22 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strAcctID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<responseLedger>\n%s</responseLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("processNymbox"))
 	{
@@ -1835,18 +1835,18 @@ void OTMessage::UpdateContents()
 								  m_strServerID.Get(),
 								  m_strRequestNum.Get()
 								  );
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<processLedger>\n%s</processLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+    
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTLedger object.
 	if (m_strCommand.Compare("@processNymbox"))
 	{
@@ -1863,21 +1863,21 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+		
 		// I would check if this was empty, but it should never be empty...
 		// famous last words.
 		if (m_ascPayload.GetLength())
 			m_xmlUnsigned.Concatenate("<responseLedger>\n%s</responseLedger>\n\n", m_ascPayload.Get());
-
+		
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	if (m_strCommand.Compare("triggerClause"))
 	{
         bFoundMessage = true;
@@ -1899,16 +1899,16 @@ void OTMessage::UpdateContents()
 								  (m_ascPayload.Exists()) ? "true" : "false",
 								  m_strRequestNum.Get()
 								  );
-
+		
 		if (m_ascPayload.Exists())
 			m_xmlUnsigned.Concatenate("<parameter>\n%s</parameter>\n\n", m_ascPayload.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	} // ------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTMint object.
 	if (m_strCommand.Compare("@triggerClause"))
 	{
@@ -1925,15 +1925,15 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		
 		if (m_ascInReferenceTo.GetLength())
 			m_xmlUnsigned.Concatenate("<inReferenceTo>\n%s</inReferenceTo>\n\n", m_ascInReferenceTo.Get());
-
+        
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	}
 	// ------------------------------------------------------------------------
-
-
+    
+	
 	if (!bFoundMessage)
 	{
 		m_xmlUnsigned.Concatenate("<%s\n" // Command
@@ -1949,11 +1949,11 @@ void OTMessage::UpdateContents()
 								  m_strNymID.Get(),
 								  m_strServerID.Get()
 								  );
-
+		      
 		m_xmlUnsigned.Concatenate("</%s>\n\n", m_strCommand.Get());
 	}
 	// ------------------------------------------------------------------------
-
+	
     // ACKNOWLEDGED REQUEST NUMBERS
     //
     // (For reducing the number of box receipts for replyNotices that must be downloaded.)
@@ -1966,22 +1966,22 @@ void OTMessage::UpdateContents()
     // Client removes any number he sees on the server's list.
     // Server removes any number he sees the client has also removed.
     //
-
+    
     if (m_AcknowledgedReplies.Count() > 0)
     {
         OTString strAck;
         if (m_AcknowledgedReplies.Output(strAck) && strAck.Exists())
         {
             const OTASCIIArmor ascTemp(strAck);
-
+            
             if (ascTemp.Exists())
                 m_xmlUnsigned.Concatenate("<ackReplies>\n%s</ackReplies>\n\n", ascTemp.Get());
         }
     }
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
     m_xmlUnsigned.Concatenate("</OTmessage>\n");
 }
 
@@ -1997,7 +1997,7 @@ void OTMessage::UpdateContents()
 int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
-
+	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -2009,23 +2009,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
     //
 	// if (nReturnVal = OTContract::ProcessXMLNode(xml))
     //	  return nReturnVal;
-
+	
     // --------------------------------------------------
-
+    
     const OTString strNodeName(xml->getNodeName());
-
+    
     OTString    strSuccess; // Many blocks below use this string, and when they declared it individually,
     // our stack frame got too big. So I'm moving it here, so they can all use it, instead of declaring
     // so many different copies of it (nearly one for each block.)
     // Same with these:
-
+    
     const char *	pElementExpected;
-
+    
     OTString strDepth;
     OTString strTransactionNum;
     // *******************************************************************************************
-
-
+    
+    
     if (strNodeName.Compare("ackReplies"))
 	{
 		if (false == OTContract::LoadEncodedTextField(xml, strDepth))
@@ -2033,92 +2033,92 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			OTLog::Error("Error in OTMessage::ProcessXMLNode: ackReplies field without value.\n");
 			return (-1); // error condition
 		}
-
+		
         m_AcknowledgedReplies.Release();
-
+        
         if (strDepth.Exists())
             m_AcknowledgedReplies.Add(strDepth);
-
+        
 		nReturnVal = 1;
 	}
-
+    
 	else if (strNodeName.Compare("acknowledgedReplies"))
     {
         OTLog::Error("OTMessage::ProcessXMLNode: SKIPPING DEPRECATED FIELD: acknowledgedReplies\n");
-
+        
         while (xml->getNodeType() != irr::io::EXN_ELEMENT_END)
         {
             xml->read();
         }
-
+        
 		nReturnVal = 1;
     }
-
+    
     // *******************************************************************************************
-
+    
 	else if (strNodeName.Compare("OTmessage"))
 	{
 		m_strVersion = xml->getAttributeValue("version");
-
+	
         OTString strDateSigned = xml->getAttributeValue("dateSigned");
-
+        
         if (strDateSigned.Exists())
             m_lTime = atol(strDateSigned.Get());
-
+        
 		OTLog::vOutput(2, "\n===> Loading XML for Message into memory structures...\n", m_strVersion.Get());
-
+		
 		nReturnVal = 1;
 	}
 	// -------------------------------------------------------------------------------------------
-
+    
 	else if (strNodeName.Compare("getMarketList"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getMarketList"))
 	{
 //      std::cerr << m_xmlUnsigned.Get() << std::endl;
-
+        
 		strSuccess		= xml->getAttributeValue("success");
 		if (strSuccess.Compare("true"))
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
-
+		
+        
 		strDepth = xml->getAttributeValue("depth");
-
+		
 		if (strDepth.GetLength() > 0)
 			m_lDepth = atol(strDepth.Get());
-
+        
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected = NULL;
 		if (m_bSuccess && (m_lDepth > 0))
 			pElementExpected = "messagePayload";
 		else if (!m_bSuccess)
 			pElementExpected = "inReferenceTo";
-
+		
         if (NULL != pElementExpected)
         {
             OTASCIIArmor 	ascTextExpected;
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2126,14 +2126,14 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                               pElementExpected, m_strCommand.Get());
                 return (-1); // error condition
             }
-
+            
             if (m_bSuccess)
                 m_ascPayload.Set(ascTextExpected);
             else
                 m_ascInReferenceTo.Set(ascTextExpected);
 		}
 		// -----------------------------------------------------
-
+		
 		if (m_bSuccess)
 			OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n ServerID: %s\n\n",
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
@@ -2143,12 +2143,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 						   m_strNymID.Get(), m_strServerID.Get() // m_ascInReferenceTo.Get()
 						   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+    
 	else if (strNodeName.Compare("getMarketOffers"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2156,21 +2156,21 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID2		= xml->getAttributeValue("marketID");
-
+		
 		strDepth = xml->getAttributeValue("depth");
-
+		
 		if (strDepth.GetLength() > 0)
 			m_lDepth = atol(strDepth.Get());
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n Market ID: %s\n Request #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strNymID2.Get(),
 					   m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getMarketOffers"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2178,31 +2178,31 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strNymID2		= xml->getAttributeValue("marketID");
-
-
+		
+        
 		strDepth = xml->getAttributeValue("depth");
-
+		
 		if (strDepth.GetLength() > 0)
 			m_lDepth = atol(strDepth.Get());
-
+        
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected = NULL;
 		if (m_bSuccess && (m_lDepth > 0))
 			pElementExpected = "messagePayload";
 		else if (!m_bSuccess)
 			pElementExpected = "inReferenceTo";
-
+		
         if (NULL != pElementExpected)
         {
             OTASCIIArmor 	ascTextExpected;
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2210,15 +2210,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                               pElementExpected, m_strCommand.Get());
                 return (-1); // error condition
             }
-
+            
             if (m_bSuccess)
                 m_ascPayload.Set(ascTextExpected);
             else
                 m_ascInReferenceTo = ascTextExpected;
         }
-
+        
 		// -----------------------------------------------------
-
+		
 		if (m_bSuccess)
 			OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n ServerID: %s\n MarketID: %s\n\n",
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
@@ -2228,12 +2228,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 						   m_strNymID.Get(), m_strServerID.Get(), m_strNymID2.Get() // m_ascInReferenceTo.Get()
 						   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getMarketRecentTrades"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2241,16 +2241,16 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID2		= xml->getAttributeValue("marketID");
-
+        
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n Market ID: %s\n Request #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strNymID2.Get(),
 					   m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getMarketRecentTrades"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2258,31 +2258,31 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strNymID2		= xml->getAttributeValue("marketID");
-
-
+		
+        
 		strDepth = xml->getAttributeValue("depth");
-
+		
 		if (strDepth.GetLength() > 0)
 			m_lDepth = atol(strDepth.Get());
-
+        
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected = NULL;
 		if (m_bSuccess && (m_lDepth > 0))
 			pElementExpected = "messagePayload";
 		else if (!m_bSuccess)
 			pElementExpected = "inReferenceTo";
-
+		
         if (NULL != pElementExpected)
         {
             OTASCIIArmor 	ascTextExpected;
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2290,15 +2290,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                               pElementExpected, m_strCommand.Get());
                 return (-1); // error condition
             }
-
+            
             if (m_bSuccess)
                 m_ascPayload.Set(ascTextExpected);
             else
                 m_ascInReferenceTo = ascTextExpected;
 		}
-
+        
 		// -----------------------------------------------------
-
+		
 		if (m_bSuccess)
 			OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n ServerID: %s\n MarketID: %s\n\n",
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
@@ -2308,28 +2308,28 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 						   m_strNymID.Get(), m_strServerID.Get(), m_strNymID2.Get() // m_ascInReferenceTo.Get()
 						   );
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getNym_MarketOffers"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getNym_MarketOffers"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2337,30 +2337,30 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
-
+		
+        
 		strDepth = xml->getAttributeValue("depth");
-
+		
 		if (strDepth.GetLength() > 0)
 			m_lDepth = atol(strDepth.Get());
-
+        
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected = NULL;
 		if (m_bSuccess && (m_lDepth > 0))
 			pElementExpected = "messagePayload";
 		else if (!m_bSuccess)
 			pElementExpected = "inReferenceTo";
-
+		
         if (NULL != pElementExpected)
         {
             OTASCIIArmor 	ascTextExpected;
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2368,15 +2368,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                               pElementExpected, m_strCommand.Get());
                 return (-1); // error condition
             }
-
+            
             if (m_bSuccess)
                 m_ascPayload.Set(ascTextExpected);
             else
                 m_ascInReferenceTo = ascTextExpected;
 		}
-
+        
 		// -----------------------------------------------------
-
+		
 		if (m_bSuccess)
 			OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n ServerID: %s\n\n",
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
@@ -2386,12 +2386,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 						   m_strNymID.Get(), m_strServerID.Get() // m_ascInReferenceTo.Get()
 						   );
-
+		
 		nReturnVal = 1;
 	}
-
+    
 	// -------------------------------------------------------------------------------------------
-
+    
     else if (strNodeName.Compare("checkServerID"))
 	{
 		m_strCommand	 = xml->getNodeName();  // Command
@@ -2401,7 +2401,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// -----------------------------------------------------
 		pElementExpected = "publicAuthentKey";
 		OTASCIIArmor ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2409,12 +2409,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		m_strNymPublicKey.Set(ascTextExpected);
 		// -----------------------------------------------------
 		pElementExpected = "publicEncryptionKey";
 		ascTextExpected.Release();
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2422,17 +2422,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		m_strNymID2.Set(ascTextExpected);
 		// -----------------------------------------------------
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n\n Public signing key:\n%s\nPublic encryption key:\n%s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strNymPublicKey.Get(), m_strNymID2.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+    
 	else if (strNodeName.Compare("@checkServerID"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2440,22 +2440,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
         m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nSuccess: %s\nNymID:    %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), strSuccess.Get(), m_strNymID.Get(),
                        m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("createUserAccount"))
 	{
 		m_strCommand	 = xml->getNodeName();  // Command
@@ -2464,7 +2464,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	 = xml->getAttributeValue("serverID");
 		// -----------------------------------------------------
 		pElementExpected = "credentialList";
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, m_ascPayload, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2474,7 +2474,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		}
 		// -----------------------------------------------------
 		pElementExpected = "credentials";
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, m_ascPayload2, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2485,12 +2485,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// -----------------------------------------------------
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@createUserAccount"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2498,18 +2498,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+        
 		m_strCommand	= xml->getNodeName();  // Command
         m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// -----------------------------------------------------
 		if (m_bSuccess)
 		{
 			pElementExpected	= "nymfile";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2521,7 +2521,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// -----------------------------------------------------
 		pElementExpected	= "inReferenceTo";
 		OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2530,38 +2530,38 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			return (-1); // error condition
 		}
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s  %s\nNymID:    %s\nServerID: %s\n\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"), m_strNymID.Get(),
                        m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
-
+	
+	
+    
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("deleteUserAccount"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
         m_strRequestNum = xml->getAttributeValue("requestNum");
-
+        
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@deleteUserAccount"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2569,17 +2569,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+        
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// -----------------------------------------------------
-
+		
 		pElementExpected	= "inReferenceTo";
 		OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2587,34 +2587,34 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s  %s\nNymID:    %s\nServerID: %s\n\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"), m_strNymID.Get(),
                        m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+    
+	
 	else if (strNodeName.Compare("getRequest"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getRequest"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2622,27 +2622,27 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+        
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
         m_strNymboxHash	= xml->getAttributeValue("nymboxHash");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
         const
         OTString strNewRequestNum = xml->getAttributeValue("newRequestNum");
         m_lNewRequestNum = strNewRequestNum.Exists() ? atol(strNewRequestNum.Get()) : 0;
-
+        
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n"
                        "ServerID: %s\nRequest Number:    %s  New Number: %ld\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_lNewRequestNum);
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("outmailMessage") ||
              strNodeName.Compare("outpaymentsMessage"))
 	{
@@ -2651,12 +2651,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
-
+		
 		pElementExpected	= "messagePayload";
 		OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2664,18 +2664,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		// ---------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("sendUserMessage"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2683,10 +2683,10 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		pElementExpected	= "messagePayload";
 		OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2694,15 +2694,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@sendUserMessage"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2710,24 +2710,24 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+        
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nNymID2:    %s\n"
 					   "ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get()
 					   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("sendUserInstrument") ||
              strNodeName.Compare("payDividend"))  // not a real message. Used by server when sending vouchers to people.
 	{
@@ -2736,10 +2736,10 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		pElementExpected	= "messagePayload";
 		OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2747,15 +2747,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@sendUserInstrument"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2763,24 +2763,24 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nNymID2:    %s\n"
 					   "ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get()
 					   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("usageCredits"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2788,22 +2788,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTString strAdjustment = xml->getAttributeValue("adjustment");
-
+		
 		if (strAdjustment.GetLength() > 0)
 			m_lDepth = atol(strAdjustment.Get());
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\nAdjustment: %ld\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get(),
 					   m_lDepth);
-
+		
 		nReturnVal = 1;
 	}
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@usageCredits"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2811,20 +2811,20 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		OTString strTotalCredits = xml->getAttributeValue("totalCredits");
-
+		
 		if (strTotalCredits.GetLength() > 0)
 			m_lDepth = atol(strTotalCredits.Get());
 		// -----------------------------------------------------
-
-
+        
+        
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nNymID2:    %s\n"
 					   "ServerID: %s\nTotal Credits: %ld \n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
@@ -2832,9 +2832,9 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					   m_lDepth);
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("checkUser"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2842,15 +2842,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@checkUser"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2858,13 +2858,13 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strNymID2		= xml->getAttributeValue("nymID2");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+        
 		const OTString	strHasCredentials(xml->getAttributeValue("hasCredentials"));
         const bool      bHasCredentials = strHasCredentials.Compare("true");
 		// -----------------------------------------------------
@@ -2873,7 +2873,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			pElementExpected = "nymPublicKey";
 		else
 			pElementExpected = "inReferenceTo";
-
+        
 		OTASCIIArmor ascTextExpected;
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
@@ -2891,7 +2891,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         {
 			pElementExpected = "credentialList";
             ascTextExpected.Release();
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2903,7 +2903,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             // -----------------------------------------------------
 			pElementExpected = "credentials";
             ascTextExpected.Release();
-
+            
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
             {
                 OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2926,13 +2926,13 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 						   m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get() // m_ascInReferenceTo.Get()
 						   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("issueAssetType"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -2940,12 +2940,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
-
+		
 		pElementExpected	= "assetContract";
 		OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -2953,19 +2953,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		// ---------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s \nNymID:    %s\n"
                        "ServerID: %s\nRequest#: %s\nAsset Type:\n%s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_strAssetID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@issueAssetType"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -2973,23 +2973,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// If successful, we need to read 2 more things: inReferenceTo and issuerAccount payload.
 		// If failure, then we only need to read 1 thing: inReferenceTo
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3003,7 +3003,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "issuerAccount";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3013,7 +3013,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+		
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there,
 		// OR if it was successful but the Payload isn't there, then failure.
@@ -3024,7 +3024,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@issueAssetType reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTString acctContents(m_ascPayload);
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID: %s\nAsset Type ID: %s\n"
                        "ServerID: %s\n\n",
@@ -3034,29 +3034,29 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                        //	m_ascInReferenceTo.Get(),
                        //acctContents.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("queryAssetTypes"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
-
+		
 		pElementExpected	= "stringMap";
 		OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
-
+		
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3064,19 +3064,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		// ---------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s \nNymID:    %s\n"
 					   "ServerID: %s\nRequest#: %s\n\n",
 					   m_strCommand.Get(), m_strNymID.Get(),
 					   m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@queryAssetTypes"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3084,21 +3084,21 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// If successful, we need to read 2 more things: inReferenceTo and issuerAccount payload.
 		// If failure, then we only need to read 1 thing: inReferenceTo
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3112,7 +3112,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "stringMap";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3122,7 +3122,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+		
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there,
 		// OR if it was successful but the Payload isn't there, then failure.
@@ -3133,20 +3133,20 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						 "@queryAssetTypes reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\n Command: %s   %s\n NymID:    %s\n ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
 					   m_strNymID.Get(), m_strServerID.Get()
 					   );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("createAccount"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3154,17 +3154,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s \nNymID:    %s\n"
                        "ServerID: %s\nRequest#: %s\nAsset Type:\n%s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_strAssetID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@createAccount"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3172,23 +3172,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
-
+		
+		
 		// If successful, we need to read 2 more things: inReferenceTo and issuerAccount payload.
 		// If failure, then we only need to read 1 thing: inReferenceTo
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3202,7 +3202,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "newAccount";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3212,7 +3212,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+        
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there,
 		// OR if it was successful but the Payload isn't there, then failure.
@@ -3224,7 +3224,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@createAccount reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID: %s\n"
                        "ServerID: %s\n\n",
                        //	"****New Account****:\n%s\n",
@@ -3233,12 +3233,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                        //	m_ascInReferenceTo.Get(),
                        //acctContents.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getBoxReceipt"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3246,7 +3246,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		strTransactionNum = xml->getAttributeValue("transactionNum");
 		m_lTransactionNum = strTransactionNum.Exists() ? atol(strTransactionNum.Get()) : 0;
 		// ----------------------------------------------------
@@ -3267,18 +3267,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			return (-1);
 		}
 		// ----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n AccountID:    %s\n"
                        " ServerID: %s\n Request#: %s  Transaction#: %ld   boxType: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strAcctID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_lTransactionNum,
 					   (m_lDepth == 0) ? "nymbox" : ((m_lDepth == 1) ? "inbox" : "outbox")); // outbox is 2.);
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getBoxReceipt"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3286,13 +3286,13 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		strTransactionNum = xml->getAttributeValue("transactionNum");
 		m_lTransactionNum = strTransactionNum.Exists() ? atol(strTransactionNum.Get()) : 0;
 		// ----------------------------------------------------
@@ -3319,7 +3319,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3333,7 +3333,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "boxReceipt";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3343,7 +3343,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+		
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there,
 		// OR if it was successful but the Payload isn't there, then failure.
@@ -3354,19 +3354,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						 "@getBoxReceipt reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID: %s\n"
                        "ServerID: %s\n\n",
                        //	"****New Account****:\n%s\n",
                        m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
 					   m_strNymID.Get(), m_strAcctID.Get(),
                        m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
 	else if (strNodeName.Compare("deleteAssetAccount"))
 	{
@@ -3375,19 +3375,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n AccountID:    %s\n"
                        " ServerID: %s\n Request#: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strAcctID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@deleteAssetAccount"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3395,21 +3395,21 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// inReferenceTo contains the deleteAssetAccount (original request)
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3428,7 +3428,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@deleteAssetAccount reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID: %s\n"
                        "ServerID: %s\n\n",
                        //	"****New Account****:\n%s\n",
@@ -3437,27 +3437,27 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                        //	m_ascInReferenceTo.Get(),
                        //acctContents.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+    
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("issueBasket"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "currencyBasket";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3467,7 +3467,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+		
 		// Did we find everything we were looking for?
 		// If the Payload isn't there, then failure.
 		if (!m_ascPayload.GetLength())
@@ -3477,17 +3477,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "issueBasket message\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s \nNymID:    %s\n"
                        "ServerID: %s\nRequest#: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@issueBasket"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3495,19 +3495,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected = m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3517,7 +3517,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+		
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there,
 		// OR if it was successful but the Payload isn't there, then failure.
@@ -3528,7 +3528,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@issueBasket reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID: %s\nAssetTypeID: %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
@@ -3537,16 +3537,16 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                        m_strAssetID.Get(),
                        m_strServerID.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getTransactionNum"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3554,18 +3554,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         m_strNymboxHash	= xml->getAttributeValue("nymboxHash");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n"
                        " ServerID: %s\n Request#: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+    
 	else if (strNodeName.Compare("@getTransactionNum"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3573,25 +3573,25 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
         m_strNymboxHash	= xml->getAttributeValue("nymboxHash");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		OTLog::vOutput(1, "\n Command: %s   %s\n NymID:    %s\n"
                        " ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
                        m_strNymID.Get(), m_strServerID.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("notarizeTransactions"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3600,12 +3600,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "accountLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3615,17 +3615,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n AccountID:    %s\n"
                        " ServerID: %s\n Request#: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strAcctID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@notarizeTransactions"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3633,22 +3633,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// If successful or failure, we need to read 2 more things:
 		// inReferenceTo and the responseLedger payload.
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3661,7 +3661,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "responseLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3671,7 +3671,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+        
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there, or the Payload isn't there, then failure.
 		if (!m_ascInReferenceTo.GetLength() || (!m_ascPayload.GetLength()))
@@ -3681,7 +3681,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@notarizeTransactions reply\n");
 			return (-1); // error condition
 		}
-
+		
 		//		OTString acctContents(m_ascPayload);
 		OTLog::vOutput(1, "\n Command: %s   %s\n NymID:    %s\n AccountID: %s\n"
                        " ServerID: %s\n\n",
@@ -3691,13 +3691,13 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                        //	m_ascInReferenceTo.Get(),
                        //acctContents.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getInbox"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3705,34 +3705,34 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAccountID:    %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAcctID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("getNymbox"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(),m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@getInbox"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3740,24 +3740,24 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strInboxHash  = xml->getAttributeValue("inboxHash");
-
+		
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "inboxLedger";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3765,26 +3765,26 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+        
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID:    %s\n"
 					   "ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strAcctID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	else if (strNodeName.Compare("@getNymbox"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3792,23 +3792,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
         m_strNymboxHash	= xml->getAttributeValue("nymboxHash");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "nymboxLedger";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3816,26 +3816,26 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n"
 					   "ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	else if (strNodeName.Compare("getOutbox"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3843,17 +3843,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAccountID:    %s\nRequest #: %s\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAcctID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@getOutbox"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3861,24 +3861,24 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
         m_strOutboxHash = xml->getAttributeValue("outboxHash");
-
+        
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "outboxLedger";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3886,25 +3886,25 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID:    %s\n"
 					   "ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strAcctID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+    
+	
 	else if (strNodeName.Compare("getAccount"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3912,17 +3912,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAccountID:    %s\nRequest #: %s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAcctID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@getAccount"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3930,23 +3930,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "assetAccount";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -3954,25 +3954,25 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID:    %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
                        m_strNymID.Get(), m_strAcctID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+    
+	
 	else if (strNodeName.Compare("getAccountFiles"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -3980,15 +3980,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAccountID:    %s\nRequest #: %s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAcctID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// ------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@getAccountFiles"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -3996,7 +3996,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
@@ -4006,15 +4006,15 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strOutboxHash = xml->getAttributeValue("outboxHash");
 
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "acctFiles";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4022,22 +4022,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAccountID:    %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
                        m_strNymID.Get(), m_strAcctID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
 
 	else if (strNodeName.Compare("getContract"))
@@ -4047,17 +4047,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAsset Type:    %s\nRequest #: %s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAssetID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@getContract"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -4065,23 +4065,23 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
-
+		
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "assetContract";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4089,27 +4089,27 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAsset Type ID:    %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
                        m_strNymID.Get(), m_strAssetID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	// ------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("getMint"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -4117,18 +4117,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nAsset Type:    %s\nRequest #: %s\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_strAssetID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	// the Payload contains an ascii-armored OTMint object.
-
+	
 	else if (strNodeName.Compare("@getMint"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -4136,22 +4136,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAssetID	= xml->getAttributeValue("assetType");
-
+		
 		// -----------------------------------------------------
 		const char * pElementExpected;
 		if (m_bSuccess)
 			pElementExpected = "mint";
 		else
 			pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4159,24 +4159,24 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		if (m_bSuccess)
 			m_ascPayload = ascTextExpected;
 		else
 			m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nAsset Type ID:    %s\n"
                        "ServerID: %s\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
                        m_strNymID.Get(), m_strAssetID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+    
 	else if (strNodeName.Compare("triggerClause"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -4186,16 +4186,16 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strNymID2		= xml->getAttributeValue("clauseName");
 		m_strRequestNum = xml->getAttributeValue("requestNum");
 		const OTString strHasParam = xml->getAttributeValue("hasParam");
-
+		
 		strTransactionNum = xml->getAttributeValue("smartContractID");
 		if (strTransactionNum.Exists())
 			m_lTransactionNum = atol(strTransactionNum.Get());
-
+		
 		if (strHasParam.Compare("true"))
 		{
 			pElementExpected = "parameter";
 			OTASCIIArmor	ascTextExpected;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4207,16 +4207,16 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				m_ascPayload = ascTextExpected;
 			// -----------------------------------------------------
 		}
-
+		
 		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nClause TransNum and Name:  %ld  /  %s \n"
 					   "Request #: %s\n", m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_lTransactionNum,
 					   m_strNymID2.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// ------------------------------------------------------------------------
-
+    
 	else if (strNodeName.Compare("@triggerClause"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -4224,18 +4224,18 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// -----------------------------------------------------
-
+		
 		const char * pElementExpected = "inReferenceTo";
-
+		
 		OTASCIIArmor 	ascTextExpected;
-
+		
 		if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 		{
 			OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4243,25 +4243,25 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						  pElementExpected, m_strCommand.Get());
 			return (-1); // error condition
 		}
-
+		
 		m_ascInReferenceTo = ascTextExpected;
-
+		
 		// -----------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s   ServerID: %s\n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strServerID.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
-
-
+	
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("processInbox"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -4270,12 +4270,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "processLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4285,19 +4285,19 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n AccountID:    %s\n"
 					   " ServerID: %s\n Request#: %s\n\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strAcctID.Get(),
 					   m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("processNymbox"))
 	{
 		m_strCommand	= xml->getNodeName();  // Command
@@ -4305,12 +4305,12 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         m_strNymboxHash	= xml->getAttributeValue("nymboxHash");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "processLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4320,17 +4320,17 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ---------------------------------------------------
-
+		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n"
 					   " ServerID: %s\n Request#: %s\n\n",
 					   m_strCommand.Get(), m_strNymID.Get(),
 					   m_strServerID.Get(), m_strRequestNum.Get());
-
+		
 		nReturnVal = 1;
 	}
-
+	
 	// -------------------------------------------------------------------------------------------
-
+	
 	else if (strNodeName.Compare("@processInbox"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -4338,22 +4338,22 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
 		m_strAcctID		= xml->getAttributeValue("accountID");
-
+		
 		// If successful or failure, we need to read 2 more things:
 		// inReferenceTo and the responseLedger payload.
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4366,7 +4366,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "responseLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4376,7 +4376,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+        
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there, or the Payload isn't there, then failure.
 		if (!m_ascInReferenceTo.GetLength() || (!m_ascPayload.GetLength()))
@@ -4386,21 +4386,21 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                          "@processInbox reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\n Command: %s   %s\n NymID:    %s\n AccountID: %s\n"
                        " ServerID: %s\n\n",
                        //	"****New Account****:\n%s\n",
                        m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
                        m_strNymID.Get(), m_strAcctID.Get(), m_strServerID.Get()
                        );
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
-
+	
+	
 	else if (strNodeName.Compare("@processNymbox"))
 	{
 		strSuccess		= xml->getAttributeValue("success");
@@ -4408,21 +4408,21 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			m_bSuccess = true;
 		else
 			m_bSuccess = false;
-
+		
 		m_strCommand	= xml->getNodeName();  // Command
 		m_strRequestNum	= xml->getAttributeValue("requestNum");
 		m_strNymID		= xml->getAttributeValue("nymID");
 		m_strServerID	= xml->getAttributeValue("serverID");
-
+		
 		// If successful or failure, we need to read 2 more things:
 		// inReferenceTo and the responseLedger payload.
 		// At this point, we do not send the REASON WHY if it failed.
-
+		
 		// ----------------------------------------------------
 		{
 			pElementExpected	= "inReferenceTo";
 			OTASCIIArmor &	ascTextExpected		= m_ascInReferenceTo;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4435,7 +4435,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		{
 			pElementExpected	= "responseLedger";
 			OTASCIIArmor &	ascTextExpected		= m_ascPayload;
-
+			
 			if (false == OTContract::LoadEncodedTextFieldByName(xml, ascTextExpected, pElementExpected))
 			{
 				OTLog::vError("Error in OTMessage::ProcessXMLNode: "
@@ -4445,7 +4445,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			}
 		}
 		// ----------------------------------------------------
-
+        
 		// Did we find everything we were looking for?
 		// If the "command responding to" isn't there, or the Payload isn't there, then failure.
 		if (!m_ascInReferenceTo.GetLength() || (!m_ascPayload.GetLength()))
@@ -4455,20 +4455,20 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						 "@processNymbox reply\n");
 			return (-1); // error condition
 		}
-
+		
 		OTLog::vOutput(1, "\n Command: %s   %s\n NymID:    %s\n"
 					   " ServerID: %s\n\n",
 					   //	"****New Account****:\n%s\n",
 					   m_strCommand.Get(), (m_bSuccess?"SUCCESS":"FAILED"),
 					   m_strNymID.Get(), m_strServerID.Get()
 					   );
-
+		
 		nReturnVal = 1;
 	}
-
-
+	
+	
 	// -------------------------------------------------------------------------------------------
-
+    
 	return nReturnVal;
 }
 
@@ -4498,11 +4498,11 @@ bool OTMessage::SignContract(const OTPseudonym & theNym,
 {
 	// I release these, I assume, because a message only has one signer.
 	ReleaseSignatures(); // Note: this might change with credentials. We might require multiple signatures.
-
+    
     // Use the authentication key instead of the signing key.
     //
 	m_bIsSigned = OTContract::SignContractAuthent(theNym, pPWData);
-
+	
 	if (m_bIsSigned)
 	{
         //		OTLog::vError("\n******************************************************\n"
@@ -4510,7 +4510,7 @@ bool OTMessage::SignContract(const OTPseudonym & theNym,
 	}
 	else
 		OTLog::vOutput(1, "Failure signing message:\n%s", m_xmlUnsigned.Get());
-
+    
 	return m_bIsSigned;
 }
 
@@ -4533,7 +4533,7 @@ bool OTMessage::VerifySignature(const OTPseudonym & theNym,
 
 
 // Unlike other contracts, which do not change over time, and thus calculate their ID
-// from a hash of the file itself, OTMessage objects are different every time. Thus, we
+// from a hash of the file itself, OTMessage objects are different every time. Thus, we 
 // cannot use a hash of the file to produce the Message ID.
 //
 // Message ID will probably become an important part of the protocol (to prevent replay attacks..)
@@ -4547,7 +4547,7 @@ bool OTMessage::VerifyContractID()
 
 OTMessage::OTMessage() : OTContract(),
 m_bIsSigned(false), m_lNewRequestNum(0),
-m_lDepth(0),        m_lTransactionNum(0),
+m_lDepth(0),        m_lTransactionNum(0), 
 m_bSuccess(false),  m_bBool(false), m_lTime(0)
 
 {
@@ -4557,7 +4557,7 @@ m_bSuccess(false),  m_bBool(false), m_lTime(0)
 
 OTMessage::~OTMessage()
 {
-
+	
 }
 
 
@@ -4568,14 +4568,14 @@ OTMessage::~OTMessage()
 bool OTMessage::SaveContractWallet(std::ofstream & ofs)
 {
 	OTString strContract;
-
+	
 	if (SaveContractRaw(strContract))
 	{
 		ofs << strContract.Get();
-
+		
 		return true;
 	}
-	else
+	else 
 	{
 		return false;
 	}

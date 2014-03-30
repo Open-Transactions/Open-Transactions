@@ -1,13 +1,13 @@
 /*******************************************************************
-*
+*    
 *  OTSettings.cpp
-*
+*  
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -132,11 +132,11 @@
 
 #include <stdafx.hpp>
 
-#include "OTSettings.hpp"
+#include <OTSettings.hpp>
 
-#include "OTAssert.hpp"
-#include "OTLog.hpp"
-#include "OTPaths.hpp"
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
 
 
 bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
@@ -318,13 +318,13 @@ bool	OTSettings::Check_bool(const OTString & strSection, const OTString & strKey
 	const char * szVar = this->m_pIniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
 	OTString strVar(szVar);
 
-	if (strVar.Exists() &&
-		(strVar.Compare("false") || strVar.Compare("true")))
+	if (strVar.Exists() && 
+		(strVar.Compare("false") || strVar.Compare("true"))) 
 	{
 		out_bKeyExist = true;
-		if (strVar.Compare("true"))
+		if (strVar.Compare("true")) 
 			out_bResult = true;
-		else
+		else 
 			out_bResult = false;
 	}
 	else { out_bKeyExist = false; out_bResult = false; }
@@ -363,7 +363,7 @@ bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, 
 	// Log to Output Setting Change
 	if (! LogChange_str(strSection,strKey,strValue)) return false;
 
-
+	
 
 	// Set New Value
 	SI_Error rc = this->m_pIniSimple->SetValue(strSection.Get(), strKey.Get(), szValue, szComment, true);
@@ -373,7 +373,7 @@ bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, 
 	{
 		if (bOldKeyExist) out_bNewOrUpdate = true;
 		else out_bNewOrUpdate = false;
-
+		
 		return true;
 	}
 
@@ -405,7 +405,7 @@ bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, 
 	OTString strValue; strValue.Format("%ld",lValue);
 
 	const char * const szComment = (strComment.Exists() && !strComment.Compare("")) ? strComment.Get() : NULL;
-
+	
 	OTString strOldValue, strNewValue;
 	bool bOldKeyExist, bNewKeyExist;
 
@@ -505,7 +505,7 @@ bool	OTSettings::CheckSet_str (const OTString & strSection, const OTString & str
 			out_strResult = "";
 			return true;
 		}
-
+		
 		if (bNewKeyCheck)
 		{
 			// Success

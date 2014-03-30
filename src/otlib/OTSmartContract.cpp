@@ -458,20 +458,17 @@
 
 #include <stdafx.hpp>
 
-#include "OTSmartContract.hpp"
+#include <OTSmartContract.hpp>
 
-#include "OTLog.hpp"
-#include "OTScript.hpp"
-#include "OTCron.hpp"
-#include "OTPseudonym.hpp"
-#include "OTLedger.hpp"
-#include "OTPaths.hpp"
+#include <OTLog.hpp>
+#include <OTScript.hpp>
+#include <OTCron.hpp>
+#include <OTPseudonym.hpp>
+#include <OTLedger.hpp>
+#include <OTPaths.hpp>
 
-#include <chaiscript/chaiscript.hpp>
-
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-#endif
+// -----------------------------------------------------------------
+#ifdef OT_USE_SCRIPT_CHAI
 
 #include <chaiscript/chaiscript.hpp>
 
@@ -479,7 +476,8 @@
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
-
+#endif
+// -----------------------------------------------------------------
 
 
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL
@@ -696,7 +694,7 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 	OTScriptable::RegisterOTNativeCallsWithScript(theScript);
 	// --------------------------------
 
-#ifdef OT_USE_CHAI5
+#ifdef OT_USE_SCRIPT_CHAI
 	using namespace chaiscript;
 
 	OTScriptChai * pScript = dynamic_cast<OTScriptChai *> (&theScript);
@@ -732,7 +730,6 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 		pScript->chai->add(fun(&OTSmartContract::GetRemainingTimer,			this), "get_remaining_timer");	// std::string GetRemainingTimer() const
 
 		pScript->chai->add(fun(&OTSmartContract::DeactivateSmartContract,	this), "deactivate_contract");	// void DeactivateSmartContract();
-
 		// ---------------------------------------------------------
 		// CALLBACKS
 		// (Called by OT at key moments) todo security: What if these are recursive? Need to lock down, put the smack down, on these smart contracts.
@@ -765,7 +762,7 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 //	{ }
 	// *******************************************************************
 	else
-#endif // OT_USE_CHAI5
+#endif // OT_USE_SCRIPT_CHAI
 	{
 		OTLog::Error("OTSmartContract::RegisterOTNativeCallsWithScript: Failed dynamic casting OTScript to OTScriptChai \n");
 	}
@@ -2201,7 +2198,6 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 	// ------------------------------------------------------
 	// Load up the actual Stash ACCOUNT
 	//
-
 #ifndef OT_USE_TR1
     _SharedPtr<OTAccount> pStashAccount(NULL);
 #else

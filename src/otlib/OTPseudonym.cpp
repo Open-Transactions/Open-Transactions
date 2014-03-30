@@ -132,17 +132,17 @@
 
 #include <stdafx.hpp>
 
-#include "OTPseudonym.hpp"
+#include <OTPseudonym.hpp>
 
-#include "OTLog.hpp"
-#include "OTCredential.hpp"
-#include "OTLedger.hpp"
-#include "OTPaths.hpp"
-#include "OTMessage.hpp"
-#include "OTPassword.hpp"
-#include "OTPayment.hpp"
-#include "OTSignedFile.hpp"
-#include "OTSymmetricKey.hpp"
+#include <OTLog.hpp>
+#include <OTCredential.hpp>
+#include <OTLedger.hpp>
+#include <OTPaths.hpp>
+#include <OTMessage.hpp>
+#include <OTPassword.hpp>
+#include <OTPayment.hpp>
+#include <OTSignedFile.hpp>
+#include <OTSymmetricKey.hpp>
 
 #include <fstream>
 

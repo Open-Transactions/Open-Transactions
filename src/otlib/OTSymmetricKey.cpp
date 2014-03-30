@@ -132,14 +132,14 @@
 
 #include <stdafx.hpp>
 
-#include "OTSymmetricKey.hpp"
+#include <OTSymmetricKey.hpp>
 
-#include "OTLog.hpp"
-#include "OTIdentifier.hpp"
-#include "OTEnvelope.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTPassword.hpp"
-#include "OTAsymmetricKey.hpp"
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTEnvelope.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTPassword.hpp>
+#include <OTAsymmetricKey.hpp>
 
 extern "C"
 {
@@ -147,18 +147,6 @@ extern "C"
 #include <netinet/in.h>
 #endif
 }
-
-
-
-//// ------------------------------------------------------------------------
-
-//#ifdef _WIN32
-//#include <WinsockWrapper.h>
-//#else
-//
-//#if defined (OPENTXS_HAVE_SYS_TYPES_H)
-//#include <sys/types.h>
-//#endif
 
 
 // ------------------------------------------------------------------------

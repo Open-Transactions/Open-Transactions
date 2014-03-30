@@ -8,8 +8,6 @@
 #include <string>
 
 
-
-
 #define OT_UTILITY_OT
 
 

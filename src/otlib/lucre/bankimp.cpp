@@ -55,7 +55,7 @@ void SetDumper(const char *filepathexact)
 void CleanupDumpFile(const char *filepathexact)
 {
     std::fstream f(filepathexact, std::ios::in);
-
+    
     if (f)
     {
         f.close();
@@ -122,7 +122,7 @@ BIGNUM *ReadNumber(BIO *in,const char *szTitle)
 	sscanf(&szLine[nTLen+n*2],"%02x",&h);
 	aucBN[n]=(unsigned char)h;
 	}
-
+	
     BN_bin2bn(aucBN,n,bn);
 
     return bn;
@@ -182,7 +182,7 @@ void Bank::cb(int n, int, void * /*arg*/)
     if (n == 2) c='*';
     if (n == 3) c='\n';
     BIO_write(mout,&c,1);
-
+        
         // FT: I added nTemp to get rid of annoying compiler warning.
     int nTemp = BIO_flush(mout);
         ++nTemp;

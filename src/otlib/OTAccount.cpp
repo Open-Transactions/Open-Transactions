@@ -132,15 +132,15 @@
 
 #include <stdafx.hpp>
 
-#include "OTAccount.hpp"
+#include <OTAccount.hpp>
 
-#include "OTAssert.hpp"
-#include "OTLedger.hpp"
-#include "OTLog.hpp"
-#include "OTPseudonym.hpp"
-#include "OTPayload.hpp"
-#include "OTMessage.hpp"
-#include "OTPaths.hpp"
+#include <OTAssert.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTPayload.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
 
 #include <ostream>
 #include <sstream>
@@ -558,7 +558,7 @@ char* myGetTimeOfDay(char* buffer, int bufferLength)
         strlcat(buffer, sp, strlen(sp));
 #endif
 
-        //		delete [] sp; // wtf is this? Am I supposed to delete this? commenting it out for now. weird to see this here.
+//		delete [] sp; // wtf is this? Am I supposed to delete this? commenting it out for now. weird to see this here.
     }
     return buffer;
 }

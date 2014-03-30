@@ -132,15 +132,13 @@
 
 #include <stdafx.hpp>
 
-#include "OTTrade.hpp"
+#include <OTTrade.hpp>
 
-#include "OTLog.hpp"
-#include "OTMarket.hpp"
-#include "OTOffer.hpp"
-#include "OTPseudonym.hpp"
-#include "OTAccount.hpp"
-
-
+#include <OTLog.hpp>
+#include <OTMarket.hpp>
+#include <OTOffer.hpp>
+#include <OTPseudonym.hpp>
+#include <OTAccount.hpp>
 
 #ifndef TRADE_PROCESS_INTERVAL
 

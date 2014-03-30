@@ -137,17 +137,18 @@
 
 #include <stdafx.hpp>
 
-#include "OTCrypto.hpp"
+#include <OTCrypto.hpp>
 
-#include "OTPaths.hpp"
-#include "OTAssert.hpp"
-#include "OTPassword.hpp"
-#include "OTLog.hpp"
-#include "OTIdentifier.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTStorage.hpp"
-#include "OTPseudonym.hpp"
-#include "OTSignature.hpp"
+#include <OTPaths.hpp>
+#include <OTAssert.hpp>
+#include <OTPassword.hpp>
+#include <OTLog.hpp>
+#include <OTIdentifier.hpp>
+#include <OTAsymmetricKey.hpp>
+#include <OTStorage.hpp>
+#include <OTPseudonym.hpp>
+#include <OTSignature.hpp>
+
 
 #include <bigint/BigIntegerLibrary.hh>
 
