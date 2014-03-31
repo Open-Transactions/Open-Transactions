@@ -180,8 +180,7 @@ _SharedPtr<OTScript> OT_ME::m_pScript;
 #endif
 
 
-OT_ME::OT_ME(const std::string & _scriptName)
-: scriptName(_scriptName)
+OT_ME::OT_ME()
 {
 }
 

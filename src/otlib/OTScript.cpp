@@ -211,20 +211,20 @@
 _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
 {  
 #ifdef OT_USE_SCRIPT_CHAI
-    // if the type is explicitly set to "chai", or if the type is 0 length, then 
-    // use chaiscript as the default interpreter in that case as well.
+    // default or explicit chai script interpreter
     if (script_type == "" || script_type =="chai") // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai);
         return pChaiScript;
     }
-#endif
-
-    if (script_type == "noscript")
+#else
+    // default no script interpreter
+    if (script_type == "")
     {
         _SharedPtr<OTScript> pNoScript(new OTScript);
         return pNoScript;
     }
+#endif
 
     // Here's how it would look for various scripting languages:
     //
@@ -243,23 +243,16 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
 
 
 _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type, 
-                                   const std::string & script_contents)
+                                     const std::string & script_contents)
 {
 #ifdef OT_USE_SCRIPT_CHAI
-    // if the type is explicitly set to "chai", or if the type is 0 length, then 
-    // use chaiscript as the default interpreter in that case as well.
+    // default or explicit chai script interpreter
     if (script_type == "" || script_type == "chai") // todo no hardcoding.
     {
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai(script_contents));
         return pChaiScript;
     }
 #endif // OT_USE_SCRIPT_CHAI
-
-    if (script_type == "noscript")
-    {
-        _SharedPtr<OTScript> pNoScript(new OTScript);
-        return pNoScript;
-    }
 
     // Here's how it would look for various scripting languages:
     //
@@ -420,7 +413,7 @@ void OTScript::RemoveVariable (OTVariable & theVar)
 
 bool OTScript::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 {
-    OTLog::vError("OTScript::ExecuteScript: Executing NO SCRIPT ????\n");
+    OTLog::vError("OTScript::ExecuteScript: Scripting has been disabled.\n");
     return true;
 }
 

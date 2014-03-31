@@ -764,7 +764,8 @@ int main(int argc, char* argv[])
 
 		return 0;
 	}
-	else // Else a command WAS provided at the command line, so we execute a single time, once just for that command.
+
+	// Otherwise a command WAS provided at the command line, so we execute a single time, once just for that command.
 	{
 		OTWallet * pWallet = NULL;
 		OTServerContract * pServerContract = NULL;

@@ -18,9 +18,15 @@
 
 // ------------------------------------
 #ifndef OT_USE_SCRIPT_CHAI
-
-#if defined(OPENTXS_CHAISCRIPT_5) || defined(OPENTXS_CHAISCRIPT_4)
 #define OT_USE_SCRIPT_CHAI
+
+#ifdef OPENTXS_CHAISCRIPT_4
+#else
+
+#ifndef OPENTXS_CHAISCRIPT_5
+#define OPENTXS_CHAISCRIPT_5
+#endif
+
 #endif
 
 #endif
@@ -31,8 +37,13 @@
 // DON'T use ChaiScript on mobile devices
 #undef OT_USE_SCRIPT_CHAI
 
+#ifdef OPENTXS_CHAISCRIPT_4
 #undef OPENTXS_CHAISCRIPT_4
+#endif
+
+#ifdef OPENTXS_CHAISCRIPT_5
 #undef OPENTXS_CHAISCRIPT_5
+#endif
 
 #endif
 
