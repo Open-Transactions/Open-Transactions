@@ -169,12 +169,10 @@ EXPORT std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const int nI
 EXPORT std::string OT_CLI_ReadLine();
 EXPORT std::string OT_CLI_ReadUntilEOF();
 
-// -------------------------------------------------------
 
 class OTVariable;
 class OTScriptChai;
 
-// -------------------------------------------------------
 
 class OT_ME
 {
@@ -188,18 +186,16 @@ private:
     _SharedPtr<OTScript> m_pScript;
 #endif
 
-    std::string scriptName;
-    // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();
-    // --------------------------------------
+
     bool Register_OTDB_With_Script();
     bool Register_CLI_With_Script();
     bool Register_API_With_Script();
     bool Register_Headers_With_Script();
 
 #ifdef OT_USE_SCRIPT_CHAI
-    // --------------------------------------
+    //
     // For ChaiScript:
     //
     bool Register_OTDB_With_Script_Chai    (OTScriptChai & theScript);
@@ -223,12 +219,11 @@ private:
     // via their swig wrappers of these functions.
 
 public:
-    EXPORT OT_ME(const std::string & _scriptName = "noscript");
+    EXPORT OT_ME();
     EXPORT ~OT_ME();
 
     EXPORT static int opentxs_main_loop();
 
-    // --------------------------------------
     EXPORT  bool make_sure_enough_trans_nums(const int32_t nNumberNeeded,
         const std::string & SERVER_ID,
         const std::string & NYM_ID);
@@ -584,8 +579,6 @@ public:
     EXPORT  void          AddVariable(const std::string & str_var_name, OTVariable & theVar);
 
     EXPORT  OTVariable *  FindVariable(const std::string & str_var_name);
-
-    // ------------------------------------------------------
 };
 
 #endif   // __OT_ME_HPP__

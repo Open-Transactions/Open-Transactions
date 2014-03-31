@@ -1497,7 +1497,7 @@ bool OTCronItem::CanRemoveItemFromCron(OTPseudonym & theNym)
 //
 bool OTCronItem::ProcessCron()
 {
-	OT_ASSERT(m_pCron);
+	OT_ASSERT(NULL != m_pCron);
 
     if (IsFlaggedForRemoval())
     {
