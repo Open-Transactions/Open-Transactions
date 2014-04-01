@@ -234,9 +234,9 @@ class OTSocket
 	OTString		m_strConnectPath;
 
     long		m_lLatencySendMs;
-    long		m_nLatencySendNoTries;
+	int			m_nLatencySendNoTries;
     long		m_lLatencyReceiveMs;
-    long		m_nLatencyReceiveNoTries;
+	int			m_nLatencyReceiveNoTries;
     long		m_lLatencyDelayAfter;
 	bool		m_bIsBlocking;
 
@@ -256,13 +256,12 @@ public:
 	EXPORT bool Init();
 
 	EXPORT bool Init(
-
-        const long lLatencySendMs,
-        const long nLatencySendNoTries,
-        const long lLatencyReceiveMs,
-        const long nLatencyReceiveNoTries,
-        const long lLatencyDelayAfter,
-		const bool	  bIsBlocking
+		const long	   & lLatencySendMs,
+		const int	   & nLatencySendNoTries,
+		const long	   & lLatencyReceiveMs,
+		const int	   & nLatencyReceiveNoTries,
+		const long	   & lLatencyDelayAfter,
+		const bool	   & bIsBlocking
 		);
 
 	EXPORT bool Init(OTSettings * pSettings);

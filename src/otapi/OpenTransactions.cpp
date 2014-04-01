@@ -253,12 +253,12 @@ bool OTSocket::Init()
 }
 
 bool OTSocket::Init(
-		const long	   lLatencySendMs,
-        const long	   nLatencySendNoTries,
-        const long	   lLatencyReceiveMs,
-        const long	   nLatencyReceiveNoTries,
-        const long	   lLatencyDelayAfter,
-		const bool	   bIsBlocking
+		const long	   & lLatencySendMs,
+		const int	   & nLatencySendNoTries,
+		const long	   & lLatencyReceiveMs,
+		const int	   & nLatencyReceiveNoTries,
+		const long	   & lLatencyDelayAfter,
+		const bool	   & bIsBlocking
 		)
 {
 	if (m_bInitialized) return false;
@@ -291,7 +291,7 @@ bool OTSocket::Init(OTSettings * pSettings)
 	{
         long lResult = 0;
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_SEND_NO_TRIES,	m_nLatencySendNoTries,	lResult,				bIsNew)) { OT_FAIL;  }
-		m_nLatencySendNoTries = lResult;
+		m_nLatencySendNoTries = static_cast<int>(lResult);
 	}
 	{
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_MS,		m_lLatencyReceiveMs,	m_lLatencyReceiveMs,	bIsNew)) { OT_FAIL;  }
@@ -299,7 +299,7 @@ bool OTSocket::Init(OTSettings * pSettings)
 	{
         long lResult = 0;
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_NO_TRIES, m_nLatencyReceiveNoTries, lResult,			bIsNew)) { OT_FAIL;  }
-		m_nLatencyReceiveNoTries = lResult;
+		m_nLatencyReceiveNoTries = static_cast<int>(lResult);
 	}
 	{
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_DELAY_AFTER,	m_lLatencyDelayAfter,	m_lLatencyDelayAfter,	bIsNew)) { OT_FAIL;  }
@@ -354,7 +354,7 @@ bool OTSocket::Connect(const OTString & strConnectPath)
 
 	OT_ASSERT_MSG(NULL != m_pSocket, "OTSocket::ConnectSocket: new zmq::socket(context, ZMQ_REQ)");
 
-    const long linger = 0; // close immediately
+	const int linger = 0; // close immediately
 	m_pSocket->setsockopt (ZMQ_LINGER, &linger, sizeof (linger));
     /*
      int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
@@ -541,7 +541,7 @@ bool OTSocket::Send(OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
 	}
 	else // not blocking
 	{
-		int32_t		nSendTries	= m_nLatencySendNoTries;
+		int		nSendTries	= m_nLatencySendNoTries;
         long	lDoubling = lLatencySendMicroSec;
 		bool	bKeepTrying = true;
 
@@ -551,7 +551,7 @@ bool OTSocket::Send(OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
 				{ (*m_pSocket), 0, ZMQ_POLLOUT,	0 }
 			};
 
-			const int32_t nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)
+			const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)					
 			lDoubling *= 2;
 
 			if (items[0].revents & ZMQ_POLLOUT)
@@ -622,14 +622,14 @@ bool OTSocket::Receive(OTString & strServerReply)
 	else	// not blocking
 	{
         long	lDoubling = lLatencyRecvMicroSec;
-        int32_t		nReceiveTries = m_nLatencyReceiveNoTries;
+		int		nReceiveTries = m_nLatencyReceiveNoTries;
 		bool	expect_reply = true;
 		while (expect_reply)
 		{
 			//  Poll socket for a reply, with timeout
 			zmq::pollitem_t items[] = { { *m_pSocket, 0, ZMQ_POLLIN, 0 } };
 
-			const int32_t nPoll = zmq::poll (&items[0], 1, lDoubling);
+			const int nPoll = zmq::poll (&items[0], 1, lDoubling);
 			lDoubling *= 2;
 
 			//  If we got a reply, process it
@@ -1200,7 +1200,7 @@ bool OT_API::LoadConfigFile()
 		bool bIsNewKey;
         long lValue;
 	p_Config -> CheckSet_long("security","master_key_timeout",CLIENT_MASTER_KEY_TIMEOUT_DEFAULT,lValue,bIsNewKey,szComment);
-	OTCachedKey::It()->SetTimeoutSeconds(lValue);
+	OTCachedKey::It()->SetTimeoutSeconds(static_cast<int>(lValue));
 	}
 
 	// Use System Keyring
@@ -5368,7 +5368,7 @@ OTPaymentPlan * OT_API::ProposePaymentPlan(const OTIdentifier & SERVER_ID,
 		if (PAYMENT_PLAN_LENGTH > 0)
 			PLAN_LENGTH = PAYMENT_PLAN_LENGTH;
 		// -----------------------------------------------------------------------
-        int32_t nMaxPayments = 0; // Defaults to 0 maximum payments (for no maximum).
+		int nMaxPayments = 0; // Defaults to 0 maximum payments (for no maximum).
 
 		if (PAYMENT_PLAN_MAX_PAYMENTS > 0)
 			nMaxPayments = PAYMENT_PLAN_MAX_PAYMENTS;
@@ -7039,7 +7039,7 @@ bool OT_API::ClearExpired(const OTIdentifier & SERVER_ID,
     // -----------------------------------------
     // Okay, it's not "clear all" but "clear at index" ...
     //
-    const int32_t nTransCount  = pExpiredBox->GetTransactionCount();
+    const int nTransCount  = pExpiredBox->GetTransactionCount();
 
     if ((nIndex < 0) || (nIndex >= nTransCount))
     {
@@ -7053,7 +7053,7 @@ bool OT_API::ClearExpired(const OTIdentifier & SERVER_ID,
 
     if (NULL != pTransaction)
     {
-        const int64_t lTransactionNum = pTransaction->GetTransactionNum();
+        const long lTransactionNum = pTransaction->GetTransactionNum();
 
         if (false == pExpiredBox->DeleteBoxReceipt(lTransactionNum))
         {
@@ -7074,8 +7074,9 @@ bool OT_API::ClearExpired(const OTIdentifier & SERVER_ID,
     }
     else
     {
+        const int nTemp = static_cast<int>(nIndex);
         OTLog::vOutput(0, "%s: Failed trying to clear an expired record from the expired box at index: %d\n",
-                       __FUNCTION__, nIndex);
+                       __FUNCTION__, nTemp);        
     }
     // -----------------------------------------
     return false;
@@ -7317,7 +7318,7 @@ bool OT_API::RecordPayment(const OTIdentifier & SERVER_ID,
         // -----------------------------------------------------
         // Remove it from the payments inbox...
         //
-        const int64_t lTransactionNum = pTransaction->GetTransactionNum();
+        const long lTransactionNum = pTransaction->GetTransactionNum();
 
         if (false == pPaymentInbox->DeleteBoxReceipt(lTransactionNum))
         {
@@ -7772,17 +7773,17 @@ bool OT_API::RecordPayment(const OTIdentifier & SERVER_ID,
                     // ----------------------------------------
                     if (bIsSmartContract) // In this case we have to loop through all the accounts on the smart contract... We have to
                     {                     // check the inbox on each, to make sure there aren't any related paymentReceipts or final receipts.
-                        const int32_t nPartyCount = pSmartContract->GetPartyCount();
+                        const int nPartyCount = pSmartContract->GetPartyCount();
 
-                        for (int32_t nCurrentParty = 0; nCurrentParty < nPartyCount; ++nCurrentParty)
+                        for (int nCurrentParty = 0; nCurrentParty < nPartyCount; ++nCurrentParty)
                         {
                             OTParty * pParty = pSmartContract->GetPartyByIndex(nCurrentParty);
                             OT_ASSERT(NULL != pParty);
                             if (NULL != pParty)
                             {
-                                const int32_t nAcctCount = pParty->GetAccountCount();
+                                const int nAcctCount = pParty->GetAccountCount();
 
-                                for (int32_t nCurrentAcct = 0; nCurrentAcct < nAcctCount; ++nCurrentAcct)
+                                for (int nCurrentAcct = 0; nCurrentAcct < nAcctCount; ++nCurrentAcct)
                                 {
                                     OTPartyAccount * pPartyAcct = pParty->GetAccountByIndex(nCurrentAcct);
                                     OT_ASSERT(NULL != pPartyAcct);
@@ -8100,7 +8101,7 @@ bool OT_API::ClearRecord(const OTIdentifier & SERVER_ID,
     // -----------------------------------------
     // Okay, it's not "clear all" but "clear at index" ...
     //
-    const int32_t nTransCount  = pRecordBox->GetTransactionCount();
+    const int nTransCount  = pRecordBox->GetTransactionCount();
 
     if ((nIndex < 0) || (nIndex >= nTransCount))
     {
@@ -8114,7 +8115,7 @@ bool OT_API::ClearRecord(const OTIdentifier & SERVER_ID,
 
     if (NULL != pTransaction)
     {
-        const int64_t lTransactionNum = pTransaction->GetTransactionNum();
+        const long lTransactionNum = pTransaction->GetTransactionNum();
 
         if (false == pRecordBox->DeleteBoxReceipt(lTransactionNum))
         {
@@ -8135,8 +8136,9 @@ bool OT_API::ClearRecord(const OTIdentifier & SERVER_ID,
     }
     else
     {
+        const int nTemp = static_cast<int>(nIndex);
         OTLog::vOutput(0, "%s: Failed trying to clear a record from the record box at index: %d\n",
-                       __FUNCTION__, nIndex);
+                       __FUNCTION__, nTemp);        
     }
     // -----------------------------------------
     return false;
@@ -8710,7 +8712,7 @@ OTBasket * OT_API::GenerateBasketCreation(const OTIdentifier & USER_ID,
 	if (NULL == pNym) return NULL;
 	// By this point, pNym is a good pointer, and is on the wallet. (No need to cleanup.)
 	// -----------------------------------------------------
-    int64_t lMinimumTransferAmount = 10;
+	long lMinimumTransferAmount = 10;
 
 	if (MINIMUM_TRANSFER > 0)
 		lMinimumTransferAmount = MINIMUM_TRANSFER;
@@ -8856,7 +8858,7 @@ OTBasket * OT_API::GenerateBasketExchange(const OTIdentifier & SERVER_ID,
 	// -----------------------------------------------------
 	OTString strServerID(SERVER_ID);
 
-    int32_t nTransferMultiple = 1;
+	int nTransferMultiple = 1;
 
 	if (TRANSFER_MULTIPLE > 0)
 		nTransferMultiple = TRANSFER_MULTIPLE;
@@ -9133,7 +9135,7 @@ int32_t OT_API::exchangeBasket(OTIdentifier	& SERVER_ID,
         }
         else
         {
-            long lStoredTransactionNumber = 0;
+            long lStoredTransactionNumber=0;
             bool bGotTransNum = pNym->GetNextTransactionNum(*pNym, strServerID, lStoredTransactionNumber); // this saves
 
             if (bGotTransNum)
@@ -9244,7 +9246,7 @@ int32_t OT_API::exchangeBasket(OTIdentifier	& SERVER_ID,
                     OTMessage theMessage;
 
                     // (0) Set up the REQUEST NUMBER and then INCREMENT IT
-                    long lRequestNumber = 0;
+                    long lRequestNumber=0;
                     pNym->GetCurrentRequestNum(strServerID, lRequestNumber);
                     theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
                     pNym->IncrementRequestNum(*pNym, strServerID); // since I used it for a server request, I have to increment it
@@ -9306,8 +9308,8 @@ int32_t OT_API::getTransactionNumber(OTIdentifier & SERVER_ID,
 	// By this point, pServer is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------
 
-    const int32_t nCount	= pNym->GetTransactionNumCount(SERVER_ID);
-	const int32_t nMaxCount	= 50; // todo no hardcoding. (max transaction nums allowed out at a single time.)
+    const int nCount	= pNym->GetTransactionNumCount(SERVER_ID);
+	const int nMaxCount	= 50; // todo no hardcoding. (max transaction nums allowed out at a single time.)
 
 	if (nCount > nMaxCount)
 	{
@@ -9394,7 +9396,7 @@ int32_t OT_API::notarizeWithdrawal(OTIdentifier	& SERVER_ID,
 
     OTString strNymID(USER_ID), strFromAcct(ACCT_ID);
 
-    long lStoredTransactionNumber = 0;
+    long lStoredTransactionNumber=0;
     bool bGotTransNum = false;
     // ---------------------------------------------
     OTLedger * pInbox	= pAccount->LoadInbox(*pNym);
@@ -9628,7 +9630,7 @@ int32_t OT_API::notarizeDeposit(OTIdentifier	& SERVER_ID,
     // ------------------------------------------------
     OTPurse thePurse(SERVER_ID, CONTRACT_ID, SERVER_USER_ID);
 
-    long lStoredTransactionNumber = 0;
+    long lStoredTransactionNumber=0;
     bool bGotTransNum = false;
     // ---------------------------------------------
     OTLedger * pInbox	= pAccount->LoadInbox(*pNym);
@@ -9927,7 +9929,7 @@ int32_t OT_API::payDividend(OTIdentifier	& SERVER_ID,
 
 	OTString strServerID(SERVER_ID), strNymID(ISSUER_USER_ID), strFromAcct(DIVIDEND_FROM_ACCT_ID);
 
-    long lStoredTransactionNumber = 0;
+	long lStoredTransactionNumber=0;
 	bool bGotTransNum = pNym->GetNextTransactionNum(*pNym, strServerID, lStoredTransactionNumber);
 
 	if (bGotTransNum)
@@ -10440,7 +10442,7 @@ int32_t OT_API::depositCheque(OTIdentifier	& SERVER_ID,
 
 	OTCheque theCheque(SERVER_ID, CONTRACT_ID);
 
-    long lStoredTransactionNumber = 0;
+	long lStoredTransactionNumber=0;
 	bool bGotTransNum = pNym->GetNextTransactionNum(*pNym, strServerID, lStoredTransactionNumber);
 
 	if (!bGotTransNum)
@@ -10723,7 +10725,7 @@ int32_t OT_API::depositPaymentPlan(const OTIdentifier & SERVER_ID,
         // actually being activated, and has already been properly confirmed, and will thus
         // already have its own transaction number set on it.
         //
-        const int64_t lTransactionNum = thePlan.GetOpeningNumber(USER_ID);
+        const long lTransactionNum = thePlan.GetOpeningNumber(USER_ID);
         // ---------------------------------------------
 		// Create a transaction
 		OTTransaction * pTransaction = OTTransaction::GenerateTransaction (USER_ID, DEPOSITOR_ACCT_ID, SERVER_ID,
@@ -11045,8 +11047,8 @@ int32_t OT_API::activateSmartContract(const OTIdentifier & SERVER_ID,
 		}
 		OTIdentifier theAcctID(strAcctID);
 		// ----------------------------------------------------------
-		const int64_t   lOpeningTransNo = pParty->GetOpeningTransNo();
-		const int64_t   lClosingTransNo = pAcct-> GetClosingTransNo();
+		const long   lOpeningTransNo = pParty->GetOpeningTransNo();
+		const long   lClosingTransNo = pAcct-> GetClosingTransNo();
 
 		if ((lOpeningTransNo <= 0) || (lClosingTransNo <= 0))
 		{
@@ -11443,7 +11445,7 @@ int32_t OT_API::issueMarketOffer( const OTIdentifier	& SERVER_ID,
         const time_t VALID_TO   = VALID_FROM +          // defaults to 24 hours (a "Day Order") aka OT_API_GetTime() + 86,400
                                   (0 == tLifespanInSeconds ? LENGTH_OF_DAY_IN_SECONDS : tLifespanInSeconds);
         // ------------------------------------
-		int64_t	lTotalAssetsOnOffer = 1,
+		long	lTotalAssetsOnOffer = 1,
 				lMinimumIncrement   = 1,
 				lPriceLimit         = 0,  // your price limit, per scale of assets.
 				lMarketScale        = 1,
@@ -11927,7 +11929,7 @@ int32_t OT_API::notarizeTransfer(OTIdentifier	& SERVER_ID,
 	OTString	strServerID(SERVER_ID), strNymID(USER_ID),
 				strFromAcct(ACCT_FROM), strToAcct(ACCT_TO);
 
-    long lStoredTransactionNumber = 0;
+	long lStoredTransactionNumber=0;
 	bool bGotTransNum = pNym->GetNextTransactionNum(*pNym, strServerID, lStoredTransactionNumber);
 
 	if (bGotTransNum)
@@ -12251,8 +12253,8 @@ int32_t OT_API::processNymbox(OTIdentifier	& SERVER_ID,
 	// -----------------------------------------------------
 	OTMessage	theMessage;
 	bool		bSuccess		= false;
-    int32_t			nReceiptCount = (-1);
-    int32_t			nRequestNum = (-1);
+	int			nReceiptCount	= (-1);
+	int			nRequestNum 	= (-1);
 	bool		bIsEmpty		= true;
 
 	{
@@ -13358,7 +13360,7 @@ int32_t OT_API::sendUserInstrument(OTIdentifier	& SERVER_ID,
         //
         long lTempTransNum = 0;
         bool bGotTransNum      = THE_INSTRUMENT.GetOpeningNum(lTempTransNum, USER_ID);
-        int32_t  lOutpaymentsIndex = bGotTransNum ? pNym->GetOutpaymentsIndexByTransNum(lTempTransNum) : (-1);
+        int  lOutpaymentsIndex = bGotTransNum ? pNym->GetOutpaymentsIndexByTransNum(lTempTransNum) : (-1);
 
         if (lOutpaymentsIndex > (-1)) // found something that matches...
         {
