@@ -168,24 +168,18 @@ kamH0Y/n11lCvo1oQxM+
 
 #endif
 
-// No use in initializing the script multiple times since it takes prohibitively long.
-//
-// ...except it crashes everytime I run on my Mac. Removing this for now since script
-// interpreter is removed anyway.
-//
-// ...except we need this under Windows because it does NOT crash there and it makes
-// a ridiculously large difference: 10 seconds overhead per initialization
-#ifdef _WIN32
-_SharedPtr<OTScript> OT_ME::m_pScript;
-#endif
+OT_ME * OT_ME::pMe;
 
 
 OT_ME::OT_ME()
 {
+    pPrev = pMe;
+    pMe = this;
 }
 
 OT_ME::~OT_ME()
 {
+    pMe = pPrev;
 }
 
 
@@ -1687,6 +1681,11 @@ void OT_ME::AddVariable(const std::string & str_var_name, OTVariable & theVar)
 OTVariable * OT_ME::FindVariable(const std::string & str_var_name)
 {
     return HaveWorkingScript() ? m_pScript->FindVariable(str_var_name) : NULL;
+}
+
+OTVariable * OT_ME::FindVariable2(const std::string & str_var_name)
+{
+    return pMe->FindVariable(str_var_name);
 }
 
 std::string OT_ME::ExecuteScript_ReturnString(const std::string & str_Code, std::string str_DisplayName/*="<BLANK>"*/)
