@@ -177,14 +177,10 @@ class OTScriptChai;
 class OT_ME
 {
 private:
+    static OT_ME * pMe;
+    OT_ME * pPrev;
 
-    // initialization under Windows takes about 10 seconds
-    // so we want to avoid re-initializing Chai
-#ifdef _WIN32
-    static _SharedPtr<OTScript> m_pScript;
-#else
     _SharedPtr<OTScript> m_pScript;
-#endif
 
     bool SetupScriptObject();
     bool HaveWorkingScript();
@@ -222,7 +218,7 @@ public:
     EXPORT OT_ME();
     EXPORT ~OT_ME();
 
-    EXPORT static int opentxs_main_loop();
+    EXPORT int opentxs_main_loop();
 
     EXPORT  bool make_sure_enough_trans_nums(const int32_t nNumberNeeded,
         const std::string & SERVER_ID,
@@ -579,6 +575,8 @@ public:
     EXPORT  void          AddVariable(const std::string & str_var_name, OTVariable & theVar);
 
     EXPORT  OTVariable *  FindVariable(const std::string & str_var_name);
+
+    EXPORT static OTVariable *  FindVariable2(const std::string & str_var_name);
 };
 
 #endif   // __OT_ME_HPP__

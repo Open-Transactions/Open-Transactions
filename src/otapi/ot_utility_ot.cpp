@@ -41,9 +41,7 @@ OT_UTILITY_OT bool VerifyExists(const string & theObjectNameAsStr, const bool bD
 
     //if (0 >= objs.size()) { return false; }
 
-    OT_ME me;
-
-    if (me.FindVariable(theObjectNameAsStr) == NULL)
+    if (OT_ME::FindVariable2(theObjectNameAsStr) == NULL)
     {
         string strDefault = "";
 

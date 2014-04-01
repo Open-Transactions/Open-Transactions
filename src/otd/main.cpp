@@ -1337,7 +1337,7 @@ int main(int argc, char* argv[])
 #if USE_OLD_CHAISCRIPT == 0
             if (strFilename.find("scripts\\opentxs") != string::npos || strFilename.find("scripts/opentxs") != string::npos)
             {
-                return OT_ME::opentxs_main_loop();
+                return madeEasy.opentxs_main_loop();
             }
 #endif
             return madeEasy.ExecuteScript_ReturnInt(results, strFilename);
