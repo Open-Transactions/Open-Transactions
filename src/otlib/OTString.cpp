@@ -145,7 +145,7 @@
 
 #include <sstream>
 
-#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
+#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
 #include <wordexp.h>
 #endif
 
@@ -563,25 +563,26 @@ void fwrite_string(FILE *fl, const char *str)
 //
 bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & mapOutput) const
 {
-#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
-	if (!Exists())
-		return true;
-	// --------------
-	wordexp_t exp_result;
-    
+#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
+    // fabcy-pansy parser that allows for multiple level of quotes nesting and escaped quotes
+    if (!Exists())
+        return true;
+    // --------------
+    wordexp_t exp_result;
+
     exp_result.we_wordc = 0;
     exp_result.we_wordv = NULL;
     exp_result.we_offs  = 0;
 
-	if (wordexp(Get(), &exp_result, 0)) // non-zero == failure.
-	{
-		OTLog::vError("OTString::TokenizeIntoKeyValuePairs: Error calling wordexp() "
-                      "(to expand user-defined script args.)\nData: %s\n", Get());
-//		wordfree(&exp_result); 
-		return false;
-	}
-	// ----------------------------
-	
+    if (wordexp(Get(), &exp_result, 0)) // non-zero == failure.
+    {
+        OTLog::vError("OTString::TokenizeIntoKeyValuePairs: Error calling wordexp() "
+            "(to expand user-defined script args.)\nData: %s\n", Get());
+        //		wordfree(&exp_result); 
+        return false;
+    }
+    // ----------------------------
+
     if ((exp_result.we_wordc > 0) && (NULL != exp_result.we_wordv))
     {
         // wordexp tokenizes by space (as well as expands, which is why I'm using it.)
@@ -589,41 +590,86 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
         // with spaces between the tokens.
         //
         for (unsigned int i = 0; 
-             (i < (exp_result.we_wordc - 1))      && 
-             (exp_result.we_wordv[i]   != NULL)   && 
-             (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
-             i += 2)
+            (i < (exp_result.we_wordc - 1))      && 
+            (exp_result.we_wordv[i]   != NULL)   && 
+            (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
+        i += 2)
         {
             const std::string str_key = exp_result.we_wordv[i];
             const std::string str_val = exp_result.we_wordv[i+1];
-            
+
+            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, str_key.c_str(), str_value.c_str());
             mapOutput.insert(std::pair<std::string, std::string>(str_key, str_val));		
         }
-        
+
         wordfree(&exp_result); 
     }
-	// --------------
-	return true;
+    // --------------
+    return true;
 #else
-	const char * txt = Get();
-	std::string buf = txt;
-	for (int i = 0; txt[i] != 0;)
-	{
-		while (txt[i] == ' ') i++;
-		int k = i;
-		while (txt[i] != ' ' && txt[i] != 0) i++;
-		const std::string key = buf.substr(k, i - k);
+    // simple parser that allows for one level of quotes nesting but no escaped quotes
+    if (!Exists())
+        return true;
 
-		while (txt[i] == ' ') i++;
-		int v = i;
-		while (txt[i] != ' ' && txt[i] != 0) i++;
-		const std::string value = buf.substr(v, i - v);
-		if (key.length() != 0 && value.length() != 0)
-		{
-			mapOutput.insert(std::pair<std::string, std::string>(key, value));
-		}
-	}
-	return true;
+    const char * txt = Get();
+    std::string buf = txt;
+    for (int i = 0; txt[i] != 0;)
+    {
+        while (txt[i] == ' ') i++;
+        int k = i;
+        int k2 = i;
+        if (txt[i] == '\'' || txt[i] == '"')
+        {
+            // quoted string
+            char quote = txt[i++];
+            k = i;
+            while (txt[i] != quote && txt[i] != 0) i++;
+            if (txt[i] != quote)
+            {
+                OTLog::vError("%s: Unmatched quotes in: %s\n", __FUNCTION__, txt);
+                return false;
+            }
+            k2 = i;
+            i++;
+        }
+        else
+        {
+            while (txt[i] != ' ' && txt[i] != 0) i++;
+            k2 = i;
+        }
+        const std::string key = buf.substr(k, k2 - k);
+
+        while (txt[i] == ' ') i++;
+        int v = i;
+        int v2 = i;
+        if (txt[i] == '\'' || txt[i] == '"')
+        {
+            // quoted string
+            char quote = txt[i++];
+            v = i;
+            while (txt[i] != quote && txt[i] != 0) i++;
+            if (txt[i] != quote)
+            {
+                OTLog::vError("%s: Unmatched quotes in: %s\n", __FUNCTION__, txt);
+                return false;
+            }
+            v2 = i;
+            i++;
+        }
+        else
+        {
+            while (txt[i] != ' ' && txt[i] != 0) i++;
+            v2 = i;
+        }
+        const std::string value = buf.substr(v, v2 - v);
+
+        if (key.length() != 0 && value.length() != 0)
+        {
+            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, key.c_str(), value.c_str());
+            mapOutput.insert(std::pair<std::string, std::string>(key, value));
+        }
+    }
+    return true;
 #endif
 }
 // ----------------------------------------------------------------------

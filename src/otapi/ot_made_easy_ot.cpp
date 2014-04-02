@@ -20,6 +20,9 @@
 
 #include <stdafx.hpp>
 
+#include <algorithm>
+
+
 #include "ot_made_easy_ot.hpp"
 
 #include "ot_utility_ot.hpp"
