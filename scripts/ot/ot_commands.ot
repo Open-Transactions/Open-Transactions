@@ -7553,6 +7553,12 @@ def main_show_market_list()
 {
     if (VerifyExists("Server"))
     {
+        if (!OTDB_Exists("markets", Server, "market_data.bin", "")) 
+        {
+            OT_API_Output(0, "No market list available.\n");
+            return 0;
+        }
+
         var marketList := loadMarketList(Server)
         
         if (!VerifyStorable(marketList, "OTDB_MarketList"))

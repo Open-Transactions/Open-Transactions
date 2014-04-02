@@ -7297,6 +7297,12 @@ OT_COMMANDS_OT int32_t main_show_market_list()
 {
     if (VerifyExists("Server"))
     {
+        if (!OTDB::Exists("markets", Server, "market_data.bin", ""))
+        {
+            OTAPI_Wrap::Output(0, "No market list available.\n");
+            return 0;
+        }
+
         OTDB::MarketList & marketList = *loadMarketList(Server);
 
         if (!VerifyStorable(&marketList, "OTDB::MarketList"))
