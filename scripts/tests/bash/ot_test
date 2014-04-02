@@ -49,9 +49,9 @@ function test_command {
     RETURN_VAL=$?
     THE_RESULT=$( printf '%03d' ${RETURN_VAL} )
     if [ ${RETURN_VAL} = 0 ]; then
-       echo "${THE_COMMAND} returned zero. (Success.)"
+        echo "$(tput setaf 2 tput bold)${THE_COMMAND} returned zero. (Success.)$(tput sgr 0)"
     else
-       echo "${THE_COMMAND} returned: ${RETURN_VAL}   (0 is success)"
+        echo "$(tput setaf 1 tput bold)${THE_COMMAND} returned: ${RETURN_VAL}   (0 is success)$(tput sgr 0)"
     fi
 
     echo "-----------------------------------------"
