@@ -168,7 +168,7 @@ private:
 	OTAPI_Exec * execOld;
 
 public:
-	// have the constructor/destructor created elsewhere to limit comnpile time
+	// have the constructor/destructor created elsewhere to limit compile time
 	// building the mock ctor/dtor is extremely costly due to heavy templating!
 	Mock_OTAPI_Exec();
 	virtual ~Mock_OTAPI_Exec();
