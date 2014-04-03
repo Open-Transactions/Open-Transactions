@@ -140,10 +140,6 @@
 
 #include <OpenTransactions.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-    
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTCredential.hpp>
@@ -619,6 +615,8 @@ int32_t OTAPI_Wrap::getBoxReceipt(const std::string & SERVER_ID, const std::stri
 {
     return Exec()->getBoxReceipt(SERVER_ID, USER_ID, ACCOUNT_ID, nBoxType, TRANSACTION_NUMBER);
 }
+
+
 
 int32_t OTAPI_Wrap::deleteAssetAccount(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID)
 {

@@ -132,10 +132,6 @@
 
 #include <stdafx.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTAPI.hpp>
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>

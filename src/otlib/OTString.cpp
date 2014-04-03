@@ -598,7 +598,7 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
             const std::string str_key = exp_result.we_wordv[i];
             const std::string str_val = exp_result.we_wordv[i+1];
 
-            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, str_key.c_str(), str_value.c_str());
+            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, str_key.c_str(), str_val.c_str());
             mapOutput.insert(std::pair<std::string, std::string>(str_key, str_val));		
         }
 

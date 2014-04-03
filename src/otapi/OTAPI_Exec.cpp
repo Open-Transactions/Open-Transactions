@@ -138,10 +138,6 @@
 
 #include <OpenTransactions.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include "OTBasket.hpp"
 #include "OTCheque.hpp"
 #include "OTCredential.hpp"

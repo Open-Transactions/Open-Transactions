@@ -210,6 +210,7 @@
 
 _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
 {  
+    // -------------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI
     // default or explicit chai script interpreter
     if (script_type == "" || script_type =="chai") // todo no hardcoding.
@@ -217,25 +218,27 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai);
         return pChaiScript;
     }
+    // -------------------------------------------
+//#elif OT_USE_SCRIPT_LUA
+//  if (script_type =="lua") // todo no hardcoding.
+//  {
+//      _SharedPtr<OTScript> pLuaScript(new OTScriptLua);
+//      return pLuaScript;
+//  }
+    // -------------------------------------------
 #else
     // default no script interpreter
     if (script_type == "")
     {
+        OTLog::Error("\n\n WARNING 1: script_type == noscript. \n\n");
+        
         _SharedPtr<OTScript> pNoScript(new OTScript);
         return pNoScript;
     }
 #endif
-
-    // Here's how it would look for various scripting languages:
-    //
-//    else if (0 == p_script_type->compare("lua"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptLua>(script_contents));
-//    else if (0 == p_script_type->compare("angelscript"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptAngel>(script_contents));
-//    else if (0 == p_script_type->compare("guru"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptGuru>(script_contents));
-
-    OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", script_type.c_str());
+    // -------------------------------------------
+    OTLog::vError("%s: Script language (%s) not found.\n",
+                  __FUNCTION__, script_type.c_str());
     
     _SharedPtr<OTScript> retVal;
     return retVal;
@@ -245,6 +248,7 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
 _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type, 
                                      const std::string & script_contents)
 {
+    // -------------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI
     // default or explicit chai script interpreter
     if (script_type == "" || script_type == "chai") // todo no hardcoding.
@@ -252,27 +256,35 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
         _SharedPtr<OTScript> pChaiScript(new OTScriptChai(script_contents));
         return pChaiScript;
     }
-#endif // OT_USE_SCRIPT_CHAI
+    // -------------------------------------------
+//#elif OT_USE_SCRIPT_LUA
+    //  if (script_type =="lua") // todo no hardcoding.
+    //  {
+    //      _SharedPtr<OTScript> pLuaScript(new OTScriptLua(script_contents));
+    //      return pLuaScript;
+    //  }
+    // -------------------------------------------
+#else
+    // default no script interpreter
+    if (script_type == "")
+    {
+        OTLog::Error("\n\n WARNING 2: script_type == noscript. \n\n");
 
-    // Here's how it would look for various scripting languages:
-    //
-//    else if (0 == p_script_type->compare("lua"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptLua>(script_contents));
-//    else if (0 == p_script_type->compare("angelscript"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptAngel>(script_contents));
-//    else if (0 == p_script_type->compare("guru"))
-//        retVal = std::dynamic_pointer_cast<OTScript> (std::make_shared<OTScriptGuru>(script_contents));
-
-    OTLog::vError("OTScript::Factory: Script language (%s) not found.\n", script_type.c_str());
+        _SharedPtr<OTScript> pNoScript(new OTScript);
+        return pNoScript;
+    }
+#endif
+    // -------------------------------------------
+    OTLog::vError("%s: Script language (%s) not found.\n",
+                  __FUNCTION__, script_type.c_str());
     
     _SharedPtr<OTScript> retVal;
     return retVal;
 }
 
  
+// ----------------------------------------------------------------------------
 
-
-// std::string m_str_script;
 
 OTScript::OTScript()
 {
@@ -418,14 +430,13 @@ bool OTScript::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 }
 
 
-#ifdef OT_USE_SCRIPT_CHAI
-
-
 // ********************************************************************
 //
 // SUBCLASS:  CHAI SCRIPT
 //
 // ********************************************************************
+
+#ifdef OT_USE_SCRIPT_CHAI
 
 /*
 double x_function(int i, double j)
@@ -437,7 +448,6 @@ int main()
 {
     chaiscript::ChaiScript chai;
     this->chai->add(chaiscript::fun(&x_function), "x_function");
-    
     double d = this->chai->eval<double>("x_function(3, 4.75);");
 }
 */
@@ -566,10 +576,6 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
                     
                 case OTVariable::Var_String:
                 {
-                    
-                    
-                    
-                    
                     std::string	& str_Value = pVar->GetValueString();
                     
                     if (OTVariable::Var_Constant == pVar->GetAccess()) // no pointer here, since it's constant.
@@ -751,7 +757,7 @@ OTScriptChai::OTScriptChai(const std::string & new_string) : OTScript(new_string
 {
 }
 
-#else
+#else // OT_USE_CHAI_STDLIB is defined.
 
 OTScriptChai::OTScriptChai() : OTScript(), chai(new chaiscript::ChaiScript(chaiscript::Std_Lib::library()))
 {
@@ -773,14 +779,14 @@ OTScriptChai::OTScriptChai(const std::string & new_string) : OTScript(new_string
 {
 }
 
-#endif
+#endif // OT_USE_CHAI_STDLIB
 
 OTScriptChai::~OTScriptChai()
 {
     if (NULL != this->chai) delete this->chai;
 }
 
-#endif
+#endif // OT_USE_SCRIPT_CHAI
 
 
 

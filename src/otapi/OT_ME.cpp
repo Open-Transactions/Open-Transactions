@@ -9,130 +9,130 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 */
 
 /************************************************************
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+ -----BEGIN PGP SIGNED MESSAGE-----
+ Hash: SHA1
 
-*                 OPEN TRANSACTIONS
-*
-*       Financial Cryptography and Digital Cash
-*       Library, Protocol, API, Server, CLI, GUI
-*
-*       -- Anonymous Numbered Accounts.
-*       -- Untraceable Digital Cash.
-*       -- Triple-Signed Receipts.
-*       -- Cheques, Vouchers, Transfers, Inboxes.
-*       -- Basket Currencies, Markets, Payment Plans.
-*       -- Signed, XML, Ricardian-style Contracts.
-*       -- Scripted smart contracts.
-*
-*  Copyright (C) 2010-2013 by "Fellow Traveler" (A pseudonym)
-*
-*  EMAIL:
-*  FellowTraveler@rayservers.net
-*
-*  BITCOIN:  1NtTPVVjDsUfDWybS4BwvHpG2pdS9RnYyQ
-*
-*  KEY FINGERPRINT (PGP Key in license file):
-*  9DD5 90EB 9292 4B48 0484  7910 0308 00ED F951 BB8E
-*
-*  OFFICIAL PROJECT WIKI(s):
-*  https://github.com/FellowTraveler/Moneychanger
-*  https://github.com/FellowTraveler/Open-Transactions/wiki
-*
-*  WEBSITE:
-*  http://www.OpenTransactions.org/
-*
-*  Components and licensing:
-*   -- Moneychanger..A Java client GUI.....LICENSE:.....GPLv3
-*   -- otlib.........A class library.......LICENSE:...LAGPLv3
-*   -- otapi.........A client API..........LICENSE:...LAGPLv3
-*   -- opentxs/ot....Command-line client...LICENSE:...LAGPLv3
-*   -- otserver......Server Application....LICENSE:....AGPLv3
-*  Github.com/FellowTraveler/Open-Transactions/wiki/Components
-*
-*  All of the above OT components were designed and written by
-*  Fellow Traveler, with the exception of Moneychanger, which
-*  was contracted out to Vicky C (bitcointrader4@gmail.com).
-*  The open-source community has since actively contributed.
-*
-*  -----------------------------------------------------
-*
-*   LICENSE:
-*   This program is free software: you can redistribute it
-*   and/or modify it under the terms of the GNU Affero
-*   General Public License as published by the Free Software
-*   Foundation, either version 3 of the License, or (at your
-*   option) any later version.
-*
-*   ADDITIONAL PERMISSION under the GNU Affero GPL version 3
-*   section 7: (This paragraph applies only to the LAGPLv3
-*   components listed above.) If you modify this Program, or
-*   any covered work, by linking or combining it with other
-*   code, such other code is not for that reason alone subject
-*   to any of the requirements of the GNU Affero GPL version 3.
-*   (==> This means if you are only using the OT API, then you
-*   don't have to open-source your code--only your changes to
-*   Open-Transactions itself must be open source. Similar to
-*   LGPLv3, except it applies to software-as-a-service, not
-*   just to distributing binaries.)
-*
-*   Extra WAIVER for OpenSSL, Lucre, and all other libraries
-*   used by Open Transactions: This program is released under
-*   the AGPL with the additional exemption that compiling,
-*   linking, and/or using OpenSSL is allowed. The same is true
-*   for any other open source libraries included in this
-*   project: complete waiver from the AGPL is hereby granted to
-*   compile, link, and/or use them with Open-Transactions,
-*   according to their own terms, as long as the rest of the
-*   Open-Transactions terms remain respected, with regard to
-*   the Open-Transactions code itself.
-*
-*   Lucre License:
-*   This code is also "dual-license", meaning that Ben Lau-
-*   rie's license must also be included and respected, since
-*   the code for Lucre is also included with Open Transactions.
-*   See Open-Transactions/src/otlib/lucre/LUCRE_LICENSE.txt
-*   The Laurie requirements are light, but if there is any
-*   problem with his license, simply remove the Lucre code.
-*   Although there are no other blind token algorithms in Open
-*   Transactions (yet. credlib is coming), the other functions
-*   will continue to operate.
-*   See Lucre on Github:  https://github.com/benlaurie/lucre
-*   -----------------------------------------------------
-*   You should have received a copy of the GNU Affero General
-*   Public License along with this program.  If not, see:
-*   http://www.gnu.org/licenses/
-*
-*   If you would like to use this software outside of the free
-*   software license, please contact FellowTraveler.
-*   (Unfortunately many will run anonymously and untraceably,
-*   so who could really stop them?)
-*
-*   DISCLAIMER:
-*   This program is distributed in the hope that it will be
-*   useful, but WITHOUT ANY WARRANTY; without even the implied
-*   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-*   PURPOSE.  See the GNU Affero General Public License for
-*   more details.
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (Darwin)
-
-iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
-vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
-KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
-aE7lhstDiD0z8mwRRLKFLN2IH5rAFaZZUvj5ERJaoYUKdn4c+RcQVei2YOl4T0FU
-LWND3YLoH8naqJXkaOKEN4UfJINCwxhe5Ke9wyfLWLUO7NamRkWD2T7CJ0xocnD1
-sjAzlVGNgaFDRflfIF4QhBx1Ddl6wwhJfw+d08bjqblSq8aXDkmFA7HeunSFKkdn
-oIEOEgyj+veuOMRJC5pnBJ9vV+7qRdDKQWaCKotynt4sWJDGQ9kWGWm74SsNaduN
-TPMyr9kNmGsfR69Q2Zq/FLcLX/j8ESxU+HYUB4vaARw2xEOu2xwDDv6jt0j3Vqsg
-x7rWv4S/Eh18FDNDkVRChiNoOIilLYLL6c38uMf1pnItBuxP3uhgY6COm59kVaRh
-nyGTYCDYD2TK+fI9o89F1297uDCwEJ62U0Q7iTDp5QuXCoxkPfv8/kX6lS6T3y9G
-M9mqIoLbIQ1EDntFv7/t6fUTS2+46uCrdZWbQ5RjYXdrzjij02nDmJAm2BngnZvd
-kamH0Y/n11lCvo1oQxM+
-=uSzz
------END PGP SIGNATURE-----
-**************************************************************/
+ *                 OPEN TRANSACTIONS
+ *
+ *       Financial Cryptography and Digital Cash
+ *       Library, Protocol, API, Server, CLI, GUI
+ *
+ *       -- Anonymous Numbered Accounts.
+ *       -- Untraceable Digital Cash.
+ *       -- Triple-Signed Receipts.
+ *       -- Cheques, Vouchers, Transfers, Inboxes.
+ *       -- Basket Currencies, Markets, Payment Plans.
+ *       -- Signed, XML, Ricardian-style Contracts.
+ *       -- Scripted smart contracts.
+ *
+ *  Copyright (C) 2010-2013 by "Fellow Traveler" (A pseudonym)
+ *
+ *  EMAIL:
+ *  FellowTraveler@rayservers.net
+ *
+ *  BITCOIN:  1NtTPVVjDsUfDWybS4BwvHpG2pdS9RnYyQ
+ *
+ *  KEY FINGERPRINT (PGP Key in license file):
+ *  9DD5 90EB 9292 4B48 0484  7910 0308 00ED F951 BB8E
+ *
+ *  OFFICIAL PROJECT WIKI(s):
+ *  https://github.com/FellowTraveler/Moneychanger
+ *  https://github.com/FellowTraveler/Open-Transactions/wiki
+ *
+ *  WEBSITE:
+ *  http://www.OpenTransactions.org/
+ *
+ *  Components and licensing:
+ *   -- Moneychanger..A Java client GUI.....LICENSE:.....GPLv3
+ *   -- otlib.........A class library.......LICENSE:...LAGPLv3
+ *   -- otapi.........A client API..........LICENSE:...LAGPLv3
+ *   -- opentxs/ot....Command-line client...LICENSE:...LAGPLv3
+ *   -- otserver......Server Application....LICENSE:....AGPLv3
+ *  Github.com/FellowTraveler/Open-Transactions/wiki/Components
+ *
+ *  All of the above OT components were designed and written by
+ *  Fellow Traveler, with the exception of Moneychanger, which
+ *  was contracted out to Vicky C (bitcointrader4@gmail.com).
+ *  The open-source community has since actively contributed.
+ *
+ *  -----------------------------------------------------
+ *
+ *   LICENSE:
+ *   This program is free software: you can redistribute it
+ *   and/or modify it under the terms of the GNU Affero
+ *   General Public License as published by the Free Software
+ *   Foundation, either version 3 of the License, or (at your
+ *   option) any later version.
+ *
+ *   ADDITIONAL PERMISSION under the GNU Affero GPL version 3
+ *   section 7: (This paragraph applies only to the LAGPLv3
+ *   components listed above.) If you modify this Program, or
+ *   any covered work, by linking or combining it with other
+ *   code, such other code is not for that reason alone subject
+ *   to any of the requirements of the GNU Affero GPL version 3.
+ *   (==> This means if you are only using the OT API, then you
+ *   don't have to open-source your code--only your changes to
+ *   Open-Transactions itself must be open source. Similar to
+ *   LGPLv3, except it applies to software-as-a-service, not
+ *   just to distributing binaries.)
+ *
+ *   Extra WAIVER for OpenSSL, Lucre, and all other libraries
+ *   used by Open Transactions: This program is released under
+ *   the AGPL with the additional exemption that compiling,
+ *   linking, and/or using OpenSSL is allowed. The same is true
+ *   for any other open source libraries included in this
+ *   project: complete waiver from the AGPL is hereby granted to
+ *   compile, link, and/or use them with Open-Transactions,
+ *   according to their own terms, as long as the rest of the
+ *   Open-Transactions terms remain respected, with regard to
+ *   the Open-Transactions code itself.
+ *
+ *   Lucre License:
+ *   This code is also "dual-license", meaning that Ben Lau-
+ *   rie's license must also be included and respected, since
+ *   the code for Lucre is also included with Open Transactions.
+ *   See Open-Transactions/src/otlib/lucre/LUCRE_LICENSE.txt
+ *   The Laurie requirements are light, but if there is any
+ *   problem with his license, simply remove the Lucre code.
+ *   Although there are no other blind token algorithms in Open
+ *   Transactions (yet. credlib is coming), the other functions
+ *   will continue to operate.
+ *   See Lucre on Github:  https://github.com/benlaurie/lucre
+ *   -----------------------------------------------------
+ *   You should have received a copy of the GNU Affero General
+ *   Public License along with this program.  If not, see:
+ *   http://www.gnu.org/licenses/
+ *
+ *   If you would like to use this software outside of the free
+ *   software license, please contact FellowTraveler.
+ *   (Unfortunately many will run anonymously and untraceably,
+ *   so who could really stop them?)
+ *
+ *   DISCLAIMER:
+ *   This program is distributed in the hope that it will be
+ *   useful, but WITHOUT ANY WARRANTY; without even the implied
+ *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ *   PURPOSE.  See the GNU Affero General Public License for
+ *   more details.
+ 
+ -----BEGIN PGP SIGNATURE-----
+ Version: GnuPG v1.4.9 (Darwin)
+ 
+ iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
+ vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
+ KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
+ aE7lhstDiD0z8mwRRLKFLN2IH5rAFaZZUvj5ERJaoYUKdn4c+RcQVei2YOl4T0FU
+ LWND3YLoH8naqJXkaOKEN4UfJINCwxhe5Ke9wyfLWLUO7NamRkWD2T7CJ0xocnD1
+ sjAzlVGNgaFDRflfIF4QhBx1Ddl6wwhJfw+d08bjqblSq8aXDkmFA7HeunSFKkdn
+ oIEOEgyj+veuOMRJC5pnBJ9vV+7qRdDKQWaCKotynt4sWJDGQ9kWGWm74SsNaduN
+ TPMyr9kNmGsfR69Q2Zq/FLcLX/j8ESxU+HYUB4vaARw2xEOu2xwDDv6jt0j3Vqsg
+ x7rWv4S/Eh18FDNDkVRChiNoOIilLYLL6c38uMf1pnItBuxP3uhgY6COm59kVaRh
+ nyGTYCDYD2TK+fI9o89F1297uDCwEJ62U0Q7iTDp5QuXCoxkPfv8/kX6lS6T3y9G
+ M9mqIoLbIQ1EDntFv7/t6fUTS2+46uCrdZWbQ5RjYXdrzjij02nDmJAm2BngnZvd
+ kamH0Y/n11lCvo1oQxM+
+ =uSzz
+ -----END PGP SIGNATURE-----
+ **************************************************************/
 
 #include <stdafx.hpp>
 
@@ -143,11 +143,6 @@ kamH0Y/n11lCvo1oQxM+
 #include <OT_ME.hpp>
 
 #include <OTAPI.hpp>
-
-
-#ifndef IMPORT
-#define IMPORT
-#endif
 
 #include <OTLog.hpp>
 #include <OTStorage.hpp>
@@ -168,18 +163,18 @@ kamH0Y/n11lCvo1oQxM+
 
 #endif
 
-OT_ME * OT_ME::pMe;
+OT_ME * OT_ME::s_pMe = NULL;
 
 
-OT_ME::OT_ME()
+OT_ME::OT_ME() : r_pPrev(NULL)
 {
-    pPrev = pMe;
-    pMe = this;
+    r_pPrev = s_pMe;
+    s_pMe = this;
 }
 
 OT_ME::~OT_ME()
 {
-    pMe = pPrev;
+    s_pMe = r_pPrev;
 }
 
 
@@ -341,15 +336,15 @@ std::string OT_CLI_ReadUntilEOF()
     {
         std::string input_line("");
 
-        //      int n;
-        ////    std::string sn;
-        //      std::stringstream ssn;
-        //
-        //      std::getline(std::cin, input_line);
-        //      ssn << input_line;
-        //      ssn >> n;
+//      int n;
+////    std::string sn;
+//      std::stringstream ssn;
+//
+//      std::getline(std::cin, input_line);
+//      ssn << input_line;
+//      ssn >> n;
 
-        //      std::getline(std::cin, input_line, '\n');
+//      std::getline(std::cin, input_line, '\n');
         if (std::getline(std::cin, input_line, '\n'))
         {
             input_line += "\n";
@@ -366,24 +361,24 @@ std::string OT_CLI_ReadUntilEOF()
         }
         if (std::cin.eof())
         {
-            //          cout << "IT WAS EOF\n";
+//          cout << "IT WAS EOF\n";
             std::cin.clear();
             break;
         }
         if (std::cin.fail())
         {
-            //          cout << "IT WAS FAIL\n";
+//          cout << "IT WAS FAIL\n";
             std::cin.clear();
             break;
         }
         if (std::cin.bad())
         {
-            //          cout << "IT WAS BAD\n";
+//          cout << "IT WAS BAD\n";
             std::cin.clear();
             break;
         }
-        //      std::cin.clear();
-        //      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//      std::cin.clear();
+//      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     } // while
 
@@ -426,7 +421,7 @@ bool OT_ME::make_sure_enough_trans_nums(const int32_t        nNumberNeeded,
     std::string str_Code = strRaw.Get();
 
 
-    //    OTLog::vError("\n\n DEBUGGING: strRaw: %s \n", strRaw.Get());
+//  OTLog::vError("\n\n DEBUGGING: strRaw: %s \n", strRaw.Get());
 
     // Execute the script here.
     //
@@ -615,7 +610,7 @@ std::string OT_ME::stat_asset_account(const std::string  & ACCOUNT_ID)
 //
 
 // returns true/false
-bool OT_ME::retrieve_account(const std::string  & SERVER_ID,
+bool OT_ME::retrieve_account( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCOUNT_ID)
 {
@@ -629,7 +624,7 @@ bool OT_ME::retrieve_account(const std::string  & SERVER_ID,
 }
 
 // returns true/false
-bool OT_ME::retrieve_account(const std::string  & SERVER_ID,
+bool OT_ME::retrieve_account( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCOUNT_ID,
     const bool      bForceDownload) // bForceDownload=false
@@ -743,7 +738,7 @@ bool OT_ME::discard_incoming_payments(const std::string  & SERVER_ID,
     return ExecuteScript_ReturnBool(str_Code, __FUNCTION__);
 }
 
-bool OT_ME::cancel_outgoing_payments(const std::string  & NYM_ID,
+bool OT_ME::cancel_outgoing_payments (const std::string  & NYM_ID,
     const std::string  & ACCOUNT_ID, // can be blank if a cheque. But if a voucher, smart contract or payment plan, you need to provide this. And it better match for the chosen indices. For example for a voucher, must have the same asset type.
     const std::string  & INDICES)
 {
@@ -1151,7 +1146,7 @@ std::string OT_ME::kill_market_offer(const std::string  & SERVER_ID,
 
 // KILL (ACTIVE) PAYMENT PLAN  -- TRANSACTION
 //
-std::string OT_ME::kill_payment_plan(const std::string  & SERVER_ID,
+std::string OT_ME::kill_payment_plan( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const int64_t   TRANS_NUM)
@@ -1167,7 +1162,7 @@ std::string OT_ME::kill_payment_plan(const std::string  & SERVER_ID,
 
 // CANCEL (NOT-YET-RUNNING) PAYMENT PLAN  -- TRANSACTION
 //
-std::string OT_ME::cancel_payment_plan(const std::string  & SERVER_ID,
+std::string OT_ME::cancel_payment_plan( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & THE_PAYMENT_PLAN)
 {
@@ -1186,7 +1181,7 @@ std::string OT_ME::cancel_payment_plan(const std::string  & SERVER_ID,
 
 // ACTIVATE SMART CONTRACT  -- TRANSACTION
 //
-std::string OT_ME::activate_smart_contract(const std::string  & SERVER_ID,
+std::string OT_ME::activate_smart_contract( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const std::string  & AGENT_NAME,
@@ -1208,7 +1203,7 @@ std::string OT_ME::activate_smart_contract(const std::string  & SERVER_ID,
 
 // TRIGGER CLAUSE (on running smart contract)  -- TRANSACTION
 //
-std::string OT_ME::trigger_clause(const std::string  & SERVER_ID,
+std::string OT_ME::trigger_clause( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const int64_t   TRANS_NUM,
     const std::string  & CLAUSE_NAME,
@@ -1231,7 +1226,7 @@ std::string OT_ME::trigger_clause(const std::string  & SERVER_ID,
 
 // WITHDRAW CASH  -- TRANSACTION
 //
-std::string OT_ME::withdraw_cash(const std::string  & SERVER_ID,
+std::string OT_ME::withdraw_cash( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const int64_t   AMOUNT)
@@ -1295,7 +1290,7 @@ std::string OT_ME::export_cash(const std::string  & SERVER_ID,
 
 // WITHDRAW VOUCHER  -- TRANSACTION
 //
-std::string OT_ME::withdraw_voucher(const std::string  & SERVER_ID,
+std::string OT_ME::withdraw_voucher( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const std::string  & RECIP_NYM_ID,
@@ -1319,7 +1314,7 @@ std::string OT_ME::withdraw_voucher(const std::string  & SERVER_ID,
 
 // PAY DIVIDEND  -- TRANSACTION
 //
-std::string OT_ME::pay_dividend(const std::string  & SERVER_ID,
+std::string OT_ME::pay_dividend( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & SOURCE_ACCT_ID,
     const std::string  & SHARES_ASSET_ID,
@@ -1341,7 +1336,7 @@ std::string OT_ME::pay_dividend(const std::string  & SERVER_ID,
 
 
 
-std::string OT_ME::deposit_cheque(const std::string  & SERVER_ID,
+std::string OT_ME::deposit_cheque( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const std::string  & STR_CHEQUE)
@@ -1360,7 +1355,7 @@ std::string OT_ME::deposit_cheque(const std::string  & SERVER_ID,
 }
 
 
-int32_t OT_ME::deposit_cash(const std::string  & SERVER_ID,
+int32_t OT_ME::deposit_cash( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & ACCT_ID,
     const std::string  & STR_PURSE)
@@ -1394,7 +1389,7 @@ int32_t OT_ME::deposit_local_purse(const std::string  & SERVER_ID,
 }
 
 
-std::string OT_ME::get_market_list(const std::string  & SERVER_ID,
+std::string OT_ME::get_market_list( const std::string  & SERVER_ID,
     const std::string  & NYM_ID)
 {
     OTString strRaw;
@@ -1407,7 +1402,7 @@ std::string OT_ME::get_market_list(const std::string  & SERVER_ID,
 }
 
 
-std::string OT_ME::get_market_offers(const std::string  & SERVER_ID,
+std::string OT_ME::get_market_offers( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & MARKET_ID,
     const int64_t   MAX_DEPTH)
@@ -1421,7 +1416,7 @@ std::string OT_ME::get_market_offers(const std::string  & SERVER_ID,
     return ExecuteScript_ReturnString(str_Code, __FUNCTION__);
 }
 
-std::string OT_ME::get_nym_market_offers(const std::string  & SERVER_ID,
+std::string OT_ME::get_nym_market_offers( const std::string  & SERVER_ID,
     const std::string  & NYM_ID)
 {
     OTString strRaw;
@@ -1434,7 +1429,7 @@ std::string OT_ME::get_nym_market_offers(const std::string  & SERVER_ID,
 }
 
 
-std::string OT_ME::get_market_recent_trades(const std::string  & SERVER_ID,
+std::string OT_ME::get_market_recent_trades( const std::string  & SERVER_ID,
     const std::string  & NYM_ID,
     const std::string  & MARKET_ID)
 {
@@ -1449,7 +1444,7 @@ std::string OT_ME::get_market_recent_trades(const std::string  & SERVER_ID,
 
 
 
-std::string OT_ME::adjust_usage_credits(const std::string  & SERVER_ID,
+std::string OT_ME::adjust_usage_credits( const std::string  & SERVER_ID,
     const std::string  & USER_NYM_ID,
     const std::string  & TARGET_NYM_ID,
     const std::string  & ADJUSTMENT)
@@ -1481,15 +1476,15 @@ int32_t OT_ME::VerifyMessageSuccess(const std::string & str_Message)
 
     switch (nStatus)
     {
-    case (-1) :
+        case (-1):
         OTLog::vOutput(0, "%s: Error calling OT_API_Message_GetSuccess, for message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (0) :
+        case (0):
         OTLog::vOutput(1, "%s: Reply received: success == FALSE. Reply message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (1) :
+        case (1):
         OTLog::vOutput(1, "%s: Reply received: success == TRUE.\n", __FUNCTION__);
         break;
     default:
@@ -1519,15 +1514,15 @@ int32_t OT_ME::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
 
     switch (nStatus)
     {
-    case (-1) :
+        case (-1):
         OTLog::vOutput(0, "%s: Error calling Msg_GetBlnceAgrmntSuccess, for message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (0) :
+        case (0):
         OTLog::vOutput(1, "%s: Reply received: success == FALSE. Reply message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (1) :
+        case (1):
         OTLog::vOutput(1, "%s: Reply received: success == TRUE.\n", __FUNCTION__);
         break;
     default:
@@ -1557,15 +1552,15 @@ int32_t OT_ME::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
 
     switch (nStatus)
     {
-    case (-1) :
+        case (-1):
         OTLog::vOutput(0, "%s: Error calling Msg_GetTransactionSuccess, for message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (0) :
+        case (0):
         OTLog::vOutput(1, "%s: Reply received: success == FALSE. Reply message:\n%s\n",
         __FUNCTION__, str_Message.c_str());
         break;
-    case (1) :
+        case (1):
         OTLog::vOutput(1, "%s: Reply received: success == TRUE.\n", __FUNCTION__);
         break;
     default:
@@ -1685,7 +1680,7 @@ OTVariable * OT_ME::FindVariable(const std::string & str_var_name)
 
 OTVariable * OT_ME::FindVariable2(const std::string & str_var_name)
 {
-    return pMe->FindVariable(str_var_name);
+    return s_pMe->FindVariable(str_var_name);
 }
 
 std::string OT_ME::ExecuteScript_ReturnString(const std::string & str_Code, std::string str_DisplayName/*="<BLANK>"*/)
@@ -1756,7 +1751,7 @@ bool OT_ME::SetupScriptObject()
 {
     OTString strDataPath;
     { bool bGetDataPathSuccess = OTDataFolder::Get(strDataPath);
-    OT_ASSERT_MSG(bGetDataPathSuccess, "SetupScriptObject: Must set Data Path first!"); }
+    OT_ASSERT_MSG(bGetDataPathSuccess,"SetupScriptObject: Must set Data Path first!"); }
     const bool bRegistered_OTDB = Register_OTDB_With_Script();
     const bool bRegistered_CLI = Register_CLI_With_Script();
     const bool bRegistered_API = Register_API_With_Script();
@@ -1897,18 +1892,18 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(user_type<OTDB::OfferListNym>(), "OTDB_OfferListNym");
         theScript.chai->add(user_type<OTDB::TradeDataNym>(), "OTDB_TradeDataNym");
         theScript.chai->add(user_type<OTDB::TradeListNym>(), "OTDB_TradeListNym");
-        //      theScript.chai->add(user_type<OTDB::Acct>(),               "OTDB_Acct");
-        //      theScript.chai->add(user_type<OTDB::BitcoinAcct>(),        "OTDB_BitcoinAcct");
-        //      theScript.chai->add(user_type<OTDB::ServerInfo>(),         "OTDB_ServerInfo");
-        //      theScript.chai->add(user_type<OTDB::Server>(),             "OTDB_Server");
-        //      theScript.chai->add(user_type<OTDB::BitcoinServer>(),      "OTDB_BitcoinServer");
-        //      theScript.chai->add(user_type<OTDB::RippleServer>(),       "OTDB_RippleServer");
-        //      theScript.chai->add(user_type<OTDB::LoomServer>(),         "OTDB_LoomServer");
-        //      theScript.chai->add(user_type<OTDB::ContactNym>(),         "OTDB_ContactNym");
-        //      theScript.chai->add(user_type<OTDB::WalletData>(),         "OTDB_WalletData");
-        //      theScript.chai->add(user_type<OTDB::ContactAcct>(),        "OTDB_ContactAcct");
-        //      theScript.chai->add(user_type<OTDB::Contact>(),            "OTDB_Contact");
-        //      theScript.chai->add(user_type<OTDB::AddressBook>(),        "OTDB_AddressBook");        
+//      theScript.chai->add(user_type<OTDB::Acct>(),               "OTDB_Acct");
+//      theScript.chai->add(user_type<OTDB::BitcoinAcct>(),        "OTDB_BitcoinAcct");
+//      theScript.chai->add(user_type<OTDB::ServerInfo>(),         "OTDB_ServerInfo");
+//      theScript.chai->add(user_type<OTDB::Server>(),             "OTDB_Server");
+//      theScript.chai->add(user_type<OTDB::BitcoinServer>(),      "OTDB_BitcoinServer");
+//      theScript.chai->add(user_type<OTDB::RippleServer>(),       "OTDB_RippleServer");
+//      theScript.chai->add(user_type<OTDB::LoomServer>(),         "OTDB_LoomServer");
+//      theScript.chai->add(user_type<OTDB::ContactNym>(),         "OTDB_ContactNym");
+//      theScript.chai->add(user_type<OTDB::WalletData>(),         "OTDB_WalletData");
+//      theScript.chai->add(user_type<OTDB::ContactAcct>(),        "OTDB_ContactAcct");
+//      theScript.chai->add(user_type<OTDB::Contact>(),            "OTDB_Contact");
+//      theScript.chai->add(user_type<OTDB::AddressBook>(),        "OTDB_AddressBook");
 
 
         // SHOW INHERITANCE
@@ -1928,18 +1923,18 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(chaiscript::base_class<OTDB::Storable, OTDB::OfferListNym>());
         theScript.chai->add(chaiscript::base_class<OTDB::Displayable, OTDB::TradeDataNym>());
         theScript.chai->add(chaiscript::base_class<OTDB::Storable, OTDB::TradeListNym>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Acct>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Acct,             OTDB::BitcoinAcct>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ServerInfo>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::ServerInfo,       OTDB::Server>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::BitcoinServer>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::RippleServer>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::LoomServer>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactNym>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::WalletData>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactAcct>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Contact>());
-        //      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::AddressBook>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Acct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Acct,             OTDB::BitcoinAcct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ServerInfo>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::ServerInfo,       OTDB::Server>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::BitcoinServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::RippleServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Server,           OTDB::LoomServer>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactNym>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::WalletData>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::ContactAcct>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Displayable,      OTDB::Contact>());
+//      theScript.chai->add(chaiscript::base_class<OTDB::Storable,         OTDB::AddressBook>());
 
 
 
@@ -1947,65 +1942,65 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         // ADD STORAGE FUNCTIONS
         theScript.chai->add(fun(&OTDB::CreateObject), "OTDB_CreateObject");
 
-        //      theScript.chai->add(fun(&OTDB::Exists),           "OTDB_Exists");
+//      theScript.chai->add(fun(&OTDB::Exists),           "OTDB_Exists");
         theScript.chai->add(fun<bool(std::string, std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-        //      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-        //      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
-        //      theScript.chai->add(fun<bool (std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::Exists), "OTDB_Exists");
+//      theScript.chai->add(fun<bool (std::string)>(&OTDB::Exists), "OTDB_Exists");
 
 
-        //      theScript.chai->add(fun(&OTDB::StoreString),      "OTDB_StoreString");
+//      theScript.chai->add(fun(&OTDB::StoreString),      "OTDB_StoreString");
         theScript.chai->add(fun<bool(std::string, std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-        //      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-        //      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
-        //      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StoreString), "OTDB_StoreString");
 
 
-        //      theScript.chai->add(fun(&OTDB::QueryString),      "OTDB_QueryString");
+//      theScript.chai->add(fun(&OTDB::QueryString),      "OTDB_QueryString");
         theScript.chai->add(fun<std::string(std::string, std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-        //      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-        //      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
-        //      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryString), "OTDB_QueryString");
+//      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryString), "OTDB_QueryString");
 
 
-        //      theScript.chai->add(fun(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun(&OTDB::StorePlainString), "OTDB_StorePlainString");
         theScript.chai->add(fun<bool(std::string, std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-        //      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-        //      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
-        //      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
+//      theScript.chai->add(fun<bool (std::string, std::string)>(&OTDB::StorePlainString), "OTDB_StorePlainString");
 
 
-        //      theScript.chai->add(fun(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
         theScript.chai->add(fun<std::string(std::string, std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-        //      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-        //      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
-        //      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string, std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string, std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
+//      theScript.chai->add(fun<std::string (std::string)>(&OTDB::QueryPlainString), "OTDB_QueryPlainString");
 
 
-        //      theScript.chai->add(fun(&OTDB::StoreObject),      "OTDB_StoreObject");
+//      theScript.chai->add(fun(&OTDB::StoreObject),      "OTDB_StoreObject");
         theScript.chai->add(fun<bool(OTDB::Storable &, std::string, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-        //      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-        //      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
-        //      theScript.chai->add(fun<bool (OTDB::Storable &, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
+//      theScript.chai->add(fun<bool (OTDB::Storable &, std::string)>(&OTDB::StoreObject), "OTDB_StoreObject");
 
 
-        //      theScript.chai->add(fun(&OTDB::QueryObject),      "OTDB_QueryObject");
+//      theScript.chai->add(fun(&OTDB::QueryObject),      "OTDB_QueryObject");
         theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-        //      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-        //      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
-        //      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
+//      theScript.chai->add(fun<OTDB::Storable * (OTDB::StoredObjectType, std::string)>(&OTDB::QueryObject), "OTDB_QueryObject");
 
 
         theScript.chai->add(fun(&OTDB::EncodeObject), "OTDB_EncodeObject");
         theScript.chai->add(fun(&OTDB::DecodeObject), "OTDB_DecodeObject");
 
 
-        //      theScript.chai->add(fun(&OTDB::EraseValueByKey),  "OTDB_EraseValueByKey");
+//      theScript.chai->add(fun(&OTDB::EraseValueByKey),  "OTDB_EraseValueByKey");
 
 
         // ADD DYNAMIC CASTING.
         //
-        //      theScript.chai->add(fun<OTDB::OTDBString * (OTDB::Storable *)>(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
+//      theScript.chai->add(fun<OTDB::OTDBString * (OTDB::Storable *)>(&OTDB::OTDBString::ot_dynamic_cast),       "OTDB_CAST_STRING");
         theScript.chai->add(fun(&OTDB::OTDBString::ot_dynamic_cast), "OTDB_CAST_STRING");
         theScript.chai->add(fun(&OTDB::Blob::ot_dynamic_cast), "OTDB_CAST_BLOB");
         theScript.chai->add(fun(&OTDB::StringMap::ot_dynamic_cast), "OTDB_CAST_STRING_MAP");
@@ -2014,7 +2009,7 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
 
 
 
-        //      theScript.chai->add(fun<OTDB::MarketList * (OTDB::Storable *)>(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
+//      theScript.chai->add(fun<OTDB::MarketList * (OTDB::Storable *)>(&OTDB::MarketList::ot_dynamic_cast),       "OTDB_CAST_MARKET_LIST");
         theScript.chai->add(fun(&OTDB::MarketList::ot_dynamic_cast), "OTDB_CAST_MARKET_LIST");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::ot_dynamic_cast), "OTDB_CAST_OFFER_DATA_MARKET");
         theScript.chai->add(fun(&OTDB::BidData::ot_dynamic_cast), "OTDB_CAST_BID_DATA");
@@ -2028,20 +2023,20 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(fun(&OTDB::TradeListNym::ot_dynamic_cast), "OTDB_CAST_TRADE_LIST_NYM");
 
 
-        //      theScript.chai->add(fun(&OTDB::MarketList::GetMarketDataCount), "GetMarketDataCount");
-        //      theScript.chai->add(fun(&OTDB::MarketList::GetMarketData),      "GetMarketData");
-        //      theScript.chai->add(fun(&OTDB::MarketList::RemoveMarketData),   "RemoveMarketData");
-        //      theScript.chai->add(fun(&OTDB::MarketList::AddMarketData),      "AddMarketData");
-        //
-        //      theScript.chai->add(fun(&OTDB::MarketList::Get##name##Count), "Get" #name "Count");
-        //      theScript.chai->add(fun(&OTDB::MarketList::Get##name),      "Get" #name );
-        //      theScript.chai->add(fun(&OTDB::MarketList::Remove##name),   "Remove" #name);
-        //      theScript.chai->add(fun(&OTDB::MarketList::Add##name),      "Add" #name);
-        //
-        //      EXPORT size_t Get##name##Count(); \
-                        //      EXPORT name * Get##name(size_t nIndex); \
-                        //      EXPORT bool Remove##name(size_t nIndex##name); \
-                        //      EXPORT bool Add##name(name & disownObject)
+//      theScript.chai->add(fun(&OTDB::MarketList::GetMarketDataCount), "GetMarketDataCount");
+//      theScript.chai->add(fun(&OTDB::MarketList::GetMarketData),      "GetMarketData");
+//      theScript.chai->add(fun(&OTDB::MarketList::RemoveMarketData),   "RemoveMarketData");
+//      theScript.chai->add(fun(&OTDB::MarketList::AddMarketData),      "AddMarketData");
+//
+//      theScript.chai->add(fun(&OTDB::MarketList::Get##name##Count), "Get" #name "Count");
+//      theScript.chai->add(fun(&OTDB::MarketList::Get##name),      "Get" #name );
+//      theScript.chai->add(fun(&OTDB::MarketList::Remove##name),   "Remove" #name);
+//      theScript.chai->add(fun(&OTDB::MarketList::Add##name),      "Add" #name);
+//
+//      EXPORT size_t Get##name##Count(); \
+//      EXPORT name * Get##name(size_t nIndex); \
+//      EXPORT bool Remove##name(size_t nIndex##name); \
+//      EXPORT bool Add##name(name & disownObject)
 
 #define OT_CHAI_CONTAINER(container, name) \
     theScript.chai->add(fun(&OTDB::container::Get##name##Count), "Get" #name "Count"); \
@@ -2057,7 +2052,7 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(fun(&OTDB::StringMap::SetValue), "SetValue");
         theScript.chai->add(fun(&OTDB::StringMap::GetValue), "GetValue");
         theScript.chai->add(fun(&OTDB::Displayable::gui_label), "gui_label");
-        //      theScript.chai->add(fun(&OTDB::MarketData::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::MarketData::gui_label),         "gui_label");
         theScript.chai->add(fun(&OTDB::MarketData::server_id), "server_id");
         theScript.chai->add(fun(&OTDB::MarketData::market_id), "market_id");
         theScript.chai->add(fun(&OTDB::MarketData::asset_type_id), "asset_type_id");
@@ -2072,35 +2067,35 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(fun(&OTDB::MarketData::current_ask), "current_ask");
 
         OT_CHAI_CONTAINER(MarketList, MarketData);
-        //      theScript.chai->add(fun(&OTDB::OfferDataMarket::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::OfferDataMarket::gui_label),         "gui_label");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::transaction_id), "transaction_id");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::price_per_scale), "price_per_scale");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::available_assets), "available_assets");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::minimum_increment), "minimum_increment");
         theScript.chai->add(fun(&OTDB::OfferDataMarket::date), "date");
 
-        //      theScript.chai->add(fun(&OTDB::BidData::gui_label),         "gui_label");
-        //      theScript.chai->add(fun(&OTDB::BidData::transaction_id),    "transaction_id");
-        //      theScript.chai->add(fun(&OTDB::BidData::price_per_scale),   "price_per_scale");
-        //      theScript.chai->add(fun(&OTDB::BidData::available_assets),  "available_assets");
-        //      theScript.chai->add(fun(&OTDB::BidData::minimum_increment), "minimum_increment");
+//      theScript.chai->add(fun(&OTDB::BidData::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::BidData::transaction_id),    "transaction_id");
+//      theScript.chai->add(fun(&OTDB::BidData::price_per_scale),   "price_per_scale");
+//      theScript.chai->add(fun(&OTDB::BidData::available_assets),  "available_assets");
+//      theScript.chai->add(fun(&OTDB::BidData::minimum_increment), "minimum_increment");
 
-        //      theScript.chai->add(fun(&OTDB::AskData::gui_label),         "gui_label");
-        //      theScript.chai->add(fun(&OTDB::AskData::transaction_id),    "transaction_id");
-        //      theScript.chai->add(fun(&OTDB::AskData::price_per_scale),   "price_per_scale");
-        //      theScript.chai->add(fun(&OTDB::AskData::available_assets),  "available_assets");
-        //      theScript.chai->add(fun(&OTDB::AskData::minimum_increment), "minimum_increment");
+//      theScript.chai->add(fun(&OTDB::AskData::gui_label),         "gui_label");
+//      theScript.chai->add(fun(&OTDB::AskData::transaction_id),    "transaction_id");
+//      theScript.chai->add(fun(&OTDB::AskData::price_per_scale),   "price_per_scale");
+//      theScript.chai->add(fun(&OTDB::AskData::available_assets),  "available_assets");
+//      theScript.chai->add(fun(&OTDB::AskData::minimum_increment), "minimum_increment");
 
         OT_CHAI_CONTAINER(OfferListMarket, BidData);
         OT_CHAI_CONTAINER(OfferListMarket, AskData);
-        //      theScript.chai->add(fun(&OTDB::TradeDataMarket::gui_label),      "gui_label");
+//      theScript.chai->add(fun(&OTDB::TradeDataMarket::gui_label),      "gui_label");
         theScript.chai->add(fun(&OTDB::TradeDataMarket::transaction_id), "transaction_id");
         theScript.chai->add(fun(&OTDB::TradeDataMarket::date), "date");
         theScript.chai->add(fun(&OTDB::TradeDataMarket::price), "price");
         theScript.chai->add(fun(&OTDB::TradeDataMarket::amount_sold), "amount_sold");
 
         OT_CHAI_CONTAINER(TradeListMarket, TradeDataMarket);
-        //      theScript.chai->add(fun(&OTDB::OfferDataNym::gui_label),      "gui_label");
+//      theScript.chai->add(fun(&OTDB::OfferDataNym::gui_label),      "gui_label");
         theScript.chai->add(fun(&OTDB::OfferDataNym::valid_from), "valid_from");
         theScript.chai->add(fun(&OTDB::OfferDataNym::valid_to), "valid_to");
         theScript.chai->add(fun(&OTDB::OfferDataNym::server_id), "server_id");
@@ -2120,7 +2115,7 @@ bool OT_ME::Register_OTDB_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(fun(&OTDB::OfferDataNym::date), "date");
 
         OT_CHAI_CONTAINER(OfferListNym, OfferDataNym);
-        //      theScript.chai->add(fun(&OTDB::TradeDataNym::gui_label),       "gui_label");
+//      theScript.chai->add(fun(&OTDB::TradeDataNym::gui_label),       "gui_label");
         theScript.chai->add(fun(&OTDB::TradeDataNym::transaction_id), "transaction_id");
         theScript.chai->add(fun(&OTDB::TradeDataNym::completed_count), "completed_count");
         theScript.chai->add(fun(&OTDB::TradeDataNym::date), "date");
@@ -2511,8 +2506,8 @@ bool OT_ME::Register_API_With_Script_Chai(OTScriptChai & theScript)
 
         theScript.chai->add(fun(&OTAPI_Wrap::Msg_HarvestTransactionNumbers), "OT_API_Msg_HarvestTransactionNumbers");
 
-        //  theScript.chai->add(fun(&OTAPI_Wrap::HarvestClosingNumbers), "OT_API_HarvestClosingNumbers");
-        //  theScript.chai->add(fun(&OTAPI_Wrap::HarvestAllNumbers), "OT_API_HarvestAllNumbers");
+//		theScript.chai->add(fun(&OTAPI_Wrap::HarvestClosingNumbers), "OT_API_HarvestClosingNumbers");
+//		theScript.chai->add(fun(&OTAPI_Wrap::HarvestAllNumbers), "OT_API_HarvestAllNumbers");
 
         theScript.chai->add(fun(&OTAPI_Wrap::Smart_AreAllPartiesConfirmed), "OT_API_Smart_AreAllPartiesConfirmed");
         theScript.chai->add(fun(&OTAPI_Wrap::Smart_IsPartyConfirmed), "OT_API_Smart_IsPartyConfirmed");
@@ -2723,20 +2718,20 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
                 }
                 std::cout << std::endl << std::endl;
 
-                //              std::cout << ee.what();
+//              std::cout << ee.what();
 
                 if (ee.call_stack.size() > 0)
                 {
-                    //                  std::cout << "during evaluation at ("
-                    //                            << *(ee.call_stack[0]->filename)
-                    //                            << " "
-                    //                            << ee.call_stack[0]->start.line
-                    //                            << ","
-                    //                            << ee.call_stack[0]->start.column
-                    //                            << ")";
-                    //
-                    //                  const std::string text;
-                    //                  boost::shared_ptr<const std::string> filename;
+//                  std::cout << "during evaluation at ("
+//                            << *(ee.call_stack[0]->filename)
+//                            << " "
+//                            << ee.call_stack[0]->start.line
+//                            << ","
+//                            << ee.call_stack[0]->start.column
+//                            << ")";
+//
+//                  const std::string text;
+//                  boost::shared_ptr<const std::string> filename;
 
                     for (size_t j = 1; j < ee.call_stack.size(); ++j) {
                         if (ee.call_stack[j]->identifier != chaiscript::AST_Node_Type::Block

@@ -150,6 +150,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTBylaw.hpp		\
 				$(otlib_headers_dir)/OTCachedKey.hpp		\
 				$(otlib_headers_dir)/OTCheque.hpp		\
+				$(otlib_headers_dir)/OTCommon.hpp		\
 				$(otlib_headers_dir)/OTContract.hpp		\
 				$(otlib_headers_dir)/OTCredential.hpp		\
 				$(otlib_headers_dir)/OTCron.hpp			\
@@ -234,6 +235,11 @@ nodist_pkginclude_HEADERS	= 	$(top_builddir)/include/otlib/ot_config.h
 DISTCLEANFILES			= 	$(top_builddir)/include/otlib/ot_config.h
 
 ## Extra to package containers headers
+
+pkginclude_containersdir	=	$(pkgincludedir)/containers
+pkginclude_containers_HEADERS	=	$(containers_headers)
+
+## Extra to package simpleini headers
 
 simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
 

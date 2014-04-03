@@ -822,7 +822,7 @@ OT_COMMANDS_OT int32_t details_discard_incoming(const string & strServer, const 
             //
             if (!("all" == strIndices) && ((nIndicesCount > 0) && !OTAPI_Wrap::NumList_VerifyQuery(strIndices, to_string(nInboxIndex))))
             {
-                //              continue  // apparently not supported by the language.
+//              continue  // apparently not supported by the language.
                 bContinue = true;
             }
 
@@ -947,13 +947,13 @@ OT_COMMANDS_OT int32_t details_cancel_outgoing(const string & strMyNym, const st
     {
         for (int32_t nIndex = (nCount - 1); nIndex >= 0; --nIndex)
         {
-            //          bool bRemoved = OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex(strMyNym, nIndex); // (1 or 0.)
+//          bool bRemoved = OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex(strMyNym, nIndex); // (1 or 0.)
 
-            //          string strRecorded = bRecorded ? "Success" : "Failure"
-            //          OTAPI_Wrap::Output(0,  strRecorded + " discarding instrument from outpayment box at index: " + to_string(nIndex) + ".\n");
+//          string strRecorded = bRecorded ? "Success" : "Failure"
+//          OTAPI_Wrap::Output(0,  strRecorded + " discarding instrument from outpayment box at index: " + to_string(nIndex) + ".\n");
 
-            //          if (!bRemoved)
-            //          { nSuccess = -1; }
+//          if (!bRemoved)
+//          { nSuccess = -1; }
 
             bool bContinue = false;
 
@@ -1104,10 +1104,10 @@ OT_COMMANDS_OT int32_t details_cancel_outgoing(const string & strMyNym, const st
                             // Perhaps we should just ask the user to CONFIRM that he wants to erase the cash,
                             // and make SURE that he understands the consequences of that choice.
 
-                            //                                OTAPI_Wrap::Output(0, "Any outgoing cash will already be automatically moved to the record box once it expires. No need to move it by hand.\nAre you SURE you want to move it now? [y/N] ");
-                            //                                string strYes = OT_CLI_ReadLine()
-                            //
-                            //                                if (VerifyStringVal(strYes) && (("y" == strYes) || ("Y" == strYes)))
+//                          OTAPI_Wrap::Output(0, "Any outgoing cash will already be automatically moved to the record box once it expires. No need to move it by hand.\nAre you SURE you want to move it now? [y/N] ");
+//                          string strYes = OT_CLI_ReadLine()
+//
+//                          if (VerifyStringVal(strYes) && (("y" == strYes) || ("Y" == strYes)))
                             {
                                 // removes payment instrument (from payments in or out box)
                                 bool bRecorded = OTAPI_Wrap::RecordPayment(strServer, strMyNym,

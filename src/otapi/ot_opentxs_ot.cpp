@@ -381,7 +381,7 @@ MapFunction map_functions[] =
 
 int OT_OPENTXS_OT main_not_coded_yet()
 {
-    print("\n\n  Congratulations, you've been selected to add that option to this script! \n It's real easy: just edit scripts/ot/ot_commands.ot, and copy some code\ninto it based on whichever sample script is appropriate.\nThen edit the opentxs script, and add your new main\nfunction to the list map_functions near the bottom. Done!\n\n");
+    print("\n\n  Congratulations, you've been selected to add that option to this program! \n It's real easy: just edit ot_commands_ot.cpp, and copy some code\ninto it based on whichever sample script is appropriate.\nThen edit the opentxs script, and add your new main\nfunction to the list map_functions near the bottom. Done!\n\n");
 
     return 0;
 }
