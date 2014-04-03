@@ -659,7 +659,7 @@ def main_exchange_basket()
 
             OT_API_Output(0, "\nHere is a list of the accounts whose asset type IS a basket currency:\n")
             
-            stat_basket_accounts()
+            stat_basket_accounts("", "", false, "")
 
             OT_API_Output(0, "\nMyAcct is not a basket currency!\nPlease use --myacct to specify an account whose asset type IS a basket currency.\n")
         }
@@ -673,26 +673,12 @@ def main_exchange_basket()
     {
         OT_API_Output(0, "You must provide an account ID, and that account must have a basket\ncurrency for its asset type. Use --myacct and choose from these basket accounts:\n")
         
-        stat_basket_accounts()
+        stat_basket_accounts("", "", false, "")
     }
     
     -1
 }
 
-def stat_basket_accounts()
-{
-    var strServer = ""
-    var strNym    = ""
-    stat_basket_accounts(strServer, strNym)
-}
-
-def stat_basket_accounts(strServer, strNym)
-{
-    var bFilter = false //unused in this case
-    var strBasketType = ""
-    
-    stat_basket_accounts(strServer, strNym, bFilter, strBasketType) // This will ONLY show accounts that are basket currencies.
-}
 
 // Used by exchange_basket for displaying certain types of accounts.
 //
@@ -1794,15 +1780,6 @@ def stat_partyaccounts(strSmartContract, strPartyName, nDepth)
     }
     // ----------------------------------------------------------
     return true
-}
-
-
-
-
-def show_unconfirmed_parties(strSmartContract)
-{
-    var nPartyCount = 0
-    return show_unconfirmed_parties(strSmartContract, nPartyCount)
 }
 
 
@@ -6667,14 +6644,6 @@ def main_register_nym()
 }
 
 
-def details_refresh_nym(strServerID, strMyNymID, bForceDownload)
-{
-    var bWasMsgSent = OTBool(false)
-
-    return details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
-}
-
-
 def details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
 {
     var madeEasy = OT_ME()
@@ -6722,13 +6691,6 @@ def details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
     return bReturnVal
 }
 
-def details_refresh_nym(strServerID, strMyNymID)
-{
-    var bForceDownload = true
-    
-    return details_refresh_nym(strServerID, strMyNymID, bForceDownload)
-}
-
 
 def main_refresh_nym()
 {
@@ -6738,7 +6700,8 @@ def main_refresh_nym()
     
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {
-        var bReturnVal = details_refresh_nym(Server, MyNym)
+        var bWasMsgSent = OTBool(false)
+        var bReturnVal = details_refresh_nym(Server, MyNym, bWasMsgSent, true)
         // -------------------------------------------------------
         OT_API_Output(0, "\n") //stderr
         // -------------------------------------------------------
@@ -9844,27 +9807,6 @@ def main_new_symmetric_key()
 }
 
 
-
-
-
-// For a certain index in the payments inbox, this function will deposit the cheque, or
-// deposit the purse, or pay the invoice, etc (whatever is at that index.)
-// Use a strPaymentType of "ANY" to handle any payment type. Otherwise, pass the payment
-// type itself to only succeed for that type. (If only paying invoices, then only handle it
-// if it's actually an invoice.)
-//
-def handle_payment_index(strMyAcctID, nIndex) // (If nIndex is -1, then it will ask user to paste an invoice.)
-{
-    var strPaymentType = "ANY"
-    return handle_payment_index(strMyAcctID, nIndex, strPaymentType)  
-}
-
-def handle_payment_index(strMyAcctID, nIndex, strPaymentType) // (If nIndex is -1, then it will ask user to paste an invoice.)
-{
-    var strInbox = ""
-    return handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox)
-}
-
 //case ("CHEQUE")
 //case ("VOUCHER")
 //case ("INVOICE")
@@ -10108,14 +10050,6 @@ def handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox) // (If n
  */
 
 // COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
-
-def accept_from_paymentbox(strMyAcctID, strIndices)
-{
-    var strPaymentType = "ANY"
-    return accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
-}
-
-// COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
 def accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
 {
     // --------------------------------------------------------------------
@@ -10200,12 +10134,8 @@ def accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
     return 1
 }
 
-def details_accept_invoices(strMyAcctID) // Use this function when you want to loop through all accounts and accept all invoices for them.
-{
-    var strIndices = ""
-    return details_accept_invoices(strMyAcctID, strIndices)
-}
 
+// strIndices == "" when you want to loop through all accounts and accept all invoices for them.
 def details_accept_invoices(strMyAcctID, strIndices)
 {
     return accept_from_paymentbox(strMyAcctID, strIndices, "INVOICE")
@@ -10239,14 +10169,7 @@ def main_accept_invoices()
 }
 
 
-// Accepts all incoming "payments" from the payments inbox. (NOT Invoices.)
-//
-def details_accept_payments(strMyAcctID)
-{
-    var strIndices = ""
-    return details_accept_payments(strMyAcctID, strIndices)
-}
-
+// strIndices == "" to accept all incoming "payments" from the payments inbox. (NOT Invoices.)
 def details_accept_payments(strMyAcctID, strIndices)
 {
     // ---------------------------------------------
@@ -10341,7 +10264,7 @@ def main_payinvoice()
     OT_API_Output(0, "\n\n") // stderr
     // ***************************************************************
     //
-    var nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE")
+    var nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE", "")
 
     if (1 == nPaidInvoice) // Success!  (Therefore, remove from payments inbox, and move to record box.)
     {
@@ -10959,27 +10882,6 @@ def main_show_payments_inbox()
 }
 
 
-// Don't use this unless you really only need one record.
-// Instead, use the function below it. (Otherwise you'll be
-// loading the record box from storage for EACH record, instead
-// of loading it once for ALL the records in your loop.)
-//
-def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex)
-{
-    var strRecordBox = OT_API_LoadRecordBox(strServerID, strMyNymID, strMyAcctID) // Returns NULL, or a record box.
-    
-    if (!VerifyStringVal(strRecordBox))
-    {
-        OT_API_Output(0, "\n\n details_show_record: OT_API_LoadRecordBox: Failed.\n\n")
-        return false
-    }
-    
-    // Success!
-    return details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordBox)
-}
-
-
-
 def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordBox)
 {
     if (!VerifyStringVal(strRecordBox))
@@ -10987,6 +10889,7 @@ def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordB
         OT_API_Output(0, "\n\n details_show_record: strRecordBox is empty.\n(Need to load it first before calling this function.)\n\n")
         return false
     }
+
     // -----------------------------------------------------------------
     // Success!
     //
@@ -11320,30 +11223,6 @@ def main_clear_expired()
     
     -1
 }
-
-
-
-
-
-// Don't use this unless you really only need one expired record.
-// Instead, use the function below it. (Otherwise you'll be
-// loading the expired box from storage for EACH record, instead
-// of loading it once for ALL the expired records in your loop.)
-//
-def details_show_expired(strServerID, strMyNymID, nIndex)
-{
-    var strExpiredBox = OT_API_LoadExpiredBox(strServerID, strMyNymID) // Returns NULL, or an expired box.
-    
-    if (!VerifyStringVal(strExpiredBox))
-    {
-        OT_API_Output(0, "\n\n details_show_expired: OT_API_LoadExpiredBox: Failed.\n\n")
-        return false
-    }
-    
-    // Success!
-    return details_show_expired(strServerID, strMyNymID, nIndex, strExpiredBox)
-}
-
 
 
 // TODO: This is based on details_show_record which assumes it can contain asset inbox records as well
@@ -12245,13 +12124,6 @@ def show_outpayment(strMyNym, nIndex, bShowInFull)
     }
     
     return true
-}
-
-def show_outpayment(strMyNym, nIndex)
-{
-    var bShowInFull = true
-    
-    show_outpayment(strMyNym, nIndex, bShowInFull)
 }
 
 

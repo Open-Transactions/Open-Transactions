@@ -556,8 +556,7 @@ bool OT_ME::retrieve_account(const std::string & SERVER_ID,
 bool OT_ME::retrieve_nym(const std::string & SERVER_ID,
     const std::string & NYM_ID)
 {
-    const bool bForceDownload = true;
-    return details_refresh_nym(SERVER_ID, NYM_ID, bForceDownload);
+    return retrieve_nym(SERVER_ID, NYM_ID, true);
 }
 
 
@@ -565,7 +564,8 @@ bool OT_ME::retrieve_nym(const std::string & SERVER_ID,
     const std::string & NYM_ID,
     const bool bForceDownload)
 {
-    return details_refresh_nym(SERVER_ID, NYM_ID, bForceDownload);
+    bool bWasSent = false;
+    return details_refresh_nym(SERVER_ID, NYM_ID, bWasSent, bForceDownload);
 }
 
 
@@ -2183,6 +2183,188 @@ bool OT_ME::Register_API_With_Script_Chai(OTScriptChai & theScript)
     }
 }
 
+bool OT_ME::Register_Commands_With_Script_Chai(OTScriptChai & theScript)
+{
+    using namespace chaiscript;
+
+    {
+        theScript.chai->add(fun(&::accept_from_paymentbox), "accept_from_paymentbox");
+        theScript.chai->add(fun(&::accept_inbox_items), "accept_inbox_items");
+        theScript.chai->add(fun(&::details_accept_invoices), "details_accept_invoices");
+        theScript.chai->add(fun(&::details_accept_payments), "details_accept_payments");
+        theScript.chai->add(fun(&::details_account_balance), "details_account_balance");
+        theScript.chai->add(fun(&::details_cancel_outgoing), "details_cancel_outgoing");
+        theScript.chai->add(fun(&::details_check_user), "details_check_user");
+        theScript.chai->add(fun(&::details_clear_expired), "details_clear_expired");
+        theScript.chai->add(fun(&::details_clear_records), "details_clear_records");
+        theScript.chai->add(fun(&::details_confirm_plan), "details_confirm_plan");
+        theScript.chai->add(fun(&::details_confirm_smart_contract), "details_confirm_smart_contract");
+        theScript.chai->add(fun(&::details_create_nym), "details_create_nym");
+        theScript.chai->add(fun(&::details_create_offer), "details_create_offer");
+        theScript.chai->add(fun(&::details_del_mail), "details_del_mail");
+        theScript.chai->add(fun(&::details_del_outmail), "details_del_outmail");
+        theScript.chai->add(fun(&::details_deposit), "details_deposit");
+        theScript.chai->add(fun(&::details_deposit_cheque), "details_deposit_cheque");
+        theScript.chai->add(fun(&::details_deposit_purse), "details_deposit_purse");
+        theScript.chai->add(fun(&::details_discard_incoming), "details_discard_incoming");
+        theScript.chai->add(fun(&::details_download_box_receipt), "details_download_box_receipt");
+        theScript.chai->add(fun(&::details_download_contract), "details_download_contract");
+        theScript.chai->add(fun(&::details_exchange_basket), "details_exchange_basket");
+        theScript.chai->add(fun(&::details_export_cash), "details_export_cash");
+        theScript.chai->add(fun(&::details_export_nym), "details_export_nym");
+        theScript.chai->add(fun(&::details_get_nym_market_offers), "details_get_nym_market_offers");
+        theScript.chai->add(fun(&::details_import_cash), "details_import_cash");
+        theScript.chai->add(fun(&::details_import_nym), "details_import_nym");
+        theScript.chai->add(fun(&::details_import_purse), "details_import_purse");
+        theScript.chai->add(fun(&::details_kill_offer), "details_kill_offer");
+        theScript.chai->add(fun(&::details_new_basket), "details_new_basket");
+        theScript.chai->add(fun(&::details_nym_stat), "details_nym_stat");
+        theScript.chai->add(fun(&::details_pay_dividend), "details_pay_dividend");
+        theScript.chai->add(fun(&::details_propose_plan), "details_propose_plan");
+        theScript.chai->add(fun(&::details_refresh_nym), "details_refresh_nym");
+        theScript.chai->add(fun(&::details_send_cash), "details_send_cash");
+        theScript.chai->add(fun(&::details_send_transfer), "details_send_transfer");
+        theScript.chai->add(fun(&::details_show_basket), "details_show_basket");
+        theScript.chai->add(fun(&::details_show_credential), "details_show_credential");
+        theScript.chai->add(fun(&::details_show_credentials), "details_show_credentials");
+        theScript.chai->add(fun(&::details_show_expired), "details_show_expired");
+        theScript.chai->add(fun(&::details_show_expired_records), "details_show_expired_records");
+        theScript.chai->add(fun(&::details_show_market_offers), "details_show_market_offers");
+        theScript.chai->add(fun(&::details_show_nym_offers), "details_show_nym_offers");
+        theScript.chai->add(fun(&::details_show_record), "details_show_record");
+        theScript.chai->add(fun(&::details_show_records), "details_show_records");
+        theScript.chai->add(fun(&::details_stat_account), "details_stat_account");
+        theScript.chai->add(fun(&::details_trigger_clause), "details_trigger_clause");
+        theScript.chai->add(fun(&::details_withdraw_cash), "details_withdraw_cash");
+        theScript.chai->add(fun(&::details_withdraw_voucher), "details_withdraw_voucher");
+        theScript.chai->add(fun(&::details_write_cheque), "details_write_cheque");
+        theScript.chai->add(fun(&::download_acct_files), "download_acct_files");
+        theScript.chai->add(fun(&::find_masterID_for_subcred), "find_masterID_for_subcred");
+        theScript.chai->add(fun(&::find_revokedID_for_subcred), "find_revokedID_for_subcred");
+        theScript.chai->add(fun(&::handle_payment_index), "handle_payment_index");
+        theScript.chai->add(fun(&::impl_show_market_offers), "impl_show_market_offers");
+        theScript.chai->add(fun(&::loadMarketList), "loadMarketList");
+        theScript.chai->add(fun(&::loadMarketOffers), "loadMarketOffers");
+        theScript.chai->add(fun(&::main_accept_all), "main_accept_all");
+        theScript.chai->add(fun(&::main_accept_inbox), "main_accept_inbox");
+        theScript.chai->add(fun(&::main_accept_invoices), "main_accept_invoices");
+        theScript.chai->add(fun(&::main_accept_money), "main_accept_money");
+        theScript.chai->add(fun(&::main_accept_payments), "main_accept_payments");
+        theScript.chai->add(fun(&::main_accept_receipts), "main_accept_receipts");
+        theScript.chai->add(fun(&::main_accept_transfers), "main_accept_transfers");
+        theScript.chai->add(fun(&::main_add_asset), "main_add_asset");
+        theScript.chai->add(fun(&::main_add_server), "main_add_server");
+        theScript.chai->add(fun(&::main_add_signature), "main_add_signature");
+        theScript.chai->add(fun(&::main_adjust_usage_credits), "main_adjust_usage_credits");
+        theScript.chai->add(fun(&::main_balance), "main_balance");
+        theScript.chai->add(fun(&::main_cancel_outgoing), "main_cancel_outgoing");
+        theScript.chai->add(fun(&::main_change_passphrase), "main_change_passphrase");
+        theScript.chai->add(fun(&::main_check_user), "main_check_user");
+        theScript.chai->add(fun(&::main_clear_expired), "main_clear_expired");
+        theScript.chai->add(fun(&::main_clear_records), "main_clear_records");
+        theScript.chai->add(fun(&::main_confirm), "main_confirm");
+        theScript.chai->add(fun(&::main_create_acct), "main_create_acct");
+        theScript.chai->add(fun(&::main_create_asset_contract), "main_create_asset_contract");
+        theScript.chai->add(fun(&::main_create_nym), "main_create_nym");
+        theScript.chai->add(fun(&::main_create_offer), "main_create_offer");
+        theScript.chai->add(fun(&::main_create_server_contract), "main_create_server_contract");
+        theScript.chai->add(fun(&::main_decode), "main_decode");
+        theScript.chai->add(fun(&::main_decrypt), "main_decrypt");
+        theScript.chai->add(fun(&::main_del_mail), "main_del_mail");
+        theScript.chai->add(fun(&::main_del_outmail), "main_del_outmail");
+        theScript.chai->add(fun(&::main_deposit), "main_deposit");
+        theScript.chai->add(fun(&::main_discard_incoming), "main_discard_incoming");
+        theScript.chai->add(fun(&::main_dl_acct_files), "main_dl_acct_files");
+        theScript.chai->add(fun(&::main_download_contract), "main_download_contract");
+        theScript.chai->add(fun(&::main_edit_account), "main_edit_account");
+        theScript.chai->add(fun(&::main_edit_asset), "main_edit_asset");
+        theScript.chai->add(fun(&::main_edit_nym), "main_edit_nym");
+        theScript.chai->add(fun(&::main_edit_server), "main_edit_server");
+        theScript.chai->add(fun(&::main_encode), "main_encode");
+        theScript.chai->add(fun(&::main_encrypt), "main_encrypt");
+        theScript.chai->add(fun(&::main_exchange_basket), "main_exchange_basket");
+        theScript.chai->add(fun(&::main_export_cash), "main_export_cash");
+        theScript.chai->add(fun(&::main_export_nym), "main_export_nym");
+        theScript.chai->add(fun(&::main_get_box_receipt), "main_get_box_receipt");
+        theScript.chai->add(fun(&::main_get_market_list), "main_get_market_list");
+        theScript.chai->add(fun(&::main_get_market_offers), "main_get_market_offers");
+        theScript.chai->add(fun(&::main_get_nym_market_offers), "main_get_nym_market_offers");
+        theScript.chai->add(fun(&::main_import_cash), "main_import_cash");
+        theScript.chai->add(fun(&::main_import_nym), "main_import_nym");
+        theScript.chai->add(fun(&::main_issue_asset), "main_issue_asset");
+        theScript.chai->add(fun(&::main_kill_offer), "main_kill_offer");
+        theScript.chai->add(fun(&::main_kill_plan), "main_kill_plan");
+        theScript.chai->add(fun(&::main_new_basket), "main_new_basket");
+        theScript.chai->add(fun(&::main_new_credential), "main_new_credential");
+        theScript.chai->add(fun(&::main_new_symmetric_key), "main_new_symmetric_key");
+        theScript.chai->add(fun(&::main_nym_stat), "main_nym_stat");
+        theScript.chai->add(fun(&::main_password_decrypt), "main_password_decrypt");
+        theScript.chai->add(fun(&::main_password_encrypt), "main_password_encrypt");
+        theScript.chai->add(fun(&::main_pay_dividend), "main_pay_dividend");
+        theScript.chai->add(fun(&::main_payinvoice), "main_payinvoice");
+        theScript.chai->add(fun(&::main_propose_plan), "main_propose_plan");
+        theScript.chai->add(fun(&::main_refresh_all), "main_refresh_all");
+        theScript.chai->add(fun(&::main_refresh_nym), "main_refresh_nym");
+        theScript.chai->add(fun(&::main_register_nym), "main_register_nym");
+        theScript.chai->add(fun(&::main_revoke_credential), "main_revoke_credential");
+        theScript.chai->add(fun(&::main_sendcash), "main_sendcash");
+        theScript.chai->add(fun(&::main_sendcheque), "main_sendcheque");
+        theScript.chai->add(fun(&::main_sendinvoice), "main_sendinvoice");
+        theScript.chai->add(fun(&::main_sendmsg), "main_sendmsg");
+        theScript.chai->add(fun(&::main_sendvoucher), "main_sendvoucher");
+        theScript.chai->add(fun(&::main_show_active), "main_show_active");
+        theScript.chai->add(fun(&::main_show_basket), "main_show_basket");
+        theScript.chai->add(fun(&::main_show_credential), "main_show_credential");
+        theScript.chai->add(fun(&::main_show_credentials), "main_show_credentials");
+        theScript.chai->add(fun(&::main_show_expired), "main_show_expired");
+        theScript.chai->add(fun(&::main_show_inbox), "main_show_inbox");
+        theScript.chai->add(fun(&::main_show_incoming), "main_show_incoming");
+        theScript.chai->add(fun(&::main_show_mail), "main_show_mail");
+        theScript.chai->add(fun(&::main_show_market_list), "main_show_market_list");
+        theScript.chai->add(fun(&::main_show_market_offers), "main_show_market_offers");
+        theScript.chai->add(fun(&::main_show_mint), "main_show_mint");
+        theScript.chai->add(fun(&::main_show_nym_offers), "main_show_nym_offers");
+        theScript.chai->add(fun(&::main_show_outbox), "main_show_outbox");
+        theScript.chai->add(fun(&::main_show_outgoing), "main_show_outgoing");
+        theScript.chai->add(fun(&::main_show_outmail), "main_show_outmail");
+        theScript.chai->add(fun(&::main_show_outpayment), "main_show_outpayment");
+        theScript.chai->add(fun(&::main_show_payment), "main_show_payment");
+        theScript.chai->add(fun(&::main_show_payments_inbox), "main_show_payments_inbox");
+        theScript.chai->add(fun(&::main_show_purse), "main_show_purse");
+        theScript.chai->add(fun(&::main_show_records), "main_show_records");
+        theScript.chai->add(fun(&::main_sign_contract), "main_sign_contract");
+        theScript.chai->add(fun(&::main_stat), "main_stat");
+        theScript.chai->add(fun(&::main_stat_acct), "main_stat_acct");
+        theScript.chai->add(fun(&::main_transfer), "main_transfer");
+        theScript.chai->add(fun(&::main_trigger_clause), "main_trigger_clause");
+        theScript.chai->add(fun(&::main_verify_last_receipt), "main_verify_last_receipt");
+        theScript.chai->add(fun(&::main_verify_signature), "main_verify_signature");
+        theScript.chai->add(fun(&::main_withdraw_cash), "main_withdraw_cash");
+        theScript.chai->add(fun(&::main_withdraw_voucher), "main_withdraw_voucher");
+        theScript.chai->add(fun(&::main_write_cheque), "main_write_cheque");
+        theScript.chai->add(fun(&::main_write_invoice), "main_write_invoice");
+        theScript.chai->add(fun(&::purse_get_indices_or_amount), "purse_get_indices_or_amount");
+        theScript.chai->add(fun(&::show_mail_message), "show_mail_message");
+        theScript.chai->add(fun(&::show_outmail_message), "show_outmail_message");
+        theScript.chai->add(fun(&::show_outpayment), "show_outpayment");
+        theScript.chai->add(fun(&::show_unconfirmed_parties), "show_unconfirmed_parties");
+        theScript.chai->add(fun(&::stat_accounts), "stat_accounts");
+        theScript.chai->add(fun(&::stat_assets), "stat_assets");
+        theScript.chai->add(fun(&::stat_basket_accounts), "stat_basket_accounts");
+        theScript.chai->add(fun(&::stat_nyms), "stat_nyms");
+        theScript.chai->add(fun(&::stat_partyaccount), "stat_partyaccount");
+        theScript.chai->add(fun(&::stat_partyaccount_index), "stat_partyaccount_index");
+        theScript.chai->add(fun(&::stat_partyaccounts), "stat_partyaccounts");
+        theScript.chai->add(fun(&::stat_partyagent), "stat_partyagent");
+        theScript.chai->add(fun(&::stat_partyagent_index), "stat_partyagent_index");
+        theScript.chai->add(fun(&::stat_partyagents), "stat_partyagents");
+        theScript.chai->add(fun(&::stat_servers), "stat_servers");
+        theScript.chai->add(fun(&::withdraw_and_send_cash), "withdraw_and_send_cash");
+
+        return true; // Success (hopefully!)
+    }
+}
+
 #endif // OT_USE_SCRIPT_CHAI
 
 // ********************************************************************
@@ -2329,7 +2511,7 @@ bool OT_ME::Register_Headers_With_Script_Chai(OTScriptChai & theScript)
                 theScript.chai->use(str_UseFile1);
                 theScript.chai->use(str_UseFile2);
                 theScript.chai->use(str_UseFile3);
-                theScript.chai->use(str_UseFile4);
+                Register_Commands_With_Script_Chai(theScript);
             }
             catch (const chaiscript::exception::eval_error &ee)
             {

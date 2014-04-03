@@ -642,14 +642,7 @@ bool OT_ME::retrieve_account( const std::string  & SERVER_ID,
 bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
     const std::string  & NYM_ID)
 {
-    const bool bForceDownload = true;
-    OTString   strRaw;
-    strRaw.Format("{ var bResult = details_refresh_nym(\"%s\", \"%s\", %s); }",
-        SERVER_ID.c_str(), NYM_ID.c_str(), bForceDownload ? "true" : "false");
-    std::string str_Code = strRaw.Get();
-    // Execute the script here.
-    //
-    return ExecuteScript_ReturnBool(str_Code, __FUNCTION__);
+    return retrieve_nym(SERVER_ID, NYM_ID, true);
 }
 
 
@@ -658,7 +651,7 @@ bool OT_ME::retrieve_nym(const std::string  & SERVER_ID,
     const bool      bForceDownload)
 {
     OTString strRaw;
-    strRaw.Format("{ var bResult = details_refresh_nym(\"%s\", \"%s\", %s); }",
+    strRaw.Format("{ var bWasSent = OTBool(false); var bResult = details_refresh_nym(\"%s\", \"%s\", bWasSent, %s); }",
         SERVER_ID.c_str(), NYM_ID.c_str(), bForceDownload ? "true" : "false");
     std::string str_Code = strRaw.Get();
     // Execute the script here.
