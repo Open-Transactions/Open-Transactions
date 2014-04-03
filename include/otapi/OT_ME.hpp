@@ -1,4 +1,4 @@
-/************************************************************************************
+/***********************************************************
 
 OT_ME.h  aka "OT Made Easy" -- used for sending requests to the server.
 
@@ -139,26 +139,11 @@ This file is used like OTAPI.h
 #ifndef __OT_ME_HPP__
 #define __OT_ME_HPP__
 
-#include "OTCommon.hpp"
+#include <string>
 
-#ifndef IMPORT
-#define IMPORT
-#ifndef IMPORT_SET
-#define IMPORT_SET
-#endif
-#endif
+#include "OTCommon.hpp"
 
 #include "OTScript.hpp"
-
-#ifdef IMPORT_SET
-#undef IMPORT_SET
-#ifdef IMPORT
-#undef IMPORT
-#include "OTCommon.hpp"
-#endif
-#endif
-
-#include <string>
 
 // -------------------------------------------------------
 
@@ -177,11 +162,11 @@ class OTScriptChai;
 class OT_ME
 {
 private:
-    static OT_ME * pMe;
-    OT_ME * pPrev;
-
+    static OT_ME * s_pMe;
+    // ----------------------------
+    OT_ME                * r_pPrev; // For reference only. Do not delete.
     _SharedPtr<OTScript> m_pScript;
-
+    // --------------------------------------
     bool SetupScriptObject();
     bool HaveWorkingScript();
 
@@ -190,29 +175,22 @@ private:
     bool Register_API_With_Script();
     bool Register_Headers_With_Script();
 
+    // --------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI
-    //
     // For ChaiScript:
     //
     bool Register_OTDB_With_Script_Chai    (OTScriptChai & theScript);
     bool Register_CLI_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_API_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_Headers_With_Script_Chai (OTScriptChai & theScript);
-#endif
-
-    // For Lua (etc.)
+    // --------------------------------------
+//#elif // OT_USE_SCRIPT_LUA
     //  bool Register_OTDB_With_Script_Lua     (OTScriptLua & theScript);
     //  bool Register_CLI_With_Script_Lua      (OTScriptLua & theScript);
     //  bool Register_API_With_Script_Lua      (OTScriptLua & theScript);
     //  bool Register_Headers_With_Script_Lua  (OTScriptLua & theScript);
+#endif
     // --------------------------------------
-
-    // Note: in the long run, we will have C++ implementations
-    // for all the functions in OT_ME. But in the meantime, since
-    // we already have script implementations, we'll make a C++
-    // wrapper for those, and that way the other languages such as
-    // Python, Ruby, D, etc will be able to access the high-level API
-    // via their swig wrappers of these functions.
 
 public:
     EXPORT OT_ME();
@@ -329,8 +307,7 @@ public:
         const std::string  & PAYMENT_TYPE);
 
     EXPORT  std::string load_public_encryption_key(const std::string  & NYM_ID);	// from local storage.
-
-    EXPORT  std::string load_public_signing_key(const std::string  & NYM_ID);	// from local storage.
+    EXPORT  std::string load_public_signing_key   (const std::string & NYM_ID);	// from local storage.
 
     EXPORT  std::string load_or_retrieve_encrypt_key(
         const std::string & SERVER_ID,
@@ -563,19 +540,15 @@ public:
         const std::string & ACCOUNT_ID,
         const std::string & str_Attempt,
         const std::string & str_Response);
-
+    // --------------------------------------------------------------------------------
     EXPORT  std::string   ExecuteScript_ReturnString(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
-
-    EXPORT  bool          ExecuteScript_ReturnBool(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
-
-    EXPORT  int           ExecuteScript_ReturnInt(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
-
-    EXPORT  void          ExecuteScript_ReturnVoid(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
-
+    EXPORT  bool          ExecuteScript_ReturnBool  (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
+    EXPORT  int           ExecuteScript_ReturnInt   (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
+    EXPORT  void          ExecuteScript_ReturnVoid  (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
+    // --------------------------------------------------------------------------------
     EXPORT  void          AddVariable(const std::string & str_var_name, OTVariable & theVar);
-
     EXPORT  OTVariable *  FindVariable(const std::string & str_var_name);
-
+    // --------------------------------------------------------------------------------
     EXPORT static OTVariable *  FindVariable2(const std::string & str_var_name);
 };
 

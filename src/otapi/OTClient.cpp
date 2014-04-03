@@ -134,10 +134,6 @@
 
 #include <OTClient.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
@@ -178,12 +174,12 @@ int32_t OTClient::CalcReturnVal(const int64_t & lRequestNumber)
 
 void OTClient::ProcessMessageOut(char *buf, int * pnExpectReply)
 {
-    //	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
-    //				 buf);
-    //
-    //	const OTString strMessage(buf);
-    //	OTMessage tempMsg;
-    //	tempMsg.LoadContractFromString(strMessage);
+//	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
+//				 buf);
+//
+//	const OTString strMessage(buf);
+//	OTMessage tempMsg;
+//	tempMsg.LoadContractFromString(strMessage);
 
     m_pConnection->ProcessMessageOut(buf, pnExpectReply);
 
@@ -196,9 +192,9 @@ void OTClient::ProcessMessageOut(char *buf, int * pnExpectReply)
 void OTClient::ProcessMessageOut(OTMessage & theMessage)
 {
     const OTString strMessage(theMessage);
-    //	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
-    //				  strMessage.Get());
-    //
+//	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
+//				  strMessage.Get());
+//
     // ----------------------------------------
 
     // WHAT DOES THIS MEAN?
@@ -274,11 +270,11 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
     }
     // ------------------------------------------------------
     OTPseudonym * pNym	= &theNym;
-    //	OTPseudonym * pNym	= theConnection.GetNym();
+//	OTPseudonym * pNym	= theConnection.GetNym();
 
-    //	OTIdentifier theServerID;
-    //	theConnection.GetServerID(theServerID);
-    //
+//	OTIdentifier theServerID;
+//	theConnection.GetServerID(theServerID);
+//
     const OTIdentifier theNymID(*pNym);
     const OTString strServerID(theServerID), strNymID(theNymID);
 

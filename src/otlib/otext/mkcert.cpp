@@ -4,7 +4,7 @@
 
 #include <stdafx.hpp>
 
-#include "OTString.hpp"
+#include <OTString.hpp>
 
 // -----------------------------------------------
 

@@ -734,7 +734,7 @@ OT_MADE_EASY_OT string MadeEasy::activate_smart_contract(const string & SERVER_I
 {
     OTAPI_Func ot_Msg;
 
-    //      int32_t OTAPI_Wrap::activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
+//  int32_t OTAPI_Wrap::activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
 
     OTAPI_Func theRequest(ACTIVATE_SMART_CONTRACT, SERVER_ID, NYM_ID, ACCT_ID, AGENT_NAME, THE_SMART_CONTRACT);
     string strResponse = theRequest.SendTransaction(theRequest, "ACTIVATE_SMART_CONTRACT");
@@ -756,7 +756,7 @@ OT_MADE_EASY_OT string MadeEasy::deposit_payment_plan(const string & SERVER_ID, 
     //
     string strSenderAcctID = OTAPI_Wrap::Instrmnt_GetSenderAcctID(THE_PAYMENT_PLAN);
 
-    //      int32_t OTAPI_Wrap::depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
+//  int32_t OTAPI_Wrap::depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
     OTAPI_Func theRequest(DEPOSIT_PAYMENT_PLAN, SERVER_ID, NYM_ID, strSenderAcctID, THE_PAYMENT_PLAN);
     string strResponse = theRequest.SendTransaction(theRequest, "DEPOSIT_PAYMENT_PLAN");
     return strResponse;
@@ -776,7 +776,7 @@ OT_MADE_EASY_OT string MadeEasy::cancel_payment_plan(const string & SERVER_ID, c
     //
     string strRecipientAcctID = OTAPI_Wrap::Instrmnt_GetRecipientAcctID(THE_PAYMENT_PLAN);
 
-    //      OTAPI_Wrap::Output(0, "\n\n DEBUGGING: NYM_ID: "+NYM_ID+" strRecipientAcctID: "+strRecipientAcctID+" \n\n")
+//  OTAPI_Wrap::Output(0, "\n\n DEBUGGING: NYM_ID: "+NYM_ID+" strRecipientAcctID: "+strRecipientAcctID+" \n\n")
 
     // NOTE: Normally the SENDER (PAYER) is the one who deposits a payment plan. But
     // in this case, the RECIPIENT (PAYEE) deposits it -- which means "Please cancel this plan."
@@ -803,11 +803,11 @@ OT_MADE_EASY_OT string MadeEasy::trigger_clause(const string & SERVER_ID, const 
     OTAPI_Func ot_Msg;
 
 
-    //      int32_t OTAPI_Wrap::triggerClause(const char * SERVER_ID,
-    //                               const char * USER_ID,
-    //                               const char * TRANSACTION_NUMBER,
-    //                               const char * CLAUSE_NAME,
-    //                               const char * STR_PARAM);
+//  int32_t OTAPI_Wrap::triggerClause(const char * SERVER_ID,
+//                                    const char * USER_ID,
+//                                    const char * TRANSACTION_NUMBER,
+//                                    const char * CLAUSE_NAME,
+//                                    const char * STR_PARAM);
 
     OTAPI_Func theRequest(TRIGGER_CLAUSE, SERVER_ID, NYM_ID, STR_TRANS_NUM, CLAUSE_NAME, STR_PARAM);
     string strResponse = theRequest.SendRequest(theRequest, "TRIGGER_CLAUSE");
@@ -933,12 +933,12 @@ OT_MADE_EASY_OT bool importCashPurse(const string & serverID, const string & nym
 {
     bool isSuccess = true;
 
-    //    OTAPI_Wrap::Output(0, "importCashPurse, serverID:" + serverID + " nymID:" + nymID + " assetID:" + assetID);
-    //    OTAPI_Wrap::Output(0, "importCashPurse, userInput purse:" + userInput);
+//  OTAPI_Wrap::Output(0, "importCashPurse, serverID:" + serverID + " nymID:" + nymID + " assetID:" + assetID);
+//  OTAPI_Wrap::Output(0, "importCashPurse, userInput purse:" + userInput);
 
     if (VerifyBoolVal(isPurse) && !isPurse) // it's not a purse. Must be a token, so let's create a purse for it.
     {
-        //      OTAPI_Wrap::Output(0, "importCashPurse, isPurse:" + isPurse)
+//      OTAPI_Wrap::Output(0, "importCashPurse, isPurse:" + isPurse)
 
         string purse = OTAPI_Wrap::CreatePurse(serverID, assetID, nymID, nymID);// nymID, nymID == owner, signer;
 
@@ -947,7 +947,7 @@ OT_MADE_EASY_OT bool importCashPurse(const string & serverID, const string & nym
             OTAPI_Wrap::Output(0, "importCashPurse: Error: OT_API_CreatePurse returned null\n");
             return false;
         }
-        //      OTAPI_Wrap::Output(0, "importCashPurse, OT_API_CreatePurse return :" + purse);
+//      OTAPI_Wrap::Output(0, "importCashPurse, OT_API_CreatePurse return :" + purse);
 
         string newPurse = OTAPI_Wrap::Purse_Push(serverID, assetID, nymID, nymID, purse, userInput);
         if (!VerifyStringVal(newPurse))
@@ -955,11 +955,11 @@ OT_MADE_EASY_OT bool importCashPurse(const string & serverID, const string & nym
             OTAPI_Wrap::Output(0, "importCashPurse: Error: OT_API_Purse_Push returned null\n");
             return false;
         }
-        //      OTAPI_Wrap::Output(0, "importCashPurse, OT_API_Purse_Push returned :" + newPurse);
+//      OTAPI_Wrap::Output(0, "importCashPurse, OT_API_Purse_Push returned :" + newPurse);
         userInput = newPurse;
     }
-    //    OTAPI_Wrap::Output(0, "importCashPurse, Before calling OT_API_Wallet_ImportPurse, final purse:" + userInput);
-    //    OTAPI_Wrap::Output(0, "importCashPurse just before api , serverID:" + serverID + " nymID:" + nymID + " assetID:" + assetID);
+//  OTAPI_Wrap::Output(0, "importCashPurse, Before calling OT_API_Wallet_ImportPurse, final purse:" + userInput);
+//  OTAPI_Wrap::Output(0, "importCashPurse just before api , serverID:" + serverID + " nymID:" + nymID + " assetID:" + assetID);
 
     // Here we have either a purse that was passed in, or a purse that we created so
     // we could add the token that was passed in. Either way, we have a purse now, so
@@ -1160,7 +1160,7 @@ OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSen
     //
     else
     {
-        //      OTAPI_Wrap::Output(0, "Tokens in Cash Purse being processed");
+//      OTAPI_Wrap::Output(0, "Tokens in Cash Purse being processed");
 
 
         // newPurseSelectedTokens is created (CORRECTLY) with recipientNymID as owner. (Or with a symmetric key / passphrase.)
@@ -1257,7 +1257,7 @@ OT_MADE_EASY_OT bool processCashPurse(string & newPurse, string & newPurseForSen
 
                 // Push exported version of token into new purse for recipient (for selected tokens.)
                 //
-                //              strSender    = bPWProtectOldPurse ? "" : nymID  // unused here. Not needed.
+//              strSender    = bPWProtectOldPurse ? "" : nymID  // unused here. Not needed.
                 strRecipient = bPWProtectNewPurse ? "" : recipientNymID;
 
                 string strPushedForRecipient = OTAPI_Wrap::Purse_Push(serverID, assetID, nymID, // server, asset, signer;
@@ -1489,8 +1489,8 @@ OT_MADE_EASY_OT int32_t depositCashPurse(const string & serverID, const string &
 //def exchangeCashPurse(String serverID, String assetID, String nymID, String oldPurse, ArrayList selectedTokens)
 OT_MADE_EASY_OT bool exchangeCashPurse(const string & serverID, const string & assetID, const string & nymID, string & oldPurse, const vector<string> & selectedTokens)
 {
-    //  Utility.setObj(null);
-    //  OTAPI_Wrap::Output(0, " Cash Purse exchange starts, selectedTokens:" + selectedTokens + "\n")
+//  Utility.setObj(null);
+//  OTAPI_Wrap::Output(0, " Cash Purse exchange starts, selectedTokens:" + selectedTokens + "\n")
 
     string newPurse;
     string newPurseForSender = "";// Probably unused in this case.;
@@ -1515,13 +1515,13 @@ OT_MADE_EASY_OT bool exchangeCashPurse(const string & serverID, const string & a
         OTAPI_Wrap::Output(0, "Since failure in exchangeCashPurse, OT_API_Wallet_ImportPurse called, status of import: " + string(importStatus ? "true" : "false") + "\n");
         if (!importStatus)
         {
-            //          Utility.setObj(newPurse)
+//          Utility.setObj(newPurse)
         }
 
         return false;
     }
 
-    //  OTAPI_Wrap::Output(0, "exchangeCashPurse ends, status: success.\n")
+//  OTAPI_Wrap::Output(0, "exchangeCashPurse ends, status: success.\n")
 
     return true;
 }

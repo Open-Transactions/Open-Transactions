@@ -138,10 +138,6 @@ This is a Direct sub-set of OTAPI_Wrap
 
 #include <OTAPI.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTAssert.hpp>
 #include <OTLog.hpp>
 

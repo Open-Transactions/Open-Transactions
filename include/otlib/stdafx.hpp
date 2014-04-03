@@ -31,7 +31,6 @@
 
 #endif
 // ------------------------------------
-
 #if defined(ANDROID) || defined(OT_KEYRING_IOS)
 
 // DON'T use ChaiScript on mobile devices
@@ -46,7 +45,6 @@
 #endif
 
 #endif
-
 // ------------------------------------
 
 #ifdef OT_USE_CHAI_STDLIB

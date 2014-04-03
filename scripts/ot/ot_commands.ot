@@ -10462,7 +10462,6 @@ def tokenize(str, delimiters, trimEmpty)
 }
 
 
-
 // Show the active cron item IDs, or the details of one by ID.
 //
 def main_show_active()
