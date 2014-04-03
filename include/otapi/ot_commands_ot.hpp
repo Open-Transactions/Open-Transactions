@@ -16,12 +16,9 @@ using std::string;
 using std::vector;
 
 
-EXPORT OT_COMMANDS_OT int32_t accept_from_paymentbox(const string & strMyAcctID, const string & strIndices);
 EXPORT OT_COMMANDS_OT int32_t accept_from_paymentbox(const string & strMyAcctID, const string & strIndices, const string & strPaymentType);
 EXPORT OT_COMMANDS_OT int32_t accept_inbox_items(const string & strMyAcctID, const int32_t nItemType, const string & strIndices);
-EXPORT OT_COMMANDS_OT int32_t details_accept_invoices(const string & strMyAcctID); // Use this function when you want to loop through all accounts and accept all invoices for them.
 EXPORT OT_COMMANDS_OT int32_t details_accept_invoices(const string & strMyAcctID, const string & strIndices);
-EXPORT OT_COMMANDS_OT int32_t details_accept_payments(const string & strMyAcctID);
 EXPORT OT_COMMANDS_OT int32_t details_accept_payments(const string & strMyAcctID, const string & strIndices);
 EXPORT OT_COMMANDS_OT int32_t details_account_balance(const string & strID);
 EXPORT OT_COMMANDS_OT int32_t details_cancel_outgoing(const string & strMyNym, const string & strMyAcct, const string & strIndices);
@@ -52,20 +49,16 @@ EXPORT OT_COMMANDS_OT int32_t details_new_basket(const string & strServer, const
 EXPORT OT_COMMANDS_OT int32_t details_nym_stat(const string & strID);
 EXPORT OT_COMMANDS_OT int32_t details_pay_dividend(const string & strAmount, const string & strMemo);
 EXPORT OT_COMMANDS_OT int32_t details_propose_plan(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const string & strHisNymID, const string & strHisAcctID, const string & strDates, const string & strConsideration, const string & strInitialPayment, const string & strPaymentPlan, const string & strExpiry);
-EXPORT OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID);
-EXPORT OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, const bool bForceDownload);
 EXPORT OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload);
 EXPORT OT_COMMANDS_OT int32_t details_send_cash(string & strResponse, const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, const string & strMyAcctID, string & strHisNymID, const string & strMemo, const string & strAmount, string & strIndices, const bool bPasswordProtected);
 EXPORT OT_COMMANDS_OT int32_t details_send_transfer(const string & strMyAcctID, const string & strHisAcctID, const string & strAmount, const string & strNote);
 EXPORT OT_COMMANDS_OT int32_t details_show_basket();
 EXPORT OT_COMMANDS_OT bool details_show_credential(const string & strMyNymID, const string & strCredID);
 EXPORT OT_COMMANDS_OT int32_t details_show_credentials(const string & strMyNymID);
-EXPORT OT_COMMANDS_OT int32_t details_show_expired(const string & strServerID, const string & strMyNymID, const int32_t nIndex);
 EXPORT OT_COMMANDS_OT int32_t details_show_expired(const string & strServerID, const string & strMyNymID, const int32_t nIndex, const string & strExpiredBox);
 EXPORT OT_COMMANDS_OT int32_t details_show_expired_records(const string & strServerID, const string & strMyNymID);
 EXPORT OT_COMMANDS_OT int32_t details_show_market_offers(const string & strServerID, const string & strMarketID);
 EXPORT OT_COMMANDS_OT int32_t details_show_nym_offers(const string & strServerID, const string & strNymID);
-EXPORT OT_COMMANDS_OT int32_t details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int32_t nIndex);
 EXPORT OT_COMMANDS_OT int32_t details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int32_t nIndex, const string & strRecordBox);
 EXPORT OT_COMMANDS_OT int32_t details_show_records(const string & strServerID, const string & strMyNymID, const string & strMyAcctID);
 EXPORT OT_COMMANDS_OT int32_t details_stat_account(const string & strID);
@@ -76,8 +69,6 @@ EXPORT OT_COMMANDS_OT int32_t details_write_cheque(string & strCheque, const boo
 EXPORT OT_COMMANDS_OT int32_t download_acct_files();
 EXPORT OT_COMMANDS_OT string find_masterID_for_subcred(const string & strMyNymID, const string & strInputID);
 EXPORT OT_COMMANDS_OT string find_revokedID_for_subcred(const string & strMyNymID, const string & strInputID);
-EXPORT OT_COMMANDS_OT int32_t handle_payment_index(const string & strMyAcctID, const int32_t nIndex); // (If nIndex is -1, then it will ask user to paste an invoice.);
-EXPORT OT_COMMANDS_OT int32_t handle_payment_index(const string & strMyAcctID, const int32_t nIndex, const string & strPaymentType); // (If nIndex is -1, then it will ask user to paste an invoice.);
 EXPORT OT_COMMANDS_OT int32_t handle_payment_index(const string & strMyAcctID, const int32_t nIndex, const string & strPaymentType, const string & strInbox); // (If nIndex is -1, then it will ask user to paste an invoice.);
 EXPORT OT_COMMANDS_OT int32_t impl_show_market_offers(string & strMarket);
 EXPORT OT_COMMANDS_OT OTDB::MarketList * loadMarketList(const string & strerverID);
@@ -183,14 +174,10 @@ EXPORT OT_COMMANDS_OT int32_t main_write_invoice();
 EXPORT OT_COMMANDS_OT bool purse_get_indices_or_amount(const string & strServerID, const string & strAssetTypeID, const string & strMyNymID, int64_t & lAmount, string & strIndices); // If strIndices is input, lAmount is output. (And vice-versa.);
 EXPORT OT_COMMANDS_OT int32_t show_mail_message(const string & strMyNymID, const int32_t nIndex, const bool bShowContents);
 EXPORT OT_COMMANDS_OT int32_t show_outmail_message(const string & strMyNymID, const int32_t nIndex, const bool bShowContents);
-EXPORT OT_COMMANDS_OT bool show_outpayment(const string & strMyNym, const int32_t nIndex);
 EXPORT OT_COMMANDS_OT bool show_outpayment(const string & strMyNym, const int32_t nIndex, const bool bShowInFull);
-EXPORT OT_COMMANDS_OT bool show_unconfirmed_parties(const string & strSmartContract);
 EXPORT OT_COMMANDS_OT bool show_unconfirmed_parties(const string & strSmartContract, int32_t & nPartyCount);
 EXPORT OT_COMMANDS_OT int32_t stat_accounts();
 EXPORT OT_COMMANDS_OT int32_t stat_assets();
-EXPORT OT_COMMANDS_OT int32_t stat_basket_accounts();
-EXPORT OT_COMMANDS_OT int32_t stat_basket_accounts(const string & strServer, const string & strNym);
 EXPORT OT_COMMANDS_OT int32_t stat_basket_accounts(const string & strServer, const string & strNym, const bool bFilter, const string & strBasketType);
 EXPORT OT_COMMANDS_OT int32_t stat_nyms();
 EXPORT OT_COMMANDS_OT bool stat_partyaccount(const string & strSmartContract, const string & strPartyName, const string & strAcctName, const int32_t nCurrentAccount);

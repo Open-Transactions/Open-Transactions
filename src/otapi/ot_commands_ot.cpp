@@ -665,7 +665,7 @@ OT_COMMANDS_OT int32_t main_exchange_basket()
 
             OTAPI_Wrap::Output(0, "\nHere is a list of the accounts whose asset type IS a basket currency:\n");
 
-            stat_basket_accounts();
+            stat_basket_accounts("", "", false, "");
 
             OTAPI_Wrap::Output(0, "\nMyAcct is not a basket currency!\nPlease use --myacct to specify an account whose asset type IS a basket currency.\n");
         }
@@ -679,26 +679,12 @@ OT_COMMANDS_OT int32_t main_exchange_basket()
     {
         OTAPI_Wrap::Output(0, "You must provide an account ID, and that account must have a basket\ncurrency for its asset type. Use --myacct and choose from these basket accounts:\n");
 
-        stat_basket_accounts();
+        stat_basket_accounts("", "", false, "");
     }
 
     return -1;
 }
 
-OT_COMMANDS_OT int32_t stat_basket_accounts()
-{
-    string strServer = "";
-    string strNym = "";
-    return stat_basket_accounts(strServer, strNym);
-}
-
-OT_COMMANDS_OT int32_t stat_basket_accounts(const string & strServer, const string & strNym)
-{
-    bool bFilter = false; //unused in this case
-    string strBasketType = "";
-
-    return stat_basket_accounts(strServer, strNym, bFilter, strBasketType); // This will ONLY show accounts that are basket currencies.
-}
 
 // Used by exchange_basket for displaying certain types of accounts.
 //
@@ -1776,13 +1762,6 @@ OT_COMMANDS_OT bool stat_partyaccounts(const string & strSmartContract, const st
     }
 
     return true;
-}
-
-
-OT_COMMANDS_OT bool show_unconfirmed_parties(const string & strSmartContract)
-{
-    int32_t nPartyCount = 0;
-    return show_unconfirmed_parties(strSmartContract, nPartyCount);
 }
 
 
@@ -6452,14 +6431,6 @@ OT_COMMANDS_OT int32_t main_register_nym()
 }
 
 
-OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, const bool bForceDownload)
-{
-    bool bWasMsgSent = false;
-
-    return details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload);
-}
-
-
 OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID, bool & bWasMsgSent, const bool bForceDownload)
 {
     MadeEasy madeEasy;
@@ -6501,13 +6472,6 @@ OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string
     return bReturnVal;
 }
 
-OT_COMMANDS_OT bool details_refresh_nym(const string & strServerID, const string & strMyNymID)
-{
-    bool bForceDownload = true;
-
-    return details_refresh_nym(strServerID, strMyNymID, bForceDownload);
-}
-
 
 OT_COMMANDS_OT int32_t main_refresh_nym()
 {
@@ -6517,7 +6481,8 @@ OT_COMMANDS_OT int32_t main_refresh_nym()
 
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {
-        bool bReturnVal = details_refresh_nym(Server, MyNym);
+        bool bWasMsgSent = false;
+        bool bReturnVal = details_refresh_nym(Server, MyNym, bWasMsgSent, true);
 
         OTAPI_Wrap::Output(0, "\n"); //stderr
 
@@ -9527,24 +9492,6 @@ OT_COMMANDS_OT int32_t main_new_symmetric_key()
 }
 
 
-// For a certain index in the payments inbox, this function will deposit the cheque, or
-// deposit the purse, or pay the invoice, etc (whatever is at that index.)
-// Use a strPaymentType of "ANY" to handle any payment type. Otherwise, pass the payment
-// type itself to only succeed for that type. (If only paying invoices, then only handle it
-// if it's actually an invoice.)
-//
-OT_COMMANDS_OT int32_t handle_payment_index(const string & strMyAcctID, const int32_t nIndex) // (If nIndex is -1, then it will ask user to paste an invoice.)
-{
-    string strPaymentType = "ANY";
-    return handle_payment_index(strMyAcctID, nIndex, strPaymentType);
-}
-
-OT_COMMANDS_OT int32_t handle_payment_index(const string & strMyAcctID, const int32_t nIndex, const string & strPaymentType) // (If nIndex is -1, then it will ask user to paste an invoice.)
-{
-    string strInbox = "";
-    return handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox);
-}
-
 //case ("CHEQUE")
 //case ("VOUCHER")
 //case ("INVOICE")
@@ -9783,13 +9730,6 @@ EXPORT static bool NumList_VerifyAll (const std::string & strNumList, const std:
 EXPORT static int32_t NumList_Count (const std::string & strNumList);
 */
 
-// COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
-
-OT_COMMANDS_OT int32_t accept_from_paymentbox(const string & strMyAcctID, const string & strIndices)
-{
-    string strPaymentType = "ANY";
-    return accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType);
-}
 
 // COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
 OT_COMMANDS_OT int32_t accept_from_paymentbox(const string & strMyAcctID, const string & strIndices, const string & strPaymentType)
@@ -9876,12 +9816,8 @@ OT_COMMANDS_OT int32_t accept_from_paymentbox(const string & strMyAcctID, const 
     return 1;
 }
 
-OT_COMMANDS_OT int32_t details_accept_invoices(const string & strMyAcctID) // Use this function when you want to loop through all accounts and accept all invoices for them.
-{
-    string strIndices = "";
-    return details_accept_invoices(strMyAcctID, strIndices);
-}
 
+// strIndices == "" when you want to loop through all accounts and accept all invoices for them.
 OT_COMMANDS_OT int32_t details_accept_invoices(const string & strMyAcctID, const string & strIndices)
 {
     return accept_from_paymentbox(strMyAcctID, strIndices, "INVOICE");
@@ -9915,14 +9851,7 @@ OT_COMMANDS_OT int32_t main_accept_invoices()
 }
 
 
-// Accepts all incoming "payments" from the payments inbox. (NOT Invoices.)
-//
-OT_COMMANDS_OT int32_t details_accept_payments(const string & strMyAcctID)
-{
-    string strIndices = "";
-    return details_accept_payments(strMyAcctID, strIndices);
-}
-
+// strIndices == "" to accept all incoming "payments" from the payments inbox. (NOT Invoices.)
 OT_COMMANDS_OT int32_t details_accept_payments(const string & strMyAcctID, const string & strIndices)
 {
 
@@ -10015,7 +9944,7 @@ OT_COMMANDS_OT int32_t main_payinvoice()
     OTAPI_Wrap::Output(0, "\n\n"); // stderr
     // ***************************************************************
     //
-    int32_t nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE");
+    int32_t nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE", "");
 
     if (1 == nPaidInvoice) // Success!  (Therefore, remove from payments inbox, and move to record box.)
     {
@@ -10632,26 +10561,6 @@ OT_COMMANDS_OT int32_t main_show_payments_inbox()
 }
 
 
-// Don't use this unless you really only need one record.
-// Instead, use the function below it. (Otherwise you'll be
-// loading the record box from storage for EACH record, instead
-// of loading it once for ALL the records in your loop.)
-//
-OT_COMMANDS_OT int32_t details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int32_t nIndex)
-{
-    string strRecordBox = OTAPI_Wrap::LoadRecordBox(strServerID, strMyNymID, strMyAcctID); // Returns NULL, or a record box.
-
-    if (!VerifyStringVal(strRecordBox))
-    {
-        OTAPI_Wrap::Output(0, "\n\n details_show_record: OT_API_LoadRecordBox: Failed.\n\n");
-        return false;
-    }
-
-    // Success!
-    return details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordBox);
-}
-
-
 OT_COMMANDS_OT int32_t details_show_record(const string & strServerID, const string & strMyNymID, const string & strMyAcctID, const int32_t nIndex, const string & strRecordBox)
 {
     if (!VerifyStringVal(strRecordBox))
@@ -10985,26 +10894,6 @@ OT_COMMANDS_OT int32_t main_clear_expired()
     }
 
     return -1;
-}
-
-
-// Don't use this unless you really only need one expired record.
-// Instead, use the function below it. (Otherwise you'll be
-// loading the expired box from storage for EACH record, instead
-// of loading it once for ALL the expired records in your loop.)
-//
-OT_COMMANDS_OT int32_t details_show_expired(const string & strServerID, const string & strMyNymID, const int32_t nIndex)
-{
-    string strExpiredBox = OTAPI_Wrap::LoadExpiredBox(strServerID, strMyNymID); // Returns NULL, or an expired box.
-
-    if (!VerifyStringVal(strExpiredBox))
-    {
-        OTAPI_Wrap::Output(0, "\n\n details_show_expired: OT_API_LoadExpiredBox: Failed.\n\n");
-        return false;
-    }
-
-    // Success!
-    return details_show_expired(strServerID, strMyNymID, nIndex, strExpiredBox);
 }
 
 
@@ -11893,13 +11782,6 @@ OT_COMMANDS_OT bool show_outpayment(const string & strMyNym, const int32_t nInde
     }
 
     return true;
-}
-
-OT_COMMANDS_OT bool show_outpayment(const string & strMyNym, const int32_t nIndex)
-{
-    bool bShowInFull = true;
-
-    return show_outpayment(strMyNym, nIndex, bShowInFull);
 }
 
 

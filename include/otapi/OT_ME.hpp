@@ -183,6 +183,7 @@ private:
     bool Register_CLI_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_API_With_Script_Chai     (OTScriptChai & theScript);
     bool Register_Headers_With_Script_Chai (OTScriptChai & theScript);
+    bool Register_Commands_With_Script_Chai(OTScriptChai & theScript);
     // --------------------------------------
 //#elif // OT_USE_SCRIPT_LUA
     //  bool Register_OTDB_With_Script_Lua     (OTScriptLua & theScript);
