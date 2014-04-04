@@ -159,6 +159,7 @@
 #define __OTAPI_HPP__
 
 #include "OTCommon.hpp"
+#include "OTAPI_Exec.hpp"
 
 #include <string>
 
