@@ -619,6 +619,10 @@ namespace OTDB
 		virtual bool Exists(std::string strFolder,
 			std::string oneStr="", std::string twoStr="", std::string threeStr="")=0;
 
+        virtual long FormPathString(std::string & strOutput,
+                                    std::string   strFolder,   std::string oneStr="",
+                                    std::string   twoStr="",   std::string threeStr="")=0;
+
 		// ********************************************************
 
 		virtual ~Storage() { if (NULL != m_pPacker) delete m_pPacker; m_pPacker = NULL; }
@@ -717,6 +721,9 @@ namespace OTDB
 	EXPORT	bool Exists(std::string strFolder,
 		std::string oneStr="", std::string twoStr="", std::string threeStr="");
 
+    EXPORT  long FormPathString(std::string & strOutput,
+                                std::string   strFolder,   std::string oneStr="",
+                                std::string   twoStr="",   std::string threeStr="");
 	// --------
 	// Store/Retrieve a string.
 	//
@@ -1580,8 +1587,9 @@ namespace OTDB
 		virtual bool Exists(std::string strFolder,
 			std::string oneStr="", std::string twoStr="", std::string threeStr="");
 
-		//virtual	bool GetWalletFilePath(OTString & strWalletFilePath);
-
+        virtual long FormPathString(std::string & strOutput,
+                                    std::string   strFolder,   std::string oneStr="",
+                                    std::string   twoStr="",   std::string threeStr="");
 
 		// **********************************************************
 
