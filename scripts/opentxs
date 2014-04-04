@@ -405,15 +405,15 @@ def main_opentxs()
                          "showbasket":main_show_basket,         // show basket currencies available in the wallet.
                          "showoffers":main_show_market_offers,  // show all offers on a particular server and market.
                          "showmyoffers":main_show_nym_offers,   // show mynym's offers on a particular server and market.
-                         "shownyms":stat_nyms,                  // show the nyms in the wallet.
+                         "shownyms":main_stat_nyms,                  // show the nyms in the wallet.
                          "shownym":main_nym_stat,               // show the statistics for a specific nym.
                          "credentials":main_show_credentials,   // show the credentials for a specific nym.
                          "newcred":main_new_credential,         // create a new credential for a specific nym.
                          "showcred":main_show_credential,       // show a specific credential in detail.
                          "revokecred":main_revoke_credential,   // revoke one of a nym's credentials.
-                         "showaccounts":stat_accounts,          // show the asset accounts in the wallet.
-                         "showassets":stat_assets,              // show the currency contracts in the wallet.
-                         "showservers":stat_servers,            // show the server contracts in the wallet.
+                         "showaccounts":main_stat_accounts,          // show the asset accounts in the wallet.
+                         "showassets":main_stat_assets,              // show the currency contracts in the wallet.
+                         "showservers":main_stat_servers,            // show the server contracts in the wallet.
                          "showincoming":main_show_incoming,     // show incoming payments for mynym+server and/or inbox for myacct.
                          "showoutgoing":main_show_outgoing,     // show outgoing payments for mynym and/or outbox for myacct.
                          "sign":main_sign_contract,             // sign a contract, releasing all other signatures first.

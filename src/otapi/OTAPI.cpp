@@ -140,10 +140,6 @@
 #include <OTAPI_Exec.hpp>
 #include <OpenTransactions.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTCredential.hpp>
@@ -229,6 +225,11 @@ OTAPI_Exec * OTAPI_Wrap::Exec()
 	}
 
 	return exec;
+}
+
+OTAPI_Exec * OTAPI_Wrap::It()
+{
+    return Exec(); 
 }
 
 bool OTAPI_Wrap::AppInit()

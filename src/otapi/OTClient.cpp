@@ -134,10 +134,6 @@
 
 #include <OTClient.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
@@ -1894,8 +1890,8 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
                                     // burning the transaction number, but leaving it open if success. Perfect.
                                     //
                                     if (false == pNym->RemoveIssuedNum(*pNym, strServerID,
-                                                                       lNymOpeningNumber,
-                                                                       true)) // bool bSave=true
+                                        lNymOpeningNumber,
+                                        true)) // bool bSave=true
                                     {
                                         OTLog::vError("%s: Error removing issued number from user nym (for a cron item.)\n",
                                             __FUNCTION__);
@@ -5007,15 +5003,15 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                             case OTItem::atAcceptFinalReceipt:
                                 OTLog::vOutput(2, "%s: Successfully removed finalReceipt "
-                                               "from Nymbox with opening num: %ld\n", __FUNCTION__,
-                                               pServerTransaction->GetReferenceToNum());
+                                    "from Nymbox with opening num: %ld\n", __FUNCTION__,
+                                    pServerTransaction->GetReferenceToNum());
 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n",
-                                                   pServerTransaction->GetReferenceToNum());
+                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                                    pServerTransaction->GetReferenceToNum());
                                 else
                                     OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
-                                                   pServerTransaction->GetReferenceToNum());
+                                    pServerTransaction->GetReferenceToNum());
 
                                 // BUG: RemoveIssuedNum shouldn't be here. In Nymbox, finalReceipt is only a notice, and I shoulda
                                 // removed the number the instant that I saw it. (Back when processing the Nymbox, before even

@@ -136,9 +136,6 @@
 
 #include "OTCommon.hpp"
 
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {
