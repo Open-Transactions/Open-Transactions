@@ -14,6 +14,10 @@
 
 #include "OTCommon.hpp"
 
+#include "ExportWrapper.h"
+#include "WinsockWrapper.h"
+#include "TR1_Wrapper.hpp"
+
 #include <string.h>     // strlen()
 
 

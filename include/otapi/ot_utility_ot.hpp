@@ -3,10 +3,9 @@
 
 #include "OTCommon.hpp"
 
-#include "OTStorage.hpp"
-
 #include <string>
 
+#include <OTStorage.hpp>
 
 #define OT_UTILITY_OT
 

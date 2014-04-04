@@ -132,6 +132,10 @@
 
 #include <stdafx.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTAPI.hpp>
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>
@@ -156,31 +160,10 @@
 #endif
 
 
-#include "OTScript.hpp"
-
-
-#include "OTAPI.hpp"
-#include "OT_ME.hpp"
-
 
 #define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
 #define CLIENT_PATH_DEFAULT	"client_data" //should get programmatically
 
-// ---------------------------------------------------------------------------
-
-// This global variable contains an OTWallet, an OTClient, etc. 
-// It's the C++ high-level interace to OT. 
-// Any client software will have an instance of this.
-//
-// Use OTAPI_Wrap::OTAPI()->
-//
-// Note: In the main function, before using OT, must call OT_API::InitOTAPI--(which
-// calls OTLog::OT_Init())--then after calling that, must call OTAPI_Wrap::OTAPI()->Init() in
-// the main function.
-
-// ---------------------------------------------------------------------------
-
-#define OT_OPTIONS_FILE_DEFAULT	"command-line-ot.opt"
 
 #define CA_FILE             "certs/special/ca.crt"
 #define KEY_FILE            "certs/special/client.pem"

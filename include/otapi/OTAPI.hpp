@@ -164,10 +164,6 @@
 
 class OT_API;
 class OTAPI_Exec;
-
-
-class OT_API;
-class OTAPI_Exec;
 class OTServerContract;
 class OTEnvelope;
 

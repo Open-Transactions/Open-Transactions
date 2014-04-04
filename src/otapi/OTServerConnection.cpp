@@ -137,6 +137,10 @@
 #include <OTClient.hpp>
 #include <OpenTransactions.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTLog.hpp>
 #include <OTEnvelope.hpp>
 #include <OTMessage.hpp>

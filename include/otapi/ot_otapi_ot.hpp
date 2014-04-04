@@ -4,13 +4,6 @@
 
 #include "OTCommon.hpp"
 
-
-
-#include "OTStorage.hpp"
-
-#include "OTAPI.hpp"
-#include "OT_ME.hpp"
-
 #include <string>
 #include <iostream>
 
@@ -18,6 +11,10 @@
 #include <cstdlib>
 #endif
 
+#include <OTStorage.hpp>
+
+#include <OTAPI.hpp>
+#include <OT_ME.hpp>
 
 #define OT_OTAPI_OT
 
