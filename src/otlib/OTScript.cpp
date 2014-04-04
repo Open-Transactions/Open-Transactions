@@ -209,7 +209,7 @@
 
 
 _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type)
-{  
+{
     // -------------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI
     // default or explicit chai script interpreter
@@ -269,7 +269,7 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
     if (script_type == "")
     {
         OTLog::Error("\n\n WARNING 2: script_type == noscript. \n\n");
-
+        
         _SharedPtr<OTScript> pNoScript(new OTScript);
         return pNoScript;
     }
@@ -282,7 +282,7 @@ _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
     return retVal;
 }
 
- 
+
 // ----------------------------------------------------------------------------
 
 
@@ -581,15 +581,15 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
                     if (OTVariable::Var_Constant == pVar->GetAccess()) // no pointer here, since it's constant.
                     {
                         this->chai->add_global_const(const_var(pVar->CopyValueString()), var_name.c_str());
-                        
-//                        OTLog::vError("\n\n\nOTSCRIPT DEBUGGING  (const var added to script): %s\n\n\n", str_Value.c_str());
+
+//                      OTLog::vError("\n\n\nOTSCRIPT DEBUGGING  (const var added to script): %s\n\n\n", str_Value.c_str());
                     }
                     else
                     {
                         this->chai->add(var(&str_Value), // passing ptr here so the script can modify this variable if it wants.
                                  var_name.c_str());
-                        
-//                        OTLog::vError("\n\n\nOTSCRIPT DEBUGGING var added to script: %s \n\n\n", str_Value.c_str());
+
+//                      OTLog::vError("\n\n\nOTSCRIPT DEBUGGING var added to script: %s \n\n\n", str_Value.c_str());
                     }
                 }
                     break;

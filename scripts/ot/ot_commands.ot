@@ -210,6 +210,8 @@ def main_new_basket()
 
 def details_new_basket(strServer, strNym)
 {
+    var madeEasy = OT_ME()
+    // --------------------------------------------------
     var nBasketCount = 2
     OT_API_Output(0, "How many different asset types will compose this new basket currency? [2]: ")
     
@@ -254,7 +256,7 @@ def details_new_basket(strServer, strNym)
     // --------------------------------------------------
     for (var ibasket = 0; ibasket < nBasketCount; ++ibasket)
     {
-        main_stat_assets()
+        stat_assets()
 
         OT_API_Output(0, "\nThis basket currency has "+nBasketCount.to_string()+" subcurrencies.\n")
         OT_API_Output(0, "So far you have defined "+ibasket.to_string()+" of them.\n")
@@ -310,7 +312,7 @@ def details_new_basket(strServer, strNym)
     OT_API_Output(0, "Here's the basket we're issuing:\n\n"+strBasket+"\n")
     
     // --------------------------
-    var strResponse	= OT_ME_issue_basket_currency(strServer, strNym, strBasket)
+    var strResponse	= madeEasy.issue_basket_currency(strServer, strNym, strBasket)
     var nStatus     = VerifyMessageSuccess(strResponse)
     
     // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -335,7 +337,7 @@ def details_new_basket(strServer, strNym)
             
             if (bGotNewID)
             {
-                var strRetrieved = OT_ME_retrieve_contract(strServer, strNym, strNewID)
+                var strRetrieved = madeEasy.retrieve_contract(strServer, strNym, strNewID)
                 strEnding  = ": "+strNewID
                 
                 if (1 == VerifyMessageSuccess(strRetrieved))
@@ -381,6 +383,8 @@ def details_exchange_basket(strServer, strNym, strAcct, strBasketType)
     // a NymID of strNym and an asset type of strBasketType. (These are already verified
     // in main_exchange_basket.)
     //
+    var madeEasy = OT_ME()    
+    // --------------------------------------------------
     var nMemberCount = OT_API_Basket_GetMemberCount(strBasketType)
     
     if (!VerifyIntVal(nMemberCount) || (nMemberCount < 2))
@@ -464,7 +468,7 @@ def details_exchange_basket(strServer, strNym, strAcct, strBasketType)
         return (-1)
     }
     // -----------------------------
-    if (!OT_ME_insure_enough_nums(20, strServer, strNym))
+    if (!madeEasy.insure_enough_nums(20, strServer, strNym))
     {
         return -1
     }
@@ -584,7 +588,7 @@ def details_exchange_basket(strServer, strNym, strAcct, strBasketType)
     // -------------------------------------------------------------------------
     // Send the exchange transaction...
     //
-    var strResponse = OT_ME_exchange_basket_currency(strServer, strNym, strBasketType, strBasket, strAcct, bExchangingIn)
+    var strResponse = madeEasy.exchange_basket_currency(strServer, strNym, strBasketType, strBasket, strAcct, bExchangingIn)
     var strAttempt  = "exchange_basket"
     // ***************************************************************
     
@@ -597,7 +601,7 @@ def details_exchange_basket(strServer, strNym, strAcct, strBasketType)
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(strServer, strNym, strAcct, true) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(strServer, strNym, strAcct, true) //bForceDownload defaults to false.
         
         OT_API_Output(0, "Server response ("+strAttempt+"): SUCCESS exchanging basket!\n")
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -655,7 +659,7 @@ def main_exchange_basket()
 
             OT_API_Output(0, "\nHere is a list of the accounts whose asset type IS a basket currency:\n")
             
-            stat_basket_accounts("", "", false, "")
+            stat_basket_accounts()
 
             OT_API_Output(0, "\nMyAcct is not a basket currency!\nPlease use --myacct to specify an account whose asset type IS a basket currency.\n")
         }
@@ -669,12 +673,26 @@ def main_exchange_basket()
     {
         OT_API_Output(0, "You must provide an account ID, and that account must have a basket\ncurrency for its asset type. Use --myacct and choose from these basket accounts:\n")
         
-        stat_basket_accounts("", "", false, "")
+        stat_basket_accounts()
     }
     
     -1
 }
 
+def stat_basket_accounts()
+{
+    var strServer = ""
+    var strNym    = ""
+    stat_basket_accounts(strServer, strNym)
+}
+
+def stat_basket_accounts(strServer, strNym)
+{
+    var bFilter = false //unused in this case
+    var strBasketType = ""
+    
+    stat_basket_accounts(strServer, strNym, bFilter, strBasketType) // This will ONLY show accounts that are basket currencies.
+}
 
 // Used by exchange_basket for displaying certain types of accounts.
 //
@@ -687,6 +705,11 @@ def main_exchange_basket()
 //
 def stat_basket_accounts(strServer, strNym, bFilter, strBasketType)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
     print("------------------------------------------------------------------")
     print(" ** ACCOUNTS :\n")
     
@@ -709,7 +732,7 @@ def stat_basket_accounts(strServer, strNym, bFilter, strBasketType)
                 {
                     if ((i > 0) && (i != (nAccountCount))) { print("-------------------------------------") }
                     
-                    var strStatAcct = OT_ME_stat_asset_account(strID)
+                    var strStatAcct = madeEasy.stat_asset_account(strID)
                     var bSuccess    = VerifyStringVal(strStatAcct)
                     if (bSuccess)
                     {
@@ -1002,7 +1025,8 @@ def details_cancel_outgoing(strMyNym, strMyAcct, strIndices)
                                 }
                                 else
                                 {
-                                    var strResponse = OT_ME_activate_smart_contract(strServer, strMyNym, strMyAcct, "acct_agent_name", strPaymentContents)
+                                    var madeEasy    = OT_ME()
+                                    var strResponse = madeEasy.activate_smart_contract(strServer, strMyNym, strMyAcct, "acct_agent_name", strPaymentContents)
                                     
                                     OT_API_Output(0, "Okay I just tried to activate the smart contract. (As a way of cancelling it.)\nSo while we expect this 'activation' to fail, it should have the desired effect of cancelling the smart contract and sending failure notices to all the parties.\n")
                                     
@@ -1038,7 +1062,8 @@ def details_cancel_outgoing(strMyNym, strMyAcct, strIndices)
                                 // propagated to the other party to the contract. (Which will
                                 // result in its automatic removal from the outpayment box.)
                                 
-                                var strResponse = OT_ME_cancel_payment_plan(strServer, strMyNym, strPaymentContents)
+                                var madeEasy    = OT_ME()
+                                var strResponse = madeEasy.cancel_payment_plan(strServer, strMyNym, strPaymentContents)
 
                                 OT_API_Output(0, "Okay I just tried to activate the payment plan. (As a way of cancelling it.)\nSo while we expect this 'activation' to fail, it should have the desired effect of cancelling the payment plan and sending failure notices to all the parties.\n")
                                 
@@ -1220,7 +1245,8 @@ def main_cancel_outgoing()
 
 def details_trigger_clause(strServerID, strMyNymID, strTransNum, strClause, strParam)
 {
-    var strResponse     = OT_ME_trigger_clause(strServerID, strMyNymID, strTransNum, strClause, strParam)
+    var madeEasy        = OT_ME()
+    var strResponse     = madeEasy.trigger_clause(strServerID, strMyNymID, strTransNum, strClause, strParam)
     var nMessageSuccess = VerifyMessageSuccess(strResponse)
     
     if (!VerifyIntVal(nMessageSuccess) || (1 != nMessageSuccess))
@@ -1771,6 +1797,15 @@ def stat_partyaccounts(strSmartContract, strPartyName, nDepth)
 }
 
 
+
+
+def show_unconfirmed_parties(strSmartContract)
+{
+    var nPartyCount = 0
+    return show_unconfirmed_parties(strSmartContract, nPartyCount)
+}
+
+
 def show_unconfirmed_parties(strSmartContract, nPartyCount)
 {
     if (!VerifyIntVal(nPartyCount) || (0 == nPartyCount))
@@ -1830,6 +1865,11 @@ def show_unconfirmed_parties(strSmartContract, nPartyCount)
 //
 def details_propose_plan(strServerID, strMyNymID, strMyAcctID, strHisNymID, strHisAcctID, strDates, strConsideration, strInitialPayment, strPaymentPlan, strExpiry)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy = OT_ME()
+
     if (!VerifyStringVal(strConsideration))
     {
         OT_API_Output(0, "Sorry, but you must describe the consideration to create a recurring payment plan.\n")
@@ -1839,7 +1879,7 @@ def details_propose_plan(strServerID, strMyNymID, strMyAcctID, strHisNymID, strH
     // Make sure strMyNymID aka recipient of money (aka sender of payment plan instrument)
     // has enough transaction numbers to propose the plan in the first place.
     // 
-    if (!OT_ME_insure_enough_nums(2, strServerID, strMyNymID)) // strMyNymID is Merchant.
+    if (!madeEasy.insure_enough_nums(2, strServerID, strMyNymID)) // strMyNymID is Merchant.
     {
         return -1
     }
@@ -1882,7 +1922,7 @@ def details_propose_plan(strServerID, strMyNymID, strMyAcctID, strHisNymID, strH
         // Send the payment plan to the payer (the customer). If it fails, harvest the transaction numbers
         // back from the payment plan. Return 1 if success.
         // ----------------------------------
-        var strResponse = OT_ME_send_user_payment(strServerID, strMyNymID, strHisNymID, strPlan)
+        var strResponse = madeEasy.send_user_payment(strServerID, strMyNymID, strHisNymID, strPlan)
         var nMessageSuccess = VerifyMessageSuccess(strResponse)
         
         if (!VerifyIntVal(nMessageSuccess) || (1 != nMessageSuccess))
@@ -1978,6 +2018,11 @@ def main_propose_plan() // payment plan -- called by recipient. (Who generates t
 //
 def details_confirm_plan(strPlan, nIndex)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy = OT_ME()
+    // --------------------------------------------------------------------
     var strLocation = "details_confirm_plan"
     
 //    std::string ConfirmPaymentPlan(
@@ -2000,7 +2045,7 @@ def details_confirm_plan(strPlan, nIndex)
         // instrument in his inbox, which if confirmed will have him sending money...)
         // has enough transaction numbers to confirm the plan.
         //
-        if (!OT_ME_insure_enough_nums(2, strServerID, strSenderUserID)) // strSenderUserID is Customer.
+        if (!madeEasy.insure_enough_nums(2, strServerID, strSenderUserID)) // strSenderUserID is Customer.
         {
             return -1
         }
@@ -2014,7 +2059,7 @@ def details_confirm_plan(strPlan, nIndex)
             // Below this point, inside this block, if we fail, then we need to harvest the transaction
             // numbers back from the payment plan that we confirmed (strConfirmed.)
             //
-            var strResponse = OT_ME_deposit_payment_plan(strServerID, strSenderUserID, strConfirmed)
+            var strResponse = madeEasy.deposit_payment_plan(strServerID, strSenderUserID, strConfirmed)
             var strAttempt  = "deposit_payment_plan"
             // ***************************************************************
             var nMessageSuccess = VerifyMessageSuccess(strResponse)
@@ -2054,7 +2099,7 @@ def details_confirm_plan(strPlan, nIndex)
                 // Download all the intermediary files (account balance, inbox, outbox, etc)
                 // since they have probably changed from this operation.
                 //
-                var bRetrieved = OT_ME_retrieve_account(strServerID, strSenderUserID, strSenderAcctID, true) //bForceDownload defaults to false.
+                var bRetrieved = madeEasy.retrieve_account(strServerID, strSenderUserID, strSenderAcctID, true) //bForceDownload defaults to false.
                 
                 OT_API_Output(0, "\nServer response ("+strAttempt+"): SUCCESS activating payment plan!\n")
                 OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -2086,6 +2131,11 @@ def details_confirm_plan(strPlan, nIndex)
 def details_confirm_smart_contract(strSmartContract, nIndex)
 {
     var strLocation = "details_confirm_smart_contract"
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var nPartyCount = OT_API_Smart_GetPartyCount(strSmartContract)    
     // ------------------------------------------
     if (!VerifyIntVal(nPartyCount) || (nPartyCount <= 0))
@@ -2261,7 +2311,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                                         return (-1)
                                     }
                                     // -------------------------------
-                                    main_stat_servers()
+                                    stat_servers()
                                     
                                     OT_API_Output(0, "Paste a server ID: ")
                                     
@@ -2542,7 +2592,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                         var x = b_range.front()
                         var numCountNeeded = OT_API_SmartContract_CountNumsNeeded(strSmartContract, map_agent[x.first]) + 1
                         
-                        if (!OT_ME_insure_enough_nums(numCountNeeded, strServerID, strNymID)) // Someday there might be a different NymID based on which agent it is...
+                        if (!madeEasy.insure_enough_nums(numCountNeeded, strServerID, strNymID)) // Someday there might be a different NymID based on which agent it is...
                         {
                             OT_API_Output(0, "\n** Sorry -- Nym ("+strNymID+") doesn't have enough transaction numbers to confirm this smart contract. Come back when you have more.\n")
                             return (-1)
@@ -2732,7 +2782,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                     // But in this next section, we only want to do that if the transaction was definitely not processed by the server.
                     // (Whether that processing succeeded or failed being a separate question.)
                     //                    
-                    var strResponse = OT_ME_activate_smart_contract(strServerID, strNymID, strMyAcctID, strMyAcctAgentName, strSmartContract)
+                    var strResponse = madeEasy.activate_smart_contract(strServerID, strNymID, strMyAcctID, strMyAcctAgentName, strSmartContract)
                     var strAttempt  = "activate_smart_contract"
                     // ***************************************************************
                     var nMessageSuccess = VerifyMessageSuccess(strResponse)
@@ -2769,7 +2819,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                         // Download all the intermediary files (account balance, inbox, outbox, etc)
                         // since they have probably changed from this operation.
                         //
-                        var bRetrieved = OT_ME_retrieve_account(strServerID, strNymID, strMyAcctID, true) //bForceDownload defaults to false.
+                        var bRetrieved = madeEasy.retrieve_account(strServerID, strNymID, strMyAcctID, true) //bForceDownload defaults to false.
                         
                         OT_API_Output(0, "\nServer response ("+strAttempt+"): SUCCESS activating smart contract!\n")
                         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -2799,7 +2849,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                     //
                     if (!VerifyStringVal(strHisNymID) || (strHisNymID == strNymID))
                     {
-                        main_stat_nyms() // Display the NymIDs
+                        stat_nyms() // Display the NymIDs
                         
                         OT_API_Output(0, "\nOnce you confirm this contract, then we need to send it on to the\nnext party so he can confirm it, too.\n\nPlease PASTE a recipient Nym ID (the next party): ")
                         var strRecipientNymID = OT_CLI_ReadLine()
@@ -2838,7 +2888,7 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
                     // ----------------------------------
                     // Send it to the next user!
                     //
-                    var strResponse = OT_ME_send_user_payment(strServerID, strNymID, strHisNymID, strSmartContract)
+                    var strResponse = madeEasy.send_user_payment(strServerID, strNymID, strHisNymID, strSmartContract)
                     
                     var nMessageSuccess = VerifyMessageSuccess(strResponse)
                     
@@ -2895,6 +2945,11 @@ def details_confirm_smart_contract(strSmartContract, nIndex)
 
 def main_confirm() // smart contract and payment plan
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // **************************************************************
     var nIndex   = (-1)
     
     if (VerifyExists("Args", false))
@@ -2938,7 +2993,7 @@ def main_confirm() // smart contract and payment plan
                 {
                     nIndex = nTempIndex
                     
-                    strInstrument = OT_ME_get_payment_instrument(Server, MyNym, nIndex, "")
+                    strInstrument = madeEasy.get_payment_instrument(Server, MyNym, nIndex)
                     
                     if (!VerifyStringVal(strInstrument))
                     {
@@ -2980,7 +3035,7 @@ def main_confirm() // smart contract and payment plan
     {
         if (VerifyExists("Server") && VerifyExists("MyNym"))
         {
-            strInstrument = OT_ME_get_payment_instrument(Server, MyNym, nIndex, "")
+            strInstrument = madeEasy.get_payment_instrument(Server, MyNym, nIndex)
             
             if (!VerifyStringVal(strInstrument))
             {
@@ -3401,6 +3456,11 @@ def main_change_passphrase()
 
 def details_send_transfer(strMyAcctID, strHisAcctID, strAmount, strNote)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()    
+    // ---------------------------------------------
     // Look up the NymID based on strMyAcctID
     //
     var strMyNymID    = OT_API_GetAccountWallet_NymID(strMyAcctID)
@@ -3460,7 +3520,7 @@ def details_send_transfer(strMyAcctID, strHisAcctID, strAmount, strNote)
     //
     var lAmount = OT_API_StringToAmount(strAssetTypeID, strAmount)
 //  var lAmount = int64_t(strAmount.to_int())
-    var strResponse = OT_ME_send_transfer(strMyServerID, strMyNymID, strMyAcctID, strHisAcctID, lAmount, strNote)
+    var strResponse = madeEasy.send_transfer(strMyServerID, strMyNymID, strMyAcctID, strHisAcctID, lAmount, strNote)
     var strAttempt  = "send_transfer"
     /*
      int notarizeTransfer(   const std::string SERVER_ID,
@@ -3481,7 +3541,7 @@ def details_send_transfer(strMyAcctID, strHisAcctID, strAmount, strNote)
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(strMyServerID, strMyNymID, strMyAcctID, true) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(strMyServerID, strMyNymID, strMyAcctID, true) //bForceDownload defaults to false.
         
         OT_API_Output(0, "Server response ("+strAttempt+"): SUCCESS sending transfer!\n")
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -3894,6 +3954,11 @@ def main_edit_server()
 
 def main_sendmsg()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     // Just to show how easy it is, let's try a "send_user_message" message.
     //
     var strUsage = "\n\n FYI, USAGE: sendmsg --mynym <YOUR_NYM_ID> --hisnym <RECIPIENT_NYM_ID>\n\n"
@@ -3915,7 +3980,7 @@ def main_sendmsg()
 
         // Send the request.
         //
-        var strResponse = OT_ME_send_user_msg(Server, MyNym, HisNym, strMessage)
+        var strResponse = madeEasy.send_user_msg(Server, MyNym, HisNym, strMessage)
 
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -3946,6 +4011,10 @@ def main_sendmsg()
 def details_write_cheque(strCheque, bIsInvoice) // strCheque is output.
 {
     var MsgUtil	    = Utility()
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
     // --------------------------------------------------------------------
     if (VerifyExists("MyAcct"))
     {
@@ -4007,7 +4076,7 @@ def details_write_cheque(strCheque, bIsInvoice) // strCheque is output.
         
         if (VerifyExists("HisNym", false))
         {
-            strRecipientPubkey = OT_ME_load_or_retrieve_encrypt_key(strMyServerID, strMyNymID, HisNym)
+            strRecipientPubkey = madeEasy.load_or_retrieve_encrypt_key(strMyServerID, strMyNymID, HisNym)
             // Note: even thogh send_user_payment already calls load_or_retrieve_pubkey, we do it
             // here anyway, BEFORE trying to write the cheque. (No point writing a cheque to HisNym until
             // we're sure it's real...)
@@ -4023,7 +4092,7 @@ def details_write_cheque(strCheque, bIsInvoice) // strCheque is output.
         // -------------------------------------------------------
         // Make sure we have at least one transaction number (to write the cheque...)
         //
-        if (!OT_ME_insure_enough_nums(10, strMyServerID, strMyNymID))
+        if (!madeEasy.insure_enough_nums(10, strMyServerID, strMyNymID))
         {
             return (-1)
         }
@@ -4427,6 +4496,11 @@ def main_sendcash()
 
 def main_sendcheque()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     var strUsage1 = "Usage:  sendcheque  --myacct <MY_ACCT_ID> --hisnym <RECIPIENT_NYM_ID>\n"
     var strUsage2 = "This command WRITES AND SENDS the cheque.\n(Use 'writecheque', not 'sendcheque', if you don't want it to be immediately SENT.)\n"
     var strUsage = concat(strUsage1+"Optionally: --args \"memo \\\"one-line memo allowed here.\\\" amount AMOUNT\"\n",
@@ -4470,7 +4544,7 @@ def main_sendcheque()
         }
         // -----------------------------------------------------------
         
-        var strResponse = OT_ME_send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
+        var strResponse = madeEasy.send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
         
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -4514,6 +4588,11 @@ def main_sendcheque()
 
 def main_sendinvoice()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     var strUsage1 = "Usage:  sendinvoice  --myacct <MY_ACCT_ID> --hisnym <RECIPIENT_NYM_ID>\n"
     var strUsage2 = "This command WRITES AND SENDS the invoice. (Use 'writeinvoice', not 'sendinvoice',\nif you don't want it to be immediately SENT.)\n"
     var strUsage = concat(strUsage1+"Optionally: --args \"memo \\\"one-line memo allowed here.\\\" amount AMOUNT\"\n",
@@ -4556,7 +4635,7 @@ def main_sendinvoice()
             return (-1)
         }
         // -----------------------------------------------------------
-        var strResponse = OT_ME_send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
+        var strResponse = madeEasy.send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
 
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -4595,6 +4674,12 @@ def details_create_offer(strScale, strMinIncrement, strQuantity, strPrice, bSell
     // placing offers, but was done at the request of a server operator.)
     //
     var strLocation = "details_create_offer"
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    
     var strMyNymID  = OT_API_GetAccountWallet_NymID(MyAcct)
     var strMyNymID2 = OT_API_GetAccountWallet_NymID(HisAcct)
     
@@ -4732,7 +4817,7 @@ def details_create_offer(strScale, strMinIncrement, strQuantity, strPrice, bSell
     //
     // Send the "create offer" transaction.
     //
-    var strResponse	= OT_ME_create_market_offer(MyAcct, HisAcct, strScale, strMinIncrement, strQuantity, strPrice, bSelling, strLifespan, "", "0") // lifespan of "0" results in "86400" == 1 day. Last two params are stop sign and stop price.
+    var strResponse	= madeEasy.create_market_offer(MyAcct, HisAcct, strScale, strMinIncrement, strQuantity, strPrice, bSelling, strLifespan, "", "0") // lifespan of "0" results in "86400" == 1 day. Last two params are stop sign and stop price.
     var strAttempt  = "create_market_offer"
     // ----------------------------------------------
     // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -4992,6 +5077,12 @@ def main_create_asset_contract()
 
 def main_create_acct()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    
     // Just to show how easy it is now, let's try a "create_asset_acct" message.
     // (It sends a NymID to the server, and downloads that Nym's public key.)
     
@@ -5005,7 +5096,7 @@ def main_create_acct()
         // --------------------------
         // Send the request.
         //
-        var strResponse	= OT_ME_create_asset_acct(Server, MyNym, MyPurse)	// Send the 'create_asset_acct' message to the server.
+        var strResponse	= madeEasy.create_asset_acct(Server, MyNym, MyPurse)	// Send the 'create_asset_acct' message to the server.
         
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -5173,6 +5264,12 @@ def main_sign_contract()
 
 def details_kill_offer(strServerID, strNymID, strAcctID, strTransNum)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+        
     // Just to show how easy it is now, let's try a "kill_market_offer" message.
     // (It kills a market offer.)
     
@@ -5180,7 +5277,7 @@ def details_kill_offer(strServerID, strNymID, strAcctID, strTransNum)
     {	
         // Send the transaction.
         //        
-        var strResponse	= OT_ME_kill_market_offer(strServerID, strNymID, strAcctID, strTransNum)
+        var strResponse	= madeEasy.kill_market_offer(strServerID, strNymID, strAcctID, strTransNum)
         
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -5254,6 +5351,14 @@ def main_kill_offer()
 
 def main_kill_plan()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    
+    // string OT_CLI_GetValueByKey(Args, str_key)
+    
     var strUsage = "\n\n FYI, used for stopping an active payment plan.\nUSAGE: killplan --args \"transnum <transaction_number>\"\n\n"
     
     // Just to show how easy it is now, let's try a "kill_payment_plan" message.
@@ -5274,7 +5379,7 @@ def main_kill_plan()
         {
             // Send the transaction.
             //
-            var strResponse	= OT_ME_kill_payment_plan(Server, MyNym, MyAcct, strTransactionNum)
+            var strResponse	= madeEasy.kill_payment_plan(Server, MyNym, MyAcct, strTransactionNum)
             
             // NOTICE: No need here to deal with retries, timeouts, request number,
             // syncing transaction number, download / process nymbox, etc! It's all
@@ -5354,7 +5459,7 @@ def main_verify_signature()
 
 
 
-def main_stat_nyms()
+def stat_nyms()
 {
     print("------------------------------------------------------------------")
     print(" ** PSEUDONYMS: " + "\n")
@@ -5373,7 +5478,7 @@ def main_stat_nyms()
     1
 }
 
-def main_stat_servers()
+def stat_servers()
 {
     print("------------------------------------------------------------------")
     print(" ** SERVERS: " + "\n")
@@ -5392,7 +5497,7 @@ def main_stat_servers()
 }
 
 
-def main_stat_assets()
+def stat_assets()
 {
     print("------------------------------------------------------------------")
     print(" ** ASSET TYPES: " + "\n")
@@ -5410,8 +5515,13 @@ def main_stat_assets()
 }
 
 
-def main_stat_accounts()
+def stat_accounts()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
     print("------------------------------------------------------------------")
     print(" ** ACCOUNTS: " + "\n")
     
@@ -5421,7 +5531,7 @@ def main_stat_accounts()
     {
         if ((i > 0) && (i != (nAccountCount))) { print("-------------------------------------") }
         var strID       = OT_API_GetAccountWallet_ID(i)       
-        var strStatAcct = OT_ME_stat_asset_account(strID)
+        var strStatAcct = madeEasy.stat_asset_account(strID)
         var bSuccess    = VerifyStringVal(strStatAcct)
         if (bSuccess)
         {    
@@ -5443,10 +5553,10 @@ def main_stat()
 {
     print("")
     
-    main_stat_nyms()
-    main_stat_servers()
-    main_stat_assets()
-    main_stat_accounts()
+    stat_nyms()
+    stat_servers()
+    stat_assets()
+    stat_accounts()
     
     1
 }
@@ -5464,9 +5574,15 @@ def main_stat()
 
 def details_stat_account(strID)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
+    // stderr
     OT_API_Output(0, "\n\n------------------------------------------------------------------\n")
     
-    var strStatAcct = OT_ME_stat_asset_account(strID)
+    var strStatAcct = madeEasy.stat_asset_account(strID)
     
     var bSuccess = VerifyStringVal(strStatAcct)
     var nSuccess = (bSuccess ? 1 : -1)
@@ -5568,6 +5684,11 @@ def main_nym_stat()
 
 def main_show_mint()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     // SHOW MINT
     // 
     // (Load a public mint from local storage and display it on the screen.
@@ -5580,7 +5701,7 @@ def main_show_mint()
         // If this function is unable to load it, it will download the mint from
         // the server.
         //
-        var strMint	= OT_ME_load_or_retrieve_mint(Server, MyNym, MyPurse) // <=====
+        var strMint	= madeEasy.load_or_retrieve_mint(Server, MyNym, MyPurse) // <=====
         
         // NOTICE -- there's no need here to deal with retries, timeouts, request number, synching 
         // transaction number, download / process nymbox, etc! It's all handled interally.
@@ -5626,7 +5747,12 @@ def main_show_mint()
 //
 def details_create_nym(nKeybits, strName, strSourceForNymID, strAltLocation)
 {
-    var strNymID = OT_ME_create_pseudonym(nKeybits, strSourceForNymID, strAltLocation) // returns new Nym ID
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    var strNymID = madeEasy.create_pseudonym(nKeybits, strSourceForNymID, strAltLocation) // returns new Nym ID
     
     if (!VerifyStringVal(strNymID))
     {
@@ -5755,6 +5881,9 @@ def main_create_nym()
 //
 def accept_inbox_items(strMyAcctID, nItemType, strIndices)
 {
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy = OT_ME()
     var MsgUtil  = Utility()
     // ---------------------------------------------
     // Look up the Nym ID based on the Account ID.
@@ -5816,7 +5945,7 @@ def accept_inbox_items(strMyAcctID, nItemType, strIndices)
     // is first needed, and that call is made long before the server transaction request
     // is actually sent.
     //
-    if (!OT_ME_insure_enough_nums(10, strServerID, strMyNymID))
+    if (!madeEasy.insure_enough_nums(10, strServerID, strMyNymID))
     {
         return (-1)
     }
@@ -5947,7 +6076,7 @@ def accept_inbox_items(strMyAcctID, nItemType, strIndices)
             
             // Server communications are handled here...
             //
-            var strResponse = OT_ME_process_inbox(strServerID, strMyNymID, strMyAcctID, strFinalizedResponse) 
+            var strResponse = madeEasy.process_inbox(strServerID, strMyNymID, strMyAcctID, strFinalizedResponse) 
             var strAttempt  = "process_inbox"
             
             // ***************************************************************
@@ -5959,7 +6088,7 @@ def accept_inbox_items(strMyAcctID, nItemType, strIndices)
                 // Download all the intermediary files (account balance, inbox, outbox, etc)
                 // since they have probably changed from this operation.
                 //
-                var bRetrieved = OT_ME_retrieve_account(strServerID, strMyNymID, strMyAcctID, true) //bForceDownload defaults to false.
+                var bRetrieved = madeEasy.retrieve_account(strServerID, strMyNymID, strMyAcctID, true) //bForceDownload defaults to false.
                 
                 OT_API_Output(0, "\n\nServer response ("+strAttempt+"): SUCCESS processing/accepting inbox.\n")
                 OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -6142,6 +6271,12 @@ def main_accept_all()
 //
 def details_check_user(strServerID, strMyNymID, strHisNymID)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    
     // Just to show how easy it is now, let's try a "check_user" message.
     // (It sends a NymID to the server, and downloads that Nym's public key.)
     
@@ -6186,7 +6321,7 @@ def details_check_user(strServerID, strMyNymID, strHisNymID)
         // ---------------------------------
         // Send the request.
         //        
-        strResponse = OT_ME_check_user(strServerParam, strMyNymParam, strHisNymParam)	// Send the 'check_user' message to the server.
+        strResponse = madeEasy.check_user(strServerParam, strMyNymParam, strHisNymParam)	// Send the 'check_user' message to the server.
     }
     else
     {
@@ -6254,6 +6389,13 @@ def main_check_user()
 
 def download_acct_files()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
+    // ---------------------------------------------
+    
     var strMyNymID = OT_API_GetAccountWallet_NymID(MyAcct)
     
     if (!VerifyStringVal(strMyNymID))
@@ -6267,7 +6409,7 @@ def download_acct_files()
     // Download all the intermediary files (account balance, inbox, outbox, etc)
     // since they have probably changed from this operation.
     //
-    var bRetrieved = OT_ME_retrieve_account(Server, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
+    var bRetrieved = madeEasy.retrieve_account(Server, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
     
     OT_API_Output(0, "\n\n" + (bRetrieved ? "SUCCESS" : "FAILED") + " retrieving intermediary files for account: " + MyAcct + "\n\n")
     
@@ -6318,10 +6460,17 @@ def main_refresh_all()
 
 def details_download_contract(strServerID, strNymID, strContractID) : strContractID.is_type(string_type)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
+    // ---------------------------------------------
+    
     // Download all the intermediary files (account balance, inbox, outbox, etc)
     // since they have probably changed from this operation.
     //
-    var strRetrieved   = OT_ME_retrieve_contract(strServerID, strNymID, strContractID)
+    var strRetrieved   = madeEasy.retrieve_contract(strServerID, strNymID, strContractID)
     var nRetrieved     = VerifyMessageSuccess(strRetrieved)
     
     var strSuccess = "ERROR"
@@ -6394,6 +6543,12 @@ def main_download_contract()
 
 def main_verify_last_receipt()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    
+    var madeEasy	= OT_ME()
+    // ------------------------------
     // SHOW INBOX
     // 
     // Load an asset account's inbox from local storage and display it on the screen.
@@ -6453,6 +6608,11 @@ def main_verify_last_receipt()
 
 def main_register_nym()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage = concat("\n\nUsage: register_nym.ot --server SERVER_ID --mynym NYM_ID\n\n",
                           "(If you don't have a NymID, then use create_nym.ot first.)\n\n")
     
@@ -6460,7 +6620,7 @@ def main_register_nym()
     
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {        
-        var strResponse = OT_ME_register_nym(Server, MyNym) // This also does getRequest internally, if success.
+        var strResponse = madeEasy.register_nym(Server, MyNym) // This also does getRequest internally, if success.
         var nSuccess    = VerifyMessageSuccess(strResponse)
         
         // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -6507,9 +6667,19 @@ def main_register_nym()
 }
 
 
+def details_refresh_nym(strServerID, strMyNymID, bForceDownload)
+{
+    var bWasMsgSent = OTBool(false)
+
+    return details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
+}
+
+
 def details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
 {
-    var nGetAndProcessNymbox = OT_ME_retrieve_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
+    var madeEasy = OT_ME()
+    // -------------------------------------------------------
+    var nGetAndProcessNymbox = madeEasy.retrieve_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
 
     // NOTICE: No need here to deal with retries, timeouts, request number,
     // syncing transaction number, download / process nymbox, etc! It's all
@@ -6552,6 +6722,13 @@ def details_refresh_nym(strServerID, strMyNymID, bWasMsgSent, bForceDownload)
     return bReturnVal
 }
 
+def details_refresh_nym(strServerID, strMyNymID)
+{
+    var bForceDownload = true
+    
+    return details_refresh_nym(strServerID, strMyNymID, bForceDownload)
+}
+
 
 def main_refresh_nym()
 {
@@ -6561,8 +6738,7 @@ def main_refresh_nym()
     
     if (VerifyExists("Server") && VerifyExists("MyNym"))
     {
-        var bWasMsgSent = OTBool(false)
-        var bReturnVal = details_refresh_nym(Server, MyNym, bWasMsgSent, true)
+        var bReturnVal = details_refresh_nym(Server, MyNym)
         // -------------------------------------------------------
         OT_API_Output(0, "\n") //stderr
         // -------------------------------------------------------
@@ -6599,6 +6775,12 @@ def main_refresh_nym()
 
 def details_download_box_receipt(strID, nBoxType)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ---------------------------------------------
+    
     var strMyNymID  = MyNym
     var strAcctID
     
@@ -6645,7 +6827,7 @@ def details_download_box_receipt(strID, nBoxType)
     
     // HERE, WE SEND THE 'GET BOX RECEIPT' REQUEST TO THE SERVER
     //
-    var strResponse = OT_ME_get_box_receipt(Server, strMyNymID, strAcctID, nBoxType, strID) 
+    var strResponse = madeEasy.get_box_receipt(Server, strMyNymID, strAcctID, nBoxType, strID) 
 //  var strAttempt  = "get_box_receipt" // unused here.
     
     // ***************************************************************
@@ -6681,6 +6863,11 @@ def details_download_box_receipt(strID, nBoxType)
 
 def main_get_box_receipt()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage = concat("\n\nUsage: getboxreceipt --server SERVER_ID --mynym NYM_ID\n\n",
                               "Also:    --args \"box_type BOX_TYPE_ID_HERE id TRANSACTION_ID_HERE\"\nBox types are 0 (Nymbox), 1 (Inbox), 2 (Outbox)\n\n")
     
@@ -6762,6 +6949,12 @@ def main_get_box_receipt()
 //
 def details_withdraw_cash(strMyAcctID, lAmount)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+
+    // ---------------------------------------------
     // HERE, WE LOOK UP THE NYM ID, BASED ON THE ACCOUNT ID.
     //
     var strMyNymID = OT_API_GetAccountWallet_NymID(strMyAcctID)
@@ -6802,7 +6995,7 @@ def details_withdraw_cash(strMyAcctID, lAmount)
     
     if (!VerifyStringVal(assetContract)) 
     {
-        var strResponse = OT_ME_retrieve_contract(strServerID, strMyNymID, strAssetTypeID) 
+        var strResponse = madeEasy.retrieve_contract(strServerID, strMyNymID, strAssetTypeID) 
 
         if (1 != VerifyMessageSuccess(strResponse))
         {
@@ -6825,7 +7018,7 @@ def details_withdraw_cash(strMyAcctID, lAmount)
     //
     // HERE, WE MAKE SURE WE HAVE THE PROPER MINT...
     //
-    var strMint = OT_ME_load_or_retrieve_mint(strServerID, strMyNymID, strAssetTypeID) 
+    var strMint = madeEasy.load_or_retrieve_mint(strServerID, strMyNymID, strAssetTypeID) 
 
     if (!VerifyStringVal(strMint))
     {
@@ -6839,7 +7032,7 @@ def details_withdraw_cash(strMyAcctID, lAmount)
     // HERE, WE SEND THE WITHDRAWAL REQUEST TO THE SERVER
     //
     
-    var strResponse = OT_ME_withdraw_cash(strServerID, strMyNymID, strMyAcctID, lAmount)
+    var strResponse = madeEasy.withdraw_cash(strServerID, strMyNymID, strMyAcctID, lAmount)
     var strAttempt  = "withdraw_cash"
     // ***************************************************************
     
@@ -6853,7 +7046,7 @@ def details_withdraw_cash(strMyAcctID, lAmount)
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(strServerID, strMyNymID, strMyAcctID, false) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(strServerID, strMyNymID, strMyAcctID) //bForceDownload defaults to false.
         
         OT_API_Output(0, "\n\nServer response ("+strAttempt+"): SUCCESS withdrawing cash! (From account on server to local purse.) \n")
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -6964,6 +7157,11 @@ def main_withdraw_cash()
 
 def details_withdraw_voucher(strOutput)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ---------------------------------------------
     // HERE, WE LOOK UP THE NYM ID
     //
     var strMyNymID = OT_API_GetAccountWallet_NymID(MyAcct)
@@ -6992,7 +7190,7 @@ def details_withdraw_voucher(strOutput)
     {
         strHisNymID = HisNym
         
-        var strRecipientPubkey = OT_ME_load_or_retrieve_encrypt_key(strServerID, strMyNymID, strHisNymID)
+        var strRecipientPubkey = madeEasy.load_or_retrieve_encrypt_key(strServerID, strMyNymID, strHisNymID)
 
         if (!VerifyStringVal(strRecipientPubkey))
         {
@@ -7086,7 +7284,7 @@ def details_withdraw_voucher(strOutput)
     // HERE, WE SEND THE VOUCHER WITHDRAWAL REQUEST TO THE SERVER
     //
     var lAmount = OT_API_StringToAmount(strAssetTypeID, strAmount)
-    var strResponse = OT_ME_withdraw_voucher(strServerID, strMyNymID, MyAcct, strHisNymID, strMemo, lAmount)
+    var strResponse = madeEasy.withdraw_voucher(strServerID, strMyNymID, MyAcct, strHisNymID, strMemo, lAmount)
     var strAttempt  = "withdraw_voucher"
 //  static int withdrawVoucher(const std::string SERVER_ID,
 //                             const std::string USER_ID,
@@ -7138,13 +7336,13 @@ def details_withdraw_voucher(strOutput)
             // Notice how I can send an instrument to myself. This doesn't actually send anything --
             // it just puts a copy into my outpayments box for safe-keeping.
             //
-            OT_ME_send_user_payment(strServerID, strMyNymID, strMyNymID, strOutput)           
+            madeEasy.send_user_payment(strServerID, strMyNymID, strMyNymID, strOutput)           
         }
         // ---------------------------------------------------------
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(strServerID, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(strServerID, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
         // ---------------------------------------------------------
         OT_API_Output(0, "details_withdraw_voucher: Voucher returned by OT_API_Transaction_GetVoucher:\n\n") // stderr
@@ -7203,6 +7401,11 @@ def main_withdraw_voucher()
 
 def main_sendvoucher()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     var strUsage1 = "Usage:  sendvoucher  --myacct MY_ASSET_ACCT --hisnym RECIPIENT_NYM_ID\n"
     var strUsage2 = "Server is deduced from MyAcct. This command withdraws AND SENDS the\nvoucher. (Use 'buyvoucher', not 'sendvoucher', if you don't want it to be immediately SENT.)\n"
     var strUsage = concat(strUsage1+"Optionally: --args \"memo \\\"one-line memo allowed here.\\\" amount AMOUNT\"\n", strUsage2)
@@ -7247,7 +7450,7 @@ def main_sendvoucher()
                 return (-1)
             }
             // -----------------------------------------------------------
-            var strResponse = OT_ME_send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
+            var strResponse = madeEasy.send_user_payment(strServerID, strSenderNymID, strRecipientNymID, strCheque)
             
             // NOTICE: No need here to deal with retries, timeouts, request number,
             // syncing transaction number, download / process nymbox, etc! It's all
@@ -7410,6 +7613,11 @@ def main_show_market_list()
 
 def main_get_market_list()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage = "\n\n USAGE: getmarketlist --server SERVER_ID --mynym YOUR_NYM_ID\n\n"
     
     OT_API_Output(0, strUsage)
@@ -7420,7 +7628,7 @@ def main_get_market_list()
         // ------------------------------
         // Send the request.
         //
-        var strResponse	= OT_ME_get_market_list(Server, MyNym)
+        var strResponse	= madeEasy.get_market_list(Server, MyNym)
         var strAttempt  = "get_market_list"
         // ----------------------------------------------
         // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -7554,6 +7762,11 @@ def details_show_market_offers(strServerID, strMarketID)
 
 def impl_show_market_offers(strMarket)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage1 = "\n\n USAGE: showoffers --server SERVER_ID --mynym YOUR_NYM_ID\n"
     var strUsage = concat(strUsage1, "Also: --args \"market MARKET_ID\"\n")
     
@@ -7620,6 +7833,11 @@ def main_show_market_offers()
 
 def main_get_market_offers()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage1 = "\n\n USAGE: getoffers --server SERVER_ID --mynym YOUR_NYM_ID\n"
     var strUsage = concat(strUsage1, "Also: --args \"market MARKET_ID depth MAX_DEPTH\"\n")
     
@@ -7681,7 +7899,7 @@ def main_get_market_offers()
         // Send the request.
         //
         var lDepth = int64_t(strDepth.to_int())
-        var strResponse	= OT_ME_get_market_offers(Server, MyNym, strMarket, lDepth)
+        var strResponse	= madeEasy.get_market_offers(Server, MyNym, strMarket, lDepth)
         var strAttempt  = "get_market_offers"
         // ----------------------------------------------
         // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -7708,6 +7926,12 @@ def main_get_market_offers()
 
 def main_adjust_usage_credits()
 {
+//  def OT_ME::adjust_usage_credits(SERVER_ID, USER_NYM_ID, TARGET_NYM_ID, ADJUSTMENT)
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage1 = concat("\n\n  Options: --server SERVER_ID --mynym NYM_ID\n",
                                "           --hisnym SUBJECT_NYM_ID\n\n")
     
@@ -7737,7 +7961,7 @@ def main_adjust_usage_credits()
             {    strAdjustment = strNewAdjust }
         }
         // ----------------------------------------------        
-        var strResponse = OT_ME_adjust_usage_credits(Server, MyNym, HisNym, strAdjustment)
+        var strResponse = madeEasy.adjust_usage_credits(Server, MyNym, HisNym, strAdjustment)
         var nStatus     = VerifyMessageSuccess(strResponse)            
         // ------------
         // NOTICE: No need here to deal with retries, timeouts, request number,
@@ -7898,6 +8122,11 @@ def details_show_nym_offers(strServerID, strNymID)
 
 def main_show_nym_offers()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // --------------------------------------------------------------------
     var strUsage = "\n\n USAGE: showmyoffers --server SERVER_ID --mynym YOUR_NYM_ID\n\n"
     
     OT_API_Output(0, strUsage)
@@ -7915,6 +8144,11 @@ def main_show_nym_offers()
 
 def details_get_nym_market_offers(strServerID, strNymID)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
     var strResponse
     
     // --------------------------------------------------------------------
@@ -7923,7 +8157,7 @@ def details_get_nym_market_offers(strServerID, strNymID)
         // ----------------------------------------------    
         // Send the request.
         //
-        strResponse	= OT_ME_get_nym_market_offers(strServerID, strNymID)
+        strResponse	= madeEasy.get_nym_market_offers(strServerID, strNymID)
         // ----------------------------------------------
         // NOTICE: No need here to deal with retries, timeouts, request number,
         // syncing transaction number, download / process nymbox, etc! It's all
@@ -7992,6 +8226,12 @@ def main_get_nym_market_offers()
 //
 def details_pay_dividend(strAmount, strMemo)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
+    // ---------------------------------------------
     // HERE, WE LOOK UP THE NYM ID, BASED ON THE ACCOUNT ID.
     //
     var strMyNymID = OT_API_GetAccountWallet_NymID(MyAcct)
@@ -8039,7 +8279,7 @@ def details_pay_dividend(strAmount, strMemo)
     var strAssetTypeID = OT_API_GetAccountWallet_AssetTypeID(MyAcct)
     
     var lAmount = OT_API_StringToAmount(strAssetTypeID, strAmount)
-    var strResponse = OT_ME_pay_dividend(Server, strMyNymID, MyAcct, strHisPurse, strMemo, lAmount)
+    var strResponse = madeEasy.pay_dividend(Server, strMyNymID, MyAcct, strHisPurse, strMemo, lAmount)
     var strAttempt  = "pay_dividend"
     
 //static int payDividend(const std::string SERVER_ID,
@@ -8060,7 +8300,7 @@ def details_pay_dividend(strAmount, strMemo)
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(Server, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(Server, strMyNymID, MyAcct, true) //bForceDownload defaults to false.
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
         // ---------------------------------------------------------
         OT_API_Output(0, "\n\nServer response ("+strAttempt+"): SUCCESS paying out dividends.\n")
@@ -8330,10 +8570,16 @@ def details_deposit_cheque(strServerID, strMyAcct, strMyNymID, strInstrument, st
         OT_API_Output(0, "\n\nFailure: Asset Type ID on the instrument ( "+strAssetTypeID+" ) doesn't match the one on the MyAcct ( "+strAssetTypeAcct+" )\n\n")
         return (-1)
     }
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+
+    // ***************************************************************
     
     // HERE, WE SEND THE DEPOSIT CHEQUE REQUEST TO THE SERVER
     //
-    var strResponse = OT_ME_deposit_cheque(strServerID, strMyNymID, strMyAcct, strInstrument)
+    var strResponse = madeEasy.deposit_cheque(strServerID, strMyNymID, strMyAcct, strInstrument)
     var strAttempt  = "deposit_cheque"
 
     // ***************************************************************
@@ -8347,7 +8593,7 @@ def details_deposit_cheque(strServerID, strMyAcct, strMyNymID, strInstrument, st
         // Download all the intermediary files (account balance, inbox, outbox, etc)
         // since they have probably changed from this operation.
         //
-        var bRetrieved = OT_ME_retrieve_account(strServerID, strMyNymID, strMyAcct, true) //bForceDownload defaults to false.
+        var bRetrieved = madeEasy.retrieve_account(strServerID, strMyNymID, strMyAcct, true) //bForceDownload defaults to false.
         
         OT_API_Output(0, "Server response ("+strAttempt+"): SUCCESS!\n")
         OT_API_Output(0, (bRetrieved ? "Success" : "Failed") + " retrieving intermediary files for account.\n")
@@ -8373,7 +8619,10 @@ def details_deposit_purse(strServerID, strMyAcct, strFromNymID, strInstrument, s
     {
         strTHE_Instrument = strInstrument
     }
-
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
     var strLocation = "details_deposit_purse"
     // ---------------------------------------------
     // HERE, WE LOOK UP THE asset type ID, BASED ON THE ACCOUNT ID.
@@ -8511,7 +8760,7 @@ def details_deposit_purse(strServerID, strMyAcct, strFromNymID, strInstrument, s
     }// if (bLoadedPurse)
     // ---------------------------------------------    
 
-    var nResult = OT_ME_depositCashPurse(strServerID, strAssetTypeID, strFromNymID, strTHE_Instrument, vecSelectedTokenIDs, strMyAcct, bLoadedPurse)
+    var nResult = depositCashPurse(strServerID, strAssetTypeID, strFromNymID, strTHE_Instrument, vecSelectedTokenIDs, strMyAcct, bLoadedPurse)
 
     return nResult
     // --------------------------------------------------------------------
@@ -8836,7 +9085,7 @@ def details_import_cash(strInstrument)
         default
         {            
 //            // This version supports cash tokens (instead of purse...)
-//            var bImportedToken = OT_ME_importCashPurse(strServerID, MyNym, strAssetID, userInput, isPurse)
+//            var bImportedToken = importCashPurse(strServerID, MyNym, strAssetID, userInput, isPurse)
 //            
 //            if (bImportedToken)
 //            {
@@ -8956,6 +9205,11 @@ def main_import_cash()
 
 def details_export_cash(strServerID, strFromNymID, strAssetTypeID, strHisNymID, strIndices, bPasswordProtected, strRetainedCopy)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    
     var strLocation = "\n details_export_cash"
     // --------------------------------------------------------------------
     // The first three arguments are for loading up the purse we're exporting FROM.
@@ -8973,7 +9227,7 @@ def details_export_cash(strServerID, strFromNymID, strAssetTypeID, strHisNymID, 
     // This will contain MyNym by default, if --hisnym wasn't used at the command line.
     //
     // ---------------------------------------------
-    var strContract = OT_ME_load_or_retrieve_contract(strServerID, strFromNymID, strAssetTypeID)
+    var strContract = madeEasy.load_or_retrieve_contract(strServerID, strFromNymID, strAssetTypeID)
 
     if (!VerifyStringVal(strContract))
     {
@@ -9082,7 +9336,7 @@ def details_export_cash(strServerID, strFromNymID, strAssetTypeID, strHisNymID, 
                 } // while
             } // if strIndices
             // ------------------------------------------------------------
-            var strExportedCashPurse = OT_ME_exportCashPurse(strServerID, strAssetTypeID, strFromNymID, strInstrument,  vecSelectedTokenIDs, strHisNymID, bPasswordProtected, strRetainedCopy)
+            var strExportedCashPurse = exportCashPurse(strServerID, strAssetTypeID, strFromNymID, strInstrument,  vecSelectedTokenIDs, strHisNymID, bPasswordProtected, strRetainedCopy)
             
             return strExportedCashPurse
                         
@@ -9461,6 +9715,11 @@ def withdraw_and_send_cash(strMyAcctID, strHisNymID, strMemo, strAmount)
 
 def details_send_cash(strResponse, strServerID, strAssetTypeID, strMyNymID, strMyAcctID, strHisNymID, strMemo, strAmount, strIndices, bPasswordProtected)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     var strLocation = "\n details_send_cash"
     // ----------------------------------------------
     var lStartAmount = int64_t(0)
@@ -9534,7 +9793,7 @@ def details_send_cash(strResponse, strServerID, strAssetTypeID, strMyNymID, strM
     // ---------------------------------------
     if (VerifyStringVal(strExportedCashPurse))
     {
-        strResponse = OT_ME_send_user_cash(strServerID, strMyNymID, strHisNymID, strExportedCashPurse, strRetainedCopy) // <==================
+        strResponse = madeEasy.send_user_cash(strServerID, strMyNymID, strHisNymID, strExportedCashPurse, strRetainedCopy) // <==================
         
         nReturnVal = VerifyMessageSuccess(strResponse)
         
@@ -9585,6 +9844,27 @@ def main_new_symmetric_key()
 }
 
 
+
+
+
+// For a certain index in the payments inbox, this function will deposit the cheque, or
+// deposit the purse, or pay the invoice, etc (whatever is at that index.)
+// Use a strPaymentType of "ANY" to handle any payment type. Otherwise, pass the payment
+// type itself to only succeed for that type. (If only paying invoices, then only handle it
+// if it's actually an invoice.)
+//
+def handle_payment_index(strMyAcctID, nIndex) // (If nIndex is -1, then it will ask user to paste an invoice.)
+{
+    var strPaymentType = "ANY"
+    return handle_payment_index(strMyAcctID, nIndex, strPaymentType)  
+}
+
+def handle_payment_index(strMyAcctID, nIndex, strPaymentType) // (If nIndex is -1, then it will ask user to paste an invoice.)
+{
+    var strInbox = ""
+    return handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox)
+}
+
 //case ("CHEQUE")
 //case ("VOUCHER")
 //case ("INVOICE")
@@ -9597,6 +9877,12 @@ def main_new_symmetric_key()
 
 def handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox) // (If nIndex is -1, then it will ask user to paste an invoice.)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    //
     if (!VerifyStringVal(strMyAcctID) || !VerifyIntVal(nIndex))
     {
         OT_API_Output(0, "Failure: Either strMyAcctID not a valid string, or nIndex not a valid int.\n")
@@ -9647,7 +9933,7 @@ def handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox) // (If n
     // ------------------------------------------------------------------------
     else // Use an instrument from the payments inbox, since a valid index was provided.
     {
-        strInstrument = OT_ME_get_payment_instrument(strServerID, strMyNymID, nIndex, strInbox) // strInbox is optional and avoids having to load it multiple times. This function will just load it itself, if it has to.
+        strInstrument = madeEasy.get_payment_instrument(strServerID, strMyNymID, nIndex, strInbox) // strInbox is optional and avoids having to load it multiple times. This function will just load it itself, if it has to.
         
         if (!VerifyStringVal(strInstrument))
         {
@@ -9822,8 +10108,22 @@ def handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox) // (If n
  */
 
 // COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
+
+def accept_from_paymentbox(strMyAcctID, strIndices)
+{
+    var strPaymentType = "ANY"
+    return accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
+}
+
+// COULD have been named "details_accept_specific_instruments_of_specific_types_from_the_payment_inbox."
 def accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    //
     if (!VerifyStringVal(strMyAcctID))
     {
         OT_API_Output(0, "Failure: strMyAcctID not a valid string.\n")
@@ -9900,8 +10200,12 @@ def accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
     return 1
 }
 
+def details_accept_invoices(strMyAcctID) // Use this function when you want to loop through all accounts and accept all invoices for them.
+{
+    var strIndices = ""
+    return details_accept_invoices(strMyAcctID, strIndices)
+}
 
-// strIndices == "" when you want to loop through all accounts and accept all invoices for them.
 def details_accept_invoices(strMyAcctID, strIndices)
 {
     return accept_from_paymentbox(strMyAcctID, strIndices, "INVOICE")
@@ -9935,7 +10239,14 @@ def main_accept_invoices()
 }
 
 
-// strIndices == "" to accept all incoming "payments" from the payments inbox. (NOT Invoices.)
+// Accepts all incoming "payments" from the payments inbox. (NOT Invoices.)
+//
+def details_accept_payments(strMyAcctID)
+{
+    var strIndices = ""
+    return details_accept_payments(strMyAcctID, strIndices)
+}
+
 def details_accept_payments(strMyAcctID, strIndices)
 {
     // ---------------------------------------------
@@ -10030,7 +10341,7 @@ def main_payinvoice()
     OT_API_Output(0, "\n\n") // stderr
     // ***************************************************************
     //
-    var nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE", "")
+    var nPaidInvoice = handle_payment_index(MyAcct, nIndex, "INVOICE")
 
     if (1 == nPaidInvoice) // Success!  (Therefore, remove from payments inbox, and move to record box.)
     {
@@ -10157,19 +10468,19 @@ def main_show_active()
 {
     var strUsage2 = concat("\nUsage:  showactive --server SERVER_ID --mynym NYM_ID   (To display a list of IDs.)\n",
                              "OR:     showactive --server SERVER_ID --args \"id TRANSACTION_ID\"\n")
-
+    
     var strUsage = concat(strUsage2, "\nLists the transaction numbers of currently active payment plans\n" +
                           "and smart contracts. Also useful for displaying contents by ID.\n\n")
-
+    
     OT_API_Output(0, strUsage)
     // --------------------------------------------------------------------
     //
     var lTransNum   = int64_t(0)
     var bDetailMode = false
-
+    
     var strError = "\nPlease provide either:  --mynym NYM_ID   (to view a list of active transactions)\n" +
                    "or, to view details for a specific transaction, use --args \"id TRANSACTION_ID\" \n\n"
-
+    
     if (VerifyExists("Server"))
     {
         if (VerifyExists("Args", false))
@@ -10179,7 +10490,7 @@ def main_show_active()
             if (VerifyStringVal(strTransNum))
             {
                 lTransNum = int64_t(strTransNum.to_int())
-
+                
                 if (lTransNum > 0)
                 {
                     bDetailMode = true
@@ -10204,34 +10515,34 @@ def main_show_active()
         // of that cron item.
         //
         // ***************************************************************
-
+        
         if (bDetailMode)
         {
             var strCronItem = OT_API_GetActiveCronItem(Server, lTransNum)
-
+            
             if (VerifyStringVal(strCronItem))
             {
                 var strType = ""
-
+                
                 strType = OT_API_Instrmnt_GetType(strCronItem)
 
                 if (!VerifyStringVal(strType))
                 {
                     strType = "UNKNOWN"
                 }
-
+                
                 OT_API_Output(0, "Found an active transaction!\n")
                 OT_API_Output(0, "ID: " + lTransNum.to_string() + "  Type: " + strType + "\n\nContents:\n\n")
-
+                
                 print (strCronItem)
-
+                
                 OT_API_Output(0, "\n")
             }
         }
         else
         {
             var strIDs = OT_API_GetNym_ActiveCronItemIDs(MyNym, Server)
-
+            
             if (VerifyStringVal(strIDs) && (OT_API_NumList_Count(strIDs) > 0))
             {
                 var vecIDs = Vector()
@@ -10244,17 +10555,17 @@ def main_show_active()
                     if (VerifyStringVal(strTransNum))
                     {
                         lTransNum = int64_t(strTransNum.to_int())
-
+                        
                         if (lTransNum > 0)
                         {
                             var strCronItem = OT_API_GetActiveCronItem(Server, lTransNum)
-
+                            
                             if (VerifyStringVal(strCronItem))
                             {
                                 var strType = ""
-
+                                
                                 strType = OT_API_Instrmnt_GetType(strCronItem)
-
+                                
                                 if (!VerifyStringVal(strType))
                                 {
                                     strType = "UNKNOWN"
@@ -10294,7 +10605,11 @@ def main_show_payment()
     var strUsage = "\nUsage:  showpayment --args \"index PAYMENT_INDEX showmemo true|false\"\n Default index is 0. Default showmemo is false.\n"
 
     OT_API_Output(0, strUsage)
-
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     // SHOW a payment from the PAYMENTS INBOX
     // 
     // Load an asset account's payments inbox from local storage and display it on the screen.
@@ -10534,6 +10849,11 @@ def main_show_outgoing()
 
 def main_show_payments_inbox()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
     // SHOW PAYMENTS INBOX
     // 
     // Load an asset account's payments inbox from local storage and display it on the screen.
@@ -10639,6 +10959,27 @@ def main_show_payments_inbox()
 }
 
 
+// Don't use this unless you really only need one record.
+// Instead, use the function below it. (Otherwise you'll be
+// loading the record box from storage for EACH record, instead
+// of loading it once for ALL the records in your loop.)
+//
+def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex)
+{
+    var strRecordBox = OT_API_LoadRecordBox(strServerID, strMyNymID, strMyAcctID) // Returns NULL, or a record box.
+    
+    if (!VerifyStringVal(strRecordBox))
+    {
+        OT_API_Output(0, "\n\n details_show_record: OT_API_LoadRecordBox: Failed.\n\n")
+        return false
+    }
+    
+    // Success!
+    return details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordBox)
+}
+
+
+
 def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordBox)
 {
     if (!VerifyStringVal(strRecordBox))
@@ -10646,7 +10987,6 @@ def details_show_record(strServerID, strMyNymID, strMyAcctID, nIndex, strRecordB
         OT_API_Output(0, "\n\n details_show_record: strRecordBox is empty.\n(Need to load it first before calling this function.)\n\n")
         return false
     }
-
     // -----------------------------------------------------------------
     // Success!
     //
@@ -10980,6 +11320,30 @@ def main_clear_expired()
     
     -1
 }
+
+
+
+
+
+// Don't use this unless you really only need one expired record.
+// Instead, use the function below it. (Otherwise you'll be
+// loading the expired box from storage for EACH record, instead
+// of loading it once for ALL the expired records in your loop.)
+//
+def details_show_expired(strServerID, strMyNymID, nIndex)
+{
+    var strExpiredBox = OT_API_LoadExpiredBox(strServerID, strMyNymID) // Returns NULL, or an expired box.
+    
+    if (!VerifyStringVal(strExpiredBox))
+    {
+        OT_API_Output(0, "\n\n details_show_expired: OT_API_LoadExpiredBox: Failed.\n\n")
+        return false
+    }
+    
+    // Success!
+    return details_show_expired(strServerID, strMyNymID, nIndex, strExpiredBox)
+}
+
 
 
 // TODO: This is based on details_show_record which assumes it can contain asset inbox records as well
@@ -11883,6 +12247,13 @@ def show_outpayment(strMyNym, nIndex, bShowInFull)
     return true
 }
 
+def show_outpayment(strMyNym, nIndex)
+{
+    var bShowInFull = true
+    
+    show_outpayment(strMyNym, nIndex, bShowInFull)
+}
+
 
 def main_show_outpayment()
 {
@@ -12022,6 +12393,12 @@ def main_add_asset()
 
 def main_issue_asset()
 {
+    // --------------------------------------------------------------------
+    // Instantiate the "OT Made Easy" object.
+    //
+    var madeEasy	= OT_ME()
+    // ------------------------------
+    
     var strUsage = concat("\n\nUsage: opentxs issueasset --server SERVER_ID --mynym NYM_ID\n\n",
                           "       (NYM_ID must already be the 'contract' key on the new contract.)\n       See 'opentxs newasset' before running this script.\n\n")
     
@@ -12051,7 +12428,7 @@ def main_issue_asset()
             main_register_nym()
         }
         // --------------------------
-        var strResponse	= OT_ME_issue_asset_type(Server, MyNym, strContract)
+        var strResponse	= madeEasy.issue_asset_type(Server, MyNym, strContract)
         var nStatus     = VerifyMessageSuccess(strResponse)
         
         // NOTICE: No need here to deal with retries, timeouts, request number,

@@ -1443,13 +1443,13 @@ _SharedPtr<OTAccount> OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNy
 		if (m_mapWeakAccts.end() != it_weak)  // FOUND the weak ptr to the account! Maybe it's already loaded
 		{
 //			bool bSuccess = true;
-			
+
 			_WeakPtr<OTAccount>	pWeak	= (*it_weak).second; // first is acct ID, second is weak_ptr to account.
-			
-			try 
+
+			try
 			{
 				_SharedPtr<OTAccount>	pShared(pWeak);
-				
+
 				// If success, then we have a shared pointer. But it's worrying (TODO) because this should have
 				// gone out of scope and been destroyed by whoever ELSE was using it. The fact that it's still here...
 				// well I'm glad not to double-load it, but I wonder why it's still here? And we aren't walking on anyone's
@@ -1508,6 +1508,7 @@ _SharedPtr<OTAccount> OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNy
 		{
 			OTLog::vOutput(3, "Successfully loaded %s account ID: %s Asset Type ID: %s\n",
 						   strAcctType.Get(), strAcctID.Get(), str_asset_type_id.c_str());
+
 			pRetVal								= _SharedPtr<OTAccount>(pAccount); // Create a shared pointer to the account, so it will be cleaned up automatically.
 			m_mapWeakAccts [strAcctID.Get()]	= _WeakPtr<OTAccount>(pRetVal); // save a weak pointer to the acct, so we'll never load it twice, but we'll also know if it's been deleted.
 		}

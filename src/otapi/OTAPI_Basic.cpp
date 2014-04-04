@@ -138,6 +138,10 @@ This is a Direct sub-set of OTAPI_Wrap
 
 #include <OTAPI.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTAssert.hpp>
 #include <OTLog.hpp>
 
@@ -439,6 +443,7 @@ std::string OTAPI_Basic::CreateNym(const long & nKeySize, // must be 1024, 2048,
 	return OTAPI_Wrap::CreateNym(
 		nKeySize, NYM_ID_SOURCE, ALT_LOCATION);
 }
+
 
 std::string OTAPI_Basic::GetNym_ActiveCronItemIDs(const std::string & NYM_ID, const std::string & SERVER_ID)
 {

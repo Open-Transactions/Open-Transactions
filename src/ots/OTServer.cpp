@@ -138,6 +138,10 @@
 
 #include <OTClientConnection.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTMint.hpp>

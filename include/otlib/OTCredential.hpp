@@ -173,6 +173,9 @@
 
 #include "OTAsymmetricKey.hpp"
 
+#include "OTAsymmetricKey.hpp"
+
+#include _CINTTYPES
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have

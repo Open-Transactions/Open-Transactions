@@ -138,6 +138,10 @@
 
 #include <OpenTransactions.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include "OTBasket.hpp"
 #include "OTCheque.hpp"
 #include "OTCredential.hpp"
@@ -175,24 +179,6 @@ const int32_t OT_TRUE = 1;
 const int32_t OT_ERROR = (-1);
 #endif
 
-
-
-extern "C"
-{
-#ifndef _WIN32
-#include <inttypes.h>
-#else
-
-#ifndef PRId64
-#define PRId64 "I64d"
-#endif
-
-#ifndef PRId32
-#define PRId32 "I32d"
-#endif
-
-#endif
-}
 // ---------------------------------------------------------------
 
 
@@ -610,6 +596,7 @@ std::string OTAPI_Exec::CreateNym(const int32_t     & nKeySize, // must be 1024,
 	return "";
 }
 
+
 std::string OTAPI_Exec::GetNym_ActiveCronItemIDs(const std::string & NYM_ID,
     const std::string & SERVER_ID)
 {
@@ -630,7 +617,6 @@ std::string OTAPI_Exec::GetNym_ActiveCronItemIDs(const std::string & NYM_ID,
 
     return str_return;
 }
-
 
 std::string OTAPI_Exec::GetActiveCronItem(const std::string & SERVER_ID, int64_t lTransNum)
 {

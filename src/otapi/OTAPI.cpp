@@ -134,11 +134,15 @@
 
 #include <stdafx.hpp>
 
+// A C++ class, low-level interface to OT.
 #include "OTAPI.hpp"
 
 #include <OTAPI_Exec.hpp>
-
 #include <OpenTransactions.hpp>
+
+#ifndef IMPORT
+#define IMPORT
+#endif
 
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
@@ -176,25 +180,7 @@
 //#endif
 //}
 
-#include <OTBasket.hpp>
-#include <OTCheque.hpp>
-#include <OTCredential.hpp>
-#include <OTEnvelope.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTMint.hpp>
-#include <OTPassword.hpp>
-#include <OTPaths.hpp>
-#include <OTPayment.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTPurse.hpp>
-#include <OTServerContract.hpp>
-#include <OTSymmetricKey.hpp>
-#include <OTWallet.hpp>
-
-#include <OTAccount.hpp>  //included in OTSmartContract.hpp
-
+// ---------------------------------------------------------------
 
 #ifndef OT_BOOL
 #define OT_BOOL int32_t
@@ -253,12 +239,19 @@ bool OTAPI_Wrap::AppInit()
 		OT_FAIL;
 	}
 
-    return exec->AppInit();
-
+	return exec->AppInit();
 }
 
+bool OTAPI_Wrap::AppCleanup()
+{
+	if (NULL == exec)
+	{
+		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
+		OT_FAIL;
+	}
 
-
+	return exec->AppCleanup();
+}
 
 // --------------------------------------------------------------------
 // SetAppBinaryFolder
@@ -276,19 +269,6 @@ void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
 {
     Exec()->SetAppBinaryFolder(strFolder);
 }
-
-
-bool OTAPI_Wrap::AppCleanup()
-{
-	if (NULL == exec)
-	{
-		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
-		OT_FAIL;
-	}
-
-	return exec->AppCleanup();
-}
-
 
 // --------------------------------------------------------------------
 // SetHomeFolder
@@ -631,7 +611,6 @@ std::string OTAPI_Wrap::Wallet_ExportNym(const std::string & NYM_ID)
 std::string OTAPI_Wrap::Wallet_ExportCert(const std::string & NYM_ID)
 {
     return Exec()->Wallet_ExportCert(NYM_ID);
-
 }
 
 std::string OTAPI_Wrap::Wallet_ImportNym(const std::string & FILE_CONTENTS)

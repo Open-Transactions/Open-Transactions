@@ -207,6 +207,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
     // For now we're only allowing a single global instance, unless you pass in an ID, in which case we keep a map.
     //
     static _SharedPtr<OTCachedKey> s_theSingleton(new OTCachedKey);  // Default is 0 ("you have to type your PW a million times"), but it's overridden in config file.
+
     if (NULL == pIdentifier)
         return s_theSingleton; // Notice if you pass NULL (no args) then it ALWAYS returns a good pointer here.
     // ----------------------------------------------------------------
@@ -223,6 +224,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
     if (s_mapCachedKeys.end() != it_keys) // found it!
     {
         _SharedPtr<OTCachedKey> pShared(it_keys->second);
+
         if (pShared)
         {
             return pShared;
@@ -282,6 +284,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTCachedKey & theSourceKey) // Note: par
     if (s_mapCachedKeys.end() != it_keys) // found it!
     {
         _SharedPtr<OTCachedKey> pMaster(it_keys->second);
+
         if (pMaster)
             return pMaster;
         else
@@ -991,6 +994,7 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 		OTLog::vOutput(2, "%s: Starting thread for Master Key...\n", szFunc);
 
         _SharedPtr<OTCachedKey> * pthreadSharedPtr = new _SharedPtr<OTCachedKey>(mySharedPtr); // TODO: memory leak.
+
 		m_pThread = new tthread::thread(OTCachedKey::ThreadTimeout, static_cast<void *>(pthreadSharedPtr));
 
 #else
@@ -1067,8 +1071,8 @@ void OTCachedKey::ThreadTimeout(void * pArg)
     //
     _SharedPtr<OTCachedKey> * pthreadSharedPtr = static_cast<_SharedPtr<OTCachedKey> *>(pArg);
     _SharedPtr<OTCachedKey>   pMyself = *pthreadSharedPtr;
-    
-    if (NULL != pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
+
+    if (!pMyself) { OT_FAIL_MSG("OTCachedKey::ThreadTimeout: Need ptr to master key here, that activated this thread.\n"); }
 
     // --------------------------------------
 //    tthread::lock_guard<tthread::mutex> lock(*(pMyself->GetMutex())); // Multiple threads can't get inside here at the same time.

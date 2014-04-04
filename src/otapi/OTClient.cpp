@@ -134,6 +134,10 @@
 
 #include <OTClient.hpp>
 
+#ifndef IMPORT
+#define IMPORT
+#endif
+
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
@@ -5007,8 +5011,8 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                pServerTransaction->GetReferenceToNum());
 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
-                                    pServerTransaction->GetReferenceToNum());
+                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n",
+                                                   pServerTransaction->GetReferenceToNum());
                                 else
                                     OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
                                                    pServerTransaction->GetReferenceToNum());
