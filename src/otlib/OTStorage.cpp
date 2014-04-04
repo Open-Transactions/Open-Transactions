@@ -557,6 +557,37 @@ namespace OTDB
 		return pStorage->Exists(strFolder, oneStr, twoStr, threeStr);
 	}
 
+    long FormPathString(std::string & strOutput,
+                        std::string   strFolder,     std::string oneStr/*=""*/,
+                        std::string   twoStr/*=""*/, std::string threeStr/*=""*/)
+    {
+		{
+			OTString  ot_strFolder(strFolder),
+            ot_oneStr(oneStr),
+            ot_twoStr(twoStr),
+            ot_threeStr(threeStr);
+			OT_ASSERT_MSG(ot_strFolder.Exists(),"OTDB::FormPathString: strFolder is empty.");
+            
+			if (!ot_oneStr.Exists())
+            {
+				OT_ASSERT_MSG((!ot_twoStr.Exists() && !ot_threeStr.Exists()),"FormPathString: bad options");
+				oneStr = strFolder;
+				strFolder = ".";
+			}
+		}
+        // ---------------------------------------------------
+		Storage * pStorage = details::s_pStorage;
+        
+		if (NULL == pStorage)
+		{
+			OTLog::vOutput(0, "OTDB::%s: details::s_pStorage is null. (Returning -1.)\n",
+                           __FUNCTION__);
+			return -1;
+		}
+        
+		return pStorage->FormPathString(strOutput, strFolder, oneStr, twoStr, threeStr);
+    }
+
 	// -----------------------------------------
 	// Store/Retrieve a string.
 
@@ -3259,7 +3290,16 @@ namespace OTDB
 		return (0 < ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr));
 	}
 
-
+    // -----------------------------------------
+    // Returns path size, plus path in strOutput.
+    //
+    long StorageFS::FormPathString(std::string & strOutput,
+                                   std::string   strFolder,       std::string oneStr/*=""*/,
+                                   std::string   twoStr/*=""*/,   std::string threeStr/*=""*/)
+    {
+		return ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr);
+    }
+    
 	// ********************************************************************
 
 
