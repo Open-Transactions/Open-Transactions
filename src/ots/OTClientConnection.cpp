@@ -136,10 +136,6 @@
 
 #include <OTServer.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTLog.hpp>
 #include <OTEnvelope.hpp>
 #include <OTDataCheck.hpp>

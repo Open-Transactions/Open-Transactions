@@ -137,22 +137,8 @@
 
 #include "OTServerConnection.hpp"
 
-#ifndef IMPORT
-#define IMPORT
-#ifndef IMPORT_SET
-#define IMPORT_SET
-#endif
-#endif
-
 #include "OTMessageBuffer.hpp"
 
-#ifdef IMPORT_SET
-#undef IMPORT_SET
-#ifdef IMPORT
-#undef IMPORT
-#include "OTCommon.hpp"
-#endif
-#endif
 
 struct TransportCallback;
 

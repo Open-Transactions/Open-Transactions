@@ -48,19 +48,21 @@ function test_command {
     fi
     RETURN_VAL=$?
     THE_RESULT=$( printf '%03d' ${RETURN_VAL} )
-    if [ ${RETURN_VAL} = 0 ]; then
-        echo "$(tput setaf 2 tput bold)${THE_COMMAND} returned zero. (Success.)$(tput sgr 0)"
-    else
-        echo "$(tput setaf 1 tput bold)${THE_COMMAND} returned: ${RETURN_VAL}   (0 is success)$(tput sgr 0)"
-    fi
 
     echo "-----------------------------------------"
     echo "Output:"
     echo ""
     echo "${THE_OUTPUT}"
     echo ""
-    echo "(Finished ${THE_COMMAND}) Press enter to continue..."
-    read CONTINUE
+
+    if [ ${RETURN_VAL} = 0 ]; then
+        echo "$(tput setaf 2 tput bold)${THE_COMMAND} returned zero. (Success.)$(tput sgr 0)"
+    else
+        echo "$(tput setaf 1 tput bold)${THE_COMMAND} returned: ${RETURN_VAL}   (0 is success)$(tput sgr 0)"
+    fi
+
+    echo "Press enter to continue..."
+   read CONTINUE
 }
 # ----------------------------------------------------------------------------------------
 

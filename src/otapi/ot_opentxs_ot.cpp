@@ -273,107 +273,107 @@ typedef struct
 
 MapFunction map_functions[] =
 {
-    { "acceptall", main_accept_all },               // accept all incoming transfers, receipts, payments, and invoices.
-    { "acceptinbox", main_accept_inbox },           // accept all incoming transfers and receipts in MyAcct's inbox.
-    { "acceptinvoices", main_accept_invoices },     // pay all invoices in MyNym's payments inbox.
-    { "acceptmoney", main_accept_money },           // accept all incoming transfers and payments into MyAcct.
-    { "acceptpayments", main_accept_payments },     // accept all incoming payments in MyNym's payments inbox.
-    { "acceptreceipts", main_accept_receipts },     // accept all receipts in MyAcct's inbox.
-    { "accepttransfers", main_accept_transfers },   // accept all incoming transfers in MyAcct's inbox.
-    { "addasset", main_add_asset },                 // paste an existing asset contract, import it into your wallet.
-    { "addserver", main_add_server },               // paste an existing server contract, import it into your wallet.
-    { "addsignature", main_add_signature },         // add a signature to a contract without releasing others.
-    { "balance", main_balance },                    // display balance for a specific account.
-    { "buyvoucher", main_withdraw_voucher },        // withdraw a voucher (cashier's cheque).
-    { "cancel", main_cancel_outgoing },             // cancel a not-yet-cashed, outgoing instrument from outpayment box.
-    { "changepw", main_change_passphrase },         // Change the master passphrase for the wallet.
-    { "checknym", main_check_user },                // download a nym's public key based on his ID.
-    { "clearexpired", main_clear_expired },         // clear all expired records.
-    { "clearrecords", main_clear_records },         // clear all archived records and receipts.
-    { "confirm", main_confirm },                    // confirm your agreement to a smart contract or payment plan.
-    { "credentials", main_show_credentials },       // show the credentials for a specific nym.
-    { "decode", main_decode },                      // OT-base64-decode out of armor.
-    { "decrypt", main_decrypt },                    // decrypt ciphertext using nym's private key.
-    { "delmail", main_del_mail },                   // delete an in-mail item
-    { "deloutmail", main_del_outmail },             // delete an out-mail item
-    { "deposit", main_deposit },                    // deposit cash purse, cheque, voucher, or invoice.
-    { "discard", main_discard_incoming },           // discard a not-yet-cashed, incoming instrument from payments inbox.
-    { "editacct", main_edit_account },              // edit an asset account's label, as it appears in your wallet.
-    { "editasset", main_edit_asset },               // edit a currency contract's label, as it appears in your wallet.
-    { "editnym", main_edit_nym },                   // edit the nym's label, as it appears in your wallet.
-    { "editserver", main_edit_server },             // edit a server contract's label, as it appears in your wallet.
-    { "encode", main_encode },                      // OT-base64-encode into armor.
-    { "encrypt", main_encrypt },                    // encrypt plaintext to a nym's public key.
-    { "exchange", main_exchange_basket },           // exchange in/out of a basket currency.
-    { "expired", main_show_expired },               // display contents of expired box.
-    { "exportcash", main_export_cash },             // Export a cash purse.
-    { "exportnym", main_export_nym },               // Export an OT Nym as a single importable file.
-    { "getboxreceipt", main_get_box_receipt },      // downloads a box receipt based on transaction ID.
-    { "getcontract", main_download_contract },      // download an asset or server contract by its ID.
-    { "getmarkets", main_get_market_list },         // download the list of markets.
-    { "getmyoffers", main_get_nym_market_offers },  // download the list of market offers placed by mynym.
-    { "getoffers", main_get_market_offers },        // download the list of market offers.
-    { "importcash", main_import_cash },             // Import a cash purse.
-    { "importnym", main_import_nym },               // Import an OT Nym that was previously exported.
-    { "inbox", main_show_inbox },                   // display inbox of a particular account.
-    { "issueasset", main_issue_asset },             // issue a currency contract onto an OT server.
-    { "killoffer", main_kill_offer },               // kill a still-running, recurring market offer.
-    { "killplan", main_kill_plan },                 // kill a still-running, recurring payment plan.
-    { "mail", main_show_mail },                     // display in-mail for a particular nym.
-    { "newacct", main_create_acct },                // create a new asset account.
-    { "newasset", main_create_asset_contract },     // create a new asset contract.
-    { "newbasket", main_new_basket },               // create a new basket currency.
-    { "newcred", main_new_credential },             // create a new credential for a specific nym.
-    { "newkey", main_new_symmetric_key },           // create a new symmetric key.
-    { "newnym", main_create_nym },                  // create a new nym.
-    { "newoffer", main_create_offer },              // create a new market offer.
-    { "newserver", main_create_server_contract },   // create a new server contract.
-    { "outbox", main_show_outbox },                 // display outbox of a particular account.
-    { "outmail", main_show_outmail },               // display out-mail for a particular nym.
-    { "outpayment", main_show_outpayment },         // display contents of outgoing payments box.
-    { "pass_decrypt", main_password_decrypt },      // password-decrypt a ciphertext using a symmetric key.
-    { "pass_encrypt", main_password_encrypt },      // password-encrypt a plaintext using a symmetric key.
-    { "paydividend", main_pay_dividend },           // dividend payout, sent to all shareholders in voucher form.
-    { "payinvoice", main_payinvoice },              // pay an invoice.
-    { "payments", main_show_payments_inbox },       // display contents of incoming payments box.
-    { "propose", main_propose_plan },               // as merchant, propose a payment plan to a customer.
-    { "records", main_show_records },               // display contents of record box.
-    { "refresh", main_refresh_all },                // "performs both refreshnym and refreshacct."
-    { "refreshacct", main_dl_acct_files },          // "download latest intermediary files for myacct."
-    { "refreshnym", main_refresh_nym },             // download latest intermediary files for mynym.
-    { "register", main_register_nym },              // register a nym onto an OT server.
-    { "revokecred", main_revoke_credential },       // revoke one of a nym's credentials.
-    { "sendcash", main_sendcash },                  // send cash from mypurse to recipient, withdraw if necessary.
-    { "sendcheque", main_sendcheque },              // write a cheque and then send it to the recipient.
-    { "sendinvoice", main_sendinvoice },            // write an invoice and then send it to the recipient.
-    { "sendmsg", main_sendmsg },                    // send a message to another nym's in-mail.
-    { "sendvoucher", main_sendvoucher },            // withdraw a voucher and then send it to the recipient.
-    { "showaccounts", stat_accounts },              // show the asset accounts in the wallet.
-    { "showacct", main_stat_acct },                 // show account stats for a single account.
-    { "showactive", main_show_active },             // show the active cron item IDs, or the details of one by ID.
-    { "showassets", stat_assets },                  // show the currency contracts in the wallet.
-    { "showbasket", main_show_basket },             // show basket currencies available in the wallet.
-    { "showcred", main_show_credential },           // show a specific credential in detail.
-    { "showincoming", main_show_incoming },         // show incoming payments for mynym+server and/or inbox for myacct.
-    { "showmarkets", main_show_market_list },       // display the list of markets.
-    { "showmint", main_show_mint },                 // show a mint file for specific asset ID. Download if necessary.
-    { "showmyoffers", main_show_nym_offers },       // show mynym's offers on a particular server and market.
-    { "shownym", main_nym_stat },                   // show the statistics for a specific nym.
-    { "shownyms", stat_nyms },                      // show the nyms in the wallet.
-    { "showoffers", main_show_market_offers },      // show all offers on a particular server and market.
-    { "showoutgoing", main_show_outgoing },         // show outgoing payments for mynym and/or outbox for myacct.
-    { "showpayment", main_show_payment },           // show the details of a payment in the payments inbox.
-    { "showpurse", main_show_purse },               // show contents of cash purse.
-    { "showservers", stat_servers },                // show the server contracts in the wallet.
-    { "sign", main_sign_contract },                 // sign a contract, releasing all other signatures first.
-    { "stat", main_stat },                          // display wallet contents.
-    { "transfer", main_transfer },                  // send a transfer from myacct to hisacct.
-    { "trigger", main_trigger_clause },             // trigger a clause on a running smart contract.
-    { "verifyreceipt", main_verify_last_receipt },  // verify the intermediary files against the last signed receipt.
-    { "verifysig", main_verify_signature },         // verify a signature on a contract.
-    { "withdraw", main_withdraw_cash },             // withdraw cash (from acct on server to local purse.)
-    { "writecheque", main_write_cheque },           // write a cheque and print it out to the screen.
-    { "writeinvoice", main_write_invoice },         // write an invoice and print it out to the screen.
+    { "acceptall", OT_Command::main_accept_all },               // accept all incoming transfers, receipts, payments, and invoices.
+    { "acceptinbox", OT_Command::main_accept_inbox },           // accept all incoming transfers and receipts in MyAcct's inbox.
+    { "acceptinvoices", OT_Command::main_accept_invoices },     // pay all invoices in MyNym's payments inbox.
+    { "acceptmoney", OT_Command::main_accept_money },           // accept all incoming transfers and payments into MyAcct.
+    { "acceptpayments", OT_Command::main_accept_payments },     // accept all incoming payments in MyNym's payments inbox.
+    { "acceptreceipts", OT_Command::main_accept_receipts },     // accept all receipts in MyAcct's inbox.
+    { "accepttransfers", OT_Command::main_accept_transfers },   // accept all incoming transfers in MyAcct's inbox.
+    { "addasset", OT_Command::main_add_asset },                 // paste an existing asset contract, import it into your wallet.
+    { "addserver", OT_Command::main_add_server },               // paste an existing server contract, import it into your wallet.
+    { "addsignature", OT_Command::main_add_signature },         // add a signature to a contract without releasing others.
+    { "balance", OT_Command::main_balance },                    // display balance for a specific account.
+    { "buyvoucher", OT_Command::main_withdraw_voucher },        // withdraw a voucher (cashier's cheque).
+    { "cancel", OT_Command::main_cancel_outgoing },             // cancel a not-yet-cashed, outgoing instrument from outpayment box.
+    { "changepw", OT_Command::main_change_passphrase },         // Change the master passphrase for the wallet.
+    { "checknym", OT_Command::main_check_user },                // download a nym's public key based on his ID.
+    { "clearexpired", OT_Command::main_clear_expired },         // clear all expired records.
+    { "clearrecords", OT_Command::main_clear_records },         // clear all archived records and receipts.
+    { "confirm", OT_Command::main_confirm },                    // confirm your agreement to a smart contract or payment plan.
+    { "credentials", OT_Command::main_show_credentials },       // show the credentials for a specific nym.
+    { "decode", OT_Command::main_decode },                      // OT-base64-decode out of armor.
+    { "decrypt", OT_Command::main_decrypt },                    // decrypt ciphertext using nym's private key.
+    { "delmail", OT_Command::main_del_mail },                   // delete an in-mail item
+    { "deloutmail", OT_Command::main_del_outmail },             // delete an out-mail item
+    { "deposit", OT_Command::main_deposit },                    // deposit cash purse, cheque, voucher, or invoice.
+    { "discard", OT_Command::main_discard_incoming },           // discard a not-yet-cashed, incoming instrument from payments inbox.
+    { "editacct", OT_Command::main_edit_account },              // edit an asset account's label, as it appears in your wallet.
+    { "editasset", OT_Command::main_edit_asset },               // edit a currency contract's label, as it appears in your wallet.
+    { "editnym", OT_Command::main_edit_nym },                   // edit the nym's label, as it appears in your wallet.
+    { "editserver", OT_Command::main_edit_server },             // edit a server contract's label, as it appears in your wallet.
+    { "encode", OT_Command::main_encode },                      // OT-base64-encode into armor.
+    { "encrypt", OT_Command::main_encrypt },                    // encrypt plaintext to a nym's public key.
+    { "exchange", OT_Command::main_exchange_basket },           // exchange in/out of a basket currency.
+    { "expired", OT_Command::main_show_expired },               // display contents of expired box.
+    { "exportcash", OT_Command::main_export_cash },             // Export a cash purse.
+    { "exportnym", OT_Command::main_export_nym },               // Export an OT Nym as a single importable file.
+    { "getboxreceipt", OT_Command::main_get_box_receipt },      // downloads a box receipt based on transaction ID.
+    { "getcontract", OT_Command::main_download_contract },      // download an asset or server contract by its ID.
+    { "getmarkets", OT_Command::main_get_market_list },         // download the list of markets.
+    { "getmyoffers", OT_Command::main_get_nym_market_offers },  // download the list of market offers placed by mynym.
+    { "getoffers", OT_Command::main_get_market_offers },        // download the list of market offers.
+    { "importcash", OT_Command::main_import_cash },             // Import a cash purse.
+    { "importnym", OT_Command::main_import_nym },               // Import an OT Nym that was previously exported.
+    { "inbox", OT_Command::main_show_inbox },                   // display inbox of a particular account.
+    { "issueasset", OT_Command::main_issue_asset },             // issue a currency contract onto an OT server.
+    { "killoffer", OT_Command::main_kill_offer },               // kill a still-running, recurring market offer.
+    { "killplan", OT_Command::main_kill_plan },                 // kill a still-running, recurring payment plan.
+    { "mail", OT_Command::main_show_mail },                     // display in-mail for a particular nym.
+    { "newacct", OT_Command::main_create_acct },                // create a new asset account.
+    { "newasset", OT_Command::main_create_asset_contract },     // create a new asset contract.
+    { "newbasket", OT_Command::main_new_basket },               // create a new basket currency.
+    { "newcred", OT_Command::main_new_credential },             // create a new credential for a specific nym.
+    { "newkey", OT_Command::main_new_symmetric_key },           // create a new symmetric key.
+    { "newnym", OT_Command::main_create_nym },                  // create a new nym.
+    { "newoffer", OT_Command::main_create_offer },              // create a new market offer.
+    { "newserver", OT_Command::main_create_server_contract },   // create a new server contract.
+    { "outbox", OT_Command::main_show_outbox },                 // display outbox of a particular account.
+    { "outmail", OT_Command::main_show_outmail },               // display out-mail for a particular nym.
+    { "outpayment", OT_Command::main_show_outpayment },         // display contents of outgoing payments box.
+    { "pass_decrypt", OT_Command::main_password_decrypt },      // password-decrypt a ciphertext using a symmetric key.
+    { "pass_encrypt", OT_Command::main_password_encrypt },      // password-encrypt a plaintext using a symmetric key.
+    { "paydividend", OT_Command::main_pay_dividend },           // dividend payout, sent to all shareholders in voucher form.
+    { "payinvoice", OT_Command::main_payinvoice },              // pay an invoice.
+    { "payments", OT_Command::main_show_payments_inbox },       // display contents of incoming payments box.
+    { "propose", OT_Command::main_propose_plan },               // as merchant, propose a payment plan to a customer.
+    { "records", OT_Command::main_show_records },               // display contents of record box.
+    { "refresh", OT_Command::main_refresh_all },                // "performs both refreshnym and refreshacct."
+    { "refreshacct", OT_Command::main_dl_acct_files },          // "download latest intermediary files for myacct."
+    { "refreshnym", OT_Command::main_refresh_nym },             // download latest intermediary files for mynym.
+    { "register", OT_Command::main_register_nym },              // register a nym onto an OT server.
+    { "revokecred", OT_Command::main_revoke_credential },       // revoke one of a nym's credentials.
+    { "sendcash", OT_Command::main_sendcash },                  // send cash from mypurse to recipient, withdraw if necessary.
+    { "sendcheque", OT_Command::main_sendcheque },              // write a cheque and then send it to the recipient.
+    { "sendinvoice", OT_Command::main_sendinvoice },            // write an invoice and then send it to the recipient.
+    { "sendmsg", OT_Command::main_sendmsg },                    // send a message to another nym's in-mail.
+    { "sendvoucher", OT_Command::main_sendvoucher },            // withdraw a voucher and then send it to the recipient.
+    { "showaccounts", OT_Command::main_stat_accounts },         // show the asset accounts in the wallet.
+    { "showacct", OT_Command::main_stat_acct },                 // show account stats for a single account.
+    { "showactive", OT_Command::main_show_active },             // show the active cron item IDs, or the details of one by ID.
+    { "showassets", OT_Command::main_stat_assets },             // show the currency contracts in the wallet.
+    { "showbasket", OT_Command::main_show_basket },             // show basket currencies available in the wallet.
+    { "showcred", OT_Command::main_show_credential },           // show a specific credential in detail.
+    { "showincoming", OT_Command::main_show_incoming },         // show incoming payments for mynym+server and/or inbox for myacct.
+    { "showmarkets", OT_Command::main_show_market_list },       // display the list of markets.
+    { "showmint", OT_Command::main_show_mint },                 // show a mint file for specific asset ID. Download if necessary.
+    { "showmyoffers", OT_Command::main_show_nym_offers },       // show mynym's offers on a particular server and market.
+    { "shownym", OT_Command::main_nym_stat },                   // show the statistics for a specific nym.
+    { "shownyms", OT_Command::main_stat_nyms },                 // show the nyms in the wallet.
+    { "showoffers", OT_Command::main_show_market_offers },      // show all offers on a particular server and market.
+    { "showoutgoing", OT_Command::main_show_outgoing },         // show outgoing payments for mynym and/or outbox for myacct.
+    { "showpayment", OT_Command::main_show_payment },           // show the details of a payment in the payments inbox.
+    { "showpurse", OT_Command::main_show_purse },               // show contents of cash purse.
+    { "showservers", OT_Command::main_stat_servers },           // show the server contracts in the wallet.
+    { "sign", OT_Command::main_sign_contract },                 // sign a contract, releasing all other signatures first.
+    { "stat", OT_Command::main_stat },                          // display wallet contents.
+    { "transfer", OT_Command::main_transfer },                  // send a transfer from myacct to hisacct.
+    { "trigger", OT_Command::main_trigger_clause },             // trigger a clause on a running smart contract.
+    { "verifyreceipt", OT_Command::main_verify_last_receipt },  // verify the intermediary files against the last signed receipt.
+    { "verifysig", OT_Command::main_verify_signature },         // verify a signature on a contract.
+    { "withdraw", OT_Command::main_withdraw_cash },             // withdraw cash (from acct on server to local purse.)
+    { "writecheque", OT_Command::main_write_cheque },           // write a cheque and print it out to the screen.
+    { "writeinvoice", OT_Command::main_write_invoice },         // write an invoice and print it out to the screen.
     { "", NULL }
 };
 
