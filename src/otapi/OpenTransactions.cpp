@@ -143,10 +143,6 @@
 #include <OTClient.hpp>
 #include <OTAPI.hpp>
 
-#ifndef IMPORT
-#define IMPORT
-#endif
-
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>

@@ -180,7 +180,7 @@ public:
     EXPORT static OTAPI_Exec * SetExecutor(OTAPI_Exec * exec);
 
     EXPORT static OTAPI_Exec * Exec();
-    EXPORT static OTAPI_Exec * It() { return Exec(); }
+    EXPORT static OTAPI_Exec * It();
 
     EXPORT static OT_API     *  OTAPI();
 	// --------------------------------------------------------------------
