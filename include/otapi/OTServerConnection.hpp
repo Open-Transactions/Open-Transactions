@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  OTServerConnection.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -135,9 +135,7 @@
 #ifndef __OT_SERVERCONNECTION_HPP__
 #define __OT_SERVERCONNECTION_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #ifndef IMPORT
 #define IMPORT
@@ -153,11 +151,10 @@
 #undef IMPORT_SET
 #ifdef IMPORT
 #undef IMPORT
-#include "ExportWrapper.h"
+#include "OTCommon.hpp"
 #endif
 #endif
 
-#include _CINTTYPES
 
 struct TransportCallback;
 
@@ -169,15 +166,15 @@ class OTWallet;
 class OTString;
 class OTClient;
 
-extern "C" 
-{	
+extern "C"
+{
 #define TYPE_1_CMD_1	1
 #define TYPE_1_CMD_2	2
 #define TYPE_1_CMD_3	3
 #define TYPE_1_CMD_4	4
-	
+
 #define CMD_TYPE_1		1
-	
+
 #define OT_CMD_HEADER_SIZE  9
 
 typedef unsigned char	BYTE;
@@ -194,62 +191,61 @@ union u_header
 		BYTE		checksum;	// 1 byte
 	} fields;	// total of 9 bytes
 };
-	
+
 }
 
-
-class OTServerConnection 
+class OTServerConnection
 {
 	static void Initialize();
 	static bool s_bInitialized;
-	
+
 	OTMessageBuffer m_listIn;
 	OTMessageBuffer m_listOut;
 
 //	SFSocket *				m_pSocket;	 // For TCP / SSL mode.
-	
+
 	bool					m_bFocused;	 // For RPC / HTTP mode.
 	TransportCallback	*	m_pCallback; // --------------------
-	
+
 	OTPseudonym			*	m_pNym;
 	OTServerContract	*	m_pServerContract;
 	OTWallet			*	m_pWallet;
 	OTClient			*	m_pClient;
-	
+
 public:
 	OTServerConnection(OTWallet & theWallet, OTClient & theClient);
 //	OTServerConnection(OTWallet & theWallet, OTClient & theClient, SFSocket * pSock);
 	EXPORT	~OTServerConnection() {}
-	
+
 	bool GetServerID(OTIdentifier & theID);
-	
+
 	inline OTPseudonym		*	GetNym()			{ return m_pNym; }
 	inline OTServerContract	*	GetServerContract()	{ return m_pServerContract; }
 	inline OTWallet			*	GetWallet()			{ return m_pWallet; }
-	
+
 //	inline bool IsConnected()	{ return ((NULL == m_pSocket)?false:true); }	// for socket mode				-- TCP / SSL
 	inline bool IsFocused()		{ return m_bFocused; }							// for request/response mode	-- RPC / HTTP
-	
+
 	// SetFocus() is for RPC / HTTP mode.
 	bool SetFocus(OTPseudonym & theNym, OTServerContract & theServerContract, TransportCallback * pCallback);
 
 	// Connect() is for TCP / SSL mode.
 EXPORT	bool Connect(OTPseudonym & theNym, OTServerContract & theServerContract,
 	OTString & strCA_FILE, OTString & strKEY_FILE, OTString & strKEY_PASSWORD) {return false;}
-	
+
 	void OnServerResponseToGetRequestNumber(long lNewRequestNumber);
-	
+
 	void ProcessMessageOut(char *buf, int * pnExpectReply);
 	void ProcessMessageOut(OTMessage & theMessage);
-	
+
 	EXPORT	bool ProcessInBuffer(OTMessage & theServerReply) {return false;}
 	bool ProcessReply(u_header & theCMD, OTMessage & theServerReply);
 	bool ProcessType1Cmd(u_header & theCMD, OTMessage & theServerReply);
-	
+
 	// Assuming we are connected, then we have the nym for signing and we
 	// have the connection for sending.
 	bool SignAndSend(OTMessage & theMessage);
-	
+
 };
 
 #endif // __OT_SERVERCONNECTION_HPP__

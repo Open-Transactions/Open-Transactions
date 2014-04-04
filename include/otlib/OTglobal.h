@@ -134,8 +134,8 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
+#include "OTCommon.hpp"
+
 #include "TR1_Wrapper.hpp"
 
 #include _CINTTYPES

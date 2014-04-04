@@ -228,7 +228,7 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		[AC_MSG_RESULT([Warning: libzmq version >= 2.1.4 not found!])]
 		)
 	])
-	
+
 if test x"$with_transport" == x"zmq"; then
 	AC_DEFINE([TRANSPORT_ZMQ], [1], [Using ZMQ Transport])
 else
@@ -284,6 +284,13 @@ AS_IF(	[test "$with_keyring" == x"kwallet"],
 	AC_DEFINE([KEYRING_KWALLET], [1], [Using KWallet Keyring])
 	])
 	
+AS_IF(  [test "$with_keyring" == x"flatfile"],
+    [
+    AC_SUBST(KRG_CFLAGS,  [""])
+    AC_SUBST(KRG_LIBS,  [""])
+    AC_DEFINE([KEYRING_FLATFILE], [1], [Using flatfile Keyring])
+    ])
+
 AS_IF(  [test "$with_keyring" == x"flatfile"],
     [
     AC_SUBST(KRG_CFLAGS,  [""])

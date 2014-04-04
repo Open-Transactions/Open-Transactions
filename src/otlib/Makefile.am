@@ -28,11 +28,11 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 libot_la_CXXFLAGS	=	$(common_includes)
 
 libot_la_LIBADD		=	bigint/libbigint.la	\
-				irrxml/libirrxml.la		\
-				lucre/liblucre.la		\
+                                irrxml/libirrxml.la \
+                                lucre/liblucre.la \
 				otprotob/libotprotob.la		\
-				otext/libotext.la		\
-				$(DEPS_LIBS)
+                                otext/libotext.la \
+                                $(DEPS_LIBS)
 
 libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
 				irrxml/libirrxml.la		\
@@ -150,6 +150,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
 				$(otlib_headers_dir)/OTBylaw.hpp		\
 				$(otlib_headers_dir)/OTCachedKey.hpp		\
 				$(otlib_headers_dir)/OTCheque.hpp		\
+				$(otlib_headers_dir)/OTCommon.hpp		\
 				$(otlib_headers_dir)/OTContract.hpp		\
 				$(otlib_headers_dir)/OTCredential.hpp		\
 				$(otlib_headers_dir)/OTCron.hpp			\

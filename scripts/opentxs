@@ -5,7 +5,7 @@
 def main_not_coded_yet()
 {
     print("\n\n  Congratulations, you've been selected to add that option to this script! \n It's real easy: just edit scripts/ot/ot_commands.ot, and copy some code\ninto it based on whichever sample script is appropriate.\nThen edit the opentxs script, and add your new main\nfunction to the list map_functions near the bottom. Done!\n\n")
-    
+
     return 0
 }
 
@@ -23,7 +23,7 @@ def interpret_command(map_functions, map_help, strInput)
     var catInstruments = 7
     var catBaskets     = 8
     var catNyms        = 9
-    
+
     var map_categories= ["sendmsg":6,//catOtherUsers,
                          "changepw":2,//catWallet,
                          "stat":2,//catWallet,
@@ -125,7 +125,7 @@ def interpret_command(map_functions, map_help, strInput)
                          "decode":1,//catAdmin,
                          "encrypt":1,//catAdmin,
                          "decrypt":1];//catAdmin
-    
+
     var vec_category_str=["Category Error",
                           "Advanced utilities",
                           "The user wallet",
@@ -137,9 +137,9 @@ def interpret_command(map_functions, map_help, strInput)
                           "Basket currencies",
                           "Pseudonyms"];
 
-    
+
     var the_function
-    
+
     if (VerifyStringVal(strInput))
     {
         var strAdmin       = ""
@@ -197,13 +197,13 @@ def interpret_command(map_functions, map_help, strInput)
                 var help_tuple       = help_range.front()
                 var help_command     = help_tuple.first()
                 var help_description = help_tuple.second()
-                
+
                 var type_tuple       = type_range.front()
                 var type_command     = type_tuple.first()
                 var type_category    = type_tuple.second()
                 // -------------------------------------------
                 var strCurrentIteration = help_command+(help_command.size() > 7 ? "\t" : "\t\t")+help_description+"\n"
-                
+
                 switch(type_category)
                 {
                 case (catAdmin) {
@@ -243,7 +243,7 @@ def interpret_command(map_functions, map_help, strInput)
                     break
                 }
                 default {
-                    
+
                     break
                 }
                 }
@@ -251,9 +251,9 @@ def interpret_command(map_functions, map_help, strInput)
                 help_range.pop_front()
                 type_range.pop_front()
             }
-            
+
             var strCategory = ""
-            
+
             strCategory = vec_category_str[catAdmin]
             OT_API_Output(0, "\n "+strCategory+": \n"+strAdmin)
             strCategory = vec_category_str[catWallet]
@@ -272,7 +272,7 @@ def interpret_command(map_functions, map_help, strInput)
             OT_API_Output(0, "\n "+strCategory+": \n"+strBaskets)
             strCategory = vec_category_str[catNyms]
             OT_API_Output(0, "\n "+strCategory+": \n"+strNyms)
-            
+
             OT_API_Output(0, "\n")
 
             return 0  // "success" from UNIX command line perspective.
@@ -293,11 +293,11 @@ def interpret_command(map_functions, map_help, strInput)
                 the_range.pop_front()
             }
             // -----------------------------------------
-            
+
             if (!the_function.is_var_undef()) // found it!
             {
                 var nReturn = the_function()
-                
+                OT_API_Output(2, "\n Returning error code: \"" + nReturn.to_string() + "\".\n\n");
                 switch (nReturn)
                 {
                         // This means "no error, but also didn't do anything."
@@ -320,6 +320,7 @@ def interpret_command(map_functions, map_help, strInput)
                         return -1
                     }
                     default {
+                        OT_API_Output(0, "\n Undefined error code: \"" + nReturn.to_string() + "\".\n\n");
                         return -1
                     }
                 }
@@ -330,7 +331,7 @@ def interpret_command(map_functions, map_help, strInput)
             }
         }
     }
-    
+
     (-1)
 }
 
@@ -344,23 +345,18 @@ def main_loop(map_functions, map_help)
     //
     if (VerifyExists("Args", false))
     {
+        OT_API_Output(1, "\nCommand: " + Args + "\n\n");
         var strCommand = OT_CLI_GetValueByKey(Args, "ot_cli_command")
-        
+
         if (VerifyStringVal(strCommand)) // command was passed in on the command line...
         {
             return interpret_command(map_functions, map_help, strCommand)
         }
     }
-    // ---------------------------------
-    //
+
+
     // Otherwise, show list.
-    //
-    else
-    {
 	return interpret_command(map_functions, map_help, "list");
-    }
-    
-    0
 }
 
 
@@ -372,7 +368,7 @@ def main_loop(map_functions, map_help)
 //
 def main_opentxs()
 {
-    
+
     var catAdmin       = 1
     var catWallet      = 2
     var catMisc        = 3
@@ -394,7 +390,7 @@ def main_opentxs()
                          "checknym":main_check_user,            // download a nym's public key based on his ID.
                          "writecheque":main_write_cheque,       // write a cheque and print it out to the screen.
                          "writeinvoice":main_write_invoice,     // write an invoice and print it out to the screen.
-                         "sendcash":main_sendcash,              // send cash from mypurse to recipient, withdraw if necessary. 
+                         "sendcash":main_sendcash,              // send cash from mypurse to recipient, withdraw if necessary.
                          "sendcheque":main_sendcheque,          // write a cheque and then send it to the recipient.
                          "sendinvoice":main_sendinvoice,        // write an invoice and then send it to the recipient.
                          "payinvoice":main_payinvoice,          // pay an invoice.
@@ -489,7 +485,7 @@ def main_opentxs()
                          "decode":main_decode,                  // OT-base64-decode out of armor.
                          "encrypt":main_encrypt,                // encrypt plaintext to a nym's public key.
                          "decrypt":main_decrypt];               // decrypt ciphertext using nym's private key.
-        
+
     var map_help      = ["sendmsg":                             "send a message to another nym's in-mail.",
                          "changepw":                            "change the master passphrase for the wallet.",
                          "stat":                                "display wallet contents.",
@@ -561,7 +557,7 @@ def main_opentxs()
                          "pass_decrypt":                        "password-decrypt a ciphertext using a symmetric key.",
                          "newnym":                              "create a new nym.",
                          "addserver":                           "paste an existing server contract, import it into your wallet.",
-                         "addasset":                            "paste an existing asset contract, import it into your wallet.",                        
+                         "addasset":                            "paste an existing asset contract, import it into your wallet.",
                          "newasset":                            "create a new asset contract.",
                          "newserver":                           "create a new server contract.",
                          "editnym":                             "edit the nym's label, as it appears in your wallet.",
@@ -591,17 +587,17 @@ def main_opentxs()
                          "decode":                              "OT-base64-decode out of armor.",
                          "encrypt":                             "encrypt plaintext to a nym's public key.",
                          "decrypt":                             "decrypt ciphertext using nym's private key."];
-    
-    
+
+
     main_loop(map_functions, map_help)
 }
-    
+
 
 
 
 
 main_opentxs()
-    
+
 
 
 

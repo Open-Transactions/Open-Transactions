@@ -1,12 +1,12 @@
 /************************************************************************************
- *    
+ *
  *  xmlrpcxx_server.cpp  (The web-services implementation of the Open Transactions server.)
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -109,10 +109,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -157,7 +157,7 @@
 #define SERVER_CONFIG_KEY	"server" //should get programmatically
 
 
-//extern "C" 
+//extern "C"
 //{
 //#ifdef _WIN32
 //#else
@@ -184,12 +184,11 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 #define	KEY_LATENCY_RECEIVE_NO_TRIES		"latency_receive_no_tries"
 #define	KEY_IS_BLOCKING						"is_blocking"
 
-
 class OTSocket
 {
 	zmq::context_t	* m_pContext;
 	zmq::socket_t	* m_pSocket;
-	
+
 	OTString		m_strBindingPath;
 
 	bool		m_bInitialized;
@@ -201,17 +200,17 @@ class OTSocket
 	long		m_lLatencyReceiveMs;
 	int			m_nLatencyReceiveNoTries;
 	bool		m_bIsBlocking;
-	
+
 	bool const HandlePollingError();
 	bool const HandleSendingError();
 	bool const HandleReceivingError();
-	
+
 public:
 	OTSocket();
 	~OTSocket();
 
 	tthread::mutex * m_pMutex;
-	
+
 	const bool Init();
 
 	const bool Init(
@@ -341,7 +340,7 @@ const bool OTSocket::NewContext()
 
 	if (NULL != m_pSocket)	delete m_pSocket;	m_pSocket	= NULL;
 	if (NULL != m_pContext)	delete m_pContext;	m_pContext	= NULL;
-	
+
 	m_pContext = new zmq::context_t(1);
 
 	m_HasContext = true;
@@ -372,7 +371,7 @@ const bool OTSocket::Listen(const OTString &strBind)
 //	m_pSocket = NULL;
 	m_pSocket = new zmq::socket_t(*m_pContext, ZMQ_REP);  // RESPONSE socket (Request / Response.)
 	OT_ASSERT_MSG(NULL != m_pSocket, "OTSocket::Listen: new zmq::socket(context, ZMQ_REP)");
-	
+
 
 	//  Configure socket to not wait at close time
     //
@@ -380,10 +379,10 @@ const bool OTSocket::Listen(const OTString &strBind)
 	m_pSocket->setsockopt (ZMQ_LINGER, &linger, sizeof (linger));
     /*
      int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
-     
-     Caution: All options, with the exception of ZMQ_SUBSCRIBE, ZMQ_UNSUBSCRIBE and ZMQ_LINGER, only take effect for subsequent socket bind/connects.     
+
+     Caution: All options, with the exception of ZMQ_SUBSCRIBE, ZMQ_UNSUBSCRIBE and ZMQ_LINGER, only take effect for subsequent socket bind/connects.
      */
-    
+
 
 	m_pSocket->bind(m_strBindingPath.Get());  // since m_strBindingPath was checked and set above.
 
@@ -399,7 +398,7 @@ const bool OTSocket::Listen(const OTString &strBind)
  int fd;
  short events;
  short revents;
- } zmq_pollitem_t; 
+ } zmq_pollitem_t;
  */
 
 // The bool means true == try again soon, false == don't try again.
@@ -407,14 +406,14 @@ const bool OTSocket::Listen(const OTString &strBind)
 const bool OTSocket::HandlePollingError()
 {
 	bool bRetVal = false;
-	
+
 	switch (errno) {
 			// At least one of the members of the items array refers to a socket whose associated ØMQ context was terminated.
 		case ETERM:
 			OTLog::Error("OTSocket::HandlePollingError: Failure: At least one of the members of the items array refers to a socket whose associated ØMQ context was terminated. (Deleting and re-creating the context.)\n");
 			this->NewContext();
 			this->Listen(m_strBindingPath);
-			break;		
+			break;
 			// The provided items was not valid (NULL).
 		case EFAULT:
 			OTLog::Error("OTSocket::HandlePollingError: Failed: The provided polling items were not valid (NULL).\n");
@@ -437,7 +436,7 @@ const bool OTSocket::HandlePollingError()
 const bool OTSocket::HandleSendingError()
 {
 	bool bRetVal = false;
-	
+
 	switch (errno) {
 			// Non-blocking mode was requested and the message cannot be sent at the moment.
 		case EAGAIN:
@@ -485,7 +484,7 @@ const bool OTSocket::HandleSendingError()
 const bool OTSocket::HandleReceivingError()
 {
 	bool bRetVal = false;
-	
+
 	switch (errno) {
 			// Non-blocking mode was requested and no messages are available at the moment.
 		case EAGAIN:
@@ -543,14 +542,14 @@ const bool OTSocket::Send(const std::string & str_Reply)
 	// -----------------------------------
 	const long lLatencySendMilliSec	= this->m_lLatencySendMs;
 	const long lLatencySendMicroSec	= lLatencySendMilliSec*1000; // Microsecond is 1000 times smaller than millisecond.
-	
+
 	// Convert the std::string (reply) into a ZMQ message
 	zmq::message_t reply (str_Reply.length());
 	memcpy((void *) reply.data(), str_Reply.c_str(), str_Reply.length());
 	// -----------------------------------
-	
+
 	bool bSuccessSending	= false;
-	
+
 	if (this->m_bIsBlocking)
 	{
 		bSuccessSending = m_pSocket->send(reply); // Blocking.
@@ -558,23 +557,23 @@ const bool OTSocket::Send(const std::string & str_Reply)
 	else // not blocking
 	{
 		int		nSendTries	= this->m_nLatencySendNoTries;
-		long	lDoubling	= lLatencySendMicroSec;		
+		long	lDoubling	= lLatencySendMicroSec;
 		bool	bKeepTrying = true;
-		
+
 		while (bKeepTrying && (nSendTries > 0))
 		{
 			zmq::pollitem_t items [] = {
 				{ (*m_pSocket), 0, ZMQ_POLLOUT,	0 }
 			};
-			
-			const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)					
+
+			const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)
 			lDoubling *= 2;
-			
+
 			if (items[0].revents & ZMQ_POLLOUT)
 			{
 				bSuccessSending = m_pSocket->send(reply, ZMQ_NOBLOCK); // <=========== SEND ===============
 				OTLog::SleepMilliseconds( 1 );
-				
+
 				if (!bSuccessSending)
 				{
 					if (false == HandleSendingError())
@@ -588,11 +587,11 @@ const bool OTSocket::Send(const std::string & str_Reply)
 				if (false == HandlePollingError())
 					bKeepTrying = false;
 			}
-			
+
 			--nSendTries;
 		}
 	}
-	
+
 	return bSuccessSending;
 }
 // -----------------------------------
@@ -607,16 +606,16 @@ const bool OTSocket::Receive(std::string & str_Message)
 	if (!m_HasContext) return false;
 	if (!m_bIsListening) return false;
 
-	// -----------------------------------	
+	// -----------------------------------
 	const long lLatencyRecvMilliSec	= this->m_lLatencyReceiveMs;
 	const long lLatencyRecvMicroSec	= lLatencyRecvMilliSec*1000;
-	
+
 	// ***********************************
 	//  Get the request.
 	zmq::message_t request;
-	
+
 	bool bSuccessReceiving = false;
-	
+
 	// If failure receiving, re-tries 2 times, with 4000 ms max delay between each (Doubling every time.)
 	//
 	if (this->m_bIsBlocking)
@@ -628,29 +627,29 @@ const bool OTSocket::Receive(std::string & str_Message)
 		long	lDoubling = lLatencyRecvMicroSec;
 		int		nReceiveTries = this->m_nLatencyReceiveNoTries;
 		bool	expect_request = true;
-		while (expect_request) 
+		while (expect_request)
 		{
 			//  Poll socket for a request, with timeout
 			zmq::pollitem_t items[] = { { *m_pSocket, 0, ZMQ_POLLIN, 0 } };
-			
+
 			const int nPoll = zmq::poll (&items[0], 1, lDoubling);
 			lDoubling *= 2; // 100 ms, then 200 ms, then 400 ms == total of 700 ms per receive. (About 15 per 10 seconds.)
-			
+
 			//  If we got a request, process it
-			if (items[0].revents & ZMQ_POLLIN) 
+			if (items[0].revents & ZMQ_POLLIN)
 			{
 				bSuccessReceiving = m_pSocket->recv(&request, ZMQ_NOBLOCK); // <=========== RECEIVE ===============
 				OTLog::SleepMilliseconds( 1 );
-				
+
 				if (!bSuccessReceiving)
 				{
 					if (false == HandleReceivingError())
 						expect_request = false;
 				}
 				else
-					break; // (Success -- we're done in this loop.)				
+					break; // (Success -- we're done in this loop.)
 			}
-			else if (nReceiveTries == 0) 
+			else if (nReceiveTries == 0)
 			{
 //				OTLog::Error("OTSocket::Receive: Tried to receive, based on polling data, but failed even after retries.\n");
 				expect_request = false;
@@ -661,18 +660,18 @@ const bool OTSocket::Receive(std::string & str_Message)
 				if (false == HandlePollingError())
 					expect_request = false;
 			}
-			
+
 			--nReceiveTries;
 		}
 	}
 	// ***********************************
-	
+
 	if (bSuccessReceiving && (request.size() > 0))
 	{
 		str_Message.reserve(request.size());
-		str_Message.append(static_cast<const char *>(request.data()), request.size());	
+		str_Message.append(static_cast<const char *>(request.data()), request.size());
 	}
-	
+
 	return (bSuccessReceiving && (request.size() > 0));
 }
 
@@ -705,7 +704,7 @@ int main(int argc, char* argv[])
 	int err = WSAStartup( wVersionRequested, &wsaData );
 
 	/* Tell the user that we could not find a usable		*/
-	/* Winsock DLL.											*/		
+	/* Winsock DLL.											*/
 
 	OT_ASSERT_MSG((err == 0), "WSAStartup failed!\n");
 
@@ -743,10 +742,10 @@ int main(int argc, char* argv[])
     public:
         OTServer * GetServer() { return m_pServer; }
         // -----------------------------------
-        __ot_server_() : m_pServer(NULL) // INIT 
+        __ot_server_() : m_pServer(NULL) // INIT
         {
-            // -----------------------------------------------------------------------   
-	
+            // -----------------------------------------------------------------------
+
             // -----------------------------------------------------------------------
             // OTLog class exists on both client and server sides.
             // #define OT_NO_SIGNAL_HANDLING if you want to turn off OT's signal handling.
@@ -754,7 +753,7 @@ int main(int argc, char* argv[])
 #if defined(OT_SIGNAL_HANDLING)
             OTLog::SetupSignalHandler(); // This is optional! (I, of course, am using it in this test app...)
 #endif
-            // -----------------------------------------------------------------------    
+            // -----------------------------------------------------------------------
             // I instantiate this here (instead of globally) so that I am assured that any globals and other
             // setup is already done before we instantiate the server object itself.
             //
@@ -779,10 +778,10 @@ int main(int argc, char* argv[])
 				OT_ASSERT_MSG(bSetupPathsSuccess, "main(): Assert failed: Failed to set OT Path");
 			}
 
-            // -----------------------------------------------------------------------    
-            
+            // -----------------------------------------------------------------------
+
             OTCrypto::It()->Init();  // <========== (OpenSSL gets initialized here.)
-            
+
         }
         // ****************************************
         //
@@ -804,13 +803,13 @@ int main(int argc, char* argv[])
             OTCrypto::It()->Cleanup();  // <======= (OpenSSL gets cleaned up here.)
 
             // -------------------------
-            // (This is at the bottom, since we do the cleanup in the 
+            // (This is at the bottom, since we do the cleanup in the
             // reverse order from initialization.)
 #ifdef _WIN32
             WSACleanup();
 #endif
         }
-    };	
+    };
 	// ***********************************************************************
     //
     // INSTANTIATE and INITIALIZE...
@@ -833,35 +832,35 @@ int main(int argc, char* argv[])
 	// Initialize SSL -- This MUST occur before any Private Keys are loaded!
 //	SSL_library_init();
 //	SSL_load_error_strings();
-	
+
 	// -----------------------------------------------------------------------
 	// OTServer::Init loads up server's nym so it can decrypt messages sent in
     // envelopes. It also does various other initialization work.
 	//
 	// (Envelopes prove that ONLY someone who actually had the server contract,
-	//  and had loaded it into his wallet, could ever connect to the server or 
+	//  and had loaded it into his wallet, could ever connect to the server or
 	//  communicate with it. And if that person is following the contract, there
 	//  is only one server he can connect to, and one key he can use to talk to it.)
 	//
-	OTLog::vOutput(0, 
+	OTLog::vOutput(0,
 				   "\nNow loading the server nym, which will also ask you for a password, to unlock\n"
 				   "its private key.\n");
-	
+
 	pServer->Init(); // Keys, etc are loaded here. ===> Assumes main path is set! <===
-	
+
 	// -----------------------------------------------------------------------
 	// We're going to listen on the same port that is listed in our server contract.
 	//
 	//
 	OTString	strHostname;	// The hostname of this server, according to its own contract.
 	int			nPort=0;		// The port of this server, according to its own contract.
-	
+
     const bool bConnectInfo = pServer->GetConnectInfo(strHostname, nPort);
-    
+
 	OT_ASSERT_MSG(bConnectInfo, "server main: Unable to find my own connect info (which SHOULD be in my server contract, BTW.) Perhaps you failed trying to open that contract? Have you tried the test password? (\"test\")\n");
-	
+
 	const int   nServerPort = nPort;
-	
+
 	// -----------------------------------------------------------------------
     // OT CRON
     //
@@ -881,7 +880,7 @@ int main(int argc, char* argv[])
     // Thing is, though, that with this setup, we can't really guarantee that cron will EVER be
     // triggered -- whereas the way OT is now, at least we know it WILL fire every X seconds.
     //
-    
+
 	// --------------------------------------
     //
     // NETWORK
@@ -916,7 +915,7 @@ int main(int argc, char* argv[])
 
 		if (!theSocket.Listen(strBindPath))  { OT_FAIL; };
 	}
-    
+
     // ******************************************************************************************
     //
     //      *** MAIN LOOP ***
@@ -927,27 +926,27 @@ int main(int argc, char* argv[])
 		//
 		// The Server now processes certain things on a regular basis.
 		// ProcessCron is what gives it the opportunity to do that.
-		// All of the Cron Items (including market trades, payment plans, smart contracts...) 
+		// All of the Cron Items (including market trades, payment plans, smart contracts...)
 		// they all have their hooks here...
 		//
 		pServer->ProcessCron();  // Internally this is smart enough to know how often to actually activate itself.
-                                   // Most often it just returns doing nothing (waiting for its timer.)		
+                                   // Most often it just returns doing nothing (waiting for its timer.)
 		// -----------------------------------------------------------------------
 		// Wait for client http requests (and process replies out to them.)
 		// ----------------------------------------------------------------------
 		// Number of requests to process per heartbeat: OTServer::GetHeartbeatNoRequests()
 		//
 		// Loop: process up to 10 client requests, then sleep for 1/10th second.
-		// That's a total of 100 requests per second. Can the computers handle it? 
+		// That's a total of 100 requests per second. Can the computers handle it?
 		// Is it too much or too little? Todo: load testing.
 		//
 		// Then: check for shutdown flag.
 		//
-		// Then: go back to the top ("do") and repeat the loop.... process cron, 
+		// Then: go back to the top ("do") and repeat the loop.... process cron,
 		// process 10 client requests, sleep, check for shutdown, etc.
 		//
 		//
-                
+
 		Timer t;	// start timer
 		t.start();
 		const double tick1 = t.getElapsedTimeInMilliSec();
@@ -958,21 +957,21 @@ int main(int argc, char* argv[])
         // Theoretically the "number of requests" that we process EACH PULSE.
         // (The timing code here is still pretty new, need to do some load testing.)
         //
-		for (int i = 0; i < /*10*/OTServer::GetHeartbeatNoRequests(); i++) 
+		for (int i = 0; i < /*10*/OTServer::GetHeartbeatNoRequests(); i++)
 		{
 			std::string	str_Message;
-			
+
 			// With 100ms heartbeat, receive will try 100 ms, then 200 ms, then 400 ms, total of 700.
 			// That's about 15 Receive() calls every 10 seconds. Therefore if I want the ProcessCron()
 			// to trigger every 10 seconds, I need to set the cron interval to roll over every 15 heartbeats.
 			// Therefore I will be using a real Timer for Cron, instead of the damn intervals.
 			//
-			bool bReceived = theSocket.Receive(str_Message);  
-			
+			bool bReceived = theSocket.Receive(str_Message);
+
 			if  (bReceived)
 			{
 				std::string str_Reply; // Output.
-				
+
 				if (str_Message.length() <= 0)
 				{
 					OTLog::Error("server main: Received a message, but of 0 length or less. Weird. (Skipping it.)\n");
@@ -990,49 +989,49 @@ int main(int argc, char* argv[])
 						OTLog::vOutput(0, "server main: ERROR: Unfortunately, not every client request is "
                                        "legible or worthy of a server response. :-)  "
 									   "Msg:\n\n%s\n\n", str_Message.c_str());
-                        
+
                         theSocket.Listen();
 					}
 					else
 					{
 						bool bSuccessSending = theSocket.Send(str_Reply); // <===== SEND THE REPLY
-						
+
 						if (false == bSuccessSending)
 							OTLog::vError("server main: Socket ERROR: failed while trying to send reply "
-                                          "back to client! \n\n MESSAGE:\n%s\n\nREPLY:\n%s\n\n", 
+                                          "back to client! \n\n MESSAGE:\n%s\n\nREPLY:\n%s\n\n",
 										  str_Message.c_str(), str_Reply.c_str());
 						// --------------------------------------------------
 					}
 				}
 			}
 		} //  for
-		
+
 		// -----------------------------------------------------------------------
 		//
         // IF the time we had available wasn't all used up -- if some of it is still
-        // available, then SLEEP until we reach the NEXT PULSE. (In practice, we will 
+        // available, then SLEEP until we reach the NEXT PULSE. (In practice, we will
         // probably use TOO MUCH time, not too little--but then again OT isn't ALWAYS
         // processing a message. There could be plenty of dead time in between...)
         //
 		const	double tick2	= t.getElapsedTimeInMilliSec();
 		const	long elapsed	= static_cast<long>(tick2 - tick1);
 		long	lSleepMS		= 0;
-			
-		if (elapsed < /*100*/OTServer::GetHeartbeatMsBetweenBeats()) 
+
+		if (elapsed < /*100*/OTServer::GetHeartbeatMsBetweenBeats())
 		{
 			lSleepMS = OTServer::GetHeartbeatMsBetweenBeats() - elapsed;
 
 			// Now go to sleep.
-			// (The main loop processes ten times per second, currently.)		
+			// (The main loop processes ten times per second, currently.)
 			OTLog::SleepMilliseconds(lSleepMS); // 100 ms == (1 second / 10)
 		}
-		
+
 		// -----------------------------------------------------------------------
 		// ARTIFICIAL LIMIT:
 		// 10 requests per heartbeat, 10 rounds per second == 100 requests per second.
 		//
 		// *** ONE HUNDRED CLIENT MESSAGES PER SECOND is the same as:
-		// 
+		//
 		//     6000 PER MINUTE == 360,000 PER HOUR == 8,640,000 PER DAY***
 		//
 		// Speeding it up is just a matter of adjusting the above numbers, and LOAD TESTING,
@@ -1045,9 +1044,9 @@ int main(int argc, char* argv[])
 			OTLog::Output(0, "main: OT Server is shutting down gracefully....\n");
 			break;
 		}
-        
+
     }
-    
+
 	// ------------------------------------
 	return 0;
 }
@@ -1060,35 +1059,35 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 {
 	if (str_Message.size() < 1)
 		return false;
-	
+
     const char * szFunc = "ProcessMessage_ZMQ";
 	// --------------------
-	
+
 	// return value.
 	std::string resultString = ""; // Whatever we put in this string is what will get returned.
-	
+
 	// First we grab the client's message
 	OTASCIIArmor ascMessage;
 	ascMessage.MemSet(str_Message.data(), static_cast<uint32_t> (str_Message.size()));
-	
+
 	// ------------------
-//	
+//
 //	OTPayload thePayload;
-//	thePayload.SetPayloadSize(str_Message.size());	
+//	thePayload.SetPayloadSize(str_Message.size());
 //	memcpy((void*)thePayload.GetPayloadPointer(), str_Message.data(), str_Message.size());
-	
+
 	// ----------------------------------------------------------------------
-	
+
 //	OTLog::vError("Envelope: \n%s\n Size: %ld\n", ascMessage.Get(), ascMessage.GetLength());
-	
-    
+
+
     bool bReturnVal = false; // "false" == no, do NOT disconnect. No errors. ("True" means YES, DISCONNECT!)
-    
+
 	OTMessage theMsg, theReply; // we'll need these in a sec...
-	
+
 //	OTEnvelope theEnvelope(ascMessage);
-	OTEnvelope theEnvelope; 
-	
+	OTEnvelope theEnvelope;
+
 	if (false == theEnvelope.SetAsciiArmoredData(ascMessage))
     {
 		OTLog::vError("%s: Error retrieving envelope.\n", szFunc);
@@ -1097,13 +1096,13 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 	else
 	{	// Now the base64 is decoded and the envelope is in binary form again.
 		OTLog::vOutput(2, "%s: Successfully retrieved envelope from ZMQ message...\n", szFunc);
-		
+
 		OTString strEnvelopeContents;
-		
+
 //		OTString strPubkeyPath("TESTPUBKEY.txt");
 //		theServer.GetServerNym().SavePublicKey(strPubkeyPath);
-		
-		// Decrypt the Envelope.    
+
+		// Decrypt the Envelope.
 		if (false == theEnvelope.Open(theServer.GetServerNym(), strEnvelopeContents)) // now strEnvelopeContents contains the decoded message.
         {
 			OTLog::vError("%s: Unable to open envelope.\n", szFunc);
@@ -1121,27 +1120,27 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 				theReply.m_strNymID		= theMsg.m_strNymID;	// UserID
 				theReply.m_strServerID	= theMsg.m_strServerID;	// ServerID, a hash of the server contract.
 				theReply.m_bSuccess		= false;				// The default reply. In fact this is probably superfluous.
-				
+
 				// In case you want to see all the incoming messages...
 //				OTLog::vOutput(0, "%s\n\n", strEnvelopeContents.Get());
-				
+
 				// By constructing this without a socket, I put it in ZMQ mode, instead of tcp/ssl.
-				OTClientConnection theClient(theServer); 
+				OTClientConnection theClient(theServer);
 
                 OTPseudonym theNym(theMsg.m_strNymID);
 
                 const bool bProcessedUserCmd = theServer.ProcessUserCommand(theMsg, theReply, &theClient, &theNym);
-                
+
 				// By optionally passing in &theClient, the client Nym's public key will be
-				// set on it whenever verification is complete. (So for the reply, I'll 
+				// set on it whenever verification is complete. (So for the reply, I'll
 				// have the key and thus I'll be able to encrypt reply to the recipient.)
 				if (false == bProcessedUserCmd)
 				{
                     const OTString s1(theMsg);
-                    
+
 					OTLog::vOutput(0, "%s: Unable to process user command: %s\n ********** "
                                    "REQUEST:\n\n%s\n\n", szFunc, theMsg.m_strCommand.Get(), s1.Get());
-					
+
 
 					// NOTE: normally you would even HAVE a true or false if we're in this block. ProcessUserCommand()
 					// is what tries to process a command and then sets false if/when it fails. Until that point, you
@@ -1149,21 +1148,21 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 					// to success==false.) That way if a client needs to re-sync his request number, he will get the false
 					// and therefore know to resync the # as his next move, vs being stuck with no server reply (and thus
 					// stuck with a bad socket.)
-					// We sign the reply here, but not in the else block, since it's already signed in cases where 
+					// We sign the reply here, but not in the else block, since it's already signed in cases where
 					// ProcessUserCommand() is a success, by the time that call returns.
-					
+
 					theReply.m_bSuccess = false; // Since the process call definitely failed, I'm making sure this here is definitely set to false (even though it probably was already.)
 					theReply.SignContract(theServer.GetServerNym());
 					theReply.SaveContract();
-                    
+
                     const OTString s2(theReply);
-                    
+
 					OTLog::vOutput(0, " ********** RESPONSE:\n\n%s\n\n", s2.Get());
-					
+
 				}
 				else	// At this point the reply is ready to go, and theClient has the public key of the recipient...
 					OTLog::vOutput(1, "%s: Successfully processed user command: %s.\n", szFunc, theMsg.m_strCommand.Get());
-				
+
                 // -------------------------------------------------------------------------------------
 
                 // IF ProcessUserCommand returned true, THEN we process the message for the recipient.
@@ -1175,9 +1174,9 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
                     // Let's seal it up to the recipient's nym (in an envelope) and send back to the user...
                     //
                     OTEnvelope theRecipientEnvelope;
-                    
+
                     const bool bSealed = theClient.SealMessageForRecipient(theReply, theRecipientEnvelope);
-                    
+
                     if (false == bSealed)
                     {
                         OTLog::vOutput(0, "%s: Unable to seal envelope. (No reply will be sent.)\n", szFunc);
@@ -1189,13 +1188,13 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 //                      theReplyPayload.SetEnvelope(theRecipientEnvelope);
 //                      resultString = ascReply.Get();
 //                      resultString.assign(theReplyPayload.GetPayloadPointer(), theReplyPayload.GetPayloadSize());
-					
+
                         OTASCIIArmor ascReply;
                         if (theRecipientEnvelope.GetAsciiArmoredData(ascReply))
                         {
                             // -----------------------------------------
                             OTString strOutput;
-                            const bool bSuccess = ascReply.Exists() && 
+                            const bool bSuccess = ascReply.Exists() &&
                                                     ascReply.WriteArmoredString(strOutput,
                                                                                 "ENVELOPE"); // There's no default, to force you to enter the right string.
                             // -----------------------------------------
@@ -1221,13 +1220,13 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
                 else
                 {
                     const OTString  strReply(theReply);
-                    
+
                     if (strReply.Exists())
                     {
                         OTASCIIArmor ascReply(strReply);
                         // ------------------------------------
                         OTString strOutput;
-                        const bool bSuccess = ascReply.Exists() && 
+                        const bool bSuccess = ascReply.Exists() &&
                                                 ascReply.WriteArmoredString(strOutput,
                                                                             "MESSAGE"); // There's no default, to force you to enter the right string.
                         // -----------------------------------------
@@ -1258,11 +1257,11 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 		}
 	}
 	// ----------------------------------------------------------------------
-	
+
 	str_Reply = resultString;
-    
+
     return bReturnVal;
-    
+
 } // ProcessMessage_ZMQ
 
 

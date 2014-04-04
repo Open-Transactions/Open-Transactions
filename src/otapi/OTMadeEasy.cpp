@@ -1,15 +1,15 @@
-/************************************************************************************
+/************************************************************
 
 OTMadeEasy.cpp   --	A C++ wrapper class (named OTMadeEasy)
 
 This is a wrapper for OT_ME
- 
+
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -112,10 +112,10 @@ This is a wrapper for OT_ME
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -138,7 +138,6 @@ This is a wrapper for OT_ME
 
 #include <OT_ME.hpp>
 #include <OTAPI.hpp>
-
 
 
 OTMadeEasy::OTMadeEasy() : m_pME(new OT_ME)
@@ -215,7 +214,7 @@ std::string OTMadeEasy::retrieve_contract(const std::string  & SERVER_ID,
                                           const std::string  & NYM_ID,
                                           const std::string  & CONTRACT_ID)
 {
-	return m_pME->retrieve_contract(SERVER_ID, NYM_ID, CONTRACT_ID);    
+	return m_pME->retrieve_contract(SERVER_ID, NYM_ID, CONTRACT_ID);
 }
 
 
@@ -223,7 +222,7 @@ std::string OTMadeEasy::load_or_retrieve_contract(const std::string  & SERVER_ID
                                                   const std::string  & NYM_ID,
                                                   const std::string  & CONTRACT_ID)
 {
-	return m_pME->load_or_retrieve_contract(SERVER_ID, NYM_ID, CONTRACT_ID);    
+	return m_pME->load_or_retrieve_contract(SERVER_ID, NYM_ID, CONTRACT_ID);
 }
 
 
@@ -231,7 +230,7 @@ std::string OTMadeEasy::create_asset_acct(const std::string  & SERVER_ID,
                                           const std::string  & NYM_ID,
                                           const std::string  & ASSET_TYPE_ID)
 {
-	return m_pME->create_asset_acct(SERVER_ID, NYM_ID, ASSET_TYPE_ID);    
+	return m_pME->create_asset_acct(SERVER_ID, NYM_ID, ASSET_TYPE_ID);
 }
 
 
@@ -386,7 +385,7 @@ std::string OTMadeEasy::send_user_msg(const std::string  & SERVER_ID,
                                       const std::string  & RECIPIENT_NYM_ID,
                                       const std::string  & THE_MESSAGE)
 {
-    return m_pME->send_user_msg(SERVER_ID, NYM_ID, RECIPIENT_NYM_ID, THE_MESSAGE);    
+    return m_pME->send_user_msg(SERVER_ID, NYM_ID, RECIPIENT_NYM_ID, THE_MESSAGE);
 }
 
 
@@ -422,7 +421,7 @@ std::string OTMadeEasy::get_payment_instrument(const std::string  & SERVER_ID,
                                                const long           nIndex,
                                                const std::string  & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
 {
-    return m_pME->get_payment_instrument(SERVER_ID, NYM_ID, static_cast<int32_t>(nIndex), PRELOADED_INBOX); 
+    return m_pME->get_payment_instrument(SERVER_ID, NYM_ID, static_cast<int32_t>(nIndex), PRELOADED_INBOX);
 }
 
 
@@ -715,7 +714,7 @@ long OTMadeEasy::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
                                                const std::string & str_Message)
 {
     const long lReturn = static_cast<long>(m_pME->VerifyMsgBalanceAgrmntSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
-    return lReturn;    
+    return lReturn;
 }
 
 
@@ -725,7 +724,7 @@ long OTMadeEasy::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
                                       const std::string & str_Message)
 {
     const long lReturn = static_cast<long>(m_pME->VerifyMsgTrnxSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
-    return lReturn;    
+    return lReturn;
 }
 
 
@@ -736,7 +735,7 @@ long OTMadeEasy::InterpretTransactionMsgReply(const std::string & SERVER_ID,
                                               const std::string & str_Response)
 {
     const long lReturn = static_cast<long>(m_pME->InterpretTransactionMsgReply(SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response));
-    return lReturn;    
+    return lReturn;
 }
 
 

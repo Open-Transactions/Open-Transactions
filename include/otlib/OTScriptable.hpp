@@ -1,14 +1,14 @@
-/************************************************************************************
- *    
+/************************************************************
+ *
  *  OTScriptable.h
- * 
+ *
  *  This is just like OTContract, except it also has "Bylaws" and "Parties".
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -135,16 +135,11 @@
 #ifndef __OTSCRIPTABLE_HPP__
 #define __OTSCRIPTABLE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
-#include _CINTTYPES
-
 class OTAccount;
-
 
 class OTScriptable : public OTContract
 {
@@ -181,7 +176,7 @@ protected:
 	// the template type of the scriptable: m_bSpecifyAssetID and m_bSpecifyParties, which
 	// must each be saved individually on OTScriptable.
 	//
-	// Agents should be entirely removed during contract ID calculating process, since 
+	// Agents should be entirely removed during contract ID calculating process, since
 	// the Parties can already be specified, and since they can choose their agents at the
 	// time of signing -- which are otherwise irrelevant since only the parties are liable.
 	//
@@ -198,13 +193,13 @@ protected:
 	// m_bPartyIsNym is conditional and so is m_lOpeningTransNo.
 	//
 	bool	m_bCalculatingID; // NOT serialized. Used during ID calculation.
-	
+
 	bool	m_bSpecifyAssetID;	// Serialized. See above note.
 	bool	m_bSpecifyParties;	// Serialized. See above note.
-	
+
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
 	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
-    
+
     OTString  m_strLabel; // OTSmartContract can put its trans# here. (Allowing us to use it in the OTScriptable methods where any smart contract would normally want to log its transaction #, not just the clause name.)
 public:
     // ----------------------------------------------------
@@ -237,7 +232,7 @@ EXPORT	OTParty * FindPartyBasedOnNymAsAuthAgent(OTPseudonym & theNym, OTAgent **
         OTPartyAccount	* GetPartyAccount(const std::string str_acct_name);
         OTPartyAccount	* GetPartyAccountByID(const OTIdentifier & theAcctID) const;
 	// -----------------------------------------------------------------
-	// This function returns the count of how many trans#s a Nym needs in order to confirm as 
+	// This function returns the count of how many trans#s a Nym needs in order to confirm as
 	// a specific agent for a contract. (An opening number is needed for every party of which
 	// agent is the authorizing agent, plus a closing number for every acct of which agent is the
 	// authorized agent.)
@@ -251,11 +246,11 @@ EXPORT	int  GetCountTransNumsNeededForAgent(const std::string str_agent_name);
 	// Basically this means that the agreement's owner approves of theNym.
 	//
 	virtual bool VerifyNymAsAgent(OTPseudonym & theNym,
-								  OTPseudonym & theSignerNym, 
+								  OTPseudonym & theSignerNym,
 								  mapOfNyms	* pmap_ALREADY_LOADED=NULL);
-	
+
 	// NEED TO CALL BOTH METHODS. (above / below)
-	
+
 	// Verifies that theNym is actually an agent for theAccount, according to the PARTY.
 	// Also verifies that theNym is an agent for theAccount, according to the ACCOUNT.
 	//
@@ -267,11 +262,11 @@ EXPORT	int  GetCountTransNumsNeededForAgent(const std::string str_agent_name);
                                   mapOfNyms		* pmap_ALREADY_LOADED=NULL, // If some nyms are already loaded, pass them here so we don't load them twice on accident.
                                   mapOfNyms		* pmap_NEWLY_LOADED=NULL,   // If some nyms had to be loaded, then they will be deleted, too. UNLESS you pass a map here, in which case they will instead be added to this map. (But if you do that, then you must delete them yourself after calling this function.)
                                   const bool		  bBurnTransNo=false); // In OTServer::VerifySmartContract(), it not only wants to verify the # is properly issued, but it additionally wants to see that it hasn't been USED yet -- AND it wants to burn it, so it can't be used again!  This bool allows you to tell the function whether or not to do that.
-	
+
 	bool VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	// The party is assumed to have been verified already via VerifyPartyAuthorization()
 									  OTPseudonym		& theSignerNym,	// For verifying signature on the authorized Nym
 									  const OTString	& strServerID, // For verifying issued num, need the serverID the # goes with.
-									  const bool		  bBurnTransNo=false); // In OTServer::VerifySmartContract(), it not only wants to verify the closing # is properly issued, but it additionally wants to see that it hasn't been USED yet -- AND it wants to burn it, so it can't be used again!  This bool allows you to tell the function whether or not to do that.		
+									  const bool		  bBurnTransNo=false); // In OTServer::VerifySmartContract(), it not only wants to verify the closing # is properly issued, but it additionally wants to see that it hasn't been USED yet -- AND it wants to burn it, so it can't be used again!  This bool allows you to tell the function whether or not to do that.
     // -----------------------------------------------------------------------------------
 EXPORT  bool VerifyThisAgainstAllPartiesSignedCopies();
 EXPORT	bool AllPartiesHaveSupposedlyConfirmed();
@@ -283,7 +278,7 @@ EXPORT	bool AllPartiesHaveSupposedlyConfirmed();
 	// to the fact that they had infact already been loaded and were floating around in memory somewhere.
 	//
 	void RetrieveNymPointers(mapOfNyms & map_Nyms_Already_Loaded);
-	
+
     void ClearTemporaryPointers();
 	// ----------------
 	// Look up all clauses matching a specific hook.
@@ -310,7 +305,7 @@ EXPORT	bool SendNoticeToAllParties(bool bSuccessMsg,
                                     const OTString & strReference,
                                     OTString * pstrNote=NULL,
                                     OTString * pstrAttachment=NULL,
-                                    OTPseudonym * pActualNym=NULL);	
+                                    OTPseudonym * pActualNym=NULL);
 	// ----------------
 	// This is an OT Native call party_may_execute_clause
 	// It returns true/false whether party is allowed to execute clause.
@@ -323,7 +318,7 @@ EXPORT	bool CanExecuteClause(const std::string str_party_name, const std::string
 	//
 	// Also: callback_party_may_execute_clause should expect two parameters: param_party_name and param_clause_name, both strings.
 	// Also: callback_party_may_execute_clause should return a bool.
-	
+
 	bool ExecuteCallback (OTClause & theCallbackClause, mapOfVariables & theParameters, OTVariable & varReturnVal);
 
 	virtual void RegisterOTNativeCallsWithScript(OTScript & theScript);
@@ -331,7 +326,7 @@ EXPORT	bool CanExecuteClause(const std::string str_party_name, const std::string
 	virtual bool Compare(OTScriptable & rhs);
 	// ----------------
 EXPORT	static OTScriptable * InstantiateScriptable(const OTString & strInput);
-	
+
 	// Make sure a string contains only alpha, numeric, or '_'
 	// And make sure it's not blank. This is for script variable names, clause names, party names, etc.
 	//

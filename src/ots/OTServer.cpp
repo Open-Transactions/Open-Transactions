@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTServer.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -130,6 +130,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#include <stdafx.hpp>
 
 #include <stdafx.hpp>
 
@@ -204,60 +205,60 @@ bool	OTServer::__admin_server_locked = false; // Bool. Is server currently locke
 
 bool	OTServer::__cmd_usage_credits = false; // Bool. Command for setting / viewing usage credits.
 
-bool	OTServer::__cmd_issue_asset = true; // Bool. 
-bool	OTServer::__cmd_get_contract = true; // Bool. 
-bool	OTServer::__cmd_check_server_id = true; // Bool. 
+bool	OTServer::__cmd_issue_asset = true; // Bool.
+bool	OTServer::__cmd_get_contract = true; // Bool.
+bool	OTServer::__cmd_check_server_id = true; // Bool.
 
-bool	OTServer::__cmd_create_user_acct = true; // Bool. 
-bool	OTServer::__cmd_del_user_acct = true; // Bool. 
-bool	OTServer::__cmd_check_user = true; // Bool. 
-bool	OTServer::__cmd_get_request = true; // Bool. 
-bool	OTServer::__cmd_get_trans_num = true; // Bool. 
-bool	OTServer::__cmd_send_message = true; // Bool. 
-bool	OTServer::__cmd_get_nymbox = true; // Bool. 
-bool	OTServer::__cmd_process_nymbox = true; // Bool. 
+bool	OTServer::__cmd_create_user_acct = true; // Bool.
+bool	OTServer::__cmd_del_user_acct = true; // Bool.
+bool	OTServer::__cmd_check_user = true; // Bool.
+bool	OTServer::__cmd_get_request = true; // Bool.
+bool	OTServer::__cmd_get_trans_num = true; // Bool.
+bool	OTServer::__cmd_send_message = true; // Bool.
+bool	OTServer::__cmd_get_nymbox = true; // Bool.
+bool	OTServer::__cmd_process_nymbox = true; // Bool.
 
-bool	OTServer::__cmd_create_asset_acct = true; // Bool. 
-bool	OTServer::__cmd_del_asset_acct = true; // Bool. 
-bool	OTServer::__cmd_get_acct = true; // Bool. 
-bool	OTServer::__cmd_get_inbox = true; // Bool. 
-bool	OTServer::__cmd_get_outbox = true; // Bool. 
-bool	OTServer::__cmd_process_inbox = true; // Bool. 
+bool	OTServer::__cmd_create_asset_acct = true; // Bool.
+bool	OTServer::__cmd_del_asset_acct = true; // Bool.
+bool	OTServer::__cmd_get_acct = true; // Bool.
+bool	OTServer::__cmd_get_inbox = true; // Bool.
+bool	OTServer::__cmd_get_outbox = true; // Bool.
+bool	OTServer::__cmd_process_inbox = true; // Bool.
 
-bool	OTServer::__cmd_issue_basket = false; // Bool. 
-bool	OTServer::__transact_exchange_basket = true; // Bool. 
+bool	OTServer::__cmd_issue_basket = false; // Bool.
+bool	OTServer::__transact_exchange_basket = true; // Bool.
 
-bool	OTServer::__cmd_notarize_transaction = true; // Bool. 
-bool	OTServer::__transact_process_inbox = true; // Bool. 
-bool	OTServer::__transact_transfer = true; // Bool. 
-bool	OTServer::__transact_withdrawal = true; // Bool. 
-bool	OTServer::__transact_deposit = true; // Bool. 
-bool	OTServer::__transact_withdraw_voucher = true; // Bool. 
-bool	OTServer::__transact_deposit_cheque = true; // Bool. 
-bool	OTServer::__transact_pay_dividend = true; // Bool. 
+bool	OTServer::__cmd_notarize_transaction = true; // Bool.
+bool	OTServer::__transact_process_inbox = true; // Bool.
+bool	OTServer::__transact_transfer = true; // Bool.
+bool	OTServer::__transact_withdrawal = true; // Bool.
+bool	OTServer::__transact_deposit = true; // Bool.
+bool	OTServer::__transact_withdraw_voucher = true; // Bool.
+bool	OTServer::__transact_deposit_cheque = true; // Bool.
+bool	OTServer::__transact_pay_dividend = true; // Bool.
 
-bool	OTServer::__cmd_get_mint = true; // Bool. 
-bool	OTServer::__transact_withdraw_cash = true; // Bool. 
-bool	OTServer::__transact_deposit_cash = true; // Bool. 
+bool	OTServer::__cmd_get_mint = true; // Bool.
+bool	OTServer::__transact_withdraw_cash = true; // Bool.
+bool	OTServer::__transact_deposit_cash = true; // Bool.
 
-bool	OTServer::__cmd_get_market_list = true; // Bool. 
-bool	OTServer::__cmd_get_market_offers = true; // Bool. 
-bool	OTServer::__cmd_get_market_recent_trades = true; // Bool. 
-bool	OTServer::__cmd_get_nym_market_offers = true; // Bool. 
+bool	OTServer::__cmd_get_market_list = true; // Bool.
+bool	OTServer::__cmd_get_market_offers = true; // Bool.
+bool	OTServer::__cmd_get_market_recent_trades = true; // Bool.
+bool	OTServer::__cmd_get_nym_market_offers = true; // Bool.
 
-bool	OTServer::__transact_market_offer = true; // Bool. 
-bool	OTServer::__transact_payment_plan = true; // Bool. 
-bool	OTServer::__transact_cancel_cron_item = true; // Bool. 
+bool	OTServer::__transact_market_offer = true; // Bool.
+bool	OTServer::__transact_payment_plan = true; // Bool.
+bool	OTServer::__transact_cancel_cron_item = true; // Bool.
 
-bool	OTServer::__transact_smart_contract = true; // Bool. 
-bool	OTServer::__cmd_trigger_clause = true; // Bool. 
+bool	OTServer::__transact_smart_contract = true; // Bool.
+bool	OTServer::__cmd_trigger_clause = true; // Bool.
 
 // Todo: Might set ALL of these to false (so you're FORCED to set them true
-// in the server.cfg file.) This way you're also assured that the right data 
+// in the server.cfg file.) This way you're also assured that the right data
 // folder was found, before you start unlocking the server messages!
 //
 
-// For NYM_IS_ALLOWED() to evaluate to TRUE, either the boolean value itself is set to true 
+// For NYM_IS_ALLOWED() to evaluate to TRUE, either the boolean value itself is set to true
 // (meaning, "YES any Nym is allowed..") OR (it only continues if that part fails) if the
 // override Nym's ID matches to the Nym ID passed in (as a const char *).
 //
@@ -292,23 +293,23 @@ void OTServer::ActivateCron()
 
 /// Currently the test server calls this 10 times per second.
 /// It also processes all the input/output at the same rate.
-/// It sleeps in between. (See testserver.cpp for the call 
+/// It sleeps in between. (See testserver.cpp for the call
 /// and OTLog::Sleep() for the sleep code.)
 ///
 void OTServer::ProcessCron()
 {
 	if (!m_Cron.IsActivated())
 		return;
-	
+
 	bool bAddedNumbers = false;
-	
+
 	// Cron requires transaction numbers in order to process.
 	// So every time before I call Cron.Process(), I make sure to replenish first.
 	while (m_Cron.GetTransactionCount() < OTCron::GetCronRefillAmount())
 	{
 		long lTransNum = 0;
 		bool bSuccess = IssueNextTransactionNumber(m_nymServer, lTransNum, false); // bStoreTheNumber = false
-		
+
 		if (bSuccess)
 		{
 			m_Cron.AddTransactionNumber(lTransNum);
@@ -317,16 +318,16 @@ void OTServer::ProcessCron()
 		else
 			break;
 	}
-	
+
 	if (bAddedNumbers)
 	{
 		m_Cron.SaveCron();
 	}
-	
+
 	m_Cron.ProcessCronItems(); // This needs to be called regularly for trades, markets, payment plans, etc to process.
-	
-	
-	// NOTE:  TODO:  OTHER RE-OCCURRING SERVER FUNCTIONS CAN GO HERE AS WELL!! 
+
+
+	// NOTE:  TODO:  OTHER RE-OCCURRING SERVER FUNCTIONS CAN GO HERE AS WELL!!
 	//
 	// Such as sweeping server accounts after expiration dates, etc.
 
@@ -342,19 +343,19 @@ const OTPseudonym & OTServer::GetServerNym() const
 }
 
 // Server stores a map of BASKET_ID to BASKET_ACCOUNT_ID.
-bool OTServer::AddBasketAccountID(const OTIdentifier & BASKET_ID, const OTIdentifier & BASKET_ACCOUNT_ID, 
+bool OTServer::AddBasketAccountID(const OTIdentifier & BASKET_ID, const OTIdentifier & BASKET_ACCOUNT_ID,
 								  const OTIdentifier & BASKET_CONTRACT_ID)
 {
 	OTIdentifier theBasketAcctID;
-	
+
 	if (LookupBasketAccountID(BASKET_ID, theBasketAcctID))
 	{
 		OTLog::Output(0, "User attempted to add Basket that already exists.\n");
 		return false;
 	}
-	
+
 	OTString strBasketID(BASKET_ID), strBasketAcctID(BASKET_ACCOUNT_ID), strBasketContractID(BASKET_CONTRACT_ID);
-	
+
 	m_mapBaskets[strBasketID.Get()]					= strBasketAcctID.Get();
 	m_mapBasketContracts[strBasketContractID.Get()]	= strBasketAcctID.Get();
 
@@ -369,9 +370,9 @@ bool OTServer::VerifyBasketAccountID(const OTIdentifier & BASKET_ACCOUNT_ID)
 	FOR_EACH(mapOfBaskets, m_mapBaskets)
 	{
 		OTString strBasketAcctID	= (*it).second.c_str();
-		
+
 		OTIdentifier id_BASKET_ACCT(strBasketAcctID);
-		
+
 		if (BASKET_ACCOUNT_ID == id_BASKET_ACCT) // if the basket Acct ID passed in matches this one...
 		{
 			return true;
@@ -389,9 +390,9 @@ bool OTServer::LookupBasketAccountIDByContractID(const OTIdentifier & BASKET_CON
 	{
 		OTString strBasketContractID	= (*it).first.c_str();
 		OTString strBasketAcctID		= (*it).second.c_str();
-		
+
 		OTIdentifier id_BASKET_CONTRACT(strBasketContractID), id_BASKET_ACCT(strBasketAcctID);
-		
+
 		if (BASKET_CONTRACT_ID == id_BASKET_CONTRACT) // if the basket contract ID passed in matches this one...
 		{
 			BASKET_ACCOUNT_ID = id_BASKET_ACCT;
@@ -411,9 +412,9 @@ bool OTServer::LookupBasketContractIDByAccountID(const OTIdentifier & BASKET_ACC
 	{
 		OTString strBasketContractID	= (*it).first.c_str();
 		OTString strBasketAcctID		= (*it).second.c_str();
-		
+
 		OTIdentifier id_BASKET_CONTRACT(strBasketContractID), id_BASKET_ACCT(strBasketAcctID);
-		
+
 		if (BASKET_ACCOUNT_ID == id_BASKET_ACCT) // if the basket contract ID passed in matches this one...
 		{
 			BASKET_CONTRACT_ID = id_BASKET_CONTRACT;
@@ -433,9 +434,9 @@ bool OTServer::LookupBasketAccountID(const OTIdentifier & BASKET_ID, OTIdentifie
 	{
 		OTString strBasketID		= (*it).first.c_str();
 		OTString strBasketAcctID	= (*it).second.c_str();
-		
+
 		OTIdentifier id_BASKET(strBasketID), id_BASKET_ACCT(strBasketAcctID);
-		
+
 		if (BASKET_ID == id_BASKET) // if the basket ID passed in matches this one...
 		{
 			BASKET_ACCOUNT_ID = id_BASKET_ACCT;
@@ -457,41 +458,41 @@ _SharedPtr<OTAccount> OTServer::GetVoucherAccount(const OTIdentifier & ASSET_TYP
 	const OTIdentifier SERVER_USER_ID(m_nymServer), SERVER_ID(m_strServerID);
 	// --------------------------------------------------
 	bool bWasAcctCreated = false;
-	pAccount = m_VoucherAccts.GetOrCreateAccount(m_nymServer, SERVER_USER_ID, ASSET_TYPE_ID, 
+	pAccount = m_VoucherAccts.GetOrCreateAccount(m_nymServer, SERVER_USER_ID, ASSET_TYPE_ID,
 												SERVER_ID, bWasAcctCreated);
 	if (bWasAcctCreated)
 	{
 		OTString strAcctID;
 		pAccount->GetIdentifier(strAcctID);
 		const OTString strAssetTypeID(ASSET_TYPE_ID);
-		
+
 		OTLog::vOutput(0, "OTServer::GetVoucherAccount: Successfully created voucher account ID: %s Asset Type ID: %s\n",
 				 strAcctID.Get(), strAssetTypeID.Get());
-		
+
 		if (false == SaveMainFile())
 		{
 			OTLog::Error("OTServer::GetVoucherAccount: Error saving main server file containing new account ID!!\n");
 		}
 	}
 	// -------------------------------
-	
+
 	return pAccount;
 }
-	
+
 
 /// Lookup the current mint for any given asset type ID and series.
 OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // Each asset contract has its own Mint.
 {
 	OTMint * pMint = NULL;
-	
+
 	FOR_EACH(mapOfMints, m_mapMints)
 	{
 		pMint = (*it).second;
 		OT_ASSERT_MSG(NULL != pMint, "NULL mint pointer in OTServer::GetMint\n");
-		
+
 		OTIdentifier theID;
 		pMint->GetIdentifier(theID);
-		
+
 		if ((ASSET_TYPE_ID	== theID) &&			// if the ID on the Mint matches the ID passed in
 			(nSeries		== pMint->GetSeries()))	// and the series also matches...
 			return pMint;							// return the pointer right here, we're done.
@@ -499,12 +500,12 @@ OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // E
 	// --------------------------------------------------------------------
 	// The mint isn't in memory for the series requested.
 	const OTString ASSET_ID_STR(ASSET_TYPE_ID);
-	
-	OTString	strMintFilename; 
-	strMintFilename.Format("%s%s%s%s%d", 
-						   m_strServerID.Get(), OTLog::PathSeparator(), 
+
+	OTString	strMintFilename;
+	strMintFilename.Format("%s%s%s%s%d",
+						   m_strServerID.Get(), OTLog::PathSeparator(),
 						   ASSET_ID_STR.Get(), ".", nSeries);
-	
+
 	const char * szFoldername	= OTFolders::Mint().Get();
 	const char * szFilename		= strMintFilename.Get();
     // --------------------------------------------------------------------
@@ -516,30 +517,30 @@ OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // E
 
 	OT_ASSERT_MSG(NULL != pMint, "Error allocating memory for Mint in OTServer::GetMint");
     // --------------------------------------------------------------------
-	OTString strSeries; 
+	OTString strSeries;
     strSeries.Format("%s%d", ".", nSeries);
 	//
 	if (pMint->LoadMint(strSeries.Get()))
 	{
 		if (pMint->VerifyMint(m_nymServer)) // I don't verify the Mint's expiration date here, just its signature, ID, etc.
-		{									// (Expiry dates are enforced on tokens during deposit--and checked against mint-- 
+		{									// (Expiry dates are enforced on tokens during deposit--and checked against mint--
 											// but expiry dates are only enforced on the Mint itself during a withdrawal.)
 			// It's a multimap now...
 			//m_mapMints[ASSET_ID_STR.Get()] = pMint;
 
 			m_mapMints.insert ( std::pair<std::string, OTMint *>(ASSET_ID_STR.Get(), pMint) );
-			
+
 			return pMint;
 		}
 		else
 		{
-			OTLog::vError("Error verifying Mint in OTServer::GetMint:\n%s%s%s\n", 
+			OTLog::vError("Error verifying Mint in OTServer::GetMint:\n%s%s%s\n",
 						  szFoldername, OTLog::PathSeparator(), szFilename);
 		}
 	}
-	else 
+	else
 	{
-		OTLog::vError("Error loading Mint in OTServer::GetMint:\n%s%s%s\n", 
+		OTLog::vError("Error loading Mint in OTServer::GetMint:\n%s%s%s\n",
 					  szFoldername, OTLog::PathSeparator(), szFilename);
 	}
 
@@ -568,7 +569,7 @@ OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // E
 /// for the user it was issued to, so that it can be verified later when he submits it
 /// for a transaction--and so it can be removed once the transaction is complete (so it
 /// won't work twice.)
-/// 
+///
 /// The option to bSaveTheNumber defaults to true for this reason. But sometimes it
 /// will be sent to false, in cases where the number doesn't need to be saved because
 /// it's never going to be verified. For example, if the server creates a transaction
@@ -580,23 +581,23 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 										  bool bStoreTheNumber/*=true*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
-	
+
 	// If theNym has the same ID as m_nymServer, then we'll use m_nymServer
 	// instead of theNym.  (Since it's the same nym anyway, we'll stick to the
 	// one we already loaded so any changes don't get overwritten later.)
 	OTPseudonym * pNym = NULL;
-	
+
 	if (NYM_ID == SERVER_NYM_ID)
 		pNym = &m_nymServer;
 	else
 		pNym = &theNym;
-	
+
 	// ----------------------------------------------------------------------------
-	
+
 	// m_lTransactionNumber stores the last VALID AND ISSUED transaction number.
 	// So first, we increment that, since we don't want to issue the same number twice.
 	m_lTransactionNumber++;
-	
+
 	// Next, we save it to file.
 	if (false == SaveMainFile())
 	{
@@ -604,7 +605,7 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 		m_lTransactionNumber--;
 		return false;
 	}
-	
+
 	// Each Nym stores the transaction numbers that have been issued to it.
 	// (On client AND server side.)
 	//
@@ -612,8 +613,8 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 	// it is recorded in his Nym file before being sent to the client (where it
 	// is also recorded in his Nym file.)  That way the server always knows which
 	// numbers are valid for each Nym.
-	
-	else if ( bStoreTheNumber && 
+
+	else if ( bStoreTheNumber &&
 			 (false == pNym->AddTransactionNum(m_nymServer, m_strServerID, m_lTransactionNumber, true))) // bSave = true
 	{
 		OTLog::Error("Error adding transaction number to Nym file.\n");
@@ -621,15 +622,15 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 		SaveMainFile(); // Save it back how it was, since we're not issuing this number after all.
 		return false;
 	}
-	
-	// SUCCESS? 
+
+	// SUCCESS?
 	// Now the server main file has saved the latest transaction number,
 	// and the number has been stored on the relevant nym file.
 	// NOW we set it onto the parameter and return true.
-	else 
-	{  
+	else
+	{
 		lTransactionNumber = m_lTransactionNumber;
-		return true;		
+		return true;
 	}
 }
 
@@ -641,12 +642,12 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const long &lTransactionNumber) // passed by reference for speed, but not a return value.
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
-	
+
 	// If theNym has the same ID as m_nymServer, then we'll use m_nymServer
 	// instead of theNym.  (Since it's the same nym anyway, we'll stick to the
 	// one we already loaded so any changes don't get overwritten later.)
 	OTPseudonym * pNym = NULL;
-	
+
 	if (NYM_ID == SERVER_NYM_ID)
 		pNym = &m_nymServer;
 	else
@@ -660,13 +661,13 @@ bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const long &lTransa
         const OTString strIssued(pNym->VerifyIssuedNum(m_strServerID, lTransactionNumber) ?
                                  "(However, that number IS issued to that Nym... He must have already used it.)\n" :
                                  "(In fact, that number isn't even issued to that Nym, though perhaps it was at some time in the past?)\n");
-        
+
 		OTLog::vError("%s: %ld not available for Nym %s to use. \n%s", __FUNCTION__,
 //                    " Oh, and FYI, tangentially, the current Trns# counter is: %ld\n",
                       lTransactionNumber, strNymID.Get(), strIssued.Get());
 //                    m_lTransactionNumber);
     }
-	
+
 	return false;
 }
 
@@ -675,22 +676,22 @@ bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const long &lTransa
 bool OTServer::RemoveTransactionNumber(OTPseudonym & theNym, const long &lTransactionNumber, bool bSave/*=false*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
-	
+
 	// If theNym has the same ID as m_nymServer, then we'll use m_nymServer
 	// instead of theNym.  (Since it's the same nym anyway, we'll stick to the
 	// one we already loaded so any changes don't get overwritten later.)
 	OTPseudonym * pNym = NULL;
-	
+
 	if (NYM_ID == SERVER_NYM_ID)
 		pNym = &m_nymServer;
 	else
 		pNym = &theNym;
-	
+
 	bool bRemoved = false;
-	
+
 	if (bSave)
 		bRemoved = pNym->RemoveTransactionNum(m_nymServer, m_strServerID, lTransactionNumber); // the version that passes in a signer nym -- saves to local storage.
-	else 
+	else
 		bRemoved = pNym->RemoveTransactionNum(m_strServerID, lTransactionNumber); // the version that doesn't save.
 
 	return bRemoved;
@@ -701,19 +702,19 @@ bool OTServer::RemoveTransactionNumber(OTPseudonym & theNym, const long &lTransa
 bool OTServer::RemoveIssuedNumber(OTPseudonym & theNym, const long &lTransactionNumber, bool bSave/*=false*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
-	
+
 	// If theNym has the same ID as m_nymServer, then we'll use m_nymServer
 	// instead of theNym.  (Since it's the same nym anyway, we'll stick to the
 	// one we already loaded so any changes don't get overwritten later.)
 	OTPseudonym * pNym = NULL;
-	
+
 	if (NYM_ID == SERVER_NYM_ID)
 		pNym = &m_nymServer;
 	else
 		pNym = &theNym;
-	
+
 	bool bRemoved = pNym->RemoveIssuedNum(m_nymServer, m_strServerID, lTransactionNumber, bSave);
-	
+
 	return bRemoved;
 }
 
@@ -734,14 +735,14 @@ OTAssetContract * OTServer::GetAssetContract(const OTIdentifier & ASSET_TYPE_ID)
 	{
 		OTAssetContract * pContract = (*it).second;
 		OT_ASSERT(NULL != pContract);
-		
+
 		OTIdentifier theContractID;
 		pContract->GetIdentifier(theContractID);
-		
+
 		if (theContractID == ASSET_TYPE_ID)
 			return pContract;
 	}
-	
+
 	return NULL;
 }
 
@@ -753,19 +754,19 @@ OTAssetContract * OTServer::GetAssetContract(const OTIdentifier & ASSET_TYPE_ID)
 bool OTServer::AddAssetContract(OTAssetContract & theContract)
 {
 	OTAssetContract * pContract = NULL;
-	
+
 	OTString STR_CONTRACT_ID; OTIdentifier CONTRACT_ID;
 	theContract.GetIdentifier(STR_CONTRACT_ID);
 	theContract.GetIdentifier(CONTRACT_ID);
-	
+
     pContract = GetAssetContract(CONTRACT_ID);
-    
+
 	// already exists
 	if (NULL != pContract) // if not null
 		return false;
-	
+
 	m_mapContracts[STR_CONTRACT_ID.Get()] = &theContract;
-	
+
 	return true;
 }
 
@@ -774,7 +775,7 @@ bool OTServer::SaveMainFileToString(OTString & strMainFile)
 {
     const char * szFunc = "OTServer::SaveMainFileToString";
 	// ---------------------------------------------------------------
-	
+
 	strMainFile.Format("<?xml version=\"1.0\"?>\n"
 					   "<notaryServer version=\"%s\"\n"
 					   " serverID=\"%s\"\n"
@@ -784,96 +785,96 @@ bool OTServer::SaveMainFileToString(OTString & strMainFile)
                        m_strServerID.Get(),
 					   m_strServerUserID.Get(),
                        m_lTransactionNumber);
-	
-    
-    
+
+
+
     if (OTCachedKey::It()->IsGenerated()) // If it exists, then serialize it.
     {
         OTASCIIArmor ascMasterContents;
-        
+
         if (OTCachedKey::It()->SerializeTo(ascMasterContents))
         {
             strMainFile.Concatenate("<cachedKey>\n%s</cachedKey>\n\n", ascMasterContents.Get());
-        }        
+        }
         else
             OTLog::vError("%s: Failed trying to write master key to notary file.\n", szFunc);
     }
     // ---------------------------------------------------------------
-    
+
 	//mapOfContracts	m_mapContracts;   // If the server needs to store copies of the asset contracts, then here they are.
 	//mapOfMints		m_mapMints;		  // Mints for each of those.
-	
+
 	// ---------------------------------------------------------------
-	
+
 	FOR_EACH(mapOfContracts, m_mapContracts)
 	{
 		OTContract * pContract = (*it).second;
 		OT_ASSERT_MSG(NULL != pContract, "NULL contract pointer in OTServer::SaveMainFile.\n");
-		
+
 		// This is like the Server's wallet.
 		pContract->SaveContractWallet(strMainFile);
-		
+
 	}
-	
+
 	// ----------------------------------------------------------------
 
 	// Save the basket account information
-	
+
 	FOR_EACH(mapOfBaskets, m_mapBaskets)
 	{
 		OTString strBasketID		= (*it).first.c_str();
 		OTString strBasketAcctID	= (*it).second.c_str();
-		
+
 		const	OTIdentifier BASKET_ACCOUNT_ID(strBasketAcctID);
 				OTIdentifier BASKET_CONTRACT_ID;
-		
+
 		bool bContractID = LookupBasketContractIDByAccountID(BASKET_ACCOUNT_ID, BASKET_CONTRACT_ID);
-		
+
 		if (!bContractID)
 		{
 			OTLog::vError("%s: Error: Missing Contract ID for basket ID %s\n", szFunc,
 						  strBasketID.Get());
 			break;
 		}
-		
+
 		OTString strBasketContractID(BASKET_CONTRACT_ID);
-		
+
 		strMainFile.Concatenate("<basketInfo basketID=\"%s\"\n"
 								" basketAcctID=\"%s\"\n"
-								" basketContractID=\"%s\" />\n\n", 
+								" basketContractID=\"%s\" />\n\n",
 								strBasketID.Get(), strBasketAcctID.Get(), strBasketContractID.Get());
 	}
-	
-	
+
+
 	m_VoucherAccts.Serialize(strMainFile);
-	
-	
+
+
 	/*
 	 FOR_EACH(mapOfNyms, m_mapNyms)
-	 {		
+	 {
 		OTPseudonym * pNym = (*it).second;
 		OT_ASSERT_MSG(NULL != pNym, "NULL pseudonym pointer in OTWallet::m_mapNyms, OTWallet::SaveWallet");
-	 
+
 		pNym->SavePseudonymWallet(fl);
 	 }
-	 
-	 
+
+
 	 // ---------------------------------------------------------------
-	
+
 	 FOR_EACH(mapOfServers, m_mapServers)
 	 {
 		OTContract * pServer = (*it).second;
 		OT_ASSERT_MSG(NULL != pServer, "NULL server pointer in OTWallet::m_mapServers, OTWallet::SaveWallet");
-	 
+
 		pServer->SaveContractWallet(fl);
 	 }
-	 
+
 	 // ---------------------------------------------------------------
 	 */
-	
+
 	strMainFile.Concatenate("</notaryServer>\n");
-	
-	return true;	
+
+	return true;
 }
 
 
@@ -901,10 +902,10 @@ bool OTServer::SaveMainFile()
     //
     OTString strFinal;
     OTASCIIArmor ascTemp(strMainFile);
-    
+
     if (false == ascTemp.WriteArmoredString(strFinal, "NOTARY")) // todo hardcoding.
     {
-		
+
         OTLog::vError("%s: Error saving notary (failed writing armored string)\n", __FUNCTION__);
         return false;
     }
@@ -912,10 +913,10 @@ bool OTServer::SaveMainFile()
 	// Save the Main File to the Harddrive... (or DB, if other storage module is being used).
 	//
 	const bool bSaved = OTDB::StorePlainString(strFinal.Get(),".", m_strWalletFilename.Get());
-	
+
 	if (!bSaved)  // Check if successfull.
 		OTLog::vError("%s: Error saving main file: %s\n", __FUNCTION__, m_strWalletFilename.Get());
-	
+
 	return bSaved;
 }
 
@@ -926,7 +927,7 @@ bool OTServer::SaveMainFile()
 // to use preprocessor defines.
 //
 bool OTServer::LoadConfigFile()
-{	
+{
 	const char * szFunc = "OTServer::LoadConfigFile()";
 
 	// Setup Config File
@@ -939,7 +940,7 @@ bool OTServer::LoadConfigFile()
 	if (!OTDataFolder::GetConfigFilePath(strConfigFilePath)) { OT_FAIL; };
 	OTSettings * p_Config = NULL;
 	p_Config = new OTSettings(strConfigFilePath);
-	
+
 	// First Load, Create new fresh config file if failed loading.
 	if (!p_Config -> Load())
 	{
@@ -987,70 +988,70 @@ bool OTServer::LoadConfigFile()
 	{
         const char * szComment =
 		";; CRON  (regular events like market trades and smart contract clauses)\n";
-        
+
         bool b_SectionExist;
         p_Config->CheckSetSection("cron",szComment,b_SectionExist);
 	}
-    
+
 	{
         const char * szComment =
 		"; refill_trans_number is the count of transaction numbers cron will grab for itself,\n"
 		"; whenever its supply is getting low.  If it ever drops below 20% of this count\n"
 		"; while in the middle of processing, it will put a WARNING into your server log.\n";
-        
+
         bool bIsNewKey;
         long lValue;
         p_Config->CheckSet_long("cron","refill_trans_number",500,lValue,bIsNewKey,szComment);
         OTCron::SetCronRefillAmount(static_cast<int>(lValue));
 	}
-    
+
 	{
         const char * szComment =
 		"; ms_between_cron_beats is the number of milliseconds before Cron processes\n"
 		"; (all the trades, all the smart contracts, etc every 10 seconds.)\n";
-        
+
         bool bIsNewKey;
         long lValue;
         p_Config->CheckSet_long("cron","ms_between_cron_beats",10000,lValue,bIsNewKey,szComment);
         OTCron::SetCronMsBetweenProcess(static_cast<int>(lValue));
 	}
-    
+
 	{
         const char * szComment =
 		"; max_items_per_nym is the number of cron items (such as market offers or payment\n"
 		"; plans) that any given Nym is allowed to have live and active at the same time.\n";
-        
+
         bool bIsNewKey;
         long lValue;
         p_Config->CheckSet_long("cron","max_items_per_nym",10,lValue,bIsNewKey,szComment);
         OTCron::SetCronMaxItemsPerNym(static_cast<int>(lValue));
 	}
-    
+
 	// -----------------------------------
 	// HEARTBEAT
-    
+
 	{
         const char * szComment =
 		";; HEARTBEAT\n";
-        
+
         bool bSectionExist;
         p_Config->CheckSetSection("heartbeat",szComment,bSectionExist);
 	}
-    
+
 	{
         const char * szComment =
 		"; no_requests is the number of client requests the server processes per heartbeat.\n";
-        
+
         bool bIsNewKey;
         long lValue;
         p_Config->CheckSet_long("heartbeat","no_requests",10,lValue,bIsNewKey,szComment);
         OTServer::SetHeartbeatNoRequests(static_cast<int>(lValue));
 	}
-    
+
 	{
         const char * szComment =
 		"; ms_between_beats is the number of milliseconds between each heartbeat.\n";
-        
+
         bool bIsNewKey;
         long lValue;
         p_Config->CheckSet_long("heartbeat","ms_between_beats",100,lValue,bIsNewKey,szComment);
@@ -1125,8 +1126,8 @@ bool OTServer::LoadConfigFile()
         bool bValue;
         p_Config->CheckSet_bool("security","use_system_keyring",SERVER_USE_SYSTEM_KEYRING,bValue,bIsNewKey);
         OTCachedKey::It()->UseSystemKeyring(bValue);
-        
-        
+
+
 #if defined(OT_KEYRING_FLATFILE)
         // Is there a password folder? (There shouldn't be, but we allow it...)
         //
@@ -1214,7 +1215,7 @@ OTServer::OTServer() : m_bReadOnly(false), m_bShutdownFlag(false), m_pServerCont
 {
 //	m_lTransactionNumber = 0;	// This will be set when the server main xml file is loaded. For now, initialize to 0.
 //
-//	m_bShutdownFlag = false;	// If I ever set this to true, then the caller will shutdown gracefully.	
+//	m_bShutdownFlag = false;	// If I ever set this to true, then the caller will shutdown gracefully.
 // (Caller must regularly check the flag and shutdown when it sees the change.)
 }
 
@@ -1227,7 +1228,7 @@ OTServer::~OTServer()
 // -----------------------------------------------------
 
 void OTServer::Release_Server()
-{	
+{
     // -------------------------------
     if (NULL == m_pServerContract)
 		delete m_pServerContract;
@@ -1244,7 +1245,7 @@ void OTServer::Release_Server()
         // --------------------------
         m_mapContracts.erase(it);
         // --------------------------
-        delete pContract; 
+        delete pContract;
         pContract = NULL;
     }
     // -------------------------------
@@ -1258,7 +1259,7 @@ void OTServer::Release_Server()
         // --------------------------
         m_mapMints.erase(it);
         // --------------------------
-        delete pMint; 
+        delete pMint;
         pMint = NULL;
     }
 	// -------------------------------------------------------
@@ -1268,7 +1269,7 @@ void OTServer::Release_Server()
     //
 //    OTLog::vError("m_strDataPath: %s\n", m_strDataPath.Get());
 //    OTLog::vError("SERVER_PID_FILENAME: %s\n", SERVER_PID_FILENAME);
-    
+
     OTString strDataPath;
     const bool bGetDataFolderSuccess = OTDataFolder::Get(strDataPath);
     // ----------------------------------------------
@@ -1276,11 +1277,11 @@ void OTServer::Release_Server()
     {
         OTString strPIDPath;
         OTPaths::AppendFile(strPIDPath, strDataPath, SERVER_PID_FILENAME);
-        
+
         uint32_t the_pid = 0;
 
         std::ofstream pid_outfile(strPIDPath.Get());
-        
+
         if (pid_outfile.is_open())
         {
             pid_outfile << the_pid;
@@ -1295,9 +1296,9 @@ void OTServer::Release_Server()
 
 
 void OTServer::Release()
-{	
+{
     Release_Server();
-    
+
     // ot_super::Release() call would normally go here, if we had a super class.
 }
 
@@ -1341,9 +1342,9 @@ void OTServer::Init(bool bReadOnly/*=false*/)
             //
 			OTString strPIDPath;
 			OTPaths::AppendFile(strPIDPath,strDataPath,SERVER_PID_FILENAME);
-            
+
             std::ifstream pid_infile(strPIDPath.Get());
-            
+
             // 2. (IF FILE EXISTS WITH ANY PID INSIDE, THEN DIE.)
             //
             if (pid_infile.is_open()) // it existed already
@@ -1351,7 +1352,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
                 uint32_t old_pid = 0;
                 pid_infile >> old_pid;
                 pid_infile.close();
-                
+
                 // There was a real PID in there.
                 if (old_pid != 0)
                 {
@@ -1366,21 +1367,21 @@ void OTServer::Init(bool bReadOnly/*=false*/)
                 // (Meaning the previous instance of OT already set it to 0 as it was shutting down.)
             }
             // Next let's record our PID to the same file, so other copies of OT can't trample on US.
-            
+
             // 3. GET THE CURRENT (ACTUAL) PROCESS ID.
             //
             uint32_t the_pid = 0;
-            
+
 #ifdef _WIN32
             the_pid = static_cast<uint32_t>(GetCurrentProcessId());
 #else
             the_pid = static_cast<uint32_t>(getpid());
 #endif
-            
+
             // 4. OPEN THE FILE IN WRITE MODE, AND SAVE THE PID TO IT.
             //
             std::ofstream pid_outfile(strPIDPath.Get());
-            
+
             if (pid_outfile.is_open())
             {
                 pid_outfile << the_pid;
@@ -1393,7 +1394,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
     }
 	// -------------------------------------------------------
 	OTDB::InitDefaultStorage(OTDB_DEFAULT_STORAGE,OTDB_DEFAULT_PACKER);
-//	bool bSuccessInitDefault = 
+//	bool bSuccessInitDefault =
 	//OTDB::InitDefaultStorage(OTDB_DEFAULT_STORAGE, OTDB_DEFAULT_PACKER,SERVER_MAIN_FILENAME);
 	// -------------------------------------------------------
 
@@ -1402,7 +1403,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
 	// Load up the transaction number and other OTServer data members.
     //
     bool bMainFileExists = m_strWalletFilename.Exists() ? OTDB::Exists(".", m_strWalletFilename.Get()) : false;
-    
+
     if (!bMainFileExists)
 	{
         if (bReadOnly)
@@ -1424,7 +1425,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
 			OTLog::vError("\n%s: Error in Loading Main File!\n", __FUNCTION__);
 			OT_FAIL;  // end execution here.
 		}
-        
+
         // We just want to call this function once in order to make sure that the
         // Nym is loaded up and ready for use decrypting messages that are sent to it.
         // If you comment this out, the server will be unable to decrypt and open envelopes.
@@ -1434,7 +1435,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
 			OT_FAIL;  // end execution here.
 		}
     }
-    
+
 	// With the Server's private key loaded, and the latest transaction number loaded,
     // and all the various other data (contracts, etc) the server is now ready for operation!
 }
@@ -1462,7 +1463,7 @@ bool OTServer::LoadServerUserAndContract()
     {
         OTLog::vOutput(0, "%s: Error verifying server nym.\n", szFunc);
     }
-    else 
+    else
     {
         // This file will be saved during the course of operation
         // Just making sure it is loaded up first.
@@ -1470,7 +1471,7 @@ bool OTServer::LoadServerUserAndContract()
         bool bLoadedSignedNymfile = m_nymServer.LoadSignedNymfile(m_nymServer);
         OT_ASSERT_MSG(bLoadedSignedNymfile, "ASSERT: OTServer::LoadServerUserAndContract: m_nymServer.LoadSignedNymfile(m_nymServer)\n");
 //      m_nymServer.SaveSignedNymfile(m_nymServer); // Uncomment this if you want to create the file. NORMALLY LEAVE IT OUT!!!! DANGEROUS!!!
-        
+
         OTLog::vOutput(0, "%s: Loaded server certificate and keys.\nNext, loading Cron...\n", szFunc);
         // ----------------------------------------------------------------
         // Load Cron (now that we have the server Nym.
@@ -1478,25 +1479,25 @@ bool OTServer::LoadServerUserAndContract()
         // the Nym had actually been loaded from disk. That didn't work.)
         //
         const OTIdentifier SERVER_ID(m_strServerID);
-        
+
         // Make sure the Cron object has a pointer to the server's Nym.
         // (For signing stuff...)
         //
         m_Cron.SetServerID(SERVER_ID);
         m_Cron.SetServerNym(&m_nymServer);
-        
+
         if (!m_Cron.LoadCron())
             OTLog::vError("%s: Failed loading Cron file. (Did you just create this server?)\n", szFunc);
         // ----------------------------------------------------------------
         OTLog::vOutput(0, "%s: Loading the server contract...\n", szFunc);
-        
+
         // We have the serverID, so let's load  up the server Contract!
         OTString strContractPath(OTFolders::Contract().Get());
-        
+
         OTServerContract * pContract = new OTServerContract(m_strServerID, strContractPath, m_strServerID, m_strServerID);
         OT_ASSERT_MSG(NULL != pContract, "ASSERT while allocating memory for main Server Contract in OTServer::LoadServerUserAndContract\n");
-        
-        if (pContract->LoadContract()) 
+
+        if (pContract->LoadContract())
         {
             if (pContract->VerifyContract())
             {
@@ -1508,16 +1509,16 @@ bool OTServer::LoadServerUserAndContract()
             {
                 delete pContract; pContract = NULL;
                 OTLog::Output(0, "\nMain Server Contract FAILED to verify.\n");
-            }							
+            }
         }
-        else 
+        else
         {
             delete pContract; pContract = NULL;
             OTLog::vOutput(0, "\n%s: Failed reading Main Server Contract:\n%s\n", szFunc,
                            strContractPath.Get());
-        }						
+        }
     }
-    
+
     return bSuccess;
 }
 
@@ -1534,7 +1535,7 @@ std::string OT_CLI_ReadLine()
 	{
 		return line;
 	}
-	
+
 	return "";
 }
 
@@ -1546,46 +1547,46 @@ std::string OT_CLI_ReadUntilEOF()
 {
 	// don't skip the whitespace while reading
     //	std::cin >> std::noskipws;
-	
+
     //	std::ostringstream oss;
-    //	
+    //
     //	oss << std::cin;   // Convert value into a string.
-    //	s = outs.str(); 
-	
+    //	s = outs.str();
+
 	// use stream iterators to copy the stream to a string
     //	std::istream_iterator<std::string> it(std::cin);
     //	std::istream_iterator<std::string> end;
     //	std::istream_iterator<char> it(std::cin);
     //	std::istream_iterator<char> end;
     //	std::string results(it, end);
-	
+
     //	int onechar;
-	
+
 	std::string result("");
-	
+
 	for (;;)
 	{
 		std::string input_line("");
-        
+
         // -----
         //        int n;
         ////      std::string sn;
         //        std::stringstream ssn;
-        //        
+        //
         //        std::getline(std::cin, input_line);
         //        ssn << input_line;
         //        ssn >> n;
         // -----
-        
+
         //		    std::getline(std::cin, input_line, '\n');
         if (std::getline(std::cin, input_line, '\n'))
         {
             input_line += "\n";
-            
+
             if (input_line[0] == '~') // This is our special "break" character for multi-line input.
                 break;
-            
-            result += input_line;            
+
+            result += input_line;
         }
         else
         {
@@ -1610,16 +1611,16 @@ std::string OT_CLI_ReadUntilEOF()
             //          cout << "IT WAS BAD\n";
             std::cin.clear();
             break;
-        }		
+        }
         // ---------------------------------
         //      std::cin.clear();
         //      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        
+
 	} // while
-    
-    
+
+
 	return result;
-    
+
 }
 
 
@@ -1656,7 +1657,7 @@ bool OTServer::CreateMainFile()
         "recommend you create a blank wallet entirely for this purpose (of generating\n"
         "that cached key and server Nym, to be used for your new OT server.) Then erase it\nonce this process is done.\n"
         " ==> WARNING: Main file not found. To create it, continue this process now...\n";
-    
+
     OTLog::Output(0, szInstructions);
     // ---------------------------------
     OTLog::Output(0, "Enter the ServerID for your server contract: ");
@@ -1667,7 +1668,7 @@ bool OTServer::CreateMainFile()
     // ---------------------------------
     OTLog::Output(0, "Paste the cached key (ONLY the base64-encoded portion) below, from wallet.xml for that Nym.\n"
                   "Terminate with '~' on a line by itself.\n\n");
-    
+
     std::string strCachedKey = OT_CLI_ReadUntilEOF();
     // ---------------------------------
     OTLog::Output(0, "Paste the contents of the server Nym's certfile, including public/PRIVATE, below.\n"
@@ -1676,13 +1677,13 @@ bool OTServer::CreateMainFile()
                   "you copied over the \"credentials\" folder, as described above, since we're about to\n"
                   "use it, if you leave this blank.)\n"
                   "Terminate with '~' on a line by itself.\n\n");
-    
+
     std::string strCert = OT_CLI_ReadUntilEOF();
     // ---------------------------------
     // signed server contract
     OTLog::Output(0, "Paste the complete, signed, server contract below. (You must already have it.)\n"
                   "Terminate with '~' on a line by itself.\n\n");
-    
+
     std::string strContract = OT_CLI_ReadUntilEOF();
     // ---------------------------------
     if (!OTDB::StorePlainString(strContract, "contracts", strServerID))
@@ -1713,24 +1714,24 @@ bool OTServer::CreateMainFile()
         "\n"
         "</notaryServer>\n\n"
         ;
-    
+
     const long lTransNum = 5; // a starting point, for the new server.
-    
+
     OTString strNotaryFile;
-    strNotaryFile.Format(szBlankFile, 
-                         strServerID.c_str(), 
-                         strNymID.c_str(), 
+    strNotaryFile.Format(szBlankFile,
+                         strServerID.c_str(),
+                         strNymID.c_str(),
                          lTransNum,
                          strCachedKey.c_str());
-    
+
     std::string str_Notary(strNotaryFile.Get());
-    
+
     if (!OTDB::StorePlainString(str_Notary, ".", "notaryServer.xml")) // todo hardcoding.
     {
         OTLog::Error("Failed trying to store the new notaryServer.xml file.\n");
         return false;
     }
-    // ---------------------------------------------------------------  
+    // ---------------------------------------------------------------
 	OTASCIIArmor ascCachedKey;
 	ascCachedKey.Set(strCachedKey.c_str());
 	OTCachedKey::It()->SetCachedKey(ascCachedKey);
@@ -1747,7 +1748,7 @@ bool OTServer::CreateMainFile()
 			OT_FAIL;
 		}
 	}
-	// ---------------------------------------------------------------  
+	// ---------------------------------------------------------------
 	// At this point, the contract is saved, the cert is saved, and the notaryServer.xml file
 	// is saved. All we have left is the Nymfile, which we'll create.
 
@@ -1775,26 +1776,26 @@ bool OTServer::CreateMainFile()
                        "Let's try to load up your new server contract...\n", __FUNCTION__);
         return true;
     }
-    
+
     return false;
 }
 
 
 /*
- 
+
     {
         OTASCIIArmor ascMasterContents;
-        
+
         if (OTCachedKey::It()->SerializeTo(ascMasterContents))
         {
             strMainFile.Concatenate("<masterKey>\n%s</masterKey>\n\n", ascMasterContents.Get());
-        }        
+        }
         else
             OTLog::vError("%s: Failed trying to write master key to notary file.\n", __FUNCTION__);
     }
 
- 
- 
+
+
 <?xml version="1.0"?>
 <notaryServer version="2.0"
  serverID="%s"
@@ -1825,7 +1826,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 	}
 	// --------------------------------------------------------------------
 	OTString strFileContents(OTDB::QueryPlainString(".", m_strWalletFilename.Get())); // <=== LOADING FROM DATA STORE.
-	
+
 	if (!strFileContents.Exists())
 	{
 		OTLog::vError("%s: Unable to read main file: %s\n",
@@ -1843,10 +1844,10 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 	bool bNeedToSaveAgain = false;
 
 	bool bFailure = false;
-    
+
     {
         OTStringXML xmlFileContents(strFileContents);
-        
+
         if (false == xmlFileContents.DecodeIfArmored()) // bEscapedIsAllowed=true by default.
         {
             OTLog::vError("%s: Notary server file apparently was encoded and then failed decoding. Filename: %s \n"
@@ -1861,13 +1862,13 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
         while(xml && xml->read())
         {
             // strings for storing the data that we want to read out of the file
-            
+
             OTString AssetName;
             OTString AssetContract;
             OTString AssetID;
 
             const OTString strNodeName(xml->getNodeName());
-            
+
             switch(xml->getNodeType())
             {
             case irr::io::EXN_TEXT:
@@ -1878,24 +1879,24 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                 {
                     if (strNodeName.Compare("notaryServer"))
                     {
-                        m_strVersion			= xml->getAttributeValue("version");					
+                        m_strVersion			= xml->getAttributeValue("version");
                         m_strServerID			= xml->getAttributeValue("serverID");
                         m_strServerUserID		= xml->getAttributeValue("serverUserID");
-                        
-                        
+
+
                         OTString strTransactionNumber;  // The server issues transaction numbers and stores the counter here for the latest one.
                         strTransactionNumber	= xml->getAttributeValue("transactionNum");
                         m_lTransactionNumber	= atol(strTransactionNumber.Get());
-                        
+
                         OTLog::vOutput(0, "\nLoading Open Transactions server. File version: %s\n"
-                                       " Last Issued Transaction Number: %ld\n Server ID:      %s\n Server User ID: %s\n", 
+                                       " Last Issued Transaction Number: %ld\n Server ID:      %s\n Server User ID: %s\n",
                                        m_strVersion.Get(), m_lTransactionNumber, m_strServerID.Get(), m_strServerUserID.Get());
                         // --------------------------------------------------------------------
                         //
                         if (m_strVersion.Compare("1.0")) // This means this Nym has not been converted yet to master password.
                         {
                             bNeedToConvertUser = true;
-                            
+
                             if (!(OTCachedKey::It()->isPaused()))
                                 OTCachedKey::It()->Pause();
 
@@ -1906,7 +1907,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 							}
 
                             if (OTCachedKey::It()->isPaused())
-                                OTCachedKey::It()->Unpause();                        
+                                OTCachedKey::It()->Unpause();
                         }
                         // --------------------------------------------------------------------
                     }
@@ -1916,7 +1917,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                     else if (strNodeName.Compare("masterKey") || strNodeName.Compare("cachedKey"))
                     {
                         OTASCIIArmor ascCachedKey;
-                        
+
                         if (OTContract::LoadEncodedTextField(xml, ascCachedKey))
                         {
                             // We successfully loaded the masterKey from file, so let's SET it
@@ -1933,7 +1934,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                                                                                 "please enter your password", true);
 							}
                         }
-                        
+
                         OTLog::vOutput(0, "\nLoading cachedKey:\n%s\n", ascCachedKey.Get());
                         // --------------------------------------------------------------------
                         //
@@ -1953,25 +1954,25 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                     }
                     else if (strNodeName.Compare("accountList")) // the voucher reserve account IDs.
                     {
-                        const OTString strAcctType	= xml->getAttributeValue("type");					
+                        const OTString strAcctType	= xml->getAttributeValue("type");
                         const OTString strAcctCount	= xml->getAttributeValue("count");
-                        
+
                         if ((-1) == m_VoucherAccts.ReadFromXMLNode(xml, strAcctType, strAcctCount))
                             OTLog::vError("%s: Error loading voucher accountList.\n", __FUNCTION__);
                     }
                     else if (strNodeName.Compare("basketInfo"))
                     {
-                        OTString strBasketID			= xml->getAttributeValue("basketID");					
+                        OTString strBasketID			= xml->getAttributeValue("basketID");
                         OTString strBasketAcctID		= xml->getAttributeValue("basketAcctID");
                         OTString strBasketContractID	= xml->getAttributeValue("basketContractID");
-                        
+
                         const OTIdentifier BASKET_ID(strBasketID), BASKET_ACCT_ID(strBasketAcctID), BASKET_CONTRACT_ID(strBasketContractID);
-                        
-                        if (AddBasketAccountID(BASKET_ID, BASKET_ACCT_ID, BASKET_CONTRACT_ID))						
-                            OTLog::vOutput(0, "Loading basket currency info...\n Basket ID: %s\n Basket Acct ID: %s\n Basket Contract ID: %s\n", 
+
+                        if (AddBasketAccountID(BASKET_ID, BASKET_ACCT_ID, BASKET_CONTRACT_ID))
+                            OTLog::vOutput(0, "Loading basket currency info...\n Basket ID: %s\n Basket Acct ID: %s\n Basket Contract ID: %s\n",
                                            strBasketID.Get(), strBasketAcctID.Get(), strBasketContractID.Get());
-                        else						
-                            OTLog::vError("Error adding basket currency info...\n Basket ID: %s\n Basket Acct ID: %s\n", 
+                        else
+                            OTLog::vError("Error adding basket currency info...\n Basket ID: %s\n Basket Acct ID: %s\n",
                                           strBasketID.Get(), strBasketAcctID.Get());
                     }
 
@@ -1979,40 +1980,40 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                     // and add them to the internal map.
                     else if (strNodeName.Compare("assetType"))
                     {
-                        OTASCIIArmor ascAssetName = xml->getAttributeValue("name");	
-                        
+                        OTASCIIArmor ascAssetName = xml->getAttributeValue("name");
+
                         if (ascAssetName.Exists())
                             ascAssetName.GetString(AssetName, false); // linebreaks == false
-                        
+
                         AssetID			= xml->getAttributeValue("assetTypeID");	// hash of contract itself
-                        
+
                         OTLog::vOutput(0, "\n\n****Asset Contract**** (server listing)\n Name: %s\n Contract ID: %s\n",
                                        AssetName.Get(), AssetID.Get());
-                        
+
                         OTString strContractPath;
                         strContractPath = OTFolders::Contract().Get();
 
                         OTAssetContract * pContract = new OTAssetContract(AssetName, strContractPath, AssetID, AssetID);
-                        
+
                         OT_ASSERT_MSG(NULL != pContract, "ASSERT: allocating memory for Asset Contract in OTServer::LoadMainFile\n");
-                        
-                        if (pContract->LoadContract()) 
+
+                        if (pContract->LoadContract())
                         {
                             if (pContract->VerifyContract())
                             {
                                 OTLog::Output(0, "** Asset Contract Verified **\n");
-                                
+
                                 pContract->SetName(AssetName);
-                                
+
                                 m_mapContracts[AssetID.Get()] = pContract;
                             }
                             else
                             {
                                 delete pContract; pContract = NULL;
                                 OTLog::Output(0, "Asset Contract FAILED to verify.\n");
-                            }							
+                            }
                         }
-                        else 
+                        else
                         {
                             delete pContract; pContract = NULL;
                             OTLog::vOutput(0, "%s: Failed reading file for Asset Contract.\n", __FUNCTION__);
@@ -2032,12 +2033,12 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                     /*
                     else if (strNodeName.Compare("notaryProvider"))
                     {
-                        ServerName		= xml->getAttributeValue("name");			
+                        ServerName		= xml->getAttributeValue("name");
                         ServerID		= xml->getAttributeValue("serverID");	// hash of contract itself
-                        
+
                         OTLog::vOutput(0, "\n\n****Notary Server (contract)**** (server listing) Name: %s\nContract ID:\n%s\n",
                                        ServerName.Get(), ServerID.Get());
-                        
+
                         OTString strContractPath;
                         strContractPath.Format("%s%s%s%s%s", OTLog::Path(), OTLog::PathSeparator(),
                                                OTFolders::Contract().Get(),
@@ -2045,31 +2046,31 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                         OTServerContract * pContract = new OTServerContract(ServerName, strContractPath, ServerID);
 
                         OT_ASSERT_MSG(NULL != pContract, "Error allocating memory for Server Contract in OTServer::LoadMainFile\n");
-                        
-                        if (pContract->LoadContract()) 
+
+                        if (pContract->LoadContract())
                         {
                             if (pContract->VerifyContract())
                             {
                                 OTLog::Output(0, "** Server Contract Verified **\n");
-                                
+
                                 m_mapContracts[ServerID.Get()] = pContract;
                             }
                             else
                             {
                                 delete pContract; pContract = NULL;
                                 OTLog::Output(0, "Server Contract FAILED to verify.\n");
-                            }							
+                            }
                         }
-                        else 
+                        else
                         {
                             delete pContract; pContract = NULL;
                             OTLog::Output(0, "Failed reading file for Server Contract in OTServer::LoadMainFile\n");
                         }
                     }
                      */
-                    
-                    
-                    
+
+
+
                     /*
                      // commented out because, since I already have the serverID, then the server
                      // already knows which certfile to open in order to get at its private key.
@@ -2083,19 +2084,19 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                      // In the meantime I don't need this yet, serverID is setup in the config file (that I'm reading now.)
                     else if (strNodeName.Compare("pseudonym")) // The server has to sign things, too.
                     {
-                        NymName = xml->getAttributeValue("name");// user-assigned name for GUI usage				
+                        NymName = xml->getAttributeValue("name");// user-assigned name for GUI usage
                         NymID = xml->getAttributeValue("nymID"); // message digest from hash of x.509 cert, used to look up certfile.
-                        
+
                         OTLog::vOutput(0, "\n\n** Pseudonym ** (server): %s\nID: %s\nfile: %s\n",
                                 NymName.Get(), NymID.Get(), NymFile.Get());
-                        
+
                         OTPseudonym * pNym = new OTPseudonym(NymName, NymFile, NymID);
-                        
+
                         if (pNym && pNym->LoadNymfile((char*)(NymFile.Get())))
                         {
-                            if (pNym->Loadx509CertAndPrivateKey()) 
-                            {							
-                                if (pNym->VerifyPseudonym()) 
+                            if (pNym->Loadx509CertAndPrivateKey())
+                            {
+                                if (pNym->VerifyPseudonym())
                                 {
                                     m_mapNyms[NymID.Get()] = pNym;
                                     g_pTemporaryNym = pNym; // TODO remove this temporary line used for testing only.
@@ -2112,8 +2113,8 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
                             OTLog::Error("Error creating or loading Nym in OTWallet::LoadWallet\n");
                         }
                     }
-                    */                    
-                    
+                    */
+
                     else
                     {
                         // unknown element type
@@ -2151,21 +2152,21 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 // Get the list of markets on this server.
 void OTServer::UserCmdGetMarketList(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getMarketList";	// reply to getMarketList
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 
 	OTASCIIArmor ascOutput;
 	int nMarketCount = 0;
-    
+
 	msgOut.m_bSuccess = m_Cron.GetMarketList(ascOutput, nMarketCount);
-    
+
 	// If success,
 	if ((true == msgOut.m_bSuccess) && (nMarketCount > 0))
 	{
 		msgOut.m_ascPayload.Set(ascOutput);
-		
+
 		OTString strCount;
 		strCount.Format("%d", nMarketCount);
         msgOut.m_lDepth = atol(strCount.Get());
@@ -2176,43 +2177,43 @@ void OTServer::UserCmdGetMarketList(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 
 // Get the publicly-available list of offers on a specific market.
 void OTServer::UserCmdGetMarketOffers(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getMarketOffers";	// reply to getMarketOffers
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// Market ID.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	long lDepth = MsgIn.m_lDepth;
 	if (lDepth < 0)
 		lDepth = 0;
 
 	const OTIdentifier MARKET_ID(MsgIn.m_strNymID2);
-	
+
 	// ------------------------------------------
-	
+
 	OTMarket * pMarket = m_Cron.GetMarket(MARKET_ID);
-	
+
 	// If success,
 	if ((msgOut.m_bSuccess = ((pMarket != NULL) ? true:false) )) // if assigned true
 	{
 		OTASCIIArmor ascOutput;
 		int nOfferCount = 0;
-        
+
 		msgOut.m_bSuccess = pMarket->GetOfferList(ascOutput, lDepth, nOfferCount);
 
 		if ((true == msgOut.m_bSuccess) && (nOfferCount > 0))
@@ -2221,48 +2222,48 @@ void OTServer::UserCmdGetMarketOffers(OTPseudonym & theNym, OTMessage & MsgIn, O
             msgOut.m_lDepth     = nOfferCount;
         }
 	}
-	
+
 	// if Failed, we send the user's message back to him, ascii-armored as part of response.
-	if (false == msgOut.m_bSuccess) 
+	if (false == msgOut.m_bSuccess)
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
 
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 
 // Get a report of recent trades that have occurred on a specific market.
 void OTServer::UserCmdGetMarketRecentTrades(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getMarketRecentTrades";	// reply to getMarketRecentTrades
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// Market ID.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	const OTIdentifier MARKET_ID(MsgIn.m_strNymID2);
 
 	// ------------------------------------------
-	
+
 	OTMarket * pMarket = m_Cron.GetMarket(MARKET_ID);
-	
+
 	// If success,
 	if ((msgOut.m_bSuccess =  ((pMarket != NULL) ? true:false) )) // if assigned true
 	{
 		OTASCIIArmor ascOutput;
 		int nTradeCount = 0;
-        
+
 		msgOut.m_bSuccess = pMarket->GetRecentTradeList(ascOutput, nTradeCount);
-		        
+
         if (true == msgOut.m_bSuccess)
         {
             msgOut.m_lDepth = nTradeCount;
@@ -2271,22 +2272,22 @@ void OTServer::UserCmdGetMarketRecentTrades(OTPseudonym & theNym, OTMessage & Ms
                 msgOut.m_ascPayload = ascOutput;
         }
     }
-	
+
 	// if Failed, we send the user's message back to him, ascii-armored as part of response.
-	if (false == msgOut.m_bSuccess) 
+	if (false == msgOut.m_bSuccess)
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 // ----------------------------------------------------------------------
@@ -2298,40 +2299,40 @@ void OTServer::UserCmdGetMarketRecentTrades(OTPseudonym & theNym, OTMessage & Ms
 //
 void OTServer::UserCmdGetNym_MarketOffers(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getNym_MarketOffers";	// reply to getMarketOffers
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 
 	OTIdentifier NYM_ID; theNym.GetIdentifier(NYM_ID);
-	
+
 	// ------------------------------------------
-	
+
 	OTASCIIArmor ascOutput;
 	int nOfferCount = 0;
-    
+
 	msgOut.m_bSuccess = m_Cron.GetNym_OfferList(ascOutput, NYM_ID, nOfferCount);
-	
+
 	if ((true == msgOut.m_bSuccess) && (nOfferCount > 0))
     {
-		msgOut.m_ascPayload = ascOutput;		
+		msgOut.m_ascPayload = ascOutput;
         msgOut.m_lDepth     = nOfferCount;
     }
 	// if Failed, we send the user's message back to him, ascii-armored as part of response.
-	if (false == msgOut.m_bSuccess) 
+	if (false == msgOut.m_bSuccess)
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 
@@ -2343,7 +2344,7 @@ void OTServer::UserCmdGetNym_MarketOffers(OTPseudonym & theNym, OTMessage & MsgI
 
 void OTServer::UserCmdCheckServerID(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@checkServerID";	// reply to checkServerID
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
@@ -2355,10 +2356,10 @@ void OTServer::UserCmdCheckServerID(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 		msgOut.m_bSuccess		= true;
 	else
 		msgOut.m_bSuccess		= false;
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -2369,15 +2370,15 @@ void OTServer::UserCmdCheckServerID(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 
 
 void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
-{	
-	// (1) set up member variables 
+{
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getTransactionNum";	// reply to getTransactionNum
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	// already at the top of ProcessUserCommand, which calls this.
 //  msgOut.m_strRequestNum.Set(MsgIn.m_strRequestNum);
-    
+
 	const OTIdentifier SERVER_ID(m_strServerID);
 
     // ---------------
@@ -2386,17 +2387,17 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
     // client requests that have a bad value here (since it would be out of sync
     // anyway); the client is able to see the server's hash and realize to
     // re-download the nymbox and other intermediary files.
-    // 
+    //
 	// ------------------------------------------------------------
 	int nCount = theNym.GetTransactionNumCount(SERVER_ID);
 	// ------------------------------------------------------------
     const
     OTIdentifier  theMsgNymboxHash(MsgIn.m_strNymboxHash);    // theMsgNymboxHash is the hash sent by the client side
     OTIdentifier  EXISTING_NYMBOX_HASH;
-    
+
     const bool bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, EXISTING_NYMBOX_HASH);
     const bool bGotNymboxHashClientSide = MsgIn.m_strNymboxHash.Exists();
-    
+
     if (bGotNymboxHashServerSide)  // EXISTING_NYMBOX_HASH is the hash stored on the server side
         EXISTING_NYMBOX_HASH.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------------
@@ -2405,44 +2406,44 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
         ||
         (bGotNymboxHashServerSide && !bGotNymboxHashClientSide)
         )
-    {        
+    {
         OTLog::Output(0, "OTServer::UserCmdGetTransactionNum: Rejecting message since nymbox hash "
                       "doesn't match. (Send a getNymbox message to grab the newest one.)\n");
-        
+
     }
 	else if (nCount > 50) // todo no hardcoding. (max transaction nums allowed out at a single time.)
 	{
 		OTLog::vOutput(0, "OTServer::UserCmdGetTransactionNum: Failure: Nym %s already has "
 					   "more than 50 unused transaction numbers signed out. (He needs to use those first. "
                        "Tell him to download his latest Nymbox.)\n", MsgIn.m_strNymID.Get());
-	}	
+	}
 	// ------------------------------------------------------------
 	else
 	{
 		OTIdentifier USER_ID, NYMBOX_HASH;
 		theNym.GetIdentifier(USER_ID);
-        
+
         bool        bSuccess = true, bCalculated = false;
         bool        bSavedNymbox = false;
 		OTLedger    theLedger(USER_ID, USER_ID, SERVER_ID); // Nymbox
-        
-        // We'll store the transaction numbers here immediately after they're issued, 
+
+        // We'll store the transaction numbers here immediately after they're issued,
         // before adding them to the Nymbox.
         //
-        OTNumList   theNumlist; 
-        
+        OTNumList   theNumlist;
+
         long    lFirstTransNum = 0; // While there may be 20 transaction numbers on this tranasction, ONE of them (the first one) is the "official" number of this transaction. The rest are just attached in an extra variable.
-        
-        // Update: Now we're going to grab 20 or 30 transaction numbers, 
+
+        // Update: Now we're going to grab 20 or 30 transaction numbers,
         // instead of just 1 like before!!!
         //
         for (int i = 0; i < 100; i++) // todo, hardcoding!!!! (But notice we grab 100 transaction numbers at a time now.)
-        {	
+        {
             long lTransNum = 0;
             // This call will save the new transaction number to the nym's file.
             // ??? Why did I say that, when clearly the last parameter is false?
             // AHHHH Because I drop it into the Nymbox instead, and make him sign for it!
-            
+
             if (false == IssueNextTransactionNumber(theNym, lTransNum, false)) // bool bStoreTheNumber = false
             {
                 lTransNum = 0;
@@ -2450,23 +2451,23 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
                 bSuccess = false;
                 break;
             }
-            
+
             theNumlist.Add(lTransNum); // <=========
             if (0 == i) // First iteration
                 lFirstTransNum = lTransNum;
         }
 		// --------------------------------------------------------
-			
-		if (false == bSuccess) 
+
+		if (false == bSuccess)
 		{
             // Apparently nothing. Also, plenty of logs just above already, if this ever happens.
 		}
         else if (false == theLedger.LoadNymbox())
         {
-			OTLog::Error("Error loading Nymbox in OTServer::UserCmdGetTransactionNum\n");            
+			OTLog::Error("Error loading Nymbox in OTServer::UserCmdGetTransactionNum\n");
         }
-		// Drop in the Nymbox 
-		else if ((msgOut.m_bSuccess =	( 
+		// Drop in the Nymbox
+		else if ((msgOut.m_bSuccess =	(
 //										 theLedger.VerifyAccount(m_nymServer) &&	// This forces ALL box receipts to load.
 										 theLedger.VerifyContractID() &&			// We don't need them right now, so we verify
 										 theLedger.VerifySignature(m_nymServer)		// everything else without loading them.
@@ -2479,7 +2480,7 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
             // it.
             // Since the transaction can contain 10, 20, or 50 transaction numbers now, we don't NEED to be able to combine them
             // anyway, since the problem is still effectively solved.
-            
+
             OTTransaction * pTransaction = OTTransaction::GenerateTransaction(theLedger, OTTransaction::blank, lFirstTransNum);  // Generate a new OTTransaction::blank
 
 			if (NULL != pTransaction) // The above has an OT_ASSERT within, but I just like to check my pointers.
@@ -2496,19 +2497,19 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
 
 				theLedger.ReleaseSignatures();
 				theLedger.SignContract(m_nymServer);
-				theLedger.SaveContract();  
-                
+				theLedger.SaveContract();
+
                 bSavedNymbox = true;
 				theLedger.SaveNymbox(&NYMBOX_HASH);
-				
+
 				// Any inbox/nymbox/outbox ledger will only itself contain
 				// abbreviated versions of the receipts, including their hashes.
-				// 
+				//
 				// The rest is stored separately, in the box receipt, which is created
 				// whenever a receipt is added to a box, and deleted after a receipt
 				// is removed from a box.
 				//
-				pTransaction->SaveBoxReceipt(theLedger);				
+				pTransaction->SaveBoxReceipt(theLedger);
 			}
             else
                 bCalculated = theLedger.CalculateNymboxHash(NYMBOX_HASH);
@@ -2520,60 +2521,60 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
         // ------------------------------------------------------------
         std::set<long> theList;
         theNumlist.Output(theList);
-        
+
         FOR_EACH(std::set<long>, theList)
         {
             const long lTransNum = *it;
             // ----------------------------
             RemoveTransactionNumber (theNym, lTransNum, false); //bSave=false
             RemoveIssuedNumber      (theNym, lTransNum, false); // I'll drop it in his Nymbox -- he can SIGN for it.
-            // Then why was it added in the first place? Because we originally sent it back in the reply directly, 
+            // Then why was it added in the first place? Because we originally sent it back in the reply directly,
             // so IssueNext was designed to work that way originally.
         }
         // ----------------
-        
+
         if (bSavedNymbox)
         {
             theNym.SetNymboxHashServerSide(NYMBOX_HASH);
             theNym.SaveSignedNymfile(m_nymServer);
-            
+
             NYMBOX_HASH.GetString(msgOut.m_strNymboxHash);
         }
         else if (true == msgOut.m_bSuccess)
         {
             bCalculated = theLedger.CalculateNymboxHash(NYMBOX_HASH);
-            
+
             theNym.SetNymboxHashServerSide(NYMBOX_HASH);    // Save the hash onto the Nym
             theNym.SaveSignedNymfile(m_nymServer);
-            
+
             NYMBOX_HASH.GetString(msgOut.m_strNymboxHash);  // Get the hash onto the message
         }
         // else EXISTING_NYMBOX_HASH.GetString(msgOut.m_strNymboxHash); (above)
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 void OTServer::UserCmdGetRequest(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
-{	
-	// (1) set up member variables 
+{
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getRequest";	// reply to getRequest
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-    
-    msgOut.m_strRequestNum.Set(MsgIn.m_strRequestNum); // Outoing reply contains same request num coming in (1). 
+
+    msgOut.m_strRequestNum.Set(MsgIn.m_strRequestNum); // Outoing reply contains same request num coming in (1).
 
     long lReqNum = 1; // The request number being REQUESTED (in this message) will be sent in msgOut.m_lNewRequestNum
 
 	msgOut.m_bSuccess	= theNym.GetCurrentRequestNum(m_strServerID, lReqNum);
-	
+
 	// Server was unable to load ReqNum, which is unusual because the calling function
 	// should have already insured its existence.
 	if (!msgOut.m_bSuccess)
@@ -2594,24 +2595,24 @@ void OTServer::UserCmdGetRequest(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
     {
         const OTIdentifier theNymID(theNym);
         OTLedger theLedger(theNymID, theNymID, SERVER_ID);
-        
-        if (theLedger.LoadNymbox()          && 
-            theLedger.VerifyContractID()    && 
+
+        if (theLedger.LoadNymbox()          &&
+            theLedger.VerifyContractID()    &&
             theLedger.VerifySignature(m_nymServer))
         {
             theLedger.CalculateNymboxHash(EXISTING_NYMBOX_HASH);
-            
+
             theNym.SetNymboxHashServerSide(EXISTING_NYMBOX_HASH);
             theNym.SaveSignedNymfile(m_nymServer);
-            
+
             EXISTING_NYMBOX_HASH.GetString(msgOut.m_strNymboxHash);
         }
     }
     // ---------------
 
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -2623,20 +2624,20 @@ void OTServer::UserCmdGetRequest(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 
 void OTServer::UserCmdSendUserMessage(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@sendUserMessage";	// reply to sendUserMessage
 	msgOut.m_strNymID		= MsgIn.m_strNymID;         // UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;        // UserID of recipient pubkey
 //	msgOut.m_strServerID	= m_strServerID;            // This is already set in ProcessUserCommand.
-		
+
 	const OTString      strInMessage(MsgIn);
 	const OTIdentifier  SENDER_USER_ID(theNym),
-                        RECIPIENT_USER_ID(MsgIn.m_strNymID2), 
-                        SERVER_ID(m_strServerID);    
+                        RECIPIENT_USER_ID(MsgIn.m_strNymID2),
+                        SERVER_ID(m_strServerID);
     msgOut.m_ascInReferenceTo.SetString(strInMessage);
     // ------------------------------------------------------------
     const bool bSent = this->SendMessageToNym(SERVER_ID, SENDER_USER_ID, RECIPIENT_USER_ID, &MsgIn); // pstrMessage=NULL
-    
+
 	if (!bSent)
 	{
 		OTLog::vError("OTServer::UserCmdSendUserMessage: Failed while calling SendMessageToNym.\n");
@@ -2644,12 +2645,12 @@ void OTServer::UserCmdSendUserMessage(OTPseudonym & theNym, OTMessage & MsgIn, O
 	}
     else
     {
-        msgOut.m_bSuccess = true;        
+        msgOut.m_bSuccess = true;
     }
     // ------------------------------------------------------------
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -2660,20 +2661,20 @@ void OTServer::UserCmdSendUserMessage(OTPseudonym & theNym, OTMessage & MsgIn, O
 
 void OTServer::UserCmdSendUserInstrument(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@sendUserInstrument";	// reply to sendUserInstrument
 	msgOut.m_strNymID		= MsgIn.m_strNymID;         // UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;        // UserID of recipient pubkey
 //	msgOut.m_strServerID	= m_strServerID;            // This is already set in ProcessUserCommand.
-		
+
 	const OTString      strInMessage(MsgIn);
 	const OTIdentifier  SENDER_USER_ID(theNym),
-                        RECIPIENT_USER_ID(MsgIn.m_strNymID2), 
-                        SERVER_ID(m_strServerID);    
+                        RECIPIENT_USER_ID(MsgIn.m_strNymID2),
+                        SERVER_ID(m_strServerID);
     msgOut.m_ascInReferenceTo.SetString(strInMessage);
     // ------------------------------------------------------------
     const bool bSent = this->SendInstrumentToNym(SERVER_ID, SENDER_USER_ID, RECIPIENT_USER_ID, &MsgIn); // pPayment=NULL, szCommand=NULL
-    
+
 	if (!bSent)
 	{
 		OTLog::vError("OTServer::UserCmdSendUserInstrument: Failed while calling SendInstrumentToNym.\n");
@@ -2681,12 +2682,12 @@ void OTServer::UserCmdSendUserInstrument(OTPseudonym & theNym, OTMessage & MsgIn
 	}
     else
     {
-        msgOut.m_bSuccess = true;        
+        msgOut.m_bSuccess = true;
     }
     // ------------------------------------------------------------
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -2701,13 +2702,13 @@ bool OTServer::SendInstrumentToNym(const OTIdentifier & SERVER_ID,
                                    const OTIdentifier & SENDER_USER_ID,
                                    const OTIdentifier & RECIPIENT_USER_ID,
                                          OTMessage    * pMsg/*=NULL*/,     // the request msg from payer, which is attached WHOLE to the Nymbox receipt. contains payment already.
-                                   const OTPayment    * pPayment/*=NULL*/, // or pass this instead: we will create our own msg here (with message inside) to be attached to the receipt. 
+                                   const OTPayment    * pPayment/*=NULL*/, // or pass this instead: we will create our own msg here (with message inside) to be attached to the receipt.
                                    const char         * szCommand/*=NULL*/)
 {
     OT_ASSERT_MSG( !( (NULL == pMsg) && (NULL == pPayment) ), "pMsg and pPayment -- these can't BOTH be NULL.\n"); // must provide one or the other.
     OT_ASSERT_MSG( !( (NULL != pMsg) && (NULL != pPayment) ), "pMsg and pPayment -- these can't BOTH be not-NULL.\n"); // can't provide both.
     // ------------------------
-    OT_ASSERT_MSG((NULL == pPayment) || ((NULL != pPayment) && pPayment->IsValid()) , "OTServer::SendInstrumentToNym: You can only pass a valid payment here.");    
+    OT_ASSERT_MSG((NULL == pPayment) || ((NULL != pPayment) && pPayment->IsValid()) , "OTServer::SendInstrumentToNym: You can only pass a valid payment here.");
     // ------------------------
     // If a payment was passed in (for us to use it to construct pMsg, which is NULL in the case where payment isn't NULL)
     // Then we grab it in string form, so we can pass it on...
@@ -2718,14 +2719,14 @@ bool OTServer::SendInstrumentToNym(const OTIdentifier & SERVER_ID,
 		if (!bGotPaymentContents) OTLog::vError("%s: Error GetPaymentContents Failed", __FUNCTION__);
     }
     // ------------------------
-    const bool bDropped = this->DropMessageToNymbox(SERVER_ID, 
+    const bool bDropped = this->DropMessageToNymbox(SERVER_ID,
                                                     SENDER_USER_ID,
                                                     RECIPIENT_USER_ID,
                                                     OTTransaction::instrumentNotice,
-                                                    pMsg, 
-                                                    (NULL != pMsg) ? NULL : &strPayment, 
+                                                    pMsg,
+                                                    (NULL != pMsg) ? NULL : &strPayment,
                                                     szCommand);
-    
+
     return bDropped;
 }
 
@@ -2735,13 +2736,13 @@ bool OTServer::SendMessageToNym(const OTIdentifier & SERVER_ID,
                                 const OTIdentifier & SENDER_USER_ID,
                                 const OTIdentifier & RECIPIENT_USER_ID,
                                       OTMessage    * pMsg/*=NULL*/,        // the request msg from payer, which is attached WHOLE to the Nymbox receipt. contains message already.
-                                const OTString     * pstrMessage/*=NULL*/) // or pass this instead: we will create our own msg here (with message inside) to be attached to the receipt. 
+                                const OTString     * pstrMessage/*=NULL*/) // or pass this instead: we will create our own msg here (with message inside) to be attached to the receipt.
 {
-    return this->DropMessageToNymbox(SERVER_ID, 
+    return this->DropMessageToNymbox(SERVER_ID,
                                      SENDER_USER_ID,
                                      RECIPIENT_USER_ID,
                                      OTTransaction::message,
-                                     pMsg, 
+                                     pMsg,
                                      pstrMessage); //, szCommand=NULL
 }
 
@@ -2757,12 +2758,12 @@ bool OTServer::SendMessageToNym(const OTIdentifier & SERVER_ID,
 // In that case, just pass the pointer to the incoming message here as pMsg, and the OT Server
 // will attach it as described.
 // But let's say you are paying a dividend. The server can't just attach your dividend request in
-// that case. Normally the recipient's cheque is already in the request. But with a dividend, there 
+// that case. Normally the recipient's cheque is already in the request. But with a dividend, there
 // could be a thousand recipients, and their individual vouchers are only generated and sent AFTER
 // the server receives the "pay dividend" request.
 // Therefore in that case, NULL would be passed for pMsg, meaning that inside this function we have
 // to generate our own OTMessage "from the server" instead of "from the sender". After all, the server's
-// private key is the only signer we have in here. And the recipient will be expecting to have to 
+// private key is the only signer we have in here. And the recipient will be expecting to have to
 // open a message, so we must create one to give him. So if pMsg is NULL, then this function will
 // create a message "from the server", containing the instrument, and drop it into the recipient's nymbox
 // as though it were some incoming message from a normal user.
@@ -2786,7 +2787,7 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
                                    const OTIdentifier & SENDER_USER_ID,
                                    const OTIdentifier & RECIPIENT_USER_ID,
                                    OTTransaction::transactionType theType,
-                                         OTMessage    * pMsg/*=NULL*/,     
+                                         OTMessage    * pMsg/*=NULL*/,
                                    const OTString     * pstrMessage/*=NULL*/,
                                    const char         * szCommand/*=NULL*/) // If you pass something here, it will replace pMsg->m_strCommand below
 {
@@ -2797,7 +2798,7 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
     // ------------------------
 	long lTransNum = 0;
 	const bool bGotNextTransNum = this->IssueNextTransactionNumber(m_nymServer, lTransNum, false); // bool bStoreTheNumber = false
-		
+
     if (!bGotNextTransNum)
 	{
 		OTLog::vError("%s: Error: failed trying to get next transaction number.\n");
@@ -2814,11 +2815,11 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
             return false;
     }
 	// ------------------------
-    // If pMsg was not already passed in here, then 
+    // If pMsg was not already passed in here, then
     // create pMsg using pstrMessage.
     //
     OTCleanup<OTMessage> theMsgAngel;
-    
+
     if (NULL == pMsg) // we have to create it ourselves.
     {
         pMsg = new OTMessage;
@@ -2827,7 +2828,7 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
         // ---------------------------------
         if (NULL != szCommand)
             pMsg->m_strCommand = szCommand;
-        else 
+        else
         {
             switch (theType)
             {
@@ -2839,14 +2840,14 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
         // --------------------------------------------------------------
         pMsg->m_strServerID = this->m_strServerID;
         pMsg->m_bSuccess    = true;
-        SENDER_USER_ID.   GetString(pMsg->m_strNymID);     
+        SENDER_USER_ID.   GetString(pMsg->m_strNymID);
         RECIPIENT_USER_ID.GetString(pMsg->m_strNymID2); // set the recipient ID in pMsg to match our recipient ID.
         // ---------------------------------
-        // Load up the recipient's public key (so we can encrypt the envelope 
+        // Load up the recipient's public key (so we can encrypt the envelope
         // to him that will contain the payment instrument.)
         //
         OTPseudonym nymRecipient(RECIPIENT_USER_ID);
-        
+
         bool bLoadedNym = nymRecipient.LoadPublicKey(); // Old style (deprecated.) But this function calls the new style, LoadCredentials, at the top. Eventually we'll just call that here directly.
         // -----------------------------------------------------------
         if (!bLoadedNym)
@@ -2859,16 +2860,16 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
             OTLog::vError("%s: Failed trying to verify Nym for recipient.\n", szFunc);
             return false;
         }
-        // ---------------------------------        
+        // ---------------------------------
         const OTAsymmetricKey & thePubkey = nymRecipient.GetPublicEncrKey();
         // ---------------------------------
         // Wrap the message up into an envelope and attach it to pMsg.
         //
         OTEnvelope  theEnvelope;
-        
+
         pMsg->m_ascPayload.Release();
-        
-        if ((NULL != pstrMessage) && pstrMessage->Exists() && 
+
+        if ((NULL != pstrMessage) && pstrMessage->Exists() &&
             theEnvelope.Seal(thePubkey, *pstrMessage) && // Seal pstrMessage into theEnvelope, using nymRecipient's public key.
             theEnvelope.GetAsciiArmoredData(pMsg->m_ascPayload)) // Grab the sealed version as base64-encoded string, into pMsg->m_ascPayload.
         {
@@ -2878,11 +2879,11 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
         else
         {
             OTLog::vError("%s: Failed trying to seal envelope containing message "
-                          "(or while grabbing the base64-encoded result.)\n", 
+                          "(or while grabbing the base64-encoded result.)\n",
                           szFunc);
             return false;
         }
-        
+
         // ---------------------------------
         // By this point, pMsg is all set up, signed and saved. Its payload contains
         // the envelope (as base64) containing the encrypted message.
@@ -2894,63 +2895,63 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
     // --------------------------------------
     // Grab a string copy of pMsg.
     //
-    const OTString strInMessage(*pMsg);    
+    const OTString strInMessage(*pMsg);
     // --------------------------------------
     OTLedger theLedger(RECIPIENT_USER_ID, RECIPIENT_USER_ID, SERVER_ID); // The recipient's Nymbox.
 	// ------------------------
-	// Drop in the Nymbox 
+	// Drop in the Nymbox
 	if ( (theLedger.LoadNymbox()				&&  // I think this loads the box receipts too, since I didn't call "LoadNymboxNoVerify"
 //		  theLedger.VerifyAccount(m_nymServer)	&&	// This loads all the Box Receipts, which is unnecessary.
           theLedger.VerifyContractID()			&&	// Instead, we'll verify the IDs and Signature only.
           theLedger.VerifySignature(m_nymServer)
        ) )
-	{						
+	{
         // Create the instrumentNotice to put in the Nymbox.
 		OTTransaction * pTransaction = OTTransaction::GenerateTransaction(theLedger, theType, lTransNum);
-		
+
 		if (NULL != pTransaction) // The above has an OT_ASSERT within, but I just like to check my pointers.
 		{
             // NOTE: todo: SHOULD this be "in reference to" itself? The reason, I assume we are doing this
             // is because there is a reference STRING so "therefore" there must be a reference # as well. Eh?
             // Anyway, it must be understood by those involved that a message is stored inside. (Which has no transaction #.)
-            
+
 			pTransaction->	SetReferenceToNum(lTransNum);		// <====== Recipient RECEIVES entire incoming message as string here, which includes the sender user ID,
 			pTransaction->	SetReferenceString(strInMessage);	// and has an OTEnvelope in the payload. Message is signed by sender, and envelope is encrypted to recipient.
-			
+
 			pTransaction->	SignContract(m_nymServer);
 			pTransaction->	SaveContract();
 			// -----------------------------------------
 			theLedger.AddTransaction(*pTransaction); // Add the message transaction to the nymbox. (It will cleanup.)
-			
+
 			theLedger.ReleaseSignatures();
 			theLedger.SignContract(m_nymServer);
 			theLedger.SaveContract();
 			theLedger.SaveNymbox(); // We don't grab the Nymbox hash here, since nothing important changed (just a message was sent.)
-			
-            
+
+
 			// Any inbox/nymbox/outbox ledger will only itself contain
 			// abbreviated versions of the receipts, including their hashes.
-			// 
+			//
 			// The rest is stored separately, in the box receipt, which is created
 			// whenever a receipt is added to a box, and deleted after a receipt
 			// is removed from a box.
 			//
 			pTransaction->SaveBoxReceipt(theLedger);
-            
+
             return true;
 		}
 		else // should never happen
 		{
             const OTString strRecipientUserID(RECIPIENT_USER_ID);
             OTLog::vError("%s: Failed while trying to generate transaction in order to "
-                          "add a message to Nymbox: %s\n", 
+                          "add a message to Nymbox: %s\n",
                           szFunc, strRecipientUserID.Get());
 		}
 	}
 	else
     {
         const OTString strRecipientUserID(RECIPIENT_USER_ID);
-        OTLog::vError("%s: Failed while trying to load or verify Nymbox: %s\n", 
+        OTLog::vError("%s: Failed while trying to load or verify Nymbox: %s\n",
                       szFunc, strRecipientUserID.Get());
     }
 
@@ -2968,18 +2969,18 @@ void OTServer::UserCmdCheckUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// UserID of public key requested by user.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
-	OTPseudonym nym2;	
+
+	OTPseudonym nym2;
 	nym2.SetIdentifier(MsgIn.m_strNymID2);
-	
+
     bool bLoaded        = nym2.LoadPublicKey(); // This calls LoadCredentials inside.
     msgOut.m_bSuccess   = (bLoaded && nym2.VerifyPseudonym());
-    
+
 	// If success, we send the Nym2's public key back to the user.
 	if (msgOut.m_bSuccess)
 	{
 		nym2.GetPublicEncrKey().GetPublicKey(msgOut.m_strNymPublicKey, true);
-        
+
         // NEW: Also attach the public credentials to the response
         //      (not just a public key.)
         //
@@ -3009,7 +3010,7 @@ void OTServer::UserCmdCheckUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
                 // -----------------------------------------------
                 OTString       strCredList;
                 mapOfStrings & theMap = pMap->the_map;
-                
+
                 nym2.GetPublicCredentials(strCredList, &theMap);
                 // -----------------------------------------------
                 // Serialize the StringMap to a string...
@@ -3028,15 +3029,15 @@ void OTServer::UserCmdCheckUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
         } // bLoadedCredentials
 	} // msgOut.m_bSuccess
 	// if Failed, we send the user's message back to him, ascii-armored as part of response.
-	else 
+	else
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -3049,7 +3050,7 @@ void OTServer::UserCmdCheckUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 
 /*
  Allows ANY Nym to GET AND SET the Usage Credits for ANY other Nym!
- UPDATE: Only the override Nym can change the credits, 
+ UPDATE: Only the override Nym can change the credits,
  You might ask, "But what if I don't want users to be able to set the Usage Credits?"
  That makes sense: Go to ~/.ot/server.cfg and set cmd_usage_credits=false (which is its default BTW.)
  That way, NO ONE can set credits, or view them for other people. (People can still view their own.)
@@ -3059,7 +3060,7 @@ void OTServer::UserCmdCheckUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
  */
 void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@usageCredits";	// reply to usageCredits
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// UserID of user whose usage credits are being examined / adjusted.
@@ -3077,13 +3078,13 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
     OTIdentifier nym2ID, SERVER_ID(m_strServerID);
 	nym2.SetIdentifier(MsgIn.m_strNymID2);
 	nym2.GetIdentifier(nym2ID);
-	
+
 	const bool bIsSameNym	= nym2.CompareID(theNym);
 	OTPseudonym * pNym		= NULL;
-	
+
 	bool bErrorCondition		= false;
 	bool bHaveToCreateNymfile	= false;
-	
+
 	// If nym2 and theNym are already the same Nym, then pNym points to theNym by now already.
 	// (And we'll skip this block.) Otherwise we load up nym2, and point pNym to nym2 instead.
 	//
@@ -3106,7 +3107,7 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
                           MsgIn.m_strNymID2.Get());
 			bErrorCondition = true;
 		}
-		else 
+		else
 		{
 			pNym = &nym2;
 		}
@@ -3132,21 +3133,21 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
     OTLedger theNymbox(nym2ID, nym2ID, SERVER_ID);
     // ------------------------------------
     bool bSuccessLoadingNymbox	= theNymbox.LoadNymbox();
-    
+
     if (bSuccessLoadingNymbox)
         bSuccessLoadingNymbox	= (theNymbox.VerifyContractID() && theNymbox.VerifyAccount(m_nymServer));
     else
     {
         bSuccessLoadingNymbox	= theNymbox.GenerateLedger(nym2ID, SERVER_ID, OTLedger::nymbox, true); // bGenerateFile=true
-        
+
         if (bSuccessLoadingNymbox)
         {
             bSuccessLoadingNymbox	= theNymbox.SignContract(m_nymServer);
-            
+
             if (bSuccessLoadingNymbox)
             {
                 bSuccessLoadingNymbox = theNymbox.SaveContract();
-                
+
                 if (bSuccessLoadingNymbox)
                     bSuccessLoadingNymbox	= theNymbox.SaveNymbox();
             }
@@ -3165,7 +3166,7 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 		const long &	lOldCredits   = pNym->GetUsageCredits();
         const long      lTentativeNew = lOldCredits + lAdjustment;
 		const long		lNewCredits   = (lTentativeNew < 0) ? (-1) : lTentativeNew; // It can never be less than -1.
-        
+
 		// if adjustment is non-zero, and the acting Nym has authority to make adjustments...
 //         if ((0 != lAdjustment) && bIsPrivilegedNym)
         //
@@ -3201,9 +3202,9 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
             msgOut.m_lDepth = -1;            // ...then we always return -1, so the client doesn't pop up any error messages related to usage credits.
 	}
 	// -----------------------------------------------------
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -3222,20 +3223,20 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
     const char * szFunc = "OTServer::UserCmdIssueAssetType";
-    
-	// (1) set up member variables 
+
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@issueAssetType";// reply to issueAssetType
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 	msgOut.m_strAssetID		= MsgIn.m_strAssetID;	// Asset Type ID, a hash of the asset contract.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
     // already at the top of ProcessUserCommand, which calls this.
 //  msgOut.m_strRequestNum.Set(MsgIn.m_strRequestNum);
-    
+
 	const OTIdentifier USER_ID(theNym), SERVER_ID(m_strServerID), ASSET_TYPE_ID(MsgIn.m_strAssetID);
-	
+
     OTAssetContract * pAssetContract = GetAssetContract(ASSET_TYPE_ID);
-    
+
 	// Make sure the contract isn't already available on this server.
     //
 	if (NULL != pAssetContract) // it exists already.
@@ -3244,13 +3245,13 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
                       szFunc);
 	}
 	else
-	{		
+	{
 		// Pull the contract out of the message and verify it.
 		OTString strFoldername(OTFolders::Contract().Get()), strFilename(MsgIn.m_strAssetID.Get());
 
 		OTString strContract(MsgIn.m_ascPayload);
 		pAssetContract = new OTAssetContract(MsgIn.m_strAssetID, strFoldername, strFilename, MsgIn.m_strAssetID);
-		
+
 		OTIdentifier	ASSET_USER_ID;
 		bool			bSuccessLoadingContract	= false;
 		bool			bSuccessCalculateDigest = false;
@@ -3264,7 +3265,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 		else // success instantiating contract.
 		{
 			bSuccessLoadingContract	= pAssetContract->LoadContractFromString(strContract);
-			
+
             if (!bSuccessLoadingContract)
             {
                 OTLog::vOutput(0, "%s: Failed trying to load asset contract from string. Asset ID: %s\n",
@@ -3279,21 +3280,21 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
             else // success loading contract from string.
             {
                 pNym = (OTPseudonym*)pAssetContract->GetContractPublicNym(); // todo fix this cast.
-                
+
                 if (NULL == pNym)
                 {
                     OTLog::vOutput(0, "%s: Failed trying to retrieve Issuer's public key from asset "
-                                   "contract. Asset ID: %s\n", szFunc, MsgIn.m_strAssetID.Get());                    
+                                   "contract. Asset ID: %s\n", szFunc, MsgIn.m_strAssetID.Get());
                 }
                 else // success retrieving issuer Nym's public key from asset contract.
                 {
                     pNym->GetIdentifier(ASSET_USER_ID);
-                    
+
                     bSuccessCalculateDigest = true;
-                    
+
 //                    OTString strPublicKey;
 //                    bool bGotPublicKey = pNym->GetPublicSignKey().GetPublicKey(strPublicKey);
-//                    
+//
 //                    if (!bGotPublicKey)
 //                    {
 //                        OTLog::vError("%s: Error getting public key in OTServer::UserCmdIssueAssetType.\n",
@@ -3302,7 +3303,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 //                    else // success retrieving public key from Nym
 //                    {
 //                        bSuccessCalculateDigest = ASSET_USER_ID.CalculateDigest(strPublicKey);
-//                        
+//
 //                        if (!bSuccessCalculateDigest)
 //                        {
 //                            OTLog::vError("%s: Error calculating digest in OTServer::UserCmdIssueAssetType.\n",
@@ -3312,7 +3313,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
                 }
             }
 		}
-				
+
 		// Make sure the public key in the contract is the public key of the Nym.
 		// If we successfully loaded the contract from the string, and the contract
 		// internally verifies (the ID matches the hash of the contract, and the
@@ -3334,19 +3335,19 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 					// Create an ISSUER account (like a normal account, except it can go negative)
 					OTAccount * pNewAccount = NULL;
 					OTCleanup<OTAccount> theAcctGuardian;
-					
+
                     pNewAccount = OTAccount::GenerateNewAccount(USER_ID, SERVER_ID,
-                                                                m_nymServer, MsgIn, 
+                                                                m_nymServer, MsgIn,
                                                                 OTAccount::issuer);
-                    
+
 					// If we successfully create the account, then bundle it in the message XML payload
 					if (NULL != pNewAccount) // This last parameter generates an ISSUER account
 					{																	// instead of the default SIMPLE.
 						theAcctGuardian.SetCleanupTarget(*pNewAccount); // So I don't have to worry about cleaning it up.
-						
+
 						OTString tempPayload(*pNewAccount);
 						msgOut.m_ascPayload.SetString(tempPayload);
-				
+
 						// Attach the new account number to the outgoing message.
 						pNewAccount->GetIdentifier(msgOut.m_strAcctID);
 
@@ -3354,7 +3355,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 						// to the server's list.
 						AddAssetContract(*pAssetContract); // Do NOT clean this up unless failure! Server will clean it up.
 						SaveMainFile(); // So the main xml file knows to load this asset type next time we run.
-						
+
 						// Make sure the contracts/%s file is created for next time.
 						pAssetContract->SaveContract(OTFolders::Contract().Get(), strFilename.Get());
 						// ---------------------------------------------------
@@ -3362,29 +3363,29 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 						pNewAccount->GetIdentifier(theNewAccountID);
 						// -----------------------------------------------
 						OTLog::Output(0, "Generating inbox/outbox for new issuer acct. \n");
-						
-						OTLedger	theOutbox	(USER_ID, theNewAccountID, SERVER_ID), 
+
+						OTLedger	theOutbox	(USER_ID, theNewAccountID, SERVER_ID),
 									theInbox	(USER_ID, theNewAccountID, SERVER_ID);
-						
+
 						bool bSuccessLoadingInbox	= theInbox.LoadInbox();
 						bool bSuccessLoadingOutbox	= theOutbox.LoadOutbox();
 						// --------------------------------------------------------------------
 						// ...or generate them otherwise...
-						
+
 						if (true == bSuccessLoadingInbox) // WEIRD IF THIS HAPPENED...
 							bSuccessLoadingInbox	= theInbox.VerifyAccount(m_nymServer); // todo -- this should NEVER happen, the ID was just RANDOMLY generated, so HOW did the inbox already exist???
 						else
 						{
 							bSuccessLoadingInbox	= theInbox.GenerateLedger(theNewAccountID, SERVER_ID, OTLedger::inbox, true); // bGenerateFile=true
-							
+
 							if (bSuccessLoadingInbox)
 							{
 								bSuccessLoadingInbox	= theInbox.SignContract(m_nymServer);
-								
+
 								if (bSuccessLoadingInbox)
 								{
 									bSuccessLoadingInbox = theInbox.SaveContract();
-									
+
 									if (bSuccessLoadingInbox)
 										bSuccessLoadingInbox	= pNewAccount->SaveInbox(theInbox);
 								}
@@ -3396,15 +3397,15 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 						else
 						{
 							bSuccessLoadingOutbox	= theOutbox.GenerateLedger(theNewAccountID, SERVER_ID, OTLedger::outbox, true); // bGenerateFile=true
-							
+
 							if (bSuccessLoadingOutbox)
 							{
 								bSuccessLoadingOutbox	= theOutbox.SignContract(m_nymServer);
-								
+
 								if (bSuccessLoadingOutbox)
 								{
 									bSuccessLoadingOutbox = theOutbox.SaveContract();
-									
+
 									if (bSuccessLoadingOutbox)
 										bSuccessLoadingOutbox	= pNewAccount->SaveOutbox(theOutbox);
 								}
@@ -3414,26 +3415,26 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 						if (false == bSuccessLoadingInbox)
 						{
 							OTString strNewAcctID(theNewAccountID);
-							
+
 							OTLog::vError("ERROR generating inbox ledger in OTServer::UserCmdIssueAssetType:\n%s\n",
 										  strNewAcctID.Get());
 						}
 						else if (false == bSuccessLoadingOutbox)
 						{
 							OTString strNewAcctID(theNewAccountID);
-							
-							OTLog::vError("ERROR generating outbox ledger in OTServer::UserCmdIssueAssetType:\n%s\n", 
+
+							OTLog::vError("ERROR generating outbox ledger in OTServer::UserCmdIssueAssetType:\n%s\n",
 										  strNewAcctID.Get());
 						}
-						else 
-						{			
+						else
+						{
 							msgOut.m_bSuccess = true; // <==== SUCCESS!!
-							
+
                             // On the server side, each nym stores a list of its asset accounts (IDs).
                             //
                             std::set<std::string> & theAccountSet = theNym.GetSetAssetAccounts();
                             theAccountSet.insert(msgOut.m_strAcctID.Get());
-                            
+
                             theNym.SaveSignedNymfile(m_nymServer);
 
 							// TODO fire off a separate process here to create the mint.
@@ -3444,13 +3445,13 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 							// thus withdraw cash.)
 						}
 					}
-					else 
+					else
 						OTLog::Error("Failure generating new issuer account in OTServer::UserCmdIssueAssetType.\n");
 				}
-				else 
+				else
 					OTLog::Error("Failure verifying asset contract in OTServer::UserCmdIssueAssetType.\n");
 			}
-			else 
+			else
 			{
 				OTString strAssetUserID(ASSET_USER_ID), strUserID;
 				theNym.GetIdentifier(strUserID);
@@ -3475,17 +3476,17 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
 
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		 
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
+
     // (You are in UserCmdIssueAssetType.)
-    
+
 	// *************************************************************
 	// REPLY NOTICE TO NYMBOX
 	//
@@ -3500,7 +3501,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
         const OTString strReplyMessage(msgOut);
         const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
         // If it fails, it logs already.
-        this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum, 
+        this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,
                                       false,    // trans success (not a transaction...)
                                       &theNym);
     }
@@ -3511,22 +3512,22 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
 /// An existing user is creating an issuer account (that he will not control) based on a basket of currencies.
 void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@issueBasket";	// reply to issueBasket
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	// Either way, we need to send the user's command back to him as well.
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
+
 	const OTIdentifier USER_ID(theNym), SERVER_ID(m_strServerID), SERVER_USER_ID(m_nymServer);
-	
+
 	OTString strBasket(MsgIn.m_ascPayload);
 	OTBasket theBasket;
-	
+
 	if (!theBasket.LoadContractFromString(strBasket))
     {
         OTLog::vError("%s: Failed trying to load basket from string.\n", __FUNCTION__);
@@ -3544,10 +3545,10 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
 		// (so it is unique on every server) and for the same reason with the AccountID removed before calculating.
 		OTIdentifier BASKET_ID, BASKET_ACCOUNT_ID, BASKET_CONTRACT_ID;
 		theBasket.CalculateContractID(BASKET_ID);
-		
+
 		// Use BASKET_ID to look up the Basket account and see if it already exists (the server keeps a list.)
 		bool bFoundBasket = LookupBasketAccountID(BASKET_ID, BASKET_ACCOUNT_ID);
-		
+
 		if (bFoundBasket)
 		{
             OTLog::vError("%s: Rejected: user tried to create basket currency that already exists.\n", __FUNCTION__);
@@ -3563,12 +3564,12 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
             // is if it's already issued on this server.
             //
             bool bSubCurrenciesAllExist = true;
-            
+
             for (int i = 0; i < theBasket.Count(); i++)
             {
                 BasketItem * pItem = theBasket.At(i);
                 OT_ASSERT(NULL != pItem);
-                
+
                 if (NULL == this->GetAssetContract(pItem->SUB_CONTRACT_ID)) // Sub-currency not found.
                 {
                     const OTString strSubID(pItem->SUB_CONTRACT_ID);
@@ -3589,7 +3590,7 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                 // way in MsgIn so that GenerateNewAccount will create the sub-account with the server
                 // as the owner, instead of the user.
                 SERVER_USER_ID.GetString(MsgIn.m_strNymID);
-                
+
                 // We need to actually create all the sub-accounts.
                 // This loop also sets the Account ID onto the basket items (which formerly was blank, from the client.)
                 // This loop also adds the BASKET_ID and the NEW ACCOUNT ID to a map on the server for later reference.
@@ -3597,51 +3598,51 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                 {
                     BasketItem * pItem = theBasket.At(i);
                     OT_ASSERT(NULL != pItem);
-                    
-                    /*			 
+
+                    /*
                      // Just make sure theMessage has these members populated:
                      //
                      // theMessage.m_strNymID;
-                     // theMessage.m_strAssetID; 
+                     // theMessage.m_strAssetID;
                      // theMessage.m_strServerID;
-                     
+
                      // static method (call it without an instance, using notation: OTAccount::GenerateNewAccount)
-                     OTAccount * OTAccount::GenerateNewAccount(	const OTIdentifier & theUserID,	const OTIdentifier & theServerID, 
+                     OTAccount * OTAccount::GenerateNewAccount(	const OTIdentifier & theUserID,	const OTIdentifier & theServerID,
                                                                 const OTPseudonym & theServerNym,	const OTMessage & theMessage,
                                                                 const OTAccount::AccountType eAcctType=OTAccount::simple)
-                    
+
                      // The above method uses this one internally...
                      bool OTAccount::GenerateNewAccount(const OTPseudonym & theServer, const OTMessage & theMessage,
                                                         const OTAccount::AccountType eAcctType=OTAccount::simple)
                      */
-                    
+
                     OTAccount * pNewAccount = NULL;
-                    
+
                     // GenerateNewAccount expects the Asset ID to be in MsgIn.
                     // So we'll just put it there to make things easy...
                     //
                     pItem->SUB_CONTRACT_ID.GetString(MsgIn.m_strAssetID);
-                        
+
                     pNewAccount = OTAccount::GenerateNewAccount(SERVER_USER_ID,
                                                                 SERVER_ID,
                                                                 m_nymServer,
                                                                 MsgIn,
                                                                 OTAccount::basketsub);
-                    
-                    // If we successfully create the account, then bundle it 
+
+                    // If we successfully create the account, then bundle it
                     // in the message XML payload
                     //
                     if (NULL != pNewAccount)
                     {
                         msgOut.m_bSuccess = true;
-                        
+
                         // Now the item finally has its account ID. Let's grab it.
                         pNewAccount->GetIdentifier(pItem->SUB_ACCOUNT_ID);
-                        
+
                         delete pNewAccount;
                         pNewAccount = NULL;
                     }
-                    else 
+                    else
                     {
                         OTLog::vError("%s: Failed while calling: "
                                      "OTAccount::GenerateNewAccount(SERVER_USER_ID, SERVER_ID, m_nymServer, "
@@ -3650,8 +3651,8 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                         break;
                     }
                 } // for
-                
-                
+
+
                 if (true == msgOut.m_bSuccess)
                 {
                     // Generate a new OTAssetContract -- the ID will be a hash of THAT contract, which includes theBasket as well as
@@ -3671,12 +3672,12 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                     theBasket.ReleaseSignatures();
                     theBasket.SignContract(m_nymServer);
                     theBasket.SaveContract();
-                    
+
                     // The basket does not yet exist on this server. Create a new Asset Contract to support it...
                     OTAssetContract * pBasketContract = new OTAssetContract;
-                    
+
                     // todo check for memory allocation failure here.
-                    
+
                     // Put the Server's Public Key into the "contract" key field of the new Asset Contract...
                     // This adds a "contract" key to the asset contract (the server's public key)
                     // Asset Contracts are verified by a key found internal to the contract, so it's
@@ -3684,50 +3685,50 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                     // This also updates the m_xmlUnsigned contents, signs the contract, saves it,
                     // and calculates the new ID.
                     pBasketContract->CreateBasket(theBasket, m_nymServer);
-                    
+
                     // Grab the new asset ID for the new basket currency
                     pBasketContract->GetIdentifier(BASKET_CONTRACT_ID);
                     OTString STR_BASKET_CONTRACT_ID(BASKET_CONTRACT_ID);
-                    
+
                     // set the new Asset Type ID, aka ContractID, onto the outgoing message.
                     msgOut.m_strAssetID = STR_BASKET_CONTRACT_ID;
-                    
+
                     // Save the new Asset Contract to disk
                     const OTString strFoldername(OTFolders::Contract().Get()), strFilename(STR_BASKET_CONTRACT_ID.Get());
 
-                    // Save the new basket contract to the contracts folder 
+                    // Save the new basket contract to the contracts folder
                     // (So the users can use it the same as they would use any other contract.)
                     pBasketContract->SaveContract(strFoldername.Get(), strFilename.Get());
-                    
+
                     AddAssetContract(*pBasketContract);
                     // I don't save this here. Instead, I wait for AddBasketAccountID and then I call SaveMainFile after that. See below.
                     // TODO need better code for reverting when something screws up halfway through a change.
                     // If I add this contract, it's not enough to just "not save" the file. I actually need to re-load the file
                     // in order to TRULY "make sure" this won't screw something up on down the line.
-                    
+
                     // Once the new Asset Type is generated, from which the BasketID can be requested at will, next we need to create
                     // the issuer account for that new Asset Type.  (We have the asset type ID and the contract file. Now let's create
                     // the issuer account the same as we would for any normal issuer account.)
                     //
                     // The issuer account is special compared to a normal issuer account, because within its walls, it must store an
                     // OTAccount for EACH sub-contract, in order to store the reserves. That's what makes the basket work.
-                    
+
                     OTAccount * pBasketAccount = NULL;
-                    
+
                     // GenerateNewAccount expects the Asset ID to be in MsgIn. So we'll just put it there to make things easy...
                     MsgIn.m_strAssetID = STR_BASKET_CONTRACT_ID;
-                    
+
                     pBasketAccount = OTAccount::GenerateNewAccount(SERVER_USER_ID, SERVER_ID, m_nymServer, MsgIn, OTAccount::basket);
-                    
+
                     if (NULL != pBasketAccount)
-                    {			
+                    {
                         msgOut.m_bSuccess = true;
-                        
+
                         pBasketAccount->GetIdentifier(msgOut.m_strAcctID); // string
                         pBasketAccount->GetAssetTypeID().GetString(msgOut.m_strAssetID);
-                        
+
                         pBasketAccount->GetIdentifier(BASKET_ACCOUNT_ID); // id
-                        
+
                         // So the server can later use the BASKET_ID (which is universal)
                         // to lookup the account ID on this server corresponding to that basket.
                         // (The account ID will be different from server to server, thus the need
@@ -3735,23 +3736,23 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                         AddBasketAccountID(BASKET_ID, BASKET_ACCOUNT_ID, BASKET_CONTRACT_ID);
 
                         SaveMainFile(); // So the main xml file loads this basket info next time we run.
-                        
+
                         delete pBasketAccount;
                         pBasketAccount = NULL;
                     }
-                    else 
+                    else
                     {
                         msgOut.m_bSuccess = false;
                     }
-                    
+
                 }// if true == msgOut.m_bSuccess
             } // Subcurrencies all do exist.
 		} // basket doesn't already exist (creating it)
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		 
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -3765,31 +3766,31 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
 void OTServer::UserCmdCreateAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
     const char * szFunc = "OTServer::UserCmdCreateAccount";
-    
-	// (1) set up member variables 
+
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@createAccount";	// reply to createAccount
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
     // Either way, we need to send the user's command back to him as well.
     OTString tempInMessage(MsgIn);
     msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 
 	const OTIdentifier USER_ID(theNym), SERVER_ID(m_strServerID);
 	// ----------------------------------------------
-	
+
 	OTAccount * pNewAccount = OTAccount::GenerateNewAccount(USER_ID, SERVER_ID, m_nymServer, MsgIn);
 	OTCleanup<OTAccount> theAcctAngel(pNewAccount);
-    
+
 	// If we successfully create the account, then bundle it in the message XML payload
 	if (NULL != pNewAccount)
 	{
         OTAssetContract * pContract = GetAssetContract(pNewAccount->GetAssetTypeID());
-        
+
         if (NULL == pContract)
         {
             const OTString strAssetID(pNewAccount->GetAssetTypeID());
-            OTLog::vError("%s: Error: Unable to get AssetContract for asset type: %s\n", 
+            OTLog::vError("%s: Error: Unable to get AssetContract for asset type: %s\n",
                           szFunc, strAssetID.Get());
         }
         else if (pContract->IsShares())
@@ -3808,69 +3809,69 @@ void OTServer::UserCmdCreateAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 		// -----------------------------------------------
 		OTIdentifier theNewAccountID;
 		pNewAccount->GetIdentifier(theNewAccountID);
-		
+
 //		OTLog::Error("DEBUG: GenerateNewAccount successfully returned account pointer. Contents:\n%s\n", tempPayload.Get());
-			
+
 		// -----------------------------------------------
-		
-		OTLedger	theOutbox(USER_ID, theNewAccountID, SERVER_ID), 
+
+		OTLedger	theOutbox(USER_ID, theNewAccountID, SERVER_ID),
 					theInbox (USER_ID, theNewAccountID, SERVER_ID);
-		
+
 		bool bSuccessLoadingInbox	= theInbox. LoadInbox();
 		bool bSuccessLoadingOutbox	= theOutbox.LoadOutbox();
-		
+
 		// --------------------------------------------------------------------
-		
+
 		// ...or generate them otherwise...
-		
+
 		if (true == bSuccessLoadingInbox) // WEIRD IF THIS HAPPENED...
 			bSuccessLoadingInbox	= theInbox.VerifyAccount(m_nymServer); // todo -- this should NEVER happen, the ID was just RANDOMLY generated, so HOW did the inbox already exist???
 		else
 		{
 			bSuccessLoadingInbox	= theInbox.GenerateLedger(theNewAccountID, SERVER_ID, OTLedger::inbox, true); // bGenerateFile=true
-			
+
 			if (bSuccessLoadingInbox)
 			{
 				bSuccessLoadingInbox	= theInbox.SignContract(m_nymServer);
-				
+
 				if (bSuccessLoadingInbox)
 				{
 					bSuccessLoadingInbox = theInbox.SaveContract();
-					
+
 					if (bSuccessLoadingInbox)
 						bSuccessLoadingInbox	= pNewAccount->SaveInbox(theInbox);
 				}
 			}
 		}
-		
+
 		// --------------------------------------------------------------------
-		
+
 		if (true == bSuccessLoadingOutbox) // WEIRD IF THIS HAPPENED....
 			bSuccessLoadingOutbox	= theOutbox.VerifyAccount(m_nymServer);	// todo -- this should NEVER happen, the ID was just RANDOMLY generated, so HOW did the outbox already exist???
 		else
 		{
 			bSuccessLoadingOutbox	= theOutbox.GenerateLedger(theNewAccountID, SERVER_ID, OTLedger::outbox, true); // bGenerateFile=true
-			
+
 			if (bSuccessLoadingOutbox)
 			{
 				bSuccessLoadingOutbox	= theOutbox.SignContract(m_nymServer);
-				
+
 				if (bSuccessLoadingOutbox)
 				{
 					bSuccessLoadingOutbox = theOutbox.SaveContract();
-					
+
 					if (bSuccessLoadingOutbox)
 						bSuccessLoadingOutbox	= pNewAccount->SaveOutbox(theOutbox);
 				}
 			}
 		}
-		
+
 		// --------------------------------------------------------------------
-		
+
 		if (false == bSuccessLoadingInbox)
 		{
 			const OTString strNewAcctID(theNewAccountID);
-			
+
 			OTLog::vError("%s: ERROR generating inbox ledger: %s\n", szFunc,
 						  strNewAcctID.Get());
 		}
@@ -3881,38 +3882,38 @@ void OTServer::UserCmdCreateAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			OTLog::vError("%s: ERROR generating outbox ledger: %s\n", szFunc,
 						  strNewAcctID.Get());
 		}
-		else 
-		{			
+		else
+		{
 			msgOut.m_bSuccess = true; // <==== SUCCESS!!
-			
+
 			pNewAccount->GetIdentifier(msgOut.m_strAcctID);
-			
+
             // On the server side, each nym stores a list of its asset accounts (IDs).
             //
             std::set<std::string> & theAccountSet = theNym.GetSetAssetAccounts();
             theAccountSet.insert(msgOut.m_strAcctID.Get());
-            
+
             theNym.SaveSignedNymfile(m_nymServer);
-            
+
             // ---------------------------------
-            
+
 			OTString tempPayload(*pNewAccount);
 			msgOut.m_ascPayload.SetString(tempPayload);
 		}
 		// --------------------------------------------------------------------
 	}
-	
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		 
-	
+
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
-    
+
+
     // (You are in UserCmdCreateAcct.)
 
 	// *************************************************************
@@ -3944,12 +3945,12 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 {
 	// The outgoing transaction is an "atTransfer", that is, "a reply to the transfer request"
 	tranOut.SetType(OTTransaction::atTransfer);
-		
+
 	OTItem * pItem			= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
@@ -3959,18 +3960,18 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier	SERVER_ID(m_strServerID),		USER_ID(theNym),	ACCOUNT_ID(theFromAccount),
 						ASSET_TYPE_ID(theFromAccount.GetAssetTypeID());
-	
+
 	OTString strUserID(USER_ID), strAccountID(ACCOUNT_ID);
     // --------------------
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);	 
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
-    // --------------------	
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransfer);	 
-	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
     // --------------------
-	
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransfer);
+	pResponseItem->SetStatus(OTItem::rejection); // the default.
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+    // --------------------
+
 	if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_transfer))
 	{
 		OTLog::vOutput(0, "OTServer::NotarizeTransfer: User %s cannot do this transaction (All acct-to-acct transfers are disallowed in server.cfg)\n",
@@ -4012,15 +4013,15 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 
 		// Server response item being added to server response transaction (tranOut)
 		// They're getting SOME sort of response item.
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
         pResponseItem->SetNumberOfOrigin(*pItem);
-				
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
         pResponseBalanceItem->SetNumberOfOrigin(*pItem);
-        
+
 //		OTString strTestInRefTo2;
 //		pResponseItem->GetReferenceString(strTestInRefTo2);
 //		OTLog::Error("DEBUG: Item in reference to: %s\n", strTestInRefTo2.Get());
@@ -4028,21 +4029,21 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 		// Set the ID on the To Account based on what the transaction request said. (So we can load it up.)
 		OTAccount * pDestinationAcct = OTAccount::LoadExistingAccount(pItem->GetDestinationAcctID(), SERVER_ID);
 		OTCleanup<OTAccount> theDestAcctGuardian(pDestinationAcct); // This is safe in cases where NULL is returned. No more need to cleanup pDestAcct.
-		
+
 		// Only accept transfers with positive amounts.
-		if (0 > pItem->GetAmount()) 
+		if (0 > pItem->GetAmount())
 		{
 			OTLog::Output(0, "OTServer::NotarizeTransfer: Failure: Attempt to transfer negative balance.\n");
 		}
-	
+
 		// I'm using the operator== because it exists.
 		// If the ID on the "from" account that was passed in,
 		// does not match the "Acct From" ID on this transaction item
 		else if (!(IDFromAccount == pItem->GetPurportedAccountID()))
 		{
 			OTLog::Output(0, "OTServer::NotarizeTransfer: Error: 'From' account ID on the transaction does not match 'from' account ID on the transaction item.\n");
-		} 
-		// ok so the IDs match. Does the destination account exist? 
+		}
+		// ok so the IDs match. Does the destination account exist?
 		else if (NULL == pDestinationAcct)
 		{
 			OTLog::Output(0, "OTServer::NotarizeTransfer: ERROR verifying existence of the 'to' account.\n");
@@ -4058,7 +4059,7 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 		// Are both of the accounts of the same Asset Type?
 		else if (!(theFromAccount.GetAssetTypeID() == pDestinationAcct->GetAssetTypeID()))
 		{
-			OTString strFromAssetID(theFromAccount.GetAssetTypeID()), 
+			OTString strFromAssetID(theFromAccount.GetAssetTypeID()),
 			strDestinationAssetID(pDestinationAcct->GetAssetTypeID());
 			OTLog::vOutput(0, "ERROR - user attempted to transfer between accounts of 2 different "
 					"asset types in OTServer::NotarizeTransfer:\n%s\n%s\n", strFromAssetID.Get(),
@@ -4070,21 +4071,21 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 		{
 			OTLog::Output(0, "ERROR verifying signature on, the 'to' account in OTServer::NotarizeTransfer\n");
 		}
-		
+
 		// This entire function can be divided into the top and bottom halves.
 		// The top half is oriented around finding the "transfer" item (in the "transfer" transaction)
 		// and setting up the response item that will go into the response transaction.
 		// The bottom half is oriented, in the case of success, around creating the necessary inbox
 		// and outbox entries, and debiting the account, and basically performing the actual transfer.
-		else 
-		{			
-			// Okay then, everything checks out. Let's add this to the sender's outbox and the recipient's inbox. 
-			// IF they can be loaded up from file, or generated, that is. 
+		else
+		{
+			// Okay then, everything checks out. Let's add this to the sender's outbox and the recipient's inbox.
+			// IF they can be loaded up from file, or generated, that is.
 
 			// Load the inbox/outbox in case they already exist
-			OTLedger	theFromOutbox	(USER_ID, IDFromAccount, SERVER_ID), 
+			OTLedger	theFromOutbox	(USER_ID, IDFromAccount, SERVER_ID),
 						theToInbox		(pItem->GetDestinationAcctID(), SERVER_ID);
-			
+
 			bool bSuccessLoadingInbox	= theToInbox.LoadInbox();
 			bool bSuccessLoadingOutbox	= theFromOutbox.LoadOutbox();
 			// --------------------------------------------------------------------
@@ -4098,35 +4099,35 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
             //    an inbox? For example, a server voucher account (where backing funds for vouchers are stored) does
             //    not have an inbox, and should not be able to receive transfers. In that case, we definitely don't want
             //    to just "generate" an inbox here! Instead, we want it to fail. In fact, I'm adding a check, above, for
-            //    the account type. In fact, I'm adding a new method to OTAccount where we can just ask it, for each 
+            //    the account type. In fact, I'm adding a new method to OTAccount where we can just ask it, for each
             //    transaction type, whether it can even be used for that purpose in the first place.
             //    Update: appears OTAccount::IsInternalServerAcct already basically fits the bill.
-            
+
 			if (true == bSuccessLoadingInbox)
 				bSuccessLoadingInbox	= theToInbox.VerifyAccount(m_nymServer);
-			else 
+			else
 				OTLog::Error("OTServer::NotarizeTransfer: Error loading 'to' inbox.\n");
 //			else
 //				bSuccessLoadingInbox	= theToInbox.GenerateLedger(pItem->GetDestinationAcctID(), SERVER_ID, OTLedger::inbox, true); // bGenerateFile=true
 			// --------------------------------------------------------------------
 			if (true == bSuccessLoadingOutbox)
 				bSuccessLoadingOutbox	= theFromOutbox.VerifyAccount(m_nymServer);
-			else 
+			else
 				OTLog::Error("OTServer::NotarizeTransfer: Error loading 'from' outbox.\n");
 //			else
 //				bSuccessLoadingOutbox	= theFromOutbox.GenerateLedger(IDFromAccount, SERVER_ID, OTLedger::outbox, true); // bGenerateFile=true
 			// --------------------------------------------------------------------
-			OTLedger * pInbox	= theFromAccount.LoadInbox(m_nymServer); 
-			OTLedger * pOutbox	= theFromAccount.LoadOutbox(m_nymServer); 
-			
+			OTLedger * pInbox	= theFromAccount.LoadInbox(m_nymServer);
+			OTLedger * pOutbox	= theFromAccount.LoadOutbox(m_nymServer);
+
 			OTCleanup<OTLedger> theInboxAngel(pInbox);
 			OTCleanup<OTLedger> theOutboxAngel(pOutbox);
-			
+
 			if (NULL == pInbox) // || !pInbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
 			{
 				OTLog::Error("Error loading or verifying inbox.\n");
 			}
-			
+
 			else if (NULL == pOutbox) // || !pOutbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
 			{
 				OTLog::Error("Error loading or verifying outbox.\n");
@@ -4136,12 +4137,12 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 			{
 				OTLog::Error("ERROR generating ledger in OTServer::NotarizeTransfer.\n");
 			}
-			else 
+			else
 			{
 				// Generate new transaction number for these new transactions
 				// todo check this generation for failure (can it fail?)
 				long lNewTransactionNumber = 0;
-				
+
 				IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 				// ------------------------------------------
 				// I create TWO Outbox transactions -- one for the real outbox, (theFromOutbox)
@@ -4153,7 +4154,7 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				// ------------------------------------------
 				OTTransaction * pOutboxTransaction		= OTTransaction::GenerateTransaction(theFromOutbox, OTTransaction::pending,
                                                                                              lNewTransactionNumber);
-				
+
 //				IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 				OTTransaction * pInboxTransaction		= OTTransaction::GenerateTransaction(theToInbox, OTTransaction::pending,
                                                                                              lNewTransactionNumber);
@@ -4161,7 +4162,7 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				// UPDATE: I am now issuing one new transaction number above, instead of two. This is to make it easy
 				// for the two to cross-reference each other. Later if I want to remove the transaction from the inbox
 				// and need to know the corresponding transaction # for the outbox, it will be the same number.
-				
+
 				// I have to set this one up just like the one below.
 				pTEMPOutboxTransaction->SetReferenceString(strInReferenceTo);
 				pTEMPOutboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
@@ -4171,21 +4172,21 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				pOutboxTransaction->SetReferenceString(strInReferenceTo);
 				pOutboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
 				pOutboxTransaction->SetNumberOfOrigin(*pItem);
-				
+
 				//todo put these two together in a method.
 				pInboxTransaction->SetReferenceString(strInReferenceTo);
 				pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
 				pInboxTransaction->SetNumberOfOrigin(*pItem);
-					  
+
 				// Now we have created 2 new transactions from the server to the users' boxes
 				// Let's sign them and add to their inbox / outbox.
 				pOutboxTransaction->SignContract(m_nymServer);
 				pInboxTransaction->	SignContract(m_nymServer);
-				
+
 				pOutboxTransaction->SaveContract();
 				pInboxTransaction->	SaveContract();
 				// -------------------------------------------
-				// Meanwhile a copy of the outbox transaction is also added to 
+				// Meanwhile a copy of the outbox transaction is also added to
 				// pOutbox. (It's just another copy of the outbox, but used
 				// purely for verifying the balance statement, while a different
 				// copy of the outbox is used for actually adding the receipt
@@ -4193,11 +4194,11 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				//
 				pTEMPOutboxTransaction->SignContract(m_nymServer);
 				pTEMPOutboxTransaction->SaveContract();
-				
+
 				// No need to save a box receipt in this case, like we normally would
 				// when adding a transaction to a box.
 				pOutbox->AddTransaction(*pTEMPOutboxTransaction); // pOutbox will clean this up
-				
+
 				// The balance item from the user, for the outbox transaction, will not have
 				// the correct transaction number (because I just generated it above, so the user
 				// could not possibly have known that when he sent his message.) Currently it is
@@ -4215,7 +4216,7 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				// the number "1" on the user request, as lNewTransactionNumber in pOutbox, in order
 				// to handle this special case, since otherwise the verification would fail.
 				//
-				if (!(pBalanceItem->VerifyBalanceStatement(pItem->GetAmount() * (-1), // My acct balance will be smaller as a result of this transfer. 
+				if (!(pBalanceItem->VerifyBalanceStatement(pItem->GetAmount() * (-1), // My acct balance will be smaller as a result of this transfer.
 														   theNym,
 														   *pInbox,
 														   *pOutbox,
@@ -4225,13 +4226,13 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 				{
 					OTLog::vOutput(0, "ERROR verifying balance statement while performing transfer. Acct ID:\n%s\n",
 								   strAccountID.Get());
-				}			
+				}
 
-				else 
+				else
 				{
 					pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the balance agreement (just above) was successful.
 					pResponseBalanceItem->SetNewOutboxTransNum(lNewTransactionNumber); // So the receipt will show that the client's "1" in the outbox is now actually "34" or whatever, issued by the server as part of successfully processing the transaction.
-					
+
 					// Deduct the amount from the account...
 					// TODO an issuer account here, can go negative.
 					// whereas a regular account should not be allowed to go negative.
@@ -4240,50 +4241,50 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 						// Here the transactions we just created are actually added to the ledgers.
 						theFromOutbox.	AddTransaction(*pOutboxTransaction);
 						theToInbox.		AddTransaction(*pInboxTransaction);
-						
+
 						// Release any signatures that were there before (They won't
 						// verify anymore anyway, since the content has changed.)
 						theFromOutbox.	ReleaseSignatures();
 						theToInbox.		ReleaseSignatures();
-						
+
 						// Sign them.
 						theFromOutbox.	SignContract(m_nymServer);
 						theToInbox.		SignContract(m_nymServer);
-						
+
 						// Save them internally
 						theFromOutbox.	SaveContract();
 						theToInbox.		SaveContract();
-						
+
 						// Save their internals (signatures and all) to file.
                         theFromAccount.SaveOutbox(theFromOutbox);
                         pDestinationAcct->SaveInbox(theToInbox);
                         // ----------------------------------------
-                        
+
                         theFromAccount.	ReleaseSignatures();
 						theFromAccount.	SignContract(m_nymServer);
 						theFromAccount.	SaveContract();
 						theFromAccount.	SaveAccount();
-                        
+
                         pDestinationAcct->ReleaseSignatures();
 						pDestinationAcct->SignContract(m_nymServer);
 						pDestinationAcct->SaveContract();
 						pDestinationAcct->SaveAccount();
-                        
+
 						// Now we can set the response item as an acknowledgement instead of the default (rejection)
 						// otherwise, if we never entered this block, then it would still be set to rejection, and the
 						// new items would never have been added to the inbox/outboxes, and those files, along with
-						// the account file, would never have had their signatures released, or been re-signed or 
+						// the account file, would never have had their signatures released, or been re-signed or
 						// re-saved back to file.  The debit failed, so all of those other actions would fail also.
 						// BUT... if the message comes back with acknowledgement--then all of these actions must have
 						// happened, and here is the server's signature to prove it.
 						// Otherwise you get no items and no signature. Just a rejection item in the response transaction.
 						pResponseItem->SetStatus(OTItem::acknowledgement);
-						
+
                         bOutSuccess = true;  // The transfer was successful.
-                        
+
 						// Any inbox/nymbox/outbox ledger will only itself contain
 						// abbreviated versions of the receipts, including their hashes.
-						// 
+						//
 						// The rest is stored separately, in the box receipt, which is created
 						// whenever a receipt is added to a box, and deleted after a receipt
 						// is removed from a box.
@@ -4297,24 +4298,24 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 						delete pInboxTransaction; pInboxTransaction = NULL;
 						OTLog::vOutput(0, "%s: Unable to debit account %s in the amount of: %ld\n",
                                        __FUNCTION__, strAccountID.Get(), pItem->GetAmount());
-					}					
+					}
 				}
 			} // both boxes were successfully loaded or generated.
 		}
 //		OTString strTestInRefTo;
 //		pResponseItem->GetReferenceString(strTestInRefTo);
 //		OTLog::vError("DEBUG: Item in reference to: %s\n", strTestInRefTo.Get());
-		
+
 	} // if pItem = tranIn.GetItem(OTItem::transfer)
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -4328,19 +4329,19 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 /// OTItem::withdrawal		This is a digital cash withdrawal, in the form of untraceable, blinded
 ///							tokens. Funds are transferred to the bank, who blind-signs the tokens.
 ///
-void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount, 
+void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 								  OTTransaction & tranIn, OTTransaction & tranOut, bool & bOutSuccess)
 {
 	// The outgoing transaction is an "atWithdrawal", that is, "a reply to the withdrawal request"
 	tranOut.SetType(OTTransaction::atWithdrawal);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pItemCash		= NULL;
 	OTItem * pItemVoucher	= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
@@ -4350,17 +4351,17 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier	SERVER_ID(m_strServerID),		USER_ID(theNym), ACCOUNT_ID(theAccount),
 						SERVER_USER_ID(m_nymServer),	ASSET_TYPE_ID(theAccount.GetAssetTypeID());
-	
+
 	const OTString strUserID(USER_ID), strAccountID(ACCOUNT_ID), strAssetTypeID(ASSET_TYPE_ID);
 	// -----------------------------------------------------------------
 
-	// Here we find out if we're withdrawing cash, or a voucher 
+	// Here we find out if we're withdrawing cash, or a voucher
 	// (A voucher is a cashier's cheque aka banker's cheque).
 	//
 	OTItem::itemType theReplyItemType = OTItem::error_state;
 
 	pItemVoucher = tranIn.GetItem(OTItem::withdrawVoucher);
-	
+
 	if (NULL == pItemVoucher)
 	{
 		pItemCash = tranIn.GetItem(OTItem::withdrawal);
@@ -4376,13 +4377,13 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		theReplyItemType = OTItem::atWithdrawVoucher;
 	}
 	// -----------------------------------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------
 	if (NULL == pItem)
 	{
@@ -4426,26 +4427,26 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 	// ------------------------------------------------------------------------
 	else if (pItem->GetType() == OTItem::withdrawVoucher)
 	{
-		// The response item will contain a copy of the request item. So I save it into a string 
+		// The response item will contain a copy of the request item. So I save it into a string
 		// here so they can all grab a copy of it into their "in reference to" fields.
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-		
+
 		// Server response item being added to server response transaction (tranOut)
 		// (They're getting SOME sort of response item.)
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 //		OTAccount * pVoucherReserveAcct	= NULL;
 		_SharedPtr<OTAccount>	pVoucherReserveAcct; // contains the server's funds to back vouchers of a specific asset type.
 		// ----------------------------------------------------
-		OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
-		OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
-		
+		OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
+		OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
+
 		OTCleanup<OTLedger> theInboxAngel(pInbox);
 		OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 		// ----------------------------------------------------
@@ -4462,7 +4463,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		{
 			OTLog::Error("Error loading or verifying inbox.\n");
 		}
-		
+
 		else if (NULL == pOutbox) // || !pOutbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
 		{
 			OTLog::Error("Error loading or verifying outbox.\n");
@@ -4472,22 +4473,22 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		// one for each asset type. Since this is the normal way of doing business, GetVoucherAccount() will
 		// just create it if it doesn't already exist, and then return the pointer. Therefore, a failure here
 		// is a catastrophic failure!  Should never fail.
-        // 
+        //
 		else if ((pVoucherReserveAcct = GetVoucherAccount(ASSET_TYPE_ID)) && // If assignment results in good pointer...
 				 pVoucherReserveAcct->VerifyAccount(m_nymServer))			 // and if it points to an acct that verifies...
-		{					
+		{
 			OTString strVoucherRequest, strItemNote;
 			pItem->GetNote(strItemNote);
 			pItem->GetAttachment(strVoucherRequest);
-			
+
 			OTAccount    & theVoucherReserveAcct = (*pVoucherReserveAcct);
 			OTIdentifier   VOUCHER_ACCOUNT_ID(theVoucherReserveAcct);
-			
+
 			OTCheque	theVoucher       (SERVER_ID, ASSET_TYPE_ID),
                         theVoucherRequest(SERVER_ID, ASSET_TYPE_ID);
-			
+
 			bool bLoadContractFromString = theVoucherRequest.LoadContractFromString(strVoucherRequest);
-			
+
 			if (!bLoadContractFromString)
 			{
 				OTLog::vError("OTServer::%s: ERROR loading voucher request from string:\n%s\n",
@@ -4519,20 +4520,20 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 			else // successfully loaded the voucher request from the string...
 			{
 				pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-				// -------------------------------------------				
+				// -------------------------------------------
 				OTString strChequeMemo;
 				strChequeMemo.Format("%s%s", strItemNote.Get(), theVoucherRequest.GetMemo().Get());
-				
+
 				// 10 minutes ==    600 Seconds
 				// 1 hour	==     3600 Seconds
 				// 1 day	==    86400 Seconds
 				// 30 days	==  2592000 Seconds
 				// 3 months ==  7776000 Seconds
 				// 6 months == 15552000 Seconds
-				
+
 				const time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
 				const time_t	VALID_TO	= VALID_FROM + LENGTH_OF_SIX_MONTHS_IN_SECONDS;
-				
+
                 // UPDATE: We now use a transaction number owned by the remitter, instead of the transaction server.
                 //
 //				long lNewTransactionNumber = 0;
@@ -4550,7 +4551,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 															SERVER_USER_ID,			// User ID of the sender (in this case the server.)
 															strChequeMemo.Get(),	// Optional memo field. Includes item note and request memo.
 															theVoucherRequest.HasRecipient() ? (&RECIPIENT_ID) : NULL);
-				
+
 				// IF we successfully created the voucher, AND the voucher amount is greater than 0,
 				// AND debited the user's account,
 				// AND credited the server's voucher account,
@@ -4564,9 +4565,9 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 					if (false == pVoucherReserveAcct->Credit(theVoucherRequest.GetAmount()))
 					{
 						OTLog::Error("OTServer::NotarizeWithdrawal: Failed crediting voucher reserve account.\n");
-						
+
 						if (false == theAccount.Credit(theVoucherRequest.GetAmount()))
-							OTLog::Error("OTServer::NotarizeWithdrawal (voucher): Failed crediting user account.\n");                            
+							OTLog::Error("OTServer::NotarizeWithdrawal (voucher): Failed crediting user account.\n");
 					}
 					else
 					{
@@ -4579,16 +4580,16 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 
 						pResponseItem->SetAttachment(strVoucher);
 						pResponseItem->SetStatus(OTItem::acknowledgement);
-						
+
                         bOutSuccess = true;  // The withdrawal of a voucher was successful.
                         // --------------------------------------------------------------------------
 						// Release any signatures that were there before (They won't
 						// verify anymore anyway, since the content has changed.)
 						theAccount.	ReleaseSignatures();
-						theAccount.	SignContract(m_nymServer);	// Sign 
-						theAccount.	SaveContract();				// Save 
+						theAccount.	SignContract(m_nymServer);	// Sign
+						theAccount.	SaveContract();				// Save
 						theAccount.	SaveAccount();				// Save to file
-						
+
 						// We also need to save the Voucher cash reserve account.
 						// (Any issued voucher cheque is automatically backed by this reserve account.
 						// If a cheque is deposited, the funds come back out of this account. If the
@@ -4599,20 +4600,20 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 						pVoucherReserveAcct->SaveContract();
 						pVoucherReserveAcct->SaveAccount();
 					}
-				}	
+				}
 				//else{} // TODO log that there was a problem with the amount
-				
+
 			} // voucher request loaded successfully from string
 		} // GetVoucherAccount()
-		else 
+		else
 		{
 			OTLog::vError("GetVoucherAccount() failed in NotarizeWithdrawal. Asset Type:\n%s\n",
 						  strAssetTypeID.Get());
-		}		
+		}
 	}
 
 	// --------------------------------------------------------------------------------------
-	
+
 	// WITHDRAW DIGITAL CASH (BLINDED TOKENS)
 	//
 	// For now, there should only be one of these withdrawal items inside the transaction.
@@ -4620,7 +4621,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 	//
 	else if (pItem->GetType() == OTItem::withdrawal)
 	{
-		// The response item will contain a copy of the request item. So I save it into a string 
+		// The response item will contain a copy of the request item. So I save it into a string
 		// here so they can all grab a copy of it into their "in reference to" fields.
         //
 		pItem->SaveContractRaw(strInReferenceTo);
@@ -4631,19 +4632,19 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		//
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
 		// --------------------------------------------------------------------
-		OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
-		OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
-		
+		OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
+		OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
+
 		OTCleanup<OTLedger> theInboxAngel(pInbox);
 		OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 		// --------------------------------------------------------------------
 		OTMint		* pMint = NULL;
 		OTAccount	* pMintCashReserveAcct = NULL;
-	
+
 		if (0 > pItem->GetAmount())
 		{
 			OTLog::Output(0, "Attempt to withdraw a negative amount.\n");
@@ -4654,7 +4655,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		else if (ACCOUNT_ID != pItem->GetPurportedAccountID())
 		{
 			OTLog::Output(0, "Error: 'From' account ID on the transaction does not match 'from' account ID on the withdrawal item.\n");
-		} 
+		}
 		else if (NULL == pInbox) // || !pInbox->VerifyAccount(m_nymServer)) Already verified in OTAccount::LoadInbox()
 		{
 			OTLog::Error("Error loading or verifying inbox.\n");
@@ -4664,7 +4665,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 			OTLog::Error("Error loading or verifying outbox.\n");
 		}
 		else
-		{						
+		{
 			// --------------------------------------------------------------------
 			// The COIN REQUEST (including the prototokens) comes from the client side.
 			// so we assume the OTToken is in the payload. Now we need to randomly choose one for
@@ -4672,7 +4673,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 			// to us with the unblinding factors for all the other prototokens (but that one.)
 			//
 			// In the meantime, I have to store this request somewhere -- presumably in the outbox or purse.
-			// 
+			//
 			// UPDATE!!! Looks like Lucre protocol is simpler than that. The request only needs to contain a
 			// single blinded token, which the server signs and sends back. Done.
 			//
@@ -4684,28 +4685,28 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 			// is only there to help the bank to look up the right key, without which the token will DEFINITELY
 			// NOT verify. So it is in the user's interest to supply the correct amount, because otherwise he'll
 			// just get the wrong key and then get rejected by the bank.
-			
+
 			OTString strPurse;
 			pItem->GetAttachment(strPurse);
-			
+
 			// Todo do more security checking in here, like making sure the withdrawal amount matches the
 			// total of the proto-tokens. Update: I think this is done, since the Debits are done one-at-a-time
 			// for each token and it's amount/denomination
-			
+
 			OTPurse thePurse(SERVER_ID, ASSET_TYPE_ID);
-			OTPurse theOutputPurse(SERVER_ID, ASSET_TYPE_ID); 
+			OTPurse theOutputPurse(SERVER_ID, ASSET_TYPE_ID);
 			OTToken * pToken = NULL;
 			dequeOfTokenPtrs theDeque;
-			
+
 			bool bSuccess = false;
 			bool bLoadContractFromString = thePurse.LoadContractFromString(strPurse);
-			
+
 			if (!bLoadContractFromString)
 			{
 				OTLog::vError("ERROR loading purse from string in OTServer::NotarizeWithdrawal:\n%s\n",
 						strPurse.Get());
 			}
-			else if (!(pBalanceItem->VerifyBalanceStatement(thePurse.GetTotalValue() * (-1), // This amount will be subtracted from my acct. 
+			else if (!(pBalanceItem->VerifyBalanceStatement(thePurse.GetTotalValue() * (-1), // This amount will be subtracted from my acct.
 															theNym,
 															*pInbox,
 															*pOutbox,
@@ -4718,29 +4719,29 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 			else // successfully loaded the purse from the string...
 			{
 				pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-				
+
 				// Pull the token(s) out of the purse that was received from the client.
 				while ((pToken = thePurse.Pop(m_nymServer)) != NULL)
 				{
 					// We are responsible to cleanup pToken
 					// So I grab a copy here for later...
 					theDeque.push_front(pToken);
-					
+
                     pMint = GetMint(ASSET_TYPE_ID, pToken->GetSeries());
-                    
+
                     if (NULL == pMint)
                     {
-						OTLog::vError("OTServer::NotarizeWithdrawal: Unable to find Mint (series %d): %s\n", 
+						OTLog::vError("OTServer::NotarizeWithdrawal: Unable to find Mint (series %d): %s\n",
                                       pToken->GetSeries(), strAssetTypeID.Get());
                         bSuccess = false;
                         break; // Once there's a failure, we ditch the loop.
                     }
                     else if (NULL == (pMintCashReserveAcct = pMint->GetCashReserveAccount()))
                     {
-						OTLog::vError("OTServer::NotarizeWithdrawal: Unable to find cash reserve account for Mint (series %d): %s\n", 
+						OTLog::vError("OTServer::NotarizeWithdrawal: Unable to find cash reserve account for Mint (series %d): %s\n",
                                       pToken->GetSeries(), strAssetTypeID.Get());
                         bSuccess = false;
-                        break; // Once there's a failure, we ditch the loop.  
+                        break; // Once there's a failure, we ditch the loop.
                     }
                     // Mints expire halfway into their token expiration period. So if a mint creates
                     // tokens valid from Jan 1 through Jun 1, then the Mint itself expires Mar 1.
@@ -4749,15 +4750,15 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
                     //
                     else if (pMint->Expired())
                     {
-						OTLog::vError("OTServer::NotarizeWithdrawal: User attempting withdrawal with an expired mint (series %d): %s\n", 
+						OTLog::vError("OTServer::NotarizeWithdrawal: User attempting withdrawal with an expired mint (series %d): %s\n",
                                       pToken->GetSeries(), strAssetTypeID.Get());
                         bSuccess = false;
-                        break; // Once there's a failure, we ditch the loop.  
+                        break; // Once there's a failure, we ditch the loop.
                     }
                     else
 					{
 						OTString  theStringReturnVal;
-						
+
 						if (pToken->GetAssetID() != ASSET_TYPE_ID)
 						{
                             const OTString str1(pToken->GetAssetID()), str2(ASSET_TYPE_ID);
@@ -4780,26 +4781,26 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 						else
 						{
 							OTASCIIArmor  theArmorReturnVal(theStringReturnVal);
-							
+
 							pToken->ReleaseSignatures(); // this releases the normal signatures, not the Lucre signed token from the Mint, above.
 
 							pToken->SetSignature(theArmorReturnVal, 0); // nTokenIndex = 0
-							
+
 							// Sign and Save the token
 							pToken->SignContract(m_nymServer);
 							pToken->SaveContract();
-							
+
 							// Now the token is in signedToken mode, and the other prototokens have been released.
-							
+
 							// Deduct the amount from the account...
 							if (theAccount.Debit(pToken->GetDenomination()))
 							{//todo need to be able to "roll back" if anything inside this block fails.
 								bSuccess = true;
-								
+
 								// Credit the server's cash account for this asset type in the same
 								// amount that was debited. When the token is deposited again, Debit that same
 								// server cash account and deposit in the depositor's acct.
-								// Why, you might ask? Because if the token expires, the money will stay in 
+								// Why, you might ask? Because if the token expires, the money will stay in
 								// the bank's cash account instead of being lost (and screwing up the overall
 								// issuer balance, with the issued money disappearing forever.) The bank knows
 								// that once the series expires, whatever funds are left in that cash account are
@@ -4808,11 +4809,11 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 								if (!pMintCashReserveAcct->Credit(pToken->GetDenomination()))
 								{
 									OTLog::Error("Error crediting mint cash reserve account...\n");
-									
+
 									// Reverse the account debit (even though we're not going to save it anyway.)
 									if (false == theAccount.Credit(pToken->GetDenomination()))
                                         OTLog::vError("%s: Failed crediting user account back.\n", __FUNCTION__);
-                                    
+
 									bSuccess = false;
 									break;
 								}
@@ -4823,49 +4824,49 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
                                                __FUNCTION__, strAccountID.Get(), pToken->GetDenomination());
 								break; // Once there's a failure, we ditch the loop.
 							}
-						}					
+						}
 					}
 				} // While success popping token out of the purse...
-				
+
 				if (bSuccess)
 				{
-					while (!theDeque.empty()) 
+					while (!theDeque.empty())
 					{
 						pToken = theDeque.front();
 						theDeque.pop_front();
-						
+
 						theOutputPurse.Push(theNym, *pToken); // these were in reverse order. Fixing with theDeque.
-						
+
 						delete pToken;
 						pToken = NULL;
-					} 
-					
+					}
+
 					strPurse.Release(); // just in case it only concatenates.
-					
+
 					theOutputPurse.SignContract(m_nymServer);
 					theOutputPurse.SaveContract(); // todo this is probably unnecessary
-					theOutputPurse.SaveContractRaw(strPurse);				
-					
-					
+					theOutputPurse.SaveContractRaw(strPurse);
+
+
 					// Add the digital cash token to the response message
 					pResponseItem->SetAttachment(strPurse);
 					pResponseItem->SetStatus(OTItem::acknowledgement);
-					
+
                     bOutSuccess = true;  // The cash withdrawal was successful.
 
 					// Release any signatures that were there before (They won't
 					// verify anymore anyway, since the content has changed.)
 					theAccount.	ReleaseSignatures();
-					
-					// Sign 
+
+					// Sign
 					theAccount.	SignContract(m_nymServer);
-					
-					// Save 
+
+					// Save
 					theAccount.	SaveContract();
-					
+
 					// Save to file
 					theAccount.	SaveAccount();
-					
+
 					// We also need to save the Mint's cash reserve.
 					// (Any cash issued by the Mint is automatically backed by this reserve
 					// account. If cash is deposited, it comes back out of this account. If the
@@ -4875,7 +4876,7 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 					pMintCashReserveAcct->SignContract(m_nymServer);
 					pMintCashReserveAcct->SaveContract();
 					pMintCashReserveAcct->SaveAccount();
-					
+
 					// Notice if there is any failure in the above loop, then we will never enter this block.
 					// Therefore the account will never be saved with the new debited balance, and the output
 					// purse will never be added to the response item.  No tokens will be returned to the user
@@ -4885,20 +4886,20 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 					// response, and save the newly-debitted account back to disk.
 				}
 				// Still need to clean up theDeque
-				else 
+				else
 				{
-					while (!theDeque.empty()) 
+					while (!theDeque.empty())
 					{
 						pToken = theDeque.front();
 						theDeque.pop_front();
-						
+
 						delete pToken;
 						pToken = NULL;
-					} 				
+					}
 				}
-				
+
 			} // purse loaded successfully from string
-			
+
 		} // the Account ID on the item matched properly
         // ---------------------------------------------------
 		// sign the response item before sending it back (it's already been added to the transaction above)
@@ -4906,29 +4907,29 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 		// is owned by the transaction, who will take it from here.
 		pResponseItem->SignContract(m_nymServer);
 		pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-		
+
 		pResponseBalanceItem->SignContract(m_nymServer);
 		pResponseBalanceItem->SaveContract();
 	} // if pItem = tranIn.GetItem(OTItem::withdrawal)
-	else 
+	else
 	{
         OTString strTemp(tranIn);
 		OTLog::vOutput(0, "OTServer::NotarizeWithdrawal: Expected OTItem::withdrawal or OTItem::withdrawVoucher in trans# %ld: \n\n%s\n\n",
                        tranIn.GetTransactionNum(), strTemp.Exists() ? strTemp.Get() : " (ERROR LOADING TRANSACTION INTO STRING) ");
 	}
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 // -------------------------------------------------------------------------------------
 
-												  
+
 
 
 
@@ -4940,30 +4941,30 @@ class OTAcctFunctor_PayDividend
 public:
     OTAcctFunctor_PayDividend(const OTIdentifier & theServerID);
     virtual ~OTAcctFunctor_PayDividend();
-    
+
     virtual bool Trigger(OTAccount & theAccount);
 };
 */
 
-OTAcctFunctor_PayDividend::OTAcctFunctor_PayDividend(const OTIdentifier  & theServerID, 
-                                                     const OTIdentifier  & theUserID, 
-                                                     const OTIdentifier  & thePayoutAssetID, 
+OTAcctFunctor_PayDividend::OTAcctFunctor_PayDividend(const OTIdentifier  & theServerID,
+                                                     const OTIdentifier  & theUserID,
+                                                     const OTIdentifier  & thePayoutAssetID,
                                                      const OTIdentifier  & theVoucherAcctID,
                                                      const OTString      & strMemo,
-                                                           OTServer      & theServer, 
+                                                           OTServer      & theServer,
                                                            long            lPayoutPerShare,
                                                            mapOfAccounts * pLoadedAccounts/*=NULL*/)
-: OTAcctFunctor(theServerID, pLoadedAccounts), 
-  m_pUserID       (new OTIdentifier(theUserID)), 
+: OTAcctFunctor(theServerID, pLoadedAccounts),
+  m_pUserID       (new OTIdentifier(theUserID)),
   m_pPayoutAssetID(new OTIdentifier(thePayoutAssetID)),
   m_pVoucherAcctID(new OTIdentifier(theVoucherAcctID)),
   m_pstrMemo      (new OTString    (strMemo)),
-  m_pServer(&theServer), 
+  m_pServer(&theServer),
   m_lPayoutPerShare(lPayoutPerShare),
   m_lAmountPaidOut (0),
   m_lAmountReturned(0)
 {
-    
+
 }
 
 OTAcctFunctor_PayDividend::~OTAcctFunctor_PayDividend()
@@ -4983,7 +4984,7 @@ OTAcctFunctor_PayDividend::~OTAcctFunctor_PayDividend()
     m_pServer         = NULL; // don't delete this one (I don't own it.)
     m_lPayoutPerShare = 0;
     m_lAmountPaidOut  = 0;
-    m_lAmountReturned = 0;    
+    m_lAmountReturned = 0;
 }
 
 
@@ -4993,7 +4994,7 @@ OTAcctFunctor_PayDividend::~OTAcctFunctor_PayDividend()
 bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theSharesAccount is, say, a Pepsi shares account.  Here, we'll send a dollars voucher to its owner.
 {
     const long lPayoutAmount = (theSharesAccount.GetBalance() * this->GetPayoutPerShare());
-    
+
     if (lPayoutAmount <= 0)
     {
         OTLog::Output(0, "OTAcctFunctor_PayDividend::Trigger: nothing to pay, since this account owns no shares. (Returning true.)");
@@ -5026,27 +5027,27 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
     // Note: theSenderUserID is the originator of the Dividend Payout.
     // However, all the actual vouchers will be from "the server Nym" and
     // not from theSenderUserID. So then why is it even here? Because anytime
-    // there's an error, the server will send to theSenderUserID instead of 
+    // there's an error, the server will send to theSenderUserID instead of
     // RECIPIENT_ID (so the original sender can have his money back, instead of
     // just having it get lost in the ether.)
     // -----------------------------------------
     bool bReturnValue = false;
-    
+
     OTCheque  theVoucher(theServerID, thePayoutAssetID);
-    
+
     // 10 minutes ==    600 Seconds
     // 1 hour	==     3600 Seconds
     // 1 day	==    86400 Seconds
     // 30 days	==  2592000 Seconds
     // 3 months ==  7776000 Seconds
     // 6 months == 15552000 Seconds
-    
+
     const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
     const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
-    
+
     long        lNewTransactionNumber = 0;
-    
-    const bool  bGotNextTransNum = 
+
+    const bool  bGotNextTransNum =
     theServer.IssueNextTransactionNumber(theServerNym, lNewTransactionNumber);    // bStoreTheNumber defaults to true. We save the transaction
                                                                                   // number on the server Nym (normally we'd discard it) because
                                                                                   // when the cheque is deposited, the server nym, as the owner of
@@ -5063,7 +5064,7 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
                                                           theServerNymID,			// User ID of the sender (in this case the server nym.)
                                                           strMemo,                  // Optional memo field. Includes item note and request memo.
                                                           &RECIPIENT_ID);
-        
+
         // All account crediting / debiting happens in the caller, in OTServer.
         //    (AND it happens only ONCE, to cover ALL vouchers.)
         // Then in here, the voucher either gets send to the recipient, or if error, sent back home to
@@ -5083,22 +5084,22 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
             // ----------------------------------------------------
             theVoucher.SignContract(theServerNym);
             theVoucher.SaveContract();
-            
+
             // Send the voucher to the payments inbox of the recipient.
             //
-            const 
+            const
             OTString  strVoucher(theVoucher);
             OTPayment thePayment(strVoucher);
-            
+
             // calls DropMessageToNymbox
-            bSent = theServer.SendInstrumentToNym(theServerID, 
+            bSent = theServer.SendInstrumentToNym(theServerID,
                                                   theServerNymID,  // sender nym
                                                   RECIPIENT_ID,    // recipient nym
                                                   NULL, &thePayment, "payDividend"); // todo: hardcoding.
             bReturnValue = bSent; // <======= RETURN VALUE.
             if (bSent)
                 m_lAmountPaidOut += lPayoutAmount; // At the end of iterating all accounts, if m_lAmountPaidOut is less than lTotalPayoutAmount, then we return to rest to the sender.
-        }	
+        }
         else
         {
             const OTString strPayoutAssetID(thePayoutAssetID), strRecipientUserID(RECIPIENT_ID);
@@ -5129,21 +5130,21 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
                 theReturnVoucher.SetAsVoucher(theServerNymID, theVoucherAcctID);
                 theReturnVoucher.SignContract(theServerNym);
                 theReturnVoucher.SaveContract();
-                
+
                 // Return the voucher back to the payments inbox of the original sender.
                 //
-                const 
+                const
                 OTString  strReturnVoucher(theReturnVoucher);
                 OTPayment theReturnPayment(strReturnVoucher);
-                
+
                 // calls DropMessageToNymbox
-                bSent = theServer.SendInstrumentToNym(theServerID, 
+                bSent = theServer.SendInstrumentToNym(theServerID,
                                                       theServerNymID,  // sender nym
                                                       theSenderUserID, // recipient nym (original sender.)
                                                       NULL, &theReturnPayment, "payDividend"); // todo: hardcoding.
                 if (bSent)
                     m_lAmountReturned += lPayoutAmount; // At the end of iterating all accounts, if m_lAmountPaidOut+m_lAmountReturned is less than lTotalPayoutAmount, then we return the rest to the sender.
-            }	
+            }
             else
             {
                 const OTString strPayoutAssetID(thePayoutAssetID), strSenderUserID(theSenderUserID);
@@ -5184,20 +5185,20 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
 ///
 /// Phase 2: voting groups, hierarchical entities with agents, oversight, corporate asset accounts, etc.
 ///
-void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSourceAccount, 
+void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSourceAccount,
 								   OTTransaction & tranIn, OTTransaction & tranOut,    bool & bOutSuccess)
 {
     const char * szFunc = "OTServer::NotarizePayDividend";
-    
+
 	// The outgoing transaction is an "atPayDividend", that is, "a reply to the 'pay dividend' request"
 	tranOut.SetType(OTTransaction::atPayDividend);
-	
+
 	OTItem * pItem                  = NULL;  // This pointer and the following one, are 2 pointers, as a vestige
 	OTItem * pItemPayDividend       = NULL;  // from the withdrawal code, which has two forms: voucher and cash.
 	OTItem * pBalanceItem           = NULL;  // The balance agreement item, which must be on any transaction.
 	OTItem * pResponseItem          = NULL;  // Server's response to pItem.
 	OTItem * pResponseBalanceItem	= NULL;  // Server's response to pBalanceItem.
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
@@ -5207,14 +5208,14 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
 
 	// Grab the actual server ID from this object, and use it as the server ID here.
     //
-	const OTIdentifier	SERVER_ID       (m_strServerID),		
-                        USER_ID         (theNym), 
+	const OTIdentifier	SERVER_ID       (m_strServerID),
+                        USER_ID         (theNym),
                         SOURCE_ACCT_ID  (theSourceAccount),
-						SERVER_USER_ID  (m_nymServer),	
+						SERVER_USER_ID  (m_nymServer),
                         PAYOUT_ASSET_ID (theSourceAccount.GetAssetTypeID()); // Ex: Pepsi shares, Dollar dividend. (PAYOUT_ASSET_ID is Dollars.)
-	
-	const OTString  strUserID      (USER_ID), 
-                    strAccountID   (SOURCE_ACCT_ID), 
+
+	const OTString  strUserID      (USER_ID),
+                    strAccountID   (SOURCE_ACCT_ID),
                     strAssetTypeID (PAYOUT_ASSET_ID);
 	// -----------------------------------------------------------------
 	// Make sure the appropriate item is attached.
@@ -5222,7 +5223,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
 	OTItem::itemType theReplyItemType = OTItem::error_state;
 
 	pItemPayDividend = tranIn.GetItem(OTItem::payDividend);
-	
+
 	if (NULL != pItemPayDividend) // found it.
     {
 		pItem = pItemPayDividend;
@@ -5233,29 +5234,29 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
     // Server response item being added to server response transaction (tranOut)
     // (They're getting SOME sort of response item.)
     //
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------
 	if (NULL == pItem)
 	{
 		OTString strTemp(tranIn);
-		OTLog::vOutput(0, "%s: Expected OTItem::payDividend in trans# %ld: \n\n%s\n\n", 
+		OTLog::vOutput(0, "%s: Expected OTItem::payDividend in trans# %ld: \n\n%s\n\n",
                        szFunc,
-					   tranIn.GetTransactionNum(), 
+					   tranIn.GetTransactionNum(),
                        strTemp.Exists() ? strTemp.Get() : " (ERROR SERIALIZING TRANSACTION INTO A STRING) ");
 	}
 	// Below this point, we know that pItem is good, and that pItemPayDividend is good,
 	// and that pItem points to it. Therefore next, let's verify permissions:
 	// ---------------------------------------------------------------------
 	//
-	// This permission has to do with ALL withdrawals from an account 
+	// This permission has to do with ALL withdrawals from an account
     // (cash / voucher / dividends)
-    
+
 	else if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_withdrawal))
 	{
 		OTLog::vOutput(0, "%s: User %s cannot do this transaction (All withdrawals are "
@@ -5281,71 +5282,71 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
         OTString strTemp(tranIn);
         OTLog::vOutput(0, "%s: Expected OTItem::balanceStatement, but not found in trans # %ld: \n\n%s\n\n", szFunc,
                        tranIn.GetTransactionNum(), strTemp.Exists() ? strTemp.Get() : " (ERROR SERIALIZING TRANSACTION INTO A STRING) ");
-    }	
+    }
 	// ------------------------------------------------------------------------
 	else if (pItem->GetType() == OTItem::payDividend) // Superfluous by this point. Artifact of withdrawal code.
 	{
-		// The response item will contain a copy of the request item. So I save it into a string 
+		// The response item will contain a copy of the request item. So I save it into a string
 		// here so they can all grab a copy of it into their "in reference to" fields.
         //
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-		
+
         // Make sure the response items know which transaction # they're in response to,
         // and have a copy of the original request-transaction.
         //
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		// ----------------------------------------------------		
+		// ----------------------------------------------------
         const long lTotalCostOfDividend = pItem->GetAmount();
-		// ----------------------------------------------------		
+		// ----------------------------------------------------
         OTCheque	theVoucherRequest;
         OTString    strVoucherRequest, strItemNote; // When paying a dividend, you create a voucher request (the same as in withdrawVoucher). It's just for information
         pItem->GetAttachment(strVoucherRequest);    // passing, since payDividend needs a few bits of info, and this is a convenient way of passing it.
         pItem->GetNote      (strItemNote);
         const bool  bLoadContractFromString = theVoucherRequest.LoadContractFromString(strVoucherRequest);
-        
+
         if (!bLoadContractFromString)
         {
-            OTLog::vError("%s: ERROR loading dividend payout's voucher request from string:\n%s\n", 
+            OTLog::vError("%s: ERROR loading dividend payout's voucher request from string:\n%s\n",
                           szFunc, strVoucherRequest.Get());
         }
-        // ----------------------------------------------------		
+        // ----------------------------------------------------
         else if (theVoucherRequest.GetAmount() <= 0)
         {
-            OTLog::vError("%s: ERROR expected >0 'payout per share' as 'amount' on request voucher:\n%s\n", 
+            OTLog::vError("%s: ERROR expected >0 'payout per share' as 'amount' on request voucher:\n%s\n",
                           szFunc, strVoucherRequest.Get());
         }
-        // ----------------------------------------------------		
+        // ----------------------------------------------------
         else
         {
             // the request voucher (sent from client) contains the payout amount per share.
-            // Whereas pItem contains lTotalCostOfDividend, which is the total cost (the 
+            // Whereas pItem contains lTotalCostOfDividend, which is the total cost (the
             // payout multiplied by number of shares.)
             //
             const long lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
             // ----------------------------------------------------
             const OTIdentifier SHARES_ISSUER_ACCT_ID = theVoucherRequest.GetSenderAcctID();
-            
+
             const OTString strSharesIssuerAcct(SHARES_ISSUER_ACCT_ID);
             // ----------------------------------------------------
-            // Get the asset contract for the shares type, stored in the voucher request, inside pItem. 
+            // Get the asset contract for the shares type, stored in the voucher request, inside pItem.
             //       (Make sure it's NOT the same asset type as theSourceAccount.)
             //
             const OTIdentifier    SHARES_ASSET_ID      = theVoucherRequest.GetAssetID();
             OTAssetContract    *  pSharesContract      = GetAssetContract(SHARES_ASSET_ID);
             OTAccount          *  pSharesIssuerAccount = NULL;
             OTCleanup<OTAccount>  theAcctAngel;
-            
+
             if (NULL != pSharesContract)
             {
                 pSharesIssuerAccount = OTAccount::LoadExistingAccount(SHARES_ISSUER_ACCT_ID, SERVER_ID);
                 theAcctAngel.SetCleanupTargetPointer(pSharesIssuerAccount);
             }
-            
+
             // ----------------------------------------------------
             if (NULL == pSharesContract)
             {
@@ -5353,42 +5354,42 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                 OTLog::vError("%s: ERROR unable to find shares contract based on asset type ID: %s\n", szFunc,
                               strSharesType.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (!pSharesContract->IsShares())
             {
                 const OTString strSharesType(SHARES_ASSET_ID);
-                OTLog::vError("%s: FAILURE: Asset contract is not shares-based. Asset type ID: %s\n", 
+                OTLog::vError("%s: FAILURE: Asset contract is not shares-based. Asset type ID: %s\n",
                               szFunc, strSharesType.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (false == pSharesContract->VerifySignature(theNym))
             {
                 const OTString strSharesType(SHARES_ASSET_ID);
                 OTLog::vError("%s: ERROR unable to verify signature for Nym (%s) on shares contract "
                               "with asset ID: %s\n", szFunc, strUserID.Get(), strSharesType.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (NULL == pSharesIssuerAccount)
             {
                 OTLog::vError("%s: ERROR unable to find issuer account for shares: %s\n", szFunc,
                               strSharesIssuerAcct.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (PAYOUT_ASSET_ID == SHARES_ASSET_ID) // these can't be the same
             {
                 const OTString strSharesType(PAYOUT_ASSET_ID);
                 OTLog::vError("%s: ERROR dividend payout attempted, using shares asset type as payout type also. "
                               "(It's logically impossible for it to payout to itself, using "
-                              "ITSELF as the asset type for the payout): %s\n", szFunc, strSharesType.Get());                
+                              "ITSELF as the asset type for the payout): %s\n", szFunc, strSharesType.Get());
             }
-            // ----------------------------------------------------		
-            else if (false == pSharesIssuerAccount->VerifyAccount(m_nymServer)) 
+            // ----------------------------------------------------
+            else if (false == pSharesIssuerAccount->VerifyAccount(m_nymServer))
             {
                 const OTString strIssuerAcctID(SHARES_ISSUER_ACCT_ID);
-                OTLog::vError("%s: ERROR failed trying to verify issuer account: %s\n", 
-                              szFunc, strIssuerAcctID.Get());                
+                OTLog::vError("%s: ERROR failed trying to verify issuer account: %s\n",
+                              szFunc, strIssuerAcctID.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (false == pSharesIssuerAccount->VerifyOwner(theNym))
             {
                 const OTString strIssuerAcctID(SHARES_ISSUER_ACCT_ID);
@@ -5396,14 +5397,14 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                "while trying to pay dividend from source account: %s\n",
                                szFunc, strIssuerAcctID.Get(), strAccountID.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
 //          const long lTotalCostOfDividend = pItem->GetAmount();
 //          const long lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
             //
-            // Make sure the share issuer's account balance (number of shares issued * (-1)), 
+            // Make sure the share issuer's account balance (number of shares issued * (-1)),
             // when multiplied by the dividend "amount payout per share", equals the "total cost of dividend"
             // as expected based on the value from pItem->GetAmount.
-            // 
+            //
             //
             else if ((pSharesIssuerAccount->GetBalance() * (-1) * lAmountPerShare) != lTotalCostOfDividend)
             {
@@ -5411,28 +5412,28 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                 OTLog::vOutput(0, "%s: ERROR: total payout of dividend as calculated (%ld) doesn't match client's request (%ld) for source acct: %s\n",
                                szFunc, (pSharesIssuerAccount->GetBalance() * (-1) * lAmountPerShare), lTotalCostOfDividend, strAccountID.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else if (theSourceAccount.GetBalance() < lTotalCostOfDividend)
             {
                 const OTString strIssuerAcctID(SHARES_ISSUER_ACCT_ID);
                 OTLog::vOutput(0, "%s: FAILURE: not enough funds (%ld) to cover total dividend payout (%ld) for source acct: %s\n",
                                szFunc, theSourceAccount.GetBalance(), lTotalCostOfDividend, strAccountID.Get());
             }
-            // ----------------------------------------------------		
+            // ----------------------------------------------------
             else
             {
                 // Remove all the funds at once (so the balance agreement matches up.)
-                // Then, iterate through the asset accounts and use a functor to send a voucher to each one. 
+                // Then, iterate through the asset accounts and use a functor to send a voucher to each one.
                 // (Or back to the issuer, for any that fail.)
 
-                // UPDATE: unfortunately the balance agreement will be a lie unless the complete amount is removed. 
-                // Therefore, failures must be sent back to the issuer as individual receipts, containing the vouchers 
+                // UPDATE: unfortunately the balance agreement will be a lie unless the complete amount is removed.
+                // Therefore, failures must be sent back to the issuer as individual receipts, containing the vouchers
                 // for any failures, so he can have a record of them, and so he can recover the funds.
-                // ----------------------------------------------------		
-                OTLedger * pInbox	= theSourceAccount.LoadInbox (m_nymServer); 
-                OTLedger * pOutbox	= theSourceAccount.LoadOutbox(m_nymServer); 
+                // ----------------------------------------------------
+                OTLedger * pInbox	= theSourceAccount.LoadInbox (m_nymServer);
+                OTLedger * pOutbox	= theSourceAccount.LoadOutbox(m_nymServer);
                 OTCleanup<OTLedger>   theInboxAngel (pInbox);
-                OTCleanup<OTLedger>   theOutboxAngel(pOutbox);		
+                OTCleanup<OTLedger>   theOutboxAngel(pOutbox);
                 // ----------------------------------------------------
                 _SharedPtr<OTAccount>	pVoucherReserveAcct;        // contains the server's funds to back vouchers of a specific asset type.
 //              OTAccount	*       pVoucherReserveAcct	= NULL;
@@ -5462,14 +5463,14 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                 // one for each asset type. Since this is the normal way of doing business, GetVoucherAccount() will
                 // just create it if it doesn't already exist, and then return the pointer. Therefore, a failure here
                 // is a catastrophic failure!  Should never fail.
-                // 
+                //
                 else if ((pVoucherReserveAcct = GetVoucherAccount(PAYOUT_ASSET_ID)) && // If GetVoucherAccount returns a good pointer...
                           pVoucherReserveAcct->VerifyAccount(m_nymServer))			   // ...and if it points to an acct that verifies with the server's nym...
                 {
                     OTAccount    & theVoucherReserveAcct = (*pVoucherReserveAcct);
-                    const 
+                    const
                     OTIdentifier   VOUCHER_ACCOUNT_ID(theVoucherReserveAcct);
-                    
+
                     // *********************************************************************************
                     // This amount must be the total amount based on the amount issued.
                     // For example if 1000 shares of Pepsi were issued, and the dividend is $2 per share,
@@ -5477,11 +5478,11 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                     // $2000 in my source account if I am going to pay this dividend.
                     //
                     // This $2000 is entirely removed from my account at once, and the below balance agreement
-                    // must be for $2000. The vouchers are sent to the owners of each account, in amounts 
+                    // must be for $2000. The vouchers are sent to the owners of each account, in amounts
                     // proportionate to the number of shares in the account. For any voucher that fails to be
                     // sent (for whatever reason) it is sent back to theNym instead.
                     //
-                    if (!(pBalanceItem->VerifyBalanceStatement(lTotalCostOfDividend * (-1), // My account's balance will go down by this much. 
+                    if (!(pBalanceItem->VerifyBalanceStatement(lTotalCostOfDividend * (-1), // My account's balance will go down by this much.
                                                                theNym,
                                                                *pInbox,
                                                                *pOutbox,
@@ -5511,28 +5512,28 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                             const OTString strVoucherAcctID(VOUCHER_ACCOUNT_ID);
 
                             if (false == pVoucherReserveAcct->Credit(lTotalCostOfDividend)) //theVoucherRequest.GetAmount()))
-                            {                                
-                                OTLog::vError("%s: Failed crediting %ld units to voucher reserve account: %s\n", 
+                            {
+                                OTLog::vError("%s: Failed crediting %ld units to voucher reserve account: %s\n",
                                               szFunc, lTotalCostOfDividend, strVoucherAcctID.Get());
-                                
+
                                 // Since pVoucherReserveAcct->Credit failed, we have to return
                                 // the funds from theSourceAccount.Debit (Credit them back.)
-                                // 
+                                //
                                 if (false == theSourceAccount.Credit(lTotalCostOfDividend))
                                     OTLog::vError("%s: Failed crediting back the user account, after taking his funds "
-                                                  "and failing to credit them to the voucher reserve account.\n", szFunc);                            
+                                                  "and failing to credit them to the voucher reserve account.\n", szFunc);
                             }
                             // --------------------------------------------------------------------------
                             else    // By this point, we have taken the full funds and moved them to the voucher
                             {       // reserve account. So now, let's iterate all the accounts for that share type,
                                     // and send a voucher to the owner of each one, to payout his dividend.
-                                    
-  
+
+
                                 // todo: determine whether I need to attach anything here at all...
                                 //
 //                              pResponseItem->SetAttachment(strVoucher);
                                 pResponseItem->SetStatus(OTItem::acknowledgement);
-                                
+
                                 bOutSuccess = true;  // The paying of the dividends was successful.
                                 //
                                 // --------------------------------------------------------------------------
@@ -5541,14 +5542,14 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 //
                                 // At this point, we save the accounts, so that the funds transfer is solid before
                                 // we start mailing vouchers out to people.
-                                
+
                                 // Release any signatures that were there before (They won't
                                 // verify anymore anyway, since the content has changed.)
                                 theSourceAccount.	ReleaseSignatures();
-                                theSourceAccount.	SignContract(m_nymServer);	// Sign 
-                                theSourceAccount.	SaveContract();				// Save 
+                                theSourceAccount.	SignContract(m_nymServer);	// Sign
+                                theSourceAccount.	SaveContract();				// Save
                                 theSourceAccount.	SaveAccount();				// Save to file
-                                
+
                                 // We also need to save the Voucher cash reserve account.
                                 // (Any issued voucher cheque is automatically backed by this reserve account.
                                 // If a cheque is deposited, the funds come back out of this account. If the
@@ -5573,13 +5574,13 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 theAccounts.insert( std::pair<std::string, OTAccount *>(strAccountID.Get(),        &theSourceAccount));
                                 theAccounts.insert( std::pair<std::string, OTAccount *>(strSharesIssuerAcct.Get(), pSharesIssuerAccount));
                                 theAccounts.insert( std::pair<std::string, OTAccount *>(strVoucherAcctID.Get(),    &theVoucherReserveAcct));
-                                
-                                OTAcctFunctor_PayDividend  actionPayDividend(SERVER_ID, 
+
+                                OTAcctFunctor_PayDividend  actionPayDividend(SERVER_ID,
                                                                              USER_ID,
-                                                                             PAYOUT_ASSET_ID, 
+                                                                             PAYOUT_ASSET_ID,
                                                                              VOUCHER_ACCOUNT_ID,
                                                                              strInReferenceTo, // Memo for each voucher (containing original payout request pItem)
-                                                                             *this, 
+                                                                             *this,
                                                                              lAmountPerShare,
                                                                              &theAccounts);
 
@@ -5589,7 +5590,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 //
                                 const bool bForEachAcct = pSharesContract->ForEachAccountRecord(actionPayDividend);   // <================== pay all the dividends here.
                                 // ----------------------------------------------------------------------------
-                                
+
                                 // TODO: Since the above line of code loops through all the accounts and loads them
                                 // up, transforms them, and saves them again, we cannot use our own loaded accounts below
                                 // this point. (They could overwrite themselves.) theSourceAccount especially, was passed in
@@ -5599,9 +5600,9 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 // Aside from any more elegant solution, the only way to make it work in this case would be to
                                 // make a map or list of all the accounts that are already loaded in memory (such as theSourceAccount)
                                 // and PASS THEM IN to the above ForEachAccountRecord call. This way it would have the option to use
-                                // the "already loaded" versions, where appropriate, instead of loading them twice. (As it is, 
+                                // the "already loaded" versions, where appropriate, instead of loading them twice. (As it is,
                                 // theSourceAccount is not used below this point, though we couldn't preven the caller from using it.)
-                                // 
+                                //
                                 // Therefore we need to have some central system where accounts can be loaded, locked, saved, etc.
                                 // So we cannot ever overwrite ourselves BY DESIGN. (And the same for other data types as well, like Nyms.)
                                 // Todo.
@@ -5629,19 +5630,19 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                                    szFunc, lTotalCostOfDividend, lLeftovers);
                                     // ------------------------------------------
                                     OTCheque  theVoucher(SERVER_ID, PAYOUT_ASSET_ID);
-                                    
+
                                     // 10 minutes ==    600 Seconds
                                     // 1 hour	==     3600 Seconds
                                     // 1 day	==    86400 Seconds
                                     // 30 days	==  2592000 Seconds
                                     // 3 months ==  7776000 Seconds
                                     // 6 months == 15552000 Seconds
-                                    
+
                                     const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
                                     const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
-                                    
+
                                     long        lNewTransactionNumber = 0;
-                                    const bool  bGotNextTransNum = 
+                                    const bool  bGotNextTransNum =
                                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber);     // bStoreTheNumber defaults to true. We save the transaction
                                                                                                         // number on the server Nym (normally we'd discard it) because
                                                                                                         // when the cheque is deposited, the server nym, as the owner of
@@ -5659,7 +5660,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                                                                           SERVER_NYM_ID,			// User ID of the sender (in this case the server nym.)
                                                                                           strInReferenceTo,         // Optional memo field. Includes item note and request memo.
                                                                                           &USER_ID);
-                                        
+
                                         // All account crediting / debiting happens in the caller, in OTServer.
                                         //    (AND it happens only ONCE, to cover ALL vouchers.)
                                         // Then in here, the voucher either gets send to the recipient, or if error, sent back home to
@@ -5673,15 +5674,15 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                             theVoucher.SetAsVoucher(SERVER_NYM_ID, VOUCHER_ACCOUNT_ID); // All this does is set the voucher's internal contract string
                                             theVoucher.SignContract(m_nymServer);                       // to "VOUCHER" instead of "CHEQUE".
                                             theVoucher.SaveContract();
-                                            
+
                                             // Send the voucher to the payments inbox of the recipient.
                                             //
-                                            const 
+                                            const
                                             OTString  strVoucher(theVoucher);
                                             OTPayment thePayment(strVoucher);
-                                            
+
                                             // calls DropMessageToNymbox
-                                            bSent = this->SendInstrumentToNym(SERVER_ID, 
+                                            bSent = this->SendInstrumentToNym(SERVER_ID,
                                                                               SERVER_NYM_ID,  // sender nym
                                                                               USER_ID,        // recipient nym (returning to original sender.)
                                                                               NULL, &thePayment, "payDividend"); // todo: hardcoding.
@@ -5693,7 +5694,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                         {
                                             const OTString strPayoutAssetID(PAYOUT_ASSET_ID), strSenderUserID(USER_ID);
                                             OTLog::vError("%s: ERROR failed issuing voucher (to return leftovers back to "
-                                                          "the dividend payout initiator.) WAS TRYING TO PAY %ld of asset type %s to Nym %s.\n", 
+                                                          "the dividend payout initiator.) WAS TRYING TO PAY %ld of asset type %s to Nym %s.\n",
                                                           szFunc, lLeftovers, strPayoutAssetID.Get(), strSenderUserID.Get());
                                         } // if !bSent
                                     }
@@ -5708,12 +5709,12 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 }
                             } // else
                             // --------------------------------------------------------------------------
-                        }	
+                        }
                         //else{} // TODO log that there was a problem with the amount
-                        
+
                     } // voucher request loaded successfully from string
                 } // GetVoucherAccount()
-                else 
+                else
                 {
                     OTLog::vError("%s: GetVoucherAccount() failed. Asset Type:\n%s\n", szFunc,
                                   strAssetTypeID.Get());
@@ -5722,7 +5723,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
         } // (else bLoadContract is true)
 	}
 	// --------------------------------------------------------------------------------------
-	else 
+	else
 	{
         OTString strTemp(tranIn);
 		OTLog::vOutput(0, "%s: Expected OTItem::payDividend in trans# %ld: \n\n%s\n\n", szFunc,
@@ -5734,11 +5735,11 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
-												  
+
 
 
 
@@ -5748,35 +5749,35 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 {
 	// The outgoing transaction is an "atDeposit", that is, "a reply to the deposit request"
 	tranOut.SetType(OTTransaction::atDeposit);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pItemCheque	= NULL;
 	OTItem * pItemCash		= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-	
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier	SERVER_ID(m_strServerID),		USER_ID(theNym),	ACCOUNT_ID(theAccount),
 						SERVER_USER_ID(m_nymServer),	ASSET_TYPE_ID(theAccount.GetAssetTypeID());
-	
+
 	const OTString strUserID(USER_ID), strAccountID(ACCOUNT_ID);
-	
+
 	OTMint		* pMint					= NULL; // the Mint itself.
 	OTAccount	* pMintCashReserveAcct	= NULL; // the Mint's funds for cash withdrawals.
-	// -----------------------------------------------------------------	
+	// -----------------------------------------------------------------
 	// Here we find out if we're depositing cash, or a cheque
 	//
 	OTItem::itemType theReplyItemType = OTItem::error_state;
 
 	pItemCheque = tranIn.GetItem(OTItem::depositCheque);
-	
+
 	if (NULL == pItemCheque)
 	{
 		pItemCash = tranIn.GetItem(OTItem::deposit);
@@ -5791,13 +5792,13 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 		theReplyItemType = OTItem::atDepositCheque;
 	}
 	// --------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------
 	if (NULL == pItem)
 	{
@@ -5808,7 +5809,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 	// Below this point, we know that pItem is good, and that either pItemCheque OR pItemCash is good,
 	// and that pItem points to the good one. Therefore next, let's verify permissions:
 	// ---------------------------------------------------------------------
-	
+
 	// This permission has to do with ALL deposits (cash or cheque)
 	else if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_deposit))
 	{
@@ -5838,7 +5839,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
         OTString strTemp(tranIn);
         OTLog::vOutput(0, "OTServer::NotarizeDeposit: Expected OTItem::balanceStatement, but not found in trans # %ld: \n\n%s\n\n",
                        tranIn.GetTransactionNum(), strTemp.Exists() ? strTemp.Get() : " (ERROR LOADING TRANSACTION INTO STRING) ");
-    }	
+    }
 	// -------------------------------------------------------------------------------------------
 	// DEPOSIT CHEQUE  (Deposit Cash is the bottom half of the function, deposit cheque is the top half.)
 	else if (pItem->GetType() == OTItem::depositCheque)
@@ -5848,27 +5849,27 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 		// into their "in reference to" fields.
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-				
+
 		// Server response item being added to server response transaction (tranOut)
 		// They're getting SOME sort of response item.
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
 		// -----------------------------------------------------
         OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
         OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
-        
+
         OTCleanup<OTLedger> theInboxAngel(pInbox);
         OTCleanup<OTLedger> theOutboxAngel(pOutbox);
-        
+
         if (NULL == pInbox) // || !pInbox->VerifyAccount(m_nymServer)) Verified in OTAccount::Load
         {
             OTLog::Error("OTServer::NotarizeDeposit: Error loading or verifying inbox for depositor account.\n");
         }
-        
+
         else if (NULL == pOutbox) // || !pOutbox->VerifyAccount(m_nymServer)) Verified in OTAccount::Load
         {
             OTLog::Error("OTServer::NotarizeDeposit: Error loading or verifying outbox for depositor account.\n");
@@ -5884,7 +5885,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 			// (The item should already have been verified when the transaction itself was
 			// verified, before this function was even called. I think this is just an oversight.)
 			OTLog::Output(0, "OTServer::NotarizeDeposit: Error: account ID does not match account ID on the deposit item.\n");
-		} 
+		}
 		else
 		{
 			// Get the cheque from the Item and load it up into a Cheque object.
@@ -5892,7 +5893,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 			pItem->GetAttachment(strCheque);
 			OTCheque theCheque(SERVER_ID, ASSET_TYPE_ID); // allocated on the stack :-)
 			bool bLoadContractFromString = theCheque.LoadContractFromString(strCheque);
-			
+
 			if (!bLoadContractFromString)
 			{
 				OTLog::vError("%s: ERROR loading cheque from string:\n%s\n", __FUNCTION__,
@@ -5992,7 +5993,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				else
 				{
 					pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-                    
+
                     if (// Clear the transaction number. Sender Nym was responsible for it (and still is, until
                         // he signs to accept the cheque reecipt). Still, however, he HAS used the cheque, so
                         // I'm removing his ability to use that number twice. It will remain on his issued list
@@ -6009,37 +6010,37 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         // Generate new transaction number (for putting the check receipt in the sender's inbox.)
                         // todo check this generation for failure (can it fail?)
                         long lNewTransactionNumber = 0;
-                        
+
                         IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                        
+
                         OTTransaction * pInboxTransaction = OTTransaction::GenerateTransaction(*pInbox, OTTransaction::chequeReceipt,
                                                                                                lNewTransactionNumber);
-                        
+
                         // The depositCheque request OTItem is saved as a "in reference to" field,
                         // on the inbox chequeReceipt transaction.
                         //todo put these two together in a method.
                         pInboxTransaction->SetReferenceString(strInReferenceTo);
                         pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
-                        
+
                         pInboxTransaction->SetAsCancelled();
-                        
+
                         // Now we have created a new transaction from the server to the sender's inbox
                         // Let's sign and save it...
                         pInboxTransaction->SignContract(m_nymServer);
                         pInboxTransaction->SaveContract();
-                        
+
                         // Here the transaction we just created is actually added to the source acct's inbox.
                         pInbox->AddTransaction(*pInboxTransaction);
-                        
+
                         // Release any signatures that were there before (They won't
                         // verify anymore anyway, since the content has changed.)
                         //
                         pInbox->ReleaseSignatures();
                         pInbox->SignContract(m_nymServer);
                         pInbox->SaveContract();
-                        
+
                         theAccount.SaveInbox(*pInbox);
-                        
+
                         // Any inbox/nymbox/outbox ledger will only itself contain
                         // abbreviated versions of the receipts, including their hashes.
                         //
@@ -6053,12 +6054,12 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         // as his receipt. (He must perform a balance agreement in order to get it out of his inbox.)
                         //
                         // THERE IS NOTHING LEFT TO DO BUT SAVE THE FILES!!
-                        
-                        theAccount.ReleaseSignatures();                        
+
+                        theAccount.ReleaseSignatures();
 						theAccount.SignContract(m_nymServer);
 						theAccount.SaveContract();
 						theAccount.SaveAccount();
-                        
+
 						// Now we can set the response item as an acknowledgement instead of the default (rejection)
 						// otherwise, if we never entered this block, then it would still be set to rejection, and the
 						// new item would never have been added to the inbox, and the inbox file would never have had
@@ -6068,14 +6069,14 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 						// Otherwise you get no items and no signature. Just a rejection item in the response transaction.
                         //
 						pResponseItem->SetStatus(OTItem::acknowledgement);
-						
+
                         bOutSuccess = true;  // The cheque cancellation was successful.
-                        
+
                         OTLog::vOutput(0, "%s: SUCCESS cancelling cheque %ld, which had been drawn from account: %s\n",
                                        __FUNCTION__, theCheque.GetTransactionNum(), strAccountID.Get());
-                        
+
                         tranOut.SetAsCancelled();
-                        
+
 						// TODO: Our code that actually saves the new balance statement receipt should go here
 						// (that is, only after ultimate success.) Otherwise we still want to store the old receipt.
 						// For now I'm verifying it, but not storing it.  This means the security for it works, but
@@ -6083,31 +6084,31 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 						// that is, a copy of the user's signed BalanceAgreement.
                         // Note: if I'm saving the entire outgoing transaction reply, or message reply, (versus just
                         // the reply to a certain item) then I think I have the balance agreement already? Double check.
-					}					
-				} // "else"               
+					}
+				} // "else"
 			} // ABOVE: Cheque cancellation
             // ----------------------------------------
 			else // BELOW: Cheque deposit
 			{
 				const OTIdentifier & SOURCE_ACCT_ID   (theCheque.GetSenderAcctID()); // relevant for both vouchers AND cheques.
 				const OTIdentifier & SENDER_USER_ID   (theCheque.GetSenderUserID());
-                
+
 				const OTIdentifier & REMITTER_ACCT_ID   (theCheque.GetRemitterAcctID()); // only relevant in case of vouchers.
 				const OTIdentifier & REMITTER_USER_ID   (theCheque.GetRemitterUserID());
-                                
+
                 // If the cheque has a remitter ...and the depositor IS the remitter...
                 // (Then the remitter is cancelling the voucher.)
                 //
                 const bool bHasRemitter        = theCheque.HasRemitter();
                 const bool bRemitterCancelling = (bHasRemitter && (USER_ID == theCheque.GetRemitterUserID()));
-                                
+
                 // The point of the logic here is to enable remitters to deposit vouchers. Basically allows
                 // them to "cancel" the voucher, and get their money back.
                 //
 				const OTIdentifier & RECIPIENT_USER_ID(bRemitterCancelling ? USER_ID : theCheque.GetRecipientUserID());
-				
+
                 // (Note that we allow the remitter of a voucher to deposit that voucher.)
-                
+
 				const OTString	strSenderUserID(SENDER_USER_ID),
 								strSourceAcctID(SOURCE_ACCT_ID),
                                 strRecipientUserID(RECIPIENT_USER_ID),
@@ -6131,7 +6132,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                 // ------------------------------------------------------------------------------
 				OTPseudonym		theSenderNym(SENDER_USER_ID);
 				OTPseudonym *	pSenderNym = &theSenderNym;
-								
+
 				// Don't want to overwrite files or db records in cases where the sender is also the depositor.
 				// (Similar concern if the server is also the depositor, but that's already partly handled
 				// before we get to this point... theNym is already substituted for m_nymServer,
@@ -6140,7 +6141,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				// The conundrum is in the multiplicity of combinations. The server COULD be the sender
 				// OR the depositor, or he could be BOTH, or the server might NOT be the sender OR depositor,
 				// yet they could still be the same person.  Normally all 3 are separate entities.  That's a
-				// lot of combinations. I want to make sure that I don't overwrite ANY files while juggling the 
+				// lot of combinations. I want to make sure that I don't overwrite ANY files while juggling the
 				// respective nymfiles, transaction numbers, request numbers, etc.
 				//
 				// Solution:  When commands are first processed, and the Request Number is processed, theNym
@@ -6149,17 +6150,17 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				//
 				// I THEN do the logic BELOW as additional to that. Make sure if you change anything that you
 				// think long and hard about what you are doing!!
-				// 
+				//
 				// Here's the logic:
 				// -- theNym is the depositor (for sure.)
 				// -- m_nymServer is the server nym (for sure.)
 				// -- By the time we get here, IF the ServerUserID and UserID match,
 				//	  then theNym IS ALREADY m_nymServer, literally a reference to it.
-				//    (This is performed before we even get to this point, so that the 
+				//    (This is performed before we even get to this point, so that the
 				//	  same problem doesn't occur with request numbers.)
 				// -- In cases where the "server is also the depositor", it's therefore
 				//	  ALREADY handled, since theNym already points to m_nymServer.
-				// -- theSenderNym is used to load the sender nym in cases where we have 
+				// -- theSenderNym is used to load the sender nym in cases where we have
 				//	  to load it from file or db ourselves. (Most normal cases.)
 				// -- In those normal cases, pSenderNym will point to theSenderNym and
 				//	  we load it up from file or database.
@@ -6169,7 +6170,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				// -- In cases where the sender is also the server, then pSenderNym will
 				//	  point to m_nymServer instead of to theSenderNym, and we no longer
 				//	  bother loading it, since the server's nym is already loaded.
-				
+
 				bool	bDepositorIsServer     = (USER_ID          == SERVER_USER_ID);
 				bool	bDepositorIsSender     = (USER_ID          == SENDER_USER_ID);
 				bool	bDepositorIsRemitter   = (USER_ID          == REMITTER_USER_ID);
@@ -6183,17 +6184,17 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				bool	bRemitterUserAlreadyLoaded = false;
 				bool	bRemitterAcctAlreadyLoaded = false;
                 // --------------------------------------------------------------------------------------
-				
+
 				// The depositor is already loaded, (for sure.)
-				
+
 				// The server is already loaded, (for sure.)
-				
+
 				// If the depositor IS the server, then it already points there (for sure.)
 				if (bDepositorIsServer)
 				{
 					//OTPseudonym & theNym = m_nymServer; // Already handled in the code that calls IncrementRequestNum().
-                    
-					//bSenderUserAlreadyLoaded = false; // Sender is either determined to be already loaded (directly below) or 
+
+					//bSenderUserAlreadyLoaded = false; // Sender is either determined to be already loaded (directly below) or
                                                         // it is loaded as part of the cheque verification process below that.
                                                         // At this point I can't set it because I just don't know yet.
 				}
@@ -6238,10 +6239,10 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                     {
                         pRemitterAcct  = &theAccount;
                         pRemitterInbox = pInbox;
-                        
+
                         bRemitterAcctAlreadyLoaded = true;
                         bSuccessLoadRemitterInbox  = true;
-                        
+
                         // Just for completeness. In this case ALL THREE accounts would be the same account,
                         // which is probably disallowed later on anyway.
                         //
@@ -6249,7 +6250,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         {
                             pSourceAcct  = pRemitterAcct;
                             pSenderInbox = pRemitterInbox;
-                            
+
                             bSourceAcctAlreadyLoaded = true;
                             bSuccessLoadSenderInbox  = true;
                         }
@@ -6259,22 +6260,22 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                 {    // (If it's not a voucher, that means we should DEFINITELY be able to load the sender's inbox.)
                     // ----------------------------------
                     // Load source account's inbox
-                    
+
                     bSuccessLoadSenderInbox = pSenderInbox->LoadInbox();
-                    
+
                     // ...If it loads, verify it. Otherwise, generate it...
                     if (bSuccessLoadSenderInbox)
                         bSuccessLoadSenderInbox = pSenderInbox->VerifyAccount(m_nymServer);
-                    else 
+                    else
                         OTLog::vOutput(0, "OTServer::%s: Failed loading inbox for %s source account.\n", __FUNCTION__,
                                        (bHasRemitter) ? "cheque" : "voucher");
 //                  else
 //                      bSuccessLoadSenderInbox = pSenderInbox->GenerateLedger(SOURCE_ACCT_ID, SERVER_ID, OTLedger::inbox, true); // bGenerateFile=true
-				                    
+
                 }
                 // --------------------------------------------------------------------------------------
 				// To deposit a cheque, need to verify:  (in no special order)
-				// 
+				//
 				// -- DONE Load the source account and verify it exists.
 				// -- DONE Make sure the source acct is verified for the server signature.
 				// -- DONE Make sure the Asset Type of the cheque matches the Asset Type of BOTH source and recipient accts.
@@ -6288,7 +6289,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				// -- DONE Verify the funds are in the source acct.
 				//
 				// -- DONE Plus deal with sender's inbox.
-				
+
 				// --------------------------------------------------------------------
                 // If there's a remitter, then it's a voucher, and thus the sender MUST be the server.
                 // (If the sender on a voucher is NOT the server, then it's very suspicious.)
@@ -6319,7 +6320,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                    (bHasRemitter) ? "cheque" : "voucher",
                                    strSenderUserID.Get(), strRecipientUserID.Get());
 				}
-		
+
 				// See if the Nym ID (User ID) that we have matches the message digest of his public key.
 				else if (false == pSenderNym->VerifyPseudonym())
 				{
@@ -6329,7 +6330,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                    (bHasRemitter) ? "cheque" : "voucher",
                                    strSenderUserID.Get(), strRecipientUserID.Get());
 				}
-				
+
 				// See if we can load the sender's nym file (to verify the transaction # on the cheque)
 				// if !bSenderUserAlreadyLoaded since the server already had its nym file loaded at boot-time.
 				// (also since the depositor and sender might be the same person.)
@@ -6352,7 +6353,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                    "voucher deposit: %s\nRecipient User ID: %s\n", __FUNCTION__,
                                    strRemitterUserID.Get(), strRecipientUserID.Get());
 				}
-		
+
 				// See if the Nym ID (User ID) that we have matches the message digest of his public key.
 				else if (bHasRemitter && !pRemitterNym->VerifyPseudonym())
 				{
@@ -6361,7 +6362,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                    ": %s\nRecipient User ID: %s\n", __FUNCTION__,
                                    strRemitterUserID.Get(), strRecipientUserID.Get());
 				}
-				
+
 				// See if we can load the remitter's nym file (to verify the transaction # on the cheque)
 				// if !bRemitterUserAlreadyLoaded since the server already had its nym file loaded at boot-time.
 				// (also since the depositor and remitter might be the same person.)
@@ -6392,7 +6393,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                     if (bHasRemitter)
                         OTLog::vOutput(0, " Remitter User ID: %s\n", strRemitterUserID.Get());
                     else
-                        OTLog::Output(0, "\n");                    
+                        OTLog::Output(0, "\n");
 				}
                 // --------------------------------------------------------------------
 				// If there is a recipient user ID on the check, it must match the user depositing the cheque.
@@ -6401,7 +6402,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				{
 					OTLog::vOutput(0, "%s: Failure matching %s recipient to depositor. Depositor User ID: %s "
                                    "Recipient User ID: %s\n", __FUNCTION__, (bHasRemitter) ? "cheque" : "voucher",
-                                   strUserID.Get(), strRecipientUserID.Get());					
+                                   strUserID.Get(), strRecipientUserID.Get());
 				}
                 // --------------------------------------------------------------------
 				// Try to load the source account (that cheque is drawn on) up into memory.
@@ -6409,14 +6410,14 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				else if (!bSourceAcctAlreadyLoaded &&
 							((
 							 NULL == (pSourceAcct = OTAccount::LoadExistingAccount(SOURCE_ACCT_ID, SERVER_ID))
-							) 
+							)
                             ||
 							(
 							 theSourceAcctGuardian.SetCleanupTargetPointer(pSourceAcct), false	// I want this to eval to false, but I want SetCleanup to call.
 							))																	// Also, SetCleanup() is safe even if pointer is NULL.
-                        )	
+                        )
 					// ----------------------------------------------------------------------------------
-				{	
+				{
 					OTLog::vOutput(0, "%s: %s deposit failure, "
                                    "trying to load source acct, ID: %s Recipient User ID: %s",
                                    __FUNCTION__, (bHasRemitter) ? "Cheque" : "Voucher", strSourceAcctID.Get(), strRecipientUserID.Get());
@@ -6467,14 +6468,14 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                     {
                         pRemitterAcct              = pSourceAcct;
                         bRemitterAcctAlreadyLoaded = true;
-                        
+
                         pRemitterInbox             = pSenderInbox;
-                        
+
                         if (NULL != pRemitterInbox) // This part is here for completeness only. It will never actually happen,
                             bSuccessLoadRemitterInbox = true; // since a voucher source account is owned by server and has no inbox.
                     }
                     // *********************************************************************
-                
+
                     // Try to load the remitter account (that voucher was originally financed from) up into memory.
                     // We'll need to verify it so we can drop the receipt into its inbox. Also, set the cleanup object onto this pointer.
                     //
@@ -6486,10 +6487,10 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         ||
                          (
                          theRemitterAcctGuardian.SetCleanupTargetPointer(pRemitterAcct), false // I want this to eval to false, but I want SetCleanup to call.
-                         )                                                                     // Also, SetCleanup() is safe even if pointer is NULL. 
+                         )                                                                     // Also, SetCleanup() is safe even if pointer is NULL.
                         )
                     )
-                    {	
+                    {
                         OTLog::vOutput(0, "%s: Voucher deposit, failure "
                                        "trying to load remitter acct, ID: %s Recipient User ID: %s Remitter User ID: %s\n",
                                        __FUNCTION__, strRemitterAcctID.Get(), strRecipientUserID.Get(), strRemitterUserID.Get());
@@ -6528,13 +6529,13 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                              !( theCheque.GetAssetID() == pRemitterAcct->GetAssetTypeID() ))
                             )
                     {
-                        OTString	strSourceAssetID(pSourceAcct->GetAssetTypeID()), 
+                        OTString	strSourceAssetID(pSourceAcct->GetAssetTypeID()),
                                     strRecipientAssetID(theAccount.GetAssetTypeID());
                         OTLog::vOutput(0, "OTServer::%s: ERROR - user attempted to deposit cheque between accounts of different "
                                 "asset types. Source Acct: %s\nType: %s\nRecipient Acct: %s\nType: %s\n", __FUNCTION__,
                                 strSourceAcctID.Get(), strSourceAssetID.Get(),
                                 strAccountID.Get(), strRecipientAssetID.Get());
-                        
+
                         if (bHasRemitter)
                         {
                             OTString strRemitterAssetID(pRemitterAcct->GetAssetTypeID());
@@ -6543,19 +6544,19 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         }
                     }
                     // --------------------------------------------------------------------
-                                    
+
                     // The BALANCE AGREEMENT includes a signed and dated:
                     /*
                      user ID, server ID, account ID, transaction ID.
-                     
-                     BY THE TIME you are ever inside the procesing for ANY transaction. we know for 
+
+                     BY THE TIME you are ever inside the procesing for ANY transaction. we know for
                      a fact that NotarizeTransaction has ALREADY checked all the items on the transaction
                      (the ones in its list) to make sure they ALL have the same owner, and signature,
                      and transaction number, and account ID, and server ID. This happens when the items
                      first load via VerifyContractID(), and then in NotarizeTransaction() with a call to
                      VerifyItems(). Therefore I can consider the above variables COVERED for pItem as
                      well as pBalanceItem.
-                     
+
                      Balance Agreement also includes:
                      -- A copy of all the transaction numbers that should still be issued to the Nym,
                         AFTER one is removed from depositing this cheque. (The same number on tranIn and pItem.)
@@ -6564,12 +6565,12 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         (NEED TO VERIFY BALANCE WOULD BE THE SAME AFTER PROCESSING TRANSACTION.
                      -- Inbox and Outbox reports on a single list of sub-items.
                         (NEED TO VERIFY INBOX AND OUTBOX ITEMS MATCH BY RE-CREATING AND THEN COMPARING.)
-                     
+
                      All these are now done in VerifyBalanceStatement().
-                     
+
                      */
-                                    
-                    else if (!(pBalanceItem->VerifyBalanceStatement(theCheque.GetAmount(), 
+
+                    else if (!(pBalanceItem->VerifyBalanceStatement(theCheque.GetAmount(),
                                                                     theNym,
                                                                     *pInbox,
                                                                     *pOutbox,
@@ -6579,13 +6580,13 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         OTLog::vOutput(0, "OTServer::%s: ERROR verifying balance statement while depositing cheque. Acct ID:\n%s\n",
                                        __FUNCTION__, strAccountID.Get());
                     }
-                    
+
                     // Debit Source account, Credit Recipient Account, add to Sender's inbox.
                     //
                     // Also clear the transaction number so this cheque can't be deposited again.
                     //
                     else
-                    {	
+                    {
                         pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
 
                         // Deduct the amount from the source account, and add it to the recipient account...
@@ -6596,7 +6597,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         else if (false == theAccount.Credit(theCheque.GetAmount()))
                         {
                             OTLog::vError("OTServer::%s: Failed crediting destination account.\n", __FUNCTION__);
-     
+
                             if (false == pSourceAcct->Credit(theCheque.GetAmount()))
                                 OTLog::vError("OTServer::%s: Failed crediting back source account.\n", __FUNCTION__);
                         }
@@ -6624,7 +6625,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                         {	// need to be able to "roll back" if anything inside this block fails.
                             // update: actually does pretty good roll-back as it is. The debits and credits
                             // don't save unless everything is a success.
-                            
+
                             OTAccount * pAcctWhereReceiptGoes  = NULL;
                             OTLedger  * pInboxWhereReceiptGoes = NULL;
                             // -----------------------------------------------------------------------------------
@@ -6636,7 +6637,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                             else // normal cheque
                             {
                                 pAcctWhereReceiptGoes  = pSourceAcct;
-                                pInboxWhereReceiptGoes = pSenderInbox;                            
+                                pInboxWhereReceiptGoes = pSenderInbox;
                             }
                             // -----------------------------------------------------------------------------------
                             // Add the chequeReceipt to the inbox of the signer on the cheque.
@@ -6667,7 +6668,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                     // Therefore, we explicitly remove the issued number here from the remitter (whom we know to actually
                                     // be the server.) He has no inbox, and he won't get any receipt -- but the number will be closed out
                                     // properly. Before this fix, the server was probably keeping every voucher number open for eternity.
-                                    // 
+                                    //
                                     if (!RemoveIssuedNumber(*pRemitterNym, theCheque.GetTransactionNum(), true)) //bSave=true
                                         OTLog::vError("%s: Strange: Failed removing issued number from remitter (the server nym, in this case), "
                                                       "even though the number verified just earlier...\n", __FUNCTION__);
@@ -6678,22 +6679,22 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                 // Generate new transaction number (for putting the check receipt in the sender's inbox.)
                                 // todo check this generation for failure (can it fail?)
                                 long lNewTransactionNumber = 0;
-                                
+
                                 IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                                
+
                                 OTTransaction * pInboxTransaction = OTTransaction::GenerateTransaction(*pInboxWhereReceiptGoes,
                                                                                                        theCheque.HasRemitter() ?
                                                                                                             OTTransaction::voucherReceipt :
                                                                                                             OTTransaction::chequeReceipt,
                                                                                                        lNewTransactionNumber);
-                                
+
                                 // The depositCheque request OTItem is saved as a "in reference to" field,
                                 // on the inbox chequeReceipt or voucherReceipt transaction.
                                 //todo put these two together in a method.
                                 pInboxTransaction->SetReferenceString(strInReferenceTo);
                                 pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
                                 pInboxTransaction->SetNumberOfOrigin(theCheque.GetTransactionNum());
-                                
+
                                 if (bRemitterCancelling)
                                     pInboxTransaction->SetAsCancelled();
 
@@ -6701,7 +6702,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                 // Let's sign and save it...
                                 pInboxTransaction->SignContract(m_nymServer);
                                 pInboxTransaction->SaveContract();
-                                
+
                                 // Here the transaction we just created is actually added to the source acct's or remitter's inbox.
                                 pInboxWhereReceiptGoes->AddTransaction(*pInboxTransaction);
 
@@ -6711,9 +6712,9 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                 pInboxWhereReceiptGoes->ReleaseSignatures();
                                 pInboxWhereReceiptGoes->SignContract(m_nymServer);
                                 pInboxWhereReceiptGoes->SaveContract();
-                                
+
                                 pAcctWhereReceiptGoes->SaveInbox(*pInboxWhereReceiptGoes);
-                                
+
                                 // if there's NOT a remitter, then the source account is ALREADY saved below this block.
                                 // (Otherwise we need to save his acct here.)
                                 //
@@ -6729,23 +6730,23 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                                     pAcctWhereReceiptGoes->SaveContract();
                                     pAcctWhereReceiptGoes->SaveAccount();
                                 }
-                                
+
                                 // Any inbox/nymbox/outbox ledger will only itself contain
                                 // abbreviated versions of the receipts, including their hashes.
-                                // 
+                                //
                                 // The rest is stored separately, in the box receipt, which is created
                                 // whenever a receipt is added to a box, and deleted after a receipt
                                 // is removed from a box.
                                 //
                                 pInboxTransaction->SaveBoxReceipt(*pInboxWhereReceiptGoes);
-                            }						
+                            }
                             // ---------------------------------------------------------------------------------
                             // AT THIS POINT, the source account is debited, the recipient account is credited,
                             // and the sender's (or remitter's) inbox has had the chequeReceipt or voucherReceipt added to it.
                             // (He must perform a balance agreement in order to get it out of his inbox.)
                             //
                             // THERE IS NOTHING LEFT TO DO BUT SAVE THE FILES!!
-                            
+
                             pSourceAcct->	ReleaseSignatures();
                             theAccount.		ReleaseSignatures();
 
@@ -6761,14 +6762,14 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
                             // otherwise, if we never entered this block, then it would still be set to rejection, and the
                             // new item would never have been added to the inbox, and the inbox file, along with the
-                            // account files, would never have had their signatures released, or been re-signed or 
+                            // account files, would never have had their signatures released, or been re-signed or
                             // re-saved back to file.  The debit failed, so all of those other actions would fail also.
                             // BUT... if the message comes back with acknowledgement--then all of these actions must have
                             // happened, and here is the server's signature to prove it.
                             // Otherwise you get no items and no signature. Just a rejection item in the response transaction.
                             //
                             pResponseItem->SetStatus(OTItem::acknowledgement);
-                            
+
                             bOutSuccess = true;  // The cheque deposit was successful.
 
                             if (bRemitterCancelling)
@@ -6787,9 +6788,9 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                             // that is, a copy of the user's signed BalanceAgreement.
                             // Note: if I'm saving the entire outgoing transaction reply, or message reply, (versus just
                             // the reply to a certain item) then I think I have the balance agreement already? Double check.
-                            
+
                         }
-                        
+
                         // Make sure we clean this up.
 //                      delete pSourceAcct; // No longer necessary -- handled by OTCleanup in this case.
 //                      pSourceAcct = NULL; // OTCleanup handles this now.
@@ -6797,17 +6798,17 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                 } // "else"
 			} // successfully loaded cheque from string
 		} // account ID DOES match item's account ID
-		
+
 //		OTString strTestInRefTo;
 //		pResponseItem->GetReferenceString(strTestInRefTo);
 //		OTLog::vOutput(0, "DEBUG: Item in reference to: %s\n", strTestInRefTo.Get());
-		
+
 	} // deposit cheque
-	
+
 	// ---------------------------------------------------------------------------------
-	
+
 	// BELOW -- DEPOSIT CASH
-	
+
 	// For now, there should only be one of these deposit items inside the transaction.
 	// So we treat it that way... I either get it successfully or not.
     //
@@ -6819,37 +6820,37 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 		// into their "in reference to" fields.
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-		
+
 		// Server response item being added to server response transaction (tranOut)
 		// They're getting SOME sort of response item.
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		// If the ID on the "from" account that was passed in,
 		// does not match the "Acct From" ID on this transaction item
 		if (ACCOUNT_ID != pItem->GetPurportedAccountID())
 		{
 			OTLog::vOutput(0, "OTServer::NotarizeDeposit: Error: 'From' account ID on the transaction does not match 'from' account ID on the deposit item.\n");
-		} 
+		}
 		else
 		{
-			// --------------------------------------------------------------------		
-			OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
-			OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
-			
+			// --------------------------------------------------------------------
+			OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
+			OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
+
 			OTCleanup<OTLedger> theInboxAngel(pInbox);
 			OTCleanup<OTLedger> theOutboxAngel(pOutbox);
-			
+
 			if (NULL == pInbox) // || !pInbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
 			{
 				OTLog::Error("OTServer::NotarizeDeposit: Error loading or verifying inbox.\n");
 				OT_FAIL; // pInbox may get dereferenced
 			}
-			
+
 			else if (NULL == pOutbox) // || !pOutbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
 			{
 				OTLog::Error("OTServer::NotarizeDeposit: Error loading or verifying outbox.\n");
@@ -6858,18 +6859,18 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 			// --------------------------------------------------------------------
 			OTString strPurse;
 			pItem->GetAttachment(strPurse);
-						
-			OTPurse thePurse(SERVER_ID, ASSET_TYPE_ID); 
+
+			OTPurse thePurse(SERVER_ID, ASSET_TYPE_ID);
 			OTToken * pToken = NULL;
-			
+
 			bool bLoadContractFromString = thePurse.LoadContractFromString(strPurse);
-			
+
 			if (!bLoadContractFromString)
 			{
 				OTLog::vError("OTServer::NotarizeDeposit: ERROR loading purse from string:\n%s\n",
 						strPurse.Get());
 			}
-			
+
 			else if (!(pBalanceItem->VerifyBalanceStatement(thePurse.GetTotalValue(),
 															theNym,
 															*pInbox,
@@ -6880,23 +6881,23 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				OTLog::vOutput(0, "OTServer::NotarizeDeposit: ERROR verifying balance statement while depositing cash. Acct ID:\n%s\n",
 							   strAccountID.Get());
 			}
-			
+
 			// TODO: double-check all verification stuff all around on the purse and token, transaction, mint, etc.
 
 			else // the purse loaded successfully from the string
 			{
 				pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-				
+
 				bool bSuccess = false;
-				
+
 				// Pull the token(s) out of the purse that was received from the client.
 				while ((pToken = thePurse.Pop(m_nymServer)) != NULL)
 				{
 					// This way I don't have to worry about cleaning up pToken or leaking memory.
 					OTCleanup<OTToken> theTokenGuardian(*pToken);
-					
+
 					pMint = GetMint(ASSET_TYPE_ID, pToken->GetSeries());
-					
+
 					if (NULL == pMint)
 					{
 						OTLog::Error("OTServer::NotarizeDeposit: Unable to get or load Mint.\n");
@@ -6906,11 +6907,11 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 					{
 //						OTString DEBUG_STR(*pToken);
 //						OTLog::vError("\n**************\nEXTRACTED TOKEN FROM PURSE:\n%s\n", DEBUG_STR.Get());
-						
+
 						OTString	strSpendableToken;
 						bool bToken = pToken->GetSpendableString(m_nymServer, strSpendableToken);
 //						OTLog::vError("\n**************\nSPENDABLE STRING:\n%s\n", strSpendableToken.Get());
-						
+
 						if (!bToken)  // if failure getting the spendable token data from the token object
 						{
 							bSuccess = false;
@@ -6956,34 +6957,34 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 							break;
 						}
 						else
-						{					
+						{
 							OTLog::Output(3, "OTServer::NotarizeDeposit: SUCCESS verifying token...    \n");
-                            
+
                             // need to be able to "roll back" if anything inside this block fails.
                             // so unless bSuccess is true, I don't save the account below.
                             //
-                            
+
                             // two defense mechanisms here:  mint cash reserve acct, and spent token database
                             //
                             if (false == pMintCashReserveAcct->Debit(pToken->GetDenomination()))
                             {
                                 OTLog::Error("OTServer::NotarizeDeposit: Error debiting the mint cash reserve account. "
                                              "SHOULD NEVER HAPPEN...\n");
-                                bSuccess = false;								
+                                bSuccess = false;
                                 break;
                             }
                             // CREDIT the amount to the account...
                             else if (false == theAccount.Credit(pToken->GetDenomination()))
                             {
                                 OTLog::Error("OTServer::NotarizeDeposit: Error crediting the user's asset account...\n");
-                                
+
                                 if (false == pMintCashReserveAcct->Credit(pToken->GetDenomination()))
                                     OTLog::Error("OTServer::NotarizeDeposit: Failure crediting-back mint's cash reserve account "
                                                  "while depositing cash.\n");
-                                bSuccess = false;								
+                                bSuccess = false;
                                 break;
                             }
-                            // Spent token database. This is where the call is made to add 
+                            // Spent token database. This is where the call is made to add
                             // the token to the spent token database.
                             else if (false == pToken->RecordTokenAsSpent(strSpendableToken))
                             {
@@ -6991,32 +6992,32 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 
                                 if (false == pMintCashReserveAcct->Credit(pToken->GetDenomination()))
                                     OTLog::Error("OTServer::NotarizeDeposit: Failure crediting-back mint's cash reserve account while depositing cash.\n");
-                                
+
                                 if (false == theAccount.Debit(pToken->GetDenomination()))
                                     OTLog::Error("OTServer::NotarizeDeposit: Failure debiting-back user's asset account while depositing cash.\n");
-                                
-                                bSuccess = false;								
+
+                                bSuccess = false;
                                 break;
                             }
 							else // SUCCESS!!! (this iteration)
-							{	
+							{
 								OTLog::vOutput(2, "OTServer::NotarizeDeposit: SUCCESS crediting account with cash token...\n");
 								bSuccess = true;
-                                
+
                                 // No break here -- we allow the loop to carry on through.
 							}
-						}					
+						}
 					}
-					else 
+					else
 					{
 						OTLog::Error("OTServer::NotarizeDeposit: Unable to get cash reserve account for Mint.\n");
                         bSuccess = false;
 						break;
 					}
-					
+
 //					delete pToken; // Unnecessary now, handled by OTCleanup.
 //					pToken = NULL;
-					
+
 				} // while success popping token from purse ------------------------------------
 
 				if (bSuccess)
@@ -7024,16 +7025,16 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 					// Release any signatures that were there before (They won't
 					// verify anymore anyway, since the content has changed.)
 					theAccount.	ReleaseSignatures();
-					
-					// Sign 
+
+					// Sign
 					theAccount.	SignContract(m_nymServer);
-					
-					// Save 
+
+					// Save
 					theAccount.	SaveContract();
-					
+
 					// Save to file
 					theAccount.	SaveAccount();
-					
+
 					// We also need to save the Mint's cash reserve.
 					// (Any cash issued by the Mint is automatically backed by this reserve
 					// account. If cash is deposited, it comes back out of this account. If the
@@ -7043,9 +7044,9 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 					pMintCashReserveAcct->SignContract(m_nymServer);
 					pMintCashReserveAcct->SaveContract();
 					pMintCashReserveAcct->SaveAccount();
-									
+
 					pResponseItem->SetStatus(OTItem::acknowledgement);
-					
+
                     bOutSuccess = true;  // The cash deposit was successful.
 
                     OTLog::Output(1, "OTServer::NotarizeDeposit: .....SUCCESS -- crediting account from cash deposit.\n");
@@ -7057,28 +7058,28 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				}
 			} // the purse loaded successfully from the string
 		} // the account ID matches correctly to the acct ID on the item.
-		
+
 //		OTString strTestInRefTo;
 //		pResponseItem->GetReferenceString(strTestInRefTo);
 //		OTLog::vError("DEBUG: Item in reference to: %s\n", strTestInRefTo.Get());
-		
+
 	} // if pItem = tranIn.GetItem(OTItem::deposit)
-	else 
+	else
 	{
         OTString strTemp(tranIn);
 		OTLog::vOutput(0, "%s: Expected OTItem::deposit or OTItem::depositCheque on trans# %ld: \n\n%s\n\n",
                        __FUNCTION__, tranIn.GetTransactionNum(),
                        strTemp.Exists() ? strTemp.Get() : " (ERROR CREATING STRING FROM TRANSACTION.) ");
 	}
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -7102,34 +7103,34 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
 {
 	// The outgoing transaction is an "atPaymentPlan", that is, "a reply to the paymentPlan request"
 	tranOut.SetType(OTTransaction::atPaymentPlan);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will definitely be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-	
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
-	const OTIdentifier	SERVER_ID(m_strServerID),		DEPOSITOR_USER_ID(theNym), 
+	const OTIdentifier	SERVER_ID(m_strServerID),		DEPOSITOR_USER_ID(theNym),
 						SERVER_USER_ID(m_nymServer),	DEPOSITOR_ACCT_ID(theDepositorAccount), USER_ID(theNym);
-	
+
 	const OTString strUserID(USER_ID);
 	// --------------------------------------------------------------------
 	pItem			= tranIn.GetItem(OTItem::paymentPlan);
 	pBalanceItem	= tranIn.GetItem(OTItem::transactionStatement);
 	// --------------------------------------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atPaymentPlan);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atPaymentPlan);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------------
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);	 
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------------
 	if ((NULL != pItem) &&
 		(false == NYM_IS_ALLOWED(strUserID.Get(), __transact_payment_plan)))
@@ -7143,8 +7144,8 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
 	{
 		OTLog::vError("%s: Error, expected OTItem::paymentPlan and OTItem::transactionStatement.\n", __FUNCTION__);
 	}
-	else 
-	{		
+	else
+	{
 		if (DEPOSITOR_ACCT_ID != pItem->GetPurportedAccountID())
 		{
 			OTLog::vOutput(0, "%s: Error: Source account ID on the transaction does not match sender's account ID on the transaction item.\n",
@@ -7158,27 +7159,27 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
 		else
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-			
+
 			// The response item will contain a copy of the request item. So I save it into a string
 			// here so it can be saved into the "in reference to" field.
 			pItem       ->SaveContractRaw(strInReferenceTo);
 			pBalanceItem->SaveContractRaw(strBalanceItem);
-			
+
 			// Server response item being added to server response transaction (tranOut)
 			// They're getting SOME sort of response item.
-			
+
 			pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 			pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-			
+
 			pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 			pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-			
+
 			// Also load up the Payment Plan from inside the transaction item.
 			OTString	strPaymentPlan;
 			pItem->GetAttachment(strPaymentPlan);
 			OTPaymentPlan * pPlan = new OTPaymentPlan();
 			OT_ASSERT(NULL != pPlan);
-			
+
 			// If we failed to load the plan...
 			if ((false == pPlan->LoadContractFromString(strPaymentPlan)))
 			{
@@ -7206,7 +7207,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                 // to be activated by the sender) then the recipient (merchant) will be the depositor. Otherwise,
                 // if he is activating the payment plan (from his payments inbox) then the sender (customer) will
                 // be the depositor.
-                
+
                 OTIdentifier theCancelerNymID;
                 const bool bCancelling  = (pPlan->IsCanceled() && pPlan->GetCancelerID(theCancelerNymID));
                 // ----------------------------------------------------
@@ -7269,47 +7270,47 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                     // The RECIPIENT_ACCT_ID is the ID on the "To" Account. (When doing a transfer, normally 2nd acct is the Payee.)
                     const OTIdentifier	RECIPIENT_ACCT_ID(pPlan->GetRecipientAcctID()),
                                         RECIPIENT_USER_ID(pPlan->GetRecipientUserID());
-                    
+
                     bool bRecipientNymIsServerNym = ((RECIPIENT_USER_ID	== SERVER_USER_ID)    ? true : false);
                     bool bUsersAreSameNym         = ((DEPOSITOR_USER_ID	== RECIPIENT_USER_ID) ? true : false);
-                    
+
                     OTPseudonym		theRecipientNym;		// We'll probably use this, but maybe not. So I use a pointer that will maybe point here.
                     OTPseudonym *	pRecipientNym	= NULL;	// Here's the pointer.  (Logic explained directly below.)
-                    // ------------------------------------------------------------------------				
+                    // ------------------------------------------------------------------------
                     // Set pRecipientNym to point to the right one so we can use it below. (Do NOT use theRecipientNym,
                     // since it won't always point to that one.)
-                    
+
                     bool bFoundRecipientNym = false;
-                    
+
                     // Find out if Recipient Nym is also the Server Nym...
-                    if (bRecipientNymIsServerNym)		
+                    if (bRecipientNymIsServerNym)
                     {
                         // If the Recipient Nym is the server, then just point to that.
                         pRecipientNym		= &m_nymServer;
                         bFoundRecipientNym	= true;
-                        
+
                         // (No need to verify Nym here since already done in this case.)
                     }
-                    else if (bUsersAreSameNym)	// Else if the participants are the same Nym, point to the one we already loaded. 
+                    else if (bUsersAreSameNym)	// Else if the participants are the same Nym, point to the one we already loaded.
                     {
                         pRecipientNym		= &theNym;
                         bFoundRecipientNym	= true;
-                        
+
                         // (No need to verify Nym here since already done in this case, before we even got here.)
                     }
                     else	// Otherwise load the Recipient Nym from Disk and point to that.
-                    {				
+                    {
                         theRecipientNym.SetIdentifier(RECIPIENT_USER_ID);
-                        
+
                         bool bLoadedNym = theRecipientNym.LoadPublicKey();    // Old style (deprecated.) NOTE: LoadCredentials is already called inside LoadPublicKey, at the top, but eventually we'll be calling it here directly, once LoadPublicKey is removed.
-                            
+
                         if (false == bLoadedNym)
                         {
                             OTString strNymID(RECIPIENT_USER_ID);
                             OTLog::vError("%s: Failure loading Recipient Nym public key: %s\n", __FUNCTION__,
                                           strNymID.Get());
                             bFoundRecipientNym = false;
-                        }				
+                        }
                         else if (!theRecipientNym.VerifyPseudonym()	|| !theRecipientNym.LoadSignedNymfile(m_nymServer))
                         {
                             OTString strNymID(RECIPIENT_USER_ID);
@@ -7331,12 +7332,12 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                         // (No need to log here; already logged right above.)
                         // OTLog::vOutput("Unable to load or verify Recipient Nym.()", __FUNCTION__);
                     }
-                    
+
                     // Below this point, we know for sure that the Recipient Nym is loaded and verified, and we know
                     // that if the Server or Sender is actually the Recipient, that the pRecipientNym pointer will
                     // always point to the right one, and no files can be overwritten. *phew*
-                    
-                    
+
+
                     // You CAN have both accounts owned by the same Nym, but you CANNOT have them both actually be the SAME ACCT.
                     else if (!bCancelling && (DEPOSITOR_ACCT_ID == RECIPIENT_ACCT_ID))  // ACTIVATING
                     {
@@ -7357,19 +7358,19 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                     // This is now done above, in VerifyAgreement().
                     // We only have it here now in cases of cancellation (where VerifyAgreement isn't called.)
                     //                                                                        // CANCELING
-    				else if (bCancelling && !pPlan->VerifySignature(*pRecipientNym)) 
+    				else if (bCancelling && !pPlan->VerifySignature(*pRecipientNym))
     				{
     					OTLog::Output(0, "ERROR verifying Recipient's signature on Payment Plan.\n");
     				}
                     else // -----------------------------------------------------------------
                     {
-                        // Verify that BOTH of the Recipient's transaction numbers 
+                        // Verify that BOTH of the Recipient's transaction numbers
                         // (opening and closing) are available for use.
                         //
                         // These three blocks are only checked if we are activating, not cancelling.
                         // Why? Because if we're canceling, then we ALREADY checked these things above.
                         // But if we're activating, that means we checked the sender above only, and
-                        // thus we still need to check the recipient. 
+                        // thus we still need to check the recipient.
                         //
                         if (!bCancelling && pPlan->GetRecipientCountClosingNumbers() < 2)
                         {
@@ -7424,7 +7425,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                             // Are both of the accounts of the same Asset Type? VERY IMPORTANT!!
                             else if (pRecipientAcct->GetAssetTypeID() != theDepositorAccount.GetAssetTypeID())
                             {
-                                OTString	strSourceAssetID(theDepositorAccount.GetAssetTypeID()), 
+                                OTString	strSourceAssetID(theDepositorAccount.GetAssetTypeID()),
                                             strRecipAssetID(pRecipientAcct->GetAssetTypeID());
                                 OTLog::vOutput(0, "%s: ERROR - user attempted to %s a payment plan between dissimilar "
                                                "asset types:\n%s\n%s\n", __FUNCTION__, bCancelling ? "cancel" : "activate",
@@ -7437,9 +7438,9 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                             {
                                 OTLog::vOutput(0, "%s: ERROR verifying signature on the Recipient account.\n", __FUNCTION__);
                             }
-                            // This one is superfluous, but I'm leaving it. (pPlan and pRecip are both already 
+                            // This one is superfluous, but I'm leaving it. (pPlan and pRecip are both already
                             // matches to a 3rd value: source acct asset type ID.)
-                            else if (pRecipientAcct->GetAssetTypeID() != pPlan->GetAssetID()) 
+                            else if (pRecipientAcct->GetAssetTypeID() != pPlan->GetAssetID())
                             {
                                 const OTString strAssetID1(pPlan->GetAssetID()), strAssetID2(pRecipientAcct->GetAssetTypeID());
                                 OTLog::vOutput(0, "%s: ERROR wrong Asset Type ID (%s) on Recipient Acct. Expected per Plan: %s\n",
@@ -7450,9 +7451,9 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                             // I have both users AND both accounts and validated against the Payment Plan, signatures and all.
                             // The only other possibility is that the merchant is canceling the payment plan before the customer
                             // had a chance to confirm/activate it.
-                            else 
+                            else
                             {
-//                                theInboxAngel.SetCleanupTarget(*pInbox);                            
+//                                theInboxAngel.SetCleanupTarget(*pInbox);
                                 // -----------------------------------------------------
                                 // If activating, add it to Cron...
                                 //
@@ -7468,14 +7469,14 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                 if (!bCancelling && m_Cron.AddCronItem(*pPlan, &theNym, true, time(NULL))) // bSaveReceipt=true
                                 {
                                     //todo need to be able to "roll back" if anything inside this block fails.
-                                    
+
                                     // Now we can set the response item as an acknowledgement instead of the default (rejection)
                                     pResponseItem->SetStatus(OTItem::acknowledgement);
-                                    
+
                                     bOutSuccess = true;  // The payment plan activation was successful.
 
                                     OTLog::vOutput(2, "%s: Successfully added payment plan to Cron object.\n", __FUNCTION__);
-                                    
+
                                     // ***************************************************************
 
                                     // Server side, the Nym stores a list of all open cron item numbers.
@@ -7485,7 +7486,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     theIDSet.insert(pPlan->GetTransactionNum());
                                     theIDSet.insert(pPlan->GetClosingNum());
 //                                  theNym.SaveSignedNymfile(m_nymServer); // saved below
-                                    
+
                                     // This just marks the Closing number so I can't USE it again. (Since I'm using it as the closing
                                     // number for this cron item now.) I'm still RESPONSIBLE for the number until RemoveIssuedNumber()
                                     // is called. If we didn't call this here, then I could come back later and USE THE NUMBER AGAIN!
@@ -7499,21 +7500,21 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     // -------------------------------------
                                     // RemoveIssuedNum will be called for that original transaction number when the finalReceipt is created.
                                     // RemoveIssuedNum will be called for the Closing number when the finalReceipt is accepted.
-                                    
+
                                     // ***************************************************************
-                                    
+
                                     std::set<long> & theIDSet2 = pRecipientNym->GetSetOpenCronItems();
                                     theIDSet2.insert(pPlan->GetRecipientOpeningNum());
                                     theIDSet2.insert(pPlan->GetRecipientClosingNum());
 //                                  pRecipientNym->SaveSignedNymfile(m_nymServer); // saved below
-                                    
+
                                     // For recipient, I also remove the opening and closing numbers as AVAILABLE FOR USE.
                                     // But they aren't removed as ISSUED until later...
                                     // RemoveIssuedNum is called for the Recipient's opening number onFinalReceipt,
                                     // and it's called for the Recipient's closing number when that final receipt is closed out.
                                     RemoveTransactionNumber(*pRecipientNym, pPlan->GetRecipientOpeningNum(), false); // bSave=true
                                     RemoveTransactionNumber(*pRecipientNym, pPlan->GetRecipientClosingNum(), true);  // bSave=true
-                                    
+
                                     // ***************************************************************
                                     // Send success notice to other parties.
                                     // (So they can deal with their payments inbox and outpayments box,
@@ -7521,7 +7522,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     //
                                     long lOtherNewTransNumber = 0;
                                     IssueNextTransactionNumber(m_nymServer, lOtherNewTransNumber, false); // bStoreTheNumber = false
-                                    
+
                                     if (false == pPlan->SendNoticeToAllParties(true, //bSuccessMsg=true
                                                                                m_nymServer, SERVER_ID,
                                                                                lOtherNewTransNumber,
@@ -7539,13 +7540,13 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     if (bCancelling)
                                     {
                                         tranOut.SetAsCancelled();
-                                        
+
                                         OTLog::vOutput(0, "%s: Canceling a payment plan before it was ever activated. (At user's request.)\n",
                                                        __FUNCTION__);
                                     }
                                     else
                                         OTLog::vOutput(0, "%s: Unable to add payment plan to Cron. (Failed activating payment plan.)\n", __FUNCTION__);
-                                    
+
                                     // Send a failure notice to the other parties.
                                     //
                                     // DROP REJECTION NOTICE HERE TO ALL PARTIES....
@@ -7553,7 +7554,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     //
                                     long lOtherNewTransNumber = 0;
                                     IssueNextTransactionNumber(m_nymServer, lOtherNewTransNumber, false); // bStoreTheNumber = false
-                                    
+
                                     if (false == pPlan->SendNoticeToAllParties(false, //bSuccessMsg=false (OTItem::rejection)
                                                                                m_nymServer, SERVER_ID,
                                                                                lOtherNewTransNumber,
@@ -7565,12 +7566,12 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                         // (As a way of rejecting it.) This will cause rejection notices to go to all the other
                                         // parties, allowing them to harvest back their closing numbers.
                                         // Since that is expected to happen, that means if you have 2 parties, and the 2nd one
-                                        // "activates" it (without signing), then this piece of code here will DEFINITELY fail to 
+                                        // "activates" it (without signing), then this piece of code here will DEFINITELY fail to
                                         // send the rejection notice to the first party (since the 2nd one hadn't even signed the
                                         // thing yet.)
                                         //
                                         // (Since we expect that to normally happen, we don't log an error here.)
-                                        
+
     //                                  OTLog::vOutput(0, "%s: Failed notifying all parties about failed activation of payment plan: %ld.\n",
     //                                                 __FUNCTION__, pPlan->GetTransactionNum());
                                     }
@@ -7578,10 +7579,10 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                 // --------------------------------------------------------
                             }
                         }
-                    } // If recipient Nym successfully loaded from storage.	
+                    } // If recipient Nym successfully loaded from storage.
                 } // If Payment Plan successfully loaded from Transaction Item.
             } // else
-            
+
 			// If the payment plan WAS successfully added to Cron, then we don't need to
 			// delete it here, since Cron owns it now, and will deal with cleaning
 			// it up at the right time. (So I can't use OTCleanup on pPlan.)
@@ -7589,18 +7590,18 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
 			{
 				delete pPlan;
 				pPlan = NULL;
-			}			
-		} // if pItem = tranIn.GetItem(OTItem::paymentPlan)		
+			}
+		} // if pItem = tranIn.GetItem(OTItem::paymentPlan)
 	}
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -7613,20 +7614,20 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 {
 	// The outgoing transaction is an "atSmartContract", that is, "a reply to the smartContract request"
 	tranOut.SetType(OTTransaction::atSmartContract);
-	
+
 	OTItem * pItem					= NULL;
 	OTItem * pBalanceItem			= NULL;
 	OTItem * pResponseItem			= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will definitely be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-	
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
-	const OTIdentifier	SERVER_ID(m_strServerID),		ACTIVATOR_USER_ID(theNym), 
+	const OTIdentifier	SERVER_ID(m_strServerID),		ACTIVATOR_USER_ID(theNym),
 						SERVER_USER_ID(m_nymServer),	ACTIVATOR_ACCT_ID(theActivatingAccount),
                         USER_ID(theNym);
 	const OTString      strUserID(USER_ID);
@@ -7634,13 +7635,13 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 	pItem			= tranIn.GetItem(OTItem::smartContract);
 	pBalanceItem	= tranIn.GetItem(OTItem::transactionStatement);
 	// --------------------------------------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atSmartContract);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atSmartContract);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------------
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);	 
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------------
 	if ((NULL != pItem) &&
 		(false == NYM_IS_ALLOWED(strUserID.Get(), __transact_smart_contract)))
@@ -7654,8 +7655,8 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 	{
 		OTLog::vError("%s: Error, expected OTItem::smartContract and OTItem::transactionStatement.\n", __FUNCTION__);
 	}
-	else 
-	{	
+	else
+	{
 		if (ACTIVATOR_ACCT_ID != pItem->GetPurportedAccountID())
 		{
 			OTLog::vOutput(0, "%s: Error: Source account ID on the transaction does not match activator's account ID on the transaction item.\n",
@@ -7668,27 +7669,27 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 		else
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-			
+
 			// The response item will contain a copy of the request item. So I save it into a string
 			// here so it can be saved into the "in reference to" field.
 			pItem->SaveContractRaw(strInReferenceTo);
 			pBalanceItem->SaveContractRaw(strBalanceItem);
-			
+
 			// Server response item being added to server response transaction (tranOut)
 			// They're getting SOME sort of response item.
-			
+
 			pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 			pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-			
+
 			pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 			pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-			
+
 			// Also load up the smart contract from inside the transaction item.
 			OTString strContract;
 			pItem->GetAttachment(strContract);
 			OTSmartContract * pContract = new OTSmartContract(SERVER_ID);
 			OT_ASSERT(NULL != pContract);
-			
+
 			// If we failed to load the smart contract...
 			if ((false == pContract->LoadContractFromString(strContract)))
 			{
@@ -7716,11 +7717,11 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 
                 OTIdentifier FOUND_USER_ID;
                 OTIdentifier FOUND_ACCT_ID;
-                
+
                 if (!bCancelling) // ACTIVATING
                 {
                     OTLog::vOutput(0, "Attempting to activate smart contract...\n");
-                    
+
                     lFoundOpeningNum = pContract->GetOpeningNum();
                     lFoundClosingNum = pContract->GetClosingNum();
 
@@ -7733,14 +7734,14 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 
                     lFoundOpeningNum = pContract->GetOpeningNumber(theCancelerNymID);  // See if there's an opening number for the canceling Nym.
                     lFoundClosingNum = pContract->GetClosingNumber(ACTIVATOR_ACCT_ID); // See if there's a closing number for the current account.
-                    
+
                     if (lFoundOpeningNum > 0)
                         FOUND_USER_ID    = theCancelerNymID;
                     if (lFoundClosingNum > 0)
                         FOUND_ACCT_ID    = ACTIVATOR_ACCT_ID;
                 }
-                // ----------------------------------------------------                
-                
+                // ----------------------------------------------------
+
                 if (lFoundNum != lExpectedNum)
                 {
                     OTLog::vOutput(0, "%s: ERROR bad main opening transaction number on smart contract. Found: %ld  Expected: %ld\n"
@@ -7777,7 +7778,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                 // nyms that are already loaded" due to the substitution. So really it's just a matter of security review, and the below
                 // block could be commented out (or not.)  ALSO: If I'm going to enforce this, then I need to do it for ALL parties, not just
                 // the activator!
-                else if ((pContract->GetSenderUserID() == SERVER_USER_ID) || 
+                else if ((pContract->GetSenderUserID() == SERVER_USER_ID) ||
                          (NULL != pContract->FindPartyBasedOnNymAsAgent(m_nymServer)))
                 {
                     OTLog::vOutput(0, "%s: ** SORRY ** but the server itself is NOT ALLOWED to be a party "
@@ -7799,25 +7800,25 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                  opening numbers already burned, and the other half not, then it would be impossible to tell, based on
                  the failed message itself, which group YOU are in, and therefore whether YOU need to harvest that number
                  back or not (in order to avoid going out-of-sync.) THEREFORE WE BURN ALL OPENING NUMBERS so the client API
-                 can just assume the opening number is burned, if the transaction ran at all. (And, as normal, if the 
+                 can just assume the opening number is burned, if the transaction ran at all. (And, as normal, if the
                  transaction did NOT run at all, e.g. if the message failed before the transaction had a chance to run,
                  then all opening numbers are still good, for all parties--including the activator.)
-                 
+
                  -- NOTE: this means, if it succeeds, the opening numbers are marked as IN USE
                    (RemoveTransactionNum but NOT RemoveIssuedNum.) But if it FAILS, then we also need to RemoveIssuedNum...
                    So I'm adding that to VerifySmartContract.
-                 
+
                  -- Next, loop through all the asset accounts...
                  -- For each, get a pointer to the authorized agent and verify the CLOSING number for that asset acct.
                  (AND mark that number as "used but still issued.") Again, do this for ALL asset accounts on the smart
                  contract, even if some of them fail the verification process. (It's also okay to skip the accounts for
                  parties who failed verification.) If anything fails, then at the very end, add the closing numbers back
                  again as "available for use" on those nyms.
-                 
+
                  -- Since we're looping through all the agents, and looping through all the asset accounts, and
                  checking the agent for each asset account, then we might as well make sure that each agent is
                  a legit agent for the party, and that each account has a legit agent lording over it.
-                 */	
+                 */
                 else if (bCancelling && !pContract->VerifySignature(theNym))
                 {
                     OTLog::vOutput(0, "%s: Failed verifying canceler signature while canceling smart contract.\n", __FUNCTION__);
@@ -7834,49 +7835,49 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                     if (bCancelling)
                     {
                         tranOut.SetAsCancelled();
-                        
+
                         OTLog::vOutput(0, "%s: Canceling a smart contract before it was ever even activated (at user's request.)\n",
                                        __FUNCTION__);
                     }
                     else
                         OTLog::vOutput(0, "%s: This smart contract has FAILED to verify.\n", __FUNCTION__);
-                    
+
                     /*
-                     
+
                      ------ TODO: Smart Contracts -----------
-                     
+
                      Done:  Whenever a party confirms a smart contract (sending it on to the next party) then a copy of
                      the smart contract should go into that party's paymentOutbox. Same thing if the party is the last
                      one in the chain, and has activated it on to the server. A copy sits in the paymentOutbox until
                      that smart contract is either successfully activated, or FAILS to activate.
-                     
+
                      If a smart contract activates, OTAgreement::DropServerNoticeToNymbox already sends an
                      'acknowledgment' notice to all parties.
-                     
+
                      Done: If a smart contract fails to activate, it should ALSO send a notice ('rejection') to
                      all parties.
-                     
+
                      TODO: When a party receives a rejection notice in his Nymbox for a certain smart contract,
                      he looks up that same smart contract in his paymentOutbox, HARVESTS THE CLOSING NUMBERS, and
                      then moves the notice from his outpayments box to his recordBox.
                      NOTE: the notice might be in his payments inbox (sometimes) instead of his outpayments box.
                      Possibly even both. How so? See below. Point being: Need to check both, at this point.
-                     
+
                      Until this is added, then clients will go out of sync on rejected smart contracts. (Not the kind
                      of out-of-sync where they can't do any transactions, but rather, the kind where they have certain
                      numbers signed out forever but then never use them on anything because their client thinks those
                      numbers were already used on a smart contract somewhere, and without the above code they would
                      never have clawed back those numbers.)
                      // ------------
-                     
+
                      MORE DETAILS:
-                     
+
                      *** When I send a smart contract on to the next party, remember it's sitting in my payments inbox
                      at first. When I confirm it, a copy goes into my outpayments box. Then when I actually SEND it, a
                      copy goes into my outpayments box AGAIN. (This is already smart enough to remove this first copy,
                      when this happens.) If I activate it (rather than sending it on, perhaps I'm the last one) then it's
                      already in my outpayments box from the confirmation.
-                     
+
                      BUT WHEN DO I REMOVE IT FROM THE payments *INBOX* ? Answer: when the successful server reply is
                      received from the sendUserInstrument. What if I don't send it to another user? Perhaps I activate it.
                      In that case, whether the activation succeeds or fails, I will get an acknowledgment (or rejection)
@@ -7885,17 +7886,17 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                      response to the activation (just as when I get the server response to sendUserInstrument.)
                      If I never tried to activate it, and never tried to send it to the next party, and never discarded it,
                      then it should remain in my inbox, until I choose to do one of those things.
-                     
-                     
+
+
                      *** The sent contract remains in the outPayments box until:
                         A. Activated. When: When the acknowledgment of activation is received through the Nymbox.
                         B. Failed activation. When: Rejection of activation received through the Nymbox.
-                        C. Expiration. Expired notices may be harvested from the outpayments box. After all, 
+                        C. Expiration. Expired notices may be harvested from the outpayments box. After all,
                            they were apparently never activated or even attempted, since either of those actions
                            would have resulted in a rejection notice which would have already removed the outpayments
                            box. So the transaction numbers can be harvested. BUT make sure you have latest version of
                            files first, so you know for sure that the contract never really was activated or attempted.
-                     
+
                      *** What if the incoming smart contract is discarded, instead of confirmed?
                      This means it never goes into my outbox in the first place. It's in my inbox, then I discard it.
                      Then what? In one scenario, the user simply throws it away. He removes it from the box and never
@@ -7910,7 +7911,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                      on the message, so the server doesn't waste a lot of time figuring that out. Then the failure causes all
                      the parties who DID sign it, to get a rejection notification, and I can remove it from my payments inbox at
                      that time, when they are all removing it from their outboxes.
-                     
+
                      *** What if the incoming contract is discarded AFTER it was confirmed? From the outbox, meaning it hasn't
                      been activated yet. Perhaps I sent someone a cheque that hasn't been cashed yet. Perhaps I sent someone
                      a signed smart contract but they haven't activated it yet. Therefore I still have a chance to cancel it.
@@ -7920,8 +7921,8 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                      So I beat them to the punch, by activating / depositing it myself, which fails, and then we both get rejection
                      notices. That removes it from my outbox, as well as the inbox of the guy who I had been stuck waiting on in
                      the first place.
-                        
-                     
+
+
                      WHY WAS IT in whichever box it was in? (Just curious.) Well...
                      If inbox, because I discarded it without confirming, yet wanted to be nice and let people who
                      had, harvest their numbers back. (Otherwise they'd still eventually expire.) If outpayments box,
@@ -7933,72 +7934,72 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                      in order to cancel it and remove it from his outbox. He HAD been sitting there waiting on me, while
                      the notice sat in my inbox. But now that it's been invalidated at the server, I will get a rejection
                      notice from the server which should remove the one that was sitting in my inbox, to the record box.
-                     
+
                      // ---------------
-                     
+
                      ACTIONS:
-                     
+
                      -- When successful "sendUserInstrument" server reply is received,
                         remove that instrument from payments inbox. (If it's there -- it can be.)
-                     
+
                      -- When party receives notice that smart contract has been activated,
                         remove the instrument from outpayments box. (If it's there -- it can be.)
-                     
+
                      -- When party receives notice that smart contract has failed activation attempt, then remove
                         the instrument from payments inbox AND outpayments box. (If there -- could be for either.)
-                     
+
                      Does this cover all cases?
-                     
+
                      -- Any _sent_ instrument will properly be removed from the payments inbox.
                      -- It will go into the outpayments box. Once it activates, it will be removed again from that box. (For all parties.)
                      -- If it fails to activate, or if a party discards it from inbox (through a deliberate failed activation) or if a party
                         discards it from the outbox (through a deliberate failed activation) either way, it will be removed from both boxes.
                      -- If it expires while sitting in my inbox, my high-level API is responsible to remove it and harvest the numbers.
                      -- It if expires while sitting in my outbox, my high-level API is responsible to remove it and harvest the numbers.
-                     
+
                      It can be sent, discarded (from outbox, as a scramble-to-discard-it-before-next-guy-deposits it), discarded (from inbox,
                      when I decide I won't sign it), it can be ignored until expiration (either box), and it can legitimately activate or fail
                      to activate, and either way, all the parties who confirmed it will get a notice and harvest (if necessary.)
-                     
+
                      THIS SEEMS TO COVER ALL CASES!
-                     
+
                      One more thing, just noticed: Whether success or fail, the opening AND closing numbers are marked as "used but not closed"
                      on the Nym's record. We do this above for all Nyms just doing verification, since we can't fail halfway through and have
-                     inconsistent results between them. (All or nothing.) 
-                     
+                     inconsistent results between them. (All or nothing.)
+
                      THERFORE: 1. When the Nyms receive "SUCCESS" activating the smart contract, they ALL know that the opening AND closing
                      numbers are marked off as used, and can only be closed thereafter through the final receipt. 2. When the Nyms receive
                      FAILED activating the smart contract... Do they harvest the numbers back? NOT if they were all marked off already! So
                      next, if failure here I need to mark them all as closed, right? Since we failed? And then the client side, when he gets
-                     the notice, he needs to mark them as closed as well. (NOT harvest them.) We could alternately mark them all as "still 
+                     the notice, he needs to mark them as closed as well. (NOT harvest them.) We could alternately mark them all as "still
                      available" on the server side (or all closing numbers anyway) and mark all the opening numbers as closed. But whatever we
                      do, the client side needs to do the same thing.
                      The only time we harvest ALL the numbers is then when we haven't even sent it to the server yet? Otherwise we mark them
                      as "used and not closed" (if success) or if failure, we mark them as:  ????? Perhaps all still open except the main opening
                      one? Or perhaps all the closing numbers are still available and the opening numbers are burned? Or just ALL numbers are
                      burned? Which? Why?
-                     
+
                      NOTE: I found the answer in the comments in OTSmartContract::VerifySmartContract. (And there are very good reasons
                      involved for why I went the way that I did. Read it for those reasons.) Conclusion:
-                                      
+
                      If there is a failed activation attempt, then all parties get a notice, and all parties can CLOSE the opening number,
                      which was burned, and they can HARVEST the closing numbers, which were made new again.
-                     
+
                      But if the activation attempt succeeded, then all parties get a notice, and all parties will continue as they were:
                      with the opening AND closing numbers marked as "Still issued but in use." Their opening numbers will not close until
                      the smart contract is deactivated, and their closing numbers will not close until their final receipts have been closed.
                      You might ask, "Then why send the notice, if the transaction numbers are already set up correctly on the client side?"
                      The answer is, because the client still does things based on that notice. Like for example, it removes the confirmed
                      copy of that smart contract from its outpayments box.
-                     
+
                     */
-                    
+
                     // DROP REJECTION NOTICE HERE TO ALL PARTIES....
                     // SO THEY CAN CLAW BACK THEIR TRANSACTION #s....
                     //
                     long lNewTransactionNumber = 0;
                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                    
+
                     if (false == pContract->SendNoticeToAllParties(false, //bSuccessMsg=false (OTItem::rejection)
                                                                    m_nymServer, SERVER_ID,
                                                                    lNewTransactionNumber,
@@ -8015,10 +8016,10 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                         // yet.)
                         //
                         // (Since we expect that to normally happen, we don't log an error here.)
-                        
+
     //					OTLog::vOutput(0, "%s: Failed notifying all parties about failed activation of smart contract: %ld.\n",
     //								   __FUNCTION__, pContract->GetTransactionNum());
-                    }                
+                    }
                 } // smart contract is no good.
                 // *********************************************************
                 // The smart contract is good...
@@ -8032,7 +8033,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                 {
                     long lNewTransactionNumber = 0;
                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                    
+
                     if (false == pContract->SendNoticeToAllParties(true, //bSuccessMsg=true
                                                                    m_nymServer, SERVER_ID,
                                                                    lNewTransactionNumber,
@@ -8056,7 +8057,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                         // signed by the server--and changes over time as cron processes. (The original receipt
                         // can always be loaded when necessary.)
                         //
-                        
+
                         // Now we can set the response item as an acknowledgement instead of rejection (the default)
                         pResponseItem->SetStatus(OTItem::acknowledgement);
                         bOutSuccess = true;  // The smart contract activation was successful.
@@ -8079,18 +8080,18 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 			{
 				delete pContract;
 				pContract = NULL;
-			}			
+			}
 		} // if pItem = tranIn.GetItem(OTItem::smartContract)
 	}
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -8102,7 +8103,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 // DONE: The code inside here is just a copy of payment plan.
 // Make it into a REAL notarizeCancelCronItem so it actually works.
 //
-// Cancel a market offer. 
+// Cancel a market offer.
 // (DONE:  NEED TO CHANGE THIS INTO A TRANSACTION, INSTEAD OF A MESSAGE...)
 // Will become "Cancel Cron Item"
 //
@@ -8111,7 +8112,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
 //
 // Basically it allows you to cancel payment plans OR market offers, and places the appropriate
 // cancellation receipts (preferably through polymorphism, versus some huge 'if' block here...
-// 
+//
 // When cancelling it uses the closing numbers provided in the cron items.
 // Then code the expiration part in OTCron Item or wherever, which should use the SAME closing numbers.
 //
@@ -8119,32 +8120,32 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
 {
 	// The outgoing transaction is an "atCancelCronItem", that is, "a reply to the cancelCronItem request"
 	tranOut.SetType(OTTransaction::atCancelCronItem);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will definitely be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-    
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier SERVER_ID(m_strServerID), USER_ID(theNym);
-	
+
 	const OTString strUserID(USER_ID);
-	
+
     pBalanceItem = tranIn.GetItem(OTItem::transactionStatement);
     // -----------------------------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atCancelCronItem);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atCancelCronItem);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// -----------------------------------------------------------
 	if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_cancel_cron_item))
 	{
@@ -8170,28 +8171,28 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
 		// ASSET_ACCT_ID is the ID on the "from" Account that was passed in.
         //
 		const OTIdentifier ASSET_ACCT_ID(theAssetAccount);
-        
+
 		// Server response item being added to server response transaction (tranOut)
 		// They're getting SOME sort of response item.
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
         // **********************************************************************
 		if (false == (pBalanceItem->VerifyTransactionStatement(theNym, tranIn))) // isRealTransaction=true
 		{
 			OTLog::vOutput(0, "ERROR verifying transaction statement in NotarizeCancelCronItem.\n");
-		}		
+		}
         // **********************************************************************
-		else 
+		else
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-			            
+
             const long lReferenceToNum = pItem->GetReferenceToNum();
-            
+
 			// I'm using the operator== because it exists. (Although now I believe != exists also)
 			// If the ID on the "from" account that was passed in,
 			// does not match the "Acct From" ID on this transaction item
@@ -8199,15 +8200,15 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
 			{
 				OTLog::Output(0, "Error: Asset account ID on the transaction does not match asset account "
                               "ID on the transaction item.\n");
-			} 
+			}
 			else // LET'S SEE IF WE CAN REMOVE IT THEN...
-			{   
+			{
                 OTCronItem * pCronItem = m_Cron.GetItemByValidOpeningNum(lReferenceToNum);
-                
+
                 // Check for the closing number here (that happens in OTCronItem, since it's polymorphic.)
-                
+
                 bool bSuccess = false;
-                
+
                 if ((NULL != pCronItem) && (pCronItem->CanRemoveItemFromCron(theNym))) // see if theNym has right to remove the cronItem from processing.
                 {
 					bSuccess = m_Cron.RemoveCronItem(pCronItem->GetTransactionNum(), theNym); // <=====
@@ -8222,12 +8223,12 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
                 {
                     // Now we can set the response item as an acknowledgement instead of the default (rejection)
                     pResponseItem->SetStatus(OTItem::acknowledgement);
-                    
+
                     bOutSuccess = true;  // The "cancel cron item" was successful.
 
-                    OTLog::vOutput(2, "Successfully removed Cron Item from Cron object, based on ID: %ld\n", 
+                    OTLog::vOutput(2, "Successfully removed Cron Item from Cron object, based on ID: %ld\n",
 								   (NULL != pCronItem) ? pCronItem->GetTransactionNum() : lReferenceToNum);
-                    
+
                     // Any transaction numbers that need to be cleared, happens inside RemoveCronItem().
                 }
                 else
@@ -8237,7 +8238,7 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
             }
 		} // transaction statement verified.
 	} // if pItem = tranIn.GetItem(OTItem::cancelCronItem)
-	else 
+	else
 	{
         OTString strTemp(tranIn);
 		OTLog::vOutput(0, "Error, expected OTItem::cancelCronItem "
@@ -8249,9 +8250,9 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save.
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -8266,42 +8267,42 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 {
 	// The outgoing transaction is an "atExchangeBasket", that is, "a reply to the exchange basket request"
 	tranOut.SetType(OTTransaction::atExchangeBasket);
-	
+
 	OTItem * pItem			= tranIn.GetItem(OTItem::exchangeBasket);
 	OTItem * pBalanceItem	= tranIn.GetItem(OTItem::balanceStatement);
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-	
-    const OTIdentifier	USER_ID(theNym), 
-                        SERVER_ID(m_strServerID), 
+
+    const OTIdentifier	USER_ID(theNym),
+                        SERVER_ID(m_strServerID),
                         BASKET_CONTRACT_ID(theAccount.GetAssetTypeID()),
                         ACCOUNT_ID(theAccount);
-    
+
 	const OTString strUserID(USER_ID);
 	// -------------------------------------------------------------
-    
-	OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
-	OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
-	
+
+	OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
+	OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
+
 	OTCleanup<OTLedger> theInboxAngel(pInbox);
 	OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 	// ----------------------------------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atExchangeBasket);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atExchangeBasket);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atBalanceStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------
     bool bSuccess = false;
-    
+
 	if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_exchange_basket))
 	{
 		OTLog::vOutput(0, "OTServer::NotarizeExchangeBasket: User %s cannot do this transaction (All basket exchanges are disallowed in server.cfg)\n",
@@ -8323,27 +8324,27 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 	{
 		OTLog::Error("Error loading or verifying outbox.\n");
 	}
-	else 
+	else
 	{
 //      theInboxAngel.SetCleanupTarget(*pInbox);
 //      theOutboxAngel.SetCleanupTarget(*pOutbox);
         // ------------------------------------------
-        
+
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-        
+
         // ----------------------------------------------
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pBalanceItem->GetTransactionNum()); // This response item is IN RESPONSE to tranIn's balance agreement
-        		
+
 		// ***************************************************************************
 //      OTLog::Error("BELOW THE LOOP===> ABout to call VERIFY BALANCE STATEMENT \n");
-        
+
 		// Now after all that setup, we do the balance agreement!
-		if (false == pBalanceItem->VerifyBalanceStatement(0,// the one balance agreement that doesn't change any balances. 
+		if (false == pBalanceItem->VerifyBalanceStatement(0,// the one balance agreement that doesn't change any balances.
 															   theNym,  // Could have been a transaction agreement.
 															   *pInbox, // Still could be, in fact....
 															   *pOutbox,
@@ -8351,32 +8352,32 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 															   tranIn))
 		{
 			OTLog::vOutput(0, "OTServer::NotarizeExchangeBasket: ERROR verifying balance statement.\n");
-            
+
 		}
         // **********************************************************************
 
 		else // BALANCE AGREEMENT WAS SUCCESSFUL.......
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the balance agreement was successful.
-            
+
 			// --------------------------------------------------------------------
-			
+
             // Set up some account pointer lists for later...
             listOfAccounts          listUserAccounts, listServerAccounts;
             std::list<OTLedger*>    listInboxes;
-            
+
         	// Here's the request from the user.
             OTString strBasket;
             OTBasket theBasket, theRequestBasket;
 
             pItem->GetAttachment(strBasket);
             // -------------------------------------
-            
+
             long lTransferAmount = 0;
-            
-            // Now we have the Contract ID from the basket account, 
+
+            // Now we have the Contract ID from the basket account,
             // we can get a pointer to its asset contract...
-            
+
             OTIdentifier BASKET_ACCOUNT_ID;
 
             OTAccount * pBasketAcct = NULL;
@@ -8387,8 +8388,8 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
             {
                 OTLog::Error("OTServer::NotarizeExchangeBasket: Asset type is not a basket currency.\n");
             }
-            else if (!strBasket.Exists() || 
-                     !theRequestBasket.LoadContractFromString(strBasket) || 
+            else if (!strBasket.Exists() ||
+                     !theRequestBasket.LoadContractFromString(strBasket) ||
                      !theRequestBasket.VerifySignature(theNym))
             {
                 OTLog::Error("OTServer::NotarizeExchangeBasket: Expected verifiable basket object to be attached to exchangeBasket item.\n");
@@ -8404,10 +8405,10 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
             else
             {   // Load the basket account and make sure it exists.
                 pBasketAcct = OTAccount::LoadExistingAccount(BASKET_ACCOUNT_ID, SERVER_ID);
-                
+
                 // If the pointer is NULL, that works too. Otherwise it cleans up the object at the end of this function.
-                theBasketAcctGuardian.SetCleanupTargetPointer(pBasketAcct); 
-                
+                theBasketAcctGuardian.SetCleanupTargetPointer(pBasketAcct);
+
                 if (NULL == pBasketAcct)
                 {
                     OTLog::Error("ERROR loading the basket account in OTServer::NotarizeExchangeBasket\n");
@@ -8417,17 +8418,17 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                 else if (!pBasketAcct->VerifySignature(m_nymServer))
                 {
                     OTLog::Error("ERROR verifying signature on the basket account in OTServer::NotarizeExchangeBasket\n");
-                }		
-                else 
+                }
+                else
                 {
                     // Now we get a pointer to its asset contract...
                     OTAssetContract * pContract = GetAssetContract(BASKET_CONTRACT_ID);
-                    
+
                     // Now let's load up the actual basket, from the actual asset contract.
-                    if (pContract && 
-                        theBasket.LoadContractFromString(pContract->GetBasketInfo()) && 
+                    if (pContract &&
+                        theBasket.LoadContractFromString(pContract->GetBasketInfo()) &&
                         theBasket.VerifySignature(m_nymServer) &&
-                        theBasket.Count() == theRequestBasket.Count() && 
+                        theBasket.Count() == theRequestBasket.Count() &&
                         theBasket.GetMinimumTransfer() == theRequestBasket.GetMinimumTransfer())
                     {
                         // -----------------------------------------------------------------------------------
@@ -8435,16 +8436,16 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                         //
                         std::set<OTIdentifier> setOfAccounts;
                         setOfAccounts.insert(theRequestBasket.GetRequestAccountID());
-                        
+
                         bool bFoundSameAcctTwice = false;
-                        
+
                         for (int i = 0; i < theRequestBasket.Count(); i++)
                         {
                             BasketItem * pItem = theRequestBasket.At(i);
                             OT_ASSERT(NULL != pItem);
                             // -------------------------------------
                             std::set<OTIdentifier>::iterator it_account = setOfAccounts.find(pItem->SUB_ACCOUNT_ID);
- 
+
                             if (setOfAccounts.end() != it_account) // The account appears twice!!
                             {
                                 const OTString strSubID(pItem->SUB_ACCOUNT_ID);
@@ -8464,8 +8465,8 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                             {
                                 BasketItem * pBasketItem	= theBasket.At(i);
                                 BasketItem * pRequestItem	= theRequestBasket.At(i); // we already know these are the same length
-                                
-                                // if not equal 
+
+                                // if not equal
                                 if (!(pBasketItem->SUB_CONTRACT_ID == pRequestItem->SUB_CONTRACT_ID))
                                 {
                                     OTLog::Error("Error: expected asset type IDs to match in OTServer::NotarizeExchangeBasket\n");
@@ -8481,8 +8482,8 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     bSuccess = false;
                                     break;
                                 }
-                                
-                                else if (false == VerifyTransactionNumber(theNym, pRequestItem->lClosingTransactionNo)) 
+
+                                else if (false == VerifyTransactionNumber(theNym, pRequestItem->lClosingTransactionNo))
                                 {
                                     OTLog::Error("Error: Basket sub-currency closing number didn't verify . OTServer::NotarizeExchangeBasket.\n");
                                     bSuccess = false;
@@ -8491,20 +8492,20 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 else // if equal
                                 {
                                     bSuccess = true;
-                                    
+
                                     // --------------------------------------------------------
                                     // Load up the two accounts and perform the exchange...
                                     OTAccount * pUserAcct	= OTAccount::LoadExistingAccount(pRequestItem->SUB_ACCOUNT_ID, SERVER_ID);
-                                    
+
                                     if (NULL == pUserAcct)
                                     {
                                         OTLog::Error("ERROR loading a user's asset account in OTServer::NotarizeExchangeBasket\n");
                                         bSuccess = false;
                                         break;
                                     }
-                                    // --------------------------------------------------------                                
+                                    // --------------------------------------------------------
                                     OTAccount * pServerAcct	= OTAccount::LoadExistingAccount(pBasketItem->SUB_ACCOUNT_ID, SERVER_ID);
-                                    
+
                                     if (NULL == pServerAcct)
                                     {
                                         OTLog::Error("ERROR loading a basket sub-account in OTServer::NotarizeExchangeBasket\n");
@@ -8514,7 +8515,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     // --------------------------------------------------------
                                     // Load up the inbox for the user's sub account, so we can drop the receipt.
                                     //
-                                    OTLedger * pSubInbox = pUserAcct->LoadInbox(m_nymServer); 
+                                    OTLedger * pSubInbox = pUserAcct->LoadInbox(m_nymServer);
 
                                     if (NULL == pSubInbox) // || !pSubInbox->VerifyAccount(m_nymServer)) OTAccount::Load (above) already verifies.
                                     {
@@ -8530,7 +8531,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     listUserAccounts.push_back(pUserAcct);
                                     listServerAccounts.push_back(pServerAcct);
                                     listInboxes.push_back(pSubInbox);
-                                    
+
                                     // Do they verify?
                                     // I call VerifySignature here since VerifyContractID was already called in LoadExistingAccount().
                                     if (pUserAcct->GetAssetTypeID() != pBasketItem->SUB_CONTRACT_ID)
@@ -8538,27 +8539,27 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                         OTLog::Error("ERROR verifying asset type on a user's account in OTServer::NotarizeExchangeBasket\n");
                                         bSuccess = false;
                                         break;
-                                    }		
+                                    }
                                     else if (!pUserAcct->VerifySignature(m_nymServer))
                                     {
                                         OTLog::Error("ERROR verifying signature on a user's asset account in OTServer::NotarizeExchangeBasket\n");
                                         bSuccess = false;
                                         break;
-                                    }		
+                                    }
                                     else if (!pServerAcct->VerifySignature(m_nymServer))
                                     {
                                         OTLog::Error("ERROR verifying signature on a basket sub-account in OTServer::NotarizeExchangeBasket\n");
                                         bSuccess = false;
                                         break;
-                                    }		
+                                    }
                                     else  // -------------------------------------------------------------------------------
                                     {
                                         // the amount being transferred between these two accounts is the minimum transfer amount
-                                        // for the sub-account on the basket, multiplied by 
+                                        // for the sub-account on the basket, multiplied by
                                         lTransferAmount = (pBasketItem->lMinimumTransferAmount * theRequestBasket.GetTransferMultiple());
-                                        
+
     //                                  bSuccess = false; // probably superfluous.
-                                        
+
                                         // user is performing exchange IN
                                         if (theRequestBasket.GetExchangingIn())
                                         {
@@ -8567,7 +8568,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                                 if (pServerAcct->Credit(lTransferAmount))
                                                     bSuccess = true;
                                                 else
-                                                {   // the server credit failed. 
+                                                {   // the server credit failed.
                                                     OTLog::Error(" OTServer::NotarizeExchangeBasket: Failure crediting server acct.\n");
 
                                                     // Since we debited the user's acct already, let's put that back.
@@ -8578,23 +8579,23 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                                     break;
                                                 }
                                             }
-                                            else 
+                                            else
                                             {
                                                 OTLog::Output(0, "OTServer::NotarizeExchangeBasket: Unable to Debit user account.\n");
                                                 bSuccess = false;
                                                 break;
                                             }
                                         }
-                                        else // user is peforming exchange OUT 
+                                        else // user is peforming exchange OUT
                                         {
                                             if (pServerAcct->Debit(lTransferAmount))
                                             {
                                                 if (pUserAcct->Credit(lTransferAmount))
                                                     bSuccess = true;
                                                 else
-                                                {   // the user credit failed. 
+                                                {   // the user credit failed.
                                                     OTLog::Error(" OTServer::NotarizeExchangeBasket: Failure crediting user acct.\n");
-                                                    
+
                                                     // Since we debited the server's acct already, let's put that back.
                                                     if (false == pServerAcct->Credit(lTransferAmount))
                                                         OTLog::Error(" OTServer::NotarizeExchangeBasket: Failure crediting back server "
@@ -8603,12 +8604,12 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                                     break;
                                                 }
                                             }
-                                            else 
+                                            else
                                             {
                                                 OTLog::Output(0, " OTServer::NotarizeExchangeBasket: Unable to Debit server account.\n");
                                                 bSuccess = false;
                                                 break;
-                                            }								
+                                            }
                                         }
                                         // -----------------------------------------------------------------------------
                                         // Drop the receipt -- accounts were debited and credited properly.
@@ -8617,42 +8618,42 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                         {	// need to be able to "roll back" if anything inside this block fails.
                                             // update: actually does pretty good roll-back as it is. The debits and credits
                                             // don't save unless everything is a success.
-                                            
+
                                             // Generate new transaction number (for putting the basketReceipt in the exchanger's inbox.)
                                             // todo check this generation for failure (can it fail?)
                                             long lNewTransactionNumber = 0;
-                                            
+
                                             IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                                            
+
                                             OTTransaction * pInboxTransaction	= OTTransaction::GenerateTransaction(*pSubInbox, OTTransaction::basketReceipt, lNewTransactionNumber);
-                                            
+
                                             OTItem * pItemInbox = OTItem::CreateItemFromTransaction(*pInboxTransaction, OTItem::basketReceipt);
-                                            
+
                                             // these may be unnecessary, I'll have to check CreateItemFromTransaction. I'll leave em.
                                             OT_ASSERT(NULL != pItemInbox);
-                                            
+
                                             pItemInbox->SetStatus(OTItem::acknowledgement); // the default.
                                             pItemInbox->SetAmount(theRequestBasket.GetExchangingIn() ? lTransferAmount*(-1) : lTransferAmount);
-                                            
+
                                             pItemInbox->SignContract(m_nymServer);
                                             pItemInbox->SaveContract();
 
                                             pInboxTransaction->AddItem(*pItemInbox); // Add the inbox item to the inbox transaction, so we can add to the inbox ledger.
-                                            
+
                                             pInboxTransaction->SetNumberOfOrigin(*pItem);
-                                            
+
                                             // The "exchangeBasket request" OTItem is saved as the "In Reference To" field
                                             // on the inbox basketReceipt transaction.
                                             //todo put these two together in a method.
                                             pInboxTransaction->SetReferenceString(strInReferenceTo);
                                             pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
                                             pInboxTransaction->SetClosingNum(pRequestItem->lClosingTransactionNo); // Here is the number the user wishes to sign-off by accepting this receipt.
-                                            
+
                                             // Now we have created a new transaction from the server to the sender's inbox (for a receipt).
                                             // Let's sign and save it...
                                             pInboxTransaction->SignContract(m_nymServer);
                                             pInboxTransaction->SaveContract();
-                                            
+
                                             // Here the transaction we just created is actually added to the exchanger's inbox.
                                             pSubInbox->AddTransaction(*pInboxTransaction);
                                             pInboxTransaction->SaveBoxReceipt(*pSubInbox);
@@ -8664,13 +8665,13 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                             // Load up the two main accounts and perform the exchange...
                             // (Above we did the sub-accounts for server and user. Now we do the main accounts for server and user.)
                             //
-                            
+
                             // At this point, if we have successfully debited / credited the sub-accounts.
                             // then we need to debit and credit the user's main basket account and the server's basket issuer account.
                             if ((true == bSuccess) && (NULL != pBasketAcct))
                             {
                                 lTransferAmount =  (theRequestBasket.GetMinimumTransfer() * theRequestBasket.GetTransferMultiple());
-                                
+
                                 // Load up the two accounts and perform the exchange...
                                 // user is performing exchange IN
                                 if (theRequestBasket.GetExchangingIn())
@@ -8685,17 +8686,17 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 
                                             if (false == pBasketAcct->Credit(lTransferAmount))
                                                 OTLog::Error("OTServer::NotarizeExchangeBasket: Failed crediting back basket issuer account.\n");
-                                            
+
                                             bSuccess = false;
                                         }
                                     }
-                                    else 
+                                    else
                                     {
                                         bSuccess = false;
                                         OTLog::Output(0, "Unable to Debit basket issuer account, in OTServer::NotarizeExchangeBasket\n");
                                     }
                                 }
-                                else // user is peforming exchange OUT 
+                                else // user is peforming exchange OUT
                                 {
                                     if (theAccount.Debit(lTransferAmount))
                                     {
@@ -8704,21 +8705,21 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                         else
                                         {
                                             OTLog::Error("OTServer::NotarizeExchangeBasket: Failed crediting basket issuer account.\n");
-                                            
+
                                             if (false == theAccount.Credit(lTransferAmount))
                                                 OTLog::Error("OTServer::NotarizeExchangeBasket: Failed crediting back user basket account.\n");
-                                            
+
                                             bSuccess = false;
                                         }
                                     }
-                                    else 
+                                    else
                                     {
                                         bSuccess = false;
                                         OTLog::Output(0, "Unable to Debit user basket account in OTServer::NotarizeExchangeBasket\n");
-                                    }								
+                                    }
                                 }
-                                
-                                
+
+
                                 // -----------------------------------------------------------------------------
                                 // Drop the receipt -- accounts were debited and credited properly.
                                 //
@@ -8726,21 +8727,21 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 {	// need to be able to "roll back" if anything inside this block fails.
                                     // update: actually does pretty good roll-back as it is. The debits and credits
                                     // don't save unless everything is a success.
-                                    
+
                                     // Generate new transaction number (for putting the basketReceipt in the exchanger's inbox.)
                                     // todo check this generation for failure (can it fail?)
                                     long lNewTransactionNumber = 0;
-                                    
+
                                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                                    
+
                                     OTTransaction * pInboxTransaction	= OTTransaction::GenerateTransaction(*pInbox, OTTransaction::basketReceipt,
                                                                                                              lNewTransactionNumber);
-                                    
+
                                     OTItem * pItemInbox		= OTItem::CreateItemFromTransaction(*pInboxTransaction, OTItem::basketReceipt);
-                                    
+
                                     // these may be unnecessary, I'll have to check CreateItemFromTransaction. I'll leave em.
                                     OT_ASSERT(NULL != pItemInbox);
-                                    
+
                                     pItemInbox->SetStatus(OTItem::acknowledgement); // the default.
                                     pItemInbox->SetAmount(theRequestBasket.GetExchangingIn() ? lTransferAmount : lTransferAmount*(-1));
 
@@ -8748,45 +8749,45 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     pItemInbox->SaveContract();
 
                                     pInboxTransaction->AddItem(*pItemInbox); // Add the inbox item to the inbox transaction, so we can add to the inbox ledger.
-                                    
+
                                     pInboxTransaction->SetNumberOfOrigin(*pItem);
-                                    
+
                                     // The exchangeBasket request OTItem is saved as a "in reference to" field,
                                     // on the inbox basketReceipt transaction.
                                     //todo put these two together in a method.
                                     pInboxTransaction->SetReferenceString(strInReferenceTo);
                                     pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());
                                     pInboxTransaction->SetClosingNum(theRequestBasket.GetClosingNum()); // So the exchanger can sign-off on this closing num by accepting the basket receipt on his main basket account.
-                                    
+
                                     // Now we have created a new transaction from the server to the sender's inbox
                                     // Let's sign and save it...
                                     pInboxTransaction->SignContract(m_nymServer);
                                     pInboxTransaction->SaveContract();
-                                    
+
                                     // Here the transaction we just created is actually added to the source acct's inbox.
                                     pInbox->AddTransaction(*pInboxTransaction);
                                     pInboxTransaction->SaveBoxReceipt(*pInbox);
                                 }
                             }
-                            else 
+                            else
                             {
                                 OTLog::Error("Error loading or verifying user's main basket account in OTServer::NotarizeExchangeBasket\n");
                                 bSuccess = false;
                             }
                             // ---------------------------------------------------------------------------------------
-                            
-                            
+
+
                             // At this point, we have hopefully credited/debited ALL the relevant accounts.
                             // So now, let's Save them ALL to disk.. (and clean them up.)
                             OTAccount * pAccount = NULL;
-                            
+
                             // empty the list of USER accounts (and save to disk, if everything was successful.)
                             while (!listUserAccounts.empty())
                             {
                                 pAccount = listUserAccounts.front();
 								if (NULL == pAccount) OT_FAIL;
                                 listUserAccounts.pop_front();
-                                
+
                                 if (true == bSuccess)
                                 {
                                     pAccount->ReleaseSignatures();
@@ -8794,7 +8795,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     pAccount->SaveContract();
                                     pAccount->SaveAccount();
                                 }
-                                
+
                                 delete pAccount; pAccount=NULL;
                             }
                             // ---------------------------------------------
@@ -8805,7 +8806,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 								if (NULL == pAccount) OT_FAIL;
 
                                 listServerAccounts.pop_front();
-                                
+
                                 if (true == bSuccess)
                                 {
                                     pAccount->ReleaseSignatures();
@@ -8813,7 +8814,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     pAccount->SaveContract();
                                     pAccount->SaveAccount();
                                 }
-                                
+
                                 delete pAccount; pAccount=NULL;
                             }
                             // ---------------------------------------------
@@ -8823,7 +8824,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 OTLedger * pTempInbox = listInboxes.front();
 								if (NULL == pTempInbox) OT_FAIL;
                                 listInboxes.pop_front();
-                                
+
                                 if (true == bSuccess)
                                 {
                                     pTempInbox->ReleaseSignatures();
@@ -8831,7 +8832,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     pTempInbox->SaveContract();
                                     pTempInbox->SaveInbox();
                                 }
-                                
+
                                 delete pTempInbox; pTempInbox=NULL;
                             }
                             // ---------------------------------------------
@@ -8841,12 +8842,12 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 pInbox->SignContract(m_nymServer);
                                 pInbox->SaveContract();
                                 theAccount.SaveInbox(*pInbox);
-                                
+
                                 theAccount.ReleaseSignatures();
                                 theAccount.SignContract(m_nymServer);
                                 theAccount.SaveContract();
                                 theAccount.SaveAccount();
-                                
+
                                 pBasketAcct->ReleaseSignatures();
                                 pBasketAcct->SignContract(m_nymServer);
                                 pBasketAcct->SaveContract();
@@ -8861,7 +8862,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                     BasketItem * pRequestItem	= theRequestBasket.At(i);
 
                                     OT_ASSERT(NULL != pRequestItem);
-                                    
+
                                     // This just removes the number so I can't USE it.
                                     // I'm still RESPONSIBLE for the number until RemoveIssuedNumber() is called.
                                     //
@@ -8870,28 +8871,28 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 RemoveTransactionNumber(theNym, theRequestBasket.GetClosingNum(), true); // bSave=true
                                 // ----------------------------------------------------
                                 pResponseItem->SetStatus(OTItem::acknowledgement); // the exchangeBasket was successful.
-                                
+
                                 bOutSuccess = true;  // The exchangeBasket was successful.
                             }
                         } // Let's do it!
                     }
-                    else 
+                    else
                     {
                         OTLog::Error("Error finding asset contract for basket, or loading the basket from it, or verifying\n"
                                      "the signature on that basket, or the request basket didn't match actual basket.\n");
                     }
                 } // pBasket exists and signature verifies
-                // NO need to cleanup pBasketAcct here, since OTCleanup handles it now.                
+                // NO need to cleanup pBasketAcct here, since OTCleanup handles it now.
             } // theRequestBasket loaded properly.
 		} // else (balance agreement verified.)
 	} // Balance Agreement item found.
-	
+
 	// I put this here so it's signed/saved whether the balance agreement itself was successful OR NOT.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract();
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -8903,56 +8904,56 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 /*
 void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@exchangeBasket";// reply to exchangeBasket
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAssetID		= MsgIn.m_strAssetID;// basket asset type ID
 	msgOut.m_bBool			= MsgIn.m_bBool;	// exchange in or out?
-	
-	const OTIdentifier	USER_ID(theNym), SERVER_ID(m_strServerID), 
-                        SERVER_USER_ID(m_nymServer), 
+
+	const OTIdentifier	USER_ID(theNym), SERVER_ID(m_strServerID),
+                        SERVER_USER_ID(m_nymServer),
                         BASKET_CONTRACT_ID(msgOut.m_strAssetID);
-	
+
 	OTIdentifier BASKET_ACCOUNT_ID;
-	
+
 	// Either way, we need to send the user's command back to him as well.
 	{
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
-    
-    
-    
+
+
+
+
 	// Set up some account pointer lists for later...
 	listOfAccounts  listUserAccounts, listServerAccounts;
-	
+
 	// Here's the request from the user.
 	OTString strBasket(MsgIn.m_ascPayload);
 	OTBasket theBasket, theRequestBasket;
-	
+
 	long lTransferAmount = 0;
-    
-	// Now we have the Contract ID from the basket account, 
+
+	// Now we have the Contract ID from the basket account,
 	// we can get a pointer to its asset contract...
-	
+
 	OTIdentifier BASKET_ACCOUNT_ID;
 	bool bLookup = LookupBasketAccountIDByContractID(BASKET_CONTRACT_ID, BASKET_ACCOUNT_ID);
-	
+
 	OTAccount * pBasketAcct = NULL;
 	OTCleanup<OTAccount> theBasketAcctGuardian;
-	
+
 	// if the account we received IS INDEED a basket account, AND
 	// we can load the request basket from a string, AND verify its signature...
 	if (bLookup && theRequestBasket.LoadContractFromString(strBasket) && theRequestBasket.VerifySignature(theNym))
-	{		
+	{
 		// Load the basket account and make sure it exists.
 		pBasketAcct = OTAccount::LoadExistingAccount(BASKET_ACCOUNT_ID, SERVER_ID);
-		
+
 		// If the pointer is NULL, that works too. Otherwise it cleans up the object at the end of this function.
-		theBasketAcctGuardian.SetCleanupTargetPointer(pBasketAcct); 
-		
+		theBasketAcctGuardian.SetCleanupTargetPointer(pBasketAcct);
+
 		if (NULL == pBasketAcct)
 		{
 			OTLog::Error("ERROR loading the basket account in OTServer::UserCmdExchangeBasket\n");
@@ -8964,17 +8965,17 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 		{
 			OTLog::Error("ERROR verifying signature on the basket account in OTServer::UserCmdExchangeBasket\n");
 			msgOut.m_bSuccess = false;
-		}		
-		else 
+		}
+		else
 		{
 			// Now we get a pointer to its asset contract...
 			OTAssetContract * pContract = GetAssetContract(BASKET_CONTRACT_ID);
-			
+
 			// Now let's load up the actual basket, from the actual asset contract.
-			if (pContract && 
-				theBasket.LoadContractFromString(pContract->GetBasketInfo()) && 
+			if (pContract &&
+				theBasket.LoadContractFromString(pContract->GetBasketInfo()) &&
 				theBasket.VerifySignature(m_nymServer) &&
-				theBasket.Count() == theRequestBasket.Count() && 
+				theBasket.Count() == theRequestBasket.Count() &&
 				theBasket.GetMinimumTransfer() == theRequestBasket.GetMinimumTransfer())
 			{
 				// Loop through the request AND the actual basket TOGETHER...
@@ -8982,8 +8983,8 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 				{
 					BasketItem * pBasketItem	= theBasket.At(i);
 					BasketItem * pRequestItem	= theRequestBasket.At(i); // we already know these are the same length
-					
-					// if not equal 
+
+					// if not equal
 					if (!(pBasketItem->SUB_CONTRACT_ID == pRequestItem->SUB_CONTRACT_ID))
 					{
 						OTLog::Error("Error: expected asset type IDs to match in OTServer::UserCmdExchangeBasket\n");
@@ -8993,34 +8994,34 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 					else // if equal
 					{
 						msgOut.m_bSuccess = true;
-						
+
 						// Load up the two accounts and perform the exchange...
 						OTAccount * pUserAcct	= OTAccount::LoadExistingAccount(pRequestItem->SUB_ACCOUNT_ID, SERVER_ID);
-						
+
 						if (NULL == pUserAcct)
 						{
 							OTLog::Error("ERROR loading a user's asset account in OTServer::UserCmdExchangeBasket\n");
 							msgOut.m_bSuccess = false;
 							break;
 						}
-                        
+
 						OTAccount * pServerAcct	= OTAccount::LoadExistingAccount(pBasketItem->SUB_ACCOUNT_ID, SERVER_ID);
-                        
+
 						if (NULL == pServerAcct)
 						{
 							OTLog::Error("ERROR loading a basket sub-account in OTServer::UserCmdExchangeBasket\n");
 							msgOut.m_bSuccess = false;
 							break;
 						}
-						
+
 						// I'm preserving these points, to be deleted at the end.
 						// They won't be saved until after ALL debits/credits were successful.
 						// Once ALL exchanges are done, THEN it loops through and saves / deletes
 						// all the accounts.
 						listUserAccounts.push_back(pUserAcct);
 						listServerAccounts.push_back(pServerAcct);
-                        
-						
+
+
 						// Do they verify?
 						// I call VerifySignature here since VerifyContractID was already called in LoadExistingAccount().
 						if (!(pUserAcct->GetAssetTypeID() == pBasketItem->SUB_CONTRACT_ID))
@@ -9028,25 +9029,25 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 							OTLog::Error("ERROR verifying asset type on a user's account in OTServer::UserCmdExchangeBasket\n");
 							msgOut.m_bSuccess = false;
 							break;
-						}		
+						}
 						else if (!pUserAcct->VerifySignature(m_nymServer))
 						{
 							OTLog::Error("ERROR verifying signature on a user's asset account in OTServer::UserCmdExchangeBasket\n");
 							msgOut.m_bSuccess = false;
 							break;
-						}		
+						}
 						else if (!pServerAcct->VerifySignature(m_nymServer))
 						{
 							OTLog::Error("ERROR verifying signature on a basket sub-account in OTServer::UserCmdExchangeBasket\n");
 							msgOut.m_bSuccess = false;
 							break;
-						}		
-						else 
+						}
+						else
 						{
 							// the amount being transferred between these two accounts is the minimum transfer amount
-							// for the sub-account on the basket, multiplied by 
+							// for the sub-account on the basket, multiplied by
 							lTransferAmount = (pBasketItem->lMinimumTransferAmount * theRequestBasket.GetTransferMultiple());
-                            
+
 							// user is performing exchange IN
 							if (msgOut.m_bBool)
 							{
@@ -9054,55 +9055,55 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 								{
 									msgOut.m_bSuccess = true;
 								}
-								else 
+								else
 								{
 									msgOut.m_bSuccess = false;
 									OTLog::Output(0, "Unable to Debit user account, or Credit server account, in OTServer::UserCmdExchangeBasket\n");
 									break;
 								}
 							}
-							else // user is peforming exchange OUT 
+							else // user is peforming exchange OUT
 							{
 								if (pUserAcct->Credit(lTransferAmount) && pServerAcct->Debit(lTransferAmount))
 								{
 									msgOut.m_bSuccess = true;
 								}
-								else 
+								else
 								{
 									msgOut.m_bSuccess = false;
 									OTLog::Output(0, "Unable to Credit user account, or Debit server account, in OTServer::UserCmdExchangeBasket\n");
 									break;
-								}								
+								}
 							}
-						}							
+						}
 					}
 				} // for
 			}
-			else 
+			else
 			{
 				OTLog::Error("Error finding asset contract for basket, or loading the basket from it, or verifying\n"
                              "the signature on that basket, or the request basket didn't match actual basket.\n");
 			}
 		} // pBasket exists and signature verifies
-        
+
 		// *****************************************************************************
-        
+
 		// Load up the two accounts and perform the exchange...
         // (Above we did the sub-accounts for server and user. Now we do the main accounts for server and user.)
         //
 		OTAccount * pUserMainAcct	= NULL;
 		OTCleanup<OTAccount> theUserAcctGuardian;
-		
+
 		// At this point, if we have successfully debited / credited the sub-accounts.
 		// then we need to debit and credit the user's main basket account and the server's basket issuer account.
 		if ((true == msgOut.m_bSuccess) && pBasketAcct &&
 			(pUserMainAcct = OTAccount::LoadExistingAccount(theRequestBasket.GetRequestAccountID(), SERVER_ID)) &&
 			theUserAcctGuardian.SetCleanupTargetPointer(pUserMainAcct) && // Make sure pUserMainAcct gets cleaned up
-            pUserMainAcct->VerifySignature(m_nymServer) && 
+            pUserMainAcct->VerifySignature(m_nymServer) &&
 			(pUserMainAcct->GetAssetTypeID() == BASKET_CONTRACT_ID)) // Just make sure the two main basket accts have same currency type
 		{
 			lTransferAmount =  (theRequestBasket.GetMinimumTransfer() * theRequestBasket.GetTransferMultiple());
-			
+
 			// Load up the two accounts and perform the exchange...
 			// user is performing exchange IN
 			if (msgOut.m_bBool)
@@ -9111,42 +9112,42 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 				{
 					msgOut.m_bSuccess = true;
 				}
-				else 
+				else
 				{
 					msgOut.m_bSuccess = false;
 					OTLog::Output(0, "Unable to Credit user basket account, or Debit basket issuer account, "
                                   "in OTServer::UserCmdExchangeBasket\n");
 				}
 			}
-			else // user is peforming exchange OUT 
+			else // user is peforming exchange OUT
 			{
 				if (pUserMainAcct->Debit(lTransferAmount) && pBasketAcct->Credit(lTransferAmount))
 				{
 					msgOut.m_bSuccess = true;
 				}
-				else 
+				else
 				{
 					msgOut.m_bSuccess = false;
 					OTLog::Output(0, "Unable to Debit user basket account, or Credit basket issuer account, "
                                   "in OTServer::UserCmdExchangeBasket\n");
-				}								
+				}
 			}
 		}
 		else {
 			OTLog::Error("Error loading or verifying user's main basket account in OTServer::UserCmdExchangeBasket\n");
 			msgOut.m_bSuccess = false;
 		}
-		
+
 		// At this point, we have hopefully credited/debited ALL the relevant accounts.
 		// So now, let's Save them ALL to disk.. (and clean them up.)
 		OTAccount * pAccount = NULL;
-        
+
 		// empty the list of USER accounts (and save to disk, if everything was successful.)
 		while (!listUserAccounts.empty())
 		{
 			pAccount = listUserAccounts.front();
 			listUserAccounts.pop_front();
-			
+
 			if (true == msgOut.m_bSuccess)
 			{
 				pAccount->ReleaseSignatures();
@@ -9154,16 +9155,16 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 				pAccount->SaveContract();
 				pAccount->SaveAccount();
 			}
-			
+
 			delete pAccount; pAccount=NULL;
 		}
-		
+
 		// empty the list of SERVER accounts (and save to disk, if everything was successful.)
 		while (!listServerAccounts.empty())
 		{
 			pAccount = listServerAccounts.front();
 			listServerAccounts.pop_front();
-			
+
 			if (true == msgOut.m_bSuccess)
 			{
 				pAccount->ReleaseSignatures();
@@ -9171,31 +9172,31 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 				pAccount->SaveContract();
 				pAccount->SaveAccount();
 			}
-			
+
 			delete pAccount; pAccount=NULL;
 		}
-		
-		
+
+
 		if (true == msgOut.m_bSuccess)
 		{
 			pBasketAcct->ReleaseSignatures();
 			pBasketAcct->SignContract(m_nymServer);
 			pBasketAcct->SaveContract();
 			pBasketAcct->SaveAccount();
-            
+
 			pUserMainAcct->ReleaseSignatures();
 			pUserMainAcct->SignContract(m_nymServer);
 			pUserMainAcct->SaveContract();
 			pUserMainAcct->SaveAccount();
 		}
-        
-		
+
+
 		// NO need to cleanup pBasketAcct or pUserMainAcct here, since OTCleanup handles it now.
 	}
-	
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		 
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -9214,12 +9215,12 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 {
 	// The outgoing transaction is an "atMarketOffer", that is, "a reply to the marketOffer request"
 	tranOut.SetType(OTTransaction::atMarketOffer);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pBalanceItem	= NULL;
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will definitely be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
@@ -9229,17 +9230,17 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier SERVER_ID(m_strServerID), USER_ID(theNym);
 	const OTString strUserID(USER_ID);
-	
+
 	pItem			= tranIn.GetItem(OTItem::marketOffer);
     pBalanceItem	= tranIn.GetItem(OTItem::transactionStatement);
 	// ---------------------
-	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atMarketOffer);	 
+	pResponseItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atMarketOffer);
 	pResponseItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-	
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);	 
+	tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// ---------------------
     if (false == NYM_IS_ALLOWED(strUserID.Get(), __transact_market_offer))
 	{
@@ -9257,7 +9258,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
         OTString strTemp(tranIn);
 		OTLog::vOutput(0, "OTServer::NotarizeMarketOffer: Expected OTItem::marketOffer in trans# %ld:\n\n%s\n\n",
                        tranIn.GetTransactionNum(), strTemp.Exists() ? strTemp.Get() : " (ERROR LOADING TRANSACTION INTO STRING) ");
-	}	
+	}
 	// For now, there should only be one of these marketOffer items inside the transaction.
 	// So we treat it that way... I either get it successfully or not.
 	else
@@ -9266,49 +9267,49 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 		// here so it can be saved into the "in reference to" field.
 		pItem->SaveContractRaw(strInReferenceTo);
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-		
+
 		// ASSET_ACCT_ID is the ID on the "from" Account that was passed in.
 		// The CURRENCY_ACCT_ID is the ID on the "To" Account. (When doing a transfer, normally 2nd acct is the Payee.)
 		const OTIdentifier ASSET_ACCT_ID(theAssetAccount), CURRENCY_ACCT_ID(pItem->GetDestinationAcctID());
-		
+
 		// Server response item being added to server response transaction (tranOut)
 		// They're getting SOME sort of response item.
-		
+
 		pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 		pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
-		
+
         // *******************************************************************************************
-        
+
 		if (false == (pBalanceItem->VerifyTransactionStatement(theNym, tranIn))) // bIsRealTransaction = true;
 		{
 			OTLog::vOutput(0, "ERROR verifying transaction statement in NotarizeMarketOffer.\n");
-		}		
+		}
         // *******************************************************************************************
-		else 
+		else
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-			
+
 			// Load up the currency account and validate it.
 			OTAccount * pCurrencyAcct = OTAccount::LoadExistingAccount(CURRENCY_ACCT_ID, SERVER_ID);
 			OTCleanup<OTAccount> theCurrencyAcctGuardian(pCurrencyAcct); // Now I don't have to worry about deleting pCurrencyAcct.
-			
+
 			// Also load up the Trade from inside the transaction item.
 			OTString	strOffer;
 			OTOffer		theOffer;
-			
+
 			OTString	strTrade;
 			pItem->GetAttachment(strTrade);
-			
+
 			OTTrade * pTrade = new OTTrade();
-			
+
 			OT_ASSERT(NULL != pTrade);
-			
+
 			// First load the Trade up (from the string that was passed in on the transaction item.)
 			bool bLoadContractFromString = pTrade->LoadContractFromString(strTrade);
-			
+
 			// If failed to load the trade...
 			if (!bLoadContractFromString)
 			{
@@ -9321,15 +9322,15 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 			else if (!(ASSET_ACCT_ID == pItem->GetPurportedAccountID()))
 			{
 				OTLog::Output(0, "Error: Asset account ID on the transaction does not match asset account ID on the transaction item.\n");
-			} 
-			// ok so the IDs match. Does the currency account exist? 
+			}
+			// ok so the IDs match. Does the currency account exist?
 			else if (NULL == pCurrencyAcct)
 			{
 				OTLog::Output(0, "ERROR verifying existence of the currency account in OTServer::NotarizeMarketOffer\n");
 			}
 			else if (!pCurrencyAcct->VerifyContractID())
 			{
-				OTLog::Output(0, "ERROR verifying Contract ID on the currency account in OTServer::NotarizeMarketOffer\n");	
+				OTLog::Output(0, "ERROR verifying Contract ID on the currency account in OTServer::NotarizeMarketOffer\n");
 			}
 			else if (!pCurrencyAcct->VerifyOwner(theNym))
 			{
@@ -9338,10 +9339,10 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 			// Are both of the accounts of the same Asset Type?
 			else if (theAssetAccount.GetAssetTypeID() == pCurrencyAcct->GetAssetTypeID())
 			{
-				OTString	strAssetTypeID(theAssetAccount.GetAssetTypeID()), 
+				OTString	strAssetTypeID(theAssetAccount.GetAssetTypeID()),
 				strCurrencyTypeID(pCurrencyAcct->GetAssetTypeID());
 				OTLog::vOutput(0, "ERROR - user attempted to trade between identical "
-							   "asset types in OTServer::NotarizeMarketOffer:\n%s\n%s\n", 
+							   "asset types in OTServer::NotarizeMarketOffer:\n%s\n%s\n",
 							   strAssetTypeID.Get(),
 							   strCurrencyTypeID.Get());
 			}
@@ -9353,17 +9354,17 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 			}
 			else if (!pTrade->VerifySignature(theNym))
 			{
-				OTLog::Output(0, "ERROR verifying signature on the Trade in OTServer::NotarizeMarketOffer\n");	
+				OTLog::Output(0, "ERROR verifying signature on the Trade in OTServer::NotarizeMarketOffer\n");
 			}
 			else if (pTrade->GetTransactionNum() != pItem->GetTransactionNum())
 			{
-				OTLog::Output(0, "ERROR bad transaction number on trade in OTServer::NotarizeMarketOffer\n");			
+				OTLog::Output(0, "ERROR bad transaction number on trade in OTServer::NotarizeMarketOffer\n");
 			}
             // The transaction number opens the market offer, but there must also be a closing number for closing it.
-			else if ((pTrade->GetCountClosingNumbers() < 2) || 
+			else if ((pTrade->GetCountClosingNumbers() < 2) ||
                      !VerifyTransactionNumber(theNym, pTrade->GetAssetAcctClosingNum()) || // Verify that it can still be USED
                      !VerifyTransactionNumber(theNym, pTrade->GetCurrencyAcctClosingNum())
-                     ) 
+                     )
 			{
 				OTLog::Output(0, "ERROR needed 2 valid closing transaction numbers in OTServer::NotarizeMarketOffer\n");
 			}
@@ -9422,12 +9423,12 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 			}
 			else if (!pTrade->VerifyOffer(theOffer))
 			{
-				OTLog::Output(0, "FAILED verifying offer for Trade in OTServer::NotarizeMarketOffer\n");	
+				OTLog::Output(0, "FAILED verifying offer for Trade in OTServer::NotarizeMarketOffer\n");
 			}
 			else if (theOffer.GetScale() < this->GetMinMarketScale())
 			{
 				OTLog::vOutput(0, "OTServer::NotarizeMarketOffer: FAILED verifying Offer, SCALE: %ld. (Minimum is %ld.) \n",
-							   theOffer.GetScale(), this->GetMinMarketScale());	
+							   theOffer.GetScale(), this->GetMinMarketScale());
 			}
             else if (static_cast<int64_t>((theNym.GetSetOpenCronItems().size() / 3)) >= OTCron::GetCronMaxItemsPerNym())
 			{
@@ -9444,11 +9445,11 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 			// The top half of this function is oriented around finding the "marketOffer" item (in the "marketOffer"
 			// transaction) and setting up the response item that will go into the response transaction. It also
 			// retrieves the Trade object and fully validates it.
-			// 
+			//
 			// Next all we need to do is add it to the market...
-			
-			
-			else 
+
+
+			else
 			{
 				// We don't actually add the trade to a market here. Instead, we add it to the server's Cron object.
 				// That object will take care of processing the offer on and off of any market.
@@ -9462,14 +9463,14 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 				if (m_Cron.AddCronItem(*pTrade, &theNym, true, time(NULL))) // bSaveReceipt=true
 				{
                     //todo need to be able to "roll back" if anything inside this block fails.
-					
+
 					// Now we can set the response item as an acknowledgement instead of the default (rejection)
 					pResponseItem->SetStatus(OTItem::acknowledgement);
-                    
+
                     bOutSuccess = true;  // The offer was successfully placed on the market.
 
 					OTLog::Output(2, "Successfully added Trade to Cron object.\n");
-					
+
                     // Server side, the Nym stores a list of all open cron item numbers.
                     // (So we know if there is still stuff open on Cron for that Nym, and we know what it is.)
                     //
@@ -9488,7 +9489,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
                     RemoveTransactionNumber(theNym, pTrade->GetCurrencyAcctClosingNum(), false); // (Saved below.)
                     // RemoveIssuedNum will be called for the original transaction number when the finalReceipt is created.
                     // RemoveIssuedNum will be called for the Closing number when the finalReceipt is accepted.
-                    
+
                     theNym.SaveSignedNymfile(m_nymServer);  // <===== SAVED HERE.
 				}
 				else
@@ -9496,7 +9497,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 					OTLog::Output(0, "Unable to add trade to Cron object OTServer::NotarizeMarketOffer\n");
 				}
 			}
-			
+
 			// If the trade WAS successfully added to Cron, then we don't need to
 			// delete it here, since Cron owns it now, and will deal with cleaning
 			// it up at the right time.
@@ -9509,15 +9510,15 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 
         // --------------------------------------------------------------------
 	} // if pItem = tranIn.GetItem(OTItem::marketOffer)
-	
+
 	// sign the response item before sending it back (it's already been added to the transaction above)
 	// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 	// is owned by the transaction, who will take it from here.
 	pResponseItem->SignContract(m_nymServer);
 	pResponseItem->SaveContract(); // the signing was of no effect because I forgot to save. (fixed.)
-	
+
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 }
 
 
@@ -9531,7 +9532,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn, OTTransaction & tranOut, bool & bOutSuccess)
 {
 	bool bSuccess = bOutSuccess = false;
-	
+
 	const	long			lTransactionNumber = tranIn.GetTransactionNum();
 	const	OTIdentifier	SERVER_ID(m_strServerID);
 			OTIdentifier	USER_ID;
@@ -9539,7 +9540,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
     const OTString strIDNym (USER_ID);
 
 	OTAccount theFromAccount(USER_ID, tranIn.GetPurportedAccountID(), SERVER_ID);
-	
+
 	// Make sure the "from" account even exists...
 	if (!theFromAccount.LoadContract())
 	{
@@ -9581,7 +9582,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
                       __FUNCTION__, strIDAcct.Get(), strIDNym.Get());
 	}
 	// No need to call VerifyAccount() here since the above calls go above and beyond that method.
-	
+
 	else if (!VerifyTransactionNumber(theNym, lTransactionNumber))
 	{
         const OTIdentifier idAcct(theFromAccount);
@@ -9590,20 +9591,20 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 		OTLog::vOutput(0, "%s: Error verifying transaction number %ld on user Nym: %s Account: %s\n",
                        __FUNCTION__, lTransactionNumber, strIDNym.Get(), strIDAcct.Get());
 	}
-	
-	// The items' acct and server ID were already checked in VerifyContractID() when they were loaded. 
+
+	// The items' acct and server ID were already checked in VerifyContractID() when they were loaded.
 	// Now this checks a little deeper, to verify ownership, signatures, and transaction number
 	// on each item.  That way those things don't have to be checked for security over and over
 	// again in the subsequent calls.
 	//
-	else if (!tranIn.VerifyItems(theNym)) 
+	else if (!tranIn.VerifyItems(theNym))
 	{
         const OTIdentifier idAcct(theFromAccount);
         const OTString     strIDAcct(idAcct);
 		OTLog::vOutput(0, "%s: Error verifying transaction items. Trans: %ld Nym: %s  Account: %s\n",
                        __FUNCTION__, lTransactionNumber, strIDNym.Get(), strIDAcct.Get());
 	}
-	
+
 	// any other security stuff?
 	// Todo do I need to verify the server ID here as well?
 	else
@@ -9618,11 +9619,11 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 			OTLog::Error("Error removing transaction number (as available) from user nym in OTServer::NotarizeTransaction\n");
 		}
 		// -------------------------------------------------------------------
-		else 
+		else
 		{
 			OTItem::itemType theReplyItemType = OTItem::error_state;
-			
-			switch (tranIn.GetType()) 
+
+			switch (tranIn.GetType())
 			{
 					// TRANSFER (account to account)
 					// Alice sends a signed request to the server asking it to
@@ -9634,28 +9635,28 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					bSuccess = true;
 					theReplyItemType = OTItem::atTransfer;
 					break;
-					
+
 					// PROCESS INBOX (currently, all incoming transfers must be accepted.)
 					// Bob sends a signed request to the server asking it to reject
 					// some of his inbox items and/or accept some into his account DEF.
 				case OTTransaction::processInbox:
 					OTLog::Output(0, "NotarizeTransaction type: Process Inbox\n");
-					NotarizeProcessInbox(theNym, theFromAccount, tranIn, tranOut, bOutSuccess);	
+					NotarizeProcessInbox(theNym, theFromAccount, tranIn, tranOut, bOutSuccess);
 					bSuccess = true;
 //					theReplyItemType = OTItem::atProcessInbox; // Nonexistent, and here, unused.
                     // (There is a processInbox message that carries that transaction...)
 					break;
-					
-					// WITHDRAWAL (cash or voucher)	
+
+					// WITHDRAWAL (cash or voucher)
 					// Alice sends a signed request to the server asking it to debit her
 					// account ABC and then issue her a purse full of blinded cash tokens
-					// --OR-- a voucher (a cashier's cheque, made out to any recipient's 
+					// --OR-- a voucher (a cashier's cheque, made out to any recipient's
 					// User ID, or made out to a blank recipient, just like a blank cheque.)
 				case OTTransaction::withdrawal:
                 {
                     OTItem * pItemVoucher = tranIn.GetItem(OTItem::withdrawVoucher);
 					OTItem * pItemCash    = tranIn.GetItem(OTItem::withdrawal);
-                    
+
                     if (NULL != pItemCash)
                     {
                         theReplyItemType = OTItem::atWithdrawal;
@@ -9671,7 +9672,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					bSuccess = true;
                 }
 					break;
-					
+
 					// DEPOSIT	(cash or cheque)
 					// Bob sends a signed request to the server asking it to deposit into his
 					// account ABC. He includes with his request a signed cheque made out to
@@ -9704,7 +9705,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					bSuccess = true;
 					theReplyItemType = OTItem::atMarketOffer;
 					break;
-					
+
 					// PAYMENT PLAN
 					// Bob sends a signed request to the server asking it to make regular
 					// payments to Alice. (BOTH Alice AND Bob must have signed the same contract.)
@@ -9714,7 +9715,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					bSuccess = true;
 					theReplyItemType = OTItem::atPaymentPlan;
 					break;
-					
+
 					// SMART CONTRACT
 					// Bob sends a signed request to the server asking it to activate a smart contract.
 					// Bob is the authorizing agent for one of the parties, all of whom have signed it,
@@ -9722,7 +9723,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 				case OTTransaction::smartContract:
                 {
 					OTLog::Output(0, "NotarizeTransaction type: Smart Contract\n");
-                    
+
                     // For all transaction numbers used on cron items, we keep track of them in
                     // the GetSetOpenCronItems. This will be removed again below, if the transaction
                     // fails.
@@ -9734,8 +9735,8 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					theReplyItemType = OTItem::atSmartContract;
                 }
 					break;
-					
-					// CANCEL CRON ITEM 
+
+					// CANCEL CRON ITEM
                     // (Cron items: market offers, payment plans...)
 					// Bob sends a signed request to the server asking it to cancel a
                     // REGULARLY PROCESSING CONTRACT that he had previously created.
@@ -9761,32 +9762,32 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 					OTLog::vError("%s: Error, unexpected type: %s\n", __FUNCTION__, tranIn.GetTypeString());
 					break;
 			}
-			
+
 			// ------------------------------------------
-			
-			// Where appropriate, remove a transaction number from my issued list 
+
+			// Where appropriate, remove a transaction number from my issued list
 			// (the list of numbers I must sign for in every balance agreement.)
 			bool bIsCronItem = false;
-            
-			switch (tranIn.GetType()) 
+
+			switch (tranIn.GetType())
 			{
 				case OTTransaction::marketOffer:
 				case OTTransaction::paymentPlan:
 				case OTTransaction::smartContract:
                     bIsCronItem = true; // Falls through...
-                    
+
 				case OTTransaction::transfer:
 					// If success, then Issued number stays on Nym's issued list until the transfer, paymentPlan, marketOffer, or smart
 					// contract is entirely closed and removed. In the case of transfer, that's when the transfer receipt is accepted.
-					// In the case of markets and paymentplans, that's when they've been entirely removed from Cron (many 
+					// In the case of markets and paymentplans, that's when they've been entirely removed from Cron (many
 					// intermediary receipts might occur before that happens.) At that time, a final receipt is issued with
                     // a closing transaction number (to make sure the user closes all of the related market receipts.)
 					//
-					// But if failure, then Issued number is immediately removed. 
+					// But if failure, then Issued number is immediately removed.
 					// (It already can't be used again, and there's no receipt to clear later, thus no reason to save it...)
 				{
 					OTItem * pItem	= tranOut.GetItem(theReplyItemType);
-					
+
 					if ((NULL != pItem))
 					{
 						if (OTItem::rejection == pItem->GetStatus())
@@ -9826,7 +9827,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
                         const OTString strNymID(USER_ID);
 						OTLog::vError("%s: Error removing issued number %ld from user nym: %s\n",
                                       __FUNCTION__, lTransactionNumber, strNymID.Get());
-					}			
+					}
 					break;
                 // ------------------------------------------
 				default:
@@ -9838,9 +9839,9 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 	}
 
 	// sign the outoing transaction
-	tranOut.SignContract(m_nymServer);	
+	tranOut.SignContract(m_nymServer);
 	tranOut.SaveContract();	 // don't forget to save (to internal raw file member)
-	
+
 	// Contracts store an internal member that contains the "Raw File" contents
 	// That is, the unsigned XML portion, plus the signatures, attached in a standard
 	// PGP-compatible format. It's not enough to sign it, you must also save it into
@@ -9858,18 +9859,18 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 /// An existing user is sending a list of transactions to be notarized.
 void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-    // (1) set up member variables 
+    // (1) set up member variables
     msgOut.m_strCommand		= "@notarizeTransactions";	// reply to notarizeTransactions
     msgOut.m_strNymID		= MsgIn.m_strNymID;         // UserID
     //	msgOut.m_strServerID	= m_strServerID;            // This is already set in ProcessUserCommand.
     msgOut.m_strAcctID		= MsgIn.m_strAcctID;        // The Account ID in question
 
-    const OTIdentifier	USER_ID(MsgIn.m_strNymID), 
-        ACCOUNT_ID(MsgIn.m_strAcctID), 
+    const OTIdentifier	USER_ID(MsgIn.m_strNymID),
+        ACCOUNT_ID(MsgIn.m_strAcctID),
         SERVER_ID(m_strServerID),
         SERVER_USER_ID(m_nymServer);
 
-    OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);			// These are ledgers used as messages. The one we received and the one 
+    OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);			// These are ledgers used as messages. The one we received and the one
     // that we're sending back in response.
     OTLedger * pResponseLedger = OTLedger::GenerateLedger(SERVER_USER_ID, ACCOUNT_ID, SERVER_ID, OTLedger::message, false);
     OTCleanup<OTLedger> theRespLedgerGuardian(pResponseLedger); // So I don't have to worry about cleaning it up.
@@ -9934,7 +9935,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
         //
         int nCounter = 0;
         FOR_EACH(mapOfTransactions, theLedger.GetTransactionMap())
-        {	
+        {
             OTTransaction * pTransaction = (*it).second;
             OT_ASSERT(NULL != pTransaction);
             ++nCounter;
@@ -9952,7 +9953,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
             //
             // On this new "response transaction", I set the ACCT ID, the serverID, and Transaction Number.
             OTTransaction * pTranResponse =
-                OTTransaction::GenerateTransaction(*pResponseLedger, 
+                OTTransaction::GenerateTransaction(*pResponseLedger,
                 OTTransaction::error_state, pTransaction->GetTransactionNum());
             // Add the response transaction to the response ledger.
             // That will go into the response message and be sent back to the client.
@@ -9974,7 +9975,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
 
 
             // It should always return something. Success, or failure, that goes into pTranResponse.
-            // I don't think there's need for more return value than that. The user has gotten deep 
+            // I don't think there's need for more return value than that. The user has gotten deep
             // enough that they deserve SOME sort of response.
             //
             // This function also SIGNS the transaction, so there is no need to sign it after this.
@@ -9993,7 +9994,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
             pTranResponse = NULL; // at this point, the ledger now "owns" the response, and will handle deleting it.
         }
 
-        // TODO: should consider saving a copy of the response ledger here on the server. 
+        // TODO: should consider saving a copy of the response ledger here on the server.
         // Until the user signs off of the responses, maybe the user didn't receive them.
         // The server should be able to re-send them until confirmation, then delete them.
         // So might want to consider a SAVE TO FILE here of that ledger we're sending out...
@@ -10007,13 +10008,13 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
 
         msgOut.m_ascPayload.SetString(strPayload);  // now the outgoing message has the response ledger in its payload.
     }
-    else 
+    else
     {
         OTLog::Error("ERROR loading ledger from message in OTServer::UserCmdNotarizeTransactions\n");
     }
 
 send_message:
-    // ---------------------------------------------------------------	
+    // ---------------------------------------------------------------
     // todo: consider commenting this out since the transaction reply items already include a copy
     // of the original client communication that the server is responding to. No point beating a
     // dead horse.
@@ -10034,13 +10035,13 @@ send_message:
     // AGAIN, just in case. This way a failed message will receive the old hash,
     // and a successful message will receive the new hash.
     //
-    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);    
+    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
         theSrvrNymboxHash.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------
 
-    // (2) Sign the Message 
-    msgOut.SignContract(m_nymServer);		
+    // (2) Sign the Message
+    msgOut.SignContract(m_nymServer);
 
     // (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
     //
@@ -10102,26 +10103,26 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
                                        OTPseudonym * pActualNym/*=NULL*/)
 {
 	OTLedger theNymbox(USER_ID, USER_ID, SERVER_ID);
-	
+
 	bool bSuccessLoadingNymbox = theNymbox.LoadNymbox();
-	
+
 	if (true == bSuccessLoadingNymbox)
 		bSuccessLoadingNymbox	= (theNymbox.VerifyContractID() && theNymbox.VerifySignature(m_nymServer));
 //		bSuccessLoadingNymbox	= theNymbox.VerifyAccount(m_nymServer); // make sure it's all good.
-	
+
 	// --------------------------------------------------------------------
 	if (false == bSuccessLoadingNymbox)
 	{
 		const OTString strNymID(USER_ID);
-		OTLog::vOutput(0, "OTServer::DropReplyNoticeToNymbox: Failed loading or verifying Nymbox for user: %s\n", 
+		OTLog::vOutput(0, "OTServer::DropReplyNoticeToNymbox: Failed loading or verifying Nymbox for user: %s\n",
 					   strNymID.Get());
 	}
 	// --------------------------------------------------------------------
-	else 
+	else
 	{
 		long lReplyNoticeTransNum=0;
 		bool bGotNextTransNum = IssueNextTransactionNumber(m_nymServer, lReplyNoticeTransNum, false); // bool bStoreTheNumber = false
-		
+
 		if (!bGotNextTransNum)
 		{
 			lReplyNoticeTransNum = 0;
@@ -10130,7 +10131,7 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
 		else
 		{	// Drop in the Nymbox
 			//
-			OTTransaction * pReplyNotice = OTTransaction::GenerateTransaction(theNymbox, OTTransaction::replyNotice, lReplyNoticeTransNum);			
+			OTTransaction * pReplyNotice = OTTransaction::GenerateTransaction(theNymbox, OTTransaction::replyNotice, lReplyNoticeTransNum);
 			OT_ASSERT(NULL != pReplyNotice);
 			// --------------------------------
 			OTItem * pReplyNoticeItem = OTItem::CreateItemFromTransaction(*pReplyNotice, OTItem::replyNotice);
@@ -10141,7 +10142,7 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
 			pReplyNoticeItem->SignContract(m_nymServer);
 			pReplyNoticeItem->SaveContract();
 			// --------------------------------
-			pReplyNotice->AddItem(*pReplyNoticeItem); // the Transaction's destructor will cleanup the item. It "owns" it now.						
+			pReplyNotice->AddItem(*pReplyNoticeItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 			// --------------------------------
             // So the client-side can quickly/easily match up the replyNotices in
             // the Nymbox with the request numbers of the messages that were sent.
@@ -10157,18 +10158,18 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
 			// --------------------------------
 			pReplyNotice->SignContract(m_nymServer);
 			pReplyNotice->SaveContract();
-			// --------------------------------				
+			// --------------------------------
 			theNymbox.	AddTransaction(*pReplyNotice); // Add the replyNotice to the nymbox. It takes ownership.
 			theNymbox.	ReleaseSignatures();
 			theNymbox.	SignContract(m_nymServer);
 			theNymbox.	SaveContract();
-            
+
             OTIdentifier NYMBOX_HASH;
 			theNymbox.	SaveNymbox(&NYMBOX_HASH);
-			
+
 			pReplyNotice->SaveBoxReceipt(theNymbox);
             // -----------------------
-            
+
             if ((NULL != pActualNym) && pActualNym->CompareID(USER_ID))
             {
                 pActualNym->SetNymboxHashServerSide(NYMBOX_HASH);
@@ -10178,24 +10179,24 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
                 OTLog::Error("OTServer::DropReplyNoticeToNymbox: ERROR: pActualNym was not NULL, but it didn't match USER_ID.\n");
 		}
 	}
-	// -------------------------------------------------------------	
+	// -------------------------------------------------------------
 }
 
 
 // Deprecated (replaced by UserCmdGetAccountFiles)
 void OTServer::UserCmdGetAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getAccount";	// reply to getAccount
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID		= MsgIn.m_strAcctID;	// The Account ID in question
-	
+
 	const OTIdentifier USER_ID(MsgIn.m_strNymID), ACCOUNT_ID(MsgIn.m_strAcctID), SERVER_ID(MsgIn.m_strServerID);
-	
+
 	OTAccount * pAccount		= OTAccount::LoadExistingAccount(ACCOUNT_ID, SERVER_ID);
 	bool bSuccessLoadingAccount = ((pAccount != NULL) ? true:false );
-	
+
 	// Yup the account exists. Yup it has the same user ID.
 	if (bSuccessLoadingAccount && (pAccount->GetUserID() == USER_ID))
 	{
@@ -10211,10 +10212,10 @@ void OTServer::UserCmdGetAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10230,9 +10231,9 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
 	msgOut.m_strNymID		= MsgIn.m_strNymID;     // UserID
 //	msgOut.m_strServerID	= m_strServerID;        // This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID		= MsgIn.m_strAcctID;    // The Account ID in question
-	
+
 	const OTIdentifier USER_ID(MsgIn.m_strNymID), ACCOUNT_ID(MsgIn.m_strAcctID), SERVER_ID(MsgIn.m_strServerID);
-	
+
     OTString    strAccount, strInbox, strOutbox, strInboxHash, strOutboxHash;
     // ------------------------------------------
 	OTAccount * pAccount        = OTAccount::LoadExistingAccount(ACCOUNT_ID, SERVER_ID);
@@ -10248,7 +10249,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
 	{
 		// extract the account in ascii-armored form on the outgoing message
 		pAccount->SaveContractRaw(strAccount); // first grab it in plaintext string form
-        
+
         // ******************************************************************************
         // Get the Inbox.
         //
@@ -10256,7 +10257,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
             OTLedger theInbox(USER_ID, ACCOUNT_ID, SERVER_ID);
 
             bSuccessLoadingInbox = theInbox.LoadInbox();
-            
+
             if (!bSuccessLoadingInbox)
                 OTLog::vError("%s: Failed trying to load Inbox from storage.\n", __FUNCTION__);
             else
@@ -10266,19 +10267,19 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
                 // the IDs and the Signature, of course.
                 //
                 bSuccessLoadingInbox = (theInbox.VerifyContractID() && theInbox.VerifySignature(m_nymServer));
-                
+
                 // If we loaded old data in this file... (when whole receipts used to be stored in boxes.)
                 //
                 if (bSuccessLoadingInbox && theInbox.LoadedLegacyData())	// (which automatically saves the box receipt as the old data is loaded...)
                 {
 //                  bSuccessLoadingInbox = theInbox.VerifyAccount(m_nymServer);	// Then Verify, which forces a LoadBoxReceipts... (
-                    
+
                     theInbox.ReleaseSignatures();				// UPDATE: We do NOT force the loading here, since they aren't needed.
                     theInbox.SignContract(m_nymServer);		// Waste of resources. Instead, we recognize that it was old data, and so
                     theInbox.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be
                     theInbox.SaveInbox();						// loaded over and over again in the large filesize.
                 }
-                
+
                 if (!bSuccessLoadingInbox)
                     OTLog::vError("%s: Verification failed on Inbox after loading.\n", __FUNCTION__);
             }
@@ -10286,7 +10287,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
             if (bSuccessLoadingInbox)
             {
                 theInbox.SaveContractRaw(strInbox);
-                
+
                 OTIdentifier theHash;
                 if (theInbox.CalculateInboxHash(theHash))
                     theHash.GetString(strInboxHash);
@@ -10298,7 +10299,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
         if (bSuccessLoadingInbox) // (Which we don't bother to do unless the inbox was already successful.)
         {
             OTLedger theOutbox(USER_ID, ACCOUNT_ID, SERVER_ID);
-            
+
             bSuccessLoadingOutbox = theOutbox.LoadOutbox();
 
             if (!bSuccessLoadingOutbox)
@@ -10310,19 +10311,19 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
                 // the IDs and the Signature, of course.
                 //
                 bSuccessLoadingOutbox = (theOutbox.VerifyContractID() && theOutbox.VerifySignature(m_nymServer));
-                
+
                 // If we loaded old data in this file... (when whole receipts used to be stored in boxes.)
                 //
                 if (bSuccessLoadingOutbox && theOutbox.LoadedLegacyData())	// (which automatically saves the box receipt as the old data is loaded...)
                 {
 //                  bSuccessLoadingOutbox = theOutbox.VerifyAccount(m_nymServer);	// Then Verify, which forces a LoadBoxReceipts... (
-                    
+
                     theOutbox.ReleaseSignatures();				// UPDATE: We do NOT force the loading here, since they aren't needed.
                     theOutbox.SignContract(m_nymServer);		// Waste of resources. Instead, we recognize that it was old data, and so
                     theOutbox.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be
                     theOutbox.SaveOutbox();						// loaded over and over again in the large filesize.
                 }
-                
+
                 if (!bSuccessLoadingOutbox)
                     OTLog::vError("%s: Verification Failed on Outbox after loading.\n", __FUNCTION__);
             }
@@ -10381,7 +10382,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
             //
             std::string str_Encoded     = OTDB::EncodeObject(*pMap);
             const bool bSuccessEncoding = (str_Encoded.size() > 0);
-            
+
             if (!bSuccessEncoding)
                 OTLog::vError("%s: Error: failed trying to encode a STORED_OBJ_STRING_MAP.\n",
                               __FUNCTION__);
@@ -10397,7 +10398,7 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
     // ------------------------------------------
 	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10409,18 +10410,18 @@ void OTServer::UserCmdGetAccountFiles(OTPseudonym & theNym, OTMessage & MsgIn, O
 // Deprecated (replaced by UserCmdGetAccountFiles)
 void OTServer::UserCmdGetInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getInbox";          // reply to getInbox
 	msgOut.m_strNymID		= MsgIn.m_strNymID;     // UserID
 //	msgOut.m_strServerID	= m_strServerID;        // This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID		= MsgIn.m_strAcctID;    // The Account ID in question
-	
+
 	const OTIdentifier USER_ID(MsgIn.m_strNymID), ACCOUNT_ID(MsgIn.m_strAcctID), SERVER_ID(MsgIn.m_strServerID);
-	
+
 	OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);
-	
+
 	msgOut.m_bSuccess = theLedger.LoadInbox();
-	
+
 	if (!msgOut.m_bSuccess)
 		OTLog::vError("%s: Failed trying to load Inbox from storage.\n", __FUNCTION__);
 	else
@@ -10430,29 +10431,29 @@ void OTServer::UserCmdGetInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessag
 		// the IDs and the Signature, of course.
 		//
 		msgOut.m_bSuccess = (theLedger.VerifyContractID() && theLedger.VerifySignature(m_nymServer));
-		
+
 		// If we loaded old data in this file... (when whole receipts were stored in boxes.)
 		//
 		if (msgOut.m_bSuccess && theLedger.LoadedLegacyData())	// (which automatically saves the box receipt as the old data is loaded...)
 		{
 //			msgOut.m_bSuccess = theLedger.VerifyAccount(m_nymServer);	// Then Verify, which forces a LoadBoxReceipts... (
-			
+
 			theLedger.ReleaseSignatures();				// UPDATE: We do NOT force the loading here, since they aren't needed.
 			theLedger.SignContract(m_nymServer);		// Waste of resources. Instead, we recognize that it was old data, and so
-			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be 
+			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be
 			theLedger.SaveInbox();						// loaded over and over again in the large filesize.
 		}
-		
+
 		if (!msgOut.m_bSuccess)
 			OTLog::vError("%s: Verification failed on Inbox after loading.\n", __FUNCTION__);
 	}
-			
+
 	if (msgOut.m_bSuccess)
-	{ 		
+	{
 		// extract the ledger in ascii-armored form on the outgoing message
 		OTString strPayload(theLedger); // first grab it in plaintext string form
 		msgOut.m_ascPayload.SetString(strPayload);  // now the outgoing message has the inbox ledger in its payload in base64 form.
-        
+
         OTIdentifier theHash;
         if (theLedger.CalculateInboxHash(theHash))
             theHash.GetString(msgOut.m_strInboxHash);
@@ -10463,10 +10464,10 @@ void OTServer::UserCmdGetInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessag
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer); // todo const cast
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10478,18 +10479,18 @@ void OTServer::UserCmdGetInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessag
 // Deprecated (replaced by UserCmdGetAccountFiles)
 void OTServer::UserCmdGetOutbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getOutbox";         // reply to getOutbox
 	msgOut.m_strNymID		= MsgIn.m_strNymID;     // UserID
 //	msgOut.m_strServerID	= m_strServerID;        // This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID		= MsgIn.m_strAcctID;    // The Account ID in question
-	
+
 	const OTIdentifier USER_ID(MsgIn.m_strNymID), ACCOUNT_ID(MsgIn.m_strAcctID), SERVER_ID(MsgIn.m_strServerID);
-	
+
 	OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);
-	
+
 	msgOut.m_bSuccess = theLedger.LoadOutbox();
-	
+
 	if (!msgOut.m_bSuccess)
 		OTLog::vError("%s: Failed trying to load Outbox from storage.\n", __FUNCTION__);
 	else
@@ -10499,29 +10500,29 @@ void OTServer::UserCmdGetOutbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 		// the IDs and the Signature, of course.
 		//
 		msgOut.m_bSuccess = (theLedger.VerifyContractID() && theLedger.VerifySignature(m_nymServer));
-		
+
 		// If we loaded old data in this file... (when whole receipts were stored in boxes.)
 		//
 		if (msgOut.m_bSuccess && theLedger.LoadedLegacyData())	// (which automatically saves the box receipt as the old data is loaded...)
 		{
 //			msgOut.m_bSuccess = theLedger.VerifyAccount(m_nymServer);	// Then Verify, which forces a LoadBoxReceipts... (
-			
+
 			theLedger.ReleaseSignatures();				// UPDATE: We do NOT force the loading here, since they aren't needed.
 			theLedger.SignContract(m_nymServer);		// Waste of resources. Instead, we recognize that it was old data, and so
-			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be 
+			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be
 			theLedger.SaveOutbox();						// loaded over and over again in the large filesize.
 		}
-		
+
 		if (!msgOut.m_bSuccess)
 			OTLog::vError("%s: Verification Failed on Outbox after loading.\n", __FUNCTION__);
 	}
-	
+
 	if (msgOut.m_bSuccess)
-	{ 		
+	{
 		// extract the ledger in ascii-armored form on the outgoing message
 		OTString strPayload(theLedger); // first grab it in plaintext string form
 		msgOut.m_ascPayload.SetString(strPayload);  // now the outgoing message has the outbox ledger in its payload in base64 form.
-        
+
         OTIdentifier theHash;
         if (theLedger.CalculateOutboxHash(theHash))
             theHash.GetString(msgOut.m_strOutboxHash);
@@ -10532,10 +10533,10 @@ void OTServer::UserCmdGetOutbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10546,39 +10547,39 @@ void OTServer::UserCmdGetOutbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 
 
 void OTServer::UserCmdQueryAssetTypes(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
-{	
-	// (1) set up member variables 
+{
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@queryAssetTypes";	// reply to queryAssetTypes
 	msgOut.m_strNymID		= MsgIn.m_strNymID;		// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_bSuccess		= false;				// so far.
-	
+
 	// Send the user's command back to him whether success or failure.
 	OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 	msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
-	
+
 	if (MsgIn.m_ascPayload.Exists()) // (which it should)
 	{
 		OTDB::Storable * pStorable = OTDB::DecodeObject(OTDB::STORED_OBJ_STRING_MAP, MsgIn.m_ascPayload.Get());
 		OTCleanup<OTDB::Storable> theAngel(pStorable); // It will definitely be cleaned up.
 		OTDB::StringMap * pMap = (NULL == pStorable) ? NULL : dynamic_cast<OTDB::StringMap *>(pStorable);
-		
+
 		if (NULL != pMap) // There was definitely a StringMap in the payload.
 		{
 			msgOut.m_bSuccess = true;
-			
+
 			std::map<std::string, std::string> & theMap = pMap->the_map;
 			std::map<std::string, std::string> theNewMap;
-			
+
 			FOR_EACH(mapOfStrings, theMap)
 			{
 				const std::string & str1 = (*it).first;	// Containing the asset type ID.
 				const std::string & str2 = (*it).second;	// Containing the phrase "exists". (More are possible in the future.)
 				// --------------------------------
-				
+
                 // todo security: limit on length of this map? (sent through user message...)
-                
-				// "exists" means, "Here's an asset ID. Please tell me 
+
+				// "exists" means, "Here's an asset ID. Please tell me
 				// whether or not it's actually issued on this server."
 				// Future options might include "issue", "audit", "contract",
 				// etc.
@@ -10594,35 +10595,35 @@ void OTServer::UserCmdQueryAssetTypes(OTPseudonym & theNym, OTMessage & MsgIn, O
 						theNewMap[str1] = "false";
 				}
 			} // FOR_EACH
-			
+
 			// Replace contents of old map with contents of new map.
 			//
 			theMap.clear();
 			theMap = theNewMap;
 			// -----------------------------
 			// Serialize the StringMap back to a string...
-			
+
 			std::string str_Encoded = OTDB::EncodeObject(*pMap);
-			
+
 			if (str_Encoded.size() > 0)
 				msgOut.m_ascPayload = str_Encoded.c_str();  // now the outgoing message has the response map in its payload, in base64 form.
-			else 
+			else
 				msgOut.m_bSuccess = false; // Something went wrong.
-		} // if pMap exists.			
+		} // if pMap exists.
 	}
 	else
 	{
 		msgOut.m_bSuccess = false;
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
-	msgOut.SaveContract();	
+	msgOut.SaveContract();
 }
 
 
@@ -10630,18 +10631,18 @@ void OTServer::UserCmdQueryAssetTypes(OTPseudonym & theNym, OTMessage & MsgIn, O
 
 void OTServer::UserCmdGetContract(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getContract";	// reply to getContract
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
     //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAssetID		= MsgIn.m_strAssetID;	// The Asset Type ID in question
-	
+
 	const OTIdentifier ASSET_TYPE_ID(MsgIn.m_strAssetID);
-	
+
 	OTAssetContract * pContract	= GetAssetContract(ASSET_TYPE_ID);
-	
+
 	bool bSuccessLoadingContract = ((pContract != NULL) ? true:false );
-	
+
 	// Yup the asset contract exists.
 	if (bSuccessLoadingContract)
 	{
@@ -10657,10 +10658,10 @@ void OTServer::UserCmdGetContract(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer); /// todo fix cast.
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10677,7 +10678,7 @@ void OTServer::UserCmdGetContract(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
 void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
 	OTString strInReferenceTo(MsgIn); // Grab the incoming message in plaintext form
-	msgOut.m_ascInReferenceTo.SetString(strInReferenceTo); 
+	msgOut.m_ascInReferenceTo.SetString(strInReferenceTo);
 	// ---------------------------------------------
 	// (1) set up member variables
 	msgOut.m_strCommand		= "@triggerClause";	// reply to triggerClause
@@ -10689,11 +10690,11 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
     OTIdentifier  SERVER_ID(m_strServerID),
                   theMsgNymboxHash(MsgIn.m_strNymboxHash); // theMsgNymboxHash is the hash sent by the client side
     OTIdentifier  theSrvrNymboxHash;
-    
+
     bool bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
     const
     bool bGotNymboxHashClientSide = MsgIn.m_strNymboxHash.Exists();
-    
+
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
         theSrvrNymboxHash.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------------
@@ -10722,13 +10723,13 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
         // -----------------------------------------
         // Also: CAN this guy trigger it?
         else if (NULL == (pSmartContract = dynamic_cast<OTSmartContract *> (pCronItem)))
-        {   
+        {
             OTLog::vOutput(0, "%s: Found cron item %ld based on %ld, but it wasn't a "
                            "smart contract. \n", __FUNCTION__, pCronItem->GetTransactionNum(),
                            MsgIn.m_lTransactionNum);
         }
         // -----------------------------------------
-        else 
+        else
         {
             // FIND THE PARTY / PARTY NAME
             OTAgent * pAgent = NULL;
@@ -10740,10 +10741,10 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
                                "based on Nym as agent: %s", __FUNCTION__, pCronItem->GetTransactionNum(),
                                MsgIn.m_lTransactionNum, MsgIn.m_strNymID.Get());
             }
-            else 
+            else
             {
                 bool bSuccess = false;
-                const std::string str_clause_name = MsgIn.m_strNymID2.Get();			
+                const std::string str_clause_name = MsgIn.m_strNymID2.Get();
 
                 if (pSmartContract->CanExecuteClause(pParty->GetPartyName(), str_clause_name)) // This calls (if available) the scripted clause: bool party_may_execute_clause(party_name, clause_name)
                 {
@@ -10753,42 +10754,42 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
                     //
                     mapOfClauses theMatchingClauses;
                     OTClause * pClause = pSmartContract->GetClause(str_clause_name);
-                    
+
                     if (NULL != pClause)
-                    {	
-                        OTLog::vOutput(0, "%s: At party request, processing smart contract clause: %s \n", 
+                    {
+                        OTLog::vOutput(0, "%s: At party request, processing smart contract clause: %s \n",
                                        __FUNCTION__, str_clause_name.c_str());
-                        
+
                         theMatchingClauses.insert(std::pair<std::string, OTClause*>(str_clause_name, pClause));
-                        
+
                         pSmartContract->ExecuteClauses(theMatchingClauses); // <============================================
-                        
+
                         if (pSmartContract->IsFlaggedForRemoval())
                         {
-                            OTLog::vOutput(0, "%s: Removing smart contract from cron processing: %ld\n", 
+                            OTLog::vOutput(0, "%s: Removing smart contract from cron processing: %ld\n",
                                            __FUNCTION__, pSmartContract->GetTransactionNum());
                         }
                         bSuccess = true;
                     }
-                    else 
+                    else
                     {
-                        OTLog::vOutput(0, "%s: Failed attempt to process clause (%s) on smart contract: %ld \n", 
+                        OTLog::vOutput(0, "%s: Failed attempt to process clause (%s) on smart contract: %ld \n",
                                        __FUNCTION__, str_clause_name.c_str(), pSmartContract->GetTransactionNum());
                     }
                 }
                 // *****************************************************************************
-                
+
                 // If we just removed the smart contract from cron, that means a finalReceipt was just dropped
                 // into the inboxes for the relevant asset accounts. Once I process that receipt out of my
                 // inbox, (which will require my processing out all related marketReceipts) then the closing
                 // number will be removed from my list of responsibility.
-                
+
                 if (bSuccess)
                 {
                     // Now we can set the response item as an acknowledgement instead of the default (rejection)
                     OTLog::vOutput(0, "%s: Party (%s) successfully triggered clause: %s.\n",
                                    __FUNCTION__, pParty->GetPartyName().c_str(), str_clause_name.c_str());
-                    
+
                     msgOut.m_bSuccess =  true;
                 }
                 else
@@ -10800,13 +10801,13 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
     } // NymboxHash matches.
     // -------------------------------------------------
     bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
-    
+
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
         theSrvrNymboxHash.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------------
-	// (2) Sign the Message 
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer); // todo change this cast.
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10819,52 +10820,52 @@ void OTServer::UserCmdTriggerClause(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 
 void OTServer::UserCmdGetMint(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getMint";	// reply to getMint
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAssetID		= MsgIn.m_strAssetID;	// The Asset Type ID in question
-	
-	const OTIdentifier  ASSET_TYPE_ID(MsgIn.m_strAssetID);	
+
+	const OTIdentifier  ASSET_TYPE_ID(MsgIn.m_strAssetID);
 	const OTString      ASSET_ID_STR(ASSET_TYPE_ID);
 	// --------------------------------------------------------------------
 	bool bSuccessLoadingMint = false;
-	
+
 	OTMint * pMint = OTMint::MintFactory(m_strServerID, ASSET_ID_STR);
     OTCleanup<OTMint> theMintAngel(pMint);
     OT_ASSERT(NULL != pMint);
     // --------------------------------------------------------------------
 	if (true == (bSuccessLoadingMint = pMint->LoadMint(".PUBLIC")))
 	{
-		// You cannot hash the Mint to get its ID. 
+		// You cannot hash the Mint to get its ID.
 		// (The ID is a hash of the asset contract, not the mint contract.)
 		// Instead, you must READ the ID from the Mint file, and then compare it to the one expected
 		// to see if they match (similar to how Account IDs are verified.)
-		
+
 		bSuccessLoadingMint = pMint->VerifyMint(m_nymServer);
-		
+
 		// Yup the asset contract exists.
 		if (bSuccessLoadingMint)
 		{
 			msgOut.m_bSuccess = true;
-			
+
 			// extract the account in ascii-armored form on the outgoing message
 			OTString strPayload(*pMint); // first grab it in plaintext string form
 			msgOut.m_ascPayload.SetString(strPayload);  // now the outgoing message has the inbox ledger in its payload in base64 form.
 		}
 		// Send the user's command back to him if failure.
 	}
-	
+
 	if (!bSuccessLoadingMint)
 	{
 		msgOut.m_bSuccess = false;
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
-	
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -10881,28 +10882,28 @@ void OTServer::UserCmdGetMint(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage
 //
 void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@deleteUserAccount";	// reply to deleteUserAccount
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	const OTIdentifier USER_ID(MsgIn.m_strNymID), SERVER_ID(MsgIn.m_strServerID);
-	
+
 	OTLedger theLedger(USER_ID, USER_ID, SERVER_ID);
-	
+
     std::set<long> & theSetofCronItemIDs = theNym.GetSetOpenCronItems();
-    
+
     // If success loading Nymbox, and there are transactions still inside, THEN FAIL!!!
     // (Can't delete a Nym with open receipts...)
     //
     const bool bSuccessLoadNymbox = (theLedger.LoadNymbox() && theLedger.VerifyAccount(m_nymServer));
 	if (false == bSuccessLoadNymbox)
-	{ 		
+	{
         OTLog::Output(3, "Tried to delete Nym, but failed loading or verifying the Nymbox.\n");
         msgOut.m_bSuccess = false;
 	}
 	else if (theLedger.GetTransactionCount() > 0)
-	{ 		
+	{
         OTLog::Output(3, "Tried to delete Nym, but there are still receipts in the Nymbox. (Process them first.)\n");
         msgOut.m_bSuccess = false;
 	}
@@ -10911,24 +10912,24 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 	else if (theSetofCronItemIDs.size() > 0)
     {
         OTLog::Output(3, "Tried to delete Nym, but there are still open Cron Items. (Close them first.)\n");
-        msgOut.m_bSuccess = false;        
+        msgOut.m_bSuccess = false;
     }
     else if (theNym.GetSetAssetAccounts().size() > 0)
     {
         OTLog::Output(3, "Tried to delete Nym, but there are still Asset Accounts open for that Nym. (Close them first.)\n");
-        msgOut.m_bSuccess = false;        
+        msgOut.m_bSuccess = false;
     }
-    // The Nym has used some of his transaction numbers, but hasn't closed them out yet. 
+    // The Nym has used some of his transaction numbers, but hasn't closed them out yet.
     // Close those transactions first.
     else if (theNym.GetTransactionNumCount(SERVER_ID) != theNym.GetIssuedNumCount(SERVER_ID))
     {
         OTLog::Output(3, "Tried to delete Nym, but there are still transactions open for that Nym. (Close them first.)\n");
-        msgOut.m_bSuccess = false;        
+        msgOut.m_bSuccess = false;
     }
     else // SUCCESS!
     {
         msgOut.m_bSuccess = true;
-        
+
         // The Nym may have some numbers signed out, but none of them have come through
         // and been "used but not closed" yet. (That is, removed from transaction num list but still
         // on issued num list.) If they had (i.e. if the previous elseif just above had discovered
@@ -10943,7 +10944,7 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
             long lTemp = theNym.GetTransactionNum(SERVER_ID, 0); // index 0
             RemoveTransactionNumber(theNym, lTemp, false); // bSave = false
         }
-        
+
         while (theNym.GetIssuedNumCount(SERVER_ID) > 0)
         {
             long lTemp = theNym.GetIssuedNum(SERVER_ID, 0); // index 0
@@ -10953,34 +10954,34 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
         //
         theNym.MarkForDeletion();   // The nym isn't actually deleted yet, just marked for deletion.
         //  It will get cleaned up later, during server maintenance.
-        
+
         // SAVE the Nym... (now marked for deletion and with all of its transaction numbers removed.)
         //
         theNym.SaveSignedNymfile(m_nymServer);
     }
-    
+
 	// Send the user's command back to him (success or failure.)
     //  if (false == msgOut.m_bSuccess)
     {
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
-		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message        
+		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
     }
-    
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
+
     // (You are in UserCmdDeleteUser.)
 
-    
+
     // TODO: We may also need to mark the Nymbox, as well as the credential files, as "Marked For Deletion."
-    
-    
+
+
 	// *************************************************************
 	// REPLY NOTICE TO NYMBOX
 	//
@@ -10996,7 +10997,7 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
         const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
-        this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum, 
+        this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,
                                       false,   // trans success
                                       &theNym);
     }
@@ -11008,7 +11009,7 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 //
 void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand			= "@getBoxReceipt";			// reply to getBoxReceipt
 	msgOut.m_strNymID			= MsgIn.m_strNymID;         // UserID
 //	msgOut.m_strServerID        = m_strServerID;            // This is already set in ProcessUserCommand.
@@ -11016,17 +11017,17 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 	msgOut.m_lTransactionNum	= MsgIn.m_lTransactionNum;	// TransactionNumber for the receipt in the box (unique to the box.)
 	msgOut.m_lDepth				= MsgIn.m_lDepth;
 	msgOut.m_bSuccess			= false;
-	
+
 	const OTIdentifier  USER_ID(MsgIn.m_strNymID),
 						SERVER_ID(MsgIn.m_strServerID),
 						ACCOUNT_ID(MsgIn.m_strAcctID);
-	
+
 	OTLedger * pLedger = NULL;
 	OTCleanup<OTLedger> theLedgerAngel;
-	
+
 	bool bErrorCondition = false;
 	bool bSuccessLoading = false;
-	
+
 	switch (MsgIn.m_lDepth)
 	{
 		case 0:	// Nymbox
@@ -11040,7 +11041,7 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			else // Inbox / Outbox.
 			{
 				OTLog::vError("OTServer::UserCmdGetBoxReceipt: User requested Nymbox, but failed to provide the "
-							  "UserID (%s) in the AccountID (%s) field as expected.\n", MsgIn.m_strNymID.Get(), 
+							  "UserID (%s) in the AccountID (%s) field as expected.\n", MsgIn.m_strNymID.Get(),
 							  MsgIn.m_strAcctID.Get());
 				bErrorCondition = true;
 			}
@@ -11076,17 +11077,17 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			}
 			break;
 		default:
-			OTLog::vError("OTServer::UserCmdGetBoxReceipt: Unknown box type: %ld\n", 
+			OTLog::vError("OTServer::UserCmdGetBoxReceipt: Unknown box type: %ld\n",
 						  MsgIn.m_lDepth);
 			bErrorCondition = true;
 			break;
 	}
 	// --------------------------------------------------
-	// At this point, we have the box loaded. Now let's use it to 
+	// At this point, we have the box loaded. Now let's use it to
 	// load the appropriate box receipt...
-	
+
 	if (bSuccessLoading						&&
-		!bErrorCondition					&& 
+		!bErrorCondition					&&
 //		pLedger->VerifyAccount(m_nymServer)	&&	// This call causes all the Box Receipts to be loaded up and we don't need them here, except
 		pLedger->VerifyContractID()			&&	// for just one, so we're going to VerifyContractID and Signature instead. Then below, we'll
 		pLedger->VerifySignature(m_nymServer)	// just load the one we actually need.
@@ -11096,16 +11097,16 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("OTServer::UserCmdGetBoxReceipt: User requested a transaction number "
-						  "(%ld) that's not in the %s. UserID (%s) and AccountID (%s) FYI.\n", 
-						  MsgIn.m_lTransactionNum, 
+						  "(%ld) that's not in the %s. UserID (%s) and AccountID (%s) FYI.\n",
+						  MsgIn.m_lTransactionNum,
 						  (MsgIn.m_lDepth == 0) ? "nymbox" : ((MsgIn.m_lDepth == 1) ? "inbox" : "outbox"), // outbox is 2.
 						  MsgIn.m_strNymID.Get(), MsgIn.m_strAcctID.Get());
-			bErrorCondition = true;			
+			bErrorCondition = true;
 		}
 		else
 		{
 			pLedger->LoadBoxReceipt(MsgIn.m_lTransactionNum);
-			
+
 			// The above call will replace pTransaction, inside pLedger, with the full version
 			// (instead of the abbreviated version) of that transaction, meaning that the pTransaction
 			// pointer is now a bad pointer, if that call was successful.
@@ -11113,13 +11114,13 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			// failed or not (perhaps it's legacy data and is already not abbreviated, and thus the
 			// LoadBoxReceipt call failed, but that's doesn't mean we're going to fail HERE, now does it?)
 			//
-			pTransaction = pLedger->GetTransaction(MsgIn.m_lTransactionNum); 
+			pTransaction = pLedger->GetTransaction(MsgIn.m_lTransactionNum);
 
-			if ((NULL != pTransaction)				&& 
+			if ((NULL != pTransaction)				&&
 				!pTransaction->IsAbbreviated()		&&
 				pTransaction->VerifyContractID()	&&
 				pTransaction->VerifySignature(m_nymServer)
-				) 
+				)
 			{
 				// Okay so after finding it, then calling LoadBoxReceipt(), then finding it again,
 				// it's definitely not abbreviated by this point. Success!
@@ -11127,12 +11128,12 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 				//
 				const OTString strBoxReceipt(*pTransaction);
 				OT_ASSERT(strBoxReceipt.Exists());
-				
+
 				msgOut.m_ascPayload.SetString(strBoxReceipt);  // <=================
 				msgOut.m_bSuccess = true;
-				
+
 				OTLog::vOutput(3, "OTServer::UserCmdGetBoxReceipt: Success: User is retrieving the box receipt for transaction number "
-							   "%ld in the %s for UserID (%s) AccountID (%s).\n", 
+							   "%ld in the %s for UserID (%s) AccountID (%s).\n",
 							   MsgIn.m_lTransactionNum, (MsgIn.m_lDepth == 0) ? "nymbox" : ((MsgIn.m_lDepth == 1) ? "inbox" : "outbox"), // outbox is 2.
 							   MsgIn.m_strNymID.Get(), MsgIn.m_strAcctID.Get());
 			}
@@ -11140,8 +11141,8 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			{
 				OTLog::vError("OTServer::UserCmdGetBoxReceipt: User requested a transaction number (%ld) that's "
 							  "failing to retrieve from the %s, AFTER calling LoadBoxReceipt(). (Though it worked BEFORE calling it.) "
-							  "UserID (%s) and AccountID (%s) FYI. IsAbbreviated == %s\n", 
-							  MsgIn.m_lTransactionNum, 
+							  "UserID (%s) and AccountID (%s) FYI. IsAbbreviated == %s\n",
+							  MsgIn.m_lTransactionNum,
 							  (MsgIn.m_lDepth == 0) ? "nymbox" : ((MsgIn.m_lDepth == 1) ? "inbox" : "outbox"), // outbox is 2.
 							  MsgIn.m_strNymID.Get(), MsgIn.m_strAcctID.Get(), (NULL == pTransaction) ? "NULL" : (pTransaction->IsAbbreviated()) ? "true" : "false"  );
 				bErrorCondition = true;
@@ -11151,23 +11152,23 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 	else
 	{
 		OTLog::vError("OTServer::UserCmdGetBoxReceipt: Failed loading or verifying %s. "
-					  "Transaction (%ld), UserID (%s) and AccountID (%s) FYI.\n", 
+					  "Transaction (%ld), UserID (%s) and AccountID (%s) FYI.\n",
 					  (MsgIn.m_lDepth == 0) ? "nymbox" : ((MsgIn.m_lDepth == 1) ? "inbox" : "outbox"), // outbox is 2.
 					  MsgIn.m_lTransactionNum, MsgIn.m_strNymID.Get(), MsgIn.m_strAcctID.Get());
 		bErrorCondition = true;
 	}
 	// ---------------------------------------------
-    
+
 	// Send the user's command back to him (success or failure.)
     //  if (false == msgOut.m_bSuccess)
     {
 		const OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
-		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message        
+		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
     }
-    
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -11183,36 +11184,36 @@ void OTServer::UserCmdGetBoxReceipt(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
     const char * szFunc = "OTServer::UserCmdDeleteAssetAcct";
-    
-	// (1) set up member variables 
+
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@deleteAssetAccount";    // reply to deleteAssetAccount
 	msgOut.m_strNymID		= MsgIn.m_strNymID;         // UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID      = MsgIn.m_strAcctID;        // the asset account being deleted.
-	
+
 	const OTIdentifier  USER_ID   (MsgIn.m_strNymID),
                         SERVER_ID (MsgIn.m_strServerID),
                         ACCOUNT_ID(MsgIn.m_strAcctID);
-	
+
     OTAccount * pAccount = OTAccount::LoadExistingAccount(ACCOUNT_ID, SERVER_ID);
-    OTCleanup<OTAccount> theAcctGuardian(pAccount); // This is safe in cases where NULL is returned. No more need to cleanup pAccount.	
-    
+    OTCleanup<OTAccount> theAcctGuardian(pAccount); // This is safe in cases where NULL is returned. No more need to cleanup pAccount.
+
     if (NULL == pAccount || !pAccount->VerifyAccount(m_nymServer))
     {
-        OTLog::vError("%s: Error loading or verifying account: %s\n", 
+        OTLog::vError("%s: Error loading or verifying account: %s\n",
                       szFunc, MsgIn.m_strAcctID.Get());
     }
     else if (pAccount->GetBalance() != 0)
     {
         OTLog::vOutput(1, "%s: Failed while trying to delete asset account %s: "
-                       "Balance must be zero to do this!\n", 
+                       "Balance must be zero to do this!\n",
                        szFunc, MsgIn.m_strAcctID.Get());
     }
     else
     {
-        OTLedger * pInbox	= pAccount->LoadInbox (m_nymServer); 
-        OTLedger * pOutbox	= pAccount->LoadOutbox(m_nymServer); 
-        
+        OTLedger * pInbox	= pAccount->LoadInbox (m_nymServer);
+        OTLedger * pOutbox	= pAccount->LoadOutbox(m_nymServer);
+
         OTCleanup<OTLedger> theInboxAngel(pInbox);
         OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 
@@ -11225,13 +11226,13 @@ void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, O
             OTLog::vError("%s: Error loading or verifying outbox: %s\n", szFunc, MsgIn.m_strAcctID.Get());
         }
         else if (pInbox->GetTransactionCount() > 0)
-        { 		
+        {
             OTLog::vOutput(3, "%s: Tried to delete asset account, but there are still "
                           "receipts in the Inbox. (Process them first.)\n", szFunc);
             msgOut.m_bSuccess = false;
         }
         else if (pOutbox->GetTransactionCount() > 0)
-        { 		
+        {
             OTLog::vOutput(3, "%s: Tried to delete asset account, but there are still "
                           "receipts in the Outbox. (Process them first.)\n", szFunc);
             msgOut.m_bSuccess = false;
@@ -11239,18 +11240,18 @@ void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, O
         else // SUCCESS!
         {
             msgOut.m_bSuccess = true;
-            
+
             std::set<std::string> & theAccountSet = theNym.GetSetAssetAccounts();
             theAccountSet.erase(MsgIn.m_strAcctID.Get());
-            
+
             theNym.SaveSignedNymfile(m_nymServer);
             // --------------------------------
             OTAssetContract * pContract = GetAssetContract(pAccount->GetAssetTypeID());
-            
+
             if (NULL == pContract)
             {
                 const OTString strAssetID(pAccount->GetAssetTypeID());
-                OTLog::vError("%s: Error: Unable to get AssetContract for asset type: %s\n", 
+                OTLog::vError("%s: Error: Unable to get AssetContract for asset type: %s\n",
                               szFunc, strAssetID.Get());
             }
             else if (pContract->IsShares())
@@ -11270,33 +11271,33 @@ void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, O
             //
             pAccount->MarkForDeletion();    // The account isn't actually deleted yet, just marked for deletion.
                                             //  It will get cleaned up later, during server maintenance.
-            
+
             // SAVE the Account... (NOW THAT IT IS MARKED FOR DELETION.)
             //
             pAccount->ReleaseSignatures();
             pAccount->SignContract(m_nymServer);
             pAccount->SaveContract();
-            pAccount->SaveAccount();            
+            pAccount->SaveAccount();
         }
     } // pAccount verifies.
     // ----------------------------------------------------
-    
+
 	// Send the user's command back to him (success or failure.)
     //  if (false == msgOut.m_bSuccess)
     {
 		OTString tempInMessage(MsgIn); // Grab the incoming message in plaintext form
-		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message        
+		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
     }
-    
-	// (2) Sign the Message 
+
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer);
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
+
     // (You are in UserCmdDeleteAssetAcct.)
 
 	// *************************************************************
@@ -11326,18 +11327,18 @@ void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, O
 
 void OTServer::UserCmdGetNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@getNymbox";	// reply to getNymbox
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
+
 	const
     OTIdentifier USER_ID(MsgIn.m_strNymID), SERVER_ID(MsgIn.m_strServerID);
 	OTIdentifier NYMBOX_HASH;
     bool bSavedNymbox = false;
-    
+
 	OTLedger theLedger(USER_ID, USER_ID, SERVER_ID);
-	
+
 	msgOut.m_bSuccess = theLedger.LoadNymbox();
     bool bCalculated  = false;
 
@@ -11350,27 +11351,27 @@ void OTServer::UserCmdGetNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 		// the IDs and the Signature, of course.
 		//
 		msgOut.m_bSuccess = (theLedger.VerifyContractID() && theLedger.VerifySignature(m_nymServer));
-		
+
 		// If we loaded old data in this file... (when whole receipts were stored in boxes.)
 		//
 		if (msgOut.m_bSuccess && theLedger.LoadedLegacyData())	// (which automatically saves the box receipt as the old data is loaded...)
 		{
 //			msgOut.m_bSuccess = theLedger.VerifyAccount(m_nymServer);	// Then Verify, which forces a LoadBoxReceipts... (
-			
+
 			theLedger.ReleaseSignatures();				// UPDATE: We do NOT force the loading here, since they aren't needed.
 			theLedger.SignContract(m_nymServer);		// Waste of resources. Instead, we recognize that it was old data, and so
-			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be 
+			theLedger.SaveContract();					// we gracefully re-save in the new format, so it won't repeatedly be
 			theLedger.SaveNymbox(&NYMBOX_HASH);			// loaded over and over again in the large filesize.
-            
+
             bSavedNymbox = true;
-		}            
+		}
 		// ----------------------------------------------
 		if (!msgOut.m_bSuccess)
 			OTLog::Error("OTServer::UserCmdGetNymbox: Verification failed on Nymbox after loading.\n");
 	}
-	
+
 	if (true == msgOut.m_bSuccess)
-	{ 		
+	{
 		// extract the ledger in ascii-armored form on the outgoing message
 		OTString strPayload(theLedger); // first grab it in plaintext string form
 		msgOut.m_ascPayload.SetString(strPayload);  // now the outgoing message has the nymbox ledger in its payload in base64 form.
@@ -11382,14 +11383,14 @@ void OTServer::UserCmdGetNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage); // Set it into the base64-encoded object on the outgoing message
 	}
 	// -------------------------
-    
+
     if (bSavedNymbox)
     {
-        // Todo: make objects (like nyms) "saveable", and ability to get "dirty". (To prevent multiple 
+        // Todo: make objects (like nyms) "saveable", and ability to get "dirty". (To prevent multiple
         // redundant saves.)
         theNym.SetNymboxHashServerSide(NYMBOX_HASH);    // Save the hash onto the Nym
         theNym.SaveSignedNymfile(m_nymServer);
-        
+
         NYMBOX_HASH.GetString(msgOut.m_strNymboxHash);  // Get the hash onto the message
     }
     else if (true == msgOut.m_bSuccess)
@@ -11409,9 +11410,9 @@ void OTServer::UserCmdGetNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
     }
     // -------------------------
 
-	// (2) Sign the Message 
+	// (2) Sign the Message
 	msgOut.SignContract((const OTPseudonym &)m_nymServer); // todo const_cast
-	
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
@@ -11426,30 +11427,30 @@ void OTServer::UserCmdGetNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessa
 
 void OTServer::UserCmdProcessNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@processNymbox";	// reply to processNymbox
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
-	
-	const OTIdentifier	USER_ID(msgOut.m_strNymID), 
+
+	const OTIdentifier	USER_ID(msgOut.m_strNymID),
 						SERVER_ID(m_strServerID),
 						SERVER_USER_ID(m_nymServer);
-	
-	OTLedger theLedger(USER_ID, USER_ID, SERVER_ID);	// These are ledgers used as messages. The one we received 
+
+	OTLedger theLedger(USER_ID, USER_ID, SERVER_ID);	// These are ledgers used as messages. The one we received
 														// and the one we're sending back.
 	OTLedger * pResponseLedger = OTLedger::GenerateLedger(SERVER_USER_ID, USER_ID, SERVER_ID, OTLedger::message, false); // bCreateFile=false
 	OTCleanup<OTLedger> theRespLedgerGuardian(pResponseLedger);
-	
+
 	// Grab the string (containing the request ledger) out of ascii-armored form.
-	OTString strLedger(MsgIn.m_ascPayload);	
-	
+	OTString strLedger(MsgIn.m_ascPayload);
+
     bool bTransSuccess = false;
-    
+
     // --------------------------
     const
     OTIdentifier  theMsgNymboxHash(MsgIn.m_strNymboxHash);    // theMsgNymboxHash is the hash sent by the client side
     OTIdentifier  theSrvrNymboxHash;
-    
+
     bool bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
 
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
@@ -11477,42 +11478,42 @@ void OTServer::UserCmdProcessNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTM
     //
     msgOut.m_bSuccess = theLedger.LoadContractFromString(strLedger);
     if (msgOut.m_bSuccess) // Yes, that is an assignment operator.
-	{		
+	{
 		// In this case we need to process the transaction items from the ledger
 		// and create a corresponding transaction where each of the new items
 		// contains the answer to the transaction item sent.
 		// Then we send that new "response ledger" back to the user in MsgOut.Payload
 		// as an @processNymbox message.
-		
+
 		if (theLedger.GetTransactionCount() == 0)
 		{
-			OTTransaction * pTranResponse = 
-				OTTransaction::GenerateTransaction(*pResponseLedger, 
-											   OTTransaction::error_state, 
+			OTTransaction * pTranResponse =
+				OTTransaction::GenerateTransaction(*pResponseLedger,
+											   OTTransaction::error_state,
 											   0);
 			pTranResponse->SignContract(m_nymServer);
 			pTranResponse->SaveContract();
-			
-			// Add the response transaction to the response ledger.
-			// That will go into the response message and be sent back to the client.
-			pResponseLedger->AddTransaction(*pTranResponse);			
-		}
-		FOR_EACH(mapOfTransactions, theLedger.GetTransactionMap())
-		{	
-			OTTransaction * pTransaction = (*it).second;
-			OT_ASSERT_MSG(NULL != pTransaction, "NULL transaction pointer in OTServer::UserCmdProcessNymbox\n");
-			
-			// for each transaction in the ledger, we create a transaction response and add
-			// that to the response ledger.
-			OTTransaction * pTranResponse = 
-				OTTransaction::GenerateTransaction(*pResponseLedger, 
-												   OTTransaction::error_state, 
-												   pTransaction->GetTransactionNum());
-			
+
 			// Add the response transaction to the response ledger.
 			// That will go into the response message and be sent back to the client.
 			pResponseLedger->AddTransaction(*pTranResponse);
-			
+		}
+		FOR_EACH(mapOfTransactions, theLedger.GetTransactionMap())
+		{
+			OTTransaction * pTransaction = (*it).second;
+			OT_ASSERT_MSG(NULL != pTransaction, "NULL transaction pointer in OTServer::UserCmdProcessNymbox\n");
+
+			// for each transaction in the ledger, we create a transaction response and add
+			// that to the response ledger.
+			OTTransaction * pTranResponse =
+				OTTransaction::GenerateTransaction(*pResponseLedger,
+												   OTTransaction::error_state,
+												   pTransaction->GetTransactionNum());
+
+			// Add the response transaction to the response ledger.
+			// That will go into the response message and be sent back to the client.
+			pResponseLedger->AddTransaction(*pTranResponse);
+
 			// Now let's make sure the response transaction has a copy of the transaction
 			// it is responding to.
             //
@@ -11528,30 +11529,30 @@ void OTServer::UserCmdProcessNymbox(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 			// Therefore, for the "processNymbox" message, I have decided (for now) to have
 			// the extra copy in the items themselves, and in the overall message, but not in the
 			// transactions. Thus, the above is commented out.
-			
-			
+
+
 			// It should always return something. Success, or failure, that goes into pTranResponse.
-			// I don't think there's need for more return value than that. The user has gotten deep 
+			// I don't think there's need for more return value than that. The user has gotten deep
 			// enough that they deserve SOME sort of response.
 			//
 			// This function also SIGNS the transaction, so there is no need to sign it after this.
 			// There's also no point to change it after this, unless you plan to sign it twice.
 			NotarizeProcessNymbox(theNym, *pTransaction, *pTranResponse, bTransSuccess);
-			
+
 			pTranResponse = NULL; // at this point, the ledger now "owns" the response, and will handle deleting it.
 		}
-		
+
 		// DONE (Notices go to Nymbox now): should consider saving a copy of the response
-		// ledger here on the server. 
+		// ledger here on the server.
 		// Until the user signs off of the responses, maybe the user didn't receive them.
 		// The server should be able to re-send them until confirmation, then delete them.
 		// So might want to consider a SAVE TO FILE here of that ledger we're sending out...
 	}
-	else 
+	else
 	{
 		OTLog::Error("ERROR loading ledger from message in OTServer::UserCmdProcessNymbox\n");
 	}
-	
+
 send_message:
 
 	// sign the ledger
@@ -11560,8 +11561,8 @@ send_message:
 	// extract the ledger in ascii-armored form
 	OTString strPayload(*pResponseLedger);
 	// now the outgoing message has the response ledger in its payload.
-	msgOut.m_ascPayload.SetString(strPayload); 
-	
+	msgOut.m_ascPayload.SetString(strPayload);
+
 	// todo: consider commenting this out since the transaction reply items already include a copy
 	// of the original client communication that the server is responding to. No point beating a
 	// dead horse.
@@ -11571,7 +11572,7 @@ send_message:
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
+
     // -------------------------------------------------------
     // UPDATE NYMBOX HASH IN OUTGOING MESSAGE
     //
@@ -11582,21 +11583,21 @@ send_message:
     // AGAIN, just in case. This way a failed message will receive the old hash,
     // and a successful message will receive the new hash.
     //
-    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);    
+    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
         theSrvrNymboxHash.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------
-    
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
-    
+
+
     // (You are in UserCmdProcessNymbox.)
 
 	// *************************************************************
@@ -11635,9 +11636,9 @@ send_message:
 // asset account.) The rest are *items* IN REFERENCE TO some *transaction* in my Nymbox (signing
 // to accept it.) At this point you can't really reject Nymbox receipts, just like you can't
 // reject inbox receipts. Why not? Haven't coded it yet. So your items on your processNymbox
-// transaction can only accept things (notices, new transaction numbers, 
+// transaction can only accept things (notices, new transaction numbers,
 //
-// 
+//
 //
 void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranIn, OTTransaction & tranOut, bool & bOutSuccess)
 {
@@ -11648,7 +11649,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 	OTItem * pBalanceItem	= tranIn.GetItem(OTItem::transactionStatement);
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-		
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
 	const OTIdentifier SERVER_ID(m_strServerID), USER_ID(theNym);
 	// --------------------------------------------------------------------
@@ -11658,20 +11659,20 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 	OTString strNymID(USER_ID);
 
 	bool bSuccessLoadingNymbox	= theNymbox.LoadNymbox();
-	
+
 	if (true == bSuccessLoadingNymbox)
 		bSuccessLoadingNymbox	= theNymbox.VerifyAccount(m_nymServer); // make sure it's all good.
 	// --------------------------------------------------------------------
-	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);	 
+	pResponseBalanceItem = OTItem::CreateItemFromTransaction(tranOut, OTItem::atTransactionStatement);
 	pResponseBalanceItem->SetStatus(OTItem::rejection); // the default.
-	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.			
+	tranOut.AddItem(*pResponseBalanceItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
 	// --------------------------------------------------------------------
     bool           bNymboxHashRegenerated = false;
     OTIdentifier   NYMBOX_HASH; // In case the Nymbox hash is updated, we will have the updated version here.
 	// --------------------------------------------------------------------
 	if (false == bSuccessLoadingNymbox)
 	{
-		OTLog::vOutput(0, "OTServer::%s: Failed loading or verifying Nymbox for user:\n%s\n", 
+		OTLog::vOutput(0, "OTServer::%s: Failed loading or verifying Nymbox for user:\n%s\n",
 					  __FUNCTION__, strNymID.Get());
 	}
 	else if (NULL == pBalanceItem)
@@ -11680,19 +11681,19 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 		OTLog::vOutput(0, "OTServer::%s: No Transaction Agreement item found on this transaction %ld (required):\n\n%s\n\n",
 					   __FUNCTION__, tranIn.GetTransactionNum(), strTransaction.Get());
 	}
-	else 
+	else
 	{
         OTString strBalanceItem;
 
 		pBalanceItem->SaveContractRaw(strBalanceItem);
-		
+
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
-		pResponseBalanceItem->SetReferenceToNum(pBalanceItem->GetTransactionNum()); // This response item is IN RESPONSE to tranIn's balance agreement		
-		
+		pResponseBalanceItem->SetReferenceToNum(pBalanceItem->GetTransactionNum()); // This response item is IN RESPONSE to tranIn's balance agreement
+
 		// The incoming transaction accepts various messages and transaction numbers.
 		// So when it's all finished, my list of transaction numbers will be higher.
-		// 
-		// I would like to not even process the whole giant loop below, 
+		//
+		// I would like to not even process the whole giant loop below,
 		// if I can verify here now that the transaction agreement is wrong.
 		//
 		// Thus I will actually loop through the acceptTransaction items in tranIn, and then for each one, I'll
@@ -11705,30 +11706,30 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 		// (which is why I stored them on a temp Nym :-) Then if it succeeds for real, at the bottom of this function,
 		// I'll go ahead and add them properly (so it adds them to both lists.)
 		//
-		
+
 		bool bSuccessFindingAllTransactions = true;
-		
+
 		FOR_EACH(listOfItems, tranIn.GetItemList())
 		{
 			pItem = *it;
 			OT_ASSERT_MSG(NULL != pItem, "Pointer should not have been NULL.");
-			
+
 			if (pItem->GetType() == OTItem::acceptTransaction)
 			{
 				OTTransaction * pTransaction = theNymbox.GetTransaction(pItem->GetReferenceToNum());
-				
+
 				if ((NULL != pTransaction) && (pTransaction->GetType() == OTTransaction::blank)) // The user is referencing a blank in the nymbox, which indeed is actually there.
 				{
 					bSuccessFindingAllTransactions = true;
-					
+
                     OTNumList listNumbersNymbox, listNumbersUserItem;
-                    
+
                     pItem->GetNumList(listNumbersUserItem);
                     pTransaction->GetNumList(listNumbersNymbox);
-                    
-                    // MAKE SURE THEY MATCH. (Otherwise user could be signing numbers that differ from the 
+
+                    // MAKE SURE THEY MATCH. (Otherwise user could be signing numbers that differ from the
                     // actual ones in the Nymbox.)
-                    // 
+                    //
                     if (false == listNumbersNymbox.Verify(listNumbersUserItem))
                         OTLog::Error("OTServer::NotarizeProcessNymbox: Failed verifying: The numbers on the actual blank "
                                      "transaction in the nymbox do not match the list of numbers sent over by the user.\n");
@@ -11738,11 +11739,11 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
                             // its main number.
                         std::set<long> theNumbers;
                         listNumbersNymbox.Output(theNumbers);
-                        
-                        // Looping through the transaction numbers on the Nymbox blank transaction. 
+
+                        // Looping through the transaction numbers on the Nymbox blank transaction.
                         // (There's probably 20 of them.)
                         //
-                        FOR_EACH(std::set<long>, theNumbers) 
+                        FOR_EACH(std::set<long>, theNumbers)
                         {
                             const long lTransactionNumber = *it;
                             // -----------------------------------------------
@@ -11750,7 +11751,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
                             //
                             if (false == theNym.VerifyIssuedNum(m_strServerID, lTransactionNumber))
                             {
-                                theNym.AddIssuedNum(m_strServerID, lTransactionNumber); 
+                                theNym.AddIssuedNum(m_strServerID, lTransactionNumber);
                                 theTempNym.AddIssuedNum(m_strServerID, lTransactionNumber); // so I can remove from theNym after VerifyTransactionStatement call
                             }
                             else
@@ -11760,15 +11761,15 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
                     }
                     // ------------------------------------------
 				}
-				else 
+				else
 				{
 					bSuccessFindingAllTransactions = false;
 					break;
 				}
 			}
 		}
-		
-        
+
+
         // NOTICE: We're adding up all the new transaction numbers being added. (OTItem::acceptTransaction)...
         // but we're NOT bothering with the ones being REMOVED (OTItem::acceptFinalReceipt) here in NotarizeProecessNymbox.
         // Why not? BECAUSE THEY WERE ALREADY REMOVED. They were removed when the Cron Item expired, or was canceled.
@@ -11779,7 +11780,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
         // transaction numbers on the NYM as a result of this.)
         //
 		// ------------------------------------------
-		
+
 		if (false == bSuccessFindingAllTransactions)
 		{
 			OTLog::vOutput(0, "%s: transactions in processNymbox message do not match actual nymbox.\n", __FUNCTION__);
@@ -11789,7 +11790,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 			{
 				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
-			}			
+			}
 		}
         // (else true == success finding all transaction...)
         //
@@ -11799,13 +11800,13 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 		else if (false == pBalanceItem->VerifyTransactionStatement(theNym, tranIn, false)) // bIsRealTransaction=false (since we're doing Nymbox) // <========
 		{
 			OTLog::vOutput(0, "%s: ERROR verifying transaction statement.\n", __FUNCTION__);
-			
+
 			// Remove all issued nums from theNym that are stored on theTempNym HERE.
 			for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 			{
 				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
-			}			
+			}
 		}
         // **********************************************************************************
 
@@ -11816,17 +11817,17 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 			{
 				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
-			}			
+			}
 
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction statement was successful.
 
 			// --------------------------------------------------------------------
-			
-			// THE ABOVE LOOP WAS JUST A TEST RUN 
+
+			// THE ABOVE LOOP WAS JUST A TEST RUN
 			//
 			// (TO **VERIFY TRANSACTION STATEMENT** BEFORE WE BOTHERED TO RUN THIS LOOP BELOW...)
 			// (AND ALSO SO WE COULD GET THE LIST OF NUMBERS FOR THE STATEMENT ONTO TEMP NYM.)
-		
+
 			// loop through the items that make up the incoming transaction, and add them
 			// to the Nym, and remove them from the Nymbox, as appropriate.
 			//
@@ -11834,16 +11835,16 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 			{
 				pItem = *it;
 				OT_ASSERT_MSG(NULL != pItem, "Pointer should not have been NULL.");
-				
+
 				// We already handled this one (if we're even in this block in the first place.)
 				//
 				if (OTItem::transactionStatement == pItem->GetType())
 				{
 					continue;
 				}
-				
+
 				// If the client sent an accept item then let's process it.
-				if ( 
+				if (
 					(OTItem::request == pItem->GetStatus())
 					&&
 					(
@@ -11859,9 +11860,9 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 					// The response item will contain a copy of the "accept" request.
 					// So I'm just setting aside a copy now for those purposes later.
 					pItem->SaveContractRaw(strInReferenceTo);
-					
+
 					OTItem::itemType theReplyItemType;
-					switch (pItem->GetType()) 
+					switch (pItem->GetType())
 					{
 						case OTItem::acceptFinalReceipt:
 							theReplyItemType = OTItem::atAcceptFinalReceipt;
@@ -11879,28 +11880,28 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
                             OTLog::Error("Should never happen.\n");
 							theReplyItemType = OTItem::error_state; // should never happen based on above 'if' statement.
 							continue;									// saving this anyway just cause it's cleaner.
-					} 
-					
-					
+					}
+
+
 					// Server response item being added to server response transaction (tranOut)
 					// They're getting SOME sort of response item.
-					
-					pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);	 
+
+					pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);
 					pResponseItem->SetStatus(OTItem::rejection); // the default.
 					pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
 //					pResponseItem->SetReferenceToNum(pItem->GetTransactionNum()); // This was just 0 every time, since Nymbox needs no transaction numbers.
 					pResponseItem->SetReferenceToNum(pItem->GetReferenceToNum()); // So the reference was useless. I'm hoping to change it to this and make sure nothing breaks.
 																				  // ReferenceNum actually means you can match it up against the request items, and also, that is where THEY store it.
-					tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-					
-                    
+					tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+
 					// *******************************************************************************************
-					
-                    
+
+
 					OTTransaction * pServerTransaction = NULL;
-					
-					if ( 
-							 (NULL != (pServerTransaction = theNymbox.GetTransaction(pItem->GetReferenceToNum()))) 
+
+					if (
+							 (NULL != (pServerTransaction = theNymbox.GetTransaction(pItem->GetReferenceToNum())))
 							 &&
 							 (
 							  (OTTransaction::finalReceipt		== pServerTransaction->GetType()) ||	// finalReceipt (notice that an opening num was closed.)
@@ -11910,18 +11911,18 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 							  (OTTransaction::successNotice		== pServerTransaction->GetType()) ||	// successNotice that you signed out a transaction#.
 							  (OTTransaction::notice			== pServerTransaction->GetType()) ||	// server notification, in the nymbox
 							  (OTTransaction::instrumentNotice	== pServerTransaction->GetType())		// A financial instrument sent from another user. (Nymbox=>PaymentInbox)
-							 )																	
-					   )																
-					{																				
+							 )
+					   )
+					{
 						// the accept item will come with the transaction number that
 						// it's referring to. So we'll just look up that transaction
 						// in the nymbox, and now that it's been accepted, we'll process it.
-						
+
 						// At this point, pItem points to the client's attempt to accept pServerTransaction
 						// and pServerTransaction is the server's created transaction in my nymbox that might
 						// have a message or transaction number on it I might find useful.
-						
-							
+
+
 						// What are we doing in this code?
 						//
 						// I need to accept various items that are sitting in my nymbox, such as:
@@ -11930,36 +11931,36 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 						//
 						// -- messages waiting to be accepted (they cannot be rejected.)
 						//
-							
+
 						// ----------------------------------------------------------------------------------------------
-							
+
 						// The below block only executes for ACCEPTING a MESSAGE
 						if (
-							(OTItem::acceptMessage	== pItem->GetType()) 
+							(OTItem::acceptMessage	== pItem->GetType())
 							&&
 							(OTTransaction::message	== pServerTransaction->GetType())
 							)
-						{	
-							// pItem contains the current user's attempt to accept the 
+						{
+							// pItem contains the current user's attempt to accept the
 							// ['message'] located in pServerTransaction.
 							// Now we have the user's item and the item he is trying to accept.
 							pServerTransaction->DeleteBoxReceipt(theNymbox); // faster.
 //							theNymbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theNymbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-							
+
 							theNymbox.	ReleaseSignatures();
 							theNymbox.	SignContract(m_nymServer);
 							theNymbox.	SaveContract();
 							theNymbox.	SaveNymbox();
-							
+
 							// Now we can set the response item as an acknowledgement instead of the default (rejection)
 							pResponseItem->SetStatus(OTItem::acknowledgement);
 						}// its type is OTItem::aacceptMessage
-						
-						
+
+
 						// The below block only executes for ACCEPTING a NOTICE
 						else if (
-								 (OTItem::acceptNotice	== pItem->GetType()) 
+								 (OTItem::acceptNotice	== pItem->GetType())
 								 &&
 								 (
 								  (OTTransaction::notice			== pServerTransaction->GetType()) ||
@@ -11969,26 +11970,26 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 								  )
 								 )
 						{
-							// pItem contains the current user's attempt to accept the 
+							// pItem contains the current user's attempt to accept the
 							// ['notice'] or replyNotice or successNotice or instrumentNotice
                             // located in pServerTransaction.
 							// Now we have the user's item and the item he is trying to accept.
-							
+
 							pServerTransaction->DeleteBoxReceipt(theNymbox); // faster.
 //							theNymbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theNymbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-							
+
 							theNymbox.	ReleaseSignatures();
 							theNymbox.	SignContract(m_nymServer);
 							theNymbox.	SaveContract();
 							theNymbox.	SaveNymbox();
-							
+
 							// Now we can set the response item as an acknowledgement instead of the default (rejection)
 							pResponseItem->SetStatus(OTItem::acknowledgement);
-                            
+
 						}// its type is OTItem::acceptNotice
-						
-						
+
+
 						// The below block only executes for ACCEPTING a TRANSACTION NUMBER
 						// It also places a success notice into the Nymbox, to solve sync issues.
 						// (We'll make SURE the client got the notice! Probably should do this
@@ -12005,7 +12006,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 							//
 							long lSuccessNoticeTransNum=0;
 							bool bGotNextTransNum = IssueNextTransactionNumber(m_nymServer, lSuccessNoticeTransNum, false); // bool bStoreTheNumber = false
-							
+
 							if (!bGotNextTransNum)
 							{
 								lSuccessNoticeTransNum = 0;
@@ -12016,54 +12017,54 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 								// Drop SUCCESS NOTICE in the Nymbox
 								//
 								OTTransaction * pSuccessNotice = OTTransaction::GenerateTransaction(theNymbox, OTTransaction::successNotice, lSuccessNoticeTransNum);
-								
+
 								if (NULL != pSuccessNotice) // The above has an OT_ASSERT within, but I just like to check my pointers.
-								{	
+								{
                                     // If I accepted blank trans#10, then this successNotice is in reference to #10.
                                     //
-									pSuccessNotice->	SetReferenceToNum(pServerTransaction->GetTransactionNum());	
-                                    
-                                    // Contains a copy of the OTItem where I actually accepted the blank transaction #. 
+									pSuccessNotice->	SetReferenceToNum(pServerTransaction->GetTransactionNum());
+
+                                    // Contains a copy of the OTItem where I actually accepted the blank transaction #.
                                     // (which generated the notice in the first place...)
                                     //
 									pSuccessNotice->	SetReferenceString(strInReferenceTo);
-									
+
                                     OTNumList theOutput;
                                     pServerTransaction->GetNumList(theOutput); // now theOutput contains the numlist from the server-side nymbox's copy of the blank. (containing 20 transaction #s)
-                                    
+
                                     pSuccessNotice->AddNumbersToTransaction(theOutput); // Now we add those numbers to the success notice. That way client can add those numbers to his issued and transaction lists.
 
 									pSuccessNotice->	SignContract(m_nymServer);
 									pSuccessNotice->	SaveContract();
-									
+
 									theNymbox.AddTransaction(*pSuccessNotice); // Add the successNotice to the nymbox. It takes ownership.
 
 									pSuccessNotice->SaveBoxReceipt(theNymbox);
 								}
 							}
 							// -----------------------------------------------
-							// pItem contains the current user's attempt to accept the 
+							// pItem contains the current user's attempt to accept the
 							// transaction number located in pServerTransaction.
 							// Now we have the user's item and the item he is trying to accept.
-							
+
 							// Here we remove the blank transaction that was just accepted.
-							// 
+							//
 							pServerTransaction->DeleteBoxReceipt(theNymbox); // faster.
 //							theNymbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theNymbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-							
+
 							theNymbox.	ReleaseSignatures();
 							theNymbox.	SignContract(m_nymServer);
 							theNymbox.	SaveContract();
 							theNymbox.	SaveNymbox(&NYMBOX_HASH);
-							
+
                             bNymboxHashRegenerated = true;
-                            
+
 							// Now we can set the response item as an acknowledgement instead of the default (rejection)
 							pResponseItem->SetStatus(OTItem::acknowledgement);
 						}
 
-						// The below block only executes for CLEARING a finalReceipt 
+						// The below block only executes for CLEARING a finalReceipt
                         // (an OPENING TRANSACTION NUMBER was already removed), and this was
                         // a notice that that had occurred. The client has seen the notice and is
                         // now clearing it from the box.
@@ -12073,31 +12074,31 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 								 (OTTransaction::finalReceipt == pServerTransaction->GetType())
                                  )
 						{
-							// pItem contains the current user's attempt to clear the 
+							// pItem contains the current user's attempt to clear the
 							// finalReceipt located in pServerTransaction.
 							// Now we have the user's item and the item he is trying to accept.
-							
+
 							pServerTransaction->DeleteBoxReceipt(theNymbox); // faster.
 //							theNymbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theNymbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-							
+
 							theNymbox.	ReleaseSignatures();
 							theNymbox.	SignContract(m_nymServer);
 							theNymbox.	SaveContract();
 							theNymbox.	SaveNymbox(&NYMBOX_HASH);
-							
+
                             bNymboxHashRegenerated = true;
 
                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
 							pResponseItem->SetStatus(OTItem::acknowledgement);
 						}
 					}
-					else 
+					else
 					{
 						OTLog::vError("Error finding original Nymbox transaction that client is trying to accept: %ld\n",
 									  pItem->GetReferenceToNum());
 					}
-					
+
 					// sign the response item before sending it back (it's already been added to the transaction above)
 					// Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
 					// is owned by the transaction, who will take it from here.
@@ -12105,40 +12106,40 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 					pResponseItem->SignContract(m_nymServer);
 					pResponseItem->SaveContract();
 				}
-				else 
+				else
 				{
 					const int nStatus	= pItem->GetStatus();
 					OTString strItemType;
 					pItem->GetTypeString(strItemType);
-					
+
 					OTLog::vError("Error, unexpected item type (%s) and/or status (%d) in OTServer::NotarizeProcessNymbox\n",
 								 strItemType.Get(), nStatus);
 				} // if type == ACCEPT (only)
 			} // for each item
-            
-            
+
+
 		} // else (balance agreement verified.)
 	} // Balance Agreement item found.
-	
-	// ----------------------------------------	
+
+	// ----------------------------------------
 	pResponseBalanceItem->ReleaseSignatures();
 	pResponseBalanceItem->SignContract(m_nymServer);
-	pResponseBalanceItem->SaveContract();	
+	pResponseBalanceItem->SaveContract();
 	// ----------------------------------------
 	tranOut.ReleaseSignatures();
 	tranOut.SignContract(m_nymServer);
 	tranOut.SaveContract();
 	// ----------------------------------------
-	
+
     if (bNymboxHashRegenerated)
     {
         theNym.SetNymboxHashServerSide(NYMBOX_HASH); // server-side
         theNym.SaveSignedNymfile(m_nymServer); // todo: make objects like nym saveable and dirty-able, so they are only saved once and not multiple times redundantly.
     }
 	// ----------------------------------------
-	
+
 	OTString strPath;
-	
+
 	// On the server side, response will only have chance to succeed if balance agreement succeeds first.
 	// Therefore, you will never see successful response but failed balance, since it would stop at the
 	// balance and response itself would remain failed with no chance of changing.
@@ -12147,26 +12148,26 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 	// and "failure" must be when balance succeeded but transaction failed.
 	//
 	// If NEITHER succeeded, then there is no point recording it to a file, now is there?
-	
+
 	if ((NULL != pResponseBalanceItem) && (OTItem::acknowledgement == pResponseBalanceItem->GetStatus()))
 	{
 		if (tranOut.GetSuccess())
-		{            
+		{
 			// Transaction agreement was a success, AND process nymbox was a success.
 			// Therefore, add any new issued numbers to theNym, and save.
-			
+
 			theNym.HarvestIssuedNumbers(SERVER_ID, m_nymServer, theTempNym, true); // bSave=true
-		
+
             bOutSuccess = true;     // the processNymbox was successful.
 
 			strPath.Format((char*)"%s.success", strNymID.Get());
 		}
 		else
 			strPath.Format((char*)"%s.fail", strNymID.Get());
-		
+
 		const char * szFoldername = OTFolders::Receipt().Get();
-		
-		tranOut.SaveContract(szFoldername, strPath.Get());	
+
+		tranOut.SaveContract(szFoldername, strPath.Get());
 	}
 }
 
@@ -12177,35 +12178,35 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 
 void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMessage & msgOut)
 {
-	// (1) set up member variables 
+	// (1) set up member variables
 	msgOut.m_strCommand		= "@processInbox";	// reply to processInbox
 	msgOut.m_strNymID		= MsgIn.m_strNymID;	// UserID
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 	msgOut.m_strAcctID		= MsgIn.m_strAcctID;	// The Account ID in question
-	
-	const OTIdentifier	USER_ID(msgOut.m_strNymID), 
-						ACCOUNT_ID(MsgIn.m_strAcctID), 
+
+	const OTIdentifier	USER_ID(msgOut.m_strNymID),
+						ACCOUNT_ID(MsgIn.m_strAcctID),
 						SERVER_ID(m_strServerID),
 						SERVER_USER_ID(m_nymServer);
-	
-	OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);			// These are ledgers used as messages. The one we received, 
+
+	OTLedger theLedger(USER_ID, ACCOUNT_ID, SERVER_ID);			// These are ledgers used as messages. The one we received,
 																// and the one we're sending back.
 	OTLedger * pResponseLedger = OTLedger::GenerateLedger(SERVER_USER_ID, ACCOUNT_ID, SERVER_ID, OTLedger::message, false); // bCreateFile=false
 	OT_ASSERT_MSG(NULL != pResponseLedger, "OTServer::UserCmdProcessInbox: ASSERT: NULL != pResponseLedger");
     OTCleanup<OTLedger> theRespLedgerGuardian(*pResponseLedger);
-	
+
 	OTTransaction * pTranResponse = NULL;
-    
+
 	//---------------------------------------------------
 	// Grab the string (containing the request ledger) out of ascii-armored form.
-	OTString strLedger(MsgIn.m_ascPayload);	
-	
+	OTString strLedger(MsgIn.m_ascPayload);
+
     bool bTransSuccess = false;
     // ------------------------------------------------------------
     const
     OTIdentifier  theMsgNymboxHash(MsgIn.m_strNymboxHash);    // theMsgNymboxHash is the hash sent by the client side
     OTIdentifier  theSrvrNymboxHash;
-    
+
     bool bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
 
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
@@ -12258,7 +12259,7 @@ void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 		// could do transactions on your account, no?
 		else if (!theAccount.VerifyOwner(theNym))
 		{
-			OTLog::vOutput(0, "Failed verifying account ownership in OTServer::UserCmdProcessInbox\n");		
+			OTLog::vOutput(0, "Failed verifying account ownership in OTServer::UserCmdProcessInbox\n");
 		}
 		// Make sure I, the server, have signed this file.
 		else if (!theAccount.VerifySignature(m_nymServer))
@@ -12266,36 +12267,36 @@ void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 			OTLog::Error("Error verifying server signature on account in OTServer::UserCmdProcessInbox\n");
 		}
 		// No need to call VerifyAccount() here since the above calls go above and beyond that method.
-		
-		else 
+
+		else
 		{
 			// In this case we need to process the transaction items from the ledger
 			// and create a corresponding transaction where each of the new items
 			// contains the answer to the transaction item sent.
 			// Then we send that new "response ledger" back to the user in MsgOut.Payload
 			// as an @processInbox message.
-			
+
 			OTTransaction * pTransaction	= theLedger.GetTransaction(OTTransaction::processInbox);
-			
+
 			if (NULL == pTransaction) // I'm assuming there's only one in the ledger (for now anyways..)
 			{
 				OTLog::Error("Expected processInbox transaction in OTServer::UserCmdProcessInbox\n");
 			}
 			else
-			{				
+			{
 				const long lTransactionNumber = pTransaction->GetTransactionNum();
-				
+
 				// ---------------------------
 				// We create a transaction response and add that to the response ledger...
 				//
-				pTranResponse = 
+				pTranResponse =
 					OTTransaction::GenerateTransaction(*pResponseLedger, OTTransaction::error_state, lTransactionNumber);
 				OT_ASSERT_MSG(NULL != pTranResponse, "OTServer::UserCmdProcessInbox: NULL != pTranResponse");
-                
+
 				// Add the response transaction to the response ledger.
 				// That will go into the response message and be sent back to the client.
 				pResponseLedger->AddTransaction(*pTranResponse);
-				
+
 				//---------------------------------------------------
 				if (!VerifyTransactionNumber(theNym, lTransactionNumber))
 				{
@@ -12303,17 +12304,17 @@ void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 					OTLog::vOutput(0, "OTServer::UserCmdProcessInbox: Error verifying transaction num %ld for Nym %s\n",
                                    lTransactionNumber, msgOut.m_strNymID.Get());
 				}
-				
-				// The items' acct and server ID were already checked in VerifyContractID() when they were loaded. 
+
+				// The items' acct and server ID were already checked in VerifyContractID() when they were loaded.
 				// Now this checks a little deeper, to verify ownership, signatures, and transaction number
 				// on each item.  That way those things don't have to be checked for security over and over
 				// again in the subsequent calls.
 				//
-				else if (!pTransaction->VerifyItems(theNym)) 
+				else if (!pTransaction->VerifyItems(theNym))
 				{
 					OTLog::Output(0, "Error verifying transaction items OTServer::UserCmdProcessInbox\n");
 				}
-				
+
 				// any other security stuff?
 				// Todo do I need to verify the server ID here as well?
 				else
@@ -12326,69 +12327,69 @@ void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 					if (false == RemoveTransactionNumber(theNym, lTransactionNumber, true)) //bSave=true
 					{
 						OTLog::Error("Error removing transaction number (as available) from user nym in OTServer::UserCmdProcessInbox\n");
-					}			
-					
+					}
+
 					// -------------------------------------------------------------------
-					
-					else 
-					{						
+
+					else
+					{
 						OTLog::Output(2, "UserCmdProcessInbox type: Process Inbox\n");
-						
+
 						NotarizeProcessInbox(theNym, theAccount, *pTransaction, *pTranResponse, bTransSuccess);
 						// ------------------------------------------
-						// Where appropriate, remove a transaction number from my issued list 
+						// Where appropriate, remove a transaction number from my issued list
 						// (the list of numbers I must sign for in every balance agreement.)
-						
+
 						if (false == RemoveIssuedNumber(theNym, lTransactionNumber, true)) //bSave=true
 						{
 							OTLog::vError("%s: Error removing issued number from user nym.\n", __FUNCTION__);
-						}	
+						}
 					}
 				}
 			} // if pTransaction not NULL
-			
-			// DONE: should consider saving a copy of the response ledger here on the server. 
+
+			// DONE: should consider saving a copy of the response ledger here on the server.
 			// Until the user signs off of the responses, maybe the user didn't receive them.
 			// The server should be able to re-send them until confirmation, then delete them.
 			// So might want to consider a SAVE TO FILE here of that ledger we're sending out...
-			// UPDATE this is done now: notices go to the Nymbox.			
+			// UPDATE this is done now: notices go to the Nymbox.
 		}
 	}
-	else 
+	else
 	{
 		OTLog::Error("ERROR loading ledger from message in OTServer::UserCmdProcessInbox\n");
 	}
     // ----------------------------------------
-    
+
 send_message:
 
 
 	if (NULL == pTranResponse)
 	{
-		pTranResponse = 
+		pTranResponse =
 			OTTransaction::GenerateTransaction(*pResponseLedger, OTTransaction::error_state, 0);
         OT_ASSERT_MSG(NULL != pTranResponse, "OTServer::UserCmdProcessInbox 2: NULL != pTranResponse");
-            
+
 		// Add the response transaction to the response ledger.
 		// That will go into the response message and be sent back to the client.
 		pResponseLedger->AddTransaction(*pTranResponse);
 	}
-	
+
 	// sign the outoing transaction
     OT_ASSERT_MSG(NULL != pTranResponse, "OTServer::UserCmdProcessInbox 3: NULL != pTranResponse");
-    
+
 	pTranResponse->ReleaseSignatures();
-	pTranResponse->SignContract(m_nymServer);	
-	pTranResponse->SaveContract();	 // don't forget to save (to internal raw file member)			
-	
+	pTranResponse->SignContract(m_nymServer);
+	pTranResponse->SaveContract();	 // don't forget to save (to internal raw file member)
+
 	// sign the ledger
 	pResponseLedger->SignContract(m_nymServer);
 	pResponseLedger->SaveContract();
 	// extract the ledger in ascii-armored form
 	OTString strPayload(*pResponseLedger);
 	// now the outgoing message has the response ledger in its payload.
-	msgOut.m_ascPayload.SetString(strPayload); 
-	
+	msgOut.m_ascPayload.SetString(strPayload);
+
 	// todo: consider commenting this out since the transaction reply items already include a copy
 	// of the original client communication that the server is responding to. No point beating a
 	// dead horse.
@@ -12398,7 +12399,7 @@ send_message:
 		OTString tempInMessage(MsgIn);
 		msgOut.m_ascInReferenceTo.SetString(tempInMessage);
 	}
-	
+
     // -------------------------------------------------------
     // UPDATE NYMBOX HASH IN OUTGOING MESSAGE
     //
@@ -12409,20 +12410,20 @@ send_message:
     // AGAIN, just in case. This way a failed message will receive the old hash,
     // and a successful message will receive the new hash.
     //
-    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);    
+    bGotNymboxHashServerSide = theNym.GetNymboxHashServerSide(SERVER_ID, theSrvrNymboxHash);
     if (bGotNymboxHashServerSide)  // theSrvrNymboxHash is the hash stored on the server side
         theSrvrNymboxHash.GetString(msgOut.m_strNymboxHash);
     // -------------------------------------------------------
 
-	// (2) Sign the Message 
-	msgOut.SignContract(m_nymServer);		
-	
+	// (2) Sign the Message
+	msgOut.SignContract(m_nymServer);
+
 	// (3) Save the Message (with signatures and all, back to its internal member m_strRawFile.)
 	//
 	// FYI, SaveContract takes m_xmlUnsigned and wraps it with the signatures and ------- BEGIN  bookends
 	// If you don't pass a string in, then SaveContract saves the new version to its member, m_strRawFile
 	msgOut.SaveContract();
-	
+
     // (You are in UserCmdProcessInbox.)
 
 	// *************************************************************
@@ -12457,29 +12458,29 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 {
 	// The outgoing transaction is an "atProcessInbox", that is, "a reply to the process inbox request"
 	tranOut.SetType(OTTransaction::atProcessInbox);
-	
+
 	OTItem * pItem			= NULL;
 	OTItem * pBalanceItem	= tranIn.GetItem(OTItem::balanceStatement);
 	OTItem * pResponseItem	= NULL;
 	OTItem * pResponseBalanceItem	= NULL;
-	
+
 	// The incoming transaction may be sent to inboxes and outboxes, and it
 	// will probably be bundled in our reply to the user as well. Therefore,
 	// let's grab it as a string.
 	OTString strInReferenceTo;
 	OTString strBalanceItem;
-	
+
 	// Grab the actual server ID from this object, and use it as the server ID here.
-	const OTIdentifier	SERVER_ID(m_strServerID),	ACCOUNT_ID(theAccount), 
+	const OTIdentifier	SERVER_ID(m_strServerID),	ACCOUNT_ID(theAccount),
 						USER_ID(theNym);
 
 	const OTString strUserID(USER_ID);
-	
+
 	OTPseudonym theTempNym, theTempClosingNumNym;
 	// --------------------------------------------------------------
-	OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer); 
-	OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer); 
-	
+	OTLedger * pInbox	= theAccount.LoadInbox(m_nymServer);
+	OTLedger * pOutbox	= theAccount.LoadOutbox(m_nymServer);
+
 	OTCleanup<OTLedger> theInboxAngel(pInbox);
 	OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 	// --------------------------------------------------------------
@@ -12505,25 +12506,25 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 	{
 		OTLog::vError("%s: Error loading or verifying outbox.\n", __FUNCTION__);
 	}
-	else 
+	else
 	{
 		pBalanceItem->SaveContractRaw(strBalanceItem);
 
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pBalanceItem->GetTransactionNum()); // This response item is IN RESPONSE to tranIn's balance agreement
         pResponseBalanceItem->SetNumberOfOrigin(*pBalanceItem);
-        
+
 //        OTString strAccountIDBLAH(ACCOUNT_ID);
 //        OTLog::vError("OTServer::NotarizeProcessInbox ==========> ENTERING LOOP ------ (Loaded "
-//                      "Inbox for ACCOUNT ID): %s.\n ==========> Inbox Receipt Count: %d \n", 
+//                      "Inbox for ACCOUNT ID): %s.\n ==========> Inbox Receipt Count: %d \n",
 //                      strAccountIDBLAH.Get(), pInbox->GetTransactionCount());
-        
+
         // -----------------------------------------------------------
 		// This transaction accepts various incoming pending transfers.
 		// So when it's all done, my balance will be higher.
 		// AND pending inbox items will be removed from my inbox.
-		// 
-		// I would like to not even process the whole giant loop below, 
+		//
+		// I would like to not even process the whole giant loop below,
 		// if I can verify here now that the balance agreement is wrong.
 		//
 		// Thus I will actually loop through the acceptPending items in tranIn, and then for each one, I'll
@@ -12534,17 +12535,17 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 		// the expected NEW balance, according to this balance agreement -- if it wants to be approved, that is.
 		//
 		//
-		
+
         std::list<long> theListOfInboxReceiptsBeingRemoved;
 //      std::set<long>  setOfRefNumsProcessed; // To make sure each inbox item refers to a different number. (If two of them refer to the same number, that's bad and is not allowed. You can't process the same inbox item twice simultaneously! Or even at all.)
-        
+
 		bool bSuccessFindingAllTransactions = true;
 		long lTotalBeingAccepted = 0;
-		
+
 		FOR_EACH_IT(listOfItems, tranIn.GetItemList(), it_bigloop)
 		{
 //          OTLog::Error("OTServer::NotarizeProcessInbox: TOP OF LOOP (of the item list on the incoming transaction) \n");
-//			
+//
 //          OTLog::vError("OTServer::NotarizeProcessInbox ==========> =======> Inbox Receipt Count: %d \n",
 //                        pInbox->GetTransactionCount());
 
@@ -12553,13 +12554,13 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
             // -----------------------------------------------------
             OTTransaction * pServerTransaction = NULL;
 
-            switch (pItem->GetType()) 
+            switch (pItem->GetType())
             {
                 case OTItem::balanceStatement:
 //                  OTLog::Output(1, "OTServer::NotarizeProcessInbox: (This item is a balance statement... SKIPPING IT.)\n\n"); // temp remove
                     pServerTransaction = NULL;
                     continue;
-                    
+
                 case OTItem::acceptCronReceipt:
                 case OTItem::acceptFinalReceipt:
                 case OTItem::acceptBasketReceipt:
@@ -12574,9 +12575,9 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // NOTE: Turns out, it's normal to have multiple receipts in reference to the same thing.
                     // For example, I might have two transfer receipts that are both in reference to the same notarizeInbox.
 //                    {
-//                        
+//
 //                        std::set<long>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
-//                        
+//
 //                        if (setOfRefNumsProcessed.end() != it_ref) // It's already there!! (Bad.)
 //                        {
 //                            OTLog::vError("%s: 1. Bad input from client: This request already contains an item in reference to receipt %ld, yet here's "
@@ -12590,7 +12591,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // ---------------------------------------------------------------
                     pServerTransaction = pInbox->GetTransaction(pItem->GetReferenceToNum());
                     break;
-                    
+
                 case OTItem::acceptPending:         // Accept an incoming (pending) transfer.
                 case OTItem::acceptItemReceipt:     // Accept a chequeReceipt, voucherReceipt, or transferReceipt.
                     //---------
@@ -12603,9 +12604,9 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // NOTE: Turns out, it's normal to have multiple receipts in reference to the same thing.
                     // For example, I might have two transfer receipts that are both in reference to the same notarizeInbox.
 //                    {
-//                        
+//
 //                        std::set<long>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
-//                        
+//
 //                        if (setOfRefNumsProcessed.end() != it_ref) // It's already there!! (Bad.)
 //                        {
 //                            OTLog::vError("%s: 1. Bad input from client: This request already contains an item in reference to receipt %ld, yet here's "
@@ -12617,16 +12618,16 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 //                            setOfRefNumsProcessed.insert(pItem->GetReferenceToNum());
 //                    }
                     // ---------------------------------------------------------------
-                                        
+
                     pServerTransaction = pInbox->GetTransaction(pItem->GetReferenceToNum());
                     break;
-                    
+
                 default:
                 {
                     OTString strItemType;
                     pItem->GetTypeString(strItemType);
                     int nItemType = pItem->GetType();
-                    
+
                     pServerTransaction = NULL;
                     bSuccessFindingAllTransactions = false;
 
@@ -12654,23 +12655,23 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 
             // BELOW THIS POINT, WE KNOW THAT pServerTransaction was FOUND (and validated.)
             // *****************************************************************************
-                    
-            switch (pItem->GetType()) 
+
+            switch (pItem->GetType())
             {
                 case OTItem::acceptCronReceipt:
-                    bSuccessFindingAllTransactions = true; 
+                    bSuccessFindingAllTransactions = true;
                     break;
                 // ---------------------------------------------------------------------------
                 case OTItem::acceptFinalReceipt:
                     bSuccessFindingAllTransactions = true;
-                    
-                    // Need to ERROR OUT here, if the number of cron receipts (related to 
+
+                    // Need to ERROR OUT here, if the number of cron receipts (related to
                     // this finalReceipt) in the inbox isn't equal to the number being accepted
                     // in this processInbox transaction. (You can't close the final receipt unless
                     // you close all the others as well.)
                     //
-                    
-                    
+
+
                     // IN THIS CASE: If user is accepting a finalReceipt, that means all the OTHER receipts related to it
                     // (sharing the same "in reference to") must ALSO be cleared from the inbox along with it! That's the
                     // whole point of the finalReceipt -- to make sure all related receipts are cleared, when IT is.
@@ -12678,7 +12679,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // So let's see if the number of related receipts on this process inbox (tranIn) matches
                     // the number of related receipts in the actual inbox (pInbox), as found by the finalReceipt's
                     // (pServerTransaction) "in reference to" value, which should be the same as on the related receipts.
-                    
+
                     // (Below) tranIn is the processInbox transaction. Each item on it is "in ref to" a DIFFERENT receipt,
                     // even though, if they are marketReceipts, all of THOSE receipts are "in ref to" the original transaction#.
                     // I need to loop through all items on tranIn (processInbox request)
@@ -12688,15 +12689,15 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                 {
 //                  int nRefCount = 0; // Using std::set here instead of a simple int. (To prevent duplicates.)
                     std::set<long> setOfRefNumbers; // we'll store them here, and disallow duplicates, to make sure they are all unique IDs (no repeats.)
-                    
+
 					FOR_EACH(listOfItems, tranIn.GetItemList())
                     {
                         OTItem * pItemPointer = *it;
                         OT_ASSERT_MSG(NULL != pItemPointer, "Pointer should not have been NULL.");
-                        
+
                         OTTransaction * pTransPointer = pInbox->GetTransaction(pItemPointer->GetReferenceToNum());
-                        
-                        if ((NULL != pTransPointer) && 
+
+                        if ((NULL != pTransPointer) &&
                             (pTransPointer->GetReferenceToNum() == pServerTransaction->GetReferenceToNum()))
                         {
 //                          nRefCount++;
@@ -12705,8 +12706,8 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                         }
                     } // for
                     // -------------------
-                    
-                    if ( pInbox->GetTransactionCountInRefTo(pServerTransaction->GetReferenceToNum()) != 
+
+                    if ( pInbox->GetTransactionCountInRefTo(pServerTransaction->GetReferenceToNum()) !=
                          static_cast<int>(setOfRefNumbers.size()) )
                     {
                         OTLog::vOutput(0, "%s: User tried to close a finalReceipt, "
@@ -12718,28 +12719,28 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // Upon success, these numbers will be removed from the Nym's additional record of "cron item IDs".
                     //
                     // -------------------------------------------------------------------
-                    
+
                     // Server side stores a list of open cron items on each Nym.
                     // The closing transaction number on the final receipt SHOULD be on that list.
                     //
                     std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
-                    
+
                     std::set<long>::iterator theSetIT = theIDSet.find(pServerTransaction->GetClosingNum());
-                    
+
                     // If we FOUND it on the Nym, then we add it to the list to be removed from Nym's open cron items.
                     // (If it wasn't there before, then we wouldn't want to "re-add" it, now would we?)
                     //
                     if (theIDSet.end() != theSetIT) // FOUND IT!
                         theTempClosingNumNym.AddIssuedNum(m_strServerID, pServerTransaction->GetClosingNum()); // Schedule to remove GetClosingNum() from server-side list of Nym's open cron items. (By adding it to theTempClosingNumNym.)
-                    else 
+                    else
                         OTLog::vOutput(1, "%s: expected to find pServerTransaction->GetClosingNum() (%ld) on Nym's (%s) "
 									   "list of open cron items. (Maybe he didn't see the notice in his Nymbox yet.)\n",
                                        __FUNCTION__, pServerTransaction->GetClosingNum(), strUserID.Get());
                     // else error log.
                 }
-                                    
+
                 // ---- COUNT is correct and closing num is on list of open cron items. (FINAL RECEIPT FALLS THROUGH HERE!!! no break) ------------------------
-                    
+
                 case OTItem::acceptBasketReceipt:
                     // IF it's actually there on theNym, then schedule it for removal.
                     // (Otherwise we'd end up improperly re-adding it.)
@@ -12749,7 +12750,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     else
                     {
                         bSuccessFindingAllTransactions = false;
-                        
+
                         OTLog::vError("%s: basket or final receipt, trying to 'remove' an issued "
                                       "number (%ld) that already wasn't on Nym's issued list. (So what is this in the inbox, "
                                       "then?)\n", __FUNCTION__, pServerTransaction->GetClosingNum());
@@ -12761,11 +12762,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // IF I'm accepting a pending transfer, then add the amount to my counter of total amount being accepted.
                     //
                     lTotalBeingAccepted += pServerTransaction->GetReceiptAmount();
-                    bSuccessFindingAllTransactions = true; 
+                    bSuccessFindingAllTransactions = true;
                     break;
                 // ----------------------------------------------------------------------------
                 case OTItem::acceptItemReceipt:
-                    bSuccessFindingAllTransactions = true; 
+                    bSuccessFindingAllTransactions = true;
                 {
                     // If I'm accepting an item receipt (which will remove my responsibility for that item) then add it
                     // to the temp Nym (which is a list of transaction numbers that will be removed from my responsibility if
@@ -12778,16 +12779,16 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     //
                     OTString strOriginalItem;
                     pServerTransaction->GetReferenceString(strOriginalItem);
-                    
+
                     OTItem * pOriginalItem = OTItem::CreateItemFromString(strOriginalItem, SERVER_ID, pServerTransaction->GetReferenceToNum());
                     OTCleanup<OTItem> theOrigItemGuardian(pOriginalItem); // So I don't have to clean it up later. No memory leaks.
-                    
+
                     if (NULL != pOriginalItem)
                     {
                         // If pOriginalItem is acceptPending, that means the client is accepting the transfer receipt from the server, (from his inbox),
                         // which has the recipient's acceptance inside of the client's transfer as the original item. This means the transfer that
                         // the client originally sent is now finally closed!
-                        // 
+                        //
                         // If it's a depositCheque, that means the client is accepting the cheque receipt from the server, (from his inbox)
                         // which has the recipient's deposit inside of it as the original item. This means that the cheque that
                         // the client originally wrote is now finally closed!
@@ -12797,16 +12798,16 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                         // Rather, I need to load that original cheque, or pending transfer, from WITHIN the original item,
                         // in order to get THAT number, to remove it from the client's issued list. (Whether for real, or for
                         // setting up dummy data in order to verify the balance agreement.) *sigh*
-                        //						
+                        //
                         if (OTItem::depositCheque == pOriginalItem->GetType()) // client is accepting a cheque receipt, which has a depositCheque (from the recipient) as the original item within.
-                        {   
+                        {
                             // Get the cheque from the Item and load it up into a Cheque object.
                             OTString strCheque;
                             pOriginalItem->GetAttachment(strCheque);
-                            
+
                             OTCheque theCheque; // allocated on the stack :-)
-                            
-                            if (false == ((strCheque.GetLength() > 2) && 
+
+                            if (false == ((strCheque.GetLength() > 2) &&
                                           theCheque.LoadContractFromString(strCheque)))
                             {
                                 OTLog::vError("%s: ERROR loading cheque from string:\n%s\n",
@@ -12823,7 +12824,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                 else
                                 {
                                     bSuccessFindingAllTransactions = false;
-                                    
+
                                     OTLog::vError("%s: cheque receipt, trying to 'remove' an issued "
                                                   "number (%ld) that already wasn't on Nym's issued list. (So what is this in the inbox, "
                                                   "then?)\n", __FUNCTION__, theCheque.GetTransactionNum());
@@ -12841,13 +12842,13 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             else
                             {
                                 bSuccessFindingAllTransactions = false;
-                                
+
                                 OTLog::vError("%s: transfer receipt, trying to 'remove' an issued "
                                               "number (%ld) that already wasn't on Nym's issued list. (So what is this in the inbox, "
                                               "then?)\n", __FUNCTION__, pOriginalItem->GetReferenceToNum());
                             }
                         }
-                        else 
+                        else
                         {
                             OTString strOriginalItemType;
                             pOriginalItem->GetTypeString(strOriginalItemType);
@@ -12856,13 +12857,13 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             bSuccessFindingAllTransactions = false;
                         }
                     }
-                    else 
+                    else
                     {
                         OTLog::vError("%s: Unable to load original item from string while accepting item receipt:\n%s\n",
                                       __FUNCTION__, strOriginalItem.Get());
                         bSuccessFindingAllTransactions = false;
                     }
-                } // pItem is acceptItemReceipt --------------------            
+                } // pItem is acceptItemReceipt --------------------
 
                     break;
                 // -------------------------------------------------------------------------------
@@ -12871,8 +12872,8 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     bSuccessFindingAllTransactions = false;
                     break;
             } // switch --------------------------------------------
-            
-             
+
+
             // I'll also go ahead and remove each transaction from pInbox, and pass said inbox into the VerifyBalanceAgreement call...
             // (So it can simulate as if the inbox was already processed, and the total is already calculated, and if it succeeds,
             // then we can allow the giant loop below to do it all for real.)
@@ -12892,11 +12893,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                 break;
             // ---------------------------------------------------------------------------
 		} // for loop (list of "process inbox" items)
-		
+
 		// ***************************************************************************
-        
+
 //      OTLog::Error("OTServer::NotarizeProcessInbox   BELOW THE LOOP===> ABout to call VERIFY BALANCE STATEMENT \n");
-        
+
 		if (false == bSuccessFindingAllTransactions)
 		{
 			OTLog::vOutput(0, "%s: transactions in processInbox message do not match actual inbox.\n", __FUNCTION__);
@@ -12909,7 +12910,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
             {
 				long lTemp = theListOfInboxReceiptsBeingRemoved.front();
 				theListOfInboxReceiptsBeingRemoved.pop_front();
-				
+
 				// Notice I don't call DeleteBoxReceipt(lTemp) here like I normally would when calling
 				// RemoveTransaction(lTemp), since this is only a copy of my inbox and not the real thing.
 				//
@@ -12941,40 +12942,40 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                                                                   theAccount,
                                                                                   tranIn);
             // **********************************************************************
-            
+
             // Here, add all the issued nums back (that had been temporarily removed from theNym) that were stored on theTempNym for safe-keeping.
             for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
             {
                 long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
                 theNym.AddIssuedNum(m_strServerID, lTemp);
-            }						
+            }
             // (They are removed for real at the bottom of this function, IF everything is successful between now and then.)
 
             // -----------------------------------------------------------------------------
-            
+
             if (false == bVerifiedBalanceStatement)
             {
                 OTLog::vOutput(0, "OTServer::NotarizeProcessInbox: ERROR verifying balance statement for transaction %ld.\n",
                                tranIn.GetTransactionNum());
             }
-            
+
             else // BALANCE AGREEMENT WAS SUCCESSFUL.......
-            {                
+            {
                 pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
-                
+
                 // --------------------------------------------------------------------
-                
-                // THE ABOVE LOOP WAS JUST A TEST RUN 
+
+                // THE ABOVE LOOP WAS JUST A TEST RUN
                 //
                 // (TO VERIFY BALANCE AGREEMENT BEFORE WE BOTHERED TO RUN THIS LOOP BELOW...)
-                
-                // loop through the items that make up the incoming transaction 
+
+                // loop through the items that make up the incoming transaction
 				//
 				FOR_EACH_IT(listOfItems, tranIn.GetItemList(), it_bigloop_two)
                 {
                     pItem = *it_bigloop_two;
                     OT_ASSERT_MSG(NULL != pItem, "Pointer should not have been NULL.");
-                    
+
                     // We already handled this one (if we're even in this block in the first place.)
                     //
                     if (OTItem::balanceStatement == pItem->GetType())
@@ -12983,19 +12984,19 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     }
 
                     // If the client sent an accept item, (or reject/dispute) then let's process it.
-                    if ( 
+                    if (
                         (OTItem::request	== pItem->GetStatus())
                         &&
                         (
                          (OTItem::acceptCronReceipt     == pItem->GetType()) ||	// Accepting notice of market trade or payment processing. (Original in Cron Receipt.)
 //                       (OTItem::disputeCronReceipt	== pItem->GetType()) ||	// Disputing said notice.  With Cron receipts, original is stored as an OTCronItem...
                          (OTItem::acceptItemReceipt     == pItem->GetType()) ||	// Accepted item receipt (cheque, transfer)
-//                       (OTItem::disputeItemReceipt	== pItem->GetType()) ||	// Disputing said notice. 
-                         (OTItem::acceptPending         == pItem->GetType()) ||	// Accepting notice of pending transfer 
+//                       (OTItem::disputeItemReceipt	== pItem->GetType()) ||	// Disputing said notice.
+                         (OTItem::acceptPending         == pItem->GetType()) ||	// Accepting notice of pending transfer
 //                       (OTItem::rejectPending         == pItem->GetType()) ||	// With pending, the Original is stored in OTItem pOriginalItem...
-                         (OTItem::acceptFinalReceipt	== pItem->GetType()) ||	// Accepting finalReceipt 
+                         (OTItem::acceptFinalReceipt	== pItem->GetType()) ||	// Accepting finalReceipt
 //                       (OTItem::disputeFinalReceipt   == pItem->GetType()) ||	// Disputing finalReceipt.
-                         (OTItem::acceptBasketReceipt   == pItem->GetType()) 	// Accepting basketReceipt 
+                         (OTItem::acceptBasketReceipt   == pItem->GetType()) 	// Accepting basketReceipt
 //                       (OTItem::disputeBasketReceipt  == pItem->GetType())	// Disputing basketReceipt.
                          )
                         )
@@ -13004,16 +13005,16 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                         // So I'm just setting aside a copy now for those purposes later.
                         strInReferenceTo.Release();
                         pItem->SaveContractRaw(strInReferenceTo);
-                        
+
                         OTItem::itemType theReplyItemType;
-                        switch (pItem->GetType()) 
+                        switch (pItem->GetType())
                         {
                             case OTItem::acceptPending:
                                 theReplyItemType = OTItem::atAcceptPending;
                                 break;
                             case OTItem::rejectPending:
                                 theReplyItemType = OTItem::atRejectPending;
-                                break;						
+                                break;
                             case OTItem::acceptCronReceipt:
                                 theReplyItemType = OTItem::atAcceptCronReceipt;
                                 break;
@@ -13042,30 +13043,30 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                 OTLog::Error("Should never happen.\n");
                                 theReplyItemType = OTItem::error_state; // should never happen based on above 'if' statement.
                                 break;									// saving this anyway just cause it's cleaner.
-                        } 
-                        
-                        
+                        }
+
+
                         // Server response item being added to server response transaction (tranOut)
                         // They're getting SOME sort of response item.
-                        
-                        pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);	 
+
+                        pResponseItem = OTItem::CreateItemFromTransaction(tranOut, theReplyItemType);
                         pResponseItem->SetStatus(OTItem::rejection); // the default.
                         pResponseItem->SetReferenceString(strInReferenceTo); // the response item carries a copy of what it's responding to.
                         pResponseItem->SetReferenceToNum(pItem->GetTransactionNum());
                         pResponseItem->SetNumberOfOrigin(*pItem);
-                        
-                        tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.		
-                        
-                        
+
+                        tranOut.AddItem(*pResponseItem); // the Transaction's destructor will cleanup the item. It "owns" it now.
+
+
                         // Need to load the Inbox first, in order to look up the transaction that
                         // the client is accepting. This is possible because the client has included
-                        // the transaction number.  I'll just look it up in his inbox and then 
+                        // the transaction number.  I'll just look it up in his inbox and then
                         // process it.
                         // theAcctID is the ID on the client Account that was passed in.
-                        OTLedger theInbox(USER_ID, ACCOUNT_ID, SERVER_ID); 
-                        
+                        OTLedger theInbox(USER_ID, ACCOUNT_ID, SERVER_ID);
+
                         OTTransaction * pServerTransaction = NULL;
-                        
+
                         if (false == theInbox.LoadInbox())
                         {
                             OTLog::Error("Error loading inbox during processInbox\n");
@@ -13086,10 +13087,10 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                  (
                                   (OTItem::acceptCronReceipt == pItem->GetType())// This is checked above, but just keeping this safe.
                                   )												// especially in case this block moves or is used elsewhere.
-                                 &&												
+                                 &&
                                  (NULL != (pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum())))
                                  &&
-                                 (							
+                                 (
                                   (OTTransaction::paymentReceipt== pServerTransaction->GetType()) ||
                                   (OTTransaction::marketReceipt	== pServerTransaction->GetType())
                                   )
@@ -13098,11 +13099,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             // pItem contains the current user's attempt to accept the Receipt
                             // represented by pServerTransaction. Therefore we have the user's
                             // item AND the receipt he is trying to accept.
-                            
+
 							pServerTransaction->DeleteBoxReceipt(theInbox); // faster.
 //							theInbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theInbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-                            
+
                             theInbox.	ReleaseSignatures();
                             theInbox.	SignContract(m_nymServer);
                             theInbox.	SaveContract();
@@ -13111,20 +13112,20 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             theAccount. SignContract(m_nymServer);
                             theAccount. SaveContract();
                             theAccount. SaveAccount();
-                            
+
                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
                             pResponseItem->SetStatus(OTItem::acknowledgement);
                         }
                         // -----------------------------------------------------------------
-                        
+
                         else if ( // FINAL RECEIPT
                                  (
                                   (OTItem::acceptFinalReceipt == pItem->GetType())// This is checked above, but just keeping this safe.
                                   )												// especially in case this block moves or is used elsewhere.
-                                 &&												
+                                 &&
                                  (NULL != (pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum())))
                                  &&
-                                 (					
+                                 (
                                   (OTTransaction::finalReceipt == pServerTransaction->GetType())
                                   )
                                  )
@@ -13132,11 +13133,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             // pItem contains the current user's attempt to accept the Receipt
                             // represented by pServerTransaction. Therefore we have the user's
                             // item AND the receipt he is trying to accept.
-                            
+
 							pServerTransaction->DeleteBoxReceipt(theInbox); // faster.
 //							theInbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theInbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-                            
+
                             theInbox.	ReleaseSignatures();
                             theInbox.	SignContract(m_nymServer);
                             theInbox.	SaveContract();
@@ -13145,21 +13146,21 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             theAccount. SignContract(m_nymServer);
                             theAccount. SaveContract();
                             theAccount. SaveAccount();
-                            
+
                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
                             pResponseItem->SetStatus(OTItem::acknowledgement);
                         }
-                        
+
                         // -----------------------------------------------------------------
-                        
+
                         else if ( // BASKET RECEIPT
                                  (
                                   (OTItem::acceptBasketReceipt == pItem->GetType())// This is checked above, but just keeping this safe.
                                   )												// especially in case this block moves or is used elsewhere.
-                                 &&												
+                                 &&
                                  (NULL != (pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum())))
                                  &&
-                                 (							
+                                 (
                                   (OTTransaction::basketReceipt == pServerTransaction->GetType())
                                   )
                                  )
@@ -13167,11 +13168,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             // pItem contains the current user's attempt to accept the Receipt
                             // represented by pServerTransaction. Therefore we have the user's
                             // item AND the receipt he is trying to accept.
-                            
+
 							pServerTransaction->DeleteBoxReceipt(theInbox); // faster.
 //							theInbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 							theInbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
-                            
+
                             theInbox.	ReleaseSignatures();
                             theInbox.	SignContract(m_nymServer);
                             theInbox.	SaveContract();
@@ -13180,11 +13181,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                             theAccount. SignContract(m_nymServer);
                             theAccount. SaveContract();
                             theAccount. SaveAccount();
-                            
+
                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
                             pResponseItem->SetStatus(OTItem::acknowledgement);
                         }
-                        
+
                         // -----------------------------------------------------------------
                         // Careful here.  I'm looking up the original transaction number (1, say) which is stored
                         // in my inbox as a "in reference to" on transaction number 41. (Which is a pending transaction
@@ -13197,10 +13198,10 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                         // for pending transactions and cheque receipts, is NOT the case above, with receipts from cron.
                         else if ( (
                                    (OTItem::acceptItemReceipt	== pItem->GetType())	// acceptItemReceipt includes checkReceipt and transferReceipts.
-//                                   (OTItem::rejectItemReceipt	== pItem->GetType())	
+//                                   (OTItem::rejectItemReceipt	== pItem->GetType())
                                    || (OTItem::acceptPending	== pItem->GetType())	// acceptPending includes checkReceipts. Because they are
 //                                      (OTItem::rejectPending	== pItem->GetType())	// stored/loaded similarly, not like the above Cron Receipts.
-                                   ) 
+                                   )
                                  &&
                                  (NULL != (pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum())))
                                  &&
@@ -13212,28 +13213,28 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                   )                                                                    // because this is where an OTItem is loaded up (since it
                                  )                                                                     // originated with a deposit transaction, not a cron receipt.)
                         {
-                            
+
 //                            if (theInbox.GetTransactionCountInRefTo(pItem->GetReferenceToNum()) > 1)
 //                                OTLog::vError("%s: WARNING 2: There are MULTIPLE receipts 'in reference to' %ld. (It will return the first one...)\n",
 //                                              __FUNCTION__, pItem->GetReferenceToNum());
-                            
+
                             // The accept item will come with the transaction number that
                             // it's referring to. So we'll just look up that transaction
                             // in the inbox, and now that it's been accepted, we'll process it.
-                            
+
                             // At this point, pItem points to the client's attempt to accept pServerTransaction
                             // and pServerTransaction is the server's created transaction in my inbox that contains
                             // the original item (from the sender) as the "referenced to" object. So let's extract
                             // it.
                             OTString strOriginalItem;
                             pServerTransaction->GetReferenceString(strOriginalItem);
-                            
+
                             OTItem * pOriginalItem = OTItem::CreateItemFromString(strOriginalItem, SERVER_ID, pServerTransaction->GetReferenceToNum());
                             OTCleanup<OTItem> theOrigItemGuardian(pOriginalItem); // So I don't have to clean it up later. No memory leaks.
-                            
+
                             if (NULL != pOriginalItem)
                             {
-                                
+
                                 // What are we doing in this code?
                                 //
                                 // I need to accept various items that are sitting in my inbox, such as:
@@ -13243,28 +13244,28 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                 // -- cheque deposit receipts waiting to be accepted (they cannot be rejected.)
                                 //
                                 // -- transfer receipts waiting to be accepted (they cannot be rejected.)
-                                
+
                                 //
                                 // ONLY in the case of pending transfers also do I need to mess around with my account,
                                 // and the sender's inbox and outbox. In the other cases, I merely need to remove
                                 // the item from my inbox.
                                 // Although when 'accepting the reject', I do need to take the money back into
                                 // my inbox...
-                                
-                                
-                                
+
+
+
                                 // ----------------------------------------------------------------------------------------------
-                                
-                                
+
+
                                 // The depositCheque request OTItem is saved as a "in reference to" field
                                 // on the inbox chequeReceipt transaction.
-                                
+
                                 // Therefore, if I am processing an acceptPending item from the client,
                                 // for accepting a chequeReceipt Transaction that's in his inbox, and
                                 // the original item (that the receipt is for) is a depositCheque,
                                 // then I can go ahead and clear it from his inbox.
-                                
-                                
+
+
                                 // The below block only executes for ACCEPTING a CHEQUE deposit receipt, or
                                 // for 'Accepting an ACCEPT.'
                                 //
@@ -13278,14 +13279,14 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                 // handled by THIS block of code:
                                 //
                                 if (
-                                    (OTItem::acceptItemReceipt	== pItem->GetType()) 
+                                    (OTItem::acceptItemReceipt	== pItem->GetType())
                                     &&
                                     (
                                      (
                                       (OTTransaction::transferReceipt   == pServerTransaction->GetType()) &&
                                       (OTItem::acceptPending            == pOriginalItem->GetType())
                                       )
-                                        ||	
+                                        ||
                                       (
                                           ( (OTTransaction::chequeReceipt   == pServerTransaction->GetType()) ||
                                             (OTTransaction::voucherReceipt  == pServerTransaction->GetType()) )
@@ -13295,10 +13296,10 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                      )
                                     )
                                 {	// (The funds are already paid out...)
-                                    // pItem contains the current user's attempt to accept the 
+                                    // pItem contains the current user's attempt to accept the
                                     // ['depositCheque' OR 'acceptPending'] located in theOriginalItem.
                                     // Now we have the user's item and the item he is trying to accept.
-									
+
 									pServerTransaction->DeleteBoxReceipt(theInbox); // faster.
 //									theInbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 									theInbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
@@ -13312,25 +13313,25 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                     theAccount. SignContract(m_nymServer);
                                     theAccount. SaveContract();
                                     theAccount. SaveAccount();
-                                    
+
                                     // Now we can set the response item as an acknowledgement instead of the default (rejection)
                                     pResponseItem->SetStatus(OTItem::acknowledgement);
-                                    
+
                                     // Don't I need to remove from responsibility list?
-                                    // No, because that is done at the bottom of the function.	
+                                    // No, because that is done at the bottom of the function.
                                     //
                                 }// its type is OTItem::acceptPending or OTItem::depositCheque
-                                
-                                
-                                
+
+
+
                                 // ----------------------------------------------------------------------------------------------
-                                
+
                                 // TODO: 'Accept a REJECT' -- NEED TO PERFORM THE TRANSFER OF FUNDS BACK TO THE SENDER'S ACCOUNT WHEN TRANSFER IS REJECTED.
-                                
+
                                 // ----------------------------------------------------------------------------------------------
-                                
+
                                 // The below block only executes for ACCEPTING a TRANSFER
-                                
+
                                 else if (
                                          (OTTransaction::pending == pServerTransaction->GetType())
                                          &&
@@ -13341,30 +13342,30 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                     // Now we have both items.
                                     OTIdentifier IDFromAccount(pOriginalItem->GetPurportedAccountID());
                                     OTIdentifier IDToAccount(pOriginalItem->GetDestinationAcctID());
-                                    
+
                                     // I'm using the operator== because it exists.
                                     // If the ID on the "To" account from the original transaction does not
                                     // match the Acct ID of the client trying to accept the transaction...
                                     if (!(ACCOUNT_ID == IDToAccount))
                                     {
                                         OTLog::Error("Error: Destination account ID on the transaction does not match account ID of client transaction item.\n");
-                                    } 
-                                    
+                                    }
+
                                     // -------------------------------------------------------------------
-                                    
+
                                     // The 'from' outbox is loaded to remove the outgoing transfer, since it has been accepted.
                                     // The 'from' inbox is loaded in order to put a notice of this acceptance for the sender's records.
                                     OTLedger	theFromOutbox(IDFromAccount, SERVER_ID),	// Sender's *OUTBOX*
                                                 theFromInbox(IDFromAccount, SERVER_ID);		// Sender's *INBOX*
-                                    
+
                                     bool bSuccessLoadingInbox	= theFromInbox.LoadInbox();
                                     bool bSuccessLoadingOutbox	= theFromOutbox.LoadOutbox();
-                                    
+
                                     // --------------------------------------------------------------------
-                                    
+
                                     // THE FROM INBOX -- We are adding an item here (acceptance of transfer),
                                     // so we will create this inbox if we have to, so we can add that record to it.
-                                    
+
                                     if (true == bSuccessLoadingInbox)
                                         bSuccessLoadingInbox	= theFromInbox.VerifyAccount(m_nymServer);
 									else
@@ -13373,29 +13374,29 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 //                                        bSuccessLoadingInbox	= theFromInbox.GenerateLedger(IDFromAccount, SERVER_ID, OTLedger::inbox, true); // bGenerateFile=true
                                     // --------------------------------------------------------------------
                                     // THE FROM OUTBOX -- We are removing an item, so this outbox SHOULD already exist.
-                                    
+
                                     if (true == bSuccessLoadingOutbox)
                                         bSuccessLoadingOutbox	= theFromOutbox.VerifyAccount(m_nymServer);
                                     else // If it does not already exist, that is an error condition. For now, log and fail.
                                         OTLog::Error("ERROR missing 'from' outbox in OTServer::NotarizeProcessInbox.\n");
-                                    // ---------------------------------------------------------------------                                    
+                                    // ---------------------------------------------------------------------
                                     if (false == bSuccessLoadingInbox || false == bSuccessLoadingOutbox)
                                     {
                                         OTLog::Error("ERROR loading 'from' inbox or outbox in OTServer::NotarizeProcessInbox.\n");
                                     }
-                                    else 
+                                    else
                                     {
                                         // Generate a new transaction number for the sender's inbox (to notice him of acceptance.)
                                         long lNewTransactionNumber = 0;
                                         IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
-                                        
+
                                         // Generate a new transaction... (to notice the sender of acceptance.)
-                                        OTTransaction * pInboxTransaction	= OTTransaction::GenerateTransaction(theFromInbox, 
+                                        OTTransaction * pInboxTransaction	= OTTransaction::GenerateTransaction(theFromInbox,
                                                                                                                  OTTransaction::transferReceipt,
                                                                                                                  lNewTransactionNumber);
 
 										if (NULL == pInboxTransaction) OT_FAIL;
-                                        
+
                                         // Here we give the sender (by dropping into his inbox) a copy of my acceptItem (for
                                         // his transfer), including the transaction number of my acceptance of his transfer.
                                         //
@@ -13403,27 +13404,27 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                         pInboxTransaction->SetReferenceToNum(pItem->GetTransactionNum());	// Right now this has the 'accept the transfer' transaction number.
                                         // It could be changed to the original transaction number, as a better
                                         // receipt for the original sender. TODO? Decisions....
-                                        
+
                                         pInboxTransaction->SetNumberOfOrigin(*pItem);
-                                        
+
                                         // Now we have created a new transaction from the server to the sender's inbox
                                         // Let's sign it and add to his inbox.
                                         pInboxTransaction->ReleaseSignatures();
                                         pInboxTransaction->SignContract(m_nymServer);
                                         pInboxTransaction->SaveContract();
-                                        
+
                                         // At this point I have theInbox ledger, theFromOutbox ledger, theFromINBOX ledger,
                                         // and theAccount.  So I should remove the appropriate item from each ledger, and
                                         // add the acceptance to the sender's inbox, and credit the account....
-                                        
+
                                         // First try to credit the amount to the account...
                                         if (theAccount.Credit(pOriginalItem->GetAmount()))
                                         {
-                                            // Add a transfer receipt to the sender's inbox, containing the "accept" transaction as the ref string. 
+                                            // Add a transfer receipt to the sender's inbox, containing the "accept" transaction as the ref string.
                                             // (to notify him that his transfer was accepted; once he accepts it, the trans# can be removed from his issued list.)
                                             //
-                                            theFromInbox.	AddTransaction(*pInboxTransaction);								
-                                            
+                                            theFromInbox.	AddTransaction(*pInboxTransaction);
+
                                             // The original item carries the transaction number that the original
                                             // sender used to generate the transfer in the first place. This is the number
                                             // by which that transaction is available in the sender's outbox.
@@ -13436,11 +13437,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                             // transaction number on the original item, and we remove the pending transfer
                                             // from the recipient's inbox using the transaction number from the pending
                                             // transaction.
-                                            
+
                                             // UPDATE: These two transactions correspond to each other, so I am now creating
                                             // them with the same transaction number. As you can see, this makes them easy
                                             // to remove as well.
-											
+
 											pServerTransaction->DeleteBoxReceipt(theFromOutbox); // faster.
 //											theFromOutbox.	DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
                                             theFromOutbox.	RemoveTransaction(pServerTransaction->GetTransactionNum());
@@ -13448,15 +13449,15 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 											pServerTransaction->DeleteBoxReceipt(theInbox); // faster.
 //											theInbox.		DeleteBoxReceipt(pServerTransaction->GetTransactionNum());
 											theInbox.		RemoveTransaction(pServerTransaction->GetTransactionNum());
-                                            
+
 											// NOTICE BTW, warning: Notice that the box receipts are marked for deletion
 											// the instant they are removed from their respective boxes. Meanwhile, the client
 											// may not have actually DOWNLOADED those box receipts. Once they are ACTUALLY
 											// deleted, then client will never have the chance. It's assumed that client doesn't
 											// care, since the receipts are already out of his box.
-											
+
                                             // ----------------------------------------------
-                                            
+
                                             theFromInbox.	ReleaseSignatures();
                                             theFromOutbox.	ReleaseSignatures();
 
@@ -13465,40 +13466,40 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 
                                             theFromInbox.	SaveContract();
                                             theFromOutbox.	SaveContract();
-                                            
+
                                             theFromInbox.	SaveInbox();
                                             theFromOutbox.	SaveOutbox();
                                             // ----------------------------------------
-                                            
+
                                             // Release any signatures that were there before (Old ones won't
                                             // verify anymore anyway, since the content has changed.)
                                             theInbox.		ReleaseSignatures();
                                             theInbox.		SignContract(m_nymServer);
                                             theInbox.		SaveContract();
                                             theAccount.		SaveInbox(theInbox);
-                                            theAccount.		ReleaseSignatures();                                            
+                                            theAccount.		ReleaseSignatures();
                                             theAccount.		SignContract(m_nymServer);
                                             theAccount.		SaveContract();
                                             theAccount.		SaveAccount();
 
-                                            
+
                                             // Now we can set the response item as an acknowledgement instead of the default (rejection)
                                             // otherwise, if we never entered this block, then it would still be set to rejection, and the
                                             // new items would never have been added to the inbox/outboxes, and those files, along with
-                                            // the account file, would never have had their signatures released, or been re-signed or 
+                                            // the account file, would never have had their signatures released, or been re-signed or
                                             // re-saved back to file.  The debit failed, so all of those other actions would fail also.
                                             // BUT... if the message comes back with acknowledgement--then all of these actions must have
                                             // happened, and here is the server's signature to prove it.
                                             // Otherwise you get no items and no signature. Just a rejection item in the response transaction.
                                             pResponseItem->SetStatus(OTItem::acknowledgement);
-											
+
 											// This goes with the call above to theFromInbox.AddTransaction().
 											// Adding a receipt to any box, for real, requires saving the box receipt
 											// as well. (Which is stored in a separate file.)
 											//
 											pInboxTransaction->SaveBoxReceipt(theFromInbox);
                                         }
-                                        else 
+                                        else
                                         {
                                             delete pInboxTransaction; pInboxTransaction = NULL;
                                             OTLog::Error("Unable to credit account in OTServer::NotarizeProcessInbox.\n");
@@ -13506,36 +13507,36 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                     } // outbox was successfully loaded
                                 }// its type is OTItem::transfer
                             }// loaded original item from string
-                            else 
+                            else
                             {
                                 OTLog::Error("Error loading original item from inbox transaction.\n");
                             }
                         }
-                        else 
+                        else
                         {
                             OTLog::vError("Error finding original receipt or transfer that client is trying to accept: %ld\n",
                                           pItem->GetReferenceToNum());
                         }
-                        
+
                         // sign the response item before sending it back (it's already been added to the transaction above)
                         // Now, whether it was rejection or acknowledgement, it is set properly and it is signed, and it
                         // is owned by the transaction, who will take it from here.
                         pResponseItem->SignContract(m_nymServer);
-                        pResponseItem->SaveContract();					
+                        pResponseItem->SaveContract();
                     }
-                    else 
+                    else
                     {
                         OTString strItemType;
                         pItem->GetTypeString(strItemType);
-                        
-                        OTLog::vError("OTServer::%s: Error, unexpected OTItem::itemType: %s\n", 
+
+                        OTLog::vError("OTServer::%s: Error, unexpected OTItem::itemType: %s\n",
                                       __FUNCTION__, strItemType.Get());
                     } // if type == ACCEPT, REJECT, DISPUTE
                 } // for LOOP (each item)
             } // else (balance agreement verified.)
         } // else bSuccessFindingAllTransactions = true
 	} // Balance Agreement item found.
-	
+
 	// I put this here so it's signed/saved whether the balance agreement itself was successful OR NOT.
 	// (Or whether it even existed or not.)
 	//
@@ -13548,7 +13549,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 	tranOut.SaveContract();
 	// -------------------------------------------------
 	OTString strPath; // SAVE THE RECEIPT TO LOCAL STORAGE (for dispute resolution.)
-	
+
 	// On the server side, response will only have chance to succeed if balance agreement succeeds first.
 	// Therefore, you will never see successful response but failed balance, since it would stop at the
 	// balance and response itself would remain failed with no chance of changing.
@@ -13557,7 +13558,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 	// and "failure" must be when balance succeeded but transaction failed.
 	//
 	// If NEITHER succeeded, then there is no point recording it to a file, now is there?
-	
+
 	const OTString strAcctID(ACCOUNT_ID);
 
 	if (tranOut.GetSuccess())
@@ -13569,7 +13570,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 		for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 		{
 			long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
-			theNym.RemoveIssuedNum(m_nymServer, m_strServerID, lTemp, false); // bSave = false (saved below)            
+			theNym.RemoveIssuedNum(m_nymServer, m_strServerID, lTemp, false); // bSave = false (saved below)
 		}
 		//-------------------------------------------
         // The Nym (server side) stores a list of all opening and closing cron #s.
@@ -13589,11 +13590,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 	}
 	else
 		strPath.Format((char*)"%s.fail", strAcctID.Get());
-	
+
 	const char * szFoldername = OTFolders::Receipt().Get();
-	
+
 	// Save the receipt. (My outgoing transaction including the client's signed request that triggered it.)
-	tranOut.SaveContract(szFoldername, strPath.Get());	
+	tranOut.SaveContract(szFoldername, strPath.Get());
 }
 
 
@@ -13603,11 +13604,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 bool OTServer::ValidateServerIDfromUser(OTString & strServerID)
 {
 	static bool bFirstTime = true;
-	
+
 	if (bFirstTime)
 	{
 		bFirstTime=false;
-		
+
 		// This part is now done when the server XML file is first loaded
 //		if (!m_nymServer.Loadx509CertAndPrivateKey())
 //		{
@@ -13627,10 +13628,10 @@ bool OTServer::ValidateServerIDfromUser(OTString & strServerID)
 		//
 		// Ideally the server will load the contract, and then EXTRACT the public key
 		// from the contract, and then use it to verify the signature on the contract,
-		// and THEN hash the contract, to get the ServerID, 
-		
+		// and THEN hash the contract, to get the ServerID,
+
 		// Here's basically what I need to add:  m_ServerContract
-		// 
+		//
 		// ServerContract.SetFilename("server contract file")
 		// ServerContract.LoadContract()
 		// ServerContract.VerifyContractID()
@@ -13639,26 +13640,26 @@ bool OTServer::ValidateServerIDfromUser(OTString & strServerID)
 		// if (success)
 		//    SUCCESS LOADING SERVER CERTIFICATES AND KEYS.
 	}
-	
+
 	if (m_strServerID == strServerID)
 	{
 		return true;
 	}
-	
+
 	return false;
-}	
+}
 
 
 
 
 
-bool OTServer::ProcessUserCommand(OTMessage & theMessage, 
-                                  OTMessage & msgOut, 
+bool OTServer::ProcessUserCommand(OTMessage & theMessage,
+                                  OTMessage & msgOut,
                                   OTClientConnection * pConnection/*=NULL*/,
                                   OTPseudonym * pNym/*=NULL*/) // this function will create the Nym if it's not passed in. We pass it in so the caller has the option to query things about the Nym (like if it actually exists.)
-{	
+{
 	msgOut.m_strRequestNum.Set(theMessage.m_strRequestNum); // to prevent replay attacks.
-	
+
 	/*
 	 p_Config->SetOption_bool("permissions", "admin_server_locked",		__admin_server_locked);
 	 */
@@ -13672,7 +13673,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 		return false;
 	}
 	// ----------------------------------------------
-	
+
 	// Validate the server ID, to keep users from intercepting a valid requst
 	// and sending it to the wrong server.
 	if (false == ValidateServerIDfromUser(theMessage.m_strServerID))
@@ -13680,7 +13681,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 		OTLog::Error("OTServer::ProcessUserCommand: Invalid server ID sent in command request.\n");
 		return false;
 	}
-	else 
+	else
 	{
 		OTLog::Output(4, "Received valid Server ID with command request.\n");
 	}
@@ -13688,7 +13689,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     // NYM WAS PASSED IN
     //
 	OTPseudonym theNym(theMessage.m_strNymID);
-	
+
     if (NULL == pNym)
         pNym = &theNym; // If one wasn't passed in, we'll use the one constructed here. (One line up.)
     else if (!pNym->CompareID(theNym))
@@ -13696,25 +13697,25 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
         OTString strTempNymID;
         pNym->GetIdentifier(strTempNymID);
 		OTLog::vError("OTServer::ProcessUserCommand: NymID on the optional Nym passed in (%s) "
-                      "does NOT match the NymID on theMessage (%s). (Returning false.)\n", 
+                      "does NOT match the NymID on theMessage (%s). (Returning false.)\n",
                       strTempNymID.Get(), theMessage.m_strNymID.Get());
 		return false;
 	}
 	// ----------------------------------------------
     // NYM IS ACTUALLY SERVER
-    
+
     // For special cases where the Nym sending the transaction has the same public key as
 	// the server itself. (IE it IS the server Nym, then we'd want to use the already-loaded
 	// server nym object instead of loading a fresh one, so the two don't overwrite each other.)
 	//
 	const bool bNymIsServerNym = (m_strServerUserID.Compare(theMessage.m_strNymID) ? true : false);
 //	OTPseudonym * pNym = &theNym; // this is now done higher up in this function.
-	
+
 	if (bNymIsServerNym)
 		pNym = &m_nymServer;
 
 	//**********************************************************************************************
-	 
+
 	// This command is special because the User sent his public key, not just his ID.
 	// We have to verify the two together.
 	//
@@ -13747,7 +13748,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 	// Therefore the appropriate solution is for the server to support x509s, and to look up the authority
 	// and verify certs, so that users have recourse in the event their private key is stolen. (They can
 	// just use their Cert to issue a new public key, which the transaction server would be smart enough
-	// to use, once the certificate authority signs off on it. (Since the user uses an x509 from a 
+	// to use, once the certificate authority signs off on it. (Since the user uses an x509 from a
 	// specific authority, then I can trust that whatever that authority says, that user wanted it to say.)
 	// Without knowing the authority itself, I can now trust it because the user has asked me to trust it.
 	// Fair enough!
@@ -13763,7 +13764,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 	//
 	// Transactions do not actually occur on the server, per se. They occur between the USERS.
 	// All the server does it certify that the numbers are correct. It's like accounting software.
-	// Ultimately the users are the ones making a transaction, and they are the ones who are 
+	// Ultimately the users are the ones making a transaction, and they are the ones who are
 	// responsible to back up their promises in real life and potentially in court. All the software
 	// does is CERTIFY that the users DID make certain agreements at certain times, and digitally sign
 	// those certifications.
@@ -13772,12 +13773,12 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 	// to authenticate their transactions. Instead of authenticating certifications like Verisign does,
 	// it authenticates transactions.
 	//
-	// UPDATE: May not want x509's after all, since it provides an opening for governments to 
+	// UPDATE: May not want x509's after all, since it provides an opening for governments to
 	// serve warrants on the authority site and switch certs whenever they want to (BAD THING!)
 	//
     OTString strMsgNymID;
     pNym->GetIdentifier(strMsgNymID);
-    
+
 	if (theMessage.m_strCommand.Compare("checkServerID"))
 	{
 		OTLog::vOutput(0, "\n==> Received a checkServerID message. Nym: %s ...\n", strMsgNymID.Get());
@@ -13809,40 +13810,40 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 		// ------------------------------------------------------------
 		OTAsymmetricKey & nymAuthentKey    = *pNymAuthentKey;
         OTAsymmetricKey & nymEncryptionKey = *pNymEncryptKey;
-		// ------------------------------------------------------------		
+		// ------------------------------------------------------------
 		const bool bIfNymPublicKey =
 				(nymAuthentKey   .SetPublicKey(theMessage.m_strNymPublicKey, true/*bEscaped*/) &&
                  nymEncryptionKey.SetPublicKey(theMessage.m_strNymID2,       true/*bEscaped*/));
-		
+
 		if (bIfNymPublicKey)
 		{
             if (theMessage.VerifyWithKey(nymAuthentKey)) // Not all contracts are signed with the authentication key, but messages are.
             {
                 OTLog::Output(3, "Signature verified! The message WAS signed by "
                         "the Private Authentication Key inside the message.\n");
-                
-                // This is only for verified Nyms, (and we're verified in here!) We do this so that 
-                // we have the option later to encrypt the replies back to the client...(using the 
+
+                // This is only for verified Nyms, (and we're verified in here!) We do this so that
+                // we have the option later to encrypt the replies back to the client...(using the
                 // client's public key that we set here.)
                 if (NULL != pConnection)
                     pConnection->SetPublicKey(theMessage.m_strNymID2); // theMessage.m_strNymID2 contains the public encryption key for sending an encrypted reply.
-                
+
                 UserCmdCheckServerID(*pNym, theMessage, msgOut);
                 return true;
             }
-            else 
+            else
             {
                 OTLog::Output(0, "checkServerID: Signature verification failed!\n");
                 return false;
             }
 		}
-		else 
+		else
 		{
 			OTLog::Error("Failure reading Nym's signing and/or encryption keys from message.\n");
 			return false;
 		}
 	}
-	
+
     // The below block is now COMPLETE. (For credentials new system.)
     //
     // Next, make sure the client side is properly forming the new version of this message,
@@ -13855,13 +13856,13 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     // a list of credential IDs. You load the list of credential IDs as if you are loading the Nym
     // from a string. (It's like a nym that only contains the credential parts.) Then in the process
     // of loading the Nym, it will load the credentials from the mapOfStrings.
-    // 
+    //
 	else if (theMessage.m_strCommand.Compare("createUserAccount"))
 	{
 		OTLog::vOutput(0, "\n==> Received a createUserAccount message. Nym: %s ...\n", strMsgNymID.Get());
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_create_user_acct);
-		// ------------------------------------------------------------		
+		// ------------------------------------------------------------
         if (bNymIsServerNym)
         {
             OTLog::Output(0, "**** Sorry, the server Nym is forbidden from using "
@@ -13883,7 +13884,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
             // credentialList
             //
             OTString strCredentialList(ascArmor);
-            
+
             if (strCredentialList.Exists())
             {
                 OTDB::Storable  * pStorable = OTDB::DecodeObject(OTDB::STORED_OBJ_STRING_MAP, ascArmor2.Get());
@@ -13894,7 +13895,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                 // ----------------------------------------
                 else
                 {
-                    mapOfStrings & theMap = pMap->the_map;                    
+                    mapOfStrings & theMap = pMap->the_map;
                     // ----------------------------------------
                     // NOTE: This action may very well be a malicious attacker saving a false
                     // credential list and a false set of credentials under a certain Nym ID!
@@ -13930,7 +13931,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                     {   // verified the Nym (including the credentials.)
                         // So let's save it to local storage...
                         //
-                        
+
                         OTLog::Output(3, "Pseudonym verified!\n");
                         // -------------------------------------------------------------
                         // Okay, now that the Nym is verified, let's verify the message itself...
@@ -13950,10 +13951,10 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                             std::string str_nym_id = theMessage.m_strNymID.Get();
                             OTString strFilename;
                             strFilename.Format("%s.cred", str_nym_id.c_str());
-                            
+
                             bool     bStoredList = false;
                             OTString strOutput;
-                            
+
                             if (ascArmor.Exists() &&
                                 ascArmor.WriteArmoredString(strOutput, "CREDENTIAL LIST") && // bEscaped=false by default.
                                 strOutput.Exists())
@@ -13998,7 +13999,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                             OTString          strPublicEncrKey, strPublicSignKey;
                             OTAsymmetricKey & thePublicEncrKey = (OTAsymmetricKey &)pNym->GetPublicEncrKey(); // todo cast
                             OTAsymmetricKey & thePublicSignKey = (OTAsymmetricKey &)pNym->GetPublicSignKey(); // todo cast
-                            
+
                             thePublicEncrKey.GetPublicKey(strPublicEncrKey, false); // bEscaped=true by default
                             thePublicSignKey.GetPublicKey(strPublicSignKey, false); // bEscaped=true by default
 
@@ -14021,28 +14022,28 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                             // UPDATE: Actually we should, in such cases, just return true with
                             // a copy of the Nymfile. Helps prevent sync errors, and gives people
                             // a way to grab the server's copy of their nymfile, if they need it.
-                            //                            
+                            //
                             OTLog::Output(0, "Verifying account doesn't already exist... "
                                           "(IGNORE ANY ERRORS, IMMEDIATELY BELOW, ABOUT FAILURE OPENING FILES)\n");
-                            
+
                             // Prepare to send success or failure back to user.
                             // (1) set up member variables
                             msgOut.m_strCommand		= "@createUserAccount";		// reply to createUserAccount
                             msgOut.m_strNymID		= theMessage.m_strNymID;	// UserID
                             msgOut.m_strServerID	= m_strServerID;			// ServerID, a hash of the server contract.
                             msgOut.m_bSuccess		= false;
-                            
+
                             // already done, top of this function.
 //                          msgOut.m_strRequestNum.Set(theMessage.m_strRequestNum); // to prevent replay attacks.
-                            
+
                             // We send the user's message back to him, ascii-armored,
                             // as part of our response.
                             OTString tempInMessage;
                             theMessage.SaveContractRaw(tempInMessage);
                             msgOut.m_ascInReferenceTo.SetString(tempInMessage);
-                            
+
                             bool bLoadedSignedNymfile = pNym->LoadSignedNymfile(m_nymServer);
-                            
+
                             // He ALREADY exists. We'll set success to true, and send him a copy of his own nymfile.
                             // (Signature is verified already anyway, by this point.)
                             //
@@ -14052,7 +14053,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                 OTLog::vOutput(0, "(Allowed in order to prevent sync issues) "
                                                "==> User is registering nym that already exists: %s\n",
                                                theMessage.m_strNymID.Get());
-                                
+
                                 OTString strNymContents;
                                 pNym->SavePseudonym(strNymContents);
                                 // ------------------------
@@ -14062,22 +14063,22 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                 OTLedger     theNymbox(theNewNymID, theNewNymID, SERVER_ID);
                                 // ------------------------------------
                                 bool bSuccessLoadingNymbox	= theNymbox.LoadNymbox();
-                                
+
                                 if (true == bSuccessLoadingNymbox)
                                     bSuccessLoadingNymbox	= (theNymbox.VerifyContractID() && theNymbox.VerifyAccount(m_nymServer));
 //									bSuccessLoadingNymbox	= (theNymbox.VerifyAccount(m_nymServer)); // (No need here to load all the Box Receipts)
                                 else
                                 {
                                     bSuccessLoadingNymbox	= theNymbox.GenerateLedger(theNewNymID, SERVER_ID, OTLedger::nymbox, true); // bGenerateFile=true
-                                    
+
                                     if (bSuccessLoadingNymbox)
                                     {
                                         bSuccessLoadingNymbox	= theNymbox.SignContract(m_nymServer);
-                                        
+
                                         if (bSuccessLoadingNymbox)
                                         {
                                             bSuccessLoadingNymbox = theNymbox.SaveContract();
-                                            
+
                                             if (bSuccessLoadingNymbox)
                                                 bSuccessLoadingNymbox	= theNymbox.SaveNymbox();
                                         }
@@ -14106,7 +14107,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                             {
                                 if (pNym->IsMarkedForDeletion())
                                     pNym->MarkAsUndeleted();
-                                
+
                                 // Good -- this means the account doesn't already exist.
                                 // Let's create it.
 
@@ -14116,14 +14117,14 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                 if (msgOut.m_bSuccess)
                                 {
                                     OTLog::Output(0, "Success saving new user account verification file.\n");
-                                    
+
                                     OTIdentifier theNewNymID, SERVER_ID(m_strServerID);
                                     pNym->GetIdentifier(theNewNymID);
                                     // ------------------------------------
                                     OTLedger     theNymbox(theNewNymID, theNewNymID, SERVER_ID);
-                                    // ------------------------------------                                    
+                                    // ------------------------------------
                                     bool bSuccessLoadingNymbox	= theNymbox.LoadNymbox();
-                                    
+
                                     if (true == bSuccessLoadingNymbox) // that's strange, this user didn't exist... but maybe I allow people to drop notes anyway, so then the nymbox might already exist, with usage tokens and messages inside....
                                         bSuccessLoadingNymbox	= (theNymbox.VerifyContractID() && theNymbox.VerifyAccount(m_nymServer));
 //									    bSuccessLoadingNymbox	= (theNymbox.VerifyAccount(m_nymServer)); // (No need here to load all the Box Receipts)
@@ -14136,7 +14137,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                             if (bSuccessLoadingNymbox)
                                             {
                                                 bSuccessLoadingNymbox = theNymbox.SaveContract();
-                                                
+
                                                 if (bSuccessLoadingNymbox)
                                                     bSuccessLoadingNymbox	= theNymbox.SaveNymbox();
                                             }
@@ -14144,7 +14145,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                     }
                                     // -----------------------------------------------------
                                     // by this point, the nymbox DEFINITELY exists -- or not. (generation might have failed, or verification.)
-                                    
+
                                     if (false == bSuccessLoadingNymbox)
                                     {
                                         OTLog::vError("Error during user account registration. Failed verifying or generating nymbox for user: %s\n",
@@ -14156,24 +14157,24 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                                     else if (bLoadedSignedNymfile || pNym->SaveSignedNymfile(m_nymServer))
                                     {
                                         OTLog::vOutput(0, "Success creating new Nym. (User account fully created.)\n");
-                                        
+
                                         OTString strNymContents;
                                         pNym->SavePseudonym(strNymContents);
                                         // ------------------
-                                        msgOut.m_ascPayload.SetString(strNymContents);	
+                                        msgOut.m_ascPayload.SetString(strNymContents);
                                         msgOut.m_bSuccess = true;
-                                        msgOut.SignContract(m_nymServer);		
+                                        msgOut.SignContract(m_nymServer);
                                         msgOut.SaveContract();
                                         return true;
                                     }
-                                    else 
+                                    else
                                     {
-                                        msgOut.SignContract(m_nymServer);		
+                                        msgOut.SignContract(m_nymServer);
                                         msgOut.SaveContract();
                                         return true;
                                     }
                                 }
-                                else 
+                                else
                                 {
                                     OTLog::Error("Error saving new user account verification file.\n");
                                     msgOut.SignContract(m_nymServer);
@@ -14190,9 +14191,9 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
             } // credential list exists, after base64-decoding.
         } // Has Credentials.
 	}
-	// ------------------------------------------------------------------------------------------	
+	// ------------------------------------------------------------------------------------------
 	// Look up the NymID and see if it's a valid user account.
-	// 
+	//
 	// If we didn't receive a public key (above)
 	// Or read one from our files (below)
 	// ... then we'd have no way of validating the requests.
@@ -14210,7 +14211,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     // ------------------------------------------------------------------------------------------
     if (!bNymIsServerNym && pNym->IsMarkedForDeletion())
 	{
-		OTLog::vOutput(0, "(Failed) attempt by client to use a deleted Nym: %s\n", 
+		OTLog::vOutput(0, "(Failed) attempt by client to use a deleted Nym: %s\n",
 					   theMessage.m_strNymID.Get());
 		return false;
 	}
@@ -14222,40 +14223,40 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 	if (pNym->VerifyPseudonym())
 	{
 		OTLog::Output(3, "Pseudonym verified!\n");
-		
+
 		// So far so good. Now let's see if the signature matches...
-		if (theMessage.VerifySignature(*pNym)) 
+		if (theMessage.VerifySignature(*pNym))
 		{
 			OTLog::Output(3, "Signature verified! The message WAS signed by "
 					"the Nym\'s private key.\n");
-						
+
 			// Get the public key from pNym, and set it into the connection.
-			// This is only for verified Nyms, (and we're verified in here!) We do this so that 
-			// we have the option later to encrypt the replies back to the client...(using the 
+			// This is only for verified Nyms, (and we're verified in here!) We do this so that
+			// we have the option later to encrypt the replies back to the client...(using the
 			// client's public key that we set here.)
 			if (NULL != pConnection)
 				pConnection->SetPublicKey(pNym->GetPublicEncrKey());
-			
+
 			// Now we might as well load up the rest of the Nym.
 			// Notice I use the || to only load the nymfile if it's NOT the server Nym.
 			if (bNymIsServerNym || pNym->LoadSignedNymfile(m_nymServer))
 			{
 				OTLog::Output(2,  "Successfully loaded Nymfile into memory.\n");
-				
+
 				// *****************************************************************************
 				// ENTERING THE INNER SANCTUM OF SECURITY. If the user got all the way to here,
 				// Then he has passed multiple levels of security, and all commands below will
 				// assume the Nym is secure, validated, and loaded into memory for use.
 				//
-				// But still need to verify the Request Number for all other commands except 
+				// But still need to verify the Request Number for all other commands except
 				// Get Request Number itself...
 				// *****************************************************************************
-				
+
 				// Request numbers start at 100 (currently). (Since certain special messages USE 1 already...
                 // Such as messages that occur before requestnumbers are possible, like CreateUserAccount.)
                 //
 				long lRequestNumber = 0;
-				
+
 				if (false == pNym->GetCurrentRequestNum(m_strServerID, lRequestNumber))
 				{
 					OTLog::Output(0, "Nym file request number doesn't exist. Apparently first-ever request to server--but everything checks out. "
@@ -14271,15 +14272,15 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 						OTLog::Output(0, "Created first request number in Nym file, apparently first-ever request. "
 								"(Shouldn't this have been created already when the NymFile was first created???????\n");
 					}
-					else 
+					else
                     {
-						OTLog::Error("ERROR creating first request number in Nym file.\n");	
+						OTLog::Error("ERROR creating first request number in Nym file.\n");
 						return false;
 					}
 				}
-				
+
 				// At this point, I now have the current request number for this nym in lRequestNumber
-				// Let's compare it to the one that was sent in the message... (This prevents attackers 
+				// Let's compare it to the one that was sent in the message... (This prevents attackers
 				// from repeat-sending intercepted messages to the server.)
 				if (false == theMessage.m_strCommand.Compare("getRequest"))		   // IF it's NOT a getRequest CMD, (therefore requires a request number)
 				{
@@ -14290,7 +14291,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 						return false;
 					}
 					else // it's not a getRequest CMD, and the request number sent DOES match what we read out of the file!!
-					{	
+					{
 						// USAGE CREDITS...
 						// Since (just below) we IncrementRequestNum() and therefore save the Nym,
 						// I figured it's a good spot to do our Usage Credits code, so we don't have
@@ -14302,7 +14303,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 							 (0 != OTServer::GetOverrideNymID().compare((theMessage.m_strNymID.Get())))))	// match the Nym's ID who sent this message)
 						{
 							const long & lUsageCredits = pNym->GetUsageCredits();
-							
+
 							if (0 == lUsageCredits) // If the User has ZERO USAGE CREDITS LEFT. (Too bad, even 1 would have squeezed him by here.)
 							{
 								OTLog::vOutput(0, "Nym %s: ALL OUT of Usage Credits, while server is in **REQUIRE USAGE CREDITS MODE**!\n",
@@ -14314,14 +14315,14 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 							pNym->SetUsageCredits(lUsageFinal);
 						}
 						// ----------------------------------------------------------------------------
-						
+
 						OTLog::vOutput(3, "Request number sent in this message %ld DOES match the one in the file!\n", lRequestNumber);
-						
+
 						// At this point, it is some OTHER command (besides getRequest)
 						// AND the request number verifies, so we're going to increment
 						// the number, and let the command process.
 						pNym->IncrementRequestNum(m_nymServer, m_strServerID);
-						
+
 						// *****************************************************************************
 						// **INSIDE** THE INNER SANCTUM OF SECURITY. If the user got all the way to here,
 						// Then he has passed multiple levels of security, and all commands below will
@@ -14329,32 +14330,32 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 						// also assume that the request number has been verified on this message.
 						// EVERYTHING checks out.
 						// *****************************************************************************
-						
+
 						// NO RETURN HERE!!!! ON PURPOSE!!!!
 					}
 
 				}
-				else  // If you entered this else, that means it IS a getRequest command 
+				else  // If you entered this else, that means it IS a getRequest command
 					  // So we allow it to go through without verifying this step, and without incrementing the counter.
 				{
 					//pNym->IncrementRequestNum(m_strServerID); // commented out cause this is the one case where we DON'T increment this number.
 														   // We allow the user to get the number, we DON'T increment it, and now the user
-														   // can send it on his next request for some other command, and it will verify 
+														   // can send it on his next request for some other command, and it will verify
 														   // properly. This prevents repeat messages.
 
 					// NO RETURN HERE!!!! ON PURPOSE!!!!
 				}
 
-					
+
 				// At this point, we KNOW that it is EITHER a GetRequest command, which doesn't require a request number,
 				// OR it was some other command, but the request number they sent in the command MATCHES the one that we
 				// just read out of the file.
-				
-				// Therefore, we can process ALL messages below this 
+
+				// Therefore, we can process ALL messages below this
 				// point KNOWING that the Nym is properly verified in all ways.
-				// No messages need to worry about verifying the Nym, or about 
+				// No messages need to worry about verifying the Nym, or about
 				// dealing with the Request Number. It's all handled in here.
-				
+
 			}
 			else
             {
@@ -14362,7 +14363,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 				return false;
 			}
 		}
-		else 
+		else
 		{
 			OTLog::Output(0, "Signature verification failed!\n");
 			return false;
@@ -14374,11 +14375,11 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 				"Nym ID that was sent.\n");
 		return false;
 	}
-	
-	
+
+
 	// ----------------------------------------------------------------------------------------
-	
-	
+
+
 	// If you made it down this far, that means the Pseudonym verifies! The message is legit.
 	//
 	// (Server ID was good, NymID is a valid hash of User's public key, and the Signature on
@@ -14395,8 +14396,8 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     // ----------------------------------------------------------------------------------------
 
     // ACKNOWLEDGMENTS OF REPLIES ALREADY RECEIVED (FOR OPTIMIZATION.)
-    
-    // On the client side, whenever the client is DEFINITELY made aware of the existence of a 
+
+    // On the client side, whenever the client is DEFINITELY made aware of the existence of a
     // server reply, he adds its request number to this list, which is sent along with all client-side
     // requests to the server.
     // The server reads the list on the incoming client message (and it uses these same functions
@@ -14416,19 +14417,19 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     //
 
     const OTIdentifier SERVER_ID(m_strServerID);
-    
+
     // The server reads the list of acknowledged replies from the incoming client message...
     //
     bool bIsDirtyNym    = false; // if we add any acknowledged replies to the server-side list, we will want to save (at the end.)
     bool bIsDirtyNymbox = false; // if we remove any replyNotices from the Nymbox, then we will want to save the Nymbox (at the end.)
 
-    std::set<long> numlist_ack_reply;    
+    std::set<long> numlist_ack_reply;
     if (theMessage.m_AcknowledgedReplies.Output(numlist_ack_reply)) // returns false if the numlist was empty.
     {
         // Load Nymbox
         //
         OTLedger theNymbox(pNym->GetConstID(), pNym->GetConstID(), SERVER_ID);
-        
+
         if (theNymbox.LoadNymbox() && theNymbox.VerifySignature(m_nymServer))
         {
             FOR_EACH(std::set<long>, numlist_ack_reply)
@@ -14446,7 +14447,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                     // Verify whether a replyNotice exists in the Nymbox, with that lRequestNum
                     //
                     OTTransaction * pReplyNotice = theNymbox.GetReplyNotice(lRequestNum);
-                    
+
                     if (NULL != pReplyNotice)
                     {
                         // If so, remove it...
@@ -14455,23 +14456,23 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
                         const bool bRemoved = theNymbox.RemoveTransaction(pReplyNotice->GetTransactionNum()); // deletes
                         pReplyNotice = NULL;
                         // (pReplyNotice is deleted, below this point, automatically by the above Remove call.)
-                        
+
                         if (!bDeleted || !bRemoved)
                             OTLog::Error("OTServer::ProcessUserCommand: Failed trying to delete a box receipt, or "
                                          "while removing its stub from the Nymbox.\n");
-                            
+
                         // ...and add lRequestNum to server's acknowledgment list. (So this can't happen twice with same #.)
                         //
                         if (pNym->AddAcknowledgedNum(m_strServerID, lRequestNum)) // doesn't save (here).
                             bIsDirtyNym    = true; // So we don't have to save EACH iteration, but instead just once at the bottom.
-                        
+
                         if (bRemoved)
                             bIsDirtyNymbox = true; // So we don't have to save EACH iteration, but instead just once at the bottom.
                     }
                 } // If server didn't already have a record of this acknowledged request #.
             } // FOR_EACH
             // --------------------------
-            
+
             if (bIsDirtyNymbox)
             {
                 theNymbox.ReleaseSignatures();
@@ -14482,7 +14483,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
         } // If nymbox loaded and verified.
     }
     // ------------------------------------
-    
+
     // For any numbers on the server's internal list but NOT on the client's list, the server removes from
     // the internal list. (Because the client must have seen my acknowledgment and thus removed the number
     // from its own list, so the server doesn't need to display it anymore.)
@@ -14492,11 +14493,11 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     //
     OTNumList numlist_to_remove; // a temp variable where we will put the numbers "to be removed" (so we can remove them all at once, after the loop.)
     const int nAcknowledgedNumCount = pNym->GetAcknowledgedNumCount(SERVER_ID);
-    
+
     if (nAcknowledgedNumCount > 0)
     {
         for (int i = 0; i < nAcknowledgedNumCount; i++)
-        {	
+        {
             const long lAcknowledgedNum = pNym->GetAcknowledgedNum(SERVER_ID, i); // index
 
             // For any numbers on the server's internal list but NOT on the client's list (according
@@ -14524,12 +14525,12 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
         }
     } // if there are server-side ack numbers that could potentially be removed, if client's message doesn't list them.
     // -------------------------------------------
-    
+
     if (bIsDirtyNym)
     {
         pNym->SaveSignedNymfile(m_nymServer); // we save here.
     }
-    
+
     // Note: in the ultimate future, we wouldn't even save the Nym down here, but we'll let the entire message process
     // and then save the Nym at the end.
     // Then again -- you'd still want to know if the Nym was locked, at each "save attempt" along the way. Because even
@@ -14546,161 +14547,161 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 
     msgOut.m_strServerID	= m_strServerID;
     msgOut.SetAcknowledgments(*pNym); // Must be called AFTER msgOut.m_strServerID is already set. (It uses it.)
-    
+
     // ****************************************************************************************************
-                    
+
 
 	if (theMessage.m_strCommand.Compare("getRequest")) // This command is special because it's the only one that doesn't require a request number.
 													   // All of the other commands, below, will fail above if the proper request number isn't included
 													   // in the message.  They will already have failed by this point if they didn't verify.
 	{
 		OTLog::vOutput(0, "\n==> Received a getRequest message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_request);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetRequest(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getTransactionNum"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getTransactionNum message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_trans_num);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetTransactionNum(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("checkUser"))
 	{
 		OTLog::vOutput(0, "\n==> Received a checkUser message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_check_user);
 		// ------------------------------------------------------------
-		
+
 		UserCmdCheckUser(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("sendUserMessage"))
 	{
 		OTLog::vOutput(0, "\n==> Received a sendUserMessage message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_send_message);
 		// ------------------------------------------------------------
-		
+
 		UserCmdSendUserMessage(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("sendUserInstrument"))
 	{
 		OTLog::vOutput(0, "\n==> Received a sendUserInstrument message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_send_message);
 		// ------------------------------------------------------------
-		
+
 		UserCmdSendUserInstrument(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("deleteUserAccount"))
 	{
 		OTLog::vOutput(0, "\n==> Received a deleteUserAccount message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_del_user_acct);
 		// ------------------------------------------------------------
-		
+
 		UserCmdDeleteUser(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("deleteAssetAccount"))
 	{
 		OTLog::vOutput(0, "\n==> Received a deleteAssetAccount message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_del_asset_acct);
 		// ------------------------------------------------------------
-		
+
 		UserCmdDeleteAssetAcct(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("createAccount"))
 	{
 		OTLog::vOutput(0, "\n==> Received a createAccount message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_create_asset_acct);
 		// ------------------------------------------------------------
-		
+
 		UserCmdCreateAccount(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("issueAssetType"))
 	{
 		OTLog::vOutput(0, "\n==> Received an issueAssetType message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_issue_asset);
 		// ------------------------------------------------------------
-		
+
 		UserCmdIssueAssetType(*pNym, theMessage, msgOut);
-		
+
 		return true;
-	}	
+	}
 	else if (theMessage.m_strCommand.Compare("issueBasket"))
 	{
 		OTLog::vOutput(0, "\n==> Received an issueBasket message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_issue_basket);
 		// ------------------------------------------------------------
-		
+
 		UserCmdIssueBasket(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("notarizeTransactions"))
 	{
 		OTLog::vOutput(0, "\n==> Received a notarizeTransactions message.  Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_notarize_transaction);
 		// ------------------------------------------------------------
-		
+
 		UserCmdNotarizeTransactions(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getNymbox"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getNymbox message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_nymbox);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetNymbox(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getBoxReceipt"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getBoxReceipt message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		bool bRunIt = true;
 		// ------------------------------------------------------------
 		if (0 == theMessage.m_lDepth)
@@ -14715,218 +14716,218 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 
 		if (bRunIt)
 			UserCmdGetBoxReceipt(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getInbox"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getInbox message.  Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_inbox);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetInbox(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getOutbox"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getOutbox message.  Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_outbox);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetOutbox(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
     else if (theMessage.m_strCommand.Compare("getAccount"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getAccount message.  Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_acct);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetAccount(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
     else if (theMessage.m_strCommand.Compare("getAccountFiles"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getAccountFiles message.  Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_inbox);
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_outbox);
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_acct);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetAccountFiles(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("processNymbox"))
 	{
 		OTLog::vOutput(0, "\n==> Received a processNymbox message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_process_nymbox);
 		// ------------------------------------------------------------
-		
+
 		UserCmdProcessNymbox(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("processInbox"))
 	{
 		OTLog::vOutput(0, "\n==> Received a processInbox message. Acct: %s Nym: %s  ...\n",
                        theMessage.m_strAcctID.Get(), strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_process_inbox);
 		// ------------------------------------------------------------
-		
+
 		UserCmdProcessInbox(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("queryAssetTypes"))
 	{
 		OTLog::vOutput(0, "\n==> Received a queryAssetTypes message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_contract);
 		// ------------------------------------------------------------
-		
+
 		UserCmdQueryAssetTypes(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getContract"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getContract message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_contract);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetContract(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getMint"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getMint message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_mint);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetMint(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getMarketList"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getMarketList message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_market_list);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetMarketList(*pNym, theMessage, msgOut);
-		
+
 		return true;
-	}	
+	}
 	else if (theMessage.m_strCommand.Compare("getMarketOffers"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getMarketOffers message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_market_offers);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetMarketOffers(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getMarketRecentTrades"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getMarketRecentTrades message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_market_recent_trades);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetMarketRecentTrades(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("getNym_MarketOffers"))
 	{
 		OTLog::vOutput(0, "\n==> Received a getNym_MarketOffers message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_get_nym_market_offers);
 		// ------------------------------------------------------------
-		
+
 		UserCmdGetNym_MarketOffers(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("triggerClause"))
 	{
 		OTLog::vOutput(0, "\n==> Received a triggerClause message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_trigger_clause);
 		// ------------------------------------------------------------
-		
+
 		UserCmdTriggerClause(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else if (theMessage.m_strCommand.Compare("usageCredits"))
 	{
 		OTLog::vOutput(0, "\n==> Received a usageCredits message. Nym: %s ...\n", strMsgNymID.Get());
-		
+
 		// ------------------------------------------------------------
 		OT_ENFORCE_PERMISSION_MSG(__cmd_usage_credits);
 		// ------------------------------------------------------------
-		
+
 		UserCmdUsageCredits(*pNym, theMessage, msgOut);
-		
+
 		return true;
 	}
 	else
 	{
 		OTLog::vError("Unknown command type in the XML, or missing payload, in ProcessMessage.\n");
         // --------------------------------------------------------------------------------
-        
+
         OTString strTemp;
         strTemp.Format("@%s", theMessage.m_strCommand.Get()); // Todo security. Review this.
-        
+
         msgOut.m_strCommand   = strTemp;
         msgOut.m_strAcctID    = theMessage.m_strAcctID;
         msgOut.m_strServerID  = theMessage.m_strServerID;
         msgOut.m_strNymID     = theMessage.m_strNymID;
-        
+
         msgOut.m_bSuccess = false;
-        
+
         OTString strRef(theMessage);
-        
+
         msgOut.m_ascInReferenceTo.SetString(strRef);
 
         msgOut.SignContract(m_nymServer);
         msgOut.SaveContract();
-        
+
         // --------------------------------------------------------------------------------
 		return false;
 	}
@@ -14940,7 +14941,7 @@ bool OTServer::GetConnectInfo(OTString & strHostname, int & nPort)
 {
 	if (NULL == m_pServerContract)
 		return false;
-	
+
 	return m_pServerContract->GetConnectInfo(strHostname, nPort);
 }
 

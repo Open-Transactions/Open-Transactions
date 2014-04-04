@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTEnvelope.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,13 +134,9 @@
 #ifndef __OTENVELOPE_HPP__
 #define __OTENVELOPE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTCrypto.hpp"
-
-#include _CINTTYPES
 
 class OTPseudonym;
 class OTString;
@@ -194,7 +190,7 @@ public:
 	EXPORT	~OTNym_or_SymmetricKey();
 	// ---------------------------------
 	EXPORT	OTNym_or_SymmetricKey(const OTNym_or_SymmetricKey & rhs);
-	// ---------------------------------    
+	// ---------------------------------
 	EXPORT	OTNym_or_SymmetricKey(const OTPseudonym     & theNym, const OTString  * pstrDisplay=NULL);
 	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTString  * pstrDisplay=NULL);
 	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTPassword & thePassword, const OTString * pstrDisplay=NULL);
@@ -210,8 +206,6 @@ public:
 
 // ------------------------------------------------------------------------
 
-
-
 class OTEnvelope     // <=============== OT ENVELOPE!
 {
 	friend class OTPayload;
@@ -224,16 +218,16 @@ EXPORT	OTEnvelope();
 EXPORT	OTEnvelope(const OTASCIIArmor & theArmoredText);
 EXPORT	OTEnvelope(const OTString     & strArmorWithBookends);
 EXPORT	virtual ~OTEnvelope();
-	
+
     // ------------------------------------------------------------------------
 	// SYMMETRIC CRYPTO  (AES)
-    
+
 EXPORT    bool Encrypt(const OTString & theInput,        OTSymmetricKey & theKey, const OTPassword & thePassword);
 EXPORT    bool Decrypt(      OTString & theOutput, const OTSymmetricKey & theKey, const OTPassword & thePassword);
-    
+
         // ------------------------------------------------------------------------
         // ASYMMETRIC CRYPTO (RSA / AES)
-        
+
         // Single recipient:
         //
 EXPORT	bool Seal(const OTPseudonym     & theRecipient, const OTString & theInput);  // Put data into this object with Seal().
@@ -271,7 +265,7 @@ EXPORT	bool GetAsBookendedString(OTString     & strArmorWithBookends, bool bEsca
         //
 EXPORT	bool SetAsciiArmoredData   (const OTASCIIArmor & theArmoredText,       bool bLineBreaks = true  );
 EXPORT	bool SetFromBookendedString(const OTString     & strArmorWithBookends, bool bEscaped    = false );
-    
+
     // ------------------------------------------------------------------------
 };
 

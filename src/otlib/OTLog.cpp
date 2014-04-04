@@ -1,13 +1,13 @@
 /*******************************************************************
-*    
+*
 *  OTLog.cpp
-*  
+*
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -188,7 +188,7 @@ extern "C"
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
-    
+
 #ifndef __USE_GNU
 #define __USE_GNU
 #endif
@@ -204,16 +204,16 @@ extern "C"
 		int eip;
 	};
 #endif // defined __APPLE__
-    
+
 // ----------------------------------------
 #if defined (ANDROID)
-    
+
 #ifndef ucontext_h_seen
 #define ucontext_h_seen
-    
+
 #include <asm/sigcontext.h>       /* for sigcontext */
 #include <asm/signal.h>           /* for stack_t */
-    
+
     typedef struct ucontext {
         unsigned long uc_flags;
         struct ucontext *uc_link;
@@ -221,7 +221,7 @@ extern "C"
         struct sigcontext uc_mcontext;
         unsigned long uc_sigmask;
     } ucontext_t;
-    
+
 #endif // ucontext_h_seen
 // -------------------
 #else // Not ANDROID
@@ -231,7 +231,7 @@ extern "C"
 #include <execinfo.h>
 #endif
 // ----------------------------------------
-    
+
 #include <sys/time.h>
 #include <sys/resource.h>
 
@@ -320,7 +320,7 @@ bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
 
 			pLogger->m_strLogFileName.Format("%s%s%s",LOGFILE_PRE, strThreadContext.Get(), LOGFILE_EXT);
 
-            
+
 			OTSettings config = OTSettings(OTPaths::GlobalConfigFile());
 
 			config.Reset();
@@ -432,9 +432,9 @@ bool			    OTLog::SetLogLevel(const int & nLogLevel)
 //static
 bool OTLog::LogToFile(const OTString & strOutput)
 {
-	// We now do this either way. 
+	// We now do this either way.
 	{
-		std::cerr << strOutput.Get();	
+		std::cerr << strOutput.Get();
 		std::cerr.flush();
 	}
 
@@ -500,7 +500,7 @@ const OTString OTLog::GetMemlogAtIndex(const int nIndex)
 // --------------------------------------------------
 // We keep 1024 logs in memory, to make them available via the API.
 
-int OTLog::GetMemlogSize() 
+int OTLog::GetMemlogSize()
 {
 	// lets check if we are Initialized in this context
 	CheckLogger(OTLog::pLogger);
@@ -541,7 +541,7 @@ const OTString OTLog::PeekMemlogBack()
 	const OTString strLogEntry = *OTLog::pLogger->logDeque.back();
 
 	if (strLogEntry.Exists()) return strLogEntry;
-	else return "";	
+	else return "";
 }
 
 //static
@@ -559,7 +559,7 @@ bool OTLog::PopMemlogFront()
 
 	OTLog::pLogger->logDeque.pop_front();
 
-	return true;		
+	return true;
 }
 
 //static
@@ -577,7 +577,7 @@ bool OTLog::PopMemlogBack()
 
 	OTLog::pLogger->logDeque.pop_back();
 
-	return true;			
+	return true;
 }
 
 //static
@@ -608,7 +608,7 @@ bool OTLog::PushMemlogBack(const OTString & strLog)
 
 	OTLog::pLogger->logDeque.push_back(new OTString(strLog));
 
-	return true;	
+	return true;
 }
 
 // -------------------------------------------------------
@@ -639,14 +639,14 @@ bool OTLog::SleepMilliseconds(long lMilliseconds)
 
 // This function is for things that should NEVER happen.
 // In fact you should never even call it -- use the OT_ASSERT() macro instead.
-// This Function is now only for logging, you 
+// This Function is now only for logging, you
 //static private
 size_t OTLog::logAssert(const char * szFilename, size_t nLinenumber, const char * szMessage)
 {
 	if (NULL != szMessage)
 	{
 #ifndef ANDROID // if NOT android
-		std::cerr << szMessage << "\n";		
+		std::cerr << szMessage << "\n";
 		// -----------------------------
 		LogToFile(szMessage); LogToFile("\n");
 		// -----------------------------
@@ -699,8 +699,8 @@ void OTLog::Output(int nVerbosity, const char *szOutput)
 
 	// If log level is 0, and verbosity of this message is 2, don't bother logging it.
 	//	if (nVerbosity > OTLog::__CurrentLogLevel || (NULL == szOutput))
-	if ((nVerbosity > LogLevel()) || (NULL == szOutput) || (LogLevel() == (-1)))		
-		return; 
+	if ((nVerbosity > LogLevel()) || (NULL == szOutput) || (LogLevel() == (-1)))
+		return;
 
 	// We store the last 1024 logs so programmers can access them via the API.
 	if (bHaveLogger) OTLog::PushMemlogFront(szOutput);
@@ -776,7 +776,7 @@ void OTLog::vOutput(int nVerbosity, const char *szOutput, ...)
 
 	// If log level is 0, and verbosity of this message is 2, don't bother logging it.
 	if (((0 != LogLevel()) && (nVerbosity > LogLevel())) || (NULL == szOutput))
-		return; 
+		return;
 	// --------------------
 	std::string str_output;
 
@@ -812,7 +812,7 @@ void OTLog::vError(const char *szError, ...)
 	if (bHaveLogger) CheckLogger(OTLog::pLogger);
 
 	if ((NULL == szError))
-		return; 
+		return;
     // --------------------
 
 	va_list args;
@@ -821,7 +821,7 @@ void OTLog::vError(const char *szError, ...)
 	std::string strOutput;
 
     const bool bFormatted = OTString::vformat(szError, &args, strOutput);
-    
+
 	va_end(args);
     // -------------------
     if (bFormatted)
@@ -829,7 +829,7 @@ void OTLog::vError(const char *szError, ...)
 	else OT_FAIL;
 
 }
-    
+
 
 // -----------------------------------------------------------------
 
@@ -848,7 +848,7 @@ void OTLog::Error(const char *szError)
 	if (bHaveLogger) CheckLogger(OTLog::pLogger);
 
 	if ((NULL == szError))
-		return; 
+		return;
 
 	// We store the last 1024 logs so programmers can access them via the API.
 	if (bHaveLogger) OTLog::PushMemlogFront(szError);
@@ -878,7 +878,7 @@ void OTLog::Error(OTString & strError)
 //
 //static
 void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
-{   
+{
 	bool bHaveLogger(false);
 	if (NULL != pLogger)
 		if (pLogger->IsInitialized())
@@ -908,11 +908,11 @@ void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
 		szErrString = buf;
 	// ------------------------
 	if (0 == nstrerr)
-		OTLog::vError("%s %s: errno %d: %s.\n", 
+		OTLog::vError("%s %s: errno %d: %s.\n",
 		szFunc, sz_location,
 		errnum, szErrString[0] != '\0' ? szErrString : "");
 	else
-		OTLog::vError("%s %s: errno: %d. (Unable to retrieve error string for that number.)\n", 
+		OTLog::vError("%s %s: errno: %d. (Unable to retrieve error string for that number.)\n",
 		szFunc, sz_location,
 		errnum);
 }
@@ -988,15 +988,15 @@ void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTStr
 bool OTLog::StringFill(OTString & out_strString, const char * szString, const int iLength, const char * szAppend)
 {
 	std::string strString(szString);
-    
-	if (NULL != szAppend) 
+
+	if (NULL != szAppend)
         strString.append(szAppend);
-    
+
 	for(;(static_cast<int>(strString.length()) < iLength); strString.append(" "))
         ;
-    
+
 	out_strString.Set(strString.c_str());
-    
+
 	return true;
 }
 
@@ -1006,8 +1006,8 @@ bool OTLog::StringFill(OTString & out_strString, const char * szString, const in
 
 // SIGNALS
 //
-// To get the most mileage out of this signal handler, 
-// compile it with the options:  -g -rdynamic 
+// To get the most mileage out of this signal handler,
+// compile it with the options:  -g -rdynamic
 //
 // *********************************************************************************
 //
@@ -1037,7 +1037,7 @@ namespace {
 
 // This is our custom std::terminate handler for SIGABRT (and any std::terminate() call)
 //
-void ot_terminate() 
+void ot_terminate()
 {
 	static tthread::mutex the_Mutex;
 
@@ -1057,7 +1057,7 @@ void ot_terminate()
 			<< e.what() << std::endl;
 	}
 	catch (...) {
-		std::cerr << "ot_terminate: " << __FUNCTION__ << " caught unknown/unhandled exception." 
+		std::cerr << "ot_terminate: " << __FUNCTION__ << " caught unknown/unhandled exception."
 			<< std::endl;
 	}
 
@@ -1068,7 +1068,7 @@ void ot_terminate()
 	void * array[50];
 	int size = backtrace(array, 50);
 
-	char ** messages = backtrace_symbols(array, size);    
+	char ** messages = backtrace_symbols(array, size);
 
 	// skip first stack frame (points here)
 	for (int i = 1; i < size && messages != NULL; ++i)
@@ -1078,11 +1078,11 @@ void ot_terminate()
 		// find parantheses and +address offset surrounding mangled name
 		for (char *p = messages[i]; *p; ++p)
 		{
-			if (*p == '(') 
+			if (*p == '(')
 			{
-				mangled_name = p; 
+				mangled_name = p;
 			}
-			else if (*p == '+') 
+			else if (*p == '+')
 			{
 				offset_begin = p;
 			}
@@ -1094,7 +1094,7 @@ void ot_terminate()
 		}
 
 		// if the line could be processed, attempt to demangle the symbol
-		if (mangled_name && offset_begin && offset_end && 
+		if (mangled_name && offset_begin && offset_end &&
 			mangled_name < offset_begin)
 		{
 			*mangled_name++ = '\0';
@@ -1106,17 +1106,17 @@ void ot_terminate()
 
 			// if demangling is successful, output the demangled function name
 			if (status == 0)
-			{    
-				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : " 
-					<< real_name << "+" << offset_begin << offset_end 
+			{
+				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+					<< real_name << "+" << offset_begin << offset_end
 					<< std::endl;
 
 			}
 			// otherwise, output the mangled function name
 			else
 			{
-				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : " 
-					<< mangled_name << "+" << offset_begin << offset_end 
+				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+					<< mangled_name << "+" << offset_begin << offset_end
 					<< std::endl;
 			}
 			if (NULL != real_name) free(real_name);
@@ -1133,7 +1133,7 @@ void ot_terminate()
 
 #endif
 
-	abort(); 
+	abort();
 }
 
 
@@ -1158,7 +1158,7 @@ void OTLog::SetupSignalHandler()
 }
 
 LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
-{   
+{
 	char  *FaultTx = "";
 
 	switch(ExInfo->ExceptionRecord->ExceptionCode)
@@ -1210,12 +1210,12 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 		if(ExInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
 		{
 		fprintf(stderr, "****************************************************\n");
-		fprintf(stderr, "*** Attempted to %s to address %08LX \n", 
+		fprintf(stderr, "*** Attempted to %s to address %08LX \n",
 		ExInfo->ExceptionRecord->ExceptionInformation[0] ? "write" : "read",
 		ExInfo->ExceptionRecord->ExceptionInformation[1]);
 
 		}
-		*/ 
+		*/
 #ifdef _WIN64
 		//		LogStackFrames(CodeAdress, (char *)ExInfo->ContextRecord->Rbp);
 #else
@@ -1236,7 +1236,7 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 	#endif
 	return EXCEPTION_CONTINUE_EXECUTION;
 	}
-	*/ 
+	*/
 
 	printf("*** Terminating\n");
 	printf("\n");
@@ -1250,7 +1250,7 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 
 void   LogStackFrames(void *FaultAdress, char *eNextBP)
 
-{      
+{
 #if defined(_WIN64)
 
 	typedef USHORT (WINAPI *CaptureStackBackTraceType)(__in ULONG, __in ULONG, __out PVOID*, __out_opt PULONG);
@@ -1264,9 +1264,9 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 		return;
 
 	// Quote from Microsoft Documentation:
-	// ## Windows Server 2003 and Windows XP:  
+	// ## Windows Server 2003 and Windows XP:
 	// ## The sum of the FramesToSkip and FramesToCapture parameters must be less than 63.
-	const int kMaxCallers = 62; 
+	const int kMaxCallers = 62;
 
 	void* callers[kMaxCallers];
 	int count = (func)(0, kMaxCallers, callers, NULL);
@@ -1310,28 +1310,28 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 
 	if(! eNextBP)
 	{
-		_asm mov     eNextBP, eBp   
+		_asm mov     eNextBP, eBp
 	}
-	else 
+	else
 		fprintf(stderr, "\n  Fault Occured At $ADDRESS:%08LX\n", (int)FaultAdress);
 
 
 	// prevent infinite loops
 	for(i = 0; eNextBP && i < 100; i++)
-	{      
+	{
 		pBP = eNextBP;           // keep current BasePointer
-		eNextBP = *(char **)pBP; // dereference next BP 
+		eNextBP = *(char **)pBP; // dereference next BP
 
-		p = pBP + 8; 
+		p = pBP + 8;
 
 		// Write 20 Bytes of potential arguments
-		fprintf(stderr, "         with ");                                                          
+		fprintf(stderr, "         with ");
 		for(x = 0; p < eNextBP && x < 20; p++, x++)
 			fprintf(stderr, "%02X ", *(unsigned char *)p);
 
-		fprintf(stderr, "\n\n");                                                          
+		fprintf(stderr, "\n\n");
 
-		if(i == 1 && ! BpPassed) 
+		if(i == 1 && ! BpPassed)
 			fprintf(stderr, "****************************************************\n"
 			"         Fault Occured Here:\n");
 
@@ -1339,7 +1339,7 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 		fprintf(stderr, "*** %2d called from $ADDRESS:%08X\n", i, *(char **)(pBP + 4));
 
 		if(*(char **)(pBP + 4) == NULL)
-			break; 
+			break;
 	}
 
 
@@ -1377,7 +1377,7 @@ struct sig_ucontext_t {
 };
 
 extern "C" {
-	// This structure mirrors the one found in /usr/include/asm/ucontext.h 
+	// This structure mirrors the one found in /usr/include/asm/ucontext.h
 	//
 
 	void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext);
@@ -1401,10 +1401,10 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
 	uc = (sig_ucontext_t *)ucontext;
 
 	// Get the address at the time the signal was raised from the EIP (x86)
-	caller_address = (void *) uc->uc_mcontext.eip;   
+	caller_address = (void *) uc->uc_mcontext.eip;
 
-	fprintf(stderr, "signal %d (%s), address is %p from %p\n", 
-		sig_num, strsignal(sig_num), info->si_addr, 
+	fprintf(stderr, "signal %d (%s), address is %p from %p\n",
+		sig_num, strsignal(sig_num), info->si_addr,
 		(void *)caller_address);
 
 	size = backtrace(array, 50);
@@ -1437,26 +1437,26 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
 void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
 {
     sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
-    
+
     void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
-    
+
     std::cerr << "signal " << sig_num
     << " (" << strsignal(sig_num) << "), address is "
     << info->si_addr << " from " << caller_address
     << std::endl << std::endl;
-    
+
     void * array[50];
     int size = backtrace(array, 50);
-    
+
     array[1] = caller_address;
-    
+
     char ** messages = backtrace_symbols(array, size);
-    
+
     // skip first stack frame (points here)
     for (int i = 1; i < size && messages != NULL; ++i)
     {
         char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
-        
+
         // find parantheses and +address offset surrounding mangled name
         for (char *p = messages[i]; *p; ++p)
         {
@@ -1474,7 +1474,7 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
                 break;
             }
         }
-        
+
         // if the line could be processed, attempt to demangle the symbol
         if (mangled_name && offset_begin && offset_end &&
             mangled_name < offset_begin)
@@ -1482,23 +1482,23 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
             *mangled_name++ = '\0';
             *offset_begin++ = '\0';
             *offset_end++ = '\0';
-            
+
             int status;
             char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
-            
+
             // if demangling is successful, output the demangled function name
             if (status == 0)
             {
                 std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
-                << real_name << "+" << offset_begin << offset_end 
+                << real_name << "+" << offset_begin << offset_end
                 << std::endl;
-                
+
             }
             // otherwise, output the mangled function name
             else
             {
-                std::cerr << "[bt]: (" << i << ") " << messages[i] << " : " 
-                << mangled_name << "+" << offset_begin << offset_end 
+                std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+                << mangled_name << "+" << offset_begin << offset_end
                 << std::endl;
             }
             free(real_name);
@@ -1510,10 +1510,10 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
         }
     }
     std::cerr << std::endl;
-    
+
     free(messages);
-    
-    _exit(0); 
+
+    _exit(0);
 }
 */
 
@@ -1595,7 +1595,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 		* whether this is a read or write fault is irretrievably gone.
 		* So we have to figure it out.  Let's assume that if the page
 		* is already mapped in core, it is a write fault.  If not, it is a
-		* read fault.  
+		* read fault.
 		*
 		* This is apparently fixed in FreeBSD 7, but I don't have any
 		* FreeBSD 7 machines on which to verify this.
@@ -1617,11 +1617,11 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 #endif
 
 
-	void * caller_address = (void *) eip; 
+	void * caller_address = (void *) eip;
 
-	std::cerr << "signal " << sig_num 
-		<< " (" << strsignal(sig_num) << "), address is " 
-		<< info->si_addr << " from " << caller_address 
+	std::cerr << "signal " << sig_num
+		<< " (" << strsignal(sig_num) << "), address is "
+		<< info->si_addr << " from " << caller_address
 		<< std::endl << std::endl;
 
 	void * array[50];
@@ -1629,7 +1629,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 
 	array[1] = caller_address;
 
-	char ** messages = backtrace_symbols(array, size);    
+	char ** messages = backtrace_symbols(array, size);
 
 	// skip first stack frame (points here)
 	for (int i = 1; i < size && messages != NULL; ++i)
@@ -1639,11 +1639,11 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 		// find parantheses and +address offset surrounding mangled name
 		for (char *p = messages[i]; *p; ++p)
 		{
-			if (*p == '(') 
+			if (*p == '(')
 			{
-				mangled_name = p; 
+				mangled_name = p;
 			}
-			else if (*p == '+') 
+			else if (*p == '+')
 			{
 				offset_begin = p;
 			}
@@ -1655,7 +1655,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 		}
 
 		// if the line could be processed, attempt to demangle the symbol
-		if (mangled_name && offset_begin && offset_end && 
+		if (mangled_name && offset_begin && offset_end &&
 			mangled_name < offset_begin)
 		{
 			*mangled_name++ = '\0';
@@ -1667,17 +1667,17 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 
 			// if demangling is successful, output the demangled function name
 			if (status == 0)
-			{    
-				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : " 
-					<< real_name << "+" << offset_begin << offset_end 
+			{
+				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+					<< real_name << "+" << offset_begin << offset_end
 					<< std::endl;
 
 			}
 			// otherwise, output the mangled function name
 			else
 			{
-				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : " 
-					<< mangled_name << "+" << offset_begin << offset_end 
+				std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+					<< mangled_name << "+" << offset_begin << offset_end
 					<< std::endl;
 			}
 			free(real_name);
@@ -1692,7 +1692,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 
 	free(messages);
 #endif // #ifndef ANDROID
-	_exit(0); 
+	_exit(0);
 }
 
 

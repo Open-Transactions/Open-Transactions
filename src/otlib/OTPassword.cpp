@@ -1,13 +1,13 @@
 /**************************************************************
- *    
+ *
  *  OTPassword.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -139,14 +139,6 @@
 #include <OTLog.hpp>
 #include <OTCrypto.hpp>
 
-//// size_t
-//#include <cstddef>
-//
-//#include <iostream>
-
-#ifdef _WIN32
-#include <WinsockWrapper.h>
-#endif
 
 // ------------------------------
 // For SecureZeroMemory
@@ -191,14 +183,14 @@ extern "C" void *ot_secure_memset(void *v, uint8_t c, uint32_t n);
 // This function securely overwrites the contents of a memory buffer
 // (which can otherwise be optimized out by an overzealous compiler...)
 //
-void *ot_secure_memset(void *v, uint8_t c, uint32_t n) 
+void *ot_secure_memset(void *v, uint8_t c, uint32_t n)
 {
     OT_ASSERT((NULL != v) && (n > 0));
-    
+
 	volatile uint8_t * p = static_cast<volatile uint8_t *>(v);
 	while (n--)
 		*p++ = c;
-	
+
 	return v;
 }
 #endif // _WIN32
@@ -238,7 +230,7 @@ void *ot_secure_memset(void *v, uint8_t c, uint32_t n)
     // Unix
 #elif __posix
     // POSIX
-#endif 
+#endif
  */
 
 
@@ -252,7 +244,7 @@ void *ot_secure_memset(void *v, uint8_t c, uint32_t n)
 bool ot_lockPage(void* addr, size_t len)
 {
     static bool bWarned = false;
-    
+
 #ifdef _WIN32
 	//return VirtualLock(addr, len);
 #elif defined(PREDEF_PLATFORM_UNIX)
@@ -285,7 +277,7 @@ bool ot_unlockPage(void* addr, size_t len)
         bWarned = true;
         OTLog::Error("ot_unlockPage: WARNING: unable to unlock memory used for storing secrets.\n");
     }
-    return true;        
+    return true;
 #else
 	OT_FAIL_MSG("ASSERT: ot_unlockPage unable to unlock secret memory.");
 #endif
@@ -310,21 +302,21 @@ bool ot_unlockPage(void* addr, size_t len)
 // code that normally happens for real nyms, when it's the wallet nym.)
 //
 /*
- 
+
 class OTPasswordData
 {
 private:
     OTPassword *       m_pMasterPW; // Used only when isForCachedKey is true.
     const std::string  m_strDisplay;
-    
+
 public:
     // --------------------------------
     bool            isForCachedKey()   const;
     const char *    GetDisplayString() const;
     // --------------------------------
-    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL);  
-    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL);  
-    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL);  
+    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL);
+    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL);
+    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL);
     ~OTPasswordData();
 };
  */
@@ -433,7 +425,7 @@ void OTPassword::zeroMemory()
         }
         else
             OTLog::Error("OTPassword::zeroMemory: Error: Memory page was locked, but then failed to unlock it.\n");
-    }    
+    }
 #endif
     // -------------------
 }
@@ -443,7 +435,7 @@ void OTPassword::zeroMemory()
 void OTPassword::zeroMemory(void * vMemory, uint32_t theSize)
 {
 //  OT_ASSERT_MSG((NULL != vMemory) && (theSize > 0),"OTPassword::zeroMemory: ASSERT: vMemory is NULL or theSize is 0.");
-  
+
     if ((NULL != vMemory) && (theSize > 0))
     {
         uint8_t * szMemory = static_cast<uint8_t *>(vMemory);
@@ -458,16 +450,16 @@ void OTPassword::zeroMemory(uint8_t * szMemory, uint32_t theSize)
 	// ------
 	//
 	SecureZeroMemory(szMemory, theSize);
-	
+
 	// NOTE: Both SecureZeroMemory, and the pragma solution commented-out below,
 	// are acceptable for Windows. I put both here for my notes.
 	//
 //#pragma optimize("", off)
 //	memset(szMemory, 0, theSize);
-//#pragma optimize("", on)	
+//#pragma optimize("", on)
 	// -------------------------
 	// Dr. UNIX, I presume? So, we meet again...
-#else	
+#else
 	ot_secure_memset(szMemory, static_cast<uint8_t>(0), theSize);
 #endif
 }
@@ -481,9 +473,9 @@ void OTPassword::zeroMemory(uint8_t * szMemory, uint32_t theSize)
      size_t   numberOfElements,
      const
      void   * src,
-     size_t   count 
+     size_t   count
      );
- 
+
  FT: Apparently numberOfElements is similar to strcpy_s (where it's the maximum size of destination buffer.)
  "numberOfElements is the Maximum number of characters destination string can accomodate including the NULL character"
  (Then count is the actual size being copied.)
@@ -500,7 +492,7 @@ void * OTPassword::safe_memcpy(void   * dest,
                                bool     bZeroSource/*=false*/) // if true, sets the source buffer to zero after copying is done.
 {
     bool bSuccess = false;
-    
+
     // Make sure they aren't null.
     OT_ASSERT(NULL != dest);
     OT_ASSERT(NULL != src);
@@ -525,7 +517,7 @@ void * OTPassword::safe_memcpy(void   * dest,
                   "ASSERT: safe_memcpy: Unexpected memory overlap, end of src.\n");
     OT_ASSERT(false ==  ((static_cast<const uint8_t *>(src) <= static_cast<uint8_t *>(dest)) &&
                         ((static_cast<const uint8_t *>(src) + src_length) >= (static_cast<uint8_t *>(dest) + dest_size))));
-        
+
 #ifdef _WIN32
     bSuccess = (0 == memcpy_s(dest,         // destination
                               static_cast<size_t>(dest_size),    // size of destination buffer.
@@ -534,7 +526,7 @@ void * OTPassword::safe_memcpy(void   * dest,
 #else
     bSuccess = (memcpy(dest, src, static_cast<size_t>(src_length)) == dest);
 #endif
-    
+
     if (bSuccess)
     {
         if (bZeroSource)
@@ -544,7 +536,7 @@ void * OTPassword::safe_memcpy(void   * dest,
         // ------------------------
         return dest;
     }
-    
+
     return NULL;
 }
 // ---------------------------------------------------------
@@ -577,7 +569,7 @@ OTPassword * OTPassword::CreateTextBuffer() // asserts already.
     OTPassword * pPassUserInput = new OTPassword(&(throwaway_text[0]), OT_DEFAULT_BLOCKSIZE-1); // text mode.
     OT_ASSERT_MSG(NULL != pPassUserInput, "OTPassword::CreateTextBuffer: ASSERT: OTPassword * pPassUserInput = new OTPassword(&(throwaway_text[0]), OT_DEFAULT_BLOCKSIZE-1);");
     // Below this point, pPassUserInput must be returned, or deleted. (Or it will leak.)
-    // -----------------------------------------------    
+    // -----------------------------------------------
     return pPassUserInput;
 }
 
@@ -591,7 +583,7 @@ OTPassword::OTPassword(OTPassword::BlockSize theBlockSize/*=DEFAULT_SIZE*/)
 	m_theBlockSize(theBlockSize) // The buffer has this size+1 as its static size.
 {
 	m_szPassword[0] = '\0';
-    
+
     setPassword_uint8(reinterpret_cast<const uint8_t*>(""), 0);
 }
 
@@ -608,7 +600,7 @@ OTPassword & OTPassword::operator=(const OTPassword & rhs)
     {
         setMemory(rhs.getMemory_uint8(), rhs.getMemorySize());
     }
-    
+
     return *this;
 }
 
@@ -641,7 +633,7 @@ OTPassword::OTPassword(const char * szInput, uint32_t nInputSize, OTPassword::Bl
     m_theBlockSize(theBlockSize) // The buffer has this size+1 as its static size.
 {
 	m_szPassword[0] = '\0';
-	
+
 	setPassword_uint8(reinterpret_cast<const uint8_t*>(szInput), nInputSize);
 }
 // ---------------------------------------------------------
@@ -653,7 +645,7 @@ OTPassword::OTPassword(const uint8_t * szInput, uint32_t nInputSize, OTPassword:
     m_theBlockSize(theBlockSize) // The buffer has this size+1 as its static size.
 {
 	m_szPassword[0] = '\0';
-	
+
 	setPassword_uint8(szInput, nInputSize);
 }
 // ---------------------------------------------------------
@@ -669,7 +661,7 @@ OTPassword::OTPassword(const void * vInput, uint32_t nInputSize, OTPassword::Blo
 // ---------------------------------------------------------
 
 
-OTPassword::~OTPassword() 
+OTPassword::~OTPassword()
 {
 	if (m_nPasswordSize > 0)
 		zeroMemory();
@@ -705,19 +697,19 @@ const char * OTPassword::getPassword() const // asserts if m_bIsText is false.
 const uint8_t * OTPassword::getPassword_uint8() const
 {
     OT_ASSERT(m_bIsText);
-	return (m_nPasswordSize <= 0) ? reinterpret_cast<const uint8_t *>("") : &(m_szPassword[0]); 
+	return (m_nPasswordSize <= 0) ? reinterpret_cast<const uint8_t *>("") : &(m_szPassword[0]);
 }
 
 uint8_t * OTPassword::getPasswordWritable()
 {
     OT_ASSERT(m_bIsText);
-	return (m_nPasswordSize <= 0) ? NULL : static_cast<uint8_t *>(static_cast<void *>(&(m_szPassword[0]))); 
+	return (m_nPasswordSize <= 0) ? NULL : static_cast<uint8_t *>(static_cast<void *>(&(m_szPassword[0])));
 }
 
 char * OTPassword::getPasswordWritable_char()
 {
     OT_ASSERT(m_bIsText);
-	return (m_nPasswordSize <= 0) ? NULL : static_cast<char *>(static_cast<void *>(&(m_szPassword[0]))); 
+	return (m_nPasswordSize <= 0) ? NULL : static_cast<char *>(static_cast<void *>(&(m_szPassword[0])));
 }
 
 
@@ -732,7 +724,7 @@ const void * OTPassword::getMemory() const
 const uint8_t * OTPassword::getMemory_uint8() const
 {
     OT_ASSERT(m_bIsBinary);
-	return (m_nPasswordSize <= 0) ? NULL : static_cast<const uint8_t *>(&(m_szPassword[0])); 
+	return (m_nPasswordSize <= 0) ? NULL : static_cast<const uint8_t *>(&(m_szPassword[0]));
 }
 
 // ---------------------------------------------------------
@@ -741,14 +733,14 @@ const uint8_t * OTPassword::getMemory_uint8() const
 void * OTPassword::getMemoryWritable()
 {
     OT_ASSERT(m_bIsBinary);
-	return (m_nPasswordSize <= 0) ? NULL : static_cast<void *>(&(m_szPassword[0])); 
+	return (m_nPasswordSize <= 0) ? NULL : static_cast<void *>(&(m_szPassword[0]));
 }
 
 // ---------------------------------------------------------
-uint32_t OTPassword::getBlockSize() const	
+uint32_t OTPassword::getBlockSize() const
 {
     uint32_t nReturn = 0;
-    
+
     switch(m_theBlockSize)
     {
         case OTPassword::DEFAULT_SIZE:
@@ -766,16 +758,16 @@ uint32_t OTPassword::getBlockSize() const
 
 // ---------------------------------------------------------
 uint32_t OTPassword::getPasswordSize() const
-{ 
+{
     OT_ASSERT(m_bIsText);
-	return m_nPasswordSize; 
+	return m_nPasswordSize;
 }
 
 // ---------------------------------------------------------
 uint32_t OTPassword::getMemorySize() const
-{ 
+{
     OT_ASSERT(m_bIsBinary);
-	return m_nPasswordSize; 
+	return m_nPasswordSize;
 }
 
 
@@ -800,23 +792,23 @@ bool OTPassword::Compare(OTPassword & rhs) const
 {
     OT_ASSERT(this->isPassword() || this->isMemory());
     OT_ASSERT(rhs.isPassword()   || rhs.isMemory());
-    
+
     if (this->isPassword() && !rhs.isPassword())
         return false;
     if (this->isMemory() && !rhs.isMemory())
         return false;
-    
+
     const uint32_t nThisSize = this->isPassword() ? this->getPasswordSize() : this->getMemorySize();
     const uint32_t nRhsSize  = rhs.isPassword()   ? rhs.getPasswordSize()   : rhs.getMemorySize();
-    
+
     if (nThisSize != nRhsSize)
         return false;
-    
-    if (0 == memcmp(this->isPassword() ? this->getPassword_uint8() : this->getMemory_uint8(), 
-                    rhs.  isPassword() ? rhs.  getPassword_uint8() : rhs.  getMemory_uint8(), 
+
+    if (0 == memcmp(this->isPassword() ? this->getPassword_uint8() : this->getMemory_uint8(),
+                    rhs.  isPassword() ? rhs.  getPassword_uint8() : rhs.  getMemory_uint8(),
                     rhs.  isPassword() ? rhs.  getPasswordSize()   : rhs.  getMemorySize()) )
         return true;
-    
+
     return false;
 }
 
@@ -842,7 +834,7 @@ int OTPassword::setPassword(const char * szInput, int nInputSize)
 int32_t OTPassword::setPassword_uint8(const uint8_t * szInput, uint32_t nInputSize)
 {
     OT_ASSERT(NULL != szInput);
-    
+
     const char * szFunc = "OTPassword::setPassword";
     // ---------------------------------
 	// Wipe whatever was in there before.
@@ -873,7 +865,7 @@ int32_t OTPassword::setPassword_uint8(const uint8_t * szInput, uint32_t nInputSi
 	}
 
 #ifndef _WIN32
-	// ---------------------------------	
+	// ---------------------------------
     //
     // Lock the memory page, before we copy the data over.
     // (If it's not already locked, which I doubt it will be.)
@@ -886,7 +878,7 @@ int32_t OTPassword::setPassword_uint8(const uint8_t * szInput, uint32_t nInputSi
         }
         else
             OTLog::vError("%s: Error: Failed attempting to lock memory page.\n", szFunc);
-    }   
+    }
 #endif
 	// ---------------------------------
 #ifdef _WIN32
@@ -895,13 +887,13 @@ int32_t OTPassword::setPassword_uint8(const uint8_t * szInput, uint32_t nInputSi
 	strncpy(reinterpret_cast<char *>(m_szPassword), reinterpret_cast<const char *>(szInput), nInputSize);
 #endif
 
-	// ---------------------------------	
+	// ---------------------------------
 	// force a null terminator in the 129th byte (at index 128.)
 	// (Or at the 6th byte (at index 5), if the size is 5 bytes long.)
 	//
-	m_szPassword[nInputSize] = '\0'; 	
+	m_szPassword[nInputSize] = '\0';
     m_nPasswordSize          = nInputSize;
-	// ---------------------------------	
+	// ---------------------------------
 
 	return m_nPasswordSize;
 }
@@ -971,7 +963,7 @@ bool OTPassword::randomizePassword_uint8(uint8_t * szDestination, uint32_t nNewS
         // Add the NULL terminator...
         //
         szDestination[nNewSize-1] = '\0';
-        
+
         return true;
     }
     return false;
@@ -1014,7 +1006,7 @@ int32_t OTPassword::randomizePassword(uint32_t nNewSize/*=DEFAULT_SIZE*/)
         }
         else
             OTLog::vError("%s: Error: Failed attempting to lock memory page.\n", __FUNCTION__);
-    }    
+    }
 #endif
 	// ---------------------------------
     //
@@ -1027,7 +1019,7 @@ int32_t OTPassword::randomizePassword(uint32_t nNewSize/*=DEFAULT_SIZE*/)
 	}
 	// --------------------------------------------------
 	m_nPasswordSize = nSize;
-    
+
 	return m_nPasswordSize;
 }
 
@@ -1085,7 +1077,7 @@ int32_t OTPassword::randomizeMemory(uint32_t nNewSize/*=DEFAULT_SIZE*/)
         }
         else
             OTLog::vError("%s: Error: Failed attempting to lock memory page.\n", __FUNCTION__);
-    }  
+    }
 #endif
 	// ---------------------------------
     //
@@ -1106,7 +1098,7 @@ int32_t OTPassword::randomizeMemory(uint32_t nNewSize/*=DEFAULT_SIZE*/)
 // (FYI, truncates if nAppendSize + getPasswordSize() is larger than getBlockSize.)
 // Returns number of bytes appended, or -1 for error.
 //
-int32_t OTPassword::addMemory(const void * vAppend, uint32_t nAppendSize) 
+int32_t OTPassword::addMemory(const void * vAppend, uint32_t nAppendSize)
 {
     OT_ASSERT(NULL != vAppend);
 
@@ -1132,7 +1124,7 @@ int32_t OTPassword::addMemory(const void * vAppend, uint32_t nAppendSize)
 		nAppendSize = (getBlockSize() - m_nPasswordSize); // Truncated password beyond max size.
 	// ---------------------------------
 //  OT_ASSERT(nAppendSize >= 0);
-    
+
     if (0 == nAppendSize)
         return 0;
     // ------------------------------------
@@ -1142,11 +1134,11 @@ int32_t OTPassword::addMemory(const void * vAppend, uint32_t nAppendSize)
     // Because we use setMemory when empty, and only use addMemory when we KNOW something
     // is already there, therefore we know the page is already locked, so no need to go
     // trying to lock it again.
-	// ---------------------------------    
+	// ---------------------------------
     OTPassword::safe_memcpy(static_cast<void *>(&(m_szPassword[m_nPasswordSize])),
                             static_cast<uint32_t>(nAppendSize), // dest size is based on the source size, but guaranteed to be >0 and <=getBlockSize
                             vAppend,
-                            static_cast<uint32_t>(nAppendSize)); // Since dest size is known to be src size or less (and >0) we use it as src size. (We may have truncated... and we certainly don't want to copy beyond our own truncation.)    
+                            static_cast<uint32_t>(nAppendSize)); // Since dest size is known to be src size or less (and >0) we use it as src size. (We may have truncated... and we certainly don't want to copy beyond our own truncation.)
 	// ---------------------------------
     m_nPasswordSize += nAppendSize;
 	// ---------------------------------
@@ -1159,7 +1151,7 @@ int32_t OTPassword::addMemory(const void * vAppend, uint32_t nAppendSize)
 // Returns -1 in case of error.
 //
 int32_t OTPassword::setMemory(const void * vInput, uint32_t nInputSize)
-{		
+{
     OT_ASSERT(NULL != vInput);
     // ---------------------------------
 	// Wipe whatever was in there before.
@@ -1192,14 +1184,14 @@ int32_t OTPassword::setMemory(const void * vInput, uint32_t nInputSize)
         }
         else
             OTLog::vError("%s: Error: Failed attempting to lock memory page.\n", __FUNCTION__);
-    }    
+    }
 #endif
 
-	// ---------------------------------    
+	// ---------------------------------
     OTPassword::safe_memcpy(static_cast<void *>(&(m_szPassword[0])),
                             static_cast<uint32_t>(nInputSize), // dest size is based on the source size, but guaranteed to be >0 and <=getBlockSize
                             vInput,
-                            static_cast<uint32_t>(nInputSize)); // Since dest size is known to be src size or less (and >0) we use it as src size. (We may have truncated... and we certainly don't want to copy beyond our own truncation.)    
+                            static_cast<uint32_t>(nInputSize)); // Since dest size is known to be src size or less (and >0) we use it as src size. (We may have truncated... and we certainly don't want to copy beyond our own truncation.)
 	// ---------------------------------
     m_nPasswordSize = nInputSize;
 	// ---------------------------------
@@ -1215,24 +1207,24 @@ int32_t OTPassword::setMemory(const void * vInput, uint32_t nInputSize)
 
 // OTCallback CLASS
 
-OTCallback::~OTCallback() 
+OTCallback::~OTCallback()
 {
 	OTLog::vError("OTCallback::~OTCallback:  (This should only happen ONCE ONLY -- as the application is closing.)\n");
-//	std::cout << "OTCallback::~OTCallback()" << std:: endl; 
+//	std::cout << "OTCallback::~OTCallback()" << std:: endl;
 }
 
 
 // Asks for password once. (For authentication when using nym.)
 //
 void OTCallback::runOne(const char * szDisplay, OTPassword & theOutput) // child class will override.
-{ 
+{
 	OT_FAIL_MSG("OTCallback::runOne: ASSERT (The child class was supposed to override this method.)\n");
 }
 
 // Asks for password twice. (For confirmation when changing password or creating nym.)
 //
 void OTCallback::runTwo(const char * szDisplay, OTPassword & theOutput) // child class will override.
-{ 
+{
 	OT_FAIL_MSG("OTCallback::runTwo: ASSERT (The child class was supposed to override this method.)\n");
 }
 
@@ -1241,11 +1233,11 @@ void OTCallback::runTwo(const char * szDisplay, OTPassword & theOutput) // child
 
 // OTCaller CLASS
 
-OTCaller::~OTCaller() 
+OTCaller::~OTCaller()
 {
 	OTLog::vOutput(0, "OTCaller::~OTCaller: (This should only happen as the application is closing.)\n");
-	
-	delCallback(); 
+
+	delCallback();
 }
 
 
@@ -1256,7 +1248,7 @@ const char * OTCaller::GetDisplay() const
 	// I'm using the OTPassword class to store the display string, in addition to
 	// storing the password itself. (For convenience.)
 	//
-	return reinterpret_cast<const char *>(m_Display.getPassword_uint8()); 
+	return reinterpret_cast<const char *>(m_Display.getPassword_uint8());
 }
 
 // A display string is set here before the Java dialog is shown, so that the string can be displayed on that dialog.
@@ -1276,12 +1268,12 @@ void OTCaller::SetDisplay(const char * szDisplay, int nLength)
 // The password will be stored here by the Java dialog, so that the C callback can retrieve it and pass it to OpenSSL
 //
 bool OTCaller::GetPassword(OTPassword & theOutput) const // Get the password....
-{ 
+{
 	OTLog::Output(0, "OTCaller::GetPassword: FYI, returning password after invoking a (probably Java) password dialog.\n");
-	
+
 	theOutput.setPassword_uint8(m_Password.getPassword_uint8(), m_Password.getPasswordSize());
-	
-	return true; 
+
+	return true;
 }
 
 void OTCaller::ZeroOutPassword()	// Then ZERO IT OUT so copies aren't floating around.
@@ -1293,8 +1285,8 @@ void OTCaller::ZeroOutPassword()	// Then ZERO IT OUT so copies aren't floating a
 
 //--------------------------------
 
-void OTCaller::delCallback() 
-{ 
+void OTCaller::delCallback()
+{
 	//	if (NULL != _callback)  // TODO this may be a memory leak.
 	//		delete _callback;	// But I know we're currently crashing from deleting same object twice.
 	// And since the object comes from Java, who am I to delete it? Let Java clean it up.
@@ -1302,41 +1294,41 @@ void OTCaller::delCallback()
 		OTLog::Output(0, "OTCaller::delCallback: WARNING: setting existing callback object pointer to NULL. "
 					  "(This message doesn't trigger if it was already NULL.)\n");
 	//--------------------------------
-	_callback = NULL; 
+	_callback = NULL;
 }
 
-void OTCaller::setCallback(OTCallback *cb) 
-{ 
-	OTLog::Output(0, "OTCaller::setCallback: Attempting to set the password OTCallback pointer...\n");	
-	
+void OTCaller::setCallback(OTCallback *cb)
+{
+	OTLog::Output(0, "OTCaller::setCallback: Attempting to set the password OTCallback pointer...\n");
+
 	if (NULL == cb)
 	{
 		OTLog::Output(0, "OTCaller::setCallback: ERROR: NULL password OTCallback object passed in. (Returning.)\n");
 		return;
 	}
-	
+
 	delCallback(); // Sets _callback to NULL, but LOGS first, if it was already set.
 	// -----------------------------
-	
+
 	_callback = cb;
 	OTLog::Output(0, "OTCaller::setCallback: FYI, the password OTCallback pointer was set.\n");
 }
 
 bool OTCaller::isCallbackSet() const
-{ 
-	return (NULL == _callback) ? false : true; 
+{
+	return (NULL == _callback) ? false : true;
 }
 
 //--------------------------------
 
-void OTCaller::callOne() 
-{ 
+void OTCaller::callOne()
+{
 	ZeroOutPassword(); // Make sure there isn't some old password still in here.
-	
-	if (isCallbackSet()) 
-	{ 
-		OTLog::Output(0, "OTCaller::callOne: FYI, Executing password callback (one)...\n");		
-		_callback->runOne(this->GetDisplay(), m_Password); 
+
+	if (isCallbackSet())
+	{
+		OTLog::Output(0, "OTCaller::callOne: FYI, Executing password callback (one)...\n");
+		_callback->runOne(this->GetDisplay(), m_Password);
 	}
 	else
 	{
@@ -1344,19 +1336,19 @@ void OTCaller::callOne()
 	}
 }
 
-void OTCaller::callTwo() 
-{ 
+void OTCaller::callTwo()
+{
 	ZeroOutPassword(); // Make sure there isn't some old password still in here.
-	
-	if (isCallbackSet()) 
-	{ 
-		OTLog::Output(0, "OTCaller::callTwo: FYI, Executing password callback (two)...\n");		
+
+	if (isCallbackSet())
+	{
+		OTLog::Output(0, "OTCaller::callTwo: FYI, Executing password callback (two)...\n");
 		_callback->runTwo(this->GetDisplay(), m_Password);
 	}
 	else
 	{
 		OTLog::Output(0, "OTCaller::callTwo: WARNING: Failed attempt to trigger password callback (two), due to \"it hasn't been set yet.\"\n");
-	}	
+	}
 }
 //--------------------------------
 
@@ -1367,15 +1359,15 @@ void OTCaller::callTwo()
 
 /*
  WCHAR szPassword[MAX_PATH];
- 
+
  // Retrieve the password
- if (GetPasswordFromUser(szPassword, MAX_PATH))    
- 
+ if (GetPasswordFromUser(szPassword, MAX_PATH))
+
  UsePassword(szPassword); // <===========
- 
+
  // WINDOWS MEMORY ZEROING CODE:
  SecureZeroMemory(szPassword, sizeof(szPassword));
- 
+
  */
 
 
@@ -1384,25 +1376,25 @@ void OTCaller::callTwo()
 /*
  SOURCE: https://www.securecoding.cert.org
  TODO security: research all of these items and implement them in OT properly along with all other code scanning and security measures.
- 
+
  https://www.securecoding.cert.org/confluence/display/cplusplus/MSC06-CPP.+Be+aware+of+compiler+optimization+when+dealing+with+sensitive+data
- 
- 
+
+
  Compliant Code Example (Windows)
- This compliant solution uses a SecureZeroMemory() function provided by many versions of the Microsoft Visual Studio compiler. 
+ This compliant solution uses a SecureZeroMemory() function provided by many versions of the Microsoft Visual Studio compiler.
  The documentation for the SecureZeroMemory() function guarantees that the compiler does not optimize out this call when zeroing memory.
- 
+
  void getPassword(void) {
   char pwd[64];
   if (retrievePassword(pwd, sizeof(pwd))) {
     // checking of password, secure operations, etc
   }
   SecureZeroMemory(pwd, sizeof(pwd));
-} 
- 
+}
+
 Compliant Solution (Windows)
-The #pragma directives in this compliant solution instruct the compiler to avoid optimizing the enclosed code. 
- This #pragma directive is supported on some versions of Microsoft Visual Studio and may be supported on other compilers. 
+The #pragma directives in this compliant solution instruct the compiler to avoid optimizing the enclosed code.
+ This #pragma directive is supported on some versions of Microsoft Visual Studio and may be supported on other compilers.
  Check compiler documentation to ensure its availability and its optimization guarantees.
 
 void getPassword(void) {
@@ -1414,14 +1406,14 @@ void getPassword(void) {
 	memset(pwd, 0, sizeof(pwd));
 #pragma optimize("", on)
 }
- 
+
 Compliant Solution
-This compliant solution uses the volatile type qualifier to inform the compiler that the memory should be overwritten 
- and that the call to the memset_s() function should not be optimized out. Unfortunately, this compliant solution may 
- not be as efficient as possible due to the nature of the volatile type qualifier preventing the compiler from optimizing 
- the code at all. Typically, some compilers are smart enough to replace calls to memset() with equivalent assembly instructions 
- that are much more efficient than the memset() implementation. Implementing a memset_s() function as shown in the example may 
- prevent the compiler from using the optimal assembly instructions and may result in less efficient code. Check compiler 
+This compliant solution uses the volatile type qualifier to inform the compiler that the memory should be overwritten
+ and that the call to the memset_s() function should not be optimized out. Unfortunately, this compliant solution may
+ not be as efficient as possible due to the nature of the volatile type qualifier preventing the compiler from optimizing
+ the code at all. Typically, some compilers are smart enough to replace calls to memset() with equivalent assembly instructions
+ that are much more efficient than the memset() implementation. Implementing a memset_s() function as shown in the example may
+ prevent the compiler from using the optimal assembly instructions and may result in less efficient code. Check compiler
  documentation and the assembly output from the compiler.
 
 // memset_s.c
@@ -1429,7 +1421,7 @@ void *memset_s(void *v, int c, size_t n) {
 	volatile unsigned char *p = v;
 	while (n--)
 		*p++ = c;
-	
+
 	return v;
 }
 
@@ -1438,13 +1430,13 @@ extern void *memset_s(void *v, int c, size_t n);
 
 void getPassword(void) {
 	char pwd[64];
-	
+
 	if (retrievePassword(pwd, sizeof(pwd))) {
 		// checking of password, secure operations, etc
 	}
 	memset_s(pwd, 0, sizeof(pwd));
 }
-However, it should be noted that both calling functions and accessing volatile qualified objects can still be optimized out 
+However, it should be noted that both calling functions and accessing volatile qualified objects can still be optimized out
  (while maintaining strict conformance to the standard), so the above may still not work.
  */
 

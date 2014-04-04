@@ -156,7 +156,7 @@
 #include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
 
-int OTClient::CalcReturnVal(const long & lRequestNumber)
+int32_t OTClient::CalcReturnVal(const int64_t & lRequestNumber)
 {
     m_lMostRecentRequestNumber = lRequestNumber;
     // --------------------------------------------
@@ -165,7 +165,7 @@ int OTClient::CalcReturnVal(const long & lRequestNumber)
     else if (0 == lRequestNumber)
         return 0;
 
-    const int nRequestNum = static_cast<int>(lRequestNumber);
+    const int nRequestNum = static_cast<int32_t>(lRequestNumber);
 
     if (lRequestNumber == nRequestNum) // In this case, it works!
         return nRequestNum;
@@ -178,12 +178,12 @@ int OTClient::CalcReturnVal(const long & lRequestNumber)
 
 void OTClient::ProcessMessageOut(char *buf, int * pnExpectReply)
 {
-    //	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
-    //				 buf);
-    //
-    //	const OTString strMessage(buf);
-    //	OTMessage tempMsg;
-    //	tempMsg.LoadContractFromString(strMessage);
+//	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
+//				 buf);
+//
+//	const OTString strMessage(buf);
+//	OTMessage tempMsg;
+//	tempMsg.LoadContractFromString(strMessage);
 
     m_pConnection->ProcessMessageOut(buf, pnExpectReply);
 
@@ -196,9 +196,9 @@ void OTClient::ProcessMessageOut(char *buf, int * pnExpectReply)
 void OTClient::ProcessMessageOut(OTMessage & theMessage)
 {
     const OTString strMessage(theMessage);
-    //	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
-    //				  strMessage.Get());
-    //
+//	OTLog::vError("OTClient::ProcessMessageOut: \n\n%s\n\n",
+//				  strMessage.Get());
+//
     // ----------------------------------------
 
     // WHAT DOES THIS MEAN?
@@ -274,11 +274,11 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
     }
     // ------------------------------------------------------
     OTPseudonym * pNym	= &theNym;
-    //	OTPseudonym * pNym	= theConnection.GetNym();
+//	OTPseudonym * pNym	= theConnection.GetNym();
 
-    //	OTIdentifier theServerID;
-    //	theConnection.GetServerID(theServerID);
-    //
+//	OTIdentifier theServerID;
+//	theConnection.GetServerID(theServerID);
+//
     const OTIdentifier theNymID(*pNym);
     const OTString strServerID(theServerID), strNymID(theNymID);
 
@@ -1094,7 +1094,7 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                     else
                         OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
                         pTransaction->GetReferenceToNum());
-                    
+
                     // ----------------------------------------------
                     // The client side keeps a list of active (recurring) transactions.
                     // That is, smart contracts and payment plans. I don't think it keeps
@@ -1113,7 +1113,6 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                     OTCronItem::EraseActiveCronReceipt(pTransaction->GetReferenceToNum(),
                                                        pNym->GetConstID(),
                                                        pTransaction->GetPurportedServerID());
-                   
                 }
                 // ----------------------------------------------
                 //
@@ -5012,7 +5011,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                pServerTransaction->GetReferenceToNum());
 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n",
                                                    pServerTransaction->GetReferenceToNum());
                                 else
                                     OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
@@ -5023,7 +5022,6 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                 // calculating the request.) Therefore, this is moved to AcceptEntireNymbox and Finalize for Process Inbox.
                                 //
 //                              pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true); // bool bSave=true
-                                    
                                 // ----------------------------------------------
                                 // The client side keeps a list of active (recurring) transactions.
                                 // That is, smart contracts and payment plans. I don't think it keeps
@@ -5317,7 +5315,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                                    pNym->GetConstID(),
                                                                    pTempTrans->GetPurportedServerID());
                                 // ----------------------------------------------
-
+                                
                             } // We also do this in AcceptEntireNymbox
                         }
                         
@@ -5516,7 +5514,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
             }
 
             // -----------------------------------------------
-            // Now I'm keeping the server signature, and just adding my own.
+            // Now I'm keeping the server signature, and just adding my own. 
             theInbox.ReleaseSignatures(); // This is back. Why? Because we have receipts functional now.
             theInbox.SignContract(*pNym);
             theInbox.SaveContract();
@@ -6177,13 +6175,13 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 /// returns >0 for processInbox, containing the number that was there before processing.
 /// returns >0 for nearly everything else, containing the request number itself.
 ///
-int OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
+int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
                                  OTMessage & theMessage,
                                  OTPseudonym & theNym,
                                  //								  OTAssetContract & theContract,
                                  OTServerContract & theServer,
                                  OTAccount * pAccount/*=NULL*/,
-                                 long lTransactionAmount/*=0*/,
+                                 int64_t lTransactionAmount/*=0*/,
                                  OTAssetContract * pMyAssetContract/*=NULL*/,
                                  OTIdentifier * pHisNymID/*=NULL*/,
                                  OTIdentifier * pHisAcctID/*=NULL*/)
@@ -7181,7 +7179,7 @@ int OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedCommand,
                 strAmount.OTfgets(std::cin);
             }
 
-            const long lTotalAmount	= (0 == lTransactionAmount) ?  // If nothing was passed in, then use atol(strAmount), 
+            const int64_t lTotalAmount	= (0 == lTransactionAmount) ?  // If nothing was passed in, then use atol(strAmount), 
                 (atol(strAmount.Exists() ? strAmount.Get() : "0")) : lTransactionAmount; // otherwise lTransactionAmount.
             // ----------------------------------------------
 

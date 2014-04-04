@@ -27,7 +27,6 @@
 #endif
 #endif
 
-
 #include "chaiscript_prelude.chai"
 #include "chaiscript_parser.hpp"
 #include "../dispatchkit/exception_specification.hpp"

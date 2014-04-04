@@ -7553,6 +7553,12 @@ def main_show_market_list()
 {
     if (VerifyExists("Server"))
     {
+        if (!OTDB_Exists("markets", Server, "market_data.bin", "")) 
+        {
+            OT_API_Output(0, "No market list available.\n");
+            return 0;
+        }
+
         var marketList := loadMarketList(Server)
         
         if (!VerifyStorable(marketList, "OTDB_MarketList"))
@@ -9531,34 +9537,37 @@ def purse_get_indices_or_amount(strServerID, strAssetTypeID, strMyNymID, lAmount
                     // ------------------------------------------
                     strPurse = strNewPurse
                     // ------------------------------------------
-                    var strTokenID    = OT_API_Token_GetID(strServerID, strAssetTypeID, strToken)
-                    // ------------------------------------------
+                    var strTokenID = OT_API_Token_GetID(strServerID, strAssetTypeID, strToken)
+                    if (!VerifyStringVal(strTokenID))
+                    {
+                        OT_API_Output(0, strLocation+": Error: bad strTokenID.\n")
+                        return false
+                    }
                     var lDenomination = OT_API_Token_GetDenomination(strServerID, strAssetTypeID, strToken)
-                    var nSeries       = OT_API_Token_GetSeries      (strServerID, strAssetTypeID, strToken)
-                    var tValidFrom    = OT_API_Token_GetValidFrom   (strServerID, strAssetTypeID, strToken)
-                    var tValidTo      = OT_API_Token_GetValidTo     (strServerID, strAssetTypeID, strToken)
-                    var lTime         = OT_API_GetTime()
-                    // ------------------------------------------
                     if (0 > lDenomination)
                     {
                         OT_API_Output(0, "Error while showing purse: bad lDenomination.\n")
                         return false
                     }
+                    var nSeries = OT_API_Token_GetSeries(strServerID, strAssetTypeID, strToken)
                     if (!VerifyIntVal(nSeries))
                     {
                         OT_API_Output(0, "Error while showing purse: bad nSeries.\n")
                         return false
                     }
+                    var tValidFrom = OT_API_Token_GetValidFrom(strServerID, strAssetTypeID, strToken)
                     if (!VerifyIntVal(tValidFrom))
                     {
                         OT_API_Output(0, "Error while showing purse: bad tValidFrom.\n")
                         return false
                     }
+                    var tValidTo = OT_API_Token_GetValidTo(strServerID, strAssetTypeID, strToken)
                     if (!VerifyIntVal(tValidTo))
                     {
                         OT_API_Output(0, "Error while showing purse: bad tValidTo.\n")
                         return false
                     }
+                    var lTime = OT_API_GetTime()
                     if (0 > lTime)
                     {
                         OT_API_Output(0, "Error while showing purse: bad lTime.\n")
@@ -9566,11 +9575,6 @@ def purse_get_indices_or_amount(strServerID, strAssetTypeID, strMyNymID, lAmount
                     }
                     var strStatus = (lTime > tValidTo) ? "expired" : "valid"
                     // ------------------------------------------
-                    if (!VerifyStringVal(strTokenID))
-                    {
-                        OT_API_Output(0, strLocation+": Error: bad strTokenID.\n")
-                        return false
-                    }
                     // ------------------------------------------
                     // lLoopAmount is where we will start at 0, and keep the running total of the value for the selected indices, as we loop.
                     // lAmountRemaining is where we will start at lAmount, and then SUBTRACT the value of each selected index, as we loop.
@@ -10430,15 +10434,15 @@ def tokenize(str, delimiters, trimEmpty)
     var pos     = 0
     var lastPos = 0
     var tokens  = Vector()
-    
+
     while (true)
     {
         pos = str.find_first_of(delimiters, lastPos)
-        
+
         if ((-1) == pos)
         {
             pos = str.size()
-            
+
             if ((pos != lastPos) || !trimEmpty)
             {
                 tokens.push_back(str.substr(lastPos, pos-lastPos))
@@ -10452,11 +10456,10 @@ def tokenize(str, delimiters, trimEmpty)
                 tokens.push_back(str.substr(lastPos, pos-lastPos ))
             }
         }
-        
+
         lastPos = pos + 1
     }
 }
-
 
 
 // Show the active cron item IDs, or the details of one by ID.

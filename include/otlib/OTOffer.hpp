@@ -137,13 +137,9 @@
 #ifndef __OTOFFER_HPP__
 #define __OTOFFER_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTInstrument.hpp"
-
-#include _CINTTYPES
 
 class OTTrade;
 
