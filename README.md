@@ -1,3 +1,5 @@
+## Open-Transactions Library Project
+
 The Open-Transactions project is a collaborative effort to develop
 a robust, commercial-grade, fully-featured, free-software toolkit
 implementing the OTX protocol as well as a full-strength financial
@@ -6,8 +8,11 @@ is managed by a worldwide community of volunteers that use the
 Internet to communicate, plan, and develop the Open-Transactions
 toolkit and its related documentation.
 
-Please see the official wiki:
+### Official Wiki
+
 http://opentransactions.org/
+
+### About
 
 Open-Transactions democratizes financial and monetary actions. You
 can use it for issuing currencies/stock, paying dividends, creating
@@ -23,4 +28,10 @@ The cheques are non-repudiable. Etc.
 
 This product includes software developed by Ben Laurie for use in
 the Lucre project.
+
+### Contributing
+
+All development goes in develop branch - please don't submit pull requests to master.
+
+Please do *NOT* use an editor that automatically reformats.
 
