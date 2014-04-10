@@ -35,11 +35,11 @@ public class WalletData extends Storable {
     super.delete();
   }
 // ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,112,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:swig\otapi\OTAPI.i,129,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefBitcoinServer(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefBitcoinServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -53,7 +53,7 @@ private long removeRefBitcoinServer(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -72,11 +72,11 @@ private long removeRefBitcoinServer(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefBitcoinServer(BitcoinServer element) {
+private Long getCPtrAddRefBitcoinServer(BitcoinServer element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -98,8 +98,8 @@ private long getCPtrAddRefBitcoinServer(BitcoinServer element) {
 	return BitcoinServer.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefBitcoinAcct(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefBitcoinAcct(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -113,7 +113,7 @@ private long removeRefBitcoinAcct(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -132,11 +132,11 @@ private long removeRefBitcoinAcct(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefBitcoinAcct(BitcoinAcct element) {
+private Long getCPtrAddRefBitcoinAcct(BitcoinAcct element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -158,8 +158,8 @@ private long getCPtrAddRefBitcoinAcct(BitcoinAcct element) {
 	return BitcoinAcct.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefRippleServer(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefRippleServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -173,7 +173,7 @@ private long removeRefRippleServer(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -192,11 +192,11 @@ private long removeRefRippleServer(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefRippleServer(RippleServer element) {
+private Long getCPtrAddRefRippleServer(RippleServer element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -218,8 +218,8 @@ private long getCPtrAddRefRippleServer(RippleServer element) {
 	return RippleServer.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefLoomServer(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefLoomServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -233,7 +233,7 @@ private long removeRefLoomServer(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -252,11 +252,11 @@ private long removeRefLoomServer(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefLoomServer(LoomServer element) {
+private Long getCPtrAddRefLoomServer(LoomServer element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 

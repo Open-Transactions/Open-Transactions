@@ -1,21 +1,30 @@
 %module(directors="1") otapi
 
-%{
-#include <string>
-#include <map>
-%}
+// remove these %ignores in updated version of swig...
+// for inttypes.i
+
+%ignore strtoimax;
+%ignore strtoumax;
+
+
+
+%include "inttypes.i"
+%include "std_string.i";
+%include "std_vector.i";
+%include "std_map.i"
+%include "typemaps.i"
 
 
 #ifdef SWIGPERL
 %{
-/* Workaround perl5 global namespace pollution. Note that undefining library
- * functions like fopen will not solve the problem on all platforms as fopen
- * might be a macro on Windows but not necessarily on other operating systems. */
+    /* Workaround perl5 global namespace pollution. Note that undefining library
+     * functions like fopen will not solve the problem on all platforms as fopen
+     * might be a macro on Windows but not necessarily on other operating systems. */
 
 #ifdef New
-  #undef New
+#undef New
 #endif
-%}
+    %}
 #endif // SWIGPERL
 
 
@@ -26,17 +35,25 @@
 #define IMPORT
 #endif
 
+#include <string>
+#include <vector>
+#include <map>
+
 #include "../../include/otlib/OTPassword.hpp"
-#include "../../include/otapi/OTAPI_Basic.hpp"
-#include "../../include/otapi/OTMadeEasy.hpp"
+#include "../../include/otapi/OTAPI.hpp"
+#include "../../include/otapi/OT_ME.hpp"
 #include "../../include/otlib/OTStorage.hpp"
 #include "../../include/otlib/OTAsymmetricKey.hpp"
 
 %}
 
 
-%include "std_string.i";
-%include "typemaps.i"
+namespace std {
+   %template(VectorUnsignedChar) vector<unsigned char>;
+   %template(MapStringString) map<string,string>;
+};
+
+
 
 
 
@@ -187,7 +204,7 @@ public int32_t hashCode() {
 // of only the latest one. (None of them should go out of scope until this object does.)
 
 %define OT_ADD_ELEMENT(THE_ELEMENT_TYPE_B)  // THIS BLOCK CONTAINS JAVA CODE.
-private int64_t removeRef##THE_ELEMENT_TYPE_B(int64_t lIndex) {
+private Long removeRef##THE_ELEMENT_TYPE_B(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -201,7 +218,7 @@ private int64_t removeRef##THE_ELEMENT_TYPE_B(int64_t lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int32_t intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -220,11 +237,11 @@ private int64_t removeRef##THE_ELEMENT_TYPE_B(int64_t lIndex) {
 	return lIndex;
 }
 
-private int64_t getCPtrAddRef##THE_ELEMENT_TYPE_B(THE_ELEMENT_TYPE_B element) {
+private Long getCPtrAddRef##THE_ELEMENT_TYPE_B(THE_ELEMENT_TYPE_B element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int32_t intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -572,8 +589,8 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 
 %include "../../include/otlib/ExportWrapper.h"
 %include "../../include/otlib/OTPassword.hpp"
-%include "../../include/otapi/OTAPI_Basic.hpp"
-%include "../../include/otapi/OTMadeEasy.hpp"
+%include "../../include/otapi/OTAPI.hpp"
+%include "../../include/otapi/OT_ME.hpp"
 %include "../../include/otlib/OTStorage.hpp"
 
 

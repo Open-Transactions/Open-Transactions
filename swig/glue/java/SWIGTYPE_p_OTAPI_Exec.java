@@ -8,18 +8,18 @@
 
 package org.opentransactions.otapi;
 
-public class SWIGTYPE_p_std__mapT_std__string_std__string_t {
+public class SWIGTYPE_p_OTAPI_Exec {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_std__mapT_std__string_std__string_t(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_OTAPI_Exec(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_std__mapT_std__string_std__string_t() {
+  protected SWIGTYPE_p_OTAPI_Exec() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_std__mapT_std__string_std__string_t obj) {
+  protected static long getCPtr(SWIGTYPE_p_OTAPI_Exec obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

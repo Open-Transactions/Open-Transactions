@@ -1015,7 +1015,7 @@ static void SWIG_Php_SetModule(swig_module_info *pointer) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_int swig_types[0]
-#define SWIGTYPE_p_OTAPI_Basic swig_types[1]
+#define SWIGTYPE_p_OTAPI_Exec swig_types[1]
 #define SWIGTYPE_p_OTCallback swig_types[2]
 #define SWIGTYPE_p_OTCaller swig_types[3]
 #define SWIGTYPE_p_OTDB__Acct swig_types[4]
@@ -1048,20 +1048,34 @@ static void SWIG_Php_SetModule(swig_module_info *pointer) {
 #define SWIGTYPE_p_OTDB__TradeListMarket swig_types[31]
 #define SWIGTYPE_p_OTDB__TradeListNym swig_types[32]
 #define SWIGTYPE_p_OTDB__WalletData swig_types[33]
-#define SWIGTYPE_p_OTMadeEasy swig_types[34]
-#define SWIGTYPE_p_OTPacker swig_types[35]
-#define SWIGTYPE_p_OTPassword swig_types[36]
-#define SWIGTYPE_p_char swig_types[37]
-#define SWIGTYPE_p_int32_t swig_types[38]
-#define SWIGTYPE_p_p_void swig_types[39]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[40]
-#define SWIGTYPE_p_std__string swig_types[41]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[42]
-#define SWIGTYPE_p_uint32_t swig_types[43]
-#define SWIGTYPE_p_uint8_t swig_types[44]
-#define SWIGTYPE_p_void swig_types[45]
-static swig_type_info *swig_types[47];
-static swig_module_info swig_module = {swig_types, 46, 0, 0, 0, 0};
+#define SWIGTYPE_p_OTPacker swig_types[34]
+#define SWIGTYPE_p_OTPassword swig_types[35]
+#define SWIGTYPE_p_OTVariable swig_types[36]
+#define SWIGTYPE_p_OT_API swig_types[37]
+#define SWIGTYPE_p_OT_ME swig_types[38]
+#define SWIGTYPE_p_WrapTimeT swig_types[39]
+#define SWIGTYPE_p_char swig_types[40]
+#define SWIGTYPE_p_difference_type swig_types[41]
+#define SWIGTYPE_p_imaxdiv_t swig_types[42]
+#define SWIGTYPE_p_int swig_types[43]
+#define SWIGTYPE_p_key_type swig_types[44]
+#define SWIGTYPE_p_long_long swig_types[45]
+#define SWIGTYPE_p_mapped_type swig_types[46]
+#define SWIGTYPE_p_p_void swig_types[47]
+#define SWIGTYPE_p_short swig_types[48]
+#define SWIGTYPE_p_signed_char swig_types[49]
+#define SWIGTYPE_p_size_type swig_types[50]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[51]
+#define SWIGTYPE_p_std__string swig_types[52]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[53]
+#define SWIGTYPE_p_unsigned_char swig_types[54]
+#define SWIGTYPE_p_unsigned_int swig_types[55]
+#define SWIGTYPE_p_unsigned_long_long swig_types[56]
+#define SWIGTYPE_p_unsigned_short swig_types[57]
+#define SWIGTYPE_p_value_type swig_types[58]
+#define SWIGTYPE_p_void swig_types[59]
+static swig_type_info *swig_types[61];
+static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1326,21 +1340,10 @@ namespace Swig {
 
 #endif
 
-#include <string>
-#include <map>
+#include <inttypes.h>
 
 
-
-#ifndef IMPORT
-#define IMPORT
-#endif
-
-#include "../../include/otlib/OTPassword.hpp"
-#include "../../include/otapi/OTAPI_Basic.hpp"
-#include "../../include/otapi/OTMadeEasy.hpp"
-#include "../../include/otlib/OTStorage.hpp"
-#include "../../include/otlib/OTAsymmetricKey.hpp"
-
+#include <stdint.h>		// Use the C99 official header
 
 
 #include "zend_exceptions.h"
@@ -1353,14 +1356,88 @@ namespace Swig {
 #include <string>
 
 
+#include <stdexcept>
+
+
+#include <vector>
+#include <stdexcept>
+
+
+#include <map>
+#include <algorithm>
+#include <stdexcept>
+
+
+
+#ifndef IMPORT
+#define IMPORT
+#endif
+
+#include <string>
+#include <vector>
+#include <map>
+
+#include "../../include/otlib/OTPassword.hpp"
+#include "../../include/otapi/OTAPI.hpp"
+#include "../../include/otapi/OT_ME.hpp"
+#include "../../include/otlib/OTStorage.hpp"
+#include "../../include/otlib/OTAsymmetricKey.hpp"
+
+
+SWIGINTERN bool std_vector_Sl_unsigned_SS_char_Sg__is_empty(std::vector< unsigned char > const *self){
+        return self->empty();
+      }
+SWIGINTERN unsigned char std_vector_Sl_unsigned_SS_char_Sg__pop(std::vector< unsigned char > *self){
+        if (self->size() == 0)
+          throw std::out_of_range("pop from empty vector");
+        unsigned char x = self->back();
+        self->pop_back();
+        return x;
+      }
+SWIGINTERN std::vector< unsigned char >::const_reference std_vector_Sl_unsigned_SS_char_Sg__get(std::vector< unsigned char > *self,int i){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          return (*self)[i];
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__set(std::vector< unsigned char > *self,int i,std::vector< unsigned char >::value_type const &val){
+        int size = int(self->size());
+        if (i>=0 && i<size)
+          (*self)[i] = val;
+        else
+          throw std::out_of_range("vector index out of range");
+      }
+SWIGINTERN std::string const &std_map_Sl_std_string_Sc_std_string_Sg__get(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                if (i != self->end())
+                    return i->second;
+                else
+                    throw std::out_of_range("key not found");
+            }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__set(std::map< std::string,std::string > *self,std::string const &key,std::string const &x){
+                (*self)[key] = x;
+            }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__del(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                if (i != self->end())
+                    self->erase(i);
+                else
+                    throw std::out_of_range("key not found");
+            }
+SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__has_key(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                return i != self->end();
+            }
+SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__is_empty(std::map< std::string,std::string > const *self){
+                return self->empty();
+            }
+
 	using namespace OTDB;
 	
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_OTDB__BitcoinAcctTo_p_OTDB__Acct(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((OTDB::Acct *)  ((OTDB::BitcoinAcct *) x));
-}
 static void *_p_OTDB__BitcoinServerTo_p_OTDB__Server(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((OTDB::Server *)  ((OTDB::BitcoinServer *) x));
 }
@@ -1420,12 +1497,6 @@ static void *_p_OTDB__TradeDataNymTo_p_OTDB__Displayable(void *x, int *SWIGUNUSE
 }
 static void *_p_OTDB__OfferDataNymTo_p_OTDB__Displayable(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((OTDB::Displayable *)  ((OTDB::OfferDataNym *) x));
-}
-static void *_p_OTDB__AskDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((OTDB::OfferDataMarket *)  ((OTDB::AskData *) x));
-}
-static void *_p_OTDB__BidDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((OTDB::OfferDataMarket *)  ((OTDB::BidData *) x));
 }
 static void *_p_OTDB__ServerTo_p_OTDB__ServerInfo(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((OTDB::ServerInfo *)  ((OTDB::Server *) x));
@@ -1523,8 +1594,17 @@ static void *_p_OTDB__OfferDataNymTo_p_OTDB__Storable(void *x, int *SWIGUNUSEDPA
 static void *_p_OTDB__TradeDataNymTo_p_OTDB__Storable(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((OTDB::Storable *) (OTDB::Displayable *) ((OTDB::TradeDataNym *) x));
 }
+static void *_p_OTDB__BitcoinAcctTo_p_OTDB__Acct(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((OTDB::Acct *)  ((OTDB::BitcoinAcct *) x));
+}
+static void *_p_OTDB__AskDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((OTDB::OfferDataMarket *)  ((OTDB::AskData *) x));
+}
+static void *_p_OTDB__BidDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((OTDB::OfferDataMarket *)  ((OTDB::BidData *) x));
+}
 static swig_type_info _swigt__int = {"_int", "int", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_OTAPI_Basic = {"_p_OTAPI_Basic", "OTAPI_Basic *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTAPI_Exec = {"_p_OTAPI_Exec", "OTAPI_Exec *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTCallback = {"_p_OTCallback", "OTCallback *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTCaller = {"_p_OTCaller", "OTCaller *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__Acct = {"_p_OTDB__Acct", "OTDB::Acct *", 0, 0, (void*)0, 0};
@@ -1557,22 +1637,36 @@ static swig_type_info _swigt__p_OTDB__TradeDataNym = {"_p_OTDB__TradeDataNym", "
 static swig_type_info _swigt__p_OTDB__TradeListMarket = {"_p_OTDB__TradeListMarket", "OTDB::TradeListMarket *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__TradeListNym = {"_p_OTDB__TradeListNym", "OTDB::TradeListNym *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__WalletData = {"_p_OTDB__WalletData", "OTDB::WalletData *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_OTMadeEasy = {"_p_OTMadeEasy", "OTMadeEasy *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTPacker = {"_p_OTPacker", "OTPacker *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTPassword = {"_p_OTPassword", "OTPassword *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTVariable = {"_p_OTVariable", "OTVariable *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OT_API = {"_p_OT_API", "OT_API *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OT_ME = {"_p_OT_ME", "OT_ME *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_WrapTimeT = {"_p_WrapTimeT", "WrapTimeT *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_int32_t = {"_p_int32_t", "int32_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_imaxdiv_t = {"_p_imaxdiv_t", "imaxdiv_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_int = {"_p_int", "intptr_t *|int *|int_least32_t *|int_fast32_t *|int32_t *|int_fast16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_key_type = {"_p_key_type", "key_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_long_long = {"_p_long_long", "int_least64_t *|int_fast64_t *|int64_t *|long long *|intmax_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_short = {"_p_short", "short *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_unsigned_char_t = {"_p_std__vectorT_unsigned_char_t", "std::vector< unsigned char > *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_uint32_t = {"_p_uint32_t", "uint32_t *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_uint8_t = {"_p_uint8_t", "uint8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_unsigned_char_t = {"_p_std__vectorT_unsigned_char_t", "std::vector< unsigned char > *|std::vector< uint8_t > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|uint_least8_t *|uint_fast8_t *|uint8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|uint_least32_t *|uint_fast32_t *|uint32_t *|unsigned int *|uint_fast16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "uint_least64_t *|uint_fast64_t *|uint64_t *|unsigned long long *|uintmax_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_unsigned_short = {"_p_unsigned_short", "unsigned short *|uint_least16_t *|uint16_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__int,
-  &_swigt__p_OTAPI_Basic,
+  &_swigt__p_OTAPI_Exec,
   &_swigt__p_OTCallback,
   &_swigt__p_OTCaller,
   &_swigt__p_OTDB__Acct,
@@ -1605,22 +1699,36 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTDB__TradeListMarket,
   &_swigt__p_OTDB__TradeListNym,
   &_swigt__p_OTDB__WalletData,
-  &_swigt__p_OTMadeEasy,
   &_swigt__p_OTPacker,
   &_swigt__p_OTPassword,
+  &_swigt__p_OTVariable,
+  &_swigt__p_OT_API,
+  &_swigt__p_OT_ME,
+  &_swigt__p_WrapTimeT,
   &_swigt__p_char,
-  &_swigt__p_int32_t,
+  &_swigt__p_difference_type,
+  &_swigt__p_imaxdiv_t,
+  &_swigt__p_int,
+  &_swigt__p_key_type,
+  &_swigt__p_long_long,
+  &_swigt__p_mapped_type,
   &_swigt__p_p_void,
+  &_swigt__p_short,
+  &_swigt__p_signed_char,
+  &_swigt__p_size_type,
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorT_unsigned_char_t,
-  &_swigt__p_uint32_t,
-  &_swigt__p_uint8_t,
+  &_swigt__p_unsigned_char,
+  &_swigt__p_unsigned_int,
+  &_swigt__p_unsigned_long_long,
+  &_swigt__p_unsigned_short,
+  &_swigt__p_value_type,
   &_swigt__p_void,
 };
 
 static swig_cast_info _swigc__int[] = {  {&_swigt__int, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OTAPI_Basic[] = {  {&_swigt__p_OTAPI_Basic, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTAPI_Exec[] = {  {&_swigt__p_OTAPI_Exec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTCallback[] = {  {&_swigt__p_OTCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTCaller[] = {  {&_swigt__p_OTCaller, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__Acct[] = {  {&_swigt__p_OTDB__BitcoinAcct, _p_OTDB__BitcoinAcctTo_p_OTDB__Acct, 0, 0},  {&_swigt__p_OTDB__Acct, 0, 0, 0},{0, 0, 0, 0}};
@@ -1653,22 +1761,36 @@ static swig_cast_info _swigc__p_OTDB__TradeDataNym[] = {  {&_swigt__p_OTDB__Trad
 static swig_cast_info _swigc__p_OTDB__TradeListMarket[] = {  {&_swigt__p_OTDB__TradeListMarket, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__TradeListNym[] = {  {&_swigt__p_OTDB__TradeListNym, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__WalletData[] = {  {&_swigt__p_OTDB__WalletData, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OTMadeEasy[] = {  {&_swigt__p_OTMadeEasy, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTPacker[] = {  {&_swigt__p_OTPacker, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTPassword[] = {  {&_swigt__p_OTPassword, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTVariable[] = {  {&_swigt__p_OTVariable, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OT_API[] = {  {&_swigt__p_OT_API, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OT_ME[] = {  {&_swigt__p_OT_ME, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_WrapTimeT[] = {  {&_swigt__p_WrapTimeT, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_int32_t[] = {  {&_swigt__p_int32_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_imaxdiv_t[] = {  {&_swigt__p_imaxdiv_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_key_type[] = {  {&_swigt__p_key_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_unsigned_char_t[] = {  {&_swigt__p_std__vectorT_unsigned_char_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_uint32_t[] = {  {&_swigt__p_uint32_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_uint8_t[] = {  {&_swigt__p_uint8_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_long_long, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_unsigned_short[] = {  {&_swigt__p_unsigned_short, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__int,
-  _swigc__p_OTAPI_Basic,
+  _swigc__p_OTAPI_Exec,
   _swigc__p_OTCallback,
   _swigc__p_OTCaller,
   _swigc__p_OTDB__Acct,
@@ -1701,17 +1823,31 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTDB__TradeListMarket,
   _swigc__p_OTDB__TradeListNym,
   _swigc__p_OTDB__WalletData,
-  _swigc__p_OTMadeEasy,
   _swigc__p_OTPacker,
   _swigc__p_OTPassword,
+  _swigc__p_OTVariable,
+  _swigc__p_OT_API,
+  _swigc__p_OT_ME,
+  _swigc__p_WrapTimeT,
   _swigc__p_char,
-  _swigc__p_int32_t,
+  _swigc__p_difference_type,
+  _swigc__p_imaxdiv_t,
+  _swigc__p_int,
+  _swigc__p_key_type,
+  _swigc__p_long_long,
+  _swigc__p_mapped_type,
   _swigc__p_p_void,
+  _swigc__p_short,
+  _swigc__p_signed_char,
+  _swigc__p_size_type,
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__string,
   _swigc__p_std__vectorT_unsigned_char_t,
-  _swigc__p_uint32_t,
-  _swigc__p_uint8_t,
+  _swigc__p_unsigned_char,
+  _swigc__p_unsigned_int,
+  _swigc__p_unsigned_long_long,
+  _swigc__p_unsigned_short,
+  _swigc__p_value_type,
   _swigc__p_void,
 };
 
@@ -1800,54 +1936,1056 @@ fail:
 
 
 /* vdecl subsection */
-static int le_swig__p_std__vectorT_unsigned_char_t=0; /* handle for _p_std__vectorT_unsigned_char_t */
+static int le_swig__p_std__vectorT_unsigned_char_t=0; /* handle for VectorUnsignedChar */
+static int le_swig__p_OTVariable=0; /* handle for _p_OTVariable */
 static int le_swig__p_OTDB__Storage=0; /* handle for Storage */
 static int le_swig__p_OTDB__BitcoinAcct=0; /* handle for BitcoinAcct */
-static int le_swig__p_OTDB__BidData=0; /* handle for BidData */
+static int le_swig__p_OT_ME=0; /* handle for OT_ME */
+static int le_swig__p_WrapTimeT=0; /* handle for WrapTimeT */
 static int le_swig__p_OTPassword=0; /* handle for OTPassword */
+static int le_swig__p_OTDB__BidData=0; /* handle for BidData */
 static int le_swig__p_OTDB__Blob=0; /* handle for Blob */
 static int le_swig__p_OTDB__OfferListNym=0; /* handle for OfferListNym */
 static int le_swig__p_OTDB__TradeListNym=0; /* handle for TradeListNym */
 static int le_swig__p_OTDB__ContactAcct=0; /* handle for ContactAcct */
 static int le_swig__p_char=0; /* handle for _p_char */
-static int le_swig__p_OTDB__TradeListMarket=0; /* handle for TradeListMarket */
+static int le_swig__p_size_type=0; /* handle for _p_size_type */
 static int le_swig__p_OTDB__OfferListMarket=0; /* handle for OfferListMarket */
-static int le_swig__p_uint8_t=0; /* handle for _p_uint8_t */
+static int le_swig__p_OTDB__TradeListMarket=0; /* handle for TradeListMarket */
 static int le_swig__p_OTDB__WalletData=0; /* handle for WalletData */
-static int le_swig__p_void=0; /* handle for _p_void */
 static int le_swig__p_p_void=0; /* handle for _p_p_void */
+static int le_swig__p_void=0; /* handle for _p_void */
 static int le_swig__p_OTDB__StringMap=0; /* handle for StringMap */
 static int le_swig__int=0; /* handle for _int */
+static int le_swig__p_mapped_type=0; /* handle for _p_mapped_type */
 static int le_swig__p_OTDB__BitcoinServer=0; /* handle for BitcoinServer */
-static int le_swig__p_OTMadeEasy=0; /* handle for OTMadeEasy */
 static int le_swig__p_OTDB__Displayable=0; /* handle for Displayable */
 static int le_swig__p_OTPacker=0; /* handle for _p_OTPacker */
-static int le_swig__p_OTDB__AskData=0; /* handle for AskData */
-static int le_swig__p_OTDB__OTDBString=0; /* handle for OTDBString */
+static int le_swig__p_imaxdiv_t=0; /* handle for imaxdiv_t */
 static int le_swig__p_std__string=0; /* handle for _p_std__string */
-static int le_swig__p_OTDB__TradeDataMarket=0; /* handle for TradeDataMarket */
+static int le_swig__p_unsigned_int=0; /* handle for _p_unsigned_int */
+static int le_swig__p_OT_API=0; /* handle for _p_OT_API */
+static int le_swig__p_OTDB__OTDBString=0; /* handle for OTDBString */
+static int le_swig__p_OTDB__AskData=0; /* handle for AskData */
 static int le_swig__p_OTDB__OfferDataMarket=0; /* handle for OfferDataMarket */
+static int le_swig__p_OTDB__TradeDataMarket=0; /* handle for TradeDataMarket */
 static int le_swig__p_OTDB__Acct=0; /* handle for Acct */
 static int le_swig__p_OTDB__ContactNym=0; /* handle for ContactNym */
 static int le_swig__p_OTDB__ServerInfo=0; /* handle for ServerInfo */
+static int le_swig__p_OTAPI_Exec=0; /* handle for _p_OTAPI_Exec */
 static int le_swig__p_OTDB__Contact=0; /* handle for Contact */
 static int le_swig__p_OTCaller=0; /* handle for OTCaller */
+static int le_swig__p_signed_char=0; /* handle for _p_signed_char */
+static int le_swig__p_unsigned_char=0; /* handle for _p_unsigned_char */
 static int le_swig__p_OTDB__Server=0; /* handle for Server */
 static int le_swig__p_OTDB__RippleServer=0; /* handle for RippleServer */
 static int le_swig__p_OTDB__LoomServer=0; /* handle for LoomServer */
+static int le_swig__p_short=0; /* handle for _p_short */
+static int le_swig__p_unsigned_short=0; /* handle for _p_unsigned_short */
+static int le_swig__p_key_type=0; /* handle for _p_key_type */
 static int le_swig__p_OTDB__Storable=0; /* handle for Storable */
 static int le_swig__p_OTDB__AddressBook=0; /* handle for AddressBook */
 static int le_swig__p_OTCallback=0; /* handle for OTCallback */
-static int le_swig__p_OTAPI_Basic=0; /* handle for OTAPI_Basic */
-static int le_swig__p_uint32_t=0; /* handle for _p_uint32_t */
-static int le_swig__p_int32_t=0; /* handle for _p_int32_t */
+static int le_swig__p_long_long=0; /* handle for _p_long_long */
+static int le_swig__p_unsigned_long_long=0; /* handle for _p_unsigned_long_long */
+static int le_swig__p_difference_type=0; /* handle for _p_difference_type */
+static int le_swig__p_value_type=0; /* handle for _p_value_type */
 static int le_swig__p_OTDB__OfferDataNym=0; /* handle for OfferDataNym */
 static int le_swig__p_OTDB__TradeDataNym=0; /* handle for TradeDataNym */
+static int le_swig__p_int=0; /* handle for _p_int */
 static int le_swig__p_OTDB__MarketData=0; /* handle for MarketData */
-static int le_swig__p_std__mapT_std__string_std__string_t=0; /* handle for _p_std__mapT_std__string_std__string_t */
+static int le_swig__p_std__mapT_std__string_std__string_t=0; /* handle for MapStringString */
 static int le_swig__p_OTDB__MarketList=0; /* handle for MarketList */
 /* end vdecl subsection */
 /* wrapper section */
+ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_quot_set) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_imaxdiv_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of imaxdiv_t_quot_set. Expected SWIGTYPE_p_imaxdiv_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (long long) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (long long) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (long long) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  if (arg1) (arg1)->quot = arg2;
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_quot_get) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  zval **args[1];
+  long long result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_imaxdiv_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of imaxdiv_t_quot_get. Expected SWIGTYPE_p_imaxdiv_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (long long) ((arg1)->quot);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_rem_set) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_imaxdiv_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of imaxdiv_t_rem_set. Expected SWIGTYPE_p_imaxdiv_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (long long) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (long long) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (long long) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  if (arg1) (arg1)->rem = arg2;
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_rem_get) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  zval **args[1];
+  long long result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_imaxdiv_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of imaxdiv_t_rem_get. Expected SWIGTYPE_p_imaxdiv_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (long long) ((arg1)->rem);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_imaxdiv_t) {
+  imaxdiv_t *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (imaxdiv_t *)new imaxdiv_t();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_imaxdiv_t, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_imaxdiv_t(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (imaxdiv_t *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_imaxdiv_t TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "imaxdiv_t resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_imaxabs) {
+  intmax_t arg1 ;
+  zval **args[1];
+  intmax_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    arg1 = (intmax_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg1 = (intmax_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    arg1 = (intmax_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (intmax_t)imaxabs(arg1);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_imaxdiv) {
+  intmax_t arg1 ;
+  intmax_t arg2 ;
+  zval **args[2];
+  imaxdiv_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    arg1 = (intmax_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg1 = (intmax_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    arg1 = (intmax_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (intmax_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (intmax_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (intmax_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = imaxdiv(arg1,arg2);
+  {
+    imaxdiv_t * resultobj = new imaxdiv_t((const imaxdiv_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_imaxdiv_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_VectorUnsignedChar__SWIG_0) {
+  std::vector< unsigned char > *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_unsigned_char_t, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_VectorUnsignedChar__SWIG_1) {
+  std::vector< unsigned char >::size_type arg1 ;
+  zval **args[1];
+  std::vector< unsigned char > *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[0]);
+  arg1 = (std::vector< unsigned char >::size_type) Z_LVAL_PP(args[0]);
+  /*@SWIG@*/;
+  
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >(arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_unsigned_char_t, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_VectorUnsignedChar) {
+  int argc;
+  zval **argv[1];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 0) {
+    _wrap_new_VectorUnsignedChar__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+  }
+  if (argc == 1) {
+    int _v;
+    _v = (Z_TYPE_PP(argv[0]) == IS_LONG); 
+    if (_v) {
+      _wrap_new_VectorUnsignedChar__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'new_VectorUnsignedChar'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_size) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  zval **args[1];
+  std::vector< unsigned char >::size_type result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_size. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = ((std::vector< unsigned char > const *)arg1)->size();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_capacity) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  zval **args[1];
+  std::vector< unsigned char >::size_type result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_capacity. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = ((std::vector< unsigned char > const *)arg1)->capacity();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_reserve) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_reserve. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (std::vector< unsigned char >::size_type) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->reserve(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_clear) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_clear. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->clear();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_push) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::value_type *arg2 = 0 ;
+  std::vector< unsigned char >::value_type temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_push. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  temp2 = (std::vector< unsigned char >::value_type) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  arg2 = &temp2;
+  
+  (arg1)->push_back((std::vector< unsigned char >::value_type const &)*arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_is_empty) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_is_empty. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)std_vector_Sl_unsigned_SS_char_Sg__is_empty((std::vector< unsigned char > const *)arg1);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_pop) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  zval **args[1];
+  unsigned char result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_pop. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  try {
+    result = (unsigned char)std_vector_Sl_unsigned_SS_char_Sg__pop(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_get) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  zval **args[2];
+  std::vector< unsigned char >::value_type *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_get. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  try {
+    result = (std::vector< unsigned char >::value_type *) &std_vector_Sl_unsigned_SS_char_Sg__get(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  {
+    ZVAL_LONG(return_value,*result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_set) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  std::vector< unsigned char >::value_type *arg3 = 0 ;
+  std::vector< unsigned char >::value_type temp3 ;
+  zval **args[3];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of VectorUnsignedChar_set. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  temp3 = (std::vector< unsigned char >::value_type) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  arg3 = &temp3;
+  
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__set(arg1,arg2,(unsigned char const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_VectorUnsignedChar(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (std::vector< unsigned char > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__vectorT_unsigned_char_t TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "std::vector<(unsigned char)> resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_MapStringString__SWIG_0) {
+  std::map< std::string,std::string > *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__mapT_std__string_std__string_t, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_MapStringString__SWIG_1) {
+  std::map< std::string,std::string > *arg1 = 0 ;
+  zval **args[1];
+  std::map< std::string,std::string > *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0 || arg1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_MapStringString. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >((std::map< std::string,std::string > const &)*arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__mapT_std__string_std__string_t, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_MapStringString) {
+  int argc;
+  zval **argv[1];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 0) {
+    _wrap_new_MapStringString__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_new_MapStringString__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'new_MapStringString'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_size) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  zval **args[1];
+  unsigned int result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_size. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (unsigned int)((std::map< std::string,std::string > const *)arg1)->size();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_clear) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_clear. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->clear();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_get) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_get. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  try {
+    result = (std::string *) &std_map_Sl_std_string_Sc_std_string_Sg__get(arg1,(std::string const &)*arg2);
+  }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_set) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[3];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_set. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  std_map_Sl_std_string_Sc_std_string_Sg__set(arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_del) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_del. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  try {
+    std_map_Sl_std_string_Sc_std_string_Sg__del(arg1,(std::string const &)*arg2);
+  }
+  catch(std::out_of_range &_e) {
+    (void)_e;
+    zend_throw_exception(NULL, const_cast<char*>("C++ std::out_of_range exception thrown"), 0 TSRMLS_CC);
+    return;
+    
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_has_key) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_has_key. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)std_map_Sl_std_string_Sc_std_string_Sg__has_key(arg1,(std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_MapStringString_is_empty) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_std__mapT_std__string_std__string_t, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of MapStringString_is_empty. Expected SWIGTYPE_p_std__mapT_std__string_std__string_t");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)std_map_Sl_std_string_Sc_std_string_Sg__is_empty((std::map< std::string,std::string > const *)arg1);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_MapStringString(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (std::map< std::string,std::string > *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_std__mapT_std__string_std__string_t TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "std::map<(std::string,std::string)> resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_m_theBlockSize_get) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   zval **args[1];
@@ -1918,7 +3056,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getPassword_uint8) {
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   result = (uint8_t *)((OTPassword const *)arg1)->getPassword_uint8();
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_uint8_t, 0);
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_unsigned_char, 0);
   
   return;
 fail:
@@ -1974,7 +3112,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getPasswordWritable) {
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   result = (uint8_t *)(arg1)->getPasswordWritable();
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_uint8_t, 0);
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_unsigned_char, 0);
   
   return;
 fail:
@@ -2015,9 +3153,9 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
+  int32_t arg3 ;
   zval **args[3];
-  int result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -2031,7 +3169,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -2041,12 +3179,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  arg3 = (int) Z_LVAL_PP(args[2]);
+  arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
-  result = (int)(arg1)->setPassword((char const *)arg2,arg3);
+  result = (int32_t)(arg1)->setPassword((char const *)arg2,arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -2060,7 +3198,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword_uint8) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t *arg2 = (uint8_t *) 0 ;
   uint32_t arg3 ;
-  uint32_t *tmp3 ;
   zval **args[3];
   int32_t result;
   
@@ -2076,20 +3213,19 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword_uint8) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_setPassword_uint8. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_setPassword_uint8. Expected SWIGTYPE_p_unsigned_char");
     }
   }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (uint32_t) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &tmp3, SWIGTYPE_p_uint32_t, 0) < 0 || tmp3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTPassword_setPassword_uint8. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg3 = *tmp3;
-  }
-  result = (arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
-  {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2100,7 +3236,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_addChar) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t arg2 ;
-  uint8_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -2115,12 +3250,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_addChar) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint8_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_addChar. Expected SWIGTYPE_p_uint8_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint8_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)(arg1)->addChar(arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -2134,7 +3269,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_0) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   int32_t result;
   
@@ -2149,16 +3283,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->randomizePassword(arg2);
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizePassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
-  result = (arg1)->randomizePassword(arg2);
-  {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2182,10 +3315,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_1) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (arg1)->randomizePassword();
+  result = (int32_t)(arg1)->randomizePassword();
   {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2196,7 +3328,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword_uint8) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -2206,16 +3337,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword_uint8) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_randomizePassword_uint8. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_randomizePassword_uint8. Expected SWIGTYPE_p_unsigned_char");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizePassword_uint8. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)OTPassword::randomizePassword_uint8(arg1,arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -2229,7 +3360,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -2239,7 +3369,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -2248,12 +3378,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   }
   /*@SWIG@*/;
   
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizePassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)OTPassword::randomizePassword(arg1,arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -2287,10 +3417,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTPassword, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_randomizePassword__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2300,10 +3427,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword) {
     int _v;
     _v = (Z_TYPE_PP(argv[0]) == IS_STRING); 
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_randomizePassword__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2386,7 +3510,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getMemory_uint8) {
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   result = (uint8_t *)((OTPassword const *)arg1)->getMemory_uint8();
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_uint8_t, 0);
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_unsigned_char, 0);
   
   return;
 fail:
@@ -2424,7 +3548,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setMemory) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *tmp3 ;
   zval **args[3];
   int32_t result;
   
@@ -2447,16 +3570,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setMemory) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_setMemory. Expected SWIGTYPE_p_p_void");
     }
   }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (uint32_t) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->setMemory((void const *)arg2,arg3);
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &tmp3, SWIGTYPE_p_uint32_t, 0) < 0 || tmp3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTPassword_setMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg3 = *tmp3;
-  }
-  result = (arg1)->setMemory((void const *)arg2,arg3);
-  {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2468,7 +3590,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_addMemory) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *tmp3 ;
   zval **args[3];
   int32_t result;
   
@@ -2491,16 +3612,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_addMemory) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_addMemory. Expected SWIGTYPE_p_p_void");
     }
   }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (uint32_t) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->addMemory((void const *)arg2,arg3);
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &tmp3, SWIGTYPE_p_uint32_t, 0) < 0 || tmp3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTPassword_addMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg3 = *tmp3;
-  }
-  result = (arg1)->addMemory((void const *)arg2,arg3);
-  {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2511,7 +3631,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_0) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   int32_t result;
   
@@ -2526,16 +3645,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_0) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->randomizeMemory(arg2);
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizeMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
-  result = (arg1)->randomizeMemory(arg2);
-  {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2559,10 +3677,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_1) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (arg1)->randomizeMemory();
+  result = (int32_t)(arg1)->randomizeMemory();
   {
-    int32_t * resultobj = new int32_t((const int32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_int32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2573,7 +3690,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory_uint8) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -2583,16 +3699,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory_uint8) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_randomizeMemory_uint8. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_randomizeMemory_uint8. Expected SWIGTYPE_p_unsigned_char");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizeMemory_uint8. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)OTPassword::randomizeMemory_uint8(arg1,arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -2606,7 +3722,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_2) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -2623,12 +3738,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_2) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_randomizeMemory. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_randomizeMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)OTPassword::randomizeMemory(arg1,arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -2662,10 +3777,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTPassword, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_randomizeMemory__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2678,10 +3790,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_randomizeMemory__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2710,10 +3819,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getBlockSize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = ((OTPassword const *)arg1)->getBlockSize();
+  result = (uint32_t)((OTPassword const *)arg1)->getBlockSize();
   {
-    uint32_t * resultobj = new uint32_t((const uint32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_uint32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2769,10 +3877,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getPasswordSize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = ((OTPassword const *)arg1)->getPasswordSize();
+  result = (uint32_t)((OTPassword const *)arg1)->getPasswordSize();
   {
-    uint32_t * resultobj = new uint32_t((const uint32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_uint32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2796,10 +3903,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_getMemorySize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = ((OTPassword const *)arg1)->getMemorySize();
+  result = (uint32_t)((OTPassword const *)arg1)->getMemorySize();
   {
-    uint32_t * resultobj = new uint32_t((const uint32_t &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_uint32_t, 1);
+    ZVAL_LONG(return_value,result);
   }
   return;
 fail:
@@ -2833,7 +3939,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_1) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   
   SWIG_ResetError();
@@ -2842,16 +3947,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_1) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_zeroMemory. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_zeroMemory. Expected SWIGTYPE_p_unsigned_char");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_zeroMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   OTPassword::zeroMemory(arg1,arg2);
   
   return;
@@ -2863,7 +3968,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_2) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   
   SWIG_ResetError();
@@ -2879,12 +3983,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_2) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_zeroMemory. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_zeroMemory. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   OTPassword::zeroMemory(arg1,arg2);
   
   return;
@@ -2913,13 +4017,10 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_uint8_t, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_zeroMemory__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2932,10 +4033,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_OTPassword_zeroMemory__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -2954,8 +4052,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
   bool arg5 ;
-  uint32_t *tmp2 ;
-  uint32_t *tmp4 ;
   zval **args[5];
   void *result = 0 ;
   
@@ -2972,12 +4068,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   {
     if(SWIG_ConvertPtr(*args[2], (void **) &arg3, 0, 0) < 0) {
       /* Allow NULL from php for void* */
@@ -2986,14 +4082,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[3], (void **) &tmp4, SWIGTYPE_p_uint32_t, 0) < 0 || tmp4 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg4 = *tmp4;
-  }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (uint32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   arg5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -3013,8 +4109,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_1) {
   uint32_t arg2 ;
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
-  uint32_t *tmp2 ;
-  uint32_t *tmp4 ;
   zval **args[4];
   void *result = 0 ;
   
@@ -3031,12 +4125,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_1) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   {
     if(SWIG_ConvertPtr(*args[2], (void **) &arg3, 0, 0) < 0) {
       /* Allow NULL from php for void* */
@@ -3045,12 +4139,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_1) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[3], (void **) &tmp4, SWIGTYPE_p_uint32_t, 0) < 0 || tmp4 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTPassword_safe_memcpy. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg4 = *tmp4;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (uint32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
   result = (void *)OTPassword::safe_memcpy(arg1,arg2,(void const *)arg3,arg4);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_void, 0);
@@ -3074,20 +4168,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         {
           void *tmp;
           _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, 0, 0) >= 0);
         }
         if (_v) {
-          {
-            void *tmp;
-            _v = (SWIG_ConvertPtr(*argv[3], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-          }
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
           if (_v) {
             _wrap_OTPassword_safe_memcpy__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
           }
@@ -3102,20 +4190,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         {
           void *tmp;
           _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, 0, 0) >= 0);
         }
         if (_v) {
-          {
-            void *tmp;
-            _v = (SWIG_ConvertPtr(*argv[3], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-          }
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
           if (_v) {
             _v = (Z_TYPE_PP(argv[4]) == IS_BOOL); 
             if (_v) {
@@ -3154,7 +4236,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTPassword_SetSize) {
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   bool result;
   
@@ -3169,12 +4250,12 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_SetSize) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTPassword_SetSize. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (bool)(arg1)->SetSize(arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
@@ -3196,7 +4277,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTPassword::BlockSize) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -3258,7 +4339,6 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *tmp2 ;
   zval **args[3];
   OTPassword *result = 0 ;
   
@@ -3268,7 +4348,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -3277,14 +4357,14 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   }
   /*@SWIG@*/;
   
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3302,7 +4382,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   OTPassword *result = 0 ;
   
@@ -3312,7 +4391,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -3321,12 +4400,12 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   }
   /*@SWIG@*/;
   
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (OTPassword *)new OTPassword((char const *)arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTPassword, 1);
@@ -3341,7 +4420,6 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_5) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *tmp2 ;
   zval **args[3];
   OTPassword *result = 0 ;
   
@@ -3351,18 +4429,18 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_5) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_unsigned_char");
     }
-  }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
   }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3380,7 +4458,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_6) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   OTPassword *result = 0 ;
   
@@ -3390,16 +4467,16 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_6) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_uint8_t, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_uint8_t");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_unsigned_char, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_unsigned_char");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (OTPassword *)new OTPassword((uint8_t const *)arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTPassword, 1);
@@ -3414,7 +4491,6 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_7) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *tmp2 ;
   zval **args[3];
   OTPassword *result = 0 ;
   
@@ -3431,14 +4507,14 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_7) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3456,7 +4532,6 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_8) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *tmp2 ;
   zval **args[2];
   OTPassword *result = 0 ;
   
@@ -3473,12 +4548,12 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_8) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTPassword. Expected SWIGTYPE_p_p_void");
     }
   }
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_uint32_t, 0) < 0 || tmp2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of new_OTPassword. Expected SWIGTYPE_p_uint32_t");
-    }
-    arg2 = *tmp2;
-  }
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (uint32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
   result = (OTPassword *)new OTPassword((void const *)arg1,arg2);
   
   SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTPassword, 1);
@@ -3519,13 +4594,10 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_uint8_t, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_new_OTPassword__SWIG_6(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -3538,10 +4610,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_new_OTPassword__SWIG_8(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -3551,10 +4620,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
     int _v;
     _v = (Z_TYPE_PP(argv[0]) == IS_STRING); 
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _wrap_new_OTPassword__SWIG_4(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
       }
@@ -3564,13 +4630,10 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_uint8_t, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_unsigned_char, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
         if (_v) {
@@ -3586,10 +4649,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
       _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, 0, 0) >= 0);
     }
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
         if (_v) {
@@ -3602,10 +4662,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword) {
     int _v;
     _v = (Z_TYPE_PP(argv[0]) == IS_STRING); 
     if (_v) {
-      {
-        void *tmp;
-        _v = (SWIG_ConvertPtr(*argv[1], (void **)&tmp, SWIGTYPE_p_uint32_t, 0) >= 0);
-      }
+      _v = (Z_TYPE_PP(argv[1]) == IS_LONG); 
       if (_v) {
         _v = (Z_TYPE_PP(argv[2]) == IS_LONG); 
         if (_v) {
@@ -3709,7 +4766,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCallback_runOne) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3757,7 +4814,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCallback_runTwo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3908,7 +4965,7 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
   OTCaller *arg1 = (OTCaller *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
+  int32_t arg3 ;
   zval **args[3];
   
   SWIG_ResetError();
@@ -3923,7 +4980,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3933,9 +4990,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  arg3 = (int) Z_LVAL_PP(args[2]);
+  arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
   (arg1)->SetDisplay((char const *)arg2,arg3);
@@ -4070,17 +5127,95 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_new_OTAPI_Basic) {
-  OTAPI_Basic *result = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_new_WrapTimeT) {
+  WrapTimeT *result = 0 ;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (OTAPI_Basic *)new OTAPI_Basic();
+  result = (WrapTimeT *)new WrapTimeT();
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTAPI_Basic, 1);
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_WrapTimeT, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_WrapTimeT_getTime) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_WrapTimeT, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of WrapTimeT_getTime. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_WrapTimeT_setTime) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_WrapTimeT, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of WrapTimeT_setTime. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    temp2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    temp2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  arg2 = &temp2;
+  
+  (arg1)->setTime((int64_t const &)*arg2);
   
   return;
 fail:
@@ -4090,16 +5225,16 @@ fail:
 
 /* This function is designed to be called by the zend list destructors */
 /* to typecast and do the actual destruction */
-static void __wrap_delete_OTAPI_Basic(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+static void __wrap_delete_WrapTimeT(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
   swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
   void *ptr=value->ptr ;
   int newobject=value->newobject ;
-  OTAPI_Basic *arg1 = (OTAPI_Basic *) 0 ;
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
   
   efree(value);
   if (! newobject) return; /* can't delete it! */
-  arg1 = (OTAPI_Basic *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTAPI_Basic TSRMLS_CC);
-  if (! arg1) zend_error(E_ERROR, "OTAPI_Basic resource already free'd");
+  arg1 = (WrapTimeT *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_WrapTimeT TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "WrapTimeT resource already free'd");
   delete arg1;
   return;
 fail:
@@ -4107,46 +5242,90 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AppStartup) {
-  bool result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetExecutor) {
+  OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
+  zval **args[1];
+  OTAPI_Exec *result = 0 ;
   
   SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::AppStartup();
   {
-    ZVAL_BOOL(return_value,(result)?1:0);
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTAPI_Exec, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTAPI_Wrap_SetExecutor. Expected SWIGTYPE_p_OTAPI_Exec");
+    }
   }
+  result = (OTAPI_Exec *)OTAPI_Wrap::SetExecutor(arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTAPI_Exec, 0);
+  
   return;
 fail:
   SWIG_FAIL();
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AppShutdown) {
-  bool result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Exec) {
+  OTAPI_Exec *result = 0 ;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::AppShutdown();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
+  result = (OTAPI_Exec *)OTAPI_Wrap::Exec();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTAPI_Exec, 0);
+  
   return;
 fail:
   SWIG_FAIL();
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAppBinaryFolder) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_It) {
+  OTAPI_Exec *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OTAPI_Exec *)OTAPI_Wrap::It();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTAPI_Exec, 0);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_OTAPI) {
+  OT_API *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OT_API *)OTAPI_Wrap::OTAPI();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OT_API, 0);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_StringToLong) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -4158,7 +5337,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAppBinaryFolder) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  OTAPI_Basic::SetAppBinaryFolder((std::string const &)*arg1);
+  result = (int64_t)OTAPI_Wrap::StringToLong((std::string const &)*arg1);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   return;
@@ -4167,10 +5355,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetHomeFolder) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LongToString) {
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
   zval **args[1];
+  std::string result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -4178,158 +5367,26 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetHomeFolder) {
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  OTAPI_Basic::SetHomeFolder((std::string const &)*arg1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Init) {
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (int64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (int64_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (int64_t) (*(args[0]))->value.lval;
   }
-  
-  result = (bool)OTAPI_Basic::Init();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetWallet) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = (bool)OTAPI_Basic::SetWallet((std::string const &)*arg1);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_WalletExists) {
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (bool)OTAPI_Basic::WalletExists();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadWallet) {
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (bool)OTAPI_Basic::LoadWallet();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SwitchWallet) {
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (bool)OTAPI_Basic::SwitchWallet();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Output) {
-  long arg1 ;
-  std::string *arg2 = 0 ;
-  std::string temp2 ;
-  zval **args[2];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[0]);
-  arg1 = (long) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
+  arg1 = &temp1;
   
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  OTAPI_Basic::Output(arg1,(std::string const &)*arg2);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetTime) {
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = OTAPI_Basic::GetTime();
+  result = OTAPI_Wrap::LongToString((long long const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4339,151 +5396,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_Add) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = OTAPI_Basic::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_Remove) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = OTAPI_Basic::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_VerifyQuery) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (bool)OTAPI_Basic::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_VerifyAll) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (bool)OTAPI_Basic::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_Count) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_StringToUlong) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  uint64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -4495,7 +5412,439 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_NumList_Count) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::NumList_Count((std::string const &)*arg1);
+  result = (uint64_t)OTAPI_Wrap::StringToUlong((std::string const &)*arg1);
+  
+  if (result <= (unsigned long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%llu", (unsigned long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_UlongToString) {
+  uint64_t *arg1 = 0 ;
+  uint64_t temp1 ;
+  zval **args[1];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,30,CONVERT_UNSIGNED_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (uint64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (uint64_t) strtoull((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (uint64_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
+  arg1 = &temp1;
+  
+  result = OTAPI_Wrap::UlongToString((unsigned long long const &)*arg1);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AppInit) {
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (bool)OTAPI_Wrap::AppInit();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AppCleanup) {
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (bool)OTAPI_Wrap::AppCleanup();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetAppBinaryFolder) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  OTAPI_Wrap::SetAppBinaryFolder((std::string const &)*arg1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetHomeFolder) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  OTAPI_Wrap::SetHomeFolder((std::string const &)*arg1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetWallet) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (bool)OTAPI_Wrap::SetWallet((std::string const &)*arg1);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WalletExists) {
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (bool)OTAPI_Wrap::WalletExists();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadWallet) {
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (bool)OTAPI_Wrap::LoadWallet();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SwitchWallet) {
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (bool)OTAPI_Wrap::SwitchWallet();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Output) {
+  int32_t *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
+  /*@SWIG@*/;
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  OTAPI_Wrap::Output((int const &)*arg1,(std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetTime) {
+  WrapTimeT result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = OTAPI_Wrap::GetTime();
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_NumList_Add) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = OTAPI_Wrap::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_NumList_Remove) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = OTAPI_Wrap::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_NumList_VerifyQuery) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)OTAPI_Wrap::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_NumList_VerifyAll) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)OTAPI_Wrap::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_NumList_Count) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (int32_t)OTAPI_Wrap::NumList_Count((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4506,7 +5855,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Encode) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Encode) {
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
   std::string temp1 ;
@@ -4525,13 +5874,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Encode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Encode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Encode((std::string const &)*arg1,(bool const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4542,7 +5891,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Decode) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Decode) {
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
   std::string temp1 ;
@@ -4561,13 +5910,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Decode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Decode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Decode((std::string const &)*arg1,(bool const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4578,7 +5927,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Encrypt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Encrypt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4601,7 +5950,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Encrypt) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4613,7 +5962,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Decrypt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Decrypt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4636,7 +5985,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Decrypt) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4648,7 +5997,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateSymmetricKey) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreateSymmetricKey) {
   std::string result;
   
   SWIG_ResetError();
@@ -4656,7 +6005,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateSymmetricKey) {
     WRONG_PARAM_COUNT;
   }
   
-  result = OTAPI_Basic::CreateSymmetricKey();
+  result = OTAPI_Wrap::CreateSymmetricKey();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4666,7 +6015,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SymmetricEncrypt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SymmetricEncrypt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4689,7 +6038,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SymmetricEncrypt) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4701,7 +6050,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SymmetricDecrypt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SymmetricDecrypt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4724,7 +6073,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SymmetricDecrypt) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4736,7 +6085,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SignContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SignContract) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4759,7 +6108,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SignContract) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4771,7 +6120,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlatSign) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FlatSign) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -4801,7 +6150,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlatSign) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4814,7 +6163,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddSignature) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddSignature) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4837,7 +6186,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddSignature) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4849,7 +6198,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifySignature) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_VerifySignature) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4872,7 +6221,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifySignature) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -4884,7 +6233,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -4907,7 +6256,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4919,15 +6268,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetMemlogSize) {
-  long result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetMemlogSize) {
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (long)OTAPI_Basic::GetMemlogSize();
+  result = (int32_t)OTAPI_Wrap::GetMemlogSize();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -4937,9 +6286,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetMemlogAtIndex) {
-  long *arg1 = 0 ;
-  long temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetMemlogAtIndex) {
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   zval **args[1];
   std::string result;
   
@@ -4949,13 +6298,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetMemlogAtIndex) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetMemlogAtIndex((long const &)*arg1);
+  result = OTAPI_Wrap::GetMemlogAtIndex((int const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4965,7 +6314,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PeekMemlogFront) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PeekMemlogFront) {
   std::string result;
   
   SWIG_ResetError();
@@ -4973,7 +6322,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PeekMemlogFront) {
     WRONG_PARAM_COUNT;
   }
   
-  result = OTAPI_Basic::PeekMemlogFront();
+  result = OTAPI_Wrap::PeekMemlogFront();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -4983,7 +6332,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PeekMemlogBack) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PeekMemlogBack) {
   std::string result;
   
   SWIG_ResetError();
@@ -4991,7 +6340,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PeekMemlogBack) {
     WRONG_PARAM_COUNT;
   }
   
-  result = OTAPI_Basic::PeekMemlogBack();
+  result = OTAPI_Wrap::PeekMemlogBack();
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5001,7 +6350,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogFront) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PopMemlogFront) {
   bool result;
   
   SWIG_ResetError();
@@ -5009,7 +6358,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogFront) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::PopMemlogFront();
+  result = (bool)OTAPI_Wrap::PopMemlogFront();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -5019,7 +6368,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogBack) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PopMemlogBack) {
   bool result;
   
   SWIG_ResetError();
@@ -5027,7 +6376,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMemlogBack) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::PopMemlogBack();
+  result = (bool)OTAPI_Wrap::PopMemlogBack();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -5037,11 +6386,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateNym) {
-  long *arg1 = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreateNym) {
+  int32_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long temp1 ;
+  int32_t temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
@@ -5053,9 +6402,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateNym) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
@@ -5069,7 +6418,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateNym) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::CreateNym((long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreateNym((int const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5081,7 +6430,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -5104,7 +6453,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5116,11 +6465,10 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetActiveCronItem) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetActiveCronItem) {
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int64_t arg2 ;
   std::string temp1 ;
-  std::string temp2 ;
   zval **args[2];
   std::string result;
   
@@ -5135,14 +6483,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetActiveCronItem) {
   arg1 = &temp1;
   
   
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = OTAPI_Basic::GetActiveCronItem((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetActiveCronItem((std::string const &)*arg1,arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   return;
@@ -5151,7 +6512,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SourceForID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_SourceForID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5167,7 +6528,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SourceForID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetNym_SourceForID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_SourceForID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5178,7 +6539,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_AltSourceLocation) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_AltSourceLocation) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5194,7 +6555,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_AltSourceLocation) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetNym_AltSourceLocation((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_AltSourceLocation((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5205,11 +6566,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_CredentialCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -5221,7 +6582,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::GetNym_CredentialCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_CredentialCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5232,11 +6593,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_CredentialID) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -5251,13 +6612,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_CredentialID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialID((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5268,7 +6629,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_CredentialContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -5291,7 +6652,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_CredentialContents) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5303,11 +6664,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_RevokedCredCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -5319,7 +6680,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::GetNym_RevokedCredCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_RevokedCredCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5330,11 +6691,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_RevokedCredID) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -5349,13 +6710,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_RevokedCredID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredID((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5366,7 +6727,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_RevokedCredContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -5389,7 +6750,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RevokedCredContents) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5401,13 +6762,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubcredentialCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_SubcredentialCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -5424,7 +6785,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubcredentialCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5436,13 +6797,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubCredentialID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_SubCredentialID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -5462,13 +6823,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubCredentialID) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5480,7 +6841,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubCredentialContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_SubCredentialContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -5510,7 +6871,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_SubCredentialContents) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5523,13 +6884,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddSubcredential) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddSubcredential) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -5549,13 +6910,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddSubcredential) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5567,7 +6928,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RevokeSubcredential) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_RevokeSubcredential) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -5597,7 +6958,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RevokeSubcredential) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -5610,7 +6971,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateServerContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreateServerContract) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -5633,7 +6994,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateServerContract) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5645,7 +7006,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateAssetContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreateAssetContract) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -5668,7 +7029,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreateAssetContract) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5680,7 +7041,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CalculateAssetContractID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CalculateAssetContractID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5696,7 +7057,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CalculateAssetContractID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::CalculateAssetContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateAssetContractID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5707,7 +7068,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CalculateServerContractID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CalculateServerContractID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5723,7 +7084,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CalculateServerContractID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::CalculateServerContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateServerContractID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5734,11 +7095,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddServerContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddServerContract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -5750,7 +7111,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddServerContract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::AddServerContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddServerContract((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5761,11 +7122,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddAssetContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddAssetContract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -5777,7 +7138,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddAssetContract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::AddAssetContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddAssetContract((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5788,15 +7149,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServerCount) {
-  long result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetServerCount) {
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (long)OTAPI_Basic::GetServerCount();
+  result = (int32_t)OTAPI_Wrap::GetServerCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5806,15 +7167,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetTypeCount) {
-  long result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetTypeCount) {
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (long)OTAPI_Basic::GetAssetTypeCount();
+  result = (int32_t)OTAPI_Wrap::GetAssetTypeCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5824,15 +7185,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountCount) {
-  long result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountCount) {
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (long)OTAPI_Basic::GetAccountCount();
+  result = (int32_t)OTAPI_Wrap::GetAccountCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5842,15 +7203,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNymCount) {
-  long result;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNymCount) {
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (long)OTAPI_Basic::GetNymCount();
+  result = (int32_t)OTAPI_Wrap::GetNymCount();
   {
     ZVAL_LONG(return_value,result);
   }
@@ -5860,9 +7221,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_ID) {
-  long *arg1 = 0 ;
-  long temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetServer_ID) {
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   zval **args[1];
   std::string result;
   
@@ -5872,13 +7233,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetServer_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetServer_ID((int const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5888,7 +7249,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetServer_Name) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5904,7 +7265,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_Name) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetServer_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Name((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5915,7 +7276,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_Contract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetServer_Contract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -5931,7 +7292,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetServer_Contract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetServer_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Contract((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -5942,13 +7303,62 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FormatAmount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FormatAmount) {
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  std::string temp1 ;
+  int64_t temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    temp2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    temp2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  arg2 = &temp2;
+  
+  result = OTAPI_Wrap::FormatAmount((std::string const &)*arg1,(long long const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_StringToAmount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -5965,46 +7375,18 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FormatAmount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::FormatAmount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int64_t)OTAPI_Wrap::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_StringToAmount) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = OTAPI_Basic::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
   
   return;
 fail:
@@ -6012,9 +7394,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_ID) {
-  long *arg1 = 0 ;
-  long temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetType_ID) {
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   zval **args[1];
   std::string result;
   
@@ -6024,13 +7406,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAssetType_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_ID((int const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6040,7 +7422,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetType_Name) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6056,7 +7438,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_Name) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Name((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6067,7 +7449,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_TLA) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetType_TLA) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6083,7 +7465,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_TLA) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_TLA((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6094,7 +7476,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_Contract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetType_Contract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6110,7 +7492,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAssetType_Contract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAssetType_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Contract((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6121,9 +7503,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_ID) {
-  long *arg1 = 0 ;
-  long temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_ID) {
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   zval **args[1];
   std::string result;
   
@@ -6133,13 +7515,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ID((int const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6149,7 +7531,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_Name) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6165,7 +7547,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Name) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Name((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6176,7 +7558,41 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Balance) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_Balance) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (int64_t)OTAPI_Wrap::GetAccountWallet_Balance((std::string const &)*arg1);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_Type) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6192,7 +7608,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Balance) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_Balance((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Type((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6203,7 +7619,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Type) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6219,7 +7635,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_Type) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_Type((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6230,7 +7646,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_ServerID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6246,7 +7662,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ServerID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6257,7 +7673,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_ServerID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_NymID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6273,7 +7689,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_ServerID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_ServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_NymID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6284,7 +7700,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_NymID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_InboxHash) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6300,7 +7716,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_NymID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_NymID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_InboxHash((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6311,7 +7727,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_InboxHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6327,7 +7743,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_InboxHash) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetAccountWallet_InboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_OutboxHash((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6338,34 +7754,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetAccountWallet_OutboxHash) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = OTAPI_Basic::GetAccountWallet_OutboxHash((std::string const &)*arg1);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyAccountReceipt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_VerifyAccountReceipt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -6395,7 +7784,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyAccountReceipt) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6408,13 +7797,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_TransactionNumCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_TransactionNumCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -6431,7 +7820,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_TransactionNumCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6443,9 +7832,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ID) {
-  long *arg1 = 0 ;
-  long temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_ID) {
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   zval **args[1];
   std::string result;
   
@@ -6455,13 +7844,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_ID) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  temp1 = (long) Z_LVAL_PP(args[0]);
+  temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetNym_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetNym_ID((int const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6471,7 +7860,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_Name) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6487,7 +7876,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_Name) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetNym_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Name((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6498,7 +7887,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_Stats) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_Stats) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -6514,7 +7903,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_Stats) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::GetNym_Stats((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Stats((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6525,7 +7914,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_NymboxHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_NymboxHash) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -6548,7 +7937,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_NymboxHash) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6560,7 +7949,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RecentHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_RecentHash) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -6583,7 +7972,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_RecentHash) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6595,7 +7984,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_InboxHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_InboxHash) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -6618,7 +8007,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_InboxHash) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6630,7 +8019,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutboxHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutboxHash) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -6653,7 +8042,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutboxHash) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6665,7 +8054,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_IsNym_RegisteredAtServer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_IsNym_RegisteredAtServer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -6688,7 +8077,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_IsNym_RegisteredAtServer) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6700,11 +8089,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -6716,7 +8105,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::GetNym_MailCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_MailCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6727,11 +8116,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailContentsByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -6746,13 +8135,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_MailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6763,11 +8152,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -6782,13 +8171,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6799,11 +8188,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -6818,13 +8207,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_MailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6835,11 +8224,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveMailByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -6854,13 +8243,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_RemoveMailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveMailByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6871,11 +8260,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyMailByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -6890,13 +8279,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_VerifyMailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyMailByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -6907,11 +8296,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -6923,7 +8312,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::GetNym_OutmailCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_OutmailCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -6934,11 +8323,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -6953,13 +8342,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -6970,11 +8359,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -6989,13 +8378,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7006,11 +8395,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -7025,13 +8414,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7042,11 +8431,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -7061,13 +8450,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7078,11 +8467,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -7097,13 +8486,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7114,11 +8503,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -7130,7 +8519,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::GetNym_OutpaymentsCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_OutpaymentsCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -7141,11 +8530,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -7160,13 +8549,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7177,11 +8566,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -7196,13 +8585,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7213,11 +8602,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -7232,13 +8621,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7249,11 +8638,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -7268,13 +8657,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7285,11 +8674,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   bool result;
   
@@ -7304,13 +8693,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7321,7 +8710,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveServer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_CanRemoveServer) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7337,7 +8726,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveServer) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveServer((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveServer((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7348,7 +8737,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveServer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_RemoveServer) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7364,7 +8753,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveServer) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_RemoveServer((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveServer((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7375,7 +8764,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7391,7 +8780,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAssetType((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAssetType((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7402,7 +8791,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveAssetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_RemoveAssetType) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7418,7 +8807,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveAssetType) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_RemoveAssetType((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveAssetType((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7429,7 +8818,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveNym) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_CanRemoveNym) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7445,7 +8834,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveNym) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveNym((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveNym((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7456,7 +8845,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveNym) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_RemoveNym) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7472,7 +8861,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_RemoveNym) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_RemoveNym((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveNym((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7483,7 +8872,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_CanRemoveAccount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7499,7 +8888,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_CanRemoveAccount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAccount((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAccount((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7510,7 +8899,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ChangePassphrase) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ChangePassphrase) {
   bool result;
   
   SWIG_ResetError();
@@ -7518,7 +8907,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ChangePassphrase) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::Wallet_ChangePassphrase();
+  result = (bool)OTAPI_Wrap::Wallet_ChangePassphrase();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7528,7 +8917,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ExportNym) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ExportNym) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7544,7 +8933,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ExportNym) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_ExportNym((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportNym((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7555,7 +8944,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportNym) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ImportNym) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7571,7 +8960,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportNym) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_ImportNym((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ImportNym((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7582,7 +8971,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportCert) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ImportCert) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -7605,7 +8994,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportCert) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7617,7 +9006,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ExportCert) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ExportCert) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7633,7 +9022,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ExportCert) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_ExportCert((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportCert((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7644,7 +9033,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7660,7 +9049,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7671,7 +9060,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7687,7 +9076,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7698,7 +9087,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7714,7 +9103,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7725,7 +9114,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -7741,7 +9130,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -7752,7 +9141,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetNym_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetNym_Name) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -7782,7 +9171,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetNym_Name) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7795,7 +9184,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAccountWallet_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetAccountWallet_Name) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -7825,7 +9214,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAccountWallet_Name) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7838,7 +9227,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAssetType_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetAssetType_Name) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -7861,7 +9250,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetAssetType_Name) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7873,7 +9262,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetServer_Name) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetServer_Name) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -7896,7 +9285,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SetServer_Name) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -7908,19 +9297,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_WriteCheque) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WriteCheque) {
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  WrapTimeT *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
   std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp2 ;
   std::string temp5 ;
   std::string temp6 ;
   std::string temp7 ;
@@ -7939,20 +9326,35 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_WriteCheque) {
   arg1 = &temp1;
   
   
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    temp2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    temp2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg2 = &temp2;
   
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg4 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
   
   convert_to_string_ex(args[4]);
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
@@ -7973,12 +9375,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_WriteCheque) {
   temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
   arg8 = &temp8;
   
-  result = OTAPI_Basic::WriteCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
   
   
   
@@ -7991,7 +9390,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_DiscardCheque) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_DiscardCheque) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8028,7 +9427,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_DiscardCheque) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (bool)OTAPI_Basic::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -8042,37 +9441,31 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProposePaymentPlan) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  std::string *arg14 = 0 ;
-  long *arg15 = 0 ;
+  int64_t *arg9 = 0 ;
+  WrapTimeT *arg10 = 0 ;
+  int64_t *arg11 = 0 ;
+  WrapTimeT *arg12 = 0 ;
+  WrapTimeT *arg13 = 0 ;
+  WrapTimeT *arg14 = 0 ;
+  int32_t *arg15 = 0 ;
   std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
   std::string temp6 ;
   std::string temp7 ;
   std::string temp8 ;
-  std::string temp9 ;
-  std::string temp10 ;
-  std::string temp11 ;
-  std::string temp12 ;
-  std::string temp13 ;
-  std::string temp14 ;
-  long temp15 ;
+  int64_t temp9 ;
+  int64_t temp11 ;
+  int32_t temp15 ;
   zval **args[15];
   std::string result;
   
@@ -8086,16 +9479,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProposePaymentPlan) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
   
   convert_to_string_ex(args[3]);
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
@@ -8122,53 +9515,75 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProposePaymentPlan) {
   arg8 = &temp8;
   
   
-  convert_to_string_ex(args[8]);
-  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[8]))->type) {
+  case IS_DOUBLE:
+    temp9 = (int64_t) (*(args[8]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp9 = (int64_t) strtoll((*(args[8]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[8]);
+    temp9 = (int64_t) (*(args[8]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg9 = &temp9;
   
+  {
+    if(SWIG_ConvertPtr(*args[9], (void **) &arg10, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg10 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 10 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
   
-  convert_to_string_ex(args[9]);
-  temp10.assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
-  arg10 = &temp10;
-  
-  
-  convert_to_string_ex(args[10]);
-  temp11.assign(Z_STRVAL_PP(args[10]), Z_STRLEN_PP(args[10]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[10]))->type) {
+  case IS_DOUBLE:
+    temp11 = (int64_t) (*(args[10]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp11 = (int64_t) strtoll((*(args[10]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[10]);
+    temp11 = (int64_t) (*(args[10]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg11 = &temp11;
   
+  {
+    if(SWIG_ConvertPtr(*args[11], (void **) &arg12, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg12 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 12 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[12], (void **) &arg13, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg13 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 13 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[13], (void **) &arg14, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg14 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 14 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
   
-  convert_to_string_ex(args[11]);
-  temp12.assign(Z_STRVAL_PP(args[11]), Z_STRLEN_PP(args[11]));
-  arg12 = &temp12;
-  
-  
-  convert_to_string_ex(args[12]);
-  temp13.assign(Z_STRVAL_PP(args[12]), Z_STRLEN_PP(args[12]));
-  arg13 = &temp13;
-  
-  
-  convert_to_string_ex(args[13]);
-  temp14.assign(Z_STRVAL_PP(args[13]), Z_STRLEN_PP(args[13]));
-  arg14 = &temp14;
-  
-  
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[14]);
-  temp15 = (long) Z_LVAL_PP(args[14]);
+  temp15 = (int32_t) Z_LVAL_PP(args[14]);
   /*@SWIG@*/;
   arg15 = &temp15;
   
-  result = OTAPI_Basic::ProposePaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13,(std::string const &)*arg14,(long const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -8182,7 +9597,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_EasyProposePlan) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_EasyProposePlan) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8261,7 +9676,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_EasyProposePlan) {
   temp10.assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
   arg10 = &temp10;
   
-  result = OTAPI_Basic::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  result = OTAPI_Wrap::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8281,7 +9696,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ConfirmPaymentPlan) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ConfirmPaymentPlan) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8325,7 +9740,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ConfirmPaymentPlan) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8340,7 +9755,46 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Create_SmartContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Create_SmartContract) {
+  std::string *arg1 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  std::string temp1 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddBylaw) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8370,7 +9824,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Create_SmartContract) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Create_SmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8383,50 +9837,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddBylaw) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[3];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  result = OTAPI_Basic::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddClause) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddClause) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8470,7 +9881,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddClause) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8485,7 +9896,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddVariable) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddVariable) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8543,7 +9954,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddVariable) {
   temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
   arg7 = &temp7;
   
-  result = OTAPI_Basic::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = OTAPI_Wrap::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8560,7 +9971,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddCallback) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddCallback) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8604,7 +10015,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddCallback) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8619,7 +10030,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddHook) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddHook) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8663,7 +10074,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddHook) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8678,7 +10089,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddParty) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddParty) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8715,7 +10126,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddParty) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8729,7 +10140,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_AddAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8773,7 +10184,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_AddAccount) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8788,13 +10199,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -8811,7 +10222,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -8823,7 +10234,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_ConfirmAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_ConfirmAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8874,7 +10285,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_ConfirmAccount) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = OTAPI_Basic::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8890,7 +10301,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_ConfirmParty) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SmartContract_ConfirmParty) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -8920,7 +10331,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SmartContract_ConfirmParty) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -8933,7 +10344,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -8949,7 +10360,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -8960,46 +10371,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_IsPartyConfirmed) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (bool)OTAPI_Basic::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetBylawCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetBylawCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -9011,7 +10387,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetBylawCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::Smart_GetBylawCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Smart_GetBylawCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9022,11 +10398,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetBylawByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetBylawByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -9041,13 +10417,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetBylawByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Smart_GetBylawByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetBylawByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9058,7 +10434,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetLanguage) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Bylaw_GetLanguage) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -9081,7 +10457,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetLanguage) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9093,13 +10469,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetClauseCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Bylaw_GetClauseCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -9116,7 +10492,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetClauseCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9128,13 +10504,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Clause_GetNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Clause_GetNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -9154,13 +10530,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Clause_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9172,7 +10548,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Clause_GetContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Clause_GetContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9202,7 +10578,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Clause_GetContents) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9215,13 +10591,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetVariableCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Bylaw_GetVariableCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -9238,7 +10614,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetVariableCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9250,13 +10626,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Variable_GetNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -9276,13 +10652,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9294,7 +10670,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Variable_GetType) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9324,7 +10700,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetType) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9337,7 +10713,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetAccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Variable_GetAccess) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9367,7 +10743,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetAccess) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9380,7 +10756,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetContents) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Variable_GetContents) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9410,7 +10786,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Variable_GetContents) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9423,13 +10799,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetHookCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Bylaw_GetHookCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -9446,7 +10822,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetHookCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9458,13 +10834,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Hook_GetNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -9484,13 +10860,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9502,7 +10878,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Hook_GetClauseCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9510,7 +10886,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseCount) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -9532,7 +10908,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseCount) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9545,15 +10921,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseAtIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  long temp4 ;
+  int32_t temp4 ;
   zval **args[4];
   std::string result;
   
@@ -9578,13 +10954,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Hook_GetClauseAtIndex) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  temp4 = (long) Z_LVAL_PP(args[3]);
+  temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4);
+  result = OTAPI_Wrap::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9597,13 +10973,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetCallbackCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Bylaw_GetCallbackCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -9620,7 +10996,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Bylaw_GetCallbackCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9632,13 +11008,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Callback_GetNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Callback_GetNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -9658,13 +11034,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Callback_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9676,7 +11052,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Callback_GetClause) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Callback_GetClause) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9706,7 +11082,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Callback_GetClause) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9719,11 +11095,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetPartyCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetPartyCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -9735,7 +11111,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetPartyCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::Smart_GetPartyCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Smart_GetPartyCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9746,11 +11122,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetPartyByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetPartyByIndex) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -9765,13 +11141,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Smart_GetPartyByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Smart_GetPartyByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetPartyByIndex((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9782,7 +11158,42 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_IsPartyConfirmed) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)OTAPI_Wrap::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -9805,7 +11216,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetID) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9817,13 +11228,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -9840,7 +11251,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -9852,13 +11263,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -9878,13 +11289,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9896,7 +11307,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9926,7 +11337,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctID) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9939,7 +11350,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctAssetID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctAssetID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9969,7 +11380,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctAssetID) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9982,7 +11393,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctAgentName) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctAgentName) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10012,7 +11423,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAcctAgentName) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10025,13 +11436,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAgentCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -10048,7 +11459,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentCount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10060,13 +11471,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentNameByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -10086,13 +11497,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10104,7 +11515,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAgentID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10134,7 +11545,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Party_GetAgentID) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10147,7 +11558,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_activateSmartContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_activateSmartContract) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10155,7 +11566,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_activateSmartContract) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -10177,7 +11588,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_activateSmartContract) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10190,19 +11601,19 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_triggerClause) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_triggerClause) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  int64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  std::string temp3 ;
+  int64_t temp3 ;
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -10220,8 +11631,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_triggerClause) {
   arg2 = &temp2;
   
   
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    temp3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    temp3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg3 = &temp3;
   
   
@@ -10234,11 +11660,10 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_triggerClause) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)OTAPI_Basic::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -10249,7 +11674,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   bool *arg3 = 0 ;
@@ -10283,41 +11708,41 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
   arg7 = &temp7;
   
-  result = (bool)OTAPI_Basic::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
+  result = (bool)OTAPI_Wrap::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -10329,7 +11754,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadUserPubkey_Encryption) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadUserPubkey_Encryption) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10345,7 +11770,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadUserPubkey_Encryption) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadUserPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Encryption((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10356,7 +11781,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadUserPubkey_Signing) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadUserPubkey_Signing) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10372,7 +11797,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadUserPubkey_Signing) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadUserPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Signing((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10383,7 +11808,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPubkey_Encryption) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadPubkey_Encryption) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10399,7 +11824,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPubkey_Encryption) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Encryption((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10410,7 +11835,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPubkey_Signing) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadPubkey_Signing) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10426,7 +11851,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPubkey_Signing) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Signing((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10437,7 +11862,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyUserPrivateKey) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_VerifyUserPrivateKey) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10453,7 +11878,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_VerifyUserPrivateKey) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::VerifyUserPrivateKey((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::VerifyUserPrivateKey((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -10464,7 +11889,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPurse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadPurse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10494,7 +11919,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPurse) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10507,7 +11932,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadMint) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadMint) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -10530,7 +11955,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadMint) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10542,7 +11967,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadAssetContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadAssetContract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10558,7 +11983,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadAssetContract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadAssetContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadAssetContract((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10569,7 +11994,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadServerContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadServerContract) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10585,7 +12010,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadServerContract) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::LoadServerContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadServerContract((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10596,7 +12021,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Mint_IsStillGood) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Mint_IsStillGood) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -10619,7 +12044,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Mint_IsStillGood) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -10631,7 +12056,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_IsBasketCurrency) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_IsBasketCurrency) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -10647,7 +12072,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_IsBasketCurrency) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (bool)OTAPI_Basic::IsBasketCurrency((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::IsBasketCurrency((std::string const &)*arg1);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -10658,11 +12083,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMemberCount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -10674,7 +12099,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberCount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::Basket_GetMemberCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Basket_GetMemberCount((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -10685,11 +12110,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMemberType) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -10704,13 +12129,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberType) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Basket_GetMemberType((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Basket_GetMemberType((std::string const &)*arg1,(int const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10721,11 +12146,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -10737,9 +12162,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
+  result = (int64_t)OTAPI_Wrap::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   return;
@@ -10748,13 +12180,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount) {
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
   std::string temp1 ;
-  long temp2 ;
+  int32_t temp2 ;
   zval **args[2];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -10767,15 +12199,22 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount) {
   arg1 = &temp1;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  temp2 = (long) Z_LVAL_PP(args[1]);
+  temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(long const &)*arg2);
+  result = (int64_t)OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(int const &)*arg2);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   return;
@@ -10784,7 +12223,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadAssetAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadAssetAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10814,7 +12253,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadAssetAccount) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10827,7 +12266,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadInbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadInbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10857,7 +12296,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadInbox) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10870,7 +12309,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadOutbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadOutbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10900,7 +12339,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadOutbox) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10913,7 +12352,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadInboxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadInboxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10943,7 +12382,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadInboxNoVerify) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10956,7 +12395,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadOutboxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadOutboxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -10986,7 +12425,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadOutboxNoVerify) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -10999,7 +12438,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPaymentInbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadPaymentInbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -11022,7 +12461,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPaymentInbox) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11034,7 +12473,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -11057,7 +12496,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11069,7 +12508,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadRecordBox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadRecordBox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11099,7 +12538,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadRecordBox) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11112,7 +12551,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadRecordBoxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadRecordBoxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11142,7 +12581,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadRecordBoxNoVerify) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11155,16 +12594,16 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearRecord) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ClearRecord) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   zval **args[5];
   bool result;
@@ -11190,20 +12629,20 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearRecord) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  temp4 = (long) Z_LVAL_PP(args[3]);
+  temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = (bool)OTAPI_Basic::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -11216,7 +12655,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadExpiredBox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadExpiredBox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -11239,7 +12678,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadExpiredBox) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11251,7 +12690,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -11274,7 +12713,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11286,14 +12725,14 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearExpired) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ClearExpired) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   bool *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  long temp3 ;
+  int32_t temp3 ;
   bool temp4 ;
   zval **args[4];
   bool result;
@@ -11314,20 +12753,20 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ClearExpired) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  temp3 = (long) Z_LVAL_PP(args[2]);
+  temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = (bool)OTAPI_Basic::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3,(bool const &)*arg4);
+  result = (bool)OTAPI_Wrap::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3,(bool const &)*arg4);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -11339,7 +12778,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetCount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetCount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11349,7 +12788,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetCount) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -11376,7 +12815,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetCount) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -11390,7 +12829,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_CreateResponse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_CreateResponse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11427,7 +12866,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_CreateResponse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11441,17 +12880,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
+  int32_t *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  long temp5 ;
+  int32_t temp5 ;
   zval **args[5];
   std::string result;
   
@@ -11481,13 +12920,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
-  temp5 = (long) Z_LVAL_PP(args[4]);
+  temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = OTAPI_Basic::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11501,7 +12940,147 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionByID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionByID) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  int64_t temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    temp5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    temp5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  arg5 = &temp5;
+  
+  result = OTAPI_Wrap::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t *arg5 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  int32_t temp5 ;
+  zval **args[5];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[4]);
+  temp5 = (int32_t) Z_LVAL_PP(args[4]);
+  /*@SWIG@*/;
+  arg5 = &temp5;
+  
+  result = (int64_t)OTAPI_Wrap::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_AddTransaction) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11545,7 +13124,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionByID) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11560,126 +13139,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  long temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[4]);
-  temp5 = (long) Z_LVAL_PP(args[4]);
-  /*@SWIG@*/;
-  arg5 = &temp5;
-  
-  result = OTAPI_Basic::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_AddTransaction) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = OTAPI_Basic::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_CreateResponse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_CreateResponse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11726,13 +13186,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_CreateResponse) {
   arg5 = &temp5;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
   arg6 = &temp6;
   
-  result = OTAPI_Basic::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
+  result = OTAPI_Wrap::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11747,7 +13207,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_FinalizeResponse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_FinalizeResponse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11784,7 +13244,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_FinalizeResponse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11798,17 +13258,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetInstrument) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetInstrument) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
+  int32_t *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  long temp5 ;
+  int32_t temp5 ;
   zval **args[5];
   std::string result;
   
@@ -11838,13 +13298,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Ledger_GetInstrument) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
-  temp5 = (long) Z_LVAL_PP(args[4]);
+  temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = OTAPI_Basic::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11858,16 +13318,16 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RecordPayment) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_RecordPayment) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   bool *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   bool temp3 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   zval **args[5];
   bool result;
@@ -11888,27 +13348,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RecordPayment) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  temp4 = (long) Z_LVAL_PP(args[3]);
+  temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = (bool)OTAPI_Basic::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -11920,7 +13380,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetType) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11957,7 +13417,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetType) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -11971,7 +13431,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -11979,7 +13439,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -12001,9 +13461,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int64_t)OTAPI_Wrap::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   
@@ -12014,7 +13481,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetVoucher) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetVoucher) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12051,7 +13518,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetVoucher) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12065,7 +13532,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSuccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetSuccess) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12075,7 +13542,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSuccess) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -12102,7 +13569,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSuccess) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -12116,7 +13583,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_IsCanceled) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_IsCanceled) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12126,7 +13593,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_IsCanceled) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -12153,7 +13620,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_IsCanceled) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -12167,7 +13634,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12177,7 +13644,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -12204,7 +13671,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -12218,7 +13685,117 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetDateSigned) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetDateSigned) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  WrapTimeT result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetAmount) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (int64_t)OTAPI_Wrap::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Pending_GetNote) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12255,7 +13832,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetDateSigned) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12269,7 +13846,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetAmount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetSenderUserID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12306,7 +13883,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetAmount) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12320,7 +13897,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Pending_GetNote) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetSenderAcctID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12357,7 +13934,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Pending_GetNote) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12371,7 +13948,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSenderUserID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetRecipientUserID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12408,7 +13985,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSenderUserID) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12422,7 +13999,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSenderAcctID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12459,7 +14036,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetSenderAcctID) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12473,7 +14050,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetRecipientUserID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12483,7 +14060,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetRecipientUserID) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -12510,62 +14087,18 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetRecipientUserID) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int64_t)OTAPI_Wrap::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetRecipientAcctID) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = OTAPI_Basic::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
   
   
   
@@ -12575,58 +14108,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = OTAPI_Basic::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SavePurse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SavePurse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12663,7 +14145,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_SavePurse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (bool)OTAPI_Basic::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -12677,7 +14159,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreatePurse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreatePurse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12714,7 +14196,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreatePurse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12728,7 +14210,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreatePurse_Passphrase) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreatePurse_Passphrase) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12758,7 +14240,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_CreatePurse_Passphrase) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12771,7 +14253,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_GetTotalValue) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_GetTotalValue) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12779,7 +14261,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_GetTotalValue) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -12801,9 +14283,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_GetTotalValue) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int64_t)OTAPI_Wrap::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   
@@ -12814,7 +14303,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Count) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_Count) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12822,7 +14311,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Count) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -12844,7 +14333,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Count) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -12857,7 +14346,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_HasPassword) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_HasPassword) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -12880,7 +14369,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_HasPassword) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (bool)OTAPI_Basic::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -12892,7 +14381,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Peek) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_Peek) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12929,7 +14418,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Peek) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12943,7 +14432,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Pop) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_Pop) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -12980,7 +14469,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Pop) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -12994,7 +14483,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Push) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_Push) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13045,7 +14534,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Push) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = OTAPI_Basic::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13061,7 +14550,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Empty) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Purse_Empty) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13098,7 +14587,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Purse_Empty) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = OTAPI_Basic::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13112,7 +14601,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportPurse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Wallet_ImportPurse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13149,7 +14638,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Wallet_ImportPurse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (bool)OTAPI_Basic::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -13163,7 +14652,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangePurse) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_exchangePurse) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13173,7 +14662,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangePurse) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -13200,7 +14689,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangePurse) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -13214,7 +14703,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_ChangeOwner) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_ChangeOwner) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13265,7 +14754,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_ChangeOwner) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = OTAPI_Basic::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13281,7 +14770,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13311,7 +14800,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetID) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13324,7 +14813,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetDenomination) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetDenomination) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13332,7 +14821,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetDenomination) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -13354,9 +14843,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetDenomination) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int64_t)OTAPI_Wrap::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   
@@ -13367,7 +14863,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetSeries) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetSeries) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13375,7 +14871,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetSeries) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -13397,7 +14893,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetSeries) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -13410,7 +14906,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidFrom) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidFrom) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13418,7 +14914,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidFrom) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  std::string result;
+  WrapTimeT result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -13440,10 +14936,11 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidFrom) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
+  result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
   
   
   
@@ -13453,7 +14950,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidTo) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidTo) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13461,7 +14958,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidTo) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  std::string result;
+  WrapTimeT result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -13483,10 +14980,11 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetValidTo) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
+  result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
   
   
   
@@ -13496,7 +14994,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetAssetID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetAssetID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13512,7 +15010,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetAssetID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Token_GetAssetID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Token_GetAssetID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13523,7 +15021,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetServerID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetServerID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13539,7 +15037,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Token_GetServerID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Token_GetServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Token_GetServerID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13550,7 +15048,131 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetAmount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetAmount) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetAmount((std::string const &)*arg1);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetTransNum) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetTransNum((std::string const &)*arg1);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  WrapTimeT result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidTo) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  WrapTimeT result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
+  {
+    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetMemo) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13566,7 +15188,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetAmount) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetAmount((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetMemo((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13577,7 +15199,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetTransNum) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetType) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13593,7 +15215,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetTransNum) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetTransNum((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetType((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13604,7 +15226,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetValidFrom) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetServerID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13620,7 +15242,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetValidFrom) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetValidFrom((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetServerID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13631,7 +15253,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetValidTo) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetAssetID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13647,7 +15269,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetValidTo) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetValidTo((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetAssetID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13658,7 +15280,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetMemo) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13674,7 +15296,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetMemo) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetMemo((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetSenderUserID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13685,7 +15307,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13701,7 +15323,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetType) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetType((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13712,7 +15334,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetServerID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13728,7 +15350,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetServerID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13739,7 +15361,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetAssetID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13755,7 +15377,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetAssetID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetAssetID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13766,7 +15388,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13782,7 +15404,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetSenderUserID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13793,7 +15415,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -13809,7 +15431,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13820,121 +15442,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = OTAPI_Basic::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = OTAPI_Basic::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = OTAPI_Basic::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
-  zval **args[1];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  result = OTAPI_Basic::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_checkServerID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_checkServerID) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -13951,7 +15465,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_checkServerID) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -13963,13 +15477,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_createUserAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_createUserAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -13986,7 +15500,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_createUserAccount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -13998,13 +15512,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_deleteUserAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_deleteUserAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -14021,7 +15535,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_deleteUserAccount) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14033,7 +15547,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_deleteAssetAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_deleteAssetAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14041,7 +15555,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_deleteAssetAccount) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14063,7 +15577,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_deleteAssetAccount) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14076,17 +15590,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_usageCredits) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_usageCredits) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -14109,15 +15623,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_usageCredits) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -14127,11 +15655,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetUsageCredits) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetUsageCredits) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  std::string result;
+  int64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -14143,9 +15671,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetUsageCredits) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetUsageCredits((std::string const &)*arg1);
+  result = (int64_t)OTAPI_Wrap::Message_GetUsageCredits((std::string const &)*arg1);
   
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
   
   
   return;
@@ -14154,7 +15689,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_checkUser) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_checkUser) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14162,7 +15697,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_checkUser) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14184,7 +15719,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_checkUser) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14197,7 +15732,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserMessage) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_sendUserMessage) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14209,7 +15744,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserMessage) {
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -14241,7 +15776,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserMessage) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)OTAPI_Basic::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14256,7 +15791,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserInstrument) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_sendUserInstrument) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14270,7 +15805,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserInstrument) {
   std::string temp5 ;
   std::string temp6 ;
   zval **args[6];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
@@ -14307,7 +15842,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_sendUserInstrument) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = (long)OTAPI_Basic::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14323,13 +15858,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getRequest) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getRequest) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -14346,7 +15881,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getRequest) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14358,13 +15893,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getTransactionNumber) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getTransactionNumber) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -14381,7 +15916,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getTransactionNumber) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14393,7 +15928,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueAssetType) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueAssetType) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14401,7 +15936,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueAssetType) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14423,7 +15958,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueAssetType) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14436,7 +15971,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getContract) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getContract) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14444,7 +15979,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getContract) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14466,7 +16001,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getContract) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14479,7 +16014,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMint) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getMint) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14487,7 +16022,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMint) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14509,7 +16044,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMint) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14522,7 +16057,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_createAssetAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_createAssetAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14530,7 +16065,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_createAssetAccount) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14552,7 +16087,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_createAssetAccount) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14565,7 +16100,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccount) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getAccount) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14573,7 +16108,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccount) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14595,7 +16130,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccount) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14608,7 +16143,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccountFiles) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getAccountFiles) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14616,7 +16151,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccountFiles) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14638,7 +16173,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getAccountFiles) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14651,11 +16186,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GenerateBasketCreation) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GenerateBasketCreation) {
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int64_t *arg2 = 0 ;
   std::string temp1 ;
-  std::string temp2 ;
+  int64_t temp2 ;
   zval **args[2];
   std::string result;
   
@@ -14670,14 +16205,28 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GenerateBasketCreation) {
   arg1 = &temp1;
   
   
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    temp2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    temp2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg2 = &temp2;
   
-  result = OTAPI_Basic::GenerateBasketCreation((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GenerateBasketCreation((std::string const &)*arg1,(long long const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   return;
@@ -14686,15 +16235,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddBasketCreationItem) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddBasketCreationItem) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp4 ;
   zval **args[4];
   std::string result;
   
@@ -14719,14 +16268,28 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddBasketCreationItem) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = OTAPI_Basic::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -14737,7 +16300,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueBasket) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueBasket) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14745,7 +16308,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueBasket) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14767,7 +16330,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueBasket) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14780,17 +16343,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GenerateBasketExchange) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GenerateBasketExchange) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
+  int32_t *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  long temp5 ;
+  int32_t temp5 ;
   zval **args[5];
   std::string result;
   
@@ -14820,13 +16383,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GenerateBasketExchange) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
-  temp5 = (long) Z_LVAL_PP(args[4]);
+  temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = OTAPI_Basic::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -14840,7 +16403,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddBasketExchangeItem) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddBasketExchangeItem) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14884,7 +16447,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_AddBasketExchangeItem) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = OTAPI_Basic::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -14899,7 +16462,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangeBasket) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_exchangeBasket) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14911,7 +16474,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangeBasket) {
   std::string temp4 ;
   bool temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -14939,13 +16502,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_exchangeBasket) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = (long)OTAPI_Basic::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -14959,7 +16522,72 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeWithdrawal) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_notarizeWithdrawal) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  int64_t temp4 ;
+  zval **args[4];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
+  arg4 = &temp4;
+  
+  result = (int32_t)OTAPI_Wrap::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_notarizeDeposit) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -14969,7 +16597,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeWithdrawal) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -14996,7 +16624,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeWithdrawal) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15010,72 +16638,21 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeDeposit) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_notarizeTransfer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  long result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (long)OTAPI_Basic::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_LONG(return_value,result);
-  }
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeTransfer) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
+  int64_t temp5 ;
   std::string temp6 ;
   zval **args[6];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
@@ -15103,8 +16680,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeTransfer) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    temp5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    temp5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg5 = &temp5;
   
   
@@ -15112,11 +16704,10 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_notarizeTransfer) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = (long)OTAPI_Basic::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5,(std::string const &)*arg6);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -15128,7 +16719,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getInbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getInbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -15136,7 +16727,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getInbox) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -15158,7 +16749,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getInbox) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15171,7 +16762,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getOutbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getOutbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -15179,7 +16770,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getOutbox) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -15201,7 +16792,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getOutbox) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15214,13 +16805,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getNymbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getNymbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -15237,7 +16828,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getNymbox) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15249,42 +16840,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadNymbox) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = OTAPI_Basic::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadNymboxNoVerify) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadNymbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
@@ -15307,7 +16863,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_LoadNymboxNoVerify) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = OTAPI_Basic::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -15319,13 +16875,48 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nymbox_GetReplyNotice) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LoadNymboxNoVerify) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  std::string temp3 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = OTAPI_Wrap::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int64_t *arg3 = 0 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  int64_t temp3 ;
   zval **args[3];
   std::string result;
   
@@ -15345,14 +16936,28 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Nymbox_GetReplyNotice) {
   arg2 = &temp2;
   
   
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    temp3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    temp3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = OTAPI_Basic::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -15362,13 +16967,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_HaveAlreadySeenReply) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_HaveAlreadySeenReply) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  int64_t *arg3 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  std::string temp3 ;
+  int64_t temp3 ;
   zval **args[3];
   bool result;
   
@@ -15388,15 +16993,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_HaveAlreadySeenReply) {
   arg2 = &temp2;
   
   
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    temp3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    temp3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
-  
   
   
   return;
@@ -15405,19 +17024,19 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getBoxReceipt) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getBoxReceipt) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  long temp4 ;
-  std::string temp5 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -15440,22 +17059,36 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getBoxReceipt) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  temp4 = (long) Z_LVAL_PP(args[3]);
+  temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    temp5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    temp5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = (long)OTAPI_Basic::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -15465,17 +17098,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_DoesBoxReceiptExist) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_DoesBoxReceiptExist) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  long temp4 ;
-  std::string temp5 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
   zval **args[5];
   bool result;
   
@@ -15500,22 +17133,36 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_DoesBoxReceiptExist) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  temp4 = (long) Z_LVAL_PP(args[3]);
+  temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    temp5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    temp5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg5 = &temp5;
   
-  result = (bool)OTAPI_Basic::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
+  result = (bool)OTAPI_Wrap::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
-  
   
   
   
@@ -15525,7 +17172,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_processInbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_processInbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -15535,7 +17182,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_processInbox) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -15562,7 +17209,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_processInbox) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15576,13 +17223,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_processNymbox) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_processNymbox) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -15599,7 +17246,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_processNymbox) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15611,21 +17258,21 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_withdrawVoucher) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_withdrawVoucher) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t *arg6 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
-  std::string temp6 ;
+  int64_t temp6 ;
   zval **args[6];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
@@ -15658,15 +17305,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_withdrawVoucher) {
   arg5 = &temp5;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    temp6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    temp6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg6 = &temp6;
   
-  result = (long)OTAPI_Basic::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -15678,21 +17339,21 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_payDividend) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_payDividend) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t *arg6 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
-  std::string temp6 ;
+  int64_t temp6 ;
   zval **args[6];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
@@ -15725,15 +17386,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_payDividend) {
   arg5 = &temp5;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    temp6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    temp6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg6 = &temp6;
   
-  result = (long)OTAPI_Basic::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -15745,7 +17420,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositCheque) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_depositCheque) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -15755,7 +17430,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositCheque) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -15782,7 +17457,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositCheque) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15796,7 +17471,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositPaymentPlan) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_depositPaymentPlan) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -15804,7 +17479,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositPaymentPlan) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -15826,7 +17501,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_depositPaymentPlan) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15839,29 +17514,28 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueMarketOffer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  std::string *arg8 = 0 ;
+  WrapTimeT *arg8 = 0 ;
   std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
+  int64_t *arg10 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
+  int64_t temp3 ;
+  int64_t temp4 ;
+  int64_t temp5 ;
+  int64_t temp6 ;
   bool temp7 ;
-  std::string temp8 ;
   std::string temp9 ;
-  std::string temp10 ;
+  int64_t temp10 ;
   zval **args[10];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 10 || zend_get_parameters_array_ex(10, args) != SUCCESS) {
@@ -15879,57 +17553,126 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_issueMarketOffer) {
   arg2 = &temp2;
   
   
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    temp3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    temp3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    temp5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    temp5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg5 = &temp5;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    temp6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    temp6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
   arg7 = &temp7;
   
-  
-  convert_to_string_ex(args[7]);
-  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
-  arg8 = &temp8;
-  
+  {
+    if(SWIG_ConvertPtr(*args[7], (void **) &arg8, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg8 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 8 of OTAPI_Wrap_issueMarketOffer. Expected SWIGTYPE_p_WrapTimeT");
+    }
+  }
   
   convert_to_string_ex(args[8]);
   temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
   arg9 = &temp9;
   
   
-  convert_to_string_ex(args[9]);
-  temp10.assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[9]))->type) {
+  case IS_DOUBLE:
+    temp10 = (int64_t) (*(args[9]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp10 = (int64_t) strtoll((*(args[9]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[9]);
+    temp10 = (int64_t) (*(args[9]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg10 = &temp10;
   
-  result = (long)OTAPI_Basic::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(bool const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   {
     ZVAL_LONG(return_value,result);
   }
-  
-  
-  
-  
-  
-  
   
   
   
@@ -15939,13 +17682,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketList) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getMarketList) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -15962,7 +17705,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketList) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -15974,17 +17717,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketOffers) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getMarketOffers) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16007,15 +17750,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketOffers) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -16025,7 +17782,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketRecentTrades) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getMarketRecentTrades) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16033,7 +17790,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketRecentTrades) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -16055,7 +17812,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getMarketRecentTrades) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16068,13 +17825,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getNym_MarketOffers) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getNym_MarketOffers) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -16091,7 +17848,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_getNym_MarketOffers) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)OTAPI_Basic::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16103,17 +17860,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_killMarketOffer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_killMarketOffer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16136,15 +17893,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_killMarketOffer) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -16154,17 +17925,17 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_killPaymentPlan) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_killPaymentPlan) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t *arg4 = 0 ;
   std::string temp1 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
+  int64_t temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16187,15 +17958,29 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_killPaymentPlan) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    temp4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    temp4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   
   
@@ -16205,11 +17990,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMessageBuffer) {
-  std::string *arg1 = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PopMessageBuffer) {
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string temp1 ;
+  int64_t temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
@@ -16221,8 +18006,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMessageBuffer) {
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (int64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (int64_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (int64_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg1 = &temp1;
   
   
@@ -16235,10 +18035,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_PopMessageBuffer) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::PopMessageBuffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::PopMessageBuffer((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -16248,13 +18047,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlushMessageBuffer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FlushMessageBuffer) {
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  OTAPI_Basic::FlushMessageBuffer();
+  OTAPI_Wrap::FlushMessageBuffer();
   
   return;
 fail:
@@ -16262,11 +18061,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetSentMessage) {
-  std::string *arg1 = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetSentMessage) {
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string temp1 ;
+  int64_t temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
@@ -16278,8 +18077,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetSentMessage) {
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (int64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (int64_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (int64_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg1 = &temp1;
   
   
@@ -16292,10 +18106,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_GetSentMessage) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = OTAPI_Basic::GetSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -16305,11 +18118,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RemoveSentMessage) {
-  std::string *arg1 = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_RemoveSentMessage) {
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string temp1 ;
+  int64_t temp1 ;
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
@@ -16321,8 +18134,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RemoveSentMessage) {
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (int64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (int64_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (int64_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg1 = &temp1;
   
   
@@ -16335,11 +18163,10 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_RemoveSentMessage) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::RemoveSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RemoveSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
-  
   
   
   return;
@@ -16348,7 +18175,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlushSentMessages) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FlushSentMessages) {
   bool *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16365,7 +18192,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlushSentMessages) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[0]);
   temp1 = (bool) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -16386,7 +18213,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_FlushSentMessages) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  OTAPI_Basic::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  OTAPI_Wrap::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   
   
   
@@ -16397,9 +18224,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Sleep) {
-  std::string *arg1 = 0 ;
-  std::string temp1 ;
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Sleep) {
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
   zval **args[1];
   
   SWIG_ResetError();
@@ -16408,12 +18235,26 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Sleep) {
   }
   
   
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[0]))->type) {
+  case IS_DOUBLE:
+    temp1 = (int64_t) (*(args[0]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      temp1 = (int64_t) strtoll((*(args[0]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[0]);
+    temp1 = (int64_t) (*(args[0]))->value.lval;
+  }
+  /*@SWIG@*/;
   arg1 = &temp1;
   
-  OTAPI_Basic::Sleep((std::string const &)*arg1);
-  
+  OTAPI_Wrap::Sleep((long long const &)*arg1);
   
   return;
 fail:
@@ -16421,7 +18262,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ResyncNymWithServer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ResyncNymWithServer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16451,7 +18292,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ResyncNymWithServer) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (bool)OTAPI_Basic::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -16464,7 +18305,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetCommand) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetCommand) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16480,7 +18321,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetCommand) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetCommand((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetCommand((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16491,11 +18332,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetSuccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetSuccess) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -16507,7 +18348,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetSuccess) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::Message_GetSuccess((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetSuccess((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16518,7 +18359,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_queryAssetTypes) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_queryAssetTypes) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16526,7 +18367,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_queryAssetTypes) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -16548,7 +18389,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_queryAssetTypes) {
   temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
   arg3 = &temp3;
   
-  result = (long)OTAPI_Basic::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16561,7 +18402,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetPayload) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetPayload) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16577,7 +18418,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetPayload) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetPayload((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetPayload((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16588,11 +18429,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetDepth) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetDepth) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -16604,7 +18445,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetDepth) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = (long)OTAPI_Basic::Message_GetDepth((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetDepth((std::string const &)*arg1);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16615,7 +18456,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetTransactionSuccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetTransactionSuccess) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16625,7 +18466,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetTransactionSuccess) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16652,7 +18493,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetTransactionSuccess) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16666,7 +18507,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_IsTransactionCanceled) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_IsTransactionCanceled) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16676,7 +18517,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_IsTransactionCanceled) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16703,7 +18544,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_IsTransactionCanceled) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16717,7 +18558,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16727,7 +18568,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -16754,7 +18595,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)OTAPI_Basic::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -16768,7 +18609,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetLedger) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetLedger) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16784,7 +18625,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetLedger) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetLedger((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetLedger((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16795,7 +18636,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewAssetTypeID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16811,7 +18652,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewAssetTypeID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetNewAssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAssetTypeID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16822,7 +18663,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16838,7 +18679,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetNewIssuerAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewIssuerAcctID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16849,7 +18690,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewAcctID) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewAcctID) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16865,7 +18706,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNewAcctID) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetNewAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAcctID((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16876,7 +18717,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNymboxHash) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNymboxHash) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
@@ -16892,7 +18733,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_Message_GetNymboxHash) {
   temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   arg1 = &temp1;
   
-  result = OTAPI_Basic::Message_GetNymboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNymboxHash((std::string const &)*arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -16903,7 +18744,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ConnectServer) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ConnectServer) {
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -16947,7 +18788,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ConnectServer) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (bool)OTAPI_Basic::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -16962,7 +18803,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProcessSockets) {
+ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProcessSockets) {
   bool result;
   
   SWIG_ResetError();
@@ -16970,7 +18811,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Basic_ProcessSockets) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (bool)OTAPI_Basic::ProcessSockets();
+  result = (bool)OTAPI_Wrap::ProcessSockets();
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
@@ -16980,17 +18821,168 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_new_OTMadeEasy) {
-  OTMadeEasy *result = 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetArgsCount) {
+  std::string arg1 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  result = (int32_t)OT_CLI_GetArgsCount(arg1);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetValueByKey) {
+  std::string arg1 ;
+  std::string arg2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  result = OT_CLI_GetValueByKey(arg1,arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetValueByIndex) {
+  std::string arg1 ;
+  int32_t arg2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = OT_CLI_GetValueByIndex(arg1,arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetKeyByIndex) {
+  std::string arg1 ;
+  int32_t arg2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = OT_CLI_GetKeyByIndex(arg1,arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_ReadLine) {
+  std::string result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
     WRONG_PARAM_COUNT;
   }
   
-  result = (OTMadeEasy *)new OTMadeEasy();
+  result = OT_CLI_ReadLine();
   
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTMadeEasy, 1);
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_CLI_ReadUntilEOF) {
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = OT_CLI_ReadUntilEOF();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OT_ME) {
+  OT_ME *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OT_ME *)new OT_ME();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OT_ME, 1);
   
   return;
 fail:
@@ -17000,16 +18992,16 @@ fail:
 
 /* This function is designed to be called by the zend list destructors */
 /* to typecast and do the actual destruction */
-static void __wrap_delete_OTMadeEasy(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+static void __wrap_delete_OT_ME(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
   swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
   void *ptr=value->ptr ;
   int newobject=value->newobject ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   
   efree(value);
   if (! newobject) return; /* can't delete it! */
-  arg1 = (OTMadeEasy *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTMadeEasy TSRMLS_CC);
-  if (! arg1) zend_error(E_ERROR, "OTMadeEasy resource already free'd");
+  arg1 = (OT_ME *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OT_ME TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "OT_ME resource already free'd");
   delete arg1;
   return;
 fail:
@@ -17017,9 +19009,35 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_make_sure_enough_trans_nums) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_opentxs_main_loop) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_opentxs_main_loop. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t)(arg1)->opentxs_main_loop();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_make_sure_enough_trans_nums) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string temp3 ;
@@ -17033,15 +19051,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_make_sure_enough_trans_nums) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_make_sure_enough_trans_nums. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_make_sure_enough_trans_nums. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  arg2 = (long) Z_LVAL_PP(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
@@ -17066,8 +19084,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_register_nym) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_register_nym) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string temp2 ;
@@ -17081,8 +19099,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_register_nym) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_register_nym. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_register_nym. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17108,8 +19126,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_check_user) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_check_user) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17125,8 +19143,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_check_user) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_check_user. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_check_user. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17158,9 +19176,9 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_pseudonym) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_pseudonym) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string temp3 ;
@@ -17174,15 +19192,15 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_pseudonym) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_create_pseudonym. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_pseudonym. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
-  arg2 = (long) Z_LVAL_PP(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
@@ -17207,8 +19225,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_issue_asset_type) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_asset_type) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17224,8 +19242,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_issue_asset_type) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_issue_asset_type. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_asset_type. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17257,8 +19275,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_issue_basket_currency) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_basket_currency) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17274,8 +19292,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_issue_basket_currency) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_issue_basket_currency. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_basket_currency. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17307,8 +19325,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_exchange_basket_currency) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_exchange_basket_currency) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17329,8 +19347,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_exchange_basket_currency) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_exchange_basket_currency. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_exchange_basket_currency. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17360,7 +19378,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_exchange_basket_currency) {
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   arg7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -17380,8 +19398,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_contract) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17397,8 +19415,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_contract) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_contract. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17430,8 +19448,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_contract) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17447,8 +19465,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_contract) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_or_retrieve_contract. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17480,8 +19498,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_asset_acct) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_asset_acct) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17497,8 +19515,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_asset_acct) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_create_asset_acct. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_asset_acct. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17530,8 +19548,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_stat_asset_account) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_stat_asset_account) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string temp2 ;
   zval **args[2];
@@ -17543,8 +19561,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_stat_asset_account) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_stat_asset_account. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_stat_asset_account. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17564,8 +19582,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_0) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17581,8 +19599,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_0) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_account. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17614,8 +19632,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_1) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17632,8 +19650,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_1) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_account. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17653,7 +19671,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account__SWIG_1) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   arg5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -17671,7 +19689,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account) {
   int argc;
   zval **argv[5];
   
@@ -17681,7 +19699,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -17693,7 +19711,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
           _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
           
           if (_v) {
-            _wrap_OTMadeEasy_retrieve_account__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            _wrap_OT_ME_retrieve_account__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
           }
         }
       }
@@ -17703,7 +19721,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -17717,7 +19735,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
           if (_v) {
             _v = (Z_TYPE_PP(argv[4]) == IS_BOOL); 
             if (_v) {
-              _wrap_OTMadeEasy_retrieve_account__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+              _wrap_OT_ME_retrieve_account__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
             }
           }
         }
@@ -17726,13 +19744,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_account) {
   }
   
   SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OTMadeEasy_retrieve_account'";
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_account'";
   SWIG_FAIL();
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_0) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string temp2 ;
@@ -17746,8 +19764,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_0) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_nym. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17773,8 +19791,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_1) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   bool arg4 ;
@@ -17789,8 +19807,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_1) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_nym. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17805,7 +19823,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym__SWIG_1) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   arg4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -17822,7 +19840,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym) {
   int argc;
   zval **argv[4];
   
@@ -17832,7 +19850,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -17841,7 +19859,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
         _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
         
         if (_v) {
-          _wrap_OTMadeEasy_retrieve_nym__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          _wrap_OT_ME_retrieve_nym__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
         }
       }
     }
@@ -17850,7 +19868,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -17861,7 +19879,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
         if (_v) {
           _v = (Z_TYPE_PP(argv[3]) == IS_BOOL); 
           if (_v) {
-            _wrap_OTMadeEasy_retrieve_nym__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            _wrap_OT_ME_retrieve_nym__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
           }
         }
       }
@@ -17869,24 +19887,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_nym) {
   }
   
   SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OTMadeEasy_retrieve_nym'";
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_nym'";
   SWIG_FAIL();
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_transfer) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_transfer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t arg6 ;
   std::string *arg7 = 0 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
-  std::string temp6 ;
   std::string temp7 ;
   zval **args[7];
   std::string result;
@@ -17897,8 +19914,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_transfer) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_transfer. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_transfer. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -17923,19 +19940,32 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_transfer) {
   arg5 = &temp5;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
   convert_to_string_ex(args[6]);
   temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
   arg7 = &temp7;
   
-  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6,(std::string const &)*arg7);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -17948,8 +19978,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_process_inbox) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_process_inbox) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -17967,8 +19997,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_process_inbox) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_process_inbox. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_process_inbox. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18006,10 +20036,10 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_inbox_items) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_inbox_items) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  long arg3 ;
+  int32_t arg3 ;
   std::string *arg4 = 0 ;
   std::string temp2 ;
   std::string temp4 ;
@@ -18022,8 +20052,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_inbox_items) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_accept_inbox_items. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_inbox_items. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18033,9 +20063,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_inbox_items) {
   arg2 = &temp2;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
-  arg3 = (long) Z_LVAL_PP(args[2]);
+  arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   
   
@@ -18055,8 +20085,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_discard_incoming_payments) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_discard_incoming_payments) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18072,8 +20102,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_discard_incoming_payments) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_discard_incoming_payments. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_discard_incoming_payments. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18105,8 +20135,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_cancel_outgoing_payments) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_outgoing_payments) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18122,8 +20152,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_cancel_outgoing_payments) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_cancel_outgoing_payments. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_outgoing_payments. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18155,8 +20185,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_from_paymentbox) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_from_paymentbox) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18164,7 +20194,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_from_paymentbox) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -18172,8 +20202,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_from_paymentbox) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_accept_from_paymentbox. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_from_paymentbox. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18192,7 +20222,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_accept_from_paymentbox) {
   temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
   arg4 = &temp4;
   
-  result = (long)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -18205,8 +20235,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_public_encryption_key) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_encryption_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string temp2 ;
   zval **args[2];
@@ -18218,8 +20248,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_public_encryption_key) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_public_encryption_key. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_encryption_key. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18239,8 +20269,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_public_signing_key) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_signing_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string temp2 ;
   zval **args[2];
@@ -18252,8 +20282,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_public_signing_key) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_public_signing_key. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_signing_key. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18273,8 +20303,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_encrypt_key) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_encrypt_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18290,8 +20320,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_encrypt_key) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_or_retrieve_encrypt_key. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_encrypt_key. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18323,8 +20353,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_signing_key) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_signing_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18340,8 +20370,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_signing_key) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_or_retrieve_signing_key. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_signing_key. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18373,8 +20403,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_msg_pubkey) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18394,8 +20424,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_msg_pubkey) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_msg_pubkey. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg_pubkey. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18439,8 +20469,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_pmnt_pubkey) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_pmnt_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18460,8 +20490,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_pmnt_pubkey) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_pmnt_pubkey. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_pmnt_pubkey. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18505,8 +20535,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_cash_pubkey) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18528,8 +20558,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_cash_pubkey) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_cash_pubkey. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash_pubkey. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18579,8 +20609,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_msg) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18598,8 +20628,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_msg) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_msg. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18637,8 +20667,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_payment) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_payment) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18656,8 +20686,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_payment) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_payment. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_payment. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18695,8 +20725,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -18716,8 +20746,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_send_user_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_send_user_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18761,16 +20791,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_and_send_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_and_send_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
   zval **args[5];
   bool result;
   
@@ -18780,8 +20809,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_and_send_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_withdraw_and_send_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_and_send_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18801,15 +20830,28 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_and_send_cash) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   {
     ZVAL_BOOL(return_value,(result)?1:0);
   }
-  
   
   
   
@@ -18819,11 +20861,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_0) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string temp2 ;
   std::string temp3 ;
   zval **args[4];
@@ -18835,8 +20877,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_0) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_payment_instrument. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18851,9 +20893,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_0) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  arg4 = (long) Z_LVAL_PP(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   
   result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
@@ -18868,11 +20910,11 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_1) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string *arg5 = 0 ;
   std::string temp2 ;
   std::string temp3 ;
@@ -18886,8 +20928,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_1) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_payment_instrument. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -18902,9 +20944,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument__SWIG_1) {
   arg3 = &temp3;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
-  arg4 = (long) Z_LVAL_PP(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   
   
@@ -18925,7 +20967,7 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument) {
   int argc;
   zval **argv[5];
   
@@ -18935,7 +20977,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -18946,7 +20988,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
         if (_v) {
           _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
           if (_v) {
-            _wrap_OTMadeEasy_get_payment_instrument__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            _wrap_OT_ME_get_payment_instrument__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
           }
         }
       }
@@ -18956,7 +20998,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
     int _v;
     {
       void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTMadeEasy, 0) >= 0);
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
     }
     if (_v) {
       _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
@@ -18970,7 +21012,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
             _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
             
             if (_v) {
-              _wrap_OTMadeEasy_get_payment_instrument__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+              _wrap_OT_ME_get_payment_instrument__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
             }
           }
         }
@@ -18979,22 +21021,21 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_payment_instrument) {
   }
   
   SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OTMadeEasy_get_payment_instrument'";
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_get_payment_instrument'";
   SWIG_FAIL();
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_box_receipt) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_box_receipt) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long arg5 ;
-  std::string *arg6 = 0 ;
+  int32_t arg5 ;
+  int64_t arg6 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp6 ;
   zval **args[6];
   std::string result;
   
@@ -19004,8 +21045,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_box_receipt) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_box_receipt. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_box_receipt. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19025,20 +21066,33 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_box_receipt) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
-  arg5 = (long) Z_LVAL_PP(args[4]);
+  arg5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,(std::string const &)*arg6);
+  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19049,8 +21103,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_mint) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_mint) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19066,8 +21120,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_retrieve_mint) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_retrieve_mint. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19099,8 +21153,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_mint) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_mint) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19116,8 +21170,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_load_or_retrieve_mint) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_load_or_retrieve_mint. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19149,8 +21203,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_query_asset_types) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_query_asset_types) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19166,8 +21220,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_query_asset_types) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_query_asset_types. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_query_asset_types. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19199,27 +21253,20 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_market_offer) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_market_offer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg4 ;
+  int64_t arg5 ;
+  int64_t arg6 ;
+  int64_t arg7 ;
   bool arg8 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
+  int64_t arg9 ;
+  std::string arg10 ;
+  int64_t arg11 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  std::string temp7 ;
-  std::string temp9 ;
-  std::string temp10 ;
-  std::string temp11 ;
   zval **args[11];
   std::string result;
   
@@ -19229,8 +21276,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_market_offer) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_create_market_offer. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_market_offer. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19245,56 +21292,132 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_create_market_offer) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    arg4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    arg4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
-  convert_to_string_ex(args[6]);
-  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
-  arg7 = &temp7;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[7]);
   arg8 = (bool) Z_LVAL_PP(args[7]);
   /*@SWIG@*/;
   
   
-  convert_to_string_ex(args[8]);
-  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
-  arg9 = &temp9;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[8]))->type) {
+  case IS_DOUBLE:
+    arg9 = (int64_t) (*(args[8]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg9 = (int64_t) strtoll((*(args[8]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[8]);
+    arg9 = (int64_t) (*(args[8]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
   convert_to_string_ex(args[9]);
-  temp10.assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
-  arg10 = &temp10;
+  (&arg10)->assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
   
   
-  convert_to_string_ex(args[10]);
-  temp11.assign(Z_STRVAL_PP(args[10]), Z_STRLEN_PP(args[10]));
-  arg11 = &temp11;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[10]))->type) {
+  case IS_DOUBLE:
+    arg11 = (int64_t) (*(args[10]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg11 = (int64_t) strtoll((*(args[10]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[10]);
+    arg11 = (int64_t) (*(args[10]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11);
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -19304,16 +21427,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_market_offer) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_market_offer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
   zval **args[5];
   std::string result;
   
@@ -19323,8 +21445,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_market_offer) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_kill_market_offer. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_market_offer. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19344,14 +21466,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_market_offer) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19362,16 +21497,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_payment_plan) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_payment_plan) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
   zval **args[5];
   std::string result;
   
@@ -19381,8 +21515,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_payment_plan) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_kill_payment_plan. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_payment_plan. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19402,14 +21536,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_kill_payment_plan) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19420,8 +21567,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_cancel_payment_plan) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_payment_plan) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19437,8 +21584,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_cancel_payment_plan) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_cancel_payment_plan. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_payment_plan. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19470,8 +21617,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_activate_smart_contract) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_activate_smart_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19491,8 +21638,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_activate_smart_contract) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_activate_smart_contract. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_activate_smart_contract. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19536,16 +21683,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_trigger_clause) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_trigger_clause) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t arg4 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string temp2 ;
   std::string temp3 ;
-  std::string temp4 ;
   std::string temp5 ;
   std::string temp6 ;
   zval **args[6];
@@ -19557,8 +21703,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_trigger_clause) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_trigger_clause. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_trigger_clause. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19573,9 +21719,23 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_trigger_clause) {
   arg3 = &temp3;
   
   
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    arg4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    arg4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
   
   
   convert_to_string_ex(args[4]);
@@ -19587,10 +21747,9 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_trigger_clause) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19602,16 +21761,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
   zval **args[5];
   std::string result;
   
@@ -19621,8 +21779,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_withdraw_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19642,14 +21800,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_cash) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19660,14 +21831,13 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_easy_withdraw_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_easy_withdraw_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  int64_t arg3 ;
   std::string temp2 ;
-  std::string temp3 ;
   zval **args[3];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -19675,8 +21845,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_easy_withdraw_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_easy_withdraw_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_easy_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19686,15 +21856,28 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_easy_withdraw_cash) {
   arg2 = &temp2;
   
   
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    arg3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    arg3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (long)(arg1)->easy_withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)(arg1)->easy_withdraw_cash((std::string const &)*arg2,arg3);
   {
     ZVAL_LONG(return_value,result);
   }
-  
   
   return;
 fail:
@@ -19702,8 +21885,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_export_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_export_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19726,8 +21909,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_export_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_export_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_export_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19757,7 +21940,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_export_cash) {
   arg6 = &temp6;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   arg7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -19785,20 +21968,19 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_voucher) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_voucher) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
   std::string temp6 ;
-  std::string temp7 ;
   zval **args[7];
   std::string result;
   
@@ -19808,8 +21990,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_voucher) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_withdraw_voucher. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_voucher. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19839,14 +22021,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_withdraw_voucher) {
   arg6 = &temp6;
   
   
-  convert_to_string_ex(args[6]);
-  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
-  arg7 = &temp7;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19859,20 +22054,19 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_pay_dividend) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_pay_dividend) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
   std::string temp5 ;
   std::string temp6 ;
-  std::string temp7 ;
   zval **args[7];
   std::string result;
   
@@ -19882,8 +22076,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_pay_dividend) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_pay_dividend. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_pay_dividend. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19913,14 +22107,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_pay_dividend) {
   arg6 = &temp6;
   
   
-  convert_to_string_ex(args[6]);
-  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
-  arg7 = &temp7;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -19933,8 +22140,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cheque) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cheque) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -19952,8 +22159,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cheque) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_deposit_cheque. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cheque. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -19991,8 +22198,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cash) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20002,7 +22209,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cash) {
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -20010,8 +22217,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cash) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_deposit_cash. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cash. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20035,7 +22242,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_cash) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -20049,8 +22256,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_local_purse) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_local_purse) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20060,7 +22267,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_local_purse) {
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -20068,8 +22275,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_local_purse) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_deposit_local_purse. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_local_purse. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20093,7 +22300,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_deposit_local_purse) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -20107,8 +22314,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_list) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_list) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string temp2 ;
@@ -20122,8 +22329,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_list) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_market_list. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_list. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20149,16 +22356,15 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_offers) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_offers) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string temp2 ;
   std::string temp3 ;
   std::string temp4 ;
-  std::string temp5 ;
   zval **args[5];
   std::string result;
   
@@ -20168,8 +22374,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_offers) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_market_offers. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_offers. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20189,14 +22395,27 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_offers) {
   arg4 = &temp4;
   
   
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
   
-  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
   
   
   
@@ -20207,8 +22426,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_nym_market_offers) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_nym_market_offers) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string temp2 ;
@@ -20222,8 +22441,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_nym_market_offers) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_nym_market_offers. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_nym_market_offers. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20249,8 +22468,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_recent_trades) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_recent_trades) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20266,8 +22485,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_get_market_recent_trades) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_get_market_recent_trades. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_recent_trades. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20299,8 +22518,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_adjust_usage_credits) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_adjust_usage_credits) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20318,8 +22537,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_adjust_usage_credits) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_adjust_usage_credits. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_adjust_usage_credits. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20357,12 +22576,12 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMessageSuccess) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_VerifyMessageSuccess) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string temp2 ;
   zval **args[2];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
@@ -20370,8 +22589,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMessageSuccess) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_VerifyMessageSuccess. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_VerifyMessageSuccess. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20380,7 +22599,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMessageSuccess) {
   temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
   arg2 = &temp2;
   
-  result = (long)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -20391,8 +22610,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20402,7 +22621,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess) {
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -20410,8 +22629,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_VerifyMsgBalanceAgrmntSuccess. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_VerifyMsgBalanceAgrmntSuccess. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20435,7 +22654,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -20449,8 +22668,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgTrnxSuccess) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_VerifyMsgTrnxSuccess) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20460,7 +22679,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgTrnxSuccess) {
   std::string temp4 ;
   std::string temp5 ;
   zval **args[5];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
@@ -20468,8 +22687,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgTrnxSuccess) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_VerifyMsgTrnxSuccess. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_VerifyMsgTrnxSuccess. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20493,7 +22712,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_VerifyMsgTrnxSuccess) {
   temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
   arg5 = &temp5;
   
-  result = (long)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -20507,8 +22726,8 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_InterpretTransactionMsgReply) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_InterpretTransactionMsgReply) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -20520,7 +22739,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_InterpretTransactionMsgReply) {
   std::string temp5 ;
   std::string temp6 ;
   zval **args[6];
-  long result;
+  int32_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
@@ -20528,8 +22747,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_InterpretTransactionMsgReply) {
   }
   
   {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTMadeEasy, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTMadeEasy_InterpretTransactionMsgReply. Expected SWIGTYPE_p_OTMadeEasy");
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_InterpretTransactionMsgReply. Expected SWIGTYPE_p_OT_ME");
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
@@ -20558,13 +22777,577 @@ ZEND_NAMED_FUNCTION(_wrap_OTMadeEasy_InterpretTransactionMsgReply) {
   temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
   arg6 = &temp6;
   
-  result = (long)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   {
     ZVAL_LONG(return_value,result);
   }
   
   
   
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnString. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnString. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnString) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_ExecuteScript_ReturnString'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnBool. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnBool. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnBool) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_ExecuteScript_ReturnBool'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnInt. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnInt. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnInt) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_ExecuteScript_ReturnInt'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnVoid. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_ExecuteScript_ReturnVoid. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_ExecuteScript_ReturnVoid) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_ExecuteScript_ReturnVoid'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_AddVariable) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  std::string temp2 ;
+  zval **args[3];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_AddVariable. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_OTVariable, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OT_ME_AddVariable. Expected SWIGTYPE_p_OTVariable");
+    }
+  }
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_FindVariable) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  OTVariable *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_FindVariable. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTVariable, 0);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_FindVariable2) {
+  std::string *arg1 = 0 ;
+  std::string temp1 ;
+  zval **args[1];
+  OTVariable *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTVariable, 0);
   
   
   return;
@@ -20604,13 +23387,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storable_Create) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -20668,7 +23451,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_GetPacker__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -20988,6 +23771,345 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_Exists) {
   
   SWIG_ErrorCode() = E_ERROR;
   SWIG_ErrorMsg() = "No matching function for overloaded 'Storage_Exists'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_Storage_FormPathString__SWIG_0) {
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string arg6 ;
+  std::string temp2 ;
+  zval **args[6];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTDB__Storage, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of Storage_FormPathString. Expected SWIGTYPE_p_OTDB__Storage");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  
+  convert_to_string_ex(args[4]);
+  (&arg5)->assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  
+  
+  convert_to_string_ex(args[5]);
+  (&arg6)->assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5,arg6);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_Storage_FormPathString__SWIG_1) {
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string temp2 ;
+  zval **args[5];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTDB__Storage, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of Storage_FormPathString. Expected SWIGTYPE_p_OTDB__Storage");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  
+  convert_to_string_ex(args[4]);
+  (&arg5)->assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_Storage_FormPathString__SWIG_2) {
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string temp2 ;
+  zval **args[4];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTDB__Storage, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of Storage_FormPathString. Expected SWIGTYPE_p_OTDB__Storage");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_Storage_FormPathString__SWIG_3) {
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTDB__Storage, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of Storage_FormPathString. Expected SWIGTYPE_p_OTDB__Storage");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_Storage_FormPathString) {
+  int argc;
+  zval **argv[6];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTDB__Storage, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+      }
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_Storage_FormPathString__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTDB__Storage, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+      }
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _wrap_Storage_FormPathString__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTDB__Storage, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+      }
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _wrap_Storage_FormPathString__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTDB__Storage, 0) >= 0);
+    }
+    if (_v) {
+      {
+        void *tmp;
+        _v = (SWIG_ConvertPtr(*argv[1], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+      }
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _v = ( Z_TYPE_PP(argv[5]) == IS_STRING ) ? 1 : 0;
+              
+              if (_v) {
+                _wrap_Storage_FormPathString__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'Storage_FormPathString'";
   SWIG_FAIL();
 }
 
@@ -22388,7 +25510,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22440,7 +25562,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22487,7 +25609,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_2) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22529,7 +25651,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_3) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22704,7 +25826,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_DecodeObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22988,7 +26110,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_CreateObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23015,13 +26137,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_Create) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23074,13 +26196,13 @@ ZEND_NAMED_FUNCTION(_wrap_InitDefaultStorage) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23125,13 +26247,13 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -23157,7 +26279,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_1) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -23213,7 +26335,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateObject) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -23267,7 +26389,7 @@ ZEND_NAMED_FUNCTION(_wrap_CheckStringsExistInOrder__SWIG_0) {
   arg4 = &temp4;
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[4])->type==IS_NULL) {
     arg5 = (char *) 0;
   } else {
@@ -23624,6 +26746,293 @@ ZEND_NAMED_FUNCTION(_wrap_Exists) {
   
   SWIG_ErrorCode() = E_ERROR;
   SWIG_ErrorMsg() = "No matching function for overloaded 'Exists'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_FormPathString__SWIG_0) {
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string temp1 ;
+  zval **args[5];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  
+  convert_to_string_ex(args[4]);
+  (&arg5)->assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4,arg5);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[0]), const_cast<char*>(arg1->data()), arg1->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_FormPathString__SWIG_1) {
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string temp1 ;
+  zval **args[4];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  
+  convert_to_string_ex(args[3]);
+  (&arg4)->assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[0]), const_cast<char*>(arg1->data()), arg1->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_FormPathString__SWIG_2) {
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string temp1 ;
+  zval **args[3];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  
+  convert_to_string_ex(args[2]);
+  (&arg3)->assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[0]), const_cast<char*>(arg1->data()), arg1->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_FormPathString__SWIG_3) {
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string temp1 ;
+  zval **args[2];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2);
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  
+  ZVAL_STRINGL(*(args[0]), const_cast<char*>(arg1->data()), arg1->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_FormPathString) {
+  int argc;
+  zval **argv[5];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_FormPathString__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_FormPathString__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _wrap_FormPathString__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _wrap_FormPathString__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'FormPathString'";
   SWIG_FAIL();
 }
 
@@ -24754,7 +28163,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_0) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24799,7 +28208,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_1) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24839,7 +28248,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_2) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -24874,7 +28283,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_3) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -25011,7 +28420,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecodeObject) {
   }
   
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -25351,8 +28760,7 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_Blob_m_memBuffer_set) {
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
-  std::vector< unsigned char > arg2 ;
-  std::vector< unsigned char > *tmp2 ;
+  std::vector< uint8_t > *arg2 = (std::vector< uint8_t > *) 0 ;
   zval **args[2];
   
   SWIG_ResetError();
@@ -25367,12 +28775,11 @@ ZEND_NAMED_FUNCTION(_wrap_Blob_m_memBuffer_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0 || tmp2 == NULL) {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0) < 0) {
       SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of Blob_m_memBuffer_set. Expected SWIGTYPE_p_std__vectorT_unsigned_char_t");
     }
-    arg2 = *tmp2;
   }
-  if (arg1) (arg1)->m_memBuffer = arg2;
+  if (arg1) (arg1)->m_memBuffer = *arg2;
   
   return;
 fail:
@@ -25383,7 +28790,7 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_Blob_m_memBuffer_get) {
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
   zval **args[1];
-  std::vector< unsigned char > result;
+  std::vector< uint8_t > *result = 0 ;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -25396,11 +28803,10 @@ ZEND_NAMED_FUNCTION(_wrap_Blob_m_memBuffer_get) {
     }
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result =  ((arg1)->m_memBuffer);
-  {
-    std::vector< unsigned char > * resultobj = new std::vector< unsigned char >((const std::vector< unsigned char > &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_std__vectorT_unsigned_char_t, 1);
-  }
+  result = (std::vector< uint8_t > *)& ((arg1)->m_memBuffer);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__vectorT_unsigned_char_t, 0);
+  
   return;
 fail:
   SWIG_FAIL();
@@ -26838,7 +30244,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_GetMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -26871,7 +30277,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_RemoveMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28164,7 +31570,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28197,7 +31603,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28288,7 +31694,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28321,7 +31727,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28785,7 +32191,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_GetTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -28818,7 +32224,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_RemoveTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -29382,7 +32788,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferDataNym_selling_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30022,7 +33428,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_GetOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30055,7 +33461,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_RemoveOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30918,7 +34324,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_GetTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -30951,7 +34357,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_RemoveTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33845,7 +37251,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_GetServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33878,7 +37284,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_RemoveServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34013,7 +37419,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34046,7 +37452,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34137,7 +37543,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34170,7 +37576,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34261,7 +37667,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34294,7 +37700,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34385,7 +37791,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -34418,7 +37824,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35338,7 +38744,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35371,7 +38777,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35462,7 +38868,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35495,7 +38901,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35630,7 +39036,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_GetContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35663,7 +39069,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_RemoveContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:D:\Users\da2ce_000\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -35761,7 +39167,10 @@ fail:
 
 
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_unsigned_char_t) {
-  /* No destructor for simple type _p_std__vectorT_unsigned_char_t */
+  __wrap_delete_VectorUnsignedChar(rsrc, SWIGTYPE_p_std__vectorT_unsigned_char_t->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTVariable) {
+  /* No destructor for simple type _p_OTVariable */
   efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storage) {
@@ -35770,11 +39179,17 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storage) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BitcoinAcct) {
   __wrap_delete_BitcoinAcct(rsrc, SWIGTYPE_p_OTDB__BitcoinAcct->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BidData) {
-  __wrap_delete_BidData(rsrc, SWIGTYPE_p_OTDB__BidData->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OT_ME) {
+  __wrap_delete_OT_ME(rsrc, SWIGTYPE_p_OT_ME->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_WrapTimeT) {
+  __wrap_delete_WrapTimeT(rsrc, SWIGTYPE_p_WrapTimeT->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTPassword) {
   __wrap_delete_OTPassword(rsrc, SWIGTYPE_p_OTPassword->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BidData) {
+  __wrap_delete_BidData(rsrc, SWIGTYPE_p_OTDB__BidData->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Blob) {
   __wrap_delete_Blob(rsrc, SWIGTYPE_p_OTDB__Blob->name TSRMLS_CC);
@@ -35792,25 +39207,25 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_char) {
   /* No destructor for simple type _p_char */
   efree(rsrc->ptr);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__TradeListMarket) {
-  __wrap_delete_TradeListMarket(rsrc, SWIGTYPE_p_OTDB__TradeListMarket->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_size_type) {
+  /* No destructor for simple type _p_size_type */
+  efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OfferListMarket) {
   __wrap_delete_OfferListMarket(rsrc, SWIGTYPE_p_OTDB__OfferListMarket->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_uint8_t) {
-  /* No destructor for simple type _p_uint8_t */
-  efree(rsrc->ptr);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__TradeListMarket) {
+  __wrap_delete_TradeListMarket(rsrc, SWIGTYPE_p_OTDB__TradeListMarket->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__WalletData) {
   __wrap_delete_WalletData(rsrc, SWIGTYPE_p_OTDB__WalletData->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_void) {
-  /* No destructor for simple type _p_void */
-  efree(rsrc->ptr);
-}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_p_void) {
   /* No destructor for simple type _p_p_void */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_void) {
+  /* No destructor for simple type _p_void */
   efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__StringMap) {
@@ -35820,11 +39235,12 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_int) {
   /* No destructor for simple type _int */
   efree(rsrc->ptr);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_mapped_type) {
+  /* No destructor for simple type _p_mapped_type */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BitcoinServer) {
   __wrap_delete_BitcoinServer(rsrc, SWIGTYPE_p_OTDB__BitcoinServer->name TSRMLS_CC);
-}
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTMadeEasy) {
-  __wrap_delete_OTMadeEasy(rsrc, SWIGTYPE_p_OTMadeEasy->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Displayable) {
   __wrap_delete_Displayable(rsrc, SWIGTYPE_p_OTDB__Displayable->name TSRMLS_CC);
@@ -35833,21 +39249,32 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTPacker) {
   /* No destructor for simple type _p_OTPacker */
   efree(rsrc->ptr);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__AskData) {
-  __wrap_delete_AskData(rsrc, SWIGTYPE_p_OTDB__AskData->name TSRMLS_CC);
-}
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OTDBString) {
-  __wrap_delete_OTDBString(rsrc, SWIGTYPE_p_OTDB__OTDBString->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_imaxdiv_t) {
+  __wrap_delete_imaxdiv_t(rsrc, SWIGTYPE_p_imaxdiv_t->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__string) {
   /* No destructor for simple type _p_std__string */
   efree(rsrc->ptr);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__TradeDataMarket) {
-  __wrap_delete_TradeDataMarket(rsrc, SWIGTYPE_p_OTDB__TradeDataMarket->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_unsigned_int) {
+  /* No destructor for simple type _p_unsigned_int */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OT_API) {
+  /* No destructor for simple type _p_OT_API */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OTDBString) {
+  __wrap_delete_OTDBString(rsrc, SWIGTYPE_p_OTDB__OTDBString->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__AskData) {
+  __wrap_delete_AskData(rsrc, SWIGTYPE_p_OTDB__AskData->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OfferDataMarket) {
   __wrap_delete_OfferDataMarket(rsrc, SWIGTYPE_p_OTDB__OfferDataMarket->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__TradeDataMarket) {
+  __wrap_delete_TradeDataMarket(rsrc, SWIGTYPE_p_OTDB__TradeDataMarket->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Acct) {
   __wrap_delete_Acct(rsrc, SWIGTYPE_p_OTDB__Acct->name TSRMLS_CC);
@@ -35858,11 +39285,23 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__ContactNym) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__ServerInfo) {
   __wrap_delete_ServerInfo(rsrc, SWIGTYPE_p_OTDB__ServerInfo->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTAPI_Exec) {
+  /* No destructor for simple type _p_OTAPI_Exec */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Contact) {
   __wrap_delete_Contact(rsrc, SWIGTYPE_p_OTDB__Contact->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTCaller) {
   __wrap_delete_OTCaller(rsrc, SWIGTYPE_p_OTCaller->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_signed_char) {
+  /* No destructor for simple type _p_signed_char */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_unsigned_char) {
+  /* No destructor for simple type _p_unsigned_char */
+  efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Server) {
   __wrap_delete_Server(rsrc, SWIGTYPE_p_OTDB__Server->name TSRMLS_CC);
@@ -35873,6 +39312,18 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__RippleServer) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__LoomServer) {
   __wrap_delete_LoomServer(rsrc, SWIGTYPE_p_OTDB__LoomServer->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_short) {
+  /* No destructor for simple type _p_short */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_unsigned_short) {
+  /* No destructor for simple type _p_unsigned_short */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_key_type) {
+  /* No destructor for simple type _p_key_type */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storable) {
   __wrap_delete_Storable(rsrc, SWIGTYPE_p_OTDB__Storable->name TSRMLS_CC);
 }
@@ -35882,15 +39333,20 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__AddressBook) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTCallback) {
   __wrap_delete_OTCallback(rsrc, SWIGTYPE_p_OTCallback->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTAPI_Basic) {
-  __wrap_delete_OTAPI_Basic(rsrc, SWIGTYPE_p_OTAPI_Basic->name TSRMLS_CC);
-}
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_uint32_t) {
-  /* No destructor for simple type _p_uint32_t */
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_long_long) {
+  /* No destructor for simple type _p_long_long */
   efree(rsrc->ptr);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_int32_t) {
-  /* No destructor for simple type _p_int32_t */
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_unsigned_long_long) {
+  /* No destructor for simple type _p_unsigned_long_long */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_difference_type) {
+  /* No destructor for simple type _p_difference_type */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_value_type) {
+  /* No destructor for simple type _p_value_type */
   efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OfferDataNym) {
@@ -35899,12 +39355,15 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__OfferDataNym) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__TradeDataNym) {
   __wrap_delete_TradeDataNym(rsrc, SWIGTYPE_p_OTDB__TradeDataNym->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_int) {
+  /* No destructor for simple type _p_int */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__MarketData) {
   __wrap_delete_MarketData(rsrc, SWIGTYPE_p_OTDB__MarketData->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__mapT_std__string_std__string_t) {
-  /* No destructor for simple type _p_std__mapT_std__string_std__string_t */
-  efree(rsrc->ptr);
+  __wrap_delete_MapStringString(rsrc, SWIGTYPE_p_std__mapT_std__string_std__string_t->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__MarketList) {
   __wrap_delete_MarketList(rsrc, SWIGTYPE_p_OTDB__MarketList->name TSRMLS_CC);
@@ -35914,6 +39373,93 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__MarketList) {
 
 
 /* arginfo subsection */
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxdiv_t_quot_set, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxdiv_t_quot_get, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxdiv_t_rem_set, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxdiv_t_rem_get, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_imaxdiv_t, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxabs, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_imaxdiv, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_vectorunsignedchar, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_size, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_capacity, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_reserve, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_clear, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_push, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_is_empty, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_pop, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_get, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_vectorunsignedchar_set, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_mapstringstring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_size, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_clear, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_get, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_set, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_del, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_has_key, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_mapstringstring_is_empty, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otpassword_m_theblocksize_get, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -36062,437 +39608,463 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_calltwo, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otapi_basic, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_wraptimet, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_appstartup, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_wraptimet_gettime, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_wraptimet_settime, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setexecutor, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_exec, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_appshutdown, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_it, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_otapi, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_stringtolong, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_longtostring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_stringtoulong, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setappbinaryfolder, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ulongtostring, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_sethomefolder, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_appinit, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_appcleanup, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setappbinaryfolder, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_init, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_sethomefolder, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setwallet, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setwallet, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_walletexists, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_walletexists, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadwallet, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadwallet, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_switchwallet, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_switchwallet, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_output, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_output, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_gettime, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_gettime, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_numlist_add, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_numlist_add, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_numlist_remove, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_numlist_remove, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_numlist_verifyquery, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_numlist_verifyquery, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_numlist_verifyall, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_numlist_verifyall, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_numlist_count, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_numlist_count, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_encode, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_encode, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_decode, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_decode, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_encrypt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_encrypt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_decrypt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_decrypt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createsymmetrickey, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createsymmetrickey, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_symmetricencrypt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_symmetricencrypt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_symmetricdecrypt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_symmetricdecrypt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_signcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_signcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_flatsign, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_flatsign, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addsignature, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addsignature, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_verifysignature, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_verifysignature, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_verifyandretrievexmlcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_verifyandretrievexmlcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmemlogsize, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmemlogsize, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmemlogatindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmemlogatindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_peekmemlogfront, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_peekmemlogfront, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_peekmemlogback, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_peekmemlogback, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_popmemlogfront, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_popmemlogfront, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_popmemlogback, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_popmemlogback, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createnym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createnym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_activecronitemids, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_activecronitemids, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getactivecronitem, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getactivecronitem, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_sourceforid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_sourceforid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_altsourcelocation, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_altsourcelocation, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_credentialcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_credentialcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_credentialid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_credentialid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_credentialcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_credentialcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_revokedcredcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_revokedcredcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_revokedcredid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_revokedcredid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_revokedcredcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_revokedcredcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_subcredentialcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_subcredentialcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_subcredentialid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_subcredentialid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_subcredentialcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_subcredentialcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addsubcredential, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addsubcredential, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_revokesubcredential, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_revokesubcredential, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createservercontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createservercontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createassetcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createassetcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_calculateassetcontractid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_calculateassetcontractid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_calculateservercontractid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_calculateservercontractid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addservercontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addservercontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addassetcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addassetcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getservercount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getservercount, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettypecount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getassettypecount, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountcount, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnymcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnymcount, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getserver_id, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getserver_id, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getserver_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getserver_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getserver_contract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getserver_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_formatamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_formatamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_stringtoamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_stringtoamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_id, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getassettype_id, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getassettype_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_tla, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getassettype_tla, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getassettype_contract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getassettype_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_id, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_id, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_balance, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_balance, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_type, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_type, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_assettypeid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_assettypeid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_serverid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_serverid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_nymid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_nymid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_inboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_inboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountwallet_outboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountwallet_outboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_verifyaccountreceipt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_verifyaccountreceipt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_transactionnumcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_transactionnumcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_id, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_id, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_stats, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_stats, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_nymboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_nymboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_recenthash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_recenthash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_inboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_inboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_isnym_registeredatserver, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_isnym_registeredatserver, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_mailcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_mailcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_mailcontentsbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_mailcontentsbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_mailsenderidbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_mailsenderidbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_mailserveridbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_mailserveridbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_removemailbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_removemailbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_verifymailbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_verifymailbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outmailcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outmailcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outmailcontentsbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outmailcontentsbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outmailrecipientidbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outmailrecipientidbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outmailserveridbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outmailserveridbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_removeoutmailbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_removeoutmailbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_verifyoutmailbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_verifyoutmailbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outpaymentscount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outpaymentscount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outpaymentscontentsbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outpaymentscontentsbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outpaymentsrecipientidbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outpaymentsrecipientidbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_outpaymentsserveridbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_outpaymentsserveridbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_removeoutpaymentsbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_removeoutpaymentsbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nym_verifyoutpaymentsbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nym_verifyoutpaymentsbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_canremoveserver, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_canremoveserver, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_removeserver, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_removeserver, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_canremoveassettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_canremoveassettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_removeassettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_removeassettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_canremovenym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_canremovenym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_removenym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_removenym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_canremoveaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_canremoveaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_changepassphrase, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_changepassphrase, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_exportnym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_exportnym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_importnym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_importnym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_importcert, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_importcert, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_exportcert, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_exportcert, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_getnymidfrompartial, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_getnymidfrompartial, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_getserveridfrompartial, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_getserveridfrompartial, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_getassetidfrompartial, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_getassetidfrompartial, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_getaccountidfrompartial, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_getaccountidfrompartial, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setnym_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setnym_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setaccountwallet_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setaccountwallet_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setassettype_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setassettype_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_setserver_name, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_setserver_name, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_writecheque, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_writecheque, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36502,13 +40074,13 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_writecheque, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_discardcheque, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_discardcheque, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_proposepaymentplan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_proposepaymentplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36525,7 +40097,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_proposepaymentplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_easyproposeplan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_easyproposeplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36537,31 +40109,31 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_easyproposeplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_confirmpaymentplan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_confirmpaymentplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_create_smartcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_create_smartcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addbylaw, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addbylaw, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addclause, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addclause, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addvariable, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addvariable, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36570,38 +40142,38 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addvariable, 0, 0,
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addcallback, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addcallback, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addhook, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addhook, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addparty, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addparty, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_addaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_addaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_countnumsneeded, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_countnumsneeded, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_confirmaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_confirmaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36609,163 +40181,163 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_confirmaccount, 0,
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smartcontract_confirmparty, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smartcontract_confirmparty, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_areallpartiesconfirmed, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_areallpartiesconfirmed, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_ispartyconfirmed, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_getbylawcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_getbylawcount, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_getbylawbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_getbylawbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_bylaw_getlanguage, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_bylaw_getlanguage, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_bylaw_getclausecount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_bylaw_getclausecount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_clause_getnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_clause_getnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_clause_getcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_clause_getcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_bylaw_getvariablecount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_bylaw_getvariablecount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_variable_getnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_variable_getnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_variable_gettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_variable_gettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_variable_getaccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_variable_getaccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_variable_getcontents, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_variable_getcontents, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_bylaw_gethookcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_bylaw_gethookcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_hook_getnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_hook_getnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_hook_getclausecount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_hook_getclausecount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_hook_getclauseatindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_hook_getclauseatindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_bylaw_getcallbackcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_bylaw_getcallbackcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_callback_getnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_callback_getnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_callback_getclause, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_callback_getclause, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_getpartycount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_getpartycount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_getpartybyindex, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_smart_getpartybyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_smart_ispartyconfirmed, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getacctcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getacctcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getacctnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getacctnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getacctassetid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getacctassetid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getacctagentname, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getacctagentname, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getagentcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getagentcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getagentnamebyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getagentnamebyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_party_getagentid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_party_getagentid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_activatesmartcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_activatesmartcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_triggerclause, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_triggerclause, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_msg_harvesttransactionnumbers, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_msg_harvesttransactionnumbers, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36774,162 +40346,162 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_msg_harvesttransactionnumbers, 0
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loaduserpubkey_encryption, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loaduserpubkey_encryption, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loaduserpubkey_signing, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loaduserpubkey_signing, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadpubkey_encryption, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadpubkey_encryption, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadpubkey_signing, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadpubkey_signing, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_verifyuserprivatekey, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_verifyuserprivatekey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadpurse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadpurse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadmint, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadmint, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadassetcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadassetcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadservercontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadservercontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_mint_isstillgood, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_mint_isstillgood, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_isbasketcurrency, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_isbasketcurrency, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_basket_getmembercount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_basket_getmembercount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_basket_getmembertype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_basket_getmembertype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_basket_getminimumtransferamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_basket_getminimumtransferamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_basket_getmemberminimumtransferamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_basket_getmemberminimumtransferamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadassetaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadassetaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadinbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadinbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadoutbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadoutbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadinboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadinboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadoutboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadoutboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadpaymentinbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadpaymentinbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadpaymentinboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadpaymentinboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadrecordbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadrecordbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadrecordboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadrecordboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_clearrecord, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_clearrecord, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadexpiredbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadexpiredbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadexpiredboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadexpiredboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_clearexpired, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_clearexpired, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_getcount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_getcount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_createresponse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_createresponse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_gettransactionbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_gettransactionbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_gettransactionbyid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_gettransactionbyid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_gettransactionidbyindex, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_gettransactionidbyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_addtransaction, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_addtransaction, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_createresponse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_createresponse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -36937,153 +40509,153 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_createresponse, 0, 0
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_finalizeresponse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_finalizeresponse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_ledger_getinstrument, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_ledger_getinstrument, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_recordpayment, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_recordpayment, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_gettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_gettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_replynotice_getrequestnum, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_replynotice_getrequestnum, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getvoucher, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getvoucher, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getsuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_iscanceled, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_iscanceled, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getbalanceagreementsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getbalanceagreementsuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getdatesigned, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getdatesigned, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_pending_getnote, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_pending_getnote, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getsenderuserid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getsenderuserid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getsenderacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getsenderacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getrecipientuserid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getrecipientuserid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getrecipientacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getrecipientacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_transaction_getdisplayreferencetonum, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_transaction_getdisplayreferencetonum, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_savepurse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_savepurse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createpurse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createpurse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createpurse_passphrase, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createpurse_passphrase, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_gettotalvalue, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_gettotalvalue, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_count, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_count, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_haspassword, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_haspassword, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_peek, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_peek, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_pop, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_pop, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_push, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_push, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37091,25 +40663,25 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_push, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_purse_empty, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_purse_empty, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_wallet_importpurse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_wallet_importpurse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_exchangepurse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_exchangepurse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_changeowner, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_changeowner, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37117,118 +40689,118 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_changeowner, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getdenomination, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getdenomination, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getseries, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getseries, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getvalidfrom, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getvalidfrom, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getvalidto, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getvalidto, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getassetid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getassetid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_token_getserverid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_token_getserverid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getamount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getamount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_gettransnum, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_gettransnum, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getvalidfrom, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getvalidfrom, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getvalidto, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getvalidto, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getmemo, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getmemo, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_gettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_gettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getserverid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getserverid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getassetid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getassetid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getsenderuserid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getsenderuserid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getsenderacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getsenderacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getremitteruserid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getremitteruserid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getremitteracctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getremitteracctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getrecipientuserid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getrecipientuserid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_instrmnt_getrecipientacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_instrmnt_getrecipientacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_checkserverid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_checkserverid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createuseraccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createuseraccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_deleteuseraccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_deleteuseraccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_deleteassetaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_deleteassetaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_usagecredits, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_usagecredits, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getusagecredits, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getusagecredits, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_checkuser, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_checkuser, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_sendusermessage, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_sendusermessage, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_senduserinstrument, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_senduserinstrument, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37236,93 +40808,93 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_senduserinstrument, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getrequest, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getrequest, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_gettransactionnumber, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_gettransactionnumber, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_issueassettype, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_issueassettype, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getcontract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getcontract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmint, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmint, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_createassetaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_createassetaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccount, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getaccountfiles, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getaccountfiles, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_generatebasketcreation, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_generatebasketcreation, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addbasketcreationitem, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addbasketcreationitem, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_issuebasket, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_issuebasket, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_generatebasketexchange, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_generatebasketexchange, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_addbasketexchangeitem, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_addbasketexchangeitem, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_exchangebasket, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_exchangebasket, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_notarizewithdrawal, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_notarizewithdrawal, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_notarizedeposit, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_notarizedeposit, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_notarizetransfer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_notarizetransfer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37330,63 +40902,63 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_notarizetransfer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getinbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getinbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getoutbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getoutbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnymbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnymbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadnymbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadnymbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_loadnymboxnoverify, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_loadnymboxnoverify, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_nymbox_getreplynotice, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_nymbox_getreplynotice, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_havealreadyseenreply, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_havealreadyseenreply, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getboxreceipt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getboxreceipt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_doesboxreceiptexist, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_doesboxreceiptexist, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_processinbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_processinbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_processnymbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_processnymbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_withdrawvoucher, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_withdrawvoucher, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37394,7 +40966,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_withdrawvoucher, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_paydividend, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_paydividend, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37402,18 +40974,18 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_paydividend, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_depositcheque, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_depositcheque, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_depositpaymentplan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_depositpaymentplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_issuemarketoffer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_issuemarketoffer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37425,165 +40997,187 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_issuemarketoffer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmarketlist, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmarketlist, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmarketoffers, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmarketoffers, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getmarketrecenttrades, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getmarketrecenttrades, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getnym_marketoffers, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getnym_marketoffers, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_killmarketoffer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_killmarketoffer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_killpaymentplan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_killpaymentplan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_popmessagebuffer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_popmessagebuffer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_flushmessagebuffer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_flushmessagebuffer, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_getsentmessage, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_getsentmessage, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_removesentmessage, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_removesentmessage, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_flushsentmessages, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_flushsentmessages, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_sleep, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_sleep, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_resyncnymwithserver, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_resyncnymwithserver, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getcommand, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getcommand, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getsuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_queryassettypes, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_queryassettypes, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getpayload, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getpayload, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getdepth, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getdepth, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_gettransactionsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_gettransactionsuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_istransactioncanceled, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_istransactioncanceled, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getbalanceagreementsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getbalanceagreementsuccess, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getledger, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getnewassettypeid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getledger, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getnewissueracctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getnewassettypeid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getnewacctid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getnewissueracctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getnymboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getnewacctid, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_connectserver, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_processsockets, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_message_getnymboxhash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_getargscount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_connectserver, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_getvaluebykey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_getvaluebyindex, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_getkeybyindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_readline, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_basic_processsockets, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_readuntileof, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otmadeeasy, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_ot_me, 0, 0, 0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_make_sure_enough_trans_nums, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_opentxs_main_loop, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_make_sure_enough_trans_nums, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_register_nym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_register_nym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_check_user, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_check_user, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_create_pseudonym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_create_pseudonym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_issue_asset_type, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_issue_asset_type, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_issue_basket_currency, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_issue_basket_currency, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_exchange_basket_currency, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_exchange_basket_currency, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37592,42 +41186,42 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_exchange_basket_currency, 0, 0, 0
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_retrieve_contract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_or_retrieve_contract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_or_retrieve_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_create_asset_acct, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_create_asset_acct, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_stat_asset_account, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_stat_asset_account, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_retrieve_account, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_account, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_retrieve_nym, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_nym, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_transfer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_transfer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37636,58 +41230,58 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_transfer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_process_inbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_process_inbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_accept_inbox_items, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_accept_inbox_items, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_discard_incoming_payments, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_discard_incoming_payments, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_cancel_outgoing_payments, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_cancel_outgoing_payments, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_accept_from_paymentbox, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_accept_from_paymentbox, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_public_encryption_key, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_public_encryption_key, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_public_signing_key, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_public_signing_key, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_or_retrieve_encrypt_key, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_or_retrieve_encrypt_key, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_or_retrieve_signing_key, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_or_retrieve_signing_key, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_msg_pubkey, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_msg_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37695,7 +41289,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_msg_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_pmnt_pubkey, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_pmnt_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37703,7 +41297,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_pmnt_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_cash_pubkey, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_cash_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37712,21 +41306,21 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_cash_pubkey, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_msg, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_msg, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_payment, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_payment, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_send_user_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37734,21 +41328,21 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_send_user_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_withdraw_and_send_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_withdraw_and_send_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_payment_instrument, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_payment_instrument, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_box_receipt, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_box_receipt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37756,25 +41350,25 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_box_receipt, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_retrieve_mint, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_mint, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_load_or_retrieve_mint, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_load_or_retrieve_mint, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_query_asset_types, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_query_asset_types, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_create_market_offer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_create_market_offer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37787,27 +41381,27 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_create_market_offer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_kill_market_offer, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_kill_market_offer, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_kill_payment_plan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_kill_payment_plan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_cancel_payment_plan, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_cancel_payment_plan, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_activate_smart_contract, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_activate_smart_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37815,7 +41409,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_activate_smart_contract, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_trigger_clause, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_trigger_clause, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37823,19 +41417,19 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_trigger_clause, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_withdraw_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_withdraw_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_easy_withdraw_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_easy_withdraw_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_export_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_export_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37845,7 +41439,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_export_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_withdraw_voucher, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_withdraw_voucher, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37854,7 +41448,7 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_withdraw_voucher, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_pay_dividend, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_pay_dividend, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -37863,81 +41457,109 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_pay_dividend, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_deposit_cheque, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_deposit_cheque, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_deposit_cash, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_deposit_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_deposit_local_purse, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_deposit_local_purse, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_market_list, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_market_list, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_market_offers, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_market_offers, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_nym_market_offers, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_nym_market_offers, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_market_recent_trades, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_get_market_recent_trades, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_adjust_usage_credits, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_adjust_usage_credits, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymessagesuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_verifymessagesuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgtrnxsuccess, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_verifymsgbalanceagrmntsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_interprettransactionmsgreply, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_verifymsgtrnxsuccess, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnstring, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnbool, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnint, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnvoid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otmadeeasy_interprettransactionmsgreply, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_addvariable, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable2, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storable_create, 0, 0, 0)
@@ -37951,6 +41573,11 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storage_getpacker, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storage_exists, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storage_formpathstring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -38025,6 +41652,10 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_checkstringsexistinorder, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_exists, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_formpathstring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storestring, 0, 0, 0)
@@ -39287,6 +42918,31 @@ ZEND_END_ARG_INFO()
 /* entry subsection */
 /* Every non-class user visible function must have an entry here */
 static zend_function_entry otapi_functions[] = {
+ SWIG_ZEND_NAMED_FE(imaxdiv_t_quot_set,_wrap_imaxdiv_t_quot_set,swig_arginfo_imaxdiv_t_quot_set)
+ SWIG_ZEND_NAMED_FE(imaxdiv_t_quot_get,_wrap_imaxdiv_t_quot_get,swig_arginfo_imaxdiv_t_quot_get)
+ SWIG_ZEND_NAMED_FE(imaxdiv_t_rem_set,_wrap_imaxdiv_t_rem_set,swig_arginfo_imaxdiv_t_rem_set)
+ SWIG_ZEND_NAMED_FE(imaxdiv_t_rem_get,_wrap_imaxdiv_t_rem_get,swig_arginfo_imaxdiv_t_rem_get)
+ SWIG_ZEND_NAMED_FE(new_imaxdiv_t,_wrap_new_imaxdiv_t,swig_arginfo_new_imaxdiv_t)
+ SWIG_ZEND_NAMED_FE(imaxabs,_wrap_imaxabs,swig_arginfo_imaxabs)
+ SWIG_ZEND_NAMED_FE(imaxdiv,_wrap_imaxdiv,swig_arginfo_imaxdiv)
+ SWIG_ZEND_NAMED_FE(new_vectorunsignedchar,_wrap_new_VectorUnsignedChar,swig_arginfo_new_vectorunsignedchar)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_size,_wrap_VectorUnsignedChar_size,swig_arginfo_vectorunsignedchar_size)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_capacity,_wrap_VectorUnsignedChar_capacity,swig_arginfo_vectorunsignedchar_capacity)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_reserve,_wrap_VectorUnsignedChar_reserve,swig_arginfo_vectorunsignedchar_reserve)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_clear,_wrap_VectorUnsignedChar_clear,swig_arginfo_vectorunsignedchar_clear)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_push,_wrap_VectorUnsignedChar_push,swig_arginfo_vectorunsignedchar_push)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_is_empty,_wrap_VectorUnsignedChar_is_empty,swig_arginfo_vectorunsignedchar_is_empty)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_pop,_wrap_VectorUnsignedChar_pop,swig_arginfo_vectorunsignedchar_pop)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_get,_wrap_VectorUnsignedChar_get,swig_arginfo_vectorunsignedchar_get)
+ SWIG_ZEND_NAMED_FE(vectorunsignedchar_set,_wrap_VectorUnsignedChar_set,swig_arginfo_vectorunsignedchar_set)
+ SWIG_ZEND_NAMED_FE(new_mapstringstring,_wrap_new_MapStringString,swig_arginfo_new_mapstringstring)
+ SWIG_ZEND_NAMED_FE(mapstringstring_size,_wrap_MapStringString_size,swig_arginfo_mapstringstring_size)
+ SWIG_ZEND_NAMED_FE(mapstringstring_clear,_wrap_MapStringString_clear,swig_arginfo_mapstringstring_clear)
+ SWIG_ZEND_NAMED_FE(mapstringstring_get,_wrap_MapStringString_get,swig_arginfo_mapstringstring_get)
+ SWIG_ZEND_NAMED_FE(mapstringstring_set,_wrap_MapStringString_set,swig_arginfo_mapstringstring_set)
+ SWIG_ZEND_NAMED_FE(mapstringstring_del,_wrap_MapStringString_del,swig_arginfo_mapstringstring_del)
+ SWIG_ZEND_NAMED_FE(mapstringstring_has_key,_wrap_MapStringString_has_key,swig_arginfo_mapstringstring_has_key)
+ SWIG_ZEND_NAMED_FE(mapstringstring_is_empty,_wrap_MapStringString_is_empty,swig_arginfo_mapstringstring_is_empty)
  SWIG_ZEND_NAMED_FE(otpassword_m_theblocksize_get,_wrap_OTPassword_m_theBlockSize_get,swig_arginfo_otpassword_m_theblocksize_get)
  SWIG_ZEND_NAMED_FE(otpassword_ispassword,_wrap_OTPassword_isPassword,swig_arginfo_otpassword_ispassword)
  SWIG_ZEND_NAMED_FE(otpassword_getpassword_uint8,_wrap_OTPassword_getPassword_uint8,swig_arginfo_otpassword_getpassword_uint8)
@@ -39328,402 +42984,426 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otcaller_iscallbackset,_wrap_OTCaller_isCallbackSet,swig_arginfo_otcaller_iscallbackset)
  SWIG_ZEND_NAMED_FE(otcaller_callone,_wrap_OTCaller_callOne,swig_arginfo_otcaller_callone)
  SWIG_ZEND_NAMED_FE(otcaller_calltwo,_wrap_OTCaller_callTwo,swig_arginfo_otcaller_calltwo)
- SWIG_ZEND_NAMED_FE(new_otapi_basic,_wrap_new_OTAPI_Basic,swig_arginfo_new_otapi_basic)
- SWIG_ZEND_NAMED_FE(otapi_basic_appstartup,_wrap_OTAPI_Basic_AppStartup,swig_arginfo_otapi_basic_appstartup)
- SWIG_ZEND_NAMED_FE(otapi_basic_appshutdown,_wrap_OTAPI_Basic_AppShutdown,swig_arginfo_otapi_basic_appshutdown)
- SWIG_ZEND_NAMED_FE(otapi_basic_setappbinaryfolder,_wrap_OTAPI_Basic_SetAppBinaryFolder,swig_arginfo_otapi_basic_setappbinaryfolder)
- SWIG_ZEND_NAMED_FE(otapi_basic_sethomefolder,_wrap_OTAPI_Basic_SetHomeFolder,swig_arginfo_otapi_basic_sethomefolder)
- SWIG_ZEND_NAMED_FE(otapi_basic_init,_wrap_OTAPI_Basic_Init,swig_arginfo_otapi_basic_init)
- SWIG_ZEND_NAMED_FE(otapi_basic_setwallet,_wrap_OTAPI_Basic_SetWallet,swig_arginfo_otapi_basic_setwallet)
- SWIG_ZEND_NAMED_FE(otapi_basic_walletexists,_wrap_OTAPI_Basic_WalletExists,swig_arginfo_otapi_basic_walletexists)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadwallet,_wrap_OTAPI_Basic_LoadWallet,swig_arginfo_otapi_basic_loadwallet)
- SWIG_ZEND_NAMED_FE(otapi_basic_switchwallet,_wrap_OTAPI_Basic_SwitchWallet,swig_arginfo_otapi_basic_switchwallet)
- SWIG_ZEND_NAMED_FE(otapi_basic_output,_wrap_OTAPI_Basic_Output,swig_arginfo_otapi_basic_output)
- SWIG_ZEND_NAMED_FE(otapi_basic_gettime,_wrap_OTAPI_Basic_GetTime,swig_arginfo_otapi_basic_gettime)
- SWIG_ZEND_NAMED_FE(otapi_basic_numlist_add,_wrap_OTAPI_Basic_NumList_Add,swig_arginfo_otapi_basic_numlist_add)
- SWIG_ZEND_NAMED_FE(otapi_basic_numlist_remove,_wrap_OTAPI_Basic_NumList_Remove,swig_arginfo_otapi_basic_numlist_remove)
- SWIG_ZEND_NAMED_FE(otapi_basic_numlist_verifyquery,_wrap_OTAPI_Basic_NumList_VerifyQuery,swig_arginfo_otapi_basic_numlist_verifyquery)
- SWIG_ZEND_NAMED_FE(otapi_basic_numlist_verifyall,_wrap_OTAPI_Basic_NumList_VerifyAll,swig_arginfo_otapi_basic_numlist_verifyall)
- SWIG_ZEND_NAMED_FE(otapi_basic_numlist_count,_wrap_OTAPI_Basic_NumList_Count,swig_arginfo_otapi_basic_numlist_count)
- SWIG_ZEND_NAMED_FE(otapi_basic_encode,_wrap_OTAPI_Basic_Encode,swig_arginfo_otapi_basic_encode)
- SWIG_ZEND_NAMED_FE(otapi_basic_decode,_wrap_OTAPI_Basic_Decode,swig_arginfo_otapi_basic_decode)
- SWIG_ZEND_NAMED_FE(otapi_basic_encrypt,_wrap_OTAPI_Basic_Encrypt,swig_arginfo_otapi_basic_encrypt)
- SWIG_ZEND_NAMED_FE(otapi_basic_decrypt,_wrap_OTAPI_Basic_Decrypt,swig_arginfo_otapi_basic_decrypt)
- SWIG_ZEND_NAMED_FE(otapi_basic_createsymmetrickey,_wrap_OTAPI_Basic_CreateSymmetricKey,swig_arginfo_otapi_basic_createsymmetrickey)
- SWIG_ZEND_NAMED_FE(otapi_basic_symmetricencrypt,_wrap_OTAPI_Basic_SymmetricEncrypt,swig_arginfo_otapi_basic_symmetricencrypt)
- SWIG_ZEND_NAMED_FE(otapi_basic_symmetricdecrypt,_wrap_OTAPI_Basic_SymmetricDecrypt,swig_arginfo_otapi_basic_symmetricdecrypt)
- SWIG_ZEND_NAMED_FE(otapi_basic_signcontract,_wrap_OTAPI_Basic_SignContract,swig_arginfo_otapi_basic_signcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_flatsign,_wrap_OTAPI_Basic_FlatSign,swig_arginfo_otapi_basic_flatsign)
- SWIG_ZEND_NAMED_FE(otapi_basic_addsignature,_wrap_OTAPI_Basic_AddSignature,swig_arginfo_otapi_basic_addsignature)
- SWIG_ZEND_NAMED_FE(otapi_basic_verifysignature,_wrap_OTAPI_Basic_VerifySignature,swig_arginfo_otapi_basic_verifysignature)
- SWIG_ZEND_NAMED_FE(otapi_basic_verifyandretrievexmlcontents,_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents,swig_arginfo_otapi_basic_verifyandretrievexmlcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmemlogsize,_wrap_OTAPI_Basic_GetMemlogSize,swig_arginfo_otapi_basic_getmemlogsize)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmemlogatindex,_wrap_OTAPI_Basic_GetMemlogAtIndex,swig_arginfo_otapi_basic_getmemlogatindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_peekmemlogfront,_wrap_OTAPI_Basic_PeekMemlogFront,swig_arginfo_otapi_basic_peekmemlogfront)
- SWIG_ZEND_NAMED_FE(otapi_basic_peekmemlogback,_wrap_OTAPI_Basic_PeekMemlogBack,swig_arginfo_otapi_basic_peekmemlogback)
- SWIG_ZEND_NAMED_FE(otapi_basic_popmemlogfront,_wrap_OTAPI_Basic_PopMemlogFront,swig_arginfo_otapi_basic_popmemlogfront)
- SWIG_ZEND_NAMED_FE(otapi_basic_popmemlogback,_wrap_OTAPI_Basic_PopMemlogBack,swig_arginfo_otapi_basic_popmemlogback)
- SWIG_ZEND_NAMED_FE(otapi_basic_createnym,_wrap_OTAPI_Basic_CreateNym,swig_arginfo_otapi_basic_createnym)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_activecronitemids,_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs,swig_arginfo_otapi_basic_getnym_activecronitemids)
- SWIG_ZEND_NAMED_FE(otapi_basic_getactivecronitem,_wrap_OTAPI_Basic_GetActiveCronItem,swig_arginfo_otapi_basic_getactivecronitem)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_sourceforid,_wrap_OTAPI_Basic_GetNym_SourceForID,swig_arginfo_otapi_basic_getnym_sourceforid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_altsourcelocation,_wrap_OTAPI_Basic_GetNym_AltSourceLocation,swig_arginfo_otapi_basic_getnym_altsourcelocation)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_credentialcount,_wrap_OTAPI_Basic_GetNym_CredentialCount,swig_arginfo_otapi_basic_getnym_credentialcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_credentialid,_wrap_OTAPI_Basic_GetNym_CredentialID,swig_arginfo_otapi_basic_getnym_credentialid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_credentialcontents,_wrap_OTAPI_Basic_GetNym_CredentialContents,swig_arginfo_otapi_basic_getnym_credentialcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_revokedcredcount,_wrap_OTAPI_Basic_GetNym_RevokedCredCount,swig_arginfo_otapi_basic_getnym_revokedcredcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_revokedcredid,_wrap_OTAPI_Basic_GetNym_RevokedCredID,swig_arginfo_otapi_basic_getnym_revokedcredid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_revokedcredcontents,_wrap_OTAPI_Basic_GetNym_RevokedCredContents,swig_arginfo_otapi_basic_getnym_revokedcredcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_subcredentialcount,_wrap_OTAPI_Basic_GetNym_SubcredentialCount,swig_arginfo_otapi_basic_getnym_subcredentialcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_subcredentialid,_wrap_OTAPI_Basic_GetNym_SubCredentialID,swig_arginfo_otapi_basic_getnym_subcredentialid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_subcredentialcontents,_wrap_OTAPI_Basic_GetNym_SubCredentialContents,swig_arginfo_otapi_basic_getnym_subcredentialcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_addsubcredential,_wrap_OTAPI_Basic_AddSubcredential,swig_arginfo_otapi_basic_addsubcredential)
- SWIG_ZEND_NAMED_FE(otapi_basic_revokesubcredential,_wrap_OTAPI_Basic_RevokeSubcredential,swig_arginfo_otapi_basic_revokesubcredential)
- SWIG_ZEND_NAMED_FE(otapi_basic_createservercontract,_wrap_OTAPI_Basic_CreateServerContract,swig_arginfo_otapi_basic_createservercontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_createassetcontract,_wrap_OTAPI_Basic_CreateAssetContract,swig_arginfo_otapi_basic_createassetcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_calculateassetcontractid,_wrap_OTAPI_Basic_CalculateAssetContractID,swig_arginfo_otapi_basic_calculateassetcontractid)
- SWIG_ZEND_NAMED_FE(otapi_basic_calculateservercontractid,_wrap_OTAPI_Basic_CalculateServerContractID,swig_arginfo_otapi_basic_calculateservercontractid)
- SWIG_ZEND_NAMED_FE(otapi_basic_addservercontract,_wrap_OTAPI_Basic_AddServerContract,swig_arginfo_otapi_basic_addservercontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_addassetcontract,_wrap_OTAPI_Basic_AddAssetContract,swig_arginfo_otapi_basic_addassetcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_getservercount,_wrap_OTAPI_Basic_GetServerCount,swig_arginfo_otapi_basic_getservercount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getassettypecount,_wrap_OTAPI_Basic_GetAssetTypeCount,swig_arginfo_otapi_basic_getassettypecount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountcount,_wrap_OTAPI_Basic_GetAccountCount,swig_arginfo_otapi_basic_getaccountcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnymcount,_wrap_OTAPI_Basic_GetNymCount,swig_arginfo_otapi_basic_getnymcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getserver_id,_wrap_OTAPI_Basic_GetServer_ID,swig_arginfo_otapi_basic_getserver_id)
- SWIG_ZEND_NAMED_FE(otapi_basic_getserver_name,_wrap_OTAPI_Basic_GetServer_Name,swig_arginfo_otapi_basic_getserver_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_getserver_contract,_wrap_OTAPI_Basic_GetServer_Contract,swig_arginfo_otapi_basic_getserver_contract)
- SWIG_ZEND_NAMED_FE(otapi_basic_formatamount,_wrap_OTAPI_Basic_FormatAmount,swig_arginfo_otapi_basic_formatamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_stringtoamount,_wrap_OTAPI_Basic_StringToAmount,swig_arginfo_otapi_basic_stringtoamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_id,_wrap_OTAPI_Basic_GetAssetType_ID,swig_arginfo_otapi_basic_getassettype_id)
- SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_name,_wrap_OTAPI_Basic_GetAssetType_Name,swig_arginfo_otapi_basic_getassettype_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_tla,_wrap_OTAPI_Basic_GetAssetType_TLA,swig_arginfo_otapi_basic_getassettype_tla)
- SWIG_ZEND_NAMED_FE(otapi_basic_getassettype_contract,_wrap_OTAPI_Basic_GetAssetType_Contract,swig_arginfo_otapi_basic_getassettype_contract)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_id,_wrap_OTAPI_Basic_GetAccountWallet_ID,swig_arginfo_otapi_basic_getaccountwallet_id)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_name,_wrap_OTAPI_Basic_GetAccountWallet_Name,swig_arginfo_otapi_basic_getaccountwallet_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_balance,_wrap_OTAPI_Basic_GetAccountWallet_Balance,swig_arginfo_otapi_basic_getaccountwallet_balance)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_type,_wrap_OTAPI_Basic_GetAccountWallet_Type,swig_arginfo_otapi_basic_getaccountwallet_type)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_assettypeid,_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID,swig_arginfo_otapi_basic_getaccountwallet_assettypeid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_serverid,_wrap_OTAPI_Basic_GetAccountWallet_ServerID,swig_arginfo_otapi_basic_getaccountwallet_serverid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_nymid,_wrap_OTAPI_Basic_GetAccountWallet_NymID,swig_arginfo_otapi_basic_getaccountwallet_nymid)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_inboxhash,_wrap_OTAPI_Basic_GetAccountWallet_InboxHash,swig_arginfo_otapi_basic_getaccountwallet_inboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountwallet_outboxhash,_wrap_OTAPI_Basic_GetAccountWallet_OutboxHash,swig_arginfo_otapi_basic_getaccountwallet_outboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_verifyaccountreceipt,_wrap_OTAPI_Basic_VerifyAccountReceipt,swig_arginfo_otapi_basic_verifyaccountreceipt)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_transactionnumcount,_wrap_OTAPI_Basic_GetNym_TransactionNumCount,swig_arginfo_otapi_basic_getnym_transactionnumcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_id,_wrap_OTAPI_Basic_GetNym_ID,swig_arginfo_otapi_basic_getnym_id)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_name,_wrap_OTAPI_Basic_GetNym_Name,swig_arginfo_otapi_basic_getnym_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_stats,_wrap_OTAPI_Basic_GetNym_Stats,swig_arginfo_otapi_basic_getnym_stats)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_nymboxhash,_wrap_OTAPI_Basic_GetNym_NymboxHash,swig_arginfo_otapi_basic_getnym_nymboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_recenthash,_wrap_OTAPI_Basic_GetNym_RecentHash,swig_arginfo_otapi_basic_getnym_recenthash)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_inboxhash,_wrap_OTAPI_Basic_GetNym_InboxHash,swig_arginfo_otapi_basic_getnym_inboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outboxhash,_wrap_OTAPI_Basic_GetNym_OutboxHash,swig_arginfo_otapi_basic_getnym_outboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_isnym_registeredatserver,_wrap_OTAPI_Basic_IsNym_RegisteredAtServer,swig_arginfo_otapi_basic_isnym_registeredatserver)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_mailcount,_wrap_OTAPI_Basic_GetNym_MailCount,swig_arginfo_otapi_basic_getnym_mailcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_mailcontentsbyindex,_wrap_OTAPI_Basic_GetNym_MailContentsByIndex,swig_arginfo_otapi_basic_getnym_mailcontentsbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_mailsenderidbyindex,_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex,swig_arginfo_otapi_basic_getnym_mailsenderidbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_mailserveridbyindex,_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex,swig_arginfo_otapi_basic_getnym_mailserveridbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_removemailbyindex,_wrap_OTAPI_Basic_Nym_RemoveMailByIndex,swig_arginfo_otapi_basic_nym_removemailbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_verifymailbyindex,_wrap_OTAPI_Basic_Nym_VerifyMailByIndex,swig_arginfo_otapi_basic_nym_verifymailbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outmailcount,_wrap_OTAPI_Basic_GetNym_OutmailCount,swig_arginfo_otapi_basic_getnym_outmailcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outmailcontentsbyindex,_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex,swig_arginfo_otapi_basic_getnym_outmailcontentsbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outmailrecipientidbyindex,_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex,swig_arginfo_otapi_basic_getnym_outmailrecipientidbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outmailserveridbyindex,_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex,swig_arginfo_otapi_basic_getnym_outmailserveridbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_removeoutmailbyindex,_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex,swig_arginfo_otapi_basic_nym_removeoutmailbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_verifyoutmailbyindex,_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex,swig_arginfo_otapi_basic_nym_verifyoutmailbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outpaymentscount,_wrap_OTAPI_Basic_GetNym_OutpaymentsCount,swig_arginfo_otapi_basic_getnym_outpaymentscount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outpaymentscontentsbyindex,_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex,swig_arginfo_otapi_basic_getnym_outpaymentscontentsbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outpaymentsrecipientidbyindex,_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex,swig_arginfo_otapi_basic_getnym_outpaymentsrecipientidbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_outpaymentsserveridbyindex,_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex,swig_arginfo_otapi_basic_getnym_outpaymentsserveridbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_removeoutpaymentsbyindex,_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex,swig_arginfo_otapi_basic_nym_removeoutpaymentsbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_nym_verifyoutpaymentsbyindex,_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex,swig_arginfo_otapi_basic_nym_verifyoutpaymentsbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_canremoveserver,_wrap_OTAPI_Basic_Wallet_CanRemoveServer,swig_arginfo_otapi_basic_wallet_canremoveserver)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_removeserver,_wrap_OTAPI_Basic_Wallet_RemoveServer,swig_arginfo_otapi_basic_wallet_removeserver)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_canremoveassettype,_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType,swig_arginfo_otapi_basic_wallet_canremoveassettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_removeassettype,_wrap_OTAPI_Basic_Wallet_RemoveAssetType,swig_arginfo_otapi_basic_wallet_removeassettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_canremovenym,_wrap_OTAPI_Basic_Wallet_CanRemoveNym,swig_arginfo_otapi_basic_wallet_canremovenym)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_removenym,_wrap_OTAPI_Basic_Wallet_RemoveNym,swig_arginfo_otapi_basic_wallet_removenym)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_canremoveaccount,_wrap_OTAPI_Basic_Wallet_CanRemoveAccount,swig_arginfo_otapi_basic_wallet_canremoveaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_changepassphrase,_wrap_OTAPI_Basic_Wallet_ChangePassphrase,swig_arginfo_otapi_basic_wallet_changepassphrase)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_exportnym,_wrap_OTAPI_Basic_Wallet_ExportNym,swig_arginfo_otapi_basic_wallet_exportnym)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_importnym,_wrap_OTAPI_Basic_Wallet_ImportNym,swig_arginfo_otapi_basic_wallet_importnym)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_importcert,_wrap_OTAPI_Basic_Wallet_ImportCert,swig_arginfo_otapi_basic_wallet_importcert)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_exportcert,_wrap_OTAPI_Basic_Wallet_ExportCert,swig_arginfo_otapi_basic_wallet_exportcert)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_getnymidfrompartial,_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial,swig_arginfo_otapi_basic_wallet_getnymidfrompartial)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_getserveridfrompartial,_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial,swig_arginfo_otapi_basic_wallet_getserveridfrompartial)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_getassetidfrompartial,_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial,swig_arginfo_otapi_basic_wallet_getassetidfrompartial)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_getaccountidfrompartial,_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial,swig_arginfo_otapi_basic_wallet_getaccountidfrompartial)
- SWIG_ZEND_NAMED_FE(otapi_basic_setnym_name,_wrap_OTAPI_Basic_SetNym_Name,swig_arginfo_otapi_basic_setnym_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_setaccountwallet_name,_wrap_OTAPI_Basic_SetAccountWallet_Name,swig_arginfo_otapi_basic_setaccountwallet_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_setassettype_name,_wrap_OTAPI_Basic_SetAssetType_Name,swig_arginfo_otapi_basic_setassettype_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_setserver_name,_wrap_OTAPI_Basic_SetServer_Name,swig_arginfo_otapi_basic_setserver_name)
- SWIG_ZEND_NAMED_FE(otapi_basic_writecheque,_wrap_OTAPI_Basic_WriteCheque,swig_arginfo_otapi_basic_writecheque)
- SWIG_ZEND_NAMED_FE(otapi_basic_discardcheque,_wrap_OTAPI_Basic_DiscardCheque,swig_arginfo_otapi_basic_discardcheque)
- SWIG_ZEND_NAMED_FE(otapi_basic_proposepaymentplan,_wrap_OTAPI_Basic_ProposePaymentPlan,swig_arginfo_otapi_basic_proposepaymentplan)
- SWIG_ZEND_NAMED_FE(otapi_basic_easyproposeplan,_wrap_OTAPI_Basic_EasyProposePlan,swig_arginfo_otapi_basic_easyproposeplan)
- SWIG_ZEND_NAMED_FE(otapi_basic_confirmpaymentplan,_wrap_OTAPI_Basic_ConfirmPaymentPlan,swig_arginfo_otapi_basic_confirmpaymentplan)
- SWIG_ZEND_NAMED_FE(otapi_basic_create_smartcontract,_wrap_OTAPI_Basic_Create_SmartContract,swig_arginfo_otapi_basic_create_smartcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addbylaw,_wrap_OTAPI_Basic_SmartContract_AddBylaw,swig_arginfo_otapi_basic_smartcontract_addbylaw)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addclause,_wrap_OTAPI_Basic_SmartContract_AddClause,swig_arginfo_otapi_basic_smartcontract_addclause)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addvariable,_wrap_OTAPI_Basic_SmartContract_AddVariable,swig_arginfo_otapi_basic_smartcontract_addvariable)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addcallback,_wrap_OTAPI_Basic_SmartContract_AddCallback,swig_arginfo_otapi_basic_smartcontract_addcallback)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addhook,_wrap_OTAPI_Basic_SmartContract_AddHook,swig_arginfo_otapi_basic_smartcontract_addhook)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addparty,_wrap_OTAPI_Basic_SmartContract_AddParty,swig_arginfo_otapi_basic_smartcontract_addparty)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_addaccount,_wrap_OTAPI_Basic_SmartContract_AddAccount,swig_arginfo_otapi_basic_smartcontract_addaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_countnumsneeded,_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded,swig_arginfo_otapi_basic_smartcontract_countnumsneeded)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_confirmaccount,_wrap_OTAPI_Basic_SmartContract_ConfirmAccount,swig_arginfo_otapi_basic_smartcontract_confirmaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_smartcontract_confirmparty,_wrap_OTAPI_Basic_SmartContract_ConfirmParty,swig_arginfo_otapi_basic_smartcontract_confirmparty)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_areallpartiesconfirmed,_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed,swig_arginfo_otapi_basic_smart_areallpartiesconfirmed)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_ispartyconfirmed,_wrap_OTAPI_Basic_Smart_IsPartyConfirmed,swig_arginfo_otapi_basic_smart_ispartyconfirmed)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_getbylawcount,_wrap_OTAPI_Basic_Smart_GetBylawCount,swig_arginfo_otapi_basic_smart_getbylawcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_getbylawbyindex,_wrap_OTAPI_Basic_Smart_GetBylawByIndex,swig_arginfo_otapi_basic_smart_getbylawbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_bylaw_getlanguage,_wrap_OTAPI_Basic_Bylaw_GetLanguage,swig_arginfo_otapi_basic_bylaw_getlanguage)
- SWIG_ZEND_NAMED_FE(otapi_basic_bylaw_getclausecount,_wrap_OTAPI_Basic_Bylaw_GetClauseCount,swig_arginfo_otapi_basic_bylaw_getclausecount)
- SWIG_ZEND_NAMED_FE(otapi_basic_clause_getnamebyindex,_wrap_OTAPI_Basic_Clause_GetNameByIndex,swig_arginfo_otapi_basic_clause_getnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_clause_getcontents,_wrap_OTAPI_Basic_Clause_GetContents,swig_arginfo_otapi_basic_clause_getcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_bylaw_getvariablecount,_wrap_OTAPI_Basic_Bylaw_GetVariableCount,swig_arginfo_otapi_basic_bylaw_getvariablecount)
- SWIG_ZEND_NAMED_FE(otapi_basic_variable_getnamebyindex,_wrap_OTAPI_Basic_Variable_GetNameByIndex,swig_arginfo_otapi_basic_variable_getnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_variable_gettype,_wrap_OTAPI_Basic_Variable_GetType,swig_arginfo_otapi_basic_variable_gettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_variable_getaccess,_wrap_OTAPI_Basic_Variable_GetAccess,swig_arginfo_otapi_basic_variable_getaccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_variable_getcontents,_wrap_OTAPI_Basic_Variable_GetContents,swig_arginfo_otapi_basic_variable_getcontents)
- SWIG_ZEND_NAMED_FE(otapi_basic_bylaw_gethookcount,_wrap_OTAPI_Basic_Bylaw_GetHookCount,swig_arginfo_otapi_basic_bylaw_gethookcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_hook_getnamebyindex,_wrap_OTAPI_Basic_Hook_GetNameByIndex,swig_arginfo_otapi_basic_hook_getnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_hook_getclausecount,_wrap_OTAPI_Basic_Hook_GetClauseCount,swig_arginfo_otapi_basic_hook_getclausecount)
- SWIG_ZEND_NAMED_FE(otapi_basic_hook_getclauseatindex,_wrap_OTAPI_Basic_Hook_GetClauseAtIndex,swig_arginfo_otapi_basic_hook_getclauseatindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_bylaw_getcallbackcount,_wrap_OTAPI_Basic_Bylaw_GetCallbackCount,swig_arginfo_otapi_basic_bylaw_getcallbackcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_callback_getnamebyindex,_wrap_OTAPI_Basic_Callback_GetNameByIndex,swig_arginfo_otapi_basic_callback_getnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_callback_getclause,_wrap_OTAPI_Basic_Callback_GetClause,swig_arginfo_otapi_basic_callback_getclause)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_getpartycount,_wrap_OTAPI_Basic_Smart_GetPartyCount,swig_arginfo_otapi_basic_smart_getpartycount)
- SWIG_ZEND_NAMED_FE(otapi_basic_smart_getpartybyindex,_wrap_OTAPI_Basic_Smart_GetPartyByIndex,swig_arginfo_otapi_basic_smart_getpartybyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getid,_wrap_OTAPI_Basic_Party_GetID,swig_arginfo_otapi_basic_party_getid)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getacctcount,_wrap_OTAPI_Basic_Party_GetAcctCount,swig_arginfo_otapi_basic_party_getacctcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getacctnamebyindex,_wrap_OTAPI_Basic_Party_GetAcctNameByIndex,swig_arginfo_otapi_basic_party_getacctnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getacctid,_wrap_OTAPI_Basic_Party_GetAcctID,swig_arginfo_otapi_basic_party_getacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getacctassetid,_wrap_OTAPI_Basic_Party_GetAcctAssetID,swig_arginfo_otapi_basic_party_getacctassetid)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getacctagentname,_wrap_OTAPI_Basic_Party_GetAcctAgentName,swig_arginfo_otapi_basic_party_getacctagentname)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getagentcount,_wrap_OTAPI_Basic_Party_GetAgentCount,swig_arginfo_otapi_basic_party_getagentcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getagentnamebyindex,_wrap_OTAPI_Basic_Party_GetAgentNameByIndex,swig_arginfo_otapi_basic_party_getagentnamebyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_party_getagentid,_wrap_OTAPI_Basic_Party_GetAgentID,swig_arginfo_otapi_basic_party_getagentid)
- SWIG_ZEND_NAMED_FE(otapi_basic_activatesmartcontract,_wrap_OTAPI_Basic_activateSmartContract,swig_arginfo_otapi_basic_activatesmartcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_triggerclause,_wrap_OTAPI_Basic_triggerClause,swig_arginfo_otapi_basic_triggerclause)
- SWIG_ZEND_NAMED_FE(otapi_basic_msg_harvesttransactionnumbers,_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers,swig_arginfo_otapi_basic_msg_harvesttransactionnumbers)
- SWIG_ZEND_NAMED_FE(otapi_basic_loaduserpubkey_encryption,_wrap_OTAPI_Basic_LoadUserPubkey_Encryption,swig_arginfo_otapi_basic_loaduserpubkey_encryption)
- SWIG_ZEND_NAMED_FE(otapi_basic_loaduserpubkey_signing,_wrap_OTAPI_Basic_LoadUserPubkey_Signing,swig_arginfo_otapi_basic_loaduserpubkey_signing)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadpubkey_encryption,_wrap_OTAPI_Basic_LoadPubkey_Encryption,swig_arginfo_otapi_basic_loadpubkey_encryption)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadpubkey_signing,_wrap_OTAPI_Basic_LoadPubkey_Signing,swig_arginfo_otapi_basic_loadpubkey_signing)
- SWIG_ZEND_NAMED_FE(otapi_basic_verifyuserprivatekey,_wrap_OTAPI_Basic_VerifyUserPrivateKey,swig_arginfo_otapi_basic_verifyuserprivatekey)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadpurse,_wrap_OTAPI_Basic_LoadPurse,swig_arginfo_otapi_basic_loadpurse)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadmint,_wrap_OTAPI_Basic_LoadMint,swig_arginfo_otapi_basic_loadmint)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadassetcontract,_wrap_OTAPI_Basic_LoadAssetContract,swig_arginfo_otapi_basic_loadassetcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadservercontract,_wrap_OTAPI_Basic_LoadServerContract,swig_arginfo_otapi_basic_loadservercontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_mint_isstillgood,_wrap_OTAPI_Basic_Mint_IsStillGood,swig_arginfo_otapi_basic_mint_isstillgood)
- SWIG_ZEND_NAMED_FE(otapi_basic_isbasketcurrency,_wrap_OTAPI_Basic_IsBasketCurrency,swig_arginfo_otapi_basic_isbasketcurrency)
- SWIG_ZEND_NAMED_FE(otapi_basic_basket_getmembercount,_wrap_OTAPI_Basic_Basket_GetMemberCount,swig_arginfo_otapi_basic_basket_getmembercount)
- SWIG_ZEND_NAMED_FE(otapi_basic_basket_getmembertype,_wrap_OTAPI_Basic_Basket_GetMemberType,swig_arginfo_otapi_basic_basket_getmembertype)
- SWIG_ZEND_NAMED_FE(otapi_basic_basket_getminimumtransferamount,_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount,swig_arginfo_otapi_basic_basket_getminimumtransferamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_basket_getmemberminimumtransferamount,_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount,swig_arginfo_otapi_basic_basket_getmemberminimumtransferamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadassetaccount,_wrap_OTAPI_Basic_LoadAssetAccount,swig_arginfo_otapi_basic_loadassetaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadinbox,_wrap_OTAPI_Basic_LoadInbox,swig_arginfo_otapi_basic_loadinbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadoutbox,_wrap_OTAPI_Basic_LoadOutbox,swig_arginfo_otapi_basic_loadoutbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadinboxnoverify,_wrap_OTAPI_Basic_LoadInboxNoVerify,swig_arginfo_otapi_basic_loadinboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadoutboxnoverify,_wrap_OTAPI_Basic_LoadOutboxNoVerify,swig_arginfo_otapi_basic_loadoutboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadpaymentinbox,_wrap_OTAPI_Basic_LoadPaymentInbox,swig_arginfo_otapi_basic_loadpaymentinbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadpaymentinboxnoverify,_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify,swig_arginfo_otapi_basic_loadpaymentinboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadrecordbox,_wrap_OTAPI_Basic_LoadRecordBox,swig_arginfo_otapi_basic_loadrecordbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadrecordboxnoverify,_wrap_OTAPI_Basic_LoadRecordBoxNoVerify,swig_arginfo_otapi_basic_loadrecordboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_clearrecord,_wrap_OTAPI_Basic_ClearRecord,swig_arginfo_otapi_basic_clearrecord)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadexpiredbox,_wrap_OTAPI_Basic_LoadExpiredBox,swig_arginfo_otapi_basic_loadexpiredbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadexpiredboxnoverify,_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify,swig_arginfo_otapi_basic_loadexpiredboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_clearexpired,_wrap_OTAPI_Basic_ClearExpired,swig_arginfo_otapi_basic_clearexpired)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_getcount,_wrap_OTAPI_Basic_Ledger_GetCount,swig_arginfo_otapi_basic_ledger_getcount)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_createresponse,_wrap_OTAPI_Basic_Ledger_CreateResponse,swig_arginfo_otapi_basic_ledger_createresponse)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_gettransactionbyindex,_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex,swig_arginfo_otapi_basic_ledger_gettransactionbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_gettransactionbyid,_wrap_OTAPI_Basic_Ledger_GetTransactionByID,swig_arginfo_otapi_basic_ledger_gettransactionbyid)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_gettransactionidbyindex,_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex,swig_arginfo_otapi_basic_ledger_gettransactionidbyindex)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_addtransaction,_wrap_OTAPI_Basic_Ledger_AddTransaction,swig_arginfo_otapi_basic_ledger_addtransaction)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_createresponse,_wrap_OTAPI_Basic_Transaction_CreateResponse,swig_arginfo_otapi_basic_transaction_createresponse)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_finalizeresponse,_wrap_OTAPI_Basic_Ledger_FinalizeResponse,swig_arginfo_otapi_basic_ledger_finalizeresponse)
- SWIG_ZEND_NAMED_FE(otapi_basic_ledger_getinstrument,_wrap_OTAPI_Basic_Ledger_GetInstrument,swig_arginfo_otapi_basic_ledger_getinstrument)
- SWIG_ZEND_NAMED_FE(otapi_basic_recordpayment,_wrap_OTAPI_Basic_RecordPayment,swig_arginfo_otapi_basic_recordpayment)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_gettype,_wrap_OTAPI_Basic_Transaction_GetType,swig_arginfo_otapi_basic_transaction_gettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_replynotice_getrequestnum,_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum,swig_arginfo_otapi_basic_replynotice_getrequestnum)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getvoucher,_wrap_OTAPI_Basic_Transaction_GetVoucher,swig_arginfo_otapi_basic_transaction_getvoucher)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getsuccess,_wrap_OTAPI_Basic_Transaction_GetSuccess,swig_arginfo_otapi_basic_transaction_getsuccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_iscanceled,_wrap_OTAPI_Basic_Transaction_IsCanceled,swig_arginfo_otapi_basic_transaction_iscanceled)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getbalanceagreementsuccess,_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess,swig_arginfo_otapi_basic_transaction_getbalanceagreementsuccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getdatesigned,_wrap_OTAPI_Basic_Transaction_GetDateSigned,swig_arginfo_otapi_basic_transaction_getdatesigned)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getamount,_wrap_OTAPI_Basic_Transaction_GetAmount,swig_arginfo_otapi_basic_transaction_getamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_pending_getnote,_wrap_OTAPI_Basic_Pending_GetNote,swig_arginfo_otapi_basic_pending_getnote)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getsenderuserid,_wrap_OTAPI_Basic_Transaction_GetSenderUserID,swig_arginfo_otapi_basic_transaction_getsenderuserid)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getsenderacctid,_wrap_OTAPI_Basic_Transaction_GetSenderAcctID,swig_arginfo_otapi_basic_transaction_getsenderacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getrecipientuserid,_wrap_OTAPI_Basic_Transaction_GetRecipientUserID,swig_arginfo_otapi_basic_transaction_getrecipientuserid)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getrecipientacctid,_wrap_OTAPI_Basic_Transaction_GetRecipientAcctID,swig_arginfo_otapi_basic_transaction_getrecipientacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_transaction_getdisplayreferencetonum,_wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum,swig_arginfo_otapi_basic_transaction_getdisplayreferencetonum)
- SWIG_ZEND_NAMED_FE(otapi_basic_savepurse,_wrap_OTAPI_Basic_SavePurse,swig_arginfo_otapi_basic_savepurse)
- SWIG_ZEND_NAMED_FE(otapi_basic_createpurse,_wrap_OTAPI_Basic_CreatePurse,swig_arginfo_otapi_basic_createpurse)
- SWIG_ZEND_NAMED_FE(otapi_basic_createpurse_passphrase,_wrap_OTAPI_Basic_CreatePurse_Passphrase,swig_arginfo_otapi_basic_createpurse_passphrase)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_gettotalvalue,_wrap_OTAPI_Basic_Purse_GetTotalValue,swig_arginfo_otapi_basic_purse_gettotalvalue)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_count,_wrap_OTAPI_Basic_Purse_Count,swig_arginfo_otapi_basic_purse_count)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_haspassword,_wrap_OTAPI_Basic_Purse_HasPassword,swig_arginfo_otapi_basic_purse_haspassword)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_peek,_wrap_OTAPI_Basic_Purse_Peek,swig_arginfo_otapi_basic_purse_peek)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_pop,_wrap_OTAPI_Basic_Purse_Pop,swig_arginfo_otapi_basic_purse_pop)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_push,_wrap_OTAPI_Basic_Purse_Push,swig_arginfo_otapi_basic_purse_push)
- SWIG_ZEND_NAMED_FE(otapi_basic_purse_empty,_wrap_OTAPI_Basic_Purse_Empty,swig_arginfo_otapi_basic_purse_empty)
- SWIG_ZEND_NAMED_FE(otapi_basic_wallet_importpurse,_wrap_OTAPI_Basic_Wallet_ImportPurse,swig_arginfo_otapi_basic_wallet_importpurse)
- SWIG_ZEND_NAMED_FE(otapi_basic_exchangepurse,_wrap_OTAPI_Basic_exchangePurse,swig_arginfo_otapi_basic_exchangepurse)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_changeowner,_wrap_OTAPI_Basic_Token_ChangeOwner,swig_arginfo_otapi_basic_token_changeowner)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getid,_wrap_OTAPI_Basic_Token_GetID,swig_arginfo_otapi_basic_token_getid)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getdenomination,_wrap_OTAPI_Basic_Token_GetDenomination,swig_arginfo_otapi_basic_token_getdenomination)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getseries,_wrap_OTAPI_Basic_Token_GetSeries,swig_arginfo_otapi_basic_token_getseries)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getvalidfrom,_wrap_OTAPI_Basic_Token_GetValidFrom,swig_arginfo_otapi_basic_token_getvalidfrom)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getvalidto,_wrap_OTAPI_Basic_Token_GetValidTo,swig_arginfo_otapi_basic_token_getvalidto)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getassetid,_wrap_OTAPI_Basic_Token_GetAssetID,swig_arginfo_otapi_basic_token_getassetid)
- SWIG_ZEND_NAMED_FE(otapi_basic_token_getserverid,_wrap_OTAPI_Basic_Token_GetServerID,swig_arginfo_otapi_basic_token_getserverid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getamount,_wrap_OTAPI_Basic_Instrmnt_GetAmount,swig_arginfo_otapi_basic_instrmnt_getamount)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_gettransnum,_wrap_OTAPI_Basic_Instrmnt_GetTransNum,swig_arginfo_otapi_basic_instrmnt_gettransnum)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getvalidfrom,_wrap_OTAPI_Basic_Instrmnt_GetValidFrom,swig_arginfo_otapi_basic_instrmnt_getvalidfrom)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getvalidto,_wrap_OTAPI_Basic_Instrmnt_GetValidTo,swig_arginfo_otapi_basic_instrmnt_getvalidto)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getmemo,_wrap_OTAPI_Basic_Instrmnt_GetMemo,swig_arginfo_otapi_basic_instrmnt_getmemo)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_gettype,_wrap_OTAPI_Basic_Instrmnt_GetType,swig_arginfo_otapi_basic_instrmnt_gettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getserverid,_wrap_OTAPI_Basic_Instrmnt_GetServerID,swig_arginfo_otapi_basic_instrmnt_getserverid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getassetid,_wrap_OTAPI_Basic_Instrmnt_GetAssetID,swig_arginfo_otapi_basic_instrmnt_getassetid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getsenderuserid,_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID,swig_arginfo_otapi_basic_instrmnt_getsenderuserid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getsenderacctid,_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID,swig_arginfo_otapi_basic_instrmnt_getsenderacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getremitteruserid,_wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID,swig_arginfo_otapi_basic_instrmnt_getremitteruserid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getremitteracctid,_wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID,swig_arginfo_otapi_basic_instrmnt_getremitteracctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getrecipientuserid,_wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID,swig_arginfo_otapi_basic_instrmnt_getrecipientuserid)
- SWIG_ZEND_NAMED_FE(otapi_basic_instrmnt_getrecipientacctid,_wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID,swig_arginfo_otapi_basic_instrmnt_getrecipientacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_checkserverid,_wrap_OTAPI_Basic_checkServerID,swig_arginfo_otapi_basic_checkserverid)
- SWIG_ZEND_NAMED_FE(otapi_basic_createuseraccount,_wrap_OTAPI_Basic_createUserAccount,swig_arginfo_otapi_basic_createuseraccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_deleteuseraccount,_wrap_OTAPI_Basic_deleteUserAccount,swig_arginfo_otapi_basic_deleteuseraccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_deleteassetaccount,_wrap_OTAPI_Basic_deleteAssetAccount,swig_arginfo_otapi_basic_deleteassetaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_usagecredits,_wrap_OTAPI_Basic_usageCredits,swig_arginfo_otapi_basic_usagecredits)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getusagecredits,_wrap_OTAPI_Basic_Message_GetUsageCredits,swig_arginfo_otapi_basic_message_getusagecredits)
- SWIG_ZEND_NAMED_FE(otapi_basic_checkuser,_wrap_OTAPI_Basic_checkUser,swig_arginfo_otapi_basic_checkuser)
- SWIG_ZEND_NAMED_FE(otapi_basic_sendusermessage,_wrap_OTAPI_Basic_sendUserMessage,swig_arginfo_otapi_basic_sendusermessage)
- SWIG_ZEND_NAMED_FE(otapi_basic_senduserinstrument,_wrap_OTAPI_Basic_sendUserInstrument,swig_arginfo_otapi_basic_senduserinstrument)
- SWIG_ZEND_NAMED_FE(otapi_basic_getrequest,_wrap_OTAPI_Basic_getRequest,swig_arginfo_otapi_basic_getrequest)
- SWIG_ZEND_NAMED_FE(otapi_basic_gettransactionnumber,_wrap_OTAPI_Basic_getTransactionNumber,swig_arginfo_otapi_basic_gettransactionnumber)
- SWIG_ZEND_NAMED_FE(otapi_basic_issueassettype,_wrap_OTAPI_Basic_issueAssetType,swig_arginfo_otapi_basic_issueassettype)
- SWIG_ZEND_NAMED_FE(otapi_basic_getcontract,_wrap_OTAPI_Basic_getContract,swig_arginfo_otapi_basic_getcontract)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmint,_wrap_OTAPI_Basic_getMint,swig_arginfo_otapi_basic_getmint)
- SWIG_ZEND_NAMED_FE(otapi_basic_createassetaccount,_wrap_OTAPI_Basic_createAssetAccount,swig_arginfo_otapi_basic_createassetaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccount,_wrap_OTAPI_Basic_getAccount,swig_arginfo_otapi_basic_getaccount)
- SWIG_ZEND_NAMED_FE(otapi_basic_getaccountfiles,_wrap_OTAPI_Basic_getAccountFiles,swig_arginfo_otapi_basic_getaccountfiles)
- SWIG_ZEND_NAMED_FE(otapi_basic_generatebasketcreation,_wrap_OTAPI_Basic_GenerateBasketCreation,swig_arginfo_otapi_basic_generatebasketcreation)
- SWIG_ZEND_NAMED_FE(otapi_basic_addbasketcreationitem,_wrap_OTAPI_Basic_AddBasketCreationItem,swig_arginfo_otapi_basic_addbasketcreationitem)
- SWIG_ZEND_NAMED_FE(otapi_basic_issuebasket,_wrap_OTAPI_Basic_issueBasket,swig_arginfo_otapi_basic_issuebasket)
- SWIG_ZEND_NAMED_FE(otapi_basic_generatebasketexchange,_wrap_OTAPI_Basic_GenerateBasketExchange,swig_arginfo_otapi_basic_generatebasketexchange)
- SWIG_ZEND_NAMED_FE(otapi_basic_addbasketexchangeitem,_wrap_OTAPI_Basic_AddBasketExchangeItem,swig_arginfo_otapi_basic_addbasketexchangeitem)
- SWIG_ZEND_NAMED_FE(otapi_basic_exchangebasket,_wrap_OTAPI_Basic_exchangeBasket,swig_arginfo_otapi_basic_exchangebasket)
- SWIG_ZEND_NAMED_FE(otapi_basic_notarizewithdrawal,_wrap_OTAPI_Basic_notarizeWithdrawal,swig_arginfo_otapi_basic_notarizewithdrawal)
- SWIG_ZEND_NAMED_FE(otapi_basic_notarizedeposit,_wrap_OTAPI_Basic_notarizeDeposit,swig_arginfo_otapi_basic_notarizedeposit)
- SWIG_ZEND_NAMED_FE(otapi_basic_notarizetransfer,_wrap_OTAPI_Basic_notarizeTransfer,swig_arginfo_otapi_basic_notarizetransfer)
- SWIG_ZEND_NAMED_FE(otapi_basic_getinbox,_wrap_OTAPI_Basic_getInbox,swig_arginfo_otapi_basic_getinbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_getoutbox,_wrap_OTAPI_Basic_getOutbox,swig_arginfo_otapi_basic_getoutbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnymbox,_wrap_OTAPI_Basic_getNymbox,swig_arginfo_otapi_basic_getnymbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadnymbox,_wrap_OTAPI_Basic_LoadNymbox,swig_arginfo_otapi_basic_loadnymbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_loadnymboxnoverify,_wrap_OTAPI_Basic_LoadNymboxNoVerify,swig_arginfo_otapi_basic_loadnymboxnoverify)
- SWIG_ZEND_NAMED_FE(otapi_basic_nymbox_getreplynotice,_wrap_OTAPI_Basic_Nymbox_GetReplyNotice,swig_arginfo_otapi_basic_nymbox_getreplynotice)
- SWIG_ZEND_NAMED_FE(otapi_basic_havealreadyseenreply,_wrap_OTAPI_Basic_HaveAlreadySeenReply,swig_arginfo_otapi_basic_havealreadyseenreply)
- SWIG_ZEND_NAMED_FE(otapi_basic_getboxreceipt,_wrap_OTAPI_Basic_getBoxReceipt,swig_arginfo_otapi_basic_getboxreceipt)
- SWIG_ZEND_NAMED_FE(otapi_basic_doesboxreceiptexist,_wrap_OTAPI_Basic_DoesBoxReceiptExist,swig_arginfo_otapi_basic_doesboxreceiptexist)
- SWIG_ZEND_NAMED_FE(otapi_basic_processinbox,_wrap_OTAPI_Basic_processInbox,swig_arginfo_otapi_basic_processinbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_processnymbox,_wrap_OTAPI_Basic_processNymbox,swig_arginfo_otapi_basic_processnymbox)
- SWIG_ZEND_NAMED_FE(otapi_basic_withdrawvoucher,_wrap_OTAPI_Basic_withdrawVoucher,swig_arginfo_otapi_basic_withdrawvoucher)
- SWIG_ZEND_NAMED_FE(otapi_basic_paydividend,_wrap_OTAPI_Basic_payDividend,swig_arginfo_otapi_basic_paydividend)
- SWIG_ZEND_NAMED_FE(otapi_basic_depositcheque,_wrap_OTAPI_Basic_depositCheque,swig_arginfo_otapi_basic_depositcheque)
- SWIG_ZEND_NAMED_FE(otapi_basic_depositpaymentplan,_wrap_OTAPI_Basic_depositPaymentPlan,swig_arginfo_otapi_basic_depositpaymentplan)
- SWIG_ZEND_NAMED_FE(otapi_basic_issuemarketoffer,_wrap_OTAPI_Basic_issueMarketOffer,swig_arginfo_otapi_basic_issuemarketoffer)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmarketlist,_wrap_OTAPI_Basic_getMarketList,swig_arginfo_otapi_basic_getmarketlist)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmarketoffers,_wrap_OTAPI_Basic_getMarketOffers,swig_arginfo_otapi_basic_getmarketoffers)
- SWIG_ZEND_NAMED_FE(otapi_basic_getmarketrecenttrades,_wrap_OTAPI_Basic_getMarketRecentTrades,swig_arginfo_otapi_basic_getmarketrecenttrades)
- SWIG_ZEND_NAMED_FE(otapi_basic_getnym_marketoffers,_wrap_OTAPI_Basic_getNym_MarketOffers,swig_arginfo_otapi_basic_getnym_marketoffers)
- SWIG_ZEND_NAMED_FE(otapi_basic_killmarketoffer,_wrap_OTAPI_Basic_killMarketOffer,swig_arginfo_otapi_basic_killmarketoffer)
- SWIG_ZEND_NAMED_FE(otapi_basic_killpaymentplan,_wrap_OTAPI_Basic_killPaymentPlan,swig_arginfo_otapi_basic_killpaymentplan)
- SWIG_ZEND_NAMED_FE(otapi_basic_popmessagebuffer,_wrap_OTAPI_Basic_PopMessageBuffer,swig_arginfo_otapi_basic_popmessagebuffer)
- SWIG_ZEND_NAMED_FE(otapi_basic_flushmessagebuffer,_wrap_OTAPI_Basic_FlushMessageBuffer,swig_arginfo_otapi_basic_flushmessagebuffer)
- SWIG_ZEND_NAMED_FE(otapi_basic_getsentmessage,_wrap_OTAPI_Basic_GetSentMessage,swig_arginfo_otapi_basic_getsentmessage)
- SWIG_ZEND_NAMED_FE(otapi_basic_removesentmessage,_wrap_OTAPI_Basic_RemoveSentMessage,swig_arginfo_otapi_basic_removesentmessage)
- SWIG_ZEND_NAMED_FE(otapi_basic_flushsentmessages,_wrap_OTAPI_Basic_FlushSentMessages,swig_arginfo_otapi_basic_flushsentmessages)
- SWIG_ZEND_NAMED_FE(otapi_basic_sleep,_wrap_OTAPI_Basic_Sleep,swig_arginfo_otapi_basic_sleep)
- SWIG_ZEND_NAMED_FE(otapi_basic_resyncnymwithserver,_wrap_OTAPI_Basic_ResyncNymWithServer,swig_arginfo_otapi_basic_resyncnymwithserver)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getcommand,_wrap_OTAPI_Basic_Message_GetCommand,swig_arginfo_otapi_basic_message_getcommand)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getsuccess,_wrap_OTAPI_Basic_Message_GetSuccess,swig_arginfo_otapi_basic_message_getsuccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_queryassettypes,_wrap_OTAPI_Basic_queryAssetTypes,swig_arginfo_otapi_basic_queryassettypes)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getpayload,_wrap_OTAPI_Basic_Message_GetPayload,swig_arginfo_otapi_basic_message_getpayload)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getdepth,_wrap_OTAPI_Basic_Message_GetDepth,swig_arginfo_otapi_basic_message_getdepth)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_gettransactionsuccess,_wrap_OTAPI_Basic_Message_GetTransactionSuccess,swig_arginfo_otapi_basic_message_gettransactionsuccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_istransactioncanceled,_wrap_OTAPI_Basic_Message_IsTransactionCanceled,swig_arginfo_otapi_basic_message_istransactioncanceled)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getbalanceagreementsuccess,_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess,swig_arginfo_otapi_basic_message_getbalanceagreementsuccess)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getledger,_wrap_OTAPI_Basic_Message_GetLedger,swig_arginfo_otapi_basic_message_getledger)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getnewassettypeid,_wrap_OTAPI_Basic_Message_GetNewAssetTypeID,swig_arginfo_otapi_basic_message_getnewassettypeid)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getnewissueracctid,_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID,swig_arginfo_otapi_basic_message_getnewissueracctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getnewacctid,_wrap_OTAPI_Basic_Message_GetNewAcctID,swig_arginfo_otapi_basic_message_getnewacctid)
- SWIG_ZEND_NAMED_FE(otapi_basic_message_getnymboxhash,_wrap_OTAPI_Basic_Message_GetNymboxHash,swig_arginfo_otapi_basic_message_getnymboxhash)
- SWIG_ZEND_NAMED_FE(otapi_basic_connectserver,_wrap_OTAPI_Basic_ConnectServer,swig_arginfo_otapi_basic_connectserver)
- SWIG_ZEND_NAMED_FE(otapi_basic_processsockets,_wrap_OTAPI_Basic_ProcessSockets,swig_arginfo_otapi_basic_processsockets)
- SWIG_ZEND_NAMED_FE(new_otmadeeasy,_wrap_new_OTMadeEasy,swig_arginfo_new_otmadeeasy)
- SWIG_ZEND_NAMED_FE(otmadeeasy_make_sure_enough_trans_nums,_wrap_OTMadeEasy_make_sure_enough_trans_nums,swig_arginfo_otmadeeasy_make_sure_enough_trans_nums)
- SWIG_ZEND_NAMED_FE(otmadeeasy_register_nym,_wrap_OTMadeEasy_register_nym,swig_arginfo_otmadeeasy_register_nym)
- SWIG_ZEND_NAMED_FE(otmadeeasy_check_user,_wrap_OTMadeEasy_check_user,swig_arginfo_otmadeeasy_check_user)
- SWIG_ZEND_NAMED_FE(otmadeeasy_create_pseudonym,_wrap_OTMadeEasy_create_pseudonym,swig_arginfo_otmadeeasy_create_pseudonym)
- SWIG_ZEND_NAMED_FE(otmadeeasy_issue_asset_type,_wrap_OTMadeEasy_issue_asset_type,swig_arginfo_otmadeeasy_issue_asset_type)
- SWIG_ZEND_NAMED_FE(otmadeeasy_issue_basket_currency,_wrap_OTMadeEasy_issue_basket_currency,swig_arginfo_otmadeeasy_issue_basket_currency)
- SWIG_ZEND_NAMED_FE(otmadeeasy_exchange_basket_currency,_wrap_OTMadeEasy_exchange_basket_currency,swig_arginfo_otmadeeasy_exchange_basket_currency)
- SWIG_ZEND_NAMED_FE(otmadeeasy_retrieve_contract,_wrap_OTMadeEasy_retrieve_contract,swig_arginfo_otmadeeasy_retrieve_contract)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_or_retrieve_contract,_wrap_OTMadeEasy_load_or_retrieve_contract,swig_arginfo_otmadeeasy_load_or_retrieve_contract)
- SWIG_ZEND_NAMED_FE(otmadeeasy_create_asset_acct,_wrap_OTMadeEasy_create_asset_acct,swig_arginfo_otmadeeasy_create_asset_acct)
- SWIG_ZEND_NAMED_FE(otmadeeasy_stat_asset_account,_wrap_OTMadeEasy_stat_asset_account,swig_arginfo_otmadeeasy_stat_asset_account)
- SWIG_ZEND_NAMED_FE(otmadeeasy_retrieve_account,_wrap_OTMadeEasy_retrieve_account,swig_arginfo_otmadeeasy_retrieve_account)
- SWIG_ZEND_NAMED_FE(otmadeeasy_retrieve_nym,_wrap_OTMadeEasy_retrieve_nym,swig_arginfo_otmadeeasy_retrieve_nym)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_transfer,_wrap_OTMadeEasy_send_transfer,swig_arginfo_otmadeeasy_send_transfer)
- SWIG_ZEND_NAMED_FE(otmadeeasy_process_inbox,_wrap_OTMadeEasy_process_inbox,swig_arginfo_otmadeeasy_process_inbox)
- SWIG_ZEND_NAMED_FE(otmadeeasy_accept_inbox_items,_wrap_OTMadeEasy_accept_inbox_items,swig_arginfo_otmadeeasy_accept_inbox_items)
- SWIG_ZEND_NAMED_FE(otmadeeasy_discard_incoming_payments,_wrap_OTMadeEasy_discard_incoming_payments,swig_arginfo_otmadeeasy_discard_incoming_payments)
- SWIG_ZEND_NAMED_FE(otmadeeasy_cancel_outgoing_payments,_wrap_OTMadeEasy_cancel_outgoing_payments,swig_arginfo_otmadeeasy_cancel_outgoing_payments)
- SWIG_ZEND_NAMED_FE(otmadeeasy_accept_from_paymentbox,_wrap_OTMadeEasy_accept_from_paymentbox,swig_arginfo_otmadeeasy_accept_from_paymentbox)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_public_encryption_key,_wrap_OTMadeEasy_load_public_encryption_key,swig_arginfo_otmadeeasy_load_public_encryption_key)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_public_signing_key,_wrap_OTMadeEasy_load_public_signing_key,swig_arginfo_otmadeeasy_load_public_signing_key)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_or_retrieve_encrypt_key,_wrap_OTMadeEasy_load_or_retrieve_encrypt_key,swig_arginfo_otmadeeasy_load_or_retrieve_encrypt_key)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_or_retrieve_signing_key,_wrap_OTMadeEasy_load_or_retrieve_signing_key,swig_arginfo_otmadeeasy_load_or_retrieve_signing_key)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_msg_pubkey,_wrap_OTMadeEasy_send_user_msg_pubkey,swig_arginfo_otmadeeasy_send_user_msg_pubkey)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_pmnt_pubkey,_wrap_OTMadeEasy_send_user_pmnt_pubkey,swig_arginfo_otmadeeasy_send_user_pmnt_pubkey)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_cash_pubkey,_wrap_OTMadeEasy_send_user_cash_pubkey,swig_arginfo_otmadeeasy_send_user_cash_pubkey)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_msg,_wrap_OTMadeEasy_send_user_msg,swig_arginfo_otmadeeasy_send_user_msg)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_payment,_wrap_OTMadeEasy_send_user_payment,swig_arginfo_otmadeeasy_send_user_payment)
- SWIG_ZEND_NAMED_FE(otmadeeasy_send_user_cash,_wrap_OTMadeEasy_send_user_cash,swig_arginfo_otmadeeasy_send_user_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_withdraw_and_send_cash,_wrap_OTMadeEasy_withdraw_and_send_cash,swig_arginfo_otmadeeasy_withdraw_and_send_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_payment_instrument,_wrap_OTMadeEasy_get_payment_instrument,swig_arginfo_otmadeeasy_get_payment_instrument)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_box_receipt,_wrap_OTMadeEasy_get_box_receipt,swig_arginfo_otmadeeasy_get_box_receipt)
- SWIG_ZEND_NAMED_FE(otmadeeasy_retrieve_mint,_wrap_OTMadeEasy_retrieve_mint,swig_arginfo_otmadeeasy_retrieve_mint)
- SWIG_ZEND_NAMED_FE(otmadeeasy_load_or_retrieve_mint,_wrap_OTMadeEasy_load_or_retrieve_mint,swig_arginfo_otmadeeasy_load_or_retrieve_mint)
- SWIG_ZEND_NAMED_FE(otmadeeasy_query_asset_types,_wrap_OTMadeEasy_query_asset_types,swig_arginfo_otmadeeasy_query_asset_types)
- SWIG_ZEND_NAMED_FE(otmadeeasy_create_market_offer,_wrap_OTMadeEasy_create_market_offer,swig_arginfo_otmadeeasy_create_market_offer)
- SWIG_ZEND_NAMED_FE(otmadeeasy_kill_market_offer,_wrap_OTMadeEasy_kill_market_offer,swig_arginfo_otmadeeasy_kill_market_offer)
- SWIG_ZEND_NAMED_FE(otmadeeasy_kill_payment_plan,_wrap_OTMadeEasy_kill_payment_plan,swig_arginfo_otmadeeasy_kill_payment_plan)
- SWIG_ZEND_NAMED_FE(otmadeeasy_cancel_payment_plan,_wrap_OTMadeEasy_cancel_payment_plan,swig_arginfo_otmadeeasy_cancel_payment_plan)
- SWIG_ZEND_NAMED_FE(otmadeeasy_activate_smart_contract,_wrap_OTMadeEasy_activate_smart_contract,swig_arginfo_otmadeeasy_activate_smart_contract)
- SWIG_ZEND_NAMED_FE(otmadeeasy_trigger_clause,_wrap_OTMadeEasy_trigger_clause,swig_arginfo_otmadeeasy_trigger_clause)
- SWIG_ZEND_NAMED_FE(otmadeeasy_withdraw_cash,_wrap_OTMadeEasy_withdraw_cash,swig_arginfo_otmadeeasy_withdraw_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_easy_withdraw_cash,_wrap_OTMadeEasy_easy_withdraw_cash,swig_arginfo_otmadeeasy_easy_withdraw_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_export_cash,_wrap_OTMadeEasy_export_cash,swig_arginfo_otmadeeasy_export_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_withdraw_voucher,_wrap_OTMadeEasy_withdraw_voucher,swig_arginfo_otmadeeasy_withdraw_voucher)
- SWIG_ZEND_NAMED_FE(otmadeeasy_pay_dividend,_wrap_OTMadeEasy_pay_dividend,swig_arginfo_otmadeeasy_pay_dividend)
- SWIG_ZEND_NAMED_FE(otmadeeasy_deposit_cheque,_wrap_OTMadeEasy_deposit_cheque,swig_arginfo_otmadeeasy_deposit_cheque)
- SWIG_ZEND_NAMED_FE(otmadeeasy_deposit_cash,_wrap_OTMadeEasy_deposit_cash,swig_arginfo_otmadeeasy_deposit_cash)
- SWIG_ZEND_NAMED_FE(otmadeeasy_deposit_local_purse,_wrap_OTMadeEasy_deposit_local_purse,swig_arginfo_otmadeeasy_deposit_local_purse)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_market_list,_wrap_OTMadeEasy_get_market_list,swig_arginfo_otmadeeasy_get_market_list)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_market_offers,_wrap_OTMadeEasy_get_market_offers,swig_arginfo_otmadeeasy_get_market_offers)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_nym_market_offers,_wrap_OTMadeEasy_get_nym_market_offers,swig_arginfo_otmadeeasy_get_nym_market_offers)
- SWIG_ZEND_NAMED_FE(otmadeeasy_get_market_recent_trades,_wrap_OTMadeEasy_get_market_recent_trades,swig_arginfo_otmadeeasy_get_market_recent_trades)
- SWIG_ZEND_NAMED_FE(otmadeeasy_adjust_usage_credits,_wrap_OTMadeEasy_adjust_usage_credits,swig_arginfo_otmadeeasy_adjust_usage_credits)
- SWIG_ZEND_NAMED_FE(otmadeeasy_verifymessagesuccess,_wrap_OTMadeEasy_VerifyMessageSuccess,swig_arginfo_otmadeeasy_verifymessagesuccess)
- SWIG_ZEND_NAMED_FE(otmadeeasy_verifymsgbalanceagrmntsuccess,_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess,swig_arginfo_otmadeeasy_verifymsgbalanceagrmntsuccess)
- SWIG_ZEND_NAMED_FE(otmadeeasy_verifymsgtrnxsuccess,_wrap_OTMadeEasy_VerifyMsgTrnxSuccess,swig_arginfo_otmadeeasy_verifymsgtrnxsuccess)
- SWIG_ZEND_NAMED_FE(otmadeeasy_interprettransactionmsgreply,_wrap_OTMadeEasy_InterpretTransactionMsgReply,swig_arginfo_otmadeeasy_interprettransactionmsgreply)
+ SWIG_ZEND_NAMED_FE(new_wraptimet,_wrap_new_WrapTimeT,swig_arginfo_new_wraptimet)
+ SWIG_ZEND_NAMED_FE(wraptimet_gettime,_wrap_WrapTimeT_getTime,swig_arginfo_wraptimet_gettime)
+ SWIG_ZEND_NAMED_FE(wraptimet_settime,_wrap_WrapTimeT_setTime,swig_arginfo_wraptimet_settime)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setexecutor,_wrap_OTAPI_Wrap_SetExecutor,swig_arginfo_otapi_wrap_setexecutor)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_exec,_wrap_OTAPI_Wrap_Exec,swig_arginfo_otapi_wrap_exec)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_it,_wrap_OTAPI_Wrap_It,swig_arginfo_otapi_wrap_it)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_otapi,_wrap_OTAPI_Wrap_OTAPI,swig_arginfo_otapi_wrap_otapi)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_stringtolong,_wrap_OTAPI_Wrap_StringToLong,swig_arginfo_otapi_wrap_stringtolong)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_longtostring,_wrap_OTAPI_Wrap_LongToString,swig_arginfo_otapi_wrap_longtostring)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_stringtoulong,_wrap_OTAPI_Wrap_StringToUlong,swig_arginfo_otapi_wrap_stringtoulong)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ulongtostring,_wrap_OTAPI_Wrap_UlongToString,swig_arginfo_otapi_wrap_ulongtostring)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_appinit,_wrap_OTAPI_Wrap_AppInit,swig_arginfo_otapi_wrap_appinit)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_appcleanup,_wrap_OTAPI_Wrap_AppCleanup,swig_arginfo_otapi_wrap_appcleanup)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setappbinaryfolder,_wrap_OTAPI_Wrap_SetAppBinaryFolder,swig_arginfo_otapi_wrap_setappbinaryfolder)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_sethomefolder,_wrap_OTAPI_Wrap_SetHomeFolder,swig_arginfo_otapi_wrap_sethomefolder)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setwallet,_wrap_OTAPI_Wrap_SetWallet,swig_arginfo_otapi_wrap_setwallet)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_walletexists,_wrap_OTAPI_Wrap_WalletExists,swig_arginfo_otapi_wrap_walletexists)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadwallet,_wrap_OTAPI_Wrap_LoadWallet,swig_arginfo_otapi_wrap_loadwallet)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_switchwallet,_wrap_OTAPI_Wrap_SwitchWallet,swig_arginfo_otapi_wrap_switchwallet)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_output,_wrap_OTAPI_Wrap_Output,swig_arginfo_otapi_wrap_output)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_gettime,_wrap_OTAPI_Wrap_GetTime,swig_arginfo_otapi_wrap_gettime)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_numlist_add,_wrap_OTAPI_Wrap_NumList_Add,swig_arginfo_otapi_wrap_numlist_add)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_numlist_remove,_wrap_OTAPI_Wrap_NumList_Remove,swig_arginfo_otapi_wrap_numlist_remove)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_numlist_verifyquery,_wrap_OTAPI_Wrap_NumList_VerifyQuery,swig_arginfo_otapi_wrap_numlist_verifyquery)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_numlist_verifyall,_wrap_OTAPI_Wrap_NumList_VerifyAll,swig_arginfo_otapi_wrap_numlist_verifyall)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_numlist_count,_wrap_OTAPI_Wrap_NumList_Count,swig_arginfo_otapi_wrap_numlist_count)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_encode,_wrap_OTAPI_Wrap_Encode,swig_arginfo_otapi_wrap_encode)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_decode,_wrap_OTAPI_Wrap_Decode,swig_arginfo_otapi_wrap_decode)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_encrypt,_wrap_OTAPI_Wrap_Encrypt,swig_arginfo_otapi_wrap_encrypt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_decrypt,_wrap_OTAPI_Wrap_Decrypt,swig_arginfo_otapi_wrap_decrypt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createsymmetrickey,_wrap_OTAPI_Wrap_CreateSymmetricKey,swig_arginfo_otapi_wrap_createsymmetrickey)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_symmetricencrypt,_wrap_OTAPI_Wrap_SymmetricEncrypt,swig_arginfo_otapi_wrap_symmetricencrypt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_symmetricdecrypt,_wrap_OTAPI_Wrap_SymmetricDecrypt,swig_arginfo_otapi_wrap_symmetricdecrypt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_signcontract,_wrap_OTAPI_Wrap_SignContract,swig_arginfo_otapi_wrap_signcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_flatsign,_wrap_OTAPI_Wrap_FlatSign,swig_arginfo_otapi_wrap_flatsign)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addsignature,_wrap_OTAPI_Wrap_AddSignature,swig_arginfo_otapi_wrap_addsignature)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_verifysignature,_wrap_OTAPI_Wrap_VerifySignature,swig_arginfo_otapi_wrap_verifysignature)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_verifyandretrievexmlcontents,_wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents,swig_arginfo_otapi_wrap_verifyandretrievexmlcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmemlogsize,_wrap_OTAPI_Wrap_GetMemlogSize,swig_arginfo_otapi_wrap_getmemlogsize)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmemlogatindex,_wrap_OTAPI_Wrap_GetMemlogAtIndex,swig_arginfo_otapi_wrap_getmemlogatindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_peekmemlogfront,_wrap_OTAPI_Wrap_PeekMemlogFront,swig_arginfo_otapi_wrap_peekmemlogfront)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_peekmemlogback,_wrap_OTAPI_Wrap_PeekMemlogBack,swig_arginfo_otapi_wrap_peekmemlogback)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_popmemlogfront,_wrap_OTAPI_Wrap_PopMemlogFront,swig_arginfo_otapi_wrap_popmemlogfront)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_popmemlogback,_wrap_OTAPI_Wrap_PopMemlogBack,swig_arginfo_otapi_wrap_popmemlogback)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createnym,_wrap_OTAPI_Wrap_CreateNym,swig_arginfo_otapi_wrap_createnym)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_activecronitemids,_wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs,swig_arginfo_otapi_wrap_getnym_activecronitemids)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getactivecronitem,_wrap_OTAPI_Wrap_GetActiveCronItem,swig_arginfo_otapi_wrap_getactivecronitem)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_sourceforid,_wrap_OTAPI_Wrap_GetNym_SourceForID,swig_arginfo_otapi_wrap_getnym_sourceforid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_altsourcelocation,_wrap_OTAPI_Wrap_GetNym_AltSourceLocation,swig_arginfo_otapi_wrap_getnym_altsourcelocation)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_credentialcount,_wrap_OTAPI_Wrap_GetNym_CredentialCount,swig_arginfo_otapi_wrap_getnym_credentialcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_credentialid,_wrap_OTAPI_Wrap_GetNym_CredentialID,swig_arginfo_otapi_wrap_getnym_credentialid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_credentialcontents,_wrap_OTAPI_Wrap_GetNym_CredentialContents,swig_arginfo_otapi_wrap_getnym_credentialcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_revokedcredcount,_wrap_OTAPI_Wrap_GetNym_RevokedCredCount,swig_arginfo_otapi_wrap_getnym_revokedcredcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_revokedcredid,_wrap_OTAPI_Wrap_GetNym_RevokedCredID,swig_arginfo_otapi_wrap_getnym_revokedcredid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_revokedcredcontents,_wrap_OTAPI_Wrap_GetNym_RevokedCredContents,swig_arginfo_otapi_wrap_getnym_revokedcredcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_subcredentialcount,_wrap_OTAPI_Wrap_GetNym_SubcredentialCount,swig_arginfo_otapi_wrap_getnym_subcredentialcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_subcredentialid,_wrap_OTAPI_Wrap_GetNym_SubCredentialID,swig_arginfo_otapi_wrap_getnym_subcredentialid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_subcredentialcontents,_wrap_OTAPI_Wrap_GetNym_SubCredentialContents,swig_arginfo_otapi_wrap_getnym_subcredentialcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addsubcredential,_wrap_OTAPI_Wrap_AddSubcredential,swig_arginfo_otapi_wrap_addsubcredential)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_revokesubcredential,_wrap_OTAPI_Wrap_RevokeSubcredential,swig_arginfo_otapi_wrap_revokesubcredential)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createservercontract,_wrap_OTAPI_Wrap_CreateServerContract,swig_arginfo_otapi_wrap_createservercontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createassetcontract,_wrap_OTAPI_Wrap_CreateAssetContract,swig_arginfo_otapi_wrap_createassetcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_calculateassetcontractid,_wrap_OTAPI_Wrap_CalculateAssetContractID,swig_arginfo_otapi_wrap_calculateassetcontractid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_calculateservercontractid,_wrap_OTAPI_Wrap_CalculateServerContractID,swig_arginfo_otapi_wrap_calculateservercontractid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addservercontract,_wrap_OTAPI_Wrap_AddServerContract,swig_arginfo_otapi_wrap_addservercontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addassetcontract,_wrap_OTAPI_Wrap_AddAssetContract,swig_arginfo_otapi_wrap_addassetcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getservercount,_wrap_OTAPI_Wrap_GetServerCount,swig_arginfo_otapi_wrap_getservercount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getassettypecount,_wrap_OTAPI_Wrap_GetAssetTypeCount,swig_arginfo_otapi_wrap_getassettypecount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountcount,_wrap_OTAPI_Wrap_GetAccountCount,swig_arginfo_otapi_wrap_getaccountcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnymcount,_wrap_OTAPI_Wrap_GetNymCount,swig_arginfo_otapi_wrap_getnymcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getserver_id,_wrap_OTAPI_Wrap_GetServer_ID,swig_arginfo_otapi_wrap_getserver_id)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getserver_name,_wrap_OTAPI_Wrap_GetServer_Name,swig_arginfo_otapi_wrap_getserver_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getserver_contract,_wrap_OTAPI_Wrap_GetServer_Contract,swig_arginfo_otapi_wrap_getserver_contract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_formatamount,_wrap_OTAPI_Wrap_FormatAmount,swig_arginfo_otapi_wrap_formatamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_stringtoamount,_wrap_OTAPI_Wrap_StringToAmount,swig_arginfo_otapi_wrap_stringtoamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getassettype_id,_wrap_OTAPI_Wrap_GetAssetType_ID,swig_arginfo_otapi_wrap_getassettype_id)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getassettype_name,_wrap_OTAPI_Wrap_GetAssetType_Name,swig_arginfo_otapi_wrap_getassettype_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getassettype_tla,_wrap_OTAPI_Wrap_GetAssetType_TLA,swig_arginfo_otapi_wrap_getassettype_tla)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getassettype_contract,_wrap_OTAPI_Wrap_GetAssetType_Contract,swig_arginfo_otapi_wrap_getassettype_contract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_id,_wrap_OTAPI_Wrap_GetAccountWallet_ID,swig_arginfo_otapi_wrap_getaccountwallet_id)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_name,_wrap_OTAPI_Wrap_GetAccountWallet_Name,swig_arginfo_otapi_wrap_getaccountwallet_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_balance,_wrap_OTAPI_Wrap_GetAccountWallet_Balance,swig_arginfo_otapi_wrap_getaccountwallet_balance)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_type,_wrap_OTAPI_Wrap_GetAccountWallet_Type,swig_arginfo_otapi_wrap_getaccountwallet_type)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_assettypeid,_wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID,swig_arginfo_otapi_wrap_getaccountwallet_assettypeid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_serverid,_wrap_OTAPI_Wrap_GetAccountWallet_ServerID,swig_arginfo_otapi_wrap_getaccountwallet_serverid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_nymid,_wrap_OTAPI_Wrap_GetAccountWallet_NymID,swig_arginfo_otapi_wrap_getaccountwallet_nymid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_inboxhash,_wrap_OTAPI_Wrap_GetAccountWallet_InboxHash,swig_arginfo_otapi_wrap_getaccountwallet_inboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountwallet_outboxhash,_wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash,swig_arginfo_otapi_wrap_getaccountwallet_outboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_verifyaccountreceipt,_wrap_OTAPI_Wrap_VerifyAccountReceipt,swig_arginfo_otapi_wrap_verifyaccountreceipt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_transactionnumcount,_wrap_OTAPI_Wrap_GetNym_TransactionNumCount,swig_arginfo_otapi_wrap_getnym_transactionnumcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_id,_wrap_OTAPI_Wrap_GetNym_ID,swig_arginfo_otapi_wrap_getnym_id)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_name,_wrap_OTAPI_Wrap_GetNym_Name,swig_arginfo_otapi_wrap_getnym_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_stats,_wrap_OTAPI_Wrap_GetNym_Stats,swig_arginfo_otapi_wrap_getnym_stats)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_nymboxhash,_wrap_OTAPI_Wrap_GetNym_NymboxHash,swig_arginfo_otapi_wrap_getnym_nymboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_recenthash,_wrap_OTAPI_Wrap_GetNym_RecentHash,swig_arginfo_otapi_wrap_getnym_recenthash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_inboxhash,_wrap_OTAPI_Wrap_GetNym_InboxHash,swig_arginfo_otapi_wrap_getnym_inboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outboxhash,_wrap_OTAPI_Wrap_GetNym_OutboxHash,swig_arginfo_otapi_wrap_getnym_outboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_isnym_registeredatserver,_wrap_OTAPI_Wrap_IsNym_RegisteredAtServer,swig_arginfo_otapi_wrap_isnym_registeredatserver)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_mailcount,_wrap_OTAPI_Wrap_GetNym_MailCount,swig_arginfo_otapi_wrap_getnym_mailcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_mailcontentsbyindex,_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex,swig_arginfo_otapi_wrap_getnym_mailcontentsbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_mailsenderidbyindex,_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex,swig_arginfo_otapi_wrap_getnym_mailsenderidbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_mailserveridbyindex,_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex,swig_arginfo_otapi_wrap_getnym_mailserveridbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_removemailbyindex,_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex,swig_arginfo_otapi_wrap_nym_removemailbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_verifymailbyindex,_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex,swig_arginfo_otapi_wrap_nym_verifymailbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outmailcount,_wrap_OTAPI_Wrap_GetNym_OutmailCount,swig_arginfo_otapi_wrap_getnym_outmailcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outmailcontentsbyindex,_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex,swig_arginfo_otapi_wrap_getnym_outmailcontentsbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outmailrecipientidbyindex,_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex,swig_arginfo_otapi_wrap_getnym_outmailrecipientidbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outmailserveridbyindex,_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex,swig_arginfo_otapi_wrap_getnym_outmailserveridbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_removeoutmailbyindex,_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex,swig_arginfo_otapi_wrap_nym_removeoutmailbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_verifyoutmailbyindex,_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex,swig_arginfo_otapi_wrap_nym_verifyoutmailbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outpaymentscount,_wrap_OTAPI_Wrap_GetNym_OutpaymentsCount,swig_arginfo_otapi_wrap_getnym_outpaymentscount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outpaymentscontentsbyindex,_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex,swig_arginfo_otapi_wrap_getnym_outpaymentscontentsbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outpaymentsrecipientidbyindex,_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex,swig_arginfo_otapi_wrap_getnym_outpaymentsrecipientidbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_outpaymentsserveridbyindex,_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex,swig_arginfo_otapi_wrap_getnym_outpaymentsserveridbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_removeoutpaymentsbyindex,_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex,swig_arginfo_otapi_wrap_nym_removeoutpaymentsbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nym_verifyoutpaymentsbyindex,_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex,swig_arginfo_otapi_wrap_nym_verifyoutpaymentsbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_canremoveserver,_wrap_OTAPI_Wrap_Wallet_CanRemoveServer,swig_arginfo_otapi_wrap_wallet_canremoveserver)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_removeserver,_wrap_OTAPI_Wrap_Wallet_RemoveServer,swig_arginfo_otapi_wrap_wallet_removeserver)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_canremoveassettype,_wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType,swig_arginfo_otapi_wrap_wallet_canremoveassettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_removeassettype,_wrap_OTAPI_Wrap_Wallet_RemoveAssetType,swig_arginfo_otapi_wrap_wallet_removeassettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_canremovenym,_wrap_OTAPI_Wrap_Wallet_CanRemoveNym,swig_arginfo_otapi_wrap_wallet_canremovenym)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_removenym,_wrap_OTAPI_Wrap_Wallet_RemoveNym,swig_arginfo_otapi_wrap_wallet_removenym)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_canremoveaccount,_wrap_OTAPI_Wrap_Wallet_CanRemoveAccount,swig_arginfo_otapi_wrap_wallet_canremoveaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_changepassphrase,_wrap_OTAPI_Wrap_Wallet_ChangePassphrase,swig_arginfo_otapi_wrap_wallet_changepassphrase)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_exportnym,_wrap_OTAPI_Wrap_Wallet_ExportNym,swig_arginfo_otapi_wrap_wallet_exportnym)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_importnym,_wrap_OTAPI_Wrap_Wallet_ImportNym,swig_arginfo_otapi_wrap_wallet_importnym)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_importcert,_wrap_OTAPI_Wrap_Wallet_ImportCert,swig_arginfo_otapi_wrap_wallet_importcert)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_exportcert,_wrap_OTAPI_Wrap_Wallet_ExportCert,swig_arginfo_otapi_wrap_wallet_exportcert)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_getnymidfrompartial,_wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial,swig_arginfo_otapi_wrap_wallet_getnymidfrompartial)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_getserveridfrompartial,_wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial,swig_arginfo_otapi_wrap_wallet_getserveridfrompartial)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_getassetidfrompartial,_wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial,swig_arginfo_otapi_wrap_wallet_getassetidfrompartial)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_getaccountidfrompartial,_wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial,swig_arginfo_otapi_wrap_wallet_getaccountidfrompartial)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setnym_name,_wrap_OTAPI_Wrap_SetNym_Name,swig_arginfo_otapi_wrap_setnym_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setaccountwallet_name,_wrap_OTAPI_Wrap_SetAccountWallet_Name,swig_arginfo_otapi_wrap_setaccountwallet_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setassettype_name,_wrap_OTAPI_Wrap_SetAssetType_Name,swig_arginfo_otapi_wrap_setassettype_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_setserver_name,_wrap_OTAPI_Wrap_SetServer_Name,swig_arginfo_otapi_wrap_setserver_name)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_writecheque,_wrap_OTAPI_Wrap_WriteCheque,swig_arginfo_otapi_wrap_writecheque)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_discardcheque,_wrap_OTAPI_Wrap_DiscardCheque,swig_arginfo_otapi_wrap_discardcheque)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_proposepaymentplan,_wrap_OTAPI_Wrap_ProposePaymentPlan,swig_arginfo_otapi_wrap_proposepaymentplan)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_easyproposeplan,_wrap_OTAPI_Wrap_EasyProposePlan,swig_arginfo_otapi_wrap_easyproposeplan)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_confirmpaymentplan,_wrap_OTAPI_Wrap_ConfirmPaymentPlan,swig_arginfo_otapi_wrap_confirmpaymentplan)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_create_smartcontract,_wrap_OTAPI_Wrap_Create_SmartContract,swig_arginfo_otapi_wrap_create_smartcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addbylaw,_wrap_OTAPI_Wrap_SmartContract_AddBylaw,swig_arginfo_otapi_wrap_smartcontract_addbylaw)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addclause,_wrap_OTAPI_Wrap_SmartContract_AddClause,swig_arginfo_otapi_wrap_smartcontract_addclause)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addvariable,_wrap_OTAPI_Wrap_SmartContract_AddVariable,swig_arginfo_otapi_wrap_smartcontract_addvariable)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addcallback,_wrap_OTAPI_Wrap_SmartContract_AddCallback,swig_arginfo_otapi_wrap_smartcontract_addcallback)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addhook,_wrap_OTAPI_Wrap_SmartContract_AddHook,swig_arginfo_otapi_wrap_smartcontract_addhook)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addparty,_wrap_OTAPI_Wrap_SmartContract_AddParty,swig_arginfo_otapi_wrap_smartcontract_addparty)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_addaccount,_wrap_OTAPI_Wrap_SmartContract_AddAccount,swig_arginfo_otapi_wrap_smartcontract_addaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_countnumsneeded,_wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded,swig_arginfo_otapi_wrap_smartcontract_countnumsneeded)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_confirmaccount,_wrap_OTAPI_Wrap_SmartContract_ConfirmAccount,swig_arginfo_otapi_wrap_smartcontract_confirmaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smartcontract_confirmparty,_wrap_OTAPI_Wrap_SmartContract_ConfirmParty,swig_arginfo_otapi_wrap_smartcontract_confirmparty)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_areallpartiesconfirmed,_wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed,swig_arginfo_otapi_wrap_smart_areallpartiesconfirmed)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_getbylawcount,_wrap_OTAPI_Wrap_Smart_GetBylawCount,swig_arginfo_otapi_wrap_smart_getbylawcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_getbylawbyindex,_wrap_OTAPI_Wrap_Smart_GetBylawByIndex,swig_arginfo_otapi_wrap_smart_getbylawbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_bylaw_getlanguage,_wrap_OTAPI_Wrap_Bylaw_GetLanguage,swig_arginfo_otapi_wrap_bylaw_getlanguage)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_bylaw_getclausecount,_wrap_OTAPI_Wrap_Bylaw_GetClauseCount,swig_arginfo_otapi_wrap_bylaw_getclausecount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_clause_getnamebyindex,_wrap_OTAPI_Wrap_Clause_GetNameByIndex,swig_arginfo_otapi_wrap_clause_getnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_clause_getcontents,_wrap_OTAPI_Wrap_Clause_GetContents,swig_arginfo_otapi_wrap_clause_getcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_bylaw_getvariablecount,_wrap_OTAPI_Wrap_Bylaw_GetVariableCount,swig_arginfo_otapi_wrap_bylaw_getvariablecount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_variable_getnamebyindex,_wrap_OTAPI_Wrap_Variable_GetNameByIndex,swig_arginfo_otapi_wrap_variable_getnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_variable_gettype,_wrap_OTAPI_Wrap_Variable_GetType,swig_arginfo_otapi_wrap_variable_gettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_variable_getaccess,_wrap_OTAPI_Wrap_Variable_GetAccess,swig_arginfo_otapi_wrap_variable_getaccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_variable_getcontents,_wrap_OTAPI_Wrap_Variable_GetContents,swig_arginfo_otapi_wrap_variable_getcontents)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_bylaw_gethookcount,_wrap_OTAPI_Wrap_Bylaw_GetHookCount,swig_arginfo_otapi_wrap_bylaw_gethookcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_hook_getnamebyindex,_wrap_OTAPI_Wrap_Hook_GetNameByIndex,swig_arginfo_otapi_wrap_hook_getnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_hook_getclausecount,_wrap_OTAPI_Wrap_Hook_GetClauseCount,swig_arginfo_otapi_wrap_hook_getclausecount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_hook_getclauseatindex,_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex,swig_arginfo_otapi_wrap_hook_getclauseatindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_bylaw_getcallbackcount,_wrap_OTAPI_Wrap_Bylaw_GetCallbackCount,swig_arginfo_otapi_wrap_bylaw_getcallbackcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_callback_getnamebyindex,_wrap_OTAPI_Wrap_Callback_GetNameByIndex,swig_arginfo_otapi_wrap_callback_getnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_callback_getclause,_wrap_OTAPI_Wrap_Callback_GetClause,swig_arginfo_otapi_wrap_callback_getclause)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_getpartycount,_wrap_OTAPI_Wrap_Smart_GetPartyCount,swig_arginfo_otapi_wrap_smart_getpartycount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_getpartybyindex,_wrap_OTAPI_Wrap_Smart_GetPartyByIndex,swig_arginfo_otapi_wrap_smart_getpartybyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_smart_ispartyconfirmed,_wrap_OTAPI_Wrap_Smart_IsPartyConfirmed,swig_arginfo_otapi_wrap_smart_ispartyconfirmed)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getid,_wrap_OTAPI_Wrap_Party_GetID,swig_arginfo_otapi_wrap_party_getid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getacctcount,_wrap_OTAPI_Wrap_Party_GetAcctCount,swig_arginfo_otapi_wrap_party_getacctcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getacctnamebyindex,_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex,swig_arginfo_otapi_wrap_party_getacctnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getacctid,_wrap_OTAPI_Wrap_Party_GetAcctID,swig_arginfo_otapi_wrap_party_getacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getacctassetid,_wrap_OTAPI_Wrap_Party_GetAcctAssetID,swig_arginfo_otapi_wrap_party_getacctassetid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getacctagentname,_wrap_OTAPI_Wrap_Party_GetAcctAgentName,swig_arginfo_otapi_wrap_party_getacctagentname)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getagentcount,_wrap_OTAPI_Wrap_Party_GetAgentCount,swig_arginfo_otapi_wrap_party_getagentcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getagentnamebyindex,_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex,swig_arginfo_otapi_wrap_party_getagentnamebyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_party_getagentid,_wrap_OTAPI_Wrap_Party_GetAgentID,swig_arginfo_otapi_wrap_party_getagentid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_activatesmartcontract,_wrap_OTAPI_Wrap_activateSmartContract,swig_arginfo_otapi_wrap_activatesmartcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_triggerclause,_wrap_OTAPI_Wrap_triggerClause,swig_arginfo_otapi_wrap_triggerclause)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_msg_harvesttransactionnumbers,_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers,swig_arginfo_otapi_wrap_msg_harvesttransactionnumbers)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loaduserpubkey_encryption,_wrap_OTAPI_Wrap_LoadUserPubkey_Encryption,swig_arginfo_otapi_wrap_loaduserpubkey_encryption)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loaduserpubkey_signing,_wrap_OTAPI_Wrap_LoadUserPubkey_Signing,swig_arginfo_otapi_wrap_loaduserpubkey_signing)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadpubkey_encryption,_wrap_OTAPI_Wrap_LoadPubkey_Encryption,swig_arginfo_otapi_wrap_loadpubkey_encryption)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadpubkey_signing,_wrap_OTAPI_Wrap_LoadPubkey_Signing,swig_arginfo_otapi_wrap_loadpubkey_signing)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_verifyuserprivatekey,_wrap_OTAPI_Wrap_VerifyUserPrivateKey,swig_arginfo_otapi_wrap_verifyuserprivatekey)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadpurse,_wrap_OTAPI_Wrap_LoadPurse,swig_arginfo_otapi_wrap_loadpurse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadmint,_wrap_OTAPI_Wrap_LoadMint,swig_arginfo_otapi_wrap_loadmint)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadassetcontract,_wrap_OTAPI_Wrap_LoadAssetContract,swig_arginfo_otapi_wrap_loadassetcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadservercontract,_wrap_OTAPI_Wrap_LoadServerContract,swig_arginfo_otapi_wrap_loadservercontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_mint_isstillgood,_wrap_OTAPI_Wrap_Mint_IsStillGood,swig_arginfo_otapi_wrap_mint_isstillgood)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_isbasketcurrency,_wrap_OTAPI_Wrap_IsBasketCurrency,swig_arginfo_otapi_wrap_isbasketcurrency)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_basket_getmembercount,_wrap_OTAPI_Wrap_Basket_GetMemberCount,swig_arginfo_otapi_wrap_basket_getmembercount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_basket_getmembertype,_wrap_OTAPI_Wrap_Basket_GetMemberType,swig_arginfo_otapi_wrap_basket_getmembertype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_basket_getminimumtransferamount,_wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount,swig_arginfo_otapi_wrap_basket_getminimumtransferamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_basket_getmemberminimumtransferamount,_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount,swig_arginfo_otapi_wrap_basket_getmemberminimumtransferamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadassetaccount,_wrap_OTAPI_Wrap_LoadAssetAccount,swig_arginfo_otapi_wrap_loadassetaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadinbox,_wrap_OTAPI_Wrap_LoadInbox,swig_arginfo_otapi_wrap_loadinbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadoutbox,_wrap_OTAPI_Wrap_LoadOutbox,swig_arginfo_otapi_wrap_loadoutbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadinboxnoverify,_wrap_OTAPI_Wrap_LoadInboxNoVerify,swig_arginfo_otapi_wrap_loadinboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadoutboxnoverify,_wrap_OTAPI_Wrap_LoadOutboxNoVerify,swig_arginfo_otapi_wrap_loadoutboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadpaymentinbox,_wrap_OTAPI_Wrap_LoadPaymentInbox,swig_arginfo_otapi_wrap_loadpaymentinbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadpaymentinboxnoverify,_wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify,swig_arginfo_otapi_wrap_loadpaymentinboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadrecordbox,_wrap_OTAPI_Wrap_LoadRecordBox,swig_arginfo_otapi_wrap_loadrecordbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadrecordboxnoverify,_wrap_OTAPI_Wrap_LoadRecordBoxNoVerify,swig_arginfo_otapi_wrap_loadrecordboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_clearrecord,_wrap_OTAPI_Wrap_ClearRecord,swig_arginfo_otapi_wrap_clearrecord)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadexpiredbox,_wrap_OTAPI_Wrap_LoadExpiredBox,swig_arginfo_otapi_wrap_loadexpiredbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadexpiredboxnoverify,_wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify,swig_arginfo_otapi_wrap_loadexpiredboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_clearexpired,_wrap_OTAPI_Wrap_ClearExpired,swig_arginfo_otapi_wrap_clearexpired)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_getcount,_wrap_OTAPI_Wrap_Ledger_GetCount,swig_arginfo_otapi_wrap_ledger_getcount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_createresponse,_wrap_OTAPI_Wrap_Ledger_CreateResponse,swig_arginfo_otapi_wrap_ledger_createresponse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_gettransactionbyindex,_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex,swig_arginfo_otapi_wrap_ledger_gettransactionbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_gettransactionbyid,_wrap_OTAPI_Wrap_Ledger_GetTransactionByID,swig_arginfo_otapi_wrap_ledger_gettransactionbyid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_gettransactionidbyindex,_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex,swig_arginfo_otapi_wrap_ledger_gettransactionidbyindex)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_addtransaction,_wrap_OTAPI_Wrap_Ledger_AddTransaction,swig_arginfo_otapi_wrap_ledger_addtransaction)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_createresponse,_wrap_OTAPI_Wrap_Transaction_CreateResponse,swig_arginfo_otapi_wrap_transaction_createresponse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_finalizeresponse,_wrap_OTAPI_Wrap_Ledger_FinalizeResponse,swig_arginfo_otapi_wrap_ledger_finalizeresponse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_ledger_getinstrument,_wrap_OTAPI_Wrap_Ledger_GetInstrument,swig_arginfo_otapi_wrap_ledger_getinstrument)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_recordpayment,_wrap_OTAPI_Wrap_RecordPayment,swig_arginfo_otapi_wrap_recordpayment)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_gettype,_wrap_OTAPI_Wrap_Transaction_GetType,swig_arginfo_otapi_wrap_transaction_gettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_replynotice_getrequestnum,_wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum,swig_arginfo_otapi_wrap_replynotice_getrequestnum)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getvoucher,_wrap_OTAPI_Wrap_Transaction_GetVoucher,swig_arginfo_otapi_wrap_transaction_getvoucher)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getsuccess,_wrap_OTAPI_Wrap_Transaction_GetSuccess,swig_arginfo_otapi_wrap_transaction_getsuccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_iscanceled,_wrap_OTAPI_Wrap_Transaction_IsCanceled,swig_arginfo_otapi_wrap_transaction_iscanceled)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getbalanceagreementsuccess,_wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess,swig_arginfo_otapi_wrap_transaction_getbalanceagreementsuccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getdatesigned,_wrap_OTAPI_Wrap_Transaction_GetDateSigned,swig_arginfo_otapi_wrap_transaction_getdatesigned)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getamount,_wrap_OTAPI_Wrap_Transaction_GetAmount,swig_arginfo_otapi_wrap_transaction_getamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_pending_getnote,_wrap_OTAPI_Wrap_Pending_GetNote,swig_arginfo_otapi_wrap_pending_getnote)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getsenderuserid,_wrap_OTAPI_Wrap_Transaction_GetSenderUserID,swig_arginfo_otapi_wrap_transaction_getsenderuserid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getsenderacctid,_wrap_OTAPI_Wrap_Transaction_GetSenderAcctID,swig_arginfo_otapi_wrap_transaction_getsenderacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getrecipientuserid,_wrap_OTAPI_Wrap_Transaction_GetRecipientUserID,swig_arginfo_otapi_wrap_transaction_getrecipientuserid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getrecipientacctid,_wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID,swig_arginfo_otapi_wrap_transaction_getrecipientacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_transaction_getdisplayreferencetonum,_wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum,swig_arginfo_otapi_wrap_transaction_getdisplayreferencetonum)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_savepurse,_wrap_OTAPI_Wrap_SavePurse,swig_arginfo_otapi_wrap_savepurse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createpurse,_wrap_OTAPI_Wrap_CreatePurse,swig_arginfo_otapi_wrap_createpurse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createpurse_passphrase,_wrap_OTAPI_Wrap_CreatePurse_Passphrase,swig_arginfo_otapi_wrap_createpurse_passphrase)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_gettotalvalue,_wrap_OTAPI_Wrap_Purse_GetTotalValue,swig_arginfo_otapi_wrap_purse_gettotalvalue)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_count,_wrap_OTAPI_Wrap_Purse_Count,swig_arginfo_otapi_wrap_purse_count)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_haspassword,_wrap_OTAPI_Wrap_Purse_HasPassword,swig_arginfo_otapi_wrap_purse_haspassword)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_peek,_wrap_OTAPI_Wrap_Purse_Peek,swig_arginfo_otapi_wrap_purse_peek)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_pop,_wrap_OTAPI_Wrap_Purse_Pop,swig_arginfo_otapi_wrap_purse_pop)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_push,_wrap_OTAPI_Wrap_Purse_Push,swig_arginfo_otapi_wrap_purse_push)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_purse_empty,_wrap_OTAPI_Wrap_Purse_Empty,swig_arginfo_otapi_wrap_purse_empty)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_wallet_importpurse,_wrap_OTAPI_Wrap_Wallet_ImportPurse,swig_arginfo_otapi_wrap_wallet_importpurse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_exchangepurse,_wrap_OTAPI_Wrap_exchangePurse,swig_arginfo_otapi_wrap_exchangepurse)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_changeowner,_wrap_OTAPI_Wrap_Token_ChangeOwner,swig_arginfo_otapi_wrap_token_changeowner)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getid,_wrap_OTAPI_Wrap_Token_GetID,swig_arginfo_otapi_wrap_token_getid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getdenomination,_wrap_OTAPI_Wrap_Token_GetDenomination,swig_arginfo_otapi_wrap_token_getdenomination)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getseries,_wrap_OTAPI_Wrap_Token_GetSeries,swig_arginfo_otapi_wrap_token_getseries)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getvalidfrom,_wrap_OTAPI_Wrap_Token_GetValidFrom,swig_arginfo_otapi_wrap_token_getvalidfrom)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getvalidto,_wrap_OTAPI_Wrap_Token_GetValidTo,swig_arginfo_otapi_wrap_token_getvalidto)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getassetid,_wrap_OTAPI_Wrap_Token_GetAssetID,swig_arginfo_otapi_wrap_token_getassetid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_token_getserverid,_wrap_OTAPI_Wrap_Token_GetServerID,swig_arginfo_otapi_wrap_token_getserverid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getamount,_wrap_OTAPI_Wrap_Instrmnt_GetAmount,swig_arginfo_otapi_wrap_instrmnt_getamount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_gettransnum,_wrap_OTAPI_Wrap_Instrmnt_GetTransNum,swig_arginfo_otapi_wrap_instrmnt_gettransnum)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getvalidfrom,_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom,swig_arginfo_otapi_wrap_instrmnt_getvalidfrom)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getvalidto,_wrap_OTAPI_Wrap_Instrmnt_GetValidTo,swig_arginfo_otapi_wrap_instrmnt_getvalidto)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getmemo,_wrap_OTAPI_Wrap_Instrmnt_GetMemo,swig_arginfo_otapi_wrap_instrmnt_getmemo)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_gettype,_wrap_OTAPI_Wrap_Instrmnt_GetType,swig_arginfo_otapi_wrap_instrmnt_gettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getserverid,_wrap_OTAPI_Wrap_Instrmnt_GetServerID,swig_arginfo_otapi_wrap_instrmnt_getserverid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getassetid,_wrap_OTAPI_Wrap_Instrmnt_GetAssetID,swig_arginfo_otapi_wrap_instrmnt_getassetid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getsenderuserid,_wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID,swig_arginfo_otapi_wrap_instrmnt_getsenderuserid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getsenderacctid,_wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID,swig_arginfo_otapi_wrap_instrmnt_getsenderacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getremitteruserid,_wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID,swig_arginfo_otapi_wrap_instrmnt_getremitteruserid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getremitteracctid,_wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID,swig_arginfo_otapi_wrap_instrmnt_getremitteracctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getrecipientuserid,_wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID,swig_arginfo_otapi_wrap_instrmnt_getrecipientuserid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_instrmnt_getrecipientacctid,_wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID,swig_arginfo_otapi_wrap_instrmnt_getrecipientacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_checkserverid,_wrap_OTAPI_Wrap_checkServerID,swig_arginfo_otapi_wrap_checkserverid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createuseraccount,_wrap_OTAPI_Wrap_createUserAccount,swig_arginfo_otapi_wrap_createuseraccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_deleteuseraccount,_wrap_OTAPI_Wrap_deleteUserAccount,swig_arginfo_otapi_wrap_deleteuseraccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_deleteassetaccount,_wrap_OTAPI_Wrap_deleteAssetAccount,swig_arginfo_otapi_wrap_deleteassetaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_usagecredits,_wrap_OTAPI_Wrap_usageCredits,swig_arginfo_otapi_wrap_usagecredits)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getusagecredits,_wrap_OTAPI_Wrap_Message_GetUsageCredits,swig_arginfo_otapi_wrap_message_getusagecredits)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_checkuser,_wrap_OTAPI_Wrap_checkUser,swig_arginfo_otapi_wrap_checkuser)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_sendusermessage,_wrap_OTAPI_Wrap_sendUserMessage,swig_arginfo_otapi_wrap_sendusermessage)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_senduserinstrument,_wrap_OTAPI_Wrap_sendUserInstrument,swig_arginfo_otapi_wrap_senduserinstrument)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getrequest,_wrap_OTAPI_Wrap_getRequest,swig_arginfo_otapi_wrap_getrequest)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_gettransactionnumber,_wrap_OTAPI_Wrap_getTransactionNumber,swig_arginfo_otapi_wrap_gettransactionnumber)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_issueassettype,_wrap_OTAPI_Wrap_issueAssetType,swig_arginfo_otapi_wrap_issueassettype)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getcontract,_wrap_OTAPI_Wrap_getContract,swig_arginfo_otapi_wrap_getcontract)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmint,_wrap_OTAPI_Wrap_getMint,swig_arginfo_otapi_wrap_getmint)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_createassetaccount,_wrap_OTAPI_Wrap_createAssetAccount,swig_arginfo_otapi_wrap_createassetaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccount,_wrap_OTAPI_Wrap_getAccount,swig_arginfo_otapi_wrap_getaccount)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getaccountfiles,_wrap_OTAPI_Wrap_getAccountFiles,swig_arginfo_otapi_wrap_getaccountfiles)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_generatebasketcreation,_wrap_OTAPI_Wrap_GenerateBasketCreation,swig_arginfo_otapi_wrap_generatebasketcreation)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addbasketcreationitem,_wrap_OTAPI_Wrap_AddBasketCreationItem,swig_arginfo_otapi_wrap_addbasketcreationitem)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_issuebasket,_wrap_OTAPI_Wrap_issueBasket,swig_arginfo_otapi_wrap_issuebasket)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_generatebasketexchange,_wrap_OTAPI_Wrap_GenerateBasketExchange,swig_arginfo_otapi_wrap_generatebasketexchange)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_addbasketexchangeitem,_wrap_OTAPI_Wrap_AddBasketExchangeItem,swig_arginfo_otapi_wrap_addbasketexchangeitem)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_exchangebasket,_wrap_OTAPI_Wrap_exchangeBasket,swig_arginfo_otapi_wrap_exchangebasket)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_notarizewithdrawal,_wrap_OTAPI_Wrap_notarizeWithdrawal,swig_arginfo_otapi_wrap_notarizewithdrawal)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_notarizedeposit,_wrap_OTAPI_Wrap_notarizeDeposit,swig_arginfo_otapi_wrap_notarizedeposit)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_notarizetransfer,_wrap_OTAPI_Wrap_notarizeTransfer,swig_arginfo_otapi_wrap_notarizetransfer)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getinbox,_wrap_OTAPI_Wrap_getInbox,swig_arginfo_otapi_wrap_getinbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getoutbox,_wrap_OTAPI_Wrap_getOutbox,swig_arginfo_otapi_wrap_getoutbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnymbox,_wrap_OTAPI_Wrap_getNymbox,swig_arginfo_otapi_wrap_getnymbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadnymbox,_wrap_OTAPI_Wrap_LoadNymbox,swig_arginfo_otapi_wrap_loadnymbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_loadnymboxnoverify,_wrap_OTAPI_Wrap_LoadNymboxNoVerify,swig_arginfo_otapi_wrap_loadnymboxnoverify)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_nymbox_getreplynotice,_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice,swig_arginfo_otapi_wrap_nymbox_getreplynotice)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_havealreadyseenreply,_wrap_OTAPI_Wrap_HaveAlreadySeenReply,swig_arginfo_otapi_wrap_havealreadyseenreply)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getboxreceipt,_wrap_OTAPI_Wrap_getBoxReceipt,swig_arginfo_otapi_wrap_getboxreceipt)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_doesboxreceiptexist,_wrap_OTAPI_Wrap_DoesBoxReceiptExist,swig_arginfo_otapi_wrap_doesboxreceiptexist)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_processinbox,_wrap_OTAPI_Wrap_processInbox,swig_arginfo_otapi_wrap_processinbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_processnymbox,_wrap_OTAPI_Wrap_processNymbox,swig_arginfo_otapi_wrap_processnymbox)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_withdrawvoucher,_wrap_OTAPI_Wrap_withdrawVoucher,swig_arginfo_otapi_wrap_withdrawvoucher)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_paydividend,_wrap_OTAPI_Wrap_payDividend,swig_arginfo_otapi_wrap_paydividend)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_depositcheque,_wrap_OTAPI_Wrap_depositCheque,swig_arginfo_otapi_wrap_depositcheque)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_depositpaymentplan,_wrap_OTAPI_Wrap_depositPaymentPlan,swig_arginfo_otapi_wrap_depositpaymentplan)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_issuemarketoffer,_wrap_OTAPI_Wrap_issueMarketOffer,swig_arginfo_otapi_wrap_issuemarketoffer)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmarketlist,_wrap_OTAPI_Wrap_getMarketList,swig_arginfo_otapi_wrap_getmarketlist)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmarketoffers,_wrap_OTAPI_Wrap_getMarketOffers,swig_arginfo_otapi_wrap_getmarketoffers)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getmarketrecenttrades,_wrap_OTAPI_Wrap_getMarketRecentTrades,swig_arginfo_otapi_wrap_getmarketrecenttrades)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getnym_marketoffers,_wrap_OTAPI_Wrap_getNym_MarketOffers,swig_arginfo_otapi_wrap_getnym_marketoffers)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_killmarketoffer,_wrap_OTAPI_Wrap_killMarketOffer,swig_arginfo_otapi_wrap_killmarketoffer)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_killpaymentplan,_wrap_OTAPI_Wrap_killPaymentPlan,swig_arginfo_otapi_wrap_killpaymentplan)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_popmessagebuffer,_wrap_OTAPI_Wrap_PopMessageBuffer,swig_arginfo_otapi_wrap_popmessagebuffer)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_flushmessagebuffer,_wrap_OTAPI_Wrap_FlushMessageBuffer,swig_arginfo_otapi_wrap_flushmessagebuffer)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_getsentmessage,_wrap_OTAPI_Wrap_GetSentMessage,swig_arginfo_otapi_wrap_getsentmessage)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_removesentmessage,_wrap_OTAPI_Wrap_RemoveSentMessage,swig_arginfo_otapi_wrap_removesentmessage)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_flushsentmessages,_wrap_OTAPI_Wrap_FlushSentMessages,swig_arginfo_otapi_wrap_flushsentmessages)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_sleep,_wrap_OTAPI_Wrap_Sleep,swig_arginfo_otapi_wrap_sleep)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_resyncnymwithserver,_wrap_OTAPI_Wrap_ResyncNymWithServer,swig_arginfo_otapi_wrap_resyncnymwithserver)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getcommand,_wrap_OTAPI_Wrap_Message_GetCommand,swig_arginfo_otapi_wrap_message_getcommand)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getsuccess,_wrap_OTAPI_Wrap_Message_GetSuccess,swig_arginfo_otapi_wrap_message_getsuccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_queryassettypes,_wrap_OTAPI_Wrap_queryAssetTypes,swig_arginfo_otapi_wrap_queryassettypes)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getpayload,_wrap_OTAPI_Wrap_Message_GetPayload,swig_arginfo_otapi_wrap_message_getpayload)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getdepth,_wrap_OTAPI_Wrap_Message_GetDepth,swig_arginfo_otapi_wrap_message_getdepth)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_gettransactionsuccess,_wrap_OTAPI_Wrap_Message_GetTransactionSuccess,swig_arginfo_otapi_wrap_message_gettransactionsuccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_istransactioncanceled,_wrap_OTAPI_Wrap_Message_IsTransactionCanceled,swig_arginfo_otapi_wrap_message_istransactioncanceled)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getbalanceagreementsuccess,_wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess,swig_arginfo_otapi_wrap_message_getbalanceagreementsuccess)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getledger,_wrap_OTAPI_Wrap_Message_GetLedger,swig_arginfo_otapi_wrap_message_getledger)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnewassettypeid,_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID,swig_arginfo_otapi_wrap_message_getnewassettypeid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnewissueracctid,_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID,swig_arginfo_otapi_wrap_message_getnewissueracctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnewacctid,_wrap_OTAPI_Wrap_Message_GetNewAcctID,swig_arginfo_otapi_wrap_message_getnewacctid)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnymboxhash,_wrap_OTAPI_Wrap_Message_GetNymboxHash,swig_arginfo_otapi_wrap_message_getnymboxhash)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_connectserver,_wrap_OTAPI_Wrap_ConnectServer,swig_arginfo_otapi_wrap_connectserver)
+ SWIG_ZEND_NAMED_FE(otapi_wrap_processsockets,_wrap_OTAPI_Wrap_ProcessSockets,swig_arginfo_otapi_wrap_processsockets)
+ SWIG_ZEND_NAMED_FE(ot_cli_getargscount,_wrap_OT_CLI_GetArgsCount,swig_arginfo_ot_cli_getargscount)
+ SWIG_ZEND_NAMED_FE(ot_cli_getvaluebykey,_wrap_OT_CLI_GetValueByKey,swig_arginfo_ot_cli_getvaluebykey)
+ SWIG_ZEND_NAMED_FE(ot_cli_getvaluebyindex,_wrap_OT_CLI_GetValueByIndex,swig_arginfo_ot_cli_getvaluebyindex)
+ SWIG_ZEND_NAMED_FE(ot_cli_getkeybyindex,_wrap_OT_CLI_GetKeyByIndex,swig_arginfo_ot_cli_getkeybyindex)
+ SWIG_ZEND_NAMED_FE(ot_cli_readline,_wrap_OT_CLI_ReadLine,swig_arginfo_ot_cli_readline)
+ SWIG_ZEND_NAMED_FE(ot_cli_readuntileof,_wrap_OT_CLI_ReadUntilEOF,swig_arginfo_ot_cli_readuntileof)
+ SWIG_ZEND_NAMED_FE(new_ot_me,_wrap_new_OT_ME,swig_arginfo_new_ot_me)
+ SWIG_ZEND_NAMED_FE(ot_me_opentxs_main_loop,_wrap_OT_ME_opentxs_main_loop,swig_arginfo_ot_me_opentxs_main_loop)
+ SWIG_ZEND_NAMED_FE(ot_me_make_sure_enough_trans_nums,_wrap_OT_ME_make_sure_enough_trans_nums,swig_arginfo_ot_me_make_sure_enough_trans_nums)
+ SWIG_ZEND_NAMED_FE(ot_me_register_nym,_wrap_OT_ME_register_nym,swig_arginfo_ot_me_register_nym)
+ SWIG_ZEND_NAMED_FE(ot_me_check_user,_wrap_OT_ME_check_user,swig_arginfo_ot_me_check_user)
+ SWIG_ZEND_NAMED_FE(ot_me_create_pseudonym,_wrap_OT_ME_create_pseudonym,swig_arginfo_ot_me_create_pseudonym)
+ SWIG_ZEND_NAMED_FE(ot_me_issue_asset_type,_wrap_OT_ME_issue_asset_type,swig_arginfo_ot_me_issue_asset_type)
+ SWIG_ZEND_NAMED_FE(ot_me_issue_basket_currency,_wrap_OT_ME_issue_basket_currency,swig_arginfo_ot_me_issue_basket_currency)
+ SWIG_ZEND_NAMED_FE(ot_me_exchange_basket_currency,_wrap_OT_ME_exchange_basket_currency,swig_arginfo_ot_me_exchange_basket_currency)
+ SWIG_ZEND_NAMED_FE(ot_me_retrieve_contract,_wrap_OT_ME_retrieve_contract,swig_arginfo_ot_me_retrieve_contract)
+ SWIG_ZEND_NAMED_FE(ot_me_load_or_retrieve_contract,_wrap_OT_ME_load_or_retrieve_contract,swig_arginfo_ot_me_load_or_retrieve_contract)
+ SWIG_ZEND_NAMED_FE(ot_me_create_asset_acct,_wrap_OT_ME_create_asset_acct,swig_arginfo_ot_me_create_asset_acct)
+ SWIG_ZEND_NAMED_FE(ot_me_stat_asset_account,_wrap_OT_ME_stat_asset_account,swig_arginfo_ot_me_stat_asset_account)
+ SWIG_ZEND_NAMED_FE(ot_me_retrieve_account,_wrap_OT_ME_retrieve_account,swig_arginfo_ot_me_retrieve_account)
+ SWIG_ZEND_NAMED_FE(ot_me_retrieve_nym,_wrap_OT_ME_retrieve_nym,swig_arginfo_ot_me_retrieve_nym)
+ SWIG_ZEND_NAMED_FE(ot_me_send_transfer,_wrap_OT_ME_send_transfer,swig_arginfo_ot_me_send_transfer)
+ SWIG_ZEND_NAMED_FE(ot_me_process_inbox,_wrap_OT_ME_process_inbox,swig_arginfo_ot_me_process_inbox)
+ SWIG_ZEND_NAMED_FE(ot_me_accept_inbox_items,_wrap_OT_ME_accept_inbox_items,swig_arginfo_ot_me_accept_inbox_items)
+ SWIG_ZEND_NAMED_FE(ot_me_discard_incoming_payments,_wrap_OT_ME_discard_incoming_payments,swig_arginfo_ot_me_discard_incoming_payments)
+ SWIG_ZEND_NAMED_FE(ot_me_cancel_outgoing_payments,_wrap_OT_ME_cancel_outgoing_payments,swig_arginfo_ot_me_cancel_outgoing_payments)
+ SWIG_ZEND_NAMED_FE(ot_me_accept_from_paymentbox,_wrap_OT_ME_accept_from_paymentbox,swig_arginfo_ot_me_accept_from_paymentbox)
+ SWIG_ZEND_NAMED_FE(ot_me_load_public_encryption_key,_wrap_OT_ME_load_public_encryption_key,swig_arginfo_ot_me_load_public_encryption_key)
+ SWIG_ZEND_NAMED_FE(ot_me_load_public_signing_key,_wrap_OT_ME_load_public_signing_key,swig_arginfo_ot_me_load_public_signing_key)
+ SWIG_ZEND_NAMED_FE(ot_me_load_or_retrieve_encrypt_key,_wrap_OT_ME_load_or_retrieve_encrypt_key,swig_arginfo_ot_me_load_or_retrieve_encrypt_key)
+ SWIG_ZEND_NAMED_FE(ot_me_load_or_retrieve_signing_key,_wrap_OT_ME_load_or_retrieve_signing_key,swig_arginfo_ot_me_load_or_retrieve_signing_key)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_msg_pubkey,_wrap_OT_ME_send_user_msg_pubkey,swig_arginfo_ot_me_send_user_msg_pubkey)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_pmnt_pubkey,_wrap_OT_ME_send_user_pmnt_pubkey,swig_arginfo_ot_me_send_user_pmnt_pubkey)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_cash_pubkey,_wrap_OT_ME_send_user_cash_pubkey,swig_arginfo_ot_me_send_user_cash_pubkey)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_msg,_wrap_OT_ME_send_user_msg,swig_arginfo_ot_me_send_user_msg)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_payment,_wrap_OT_ME_send_user_payment,swig_arginfo_ot_me_send_user_payment)
+ SWIG_ZEND_NAMED_FE(ot_me_send_user_cash,_wrap_OT_ME_send_user_cash,swig_arginfo_ot_me_send_user_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_withdraw_and_send_cash,_wrap_OT_ME_withdraw_and_send_cash,swig_arginfo_ot_me_withdraw_and_send_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_get_payment_instrument,_wrap_OT_ME_get_payment_instrument,swig_arginfo_ot_me_get_payment_instrument)
+ SWIG_ZEND_NAMED_FE(ot_me_get_box_receipt,_wrap_OT_ME_get_box_receipt,swig_arginfo_ot_me_get_box_receipt)
+ SWIG_ZEND_NAMED_FE(ot_me_retrieve_mint,_wrap_OT_ME_retrieve_mint,swig_arginfo_ot_me_retrieve_mint)
+ SWIG_ZEND_NAMED_FE(ot_me_load_or_retrieve_mint,_wrap_OT_ME_load_or_retrieve_mint,swig_arginfo_ot_me_load_or_retrieve_mint)
+ SWIG_ZEND_NAMED_FE(ot_me_query_asset_types,_wrap_OT_ME_query_asset_types,swig_arginfo_ot_me_query_asset_types)
+ SWIG_ZEND_NAMED_FE(ot_me_create_market_offer,_wrap_OT_ME_create_market_offer,swig_arginfo_ot_me_create_market_offer)
+ SWIG_ZEND_NAMED_FE(ot_me_kill_market_offer,_wrap_OT_ME_kill_market_offer,swig_arginfo_ot_me_kill_market_offer)
+ SWIG_ZEND_NAMED_FE(ot_me_kill_payment_plan,_wrap_OT_ME_kill_payment_plan,swig_arginfo_ot_me_kill_payment_plan)
+ SWIG_ZEND_NAMED_FE(ot_me_cancel_payment_plan,_wrap_OT_ME_cancel_payment_plan,swig_arginfo_ot_me_cancel_payment_plan)
+ SWIG_ZEND_NAMED_FE(ot_me_activate_smart_contract,_wrap_OT_ME_activate_smart_contract,swig_arginfo_ot_me_activate_smart_contract)
+ SWIG_ZEND_NAMED_FE(ot_me_trigger_clause,_wrap_OT_ME_trigger_clause,swig_arginfo_ot_me_trigger_clause)
+ SWIG_ZEND_NAMED_FE(ot_me_withdraw_cash,_wrap_OT_ME_withdraw_cash,swig_arginfo_ot_me_withdraw_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_easy_withdraw_cash,_wrap_OT_ME_easy_withdraw_cash,swig_arginfo_ot_me_easy_withdraw_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_export_cash,_wrap_OT_ME_export_cash,swig_arginfo_ot_me_export_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_withdraw_voucher,_wrap_OT_ME_withdraw_voucher,swig_arginfo_ot_me_withdraw_voucher)
+ SWIG_ZEND_NAMED_FE(ot_me_pay_dividend,_wrap_OT_ME_pay_dividend,swig_arginfo_ot_me_pay_dividend)
+ SWIG_ZEND_NAMED_FE(ot_me_deposit_cheque,_wrap_OT_ME_deposit_cheque,swig_arginfo_ot_me_deposit_cheque)
+ SWIG_ZEND_NAMED_FE(ot_me_deposit_cash,_wrap_OT_ME_deposit_cash,swig_arginfo_ot_me_deposit_cash)
+ SWIG_ZEND_NAMED_FE(ot_me_deposit_local_purse,_wrap_OT_ME_deposit_local_purse,swig_arginfo_ot_me_deposit_local_purse)
+ SWIG_ZEND_NAMED_FE(ot_me_get_market_list,_wrap_OT_ME_get_market_list,swig_arginfo_ot_me_get_market_list)
+ SWIG_ZEND_NAMED_FE(ot_me_get_market_offers,_wrap_OT_ME_get_market_offers,swig_arginfo_ot_me_get_market_offers)
+ SWIG_ZEND_NAMED_FE(ot_me_get_nym_market_offers,_wrap_OT_ME_get_nym_market_offers,swig_arginfo_ot_me_get_nym_market_offers)
+ SWIG_ZEND_NAMED_FE(ot_me_get_market_recent_trades,_wrap_OT_ME_get_market_recent_trades,swig_arginfo_ot_me_get_market_recent_trades)
+ SWIG_ZEND_NAMED_FE(ot_me_adjust_usage_credits,_wrap_OT_ME_adjust_usage_credits,swig_arginfo_ot_me_adjust_usage_credits)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymessagesuccess,_wrap_OT_ME_VerifyMessageSuccess,swig_arginfo_ot_me_verifymessagesuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymsgbalanceagrmntsuccess,_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess,swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymsgtrnxsuccess,_wrap_OT_ME_VerifyMsgTrnxSuccess,swig_arginfo_ot_me_verifymsgtrnxsuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_interprettransactionmsgreply,_wrap_OT_ME_InterpretTransactionMsgReply,swig_arginfo_ot_me_interprettransactionmsgreply)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnstring,_wrap_OT_ME_ExecuteScript_ReturnString,swig_arginfo_ot_me_executescript_returnstring)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnbool,_wrap_OT_ME_ExecuteScript_ReturnBool,swig_arginfo_ot_me_executescript_returnbool)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnint,_wrap_OT_ME_ExecuteScript_ReturnInt,swig_arginfo_ot_me_executescript_returnint)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnvoid,_wrap_OT_ME_ExecuteScript_ReturnVoid,swig_arginfo_ot_me_executescript_returnvoid)
+ SWIG_ZEND_NAMED_FE(ot_me_addvariable,_wrap_OT_ME_AddVariable,swig_arginfo_ot_me_addvariable)
+ SWIG_ZEND_NAMED_FE(ot_me_findvariable,_wrap_OT_ME_FindVariable,swig_arginfo_ot_me_findvariable)
+ SWIG_ZEND_NAMED_FE(ot_me_findvariable2,_wrap_OT_ME_FindVariable2,swig_arginfo_ot_me_findvariable2)
  SWIG_ZEND_NAMED_FE(storable_create,_wrap_Storable_Create,swig_arginfo_storable_create)
  SWIG_ZEND_NAMED_FE(storable_ot_dynamic_cast,_wrap_Storable_ot_dynamic_cast,swig_arginfo_storable_ot_dynamic_cast)
  SWIG_ZEND_NAMED_FE(storage_getpacker,_wrap_Storage_GetPacker,swig_arginfo_storage_getpacker)
  SWIG_ZEND_NAMED_FE(storage_exists,_wrap_Storage_Exists,swig_arginfo_storage_exists)
+ SWIG_ZEND_NAMED_FE(storage_formpathstring,_wrap_Storage_FormPathString,swig_arginfo_storage_formpathstring)
  SWIG_ZEND_NAMED_FE(storage_storestring,_wrap_Storage_StoreString,swig_arginfo_storage_storestring)
  SWIG_ZEND_NAMED_FE(storage_querystring,_wrap_Storage_QueryString,swig_arginfo_storage_querystring)
  SWIG_ZEND_NAMED_FE(storage_storeplainstring,_wrap_Storage_StorePlainString,swig_arginfo_storage_storeplainstring)
@@ -39742,6 +43422,7 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(createobject,_wrap_CreateObject,swig_arginfo_createobject)
  SWIG_ZEND_NAMED_FE(checkstringsexistinorder,_wrap_CheckStringsExistInOrder,swig_arginfo_checkstringsexistinorder)
  SWIG_ZEND_NAMED_FE(exists,_wrap_Exists,swig_arginfo_exists)
+ SWIG_ZEND_NAMED_FE(formpathstring,_wrap_FormPathString,swig_arginfo_formpathstring)
  SWIG_ZEND_NAMED_FE(storestring,_wrap_StoreString,swig_arginfo_storestring)
  SWIG_ZEND_NAMED_FE(querystring,_wrap_QueryString,swig_arginfo_querystring)
  SWIG_ZEND_NAMED_FE(storeplainstring,_wrap_StorePlainString,swig_arginfo_storeplainstring)
@@ -40378,14 +44059,20 @@ ZEND_INIT_MODULE_GLOBALS(otapi, otapi_init_globals, otapi_destroy_globals);
 /* Register resource destructors for pointer types */
 le_swig__p_std__vectorT_unsigned_char_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_unsigned_char_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_unsigned_char_t->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_unsigned_char_t,&le_swig__p_std__vectorT_unsigned_char_t);
+le_swig__p_OTVariable=zend_register_list_destructors_ex(_wrap_destroy_p_OTVariable,NULL,(char *)(SWIGTYPE_p_OTVariable->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTVariable,&le_swig__p_OTVariable);
 le_swig__p_OTDB__Storage=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Storage,NULL,(char *)(SWIGTYPE_p_OTDB__Storage->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Storage,&le_swig__p_OTDB__Storage);
 le_swig__p_OTDB__BitcoinAcct=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BitcoinAcct,NULL,(char *)(SWIGTYPE_p_OTDB__BitcoinAcct->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__BitcoinAcct,&le_swig__p_OTDB__BitcoinAcct);
-le_swig__p_OTDB__BidData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BidData,NULL,(char *)(SWIGTYPE_p_OTDB__BidData->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTDB__BidData,&le_swig__p_OTDB__BidData);
+le_swig__p_OT_ME=zend_register_list_destructors_ex(_wrap_destroy_p_OT_ME,NULL,(char *)(SWIGTYPE_p_OT_ME->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OT_ME,&le_swig__p_OT_ME);
+le_swig__p_WrapTimeT=zend_register_list_destructors_ex(_wrap_destroy_p_WrapTimeT,NULL,(char *)(SWIGTYPE_p_WrapTimeT->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_WrapTimeT,&le_swig__p_WrapTimeT);
 le_swig__p_OTPassword=zend_register_list_destructors_ex(_wrap_destroy_p_OTPassword,NULL,(char *)(SWIGTYPE_p_OTPassword->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTPassword,&le_swig__p_OTPassword);
+le_swig__p_OTDB__BidData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BidData,NULL,(char *)(SWIGTYPE_p_OTDB__BidData->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTDB__BidData,&le_swig__p_OTDB__BidData);
 le_swig__p_OTDB__Blob=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Blob,NULL,(char *)(SWIGTYPE_p_OTDB__Blob->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Blob,&le_swig__p_OTDB__Blob);
 le_swig__p_OTDB__OfferListNym=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OfferListNym,NULL,(char *)(SWIGTYPE_p_OTDB__OfferListNym->name),module_number);
@@ -40396,72 +44083,94 @@ le_swig__p_OTDB__ContactAcct=zend_register_list_destructors_ex(_wrap_destroy_p_O
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__ContactAcct,&le_swig__p_OTDB__ContactAcct);
 le_swig__p_char=zend_register_list_destructors_ex(_wrap_destroy_p_char,NULL,(char *)(SWIGTYPE_p_char->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_char,&le_swig__p_char);
-le_swig__p_OTDB__TradeListMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__TradeListMarket,NULL,(char *)(SWIGTYPE_p_OTDB__TradeListMarket->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTDB__TradeListMarket,&le_swig__p_OTDB__TradeListMarket);
+le_swig__p_size_type=zend_register_list_destructors_ex(_wrap_destroy_p_size_type,NULL,(char *)(SWIGTYPE_p_size_type->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_size_type,&le_swig__p_size_type);
 le_swig__p_OTDB__OfferListMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OfferListMarket,NULL,(char *)(SWIGTYPE_p_OTDB__OfferListMarket->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__OfferListMarket,&le_swig__p_OTDB__OfferListMarket);
-le_swig__p_uint8_t=zend_register_list_destructors_ex(_wrap_destroy_p_uint8_t,NULL,(char *)(SWIGTYPE_p_uint8_t->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_uint8_t,&le_swig__p_uint8_t);
+le_swig__p_OTDB__TradeListMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__TradeListMarket,NULL,(char *)(SWIGTYPE_p_OTDB__TradeListMarket->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTDB__TradeListMarket,&le_swig__p_OTDB__TradeListMarket);
 le_swig__p_OTDB__WalletData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__WalletData,NULL,(char *)(SWIGTYPE_p_OTDB__WalletData->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__WalletData,&le_swig__p_OTDB__WalletData);
-le_swig__p_void=zend_register_list_destructors_ex(_wrap_destroy_p_void,NULL,(char *)(SWIGTYPE_p_void->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_void,&le_swig__p_void);
 le_swig__p_p_void=zend_register_list_destructors_ex(_wrap_destroy_p_p_void,NULL,(char *)(SWIGTYPE_p_p_void->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_p_void,&le_swig__p_p_void);
+le_swig__p_void=zend_register_list_destructors_ex(_wrap_destroy_p_void,NULL,(char *)(SWIGTYPE_p_void->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_void,&le_swig__p_void);
 le_swig__p_OTDB__StringMap=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__StringMap,NULL,(char *)(SWIGTYPE_p_OTDB__StringMap->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__StringMap,&le_swig__p_OTDB__StringMap);
 le_swig__int=zend_register_list_destructors_ex(_wrap_destroy_int,NULL,(char *)(SWIGTYPE_int->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_int,&le_swig__int);
+le_swig__p_mapped_type=zend_register_list_destructors_ex(_wrap_destroy_p_mapped_type,NULL,(char *)(SWIGTYPE_p_mapped_type->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_mapped_type,&le_swig__p_mapped_type);
 le_swig__p_OTDB__BitcoinServer=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BitcoinServer,NULL,(char *)(SWIGTYPE_p_OTDB__BitcoinServer->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__BitcoinServer,&le_swig__p_OTDB__BitcoinServer);
-le_swig__p_OTMadeEasy=zend_register_list_destructors_ex(_wrap_destroy_p_OTMadeEasy,NULL,(char *)(SWIGTYPE_p_OTMadeEasy->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTMadeEasy,&le_swig__p_OTMadeEasy);
 le_swig__p_OTDB__Displayable=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Displayable,NULL,(char *)(SWIGTYPE_p_OTDB__Displayable->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Displayable,&le_swig__p_OTDB__Displayable);
 le_swig__p_OTPacker=zend_register_list_destructors_ex(_wrap_destroy_p_OTPacker,NULL,(char *)(SWIGTYPE_p_OTPacker->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTPacker,&le_swig__p_OTPacker);
-le_swig__p_OTDB__AskData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__AskData,NULL,(char *)(SWIGTYPE_p_OTDB__AskData->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTDB__AskData,&le_swig__p_OTDB__AskData);
-le_swig__p_OTDB__OTDBString=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OTDBString,NULL,(char *)(SWIGTYPE_p_OTDB__OTDBString->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTDB__OTDBString,&le_swig__p_OTDB__OTDBString);
+le_swig__p_imaxdiv_t=zend_register_list_destructors_ex(_wrap_destroy_p_imaxdiv_t,NULL,(char *)(SWIGTYPE_p_imaxdiv_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_imaxdiv_t,&le_swig__p_imaxdiv_t);
 le_swig__p_std__string=zend_register_list_destructors_ex(_wrap_destroy_p_std__string,NULL,(char *)(SWIGTYPE_p_std__string->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_std__string,&le_swig__p_std__string);
-le_swig__p_OTDB__TradeDataMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__TradeDataMarket,NULL,(char *)(SWIGTYPE_p_OTDB__TradeDataMarket->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTDB__TradeDataMarket,&le_swig__p_OTDB__TradeDataMarket);
+le_swig__p_unsigned_int=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_int,NULL,(char *)(SWIGTYPE_p_unsigned_int->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_unsigned_int,&le_swig__p_unsigned_int);
+le_swig__p_OT_API=zend_register_list_destructors_ex(_wrap_destroy_p_OT_API,NULL,(char *)(SWIGTYPE_p_OT_API->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OT_API,&le_swig__p_OT_API);
+le_swig__p_OTDB__OTDBString=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OTDBString,NULL,(char *)(SWIGTYPE_p_OTDB__OTDBString->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTDB__OTDBString,&le_swig__p_OTDB__OTDBString);
+le_swig__p_OTDB__AskData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__AskData,NULL,(char *)(SWIGTYPE_p_OTDB__AskData->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTDB__AskData,&le_swig__p_OTDB__AskData);
 le_swig__p_OTDB__OfferDataMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OfferDataMarket,NULL,(char *)(SWIGTYPE_p_OTDB__OfferDataMarket->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__OfferDataMarket,&le_swig__p_OTDB__OfferDataMarket);
+le_swig__p_OTDB__TradeDataMarket=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__TradeDataMarket,NULL,(char *)(SWIGTYPE_p_OTDB__TradeDataMarket->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTDB__TradeDataMarket,&le_swig__p_OTDB__TradeDataMarket);
 le_swig__p_OTDB__Acct=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Acct,NULL,(char *)(SWIGTYPE_p_OTDB__Acct->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Acct,&le_swig__p_OTDB__Acct);
 le_swig__p_OTDB__ContactNym=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__ContactNym,NULL,(char *)(SWIGTYPE_p_OTDB__ContactNym->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__ContactNym,&le_swig__p_OTDB__ContactNym);
 le_swig__p_OTDB__ServerInfo=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__ServerInfo,NULL,(char *)(SWIGTYPE_p_OTDB__ServerInfo->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__ServerInfo,&le_swig__p_OTDB__ServerInfo);
+le_swig__p_OTAPI_Exec=zend_register_list_destructors_ex(_wrap_destroy_p_OTAPI_Exec,NULL,(char *)(SWIGTYPE_p_OTAPI_Exec->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTAPI_Exec,&le_swig__p_OTAPI_Exec);
 le_swig__p_OTDB__Contact=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Contact,NULL,(char *)(SWIGTYPE_p_OTDB__Contact->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Contact,&le_swig__p_OTDB__Contact);
 le_swig__p_OTCaller=zend_register_list_destructors_ex(_wrap_destroy_p_OTCaller,NULL,(char *)(SWIGTYPE_p_OTCaller->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTCaller,&le_swig__p_OTCaller);
+le_swig__p_signed_char=zend_register_list_destructors_ex(_wrap_destroy_p_signed_char,NULL,(char *)(SWIGTYPE_p_signed_char->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_signed_char,&le_swig__p_signed_char);
+le_swig__p_unsigned_char=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_char,NULL,(char *)(SWIGTYPE_p_unsigned_char->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_unsigned_char,&le_swig__p_unsigned_char);
 le_swig__p_OTDB__Server=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Server,NULL,(char *)(SWIGTYPE_p_OTDB__Server->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Server,&le_swig__p_OTDB__Server);
 le_swig__p_OTDB__RippleServer=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__RippleServer,NULL,(char *)(SWIGTYPE_p_OTDB__RippleServer->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__RippleServer,&le_swig__p_OTDB__RippleServer);
 le_swig__p_OTDB__LoomServer=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__LoomServer,NULL,(char *)(SWIGTYPE_p_OTDB__LoomServer->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__LoomServer,&le_swig__p_OTDB__LoomServer);
+le_swig__p_short=zend_register_list_destructors_ex(_wrap_destroy_p_short,NULL,(char *)(SWIGTYPE_p_short->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_short,&le_swig__p_short);
+le_swig__p_unsigned_short=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_short,NULL,(char *)(SWIGTYPE_p_unsigned_short->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_unsigned_short,&le_swig__p_unsigned_short);
+le_swig__p_key_type=zend_register_list_destructors_ex(_wrap_destroy_p_key_type,NULL,(char *)(SWIGTYPE_p_key_type->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_key_type,&le_swig__p_key_type);
 le_swig__p_OTDB__Storable=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Storable,NULL,(char *)(SWIGTYPE_p_OTDB__Storable->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Storable,&le_swig__p_OTDB__Storable);
 le_swig__p_OTDB__AddressBook=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__AddressBook,NULL,(char *)(SWIGTYPE_p_OTDB__AddressBook->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__AddressBook,&le_swig__p_OTDB__AddressBook);
 le_swig__p_OTCallback=zend_register_list_destructors_ex(_wrap_destroy_p_OTCallback,NULL,(char *)(SWIGTYPE_p_OTCallback->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTCallback,&le_swig__p_OTCallback);
-le_swig__p_OTAPI_Basic=zend_register_list_destructors_ex(_wrap_destroy_p_OTAPI_Basic,NULL,(char *)(SWIGTYPE_p_OTAPI_Basic->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTAPI_Basic,&le_swig__p_OTAPI_Basic);
-le_swig__p_uint32_t=zend_register_list_destructors_ex(_wrap_destroy_p_uint32_t,NULL,(char *)(SWIGTYPE_p_uint32_t->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_uint32_t,&le_swig__p_uint32_t);
-le_swig__p_int32_t=zend_register_list_destructors_ex(_wrap_destroy_p_int32_t,NULL,(char *)(SWIGTYPE_p_int32_t->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_int32_t,&le_swig__p_int32_t);
+le_swig__p_long_long=zend_register_list_destructors_ex(_wrap_destroy_p_long_long,NULL,(char *)(SWIGTYPE_p_long_long->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_long_long,&le_swig__p_long_long);
+le_swig__p_unsigned_long_long=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_long_long,NULL,(char *)(SWIGTYPE_p_unsigned_long_long->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_unsigned_long_long,&le_swig__p_unsigned_long_long);
+le_swig__p_difference_type=zend_register_list_destructors_ex(_wrap_destroy_p_difference_type,NULL,(char *)(SWIGTYPE_p_difference_type->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_difference_type,&le_swig__p_difference_type);
+le_swig__p_value_type=zend_register_list_destructors_ex(_wrap_destroy_p_value_type,NULL,(char *)(SWIGTYPE_p_value_type->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_value_type,&le_swig__p_value_type);
 le_swig__p_OTDB__OfferDataNym=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__OfferDataNym,NULL,(char *)(SWIGTYPE_p_OTDB__OfferDataNym->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__OfferDataNym,&le_swig__p_OTDB__OfferDataNym);
 le_swig__p_OTDB__TradeDataNym=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__TradeDataNym,NULL,(char *)(SWIGTYPE_p_OTDB__TradeDataNym->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__TradeDataNym,&le_swig__p_OTDB__TradeDataNym);
+le_swig__p_int=zend_register_list_destructors_ex(_wrap_destroy_p_int,NULL,(char *)(SWIGTYPE_p_int->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_int,&le_swig__p_int);
 le_swig__p_OTDB__MarketData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__MarketData,NULL,(char *)(SWIGTYPE_p_OTDB__MarketData->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__MarketData,&le_swig__p_OTDB__MarketData);
 le_swig__p_std__mapT_std__string_std__string_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__mapT_std__string_std__string_t,NULL,(char *)(SWIGTYPE_p_std__mapT_std__string_std__string_t->name),module_number);

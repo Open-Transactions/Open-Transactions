@@ -8,50 +8,57 @@
 
 namespace OpenTransactions.OTAPI {
 
-public class Blob : Storable {
+public class imaxdiv_t : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal Blob(global::System.IntPtr cPtr, bool cMemoryOwn) : base(otapiPINVOKE.Blob_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal imaxdiv_t(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Blob obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(imaxdiv_t obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~Blob() {
+  ~imaxdiv_t() {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          otapiPINVOKE.delete_Blob(swigCPtr);
+          otapiPINVOKE.delete_imaxdiv_t(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
-  public VectorUnsignedChar m_memBuffer {
+  public long quot {
     set {
-      otapiPINVOKE.Blob_m_memBuffer_set(swigCPtr, VectorUnsignedChar.getCPtr(value));
+      otapiPINVOKE.imaxdiv_t_quot_set(swigCPtr, value);
     } 
     get {
-      global::System.IntPtr cPtr = otapiPINVOKE.Blob_m_memBuffer_get(swigCPtr);
-      VectorUnsignedChar ret = (cPtr == global::System.IntPtr.Zero) ? null : new VectorUnsignedChar(cPtr, false);
+      long ret = otapiPINVOKE.imaxdiv_t_quot_get(swigCPtr);
       return ret;
     } 
   }
 
-  public new static Blob ot_dynamic_cast(Storable pObject) {
-    global::System.IntPtr cPtr = otapiPINVOKE.Blob_ot_dynamic_cast(Storable.getCPtr(pObject));
-    Blob ret = (cPtr == global::System.IntPtr.Zero) ? null : new Blob(cPtr, false);
-    return ret;
+  public long rem {
+    set {
+      otapiPINVOKE.imaxdiv_t_rem_set(swigCPtr, value);
+    } 
+    get {
+      long ret = otapiPINVOKE.imaxdiv_t_rem_get(swigCPtr);
+      return ret;
+    } 
+  }
+
+  public imaxdiv_t() : this(otapiPINVOKE.new_imaxdiv_t(), true) {
   }
 
 }

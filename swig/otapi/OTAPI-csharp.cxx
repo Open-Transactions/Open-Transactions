@@ -280,6 +280,19 @@ SWIGEXPORT void SWIGSTDCALL SWIGRegisterStringCallback_otapi(SWIG_CSharpStringHe
 
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, msg, ""); return nullreturn; } else
 
+
+/* Callback for returning strings to C# without leaking memory */
+typedef void * (SWIGSTDCALL* SWIG_CSharpWStringHelperCallback)(const wchar_t *);
+static SWIG_CSharpWStringHelperCallback SWIG_csharp_wstring_callback = NULL;
+
+
+#ifdef __cplusplus
+extern "C"
+#endif
+SWIGEXPORT void SWIGSTDCALL SWIGRegisterWStringCallback_otapi(SWIG_CSharpWStringHelperCallback callback) {
+  SWIG_csharp_wstring_callback = callback;
+}
+
 /* -----------------------------------------------------------------------------
  * director.swg
  *
@@ -327,8 +340,26 @@ namespace Swig {
 }
 
 
+#include <inttypes.h>
+
+
+#include <stdint.h>		// Use the C99 official header
+
+
 #include <string>
+
+
+#include <stdexcept>
+
+
+#include <vector>
+#include <algorithm>
+#include <stdexcept>
+
+
 #include <map>
+#include <algorithm>
+#include <stdexcept>
 
 
 
@@ -336,16 +367,172 @@ namespace Swig {
 #define IMPORT
 #endif
 
+#include <string>
+#include <vector>
+#include <map>
+
 #include "../../include/otlib/OTPassword.hpp"
-#include "../../include/otapi/OTAPI_Basic.hpp"
-#include "../../include/otapi/OTMadeEasy.hpp"
+#include "../../include/otapi/OTAPI.hpp"
+#include "../../include/otapi/OT_ME.hpp"
 #include "../../include/otlib/OTStorage.hpp"
 #include "../../include/otlib/OTAsymmetricKey.hpp"
 
 
-
-#include <string>
-
+SWIGINTERN std::vector< unsigned char > *new_std_vector_Sl_unsigned_SS_char_Sg___SWIG_2(int capacity){
+        std::vector< unsigned char >* pv = 0;
+        if (capacity >= 0) {
+          pv = new std::vector< unsigned char >();
+          pv->reserve(capacity);
+       } else {
+          throw std::out_of_range("capacity");
+       }
+       return pv;
+      }
+SWIGINTERN unsigned char std_vector_Sl_unsigned_SS_char_Sg__getitemcopy(std::vector< unsigned char > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN unsigned char const &std_vector_Sl_unsigned_SS_char_Sg__getitem(std::vector< unsigned char > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          return (*self)[index];
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__setitem(std::vector< unsigned char > *self,int index,unsigned char const &val){
+        if (index>=0 && index<(int)self->size())
+          (*self)[index] = val;
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__AddRange(std::vector< unsigned char > *self,std::vector< unsigned char > const &values){
+        self->insert(self->end(), values.begin(), values.end());
+      }
+SWIGINTERN std::vector< unsigned char > *std_vector_Sl_unsigned_SS_char_Sg__GetRange(std::vector< unsigned char > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        return new std::vector< unsigned char >(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__Insert(std::vector< unsigned char > *self,int index,unsigned char const &x){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, x);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__InsertRange(std::vector< unsigned char > *self,int index,std::vector< unsigned char > const &values){
+        if (index>=0 && index<(int)self->size()+1)
+          self->insert(self->begin()+index, values.begin(), values.end());
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__RemoveAt(std::vector< unsigned char > *self,int index){
+        if (index>=0 && index<(int)self->size())
+          self->erase(self->begin() + index);
+        else
+          throw std::out_of_range("index");
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__RemoveRange(std::vector< unsigned char > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        self->erase(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN std::vector< unsigned char > *std_vector_Sl_unsigned_SS_char_Sg__Repeat(unsigned char const &value,int count){
+        if (count < 0)
+          throw std::out_of_range("count");
+        return new std::vector< unsigned char >(count, value);
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__Reverse__SWIG_0(std::vector< unsigned char > *self){
+        std::reverse(self->begin(), self->end());
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__Reverse__SWIG_1(std::vector< unsigned char > *self,int index,int count){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (count < 0)
+          throw std::out_of_range("count");
+        if (index >= (int)self->size()+1 || index+count > (int)self->size())
+          throw std::invalid_argument("invalid range");
+        std::reverse(self->begin()+index, self->begin()+index+count);
+      }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__SetRange(std::vector< unsigned char > *self,int index,std::vector< unsigned char > const &values){
+        if (index < 0)
+          throw std::out_of_range("index");
+        if (index+values.size() > self->size())
+          throw std::out_of_range("index");
+        std::copy(values.begin(), values.end(), self->begin()+index);
+      }
+SWIGINTERN bool std_vector_Sl_unsigned_SS_char_Sg__Contains(std::vector< unsigned char > *self,unsigned char const &value){
+        return std::find(self->begin(), self->end(), value) != self->end();
+      }
+SWIGINTERN int std_vector_Sl_unsigned_SS_char_Sg__IndexOf(std::vector< unsigned char > *self,unsigned char const &value){
+        int index = -1;
+        std::vector< unsigned char >::iterator it = std::find(self->begin(), self->end(), value);
+        if (it != self->end())
+          index = (int)(it - self->begin());
+        return index;
+      }
+SWIGINTERN int std_vector_Sl_unsigned_SS_char_Sg__LastIndexOf(std::vector< unsigned char > *self,unsigned char const &value){
+        int index = -1;
+        std::vector< unsigned char >::reverse_iterator rit = std::find(self->rbegin(), self->rend(), value);
+        if (rit != self->rend())
+          index = (int)(self->rend() - 1 - rit);
+        return index;
+      }
+SWIGINTERN bool std_vector_Sl_unsigned_SS_char_Sg__Remove(std::vector< unsigned char > *self,unsigned char const &value){
+        std::vector< unsigned char >::iterator it = std::find(self->begin(), self->end(), value);
+        if (it != self->end()) {
+          self->erase(it);
+	  return true;
+        }
+        return false;
+      }
+SWIGINTERN std::map< std::string,std::string >::mapped_type const &std_map_Sl_std_string_Sc_std_string_Sg__getitem(std::map< std::string,std::string > *self,std::map< std::string,std::string >::key_type const &key){
+        std::map< std::string, std::string, std::less< std::string > >::iterator iter = self->find(key);
+        if (iter != self->end())
+          return iter->second;
+        else
+          throw std::out_of_range("key not found");
+      }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__setitem(std::map< std::string,std::string > *self,std::map< std::string,std::string >::key_type const &key,std::map< std::string,std::string >::mapped_type const &x){
+        (*self)[key] = x;
+      }
+SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__ContainsKey(std::map< std::string,std::string > *self,std::map< std::string,std::string >::key_type const &key){
+        std::map< std::string, std::string, std::less< std::string > >::iterator iter = self->find(key);
+        return iter != self->end();
+      }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__Add(std::map< std::string,std::string > *self,std::map< std::string,std::string >::key_type const &key,std::map< std::string,std::string >::mapped_type const &val){
+        std::map< std::string, std::string, std::less< std::string > >::iterator iter = self->find(key);
+        if (iter != self->end())
+          throw std::out_of_range("key already exists");
+        self->insert(std::pair< std::string, std::string >(key, val));
+      }
+SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__Remove(std::map< std::string,std::string > *self,std::map< std::string,std::string >::key_type const &key){
+        std::map< std::string, std::string, std::less< std::string > >::iterator iter = self->find(key);
+        if (iter != self->end()) {
+          self->erase(iter);
+          return true;
+        }                
+        return false;
+      }
+SWIGINTERN std::map< std::string,std::string,std::less< std::string > >::iterator *std_map_Sl_std_string_Sc_std_string_Sg__create_iterator_begin(std::map< std::string,std::string > *self){
+        return new std::map< std::string, std::string, std::less< std::string > >::iterator(self->begin());
+      }
+SWIGINTERN std::map< std::string,std::string >::key_type const &std_map_Sl_std_string_Sc_std_string_Sg__get_next_key(std::map< std::string,std::string > *self,std::map< std::string,std::string,std::less< std::string > >::iterator *swigiterator){
+        std::map< std::string, std::string, std::less< std::string > >::iterator iter = *swigiterator;
+        (*swigiterator)++;
+        return (*iter).first;
+      }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__destroy_iterator(std::map< std::string,std::string > *self,std::map< std::string,std::string,std::less< std::string > >::iterator *swigiterator){
+        delete swigiterator;
+      }
 
 	using namespace OTDB;
 	
@@ -408,6 +595,747 @@ void SwigDirector_OTCallback::swig_init_callbacks() {
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+SWIGEXPORT void SWIGSTDCALL CSharp_imaxdiv_t_quot_set(void * jarg1, long long jarg2) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  
+  arg1 = (imaxdiv_t *)jarg1; 
+  arg2 = (long long)jarg2; 
+  if (arg1) (arg1)->quot = arg2;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_imaxdiv_t_quot_get(void * jarg1) {
+  long long jresult ;
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long result;
+  
+  arg1 = (imaxdiv_t *)jarg1; 
+  result = (long long) ((arg1)->quot);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_imaxdiv_t_rem_set(void * jarg1, long long jarg2) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  
+  arg1 = (imaxdiv_t *)jarg1; 
+  arg2 = (long long)jarg2; 
+  if (arg1) (arg1)->rem = arg2;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_imaxdiv_t_rem_get(void * jarg1) {
+  long long jresult ;
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long result;
+  
+  arg1 = (imaxdiv_t *)jarg1; 
+  result = (long long) ((arg1)->rem);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_imaxdiv_t() {
+  void * jresult ;
+  imaxdiv_t *result = 0 ;
+  
+  result = (imaxdiv_t *)new imaxdiv_t();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_imaxdiv_t(void * jarg1) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  
+  arg1 = (imaxdiv_t *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_imaxabs(long long jarg1) {
+  long long jresult ;
+  intmax_t arg1 ;
+  intmax_t result;
+  
+  arg1 = (intmax_t)jarg1; 
+  result = (intmax_t)imaxabs(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_imaxdiv(long long jarg1, long long jarg2) {
+  void * jresult ;
+  intmax_t arg1 ;
+  intmax_t arg2 ;
+  imaxdiv_t result;
+  
+  arg1 = (intmax_t)jarg1; 
+  arg2 = (intmax_t)jarg2; 
+  result = imaxdiv(arg1,arg2);
+  jresult = new imaxdiv_t((const imaxdiv_t &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_Clear(void * jarg1) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_Add(void * jarg1, unsigned char jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  unsigned char *arg2 = 0 ;
+  unsigned char temp2 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  temp2 = (unsigned char)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->push_back((unsigned char const &)*arg2);
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_VectorUnsignedChar_size(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  result = ((std::vector< unsigned char > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_VectorUnsignedChar_capacity(void * jarg1) {
+  unsigned long jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  result = ((std::vector< unsigned char > const *)arg1)->capacity();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_reserve(void * jarg1, unsigned long jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type arg2 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (std::vector< unsigned char >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_VectorUnsignedChar__SWIG_0() {
+  void * jresult ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_VectorUnsignedChar__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::vector< unsigned char > *arg1 = 0 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< unsigned char > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >((std::vector< unsigned char > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_VectorUnsignedChar__SWIG_2(int jarg1) {
+  void * jresult ;
+  int arg1 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  arg1 = (int)jarg1; 
+  try {
+    result = (std::vector< unsigned char > *)new_std_vector_Sl_unsigned_SS_char_Sg___SWIG_2(arg1);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned char SWIGSTDCALL CSharp_VectorUnsignedChar_getitemcopy(void * jarg1, int jarg2) {
+  unsigned char jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  unsigned char result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (unsigned char)std_vector_Sl_unsigned_SS_char_Sg__getitemcopy(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned char SWIGSTDCALL CSharp_VectorUnsignedChar_getitem(void * jarg1, int jarg2) {
+  unsigned char jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  unsigned char *result = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (unsigned char *) &std_vector_Sl_unsigned_SS_char_Sg__getitem(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = *result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_setitem(void * jarg1, int jarg2, unsigned char jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  unsigned char *arg3 = 0 ;
+  unsigned char temp3 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (unsigned char)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__setitem(arg1,arg2,(unsigned char const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_AddRange(void * jarg1, void * jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char > *arg2 = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (std::vector< unsigned char > *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< unsigned char > const & type is null", 0);
+    return ;
+  } 
+  std_vector_Sl_unsigned_SS_char_Sg__AddRange(arg1,(std::vector< unsigned char > const &)*arg2);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_VectorUnsignedChar_GetRange(void * jarg1, int jarg2, int jarg3) {
+  void * jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    result = (std::vector< unsigned char > *)std_vector_Sl_unsigned_SS_char_Sg__GetRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_Insert(void * jarg1, int jarg2, unsigned char jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  unsigned char *arg3 = 0 ;
+  unsigned char temp3 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (unsigned char)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__Insert(arg1,arg2,(unsigned char const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  std::vector< unsigned char > *arg3 = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< unsigned char > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< unsigned char > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__InsertRange(arg1,arg2,(std::vector< unsigned char > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_RemoveAt(void * jarg1, int jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__RemoveAt(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__RemoveRange(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_VectorUnsignedChar_Repeat(unsigned char jarg1, int jarg2) {
+  void * jresult ;
+  unsigned char *arg1 = 0 ;
+  int arg2 ;
+  unsigned char temp1 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  temp1 = (unsigned char)jarg1; 
+  arg1 = &temp1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< unsigned char > *)std_vector_Sl_unsigned_SS_char_Sg__Repeat((unsigned char const &)*arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_Reverse__SWIG_0(void * jarg1) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  std_vector_Sl_unsigned_SS_char_Sg__Reverse__SWIG_0(arg1);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__Reverse__SWIG_1(arg1,arg2,arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  catch(std::invalid_argument &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentException, (&_e)->what(), "");
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_VectorUnsignedChar_SetRange(void * jarg1, int jarg2, void * jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  std::vector< unsigned char > *arg3 = 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (std::vector< unsigned char > *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::vector< unsigned char > const & type is null", 0);
+    return ;
+  } 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__SetRange(arg1,arg2,(std::vector< unsigned char > const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_VectorUnsignedChar_Contains(void * jarg1, unsigned char jarg2) {
+  unsigned int jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  unsigned char *arg2 = 0 ;
+  unsigned char temp2 ;
+  bool result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  temp2 = (unsigned char)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)std_vector_Sl_unsigned_SS_char_Sg__Contains(arg1,(unsigned char const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_VectorUnsignedChar_IndexOf(void * jarg1, unsigned char jarg2) {
+  int jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  unsigned char *arg2 = 0 ;
+  unsigned char temp2 ;
+  int result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  temp2 = (unsigned char)jarg2; 
+  arg2 = &temp2; 
+  result = (int)std_vector_Sl_unsigned_SS_char_Sg__IndexOf(arg1,(unsigned char const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_VectorUnsignedChar_LastIndexOf(void * jarg1, unsigned char jarg2) {
+  int jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  unsigned char *arg2 = 0 ;
+  unsigned char temp2 ;
+  int result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  temp2 = (unsigned char)jarg2; 
+  arg2 = &temp2; 
+  result = (int)std_vector_Sl_unsigned_SS_char_Sg__LastIndexOf(arg1,(unsigned char const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_VectorUnsignedChar_Remove(void * jarg1, unsigned char jarg2) {
+  unsigned int jresult ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  unsigned char *arg2 = 0 ;
+  unsigned char temp2 ;
+  bool result;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  temp2 = (unsigned char)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)std_vector_Sl_unsigned_SS_char_Sg__Remove(arg1,(unsigned char const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_VectorUnsignedChar(void * jarg1) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  arg1 = (std::vector< unsigned char > *)jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MapStringString__SWIG_0() {
+  void * jresult ;
+  std::map< std::string,std::string > *result = 0 ;
+  
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_MapStringString__SWIG_1(void * jarg1) {
+  void * jresult ;
+  std::map< std::string,std::string,std::less< std::string > > *arg1 = 0 ;
+  std::map< std::string,std::string > *result = 0 ;
+  
+  arg1 = (std::map< std::string,std::string,std::less< std::string > > *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::map< std::string,std::string,std::less< std::string > > const & type is null", 0);
+    return 0;
+  } 
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >((std::map< std::string,std::string,std::less< std::string > > const &)*arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_MapStringString_size(void * jarg1) {
+  unsigned long jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::size_type result;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  result = ((std::map< std::string,std::string > const *)arg1)->size();
+  jresult = (unsigned long)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_MapStringString_empty(void * jarg1) {
+  unsigned int jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  bool result;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  result = (bool)((std::map< std::string,std::string > const *)arg1)->empty();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MapStringString_Clear(void * jarg1) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_MapStringString_getitem(void * jarg1, char * jarg2) {
+  char * jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::key_type *arg2 = 0 ;
+  std::map< std::string,std::string >::mapped_type *result = 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::map< std::string,std::string >::key_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  try {
+    result = (std::map< std::string,std::string >::mapped_type *) &std_map_Sl_std_string_Sc_std_string_Sg__getitem(arg1,(std::string const &)*arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MapStringString_setitem(void * jarg1, char * jarg2, char * jarg3) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::key_type *arg2 = 0 ;
+  std::map< std::string,std::string >::mapped_type *arg3 = 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::map< std::string,std::string >::key_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::map< std::string,std::string >::mapped_type arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  std_map_Sl_std_string_Sc_std_string_Sg__setitem(arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_MapStringString_ContainsKey(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::key_type *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::map< std::string,std::string >::key_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)std_map_Sl_std_string_Sc_std_string_Sg__ContainsKey(arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MapStringString_Add(void * jarg1, char * jarg2, char * jarg3) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::key_type *arg2 = 0 ;
+  std::map< std::string,std::string >::mapped_type *arg3 = 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::map< std::string,std::string >::key_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::map< std::string,std::string >::mapped_type arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  try {
+    std_map_Sl_std_string_Sc_std_string_Sg__Add(arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException, 0, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_MapStringString_Remove(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string >::key_type *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::map< std::string,std::string >::key_type arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)std_map_Sl_std_string_Sc_std_string_Sg__Remove(arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_MapStringString_create_iterator_begin(void * jarg1) {
+  void * jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string,std::less< std::string > >::iterator *result = 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  result = (std::map< std::string,std::string,std::less< std::string > >::iterator *)std_map_Sl_std_string_Sc_std_string_Sg__create_iterator_begin(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_MapStringString_get_next_key(void * jarg1, void * jarg2) {
+  char * jresult ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string,std::less< std::string > >::iterator *arg2 = (std::map< std::string,std::string,std::less< std::string > >::iterator *) 0 ;
+  std::map< std::string,std::string >::key_type *result = 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  arg2 = (std::map< std::string,std::string,std::less< std::string > >::iterator *)jarg2; 
+  result = (std::map< std::string,std::string >::key_type *) &std_map_Sl_std_string_Sc_std_string_Sg__get_next_key(arg1,arg2);
+  jresult = SWIG_csharp_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_MapStringString_destroy_iterator(void * jarg1, void * jarg2) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string,std::less< std::string > >::iterator *arg2 = (std::map< std::string,std::string,std::less< std::string > >::iterator *) 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  arg2 = (std::map< std::string,std::string,std::less< std::string > >::iterator *)jarg2; 
+  std_map_Sl_std_string_Sc_std_string_Sg__destroy_iterator(arg1,arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_MapStringString(void * jarg1) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  
+  arg1 = (std::map< std::string,std::string > *)jarg1; 
+  delete arg1;
+}
+
 
 SWIGEXPORT char * SWIGSTDCALL CSharp_OT_PW_DISPLAY_get() {
   char * jresult ;
@@ -555,126 +1483,96 @@ SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_setPassword(void * jarg1, char * ja
   int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
-  int result;
+  int32_t arg3 ;
+  int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
   arg2 = (char *)jarg2; 
-  arg3 = (int)jarg3; 
-  result = (int)(arg1)->setPassword((char const *)arg2,arg3);
+  arg3 = (int32_t)jarg3; 
+  result = (int32_t)(arg1)->setPassword((char const *)arg2,arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_setPassword_uint8(void * jarg1, void * jarg2, void * jarg3) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_setPassword_uint8(void * jarg1, void * jarg2, unsigned int jarg3) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t *arg2 = (uint8_t *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
   arg2 = (uint8_t *)jarg2; 
-  argp3 = (uint32_t *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
-  jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_addChar(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_addChar(void * jarg1, unsigned char jarg2) {
   unsigned int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t arg2 ;
-  uint8_t *argp2 ;
   bool result;
   
   arg1 = (OTPassword *)jarg1; 
-  argp2 = (uint8_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint8_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint8_t)jarg2; 
   result = (bool)(arg1)->addChar(arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_0(void * jarg1, void * jarg2) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_0(void * jarg1, unsigned int jarg2) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = (arg1)->randomizePassword(arg2);
-  jresult = new int32_t((const int32_t &)result); 
+  arg2 = (uint32_t)jarg2; 
+  result = (int32_t)(arg1)->randomizePassword(arg2);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_1(void * jarg1) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_1(void * jarg1) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  result = (arg1)->randomizePassword();
-  jresult = new int32_t((const int32_t &)result); 
+  result = (int32_t)(arg1)->randomizePassword();
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizePassword_uint8(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizePassword_uint8(void * jarg1, unsigned int jarg2) {
   unsigned int jresult ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   arg1 = (uint8_t *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizePassword_uint8(arg1,arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_2(char * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizePassword__SWIG_2(char * jarg1, unsigned int jarg2) {
   unsigned int jresult ;
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   arg1 = (char *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizePassword(arg1,arg2);
   jresult = result; 
   return jresult;
@@ -729,130 +1627,100 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_getMemoryWritable(void * jarg1) 
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_setMemory(void * jarg1, void * jarg2, void * jarg3) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_setMemory(void * jarg1, void * jarg2, unsigned int jarg3) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
   arg2 = (void *)jarg2; 
-  argp3 = (uint32_t *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->setMemory((void const *)arg2,arg3);
-  jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->setMemory((void const *)arg2,arg3);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_addMemory(void * jarg1, void * jarg2, void * jarg3) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_addMemory(void * jarg1, void * jarg2, unsigned int jarg3) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
   arg2 = (void *)jarg2; 
-  argp3 = (uint32_t *)jarg3; 
-  if (!argp3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->addMemory((void const *)arg2,arg3);
-  jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->addMemory((void const *)arg2,arg3);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_0(void * jarg1, void * jarg2) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_0(void * jarg1, unsigned int jarg2) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = (arg1)->randomizeMemory(arg2);
-  jresult = new int32_t((const int32_t &)result); 
+  arg2 = (uint32_t)jarg2; 
+  result = (int32_t)(arg1)->randomizeMemory(arg2);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_1(void * jarg1) {
-  void * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_1(void * jarg1) {
+  int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   int32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  result = (arg1)->randomizeMemory();
-  jresult = new int32_t((const int32_t &)result); 
+  result = (int32_t)(arg1)->randomizeMemory();
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizeMemory_uint8(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizeMemory_uint8(void * jarg1, unsigned int jarg2) {
   unsigned int jresult ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   arg1 = (uint8_t *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizeMemory_uint8(arg1,arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_2(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_randomizeMemory__SWIG_2(void * jarg1, unsigned int jarg2) {
   unsigned int jresult ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizeMemory(arg1,arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_getBlockSize(void * jarg1) {
-  void * jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_getBlockSize(void * jarg1) {
+  unsigned int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  result = ((OTPassword const *)arg1)->getBlockSize();
-  jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getBlockSize();
+  jresult = result; 
   return jresult;
 }
 
@@ -875,26 +1743,26 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_Compare(void * jarg1, void
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_getPasswordSize(void * jarg1) {
-  void * jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_getPasswordSize(void * jarg1) {
+  unsigned int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  result = ((OTPassword const *)arg1)->getPasswordSize();
-  jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getPasswordSize();
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_getMemorySize(void * jarg1) {
-  void * jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_getMemorySize(void * jarg1) {
+  unsigned int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t result;
   
   arg1 = (OTPassword *)jarg1; 
-  result = ((OTPassword const *)arg1)->getMemorySize();
-  jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getMemorySize();
+  jresult = result; 
   return jresult;
 }
 
@@ -907,63 +1775,39 @@ SWIGEXPORT void SWIGSTDCALL CSharp_OTPassword_zeroMemory__SWIG_0(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTPassword_zeroMemory__SWIG_1(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_OTPassword_zeroMemory__SWIG_1(void * jarg1, unsigned int jarg2) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   
   arg1 = (uint8_t *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return ;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   OTPassword::zeroMemory(arg1,arg2);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTPassword_zeroMemory__SWIG_2(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_OTPassword_zeroMemory__SWIG_2(void * jarg1, unsigned int jarg2) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return ;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   OTPassword::zeroMemory(arg1,arg2);
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_safe_memcpy__SWIG_0(void * jarg1, void * jarg2, void * jarg3, void * jarg4, unsigned int jarg5) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_safe_memcpy__SWIG_0(void * jarg1, unsigned int jarg2, void * jarg3, unsigned int jarg4, unsigned int jarg5) {
   void * jresult ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
   bool arg5 ;
-  uint32_t *argp2 ;
-  uint32_t *argp4 ;
   void *result = 0 ;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (void *)jarg3; 
-  argp4 = (uint32_t *)jarg4; 
-  if (!argp4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg4 = *argp4; 
+  arg4 = (uint32_t)jarg4; 
   arg5 = jarg5 ? true : false; 
   result = (void *)OTPassword::safe_memcpy(arg1,arg2,(void const *)arg3,arg4,arg5);
   jresult = (void *)result; 
@@ -971,30 +1815,18 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_safe_memcpy__SWIG_0(void * jarg1
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_safe_memcpy__SWIG_1(void * jarg1, void * jarg2, void * jarg3, void * jarg4) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_safe_memcpy__SWIG_1(void * jarg1, unsigned int jarg2, void * jarg3, unsigned int jarg4) {
   void * jresult ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
-  uint32_t *argp2 ;
-  uint32_t *argp4 ;
   void *result = 0 ;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (void *)jarg3; 
-  argp4 = (uint32_t *)jarg4; 
-  if (!argp4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg4 = *argp4; 
+  arg4 = (uint32_t)jarg4; 
   result = (void *)OTPassword::safe_memcpy(arg1,arg2,(void const *)arg3,arg4);
   jresult = (void *)result; 
   return jresult;
@@ -1011,20 +1843,14 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_OTPassword_CreateTextBuffer() {
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_SetSize(void * jarg1, void * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTPassword_SetSize(void * jarg1, unsigned int jarg2) {
   unsigned int jresult ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   arg1 = (OTPassword *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)(arg1)->SetSize(arg2);
   jresult = result; 
   return jresult;
@@ -1069,21 +1895,15 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_2(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_3(char * jarg1, void * jarg2, int jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_3(char * jarg1, unsigned int jarg2, int jarg3) {
   void * jresult ;
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (char *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((char const *)arg1,arg2,arg3);
   jresult = (void *)result; 
@@ -1091,41 +1911,29 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_3(char * jarg1, void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_4(char * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_4(char * jarg1, unsigned int jarg2) {
   void * jresult ;
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (char *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((char const *)arg1,arg2);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_5(void * jarg1, void * jarg2, int jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_5(void * jarg1, unsigned int jarg2, int jarg3) {
   void * jresult ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (uint8_t *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((uint8_t const *)arg1,arg2,arg3);
   jresult = (void *)result; 
@@ -1133,41 +1941,29 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_5(void * jarg1, void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_6(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_6(void * jarg1, unsigned int jarg2) {
   void * jresult ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (uint8_t *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((uint8_t const *)arg1,arg2);
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_7(void * jarg1, void * jarg2, int jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_7(void * jarg1, unsigned int jarg2, int jarg3) {
   void * jresult ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((void const *)arg1,arg2,arg3);
   jresult = (void *)result; 
@@ -1175,20 +1971,14 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_7(void * jarg1, void *
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_8(void * jarg1, void * jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTPassword__SWIG_8(void * jarg1, unsigned int jarg2) {
   void * jresult ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   arg1 = (void *)jarg1; 
-  argp2 = (uint32_t *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null uint32_t", 0);
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((void const *)arg1,arg2);
   jresult = (void *)result; 
   return jresult;
@@ -1353,11 +2143,11 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTCaller_GetDisplay(void * jarg1) {
 SWIGEXPORT void SWIGSTDCALL CSharp_OTCaller_SetDisplay(void * jarg1, char * jarg2, int jarg3) {
   OTCaller *arg1 = (OTCaller *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
+  int32_t arg3 ;
   
   arg1 = (OTCaller *)jarg1; 
   arg2 = (char *)jarg2; 
-  arg3 = (int)jarg3; 
+  arg3 = (int32_t)jarg3; 
   (arg1)->SetDisplay((char const *)arg2,arg3);
 }
 
@@ -1408,45 +2198,173 @@ SWIGEXPORT void SWIGSTDCALL CSharp_OTCaller_callTwo(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTAPI_Basic() {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_WrapTimeT() {
   void * jresult ;
-  OTAPI_Basic *result = 0 ;
+  WrapTimeT *result = 0 ;
   
-  result = (OTAPI_Basic *)new OTAPI_Basic();
+  result = (WrapTimeT *)new WrapTimeT();
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_delete_OTAPI_Basic(void * jarg1) {
-  OTAPI_Basic *arg1 = (OTAPI_Basic *) 0 ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_WrapTimeT_getTime(void * jarg1) {
+  long long jresult ;
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  int64_t result;
   
-  arg1 = (OTAPI_Basic *)jarg1; 
+  arg1 = (WrapTimeT *)jarg1; 
+  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_WrapTimeT_setTime(void * jarg1, long long jarg2) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  
+  arg1 = (WrapTimeT *)jarg1; 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->setTime((int64_t const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_WrapTimeT(void * jarg1) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  
+  arg1 = (WrapTimeT *)jarg1; 
   delete arg1;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_AppStartup() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_SetExecutor(void * jarg1) {
+  void * jresult ;
+  OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
+  OTAPI_Exec *result = 0 ;
   
-  result = (bool)OTAPI_Basic::AppStartup();
+  arg1 = (OTAPI_Exec *)jarg1; 
+  result = (OTAPI_Exec *)OTAPI_Wrap::SetExecutor(arg1);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Exec() {
+  void * jresult ;
+  OTAPI_Exec *result = 0 ;
+  
+  result = (OTAPI_Exec *)OTAPI_Wrap::Exec();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_It() {
+  void * jresult ;
+  OTAPI_Exec *result = 0 ;
+  
+  result = (OTAPI_Exec *)OTAPI_Wrap::It();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_OTAPI() {
+  void * jresult ;
+  OT_API *result = 0 ;
+  
+  result = (OT_API *)OTAPI_Wrap::OTAPI();
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_StringToLong(char * jarg1) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int64_t)OTAPI_Wrap::StringToLong((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_AppShutdown() {
-  unsigned int jresult ;
-  bool result;
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LongToString(long long jarg1) {
+  char * jresult ;
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
+  std::string result;
   
-  result = (bool)OTAPI_Basic::AppShutdown();
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
+  result = OTAPI_Wrap::LongToString((long long const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned long long SWIGSTDCALL CSharp_OTAPI_Wrap_StringToUlong(char * jarg1) {
+  unsigned long long jresult ;
+  std::string *arg1 = 0 ;
+  uint64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (uint64_t)OTAPI_Wrap::StringToUlong((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_SetAppBinaryFolder(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_UlongToString(unsigned long long jarg1) {
+  char * jresult ;
+  uint64_t *arg1 = 0 ;
+  uint64_t temp1 ;
+  std::string result;
+  
+  temp1 = (uint64_t)jarg1; 
+  arg1 = &temp1; 
+  result = OTAPI_Wrap::UlongToString((unsigned long long const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_AppInit() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)OTAPI_Wrap::AppInit();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_AppCleanup() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)OTAPI_Wrap::AppCleanup();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_SetAppBinaryFolder(char * jarg1) {
   std::string *arg1 = 0 ;
   
   if (!jarg1) {
@@ -1455,11 +2373,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_SetAppBinaryFolder(char * jarg1) 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  OTAPI_Basic::SetAppBinaryFolder((std::string const &)*arg1);
+  OTAPI_Wrap::SetAppBinaryFolder((std::string const &)*arg1);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_SetHomeFolder(char * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_SetHomeFolder(char * jarg1) {
   std::string *arg1 = 0 ;
   
   if (!jarg1) {
@@ -1468,21 +2386,11 @@ SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_SetHomeFolder(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  OTAPI_Basic::SetHomeFolder((std::string const &)*arg1);
+  OTAPI_Wrap::SetHomeFolder((std::string const &)*arg1);
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Init() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)OTAPI_Basic::Init();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetWallet(char * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SetWallet(char * jarg1) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   bool result;
@@ -1493,92 +2401,70 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetWallet(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::SetWallet((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::SetWallet((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_WalletExists() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_WalletExists() {
   unsigned int jresult ;
   bool result;
   
-  result = (bool)OTAPI_Basic::WalletExists();
+  result = (bool)OTAPI_Wrap::WalletExists();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_LoadWallet() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_LoadWallet() {
   unsigned int jresult ;
   bool result;
   
-  result = (bool)OTAPI_Basic::LoadWallet();
+  result = (bool)OTAPI_Wrap::LoadWallet();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SwitchWallet() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SwitchWallet() {
   unsigned int jresult ;
   bool result;
   
-  result = (bool)OTAPI_Basic::SwitchWallet();
+  result = (bool)OTAPI_Wrap::SwitchWallet();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_Output(long jarg1, char * jarg2) {
-  long arg1 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_Output(int jarg1, char * jarg2) {
+  int32_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
+  int32_t temp1 ;
   
-  arg1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return ;
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  OTAPI_Basic::Output(arg1,(std::string const &)*arg2);
+  OTAPI_Wrap::Output((int const &)*arg1,(std::string const &)*arg2);
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetTime() {
-  char * jresult ;
-  std::string result;
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_GetTime() {
+  void * jresult ;
+  WrapTimeT result;
   
-  result = OTAPI_Basic::GetTime();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = OTAPI_Wrap::GetTime();
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_NumList_Add(char * jarg1, char * jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_NumList_Remove(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_NumList_Add(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1596,13 +2482,37 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_NumList_Remove(char * jarg1, ch
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_NumList_VerifyQuery(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_NumList_Remove(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = OTAPI_Wrap::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_NumList_VerifyQuery(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1620,13 +2530,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_NumList_VerifyQuery(char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_NumList_VerifyAll(char * jarg1, char * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_NumList_VerifyAll(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1644,16 +2554,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_NumList_VerifyAll(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_NumList_Count(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_NumList_Count(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -1661,13 +2571,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_NumList_Count(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::NumList_Count((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::NumList_Count((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Encode(char * jarg1, unsigned int jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Encode(char * jarg1, unsigned int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
@@ -1682,13 +2592,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Encode(char * jarg1, unsigned i
   arg1 = &arg1_str; 
   temp2 = jarg2 ? true : false; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Encode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Encode((std::string const &)*arg1,(bool const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Decode(char * jarg1, unsigned int jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Decode(char * jarg1, unsigned int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
@@ -1703,13 +2613,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Decode(char * jarg1, unsigned i
   arg1 = &arg1_str; 
   temp2 = jarg2 ? true : false; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Decode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Decode((std::string const &)*arg1,(bool const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Encrypt(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Encrypt(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1727,13 +2637,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Encrypt(char * jarg1, char * ja
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Decrypt(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Decrypt(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1751,47 +2661,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Decrypt(char * jarg1, char * ja
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateSymmetricKey() {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreateSymmetricKey() {
   char * jresult ;
   std::string result;
   
-  result = OTAPI_Basic::CreateSymmetricKey();
+  result = OTAPI_Wrap::CreateSymmetricKey();
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SymmetricEncrypt(char * jarg1, char * jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SymmetricDecrypt(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SymmetricEncrypt(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1809,13 +2695,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SymmetricDecrypt(char * jarg1, 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SignContract(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SymmetricDecrypt(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1833,13 +2719,37 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SignContract(char * jarg1, char
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_FlatSign(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SignContract(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = OTAPI_Wrap::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_FlatSign(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1852,6 +2762,170 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_FlatSign(char * jarg1, char * j
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = OTAPI_Wrap::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_AddSignature(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = OTAPI_Wrap::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_VerifySignature(char * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)OTAPI_Wrap::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_VerifyAndRetrieveXMLContents(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = OTAPI_Wrap::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetMemlogSize() {
+  int jresult ;
+  int32_t result;
+  
+  result = (int32_t)OTAPI_Wrap::GetMemlogSize();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetMemlogAtIndex(int jarg1) {
+  char * jresult ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
+  std::string result;
+  
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
+  result = OTAPI_Wrap::GetMemlogAtIndex((int const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_PeekMemlogFront() {
+  char * jresult ;
+  std::string result;
+  
+  result = OTAPI_Wrap::PeekMemlogFront();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_PeekMemlogBack() {
+  char * jresult ;
+  std::string result;
+  
+  result = OTAPI_Wrap::PeekMemlogBack();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_PopMemlogFront() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)OTAPI_Wrap::PopMemlogFront();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_PopMemlogBack() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)OTAPI_Wrap::PopMemlogBack();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreateNym(int jarg1, char * jarg2, char * jarg3) {
+  char * jresult ;
+  int32_t *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t temp1 ;
+  std::string result;
+  
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -1864,13 +2938,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_FlatSign(char * jarg1, char * j
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreateNym((int const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddSignature(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_ActiveCronItemIDs(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -1888,17 +2962,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddSignature(char * jarg1, char
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifySignature(char * jarg1, char * jarg2) {
-  unsigned int jresult ;
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetActiveCronItem(char * jarg1, long long jarg2) {
+  char * jresult ;
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
+  int64_t arg2 ;
+  std::string result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -1906,22 +2980,69 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifySignature(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  if (!jarg2) {
+  arg2 = (int64_t)jarg2; 
+  result = OTAPI_Wrap::GetActiveCronItem((std::string const &)*arg1,arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_SourceForID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::GetNym_SourceForID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_AltSourceLocation(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::GetNym_AltSourceLocation((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_CredentialCount(char * jarg1) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int32_t)OTAPI_Wrap::GetNym_CredentialCount((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_VerifyAndRetrieveXMLContents(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_CredentialID(char * jarg1, int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   if (!jarg1) {
@@ -1930,231 +3051,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_VerifyAndRetrieveXMLContents(ch
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetMemlogSize() {
-  long jresult ;
-  long result;
-  
-  result = (long)OTAPI_Basic::GetMemlogSize();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetMemlogAtIndex(long jarg1) {
-  char * jresult ;
-  long *arg1 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  temp1 = (long)jarg1; 
-  arg1 = &temp1; 
-  result = OTAPI_Basic::GetMemlogAtIndex((long const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_PeekMemlogFront() {
-  char * jresult ;
-  std::string result;
-  
-  result = OTAPI_Basic::PeekMemlogFront();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_PeekMemlogBack() {
-  char * jresult ;
-  std::string result;
-  
-  result = OTAPI_Basic::PeekMemlogBack();
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_PopMemlogFront() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)OTAPI_Basic::PopMemlogFront();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_PopMemlogBack() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)OTAPI_Basic::PopMemlogBack();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateNym(long jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
-  long *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  temp1 = (long)jarg1; 
-  arg1 = &temp1; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = OTAPI_Basic::CreateNym((long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_ActiveCronItemIDs(char * jarg1, char * jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetActiveCronItem(char * jarg1, char * jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetActiveCronItem((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SourceForID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetNym_SourceForID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_AltSourceLocation(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetNym_AltSourceLocation((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_CredentialCount(char * jarg1) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::GetNym_CredentialCount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_CredentialID(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_CredentialID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialID((std::string const &)*arg1,(int const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_CredentialContents(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_CredentialContents(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2172,16 +3077,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_CredentialContents(char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredCount(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_RevokedCredCount(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2189,17 +3094,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredCount(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::GetNym_RevokedCredCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_RevokedCredCount((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredID(char * jarg1, long jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_RevokedCredID(char * jarg1, int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   if (!jarg1) {
@@ -2208,15 +3113,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredID(char * jar
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_RevokedCredID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredID((std::string const &)*arg1,(int const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredContents(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_RevokedCredContents(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2234,17 +3139,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RevokedCredContents(char
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubcredentialCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_SubcredentialCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2258,18 +3163,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubcredentialCount(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubCredentialID(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_SubCredentialID(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -2284,15 +3189,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubCredentialID(char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubCredentialContents(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_SubCredentialContents(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2317,18 +3222,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_SubCredentialContents(ch
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddSubcredential(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_AddSubcredential(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -2343,15 +3248,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddSubcredential(char * jarg1, 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RevokeSubcredential(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_RevokeSubcredential(char * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2376,13 +3281,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RevokeSubcredential(char 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateServerContract(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreateServerContract(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2400,13 +3305,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateServerContract(char * jar
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateAssetContract(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreateAssetContract(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2424,13 +3329,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreateAssetContract(char * jarg
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CalculateAssetContractID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CalculateAssetContractID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2441,13 +3346,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CalculateAssetContractID(char *
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::CalculateAssetContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateAssetContractID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CalculateServerContractID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CalculateServerContractID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2458,16 +3363,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CalculateServerContractID(char 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::CalculateServerContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateServerContractID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_AddServerContract(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_AddServerContract(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2475,16 +3380,16 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_AddServerContract(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::AddServerContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddServerContract((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_AddAssetContract(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_AddAssetContract(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2492,67 +3397,67 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_AddAssetContract(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::AddAssetContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddAssetContract((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetServerCount() {
-  long jresult ;
-  long result;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetServerCount() {
+  int jresult ;
+  int32_t result;
   
-  result = (long)OTAPI_Basic::GetServerCount();
+  result = (int32_t)OTAPI_Wrap::GetServerCount();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetTypeCount() {
-  long jresult ;
-  long result;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetAssetTypeCount() {
+  int jresult ;
+  int32_t result;
   
-  result = (long)OTAPI_Basic::GetAssetTypeCount();
+  result = (int32_t)OTAPI_Wrap::GetAssetTypeCount();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountCount() {
-  long jresult ;
-  long result;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountCount() {
+  int jresult ;
+  int32_t result;
   
-  result = (long)OTAPI_Basic::GetAccountCount();
+  result = (int32_t)OTAPI_Wrap::GetAccountCount();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNymCount() {
-  long jresult ;
-  long result;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNymCount() {
+  int jresult ;
+  int32_t result;
   
-  result = (long)OTAPI_Basic::GetNymCount();
+  result = (int32_t)OTAPI_Wrap::GetNymCount();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetServer_ID(long jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetServer_ID(int jarg1) {
   char * jresult ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetServer_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetServer_ID((int const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetServer_Name(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetServer_Name(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2563,13 +3468,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetServer_Name(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetServer_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Name((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetServer_Contract(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetServer_Contract(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2580,17 +3485,38 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetServer_Contract(char * jarg1
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetServer_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Contract((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_FormatAmount(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_FormatAmount(char * jarg1, long long jarg2) {
   char * jresult ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::FormatAmount((std::string const &)*arg1,(long long const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_StringToAmount(char * jarg1, char * jarg2) {
+  long long jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2604,51 +3530,27 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_FormatAmount(char * jarg1, char
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::FormatAmount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_StringToAmount(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAssetType_ID(int jarg1) {
   char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_ID(long jarg1) {
-  char * jresult ;
-  long *arg1 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetAssetType_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_ID((int const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Name(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAssetType_Name(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2659,13 +3561,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Name(char * jarg1)
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Name((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_TLA(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAssetType_TLA(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2676,13 +3578,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_TLA(char * jarg1) 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_TLA((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Contract(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAssetType_Contract(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2693,27 +3595,27 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAssetType_Contract(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAssetType_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Contract((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_ID(long jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_ID(int jarg1) {
   char * jresult ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetAccountWallet_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ID((int const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Name(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_Name(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2724,13 +3626,30 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Name(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Name((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Balance(char * jarg1) {
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_Balance(char * jarg1) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int64_t)OTAPI_Wrap::GetAccountWallet_Balance((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_Type(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2741,13 +3660,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Balance(char *
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_Balance((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Type((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Type(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_AssetTypeID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2758,13 +3677,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_Type(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_Type((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_AssetTypeID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_ServerID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2775,13 +3694,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_AssetTypeID(ch
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ServerID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_ServerID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_NymID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2792,13 +3711,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_ServerID(char 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_ServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_NymID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_NymID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_InboxHash(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2809,13 +3728,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_NymID(char * j
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_NymID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_InboxHash((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_InboxHash(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetAccountWallet_OutboxHash(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2826,30 +3745,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_InboxHash(char
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_InboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_OutboxHash((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetAccountWallet_OutboxHash(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetAccountWallet_OutboxHash((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifyAccountReceipt(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_VerifyAccountReceipt(char * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2874,17 +3776,17 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifyAccountReceipt(char
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_TransactionNumCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_TransactionNumCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -2898,27 +3800,27 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_TransactionNumCount(char *
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_ID(long jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_ID(int jarg1) {
   char * jresult ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetNym_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetNym_ID((int const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_Name(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_Name(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2929,13 +3831,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_Name(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetNym_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Name((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_Stats(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_Stats(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -2946,37 +3848,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_Stats(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::GetNym_Stats((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Stats((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_NymboxHash(char * jarg1, char * jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RecentHash(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_NymboxHash(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2994,13 +3872,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_RecentHash(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_InboxHash(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_RecentHash(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3018,13 +3896,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_InboxHash(char * jarg1, 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutboxHash(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_InboxHash(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3042,566 +3920,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutboxHash(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_IsNym_RegisteredAtServer(char * jarg1, char * jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_MailCount(char * jarg1) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::GetNym_MailCount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_MailContentsByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_MailSenderIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_MailServerIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_RemoveMailByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveMailByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_VerifyMailByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyMailByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutmailCount(char * jarg1) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::GetNym_OutmailCount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutmailContentsByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutmailServerIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_RemoveOutmailByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_VerifyOutmailByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutpaymentsCount(char * jarg1) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::GetNym_OutpaymentsCount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex(char * jarg1, long jarg2) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex(char * jarg1, long jarg2) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
-  arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_CanRemoveServer(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveServer((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_RemoveServer(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_RemoveServer((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_CanRemoveAssetType(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAssetType((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_RemoveAssetType(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_RemoveAssetType((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_CanRemoveNym(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveNym((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_RemoveNym(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_RemoveNym((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_CanRemoveAccount(char * jarg1) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAccount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ChangePassphrase() {
-  unsigned int jresult ;
-  bool result;
-  
-  result = (bool)OTAPI_Basic::Wallet_ChangePassphrase();
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ExportNym(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_ExportNym((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ImportNym(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_ImportNym((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ImportCert(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutboxHash(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3619,13 +3944,532 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ImportCert(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ExportCert(char * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_IsNym_RegisteredAtServer(char * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)OTAPI_Wrap::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_MailCount(char * jarg1) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int32_t)OTAPI_Wrap::GetNym_MailCount((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_MailContentsByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_MailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_MailSenderIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_MailServerIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_MailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_RemoveMailByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_RemoveMailByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_VerifyMailByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_VerifyMailByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutmailCount(char * jarg1) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int32_t)OTAPI_Wrap::GetNym_OutmailCount((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutmailContentsByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutmailServerIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_RemoveOutmailByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_VerifyOutmailByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutpaymentsCount(char * jarg1) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int32_t)OTAPI_Wrap::GetNym_OutpaymentsCount((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex(char * jarg1, int jarg2) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int32_t)jarg2; 
+  arg2 = &temp2; 
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_CanRemoveServer(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveServer((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_RemoveServer(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_RemoveServer((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_CanRemoveAssetType(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAssetType((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_RemoveAssetType(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_RemoveAssetType((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_CanRemoveNym(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveNym((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_RemoveNym(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_RemoveNym((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_CanRemoveAccount(char * jarg1) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAccount((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ChangePassphrase() {
+  unsigned int jresult ;
+  bool result;
+  
+  result = (bool)OTAPI_Wrap::Wallet_ChangePassphrase();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ExportNym(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3636,13 +4480,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ExportCert(char * jarg1)
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_ExportCert((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportNym((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetNymIDFromPartial(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ImportNym(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3653,13 +4497,37 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetNymIDFromPartial(char
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ImportNym((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetServerIDFromPartial(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ImportCert(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = OTAPI_Wrap::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ExportCert(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3670,13 +4538,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetServerIDFromPartial(c
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportCert((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetAssetIDFromPartial(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_GetNymIDFromPartial(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3687,13 +4555,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetAssetIDFromPartial(ch
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetAccountIDFromPartial(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_GetServerIDFromPartial(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3704,13 +4572,47 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_GetAccountIDFromPartial(
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetNym_Name(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_GetAssetIDFromPartial(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_GetAccountIDFromPartial(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SetNym_Name(char * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3735,13 +4637,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetNym_Name(char * jarg1,
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetAccountWallet_Name(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SetAccountWallet_Name(char * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3766,13 +4668,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetAccountWallet_Name(cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetAssetType_Name(char * jarg1, char * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SetAssetType_Name(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3790,13 +4692,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetAssetType_Name(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetServer_Name(char * jarg1, char * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SetServer_Name(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3814,22 +4716,131 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SetServer_Name(char * jar
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_WriteCheque(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_WriteCheque(char * jarg1, long long jarg2, void * jarg3, void * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8) {
   char * jresult ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  WrapTimeT *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  arg3 = (WrapTimeT *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
+    return 0;
+  } 
+  arg4 = (WrapTimeT *)jarg4;
+  if (!arg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
+    return 0;
+  } 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  if (!jarg6) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg6_str(jarg6);
+  arg6 = &arg6_str; 
+  if (!jarg7) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg7_str(jarg7);
+  arg7 = &arg7_str; 
+  if (!jarg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg8_str(jarg8);
+  arg8 = &arg8_str; 
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_DiscardCheque(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (bool)OTAPI_Wrap::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_ProposePaymentPlan(char * jarg1, void * jarg2, void * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, long long jarg9, void * jarg10, long long jarg11, void * jarg12, void * jarg13, void * jarg14, int jarg15) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
+  int64_t *arg9 = 0 ;
+  WrapTimeT *arg10 = 0 ;
+  int64_t *arg11 = 0 ;
+  WrapTimeT *arg12 = 0 ;
+  WrapTimeT *arg13 = 0 ;
+  WrapTimeT *arg14 = 0 ;
+  int32_t *arg15 = 0 ;
+  int64_t temp9 ;
+  int64_t temp11 ;
+  int32_t temp15 ;
   std::string result;
   
   if (!jarg1) {
@@ -3838,18 +4849,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_WriteCheque(char * jarg1, char 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  arg2 = (WrapTimeT *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  } 
+  arg3 = (WrapTimeT *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
+  } 
   if (!jarg4) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -3880,163 +4889,39 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_WriteCheque(char * jarg1, char 
   }
   std::string arg8_str(jarg8);
   arg8 = &arg8_str; 
-  result = OTAPI_Basic::WriteCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_DiscardCheque(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  temp9 = (int64_t)jarg9; 
+  arg9 = &temp9; 
+  arg10 = (WrapTimeT *)jarg10;
+  if (!arg10) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  } 
+  temp11 = (int64_t)jarg11; 
+  arg11 = &temp11; 
+  arg12 = (WrapTimeT *)jarg12;
+  if (!arg12) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  } 
+  arg13 = (WrapTimeT *)jarg13;
+  if (!arg13) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  } 
+  arg14 = (WrapTimeT *)jarg14;
+  if (!arg14) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (bool)OTAPI_Basic::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_ProposePaymentPlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9, char * jarg10, char * jarg11, char * jarg12, char * jarg13, char * jarg14, long jarg15) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  std::string *arg14 = 0 ;
-  long *arg15 = 0 ;
-  long temp15 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  if (!jarg7) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg7_str(jarg7);
-  arg7 = &arg7_str; 
-  if (!jarg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg8_str(jarg8);
-  arg8 = &arg8_str; 
-  if (!jarg9) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg9_str(jarg9);
-  arg9 = &arg9_str; 
-  if (!jarg10) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg10_str(jarg10);
-  arg10 = &arg10_str; 
-  if (!jarg11) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg11_str(jarg11);
-  arg11 = &arg11_str; 
-  if (!jarg12) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg12_str(jarg12);
-  arg12 = &arg12_str; 
-  if (!jarg13) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg13_str(jarg13);
-  arg13 = &arg13_str; 
-  if (!jarg14) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg14_str(jarg14);
-  arg14 = &arg14_str; 
-  temp15 = (long)jarg15; 
+  } 
+  temp15 = (int32_t)jarg15; 
   arg15 = &temp15; 
-  result = OTAPI_Basic::ProposePaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13,(std::string const &)*arg14,(long const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_EasyProposePlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9, char * jarg10) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_EasyProposePlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9, char * jarg10) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4110,13 +4995,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_EasyProposePlan(char * jarg1, c
   }
   std::string arg10_str(jarg10);
   arg10 = &arg10_str; 
-  result = OTAPI_Basic::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  result = OTAPI_Wrap::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_ConfirmPaymentPlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_ConfirmPaymentPlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4155,13 +5040,42 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_ConfirmPaymentPlan(char * jarg1
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Create_SmartContract(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Create_SmartContract(char * jarg1, void * jarg2, void * jarg3) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  arg2 = (WrapTimeT *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
+    return 0;
+  } 
+  arg3 = (WrapTimeT *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
+    return 0;
+  } 
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddBylaw(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4186,44 +5100,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Create_SmartContract(char * jar
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Create_SmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddBylaw(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = OTAPI_Basic::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddClause(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddClause(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4262,13 +5145,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddClause(char * 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddVariable(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddVariable(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4321,13 +5204,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddVariable(char 
   }
   std::string arg7_str(jarg7);
   arg7 = &arg7_str; 
-  result = OTAPI_Basic::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = OTAPI_Wrap::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddCallback(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddCallback(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4366,13 +5249,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddCallback(char 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddHook(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddHook(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4411,13 +5294,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddHook(char * ja
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddParty(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddParty(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4449,13 +5332,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddParty(char * j
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddAccount(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_AddAccount(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4494,17 +5377,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_AddAccount(char *
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_CountNumsNeeded(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_CountNumsNeeded(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -4518,13 +5401,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_CountNumsNeeded(cha
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_ConfirmAccount(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_ConfirmAccount(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4570,13 +5453,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_ConfirmAccount(ch
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = OTAPI_Basic::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_ConfirmParty(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_SmartContract_ConfirmParty(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4601,13 +5484,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_SmartContract_ConfirmParty(char
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Smart_AreAllPartiesConfirmed(char * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_AreAllPartiesConfirmed(char * jarg1) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4618,17 +5501,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Smart_AreAllPartiesConfir
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Smart_IsPartyConfirmed(char * jarg1, char * jarg2) {
-  unsigned int jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_GetBylawCount(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -4636,40 +5518,17 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Smart_IsPartyConfirmed(ch
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Smart_GetBylawCount((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetBylawCount(char * jarg1) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::Smart_GetBylawCount((std::string const &)*arg1);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetBylawByIndex(char * jarg1, long jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_GetBylawByIndex(char * jarg1, int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   if (!jarg1) {
@@ -4678,15 +5537,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetBylawByIndex(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Smart_GetBylawByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetBylawByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetLanguage(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Bylaw_GetLanguage(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4704,17 +5563,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetLanguage(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetClauseCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Bylaw_GetClauseCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -4728,18 +5587,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetClauseCount(char * jarg1
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Clause_GetNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Clause_GetNameByIndex(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -4754,15 +5613,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Clause_GetNameByIndex(char * ja
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Clause_GetContents(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Clause_GetContents(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4787,17 +5646,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Clause_GetContents(char * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetVariableCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Bylaw_GetVariableCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -4811,18 +5670,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetVariableCount(char * jar
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Variable_GetNameByIndex(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -4837,15 +5696,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetNameByIndex(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetType(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Variable_GetType(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4870,13 +5729,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetType(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetAccess(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Variable_GetAccess(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4901,13 +5760,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetAccess(char * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetContents(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Variable_GetContents(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4932,17 +5791,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Variable_GetContents(char * jar
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetHookCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Bylaw_GetHookCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -4956,18 +5815,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetHookCount(char * jarg1, 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Hook_GetNameByIndex(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -4982,20 +5841,20 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetNameByIndex(char * jarg
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetClauseCount(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Hook_GetClauseCount(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5015,19 +5874,19 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetClauseCount(char * jarg1,
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetClauseAtIndex(char * jarg1, char * jarg2, char * jarg3, long jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Hook_GetClauseAtIndex(char * jarg1, char * jarg2, char * jarg3, int jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  long temp4 ;
+  int32_t *arg4 = 0 ;
+  int32_t temp4 ;
   std::string result;
   
   if (!jarg1) {
@@ -5048,19 +5907,19 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Hook_GetClauseAtIndex(char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
-  result = OTAPI_Basic::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4);
+  result = OTAPI_Wrap::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetCallbackCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Bylaw_GetCallbackCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5074,18 +5933,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Bylaw_GetCallbackCount(char * jar
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Callback_GetNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Callback_GetNameByIndex(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -5100,15 +5959,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Callback_GetNameByIndex(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Callback_GetClause(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Callback_GetClause(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5133,16 +5992,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Callback_GetClause(char * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetPartyCount(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_GetPartyCount(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5150,17 +6009,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetPartyCount(char * jarg1)
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::Smart_GetPartyCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Smart_GetPartyCount((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetPartyByIndex(char * jarg1, long jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_GetPartyByIndex(char * jarg1, int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   if (!jarg1) {
@@ -5169,19 +6028,19 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Smart_GetPartyByIndex(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Smart_GetPartyByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetPartyByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetID(char * jarg1, char * jarg2) {
-  char * jresult ;
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Smart_IsPartyConfirmed(char * jarg1, char * jarg2) {
+  unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string result;
+  bool result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5195,42 +6054,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetID(char * jarg1, char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctCount(char * jarg1, char * jarg2) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetID(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -5245,15 +6078,65 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctNameByIndex(char *
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  result = OTAPI_Wrap::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAcctCount(char * jarg1, char * jarg2) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)OTAPI_Wrap::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAcctNameByIndex(char * jarg1, char * jarg2, int jarg3) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctID(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAcctID(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5278,13 +6161,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctID(char * jarg1, c
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctAssetID(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAcctAssetID(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5309,13 +6192,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctAssetID(char * jar
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctAgentName(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAcctAgentName(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5340,17 +6223,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAcctAgentName(char * j
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentCount(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAgentCount(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5364,18 +6247,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentCount(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentNameByIndex(char * jarg1, char * jarg2, long jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAgentNameByIndex(char * jarg1, char * jarg2, int jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   if (!jarg1) {
@@ -5390,15 +6273,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentNameByIndex(char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentID(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Party_GetAgentID(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5423,18 +6306,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Party_GetAgentID(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_activateSmartContract(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_activateSmartContract(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5454,20 +6337,21 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_activateSmartContract(char * jarg
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_triggerClause(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_triggerClause(char * jarg1, char * jarg2, long long jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  int64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int64_t temp3 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5481,12 +6365,8 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_triggerClause(char * jarg1, char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
   if (!jarg4) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -5499,13 +6379,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_triggerClause(char * jarg1, char 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)OTAPI_Basic::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Msg_HarvestTransactionNumbers(char * jarg1, char * jarg2, unsigned int jarg3, unsigned int jarg4, unsigned int jarg5, unsigned int jarg6, unsigned int jarg7) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Msg_HarvestTransactionNumbers(char * jarg1, char * jarg2, unsigned int jarg3, unsigned int jarg4, unsigned int jarg5, unsigned int jarg6, unsigned int jarg7) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5543,13 +6423,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Msg_HarvestTransactionNum
   arg6 = &temp6; 
   temp7 = jarg7 ? true : false; 
   arg7 = &temp7; 
-  result = (bool)OTAPI_Basic::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
+  result = (bool)OTAPI_Wrap::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadUserPubkey_Encryption(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadUserPubkey_Encryption(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5560,13 +6440,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadUserPubkey_Encryption(char 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadUserPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Encryption((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadUserPubkey_Signing(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadUserPubkey_Signing(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5577,13 +6457,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadUserPubkey_Signing(char * j
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadUserPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Signing((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPubkey_Encryption(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadPubkey_Encryption(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5594,13 +6474,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPubkey_Encryption(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Encryption((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPubkey_Signing(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadPubkey_Signing(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5611,13 +6491,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPubkey_Signing(char * jarg1
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Signing((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifyUserPrivateKey(char * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_VerifyUserPrivateKey(char * jarg1) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   bool result;
@@ -5628,13 +6508,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_VerifyUserPrivateKey(char
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::VerifyUserPrivateKey((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::VerifyUserPrivateKey((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPurse(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadPurse(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5659,13 +6539,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPurse(char * jarg1, char * 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadMint(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadMint(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5683,13 +6563,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadMint(char * jarg1, char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadAssetContract(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadAssetContract(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5700,13 +6580,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadAssetContract(char * jarg1)
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadAssetContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadAssetContract((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadServerContract(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadServerContract(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -5717,13 +6597,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadServerContract(char * jarg1
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::LoadServerContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadServerContract((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Mint_IsStillGood(char * jarg1, char * jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Mint_IsStillGood(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5741,13 +6621,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Mint_IsStillGood(char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_IsBasketCurrency(char * jarg1) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_IsBasketCurrency(char * jarg1) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   bool result;
@@ -5758,16 +6638,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_IsBasketCurrency(char * j
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (bool)OTAPI_Basic::IsBasketCurrency((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::IsBasketCurrency((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberCount(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Basket_GetMemberCount(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5775,17 +6655,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberCount(char * jarg
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::Basket_GetMemberCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Basket_GetMemberCount((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberType(char * jarg1, long jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Basket_GetMemberType(char * jarg1, int jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   if (!jarg1) {
@@ -5794,18 +6674,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberType(char * jar
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Basket_GetMemberType((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Basket_GetMemberType((std::string const &)*arg1,(int const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMinimumTransferAmount(char * jarg1) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Basket_GetMinimumTransferAmount(char * jarg1) {
+  long long jresult ;
   std::string *arg1 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5813,18 +6693,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMinimumTransferAmount
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount(char * jarg1, long jarg2) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount(char * jarg1, int jarg2) {
+  long long jresult ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -5832,15 +6712,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Basket_GetMemberMinimumTransfer
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(long const &)*arg2);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(int const &)*arg2);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5865,13 +6745,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadAssetAccount(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadInbox(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadInbox(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5896,13 +6776,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadInbox(char * jarg1, char * 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadOutbox(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadOutbox(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5927,13 +6807,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadOutbox(char * jarg1, char *
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadInboxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadInboxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5958,13 +6838,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadInboxNoVerify(char * jarg1,
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadOutboxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadOutboxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5989,13 +6869,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadOutboxNoVerify(char * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPaymentInbox(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadPaymentInbox(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6013,13 +6893,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPaymentInbox(char * jarg1, 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPaymentInboxNoVerify(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadPaymentInboxNoVerify(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6037,44 +6917,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadPaymentInboxNoVerify(char *
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadRecordBox(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadRecordBoxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadRecordBox(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6099,20 +6948,51 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadRecordBoxNoVerify(char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ClearRecord(char * jarg1, char * jarg2, char * jarg3, long jarg4, unsigned int jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadRecordBoxNoVerify(char * jarg1, char * jarg2, char * jarg3) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = OTAPI_Wrap::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_ClearRecord(char * jarg1, char * jarg2, char * jarg3, int jarg4, unsigned int jarg5) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   bool result;
   
@@ -6134,17 +7014,17 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ClearRecord(char * jarg1,
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (bool)OTAPI_Basic::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadExpiredBox(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadExpiredBox(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6162,13 +7042,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadExpiredBox(char * jarg1, ch
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadExpiredBoxNoVerify(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadExpiredBoxNoVerify(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6186,19 +7066,19 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadExpiredBoxNoVerify(char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ClearExpired(char * jarg1, char * jarg2, long jarg3, unsigned int jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_ClearExpired(char * jarg1, char * jarg2, int jarg3, unsigned int jarg4) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   bool *arg4 = 0 ;
-  long temp3 ;
+  int32_t temp3 ;
   bool temp4 ;
   bool result;
   
@@ -6214,23 +7094,23 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ClearExpired(char * jarg1
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
   temp4 = jarg4 ? true : false; 
   arg4 = &temp4; 
-  result = (bool)OTAPI_Basic::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3,(bool const &)*arg4);
+  result = (bool)OTAPI_Wrap::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3,(bool const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetCount(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_GetCount(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -6256,13 +7136,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetCount(char * jarg1, cha
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_CreateResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_CreateResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6294,20 +7174,20 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_CreateResponse(char * ja
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetTransactionByIndex(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_GetTransactionByIndex(char * jarg1, char * jarg2, char * jarg3, char * jarg4, int jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   if (!jarg1) {
@@ -6334,15 +7214,99 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetTransactionByIndex(ch
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetTransactionByID(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_GetTransactionByID(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int64_t temp5 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = OTAPI_Wrap::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_GetTransactionIDByIndex(char * jarg1, char * jarg2, char * jarg3, char * jarg4, int jarg5) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  temp5 = (int32_t)jarg5; 
+  arg5 = &temp5; 
+  result = (int64_t)OTAPI_Wrap::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_AddTransaction(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6381,100 +7345,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetTransactionByID(char 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetTransactionIDByIndex(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long jarg5) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  temp5 = (long)jarg5; 
-  arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_AddTransaction(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = OTAPI_Basic::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_CreateResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, unsigned int jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_CreateResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, unsigned int jarg6) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6517,13 +7394,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_CreateResponse(char
   arg5 = &arg5_str; 
   temp6 = jarg6 ? true : false; 
   arg6 = &temp6; 
-  result = OTAPI_Basic::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
+  result = OTAPI_Wrap::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_FinalizeResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_FinalizeResponse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6555,20 +7432,20 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_FinalizeResponse(char * 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetInstrument(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Ledger_GetInstrument(char * jarg1, char * jarg2, char * jarg3, char * jarg4, int jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   if (!jarg1) {
@@ -6595,23 +7472,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Ledger_GetInstrument(char * jar
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RecordPayment(char * jarg1, char * jarg2, unsigned int jarg3, long jarg4, unsigned int jarg5) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_RecordPayment(char * jarg1, char * jarg2, unsigned int jarg3, int jarg4, unsigned int jarg5) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   bool *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
   bool temp3 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   bool result;
   
@@ -6629,17 +7506,17 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RecordPayment(char * jarg
   arg2 = &arg2_str; 
   temp3 = jarg3 ? true : false; 
   arg3 = &temp3; 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (bool)OTAPI_Basic::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetType(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetType(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6671,18 +7548,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetType(char * jarg
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_ReplyNotice_GetRequestNum(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_ReplyNotice_GetRequestNum(char * jarg1, char * jarg2, char * jarg3) {
+  long long jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -6702,95 +7579,19 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_ReplyNotice_GetRequestNum(char 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetVoucher(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int64_t)OTAPI_Wrap::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_IsCanceled(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetVoucher(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  std::string result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -6816,19 +7617,57 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_IsCanceled(char * jar
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (int32_t)OTAPI_Wrap::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_IsCanceled(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -6854,13 +7693,127 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetBalanceAgreementSu
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetDateSigned(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (int32_t)OTAPI_Wrap::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetDateSigned(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  WrapTimeT result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetAmount(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (int64_t)OTAPI_Wrap::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Pending_GetNote(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6892,13 +7845,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetDateSigned(char 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetAmount(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetSenderUserID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6930,13 +7883,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetAmount(char * ja
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Pending_GetNote(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetSenderAcctID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6968,13 +7921,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Pending_GetNote(char * jarg1, c
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetSenderUserID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetRecipientUserID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7006,13 +7959,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetSenderUserID(cha
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetSenderAcctID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetRecipientAcctID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7044,19 +7997,19 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetSenderAcctID(cha
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetRecipientUserID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  long long jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7082,89 +8035,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetRecipientUserID(
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetRecipientAcctID(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Transaction_GetDisplayReferenceToNum(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = OTAPI_Basic::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SavePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_SavePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7196,13 +8073,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_SavePurse(char * jarg1, c
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (bool)OTAPI_Basic::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreatePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreatePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7234,13 +8111,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreatePurse(char * jarg1, char 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreatePurse_Passphrase(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_CreatePurse_Passphrase(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7265,18 +8142,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_CreatePurse_Passphrase(char * j
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_GetTotalValue(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_GetTotalValue(char * jarg1, char * jarg2, char * jarg3) {
+  long long jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7296,44 +8173,44 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_GetTotalValue(char * jarg
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Count(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int64_t)OTAPI_Wrap::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Purse_HasPassword(char * jarg1, char * jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_Count(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (int32_t)OTAPI_Wrap::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_HasPassword(char * jarg1, char * jarg2) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7351,13 +8228,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Purse_HasPassword(char * 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (bool)OTAPI_Basic::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Peek(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_Peek(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7389,13 +8266,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Peek(char * jarg1, char *
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Pop(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_Pop(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7427,13 +8304,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Pop(char * jarg1, char * 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Push(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_Push(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7479,13 +8356,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Push(char * jarg1, char *
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = OTAPI_Basic::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Empty(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Purse_Empty(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7517,13 +8394,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Purse_Empty(char * jarg1, char 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ImportPurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_Wallet_ImportPurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7555,19 +8432,19 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_Wallet_ImportPurse(char *
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (bool)OTAPI_Basic::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_exchangePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_exchangePurse(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7593,13 +8470,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_exchangePurse(char * jarg1, char 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_ChangeOwner(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_ChangeOwner(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7645,13 +8522,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_ChangeOwner(char * jarg1,
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = OTAPI_Basic::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetID(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetID(char * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7676,18 +8553,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetID(char * jarg1, char 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetDenomination(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetDenomination(char * jarg1, char * jarg2, char * jarg3) {
+  long long jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7707,49 +8584,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetDenomination(char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetSeries(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int64_t)OTAPI_Wrap::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetValidFrom(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetSeries(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7769,18 +8615,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetValidFrom(char * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = (int32_t)OTAPI_Wrap::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetValidTo(char * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetValidFrom(char * jarg1, char * jarg2, char * jarg3) {
+  void * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  WrapTimeT result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -7800,362 +8646,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetValidTo(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetAssetID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Token_GetAssetID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Token_GetServerID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Token_GetServerID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetAmount(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetAmount((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetTransNum(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetTransNum((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetValidFrom(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetValidFrom((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetValidTo(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetValidTo((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetMemo(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetMemo((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetType(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetType((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetServerID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetServerID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetAssetID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetAssetID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetSenderUserID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetSenderUserID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetSenderAcctID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetRemitterUserID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetRemitterAcctID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetRecipientUserID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Instrmnt_GetRecipientAcctID(char * jarg1) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = OTAPI_Basic::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_checkServerID(char * jarg1, char * jarg2) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_createUserAccount(char * jarg1, char * jarg2) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_deleteUserAccount(char * jarg1, char * jarg2) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_deleteAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetValidTo(char * jarg1, char * jarg2, char * jarg3) {
+  void * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  WrapTimeT result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8175,51 +8677,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_deleteAssetAccount(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = result; 
+  result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_usageCredits(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetUsageCredits(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetAssetID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -8230,18 +8694,345 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetUsageCredits(char * 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetUsageCredits((std::string const &)*arg1);
+  result = OTAPI_Wrap::Token_GetAssetID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_checkUser(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Token_GetServerID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Token_GetServerID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetAmount(char * jarg1) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetAmount((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetTransNum(char * jarg1) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetTransNum((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetValidFrom(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  WrapTimeT result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetValidTo(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  WrapTimeT result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
+  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetMemo(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetMemo((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetType(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetType((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetServerID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetServerID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetAssetID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetAssetID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetSenderUserID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetSenderUserID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetSenderAcctID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetRemitterUserID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetRemitterAcctID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetRecipientUserID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Instrmnt_GetRecipientAcctID(char * jarg1) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = OTAPI_Wrap::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_checkServerID(char * jarg1, char * jarg2) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)OTAPI_Wrap::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_createUserAccount(char * jarg1, char * jarg2) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)OTAPI_Wrap::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_deleteUserAccount(char * jarg1, char * jarg2) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)OTAPI_Wrap::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_deleteAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8261,20 +9052,103 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_checkUser(char * jarg1, char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_sendUserMessage(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_usageCredits(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetUsageCredits(char * jarg1) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (int64_t)OTAPI_Wrap::Message_GetUsageCredits((std::string const &)*arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_checkUser(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (int32_t)OTAPI_Wrap::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_sendUserMessage(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8306,21 +9180,21 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_sendUserMessage(char * jarg1, cha
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)OTAPI_Basic::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_sendUserInstrument(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_sendUserInstrument(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8358,17 +9232,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_sendUserInstrument(char * jarg1, 
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = (long)OTAPI_Basic::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getRequest(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getRequest(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8382,17 +9256,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getRequest(char * jarg1, char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getTransactionNumber(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getTransactionNumber(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8406,18 +9280,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getTransactionNumber(char * jarg1
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_issueAssetType(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_issueAssetType(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8437,18 +9311,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_issueAssetType(char * jarg1, char
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getContract(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getContract(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8468,18 +9342,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getContract(char * jarg1, char * 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMint(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getMint(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8499,18 +9373,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMint(char * jarg1, char * jarg
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_createAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_createAssetAccount(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8530,18 +9404,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_createAssetAccount(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getAccount(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getAccount(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8561,18 +9435,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getAccount(char * jarg1, char * j
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getAccountFiles(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getAccountFiles(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8592,16 +9466,40 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getAccountFiles(char * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GenerateBasketCreation(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GenerateBasketCreation(char * jarg1, long long jarg2) {
+  char * jresult ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GenerateBasketCreation((std::string const &)*arg1,(long long const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_AddBasketCreationItem(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
   std::string result;
   
   if (!jarg1) {
@@ -8616,18 +9514,59 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GenerateBasketCreation(char * j
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::GenerateBasketCreation((std::string const &)*arg1,(std::string const &)*arg2);
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = OTAPI_Wrap::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddBasketCreationItem(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_issueBasket(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (int32_t)OTAPI_Wrap::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GenerateBasketExchange(char * jarg1, char * jarg2, char * jarg3, char * jarg4, int jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   if (!jarg1) {
@@ -8654,86 +9593,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddBasketCreationItem(char * ja
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = OTAPI_Basic::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_issueBasket(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GenerateBasketExchange(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long jarg5) {
-  char * jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
-  std::string result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddBasketExchangeItem(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_AddBasketExchangeItem(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8772,21 +9640,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_AddBasketExchangeItem(char * ja
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = OTAPI_Basic::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_exchangeBasket(char * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_exchangeBasket(char * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool *arg5 = 0 ;
   bool temp5 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8814,19 +9682,54 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_exchangeBasket(char * jarg1, char
   arg4 = &arg4_str; 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (long)OTAPI_Basic::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_notarizeWithdrawal(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_notarizeWithdrawal(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
+  int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_notarizeDeposit(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8852,59 +9755,22 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_notarizeWithdrawal(char * jarg1, 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_notarizeDeposit(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_notarizeTransfer(char * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5, char * jarg6) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_notarizeTransfer(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int64_t temp5 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8930,30 +9796,26 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_notarizeTransfer(char * jarg1, ch
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
   if (!jarg6) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = (long)OTAPI_Basic::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5,(std::string const &)*arg6);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getInbox(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getInbox(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -8973,18 +9835,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getInbox(char * jarg1, char * jar
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getOutbox(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getOutbox(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9004,17 +9866,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getOutbox(char * jarg1, char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getNymbox(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getNymbox(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9028,13 +9890,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getNymbox(char * jarg1, char * ja
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadNymbox(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadNymbox(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9052,13 +9914,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadNymbox(char * jarg1, char *
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadNymboxNoVerify(char * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_LoadNymboxNoVerify(char * jarg1, char * jarg2) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9076,18 +9938,78 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_LoadNymboxNoVerify(char * jarg1
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = OTAPI_Basic::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Nymbox_GetReplyNotice(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Nymbox_GetReplyNotice(char * jarg1, char * jarg2, long long jarg3) {
   char * jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t temp3 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  result = OTAPI_Wrap::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_HaveAlreadySeenReply(char * jarg1, char * jarg2, long long jarg3) {
+  unsigned int jresult ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t temp3 ;
+  bool result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  result = (bool)OTAPI_Wrap::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getBoxReceipt(char * jarg1, char * jarg2, char * jarg3, int jarg4, long long jarg5) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9107,17 +10029,25 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Nymbox_GetReplyNotice(char * ja
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  temp4 = (int32_t)jarg4; 
+  arg4 = &temp4; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = (int32_t)OTAPI_Wrap::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
+  jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_HaveAlreadySeenReply(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_DoesBoxReceiptExist(char * jarg1, char * jarg2, char * jarg3, int jarg4, long long jarg5) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
   bool result;
   
   if (!jarg1) {
@@ -9138,103 +10068,23 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_HaveAlreadySeenReply(char
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getBoxReceipt(char * jarg1, char * jarg2, char * jarg3, long jarg4, char * jarg5) {
-  long jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  long temp4 ;
-  long result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (long)OTAPI_Basic::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = (bool)OTAPI_Wrap::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_DoesBoxReceiptExist(char * jarg1, char * jarg2, char * jarg3, long jarg4, char * jarg5) {
-  unsigned int jresult ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  long temp4 ;
-  bool result;
-  
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  if (!jarg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  temp4 = (long)jarg4; 
-  arg4 = &temp4; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (bool)OTAPI_Basic::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_processInbox(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_processInbox(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9260,17 +10110,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_processInbox(char * jarg1, char *
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_processNymbox(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_processNymbox(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9284,21 +10134,22 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_processNymbox(char * jarg1, char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_withdrawVoucher(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_withdrawVoucher(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, long long jarg6) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  long result;
+  int64_t *arg6 = 0 ;
+  int64_t temp6 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9330,27 +10181,24 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_withdrawVoucher(char * jarg1, cha
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  result = (long)OTAPI_Basic::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
+  result = (int32_t)OTAPI_Wrap::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_payDividend(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_payDividend(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, long long jarg6) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  long result;
+  int64_t *arg6 = 0 ;
+  int64_t temp6 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9382,25 +10230,21 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_payDividend(char * jarg1, char * 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  result = (long)OTAPI_Basic::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
+  result = (int32_t)OTAPI_Wrap::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_depositCheque(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_depositCheque(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9426,18 +10270,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_depositCheque(char * jarg1, char 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_depositPaymentPlan(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_depositPaymentPlan(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9457,26 +10301,31 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_depositPaymentPlan(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_issueMarketOffer(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, unsigned int jarg7, char * jarg8, char * jarg9, char * jarg10) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_issueMarketOffer(char * jarg1, char * jarg2, long long jarg3, long long jarg4, long long jarg5, long long jarg6, unsigned int jarg7, void * jarg8, char * jarg9, long long jarg10) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  std::string *arg8 = 0 ;
+  WrapTimeT *arg8 = 0 ;
   std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
+  int64_t *arg10 = 0 ;
+  int64_t temp3 ;
+  int64_t temp4 ;
+  int64_t temp5 ;
+  int64_t temp6 ;
   bool temp7 ;
-  long result;
+  int64_t temp10 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9490,61 +10339,40 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_issueMarketOffer(char * jarg1, ch
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
   temp7 = jarg7 ? true : false; 
   arg7 = &temp7; 
-  if (!jarg8) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+  arg8 = (WrapTimeT *)jarg8;
+  if (!arg8) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "WrapTimeT const & type is null", 0);
     return 0;
-  }
-  std::string arg8_str(jarg8);
-  arg8 = &arg8_str; 
+  } 
   if (!jarg9) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg9_str(jarg9);
   arg9 = &arg9_str; 
-  if (!jarg10) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg10_str(jarg10);
-  arg10 = &arg10_str; 
-  result = (long)OTAPI_Basic::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(bool const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  temp10 = (int64_t)jarg10; 
+  arg10 = &temp10; 
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketList(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getMarketList(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9558,19 +10386,20 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketList(char * jarg1, char 
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketOffers(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getMarketOffers(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9590,24 +10419,20 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketOffers(char * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketRecentTrades(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getMarketRecentTrades(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9627,17 +10452,17 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getMarketRecentTrades(char * jarg
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getNym_MarketOffers(char * jarg1, char * jarg2) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_getNym_MarketOffers(char * jarg1, char * jarg2) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9651,19 +10476,20 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_getNym_MarketOffers(char * jarg1,
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)OTAPI_Basic::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_killMarketOffer(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_killMarketOffer(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9683,25 +10509,22 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_killMarketOffer(char * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_killPaymentPlan(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_killPaymentPlan(char * jarg1, char * jarg2, char * jarg3, long long jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9721,31 +10544,24 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_killPaymentPlan(char * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_PopMessageBuffer(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_PopMessageBuffer(long long jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   std::string result;
   
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -9758,30 +10574,27 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_PopMessageBuffer(char * jarg1, 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::PopMessageBuffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::PopMessageBuffer((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_FlushMessageBuffer() {
-  OTAPI_Basic::FlushMessageBuffer();
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_FlushMessageBuffer() {
+  OTAPI_Wrap::FlushMessageBuffer();
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetSentMessage(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_GetSentMessage(long long jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   std::string result;
   
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -9794,25 +10607,22 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_GetSentMessage(char * jarg1, ch
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = OTAPI_Basic::GetSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RemoveSentMessage(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_RemoveSentMessage(long long jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   bool result;
   
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -9825,13 +10635,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_RemoveSentMessage(char * 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::RemoveSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RemoveSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_FlushSentMessages(unsigned int jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_FlushSentMessages(unsigned int jarg1, char * jarg2, char * jarg3, char * jarg4) {
   bool *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -9858,24 +10668,21 @@ SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_FlushSentMessages(unsigned int ja
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  OTAPI_Basic::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  OTAPI_Wrap::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Basic_Sleep(char * jarg1) {
-  std::string *arg1 = 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_OTAPI_Wrap_Sleep(long long jarg1) {
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
   
-  if (!jarg1) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return ;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  OTAPI_Basic::Sleep((std::string const &)*arg1);
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
+  OTAPI_Wrap::Sleep((long long const &)*arg1);
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ResyncNymWithServer(char * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_ResyncNymWithServer(char * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9900,13 +10707,13 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ResyncNymWithServer(char 
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)OTAPI_Basic::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetCommand(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetCommand(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -9917,16 +10724,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetCommand(char * jarg1
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetCommand((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetCommand((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetSuccess(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetSuccess(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9934,18 +10741,18 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetSuccess(char * jarg1) 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::Message_GetSuccess((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetSuccess((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_queryAssetTypes(char * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_queryAssetTypes(char * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9965,13 +10772,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_queryAssetTypes(char * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (long)OTAPI_Basic::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetPayload(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetPayload(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -9982,16 +10789,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetPayload(char * jarg1
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetPayload((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetPayload((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetDepth(char * jarg1) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetDepth(char * jarg1) {
+  int jresult ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -9999,19 +10806,19 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetDepth(char * jarg1) {
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = (long)OTAPI_Basic::Message_GetDepth((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetDepth((std::string const &)*arg1);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetTransactionSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetTransactionSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -10037,19 +10844,19 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetTransactionSuccess(cha
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_IsTransactionCanceled(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Message_IsTransactionCanceled(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -10075,19 +10882,19 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_IsTransactionCanceled(cha
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetBalanceAgreementSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetBalanceAgreementSuccess(char * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   if (!jarg1) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
@@ -10113,13 +10920,13 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetBalanceAgreementSucces
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)OTAPI_Basic::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetLedger(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetLedger(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10130,13 +10937,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetLedger(char * jarg1)
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetLedger((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetLedger((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewAssetTypeID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetNewAssetTypeID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10147,13 +10954,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewAssetTypeID(char 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetNewAssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAssetTypeID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewIssuerAcctID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetNewIssuerAcctID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10164,13 +10971,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewIssuerAcctID(char
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetNewIssuerAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewIssuerAcctID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewAcctID(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetNewAcctID(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10181,13 +10988,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNewAcctID(char * jar
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetNewAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAcctID((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNymboxHash(char * jarg1) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Wrap_Message_GetNymboxHash(char * jarg1) {
   char * jresult ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10198,13 +11005,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTAPI_Basic_Message_GetNymboxHash(char * ja
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  result = OTAPI_Basic::Message_GetNymboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNymboxHash((std::string const &)*arg1);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ConnectServer(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_ConnectServer(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   unsigned int jresult ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10243,50 +11050,156 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ConnectServer(char * jarg
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (bool)OTAPI_Basic::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Basic_ProcessSockets() {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTAPI_Wrap_ProcessSockets() {
   unsigned int jresult ;
   bool result;
   
-  result = (bool)OTAPI_Basic::ProcessSockets();
+  result = (bool)OTAPI_Wrap::ProcessSockets();
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_OTMadeEasy() {
-  void * jresult ;
-  OTMadeEasy *result = 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_CLI_GetArgsCount(char * jarg1) {
+  int jresult ;
+  std::string arg1 ;
+  int32_t result;
   
-  result = (OTMadeEasy *)new OTMadeEasy();
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg1)->assign(jarg1); 
+  result = (int32_t)OT_CLI_GetArgsCount(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_CLI_GetValueByKey(char * jarg1, char * jarg2) {
+  char * jresult ;
+  std::string arg1 ;
+  std::string arg2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg1)->assign(jarg1); 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  result = OT_CLI_GetValueByKey(arg1,arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_CLI_GetValueByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string arg1 ;
+  int32_t arg2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg1)->assign(jarg1); 
+  arg2 = (int32_t)jarg2; 
+  result = OT_CLI_GetValueByIndex(arg1,arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_CLI_GetKeyByIndex(char * jarg1, int jarg2) {
+  char * jresult ;
+  std::string arg1 ;
+  int32_t arg2 ;
+  std::string result;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg1)->assign(jarg1); 
+  arg2 = (int32_t)jarg2; 
+  result = OT_CLI_GetKeyByIndex(arg1,arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_CLI_ReadLine() {
+  char * jresult ;
+  std::string result;
+  
+  result = OT_CLI_ReadLine();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_CLI_ReadUntilEOF() {
+  char * jresult ;
+  std::string result;
+  
+  result = OT_CLI_ReadUntilEOF();
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_OT_ME() {
+  void * jresult ;
+  OT_ME *result = 0 ;
+  
+  result = (OT_ME *)new OT_ME();
   jresult = (void *)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_delete_OTMadeEasy(void * jarg1) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_OT_ME(void * jarg1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   delete arg1;
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_make_sure_enough_trans_nums(void * jarg1, long jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_opentxs_main_loop(void * jarg1) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  result = (int32_t)(arg1)->opentxs_main_loop();
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_make_sure_enough_trans_nums(void * jarg1, int jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
-  arg2 = (long)jarg2; 
+  arg1 = (OT_ME *)jarg1; 
+  arg2 = (int32_t)jarg2; 
   if (!jarg3) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10305,14 +11218,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_make_sure_enough_trans_num
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_register_nym(void * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_register_nym(void * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10331,15 +11244,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_register_nym(void * jarg1, char 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_check_user(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_check_user(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10364,16 +11277,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_check_user(void * jarg1, char * 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_pseudonym(void * jarg1, long jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_create_pseudonym(void * jarg1, int jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
-  arg2 = (long)jarg2; 
+  arg1 = (OT_ME *)jarg1; 
+  arg2 = (int32_t)jarg2; 
   if (!jarg3) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10392,15 +11305,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_pseudonym(void * jarg1, l
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_issue_asset_type(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_issue_asset_type(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10425,15 +11338,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_issue_asset_type(void * jarg1, c
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_issue_basket_currency(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_issue_basket_currency(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10458,9 +11371,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_issue_basket_currency(void * jar
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_exchange_basket_currency(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, unsigned int jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_exchange_basket_currency(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, unsigned int jarg7) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -10469,7 +11382,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_exchange_basket_currency(void * 
   bool arg7 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10507,15 +11420,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_exchange_basket_currency(void * 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_retrieve_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_retrieve_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10540,15 +11453,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_retrieve_contract(void * jarg1, 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_or_retrieve_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10573,15 +11486,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_contract(void *
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_asset_acct(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_create_asset_acct(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10606,13 +11519,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_asset_acct(void * jarg1, 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_stat_asset_account(void * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_stat_asset_account(void * jarg1, char * jarg2) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10625,15 +11538,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_stat_asset_account(void * jarg1,
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_account__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_retrieve_account__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10658,16 +11571,16 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_account__SWIG_0(v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_account__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_retrieve_account__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool arg5 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10693,14 +11606,14 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_account__SWIG_1(v
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_nym__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_retrieve_nym__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10719,15 +11632,15 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_nym__SWIG_0(void 
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_nym__SWIG_1(void * jarg1, char * jarg2, char * jarg3, unsigned int jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_retrieve_nym__SWIG_1(void * jarg1, char * jarg2, char * jarg3, unsigned int jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   bool arg4 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10747,18 +11660,18 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_retrieve_nym__SWIG_1(void 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_transfer(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_transfer(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, long long jarg6, char * jarg7) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t arg6 ;
   std::string *arg7 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10783,34 +11696,29 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_transfer(void * jarg1, char
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
+  arg6 = (int64_t)jarg6; 
   if (!jarg7) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg7_str(jarg7);
   arg7 = &arg7_str; 
-  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6,(std::string const &)*arg7);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_process_inbox(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_process_inbox(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10841,22 +11749,22 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_process_inbox(void * jarg1, char
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_accept_inbox_items(void * jarg1, char * jarg2, long jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_accept_inbox_items(void * jarg1, char * jarg2, int jarg3, char * jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  long arg3 ;
+  int32_t arg3 ;
   std::string *arg4 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  arg3 = (long)jarg3; 
+  arg3 = (int32_t)jarg3; 
   if (!jarg4) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10869,15 +11777,15 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_accept_inbox_items(void * 
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_discard_incoming_payments(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_discard_incoming_payments(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10902,15 +11810,15 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_discard_incoming_payments(
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_cancel_outgoing_payments(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_cancel_outgoing_payments(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10935,15 +11843,15 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_cancel_outgoing_payments(v
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_accept_from_paymentbox(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_accept_from_paymentbox(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10962,19 +11870,19 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_accept_from_paymentbox(void * jarg
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  result = (long)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_public_encryption_key(void * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_public_encryption_key(void * jarg1, char * jarg2) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -10987,13 +11895,13 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_public_encryption_key(void 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_public_signing_key(void * jarg1, char * jarg2) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_public_signing_key(void * jarg1, char * jarg2) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11006,15 +11914,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_public_signing_key(void * j
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_encrypt_key(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_or_retrieve_encrypt_key(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11039,15 +11947,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_encrypt_key(voi
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_signing_key(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_or_retrieve_signing_key(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11072,9 +11980,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_signing_key(voi
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_msg_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_msg_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11082,7 +11990,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_msg_pubkey(void * jarg
   std::string *arg6 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11119,9 +12027,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_msg_pubkey(void * jarg
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_pmnt_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_pmnt_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11129,7 +12037,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_pmnt_pubkey(void * jar
   std::string *arg6 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11166,9 +12074,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_pmnt_pubkey(void * jar
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_cash_pubkey(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11177,7 +12085,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash_pubkey(void * jar
   std::string *arg7 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11220,16 +12128,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash_pubkey(void * jar
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_msg(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_msg(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11260,16 +12168,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_msg(void * jarg1, char
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_payment(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_payment(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11300,9 +12208,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_payment(void * jarg1, 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_send_user_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11310,7 +12218,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash(void * jarg1, cha
   std::string *arg6 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11347,16 +12255,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_send_user_cash(void * jarg1, cha
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_withdraw_and_send_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_withdraw_and_send_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
   unsigned int jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   bool result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11375,27 +12283,22 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OTMadeEasy_withdraw_and_send_cash(voi
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_payment_instrument__SWIG_0(void * jarg1, char * jarg2, char * jarg3, long jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_payment_instrument__SWIG_0(void * jarg1, char * jarg2, char * jarg3, int jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11408,23 +12311,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_payment_instrument__SWIG_0(v
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  arg4 = (long)jarg4; 
+  arg4 = (int32_t)jarg4; 
   result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_payment_instrument__SWIG_1(void * jarg1, char * jarg2, char * jarg3, long jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_payment_instrument__SWIG_1(void * jarg1, char * jarg2, char * jarg3, int jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11437,7 +12340,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_payment_instrument__SWIG_1(v
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  arg4 = (long)jarg4; 
+  arg4 = (int32_t)jarg4; 
   if (!jarg5) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11450,17 +12353,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_payment_instrument__SWIG_1(v
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_box_receipt(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_box_receipt(void * jarg1, char * jarg2, char * jarg3, char * jarg4, int jarg5, long long jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long arg5 ;
-  std::string *arg6 = 0 ;
+  int32_t arg5 ;
+  int64_t arg6 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11479,28 +12382,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_box_receipt(void * jarg1, ch
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  arg5 = (long)jarg5; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,(std::string const &)*arg6);
+  arg5 = (int32_t)jarg5; 
+  arg6 = (int64_t)jarg6; 
+  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_retrieve_mint(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_retrieve_mint(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11525,15 +12423,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_retrieve_mint(void * jarg1, char
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_mint(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_load_or_retrieve_mint(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11558,15 +12456,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_load_or_retrieve_mint(void * jar
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_query_asset_types(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_query_asset_types(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11591,22 +12489,22 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_query_asset_types(void * jarg1, 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_market_offer(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, unsigned int jarg8, char * jarg9, char * jarg10, char * jarg11) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_create_market_offer(void * jarg1, char * jarg2, char * jarg3, long long jarg4, long long jarg5, long long jarg6, long long jarg7, unsigned int jarg8, long long jarg9, char * jarg10, long long jarg11) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg4 ;
+  int64_t arg5 ;
+  int64_t arg6 ;
+  int64_t arg7 ;
   bool arg8 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
+  int64_t arg9 ;
+  std::string arg10 ;
+  int64_t arg11 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11619,65 +12517,34 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_create_market_offer(void * jarg1
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  if (!jarg7) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg7_str(jarg7);
-  arg7 = &arg7_str; 
+  arg4 = (int64_t)jarg4; 
+  arg5 = (int64_t)jarg5; 
+  arg6 = (int64_t)jarg6; 
+  arg7 = (int64_t)jarg7; 
   arg8 = jarg8 ? true : false; 
-  if (!jarg9) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg9_str(jarg9);
-  arg9 = &arg9_str; 
+  arg9 = (int64_t)jarg9; 
   if (!jarg10) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
-  std::string arg10_str(jarg10);
-  arg10 = &arg10_str; 
-  if (!jarg11) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg11_str(jarg11);
-  arg11 = &arg11_str; 
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11);
+  (&arg10)->assign(jarg10); 
+  arg11 = (int64_t)jarg11; 
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_kill_market_offer(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_kill_market_offer(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11696,28 +12563,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_kill_market_offer(void * jarg1, 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_kill_payment_plan(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_kill_payment_plan(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11736,27 +12598,22 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_kill_payment_plan(void * jarg1, 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_cancel_payment_plan(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_cancel_payment_plan(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11781,9 +12638,9 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_cancel_payment_plan(void * jarg1
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_activate_smart_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_activate_smart_contract(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11791,7 +12648,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_activate_smart_contract(void * j
   std::string *arg6 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11828,17 +12685,17 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_activate_smart_contract(void * j
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_trigger_clause(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_trigger_clause(void * jarg1, char * jarg2, char * jarg3, long long jarg4, char * jarg5, char * jarg6) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t arg4 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11851,12 +12708,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_trigger_clause(void * jarg1, cha
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
+  arg4 = (int64_t)jarg4; 
   if (!jarg5) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11869,22 +12721,22 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_trigger_clause(void * jarg1, cha
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_withdraw_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_withdraw_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11903,47 +12755,37 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_withdraw_cash(void * jarg1, char
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_easy_withdraw_cash(void * jarg1, char * jarg2, char * jarg3) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_easy_withdraw_cash(void * jarg1, char * jarg2, long long jarg3) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
+  int64_t arg3 ;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  result = (long)(arg1)->easy_withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3);
+  arg3 = (int64_t)jarg3; 
+  result = (int32_t)(arg1)->easy_withdraw_cash((std::string const &)*arg2,arg3);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_export_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, unsigned int jarg7, void * jarg8) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_export_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, unsigned int jarg7, void * jarg8) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -11953,7 +12795,7 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_export_cash(void * jarg1, char *
   std::string *arg8 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -11996,18 +12838,18 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_export_cash(void * jarg1, char *
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_withdraw_voucher(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_withdraw_voucher(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, long long jarg7) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12038,30 +12880,25 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_withdraw_voucher(void * jarg1, c
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  if (!jarg7) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg7_str(jarg7);
-  arg7 = &arg7_str; 
-  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  arg7 = (int64_t)jarg7; 
+  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_pay_dividend(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_pay_dividend(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6, long long jarg7) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12092,28 +12929,23 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_pay_dividend(void * jarg1, char 
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  if (!jarg7) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg7_str(jarg7);
-  arg7 = &arg7_str; 
-  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  arg7 = (int64_t)jarg7; 
+  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_deposit_cheque(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_deposit_cheque(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12144,16 +12976,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_deposit_cheque(void * jarg1, cha
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_deposit_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_deposit_cash(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12178,22 +13010,22 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_deposit_cash(void * jarg1, char * 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_deposit_local_purse(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_deposit_local_purse(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12218,20 +13050,20 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_deposit_local_purse(void * jarg1, 
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_list(void * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_market_list(void * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12250,16 +13082,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_list(void * jarg1, ch
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_offers(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_market_offers(void * jarg1, char * jarg2, char * jarg3, char * jarg4, long long jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12278,26 +13110,21 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_offers(void * jarg1, 
   }
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = SWIG_csharp_string_callback((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_nym_market_offers(void * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_nym_market_offers(void * jarg1, char * jarg2, char * jarg3) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12316,15 +13143,15 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_nym_market_offers(void * jar
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_recent_trades(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_get_market_recent_trades(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12349,16 +13176,16 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_get_market_recent_trades(void * 
 }
 
 
-SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_adjust_usage_credits(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_adjust_usage_credits(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   char * jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12389,35 +13216,35 @@ SWIGEXPORT char * SWIGSTDCALL CSharp_OTMadeEasy_adjust_usage_credits(void * jarg
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_VerifyMessageSuccess(void * jarg1, char * jarg2) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_VerifyMessageSuccess(void * jarg1, char * jarg2) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
   }
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
-  result = (long)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_VerifyMsgBalanceAgrmntSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12442,22 +13269,22 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(void
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_VerifyMsgTrnxSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_VerifyMsgTrnxSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12482,23 +13309,23 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_VerifyMsgTrnxSuccess(void * jarg1,
   }
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
-  result = (long)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_InterpretTransactionMsgReply(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  long jresult ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_InterpretTransactionMsgReply(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int32_t result;
   
-  arg1 = (OTMadeEasy *)jarg1; 
+  arg1 = (OT_ME *)jarg1; 
   if (!jarg2) {
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
     return 0;
@@ -12529,8 +13356,233 @@ SWIGEXPORT long SWIGSTDCALL CSharp_OTMadeEasy_InterpretTransactionMsgReply(void 
   }
   std::string arg6_str(jarg6);
   arg6 = &arg6_str; 
-  result = (long)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnString__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  char * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnString__SWIG_1(void * jarg1, char * jarg2) {
+  char * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  jresult = SWIG_csharp_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnBool__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  unsigned int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  bool result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnBool__SWIG_1(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnInt__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnInt__SWIG_1(void * jarg1, char * jarg2) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  (&arg3)->assign(jarg3); 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(void * jarg1, char * jarg2) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void SWIGSTDCALL CSharp_OT_ME_AddVariable(void * jarg1, char * jarg2, void * jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (OTVariable *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OTVariable & type is null", 0);
+    return ;
+  } 
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OT_ME_FindVariable(void * jarg1, char * jarg2) {
+  void * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *result = 0 ;
+  
+  arg1 = (OT_ME *)jarg1; 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_OT_ME_FindVariable2(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  OTVariable *result = 0 ;
+  
+  if (!jarg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -12698,6 +13750,138 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Storage_Exists__SWIG_3(void * jarg1, 
   }
   (&arg2)->assign(jarg2); 
   result = (bool)(arg1)->Exists(arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_0(void * jarg1, void * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+  long long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string arg6 ;
+  int64_t result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  if (!jarg6) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg6)->assign(jarg6); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_1(void * jarg1, void * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  long long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  int64_t result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_2(void * jarg1, void * jarg2, char * jarg3, char * jarg4) {
+  long long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  int64_t result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_3(void * jarg1, void * jarg2, char * jarg3) {
+  long long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int64_t result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3);
   jresult = result; 
   return jresult;
 }
@@ -13857,6 +15041,130 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Exists__SWIG_3(char * jarg1) {
 }
 
 
+SWIGEXPORT long long SWIGSTDCALL CSharp_FormPathString__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  int64_t result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_FormPathString__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  int64_t result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_FormPathString__SWIG_2(void * jarg1, char * jarg2, char * jarg3) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  int64_t result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long long SWIGSTDCALL CSharp_FormPathString__SWIG_3(void * jarg1, char * jarg2) {
+  long long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  int64_t result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int SWIGSTDCALL CSharp_StoreString__SWIG_0(char * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
   unsigned int jresult ;
   std::string arg1 ;
@@ -14728,28 +16036,22 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_Blob(void * jarg1) {
 
 SWIGEXPORT void SWIGSTDCALL CSharp_Blob_m_memBuffer_set(void * jarg1, void * jarg2) {
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
-  std::vector< unsigned char > arg2 ;
-  std::vector< unsigned char > *argp2 ;
+  std::vector< uint8_t > *arg2 = (std::vector< uint8_t > *) 0 ;
   
   arg1 = (OTDB::Blob *)jarg1; 
-  argp2 = (std::vector< unsigned char > *)jarg2; 
-  if (!argp2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "Attempt to dereference null std::vector< unsigned char >", 0);
-    return ;
-  }
-  arg2 = *argp2; 
-  if (arg1) (arg1)->m_memBuffer = arg2;
+  arg2 = (std::vector< uint8_t > *)jarg2; 
+  if (arg1) (arg1)->m_memBuffer = *arg2;
 }
 
 
 SWIGEXPORT void * SWIGSTDCALL CSharp_Blob_m_memBuffer_get(void * jarg1) {
   void * jresult ;
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
-  std::vector< unsigned char > result;
+  std::vector< uint8_t > *result = 0 ;
   
   arg1 = (OTDB::Blob *)jarg1; 
-  result =  ((arg1)->m_memBuffer);
-  jresult = new std::vector< unsigned char >((const std::vector< unsigned char > &)result); 
+  result = (std::vector< uint8_t > *)& ((arg1)->m_memBuffer);
+  jresult = (void *)result; 
   return jresult;
 }
 
@@ -14776,10 +16078,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_StringMap(void * jarg1) {
 
 SWIGEXPORT void SWIGSTDCALL CSharp_StringMap_the_map_set(void * jarg1, void * jarg2) {
   OTDB::StringMap *arg1 = (OTDB::StringMap *) 0 ;
-  std::map< std::string,std::string > *arg2 = (std::map< std::string,std::string > *) 0 ;
+  std::map< std::string,std::string,std::less< std::string > > *arg2 = (std::map< std::string,std::string,std::less< std::string > > *) 0 ;
   
   arg1 = (OTDB::StringMap *)jarg1; 
-  arg2 = (std::map< std::string,std::string > *)jarg2; 
+  arg2 = (std::map< std::string,std::string,std::less< std::string > > *)jarg2; 
   if (arg1) (arg1)->the_map = *arg2;
 }
 
@@ -14787,10 +16089,10 @@ SWIGEXPORT void SWIGSTDCALL CSharp_StringMap_the_map_set(void * jarg1, void * ja
 SWIGEXPORT void * SWIGSTDCALL CSharp_StringMap_the_map_get(void * jarg1) {
   void * jresult ;
   OTDB::StringMap *arg1 = (OTDB::StringMap *) 0 ;
-  std::map< std::string,std::string > *result = 0 ;
+  std::map< std::string,std::string,std::less< std::string > > *result = 0 ;
   
   arg1 = (OTDB::StringMap *)jarg1; 
-  result = (std::map< std::string,std::string > *)& ((arg1)->the_map);
+  result = (std::map< std::string,std::string,std::less< std::string > > *)& ((arg1)->the_map);
   jresult = (void *)result; 
   return jresult;
 }

@@ -8,50 +8,46 @@
 
 namespace OpenTransactions.OTAPI {
 
-public class Blob : Storable {
+public class WrapTimeT : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+  protected bool swigCMemOwn;
 
-  internal Blob(global::System.IntPtr cPtr, bool cMemoryOwn) : base(otapiPINVOKE.Blob_SWIGUpcast(cPtr), cMemoryOwn) {
+  internal WrapTimeT(global::System.IntPtr cPtr, bool cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Blob obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WrapTimeT obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~Blob() {
+  ~WrapTimeT() {
     Dispose();
   }
 
-  public override void Dispose() {
+  public virtual void Dispose() {
     lock(this) {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          otapiPINVOKE.delete_Blob(swigCPtr);
+          otapiPINVOKE.delete_WrapTimeT(swigCPtr);
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
       global::System.GC.SuppressFinalize(this);
-      base.Dispose();
     }
   }
 
-  public VectorUnsignedChar m_memBuffer {
-    set {
-      otapiPINVOKE.Blob_m_memBuffer_set(swigCPtr, VectorUnsignedChar.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = otapiPINVOKE.Blob_m_memBuffer_get(swigCPtr);
-      VectorUnsignedChar ret = (cPtr == global::System.IntPtr.Zero) ? null : new VectorUnsignedChar(cPtr, false);
-      return ret;
-    } 
+  public WrapTimeT() : this(otapiPINVOKE.new_WrapTimeT(), true) {
   }
 
-  public new static Blob ot_dynamic_cast(Storable pObject) {
-    global::System.IntPtr cPtr = otapiPINVOKE.Blob_ot_dynamic_cast(Storable.getCPtr(pObject));
-    Blob ret = (cPtr == global::System.IntPtr.Zero) ? null : new Blob(cPtr, false);
+  public long getTime() {
+    long ret = otapiPINVOKE.WrapTimeT_getTime(swigCPtr);
     return ret;
+  }
+
+  public void setTime(long _time) {
+    otapiPINVOKE.WrapTimeT_setTime(swigCPtr, _time);
   }
 
 }

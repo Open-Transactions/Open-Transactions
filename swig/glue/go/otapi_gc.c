@@ -8,6 +8,470 @@
 #define SWIG_PARM_SIZE 4
 #endif
 
+#pragma dynimport _wrap_imaxdiv_t_quot_set _wrap_imaxdiv_t_quot_set ""
+#pragma cgo_import_static _wrap_imaxdiv_t_quot_set
+extern void (*_wrap_imaxdiv_t_quot_set)(void*);
+static void (*x_wrap_imaxdiv_t_quot_set)(void*) = _wrap_imaxdiv_t_quot_set;
+
+void
+·_swig_wrap_imaxdiv_t_quot_set(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxdiv_t_quot_set, &p);
+}
+
+
+
+#pragma dynimport _wrap_imaxdiv_t_quot_get _wrap_imaxdiv_t_quot_get ""
+#pragma cgo_import_static _wrap_imaxdiv_t_quot_get
+extern void (*_wrap_imaxdiv_t_quot_get)(void*);
+static void (*x_wrap_imaxdiv_t_quot_get)(void*) = _wrap_imaxdiv_t_quot_get;
+
+void
+·_swig_wrap_imaxdiv_t_quot_get(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxdiv_t_quot_get, &p);
+}
+
+
+
+#pragma dynimport _wrap_imaxdiv_t_rem_set _wrap_imaxdiv_t_rem_set ""
+#pragma cgo_import_static _wrap_imaxdiv_t_rem_set
+extern void (*_wrap_imaxdiv_t_rem_set)(void*);
+static void (*x_wrap_imaxdiv_t_rem_set)(void*) = _wrap_imaxdiv_t_rem_set;
+
+void
+·_swig_wrap_imaxdiv_t_rem_set(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxdiv_t_rem_set, &p);
+}
+
+
+
+#pragma dynimport _wrap_imaxdiv_t_rem_get _wrap_imaxdiv_t_rem_get ""
+#pragma cgo_import_static _wrap_imaxdiv_t_rem_get
+extern void (*_wrap_imaxdiv_t_rem_get)(void*);
+static void (*x_wrap_imaxdiv_t_rem_get)(void*) = _wrap_imaxdiv_t_rem_get;
+
+void
+·_swig_wrap_imaxdiv_t_rem_get(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxdiv_t_rem_get, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_imaxdiv_t _wrap_new_imaxdiv_t ""
+#pragma cgo_import_static _wrap_new_imaxdiv_t
+extern void (*_wrap_new_imaxdiv_t)(void*);
+static void (*x_wrap_new_imaxdiv_t)(void*) = _wrap_new_imaxdiv_t;
+
+void
+·_swig_wrap_new_imaxdiv_t(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_new_imaxdiv_t, &p);
+}
+
+
+
+#pragma dynimport _wrap_delete_imaxdiv_t _wrap_delete_imaxdiv_t ""
+#pragma cgo_import_static _wrap_delete_imaxdiv_t
+extern void (*_wrap_delete_imaxdiv_t)(void*);
+static void (*x_wrap_delete_imaxdiv_t)(void*) = _wrap_delete_imaxdiv_t;
+
+void
+·_swig_wrap_delete_imaxdiv_t(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_delete_imaxdiv_t, &p);
+}
+
+
+
+#pragma dynimport _wrap_imaxabs _wrap_imaxabs ""
+#pragma cgo_import_static _wrap_imaxabs
+extern void (*_wrap_imaxabs)(void*);
+static void (*x_wrap_imaxabs)(void*) = _wrap_imaxabs;
+
+void
+·Imaxabs(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxabs, &p);
+}
+
+
+
+#pragma dynimport _wrap_imaxdiv _wrap_imaxdiv ""
+#pragma cgo_import_static _wrap_imaxdiv
+extern void (*_wrap_imaxdiv)(void*);
+static void (*x_wrap_imaxdiv)(void*) = _wrap_imaxdiv;
+
+void
+·_swig_wrap_imaxdiv(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_imaxdiv, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_VectorUnsignedChar__SWIG_0 _wrap_new_VectorUnsignedChar__SWIG_0 ""
+#pragma cgo_import_static _wrap_new_VectorUnsignedChar__SWIG_0
+extern void (*_wrap_new_VectorUnsignedChar__SWIG_0)(void*);
+static void (*x_wrap_new_VectorUnsignedChar__SWIG_0)(void*) = _wrap_new_VectorUnsignedChar__SWIG_0;
+
+void
+·_swig_wrap_new_VectorUnsignedChar__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_new_VectorUnsignedChar__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_VectorUnsignedChar__SWIG_1 _wrap_new_VectorUnsignedChar__SWIG_1 ""
+#pragma cgo_import_static _wrap_new_VectorUnsignedChar__SWIG_1
+extern void (*_wrap_new_VectorUnsignedChar__SWIG_1)(void*);
+static void (*x_wrap_new_VectorUnsignedChar__SWIG_1)(void*) = _wrap_new_VectorUnsignedChar__SWIG_1;
+
+void
+·_swig_wrap_new_VectorUnsignedChar__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_new_VectorUnsignedChar__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_size _wrap_VectorUnsignedChar_size ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_size
+extern void (*_wrap_VectorUnsignedChar_size)(void*);
+static void (*x_wrap_VectorUnsignedChar_size)(void*) = _wrap_VectorUnsignedChar_size;
+
+void
+·_swig_wrap_VectorUnsignedChar_size(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_size, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_capacity _wrap_VectorUnsignedChar_capacity ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_capacity
+extern void (*_wrap_VectorUnsignedChar_capacity)(void*);
+static void (*x_wrap_VectorUnsignedChar_capacity)(void*) = _wrap_VectorUnsignedChar_capacity;
+
+void
+·_swig_wrap_VectorUnsignedChar_capacity(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_capacity, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_reserve _wrap_VectorUnsignedChar_reserve ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_reserve
+extern void (*_wrap_VectorUnsignedChar_reserve)(void*);
+static void (*x_wrap_VectorUnsignedChar_reserve)(void*) = _wrap_VectorUnsignedChar_reserve;
+
+void
+·_swig_wrap_VectorUnsignedChar_reserve(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_reserve, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_isEmpty _wrap_VectorUnsignedChar_isEmpty ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_isEmpty
+extern void (*_wrap_VectorUnsignedChar_isEmpty)(void*);
+static void (*x_wrap_VectorUnsignedChar_isEmpty)(void*) = _wrap_VectorUnsignedChar_isEmpty;
+
+void
+·_swig_wrap_VectorUnsignedChar_isEmpty(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_isEmpty, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_clear _wrap_VectorUnsignedChar_clear ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_clear
+extern void (*_wrap_VectorUnsignedChar_clear)(void*);
+static void (*x_wrap_VectorUnsignedChar_clear)(void*) = _wrap_VectorUnsignedChar_clear;
+
+void
+·_swig_wrap_VectorUnsignedChar_clear(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_clear, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_add _wrap_VectorUnsignedChar_add ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_add
+extern void (*_wrap_VectorUnsignedChar_add)(void*);
+static void (*x_wrap_VectorUnsignedChar_add)(void*) = _wrap_VectorUnsignedChar_add;
+
+void
+·_swig_wrap_VectorUnsignedChar_add(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_add, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_get _wrap_VectorUnsignedChar_get ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_get
+extern void (*_wrap_VectorUnsignedChar_get)(void*);
+static void (*x_wrap_VectorUnsignedChar_get)(void*) = _wrap_VectorUnsignedChar_get;
+
+void
+·_swig_wrap_VectorUnsignedChar_get(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_get, &p);
+}
+
+
+
+#pragma dynimport _wrap_VectorUnsignedChar_set _wrap_VectorUnsignedChar_set ""
+#pragma cgo_import_static _wrap_VectorUnsignedChar_set
+extern void (*_wrap_VectorUnsignedChar_set)(void*);
+static void (*x_wrap_VectorUnsignedChar_set)(void*) = _wrap_VectorUnsignedChar_set;
+
+void
+·_swig_wrap_VectorUnsignedChar_set(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_VectorUnsignedChar_set, &p);
+}
+
+
+
+#pragma dynimport _wrap_delete_VectorUnsignedChar _wrap_delete_VectorUnsignedChar ""
+#pragma cgo_import_static _wrap_delete_VectorUnsignedChar
+extern void (*_wrap_delete_VectorUnsignedChar)(void*);
+static void (*x_wrap_delete_VectorUnsignedChar)(void*) = _wrap_delete_VectorUnsignedChar;
+
+void
+·_swig_wrap_delete_VectorUnsignedChar(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_delete_VectorUnsignedChar, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_MapStringString__SWIG_0 _wrap_new_MapStringString__SWIG_0 ""
+#pragma cgo_import_static _wrap_new_MapStringString__SWIG_0
+extern void (*_wrap_new_MapStringString__SWIG_0)(void*);
+static void (*x_wrap_new_MapStringString__SWIG_0)(void*) = _wrap_new_MapStringString__SWIG_0;
+
+void
+·_swig_wrap_new_MapStringString__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_new_MapStringString__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_MapStringString__SWIG_1 _wrap_new_MapStringString__SWIG_1 ""
+#pragma cgo_import_static _wrap_new_MapStringString__SWIG_1
+extern void (*_wrap_new_MapStringString__SWIG_1)(void*);
+static void (*x_wrap_new_MapStringString__SWIG_1)(void*) = _wrap_new_MapStringString__SWIG_1;
+
+void
+·_swig_wrap_new_MapStringString__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_new_MapStringString__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_size _wrap_MapStringString_size ""
+#pragma cgo_import_static _wrap_MapStringString_size
+extern void (*_wrap_MapStringString_size)(void*);
+static void (*x_wrap_MapStringString_size)(void*) = _wrap_MapStringString_size;
+
+void
+·_swig_wrap_MapStringString_size(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_size, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_empty _wrap_MapStringString_empty ""
+#pragma cgo_import_static _wrap_MapStringString_empty
+extern void (*_wrap_MapStringString_empty)(void*);
+static void (*x_wrap_MapStringString_empty)(void*) = _wrap_MapStringString_empty;
+
+void
+·_swig_wrap_MapStringString_empty(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_empty, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_clear _wrap_MapStringString_clear ""
+#pragma cgo_import_static _wrap_MapStringString_clear
+extern void (*_wrap_MapStringString_clear)(void*);
+static void (*x_wrap_MapStringString_clear)(void*) = _wrap_MapStringString_clear;
+
+void
+·_swig_wrap_MapStringString_clear(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_clear, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_get _wrap_MapStringString_get ""
+#pragma cgo_import_static _wrap_MapStringString_get
+extern void (*_wrap_MapStringString_get)(void*);
+static void (*x_wrap_MapStringString_get)(void*) = _wrap_MapStringString_get;
+
+void
+·_swig_wrap_MapStringString_get(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_get, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_set _wrap_MapStringString_set ""
+#pragma cgo_import_static _wrap_MapStringString_set
+extern void (*_wrap_MapStringString_set)(void*);
+static void (*x_wrap_MapStringString_set)(void*) = _wrap_MapStringString_set;
+
+void
+·_swig_wrap_MapStringString_set(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_set, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_del _wrap_MapStringString_del ""
+#pragma cgo_import_static _wrap_MapStringString_del
+extern void (*_wrap_MapStringString_del)(void*);
+static void (*x_wrap_MapStringString_del)(void*) = _wrap_MapStringString_del;
+
+void
+·_swig_wrap_MapStringString_del(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_del, &p);
+}
+
+
+
+#pragma dynimport _wrap_MapStringString_has_key _wrap_MapStringString_has_key ""
+#pragma cgo_import_static _wrap_MapStringString_has_key
+extern void (*_wrap_MapStringString_has_key)(void*);
+static void (*x_wrap_MapStringString_has_key)(void*) = _wrap_MapStringString_has_key;
+
+void
+·_swig_wrap_MapStringString_has_key(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_MapStringString_has_key, &p);
+}
+
+
+
+#pragma dynimport _wrap_delete_MapStringString _wrap_delete_MapStringString ""
+#pragma cgo_import_static _wrap_delete_MapStringString
+extern void (*_wrap_delete_MapStringString)(void*);
+static void (*x_wrap_delete_MapStringString)(void*) = _wrap_delete_MapStringString;
+
+void
+·_swig_wrap_delete_MapStringString(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_delete_MapStringString, &p);
+}
+
+
+
 #pragma dynimport _wrap_DEFAULT_SIZE_OTPassword _wrap_DEFAULT_SIZE_OTPassword ""
 #pragma cgo_import_static _wrap_DEFAULT_SIZE_OTPassword
 extern void (*_wrap_DEFAULT_SIZE_OTPassword)(void*);
@@ -79,7 +543,7 @@ static void (*x_wrap_OTPassword_getPassword_uint8)(void*) = _wrap_OTPassword_get
 
 void
 ·_swig_wrap_OTPassword_getPassword_uint8(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
@@ -111,7 +575,7 @@ static void (*x_wrap_OTPassword_getPasswordWritable)(void*) = _wrap_OTPassword_g
 
 void
 ·_swig_wrap_OTPassword_getPasswordWritable(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
@@ -159,7 +623,7 @@ static void (*x_wrap_OTPassword_setPassword_uint8)(void*) = _wrap_OTPassword_set
 
 void
 ·_swig_wrap_OTPassword_setPassword_uint8(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -222,8 +686,8 @@ extern void (*_wrap_OTPassword_randomizePassword_uint8)(void*);
 static void (*x_wrap_OTPassword_randomizePassword_uint8)(void*) = _wrap_OTPassword_randomizePassword_uint8;
 
 void
-·_swig_wrap_OTPassword_randomizePassword_uint8(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+·OTPasswordRandomizePassword_uint8(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -238,7 +702,7 @@ extern void (*_wrap_OTPassword_randomizePassword__SWIG_2)(void*);
 static void (*x_wrap_OTPassword_randomizePassword__SWIG_2)(void*) = _wrap_OTPassword_randomizePassword__SWIG_2;
 
 void
-·_swig_wrap_OTPassword_randomizePassword__SWIG_2(struct {
+·OTPasswordRandomizePassword__SWIG_2(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
@@ -287,7 +751,7 @@ static void (*x_wrap_OTPassword_getMemory_uint8)(void*) = _wrap_OTPassword_getMe
 
 void
 ·_swig_wrap_OTPassword_getMemory_uint8(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
@@ -382,8 +846,8 @@ extern void (*_wrap_OTPassword_randomizeMemory_uint8)(void*);
 static void (*x_wrap_OTPassword_randomizeMemory_uint8)(void*) = _wrap_OTPassword_randomizeMemory_uint8;
 
 void
-·_swig_wrap_OTPassword_randomizeMemory_uint8(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+·OTPasswordRandomizeMemory_uint8(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -398,7 +862,7 @@ extern void (*_wrap_OTPassword_randomizeMemory__SWIG_2)(void*);
 static void (*x_wrap_OTPassword_randomizeMemory__SWIG_2)(void*) = _wrap_OTPassword_randomizeMemory__SWIG_2;
 
 void
-·_swig_wrap_OTPassword_randomizeMemory__SWIG_2(struct {
+·OTPasswordRandomizeMemory__SWIG_2(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
@@ -495,7 +959,7 @@ static void (*x_wrap_OTPassword_zeroMemory__SWIG_1)(void*) = _wrap_OTPassword_ze
 
 void
 ·_swig_wrap_OTPassword_zeroMemory__SWIG_1(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -526,7 +990,7 @@ extern void (*_wrap_OTPassword_safe_memcpy__SWIG_0)(void*);
 static void (*x_wrap_OTPassword_safe_memcpy__SWIG_0)(void*) = _wrap_OTPassword_safe_memcpy__SWIG_0;
 
 void
-·_swig_wrap_OTPassword_safe_memcpy__SWIG_0(struct {
+·OTPasswordSafe_memcpy__SWIG_0(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
@@ -542,7 +1006,7 @@ extern void (*_wrap_OTPassword_safe_memcpy__SWIG_1)(void*);
 static void (*x_wrap_OTPassword_safe_memcpy__SWIG_1)(void*) = _wrap_OTPassword_safe_memcpy__SWIG_1;
 
 void
-·_swig_wrap_OTPassword_safe_memcpy__SWIG_1(struct {
+·OTPasswordSafe_memcpy__SWIG_1(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
@@ -671,7 +1135,7 @@ static void (*x_wrap_new_OTPassword__SWIG_5)(void*) = _wrap_new_OTPassword__SWIG
 
 void
 ·_swig_wrap_new_OTPassword__SWIG_5(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -687,7 +1151,7 @@ static void (*x_wrap_new_OTPassword__SWIG_6)(void*) = _wrap_new_OTPassword__SWIG
 
 void
 ·_swig_wrap_new_OTPassword__SWIG_6(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
@@ -1078,6354 +1542,6786 @@ void
 
 
 
-#pragma dynimport _wrap_new_OTAPI_Basic _wrap_new_OTAPI_Basic ""
-#pragma cgo_import_static _wrap_new_OTAPI_Basic
-extern void (*_wrap_new_OTAPI_Basic)(void*);
-static void (*x_wrap_new_OTAPI_Basic)(void*) = _wrap_new_OTAPI_Basic;
+#pragma dynimport _wrap_new_WrapTimeT _wrap_new_WrapTimeT ""
+#pragma cgo_import_static _wrap_new_WrapTimeT
+extern void (*_wrap_new_WrapTimeT)(void*);
+static void (*x_wrap_new_WrapTimeT)(void*) = _wrap_new_WrapTimeT;
 
 void
-·_swig_wrap_new_OTAPI_Basic(struct {
+·_swig_wrap_new_WrapTimeT(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_new_OTAPI_Basic, &p);
+  runtime·cgocall(x_wrap_new_WrapTimeT, &p);
 }
 
 
 
-#pragma dynimport _wrap_delete_OTAPI_Basic _wrap_delete_OTAPI_Basic ""
-#pragma cgo_import_static _wrap_delete_OTAPI_Basic
-extern void (*_wrap_delete_OTAPI_Basic)(void*);
-static void (*x_wrap_delete_OTAPI_Basic)(void*) = _wrap_delete_OTAPI_Basic;
+#pragma dynimport _wrap_WrapTimeT_getTime _wrap_WrapTimeT_getTime ""
+#pragma cgo_import_static _wrap_WrapTimeT_getTime
+extern void (*_wrap_WrapTimeT_getTime)(void*);
+static void (*x_wrap_WrapTimeT_getTime)(void*) = _wrap_WrapTimeT_getTime;
 
 void
-·_swig_wrap_delete_OTAPI_Basic(struct {
+·_swig_wrap_WrapTimeT_getTime(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_WrapTimeT_getTime, &p);
+}
+
+
+
+#pragma dynimport _wrap_WrapTimeT_setTime _wrap_WrapTimeT_setTime ""
+#pragma cgo_import_static _wrap_WrapTimeT_setTime
+extern void (*_wrap_WrapTimeT_setTime)(void*);
+static void (*x_wrap_WrapTimeT_setTime)(void*) = _wrap_WrapTimeT_setTime;
+
+void
+·_swig_wrap_WrapTimeT_setTime(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_WrapTimeT_setTime, &p);
+}
+
+
+
+#pragma dynimport _wrap_delete_WrapTimeT _wrap_delete_WrapTimeT ""
+#pragma cgo_import_static _wrap_delete_WrapTimeT
+extern void (*_wrap_delete_WrapTimeT)(void*);
+static void (*x_wrap_delete_WrapTimeT)(void*) = _wrap_delete_WrapTimeT;
+
+void
+·_swig_wrap_delete_WrapTimeT(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_delete_OTAPI_Basic, &p);
+  runtime·cgocall(x_wrap_delete_WrapTimeT, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AppStartup _wrap_OTAPI_Basic_AppStartup ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AppStartup
-extern void (*_wrap_OTAPI_Basic_AppStartup)(void*);
-static void (*x_wrap_OTAPI_Basic_AppStartup)(void*) = _wrap_OTAPI_Basic_AppStartup;
+#pragma dynimport _wrap_OTAPI_Wrap_SetExecutor _wrap_OTAPI_Wrap_SetExecutor ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetExecutor
+extern void (*_wrap_OTAPI_Wrap_SetExecutor)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetExecutor)(void*) = _wrap_OTAPI_Wrap_SetExecutor;
 
 void
-·OTAPI_BasicAppStartup(struct {
+·_swig_wrap_OTAPI_Wrap_SetExecutor(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetExecutor, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Exec _wrap_OTAPI_Wrap_Exec ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Exec
+extern void (*_wrap_OTAPI_Wrap_Exec)(void*);
+static void (*x_wrap_OTAPI_Wrap_Exec)(void*) = _wrap_OTAPI_Wrap_Exec;
+
+void
+·_swig_wrap_OTAPI_Wrap_Exec(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AppStartup, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Exec, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AppShutdown _wrap_OTAPI_Basic_AppShutdown ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AppShutdown
-extern void (*_wrap_OTAPI_Basic_AppShutdown)(void*);
-static void (*x_wrap_OTAPI_Basic_AppShutdown)(void*) = _wrap_OTAPI_Basic_AppShutdown;
+#pragma dynimport _wrap_OTAPI_Wrap_It _wrap_OTAPI_Wrap_It ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_It
+extern void (*_wrap_OTAPI_Wrap_It)(void*);
+static void (*x_wrap_OTAPI_Wrap_It)(void*) = _wrap_OTAPI_Wrap_It;
 
 void
-·OTAPI_BasicAppShutdown(struct {
+·_swig_wrap_OTAPI_Wrap_It(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AppShutdown, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_It, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetAppBinaryFolder _wrap_OTAPI_Basic_SetAppBinaryFolder ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetAppBinaryFolder
-extern void (*_wrap_OTAPI_Basic_SetAppBinaryFolder)(void*);
-static void (*x_wrap_OTAPI_Basic_SetAppBinaryFolder)(void*) = _wrap_OTAPI_Basic_SetAppBinaryFolder;
+#pragma dynimport _wrap_OTAPI_Wrap_OTAPI _wrap_OTAPI_Wrap_OTAPI ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_OTAPI
+extern void (*_wrap_OTAPI_Wrap_OTAPI)(void*);
+static void (*x_wrap_OTAPI_Wrap_OTAPI)(void*) = _wrap_OTAPI_Wrap_OTAPI;
 
 void
-·_swig_wrap_OTAPI_Basic_SetAppBinaryFolder(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetAppBinaryFolder, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_SetHomeFolder _wrap_OTAPI_Basic_SetHomeFolder ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetHomeFolder
-extern void (*_wrap_OTAPI_Basic_SetHomeFolder)(void*);
-static void (*x_wrap_OTAPI_Basic_SetHomeFolder)(void*) = _wrap_OTAPI_Basic_SetHomeFolder;
-
-void
-·_swig_wrap_OTAPI_Basic_SetHomeFolder(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetHomeFolder, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Init _wrap_OTAPI_Basic_Init ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Init
-extern void (*_wrap_OTAPI_Basic_Init)(void*);
-static void (*x_wrap_OTAPI_Basic_Init)(void*) = _wrap_OTAPI_Basic_Init;
-
-void
-·OTAPI_BasicInit(struct {
+·_swig_wrap_OTAPI_Wrap_OTAPI(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Init, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_OTAPI, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetWallet _wrap_OTAPI_Basic_SetWallet ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetWallet
-extern void (*_wrap_OTAPI_Basic_SetWallet)(void*);
-static void (*x_wrap_OTAPI_Basic_SetWallet)(void*) = _wrap_OTAPI_Basic_SetWallet;
+#pragma dynimport _wrap_OTAPI_Wrap_StringToLong _wrap_OTAPI_Wrap_StringToLong ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_StringToLong
+extern void (*_wrap_OTAPI_Wrap_StringToLong)(void*);
+static void (*x_wrap_OTAPI_Wrap_StringToLong)(void*) = _wrap_OTAPI_Wrap_StringToLong;
 
 void
-·OTAPI_BasicSetWallet(struct {
+·OTAPI_WrapStringToLong(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetWallet, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_StringToLong, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_WalletExists _wrap_OTAPI_Basic_WalletExists ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_WalletExists
-extern void (*_wrap_OTAPI_Basic_WalletExists)(void*);
-static void (*x_wrap_OTAPI_Basic_WalletExists)(void*) = _wrap_OTAPI_Basic_WalletExists;
+#pragma dynimport _wrap_OTAPI_Wrap_LongToString _wrap_OTAPI_Wrap_LongToString ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LongToString
+extern void (*_wrap_OTAPI_Wrap_LongToString)(void*);
+static void (*x_wrap_OTAPI_Wrap_LongToString)(void*) = _wrap_OTAPI_Wrap_LongToString;
 
 void
-·OTAPI_BasicWalletExists(struct {
-  uint8 x[SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_WalletExists, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_LoadWallet _wrap_OTAPI_Basic_LoadWallet ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadWallet
-extern void (*_wrap_OTAPI_Basic_LoadWallet)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadWallet)(void*) = _wrap_OTAPI_Basic_LoadWallet;
-
-void
-·OTAPI_BasicLoadWallet(struct {
-  uint8 x[SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadWallet, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_SwitchWallet _wrap_OTAPI_Basic_SwitchWallet ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SwitchWallet
-extern void (*_wrap_OTAPI_Basic_SwitchWallet)(void*);
-static void (*x_wrap_OTAPI_Basic_SwitchWallet)(void*) = _wrap_OTAPI_Basic_SwitchWallet;
-
-void
-·OTAPI_BasicSwitchWallet(struct {
-  uint8 x[SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_SwitchWallet, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Output _wrap_OTAPI_Basic_Output ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Output
-extern void (*_wrap_OTAPI_Basic_Output)(void*);
-static void (*x_wrap_OTAPI_Basic_Output)(void*) = _wrap_OTAPI_Basic_Output;
-
-void
-·_swig_wrap_OTAPI_Basic_Output(struct {
+·OTAPI_WrapLongToString(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Output, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LongToString, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetTime _wrap_OTAPI_Basic_GetTime ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetTime
-extern void (*_wrap_OTAPI_Basic_GetTime)(void*);
-static void (*x_wrap_OTAPI_Basic_GetTime)(void*) = _wrap_OTAPI_Basic_GetTime;
+#pragma dynimport _wrap_OTAPI_Wrap_StringToUlong _wrap_OTAPI_Wrap_StringToUlong ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_StringToUlong
+extern void (*_wrap_OTAPI_Wrap_StringToUlong)(void*);
+static void (*x_wrap_OTAPI_Wrap_StringToUlong)(void*) = _wrap_OTAPI_Wrap_StringToUlong;
 
 void
-·OTAPI_BasicGetTime(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetTime, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_NumList_Add _wrap_OTAPI_Basic_NumList_Add ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_NumList_Add
-extern void (*_wrap_OTAPI_Basic_NumList_Add)(void*);
-static void (*x_wrap_OTAPI_Basic_NumList_Add)(void*) = _wrap_OTAPI_Basic_NumList_Add;
-
-void
-·OTAPI_BasicNumList_Add(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_NumList_Add, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_NumList_Remove _wrap_OTAPI_Basic_NumList_Remove ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_NumList_Remove
-extern void (*_wrap_OTAPI_Basic_NumList_Remove)(void*);
-static void (*x_wrap_OTAPI_Basic_NumList_Remove)(void*) = _wrap_OTAPI_Basic_NumList_Remove;
-
-void
-·OTAPI_BasicNumList_Remove(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_NumList_Remove, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_NumList_VerifyQuery _wrap_OTAPI_Basic_NumList_VerifyQuery ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_NumList_VerifyQuery
-extern void (*_wrap_OTAPI_Basic_NumList_VerifyQuery)(void*);
-static void (*x_wrap_OTAPI_Basic_NumList_VerifyQuery)(void*) = _wrap_OTAPI_Basic_NumList_VerifyQuery;
-
-void
-·OTAPI_BasicNumList_VerifyQuery(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_NumList_VerifyQuery, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_NumList_VerifyAll _wrap_OTAPI_Basic_NumList_VerifyAll ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_NumList_VerifyAll
-extern void (*_wrap_OTAPI_Basic_NumList_VerifyAll)(void*);
-static void (*x_wrap_OTAPI_Basic_NumList_VerifyAll)(void*) = _wrap_OTAPI_Basic_NumList_VerifyAll;
-
-void
-·OTAPI_BasicNumList_VerifyAll(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_NumList_VerifyAll, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_NumList_Count _wrap_OTAPI_Basic_NumList_Count ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_NumList_Count
-extern void (*_wrap_OTAPI_Basic_NumList_Count)(void*);
-static void (*x_wrap_OTAPI_Basic_NumList_Count)(void*) = _wrap_OTAPI_Basic_NumList_Count;
-
-void
-·OTAPI_BasicNumList_Count(struct {
+·OTAPI_WrapStringToUlong(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_NumList_Count, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_StringToUlong, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Encode _wrap_OTAPI_Basic_Encode ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Encode
-extern void (*_wrap_OTAPI_Basic_Encode)(void*);
-static void (*x_wrap_OTAPI_Basic_Encode)(void*) = _wrap_OTAPI_Basic_Encode;
+#pragma dynimport _wrap_OTAPI_Wrap_UlongToString _wrap_OTAPI_Wrap_UlongToString ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_UlongToString
+extern void (*_wrap_OTAPI_Wrap_UlongToString)(void*);
+static void (*x_wrap_OTAPI_Wrap_UlongToString)(void*) = _wrap_OTAPI_Wrap_UlongToString;
 
 void
-·OTAPI_BasicEncode(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapUlongToString(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Encode, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_UlongToString, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Decode _wrap_OTAPI_Basic_Decode ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Decode
-extern void (*_wrap_OTAPI_Basic_Decode)(void*);
-static void (*x_wrap_OTAPI_Basic_Decode)(void*) = _wrap_OTAPI_Basic_Decode;
+#pragma dynimport _wrap_OTAPI_Wrap_AppInit _wrap_OTAPI_Wrap_AppInit ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AppInit
+extern void (*_wrap_OTAPI_Wrap_AppInit)(void*);
+static void (*x_wrap_OTAPI_Wrap_AppInit)(void*) = _wrap_OTAPI_Wrap_AppInit;
 
 void
-·OTAPI_BasicDecode(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapAppInit(struct {
+  uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Decode, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AppInit, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Encrypt _wrap_OTAPI_Basic_Encrypt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Encrypt
-extern void (*_wrap_OTAPI_Basic_Encrypt)(void*);
-static void (*x_wrap_OTAPI_Basic_Encrypt)(void*) = _wrap_OTAPI_Basic_Encrypt;
+#pragma dynimport _wrap_OTAPI_Wrap_AppCleanup _wrap_OTAPI_Wrap_AppCleanup ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AppCleanup
+extern void (*_wrap_OTAPI_Wrap_AppCleanup)(void*);
+static void (*x_wrap_OTAPI_Wrap_AppCleanup)(void*) = _wrap_OTAPI_Wrap_AppCleanup;
 
 void
-·OTAPI_BasicEncrypt(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapAppCleanup(struct {
+  uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Encrypt, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AppCleanup, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Decrypt _wrap_OTAPI_Basic_Decrypt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Decrypt
-extern void (*_wrap_OTAPI_Basic_Decrypt)(void*);
-static void (*x_wrap_OTAPI_Basic_Decrypt)(void*) = _wrap_OTAPI_Basic_Decrypt;
+#pragma dynimport _wrap_OTAPI_Wrap_SetAppBinaryFolder _wrap_OTAPI_Wrap_SetAppBinaryFolder ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetAppBinaryFolder
+extern void (*_wrap_OTAPI_Wrap_SetAppBinaryFolder)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetAppBinaryFolder)(void*) = _wrap_OTAPI_Wrap_SetAppBinaryFolder;
 
 void
-·OTAPI_BasicDecrypt(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Decrypt, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_CreateSymmetricKey _wrap_OTAPI_Basic_CreateSymmetricKey ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreateSymmetricKey
-extern void (*_wrap_OTAPI_Basic_CreateSymmetricKey)(void*);
-static void (*x_wrap_OTAPI_Basic_CreateSymmetricKey)(void*) = _wrap_OTAPI_Basic_CreateSymmetricKey;
-
-void
-·OTAPI_BasicCreateSymmetricKey(struct {
+·_swig_wrap_OTAPI_Wrap_SetAppBinaryFolder(struct {
   uint8 x[(2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreateSymmetricKey, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetAppBinaryFolder, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SymmetricEncrypt _wrap_OTAPI_Basic_SymmetricEncrypt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SymmetricEncrypt
-extern void (*_wrap_OTAPI_Basic_SymmetricEncrypt)(void*);
-static void (*x_wrap_OTAPI_Basic_SymmetricEncrypt)(void*) = _wrap_OTAPI_Basic_SymmetricEncrypt;
+#pragma dynimport _wrap_OTAPI_Wrap_SetHomeFolder _wrap_OTAPI_Wrap_SetHomeFolder ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetHomeFolder
+extern void (*_wrap_OTAPI_Wrap_SetHomeFolder)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetHomeFolder)(void*) = _wrap_OTAPI_Wrap_SetHomeFolder;
 
 void
-·OTAPI_BasicSymmetricEncrypt(struct {
+·_swig_wrap_OTAPI_Wrap_SetHomeFolder(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetHomeFolder, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SetWallet _wrap_OTAPI_Wrap_SetWallet ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetWallet
+extern void (*_wrap_OTAPI_Wrap_SetWallet)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetWallet)(void*) = _wrap_OTAPI_Wrap_SetWallet;
+
+void
+·OTAPI_WrapSetWallet(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetWallet, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_WalletExists _wrap_OTAPI_Wrap_WalletExists ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_WalletExists
+extern void (*_wrap_OTAPI_Wrap_WalletExists)(void*);
+static void (*x_wrap_OTAPI_Wrap_WalletExists)(void*) = _wrap_OTAPI_Wrap_WalletExists;
+
+void
+·OTAPI_WrapWalletExists(struct {
+  uint8 x[SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_WalletExists, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_LoadWallet _wrap_OTAPI_Wrap_LoadWallet ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadWallet
+extern void (*_wrap_OTAPI_Wrap_LoadWallet)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadWallet)(void*) = _wrap_OTAPI_Wrap_LoadWallet;
+
+void
+·OTAPI_WrapLoadWallet(struct {
+  uint8 x[SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadWallet, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SwitchWallet _wrap_OTAPI_Wrap_SwitchWallet ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SwitchWallet
+extern void (*_wrap_OTAPI_Wrap_SwitchWallet)(void*);
+static void (*x_wrap_OTAPI_Wrap_SwitchWallet)(void*) = _wrap_OTAPI_Wrap_SwitchWallet;
+
+void
+·OTAPI_WrapSwitchWallet(struct {
+  uint8 x[SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SwitchWallet, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Output _wrap_OTAPI_Wrap_Output ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Output
+extern void (*_wrap_OTAPI_Wrap_Output)(void*);
+static void (*x_wrap_OTAPI_Wrap_Output)(void*) = _wrap_OTAPI_Wrap_Output;
+
+void
+·_swig_wrap_OTAPI_Wrap_Output(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Output, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetTime _wrap_OTAPI_Wrap_GetTime ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetTime
+extern void (*_wrap_OTAPI_Wrap_GetTime)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetTime)(void*) = _wrap_OTAPI_Wrap_GetTime;
+
+void
+·_swig_wrap_OTAPI_Wrap_GetTime(struct {
+  uint8 x[SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetTime, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_NumList_Add _wrap_OTAPI_Wrap_NumList_Add ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_NumList_Add
+extern void (*_wrap_OTAPI_Wrap_NumList_Add)(void*);
+static void (*x_wrap_OTAPI_Wrap_NumList_Add)(void*) = _wrap_OTAPI_Wrap_NumList_Add;
+
+void
+·OTAPI_WrapNumList_Add(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SymmetricEncrypt, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_NumList_Add, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SymmetricDecrypt _wrap_OTAPI_Basic_SymmetricDecrypt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SymmetricDecrypt
-extern void (*_wrap_OTAPI_Basic_SymmetricDecrypt)(void*);
-static void (*x_wrap_OTAPI_Basic_SymmetricDecrypt)(void*) = _wrap_OTAPI_Basic_SymmetricDecrypt;
+#pragma dynimport _wrap_OTAPI_Wrap_NumList_Remove _wrap_OTAPI_Wrap_NumList_Remove ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_NumList_Remove
+extern void (*_wrap_OTAPI_Wrap_NumList_Remove)(void*);
+static void (*x_wrap_OTAPI_Wrap_NumList_Remove)(void*) = _wrap_OTAPI_Wrap_NumList_Remove;
 
 void
-·OTAPI_BasicSymmetricDecrypt(struct {
+·OTAPI_WrapNumList_Remove(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SymmetricDecrypt, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_NumList_Remove, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SignContract _wrap_OTAPI_Basic_SignContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SignContract
-extern void (*_wrap_OTAPI_Basic_SignContract)(void*);
-static void (*x_wrap_OTAPI_Basic_SignContract)(void*) = _wrap_OTAPI_Basic_SignContract;
+#pragma dynimport _wrap_OTAPI_Wrap_NumList_VerifyQuery _wrap_OTAPI_Wrap_NumList_VerifyQuery ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_NumList_VerifyQuery
+extern void (*_wrap_OTAPI_Wrap_NumList_VerifyQuery)(void*);
+static void (*x_wrap_OTAPI_Wrap_NumList_VerifyQuery)(void*) = _wrap_OTAPI_Wrap_NumList_VerifyQuery;
 
 void
-·OTAPI_BasicSignContract(struct {
+·OTAPI_WrapNumList_VerifyQuery(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_NumList_VerifyQuery, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_NumList_VerifyAll _wrap_OTAPI_Wrap_NumList_VerifyAll ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_NumList_VerifyAll
+extern void (*_wrap_OTAPI_Wrap_NumList_VerifyAll)(void*);
+static void (*x_wrap_OTAPI_Wrap_NumList_VerifyAll)(void*) = _wrap_OTAPI_Wrap_NumList_VerifyAll;
+
+void
+·OTAPI_WrapNumList_VerifyAll(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_NumList_VerifyAll, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_NumList_Count _wrap_OTAPI_Wrap_NumList_Count ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_NumList_Count
+extern void (*_wrap_OTAPI_Wrap_NumList_Count)(void*);
+static void (*x_wrap_OTAPI_Wrap_NumList_Count)(void*) = _wrap_OTAPI_Wrap_NumList_Count;
+
+void
+·OTAPI_WrapNumList_Count(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_NumList_Count, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Encode _wrap_OTAPI_Wrap_Encode ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Encode
+extern void (*_wrap_OTAPI_Wrap_Encode)(void*);
+static void (*x_wrap_OTAPI_Wrap_Encode)(void*) = _wrap_OTAPI_Wrap_Encode;
+
+void
+·OTAPI_WrapEncode(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Encode, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Decode _wrap_OTAPI_Wrap_Decode ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Decode
+extern void (*_wrap_OTAPI_Wrap_Decode)(void*);
+static void (*x_wrap_OTAPI_Wrap_Decode)(void*) = _wrap_OTAPI_Wrap_Decode;
+
+void
+·OTAPI_WrapDecode(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Decode, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Encrypt _wrap_OTAPI_Wrap_Encrypt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Encrypt
+extern void (*_wrap_OTAPI_Wrap_Encrypt)(void*);
+static void (*x_wrap_OTAPI_Wrap_Encrypt)(void*) = _wrap_OTAPI_Wrap_Encrypt;
+
+void
+·OTAPI_WrapEncrypt(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SignContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Encrypt, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_FlatSign _wrap_OTAPI_Basic_FlatSign ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_FlatSign
-extern void (*_wrap_OTAPI_Basic_FlatSign)(void*);
-static void (*x_wrap_OTAPI_Basic_FlatSign)(void*) = _wrap_OTAPI_Basic_FlatSign;
+#pragma dynimport _wrap_OTAPI_Wrap_Decrypt _wrap_OTAPI_Wrap_Decrypt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Decrypt
+extern void (*_wrap_OTAPI_Wrap_Decrypt)(void*);
+static void (*x_wrap_OTAPI_Wrap_Decrypt)(void*) = _wrap_OTAPI_Wrap_Decrypt;
 
 void
-·OTAPI_BasicFlatSign(struct {
+·OTAPI_WrapDecrypt(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Decrypt, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_CreateSymmetricKey _wrap_OTAPI_Wrap_CreateSymmetricKey ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreateSymmetricKey
+extern void (*_wrap_OTAPI_Wrap_CreateSymmetricKey)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreateSymmetricKey)(void*) = _wrap_OTAPI_Wrap_CreateSymmetricKey;
+
+void
+·OTAPI_WrapCreateSymmetricKey(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreateSymmetricKey, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SymmetricEncrypt _wrap_OTAPI_Wrap_SymmetricEncrypt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SymmetricEncrypt
+extern void (*_wrap_OTAPI_Wrap_SymmetricEncrypt)(void*);
+static void (*x_wrap_OTAPI_Wrap_SymmetricEncrypt)(void*) = _wrap_OTAPI_Wrap_SymmetricEncrypt;
+
+void
+·OTAPI_WrapSymmetricEncrypt(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SymmetricEncrypt, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SymmetricDecrypt _wrap_OTAPI_Wrap_SymmetricDecrypt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SymmetricDecrypt
+extern void (*_wrap_OTAPI_Wrap_SymmetricDecrypt)(void*);
+static void (*x_wrap_OTAPI_Wrap_SymmetricDecrypt)(void*) = _wrap_OTAPI_Wrap_SymmetricDecrypt;
+
+void
+·OTAPI_WrapSymmetricDecrypt(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SymmetricDecrypt, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SignContract _wrap_OTAPI_Wrap_SignContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SignContract
+extern void (*_wrap_OTAPI_Wrap_SignContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_SignContract)(void*) = _wrap_OTAPI_Wrap_SignContract;
+
+void
+·OTAPI_WrapSignContract(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SignContract, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_FlatSign _wrap_OTAPI_Wrap_FlatSign ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_FlatSign
+extern void (*_wrap_OTAPI_Wrap_FlatSign)(void*);
+static void (*x_wrap_OTAPI_Wrap_FlatSign)(void*) = _wrap_OTAPI_Wrap_FlatSign;
+
+void
+·OTAPI_WrapFlatSign(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_FlatSign, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_FlatSign, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AddSignature _wrap_OTAPI_Basic_AddSignature ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddSignature
-extern void (*_wrap_OTAPI_Basic_AddSignature)(void*);
-static void (*x_wrap_OTAPI_Basic_AddSignature)(void*) = _wrap_OTAPI_Basic_AddSignature;
+#pragma dynimport _wrap_OTAPI_Wrap_AddSignature _wrap_OTAPI_Wrap_AddSignature ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddSignature
+extern void (*_wrap_OTAPI_Wrap_AddSignature)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddSignature)(void*) = _wrap_OTAPI_Wrap_AddSignature;
 
 void
-·OTAPI_BasicAddSignature(struct {
+·OTAPI_WrapAddSignature(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddSignature, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddSignature, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_VerifySignature _wrap_OTAPI_Basic_VerifySignature ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_VerifySignature
-extern void (*_wrap_OTAPI_Basic_VerifySignature)(void*);
-static void (*x_wrap_OTAPI_Basic_VerifySignature)(void*) = _wrap_OTAPI_Basic_VerifySignature;
+#pragma dynimport _wrap_OTAPI_Wrap_VerifySignature _wrap_OTAPI_Wrap_VerifySignature ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_VerifySignature
+extern void (*_wrap_OTAPI_Wrap_VerifySignature)(void*);
+static void (*x_wrap_OTAPI_Wrap_VerifySignature)(void*) = _wrap_OTAPI_Wrap_VerifySignature;
 
 void
-·OTAPI_BasicVerifySignature(struct {
+·OTAPI_WrapVerifySignature(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_VerifySignature, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_VerifySignature, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents _wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents
-extern void (*_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents)(void*);
-static void (*x_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents)(void*) = _wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents;
+#pragma dynimport _wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents _wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents
+extern void (*_wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents)(void*) = _wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents;
 
 void
-·OTAPI_BasicVerifyAndRetrieveXMLContents(struct {
+·OTAPI_WrapVerifyAndRetrieveXMLContents(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_VerifyAndRetrieveXMLContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_VerifyAndRetrieveXMLContents, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetMemlogSize _wrap_OTAPI_Basic_GetMemlogSize ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetMemlogSize
-extern void (*_wrap_OTAPI_Basic_GetMemlogSize)(void*);
-static void (*x_wrap_OTAPI_Basic_GetMemlogSize)(void*) = _wrap_OTAPI_Basic_GetMemlogSize;
+#pragma dynimport _wrap_OTAPI_Wrap_GetMemlogSize _wrap_OTAPI_Wrap_GetMemlogSize ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetMemlogSize
+extern void (*_wrap_OTAPI_Wrap_GetMemlogSize)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetMemlogSize)(void*) = _wrap_OTAPI_Wrap_GetMemlogSize;
 
 void
-·OTAPI_BasicGetMemlogSize(struct {
+·OTAPI_WrapGetMemlogSize(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetMemlogSize, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetMemlogSize, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetMemlogAtIndex _wrap_OTAPI_Basic_GetMemlogAtIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetMemlogAtIndex
-extern void (*_wrap_OTAPI_Basic_GetMemlogAtIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetMemlogAtIndex)(void*) = _wrap_OTAPI_Basic_GetMemlogAtIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetMemlogAtIndex _wrap_OTAPI_Wrap_GetMemlogAtIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetMemlogAtIndex
+extern void (*_wrap_OTAPI_Wrap_GetMemlogAtIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetMemlogAtIndex)(void*) = _wrap_OTAPI_Wrap_GetMemlogAtIndex;
 
 void
-·OTAPI_BasicGetMemlogAtIndex(struct {
+·OTAPI_WrapGetMemlogAtIndex(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetMemlogAtIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetMemlogAtIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_PeekMemlogFront _wrap_OTAPI_Basic_PeekMemlogFront ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_PeekMemlogFront
-extern void (*_wrap_OTAPI_Basic_PeekMemlogFront)(void*);
-static void (*x_wrap_OTAPI_Basic_PeekMemlogFront)(void*) = _wrap_OTAPI_Basic_PeekMemlogFront;
+#pragma dynimport _wrap_OTAPI_Wrap_PeekMemlogFront _wrap_OTAPI_Wrap_PeekMemlogFront ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_PeekMemlogFront
+extern void (*_wrap_OTAPI_Wrap_PeekMemlogFront)(void*);
+static void (*x_wrap_OTAPI_Wrap_PeekMemlogFront)(void*) = _wrap_OTAPI_Wrap_PeekMemlogFront;
 
 void
-·OTAPI_BasicPeekMemlogFront(struct {
+·OTAPI_WrapPeekMemlogFront(struct {
   uint8 x[(2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_PeekMemlogFront, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_PeekMemlogFront, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_PeekMemlogBack _wrap_OTAPI_Basic_PeekMemlogBack ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_PeekMemlogBack
-extern void (*_wrap_OTAPI_Basic_PeekMemlogBack)(void*);
-static void (*x_wrap_OTAPI_Basic_PeekMemlogBack)(void*) = _wrap_OTAPI_Basic_PeekMemlogBack;
+#pragma dynimport _wrap_OTAPI_Wrap_PeekMemlogBack _wrap_OTAPI_Wrap_PeekMemlogBack ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_PeekMemlogBack
+extern void (*_wrap_OTAPI_Wrap_PeekMemlogBack)(void*);
+static void (*x_wrap_OTAPI_Wrap_PeekMemlogBack)(void*) = _wrap_OTAPI_Wrap_PeekMemlogBack;
 
 void
-·OTAPI_BasicPeekMemlogBack(struct {
+·OTAPI_WrapPeekMemlogBack(struct {
   uint8 x[(2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_PeekMemlogBack, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_PeekMemlogBack, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_PopMemlogFront _wrap_OTAPI_Basic_PopMemlogFront ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_PopMemlogFront
-extern void (*_wrap_OTAPI_Basic_PopMemlogFront)(void*);
-static void (*x_wrap_OTAPI_Basic_PopMemlogFront)(void*) = _wrap_OTAPI_Basic_PopMemlogFront;
+#pragma dynimport _wrap_OTAPI_Wrap_PopMemlogFront _wrap_OTAPI_Wrap_PopMemlogFront ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_PopMemlogFront
+extern void (*_wrap_OTAPI_Wrap_PopMemlogFront)(void*);
+static void (*x_wrap_OTAPI_Wrap_PopMemlogFront)(void*) = _wrap_OTAPI_Wrap_PopMemlogFront;
 
 void
-·OTAPI_BasicPopMemlogFront(struct {
+·OTAPI_WrapPopMemlogFront(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_PopMemlogFront, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_PopMemlogFront, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_PopMemlogBack _wrap_OTAPI_Basic_PopMemlogBack ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_PopMemlogBack
-extern void (*_wrap_OTAPI_Basic_PopMemlogBack)(void*);
-static void (*x_wrap_OTAPI_Basic_PopMemlogBack)(void*) = _wrap_OTAPI_Basic_PopMemlogBack;
+#pragma dynimport _wrap_OTAPI_Wrap_PopMemlogBack _wrap_OTAPI_Wrap_PopMemlogBack ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_PopMemlogBack
+extern void (*_wrap_OTAPI_Wrap_PopMemlogBack)(void*);
+static void (*x_wrap_OTAPI_Wrap_PopMemlogBack)(void*) = _wrap_OTAPI_Wrap_PopMemlogBack;
 
 void
-·OTAPI_BasicPopMemlogBack(struct {
+·OTAPI_WrapPopMemlogBack(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_PopMemlogBack, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_PopMemlogBack, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_CreateNym _wrap_OTAPI_Basic_CreateNym ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreateNym
-extern void (*_wrap_OTAPI_Basic_CreateNym)(void*);
-static void (*x_wrap_OTAPI_Basic_CreateNym)(void*) = _wrap_OTAPI_Basic_CreateNym;
+#pragma dynimport _wrap_OTAPI_Wrap_CreateNym _wrap_OTAPI_Wrap_CreateNym ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreateNym
+extern void (*_wrap_OTAPI_Wrap_CreateNym)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreateNym)(void*) = _wrap_OTAPI_Wrap_CreateNym;
 
 void
-·OTAPI_BasicCreateNym(struct {
+·OTAPI_WrapCreateNym(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreateNym, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreateNym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs _wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs
-extern void (*_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs)(void*) = _wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs _wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs
+extern void (*_wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs)(void*) = _wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs;
 
 void
-·OTAPI_BasicGetNym_ActiveCronItemIDs(struct {
+·OTAPI_WrapGetNym_ActiveCronItemIDs(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_ActiveCronItemIDs, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_ActiveCronItemIDs, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetActiveCronItem _wrap_OTAPI_Basic_GetActiveCronItem ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetActiveCronItem
-extern void (*_wrap_OTAPI_Basic_GetActiveCronItem)(void*);
-static void (*x_wrap_OTAPI_Basic_GetActiveCronItem)(void*) = _wrap_OTAPI_Basic_GetActiveCronItem;
+#pragma dynimport _wrap_OTAPI_Wrap_GetActiveCronItem _wrap_OTAPI_Wrap_GetActiveCronItem ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetActiveCronItem
+extern void (*_wrap_OTAPI_Wrap_GetActiveCronItem)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetActiveCronItem)(void*) = _wrap_OTAPI_Wrap_GetActiveCronItem;
 
 void
-·OTAPI_BasicGetActiveCronItem(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetActiveCronItem, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_SourceForID _wrap_OTAPI_Basic_GetNym_SourceForID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_SourceForID
-extern void (*_wrap_OTAPI_Basic_GetNym_SourceForID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_SourceForID)(void*) = _wrap_OTAPI_Basic_GetNym_SourceForID;
-
-void
-·OTAPI_BasicGetNym_SourceForID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_SourceForID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_AltSourceLocation _wrap_OTAPI_Basic_GetNym_AltSourceLocation ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_AltSourceLocation
-extern void (*_wrap_OTAPI_Basic_GetNym_AltSourceLocation)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_AltSourceLocation)(void*) = _wrap_OTAPI_Basic_GetNym_AltSourceLocation;
-
-void
-·OTAPI_BasicGetNym_AltSourceLocation(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_AltSourceLocation, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_CredentialCount _wrap_OTAPI_Basic_GetNym_CredentialCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_CredentialCount
-extern void (*_wrap_OTAPI_Basic_GetNym_CredentialCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_CredentialCount)(void*) = _wrap_OTAPI_Basic_GetNym_CredentialCount;
-
-void
-·OTAPI_BasicGetNym_CredentialCount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_CredentialCount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_CredentialID _wrap_OTAPI_Basic_GetNym_CredentialID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_CredentialID
-extern void (*_wrap_OTAPI_Basic_GetNym_CredentialID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_CredentialID)(void*) = _wrap_OTAPI_Basic_GetNym_CredentialID;
-
-void
-·OTAPI_BasicGetNym_CredentialID(struct {
+·OTAPI_WrapGetActiveCronItem(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_CredentialID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetActiveCronItem, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_CredentialContents _wrap_OTAPI_Basic_GetNym_CredentialContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_CredentialContents
-extern void (*_wrap_OTAPI_Basic_GetNym_CredentialContents)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_CredentialContents)(void*) = _wrap_OTAPI_Basic_GetNym_CredentialContents;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_SourceForID _wrap_OTAPI_Wrap_GetNym_SourceForID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_SourceForID
+extern void (*_wrap_OTAPI_Wrap_GetNym_SourceForID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_SourceForID)(void*) = _wrap_OTAPI_Wrap_GetNym_SourceForID;
 
 void
-·OTAPI_BasicGetNym_CredentialContents(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapGetNym_SourceForID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_CredentialContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_SourceForID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_RevokedCredCount _wrap_OTAPI_Basic_GetNym_RevokedCredCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_RevokedCredCount
-extern void (*_wrap_OTAPI_Basic_GetNym_RevokedCredCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_RevokedCredCount)(void*) = _wrap_OTAPI_Basic_GetNym_RevokedCredCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_AltSourceLocation _wrap_OTAPI_Wrap_GetNym_AltSourceLocation ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_AltSourceLocation
+extern void (*_wrap_OTAPI_Wrap_GetNym_AltSourceLocation)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_AltSourceLocation)(void*) = _wrap_OTAPI_Wrap_GetNym_AltSourceLocation;
 
 void
-·OTAPI_BasicGetNym_RevokedCredCount(struct {
+·OTAPI_WrapGetNym_AltSourceLocation(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_AltSourceLocation, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_CredentialCount _wrap_OTAPI_Wrap_GetNym_CredentialCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_CredentialCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_CredentialCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_CredentialCount)(void*) = _wrap_OTAPI_Wrap_GetNym_CredentialCount;
+
+void
+·OTAPI_WrapGetNym_CredentialCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_RevokedCredCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_CredentialCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_RevokedCredID _wrap_OTAPI_Basic_GetNym_RevokedCredID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_RevokedCredID
-extern void (*_wrap_OTAPI_Basic_GetNym_RevokedCredID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_RevokedCredID)(void*) = _wrap_OTAPI_Basic_GetNym_RevokedCredID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_CredentialID _wrap_OTAPI_Wrap_GetNym_CredentialID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_CredentialID
+extern void (*_wrap_OTAPI_Wrap_GetNym_CredentialID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_CredentialID)(void*) = _wrap_OTAPI_Wrap_GetNym_CredentialID;
 
 void
-·OTAPI_BasicGetNym_RevokedCredID(struct {
+·OTAPI_WrapGetNym_CredentialID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_RevokedCredID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_CredentialID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_RevokedCredContents _wrap_OTAPI_Basic_GetNym_RevokedCredContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_RevokedCredContents
-extern void (*_wrap_OTAPI_Basic_GetNym_RevokedCredContents)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_RevokedCredContents)(void*) = _wrap_OTAPI_Basic_GetNym_RevokedCredContents;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_CredentialContents _wrap_OTAPI_Wrap_GetNym_CredentialContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_CredentialContents
+extern void (*_wrap_OTAPI_Wrap_GetNym_CredentialContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_CredentialContents)(void*) = _wrap_OTAPI_Wrap_GetNym_CredentialContents;
 
 void
-·OTAPI_BasicGetNym_RevokedCredContents(struct {
+·OTAPI_WrapGetNym_CredentialContents(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_RevokedCredContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_CredentialContents, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_SubcredentialCount _wrap_OTAPI_Basic_GetNym_SubcredentialCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_SubcredentialCount
-extern void (*_wrap_OTAPI_Basic_GetNym_SubcredentialCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_SubcredentialCount)(void*) = _wrap_OTAPI_Basic_GetNym_SubcredentialCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_RevokedCredCount _wrap_OTAPI_Wrap_GetNym_RevokedCredCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_RevokedCredCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_RevokedCredCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_RevokedCredCount)(void*) = _wrap_OTAPI_Wrap_GetNym_RevokedCredCount;
 
 void
-·OTAPI_BasicGetNym_SubcredentialCount(struct {
+·OTAPI_WrapGetNym_RevokedCredCount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_RevokedCredCount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_RevokedCredID _wrap_OTAPI_Wrap_GetNym_RevokedCredID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_RevokedCredID
+extern void (*_wrap_OTAPI_Wrap_GetNym_RevokedCredID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_RevokedCredID)(void*) = _wrap_OTAPI_Wrap_GetNym_RevokedCredID;
+
+void
+·OTAPI_WrapGetNym_RevokedCredID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_RevokedCredID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_RevokedCredContents _wrap_OTAPI_Wrap_GetNym_RevokedCredContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_RevokedCredContents
+extern void (*_wrap_OTAPI_Wrap_GetNym_RevokedCredContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_RevokedCredContents)(void*) = _wrap_OTAPI_Wrap_GetNym_RevokedCredContents;
+
+void
+·OTAPI_WrapGetNym_RevokedCredContents(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_RevokedCredContents, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_SubcredentialCount _wrap_OTAPI_Wrap_GetNym_SubcredentialCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_SubcredentialCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_SubcredentialCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_SubcredentialCount)(void*) = _wrap_OTAPI_Wrap_GetNym_SubcredentialCount;
+
+void
+·OTAPI_WrapGetNym_SubcredentialCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_SubcredentialCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_SubcredentialCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_SubCredentialID _wrap_OTAPI_Basic_GetNym_SubCredentialID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_SubCredentialID
-extern void (*_wrap_OTAPI_Basic_GetNym_SubCredentialID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_SubCredentialID)(void*) = _wrap_OTAPI_Basic_GetNym_SubCredentialID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_SubCredentialID _wrap_OTAPI_Wrap_GetNym_SubCredentialID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_SubCredentialID
+extern void (*_wrap_OTAPI_Wrap_GetNym_SubCredentialID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_SubCredentialID)(void*) = _wrap_OTAPI_Wrap_GetNym_SubCredentialID;
 
 void
-·OTAPI_BasicGetNym_SubCredentialID(struct {
+·OTAPI_WrapGetNym_SubCredentialID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_SubCredentialID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_SubCredentialID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_SubCredentialContents _wrap_OTAPI_Basic_GetNym_SubCredentialContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_SubCredentialContents
-extern void (*_wrap_OTAPI_Basic_GetNym_SubCredentialContents)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_SubCredentialContents)(void*) = _wrap_OTAPI_Basic_GetNym_SubCredentialContents;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_SubCredentialContents _wrap_OTAPI_Wrap_GetNym_SubCredentialContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_SubCredentialContents
+extern void (*_wrap_OTAPI_Wrap_GetNym_SubCredentialContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_SubCredentialContents)(void*) = _wrap_OTAPI_Wrap_GetNym_SubCredentialContents;
 
 void
-·OTAPI_BasicGetNym_SubCredentialContents(struct {
+·OTAPI_WrapGetNym_SubCredentialContents(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_SubCredentialContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_SubCredentialContents, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AddSubcredential _wrap_OTAPI_Basic_AddSubcredential ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddSubcredential
-extern void (*_wrap_OTAPI_Basic_AddSubcredential)(void*);
-static void (*x_wrap_OTAPI_Basic_AddSubcredential)(void*) = _wrap_OTAPI_Basic_AddSubcredential;
+#pragma dynimport _wrap_OTAPI_Wrap_AddSubcredential _wrap_OTAPI_Wrap_AddSubcredential ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddSubcredential
+extern void (*_wrap_OTAPI_Wrap_AddSubcredential)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddSubcredential)(void*) = _wrap_OTAPI_Wrap_AddSubcredential;
 
 void
-·OTAPI_BasicAddSubcredential(struct {
+·OTAPI_WrapAddSubcredential(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddSubcredential, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddSubcredential, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_RevokeSubcredential _wrap_OTAPI_Basic_RevokeSubcredential ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_RevokeSubcredential
-extern void (*_wrap_OTAPI_Basic_RevokeSubcredential)(void*);
-static void (*x_wrap_OTAPI_Basic_RevokeSubcredential)(void*) = _wrap_OTAPI_Basic_RevokeSubcredential;
+#pragma dynimport _wrap_OTAPI_Wrap_RevokeSubcredential _wrap_OTAPI_Wrap_RevokeSubcredential ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_RevokeSubcredential
+extern void (*_wrap_OTAPI_Wrap_RevokeSubcredential)(void*);
+static void (*x_wrap_OTAPI_Wrap_RevokeSubcredential)(void*) = _wrap_OTAPI_Wrap_RevokeSubcredential;
 
 void
-·OTAPI_BasicRevokeSubcredential(struct {
+·OTAPI_WrapRevokeSubcredential(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_RevokeSubcredential, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_RevokeSubcredential, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_CreateServerContract _wrap_OTAPI_Basic_CreateServerContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreateServerContract
-extern void (*_wrap_OTAPI_Basic_CreateServerContract)(void*);
-static void (*x_wrap_OTAPI_Basic_CreateServerContract)(void*) = _wrap_OTAPI_Basic_CreateServerContract;
+#pragma dynimport _wrap_OTAPI_Wrap_CreateServerContract _wrap_OTAPI_Wrap_CreateServerContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreateServerContract
+extern void (*_wrap_OTAPI_Wrap_CreateServerContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreateServerContract)(void*) = _wrap_OTAPI_Wrap_CreateServerContract;
 
 void
-·OTAPI_BasicCreateServerContract(struct {
+·OTAPI_WrapCreateServerContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreateServerContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreateServerContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_CreateAssetContract _wrap_OTAPI_Basic_CreateAssetContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreateAssetContract
-extern void (*_wrap_OTAPI_Basic_CreateAssetContract)(void*);
-static void (*x_wrap_OTAPI_Basic_CreateAssetContract)(void*) = _wrap_OTAPI_Basic_CreateAssetContract;
+#pragma dynimport _wrap_OTAPI_Wrap_CreateAssetContract _wrap_OTAPI_Wrap_CreateAssetContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreateAssetContract
+extern void (*_wrap_OTAPI_Wrap_CreateAssetContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreateAssetContract)(void*) = _wrap_OTAPI_Wrap_CreateAssetContract;
 
 void
-·OTAPI_BasicCreateAssetContract(struct {
+·OTAPI_WrapCreateAssetContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreateAssetContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreateAssetContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_CalculateAssetContractID _wrap_OTAPI_Basic_CalculateAssetContractID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CalculateAssetContractID
-extern void (*_wrap_OTAPI_Basic_CalculateAssetContractID)(void*);
-static void (*x_wrap_OTAPI_Basic_CalculateAssetContractID)(void*) = _wrap_OTAPI_Basic_CalculateAssetContractID;
+#pragma dynimport _wrap_OTAPI_Wrap_CalculateAssetContractID _wrap_OTAPI_Wrap_CalculateAssetContractID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CalculateAssetContractID
+extern void (*_wrap_OTAPI_Wrap_CalculateAssetContractID)(void*);
+static void (*x_wrap_OTAPI_Wrap_CalculateAssetContractID)(void*) = _wrap_OTAPI_Wrap_CalculateAssetContractID;
 
 void
-·OTAPI_BasicCalculateAssetContractID(struct {
+·OTAPI_WrapCalculateAssetContractID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CalculateAssetContractID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CalculateAssetContractID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_CalculateServerContractID _wrap_OTAPI_Basic_CalculateServerContractID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CalculateServerContractID
-extern void (*_wrap_OTAPI_Basic_CalculateServerContractID)(void*);
-static void (*x_wrap_OTAPI_Basic_CalculateServerContractID)(void*) = _wrap_OTAPI_Basic_CalculateServerContractID;
+#pragma dynimport _wrap_OTAPI_Wrap_CalculateServerContractID _wrap_OTAPI_Wrap_CalculateServerContractID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CalculateServerContractID
+extern void (*_wrap_OTAPI_Wrap_CalculateServerContractID)(void*);
+static void (*x_wrap_OTAPI_Wrap_CalculateServerContractID)(void*) = _wrap_OTAPI_Wrap_CalculateServerContractID;
 
 void
-·OTAPI_BasicCalculateServerContractID(struct {
+·OTAPI_WrapCalculateServerContractID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_CalculateServerContractID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CalculateServerContractID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AddServerContract _wrap_OTAPI_Basic_AddServerContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddServerContract
-extern void (*_wrap_OTAPI_Basic_AddServerContract)(void*);
-static void (*x_wrap_OTAPI_Basic_AddServerContract)(void*) = _wrap_OTAPI_Basic_AddServerContract;
+#pragma dynimport _wrap_OTAPI_Wrap_AddServerContract _wrap_OTAPI_Wrap_AddServerContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddServerContract
+extern void (*_wrap_OTAPI_Wrap_AddServerContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddServerContract)(void*) = _wrap_OTAPI_Wrap_AddServerContract;
 
 void
-·OTAPI_BasicAddServerContract(struct {
+·OTAPI_WrapAddServerContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddServerContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddServerContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_AddAssetContract _wrap_OTAPI_Basic_AddAssetContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddAssetContract
-extern void (*_wrap_OTAPI_Basic_AddAssetContract)(void*);
-static void (*x_wrap_OTAPI_Basic_AddAssetContract)(void*) = _wrap_OTAPI_Basic_AddAssetContract;
+#pragma dynimport _wrap_OTAPI_Wrap_AddAssetContract _wrap_OTAPI_Wrap_AddAssetContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddAssetContract
+extern void (*_wrap_OTAPI_Wrap_AddAssetContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddAssetContract)(void*) = _wrap_OTAPI_Wrap_AddAssetContract;
 
 void
-·OTAPI_BasicAddAssetContract(struct {
+·OTAPI_WrapAddAssetContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddAssetContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddAssetContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetServerCount _wrap_OTAPI_Basic_GetServerCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetServerCount
-extern void (*_wrap_OTAPI_Basic_GetServerCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetServerCount)(void*) = _wrap_OTAPI_Basic_GetServerCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetServerCount _wrap_OTAPI_Wrap_GetServerCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetServerCount
+extern void (*_wrap_OTAPI_Wrap_GetServerCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetServerCount)(void*) = _wrap_OTAPI_Wrap_GetServerCount;
 
 void
-·OTAPI_BasicGetServerCount(struct {
+·OTAPI_WrapGetServerCount(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetServerCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetServerCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAssetTypeCount _wrap_OTAPI_Basic_GetAssetTypeCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAssetTypeCount
-extern void (*_wrap_OTAPI_Basic_GetAssetTypeCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAssetTypeCount)(void*) = _wrap_OTAPI_Basic_GetAssetTypeCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAssetTypeCount _wrap_OTAPI_Wrap_GetAssetTypeCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAssetTypeCount
+extern void (*_wrap_OTAPI_Wrap_GetAssetTypeCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAssetTypeCount)(void*) = _wrap_OTAPI_Wrap_GetAssetTypeCount;
 
 void
-·OTAPI_BasicGetAssetTypeCount(struct {
+·OTAPI_WrapGetAssetTypeCount(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAssetTypeCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAssetTypeCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountCount _wrap_OTAPI_Basic_GetAccountCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountCount
-extern void (*_wrap_OTAPI_Basic_GetAccountCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountCount)(void*) = _wrap_OTAPI_Basic_GetAccountCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountCount _wrap_OTAPI_Wrap_GetAccountCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountCount
+extern void (*_wrap_OTAPI_Wrap_GetAccountCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountCount)(void*) = _wrap_OTAPI_Wrap_GetAccountCount;
 
 void
-·OTAPI_BasicGetAccountCount(struct {
+·OTAPI_WrapGetAccountCount(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNymCount _wrap_OTAPI_Basic_GetNymCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNymCount
-extern void (*_wrap_OTAPI_Basic_GetNymCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNymCount)(void*) = _wrap_OTAPI_Basic_GetNymCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNymCount _wrap_OTAPI_Wrap_GetNymCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNymCount
+extern void (*_wrap_OTAPI_Wrap_GetNymCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNymCount)(void*) = _wrap_OTAPI_Wrap_GetNymCount;
 
 void
-·OTAPI_BasicGetNymCount(struct {
+·OTAPI_WrapGetNymCount(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNymCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNymCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetServer_ID _wrap_OTAPI_Basic_GetServer_ID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetServer_ID
-extern void (*_wrap_OTAPI_Basic_GetServer_ID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetServer_ID)(void*) = _wrap_OTAPI_Basic_GetServer_ID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetServer_ID _wrap_OTAPI_Wrap_GetServer_ID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetServer_ID
+extern void (*_wrap_OTAPI_Wrap_GetServer_ID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetServer_ID)(void*) = _wrap_OTAPI_Wrap_GetServer_ID;
 
 void
-·OTAPI_BasicGetServer_ID(struct {
+·OTAPI_WrapGetServer_ID(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetServer_ID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetServer_ID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetServer_Name _wrap_OTAPI_Basic_GetServer_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetServer_Name
-extern void (*_wrap_OTAPI_Basic_GetServer_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_GetServer_Name)(void*) = _wrap_OTAPI_Basic_GetServer_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_GetServer_Name _wrap_OTAPI_Wrap_GetServer_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetServer_Name
+extern void (*_wrap_OTAPI_Wrap_GetServer_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetServer_Name)(void*) = _wrap_OTAPI_Wrap_GetServer_Name;
 
 void
-·OTAPI_BasicGetServer_Name(struct {
+·OTAPI_WrapGetServer_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetServer_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetServer_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetServer_Contract _wrap_OTAPI_Basic_GetServer_Contract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetServer_Contract
-extern void (*_wrap_OTAPI_Basic_GetServer_Contract)(void*);
-static void (*x_wrap_OTAPI_Basic_GetServer_Contract)(void*) = _wrap_OTAPI_Basic_GetServer_Contract;
+#pragma dynimport _wrap_OTAPI_Wrap_GetServer_Contract _wrap_OTAPI_Wrap_GetServer_Contract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetServer_Contract
+extern void (*_wrap_OTAPI_Wrap_GetServer_Contract)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetServer_Contract)(void*) = _wrap_OTAPI_Wrap_GetServer_Contract;
 
 void
-·OTAPI_BasicGetServer_Contract(struct {
+·OTAPI_WrapGetServer_Contract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetServer_Contract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetServer_Contract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_FormatAmount _wrap_OTAPI_Basic_FormatAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_FormatAmount
-extern void (*_wrap_OTAPI_Basic_FormatAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_FormatAmount)(void*) = _wrap_OTAPI_Basic_FormatAmount;
+#pragma dynimport _wrap_OTAPI_Wrap_FormatAmount _wrap_OTAPI_Wrap_FormatAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_FormatAmount
+extern void (*_wrap_OTAPI_Wrap_FormatAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_FormatAmount)(void*) = _wrap_OTAPI_Wrap_FormatAmount;
 
 void
-·OTAPI_BasicFormatAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapFormatAmount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_FormatAmount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_FormatAmount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_StringToAmount _wrap_OTAPI_Basic_StringToAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_StringToAmount
-extern void (*_wrap_OTAPI_Basic_StringToAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_StringToAmount)(void*) = _wrap_OTAPI_Basic_StringToAmount;
+#pragma dynimport _wrap_OTAPI_Wrap_StringToAmount _wrap_OTAPI_Wrap_StringToAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_StringToAmount
+extern void (*_wrap_OTAPI_Wrap_StringToAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_StringToAmount)(void*) = _wrap_OTAPI_Wrap_StringToAmount;
 
 void
-·OTAPI_BasicStringToAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapStringToAmount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_StringToAmount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_StringToAmount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAssetType_ID _wrap_OTAPI_Basic_GetAssetType_ID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAssetType_ID
-extern void (*_wrap_OTAPI_Basic_GetAssetType_ID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAssetType_ID)(void*) = _wrap_OTAPI_Basic_GetAssetType_ID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAssetType_ID _wrap_OTAPI_Wrap_GetAssetType_ID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAssetType_ID
+extern void (*_wrap_OTAPI_Wrap_GetAssetType_ID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAssetType_ID)(void*) = _wrap_OTAPI_Wrap_GetAssetType_ID;
 
 void
-·OTAPI_BasicGetAssetType_ID(struct {
+·OTAPI_WrapGetAssetType_ID(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAssetType_ID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAssetType_ID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAssetType_Name _wrap_OTAPI_Basic_GetAssetType_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAssetType_Name
-extern void (*_wrap_OTAPI_Basic_GetAssetType_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAssetType_Name)(void*) = _wrap_OTAPI_Basic_GetAssetType_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAssetType_Name _wrap_OTAPI_Wrap_GetAssetType_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAssetType_Name
+extern void (*_wrap_OTAPI_Wrap_GetAssetType_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAssetType_Name)(void*) = _wrap_OTAPI_Wrap_GetAssetType_Name;
 
 void
-·OTAPI_BasicGetAssetType_Name(struct {
+·OTAPI_WrapGetAssetType_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAssetType_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAssetType_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAssetType_TLA _wrap_OTAPI_Basic_GetAssetType_TLA ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAssetType_TLA
-extern void (*_wrap_OTAPI_Basic_GetAssetType_TLA)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAssetType_TLA)(void*) = _wrap_OTAPI_Basic_GetAssetType_TLA;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAssetType_TLA _wrap_OTAPI_Wrap_GetAssetType_TLA ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAssetType_TLA
+extern void (*_wrap_OTAPI_Wrap_GetAssetType_TLA)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAssetType_TLA)(void*) = _wrap_OTAPI_Wrap_GetAssetType_TLA;
 
 void
-·OTAPI_BasicGetAssetType_TLA(struct {
+·OTAPI_WrapGetAssetType_TLA(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAssetType_TLA, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAssetType_TLA, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAssetType_Contract _wrap_OTAPI_Basic_GetAssetType_Contract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAssetType_Contract
-extern void (*_wrap_OTAPI_Basic_GetAssetType_Contract)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAssetType_Contract)(void*) = _wrap_OTAPI_Basic_GetAssetType_Contract;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAssetType_Contract _wrap_OTAPI_Wrap_GetAssetType_Contract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAssetType_Contract
+extern void (*_wrap_OTAPI_Wrap_GetAssetType_Contract)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAssetType_Contract)(void*) = _wrap_OTAPI_Wrap_GetAssetType_Contract;
 
 void
-·OTAPI_BasicGetAssetType_Contract(struct {
+·OTAPI_WrapGetAssetType_Contract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAssetType_Contract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAssetType_Contract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_ID _wrap_OTAPI_Basic_GetAccountWallet_ID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_ID
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_ID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_ID)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_ID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_ID _wrap_OTAPI_Wrap_GetAccountWallet_ID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_ID
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_ID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_ID)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_ID;
 
 void
-·OTAPI_BasicGetAccountWallet_ID(struct {
+·OTAPI_WrapGetAccountWallet_ID(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_ID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_ID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_Name _wrap_OTAPI_Basic_GetAccountWallet_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_Name
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_Name)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_Name _wrap_OTAPI_Wrap_GetAccountWallet_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_Name
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_Name)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_Name;
 
 void
-·OTAPI_BasicGetAccountWallet_Name(struct {
+·OTAPI_WrapGetAccountWallet_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_Balance _wrap_OTAPI_Basic_GetAccountWallet_Balance ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_Balance
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_Balance)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_Balance)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_Balance;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_Balance _wrap_OTAPI_Wrap_GetAccountWallet_Balance ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_Balance
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_Balance)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_Balance)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_Balance;
 
 void
-·OTAPI_BasicGetAccountWallet_Balance(struct {
+·OTAPI_WrapGetAccountWallet_Balance(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_Balance, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_Type _wrap_OTAPI_Wrap_GetAccountWallet_Type ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_Type
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_Type)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_Type)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_Type;
+
+void
+·OTAPI_WrapGetAccountWallet_Type(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_Balance, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_Type, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_Type _wrap_OTAPI_Basic_GetAccountWallet_Type ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_Type
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_Type)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_Type)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_Type;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID _wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID;
 
 void
-·OTAPI_BasicGetAccountWallet_Type(struct {
+·OTAPI_WrapGetAccountWallet_AssetTypeID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_Type, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_AssetTypeID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID _wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_ServerID _wrap_OTAPI_Wrap_GetAccountWallet_ServerID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_ServerID
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_ServerID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_ServerID)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_ServerID;
 
 void
-·OTAPI_BasicGetAccountWallet_AssetTypeID(struct {
+·OTAPI_WrapGetAccountWallet_ServerID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_AssetTypeID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_ServerID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_ServerID _wrap_OTAPI_Basic_GetAccountWallet_ServerID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_ServerID
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_ServerID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_ServerID)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_ServerID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_NymID _wrap_OTAPI_Wrap_GetAccountWallet_NymID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_NymID
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_NymID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_NymID)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_NymID;
 
 void
-·OTAPI_BasicGetAccountWallet_ServerID(struct {
+·OTAPI_WrapGetAccountWallet_NymID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_ServerID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_NymID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_NymID _wrap_OTAPI_Basic_GetAccountWallet_NymID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_NymID
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_NymID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_NymID)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_NymID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_InboxHash _wrap_OTAPI_Wrap_GetAccountWallet_InboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_InboxHash
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_InboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_InboxHash)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_InboxHash;
 
 void
-·OTAPI_BasicGetAccountWallet_NymID(struct {
+·OTAPI_WrapGetAccountWallet_InboxHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_NymID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_InboxHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_InboxHash _wrap_OTAPI_Basic_GetAccountWallet_InboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_InboxHash
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_InboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_InboxHash)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_InboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash _wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash
+extern void (*_wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash)(void*) = _wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash;
 
 void
-·OTAPI_BasicGetAccountWallet_InboxHash(struct {
+·OTAPI_WrapGetAccountWallet_OutboxHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_InboxHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetAccountWallet_OutboxHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetAccountWallet_OutboxHash _wrap_OTAPI_Basic_GetAccountWallet_OutboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetAccountWallet_OutboxHash
-extern void (*_wrap_OTAPI_Basic_GetAccountWallet_OutboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetAccountWallet_OutboxHash)(void*) = _wrap_OTAPI_Basic_GetAccountWallet_OutboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_VerifyAccountReceipt _wrap_OTAPI_Wrap_VerifyAccountReceipt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_VerifyAccountReceipt
+extern void (*_wrap_OTAPI_Wrap_VerifyAccountReceipt)(void*);
+static void (*x_wrap_OTAPI_Wrap_VerifyAccountReceipt)(void*) = _wrap_OTAPI_Wrap_VerifyAccountReceipt;
 
 void
-·OTAPI_BasicGetAccountWallet_OutboxHash(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetAccountWallet_OutboxHash, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_VerifyAccountReceipt _wrap_OTAPI_Basic_VerifyAccountReceipt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_VerifyAccountReceipt
-extern void (*_wrap_OTAPI_Basic_VerifyAccountReceipt)(void*);
-static void (*x_wrap_OTAPI_Basic_VerifyAccountReceipt)(void*) = _wrap_OTAPI_Basic_VerifyAccountReceipt;
-
-void
-·OTAPI_BasicVerifyAccountReceipt(struct {
+·OTAPI_WrapVerifyAccountReceipt(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_VerifyAccountReceipt, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_VerifyAccountReceipt, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_TransactionNumCount _wrap_OTAPI_Basic_GetNym_TransactionNumCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_TransactionNumCount
-extern void (*_wrap_OTAPI_Basic_GetNym_TransactionNumCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_TransactionNumCount)(void*) = _wrap_OTAPI_Basic_GetNym_TransactionNumCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_TransactionNumCount _wrap_OTAPI_Wrap_GetNym_TransactionNumCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_TransactionNumCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_TransactionNumCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_TransactionNumCount)(void*) = _wrap_OTAPI_Wrap_GetNym_TransactionNumCount;
 
 void
-·OTAPI_BasicGetNym_TransactionNumCount(struct {
+·OTAPI_WrapGetNym_TransactionNumCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_TransactionNumCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_TransactionNumCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_ID _wrap_OTAPI_Basic_GetNym_ID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_ID
-extern void (*_wrap_OTAPI_Basic_GetNym_ID)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_ID)(void*) = _wrap_OTAPI_Basic_GetNym_ID;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_ID _wrap_OTAPI_Wrap_GetNym_ID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_ID
+extern void (*_wrap_OTAPI_Wrap_GetNym_ID)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_ID)(void*) = _wrap_OTAPI_Wrap_GetNym_ID;
 
 void
-·OTAPI_BasicGetNym_ID(struct {
+·OTAPI_WrapGetNym_ID(struct {
   uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_ID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_ID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_Name _wrap_OTAPI_Basic_GetNym_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_Name
-extern void (*_wrap_OTAPI_Basic_GetNym_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_Name)(void*) = _wrap_OTAPI_Basic_GetNym_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_Name _wrap_OTAPI_Wrap_GetNym_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_Name
+extern void (*_wrap_OTAPI_Wrap_GetNym_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_Name)(void*) = _wrap_OTAPI_Wrap_GetNym_Name;
 
 void
-·OTAPI_BasicGetNym_Name(struct {
+·OTAPI_WrapGetNym_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_Stats _wrap_OTAPI_Basic_GetNym_Stats ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_Stats
-extern void (*_wrap_OTAPI_Basic_GetNym_Stats)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_Stats)(void*) = _wrap_OTAPI_Basic_GetNym_Stats;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_Stats _wrap_OTAPI_Wrap_GetNym_Stats ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_Stats
+extern void (*_wrap_OTAPI_Wrap_GetNym_Stats)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_Stats)(void*) = _wrap_OTAPI_Wrap_GetNym_Stats;
 
 void
-·OTAPI_BasicGetNym_Stats(struct {
+·OTAPI_WrapGetNym_Stats(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_Stats, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_Stats, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_NymboxHash _wrap_OTAPI_Basic_GetNym_NymboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_NymboxHash
-extern void (*_wrap_OTAPI_Basic_GetNym_NymboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_NymboxHash)(void*) = _wrap_OTAPI_Basic_GetNym_NymboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_NymboxHash _wrap_OTAPI_Wrap_GetNym_NymboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_NymboxHash
+extern void (*_wrap_OTAPI_Wrap_GetNym_NymboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_NymboxHash)(void*) = _wrap_OTAPI_Wrap_GetNym_NymboxHash;
 
 void
-·OTAPI_BasicGetNym_NymboxHash(struct {
+·OTAPI_WrapGetNym_NymboxHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_NymboxHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_NymboxHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_RecentHash _wrap_OTAPI_Basic_GetNym_RecentHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_RecentHash
-extern void (*_wrap_OTAPI_Basic_GetNym_RecentHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_RecentHash)(void*) = _wrap_OTAPI_Basic_GetNym_RecentHash;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_RecentHash _wrap_OTAPI_Wrap_GetNym_RecentHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_RecentHash
+extern void (*_wrap_OTAPI_Wrap_GetNym_RecentHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_RecentHash)(void*) = _wrap_OTAPI_Wrap_GetNym_RecentHash;
 
 void
-·OTAPI_BasicGetNym_RecentHash(struct {
+·OTAPI_WrapGetNym_RecentHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_RecentHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_RecentHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_InboxHash _wrap_OTAPI_Basic_GetNym_InboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_InboxHash
-extern void (*_wrap_OTAPI_Basic_GetNym_InboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_InboxHash)(void*) = _wrap_OTAPI_Basic_GetNym_InboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_InboxHash _wrap_OTAPI_Wrap_GetNym_InboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_InboxHash
+extern void (*_wrap_OTAPI_Wrap_GetNym_InboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_InboxHash)(void*) = _wrap_OTAPI_Wrap_GetNym_InboxHash;
 
 void
-·OTAPI_BasicGetNym_InboxHash(struct {
+·OTAPI_WrapGetNym_InboxHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_InboxHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_InboxHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutboxHash _wrap_OTAPI_Basic_GetNym_OutboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutboxHash
-extern void (*_wrap_OTAPI_Basic_GetNym_OutboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutboxHash)(void*) = _wrap_OTAPI_Basic_GetNym_OutboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutboxHash _wrap_OTAPI_Wrap_GetNym_OutboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutboxHash
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutboxHash)(void*) = _wrap_OTAPI_Wrap_GetNym_OutboxHash;
 
 void
-·OTAPI_BasicGetNym_OutboxHash(struct {
+·OTAPI_WrapGetNym_OutboxHash(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutboxHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutboxHash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_IsNym_RegisteredAtServer _wrap_OTAPI_Basic_IsNym_RegisteredAtServer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_IsNym_RegisteredAtServer
-extern void (*_wrap_OTAPI_Basic_IsNym_RegisteredAtServer)(void*);
-static void (*x_wrap_OTAPI_Basic_IsNym_RegisteredAtServer)(void*) = _wrap_OTAPI_Basic_IsNym_RegisteredAtServer;
+#pragma dynimport _wrap_OTAPI_Wrap_IsNym_RegisteredAtServer _wrap_OTAPI_Wrap_IsNym_RegisteredAtServer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_IsNym_RegisteredAtServer
+extern void (*_wrap_OTAPI_Wrap_IsNym_RegisteredAtServer)(void*);
+static void (*x_wrap_OTAPI_Wrap_IsNym_RegisteredAtServer)(void*) = _wrap_OTAPI_Wrap_IsNym_RegisteredAtServer;
 
 void
-·OTAPI_BasicIsNym_RegisteredAtServer(struct {
+·OTAPI_WrapIsNym_RegisteredAtServer(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_IsNym_RegisteredAtServer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_IsNym_RegisteredAtServer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_MailCount _wrap_OTAPI_Basic_GetNym_MailCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_MailCount
-extern void (*_wrap_OTAPI_Basic_GetNym_MailCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_MailCount)(void*) = _wrap_OTAPI_Basic_GetNym_MailCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_MailCount _wrap_OTAPI_Wrap_GetNym_MailCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_MailCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_MailCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_MailCount)(void*) = _wrap_OTAPI_Wrap_GetNym_MailCount;
 
 void
-·OTAPI_BasicGetNym_MailCount(struct {
+·OTAPI_WrapGetNym_MailCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_MailCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_MailCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_MailContentsByIndex _wrap_OTAPI_Basic_GetNym_MailContentsByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_MailContentsByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_MailContentsByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_MailContentsByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_MailContentsByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_MailContentsByIndex _wrap_OTAPI_Wrap_GetNym_MailContentsByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_MailContentsByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_MailContentsByIndex;
 
 void
-·OTAPI_BasicGetNym_MailContentsByIndex(struct {
+·OTAPI_WrapGetNym_MailContentsByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_MailContentsByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex _wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex _wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex;
 
 void
-·OTAPI_BasicGetNym_MailSenderIDByIndex(struct {
+·OTAPI_WrapGetNym_MailSenderIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_MailSenderIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_MailServerIDByIndex _wrap_OTAPI_Basic_GetNym_MailServerIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_MailServerIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_MailServerIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex _wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex;
 
 void
-·OTAPI_BasicGetNym_MailServerIDByIndex(struct {
+·OTAPI_WrapGetNym_MailServerIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_MailServerIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_RemoveMailByIndex _wrap_OTAPI_Basic_Nym_RemoveMailByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_RemoveMailByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_RemoveMailByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_RemoveMailByIndex)(void*) = _wrap_OTAPI_Basic_Nym_RemoveMailByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_RemoveMailByIndex _wrap_OTAPI_Wrap_Nym_RemoveMailByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_RemoveMailByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_RemoveMailByIndex;
 
 void
-·OTAPI_BasicNym_RemoveMailByIndex(struct {
+·OTAPI_WrapNym_RemoveMailByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_RemoveMailByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_VerifyMailByIndex _wrap_OTAPI_Basic_Nym_VerifyMailByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_VerifyMailByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_VerifyMailByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_VerifyMailByIndex)(void*) = _wrap_OTAPI_Basic_Nym_VerifyMailByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_VerifyMailByIndex _wrap_OTAPI_Wrap_Nym_VerifyMailByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_VerifyMailByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_VerifyMailByIndex;
 
 void
-·OTAPI_BasicNym_VerifyMailByIndex(struct {
+·OTAPI_WrapNym_VerifyMailByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_VerifyMailByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutmailCount _wrap_OTAPI_Basic_GetNym_OutmailCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutmailCount
-extern void (*_wrap_OTAPI_Basic_GetNym_OutmailCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutmailCount)(void*) = _wrap_OTAPI_Basic_GetNym_OutmailCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutmailCount _wrap_OTAPI_Wrap_GetNym_OutmailCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutmailCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutmailCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutmailCount)(void*) = _wrap_OTAPI_Wrap_GetNym_OutmailCount;
 
 void
-·OTAPI_BasicGetNym_OutmailCount(struct {
+·OTAPI_WrapGetNym_OutmailCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutmailCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutmailCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex _wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex _wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex;
 
 void
-·OTAPI_BasicGetNym_OutmailContentsByIndex(struct {
+·OTAPI_WrapGetNym_OutmailContentsByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutmailContentsByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex _wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex _wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex;
 
 void
-·OTAPI_BasicGetNym_OutmailRecipientIDByIndex(struct {
+·OTAPI_WrapGetNym_OutmailRecipientIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex _wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex _wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex;
 
 void
-·OTAPI_BasicGetNym_OutmailServerIDByIndex(struct {
+·OTAPI_WrapGetNym_OutmailServerIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutmailServerIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex _wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex)(void*) = _wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex _wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex;
 
 void
-·OTAPI_BasicNym_RemoveOutmailByIndex(struct {
+·OTAPI_WrapNym_RemoveOutmailByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_RemoveOutmailByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex _wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex)(void*) = _wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex _wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex;
 
 void
-·OTAPI_BasicNym_VerifyOutmailByIndex(struct {
+·OTAPI_WrapNym_VerifyOutmailByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_VerifyOutmailByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutpaymentsCount _wrap_OTAPI_Basic_GetNym_OutpaymentsCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutpaymentsCount
-extern void (*_wrap_OTAPI_Basic_GetNym_OutpaymentsCount)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutpaymentsCount)(void*) = _wrap_OTAPI_Basic_GetNym_OutpaymentsCount;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutpaymentsCount _wrap_OTAPI_Wrap_GetNym_OutpaymentsCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutpaymentsCount
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutpaymentsCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutpaymentsCount)(void*) = _wrap_OTAPI_Wrap_GetNym_OutpaymentsCount;
 
 void
-·OTAPI_BasicGetNym_OutpaymentsCount(struct {
+·OTAPI_WrapGetNym_OutpaymentsCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutpaymentsCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutpaymentsCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex _wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex _wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex;
 
 void
-·OTAPI_BasicGetNym_OutpaymentsContentsByIndex(struct {
+·OTAPI_WrapGetNym_OutpaymentsContentsByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex _wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex _wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex;
 
 void
-·OTAPI_BasicGetNym_OutpaymentsRecipientIDByIndex(struct {
+·OTAPI_WrapGetNym_OutpaymentsRecipientIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex _wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex
-extern void (*_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex)(void*) = _wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex _wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex
+extern void (*_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex)(void*) = _wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex;
 
 void
-·OTAPI_BasicGetNym_OutpaymentsServerIDByIndex(struct {
+·OTAPI_WrapGetNym_OutpaymentsServerIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex _wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex)(void*) = _wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex _wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex;
 
 void
-·OTAPI_BasicNym_RemoveOutpaymentsByIndex(struct {
+·OTAPI_WrapNym_RemoveOutpaymentsByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex _wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex
-extern void (*_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex)(void*) = _wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex _wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex
+extern void (*_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex)(void*) = _wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex;
 
 void
-·OTAPI_BasicNym_VerifyOutpaymentsByIndex(struct {
+·OTAPI_WrapNym_VerifyOutpaymentsByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_CanRemoveServer _wrap_OTAPI_Basic_Wallet_CanRemoveServer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_CanRemoveServer
-extern void (*_wrap_OTAPI_Basic_Wallet_CanRemoveServer)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_CanRemoveServer)(void*) = _wrap_OTAPI_Basic_Wallet_CanRemoveServer;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_CanRemoveServer _wrap_OTAPI_Wrap_Wallet_CanRemoveServer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_CanRemoveServer
+extern void (*_wrap_OTAPI_Wrap_Wallet_CanRemoveServer)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_CanRemoveServer)(void*) = _wrap_OTAPI_Wrap_Wallet_CanRemoveServer;
 
 void
-·OTAPI_BasicWallet_CanRemoveServer(struct {
+·OTAPI_WrapWallet_CanRemoveServer(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_CanRemoveServer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_CanRemoveServer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_RemoveServer _wrap_OTAPI_Basic_Wallet_RemoveServer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_RemoveServer
-extern void (*_wrap_OTAPI_Basic_Wallet_RemoveServer)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_RemoveServer)(void*) = _wrap_OTAPI_Basic_Wallet_RemoveServer;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_RemoveServer _wrap_OTAPI_Wrap_Wallet_RemoveServer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_RemoveServer
+extern void (*_wrap_OTAPI_Wrap_Wallet_RemoveServer)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_RemoveServer)(void*) = _wrap_OTAPI_Wrap_Wallet_RemoveServer;
 
 void
-·OTAPI_BasicWallet_RemoveServer(struct {
+·OTAPI_WrapWallet_RemoveServer(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_RemoveServer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_RemoveServer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_CanRemoveAssetType _wrap_OTAPI_Basic_Wallet_CanRemoveAssetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_CanRemoveAssetType
-extern void (*_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType)(void*) = _wrap_OTAPI_Basic_Wallet_CanRemoveAssetType;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType _wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType
+extern void (*_wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType)(void*) = _wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType;
 
 void
-·OTAPI_BasicWallet_CanRemoveAssetType(struct {
+·OTAPI_WrapWallet_CanRemoveAssetType(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_CanRemoveAssetType, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_CanRemoveAssetType, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_RemoveAssetType _wrap_OTAPI_Basic_Wallet_RemoveAssetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_RemoveAssetType
-extern void (*_wrap_OTAPI_Basic_Wallet_RemoveAssetType)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_RemoveAssetType)(void*) = _wrap_OTAPI_Basic_Wallet_RemoveAssetType;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_RemoveAssetType _wrap_OTAPI_Wrap_Wallet_RemoveAssetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_RemoveAssetType
+extern void (*_wrap_OTAPI_Wrap_Wallet_RemoveAssetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_RemoveAssetType)(void*) = _wrap_OTAPI_Wrap_Wallet_RemoveAssetType;
 
 void
-·OTAPI_BasicWallet_RemoveAssetType(struct {
+·OTAPI_WrapWallet_RemoveAssetType(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_RemoveAssetType, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_RemoveAssetType, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_CanRemoveNym _wrap_OTAPI_Basic_Wallet_CanRemoveNym ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_CanRemoveNym
-extern void (*_wrap_OTAPI_Basic_Wallet_CanRemoveNym)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_CanRemoveNym)(void*) = _wrap_OTAPI_Basic_Wallet_CanRemoveNym;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_CanRemoveNym _wrap_OTAPI_Wrap_Wallet_CanRemoveNym ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_CanRemoveNym
+extern void (*_wrap_OTAPI_Wrap_Wallet_CanRemoveNym)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_CanRemoveNym)(void*) = _wrap_OTAPI_Wrap_Wallet_CanRemoveNym;
 
 void
-·OTAPI_BasicWallet_CanRemoveNym(struct {
+·OTAPI_WrapWallet_CanRemoveNym(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_CanRemoveNym, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_CanRemoveNym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_RemoveNym _wrap_OTAPI_Basic_Wallet_RemoveNym ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_RemoveNym
-extern void (*_wrap_OTAPI_Basic_Wallet_RemoveNym)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_RemoveNym)(void*) = _wrap_OTAPI_Basic_Wallet_RemoveNym;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_RemoveNym _wrap_OTAPI_Wrap_Wallet_RemoveNym ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_RemoveNym
+extern void (*_wrap_OTAPI_Wrap_Wallet_RemoveNym)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_RemoveNym)(void*) = _wrap_OTAPI_Wrap_Wallet_RemoveNym;
 
 void
-·OTAPI_BasicWallet_RemoveNym(struct {
+·OTAPI_WrapWallet_RemoveNym(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_RemoveNym, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_RemoveNym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_CanRemoveAccount _wrap_OTAPI_Basic_Wallet_CanRemoveAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_CanRemoveAccount
-extern void (*_wrap_OTAPI_Basic_Wallet_CanRemoveAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_CanRemoveAccount)(void*) = _wrap_OTAPI_Basic_Wallet_CanRemoveAccount;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_CanRemoveAccount _wrap_OTAPI_Wrap_Wallet_CanRemoveAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_CanRemoveAccount
+extern void (*_wrap_OTAPI_Wrap_Wallet_CanRemoveAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_CanRemoveAccount)(void*) = _wrap_OTAPI_Wrap_Wallet_CanRemoveAccount;
 
 void
-·OTAPI_BasicWallet_CanRemoveAccount(struct {
+·OTAPI_WrapWallet_CanRemoveAccount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_CanRemoveAccount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_CanRemoveAccount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ChangePassphrase _wrap_OTAPI_Basic_Wallet_ChangePassphrase ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ChangePassphrase
-extern void (*_wrap_OTAPI_Basic_Wallet_ChangePassphrase)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ChangePassphrase)(void*) = _wrap_OTAPI_Basic_Wallet_ChangePassphrase;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ChangePassphrase _wrap_OTAPI_Wrap_Wallet_ChangePassphrase ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ChangePassphrase
+extern void (*_wrap_OTAPI_Wrap_Wallet_ChangePassphrase)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ChangePassphrase)(void*) = _wrap_OTAPI_Wrap_Wallet_ChangePassphrase;
 
 void
-·OTAPI_BasicWallet_ChangePassphrase(struct {
+·OTAPI_WrapWallet_ChangePassphrase(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ChangePassphrase, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ChangePassphrase, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ExportNym _wrap_OTAPI_Basic_Wallet_ExportNym ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ExportNym
-extern void (*_wrap_OTAPI_Basic_Wallet_ExportNym)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ExportNym)(void*) = _wrap_OTAPI_Basic_Wallet_ExportNym;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ExportNym _wrap_OTAPI_Wrap_Wallet_ExportNym ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ExportNym
+extern void (*_wrap_OTAPI_Wrap_Wallet_ExportNym)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ExportNym)(void*) = _wrap_OTAPI_Wrap_Wallet_ExportNym;
 
 void
-·OTAPI_BasicWallet_ExportNym(struct {
+·OTAPI_WrapWallet_ExportNym(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ExportNym, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ExportNym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ImportNym _wrap_OTAPI_Basic_Wallet_ImportNym ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ImportNym
-extern void (*_wrap_OTAPI_Basic_Wallet_ImportNym)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ImportNym)(void*) = _wrap_OTAPI_Basic_Wallet_ImportNym;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ImportNym _wrap_OTAPI_Wrap_Wallet_ImportNym ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ImportNym
+extern void (*_wrap_OTAPI_Wrap_Wallet_ImportNym)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ImportNym)(void*) = _wrap_OTAPI_Wrap_Wallet_ImportNym;
 
 void
-·OTAPI_BasicWallet_ImportNym(struct {
+·OTAPI_WrapWallet_ImportNym(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ImportNym, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ImportNym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ImportCert _wrap_OTAPI_Basic_Wallet_ImportCert ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ImportCert
-extern void (*_wrap_OTAPI_Basic_Wallet_ImportCert)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ImportCert)(void*) = _wrap_OTAPI_Basic_Wallet_ImportCert;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ImportCert _wrap_OTAPI_Wrap_Wallet_ImportCert ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ImportCert
+extern void (*_wrap_OTAPI_Wrap_Wallet_ImportCert)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ImportCert)(void*) = _wrap_OTAPI_Wrap_Wallet_ImportCert;
 
 void
-·OTAPI_BasicWallet_ImportCert(struct {
+·OTAPI_WrapWallet_ImportCert(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ImportCert, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ImportCert, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ExportCert _wrap_OTAPI_Basic_Wallet_ExportCert ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ExportCert
-extern void (*_wrap_OTAPI_Basic_Wallet_ExportCert)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ExportCert)(void*) = _wrap_OTAPI_Basic_Wallet_ExportCert;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ExportCert _wrap_OTAPI_Wrap_Wallet_ExportCert ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ExportCert
+extern void (*_wrap_OTAPI_Wrap_Wallet_ExportCert)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ExportCert)(void*) = _wrap_OTAPI_Wrap_Wallet_ExportCert;
 
 void
-·OTAPI_BasicWallet_ExportCert(struct {
+·OTAPI_WrapWallet_ExportCert(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ExportCert, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ExportCert, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial _wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial
-extern void (*_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial)(void*) = _wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial _wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial
+extern void (*_wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial)(void*) = _wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial;
 
 void
-·OTAPI_BasicWallet_GetNymIDFromPartial(struct {
+·OTAPI_WrapWallet_GetNymIDFromPartial(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_GetNymIDFromPartial, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_GetNymIDFromPartial, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial _wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial
-extern void (*_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial)(void*) = _wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial _wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial
+extern void (*_wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial)(void*) = _wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial;
 
 void
-·OTAPI_BasicWallet_GetServerIDFromPartial(struct {
+·OTAPI_WrapWallet_GetServerIDFromPartial(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_GetServerIDFromPartial, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_GetServerIDFromPartial, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial _wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial
-extern void (*_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial)(void*) = _wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial _wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial
+extern void (*_wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial)(void*) = _wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial;
 
 void
-·OTAPI_BasicWallet_GetAssetIDFromPartial(struct {
+·OTAPI_WrapWallet_GetAssetIDFromPartial(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_GetAssetIDFromPartial, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_GetAssetIDFromPartial, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial _wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial
-extern void (*_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial)(void*) = _wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial;
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial _wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial
+extern void (*_wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial)(void*) = _wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial;
 
 void
-·OTAPI_BasicWallet_GetAccountIDFromPartial(struct {
+·OTAPI_WrapWallet_GetAccountIDFromPartial(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_GetAccountIDFromPartial, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_GetAccountIDFromPartial, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetNym_Name _wrap_OTAPI_Basic_SetNym_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetNym_Name
-extern void (*_wrap_OTAPI_Basic_SetNym_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_SetNym_Name)(void*) = _wrap_OTAPI_Basic_SetNym_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_SetNym_Name _wrap_OTAPI_Wrap_SetNym_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetNym_Name
+extern void (*_wrap_OTAPI_Wrap_SetNym_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetNym_Name)(void*) = _wrap_OTAPI_Wrap_SetNym_Name;
 
 void
-·OTAPI_BasicSetNym_Name(struct {
+·OTAPI_WrapSetNym_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetNym_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetNym_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetAccountWallet_Name _wrap_OTAPI_Basic_SetAccountWallet_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetAccountWallet_Name
-extern void (*_wrap_OTAPI_Basic_SetAccountWallet_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_SetAccountWallet_Name)(void*) = _wrap_OTAPI_Basic_SetAccountWallet_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_SetAccountWallet_Name _wrap_OTAPI_Wrap_SetAccountWallet_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetAccountWallet_Name
+extern void (*_wrap_OTAPI_Wrap_SetAccountWallet_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetAccountWallet_Name)(void*) = _wrap_OTAPI_Wrap_SetAccountWallet_Name;
 
 void
-·OTAPI_BasicSetAccountWallet_Name(struct {
+·OTAPI_WrapSetAccountWallet_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetAccountWallet_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetAccountWallet_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetAssetType_Name _wrap_OTAPI_Basic_SetAssetType_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetAssetType_Name
-extern void (*_wrap_OTAPI_Basic_SetAssetType_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_SetAssetType_Name)(void*) = _wrap_OTAPI_Basic_SetAssetType_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_SetAssetType_Name _wrap_OTAPI_Wrap_SetAssetType_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetAssetType_Name
+extern void (*_wrap_OTAPI_Wrap_SetAssetType_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetAssetType_Name)(void*) = _wrap_OTAPI_Wrap_SetAssetType_Name;
 
 void
-·OTAPI_BasicSetAssetType_Name(struct {
+·OTAPI_WrapSetAssetType_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetAssetType_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetAssetType_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SetServer_Name _wrap_OTAPI_Basic_SetServer_Name ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SetServer_Name
-extern void (*_wrap_OTAPI_Basic_SetServer_Name)(void*);
-static void (*x_wrap_OTAPI_Basic_SetServer_Name)(void*) = _wrap_OTAPI_Basic_SetServer_Name;
+#pragma dynimport _wrap_OTAPI_Wrap_SetServer_Name _wrap_OTAPI_Wrap_SetServer_Name ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SetServer_Name
+extern void (*_wrap_OTAPI_Wrap_SetServer_Name)(void*);
+static void (*x_wrap_OTAPI_Wrap_SetServer_Name)(void*) = _wrap_OTAPI_Wrap_SetServer_Name;
 
 void
-·OTAPI_BasicSetServer_Name(struct {
+·OTAPI_WrapSetServer_Name(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SetServer_Name, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SetServer_Name, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_WriteCheque _wrap_OTAPI_Basic_WriteCheque ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_WriteCheque
-extern void (*_wrap_OTAPI_Basic_WriteCheque)(void*);
-static void (*x_wrap_OTAPI_Basic_WriteCheque)(void*) = _wrap_OTAPI_Basic_WriteCheque;
+#pragma dynimport _wrap_OTAPI_Wrap_WriteCheque _wrap_OTAPI_Wrap_WriteCheque ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_WriteCheque
+extern void (*_wrap_OTAPI_Wrap_WriteCheque)(void*);
+static void (*x_wrap_OTAPI_Wrap_WriteCheque)(void*) = _wrap_OTAPI_Wrap_WriteCheque;
 
 void
-·OTAPI_BasicWriteCheque(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OTAPI_Wrap_WriteCheque(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_WriteCheque, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_WriteCheque, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_DiscardCheque _wrap_OTAPI_Basic_DiscardCheque ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_DiscardCheque
-extern void (*_wrap_OTAPI_Basic_DiscardCheque)(void*);
-static void (*x_wrap_OTAPI_Basic_DiscardCheque)(void*) = _wrap_OTAPI_Basic_DiscardCheque;
+#pragma dynimport _wrap_OTAPI_Wrap_DiscardCheque _wrap_OTAPI_Wrap_DiscardCheque ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_DiscardCheque
+extern void (*_wrap_OTAPI_Wrap_DiscardCheque)(void*);
+static void (*x_wrap_OTAPI_Wrap_DiscardCheque)(void*) = _wrap_OTAPI_Wrap_DiscardCheque;
 
 void
-·OTAPI_BasicDiscardCheque(struct {
+·OTAPI_WrapDiscardCheque(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_DiscardCheque, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_DiscardCheque, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ProposePaymentPlan _wrap_OTAPI_Basic_ProposePaymentPlan ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ProposePaymentPlan
-extern void (*_wrap_OTAPI_Basic_ProposePaymentPlan)(void*);
-static void (*x_wrap_OTAPI_Basic_ProposePaymentPlan)(void*) = _wrap_OTAPI_Basic_ProposePaymentPlan;
+#pragma dynimport _wrap_OTAPI_Wrap_ProposePaymentPlan _wrap_OTAPI_Wrap_ProposePaymentPlan ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ProposePaymentPlan
+extern void (*_wrap_OTAPI_Wrap_ProposePaymentPlan)(void*);
+static void (*x_wrap_OTAPI_Wrap_ProposePaymentPlan)(void*) = _wrap_OTAPI_Wrap_ProposePaymentPlan;
 
 void
-·OTAPI_BasicProposePaymentPlan(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OTAPI_Wrap_ProposePaymentPlan(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ProposePaymentPlan, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ProposePaymentPlan, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_EasyProposePlan _wrap_OTAPI_Basic_EasyProposePlan ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_EasyProposePlan
-extern void (*_wrap_OTAPI_Basic_EasyProposePlan)(void*);
-static void (*x_wrap_OTAPI_Basic_EasyProposePlan)(void*) = _wrap_OTAPI_Basic_EasyProposePlan;
+#pragma dynimport _wrap_OTAPI_Wrap_EasyProposePlan _wrap_OTAPI_Wrap_EasyProposePlan ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_EasyProposePlan
+extern void (*_wrap_OTAPI_Wrap_EasyProposePlan)(void*);
+static void (*x_wrap_OTAPI_Wrap_EasyProposePlan)(void*) = _wrap_OTAPI_Wrap_EasyProposePlan;
 
 void
-·OTAPI_BasicEasyProposePlan(struct {
+·OTAPI_WrapEasyProposePlan(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_EasyProposePlan, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_EasyProposePlan, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ConfirmPaymentPlan _wrap_OTAPI_Basic_ConfirmPaymentPlan ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ConfirmPaymentPlan
-extern void (*_wrap_OTAPI_Basic_ConfirmPaymentPlan)(void*);
-static void (*x_wrap_OTAPI_Basic_ConfirmPaymentPlan)(void*) = _wrap_OTAPI_Basic_ConfirmPaymentPlan;
+#pragma dynimport _wrap_OTAPI_Wrap_ConfirmPaymentPlan _wrap_OTAPI_Wrap_ConfirmPaymentPlan ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ConfirmPaymentPlan
+extern void (*_wrap_OTAPI_Wrap_ConfirmPaymentPlan)(void*);
+static void (*x_wrap_OTAPI_Wrap_ConfirmPaymentPlan)(void*) = _wrap_OTAPI_Wrap_ConfirmPaymentPlan;
 
 void
-·OTAPI_BasicConfirmPaymentPlan(struct {
+·OTAPI_WrapConfirmPaymentPlan(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ConfirmPaymentPlan, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ConfirmPaymentPlan, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Create_SmartContract _wrap_OTAPI_Basic_Create_SmartContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Create_SmartContract
-extern void (*_wrap_OTAPI_Basic_Create_SmartContract)(void*);
-static void (*x_wrap_OTAPI_Basic_Create_SmartContract)(void*) = _wrap_OTAPI_Basic_Create_SmartContract;
+#pragma dynimport _wrap_OTAPI_Wrap_Create_SmartContract _wrap_OTAPI_Wrap_Create_SmartContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Create_SmartContract
+extern void (*_wrap_OTAPI_Wrap_Create_SmartContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_Create_SmartContract)(void*) = _wrap_OTAPI_Wrap_Create_SmartContract;
 
 void
-·OTAPI_BasicCreate_SmartContract(struct {
+·_swig_wrap_OTAPI_Wrap_Create_SmartContract(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Create_SmartContract, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddBylaw _wrap_OTAPI_Wrap_SmartContract_AddBylaw ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddBylaw
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddBylaw)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddBylaw)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddBylaw;
+
+void
+·OTAPI_WrapSmartContract_AddBylaw(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Create_SmartContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddBylaw, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddBylaw _wrap_OTAPI_Basic_SmartContract_AddBylaw ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddBylaw
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddBylaw)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddBylaw)(void*) = _wrap_OTAPI_Basic_SmartContract_AddBylaw;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddClause _wrap_OTAPI_Wrap_SmartContract_AddClause ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddClause
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddClause)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddClause)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddClause;
 
 void
-·OTAPI_BasicSmartContract_AddBylaw(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddBylaw, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddClause _wrap_OTAPI_Basic_SmartContract_AddClause ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddClause
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddClause)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddClause)(void*) = _wrap_OTAPI_Basic_SmartContract_AddClause;
-
-void
-·OTAPI_BasicSmartContract_AddClause(struct {
+·OTAPI_WrapSmartContract_AddClause(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddClause, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddClause, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddVariable _wrap_OTAPI_Basic_SmartContract_AddVariable ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddVariable
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddVariable)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddVariable)(void*) = _wrap_OTAPI_Basic_SmartContract_AddVariable;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddVariable _wrap_OTAPI_Wrap_SmartContract_AddVariable ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddVariable
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddVariable)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddVariable)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddVariable;
 
 void
-·OTAPI_BasicSmartContract_AddVariable(struct {
+·OTAPI_WrapSmartContract_AddVariable(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddVariable, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddVariable, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddCallback _wrap_OTAPI_Basic_SmartContract_AddCallback ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddCallback
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddCallback)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddCallback)(void*) = _wrap_OTAPI_Basic_SmartContract_AddCallback;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddCallback _wrap_OTAPI_Wrap_SmartContract_AddCallback ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddCallback
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddCallback)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddCallback)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddCallback;
 
 void
-·OTAPI_BasicSmartContract_AddCallback(struct {
+·OTAPI_WrapSmartContract_AddCallback(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddCallback, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddCallback, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddHook _wrap_OTAPI_Basic_SmartContract_AddHook ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddHook
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddHook)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddHook)(void*) = _wrap_OTAPI_Basic_SmartContract_AddHook;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddHook _wrap_OTAPI_Wrap_SmartContract_AddHook ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddHook
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddHook)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddHook)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddHook;
 
 void
-·OTAPI_BasicSmartContract_AddHook(struct {
+·OTAPI_WrapSmartContract_AddHook(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddHook, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddHook, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddParty _wrap_OTAPI_Basic_SmartContract_AddParty ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddParty
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddParty)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddParty)(void*) = _wrap_OTAPI_Basic_SmartContract_AddParty;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddParty _wrap_OTAPI_Wrap_SmartContract_AddParty ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddParty
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddParty)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddParty)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddParty;
 
 void
-·OTAPI_BasicSmartContract_AddParty(struct {
+·OTAPI_WrapSmartContract_AddParty(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddParty, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddParty, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_AddAccount _wrap_OTAPI_Basic_SmartContract_AddAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_AddAccount
-extern void (*_wrap_OTAPI_Basic_SmartContract_AddAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_AddAccount)(void*) = _wrap_OTAPI_Basic_SmartContract_AddAccount;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_AddAccount _wrap_OTAPI_Wrap_SmartContract_AddAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_AddAccount
+extern void (*_wrap_OTAPI_Wrap_SmartContract_AddAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_AddAccount)(void*) = _wrap_OTAPI_Wrap_SmartContract_AddAccount;
 
 void
-·OTAPI_BasicSmartContract_AddAccount(struct {
+·OTAPI_WrapSmartContract_AddAccount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_AddAccount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_AddAccount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_CountNumsNeeded _wrap_OTAPI_Basic_SmartContract_CountNumsNeeded ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_CountNumsNeeded
-extern void (*_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded)(void*) = _wrap_OTAPI_Basic_SmartContract_CountNumsNeeded;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded _wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded
+extern void (*_wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded)(void*) = _wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded;
 
 void
-·OTAPI_BasicSmartContract_CountNumsNeeded(struct {
+·OTAPI_WrapSmartContract_CountNumsNeeded(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_CountNumsNeeded, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_CountNumsNeeded, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_ConfirmAccount _wrap_OTAPI_Basic_SmartContract_ConfirmAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_ConfirmAccount
-extern void (*_wrap_OTAPI_Basic_SmartContract_ConfirmAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_ConfirmAccount)(void*) = _wrap_OTAPI_Basic_SmartContract_ConfirmAccount;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_ConfirmAccount _wrap_OTAPI_Wrap_SmartContract_ConfirmAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_ConfirmAccount
+extern void (*_wrap_OTAPI_Wrap_SmartContract_ConfirmAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_ConfirmAccount)(void*) = _wrap_OTAPI_Wrap_SmartContract_ConfirmAccount;
 
 void
-·OTAPI_BasicSmartContract_ConfirmAccount(struct {
+·OTAPI_WrapSmartContract_ConfirmAccount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_ConfirmAccount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_ConfirmAccount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_SmartContract_ConfirmParty _wrap_OTAPI_Basic_SmartContract_ConfirmParty ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SmartContract_ConfirmParty
-extern void (*_wrap_OTAPI_Basic_SmartContract_ConfirmParty)(void*);
-static void (*x_wrap_OTAPI_Basic_SmartContract_ConfirmParty)(void*) = _wrap_OTAPI_Basic_SmartContract_ConfirmParty;
+#pragma dynimport _wrap_OTAPI_Wrap_SmartContract_ConfirmParty _wrap_OTAPI_Wrap_SmartContract_ConfirmParty ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SmartContract_ConfirmParty
+extern void (*_wrap_OTAPI_Wrap_SmartContract_ConfirmParty)(void*);
+static void (*x_wrap_OTAPI_Wrap_SmartContract_ConfirmParty)(void*) = _wrap_OTAPI_Wrap_SmartContract_ConfirmParty;
 
 void
-·OTAPI_BasicSmartContract_ConfirmParty(struct {
+·OTAPI_WrapSmartContract_ConfirmParty(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_SmartContract_ConfirmParty, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SmartContract_ConfirmParty, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed _wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed
-extern void (*_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed)(void*) = _wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed _wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed
+extern void (*_wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed)(void*) = _wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed;
 
 void
-·OTAPI_BasicSmart_AreAllPartiesConfirmed(struct {
+·OTAPI_WrapSmart_AreAllPartiesConfirmed(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_AreAllPartiesConfirmed, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_AreAllPartiesConfirmed, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Smart_IsPartyConfirmed _wrap_OTAPI_Basic_Smart_IsPartyConfirmed ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_IsPartyConfirmed
-extern void (*_wrap_OTAPI_Basic_Smart_IsPartyConfirmed)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_IsPartyConfirmed)(void*) = _wrap_OTAPI_Basic_Smart_IsPartyConfirmed;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_GetBylawCount _wrap_OTAPI_Wrap_Smart_GetBylawCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_GetBylawCount
+extern void (*_wrap_OTAPI_Wrap_Smart_GetBylawCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_GetBylawCount)(void*) = _wrap_OTAPI_Wrap_Smart_GetBylawCount;
 
 void
-·OTAPI_BasicSmart_IsPartyConfirmed(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_IsPartyConfirmed, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Smart_GetBylawCount _wrap_OTAPI_Basic_Smart_GetBylawCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_GetBylawCount
-extern void (*_wrap_OTAPI_Basic_Smart_GetBylawCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_GetBylawCount)(void*) = _wrap_OTAPI_Basic_Smart_GetBylawCount;
-
-void
-·OTAPI_BasicSmart_GetBylawCount(struct {
+·OTAPI_WrapSmart_GetBylawCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_GetBylawCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_GetBylawCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Smart_GetBylawByIndex _wrap_OTAPI_Basic_Smart_GetBylawByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_GetBylawByIndex
-extern void (*_wrap_OTAPI_Basic_Smart_GetBylawByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_GetBylawByIndex)(void*) = _wrap_OTAPI_Basic_Smart_GetBylawByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_GetBylawByIndex _wrap_OTAPI_Wrap_Smart_GetBylawByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_GetBylawByIndex
+extern void (*_wrap_OTAPI_Wrap_Smart_GetBylawByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_GetBylawByIndex)(void*) = _wrap_OTAPI_Wrap_Smart_GetBylawByIndex;
 
 void
-·OTAPI_BasicSmart_GetBylawByIndex(struct {
+·OTAPI_WrapSmart_GetBylawByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_GetBylawByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_GetBylawByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Bylaw_GetLanguage _wrap_OTAPI_Basic_Bylaw_GetLanguage ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Bylaw_GetLanguage
-extern void (*_wrap_OTAPI_Basic_Bylaw_GetLanguage)(void*);
-static void (*x_wrap_OTAPI_Basic_Bylaw_GetLanguage)(void*) = _wrap_OTAPI_Basic_Bylaw_GetLanguage;
+#pragma dynimport _wrap_OTAPI_Wrap_Bylaw_GetLanguage _wrap_OTAPI_Wrap_Bylaw_GetLanguage ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Bylaw_GetLanguage
+extern void (*_wrap_OTAPI_Wrap_Bylaw_GetLanguage)(void*);
+static void (*x_wrap_OTAPI_Wrap_Bylaw_GetLanguage)(void*) = _wrap_OTAPI_Wrap_Bylaw_GetLanguage;
 
 void
-·OTAPI_BasicBylaw_GetLanguage(struct {
+·OTAPI_WrapBylaw_GetLanguage(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Bylaw_GetLanguage, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Bylaw_GetLanguage, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Bylaw_GetClauseCount _wrap_OTAPI_Basic_Bylaw_GetClauseCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Bylaw_GetClauseCount
-extern void (*_wrap_OTAPI_Basic_Bylaw_GetClauseCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Bylaw_GetClauseCount)(void*) = _wrap_OTAPI_Basic_Bylaw_GetClauseCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Bylaw_GetClauseCount _wrap_OTAPI_Wrap_Bylaw_GetClauseCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Bylaw_GetClauseCount
+extern void (*_wrap_OTAPI_Wrap_Bylaw_GetClauseCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Bylaw_GetClauseCount)(void*) = _wrap_OTAPI_Wrap_Bylaw_GetClauseCount;
 
 void
-·OTAPI_BasicBylaw_GetClauseCount(struct {
+·OTAPI_WrapBylaw_GetClauseCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Bylaw_GetClauseCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Bylaw_GetClauseCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Clause_GetNameByIndex _wrap_OTAPI_Basic_Clause_GetNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Clause_GetNameByIndex
-extern void (*_wrap_OTAPI_Basic_Clause_GetNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Clause_GetNameByIndex)(void*) = _wrap_OTAPI_Basic_Clause_GetNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Clause_GetNameByIndex _wrap_OTAPI_Wrap_Clause_GetNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Clause_GetNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Clause_GetNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Clause_GetNameByIndex)(void*) = _wrap_OTAPI_Wrap_Clause_GetNameByIndex;
 
 void
-·OTAPI_BasicClause_GetNameByIndex(struct {
+·OTAPI_WrapClause_GetNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Clause_GetNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Clause_GetNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Clause_GetContents _wrap_OTAPI_Basic_Clause_GetContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Clause_GetContents
-extern void (*_wrap_OTAPI_Basic_Clause_GetContents)(void*);
-static void (*x_wrap_OTAPI_Basic_Clause_GetContents)(void*) = _wrap_OTAPI_Basic_Clause_GetContents;
+#pragma dynimport _wrap_OTAPI_Wrap_Clause_GetContents _wrap_OTAPI_Wrap_Clause_GetContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Clause_GetContents
+extern void (*_wrap_OTAPI_Wrap_Clause_GetContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_Clause_GetContents)(void*) = _wrap_OTAPI_Wrap_Clause_GetContents;
 
 void
-·OTAPI_BasicClause_GetContents(struct {
+·OTAPI_WrapClause_GetContents(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Clause_GetContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Clause_GetContents, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Bylaw_GetVariableCount _wrap_OTAPI_Basic_Bylaw_GetVariableCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Bylaw_GetVariableCount
-extern void (*_wrap_OTAPI_Basic_Bylaw_GetVariableCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Bylaw_GetVariableCount)(void*) = _wrap_OTAPI_Basic_Bylaw_GetVariableCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Bylaw_GetVariableCount _wrap_OTAPI_Wrap_Bylaw_GetVariableCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Bylaw_GetVariableCount
+extern void (*_wrap_OTAPI_Wrap_Bylaw_GetVariableCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Bylaw_GetVariableCount)(void*) = _wrap_OTAPI_Wrap_Bylaw_GetVariableCount;
 
 void
-·OTAPI_BasicBylaw_GetVariableCount(struct {
+·OTAPI_WrapBylaw_GetVariableCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Bylaw_GetVariableCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Bylaw_GetVariableCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Variable_GetNameByIndex _wrap_OTAPI_Basic_Variable_GetNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Variable_GetNameByIndex
-extern void (*_wrap_OTAPI_Basic_Variable_GetNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Variable_GetNameByIndex)(void*) = _wrap_OTAPI_Basic_Variable_GetNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Variable_GetNameByIndex _wrap_OTAPI_Wrap_Variable_GetNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Variable_GetNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Variable_GetNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Variable_GetNameByIndex)(void*) = _wrap_OTAPI_Wrap_Variable_GetNameByIndex;
 
 void
-·OTAPI_BasicVariable_GetNameByIndex(struct {
+·OTAPI_WrapVariable_GetNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Variable_GetNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Variable_GetNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Variable_GetType _wrap_OTAPI_Basic_Variable_GetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Variable_GetType
-extern void (*_wrap_OTAPI_Basic_Variable_GetType)(void*);
-static void (*x_wrap_OTAPI_Basic_Variable_GetType)(void*) = _wrap_OTAPI_Basic_Variable_GetType;
+#pragma dynimport _wrap_OTAPI_Wrap_Variable_GetType _wrap_OTAPI_Wrap_Variable_GetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Variable_GetType
+extern void (*_wrap_OTAPI_Wrap_Variable_GetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Variable_GetType)(void*) = _wrap_OTAPI_Wrap_Variable_GetType;
 
 void
-·OTAPI_BasicVariable_GetType(struct {
+·OTAPI_WrapVariable_GetType(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Variable_GetType, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Variable_GetType, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Variable_GetAccess _wrap_OTAPI_Basic_Variable_GetAccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Variable_GetAccess
-extern void (*_wrap_OTAPI_Basic_Variable_GetAccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Variable_GetAccess)(void*) = _wrap_OTAPI_Basic_Variable_GetAccess;
+#pragma dynimport _wrap_OTAPI_Wrap_Variable_GetAccess _wrap_OTAPI_Wrap_Variable_GetAccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Variable_GetAccess
+extern void (*_wrap_OTAPI_Wrap_Variable_GetAccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Variable_GetAccess)(void*) = _wrap_OTAPI_Wrap_Variable_GetAccess;
 
 void
-·OTAPI_BasicVariable_GetAccess(struct {
+·OTAPI_WrapVariable_GetAccess(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Variable_GetAccess, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Variable_GetAccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Variable_GetContents _wrap_OTAPI_Basic_Variable_GetContents ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Variable_GetContents
-extern void (*_wrap_OTAPI_Basic_Variable_GetContents)(void*);
-static void (*x_wrap_OTAPI_Basic_Variable_GetContents)(void*) = _wrap_OTAPI_Basic_Variable_GetContents;
+#pragma dynimport _wrap_OTAPI_Wrap_Variable_GetContents _wrap_OTAPI_Wrap_Variable_GetContents ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Variable_GetContents
+extern void (*_wrap_OTAPI_Wrap_Variable_GetContents)(void*);
+static void (*x_wrap_OTAPI_Wrap_Variable_GetContents)(void*) = _wrap_OTAPI_Wrap_Variable_GetContents;
 
 void
-·OTAPI_BasicVariable_GetContents(struct {
+·OTAPI_WrapVariable_GetContents(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Variable_GetContents, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Variable_GetContents, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Bylaw_GetHookCount _wrap_OTAPI_Basic_Bylaw_GetHookCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Bylaw_GetHookCount
-extern void (*_wrap_OTAPI_Basic_Bylaw_GetHookCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Bylaw_GetHookCount)(void*) = _wrap_OTAPI_Basic_Bylaw_GetHookCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Bylaw_GetHookCount _wrap_OTAPI_Wrap_Bylaw_GetHookCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Bylaw_GetHookCount
+extern void (*_wrap_OTAPI_Wrap_Bylaw_GetHookCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Bylaw_GetHookCount)(void*) = _wrap_OTAPI_Wrap_Bylaw_GetHookCount;
 
 void
-·OTAPI_BasicBylaw_GetHookCount(struct {
+·OTAPI_WrapBylaw_GetHookCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Bylaw_GetHookCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Bylaw_GetHookCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Hook_GetNameByIndex _wrap_OTAPI_Basic_Hook_GetNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Hook_GetNameByIndex
-extern void (*_wrap_OTAPI_Basic_Hook_GetNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Hook_GetNameByIndex)(void*) = _wrap_OTAPI_Basic_Hook_GetNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Hook_GetNameByIndex _wrap_OTAPI_Wrap_Hook_GetNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Hook_GetNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Hook_GetNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Hook_GetNameByIndex)(void*) = _wrap_OTAPI_Wrap_Hook_GetNameByIndex;
 
 void
-·OTAPI_BasicHook_GetNameByIndex(struct {
+·OTAPI_WrapHook_GetNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Hook_GetNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Hook_GetNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Hook_GetClauseCount _wrap_OTAPI_Basic_Hook_GetClauseCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Hook_GetClauseCount
-extern void (*_wrap_OTAPI_Basic_Hook_GetClauseCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Hook_GetClauseCount)(void*) = _wrap_OTAPI_Basic_Hook_GetClauseCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Hook_GetClauseCount _wrap_OTAPI_Wrap_Hook_GetClauseCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Hook_GetClauseCount
+extern void (*_wrap_OTAPI_Wrap_Hook_GetClauseCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Hook_GetClauseCount)(void*) = _wrap_OTAPI_Wrap_Hook_GetClauseCount;
 
 void
-·OTAPI_BasicHook_GetClauseCount(struct {
+·OTAPI_WrapHook_GetClauseCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Hook_GetClauseCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Hook_GetClauseCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Hook_GetClauseAtIndex _wrap_OTAPI_Basic_Hook_GetClauseAtIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Hook_GetClauseAtIndex
-extern void (*_wrap_OTAPI_Basic_Hook_GetClauseAtIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Hook_GetClauseAtIndex)(void*) = _wrap_OTAPI_Basic_Hook_GetClauseAtIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Hook_GetClauseAtIndex _wrap_OTAPI_Wrap_Hook_GetClauseAtIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Hook_GetClauseAtIndex
+extern void (*_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex)(void*) = _wrap_OTAPI_Wrap_Hook_GetClauseAtIndex;
 
 void
-·OTAPI_BasicHook_GetClauseAtIndex(struct {
+·OTAPI_WrapHook_GetClauseAtIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Hook_GetClauseAtIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Bylaw_GetCallbackCount _wrap_OTAPI_Basic_Bylaw_GetCallbackCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Bylaw_GetCallbackCount
-extern void (*_wrap_OTAPI_Basic_Bylaw_GetCallbackCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Bylaw_GetCallbackCount)(void*) = _wrap_OTAPI_Basic_Bylaw_GetCallbackCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Bylaw_GetCallbackCount _wrap_OTAPI_Wrap_Bylaw_GetCallbackCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Bylaw_GetCallbackCount
+extern void (*_wrap_OTAPI_Wrap_Bylaw_GetCallbackCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Bylaw_GetCallbackCount)(void*) = _wrap_OTAPI_Wrap_Bylaw_GetCallbackCount;
 
 void
-·OTAPI_BasicBylaw_GetCallbackCount(struct {
+·OTAPI_WrapBylaw_GetCallbackCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Bylaw_GetCallbackCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Bylaw_GetCallbackCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Callback_GetNameByIndex _wrap_OTAPI_Basic_Callback_GetNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Callback_GetNameByIndex
-extern void (*_wrap_OTAPI_Basic_Callback_GetNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Callback_GetNameByIndex)(void*) = _wrap_OTAPI_Basic_Callback_GetNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Callback_GetNameByIndex _wrap_OTAPI_Wrap_Callback_GetNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Callback_GetNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Callback_GetNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Callback_GetNameByIndex)(void*) = _wrap_OTAPI_Wrap_Callback_GetNameByIndex;
 
 void
-·OTAPI_BasicCallback_GetNameByIndex(struct {
+·OTAPI_WrapCallback_GetNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Callback_GetNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Callback_GetNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Callback_GetClause _wrap_OTAPI_Basic_Callback_GetClause ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Callback_GetClause
-extern void (*_wrap_OTAPI_Basic_Callback_GetClause)(void*);
-static void (*x_wrap_OTAPI_Basic_Callback_GetClause)(void*) = _wrap_OTAPI_Basic_Callback_GetClause;
+#pragma dynimport _wrap_OTAPI_Wrap_Callback_GetClause _wrap_OTAPI_Wrap_Callback_GetClause ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Callback_GetClause
+extern void (*_wrap_OTAPI_Wrap_Callback_GetClause)(void*);
+static void (*x_wrap_OTAPI_Wrap_Callback_GetClause)(void*) = _wrap_OTAPI_Wrap_Callback_GetClause;
 
 void
-·OTAPI_BasicCallback_GetClause(struct {
+·OTAPI_WrapCallback_GetClause(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Callback_GetClause, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Callback_GetClause, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Smart_GetPartyCount _wrap_OTAPI_Basic_Smart_GetPartyCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_GetPartyCount
-extern void (*_wrap_OTAPI_Basic_Smart_GetPartyCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_GetPartyCount)(void*) = _wrap_OTAPI_Basic_Smart_GetPartyCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_GetPartyCount _wrap_OTAPI_Wrap_Smart_GetPartyCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_GetPartyCount
+extern void (*_wrap_OTAPI_Wrap_Smart_GetPartyCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_GetPartyCount)(void*) = _wrap_OTAPI_Wrap_Smart_GetPartyCount;
 
 void
-·OTAPI_BasicSmart_GetPartyCount(struct {
+·OTAPI_WrapSmart_GetPartyCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_GetPartyCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_GetPartyCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Smart_GetPartyByIndex _wrap_OTAPI_Basic_Smart_GetPartyByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Smart_GetPartyByIndex
-extern void (*_wrap_OTAPI_Basic_Smart_GetPartyByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Smart_GetPartyByIndex)(void*) = _wrap_OTAPI_Basic_Smart_GetPartyByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_GetPartyByIndex _wrap_OTAPI_Wrap_Smart_GetPartyByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_GetPartyByIndex
+extern void (*_wrap_OTAPI_Wrap_Smart_GetPartyByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_GetPartyByIndex)(void*) = _wrap_OTAPI_Wrap_Smart_GetPartyByIndex;
 
 void
-·OTAPI_BasicSmart_GetPartyByIndex(struct {
+·OTAPI_WrapSmart_GetPartyByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Smart_GetPartyByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_GetPartyByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetID _wrap_OTAPI_Basic_Party_GetID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetID
-extern void (*_wrap_OTAPI_Basic_Party_GetID)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetID)(void*) = _wrap_OTAPI_Basic_Party_GetID;
+#pragma dynimport _wrap_OTAPI_Wrap_Smart_IsPartyConfirmed _wrap_OTAPI_Wrap_Smart_IsPartyConfirmed ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Smart_IsPartyConfirmed
+extern void (*_wrap_OTAPI_Wrap_Smart_IsPartyConfirmed)(void*);
+static void (*x_wrap_OTAPI_Wrap_Smart_IsPartyConfirmed)(void*) = _wrap_OTAPI_Wrap_Smart_IsPartyConfirmed;
 
 void
-·OTAPI_BasicParty_GetID(struct {
+·OTAPI_WrapSmart_IsPartyConfirmed(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Smart_IsPartyConfirmed, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetID _wrap_OTAPI_Wrap_Party_GetID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetID
+extern void (*_wrap_OTAPI_Wrap_Party_GetID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetID)(void*) = _wrap_OTAPI_Wrap_Party_GetID;
+
+void
+·OTAPI_WrapParty_GetID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAcctCount _wrap_OTAPI_Basic_Party_GetAcctCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAcctCount
-extern void (*_wrap_OTAPI_Basic_Party_GetAcctCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAcctCount)(void*) = _wrap_OTAPI_Basic_Party_GetAcctCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAcctCount _wrap_OTAPI_Wrap_Party_GetAcctCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAcctCount
+extern void (*_wrap_OTAPI_Wrap_Party_GetAcctCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAcctCount)(void*) = _wrap_OTAPI_Wrap_Party_GetAcctCount;
 
 void
-·OTAPI_BasicParty_GetAcctCount(struct {
+·OTAPI_WrapParty_GetAcctCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAcctCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAcctCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAcctNameByIndex _wrap_OTAPI_Basic_Party_GetAcctNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAcctNameByIndex
-extern void (*_wrap_OTAPI_Basic_Party_GetAcctNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAcctNameByIndex)(void*) = _wrap_OTAPI_Basic_Party_GetAcctNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAcctNameByIndex _wrap_OTAPI_Wrap_Party_GetAcctNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAcctNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex)(void*) = _wrap_OTAPI_Wrap_Party_GetAcctNameByIndex;
 
 void
-·OTAPI_BasicParty_GetAcctNameByIndex(struct {
+·OTAPI_WrapParty_GetAcctNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAcctNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAcctID _wrap_OTAPI_Basic_Party_GetAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAcctID
-extern void (*_wrap_OTAPI_Basic_Party_GetAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAcctID)(void*) = _wrap_OTAPI_Basic_Party_GetAcctID;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAcctID _wrap_OTAPI_Wrap_Party_GetAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAcctID
+extern void (*_wrap_OTAPI_Wrap_Party_GetAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAcctID)(void*) = _wrap_OTAPI_Wrap_Party_GetAcctID;
 
 void
-·OTAPI_BasicParty_GetAcctID(struct {
+·OTAPI_WrapParty_GetAcctID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAcctID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAcctID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAcctAssetID _wrap_OTAPI_Basic_Party_GetAcctAssetID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAcctAssetID
-extern void (*_wrap_OTAPI_Basic_Party_GetAcctAssetID)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAcctAssetID)(void*) = _wrap_OTAPI_Basic_Party_GetAcctAssetID;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAcctAssetID _wrap_OTAPI_Wrap_Party_GetAcctAssetID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAcctAssetID
+extern void (*_wrap_OTAPI_Wrap_Party_GetAcctAssetID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAcctAssetID)(void*) = _wrap_OTAPI_Wrap_Party_GetAcctAssetID;
 
 void
-·OTAPI_BasicParty_GetAcctAssetID(struct {
+·OTAPI_WrapParty_GetAcctAssetID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAcctAssetID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAcctAssetID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAcctAgentName _wrap_OTAPI_Basic_Party_GetAcctAgentName ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAcctAgentName
-extern void (*_wrap_OTAPI_Basic_Party_GetAcctAgentName)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAcctAgentName)(void*) = _wrap_OTAPI_Basic_Party_GetAcctAgentName;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAcctAgentName _wrap_OTAPI_Wrap_Party_GetAcctAgentName ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAcctAgentName
+extern void (*_wrap_OTAPI_Wrap_Party_GetAcctAgentName)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAcctAgentName)(void*) = _wrap_OTAPI_Wrap_Party_GetAcctAgentName;
 
 void
-·OTAPI_BasicParty_GetAcctAgentName(struct {
+·OTAPI_WrapParty_GetAcctAgentName(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAcctAgentName, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAcctAgentName, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAgentCount _wrap_OTAPI_Basic_Party_GetAgentCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAgentCount
-extern void (*_wrap_OTAPI_Basic_Party_GetAgentCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAgentCount)(void*) = _wrap_OTAPI_Basic_Party_GetAgentCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAgentCount _wrap_OTAPI_Wrap_Party_GetAgentCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAgentCount
+extern void (*_wrap_OTAPI_Wrap_Party_GetAgentCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAgentCount)(void*) = _wrap_OTAPI_Wrap_Party_GetAgentCount;
 
 void
-·OTAPI_BasicParty_GetAgentCount(struct {
+·OTAPI_WrapParty_GetAgentCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAgentCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAgentCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAgentNameByIndex _wrap_OTAPI_Basic_Party_GetAgentNameByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAgentNameByIndex
-extern void (*_wrap_OTAPI_Basic_Party_GetAgentNameByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAgentNameByIndex)(void*) = _wrap_OTAPI_Basic_Party_GetAgentNameByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAgentNameByIndex _wrap_OTAPI_Wrap_Party_GetAgentNameByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAgentNameByIndex
+extern void (*_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex)(void*) = _wrap_OTAPI_Wrap_Party_GetAgentNameByIndex;
 
 void
-·OTAPI_BasicParty_GetAgentNameByIndex(struct {
+·OTAPI_WrapParty_GetAgentNameByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAgentNameByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Party_GetAgentID _wrap_OTAPI_Basic_Party_GetAgentID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Party_GetAgentID
-extern void (*_wrap_OTAPI_Basic_Party_GetAgentID)(void*);
-static void (*x_wrap_OTAPI_Basic_Party_GetAgentID)(void*) = _wrap_OTAPI_Basic_Party_GetAgentID;
+#pragma dynimport _wrap_OTAPI_Wrap_Party_GetAgentID _wrap_OTAPI_Wrap_Party_GetAgentID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Party_GetAgentID
+extern void (*_wrap_OTAPI_Wrap_Party_GetAgentID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Party_GetAgentID)(void*) = _wrap_OTAPI_Wrap_Party_GetAgentID;
 
 void
-·OTAPI_BasicParty_GetAgentID(struct {
+·OTAPI_WrapParty_GetAgentID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Party_GetAgentID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Party_GetAgentID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_activateSmartContract _wrap_OTAPI_Basic_activateSmartContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_activateSmartContract
-extern void (*_wrap_OTAPI_Basic_activateSmartContract)(void*);
-static void (*x_wrap_OTAPI_Basic_activateSmartContract)(void*) = _wrap_OTAPI_Basic_activateSmartContract;
+#pragma dynimport _wrap_OTAPI_Wrap_activateSmartContract _wrap_OTAPI_Wrap_activateSmartContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_activateSmartContract
+extern void (*_wrap_OTAPI_Wrap_activateSmartContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_activateSmartContract)(void*) = _wrap_OTAPI_Wrap_activateSmartContract;
 
 void
-·OTAPI_BasicActivateSmartContract(struct {
+·OTAPI_WrapActivateSmartContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_activateSmartContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_activateSmartContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_triggerClause _wrap_OTAPI_Basic_triggerClause ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_triggerClause
-extern void (*_wrap_OTAPI_Basic_triggerClause)(void*);
-static void (*x_wrap_OTAPI_Basic_triggerClause)(void*) = _wrap_OTAPI_Basic_triggerClause;
+#pragma dynimport _wrap_OTAPI_Wrap_triggerClause _wrap_OTAPI_Wrap_triggerClause ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_triggerClause
+extern void (*_wrap_OTAPI_Wrap_triggerClause)(void*);
+static void (*x_wrap_OTAPI_Wrap_triggerClause)(void*) = _wrap_OTAPI_Wrap_triggerClause;
 
 void
-·OTAPI_BasicTriggerClause(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapTriggerClause(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_triggerClause, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_triggerClause, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers _wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers
-extern void (*_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers)(void*);
-static void (*x_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers)(void*) = _wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers;
+#pragma dynimport _wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers _wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers
+extern void (*_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers)(void*);
+static void (*x_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers)(void*) = _wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers;
 
 void
-·OTAPI_BasicMsg_HarvestTransactionNumbers(struct {
+·OTAPI_WrapMsg_HarvestTransactionNumbers(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Msg_HarvestTransactionNumbers, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadUserPubkey_Encryption _wrap_OTAPI_Basic_LoadUserPubkey_Encryption ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadUserPubkey_Encryption
-extern void (*_wrap_OTAPI_Basic_LoadUserPubkey_Encryption)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadUserPubkey_Encryption)(void*) = _wrap_OTAPI_Basic_LoadUserPubkey_Encryption;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadUserPubkey_Encryption _wrap_OTAPI_Wrap_LoadUserPubkey_Encryption ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadUserPubkey_Encryption
+extern void (*_wrap_OTAPI_Wrap_LoadUserPubkey_Encryption)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadUserPubkey_Encryption)(void*) = _wrap_OTAPI_Wrap_LoadUserPubkey_Encryption;
 
 void
-·OTAPI_BasicLoadUserPubkey_Encryption(struct {
+·OTAPI_WrapLoadUserPubkey_Encryption(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadUserPubkey_Encryption, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadUserPubkey_Encryption, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadUserPubkey_Signing _wrap_OTAPI_Basic_LoadUserPubkey_Signing ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadUserPubkey_Signing
-extern void (*_wrap_OTAPI_Basic_LoadUserPubkey_Signing)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadUserPubkey_Signing)(void*) = _wrap_OTAPI_Basic_LoadUserPubkey_Signing;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadUserPubkey_Signing _wrap_OTAPI_Wrap_LoadUserPubkey_Signing ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadUserPubkey_Signing
+extern void (*_wrap_OTAPI_Wrap_LoadUserPubkey_Signing)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadUserPubkey_Signing)(void*) = _wrap_OTAPI_Wrap_LoadUserPubkey_Signing;
 
 void
-·OTAPI_BasicLoadUserPubkey_Signing(struct {
+·OTAPI_WrapLoadUserPubkey_Signing(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadUserPubkey_Signing, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadUserPubkey_Signing, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadPubkey_Encryption _wrap_OTAPI_Basic_LoadPubkey_Encryption ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadPubkey_Encryption
-extern void (*_wrap_OTAPI_Basic_LoadPubkey_Encryption)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadPubkey_Encryption)(void*) = _wrap_OTAPI_Basic_LoadPubkey_Encryption;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadPubkey_Encryption _wrap_OTAPI_Wrap_LoadPubkey_Encryption ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadPubkey_Encryption
+extern void (*_wrap_OTAPI_Wrap_LoadPubkey_Encryption)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadPubkey_Encryption)(void*) = _wrap_OTAPI_Wrap_LoadPubkey_Encryption;
 
 void
-·OTAPI_BasicLoadPubkey_Encryption(struct {
+·OTAPI_WrapLoadPubkey_Encryption(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadPubkey_Encryption, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadPubkey_Encryption, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadPubkey_Signing _wrap_OTAPI_Basic_LoadPubkey_Signing ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadPubkey_Signing
-extern void (*_wrap_OTAPI_Basic_LoadPubkey_Signing)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadPubkey_Signing)(void*) = _wrap_OTAPI_Basic_LoadPubkey_Signing;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadPubkey_Signing _wrap_OTAPI_Wrap_LoadPubkey_Signing ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadPubkey_Signing
+extern void (*_wrap_OTAPI_Wrap_LoadPubkey_Signing)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadPubkey_Signing)(void*) = _wrap_OTAPI_Wrap_LoadPubkey_Signing;
 
 void
-·OTAPI_BasicLoadPubkey_Signing(struct {
+·OTAPI_WrapLoadPubkey_Signing(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadPubkey_Signing, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadPubkey_Signing, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_VerifyUserPrivateKey _wrap_OTAPI_Basic_VerifyUserPrivateKey ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_VerifyUserPrivateKey
-extern void (*_wrap_OTAPI_Basic_VerifyUserPrivateKey)(void*);
-static void (*x_wrap_OTAPI_Basic_VerifyUserPrivateKey)(void*) = _wrap_OTAPI_Basic_VerifyUserPrivateKey;
+#pragma dynimport _wrap_OTAPI_Wrap_VerifyUserPrivateKey _wrap_OTAPI_Wrap_VerifyUserPrivateKey ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_VerifyUserPrivateKey
+extern void (*_wrap_OTAPI_Wrap_VerifyUserPrivateKey)(void*);
+static void (*x_wrap_OTAPI_Wrap_VerifyUserPrivateKey)(void*) = _wrap_OTAPI_Wrap_VerifyUserPrivateKey;
 
 void
-·OTAPI_BasicVerifyUserPrivateKey(struct {
+·OTAPI_WrapVerifyUserPrivateKey(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_VerifyUserPrivateKey, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_VerifyUserPrivateKey, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadPurse _wrap_OTAPI_Basic_LoadPurse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadPurse
-extern void (*_wrap_OTAPI_Basic_LoadPurse)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadPurse)(void*) = _wrap_OTAPI_Basic_LoadPurse;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadPurse _wrap_OTAPI_Wrap_LoadPurse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadPurse
+extern void (*_wrap_OTAPI_Wrap_LoadPurse)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadPurse)(void*) = _wrap_OTAPI_Wrap_LoadPurse;
 
 void
-·OTAPI_BasicLoadPurse(struct {
+·OTAPI_WrapLoadPurse(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadPurse, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadPurse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadMint _wrap_OTAPI_Basic_LoadMint ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadMint
-extern void (*_wrap_OTAPI_Basic_LoadMint)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadMint)(void*) = _wrap_OTAPI_Basic_LoadMint;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadMint _wrap_OTAPI_Wrap_LoadMint ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadMint
+extern void (*_wrap_OTAPI_Wrap_LoadMint)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadMint)(void*) = _wrap_OTAPI_Wrap_LoadMint;
 
 void
-·OTAPI_BasicLoadMint(struct {
+·OTAPI_WrapLoadMint(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadMint, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadMint, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadAssetContract _wrap_OTAPI_Basic_LoadAssetContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadAssetContract
-extern void (*_wrap_OTAPI_Basic_LoadAssetContract)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadAssetContract)(void*) = _wrap_OTAPI_Basic_LoadAssetContract;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadAssetContract _wrap_OTAPI_Wrap_LoadAssetContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadAssetContract
+extern void (*_wrap_OTAPI_Wrap_LoadAssetContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadAssetContract)(void*) = _wrap_OTAPI_Wrap_LoadAssetContract;
 
 void
-·OTAPI_BasicLoadAssetContract(struct {
+·OTAPI_WrapLoadAssetContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadAssetContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadAssetContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadServerContract _wrap_OTAPI_Basic_LoadServerContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadServerContract
-extern void (*_wrap_OTAPI_Basic_LoadServerContract)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadServerContract)(void*) = _wrap_OTAPI_Basic_LoadServerContract;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadServerContract _wrap_OTAPI_Wrap_LoadServerContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadServerContract
+extern void (*_wrap_OTAPI_Wrap_LoadServerContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadServerContract)(void*) = _wrap_OTAPI_Wrap_LoadServerContract;
 
 void
-·OTAPI_BasicLoadServerContract(struct {
+·OTAPI_WrapLoadServerContract(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadServerContract, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadServerContract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Mint_IsStillGood _wrap_OTAPI_Basic_Mint_IsStillGood ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Mint_IsStillGood
-extern void (*_wrap_OTAPI_Basic_Mint_IsStillGood)(void*);
-static void (*x_wrap_OTAPI_Basic_Mint_IsStillGood)(void*) = _wrap_OTAPI_Basic_Mint_IsStillGood;
+#pragma dynimport _wrap_OTAPI_Wrap_Mint_IsStillGood _wrap_OTAPI_Wrap_Mint_IsStillGood ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Mint_IsStillGood
+extern void (*_wrap_OTAPI_Wrap_Mint_IsStillGood)(void*);
+static void (*x_wrap_OTAPI_Wrap_Mint_IsStillGood)(void*) = _wrap_OTAPI_Wrap_Mint_IsStillGood;
 
 void
-·OTAPI_BasicMint_IsStillGood(struct {
+·OTAPI_WrapMint_IsStillGood(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Mint_IsStillGood, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Mint_IsStillGood, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_IsBasketCurrency _wrap_OTAPI_Basic_IsBasketCurrency ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_IsBasketCurrency
-extern void (*_wrap_OTAPI_Basic_IsBasketCurrency)(void*);
-static void (*x_wrap_OTAPI_Basic_IsBasketCurrency)(void*) = _wrap_OTAPI_Basic_IsBasketCurrency;
+#pragma dynimport _wrap_OTAPI_Wrap_IsBasketCurrency _wrap_OTAPI_Wrap_IsBasketCurrency ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_IsBasketCurrency
+extern void (*_wrap_OTAPI_Wrap_IsBasketCurrency)(void*);
+static void (*x_wrap_OTAPI_Wrap_IsBasketCurrency)(void*) = _wrap_OTAPI_Wrap_IsBasketCurrency;
 
 void
-·OTAPI_BasicIsBasketCurrency(struct {
+·OTAPI_WrapIsBasketCurrency(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_IsBasketCurrency, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_IsBasketCurrency, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Basket_GetMemberCount _wrap_OTAPI_Basic_Basket_GetMemberCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Basket_GetMemberCount
-extern void (*_wrap_OTAPI_Basic_Basket_GetMemberCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Basket_GetMemberCount)(void*) = _wrap_OTAPI_Basic_Basket_GetMemberCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Basket_GetMemberCount _wrap_OTAPI_Wrap_Basket_GetMemberCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Basket_GetMemberCount
+extern void (*_wrap_OTAPI_Wrap_Basket_GetMemberCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Basket_GetMemberCount)(void*) = _wrap_OTAPI_Wrap_Basket_GetMemberCount;
 
 void
-·OTAPI_BasicBasket_GetMemberCount(struct {
+·OTAPI_WrapBasket_GetMemberCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Basket_GetMemberCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Basket_GetMemberCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Basket_GetMemberType _wrap_OTAPI_Basic_Basket_GetMemberType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Basket_GetMemberType
-extern void (*_wrap_OTAPI_Basic_Basket_GetMemberType)(void*);
-static void (*x_wrap_OTAPI_Basic_Basket_GetMemberType)(void*) = _wrap_OTAPI_Basic_Basket_GetMemberType;
+#pragma dynimport _wrap_OTAPI_Wrap_Basket_GetMemberType _wrap_OTAPI_Wrap_Basket_GetMemberType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Basket_GetMemberType
+extern void (*_wrap_OTAPI_Wrap_Basket_GetMemberType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Basket_GetMemberType)(void*) = _wrap_OTAPI_Wrap_Basket_GetMemberType;
 
 void
-·OTAPI_BasicBasket_GetMemberType(struct {
+·OTAPI_WrapBasket_GetMemberType(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Basket_GetMemberType, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Basket_GetMemberType, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount _wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount
-extern void (*_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount)(void*) = _wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount;
+#pragma dynimport _wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount _wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount
+extern void (*_wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount)(void*) = _wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount;
 
 void
-·OTAPI_BasicBasket_GetMinimumTransferAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapBasket_GetMinimumTransferAmount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Basket_GetMinimumTransferAmount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Basket_GetMinimumTransferAmount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount _wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount
-extern void (*_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount)(void*) = _wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount;
+#pragma dynimport _wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount _wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount
+extern void (*_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount)(void*) = _wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount;
 
 void
-·OTAPI_BasicBasket_GetMemberMinimumTransferAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapBasket_GetMemberMinimumTransferAmount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadAssetAccount _wrap_OTAPI_Basic_LoadAssetAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadAssetAccount
-extern void (*_wrap_OTAPI_Basic_LoadAssetAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadAssetAccount)(void*) = _wrap_OTAPI_Basic_LoadAssetAccount;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadAssetAccount _wrap_OTAPI_Wrap_LoadAssetAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadAssetAccount
+extern void (*_wrap_OTAPI_Wrap_LoadAssetAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadAssetAccount)(void*) = _wrap_OTAPI_Wrap_LoadAssetAccount;
 
 void
-·OTAPI_BasicLoadAssetAccount(struct {
+·OTAPI_WrapLoadAssetAccount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadAssetAccount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadAssetAccount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadInbox _wrap_OTAPI_Basic_LoadInbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadInbox
-extern void (*_wrap_OTAPI_Basic_LoadInbox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadInbox)(void*) = _wrap_OTAPI_Basic_LoadInbox;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadInbox _wrap_OTAPI_Wrap_LoadInbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadInbox
+extern void (*_wrap_OTAPI_Wrap_LoadInbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadInbox)(void*) = _wrap_OTAPI_Wrap_LoadInbox;
 
 void
-·OTAPI_BasicLoadInbox(struct {
+·OTAPI_WrapLoadInbox(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadInbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadInbox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadOutbox _wrap_OTAPI_Basic_LoadOutbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadOutbox
-extern void (*_wrap_OTAPI_Basic_LoadOutbox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadOutbox)(void*) = _wrap_OTAPI_Basic_LoadOutbox;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadOutbox _wrap_OTAPI_Wrap_LoadOutbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadOutbox
+extern void (*_wrap_OTAPI_Wrap_LoadOutbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadOutbox)(void*) = _wrap_OTAPI_Wrap_LoadOutbox;
 
 void
-·OTAPI_BasicLoadOutbox(struct {
+·OTAPI_WrapLoadOutbox(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadOutbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadOutbox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadInboxNoVerify _wrap_OTAPI_Basic_LoadInboxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadInboxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadInboxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadInboxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadInboxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadInboxNoVerify _wrap_OTAPI_Wrap_LoadInboxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadInboxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadInboxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadInboxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadInboxNoVerify;
 
 void
-·OTAPI_BasicLoadInboxNoVerify(struct {
+·OTAPI_WrapLoadInboxNoVerify(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadInboxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadInboxNoVerify, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadOutboxNoVerify _wrap_OTAPI_Basic_LoadOutboxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadOutboxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadOutboxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadOutboxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadOutboxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadOutboxNoVerify _wrap_OTAPI_Wrap_LoadOutboxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadOutboxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadOutboxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadOutboxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadOutboxNoVerify;
 
 void
-·OTAPI_BasicLoadOutboxNoVerify(struct {
+·OTAPI_WrapLoadOutboxNoVerify(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadOutboxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadOutboxNoVerify, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadPaymentInbox _wrap_OTAPI_Basic_LoadPaymentInbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadPaymentInbox
-extern void (*_wrap_OTAPI_Basic_LoadPaymentInbox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadPaymentInbox)(void*) = _wrap_OTAPI_Basic_LoadPaymentInbox;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadPaymentInbox _wrap_OTAPI_Wrap_LoadPaymentInbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadPaymentInbox
+extern void (*_wrap_OTAPI_Wrap_LoadPaymentInbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadPaymentInbox)(void*) = _wrap_OTAPI_Wrap_LoadPaymentInbox;
 
 void
-·OTAPI_BasicLoadPaymentInbox(struct {
+·OTAPI_WrapLoadPaymentInbox(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadPaymentInbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadPaymentInbox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadPaymentInboxNoVerify _wrap_OTAPI_Basic_LoadPaymentInboxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadPaymentInboxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadPaymentInboxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify _wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify;
 
 void
-·OTAPI_BasicLoadPaymentInboxNoVerify(struct {
+·OTAPI_WrapLoadPaymentInboxNoVerify(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadPaymentInboxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadPaymentInboxNoVerify, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadRecordBox _wrap_OTAPI_Basic_LoadRecordBox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadRecordBox
-extern void (*_wrap_OTAPI_Basic_LoadRecordBox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadRecordBox)(void*) = _wrap_OTAPI_Basic_LoadRecordBox;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadRecordBox _wrap_OTAPI_Wrap_LoadRecordBox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadRecordBox
+extern void (*_wrap_OTAPI_Wrap_LoadRecordBox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadRecordBox)(void*) = _wrap_OTAPI_Wrap_LoadRecordBox;
 
 void
-·OTAPI_BasicLoadRecordBox(struct {
+·OTAPI_WrapLoadRecordBox(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadRecordBox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadRecordBox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadRecordBoxNoVerify _wrap_OTAPI_Basic_LoadRecordBoxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadRecordBoxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadRecordBoxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadRecordBoxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadRecordBoxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadRecordBoxNoVerify _wrap_OTAPI_Wrap_LoadRecordBoxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadRecordBoxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadRecordBoxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadRecordBoxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadRecordBoxNoVerify;
 
 void
-·OTAPI_BasicLoadRecordBoxNoVerify(struct {
+·OTAPI_WrapLoadRecordBoxNoVerify(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadRecordBoxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadRecordBoxNoVerify, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ClearRecord _wrap_OTAPI_Basic_ClearRecord ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ClearRecord
-extern void (*_wrap_OTAPI_Basic_ClearRecord)(void*);
-static void (*x_wrap_OTAPI_Basic_ClearRecord)(void*) = _wrap_OTAPI_Basic_ClearRecord;
+#pragma dynimport _wrap_OTAPI_Wrap_ClearRecord _wrap_OTAPI_Wrap_ClearRecord ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ClearRecord
+extern void (*_wrap_OTAPI_Wrap_ClearRecord)(void*);
+static void (*x_wrap_OTAPI_Wrap_ClearRecord)(void*) = _wrap_OTAPI_Wrap_ClearRecord;
 
 void
-·OTAPI_BasicClearRecord(struct {
+·OTAPI_WrapClearRecord(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ClearRecord, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ClearRecord, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadExpiredBox _wrap_OTAPI_Basic_LoadExpiredBox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadExpiredBox
-extern void (*_wrap_OTAPI_Basic_LoadExpiredBox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadExpiredBox)(void*) = _wrap_OTAPI_Basic_LoadExpiredBox;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadExpiredBox _wrap_OTAPI_Wrap_LoadExpiredBox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadExpiredBox
+extern void (*_wrap_OTAPI_Wrap_LoadExpiredBox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadExpiredBox)(void*) = _wrap_OTAPI_Wrap_LoadExpiredBox;
 
 void
-·OTAPI_BasicLoadExpiredBox(struct {
+·OTAPI_WrapLoadExpiredBox(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadExpiredBox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadExpiredBox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadExpiredBoxNoVerify _wrap_OTAPI_Basic_LoadExpiredBoxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadExpiredBoxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadExpiredBoxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify _wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify;
 
 void
-·OTAPI_BasicLoadExpiredBoxNoVerify(struct {
+·OTAPI_WrapLoadExpiredBoxNoVerify(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadExpiredBoxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadExpiredBoxNoVerify, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ClearExpired _wrap_OTAPI_Basic_ClearExpired ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ClearExpired
-extern void (*_wrap_OTAPI_Basic_ClearExpired)(void*);
-static void (*x_wrap_OTAPI_Basic_ClearExpired)(void*) = _wrap_OTAPI_Basic_ClearExpired;
+#pragma dynimport _wrap_OTAPI_Wrap_ClearExpired _wrap_OTAPI_Wrap_ClearExpired ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ClearExpired
+extern void (*_wrap_OTAPI_Wrap_ClearExpired)(void*);
+static void (*x_wrap_OTAPI_Wrap_ClearExpired)(void*) = _wrap_OTAPI_Wrap_ClearExpired;
 
 void
-·OTAPI_BasicClearExpired(struct {
+·OTAPI_WrapClearExpired(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ClearExpired, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ClearExpired, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_GetCount _wrap_OTAPI_Basic_Ledger_GetCount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_GetCount
-extern void (*_wrap_OTAPI_Basic_Ledger_GetCount)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_GetCount)(void*) = _wrap_OTAPI_Basic_Ledger_GetCount;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_GetCount _wrap_OTAPI_Wrap_Ledger_GetCount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_GetCount
+extern void (*_wrap_OTAPI_Wrap_Ledger_GetCount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_GetCount)(void*) = _wrap_OTAPI_Wrap_Ledger_GetCount;
 
 void
-·OTAPI_BasicLedger_GetCount(struct {
+·OTAPI_WrapLedger_GetCount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_GetCount, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_GetCount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_CreateResponse _wrap_OTAPI_Basic_Ledger_CreateResponse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_CreateResponse
-extern void (*_wrap_OTAPI_Basic_Ledger_CreateResponse)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_CreateResponse)(void*) = _wrap_OTAPI_Basic_Ledger_CreateResponse;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_CreateResponse _wrap_OTAPI_Wrap_Ledger_CreateResponse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_CreateResponse
+extern void (*_wrap_OTAPI_Wrap_Ledger_CreateResponse)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_CreateResponse)(void*) = _wrap_OTAPI_Wrap_Ledger_CreateResponse;
 
 void
-·OTAPI_BasicLedger_CreateResponse(struct {
+·OTAPI_WrapLedger_CreateResponse(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_CreateResponse, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_CreateResponse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_GetTransactionByIndex _wrap_OTAPI_Basic_Ledger_GetTransactionByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_GetTransactionByIndex
-extern void (*_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex)(void*) = _wrap_OTAPI_Basic_Ledger_GetTransactionByIndex;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex _wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex
+extern void (*_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex)(void*) = _wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex;
 
 void
-·OTAPI_BasicLedger_GetTransactionByIndex(struct {
+·OTAPI_WrapLedger_GetTransactionByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_GetTransactionByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_GetTransactionByID _wrap_OTAPI_Basic_Ledger_GetTransactionByID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_GetTransactionByID
-extern void (*_wrap_OTAPI_Basic_Ledger_GetTransactionByID)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_GetTransactionByID)(void*) = _wrap_OTAPI_Basic_Ledger_GetTransactionByID;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_GetTransactionByID _wrap_OTAPI_Wrap_Ledger_GetTransactionByID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_GetTransactionByID
+extern void (*_wrap_OTAPI_Wrap_Ledger_GetTransactionByID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_GetTransactionByID)(void*) = _wrap_OTAPI_Wrap_Ledger_GetTransactionByID;
 
 void
-·OTAPI_BasicLedger_GetTransactionByID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_GetTransactionByID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex _wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex
-extern void (*_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex)(void*) = _wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex;
-
-void
-·OTAPI_BasicLedger_GetTransactionIDByIndex(struct {
+·OTAPI_WrapLedger_GetTransactionByID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_GetTransactionIDByIndex, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_GetTransactionByID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_AddTransaction _wrap_OTAPI_Basic_Ledger_AddTransaction ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_AddTransaction
-extern void (*_wrap_OTAPI_Basic_Ledger_AddTransaction)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_AddTransaction)(void*) = _wrap_OTAPI_Basic_Ledger_AddTransaction;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex _wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex
+extern void (*_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex)(void*) = _wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex;
 
 void
-·OTAPI_BasicLedger_AddTransaction(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_AddTransaction, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_CreateResponse _wrap_OTAPI_Basic_Transaction_CreateResponse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_CreateResponse
-extern void (*_wrap_OTAPI_Basic_Transaction_CreateResponse)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_CreateResponse)(void*) = _wrap_OTAPI_Basic_Transaction_CreateResponse;
-
-void
-·OTAPI_BasicTransaction_CreateResponse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_CreateResponse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_FinalizeResponse _wrap_OTAPI_Basic_Ledger_FinalizeResponse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_FinalizeResponse
-extern void (*_wrap_OTAPI_Basic_Ledger_FinalizeResponse)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_FinalizeResponse)(void*) = _wrap_OTAPI_Basic_Ledger_FinalizeResponse;
-
-void
-·OTAPI_BasicLedger_FinalizeResponse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_FinalizeResponse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Ledger_GetInstrument _wrap_OTAPI_Basic_Ledger_GetInstrument ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Ledger_GetInstrument
-extern void (*_wrap_OTAPI_Basic_Ledger_GetInstrument)(void*);
-static void (*x_wrap_OTAPI_Basic_Ledger_GetInstrument)(void*) = _wrap_OTAPI_Basic_Ledger_GetInstrument;
-
-void
-·OTAPI_BasicLedger_GetInstrument(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Ledger_GetInstrument, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_RecordPayment _wrap_OTAPI_Basic_RecordPayment ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_RecordPayment
-extern void (*_wrap_OTAPI_Basic_RecordPayment)(void*);
-static void (*x_wrap_OTAPI_Basic_RecordPayment)(void*) = _wrap_OTAPI_Basic_RecordPayment;
-
-void
-·OTAPI_BasicRecordPayment(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_RecordPayment, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetType _wrap_OTAPI_Basic_Transaction_GetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetType
-extern void (*_wrap_OTAPI_Basic_Transaction_GetType)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetType)(void*) = _wrap_OTAPI_Basic_Transaction_GetType;
-
-void
-·OTAPI_BasicTransaction_GetType(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetType, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_ReplyNotice_GetRequestNum _wrap_OTAPI_Basic_ReplyNotice_GetRequestNum ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ReplyNotice_GetRequestNum
-extern void (*_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum)(void*);
-static void (*x_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum)(void*) = _wrap_OTAPI_Basic_ReplyNotice_GetRequestNum;
-
-void
-·OTAPI_BasicReplyNotice_GetRequestNum(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_ReplyNotice_GetRequestNum, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetVoucher _wrap_OTAPI_Basic_Transaction_GetVoucher ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetVoucher
-extern void (*_wrap_OTAPI_Basic_Transaction_GetVoucher)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetVoucher)(void*) = _wrap_OTAPI_Basic_Transaction_GetVoucher;
-
-void
-·OTAPI_BasicTransaction_GetVoucher(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetVoucher, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetSuccess _wrap_OTAPI_Basic_Transaction_GetSuccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetSuccess
-extern void (*_wrap_OTAPI_Basic_Transaction_GetSuccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetSuccess)(void*) = _wrap_OTAPI_Basic_Transaction_GetSuccess;
-
-void
-·OTAPI_BasicTransaction_GetSuccess(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetSuccess, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_IsCanceled _wrap_OTAPI_Basic_Transaction_IsCanceled ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_IsCanceled
-extern void (*_wrap_OTAPI_Basic_Transaction_IsCanceled)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_IsCanceled)(void*) = _wrap_OTAPI_Basic_Transaction_IsCanceled;
-
-void
-·OTAPI_BasicTransaction_IsCanceled(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_IsCanceled, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess _wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess
-extern void (*_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess)(void*) = _wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess;
-
-void
-·OTAPI_BasicTransaction_GetBalanceAgreementSuccess(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetDateSigned _wrap_OTAPI_Basic_Transaction_GetDateSigned ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetDateSigned
-extern void (*_wrap_OTAPI_Basic_Transaction_GetDateSigned)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetDateSigned)(void*) = _wrap_OTAPI_Basic_Transaction_GetDateSigned;
-
-void
-·OTAPI_BasicTransaction_GetDateSigned(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetDateSigned, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetAmount _wrap_OTAPI_Basic_Transaction_GetAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetAmount
-extern void (*_wrap_OTAPI_Basic_Transaction_GetAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetAmount)(void*) = _wrap_OTAPI_Basic_Transaction_GetAmount;
-
-void
-·OTAPI_BasicTransaction_GetAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetAmount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Pending_GetNote _wrap_OTAPI_Basic_Pending_GetNote ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Pending_GetNote
-extern void (*_wrap_OTAPI_Basic_Pending_GetNote)(void*);
-static void (*x_wrap_OTAPI_Basic_Pending_GetNote)(void*) = _wrap_OTAPI_Basic_Pending_GetNote;
-
-void
-·OTAPI_BasicPending_GetNote(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Pending_GetNote, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetSenderUserID _wrap_OTAPI_Basic_Transaction_GetSenderUserID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetSenderUserID
-extern void (*_wrap_OTAPI_Basic_Transaction_GetSenderUserID)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetSenderUserID)(void*) = _wrap_OTAPI_Basic_Transaction_GetSenderUserID;
-
-void
-·OTAPI_BasicTransaction_GetSenderUserID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetSenderUserID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetSenderAcctID _wrap_OTAPI_Basic_Transaction_GetSenderAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetSenderAcctID
-extern void (*_wrap_OTAPI_Basic_Transaction_GetSenderAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetSenderAcctID)(void*) = _wrap_OTAPI_Basic_Transaction_GetSenderAcctID;
-
-void
-·OTAPI_BasicTransaction_GetSenderAcctID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetSenderAcctID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetRecipientUserID _wrap_OTAPI_Basic_Transaction_GetRecipientUserID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetRecipientUserID
-extern void (*_wrap_OTAPI_Basic_Transaction_GetRecipientUserID)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetRecipientUserID)(void*) = _wrap_OTAPI_Basic_Transaction_GetRecipientUserID;
-
-void
-·OTAPI_BasicTransaction_GetRecipientUserID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetRecipientUserID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetRecipientAcctID _wrap_OTAPI_Basic_Transaction_GetRecipientAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetRecipientAcctID
-extern void (*_wrap_OTAPI_Basic_Transaction_GetRecipientAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetRecipientAcctID)(void*) = _wrap_OTAPI_Basic_Transaction_GetRecipientAcctID;
-
-void
-·OTAPI_BasicTransaction_GetRecipientAcctID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetRecipientAcctID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum _wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum
-extern void (*_wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum)(void*);
-static void (*x_wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum)(void*) = _wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum;
-
-void
-·OTAPI_BasicTransaction_GetDisplayReferenceToNum(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Transaction_GetDisplayReferenceToNum, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_SavePurse _wrap_OTAPI_Basic_SavePurse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_SavePurse
-extern void (*_wrap_OTAPI_Basic_SavePurse)(void*);
-static void (*x_wrap_OTAPI_Basic_SavePurse)(void*) = _wrap_OTAPI_Basic_SavePurse;
-
-void
-·OTAPI_BasicSavePurse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_SavePurse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_CreatePurse _wrap_OTAPI_Basic_CreatePurse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreatePurse
-extern void (*_wrap_OTAPI_Basic_CreatePurse)(void*);
-static void (*x_wrap_OTAPI_Basic_CreatePurse)(void*) = _wrap_OTAPI_Basic_CreatePurse;
-
-void
-·OTAPI_BasicCreatePurse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreatePurse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_CreatePurse_Passphrase _wrap_OTAPI_Basic_CreatePurse_Passphrase ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_CreatePurse_Passphrase
-extern void (*_wrap_OTAPI_Basic_CreatePurse_Passphrase)(void*);
-static void (*x_wrap_OTAPI_Basic_CreatePurse_Passphrase)(void*) = _wrap_OTAPI_Basic_CreatePurse_Passphrase;
-
-void
-·OTAPI_BasicCreatePurse_Passphrase(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_CreatePurse_Passphrase, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_GetTotalValue _wrap_OTAPI_Basic_Purse_GetTotalValue ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_GetTotalValue
-extern void (*_wrap_OTAPI_Basic_Purse_GetTotalValue)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_GetTotalValue)(void*) = _wrap_OTAPI_Basic_Purse_GetTotalValue;
-
-void
-·OTAPI_BasicPurse_GetTotalValue(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_GetTotalValue, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_Count _wrap_OTAPI_Basic_Purse_Count ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_Count
-extern void (*_wrap_OTAPI_Basic_Purse_Count)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_Count)(void*) = _wrap_OTAPI_Basic_Purse_Count;
-
-void
-·OTAPI_BasicPurse_Count(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_Count, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_HasPassword _wrap_OTAPI_Basic_Purse_HasPassword ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_HasPassword
-extern void (*_wrap_OTAPI_Basic_Purse_HasPassword)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_HasPassword)(void*) = _wrap_OTAPI_Basic_Purse_HasPassword;
-
-void
-·OTAPI_BasicPurse_HasPassword(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_HasPassword, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_Peek _wrap_OTAPI_Basic_Purse_Peek ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_Peek
-extern void (*_wrap_OTAPI_Basic_Purse_Peek)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_Peek)(void*) = _wrap_OTAPI_Basic_Purse_Peek;
-
-void
-·OTAPI_BasicPurse_Peek(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_Peek, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_Pop _wrap_OTAPI_Basic_Purse_Pop ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_Pop
-extern void (*_wrap_OTAPI_Basic_Purse_Pop)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_Pop)(void*) = _wrap_OTAPI_Basic_Purse_Pop;
-
-void
-·OTAPI_BasicPurse_Pop(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_Pop, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_Push _wrap_OTAPI_Basic_Purse_Push ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_Push
-extern void (*_wrap_OTAPI_Basic_Purse_Push)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_Push)(void*) = _wrap_OTAPI_Basic_Purse_Push;
-
-void
-·OTAPI_BasicPurse_Push(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_Push, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Purse_Empty _wrap_OTAPI_Basic_Purse_Empty ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Purse_Empty
-extern void (*_wrap_OTAPI_Basic_Purse_Empty)(void*);
-static void (*x_wrap_OTAPI_Basic_Purse_Empty)(void*) = _wrap_OTAPI_Basic_Purse_Empty;
-
-void
-·OTAPI_BasicPurse_Empty(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Purse_Empty, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Wallet_ImportPurse _wrap_OTAPI_Basic_Wallet_ImportPurse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Wallet_ImportPurse
-extern void (*_wrap_OTAPI_Basic_Wallet_ImportPurse)(void*);
-static void (*x_wrap_OTAPI_Basic_Wallet_ImportPurse)(void*) = _wrap_OTAPI_Basic_Wallet_ImportPurse;
-
-void
-·OTAPI_BasicWallet_ImportPurse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Wallet_ImportPurse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_exchangePurse _wrap_OTAPI_Basic_exchangePurse ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_exchangePurse
-extern void (*_wrap_OTAPI_Basic_exchangePurse)(void*);
-static void (*x_wrap_OTAPI_Basic_exchangePurse)(void*) = _wrap_OTAPI_Basic_exchangePurse;
-
-void
-·OTAPI_BasicExchangePurse(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_exchangePurse, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_ChangeOwner _wrap_OTAPI_Basic_Token_ChangeOwner ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_ChangeOwner
-extern void (*_wrap_OTAPI_Basic_Token_ChangeOwner)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_ChangeOwner)(void*) = _wrap_OTAPI_Basic_Token_ChangeOwner;
-
-void
-·OTAPI_BasicToken_ChangeOwner(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_ChangeOwner, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetID _wrap_OTAPI_Basic_Token_GetID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetID
-extern void (*_wrap_OTAPI_Basic_Token_GetID)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetID)(void*) = _wrap_OTAPI_Basic_Token_GetID;
-
-void
-·OTAPI_BasicToken_GetID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetDenomination _wrap_OTAPI_Basic_Token_GetDenomination ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetDenomination
-extern void (*_wrap_OTAPI_Basic_Token_GetDenomination)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetDenomination)(void*) = _wrap_OTAPI_Basic_Token_GetDenomination;
-
-void
-·OTAPI_BasicToken_GetDenomination(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetDenomination, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetSeries _wrap_OTAPI_Basic_Token_GetSeries ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetSeries
-extern void (*_wrap_OTAPI_Basic_Token_GetSeries)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetSeries)(void*) = _wrap_OTAPI_Basic_Token_GetSeries;
-
-void
-·OTAPI_BasicToken_GetSeries(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetSeries, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetValidFrom _wrap_OTAPI_Basic_Token_GetValidFrom ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetValidFrom
-extern void (*_wrap_OTAPI_Basic_Token_GetValidFrom)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetValidFrom)(void*) = _wrap_OTAPI_Basic_Token_GetValidFrom;
-
-void
-·OTAPI_BasicToken_GetValidFrom(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetValidFrom, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetValidTo _wrap_OTAPI_Basic_Token_GetValidTo ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetValidTo
-extern void (*_wrap_OTAPI_Basic_Token_GetValidTo)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetValidTo)(void*) = _wrap_OTAPI_Basic_Token_GetValidTo;
-
-void
-·OTAPI_BasicToken_GetValidTo(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetValidTo, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetAssetID _wrap_OTAPI_Basic_Token_GetAssetID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetAssetID
-extern void (*_wrap_OTAPI_Basic_Token_GetAssetID)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetAssetID)(void*) = _wrap_OTAPI_Basic_Token_GetAssetID;
-
-void
-·OTAPI_BasicToken_GetAssetID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetAssetID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Token_GetServerID _wrap_OTAPI_Basic_Token_GetServerID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Token_GetServerID
-extern void (*_wrap_OTAPI_Basic_Token_GetServerID)(void*);
-static void (*x_wrap_OTAPI_Basic_Token_GetServerID)(void*) = _wrap_OTAPI_Basic_Token_GetServerID;
-
-void
-·OTAPI_BasicToken_GetServerID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Token_GetServerID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetAmount _wrap_OTAPI_Basic_Instrmnt_GetAmount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetAmount
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetAmount)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetAmount)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetAmount;
-
-void
-·OTAPI_BasicInstrmnt_GetAmount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetAmount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetTransNum _wrap_OTAPI_Basic_Instrmnt_GetTransNum ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetTransNum
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetTransNum)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetTransNum)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetTransNum;
-
-void
-·OTAPI_BasicInstrmnt_GetTransNum(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetTransNum, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetValidFrom _wrap_OTAPI_Basic_Instrmnt_GetValidFrom ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetValidFrom
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetValidFrom)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetValidFrom)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetValidFrom;
-
-void
-·OTAPI_BasicInstrmnt_GetValidFrom(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetValidFrom, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetValidTo _wrap_OTAPI_Basic_Instrmnt_GetValidTo ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetValidTo
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetValidTo)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetValidTo)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetValidTo;
-
-void
-·OTAPI_BasicInstrmnt_GetValidTo(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetValidTo, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetMemo _wrap_OTAPI_Basic_Instrmnt_GetMemo ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetMemo
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetMemo)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetMemo)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetMemo;
-
-void
-·OTAPI_BasicInstrmnt_GetMemo(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetMemo, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetType _wrap_OTAPI_Basic_Instrmnt_GetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetType
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetType)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetType)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetType;
-
-void
-·OTAPI_BasicInstrmnt_GetType(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetType, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetServerID _wrap_OTAPI_Basic_Instrmnt_GetServerID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetServerID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetServerID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetServerID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetServerID;
-
-void
-·OTAPI_BasicInstrmnt_GetServerID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetServerID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetAssetID _wrap_OTAPI_Basic_Instrmnt_GetAssetID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetAssetID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetAssetID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetAssetID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetAssetID;
-
-void
-·OTAPI_BasicInstrmnt_GetAssetID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetAssetID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetSenderUserID _wrap_OTAPI_Basic_Instrmnt_GetSenderUserID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetSenderUserID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetSenderUserID;
-
-void
-·OTAPI_BasicInstrmnt_GetSenderUserID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetSenderUserID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID _wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID;
-
-void
-·OTAPI_BasicInstrmnt_GetSenderAcctID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetSenderAcctID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID _wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID;
-
-void
-·OTAPI_BasicInstrmnt_GetRemitterUserID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetRemitterUserID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID _wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID;
-
-void
-·OTAPI_BasicInstrmnt_GetRemitterAcctID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetRemitterAcctID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID _wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID;
-
-void
-·OTAPI_BasicInstrmnt_GetRecipientUserID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetRecipientUserID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID _wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID
-extern void (*_wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID)(void*) = _wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID;
-
-void
-·OTAPI_BasicInstrmnt_GetRecipientAcctID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Instrmnt_GetRecipientAcctID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_checkServerID _wrap_OTAPI_Basic_checkServerID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_checkServerID
-extern void (*_wrap_OTAPI_Basic_checkServerID)(void*);
-static void (*x_wrap_OTAPI_Basic_checkServerID)(void*) = _wrap_OTAPI_Basic_checkServerID;
-
-void
-·OTAPI_BasicCheckServerID(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_checkServerID, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_createUserAccount _wrap_OTAPI_Basic_createUserAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_createUserAccount
-extern void (*_wrap_OTAPI_Basic_createUserAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_createUserAccount)(void*) = _wrap_OTAPI_Basic_createUserAccount;
-
-void
-·OTAPI_BasicCreateUserAccount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_createUserAccount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_deleteUserAccount _wrap_OTAPI_Basic_deleteUserAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_deleteUserAccount
-extern void (*_wrap_OTAPI_Basic_deleteUserAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_deleteUserAccount)(void*) = _wrap_OTAPI_Basic_deleteUserAccount;
-
-void
-·OTAPI_BasicDeleteUserAccount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_deleteUserAccount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_deleteAssetAccount _wrap_OTAPI_Basic_deleteAssetAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_deleteAssetAccount
-extern void (*_wrap_OTAPI_Basic_deleteAssetAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_deleteAssetAccount)(void*) = _wrap_OTAPI_Basic_deleteAssetAccount;
-
-void
-·OTAPI_BasicDeleteAssetAccount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_deleteAssetAccount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_usageCredits _wrap_OTAPI_Basic_usageCredits ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_usageCredits
-extern void (*_wrap_OTAPI_Basic_usageCredits)(void*);
-static void (*x_wrap_OTAPI_Basic_usageCredits)(void*) = _wrap_OTAPI_Basic_usageCredits;
-
-void
-·OTAPI_BasicUsageCredits(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_usageCredits, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetUsageCredits _wrap_OTAPI_Basic_Message_GetUsageCredits ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetUsageCredits
-extern void (*_wrap_OTAPI_Basic_Message_GetUsageCredits)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetUsageCredits)(void*) = _wrap_OTAPI_Basic_Message_GetUsageCredits;
-
-void
-·OTAPI_BasicMessage_GetUsageCredits(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetUsageCredits, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_checkUser _wrap_OTAPI_Basic_checkUser ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_checkUser
-extern void (*_wrap_OTAPI_Basic_checkUser)(void*);
-static void (*x_wrap_OTAPI_Basic_checkUser)(void*) = _wrap_OTAPI_Basic_checkUser;
-
-void
-·OTAPI_BasicCheckUser(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_checkUser, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_sendUserMessage _wrap_OTAPI_Basic_sendUserMessage ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_sendUserMessage
-extern void (*_wrap_OTAPI_Basic_sendUserMessage)(void*);
-static void (*x_wrap_OTAPI_Basic_sendUserMessage)(void*) = _wrap_OTAPI_Basic_sendUserMessage;
-
-void
-·OTAPI_BasicSendUserMessage(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_sendUserMessage, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_sendUserInstrument _wrap_OTAPI_Basic_sendUserInstrument ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_sendUserInstrument
-extern void (*_wrap_OTAPI_Basic_sendUserInstrument)(void*);
-static void (*x_wrap_OTAPI_Basic_sendUserInstrument)(void*) = _wrap_OTAPI_Basic_sendUserInstrument;
-
-void
-·OTAPI_BasicSendUserInstrument(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_sendUserInstrument, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getRequest _wrap_OTAPI_Basic_getRequest ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getRequest
-extern void (*_wrap_OTAPI_Basic_getRequest)(void*);
-static void (*x_wrap_OTAPI_Basic_getRequest)(void*) = _wrap_OTAPI_Basic_getRequest;
-
-void
-·OTAPI_BasicGetRequest(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getRequest, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getTransactionNumber _wrap_OTAPI_Basic_getTransactionNumber ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getTransactionNumber
-extern void (*_wrap_OTAPI_Basic_getTransactionNumber)(void*);
-static void (*x_wrap_OTAPI_Basic_getTransactionNumber)(void*) = _wrap_OTAPI_Basic_getTransactionNumber;
-
-void
-·OTAPI_BasicGetTransactionNumber(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getTransactionNumber, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_issueAssetType _wrap_OTAPI_Basic_issueAssetType ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_issueAssetType
-extern void (*_wrap_OTAPI_Basic_issueAssetType)(void*);
-static void (*x_wrap_OTAPI_Basic_issueAssetType)(void*) = _wrap_OTAPI_Basic_issueAssetType;
-
-void
-·OTAPI_BasicIssueAssetType(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_issueAssetType, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getContract _wrap_OTAPI_Basic_getContract ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getContract
-extern void (*_wrap_OTAPI_Basic_getContract)(void*);
-static void (*x_wrap_OTAPI_Basic_getContract)(void*) = _wrap_OTAPI_Basic_getContract;
-
-void
-·OTAPI_BasicGetContract(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getContract, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getMint _wrap_OTAPI_Basic_getMint ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getMint
-extern void (*_wrap_OTAPI_Basic_getMint)(void*);
-static void (*x_wrap_OTAPI_Basic_getMint)(void*) = _wrap_OTAPI_Basic_getMint;
-
-void
-·OTAPI_BasicGetMint(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getMint, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_createAssetAccount _wrap_OTAPI_Basic_createAssetAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_createAssetAccount
-extern void (*_wrap_OTAPI_Basic_createAssetAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_createAssetAccount)(void*) = _wrap_OTAPI_Basic_createAssetAccount;
-
-void
-·OTAPI_BasicCreateAssetAccount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_createAssetAccount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getAccount _wrap_OTAPI_Basic_getAccount ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getAccount
-extern void (*_wrap_OTAPI_Basic_getAccount)(void*);
-static void (*x_wrap_OTAPI_Basic_getAccount)(void*) = _wrap_OTAPI_Basic_getAccount;
-
-void
-·OTAPI_BasicGetAccount(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getAccount, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getAccountFiles _wrap_OTAPI_Basic_getAccountFiles ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getAccountFiles
-extern void (*_wrap_OTAPI_Basic_getAccountFiles)(void*);
-static void (*x_wrap_OTAPI_Basic_getAccountFiles)(void*) = _wrap_OTAPI_Basic_getAccountFiles;
-
-void
-·OTAPI_BasicGetAccountFiles(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getAccountFiles, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GenerateBasketCreation _wrap_OTAPI_Basic_GenerateBasketCreation ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GenerateBasketCreation
-extern void (*_wrap_OTAPI_Basic_GenerateBasketCreation)(void*);
-static void (*x_wrap_OTAPI_Basic_GenerateBasketCreation)(void*) = _wrap_OTAPI_Basic_GenerateBasketCreation;
-
-void
-·OTAPI_BasicGenerateBasketCreation(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GenerateBasketCreation, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_AddBasketCreationItem _wrap_OTAPI_Basic_AddBasketCreationItem ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddBasketCreationItem
-extern void (*_wrap_OTAPI_Basic_AddBasketCreationItem)(void*);
-static void (*x_wrap_OTAPI_Basic_AddBasketCreationItem)(void*) = _wrap_OTAPI_Basic_AddBasketCreationItem;
-
-void
-·OTAPI_BasicAddBasketCreationItem(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddBasketCreationItem, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_issueBasket _wrap_OTAPI_Basic_issueBasket ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_issueBasket
-extern void (*_wrap_OTAPI_Basic_issueBasket)(void*);
-static void (*x_wrap_OTAPI_Basic_issueBasket)(void*) = _wrap_OTAPI_Basic_issueBasket;
-
-void
-·OTAPI_BasicIssueBasket(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_issueBasket, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GenerateBasketExchange _wrap_OTAPI_Basic_GenerateBasketExchange ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GenerateBasketExchange
-extern void (*_wrap_OTAPI_Basic_GenerateBasketExchange)(void*);
-static void (*x_wrap_OTAPI_Basic_GenerateBasketExchange)(void*) = _wrap_OTAPI_Basic_GenerateBasketExchange;
-
-void
-·OTAPI_BasicGenerateBasketExchange(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GenerateBasketExchange, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_AddBasketExchangeItem _wrap_OTAPI_Basic_AddBasketExchangeItem ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_AddBasketExchangeItem
-extern void (*_wrap_OTAPI_Basic_AddBasketExchangeItem)(void*);
-static void (*x_wrap_OTAPI_Basic_AddBasketExchangeItem)(void*) = _wrap_OTAPI_Basic_AddBasketExchangeItem;
-
-void
-·OTAPI_BasicAddBasketExchangeItem(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_AddBasketExchangeItem, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_exchangeBasket _wrap_OTAPI_Basic_exchangeBasket ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_exchangeBasket
-extern void (*_wrap_OTAPI_Basic_exchangeBasket)(void*);
-static void (*x_wrap_OTAPI_Basic_exchangeBasket)(void*) = _wrap_OTAPI_Basic_exchangeBasket;
-
-void
-·OTAPI_BasicExchangeBasket(struct {
+·OTAPI_WrapLedger_GetTransactionIDByIndex(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_exchangeBasket, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_notarizeWithdrawal _wrap_OTAPI_Basic_notarizeWithdrawal ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_notarizeWithdrawal
-extern void (*_wrap_OTAPI_Basic_notarizeWithdrawal)(void*);
-static void (*x_wrap_OTAPI_Basic_notarizeWithdrawal)(void*) = _wrap_OTAPI_Basic_notarizeWithdrawal;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_AddTransaction _wrap_OTAPI_Wrap_Ledger_AddTransaction ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_AddTransaction
+extern void (*_wrap_OTAPI_Wrap_Ledger_AddTransaction)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_AddTransaction)(void*) = _wrap_OTAPI_Wrap_Ledger_AddTransaction;
 
 void
-·OTAPI_BasicNotarizeWithdrawal(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapLedger_AddTransaction(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_notarizeWithdrawal, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_AddTransaction, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_notarizeDeposit _wrap_OTAPI_Basic_notarizeDeposit ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_notarizeDeposit
-extern void (*_wrap_OTAPI_Basic_notarizeDeposit)(void*);
-static void (*x_wrap_OTAPI_Basic_notarizeDeposit)(void*) = _wrap_OTAPI_Basic_notarizeDeposit;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_CreateResponse _wrap_OTAPI_Wrap_Transaction_CreateResponse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_CreateResponse
+extern void (*_wrap_OTAPI_Wrap_Transaction_CreateResponse)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_CreateResponse)(void*) = _wrap_OTAPI_Wrap_Transaction_CreateResponse;
 
 void
-·OTAPI_BasicNotarizeDeposit(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapTransaction_CreateResponse(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_notarizeDeposit, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_CreateResponse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_notarizeTransfer _wrap_OTAPI_Basic_notarizeTransfer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_notarizeTransfer
-extern void (*_wrap_OTAPI_Basic_notarizeTransfer)(void*);
-static void (*x_wrap_OTAPI_Basic_notarizeTransfer)(void*) = _wrap_OTAPI_Basic_notarizeTransfer;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_FinalizeResponse _wrap_OTAPI_Wrap_Ledger_FinalizeResponse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_FinalizeResponse
+extern void (*_wrap_OTAPI_Wrap_Ledger_FinalizeResponse)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_FinalizeResponse)(void*) = _wrap_OTAPI_Wrap_Ledger_FinalizeResponse;
 
 void
-·OTAPI_BasicNotarizeTransfer(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapLedger_FinalizeResponse(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_notarizeTransfer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_FinalizeResponse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getInbox _wrap_OTAPI_Basic_getInbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getInbox
-extern void (*_wrap_OTAPI_Basic_getInbox)(void*);
-static void (*x_wrap_OTAPI_Basic_getInbox)(void*) = _wrap_OTAPI_Basic_getInbox;
+#pragma dynimport _wrap_OTAPI_Wrap_Ledger_GetInstrument _wrap_OTAPI_Wrap_Ledger_GetInstrument ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Ledger_GetInstrument
+extern void (*_wrap_OTAPI_Wrap_Ledger_GetInstrument)(void*);
+static void (*x_wrap_OTAPI_Wrap_Ledger_GetInstrument)(void*) = _wrap_OTAPI_Wrap_Ledger_GetInstrument;
 
 void
-·OTAPI_BasicGetInbox(struct {
+·OTAPI_WrapLedger_GetInstrument(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Ledger_GetInstrument, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_RecordPayment _wrap_OTAPI_Wrap_RecordPayment ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_RecordPayment
+extern void (*_wrap_OTAPI_Wrap_RecordPayment)(void*);
+static void (*x_wrap_OTAPI_Wrap_RecordPayment)(void*) = _wrap_OTAPI_Wrap_RecordPayment;
+
+void
+·OTAPI_WrapRecordPayment(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_RecordPayment, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetType _wrap_OTAPI_Wrap_Transaction_GetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetType
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetType)(void*) = _wrap_OTAPI_Wrap_Transaction_GetType;
+
+void
+·OTAPI_WrapTransaction_GetType(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetType, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum _wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum
+extern void (*_wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum)(void*);
+static void (*x_wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum)(void*) = _wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum;
+
+void
+·OTAPI_WrapReplyNotice_GetRequestNum(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_getInbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ReplyNotice_GetRequestNum, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getOutbox _wrap_OTAPI_Basic_getOutbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getOutbox
-extern void (*_wrap_OTAPI_Basic_getOutbox)(void*);
-static void (*x_wrap_OTAPI_Basic_getOutbox)(void*) = _wrap_OTAPI_Basic_getOutbox;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetVoucher _wrap_OTAPI_Wrap_Transaction_GetVoucher ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetVoucher
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetVoucher)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetVoucher)(void*) = _wrap_OTAPI_Wrap_Transaction_GetVoucher;
 
 void
-·OTAPI_BasicGetOutbox(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapTransaction_GetVoucher(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_getOutbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetVoucher, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getNymbox _wrap_OTAPI_Basic_getNymbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getNymbox
-extern void (*_wrap_OTAPI_Basic_getNymbox)(void*);
-static void (*x_wrap_OTAPI_Basic_getNymbox)(void*) = _wrap_OTAPI_Basic_getNymbox;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetSuccess _wrap_OTAPI_Wrap_Transaction_GetSuccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetSuccess
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetSuccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetSuccess)(void*) = _wrap_OTAPI_Wrap_Transaction_GetSuccess;
 
 void
-·OTAPI_BasicGetNymbox(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapTransaction_GetSuccess(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_getNymbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetSuccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadNymbox _wrap_OTAPI_Basic_LoadNymbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadNymbox
-extern void (*_wrap_OTAPI_Basic_LoadNymbox)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadNymbox)(void*) = _wrap_OTAPI_Basic_LoadNymbox;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_IsCanceled _wrap_OTAPI_Wrap_Transaction_IsCanceled ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_IsCanceled
+extern void (*_wrap_OTAPI_Wrap_Transaction_IsCanceled)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_IsCanceled)(void*) = _wrap_OTAPI_Wrap_Transaction_IsCanceled;
 
 void
-·OTAPI_BasicLoadNymbox(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapTransaction_IsCanceled(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadNymbox, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_IsCanceled, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_LoadNymboxNoVerify _wrap_OTAPI_Basic_LoadNymboxNoVerify ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_LoadNymboxNoVerify
-extern void (*_wrap_OTAPI_Basic_LoadNymboxNoVerify)(void*);
-static void (*x_wrap_OTAPI_Basic_LoadNymboxNoVerify)(void*) = _wrap_OTAPI_Basic_LoadNymboxNoVerify;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess _wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess)(void*) = _wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess;
 
 void
-·OTAPI_BasicLoadNymboxNoVerify(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·OTAPI_WrapTransaction_GetBalanceAgreementSuccess(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_LoadNymboxNoVerify, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Nymbox_GetReplyNotice _wrap_OTAPI_Basic_Nymbox_GetReplyNotice ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Nymbox_GetReplyNotice
-extern void (*_wrap_OTAPI_Basic_Nymbox_GetReplyNotice)(void*);
-static void (*x_wrap_OTAPI_Basic_Nymbox_GetReplyNotice)(void*) = _wrap_OTAPI_Basic_Nymbox_GetReplyNotice;
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetDateSigned _wrap_OTAPI_Wrap_Transaction_GetDateSigned ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetDateSigned
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetDateSigned)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetDateSigned)(void*) = _wrap_OTAPI_Wrap_Transaction_GetDateSigned;
 
 void
-·OTAPI_BasicNymbox_GetReplyNotice(struct {
+·_swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetDateSigned, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetAmount _wrap_OTAPI_Wrap_Transaction_GetAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetAmount
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetAmount)(void*) = _wrap_OTAPI_Wrap_Transaction_GetAmount;
+
+void
+·OTAPI_WrapTransaction_GetAmount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetAmount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Pending_GetNote _wrap_OTAPI_Wrap_Pending_GetNote ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Pending_GetNote
+extern void (*_wrap_OTAPI_Wrap_Pending_GetNote)(void*);
+static void (*x_wrap_OTAPI_Wrap_Pending_GetNote)(void*) = _wrap_OTAPI_Wrap_Pending_GetNote;
+
+void
+·OTAPI_WrapPending_GetNote(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Pending_GetNote, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetSenderUserID _wrap_OTAPI_Wrap_Transaction_GetSenderUserID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetSenderUserID
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetSenderUserID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetSenderUserID)(void*) = _wrap_OTAPI_Wrap_Transaction_GetSenderUserID;
+
+void
+·OTAPI_WrapTransaction_GetSenderUserID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetSenderUserID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetSenderAcctID _wrap_OTAPI_Wrap_Transaction_GetSenderAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetSenderAcctID
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetSenderAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetSenderAcctID)(void*) = _wrap_OTAPI_Wrap_Transaction_GetSenderAcctID;
+
+void
+·OTAPI_WrapTransaction_GetSenderAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetSenderAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetRecipientUserID _wrap_OTAPI_Wrap_Transaction_GetRecipientUserID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetRecipientUserID
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetRecipientUserID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetRecipientUserID)(void*) = _wrap_OTAPI_Wrap_Transaction_GetRecipientUserID;
+
+void
+·OTAPI_WrapTransaction_GetRecipientUserID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetRecipientUserID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID _wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID)(void*) = _wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID;
+
+void
+·OTAPI_WrapTransaction_GetRecipientAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetRecipientAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum _wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum
+extern void (*_wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum)(void*);
+static void (*x_wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum)(void*) = _wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum;
+
+void
+·OTAPI_WrapTransaction_GetDisplayReferenceToNum(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_SavePurse _wrap_OTAPI_Wrap_SavePurse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_SavePurse
+extern void (*_wrap_OTAPI_Wrap_SavePurse)(void*);
+static void (*x_wrap_OTAPI_Wrap_SavePurse)(void*) = _wrap_OTAPI_Wrap_SavePurse;
+
+void
+·OTAPI_WrapSavePurse(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_SavePurse, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_CreatePurse _wrap_OTAPI_Wrap_CreatePurse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreatePurse
+extern void (*_wrap_OTAPI_Wrap_CreatePurse)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreatePurse)(void*) = _wrap_OTAPI_Wrap_CreatePurse;
+
+void
+·OTAPI_WrapCreatePurse(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreatePurse, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_CreatePurse_Passphrase _wrap_OTAPI_Wrap_CreatePurse_Passphrase ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_CreatePurse_Passphrase
+extern void (*_wrap_OTAPI_Wrap_CreatePurse_Passphrase)(void*);
+static void (*x_wrap_OTAPI_Wrap_CreatePurse_Passphrase)(void*) = _wrap_OTAPI_Wrap_CreatePurse_Passphrase;
+
+void
+·OTAPI_WrapCreatePurse_Passphrase(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Nymbox_GetReplyNotice, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_CreatePurse_Passphrase, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_HaveAlreadySeenReply _wrap_OTAPI_Basic_HaveAlreadySeenReply ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_HaveAlreadySeenReply
-extern void (*_wrap_OTAPI_Basic_HaveAlreadySeenReply)(void*);
-static void (*x_wrap_OTAPI_Basic_HaveAlreadySeenReply)(void*) = _wrap_OTAPI_Basic_HaveAlreadySeenReply;
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_GetTotalValue _wrap_OTAPI_Wrap_Purse_GetTotalValue ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_GetTotalValue
+extern void (*_wrap_OTAPI_Wrap_Purse_GetTotalValue)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_GetTotalValue)(void*) = _wrap_OTAPI_Wrap_Purse_GetTotalValue;
 
 void
-·OTAPI_BasicHaveAlreadySeenReply(struct {
+·OTAPI_WrapPurse_GetTotalValue(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_HaveAlreadySeenReply, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_GetTotalValue, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getBoxReceipt _wrap_OTAPI_Basic_getBoxReceipt ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getBoxReceipt
-extern void (*_wrap_OTAPI_Basic_getBoxReceipt)(void*);
-static void (*x_wrap_OTAPI_Basic_getBoxReceipt)(void*) = _wrap_OTAPI_Basic_getBoxReceipt;
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_Count _wrap_OTAPI_Wrap_Purse_Count ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_Count
+extern void (*_wrap_OTAPI_Wrap_Purse_Count)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_Count)(void*) = _wrap_OTAPI_Wrap_Purse_Count;
 
 void
-·OTAPI_BasicGetBoxReceipt(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getBoxReceipt, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_DoesBoxReceiptExist _wrap_OTAPI_Basic_DoesBoxReceiptExist ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_DoesBoxReceiptExist
-extern void (*_wrap_OTAPI_Basic_DoesBoxReceiptExist)(void*);
-static void (*x_wrap_OTAPI_Basic_DoesBoxReceiptExist)(void*) = _wrap_OTAPI_Basic_DoesBoxReceiptExist;
-
-void
-·OTAPI_BasicDoesBoxReceiptExist(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_DoesBoxReceiptExist, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_processInbox _wrap_OTAPI_Basic_processInbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_processInbox
-extern void (*_wrap_OTAPI_Basic_processInbox)(void*);
-static void (*x_wrap_OTAPI_Basic_processInbox)(void*) = _wrap_OTAPI_Basic_processInbox;
-
-void
-·OTAPI_BasicProcessInbox(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_processInbox, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_processNymbox _wrap_OTAPI_Basic_processNymbox ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_processNymbox
-extern void (*_wrap_OTAPI_Basic_processNymbox)(void*);
-static void (*x_wrap_OTAPI_Basic_processNymbox)(void*) = _wrap_OTAPI_Basic_processNymbox;
-
-void
-·OTAPI_BasicProcessNymbox(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_processNymbox, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_withdrawVoucher _wrap_OTAPI_Basic_withdrawVoucher ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_withdrawVoucher
-extern void (*_wrap_OTAPI_Basic_withdrawVoucher)(void*);
-static void (*x_wrap_OTAPI_Basic_withdrawVoucher)(void*) = _wrap_OTAPI_Basic_withdrawVoucher;
-
-void
-·OTAPI_BasicWithdrawVoucher(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_withdrawVoucher, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_payDividend _wrap_OTAPI_Basic_payDividend ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_payDividend
-extern void (*_wrap_OTAPI_Basic_payDividend)(void*);
-static void (*x_wrap_OTAPI_Basic_payDividend)(void*) = _wrap_OTAPI_Basic_payDividend;
-
-void
-·OTAPI_BasicPayDividend(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_payDividend, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_depositCheque _wrap_OTAPI_Basic_depositCheque ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_depositCheque
-extern void (*_wrap_OTAPI_Basic_depositCheque)(void*);
-static void (*x_wrap_OTAPI_Basic_depositCheque)(void*) = _wrap_OTAPI_Basic_depositCheque;
-
-void
-·OTAPI_BasicDepositCheque(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_depositCheque, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_depositPaymentPlan _wrap_OTAPI_Basic_depositPaymentPlan ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_depositPaymentPlan
-extern void (*_wrap_OTAPI_Basic_depositPaymentPlan)(void*);
-static void (*x_wrap_OTAPI_Basic_depositPaymentPlan)(void*) = _wrap_OTAPI_Basic_depositPaymentPlan;
-
-void
-·OTAPI_BasicDepositPaymentPlan(struct {
+·OTAPI_WrapPurse_Count(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_depositPaymentPlan, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_Count, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_issueMarketOffer _wrap_OTAPI_Basic_issueMarketOffer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_issueMarketOffer
-extern void (*_wrap_OTAPI_Basic_issueMarketOffer)(void*);
-static void (*x_wrap_OTAPI_Basic_issueMarketOffer)(void*) = _wrap_OTAPI_Basic_issueMarketOffer;
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_HasPassword _wrap_OTAPI_Wrap_Purse_HasPassword ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_HasPassword
+extern void (*_wrap_OTAPI_Wrap_Purse_HasPassword)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_HasPassword)(void*) = _wrap_OTAPI_Wrap_Purse_HasPassword;
 
 void
-·OTAPI_BasicIssueMarketOffer(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_issueMarketOffer, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getMarketList _wrap_OTAPI_Basic_getMarketList ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getMarketList
-extern void (*_wrap_OTAPI_Basic_getMarketList)(void*);
-static void (*x_wrap_OTAPI_Basic_getMarketList)(void*) = _wrap_OTAPI_Basic_getMarketList;
-
-void
-·OTAPI_BasicGetMarketList(struct {
+·OTAPI_WrapPurse_HasPassword(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_getMarketList, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_HasPassword, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getMarketOffers _wrap_OTAPI_Basic_getMarketOffers ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getMarketOffers
-extern void (*_wrap_OTAPI_Basic_getMarketOffers)(void*);
-static void (*x_wrap_OTAPI_Basic_getMarketOffers)(void*) = _wrap_OTAPI_Basic_getMarketOffers;
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_Peek _wrap_OTAPI_Wrap_Purse_Peek ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_Peek
+extern void (*_wrap_OTAPI_Wrap_Purse_Peek)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_Peek)(void*) = _wrap_OTAPI_Wrap_Purse_Peek;
 
 void
-·OTAPI_BasicGetMarketOffers(struct {
+·OTAPI_WrapPurse_Peek(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_Peek, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_Pop _wrap_OTAPI_Wrap_Purse_Pop ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_Pop
+extern void (*_wrap_OTAPI_Wrap_Purse_Pop)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_Pop)(void*) = _wrap_OTAPI_Wrap_Purse_Pop;
+
+void
+·OTAPI_WrapPurse_Pop(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_Pop, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_Push _wrap_OTAPI_Wrap_Purse_Push ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_Push
+extern void (*_wrap_OTAPI_Wrap_Purse_Push)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_Push)(void*) = _wrap_OTAPI_Wrap_Purse_Push;
+
+void
+·OTAPI_WrapPurse_Push(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_Push, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Purse_Empty _wrap_OTAPI_Wrap_Purse_Empty ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Purse_Empty
+extern void (*_wrap_OTAPI_Wrap_Purse_Empty)(void*);
+static void (*x_wrap_OTAPI_Wrap_Purse_Empty)(void*) = _wrap_OTAPI_Wrap_Purse_Empty;
+
+void
+·OTAPI_WrapPurse_Empty(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Purse_Empty, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Wallet_ImportPurse _wrap_OTAPI_Wrap_Wallet_ImportPurse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Wallet_ImportPurse
+extern void (*_wrap_OTAPI_Wrap_Wallet_ImportPurse)(void*);
+static void (*x_wrap_OTAPI_Wrap_Wallet_ImportPurse)(void*) = _wrap_OTAPI_Wrap_Wallet_ImportPurse;
+
+void
+·OTAPI_WrapWallet_ImportPurse(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_getMarketOffers, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Wallet_ImportPurse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_getMarketRecentTrades _wrap_OTAPI_Basic_getMarketRecentTrades ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getMarketRecentTrades
-extern void (*_wrap_OTAPI_Basic_getMarketRecentTrades)(void*);
-static void (*x_wrap_OTAPI_Basic_getMarketRecentTrades)(void*) = _wrap_OTAPI_Basic_getMarketRecentTrades;
+#pragma dynimport _wrap_OTAPI_Wrap_exchangePurse _wrap_OTAPI_Wrap_exchangePurse ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_exchangePurse
+extern void (*_wrap_OTAPI_Wrap_exchangePurse)(void*);
+static void (*x_wrap_OTAPI_Wrap_exchangePurse)(void*) = _wrap_OTAPI_Wrap_exchangePurse;
 
 void
-·OTAPI_BasicGetMarketRecentTrades(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getMarketRecentTrades, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_getNym_MarketOffers _wrap_OTAPI_Basic_getNym_MarketOffers ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_getNym_MarketOffers
-extern void (*_wrap_OTAPI_Basic_getNym_MarketOffers)(void*);
-static void (*x_wrap_OTAPI_Basic_getNym_MarketOffers)(void*) = _wrap_OTAPI_Basic_getNym_MarketOffers;
-
-void
-·OTAPI_BasicGetNym_MarketOffers(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_getNym_MarketOffers, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_killMarketOffer _wrap_OTAPI_Basic_killMarketOffer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_killMarketOffer
-extern void (*_wrap_OTAPI_Basic_killMarketOffer)(void*);
-static void (*x_wrap_OTAPI_Basic_killMarketOffer)(void*) = _wrap_OTAPI_Basic_killMarketOffer;
-
-void
-·OTAPI_BasicKillMarketOffer(struct {
+·OTAPI_WrapExchangePurse(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_killMarketOffer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_exchangePurse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_killPaymentPlan _wrap_OTAPI_Basic_killPaymentPlan ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_killPaymentPlan
-extern void (*_wrap_OTAPI_Basic_killPaymentPlan)(void*);
-static void (*x_wrap_OTAPI_Basic_killPaymentPlan)(void*) = _wrap_OTAPI_Basic_killPaymentPlan;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_ChangeOwner _wrap_OTAPI_Wrap_Token_ChangeOwner ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_ChangeOwner
+extern void (*_wrap_OTAPI_Wrap_Token_ChangeOwner)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_ChangeOwner)(void*) = _wrap_OTAPI_Wrap_Token_ChangeOwner;
 
 void
-·OTAPI_BasicKillPaymentPlan(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·OTAPI_WrapToken_ChangeOwner(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_killPaymentPlan, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_ChangeOwner, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_PopMessageBuffer _wrap_OTAPI_Basic_PopMessageBuffer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_PopMessageBuffer
-extern void (*_wrap_OTAPI_Basic_PopMessageBuffer)(void*);
-static void (*x_wrap_OTAPI_Basic_PopMessageBuffer)(void*) = _wrap_OTAPI_Basic_PopMessageBuffer;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetID _wrap_OTAPI_Wrap_Token_GetID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetID
+extern void (*_wrap_OTAPI_Wrap_Token_GetID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetID)(void*) = _wrap_OTAPI_Wrap_Token_GetID;
 
 void
-·OTAPI_BasicPopMessageBuffer(struct {
+·OTAPI_WrapToken_GetID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_PopMessageBuffer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_FlushMessageBuffer _wrap_OTAPI_Basic_FlushMessageBuffer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_FlushMessageBuffer
-extern void (*_wrap_OTAPI_Basic_FlushMessageBuffer)(void*);
-static void (*x_wrap_OTAPI_Basic_FlushMessageBuffer)(void*) = _wrap_OTAPI_Basic_FlushMessageBuffer;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetDenomination _wrap_OTAPI_Wrap_Token_GetDenomination ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetDenomination
+extern void (*_wrap_OTAPI_Wrap_Token_GetDenomination)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetDenomination)(void*) = _wrap_OTAPI_Wrap_Token_GetDenomination;
 
 void
-·_swig_wrap_OTAPI_Basic_FlushMessageBuffer(struct {
-  uint8 x[1];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_FlushMessageBuffer, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_GetSentMessage _wrap_OTAPI_Basic_GetSentMessage ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_GetSentMessage
-extern void (*_wrap_OTAPI_Basic_GetSentMessage)(void*);
-static void (*x_wrap_OTAPI_Basic_GetSentMessage)(void*) = _wrap_OTAPI_Basic_GetSentMessage;
-
-void
-·OTAPI_BasicGetSentMessage(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_GetSentMessage, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_RemoveSentMessage _wrap_OTAPI_Basic_RemoveSentMessage ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_RemoveSentMessage
-extern void (*_wrap_OTAPI_Basic_RemoveSentMessage)(void*);
-static void (*x_wrap_OTAPI_Basic_RemoveSentMessage)(void*) = _wrap_OTAPI_Basic_RemoveSentMessage;
-
-void
-·OTAPI_BasicRemoveSentMessage(struct {
+·OTAPI_WrapToken_GetDenomination(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_RemoveSentMessage, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetDenomination, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_FlushSentMessages _wrap_OTAPI_Basic_FlushSentMessages ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_FlushSentMessages
-extern void (*_wrap_OTAPI_Basic_FlushSentMessages)(void*);
-static void (*x_wrap_OTAPI_Basic_FlushSentMessages)(void*) = _wrap_OTAPI_Basic_FlushSentMessages;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetSeries _wrap_OTAPI_Wrap_Token_GetSeries ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetSeries
+extern void (*_wrap_OTAPI_Wrap_Token_GetSeries)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetSeries)(void*) = _wrap_OTAPI_Wrap_Token_GetSeries;
 
 void
-·_swig_wrap_OTAPI_Basic_FlushSentMessages(struct {
-  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_FlushSentMessages, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Sleep _wrap_OTAPI_Basic_Sleep ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Sleep
-extern void (*_wrap_OTAPI_Basic_Sleep)(void*);
-static void (*x_wrap_OTAPI_Basic_Sleep)(void*) = _wrap_OTAPI_Basic_Sleep;
-
-void
-·_swig_wrap_OTAPI_Basic_Sleep(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Sleep, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_ResyncNymWithServer _wrap_OTAPI_Basic_ResyncNymWithServer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ResyncNymWithServer
-extern void (*_wrap_OTAPI_Basic_ResyncNymWithServer)(void*);
-static void (*x_wrap_OTAPI_Basic_ResyncNymWithServer)(void*) = _wrap_OTAPI_Basic_ResyncNymWithServer;
-
-void
-·OTAPI_BasicResyncNymWithServer(struct {
+·OTAPI_WrapToken_GetSeries(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ResyncNymWithServer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetSeries, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetCommand _wrap_OTAPI_Basic_Message_GetCommand ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetCommand
-extern void (*_wrap_OTAPI_Basic_Message_GetCommand)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetCommand)(void*) = _wrap_OTAPI_Basic_Message_GetCommand;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetValidFrom _wrap_OTAPI_Wrap_Token_GetValidFrom ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetValidFrom
+extern void (*_wrap_OTAPI_Wrap_Token_GetValidFrom)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetValidFrom)(void*) = _wrap_OTAPI_Wrap_Token_GetValidFrom;
 
 void
-·OTAPI_BasicMessage_GetCommand(struct {
+·_swig_wrap_OTAPI_Wrap_Token_GetValidFrom(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetValidFrom, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetValidTo _wrap_OTAPI_Wrap_Token_GetValidTo ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetValidTo
+extern void (*_wrap_OTAPI_Wrap_Token_GetValidTo)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetValidTo)(void*) = _wrap_OTAPI_Wrap_Token_GetValidTo;
+
+void
+·_swig_wrap_OTAPI_Wrap_Token_GetValidTo(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetValidTo, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetAssetID _wrap_OTAPI_Wrap_Token_GetAssetID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetAssetID
+extern void (*_wrap_OTAPI_Wrap_Token_GetAssetID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetAssetID)(void*) = _wrap_OTAPI_Wrap_Token_GetAssetID;
+
+void
+·OTAPI_WrapToken_GetAssetID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetCommand, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetAssetID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetSuccess _wrap_OTAPI_Basic_Message_GetSuccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetSuccess
-extern void (*_wrap_OTAPI_Basic_Message_GetSuccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetSuccess)(void*) = _wrap_OTAPI_Basic_Message_GetSuccess;
+#pragma dynimport _wrap_OTAPI_Wrap_Token_GetServerID _wrap_OTAPI_Wrap_Token_GetServerID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Token_GetServerID
+extern void (*_wrap_OTAPI_Wrap_Token_GetServerID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Token_GetServerID)(void*) = _wrap_OTAPI_Wrap_Token_GetServerID;
 
 void
-·OTAPI_BasicMessage_GetSuccess(struct {
+·OTAPI_WrapToken_GetServerID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Token_GetServerID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetAmount _wrap_OTAPI_Wrap_Instrmnt_GetAmount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetAmount
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetAmount)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetAmount)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetAmount;
+
+void
+·OTAPI_WrapInstrmnt_GetAmount(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetSuccess, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetAmount, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_queryAssetTypes _wrap_OTAPI_Basic_queryAssetTypes ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_queryAssetTypes
-extern void (*_wrap_OTAPI_Basic_queryAssetTypes)(void*);
-static void (*x_wrap_OTAPI_Basic_queryAssetTypes)(void*) = _wrap_OTAPI_Basic_queryAssetTypes;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetTransNum _wrap_OTAPI_Wrap_Instrmnt_GetTransNum ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetTransNum
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetTransNum)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetTransNum)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetTransNum;
 
 void
-·OTAPI_BasicQueryAssetTypes(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_queryAssetTypes, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetPayload _wrap_OTAPI_Basic_Message_GetPayload ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetPayload
-extern void (*_wrap_OTAPI_Basic_Message_GetPayload)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetPayload)(void*) = _wrap_OTAPI_Basic_Message_GetPayload;
-
-void
-·OTAPI_BasicMessage_GetPayload(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetPayload, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetDepth _wrap_OTAPI_Basic_Message_GetDepth ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetDepth
-extern void (*_wrap_OTAPI_Basic_Message_GetDepth)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetDepth)(void*) = _wrap_OTAPI_Basic_Message_GetDepth;
-
-void
-·OTAPI_BasicMessage_GetDepth(struct {
+·OTAPI_WrapInstrmnt_GetTransNum(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetDepth, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetTransNum, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetTransactionSuccess _wrap_OTAPI_Basic_Message_GetTransactionSuccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetTransactionSuccess
-extern void (*_wrap_OTAPI_Basic_Message_GetTransactionSuccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetTransactionSuccess)(void*) = _wrap_OTAPI_Basic_Message_GetTransactionSuccess;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom;
 
 void
-·OTAPI_BasicMessage_GetTransactionSuccess(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·_swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetTransactionSuccess, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_IsTransactionCanceled _wrap_OTAPI_Basic_Message_IsTransactionCanceled ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_IsTransactionCanceled
-extern void (*_wrap_OTAPI_Basic_Message_IsTransactionCanceled)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_IsTransactionCanceled)(void*) = _wrap_OTAPI_Basic_Message_IsTransactionCanceled;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetValidTo _wrap_OTAPI_Wrap_Instrmnt_GetValidTo ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetValidTo
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetValidTo)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetValidTo)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetValidTo;
 
 void
-·OTAPI_BasicMessage_IsTransactionCanceled(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·_swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_IsTransactionCanceled, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetValidTo, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess _wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess
-extern void (*_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess)(void*) = _wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetMemo _wrap_OTAPI_Wrap_Instrmnt_GetMemo ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetMemo
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetMemo)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetMemo)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetMemo;
 
 void
-·OTAPI_BasicMessage_GetBalanceAgreementSuccess(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetBalanceAgreementSuccess, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetLedger _wrap_OTAPI_Basic_Message_GetLedger ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetLedger
-extern void (*_wrap_OTAPI_Basic_Message_GetLedger)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetLedger)(void*) = _wrap_OTAPI_Basic_Message_GetLedger;
-
-void
-·OTAPI_BasicMessage_GetLedger(struct {
+·OTAPI_WrapInstrmnt_GetMemo(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetLedger, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetMemo, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetNewAssetTypeID _wrap_OTAPI_Basic_Message_GetNewAssetTypeID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetNewAssetTypeID
-extern void (*_wrap_OTAPI_Basic_Message_GetNewAssetTypeID)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetNewAssetTypeID)(void*) = _wrap_OTAPI_Basic_Message_GetNewAssetTypeID;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetType _wrap_OTAPI_Wrap_Instrmnt_GetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetType
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetType)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetType;
 
 void
-·OTAPI_BasicMessage_GetNewAssetTypeID(struct {
+·OTAPI_WrapInstrmnt_GetType(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetNewAssetTypeID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetType, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetNewIssuerAcctID _wrap_OTAPI_Basic_Message_GetNewIssuerAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetNewIssuerAcctID
-extern void (*_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID)(void*) = _wrap_OTAPI_Basic_Message_GetNewIssuerAcctID;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetServerID _wrap_OTAPI_Wrap_Instrmnt_GetServerID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetServerID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetServerID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetServerID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetServerID;
 
 void
-·OTAPI_BasicMessage_GetNewIssuerAcctID(struct {
+·OTAPI_WrapInstrmnt_GetServerID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetNewIssuerAcctID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetServerID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetNewAcctID _wrap_OTAPI_Basic_Message_GetNewAcctID ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetNewAcctID
-extern void (*_wrap_OTAPI_Basic_Message_GetNewAcctID)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetNewAcctID)(void*) = _wrap_OTAPI_Basic_Message_GetNewAcctID;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetAssetID _wrap_OTAPI_Wrap_Instrmnt_GetAssetID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetAssetID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetAssetID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetAssetID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetAssetID;
 
 void
-·OTAPI_BasicMessage_GetNewAcctID(struct {
+·OTAPI_WrapInstrmnt_GetAssetID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetNewAcctID, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetAssetID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_Message_GetNymboxHash _wrap_OTAPI_Basic_Message_GetNymboxHash ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_Message_GetNymboxHash
-extern void (*_wrap_OTAPI_Basic_Message_GetNymboxHash)(void*);
-static void (*x_wrap_OTAPI_Basic_Message_GetNymboxHash)(void*) = _wrap_OTAPI_Basic_Message_GetNymboxHash;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID _wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID;
 
 void
-·OTAPI_BasicMessage_GetNymboxHash(struct {
+·OTAPI_WrapInstrmnt_GetSenderUserID(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_Message_GetNymboxHash, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetSenderUserID, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ConnectServer _wrap_OTAPI_Basic_ConnectServer ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ConnectServer
-extern void (*_wrap_OTAPI_Basic_ConnectServer)(void*);
-static void (*x_wrap_OTAPI_Basic_ConnectServer)(void*) = _wrap_OTAPI_Basic_ConnectServer;
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID _wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID;
 
 void
-·OTAPI_BasicConnectServer(struct {
+·OTAPI_WrapInstrmnt_GetSenderAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetSenderAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID _wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID;
+
+void
+·OTAPI_WrapInstrmnt_GetRemitterUserID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetRemitterUserID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID _wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID;
+
+void
+·OTAPI_WrapInstrmnt_GetRemitterAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetRemitterAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID _wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID;
+
+void
+·OTAPI_WrapInstrmnt_GetRecipientUserID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetRecipientUserID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID _wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID
+extern void (*_wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID)(void*) = _wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID;
+
+void
+·OTAPI_WrapInstrmnt_GetRecipientAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Instrmnt_GetRecipientAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_checkServerID _wrap_OTAPI_Wrap_checkServerID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_checkServerID
+extern void (*_wrap_OTAPI_Wrap_checkServerID)(void*);
+static void (*x_wrap_OTAPI_Wrap_checkServerID)(void*) = _wrap_OTAPI_Wrap_checkServerID;
+
+void
+·OTAPI_WrapCheckServerID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_checkServerID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_createUserAccount _wrap_OTAPI_Wrap_createUserAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_createUserAccount
+extern void (*_wrap_OTAPI_Wrap_createUserAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_createUserAccount)(void*) = _wrap_OTAPI_Wrap_createUserAccount;
+
+void
+·OTAPI_WrapCreateUserAccount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_createUserAccount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_deleteUserAccount _wrap_OTAPI_Wrap_deleteUserAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_deleteUserAccount
+extern void (*_wrap_OTAPI_Wrap_deleteUserAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_deleteUserAccount)(void*) = _wrap_OTAPI_Wrap_deleteUserAccount;
+
+void
+·OTAPI_WrapDeleteUserAccount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_deleteUserAccount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_deleteAssetAccount _wrap_OTAPI_Wrap_deleteAssetAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_deleteAssetAccount
+extern void (*_wrap_OTAPI_Wrap_deleteAssetAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_deleteAssetAccount)(void*) = _wrap_OTAPI_Wrap_deleteAssetAccount;
+
+void
+·OTAPI_WrapDeleteAssetAccount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_deleteAssetAccount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_usageCredits _wrap_OTAPI_Wrap_usageCredits ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_usageCredits
+extern void (*_wrap_OTAPI_Wrap_usageCredits)(void*);
+static void (*x_wrap_OTAPI_Wrap_usageCredits)(void*) = _wrap_OTAPI_Wrap_usageCredits;
+
+void
+·OTAPI_WrapUsageCredits(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_usageCredits, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetUsageCredits _wrap_OTAPI_Wrap_Message_GetUsageCredits ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetUsageCredits
+extern void (*_wrap_OTAPI_Wrap_Message_GetUsageCredits)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetUsageCredits)(void*) = _wrap_OTAPI_Wrap_Message_GetUsageCredits;
+
+void
+·OTAPI_WrapMessage_GetUsageCredits(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetUsageCredits, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_checkUser _wrap_OTAPI_Wrap_checkUser ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_checkUser
+extern void (*_wrap_OTAPI_Wrap_checkUser)(void*);
+static void (*x_wrap_OTAPI_Wrap_checkUser)(void*) = _wrap_OTAPI_Wrap_checkUser;
+
+void
+·OTAPI_WrapCheckUser(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_checkUser, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_sendUserMessage _wrap_OTAPI_Wrap_sendUserMessage ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_sendUserMessage
+extern void (*_wrap_OTAPI_Wrap_sendUserMessage)(void*);
+static void (*x_wrap_OTAPI_Wrap_sendUserMessage)(void*) = _wrap_OTAPI_Wrap_sendUserMessage;
+
+void
+·OTAPI_WrapSendUserMessage(struct {
   uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ConnectServer, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_sendUserMessage, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTAPI_Basic_ProcessSockets _wrap_OTAPI_Basic_ProcessSockets ""
-#pragma cgo_import_static _wrap_OTAPI_Basic_ProcessSockets
-extern void (*_wrap_OTAPI_Basic_ProcessSockets)(void*);
-static void (*x_wrap_OTAPI_Basic_ProcessSockets)(void*) = _wrap_OTAPI_Basic_ProcessSockets;
+#pragma dynimport _wrap_OTAPI_Wrap_sendUserInstrument _wrap_OTAPI_Wrap_sendUserInstrument ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_sendUserInstrument
+extern void (*_wrap_OTAPI_Wrap_sendUserInstrument)(void*);
+static void (*x_wrap_OTAPI_Wrap_sendUserInstrument)(void*) = _wrap_OTAPI_Wrap_sendUserInstrument;
 
 void
-·OTAPI_BasicProcessSockets(struct {
+·OTAPI_WrapSendUserInstrument(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_sendUserInstrument, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getRequest _wrap_OTAPI_Wrap_getRequest ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getRequest
+extern void (*_wrap_OTAPI_Wrap_getRequest)(void*);
+static void (*x_wrap_OTAPI_Wrap_getRequest)(void*) = _wrap_OTAPI_Wrap_getRequest;
+
+void
+·OTAPI_WrapGetRequest(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getRequest, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getTransactionNumber _wrap_OTAPI_Wrap_getTransactionNumber ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getTransactionNumber
+extern void (*_wrap_OTAPI_Wrap_getTransactionNumber)(void*);
+static void (*x_wrap_OTAPI_Wrap_getTransactionNumber)(void*) = _wrap_OTAPI_Wrap_getTransactionNumber;
+
+void
+·OTAPI_WrapGetTransactionNumber(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getTransactionNumber, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_issueAssetType _wrap_OTAPI_Wrap_issueAssetType ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_issueAssetType
+extern void (*_wrap_OTAPI_Wrap_issueAssetType)(void*);
+static void (*x_wrap_OTAPI_Wrap_issueAssetType)(void*) = _wrap_OTAPI_Wrap_issueAssetType;
+
+void
+·OTAPI_WrapIssueAssetType(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_issueAssetType, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getContract _wrap_OTAPI_Wrap_getContract ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getContract
+extern void (*_wrap_OTAPI_Wrap_getContract)(void*);
+static void (*x_wrap_OTAPI_Wrap_getContract)(void*) = _wrap_OTAPI_Wrap_getContract;
+
+void
+·OTAPI_WrapGetContract(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getContract, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getMint _wrap_OTAPI_Wrap_getMint ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getMint
+extern void (*_wrap_OTAPI_Wrap_getMint)(void*);
+static void (*x_wrap_OTAPI_Wrap_getMint)(void*) = _wrap_OTAPI_Wrap_getMint;
+
+void
+·OTAPI_WrapGetMint(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getMint, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_createAssetAccount _wrap_OTAPI_Wrap_createAssetAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_createAssetAccount
+extern void (*_wrap_OTAPI_Wrap_createAssetAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_createAssetAccount)(void*) = _wrap_OTAPI_Wrap_createAssetAccount;
+
+void
+·OTAPI_WrapCreateAssetAccount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_createAssetAccount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getAccount _wrap_OTAPI_Wrap_getAccount ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getAccount
+extern void (*_wrap_OTAPI_Wrap_getAccount)(void*);
+static void (*x_wrap_OTAPI_Wrap_getAccount)(void*) = _wrap_OTAPI_Wrap_getAccount;
+
+void
+·OTAPI_WrapGetAccount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getAccount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getAccountFiles _wrap_OTAPI_Wrap_getAccountFiles ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getAccountFiles
+extern void (*_wrap_OTAPI_Wrap_getAccountFiles)(void*);
+static void (*x_wrap_OTAPI_Wrap_getAccountFiles)(void*) = _wrap_OTAPI_Wrap_getAccountFiles;
+
+void
+·OTAPI_WrapGetAccountFiles(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getAccountFiles, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GenerateBasketCreation _wrap_OTAPI_Wrap_GenerateBasketCreation ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GenerateBasketCreation
+extern void (*_wrap_OTAPI_Wrap_GenerateBasketCreation)(void*);
+static void (*x_wrap_OTAPI_Wrap_GenerateBasketCreation)(void*) = _wrap_OTAPI_Wrap_GenerateBasketCreation;
+
+void
+·OTAPI_WrapGenerateBasketCreation(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GenerateBasketCreation, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_AddBasketCreationItem _wrap_OTAPI_Wrap_AddBasketCreationItem ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddBasketCreationItem
+extern void (*_wrap_OTAPI_Wrap_AddBasketCreationItem)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddBasketCreationItem)(void*) = _wrap_OTAPI_Wrap_AddBasketCreationItem;
+
+void
+·OTAPI_WrapAddBasketCreationItem(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddBasketCreationItem, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_issueBasket _wrap_OTAPI_Wrap_issueBasket ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_issueBasket
+extern void (*_wrap_OTAPI_Wrap_issueBasket)(void*);
+static void (*x_wrap_OTAPI_Wrap_issueBasket)(void*) = _wrap_OTAPI_Wrap_issueBasket;
+
+void
+·OTAPI_WrapIssueBasket(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_issueBasket, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GenerateBasketExchange _wrap_OTAPI_Wrap_GenerateBasketExchange ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GenerateBasketExchange
+extern void (*_wrap_OTAPI_Wrap_GenerateBasketExchange)(void*);
+static void (*x_wrap_OTAPI_Wrap_GenerateBasketExchange)(void*) = _wrap_OTAPI_Wrap_GenerateBasketExchange;
+
+void
+·OTAPI_WrapGenerateBasketExchange(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GenerateBasketExchange, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_AddBasketExchangeItem _wrap_OTAPI_Wrap_AddBasketExchangeItem ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_AddBasketExchangeItem
+extern void (*_wrap_OTAPI_Wrap_AddBasketExchangeItem)(void*);
+static void (*x_wrap_OTAPI_Wrap_AddBasketExchangeItem)(void*) = _wrap_OTAPI_Wrap_AddBasketExchangeItem;
+
+void
+·OTAPI_WrapAddBasketExchangeItem(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_AddBasketExchangeItem, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_exchangeBasket _wrap_OTAPI_Wrap_exchangeBasket ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_exchangeBasket
+extern void (*_wrap_OTAPI_Wrap_exchangeBasket)(void*);
+static void (*x_wrap_OTAPI_Wrap_exchangeBasket)(void*) = _wrap_OTAPI_Wrap_exchangeBasket;
+
+void
+·OTAPI_WrapExchangeBasket(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_exchangeBasket, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_notarizeWithdrawal _wrap_OTAPI_Wrap_notarizeWithdrawal ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_notarizeWithdrawal
+extern void (*_wrap_OTAPI_Wrap_notarizeWithdrawal)(void*);
+static void (*x_wrap_OTAPI_Wrap_notarizeWithdrawal)(void*) = _wrap_OTAPI_Wrap_notarizeWithdrawal;
+
+void
+·OTAPI_WrapNotarizeWithdrawal(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_notarizeWithdrawal, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_notarizeDeposit _wrap_OTAPI_Wrap_notarizeDeposit ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_notarizeDeposit
+extern void (*_wrap_OTAPI_Wrap_notarizeDeposit)(void*);
+static void (*x_wrap_OTAPI_Wrap_notarizeDeposit)(void*) = _wrap_OTAPI_Wrap_notarizeDeposit;
+
+void
+·OTAPI_WrapNotarizeDeposit(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_notarizeDeposit, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_notarizeTransfer _wrap_OTAPI_Wrap_notarizeTransfer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_notarizeTransfer
+extern void (*_wrap_OTAPI_Wrap_notarizeTransfer)(void*);
+static void (*x_wrap_OTAPI_Wrap_notarizeTransfer)(void*) = _wrap_OTAPI_Wrap_notarizeTransfer;
+
+void
+·OTAPI_WrapNotarizeTransfer(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_notarizeTransfer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getInbox _wrap_OTAPI_Wrap_getInbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getInbox
+extern void (*_wrap_OTAPI_Wrap_getInbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_getInbox)(void*) = _wrap_OTAPI_Wrap_getInbox;
+
+void
+·OTAPI_WrapGetInbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getInbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getOutbox _wrap_OTAPI_Wrap_getOutbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getOutbox
+extern void (*_wrap_OTAPI_Wrap_getOutbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_getOutbox)(void*) = _wrap_OTAPI_Wrap_getOutbox;
+
+void
+·OTAPI_WrapGetOutbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getOutbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getNymbox _wrap_OTAPI_Wrap_getNymbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getNymbox
+extern void (*_wrap_OTAPI_Wrap_getNymbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_getNymbox)(void*) = _wrap_OTAPI_Wrap_getNymbox;
+
+void
+·OTAPI_WrapGetNymbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getNymbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_LoadNymbox _wrap_OTAPI_Wrap_LoadNymbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadNymbox
+extern void (*_wrap_OTAPI_Wrap_LoadNymbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadNymbox)(void*) = _wrap_OTAPI_Wrap_LoadNymbox;
+
+void
+·OTAPI_WrapLoadNymbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadNymbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_LoadNymboxNoVerify _wrap_OTAPI_Wrap_LoadNymboxNoVerify ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_LoadNymboxNoVerify
+extern void (*_wrap_OTAPI_Wrap_LoadNymboxNoVerify)(void*);
+static void (*x_wrap_OTAPI_Wrap_LoadNymboxNoVerify)(void*) = _wrap_OTAPI_Wrap_LoadNymboxNoVerify;
+
+void
+·OTAPI_WrapLoadNymboxNoVerify(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_LoadNymboxNoVerify, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Nymbox_GetReplyNotice _wrap_OTAPI_Wrap_Nymbox_GetReplyNotice ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Nymbox_GetReplyNotice
+extern void (*_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice)(void*);
+static void (*x_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice)(void*) = _wrap_OTAPI_Wrap_Nymbox_GetReplyNotice;
+
+void
+·OTAPI_WrapNymbox_GetReplyNotice(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_HaveAlreadySeenReply _wrap_OTAPI_Wrap_HaveAlreadySeenReply ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_HaveAlreadySeenReply
+extern void (*_wrap_OTAPI_Wrap_HaveAlreadySeenReply)(void*);
+static void (*x_wrap_OTAPI_Wrap_HaveAlreadySeenReply)(void*) = _wrap_OTAPI_Wrap_HaveAlreadySeenReply;
+
+void
+·OTAPI_WrapHaveAlreadySeenReply(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_HaveAlreadySeenReply, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getBoxReceipt _wrap_OTAPI_Wrap_getBoxReceipt ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getBoxReceipt
+extern void (*_wrap_OTAPI_Wrap_getBoxReceipt)(void*);
+static void (*x_wrap_OTAPI_Wrap_getBoxReceipt)(void*) = _wrap_OTAPI_Wrap_getBoxReceipt;
+
+void
+·OTAPI_WrapGetBoxReceipt(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getBoxReceipt, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_DoesBoxReceiptExist _wrap_OTAPI_Wrap_DoesBoxReceiptExist ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_DoesBoxReceiptExist
+extern void (*_wrap_OTAPI_Wrap_DoesBoxReceiptExist)(void*);
+static void (*x_wrap_OTAPI_Wrap_DoesBoxReceiptExist)(void*) = _wrap_OTAPI_Wrap_DoesBoxReceiptExist;
+
+void
+·OTAPI_WrapDoesBoxReceiptExist(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_DoesBoxReceiptExist, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_processInbox _wrap_OTAPI_Wrap_processInbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_processInbox
+extern void (*_wrap_OTAPI_Wrap_processInbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_processInbox)(void*) = _wrap_OTAPI_Wrap_processInbox;
+
+void
+·OTAPI_WrapProcessInbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_processInbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_processNymbox _wrap_OTAPI_Wrap_processNymbox ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_processNymbox
+extern void (*_wrap_OTAPI_Wrap_processNymbox)(void*);
+static void (*x_wrap_OTAPI_Wrap_processNymbox)(void*) = _wrap_OTAPI_Wrap_processNymbox;
+
+void
+·OTAPI_WrapProcessNymbox(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_processNymbox, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_withdrawVoucher _wrap_OTAPI_Wrap_withdrawVoucher ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_withdrawVoucher
+extern void (*_wrap_OTAPI_Wrap_withdrawVoucher)(void*);
+static void (*x_wrap_OTAPI_Wrap_withdrawVoucher)(void*) = _wrap_OTAPI_Wrap_withdrawVoucher;
+
+void
+·OTAPI_WrapWithdrawVoucher(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_withdrawVoucher, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_payDividend _wrap_OTAPI_Wrap_payDividend ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_payDividend
+extern void (*_wrap_OTAPI_Wrap_payDividend)(void*);
+static void (*x_wrap_OTAPI_Wrap_payDividend)(void*) = _wrap_OTAPI_Wrap_payDividend;
+
+void
+·OTAPI_WrapPayDividend(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_payDividend, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_depositCheque _wrap_OTAPI_Wrap_depositCheque ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_depositCheque
+extern void (*_wrap_OTAPI_Wrap_depositCheque)(void*);
+static void (*x_wrap_OTAPI_Wrap_depositCheque)(void*) = _wrap_OTAPI_Wrap_depositCheque;
+
+void
+·OTAPI_WrapDepositCheque(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_depositCheque, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_depositPaymentPlan _wrap_OTAPI_Wrap_depositPaymentPlan ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_depositPaymentPlan
+extern void (*_wrap_OTAPI_Wrap_depositPaymentPlan)(void*);
+static void (*x_wrap_OTAPI_Wrap_depositPaymentPlan)(void*) = _wrap_OTAPI_Wrap_depositPaymentPlan;
+
+void
+·OTAPI_WrapDepositPaymentPlan(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_depositPaymentPlan, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_issueMarketOffer _wrap_OTAPI_Wrap_issueMarketOffer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_issueMarketOffer
+extern void (*_wrap_OTAPI_Wrap_issueMarketOffer)(void*);
+static void (*x_wrap_OTAPI_Wrap_issueMarketOffer)(void*) = _wrap_OTAPI_Wrap_issueMarketOffer;
+
+void
+·_swig_wrap_OTAPI_Wrap_issueMarketOffer(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_issueMarketOffer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getMarketList _wrap_OTAPI_Wrap_getMarketList ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getMarketList
+extern void (*_wrap_OTAPI_Wrap_getMarketList)(void*);
+static void (*x_wrap_OTAPI_Wrap_getMarketList)(void*) = _wrap_OTAPI_Wrap_getMarketList;
+
+void
+·OTAPI_WrapGetMarketList(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getMarketList, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getMarketOffers _wrap_OTAPI_Wrap_getMarketOffers ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getMarketOffers
+extern void (*_wrap_OTAPI_Wrap_getMarketOffers)(void*);
+static void (*x_wrap_OTAPI_Wrap_getMarketOffers)(void*) = _wrap_OTAPI_Wrap_getMarketOffers;
+
+void
+·OTAPI_WrapGetMarketOffers(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getMarketOffers, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getMarketRecentTrades _wrap_OTAPI_Wrap_getMarketRecentTrades ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getMarketRecentTrades
+extern void (*_wrap_OTAPI_Wrap_getMarketRecentTrades)(void*);
+static void (*x_wrap_OTAPI_Wrap_getMarketRecentTrades)(void*) = _wrap_OTAPI_Wrap_getMarketRecentTrades;
+
+void
+·OTAPI_WrapGetMarketRecentTrades(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getMarketRecentTrades, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_getNym_MarketOffers _wrap_OTAPI_Wrap_getNym_MarketOffers ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_getNym_MarketOffers
+extern void (*_wrap_OTAPI_Wrap_getNym_MarketOffers)(void*);
+static void (*x_wrap_OTAPI_Wrap_getNym_MarketOffers)(void*) = _wrap_OTAPI_Wrap_getNym_MarketOffers;
+
+void
+·OTAPI_WrapGetNym_MarketOffers(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_getNym_MarketOffers, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_killMarketOffer _wrap_OTAPI_Wrap_killMarketOffer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_killMarketOffer
+extern void (*_wrap_OTAPI_Wrap_killMarketOffer)(void*);
+static void (*x_wrap_OTAPI_Wrap_killMarketOffer)(void*) = _wrap_OTAPI_Wrap_killMarketOffer;
+
+void
+·OTAPI_WrapKillMarketOffer(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_killMarketOffer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_killPaymentPlan _wrap_OTAPI_Wrap_killPaymentPlan ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_killPaymentPlan
+extern void (*_wrap_OTAPI_Wrap_killPaymentPlan)(void*);
+static void (*x_wrap_OTAPI_Wrap_killPaymentPlan)(void*) = _wrap_OTAPI_Wrap_killPaymentPlan;
+
+void
+·OTAPI_WrapKillPaymentPlan(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_killPaymentPlan, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_PopMessageBuffer _wrap_OTAPI_Wrap_PopMessageBuffer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_PopMessageBuffer
+extern void (*_wrap_OTAPI_Wrap_PopMessageBuffer)(void*);
+static void (*x_wrap_OTAPI_Wrap_PopMessageBuffer)(void*) = _wrap_OTAPI_Wrap_PopMessageBuffer;
+
+void
+·OTAPI_WrapPopMessageBuffer(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_PopMessageBuffer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_FlushMessageBuffer _wrap_OTAPI_Wrap_FlushMessageBuffer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_FlushMessageBuffer
+extern void (*_wrap_OTAPI_Wrap_FlushMessageBuffer)(void*);
+static void (*x_wrap_OTAPI_Wrap_FlushMessageBuffer)(void*) = _wrap_OTAPI_Wrap_FlushMessageBuffer;
+
+void
+·_swig_wrap_OTAPI_Wrap_FlushMessageBuffer(struct {
+  uint8 x[1];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_FlushMessageBuffer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_GetSentMessage _wrap_OTAPI_Wrap_GetSentMessage ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_GetSentMessage
+extern void (*_wrap_OTAPI_Wrap_GetSentMessage)(void*);
+static void (*x_wrap_OTAPI_Wrap_GetSentMessage)(void*) = _wrap_OTAPI_Wrap_GetSentMessage;
+
+void
+·OTAPI_WrapGetSentMessage(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_GetSentMessage, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_RemoveSentMessage _wrap_OTAPI_Wrap_RemoveSentMessage ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_RemoveSentMessage
+extern void (*_wrap_OTAPI_Wrap_RemoveSentMessage)(void*);
+static void (*x_wrap_OTAPI_Wrap_RemoveSentMessage)(void*) = _wrap_OTAPI_Wrap_RemoveSentMessage;
+
+void
+·OTAPI_WrapRemoveSentMessage(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_RemoveSentMessage, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_FlushSentMessages _wrap_OTAPI_Wrap_FlushSentMessages ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_FlushSentMessages
+extern void (*_wrap_OTAPI_Wrap_FlushSentMessages)(void*);
+static void (*x_wrap_OTAPI_Wrap_FlushSentMessages)(void*) = _wrap_OTAPI_Wrap_FlushSentMessages;
+
+void
+·_swig_wrap_OTAPI_Wrap_FlushSentMessages(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_FlushSentMessages, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Sleep _wrap_OTAPI_Wrap_Sleep ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Sleep
+extern void (*_wrap_OTAPI_Wrap_Sleep)(void*);
+static void (*x_wrap_OTAPI_Wrap_Sleep)(void*) = _wrap_OTAPI_Wrap_Sleep;
+
+void
+·_swig_wrap_OTAPI_Wrap_Sleep(struct {
   uint8 x[SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTAPI_Basic_ProcessSockets, &p);
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Sleep, &p);
 }
 
 
 
-#pragma dynimport _wrap_new_OTMadeEasy _wrap_new_OTMadeEasy ""
-#pragma cgo_import_static _wrap_new_OTMadeEasy
-extern void (*_wrap_new_OTMadeEasy)(void*);
-static void (*x_wrap_new_OTMadeEasy)(void*) = _wrap_new_OTMadeEasy;
+#pragma dynimport _wrap_OTAPI_Wrap_ResyncNymWithServer _wrap_OTAPI_Wrap_ResyncNymWithServer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ResyncNymWithServer
+extern void (*_wrap_OTAPI_Wrap_ResyncNymWithServer)(void*);
+static void (*x_wrap_OTAPI_Wrap_ResyncNymWithServer)(void*) = _wrap_OTAPI_Wrap_ResyncNymWithServer;
 
 void
-·_swig_wrap_new_OTMadeEasy(struct {
+·OTAPI_WrapResyncNymWithServer(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ResyncNymWithServer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetCommand _wrap_OTAPI_Wrap_Message_GetCommand ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetCommand
+extern void (*_wrap_OTAPI_Wrap_Message_GetCommand)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetCommand)(void*) = _wrap_OTAPI_Wrap_Message_GetCommand;
+
+void
+·OTAPI_WrapMessage_GetCommand(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetCommand, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetSuccess _wrap_OTAPI_Wrap_Message_GetSuccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetSuccess
+extern void (*_wrap_OTAPI_Wrap_Message_GetSuccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetSuccess)(void*) = _wrap_OTAPI_Wrap_Message_GetSuccess;
+
+void
+·OTAPI_WrapMessage_GetSuccess(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetSuccess, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_queryAssetTypes _wrap_OTAPI_Wrap_queryAssetTypes ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_queryAssetTypes
+extern void (*_wrap_OTAPI_Wrap_queryAssetTypes)(void*);
+static void (*x_wrap_OTAPI_Wrap_queryAssetTypes)(void*) = _wrap_OTAPI_Wrap_queryAssetTypes;
+
+void
+·OTAPI_WrapQueryAssetTypes(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_queryAssetTypes, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetPayload _wrap_OTAPI_Wrap_Message_GetPayload ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetPayload
+extern void (*_wrap_OTAPI_Wrap_Message_GetPayload)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetPayload)(void*) = _wrap_OTAPI_Wrap_Message_GetPayload;
+
+void
+·OTAPI_WrapMessage_GetPayload(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetPayload, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetDepth _wrap_OTAPI_Wrap_Message_GetDepth ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetDepth
+extern void (*_wrap_OTAPI_Wrap_Message_GetDepth)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetDepth)(void*) = _wrap_OTAPI_Wrap_Message_GetDepth;
+
+void
+·OTAPI_WrapMessage_GetDepth(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetDepth, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetTransactionSuccess _wrap_OTAPI_Wrap_Message_GetTransactionSuccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetTransactionSuccess
+extern void (*_wrap_OTAPI_Wrap_Message_GetTransactionSuccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetTransactionSuccess)(void*) = _wrap_OTAPI_Wrap_Message_GetTransactionSuccess;
+
+void
+·OTAPI_WrapMessage_GetTransactionSuccess(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetTransactionSuccess, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_IsTransactionCanceled _wrap_OTAPI_Wrap_Message_IsTransactionCanceled ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_IsTransactionCanceled
+extern void (*_wrap_OTAPI_Wrap_Message_IsTransactionCanceled)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_IsTransactionCanceled)(void*) = _wrap_OTAPI_Wrap_Message_IsTransactionCanceled;
+
+void
+·OTAPI_WrapMessage_IsTransactionCanceled(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_IsTransactionCanceled, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess _wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess
+extern void (*_wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess)(void*) = _wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess;
+
+void
+·OTAPI_WrapMessage_GetBalanceAgreementSuccess(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetBalanceAgreementSuccess, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetLedger _wrap_OTAPI_Wrap_Message_GetLedger ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetLedger
+extern void (*_wrap_OTAPI_Wrap_Message_GetLedger)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetLedger)(void*) = _wrap_OTAPI_Wrap_Message_GetLedger;
+
+void
+·OTAPI_WrapMessage_GetLedger(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetLedger, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetNewAssetTypeID _wrap_OTAPI_Wrap_Message_GetNewAssetTypeID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetNewAssetTypeID
+extern void (*_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID)(void*) = _wrap_OTAPI_Wrap_Message_GetNewAssetTypeID;
+
+void
+·OTAPI_WrapMessage_GetNewAssetTypeID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID _wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID
+extern void (*_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID)(void*) = _wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID;
+
+void
+·OTAPI_WrapMessage_GetNewIssuerAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetNewAcctID _wrap_OTAPI_Wrap_Message_GetNewAcctID ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetNewAcctID
+extern void (*_wrap_OTAPI_Wrap_Message_GetNewAcctID)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetNewAcctID)(void*) = _wrap_OTAPI_Wrap_Message_GetNewAcctID;
+
+void
+·OTAPI_WrapMessage_GetNewAcctID(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetNewAcctID, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_Message_GetNymboxHash _wrap_OTAPI_Wrap_Message_GetNymboxHash ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_Message_GetNymboxHash
+extern void (*_wrap_OTAPI_Wrap_Message_GetNymboxHash)(void*);
+static void (*x_wrap_OTAPI_Wrap_Message_GetNymboxHash)(void*) = _wrap_OTAPI_Wrap_Message_GetNymboxHash;
+
+void
+·OTAPI_WrapMessage_GetNymboxHash(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_Message_GetNymboxHash, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_ConnectServer _wrap_OTAPI_Wrap_ConnectServer ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ConnectServer
+extern void (*_wrap_OTAPI_Wrap_ConnectServer)(void*);
+static void (*x_wrap_OTAPI_Wrap_ConnectServer)(void*) = _wrap_OTAPI_Wrap_ConnectServer;
+
+void
+·OTAPI_WrapConnectServer(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ConnectServer, &p);
+}
+
+
+
+#pragma dynimport _wrap_OTAPI_Wrap_ProcessSockets _wrap_OTAPI_Wrap_ProcessSockets ""
+#pragma cgo_import_static _wrap_OTAPI_Wrap_ProcessSockets
+extern void (*_wrap_OTAPI_Wrap_ProcessSockets)(void*);
+static void (*x_wrap_OTAPI_Wrap_ProcessSockets)(void*) = _wrap_OTAPI_Wrap_ProcessSockets;
+
+void
+·OTAPI_WrapProcessSockets(struct {
+  uint8 x[SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OTAPI_Wrap_ProcessSockets, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_GetArgsCount _wrap_OT_CLI_GetArgsCount ""
+#pragma cgo_import_static _wrap_OT_CLI_GetArgsCount
+extern void (*_wrap_OT_CLI_GetArgsCount)(void*);
+static void (*x_wrap_OT_CLI_GetArgsCount)(void*) = _wrap_OT_CLI_GetArgsCount;
+
+void
+·OT_CLI_GetArgsCount(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_GetArgsCount, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_GetValueByKey _wrap_OT_CLI_GetValueByKey ""
+#pragma cgo_import_static _wrap_OT_CLI_GetValueByKey
+extern void (*_wrap_OT_CLI_GetValueByKey)(void*);
+static void (*x_wrap_OT_CLI_GetValueByKey)(void*) = _wrap_OT_CLI_GetValueByKey;
+
+void
+·OT_CLI_GetValueByKey(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_GetValueByKey, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_GetValueByIndex _wrap_OT_CLI_GetValueByIndex ""
+#pragma cgo_import_static _wrap_OT_CLI_GetValueByIndex
+extern void (*_wrap_OT_CLI_GetValueByIndex)(void*);
+static void (*x_wrap_OT_CLI_GetValueByIndex)(void*) = _wrap_OT_CLI_GetValueByIndex;
+
+void
+·OT_CLI_GetValueByIndex(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_GetValueByIndex, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_GetKeyByIndex _wrap_OT_CLI_GetKeyByIndex ""
+#pragma cgo_import_static _wrap_OT_CLI_GetKeyByIndex
+extern void (*_wrap_OT_CLI_GetKeyByIndex)(void*);
+static void (*x_wrap_OT_CLI_GetKeyByIndex)(void*) = _wrap_OT_CLI_GetKeyByIndex;
+
+void
+·OT_CLI_GetKeyByIndex(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_GetKeyByIndex, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_ReadLine _wrap_OT_CLI_ReadLine ""
+#pragma cgo_import_static _wrap_OT_CLI_ReadLine
+extern void (*_wrap_OT_CLI_ReadLine)(void*);
+static void (*x_wrap_OT_CLI_ReadLine)(void*) = _wrap_OT_CLI_ReadLine;
+
+void
+·OT_CLI_ReadLine(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_ReadLine, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_CLI_ReadUntilEOF _wrap_OT_CLI_ReadUntilEOF ""
+#pragma cgo_import_static _wrap_OT_CLI_ReadUntilEOF
+extern void (*_wrap_OT_CLI_ReadUntilEOF)(void*);
+static void (*x_wrap_OT_CLI_ReadUntilEOF)(void*) = _wrap_OT_CLI_ReadUntilEOF;
+
+void
+·OT_CLI_ReadUntilEOF(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_CLI_ReadUntilEOF, &p);
+}
+
+
+
+#pragma dynimport _wrap_new_OT_ME _wrap_new_OT_ME ""
+#pragma cgo_import_static _wrap_new_OT_ME
+extern void (*_wrap_new_OT_ME)(void*);
+static void (*x_wrap_new_OT_ME)(void*) = _wrap_new_OT_ME;
+
+void
+·_swig_wrap_new_OT_ME(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_new_OTMadeEasy, &p);
+  runtime·cgocall(x_wrap_new_OT_ME, &p);
 }
 
 
 
-#pragma dynimport _wrap_delete_OTMadeEasy _wrap_delete_OTMadeEasy ""
-#pragma cgo_import_static _wrap_delete_OTMadeEasy
-extern void (*_wrap_delete_OTMadeEasy)(void*);
-static void (*x_wrap_delete_OTMadeEasy)(void*) = _wrap_delete_OTMadeEasy;
+#pragma dynimport _wrap_delete_OT_ME _wrap_delete_OT_ME ""
+#pragma cgo_import_static _wrap_delete_OT_ME
+extern void (*_wrap_delete_OT_ME)(void*);
+static void (*x_wrap_delete_OT_ME)(void*) = _wrap_delete_OT_ME;
 
 void
-·_swig_wrap_delete_OTMadeEasy(struct {
+·_swig_wrap_delete_OT_ME(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_delete_OTMadeEasy, &p);
+  runtime·cgocall(x_wrap_delete_OT_ME, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_make_sure_enough_trans_nums _wrap_OTMadeEasy_make_sure_enough_trans_nums ""
-#pragma cgo_import_static _wrap_OTMadeEasy_make_sure_enough_trans_nums
-extern void (*_wrap_OTMadeEasy_make_sure_enough_trans_nums)(void*);
-static void (*x_wrap_OTMadeEasy_make_sure_enough_trans_nums)(void*) = _wrap_OTMadeEasy_make_sure_enough_trans_nums;
+#pragma dynimport _wrap_OT_ME_opentxs_main_loop _wrap_OT_ME_opentxs_main_loop ""
+#pragma cgo_import_static _wrap_OT_ME_opentxs_main_loop
+extern void (*_wrap_OT_ME_opentxs_main_loop)(void*);
+static void (*x_wrap_OT_ME_opentxs_main_loop)(void*) = _wrap_OT_ME_opentxs_main_loop;
 
 void
-·_swig_wrap_OTMadeEasy_make_sure_enough_trans_nums(struct {
+·_swig_wrap_OT_ME_opentxs_main_loop(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_opentxs_main_loop, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_make_sure_enough_trans_nums _wrap_OT_ME_make_sure_enough_trans_nums ""
+#pragma cgo_import_static _wrap_OT_ME_make_sure_enough_trans_nums
+extern void (*_wrap_OT_ME_make_sure_enough_trans_nums)(void*);
+static void (*x_wrap_OT_ME_make_sure_enough_trans_nums)(void*) = _wrap_OT_ME_make_sure_enough_trans_nums;
+
+void
+·_swig_wrap_OT_ME_make_sure_enough_trans_nums(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_make_sure_enough_trans_nums, &p);
+  runtime·cgocall(x_wrap_OT_ME_make_sure_enough_trans_nums, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_register_nym _wrap_OTMadeEasy_register_nym ""
-#pragma cgo_import_static _wrap_OTMadeEasy_register_nym
-extern void (*_wrap_OTMadeEasy_register_nym)(void*);
-static void (*x_wrap_OTMadeEasy_register_nym)(void*) = _wrap_OTMadeEasy_register_nym;
+#pragma dynimport _wrap_OT_ME_register_nym _wrap_OT_ME_register_nym ""
+#pragma cgo_import_static _wrap_OT_ME_register_nym
+extern void (*_wrap_OT_ME_register_nym)(void*);
+static void (*x_wrap_OT_ME_register_nym)(void*) = _wrap_OT_ME_register_nym;
 
 void
-·_swig_wrap_OTMadeEasy_register_nym(struct {
+·_swig_wrap_OT_ME_register_nym(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_register_nym, &p);
+  runtime·cgocall(x_wrap_OT_ME_register_nym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_check_user _wrap_OTMadeEasy_check_user ""
-#pragma cgo_import_static _wrap_OTMadeEasy_check_user
-extern void (*_wrap_OTMadeEasy_check_user)(void*);
-static void (*x_wrap_OTMadeEasy_check_user)(void*) = _wrap_OTMadeEasy_check_user;
+#pragma dynimport _wrap_OT_ME_check_user _wrap_OT_ME_check_user ""
+#pragma cgo_import_static _wrap_OT_ME_check_user
+extern void (*_wrap_OT_ME_check_user)(void*);
+static void (*x_wrap_OT_ME_check_user)(void*) = _wrap_OT_ME_check_user;
 
 void
-·_swig_wrap_OTMadeEasy_check_user(struct {
+·_swig_wrap_OT_ME_check_user(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_check_user, &p);
+  runtime·cgocall(x_wrap_OT_ME_check_user, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_create_pseudonym _wrap_OTMadeEasy_create_pseudonym ""
-#pragma cgo_import_static _wrap_OTMadeEasy_create_pseudonym
-extern void (*_wrap_OTMadeEasy_create_pseudonym)(void*);
-static void (*x_wrap_OTMadeEasy_create_pseudonym)(void*) = _wrap_OTMadeEasy_create_pseudonym;
+#pragma dynimport _wrap_OT_ME_create_pseudonym _wrap_OT_ME_create_pseudonym ""
+#pragma cgo_import_static _wrap_OT_ME_create_pseudonym
+extern void (*_wrap_OT_ME_create_pseudonym)(void*);
+static void (*x_wrap_OT_ME_create_pseudonym)(void*) = _wrap_OT_ME_create_pseudonym;
 
 void
-·_swig_wrap_OTMadeEasy_create_pseudonym(struct {
+·_swig_wrap_OT_ME_create_pseudonym(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_create_pseudonym, &p);
+  runtime·cgocall(x_wrap_OT_ME_create_pseudonym, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_issue_asset_type _wrap_OTMadeEasy_issue_asset_type ""
-#pragma cgo_import_static _wrap_OTMadeEasy_issue_asset_type
-extern void (*_wrap_OTMadeEasy_issue_asset_type)(void*);
-static void (*x_wrap_OTMadeEasy_issue_asset_type)(void*) = _wrap_OTMadeEasy_issue_asset_type;
+#pragma dynimport _wrap_OT_ME_issue_asset_type _wrap_OT_ME_issue_asset_type ""
+#pragma cgo_import_static _wrap_OT_ME_issue_asset_type
+extern void (*_wrap_OT_ME_issue_asset_type)(void*);
+static void (*x_wrap_OT_ME_issue_asset_type)(void*) = _wrap_OT_ME_issue_asset_type;
 
 void
-·_swig_wrap_OTMadeEasy_issue_asset_type(struct {
+·_swig_wrap_OT_ME_issue_asset_type(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_issue_asset_type, &p);
+  runtime·cgocall(x_wrap_OT_ME_issue_asset_type, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_issue_basket_currency _wrap_OTMadeEasy_issue_basket_currency ""
-#pragma cgo_import_static _wrap_OTMadeEasy_issue_basket_currency
-extern void (*_wrap_OTMadeEasy_issue_basket_currency)(void*);
-static void (*x_wrap_OTMadeEasy_issue_basket_currency)(void*) = _wrap_OTMadeEasy_issue_basket_currency;
+#pragma dynimport _wrap_OT_ME_issue_basket_currency _wrap_OT_ME_issue_basket_currency ""
+#pragma cgo_import_static _wrap_OT_ME_issue_basket_currency
+extern void (*_wrap_OT_ME_issue_basket_currency)(void*);
+static void (*x_wrap_OT_ME_issue_basket_currency)(void*) = _wrap_OT_ME_issue_basket_currency;
 
 void
-·_swig_wrap_OTMadeEasy_issue_basket_currency(struct {
+·_swig_wrap_OT_ME_issue_basket_currency(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_issue_basket_currency, &p);
+  runtime·cgocall(x_wrap_OT_ME_issue_basket_currency, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_exchange_basket_currency _wrap_OTMadeEasy_exchange_basket_currency ""
-#pragma cgo_import_static _wrap_OTMadeEasy_exchange_basket_currency
-extern void (*_wrap_OTMadeEasy_exchange_basket_currency)(void*);
-static void (*x_wrap_OTMadeEasy_exchange_basket_currency)(void*) = _wrap_OTMadeEasy_exchange_basket_currency;
+#pragma dynimport _wrap_OT_ME_exchange_basket_currency _wrap_OT_ME_exchange_basket_currency ""
+#pragma cgo_import_static _wrap_OT_ME_exchange_basket_currency
+extern void (*_wrap_OT_ME_exchange_basket_currency)(void*);
+static void (*x_wrap_OT_ME_exchange_basket_currency)(void*) = _wrap_OT_ME_exchange_basket_currency;
 
 void
-·_swig_wrap_OTMadeEasy_exchange_basket_currency(struct {
+·_swig_wrap_OT_ME_exchange_basket_currency(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_exchange_basket_currency, &p);
+  runtime·cgocall(x_wrap_OT_ME_exchange_basket_currency, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_contract _wrap_OTMadeEasy_retrieve_contract ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_contract
-extern void (*_wrap_OTMadeEasy_retrieve_contract)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_contract)(void*) = _wrap_OTMadeEasy_retrieve_contract;
+#pragma dynimport _wrap_OT_ME_retrieve_contract _wrap_OT_ME_retrieve_contract ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_contract
+extern void (*_wrap_OT_ME_retrieve_contract)(void*);
+static void (*x_wrap_OT_ME_retrieve_contract)(void*) = _wrap_OT_ME_retrieve_contract;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_contract(struct {
+·_swig_wrap_OT_ME_retrieve_contract(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_contract, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_contract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_or_retrieve_contract _wrap_OTMadeEasy_load_or_retrieve_contract ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_or_retrieve_contract
-extern void (*_wrap_OTMadeEasy_load_or_retrieve_contract)(void*);
-static void (*x_wrap_OTMadeEasy_load_or_retrieve_contract)(void*) = _wrap_OTMadeEasy_load_or_retrieve_contract;
+#pragma dynimport _wrap_OT_ME_load_or_retrieve_contract _wrap_OT_ME_load_or_retrieve_contract ""
+#pragma cgo_import_static _wrap_OT_ME_load_or_retrieve_contract
+extern void (*_wrap_OT_ME_load_or_retrieve_contract)(void*);
+static void (*x_wrap_OT_ME_load_or_retrieve_contract)(void*) = _wrap_OT_ME_load_or_retrieve_contract;
 
 void
-·_swig_wrap_OTMadeEasy_load_or_retrieve_contract(struct {
+·_swig_wrap_OT_ME_load_or_retrieve_contract(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_or_retrieve_contract, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_or_retrieve_contract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_create_asset_acct _wrap_OTMadeEasy_create_asset_acct ""
-#pragma cgo_import_static _wrap_OTMadeEasy_create_asset_acct
-extern void (*_wrap_OTMadeEasy_create_asset_acct)(void*);
-static void (*x_wrap_OTMadeEasy_create_asset_acct)(void*) = _wrap_OTMadeEasy_create_asset_acct;
+#pragma dynimport _wrap_OT_ME_create_asset_acct _wrap_OT_ME_create_asset_acct ""
+#pragma cgo_import_static _wrap_OT_ME_create_asset_acct
+extern void (*_wrap_OT_ME_create_asset_acct)(void*);
+static void (*x_wrap_OT_ME_create_asset_acct)(void*) = _wrap_OT_ME_create_asset_acct;
 
 void
-·_swig_wrap_OTMadeEasy_create_asset_acct(struct {
+·_swig_wrap_OT_ME_create_asset_acct(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_create_asset_acct, &p);
+  runtime·cgocall(x_wrap_OT_ME_create_asset_acct, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_stat_asset_account _wrap_OTMadeEasy_stat_asset_account ""
-#pragma cgo_import_static _wrap_OTMadeEasy_stat_asset_account
-extern void (*_wrap_OTMadeEasy_stat_asset_account)(void*);
-static void (*x_wrap_OTMadeEasy_stat_asset_account)(void*) = _wrap_OTMadeEasy_stat_asset_account;
+#pragma dynimport _wrap_OT_ME_stat_asset_account _wrap_OT_ME_stat_asset_account ""
+#pragma cgo_import_static _wrap_OT_ME_stat_asset_account
+extern void (*_wrap_OT_ME_stat_asset_account)(void*);
+static void (*x_wrap_OT_ME_stat_asset_account)(void*) = _wrap_OT_ME_stat_asset_account;
 
 void
-·_swig_wrap_OTMadeEasy_stat_asset_account(struct {
+·_swig_wrap_OT_ME_stat_asset_account(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_stat_asset_account, &p);
+  runtime·cgocall(x_wrap_OT_ME_stat_asset_account, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_account__SWIG_0 _wrap_OTMadeEasy_retrieve_account__SWIG_0 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_account__SWIG_0
-extern void (*_wrap_OTMadeEasy_retrieve_account__SWIG_0)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_account__SWIG_0)(void*) = _wrap_OTMadeEasy_retrieve_account__SWIG_0;
+#pragma dynimport _wrap_OT_ME_retrieve_account__SWIG_0 _wrap_OT_ME_retrieve_account__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_account__SWIG_0
+extern void (*_wrap_OT_ME_retrieve_account__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_retrieve_account__SWIG_0)(void*) = _wrap_OT_ME_retrieve_account__SWIG_0;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_account__SWIG_0(struct {
+·_swig_wrap_OT_ME_retrieve_account__SWIG_0(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_account__SWIG_0, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_account__SWIG_0, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_account__SWIG_1 _wrap_OTMadeEasy_retrieve_account__SWIG_1 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_account__SWIG_1
-extern void (*_wrap_OTMadeEasy_retrieve_account__SWIG_1)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_account__SWIG_1)(void*) = _wrap_OTMadeEasy_retrieve_account__SWIG_1;
+#pragma dynimport _wrap_OT_ME_retrieve_account__SWIG_1 _wrap_OT_ME_retrieve_account__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_account__SWIG_1
+extern void (*_wrap_OT_ME_retrieve_account__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_retrieve_account__SWIG_1)(void*) = _wrap_OT_ME_retrieve_account__SWIG_1;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_account__SWIG_1(struct {
+·_swig_wrap_OT_ME_retrieve_account__SWIG_1(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_account__SWIG_1, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_account__SWIG_1, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_nym__SWIG_0 _wrap_OTMadeEasy_retrieve_nym__SWIG_0 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_nym__SWIG_0
-extern void (*_wrap_OTMadeEasy_retrieve_nym__SWIG_0)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_nym__SWIG_0)(void*) = _wrap_OTMadeEasy_retrieve_nym__SWIG_0;
+#pragma dynimport _wrap_OT_ME_retrieve_nym__SWIG_0 _wrap_OT_ME_retrieve_nym__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_nym__SWIG_0
+extern void (*_wrap_OT_ME_retrieve_nym__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_retrieve_nym__SWIG_0)(void*) = _wrap_OT_ME_retrieve_nym__SWIG_0;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_nym__SWIG_0(struct {
+·_swig_wrap_OT_ME_retrieve_nym__SWIG_0(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_nym__SWIG_0, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_nym__SWIG_0, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_nym__SWIG_1 _wrap_OTMadeEasy_retrieve_nym__SWIG_1 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_nym__SWIG_1
-extern void (*_wrap_OTMadeEasy_retrieve_nym__SWIG_1)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_nym__SWIG_1)(void*) = _wrap_OTMadeEasy_retrieve_nym__SWIG_1;
+#pragma dynimport _wrap_OT_ME_retrieve_nym__SWIG_1 _wrap_OT_ME_retrieve_nym__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_nym__SWIG_1
+extern void (*_wrap_OT_ME_retrieve_nym__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_retrieve_nym__SWIG_1)(void*) = _wrap_OT_ME_retrieve_nym__SWIG_1;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_nym__SWIG_1(struct {
+·_swig_wrap_OT_ME_retrieve_nym__SWIG_1(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_nym__SWIG_1, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_nym__SWIG_1, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_transfer _wrap_OTMadeEasy_send_transfer ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_transfer
-extern void (*_wrap_OTMadeEasy_send_transfer)(void*);
-static void (*x_wrap_OTMadeEasy_send_transfer)(void*) = _wrap_OTMadeEasy_send_transfer;
+#pragma dynimport _wrap_OT_ME_send_transfer _wrap_OT_ME_send_transfer ""
+#pragma cgo_import_static _wrap_OT_ME_send_transfer
+extern void (*_wrap_OT_ME_send_transfer)(void*);
+static void (*x_wrap_OT_ME_send_transfer)(void*) = _wrap_OT_ME_send_transfer;
 
 void
-·_swig_wrap_OTMadeEasy_send_transfer(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_send_transfer(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_transfer, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_transfer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_process_inbox _wrap_OTMadeEasy_process_inbox ""
-#pragma cgo_import_static _wrap_OTMadeEasy_process_inbox
-extern void (*_wrap_OTMadeEasy_process_inbox)(void*);
-static void (*x_wrap_OTMadeEasy_process_inbox)(void*) = _wrap_OTMadeEasy_process_inbox;
+#pragma dynimport _wrap_OT_ME_process_inbox _wrap_OT_ME_process_inbox ""
+#pragma cgo_import_static _wrap_OT_ME_process_inbox
+extern void (*_wrap_OT_ME_process_inbox)(void*);
+static void (*x_wrap_OT_ME_process_inbox)(void*) = _wrap_OT_ME_process_inbox;
 
 void
-·_swig_wrap_OTMadeEasy_process_inbox(struct {
+·_swig_wrap_OT_ME_process_inbox(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_process_inbox, &p);
+  runtime·cgocall(x_wrap_OT_ME_process_inbox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_accept_inbox_items _wrap_OTMadeEasy_accept_inbox_items ""
-#pragma cgo_import_static _wrap_OTMadeEasy_accept_inbox_items
-extern void (*_wrap_OTMadeEasy_accept_inbox_items)(void*);
-static void (*x_wrap_OTMadeEasy_accept_inbox_items)(void*) = _wrap_OTMadeEasy_accept_inbox_items;
+#pragma dynimport _wrap_OT_ME_accept_inbox_items _wrap_OT_ME_accept_inbox_items ""
+#pragma cgo_import_static _wrap_OT_ME_accept_inbox_items
+extern void (*_wrap_OT_ME_accept_inbox_items)(void*);
+static void (*x_wrap_OT_ME_accept_inbox_items)(void*) = _wrap_OT_ME_accept_inbox_items;
 
 void
-·_swig_wrap_OTMadeEasy_accept_inbox_items(struct {
+·_swig_wrap_OT_ME_accept_inbox_items(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_accept_inbox_items, &p);
+  runtime·cgocall(x_wrap_OT_ME_accept_inbox_items, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_discard_incoming_payments _wrap_OTMadeEasy_discard_incoming_payments ""
-#pragma cgo_import_static _wrap_OTMadeEasy_discard_incoming_payments
-extern void (*_wrap_OTMadeEasy_discard_incoming_payments)(void*);
-static void (*x_wrap_OTMadeEasy_discard_incoming_payments)(void*) = _wrap_OTMadeEasy_discard_incoming_payments;
+#pragma dynimport _wrap_OT_ME_discard_incoming_payments _wrap_OT_ME_discard_incoming_payments ""
+#pragma cgo_import_static _wrap_OT_ME_discard_incoming_payments
+extern void (*_wrap_OT_ME_discard_incoming_payments)(void*);
+static void (*x_wrap_OT_ME_discard_incoming_payments)(void*) = _wrap_OT_ME_discard_incoming_payments;
 
 void
-·_swig_wrap_OTMadeEasy_discard_incoming_payments(struct {
+·_swig_wrap_OT_ME_discard_incoming_payments(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_discard_incoming_payments, &p);
+  runtime·cgocall(x_wrap_OT_ME_discard_incoming_payments, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_cancel_outgoing_payments _wrap_OTMadeEasy_cancel_outgoing_payments ""
-#pragma cgo_import_static _wrap_OTMadeEasy_cancel_outgoing_payments
-extern void (*_wrap_OTMadeEasy_cancel_outgoing_payments)(void*);
-static void (*x_wrap_OTMadeEasy_cancel_outgoing_payments)(void*) = _wrap_OTMadeEasy_cancel_outgoing_payments;
+#pragma dynimport _wrap_OT_ME_cancel_outgoing_payments _wrap_OT_ME_cancel_outgoing_payments ""
+#pragma cgo_import_static _wrap_OT_ME_cancel_outgoing_payments
+extern void (*_wrap_OT_ME_cancel_outgoing_payments)(void*);
+static void (*x_wrap_OT_ME_cancel_outgoing_payments)(void*) = _wrap_OT_ME_cancel_outgoing_payments;
 
 void
-·_swig_wrap_OTMadeEasy_cancel_outgoing_payments(struct {
+·_swig_wrap_OT_ME_cancel_outgoing_payments(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_cancel_outgoing_payments, &p);
+  runtime·cgocall(x_wrap_OT_ME_cancel_outgoing_payments, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_accept_from_paymentbox _wrap_OTMadeEasy_accept_from_paymentbox ""
-#pragma cgo_import_static _wrap_OTMadeEasy_accept_from_paymentbox
-extern void (*_wrap_OTMadeEasy_accept_from_paymentbox)(void*);
-static void (*x_wrap_OTMadeEasy_accept_from_paymentbox)(void*) = _wrap_OTMadeEasy_accept_from_paymentbox;
+#pragma dynimport _wrap_OT_ME_accept_from_paymentbox _wrap_OT_ME_accept_from_paymentbox ""
+#pragma cgo_import_static _wrap_OT_ME_accept_from_paymentbox
+extern void (*_wrap_OT_ME_accept_from_paymentbox)(void*);
+static void (*x_wrap_OT_ME_accept_from_paymentbox)(void*) = _wrap_OT_ME_accept_from_paymentbox;
 
 void
-·_swig_wrap_OTMadeEasy_accept_from_paymentbox(struct {
+·_swig_wrap_OT_ME_accept_from_paymentbox(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_accept_from_paymentbox, &p);
+  runtime·cgocall(x_wrap_OT_ME_accept_from_paymentbox, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_public_encryption_key _wrap_OTMadeEasy_load_public_encryption_key ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_public_encryption_key
-extern void (*_wrap_OTMadeEasy_load_public_encryption_key)(void*);
-static void (*x_wrap_OTMadeEasy_load_public_encryption_key)(void*) = _wrap_OTMadeEasy_load_public_encryption_key;
+#pragma dynimport _wrap_OT_ME_load_public_encryption_key _wrap_OT_ME_load_public_encryption_key ""
+#pragma cgo_import_static _wrap_OT_ME_load_public_encryption_key
+extern void (*_wrap_OT_ME_load_public_encryption_key)(void*);
+static void (*x_wrap_OT_ME_load_public_encryption_key)(void*) = _wrap_OT_ME_load_public_encryption_key;
 
 void
-·_swig_wrap_OTMadeEasy_load_public_encryption_key(struct {
+·_swig_wrap_OT_ME_load_public_encryption_key(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_public_encryption_key, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_public_encryption_key, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_public_signing_key _wrap_OTMadeEasy_load_public_signing_key ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_public_signing_key
-extern void (*_wrap_OTMadeEasy_load_public_signing_key)(void*);
-static void (*x_wrap_OTMadeEasy_load_public_signing_key)(void*) = _wrap_OTMadeEasy_load_public_signing_key;
+#pragma dynimport _wrap_OT_ME_load_public_signing_key _wrap_OT_ME_load_public_signing_key ""
+#pragma cgo_import_static _wrap_OT_ME_load_public_signing_key
+extern void (*_wrap_OT_ME_load_public_signing_key)(void*);
+static void (*x_wrap_OT_ME_load_public_signing_key)(void*) = _wrap_OT_ME_load_public_signing_key;
 
 void
-·_swig_wrap_OTMadeEasy_load_public_signing_key(struct {
+·_swig_wrap_OT_ME_load_public_signing_key(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_public_signing_key, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_public_signing_key, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_or_retrieve_encrypt_key _wrap_OTMadeEasy_load_or_retrieve_encrypt_key ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_or_retrieve_encrypt_key
-extern void (*_wrap_OTMadeEasy_load_or_retrieve_encrypt_key)(void*);
-static void (*x_wrap_OTMadeEasy_load_or_retrieve_encrypt_key)(void*) = _wrap_OTMadeEasy_load_or_retrieve_encrypt_key;
+#pragma dynimport _wrap_OT_ME_load_or_retrieve_encrypt_key _wrap_OT_ME_load_or_retrieve_encrypt_key ""
+#pragma cgo_import_static _wrap_OT_ME_load_or_retrieve_encrypt_key
+extern void (*_wrap_OT_ME_load_or_retrieve_encrypt_key)(void*);
+static void (*x_wrap_OT_ME_load_or_retrieve_encrypt_key)(void*) = _wrap_OT_ME_load_or_retrieve_encrypt_key;
 
 void
-·_swig_wrap_OTMadeEasy_load_or_retrieve_encrypt_key(struct {
+·_swig_wrap_OT_ME_load_or_retrieve_encrypt_key(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_or_retrieve_encrypt_key, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_or_retrieve_encrypt_key, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_or_retrieve_signing_key _wrap_OTMadeEasy_load_or_retrieve_signing_key ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_or_retrieve_signing_key
-extern void (*_wrap_OTMadeEasy_load_or_retrieve_signing_key)(void*);
-static void (*x_wrap_OTMadeEasy_load_or_retrieve_signing_key)(void*) = _wrap_OTMadeEasy_load_or_retrieve_signing_key;
+#pragma dynimport _wrap_OT_ME_load_or_retrieve_signing_key _wrap_OT_ME_load_or_retrieve_signing_key ""
+#pragma cgo_import_static _wrap_OT_ME_load_or_retrieve_signing_key
+extern void (*_wrap_OT_ME_load_or_retrieve_signing_key)(void*);
+static void (*x_wrap_OT_ME_load_or_retrieve_signing_key)(void*) = _wrap_OT_ME_load_or_retrieve_signing_key;
 
 void
-·_swig_wrap_OTMadeEasy_load_or_retrieve_signing_key(struct {
+·_swig_wrap_OT_ME_load_or_retrieve_signing_key(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_or_retrieve_signing_key, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_or_retrieve_signing_key, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_msg_pubkey _wrap_OTMadeEasy_send_user_msg_pubkey ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_msg_pubkey
-extern void (*_wrap_OTMadeEasy_send_user_msg_pubkey)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_msg_pubkey)(void*) = _wrap_OTMadeEasy_send_user_msg_pubkey;
+#pragma dynimport _wrap_OT_ME_send_user_msg_pubkey _wrap_OT_ME_send_user_msg_pubkey ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_msg_pubkey
+extern void (*_wrap_OT_ME_send_user_msg_pubkey)(void*);
+static void (*x_wrap_OT_ME_send_user_msg_pubkey)(void*) = _wrap_OT_ME_send_user_msg_pubkey;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_msg_pubkey(struct {
+·_swig_wrap_OT_ME_send_user_msg_pubkey(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_msg_pubkey, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_msg_pubkey, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_pmnt_pubkey _wrap_OTMadeEasy_send_user_pmnt_pubkey ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_pmnt_pubkey
-extern void (*_wrap_OTMadeEasy_send_user_pmnt_pubkey)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_pmnt_pubkey)(void*) = _wrap_OTMadeEasy_send_user_pmnt_pubkey;
+#pragma dynimport _wrap_OT_ME_send_user_pmnt_pubkey _wrap_OT_ME_send_user_pmnt_pubkey ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_pmnt_pubkey
+extern void (*_wrap_OT_ME_send_user_pmnt_pubkey)(void*);
+static void (*x_wrap_OT_ME_send_user_pmnt_pubkey)(void*) = _wrap_OT_ME_send_user_pmnt_pubkey;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_pmnt_pubkey(struct {
+·_swig_wrap_OT_ME_send_user_pmnt_pubkey(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_pmnt_pubkey, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_pmnt_pubkey, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_cash_pubkey _wrap_OTMadeEasy_send_user_cash_pubkey ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_cash_pubkey
-extern void (*_wrap_OTMadeEasy_send_user_cash_pubkey)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_cash_pubkey)(void*) = _wrap_OTMadeEasy_send_user_cash_pubkey;
+#pragma dynimport _wrap_OT_ME_send_user_cash_pubkey _wrap_OT_ME_send_user_cash_pubkey ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_cash_pubkey
+extern void (*_wrap_OT_ME_send_user_cash_pubkey)(void*);
+static void (*x_wrap_OT_ME_send_user_cash_pubkey)(void*) = _wrap_OT_ME_send_user_cash_pubkey;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_cash_pubkey(struct {
+·_swig_wrap_OT_ME_send_user_cash_pubkey(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_cash_pubkey, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_cash_pubkey, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_msg _wrap_OTMadeEasy_send_user_msg ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_msg
-extern void (*_wrap_OTMadeEasy_send_user_msg)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_msg)(void*) = _wrap_OTMadeEasy_send_user_msg;
+#pragma dynimport _wrap_OT_ME_send_user_msg _wrap_OT_ME_send_user_msg ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_msg
+extern void (*_wrap_OT_ME_send_user_msg)(void*);
+static void (*x_wrap_OT_ME_send_user_msg)(void*) = _wrap_OT_ME_send_user_msg;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_msg(struct {
+·_swig_wrap_OT_ME_send_user_msg(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_msg, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_msg, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_payment _wrap_OTMadeEasy_send_user_payment ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_payment
-extern void (*_wrap_OTMadeEasy_send_user_payment)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_payment)(void*) = _wrap_OTMadeEasy_send_user_payment;
+#pragma dynimport _wrap_OT_ME_send_user_payment _wrap_OT_ME_send_user_payment ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_payment
+extern void (*_wrap_OT_ME_send_user_payment)(void*);
+static void (*x_wrap_OT_ME_send_user_payment)(void*) = _wrap_OT_ME_send_user_payment;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_payment(struct {
+·_swig_wrap_OT_ME_send_user_payment(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_payment, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_payment, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_send_user_cash _wrap_OTMadeEasy_send_user_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_send_user_cash
-extern void (*_wrap_OTMadeEasy_send_user_cash)(void*);
-static void (*x_wrap_OTMadeEasy_send_user_cash)(void*) = _wrap_OTMadeEasy_send_user_cash;
+#pragma dynimport _wrap_OT_ME_send_user_cash _wrap_OT_ME_send_user_cash ""
+#pragma cgo_import_static _wrap_OT_ME_send_user_cash
+extern void (*_wrap_OT_ME_send_user_cash)(void*);
+static void (*x_wrap_OT_ME_send_user_cash)(void*) = _wrap_OT_ME_send_user_cash;
 
 void
-·_swig_wrap_OTMadeEasy_send_user_cash(struct {
+·_swig_wrap_OT_ME_send_user_cash(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_send_user_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_send_user_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_withdraw_and_send_cash _wrap_OTMadeEasy_withdraw_and_send_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_withdraw_and_send_cash
-extern void (*_wrap_OTMadeEasy_withdraw_and_send_cash)(void*);
-static void (*x_wrap_OTMadeEasy_withdraw_and_send_cash)(void*) = _wrap_OTMadeEasy_withdraw_and_send_cash;
+#pragma dynimport _wrap_OT_ME_withdraw_and_send_cash _wrap_OT_ME_withdraw_and_send_cash ""
+#pragma cgo_import_static _wrap_OT_ME_withdraw_and_send_cash
+extern void (*_wrap_OT_ME_withdraw_and_send_cash)(void*);
+static void (*x_wrap_OT_ME_withdraw_and_send_cash)(void*) = _wrap_OT_ME_withdraw_and_send_cash;
 
 void
-·_swig_wrap_OTMadeEasy_withdraw_and_send_cash(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·_swig_wrap_OT_ME_withdraw_and_send_cash(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_withdraw_and_send_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_withdraw_and_send_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_payment_instrument__SWIG_0 _wrap_OTMadeEasy_get_payment_instrument__SWIG_0 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_payment_instrument__SWIG_0
-extern void (*_wrap_OTMadeEasy_get_payment_instrument__SWIG_0)(void*);
-static void (*x_wrap_OTMadeEasy_get_payment_instrument__SWIG_0)(void*) = _wrap_OTMadeEasy_get_payment_instrument__SWIG_0;
+#pragma dynimport _wrap_OT_ME_get_payment_instrument__SWIG_0 _wrap_OT_ME_get_payment_instrument__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_get_payment_instrument__SWIG_0
+extern void (*_wrap_OT_ME_get_payment_instrument__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_get_payment_instrument__SWIG_0)(void*) = _wrap_OT_ME_get_payment_instrument__SWIG_0;
 
 void
-·_swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_0(struct {
+·_swig_wrap_OT_ME_get_payment_instrument__SWIG_0(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_payment_instrument__SWIG_0, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_payment_instrument__SWIG_0, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_payment_instrument__SWIG_1 _wrap_OTMadeEasy_get_payment_instrument__SWIG_1 ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_payment_instrument__SWIG_1
-extern void (*_wrap_OTMadeEasy_get_payment_instrument__SWIG_1)(void*);
-static void (*x_wrap_OTMadeEasy_get_payment_instrument__SWIG_1)(void*) = _wrap_OTMadeEasy_get_payment_instrument__SWIG_1;
+#pragma dynimport _wrap_OT_ME_get_payment_instrument__SWIG_1 _wrap_OT_ME_get_payment_instrument__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_get_payment_instrument__SWIG_1
+extern void (*_wrap_OT_ME_get_payment_instrument__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_get_payment_instrument__SWIG_1)(void*) = _wrap_OT_ME_get_payment_instrument__SWIG_1;
 
 void
-·_swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_1(struct {
+·_swig_wrap_OT_ME_get_payment_instrument__SWIG_1(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_payment_instrument__SWIG_1, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_payment_instrument__SWIG_1, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_box_receipt _wrap_OTMadeEasy_get_box_receipt ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_box_receipt
-extern void (*_wrap_OTMadeEasy_get_box_receipt)(void*);
-static void (*x_wrap_OTMadeEasy_get_box_receipt)(void*) = _wrap_OTMadeEasy_get_box_receipt;
+#pragma dynimport _wrap_OT_ME_get_box_receipt _wrap_OT_ME_get_box_receipt ""
+#pragma cgo_import_static _wrap_OT_ME_get_box_receipt
+extern void (*_wrap_OT_ME_get_box_receipt)(void*);
+static void (*x_wrap_OT_ME_get_box_receipt)(void*) = _wrap_OT_ME_get_box_receipt;
 
 void
-·_swig_wrap_OTMadeEasy_get_box_receipt(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_get_box_receipt(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_box_receipt, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_box_receipt, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_retrieve_mint _wrap_OTMadeEasy_retrieve_mint ""
-#pragma cgo_import_static _wrap_OTMadeEasy_retrieve_mint
-extern void (*_wrap_OTMadeEasy_retrieve_mint)(void*);
-static void (*x_wrap_OTMadeEasy_retrieve_mint)(void*) = _wrap_OTMadeEasy_retrieve_mint;
+#pragma dynimport _wrap_OT_ME_retrieve_mint _wrap_OT_ME_retrieve_mint ""
+#pragma cgo_import_static _wrap_OT_ME_retrieve_mint
+extern void (*_wrap_OT_ME_retrieve_mint)(void*);
+static void (*x_wrap_OT_ME_retrieve_mint)(void*) = _wrap_OT_ME_retrieve_mint;
 
 void
-·_swig_wrap_OTMadeEasy_retrieve_mint(struct {
+·_swig_wrap_OT_ME_retrieve_mint(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_retrieve_mint, &p);
+  runtime·cgocall(x_wrap_OT_ME_retrieve_mint, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_load_or_retrieve_mint _wrap_OTMadeEasy_load_or_retrieve_mint ""
-#pragma cgo_import_static _wrap_OTMadeEasy_load_or_retrieve_mint
-extern void (*_wrap_OTMadeEasy_load_or_retrieve_mint)(void*);
-static void (*x_wrap_OTMadeEasy_load_or_retrieve_mint)(void*) = _wrap_OTMadeEasy_load_or_retrieve_mint;
+#pragma dynimport _wrap_OT_ME_load_or_retrieve_mint _wrap_OT_ME_load_or_retrieve_mint ""
+#pragma cgo_import_static _wrap_OT_ME_load_or_retrieve_mint
+extern void (*_wrap_OT_ME_load_or_retrieve_mint)(void*);
+static void (*x_wrap_OT_ME_load_or_retrieve_mint)(void*) = _wrap_OT_ME_load_or_retrieve_mint;
 
 void
-·_swig_wrap_OTMadeEasy_load_or_retrieve_mint(struct {
+·_swig_wrap_OT_ME_load_or_retrieve_mint(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_load_or_retrieve_mint, &p);
+  runtime·cgocall(x_wrap_OT_ME_load_or_retrieve_mint, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_query_asset_types _wrap_OTMadeEasy_query_asset_types ""
-#pragma cgo_import_static _wrap_OTMadeEasy_query_asset_types
-extern void (*_wrap_OTMadeEasy_query_asset_types)(void*);
-static void (*x_wrap_OTMadeEasy_query_asset_types)(void*) = _wrap_OTMadeEasy_query_asset_types;
+#pragma dynimport _wrap_OT_ME_query_asset_types _wrap_OT_ME_query_asset_types ""
+#pragma cgo_import_static _wrap_OT_ME_query_asset_types
+extern void (*_wrap_OT_ME_query_asset_types)(void*);
+static void (*x_wrap_OT_ME_query_asset_types)(void*) = _wrap_OT_ME_query_asset_types;
 
 void
-·_swig_wrap_OTMadeEasy_query_asset_types(struct {
+·_swig_wrap_OT_ME_query_asset_types(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_query_asset_types, &p);
+  runtime·cgocall(x_wrap_OT_ME_query_asset_types, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_create_market_offer _wrap_OTMadeEasy_create_market_offer ""
-#pragma cgo_import_static _wrap_OTMadeEasy_create_market_offer
-extern void (*_wrap_OTMadeEasy_create_market_offer)(void*);
-static void (*x_wrap_OTMadeEasy_create_market_offer)(void*) = _wrap_OTMadeEasy_create_market_offer;
+#pragma dynimport _wrap_OT_ME_create_market_offer _wrap_OT_ME_create_market_offer ""
+#pragma cgo_import_static _wrap_OT_ME_create_market_offer
+extern void (*_wrap_OT_ME_create_market_offer)(void*);
+static void (*x_wrap_OT_ME_create_market_offer)(void*) = _wrap_OT_ME_create_market_offer;
 
 void
-·_swig_wrap_OTMadeEasy_create_market_offer(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_create_market_offer(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_create_market_offer, &p);
+  runtime·cgocall(x_wrap_OT_ME_create_market_offer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_kill_market_offer _wrap_OTMadeEasy_kill_market_offer ""
-#pragma cgo_import_static _wrap_OTMadeEasy_kill_market_offer
-extern void (*_wrap_OTMadeEasy_kill_market_offer)(void*);
-static void (*x_wrap_OTMadeEasy_kill_market_offer)(void*) = _wrap_OTMadeEasy_kill_market_offer;
+#pragma dynimport _wrap_OT_ME_kill_market_offer _wrap_OT_ME_kill_market_offer ""
+#pragma cgo_import_static _wrap_OT_ME_kill_market_offer
+extern void (*_wrap_OT_ME_kill_market_offer)(void*);
+static void (*x_wrap_OT_ME_kill_market_offer)(void*) = _wrap_OT_ME_kill_market_offer;
 
 void
-·_swig_wrap_OTMadeEasy_kill_market_offer(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_kill_market_offer(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_kill_market_offer, &p);
+  runtime·cgocall(x_wrap_OT_ME_kill_market_offer, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_kill_payment_plan _wrap_OTMadeEasy_kill_payment_plan ""
-#pragma cgo_import_static _wrap_OTMadeEasy_kill_payment_plan
-extern void (*_wrap_OTMadeEasy_kill_payment_plan)(void*);
-static void (*x_wrap_OTMadeEasy_kill_payment_plan)(void*) = _wrap_OTMadeEasy_kill_payment_plan;
+#pragma dynimport _wrap_OT_ME_kill_payment_plan _wrap_OT_ME_kill_payment_plan ""
+#pragma cgo_import_static _wrap_OT_ME_kill_payment_plan
+extern void (*_wrap_OT_ME_kill_payment_plan)(void*);
+static void (*x_wrap_OT_ME_kill_payment_plan)(void*) = _wrap_OT_ME_kill_payment_plan;
 
 void
-·_swig_wrap_OTMadeEasy_kill_payment_plan(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_kill_payment_plan(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_kill_payment_plan, &p);
+  runtime·cgocall(x_wrap_OT_ME_kill_payment_plan, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_cancel_payment_plan _wrap_OTMadeEasy_cancel_payment_plan ""
-#pragma cgo_import_static _wrap_OTMadeEasy_cancel_payment_plan
-extern void (*_wrap_OTMadeEasy_cancel_payment_plan)(void*);
-static void (*x_wrap_OTMadeEasy_cancel_payment_plan)(void*) = _wrap_OTMadeEasy_cancel_payment_plan;
+#pragma dynimport _wrap_OT_ME_cancel_payment_plan _wrap_OT_ME_cancel_payment_plan ""
+#pragma cgo_import_static _wrap_OT_ME_cancel_payment_plan
+extern void (*_wrap_OT_ME_cancel_payment_plan)(void*);
+static void (*x_wrap_OT_ME_cancel_payment_plan)(void*) = _wrap_OT_ME_cancel_payment_plan;
 
 void
-·_swig_wrap_OTMadeEasy_cancel_payment_plan(struct {
+·_swig_wrap_OT_ME_cancel_payment_plan(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_cancel_payment_plan, &p);
+  runtime·cgocall(x_wrap_OT_ME_cancel_payment_plan, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_activate_smart_contract _wrap_OTMadeEasy_activate_smart_contract ""
-#pragma cgo_import_static _wrap_OTMadeEasy_activate_smart_contract
-extern void (*_wrap_OTMadeEasy_activate_smart_contract)(void*);
-static void (*x_wrap_OTMadeEasy_activate_smart_contract)(void*) = _wrap_OTMadeEasy_activate_smart_contract;
+#pragma dynimport _wrap_OT_ME_activate_smart_contract _wrap_OT_ME_activate_smart_contract ""
+#pragma cgo_import_static _wrap_OT_ME_activate_smart_contract
+extern void (*_wrap_OT_ME_activate_smart_contract)(void*);
+static void (*x_wrap_OT_ME_activate_smart_contract)(void*) = _wrap_OT_ME_activate_smart_contract;
 
 void
-·_swig_wrap_OTMadeEasy_activate_smart_contract(struct {
+·_swig_wrap_OT_ME_activate_smart_contract(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_activate_smart_contract, &p);
+  runtime·cgocall(x_wrap_OT_ME_activate_smart_contract, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_trigger_clause _wrap_OTMadeEasy_trigger_clause ""
-#pragma cgo_import_static _wrap_OTMadeEasy_trigger_clause
-extern void (*_wrap_OTMadeEasy_trigger_clause)(void*);
-static void (*x_wrap_OTMadeEasy_trigger_clause)(void*) = _wrap_OTMadeEasy_trigger_clause;
+#pragma dynimport _wrap_OT_ME_trigger_clause _wrap_OT_ME_trigger_clause ""
+#pragma cgo_import_static _wrap_OT_ME_trigger_clause
+extern void (*_wrap_OT_ME_trigger_clause)(void*);
+static void (*x_wrap_OT_ME_trigger_clause)(void*) = _wrap_OT_ME_trigger_clause;
 
 void
-·_swig_wrap_OTMadeEasy_trigger_clause(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_trigger_clause(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_trigger_clause, &p);
+  runtime·cgocall(x_wrap_OT_ME_trigger_clause, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_withdraw_cash _wrap_OTMadeEasy_withdraw_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_withdraw_cash
-extern void (*_wrap_OTMadeEasy_withdraw_cash)(void*);
-static void (*x_wrap_OTMadeEasy_withdraw_cash)(void*) = _wrap_OTMadeEasy_withdraw_cash;
+#pragma dynimport _wrap_OT_ME_withdraw_cash _wrap_OT_ME_withdraw_cash ""
+#pragma cgo_import_static _wrap_OT_ME_withdraw_cash
+extern void (*_wrap_OT_ME_withdraw_cash)(void*);
+static void (*x_wrap_OT_ME_withdraw_cash)(void*) = _wrap_OT_ME_withdraw_cash;
 
 void
-·_swig_wrap_OTMadeEasy_withdraw_cash(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_withdraw_cash(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_withdraw_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_withdraw_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_easy_withdraw_cash _wrap_OTMadeEasy_easy_withdraw_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_easy_withdraw_cash
-extern void (*_wrap_OTMadeEasy_easy_withdraw_cash)(void*);
-static void (*x_wrap_OTMadeEasy_easy_withdraw_cash)(void*) = _wrap_OTMadeEasy_easy_withdraw_cash;
+#pragma dynimport _wrap_OT_ME_easy_withdraw_cash _wrap_OT_ME_easy_withdraw_cash ""
+#pragma cgo_import_static _wrap_OT_ME_easy_withdraw_cash
+extern void (*_wrap_OT_ME_easy_withdraw_cash)(void*);
+static void (*x_wrap_OT_ME_easy_withdraw_cash)(void*) = _wrap_OT_ME_easy_withdraw_cash;
 
 void
-·_swig_wrap_OTMadeEasy_easy_withdraw_cash(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+·_swig_wrap_OT_ME_easy_withdraw_cash(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_easy_withdraw_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_easy_withdraw_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_export_cash _wrap_OTMadeEasy_export_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_export_cash
-extern void (*_wrap_OTMadeEasy_export_cash)(void*);
-static void (*x_wrap_OTMadeEasy_export_cash)(void*) = _wrap_OTMadeEasy_export_cash;
+#pragma dynimport _wrap_OT_ME_export_cash _wrap_OT_ME_export_cash ""
+#pragma cgo_import_static _wrap_OT_ME_export_cash
+extern void (*_wrap_OT_ME_export_cash)(void*);
+static void (*x_wrap_OT_ME_export_cash)(void*) = _wrap_OT_ME_export_cash;
 
 void
-·_swig_wrap_OTMadeEasy_export_cash(struct {
+·_swig_wrap_OT_ME_export_cash(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_export_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_export_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_withdraw_voucher _wrap_OTMadeEasy_withdraw_voucher ""
-#pragma cgo_import_static _wrap_OTMadeEasy_withdraw_voucher
-extern void (*_wrap_OTMadeEasy_withdraw_voucher)(void*);
-static void (*x_wrap_OTMadeEasy_withdraw_voucher)(void*) = _wrap_OTMadeEasy_withdraw_voucher;
+#pragma dynimport _wrap_OT_ME_withdraw_voucher _wrap_OT_ME_withdraw_voucher ""
+#pragma cgo_import_static _wrap_OT_ME_withdraw_voucher
+extern void (*_wrap_OT_ME_withdraw_voucher)(void*);
+static void (*x_wrap_OT_ME_withdraw_voucher)(void*) = _wrap_OT_ME_withdraw_voucher;
 
 void
-·_swig_wrap_OTMadeEasy_withdraw_voucher(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_withdraw_voucher(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_withdraw_voucher, &p);
+  runtime·cgocall(x_wrap_OT_ME_withdraw_voucher, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_pay_dividend _wrap_OTMadeEasy_pay_dividend ""
-#pragma cgo_import_static _wrap_OTMadeEasy_pay_dividend
-extern void (*_wrap_OTMadeEasy_pay_dividend)(void*);
-static void (*x_wrap_OTMadeEasy_pay_dividend)(void*) = _wrap_OTMadeEasy_pay_dividend;
+#pragma dynimport _wrap_OT_ME_pay_dividend _wrap_OT_ME_pay_dividend ""
+#pragma cgo_import_static _wrap_OT_ME_pay_dividend
+extern void (*_wrap_OT_ME_pay_dividend)(void*);
+static void (*x_wrap_OT_ME_pay_dividend)(void*) = _wrap_OT_ME_pay_dividend;
 
 void
-·_swig_wrap_OTMadeEasy_pay_dividend(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_pay_dividend(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_pay_dividend, &p);
+  runtime·cgocall(x_wrap_OT_ME_pay_dividend, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_deposit_cheque _wrap_OTMadeEasy_deposit_cheque ""
-#pragma cgo_import_static _wrap_OTMadeEasy_deposit_cheque
-extern void (*_wrap_OTMadeEasy_deposit_cheque)(void*);
-static void (*x_wrap_OTMadeEasy_deposit_cheque)(void*) = _wrap_OTMadeEasy_deposit_cheque;
+#pragma dynimport _wrap_OT_ME_deposit_cheque _wrap_OT_ME_deposit_cheque ""
+#pragma cgo_import_static _wrap_OT_ME_deposit_cheque
+extern void (*_wrap_OT_ME_deposit_cheque)(void*);
+static void (*x_wrap_OT_ME_deposit_cheque)(void*) = _wrap_OT_ME_deposit_cheque;
 
 void
-·_swig_wrap_OTMadeEasy_deposit_cheque(struct {
+·_swig_wrap_OT_ME_deposit_cheque(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_deposit_cheque, &p);
+  runtime·cgocall(x_wrap_OT_ME_deposit_cheque, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_deposit_cash _wrap_OTMadeEasy_deposit_cash ""
-#pragma cgo_import_static _wrap_OTMadeEasy_deposit_cash
-extern void (*_wrap_OTMadeEasy_deposit_cash)(void*);
-static void (*x_wrap_OTMadeEasy_deposit_cash)(void*) = _wrap_OTMadeEasy_deposit_cash;
+#pragma dynimport _wrap_OT_ME_deposit_cash _wrap_OT_ME_deposit_cash ""
+#pragma cgo_import_static _wrap_OT_ME_deposit_cash
+extern void (*_wrap_OT_ME_deposit_cash)(void*);
+static void (*x_wrap_OT_ME_deposit_cash)(void*) = _wrap_OT_ME_deposit_cash;
 
 void
-·_swig_wrap_OTMadeEasy_deposit_cash(struct {
+·_swig_wrap_OT_ME_deposit_cash(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_deposit_cash, &p);
+  runtime·cgocall(x_wrap_OT_ME_deposit_cash, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_deposit_local_purse _wrap_OTMadeEasy_deposit_local_purse ""
-#pragma cgo_import_static _wrap_OTMadeEasy_deposit_local_purse
-extern void (*_wrap_OTMadeEasy_deposit_local_purse)(void*);
-static void (*x_wrap_OTMadeEasy_deposit_local_purse)(void*) = _wrap_OTMadeEasy_deposit_local_purse;
+#pragma dynimport _wrap_OT_ME_deposit_local_purse _wrap_OT_ME_deposit_local_purse ""
+#pragma cgo_import_static _wrap_OT_ME_deposit_local_purse
+extern void (*_wrap_OT_ME_deposit_local_purse)(void*);
+static void (*x_wrap_OT_ME_deposit_local_purse)(void*) = _wrap_OT_ME_deposit_local_purse;
 
 void
-·_swig_wrap_OTMadeEasy_deposit_local_purse(struct {
+·_swig_wrap_OT_ME_deposit_local_purse(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_deposit_local_purse, &p);
+  runtime·cgocall(x_wrap_OT_ME_deposit_local_purse, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_market_list _wrap_OTMadeEasy_get_market_list ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_market_list
-extern void (*_wrap_OTMadeEasy_get_market_list)(void*);
-static void (*x_wrap_OTMadeEasy_get_market_list)(void*) = _wrap_OTMadeEasy_get_market_list;
+#pragma dynimport _wrap_OT_ME_get_market_list _wrap_OT_ME_get_market_list ""
+#pragma cgo_import_static _wrap_OT_ME_get_market_list
+extern void (*_wrap_OT_ME_get_market_list)(void*);
+static void (*x_wrap_OT_ME_get_market_list)(void*) = _wrap_OT_ME_get_market_list;
 
 void
-·_swig_wrap_OTMadeEasy_get_market_list(struct {
+·_swig_wrap_OT_ME_get_market_list(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_market_list, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_market_list, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_market_offers _wrap_OTMadeEasy_get_market_offers ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_market_offers
-extern void (*_wrap_OTMadeEasy_get_market_offers)(void*);
-static void (*x_wrap_OTMadeEasy_get_market_offers)(void*) = _wrap_OTMadeEasy_get_market_offers;
+#pragma dynimport _wrap_OT_ME_get_market_offers _wrap_OT_ME_get_market_offers ""
+#pragma cgo_import_static _wrap_OT_ME_get_market_offers
+extern void (*_wrap_OT_ME_get_market_offers)(void*);
+static void (*x_wrap_OT_ME_get_market_offers)(void*) = _wrap_OT_ME_get_market_offers;
 
 void
-·_swig_wrap_OTMadeEasy_get_market_offers(struct {
-  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+·_swig_wrap_OT_ME_get_market_offers(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_market_offers, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_market_offers, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_nym_market_offers _wrap_OTMadeEasy_get_nym_market_offers ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_nym_market_offers
-extern void (*_wrap_OTMadeEasy_get_nym_market_offers)(void*);
-static void (*x_wrap_OTMadeEasy_get_nym_market_offers)(void*) = _wrap_OTMadeEasy_get_nym_market_offers;
+#pragma dynimport _wrap_OT_ME_get_nym_market_offers _wrap_OT_ME_get_nym_market_offers ""
+#pragma cgo_import_static _wrap_OT_ME_get_nym_market_offers
+extern void (*_wrap_OT_ME_get_nym_market_offers)(void*);
+static void (*x_wrap_OT_ME_get_nym_market_offers)(void*) = _wrap_OT_ME_get_nym_market_offers;
 
 void
-·_swig_wrap_OTMadeEasy_get_nym_market_offers(struct {
+·_swig_wrap_OT_ME_get_nym_market_offers(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_nym_market_offers, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_nym_market_offers, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_get_market_recent_trades _wrap_OTMadeEasy_get_market_recent_trades ""
-#pragma cgo_import_static _wrap_OTMadeEasy_get_market_recent_trades
-extern void (*_wrap_OTMadeEasy_get_market_recent_trades)(void*);
-static void (*x_wrap_OTMadeEasy_get_market_recent_trades)(void*) = _wrap_OTMadeEasy_get_market_recent_trades;
+#pragma dynimport _wrap_OT_ME_get_market_recent_trades _wrap_OT_ME_get_market_recent_trades ""
+#pragma cgo_import_static _wrap_OT_ME_get_market_recent_trades
+extern void (*_wrap_OT_ME_get_market_recent_trades)(void*);
+static void (*x_wrap_OT_ME_get_market_recent_trades)(void*) = _wrap_OT_ME_get_market_recent_trades;
 
 void
-·_swig_wrap_OTMadeEasy_get_market_recent_trades(struct {
+·_swig_wrap_OT_ME_get_market_recent_trades(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_get_market_recent_trades, &p);
+  runtime·cgocall(x_wrap_OT_ME_get_market_recent_trades, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_adjust_usage_credits _wrap_OTMadeEasy_adjust_usage_credits ""
-#pragma cgo_import_static _wrap_OTMadeEasy_adjust_usage_credits
-extern void (*_wrap_OTMadeEasy_adjust_usage_credits)(void*);
-static void (*x_wrap_OTMadeEasy_adjust_usage_credits)(void*) = _wrap_OTMadeEasy_adjust_usage_credits;
+#pragma dynimport _wrap_OT_ME_adjust_usage_credits _wrap_OT_ME_adjust_usage_credits ""
+#pragma cgo_import_static _wrap_OT_ME_adjust_usage_credits
+extern void (*_wrap_OT_ME_adjust_usage_credits)(void*);
+static void (*x_wrap_OT_ME_adjust_usage_credits)(void*) = _wrap_OT_ME_adjust_usage_credits;
 
 void
-·_swig_wrap_OTMadeEasy_adjust_usage_credits(struct {
+·_swig_wrap_OT_ME_adjust_usage_credits(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_adjust_usage_credits, &p);
+  runtime·cgocall(x_wrap_OT_ME_adjust_usage_credits, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_VerifyMessageSuccess _wrap_OTMadeEasy_VerifyMessageSuccess ""
-#pragma cgo_import_static _wrap_OTMadeEasy_VerifyMessageSuccess
-extern void (*_wrap_OTMadeEasy_VerifyMessageSuccess)(void*);
-static void (*x_wrap_OTMadeEasy_VerifyMessageSuccess)(void*) = _wrap_OTMadeEasy_VerifyMessageSuccess;
+#pragma dynimport _wrap_OT_ME_VerifyMessageSuccess _wrap_OT_ME_VerifyMessageSuccess ""
+#pragma cgo_import_static _wrap_OT_ME_VerifyMessageSuccess
+extern void (*_wrap_OT_ME_VerifyMessageSuccess)(void*);
+static void (*x_wrap_OT_ME_VerifyMessageSuccess)(void*) = _wrap_OT_ME_VerifyMessageSuccess;
 
 void
-·_swig_wrap_OTMadeEasy_VerifyMessageSuccess(struct {
+·_swig_wrap_OT_ME_VerifyMessageSuccess(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_VerifyMessageSuccess, &p);
+  runtime·cgocall(x_wrap_OT_ME_VerifyMessageSuccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess _wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess ""
-#pragma cgo_import_static _wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess
-extern void (*_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess)(void*);
-static void (*x_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess)(void*) = _wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess;
+#pragma dynimport _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess ""
+#pragma cgo_import_static _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess
+extern void (*_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess)(void*);
+static void (*x_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess)(void*) = _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess;
 
 void
-·_swig_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(struct {
+·_swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess, &p);
+  runtime·cgocall(x_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_VerifyMsgTrnxSuccess _wrap_OTMadeEasy_VerifyMsgTrnxSuccess ""
-#pragma cgo_import_static _wrap_OTMadeEasy_VerifyMsgTrnxSuccess
-extern void (*_wrap_OTMadeEasy_VerifyMsgTrnxSuccess)(void*);
-static void (*x_wrap_OTMadeEasy_VerifyMsgTrnxSuccess)(void*) = _wrap_OTMadeEasy_VerifyMsgTrnxSuccess;
+#pragma dynimport _wrap_OT_ME_VerifyMsgTrnxSuccess _wrap_OT_ME_VerifyMsgTrnxSuccess ""
+#pragma cgo_import_static _wrap_OT_ME_VerifyMsgTrnxSuccess
+extern void (*_wrap_OT_ME_VerifyMsgTrnxSuccess)(void*);
+static void (*x_wrap_OT_ME_VerifyMsgTrnxSuccess)(void*) = _wrap_OT_ME_VerifyMsgTrnxSuccess;
 
 void
-·_swig_wrap_OTMadeEasy_VerifyMsgTrnxSuccess(struct {
+·_swig_wrap_OT_ME_VerifyMsgTrnxSuccess(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_VerifyMsgTrnxSuccess, &p);
+  runtime·cgocall(x_wrap_OT_ME_VerifyMsgTrnxSuccess, &p);
 }
 
 
 
-#pragma dynimport _wrap_OTMadeEasy_InterpretTransactionMsgReply _wrap_OTMadeEasy_InterpretTransactionMsgReply ""
-#pragma cgo_import_static _wrap_OTMadeEasy_InterpretTransactionMsgReply
-extern void (*_wrap_OTMadeEasy_InterpretTransactionMsgReply)(void*);
-static void (*x_wrap_OTMadeEasy_InterpretTransactionMsgReply)(void*) = _wrap_OTMadeEasy_InterpretTransactionMsgReply;
+#pragma dynimport _wrap_OT_ME_InterpretTransactionMsgReply _wrap_OT_ME_InterpretTransactionMsgReply ""
+#pragma cgo_import_static _wrap_OT_ME_InterpretTransactionMsgReply
+extern void (*_wrap_OT_ME_InterpretTransactionMsgReply)(void*);
+static void (*x_wrap_OT_ME_InterpretTransactionMsgReply)(void*) = _wrap_OT_ME_InterpretTransactionMsgReply;
 
 void
-·_swig_wrap_OTMadeEasy_InterpretTransactionMsgReply(struct {
+·_swig_wrap_OT_ME_InterpretTransactionMsgReply(struct {
   uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
 } p)
 
 {
-  runtime·cgocall(x_wrap_OTMadeEasy_InterpretTransactionMsgReply, &p);
+  runtime·cgocall(x_wrap_OT_ME_InterpretTransactionMsgReply, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0 _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0)(void*) = _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1 _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1)(void*) = _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0 _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0)(void*) = _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1 _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1)(void*) = _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0 _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0)(void*) = _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1 _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1)(void*) = _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0 _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0)(void*) = _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1 _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1 ""
+#pragma cgo_import_static _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1
+extern void (*_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1)(void*);
+static void (*x_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1)(void*) = _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1;
+
+void
+·_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE)];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_AddVariable _wrap_OT_ME_AddVariable ""
+#pragma cgo_import_static _wrap_OT_ME_AddVariable
+extern void (*_wrap_OT_ME_AddVariable)(void*);
+static void (*x_wrap_OT_ME_AddVariable)(void*) = _wrap_OT_ME_AddVariable;
+
+void
+·_swig_wrap_OT_ME_AddVariable(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_AddVariable, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_FindVariable _wrap_OT_ME_FindVariable ""
+#pragma cgo_import_static _wrap_OT_ME_FindVariable
+extern void (*_wrap_OT_ME_FindVariable)(void*);
+static void (*x_wrap_OT_ME_FindVariable)(void*) = _wrap_OT_ME_FindVariable;
+
+void
+·_swig_wrap_OT_ME_FindVariable(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_FindVariable, &p);
+}
+
+
+
+#pragma dynimport _wrap_OT_ME_FindVariable2 _wrap_OT_ME_FindVariable2 ""
+#pragma cgo_import_static _wrap_OT_ME_FindVariable2
+extern void (*_wrap_OT_ME_FindVariable2)(void*);
+static void (*x_wrap_OT_ME_FindVariable2)(void*) = _wrap_OT_ME_FindVariable2;
+
+void
+·_swig_wrap_OT_ME_FindVariable2(struct {
+  uint8 x[(2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_OT_ME_FindVariable2, &p);
 }
 
 
@@ -8050,6 +8946,70 @@ void
 
 {
   runtime·cgocall(x_wrap_Storage_Exists__SWIG_3, &p);
+}
+
+
+
+#pragma dynimport _wrap_Storage_FormPathString__SWIG_0 _wrap_Storage_FormPathString__SWIG_0 ""
+#pragma cgo_import_static _wrap_Storage_FormPathString__SWIG_0
+extern void (*_wrap_Storage_FormPathString__SWIG_0)(void*);
+static void (*x_wrap_Storage_FormPathString__SWIG_0)(void*) = _wrap_Storage_FormPathString__SWIG_0;
+
+void
+·_swig_wrap_Storage_FormPathString__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_Storage_FormPathString__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_Storage_FormPathString__SWIG_1 _wrap_Storage_FormPathString__SWIG_1 ""
+#pragma cgo_import_static _wrap_Storage_FormPathString__SWIG_1
+extern void (*_wrap_Storage_FormPathString__SWIG_1)(void*);
+static void (*x_wrap_Storage_FormPathString__SWIG_1)(void*) = _wrap_Storage_FormPathString__SWIG_1;
+
+void
+·_swig_wrap_Storage_FormPathString__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_Storage_FormPathString__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_Storage_FormPathString__SWIG_2 _wrap_Storage_FormPathString__SWIG_2 ""
+#pragma cgo_import_static _wrap_Storage_FormPathString__SWIG_2
+extern void (*_wrap_Storage_FormPathString__SWIG_2)(void*);
+static void (*x_wrap_Storage_FormPathString__SWIG_2)(void*) = _wrap_Storage_FormPathString__SWIG_2;
+
+void
+·_swig_wrap_Storage_FormPathString__SWIG_2(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_Storage_FormPathString__SWIG_2, &p);
+}
+
+
+
+#pragma dynimport _wrap_Storage_FormPathString__SWIG_3 _wrap_Storage_FormPathString__SWIG_3 ""
+#pragma cgo_import_static _wrap_Storage_FormPathString__SWIG_3
+extern void (*_wrap_Storage_FormPathString__SWIG_3)(void*);
+static void (*x_wrap_Storage_FormPathString__SWIG_3)(void*) = _wrap_Storage_FormPathString__SWIG_3;
+
+void
+·_swig_wrap_Storage_FormPathString__SWIG_3(struct {
+  uint8 x[SWIG_PARM_SIZE + SWIG_PARM_SIZE + SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_Storage_FormPathString__SWIG_3, &p);
 }
 
 
@@ -8770,6 +9730,70 @@ void
 
 {
   runtime·cgocall(x_wrap_Exists__SWIG_3, &p);
+}
+
+
+
+#pragma dynimport _wrap_FormPathString__SWIG_0 _wrap_FormPathString__SWIG_0 ""
+#pragma cgo_import_static _wrap_FormPathString__SWIG_0
+extern void (*_wrap_FormPathString__SWIG_0)(void*);
+static void (*x_wrap_FormPathString__SWIG_0)(void*) = _wrap_FormPathString__SWIG_0;
+
+void
+·FormPathString__SWIG_0(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_FormPathString__SWIG_0, &p);
+}
+
+
+
+#pragma dynimport _wrap_FormPathString__SWIG_1 _wrap_FormPathString__SWIG_1 ""
+#pragma cgo_import_static _wrap_FormPathString__SWIG_1
+extern void (*_wrap_FormPathString__SWIG_1)(void*);
+static void (*x_wrap_FormPathString__SWIG_1)(void*) = _wrap_FormPathString__SWIG_1;
+
+void
+·FormPathString__SWIG_1(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_FormPathString__SWIG_1, &p);
+}
+
+
+
+#pragma dynimport _wrap_FormPathString__SWIG_2 _wrap_FormPathString__SWIG_2 ""
+#pragma cgo_import_static _wrap_FormPathString__SWIG_2
+extern void (*_wrap_FormPathString__SWIG_2)(void*);
+static void (*x_wrap_FormPathString__SWIG_2)(void*) = _wrap_FormPathString__SWIG_2;
+
+void
+·FormPathString__SWIG_2(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_FormPathString__SWIG_2, &p);
+}
+
+
+
+#pragma dynimport _wrap_FormPathString__SWIG_3 _wrap_FormPathString__SWIG_3 ""
+#pragma cgo_import_static _wrap_FormPathString__SWIG_3
+extern void (*_wrap_FormPathString__SWIG_3)(void*);
+static void (*x_wrap_FormPathString__SWIG_3)(void*) = _wrap_FormPathString__SWIG_3;
+
+void
+·FormPathString__SWIG_3(struct {
+  uint8 x[SWIG_PARM_SIZE + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
+} p)
+
+{
+  runtime·cgocall(x_wrap_FormPathString__SWIG_3, &p);
 }
 
 

@@ -35,13 +35,13 @@ public class StringMap extends Storable {
     super.delete();
   }
 // ------------------------
-  public void setThe_map(SWIGTYPE_p_std__mapT_std__string_std__string_t value) {
-    otapiJNI.StringMap_the_map_set(swigCPtr, this, SWIGTYPE_p_std__mapT_std__string_std__string_t.getCPtr(value));
+  public void setThe_map(MapStringString value) {
+    otapiJNI.StringMap_the_map_set(swigCPtr, this, MapStringString.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_std__mapT_std__string_std__string_t getThe_map() {
+  public MapStringString getThe_map() {
     long cPtr = otapiJNI.StringMap_the_map_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__mapT_std__string_std__string_t(cPtr, false);
+    return (cPtr == 0) ? null : new MapStringString(cPtr, false);
   }
 
   public void SetValue(String strKey, String strValue) {
