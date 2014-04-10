@@ -27,6 +27,20 @@ if (!extension_loaded('otapi')) {
 
 
 abstract class otapi {
+	static function imaxabs($n) {
+		return imaxabs($n);
+	}
+
+	static function imaxdiv($numer,$denom) {
+		$r=imaxdiv($numer,$denom);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new imaxdiv_t($r);
+		}
+		return $r;
+	}
+
 	const OT_PW_DISPLAY = OT_PW_DISPLAY;
 
 	const OTPASSWORD_BLOCKSIZE = OTPASSWORD_BLOCKSIZE;
@@ -40,6 +54,30 @@ abstract class otapi {
 	const OT_DEFAULT_BLOCKSIZE = OT_DEFAULT_BLOCKSIZE;
 
 	const OT_DEFAULT_MEMSIZE = OT_DEFAULT_MEMSIZE;
+
+	static function OT_CLI_GetArgsCount($str_Args) {
+		return OT_CLI_GetArgsCount($str_Args);
+	}
+
+	static function OT_CLI_GetValueByKey($str_Args,$str_key) {
+		return OT_CLI_GetValueByKey($str_Args,$str_key);
+	}
+
+	static function OT_CLI_GetValueByIndex($str_Args,$nIndex) {
+		return OT_CLI_GetValueByIndex($str_Args,$nIndex);
+	}
+
+	static function OT_CLI_GetKeyByIndex($str_Args,$nIndex) {
+		return OT_CLI_GetKeyByIndex($str_Args,$nIndex);
+	}
+
+	static function OT_CLI_ReadLine() {
+		return OT_CLI_ReadLine();
+	}
+
+	static function OT_CLI_ReadUntilEOF() {
+		return OT_CLI_ReadUntilEOF();
+	}
 
 	const PACK_MESSAGE_PACK = 0;
 
@@ -147,6 +185,16 @@ abstract class otapi {
 		return $r;
 	}
 
+	static function FormPathString($strOutput,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
+		switch (func_num_args()) {
+		case 2: $r=FormPathString($strOutput,$strFolder); break;
+		case 3: $r=FormPathString($strOutput,$strFolder,$oneStr); break;
+		case 4: $r=FormPathString($strOutput,$strFolder,$oneStr,$twoStr); break;
+		default: $r=FormPathString($strOutput,$strFolder,$oneStr,$twoStr,$threeStr);
+		}
+		return $r;
+	}
+
 	static function StoreString($strContents,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
 		switch (func_num_args()) {
 		case 2: $r=StoreString($strContents,$strFolder); break;
@@ -235,6 +283,165 @@ abstract class otapi {
 }
 
 /* PHP Proxy Classes */
+class imaxdiv_t {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'quot') return imaxdiv_t_quot_set($this->_cPtr,$value);
+		if ($var === 'rem') return imaxdiv_t_rem_set($this->_cPtr,$value);
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if (function_exists('imaxdiv_t_'.$var.'_set')) return true;
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'quot') return imaxdiv_t_quot_get($this->_cPtr);
+		if ($var === 'rem') return imaxdiv_t_rem_get($this->_cPtr);
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_imaxdiv_t') {
+			$this->_cPtr=$res;
+			return;
+		}
+		$this->_cPtr=new_imaxdiv_t();
+	}
+}
+
+class VectorUnsignedChar {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($n=null) {
+		if (is_resource($n) && get_resource_type($n) === '_p_std__vectorT_unsigned_char_t') {
+			$this->_cPtr=$n;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_VectorUnsignedChar(); break;
+		default: $this->_cPtr=new_VectorUnsignedChar($n);
+		}
+	}
+
+	function size() {
+		return VectorUnsignedChar_size($this->_cPtr);
+	}
+
+	function capacity() {
+		return VectorUnsignedChar_capacity($this->_cPtr);
+	}
+
+	function reserve($n) {
+		VectorUnsignedChar_reserve($this->_cPtr,$n);
+	}
+
+	function clear() {
+		VectorUnsignedChar_clear($this->_cPtr);
+	}
+
+	function push($x) {
+		VectorUnsignedChar_push($this->_cPtr,$x);
+	}
+
+	function is_empty() {
+		return VectorUnsignedChar_is_empty($this->_cPtr);
+	}
+
+	function pop() {
+		return VectorUnsignedChar_pop($this->_cPtr);
+	}
+
+	function get($i) {
+		return VectorUnsignedChar_get($this->_cPtr,$i);
+	}
+
+	function set($i,$val) {
+		VectorUnsignedChar_set($this->_cPtr,$i,$val);
+	}
+}
+
+class MapStringString {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($arg1=null) {
+		if (is_resource($arg1) && get_resource_type($arg1) === '_p_std__mapT_std__string_std__string_t') {
+			$this->_cPtr=$arg1;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_MapStringString(); break;
+		default: $this->_cPtr=new_MapStringString($arg1);
+		}
+	}
+
+	function size() {
+		return MapStringString_size($this->_cPtr);
+	}
+
+	function clear() {
+		MapStringString_clear($this->_cPtr);
+	}
+
+	function get($key) {
+		return MapStringString_get($this->_cPtr,$key);
+	}
+
+	function set($key,$x) {
+		MapStringString_set($this->_cPtr,$key,$x);
+	}
+
+	function del($key) {
+		MapStringString_del($this->_cPtr,$key);
+	}
+
+	function has_key($key) {
+		return MapStringString_has_key($this->_cPtr,$key);
+	}
+
+	function is_empty() {
+		return MapStringString_is_empty($this->_cPtr);
+	}
+}
+
 class OTPassword {
 	public $_cPtr=null;
 	protected $_pData=array();
@@ -499,7 +706,7 @@ class OTCaller {
 	}
 }
 
-class OTAPI_Basic {
+class WrapTimeT {
 	public $_cPtr=null;
 	protected $_pData=array();
 
@@ -519,1343 +726,1438 @@ class OTAPI_Basic {
 	}
 
 	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTAPI_Basic') {
+		if (is_resource($res) && get_resource_type($res) === '_p_WrapTimeT') {
 			$this->_cPtr=$res;
 			return;
 		}
-		$this->_cPtr=new_OTAPI_Basic();
+		$this->_cPtr=new_WrapTimeT();
 	}
 
-	static function AppStartup() {
-		return OTAPI_Basic_AppStartup();
+	function getTime() {
+		return WrapTimeT_getTime($this->_cPtr);
 	}
 
-	static function AppShutdown() {
-		return OTAPI_Basic_AppShutdown();
-	}
-
-	static function SetAppBinaryFolder($strFolder) {
-		OTAPI_Basic_SetAppBinaryFolder($strFolder);
-	}
-
-	static function SetHomeFolder($strFolder) {
-		OTAPI_Basic_SetHomeFolder($strFolder);
-	}
-
-	static function Init() {
-		return OTAPI_Basic_Init();
-	}
-
-	static function SetWallet($strWalletFilename) {
-		return OTAPI_Basic_SetWallet($strWalletFilename);
-	}
-
-	static function WalletExists() {
-		return OTAPI_Basic_WalletExists();
-	}
-
-	static function LoadWallet() {
-		return OTAPI_Basic_LoadWallet();
-	}
-
-	static function SwitchWallet() {
-		return OTAPI_Basic_SwitchWallet();
-	}
-
-	static function Output($nLogLevel,$strOutput) {
-		OTAPI_Basic_Output($nLogLevel,$strOutput);
-	}
-
-	static function GetTime() {
-		return OTAPI_Basic_GetTime();
-	}
-
-	static function NumList_Add($strNumList,$strNumbers) {
-		return OTAPI_Basic_NumList_Add($strNumList,$strNumbers);
-	}
-
-	static function NumList_Remove($strNumList,$strNumbers) {
-		return OTAPI_Basic_NumList_Remove($strNumList,$strNumbers);
-	}
-
-	static function NumList_VerifyQuery($strNumList,$strNumbers) {
-		return OTAPI_Basic_NumList_VerifyQuery($strNumList,$strNumbers);
-	}
-
-	static function NumList_VerifyAll($strNumList,$strNumbers) {
-		return OTAPI_Basic_NumList_VerifyAll($strNumList,$strNumbers);
-	}
-
-	static function NumList_Count($strNumList) {
-		return OTAPI_Basic_NumList_Count($strNumList);
-	}
-
-	static function Encode($strPlaintext,$bLineBreaks) {
-		return OTAPI_Basic_Encode($strPlaintext,$bLineBreaks);
-	}
-
-	static function Decode($strEncoded,$bLineBreaks) {
-		return OTAPI_Basic_Decode($strEncoded,$bLineBreaks);
-	}
-
-	static function Encrypt($RECIPIENT_NYM_ID,$strPlaintext) {
-		return OTAPI_Basic_Encrypt($RECIPIENT_NYM_ID,$strPlaintext);
-	}
-
-	static function Decrypt($RECIPIENT_NYM_ID,$strCiphertext) {
-		return OTAPI_Basic_Decrypt($RECIPIENT_NYM_ID,$strCiphertext);
-	}
-
-	static function CreateSymmetricKey() {
-		return OTAPI_Basic_CreateSymmetricKey();
-	}
-
-	static function SymmetricEncrypt($SYMMETRIC_KEY,$PLAintEXT) {
-		return OTAPI_Basic_SymmetricEncrypt($SYMMETRIC_KEY,$PLAintEXT);
-	}
-
-	static function SymmetricDecrypt($SYMMETRIC_KEY,$CIPHERTEXT_ENVELOPE) {
-		return OTAPI_Basic_SymmetricDecrypt($SYMMETRIC_KEY,$CIPHERTEXT_ENVELOPE);
-	}
-
-	static function SignContract($SIGNER_NYM_ID,$THE_CONTRACT) {
-		return OTAPI_Basic_SignContract($SIGNER_NYM_ID,$THE_CONTRACT);
-	}
-
-	static function FlatSign($SIGNER_NYM_ID,$THE_INPUT,$CONTRACT_TYPE) {
-		return OTAPI_Basic_FlatSign($SIGNER_NYM_ID,$THE_INPUT,$CONTRACT_TYPE);
-	}
-
-	static function AddSignature($SIGNER_NYM_ID,$THE_CONTRACT) {
-		return OTAPI_Basic_AddSignature($SIGNER_NYM_ID,$THE_CONTRACT);
-	}
-
-	static function VerifySignature($SIGNER_NYM_ID,$THE_CONTRACT) {
-		return OTAPI_Basic_VerifySignature($SIGNER_NYM_ID,$THE_CONTRACT);
-	}
-
-	static function VerifyAndRetrieveXMLContents($THE_CONTRACT,$SIGNER_ID) {
-		return OTAPI_Basic_VerifyAndRetrieveXMLContents($THE_CONTRACT,$SIGNER_ID);
-	}
-
-	static function GetMemlogSize() {
-		return OTAPI_Basic_GetMemlogSize();
-	}
-
-	static function GetMemlogAtIndex($nIndex) {
-		return OTAPI_Basic_GetMemlogAtIndex($nIndex);
-	}
-
-	static function PeekMemlogFront() {
-		return OTAPI_Basic_PeekMemlogFront();
-	}
-
-	static function PeekMemlogBack() {
-		return OTAPI_Basic_PeekMemlogBack();
-	}
-
-	static function PopMemlogFront() {
-		return OTAPI_Basic_PopMemlogFront();
-	}
-
-	static function PopMemlogBack() {
-		return OTAPI_Basic_PopMemlogBack();
-	}
-
-	static function CreateNym($nKeySize,$NYM_ID_SOURCE,$ALT_LOCATION) {
-		return OTAPI_Basic_CreateNym($nKeySize,$NYM_ID_SOURCE,$ALT_LOCATION);
-	}
-
-	static function GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID) {
-		return OTAPI_Basic_GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID);
-	}
-
-	static function GetActiveCronItem($SERVER_ID,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_GetActiveCronItem($SERVER_ID,$TRANSACTION_NUMBER);
-	}
-
-	static function GetNym_SourceForID($NYM_ID) {
-		return OTAPI_Basic_GetNym_SourceForID($NYM_ID);
-	}
-
-	static function GetNym_AltSourceLocation($NYM_ID) {
-		return OTAPI_Basic_GetNym_AltSourceLocation($NYM_ID);
-	}
-
-	static function GetNym_CredentialCount($NYM_ID) {
-		return OTAPI_Basic_GetNym_CredentialCount($NYM_ID);
-	}
-
-	static function GetNym_CredentialID($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_CredentialID($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_CredentialContents($NYM_ID,$CREDENTIAL_ID) {
-		return OTAPI_Basic_GetNym_CredentialContents($NYM_ID,$CREDENTIAL_ID);
-	}
-
-	static function GetNym_RevokedCredCount($NYM_ID) {
-		return OTAPI_Basic_GetNym_RevokedCredCount($NYM_ID);
-	}
-
-	static function GetNym_RevokedCredID($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_RevokedCredID($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_RevokedCredContents($NYM_ID,$CREDENTIAL_ID) {
-		return OTAPI_Basic_GetNym_RevokedCredContents($NYM_ID,$CREDENTIAL_ID);
-	}
-
-	static function GetNym_SubcredentialCount($NYM_ID,$MASTER_CRED_ID) {
-		return OTAPI_Basic_GetNym_SubcredentialCount($NYM_ID,$MASTER_CRED_ID);
-	}
-
-	static function GetNym_SubCredentialID($NYM_ID,$MASTER_CRED_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_SubCredentialID($NYM_ID,$MASTER_CRED_ID,$nIndex);
-	}
-
-	static function GetNym_SubCredentialContents($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID) {
-		return OTAPI_Basic_GetNym_SubCredentialContents($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID);
-	}
-
-	static function AddSubcredential($NYM_ID,$MASTER_CRED_ID,$nKeySize) {
-		return OTAPI_Basic_AddSubcredential($NYM_ID,$MASTER_CRED_ID,$nKeySize);
-	}
-
-	static function RevokeSubcredential($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID) {
-		return OTAPI_Basic_RevokeSubcredential($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID);
-	}
-
-	static function CreateServerContract($NYM_ID,$strXMLcontents) {
-		return OTAPI_Basic_CreateServerContract($NYM_ID,$strXMLcontents);
-	}
-
-	static function CreateAssetContract($NYM_ID,$strXMLcontents) {
-		return OTAPI_Basic_CreateAssetContract($NYM_ID,$strXMLcontents);
-	}
-
-	static function CalculateAssetContractID($str_Contract) {
-		return OTAPI_Basic_CalculateAssetContractID($str_Contract);
-	}
-
-	static function CalculateServerContractID($str_Contract) {
-		return OTAPI_Basic_CalculateServerContractID($str_Contract);
-	}
-
-	static function AddServerContract($strContract) {
-		return OTAPI_Basic_AddServerContract($strContract);
-	}
-
-	static function AddAssetContract($strContract) {
-		return OTAPI_Basic_AddAssetContract($strContract);
-	}
-
-	static function GetServerCount() {
-		return OTAPI_Basic_GetServerCount();
-	}
-
-	static function GetAssetTypeCount() {
-		return OTAPI_Basic_GetAssetTypeCount();
-	}
-
-	static function GetAccountCount() {
-		return OTAPI_Basic_GetAccountCount();
-	}
-
-	static function GetNymCount() {
-		return OTAPI_Basic_GetNymCount();
-	}
-
-	static function GetServer_ID($nIndex) {
-		return OTAPI_Basic_GetServer_ID($nIndex);
-	}
-
-	static function GetServer_Name($SERVER_ID) {
-		return OTAPI_Basic_GetServer_Name($SERVER_ID);
-	}
-
-	static function GetServer_Contract($SERVER_ID) {
-		return OTAPI_Basic_GetServer_Contract($SERVER_ID);
-	}
-
-	static function FormatAmount($ASSET_TYPE_ID,$THE_AMOUNT) {
-		return OTAPI_Basic_FormatAmount($ASSET_TYPE_ID,$THE_AMOUNT);
-	}
-
-	static function StringToAmount($ASSET_TYPE_ID,$str_input) {
-		return OTAPI_Basic_StringToAmount($ASSET_TYPE_ID,$str_input);
-	}
-
-	static function GetAssetType_ID($nIndex) {
-		return OTAPI_Basic_GetAssetType_ID($nIndex);
-	}
-
-	static function GetAssetType_Name($ASSET_TYPE_ID) {
-		return OTAPI_Basic_GetAssetType_Name($ASSET_TYPE_ID);
-	}
-
-	static function GetAssetType_TLA($ASSET_TYPE_ID) {
-		return OTAPI_Basic_GetAssetType_TLA($ASSET_TYPE_ID);
-	}
-
-	static function GetAssetType_Contract($ASSET_TYPE_ID) {
-		return OTAPI_Basic_GetAssetType_Contract($ASSET_TYPE_ID);
-	}
-
-	static function GetAccountWallet_ID($nIndex) {
-		return OTAPI_Basic_GetAccountWallet_ID($nIndex);
-	}
-
-	static function GetAccountWallet_Name($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_Name($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_Balance($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_Balance($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_Type($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_Type($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_AssetTypeID($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_AssetTypeID($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_ServerID($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_ServerID($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_NymID($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_NymID($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_InboxHash($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_InboxHash($ACCOUNT_ID);
-	}
-
-	static function GetAccountWallet_OutboxHash($ACCOUNT_ID) {
-		return OTAPI_Basic_GetAccountWallet_OutboxHash($ACCOUNT_ID);
-	}
-
-	static function VerifyAccountReceipt($SERVER_ID,$NYM_ID,$ACCT_ID) {
-		return OTAPI_Basic_VerifyAccountReceipt($SERVER_ID,$NYM_ID,$ACCT_ID);
-	}
-
-	static function GetNym_TransactionNumCount($SERVER_ID,$NYM_ID) {
-		return OTAPI_Basic_GetNym_TransactionNumCount($SERVER_ID,$NYM_ID);
-	}
-
-	static function GetNym_ID($nIndex) {
-		return OTAPI_Basic_GetNym_ID($nIndex);
-	}
-
-	static function GetNym_Name($NYM_ID) {
-		return OTAPI_Basic_GetNym_Name($NYM_ID);
-	}
-
-	static function GetNym_Stats($NYM_ID) {
-		return OTAPI_Basic_GetNym_Stats($NYM_ID);
-	}
-
-	static function GetNym_NymboxHash($SERVER_ID,$NYM_ID) {
-		return OTAPI_Basic_GetNym_NymboxHash($SERVER_ID,$NYM_ID);
-	}
-
-	static function GetNym_RecentHash($SERVER_ID,$NYM_ID) {
-		return OTAPI_Basic_GetNym_RecentHash($SERVER_ID,$NYM_ID);
-	}
-
-	static function GetNym_InboxHash($ACCOUNT_ID,$NYM_ID) {
-		return OTAPI_Basic_GetNym_InboxHash($ACCOUNT_ID,$NYM_ID);
-	}
-
-	static function GetNym_OutboxHash($ACCOUNT_ID,$NYM_ID) {
-		return OTAPI_Basic_GetNym_OutboxHash($ACCOUNT_ID,$NYM_ID);
-	}
-
-	static function IsNym_RegisteredAtServer($NYM_ID,$SERVER_ID) {
-		return OTAPI_Basic_IsNym_RegisteredAtServer($NYM_ID,$SERVER_ID);
-	}
-
-	static function GetNym_MailCount($NYM_ID) {
-		return OTAPI_Basic_GetNym_MailCount($NYM_ID);
-	}
-
-	static function GetNym_MailContentsByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_MailContentsByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_MailSenderIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_MailSenderIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_MailServerIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_MailServerIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_RemoveMailByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_RemoveMailByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_VerifyMailByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_VerifyMailByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutmailCount($NYM_ID) {
-		return OTAPI_Basic_GetNym_OutmailCount($NYM_ID);
-	}
-
-	static function GetNym_OutmailContentsByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutmailContentsByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutmailRecipientIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutmailRecipientIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutmailServerIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutmailServerIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_RemoveOutmailByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_RemoveOutmailByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_VerifyOutmailByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_VerifyOutmailByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutpaymentsCount($NYM_ID) {
-		return OTAPI_Basic_GetNym_OutpaymentsCount($NYM_ID);
-	}
-
-	static function GetNym_OutpaymentsContentsByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutpaymentsContentsByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutpaymentsRecipientIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function GetNym_OutpaymentsServerIDByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_RemoveOutpaymentsByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_RemoveOutpaymentsByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Nym_VerifyOutpaymentsByIndex($NYM_ID,$nIndex) {
-		return OTAPI_Basic_Nym_VerifyOutpaymentsByIndex($NYM_ID,$nIndex);
-	}
-
-	static function Wallet_CanRemoveServer($SERVER_ID) {
-		return OTAPI_Basic_Wallet_CanRemoveServer($SERVER_ID);
-	}
-
-	static function Wallet_RemoveServer($SERVER_ID) {
-		return OTAPI_Basic_Wallet_RemoveServer($SERVER_ID);
-	}
-
-	static function Wallet_CanRemoveAssetType($ASSET_ID) {
-		return OTAPI_Basic_Wallet_CanRemoveAssetType($ASSET_ID);
-	}
-
-	static function Wallet_RemoveAssetType($ASSET_ID) {
-		return OTAPI_Basic_Wallet_RemoveAssetType($ASSET_ID);
-	}
-
-	static function Wallet_CanRemoveNym($NYM_ID) {
-		return OTAPI_Basic_Wallet_CanRemoveNym($NYM_ID);
-	}
-
-	static function Wallet_RemoveNym($NYM_ID) {
-		return OTAPI_Basic_Wallet_RemoveNym($NYM_ID);
-	}
-
-	static function Wallet_CanRemoveAccount($ACCOUNT_ID) {
-		return OTAPI_Basic_Wallet_CanRemoveAccount($ACCOUNT_ID);
-	}
-
-	static function Wallet_ChangePassphrase() {
-		return OTAPI_Basic_Wallet_ChangePassphrase();
-	}
-
-	static function Wallet_ExportNym($NYM_ID) {
-		return OTAPI_Basic_Wallet_ExportNym($NYM_ID);
-	}
-
-	static function Wallet_ImportNym($FILE_CONTENTS) {
-		return OTAPI_Basic_Wallet_ImportNym($FILE_CONTENTS);
-	}
-
-	static function Wallet_ImportCert($DISPLAY_NAME,$FILE_CONTENTS) {
-		return OTAPI_Basic_Wallet_ImportCert($DISPLAY_NAME,$FILE_CONTENTS);
-	}
-
-	static function Wallet_ExportCert($NYM_ID) {
-		return OTAPI_Basic_Wallet_ExportCert($NYM_ID);
-	}
-
-	static function Wallet_GetNymIDFromPartial($PARTIAL_ID) {
-		return OTAPI_Basic_Wallet_GetNymIDFromPartial($PARTIAL_ID);
-	}
-
-	static function Wallet_GetServerIDFromPartial($PARTIAL_ID) {
-		return OTAPI_Basic_Wallet_GetServerIDFromPartial($PARTIAL_ID);
-	}
-
-	static function Wallet_GetAssetIDFromPartial($PARTIAL_ID) {
-		return OTAPI_Basic_Wallet_GetAssetIDFromPartial($PARTIAL_ID);
-	}
-
-	static function Wallet_GetAccountIDFromPartial($PARTIAL_ID) {
-		return OTAPI_Basic_Wallet_GetAccountIDFromPartial($PARTIAL_ID);
-	}
-
-	static function SetNym_Name($NYM_ID,$SIGNER_NYM_ID,$NYM_NEW_NAME) {
-		return OTAPI_Basic_SetNym_Name($NYM_ID,$SIGNER_NYM_ID,$NYM_NEW_NAME);
-	}
-
-	static function SetAccountWallet_Name($ACCT_ID,$SIGNER_NYM_ID,$ACCT_NEW_NAME) {
-		return OTAPI_Basic_SetAccountWallet_Name($ACCT_ID,$SIGNER_NYM_ID,$ACCT_NEW_NAME);
-	}
-
-	static function SetAssetType_Name($ASSET_ID,$STR_NEW_NAME) {
-		return OTAPI_Basic_SetAssetType_Name($ASSET_ID,$STR_NEW_NAME);
-	}
-
-	static function SetServer_Name($SERVER_ID,$STR_NEW_NAME) {
-		return OTAPI_Basic_SetServer_Name($SERVER_ID,$STR_NEW_NAME);
-	}
-
-	static function WriteCheque($SERVER_ID,$CHEQUE_AMOUNT,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$CHEQUE_MEMO,$RECIPIENT_USER_ID) {
-		return OTAPI_Basic_WriteCheque($SERVER_ID,$CHEQUE_AMOUNT,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$CHEQUE_MEMO,$RECIPIENT_USER_ID);
-	}
-
-	static function DiscardCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE) {
-		return OTAPI_Basic_DiscardCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE);
-	}
-
-	static function ProposePaymentPlan($SERVER_ID,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT_AMOUNT,$INITIAL_PAYMENT_DELAY,$PAYMENT_PLAN_AMOUNT,$PAYMENT_PLAN_DELAY,$PAYMENT_PLAN_PERIOD,$PAYMENT_PLAN_LENGTH,$PAYMENT_PLAN_MAX_PAYMENTS) {
-		return OTAPI_Basic_ProposePaymentPlan($SERVER_ID,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT_AMOUNT,$INITIAL_PAYMENT_DELAY,$PAYMENT_PLAN_AMOUNT,$PAYMENT_PLAN_DELAY,$PAYMENT_PLAN_PERIOD,$PAYMENT_PLAN_LENGTH,$PAYMENT_PLAN_MAX_PAYMENTS);
-	}
-
-	static function EasyProposePlan($SERVER_ID,$DATE_RANGE,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT,$PAYMENT_PLAN,$PLAN_EXPIRY) {
-		return OTAPI_Basic_EasyProposePlan($SERVER_ID,$DATE_RANGE,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT,$PAYMENT_PLAN,$PLAN_EXPIRY);
-	}
-
-	static function ConfirmPaymentPlan($SERVER_ID,$SENDER_USER_ID,$SENDER_ACCT_ID,$RECIPIENT_USER_ID,$PAYMENT_PLAN) {
-		return OTAPI_Basic_ConfirmPaymentPlan($SERVER_ID,$SENDER_USER_ID,$SENDER_ACCT_ID,$RECIPIENT_USER_ID,$PAYMENT_PLAN);
-	}
-
-	static function Create_SmartContract($SIGNER_NYM_ID,$VALID_FROM,$VALID_TO) {
-		return OTAPI_Basic_Create_SmartContract($SIGNER_NYM_ID,$VALID_FROM,$VALID_TO);
-	}
-
-	static function SmartContract_AddBylaw($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME) {
-		return OTAPI_Basic_SmartContract_AddBylaw($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME);
-	}
-
-	static function SmartContract_AddClause($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CLAUSE_NAME,$SOURCE_CODE) {
-		return OTAPI_Basic_SmartContract_AddClause($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CLAUSE_NAME,$SOURCE_CODE);
-	}
-
-	static function SmartContract_AddVariable($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$VAR_NAME,$VAR_ACCESS,$VAR_TYPE,$VAR_VALUE) {
-		return OTAPI_Basic_SmartContract_AddVariable($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$VAR_NAME,$VAR_ACCESS,$VAR_TYPE,$VAR_VALUE);
-	}
-
-	static function SmartContract_AddCallback($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CALLBACK_NAME,$CLAUSE_NAME) {
-		return OTAPI_Basic_SmartContract_AddCallback($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CALLBACK_NAME,$CLAUSE_NAME);
-	}
-
-	static function SmartContract_AddHook($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$HOOK_NAME,$CLAUSE_NAME) {
-		return OTAPI_Basic_SmartContract_AddHook($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$HOOK_NAME,$CLAUSE_NAME);
-	}
-
-	static function SmartContract_AddParty($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$AGENT_NAME) {
-		return OTAPI_Basic_SmartContract_AddParty($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$AGENT_NAME);
-	}
-
-	static function SmartContract_AddAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$ASSET_TYPE_ID) {
-		return OTAPI_Basic_SmartContract_AddAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$ASSET_TYPE_ID);
-	}
-
-	static function SmartContract_CountNumsNeeded($THE_CONTRACT,$AGENT_NAME) {
-		return OTAPI_Basic_SmartContract_CountNumsNeeded($THE_CONTRACT,$AGENT_NAME);
-	}
-
-	static function SmartContract_ConfirmAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$AGENT_NAME,$ACCT_ID) {
-		return OTAPI_Basic_SmartContract_ConfirmAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$AGENT_NAME,$ACCT_ID);
-	}
-
-	static function SmartContract_ConfirmParty($THE_CONTRACT,$PARTY_NAME,$NYM_ID) {
-		return OTAPI_Basic_SmartContract_ConfirmParty($THE_CONTRACT,$PARTY_NAME,$NYM_ID);
-	}
-
-	static function Smart_AreAllPartiesConfirmed($THE_CONTRACT) {
-		return OTAPI_Basic_Smart_AreAllPartiesConfirmed($THE_CONTRACT);
-	}
-
-	static function Smart_IsPartyConfirmed($THE_CONTRACT,$PARTY_NAME) {
-		return OTAPI_Basic_Smart_IsPartyConfirmed($THE_CONTRACT,$PARTY_NAME);
-	}
-
-	static function Smart_GetBylawCount($THE_CONTRACT) {
-		return OTAPI_Basic_Smart_GetBylawCount($THE_CONTRACT);
-	}
-
-	static function Smart_GetBylawByIndex($THE_CONTRACT,$nIndex) {
-		return OTAPI_Basic_Smart_GetBylawByIndex($THE_CONTRACT,$nIndex);
-	}
-
-	static function Bylaw_GetLanguage($THE_CONTRACT,$BYLAW_NAME) {
-		return OTAPI_Basic_Bylaw_GetLanguage($THE_CONTRACT,$BYLAW_NAME);
-	}
-
-	static function Bylaw_GetClauseCount($THE_CONTRACT,$BYLAW_NAME) {
-		return OTAPI_Basic_Bylaw_GetClauseCount($THE_CONTRACT,$BYLAW_NAME);
-	}
-
-	static function Clause_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
-		return OTAPI_Basic_Clause_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
-	}
-
-	static function Clause_GetContents($THE_CONTRACT,$BYLAW_NAME,$CLAUSE_NAME) {
-		return OTAPI_Basic_Clause_GetContents($THE_CONTRACT,$BYLAW_NAME,$CLAUSE_NAME);
-	}
-
-	static function Bylaw_GetVariableCount($THE_CONTRACT,$BYLAW_NAME) {
-		return OTAPI_Basic_Bylaw_GetVariableCount($THE_CONTRACT,$BYLAW_NAME);
-	}
-
-	static function Variable_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
-		return OTAPI_Basic_Variable_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
-	}
-
-	static function Variable_GetType($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
-		return OTAPI_Basic_Variable_GetType($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
-	}
-
-	static function Variable_GetAccess($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
-		return OTAPI_Basic_Variable_GetAccess($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
-	}
-
-	static function Variable_GetContents($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
-		return OTAPI_Basic_Variable_GetContents($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
-	}
-
-	static function Bylaw_GetHookCount($THE_CONTRACT,$BYLAW_NAME) {
-		return OTAPI_Basic_Bylaw_GetHookCount($THE_CONTRACT,$BYLAW_NAME);
-	}
-
-	static function Hook_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
-		return OTAPI_Basic_Hook_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
-	}
-
-	static function Hook_GetClauseCount($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME) {
-		return OTAPI_Basic_Hook_GetClauseCount($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME);
-	}
-
-	static function Hook_GetClauseAtIndex($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME,$nIndex) {
-		return OTAPI_Basic_Hook_GetClauseAtIndex($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME,$nIndex);
-	}
-
-	static function Bylaw_GetCallbackCount($THE_CONTRACT,$BYLAW_NAME) {
-		return OTAPI_Basic_Bylaw_GetCallbackCount($THE_CONTRACT,$BYLAW_NAME);
-	}
-
-	static function Callback_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
-		return OTAPI_Basic_Callback_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
-	}
-
-	static function Callback_GetClause($THE_CONTRACT,$BYLAW_NAME,$CALLBACK_NAME) {
-		return OTAPI_Basic_Callback_GetClause($THE_CONTRACT,$BYLAW_NAME,$CALLBACK_NAME);
-	}
-
-	static function Smart_GetPartyCount($THE_CONTRACT) {
-		return OTAPI_Basic_Smart_GetPartyCount($THE_CONTRACT);
-	}
-
-	static function Smart_GetPartyByIndex($THE_CONTRACT,$nIndex) {
-		return OTAPI_Basic_Smart_GetPartyByIndex($THE_CONTRACT,$nIndex);
-	}
-
-	static function Party_GetID($THE_CONTRACT,$PARTY_NAME) {
-		return OTAPI_Basic_Party_GetID($THE_CONTRACT,$PARTY_NAME);
-	}
-
-	static function Party_GetAcctCount($THE_CONTRACT,$PARTY_NAME) {
-		return OTAPI_Basic_Party_GetAcctCount($THE_CONTRACT,$PARTY_NAME);
-	}
-
-	static function Party_GetAcctNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex) {
-		return OTAPI_Basic_Party_GetAcctNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex);
-	}
-
-	static function Party_GetAcctID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
-		return OTAPI_Basic_Party_GetAcctID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
-	}
-
-	static function Party_GetAcctAssetID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
-		return OTAPI_Basic_Party_GetAcctAssetID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
-	}
-
-	static function Party_GetAcctAgentName($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
-		return OTAPI_Basic_Party_GetAcctAgentName($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
-	}
-
-	static function Party_GetAgentCount($THE_CONTRACT,$PARTY_NAME) {
-		return OTAPI_Basic_Party_GetAgentCount($THE_CONTRACT,$PARTY_NAME);
-	}
-
-	static function Party_GetAgentNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex) {
-		return OTAPI_Basic_Party_GetAgentNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex);
-	}
-
-	static function Party_GetAgentID($THE_CONTRACT,$PARTY_NAME,$AGENT_NAME) {
-		return OTAPI_Basic_Party_GetAgentID($THE_CONTRACT,$PARTY_NAME,$AGENT_NAME);
-	}
-
-	static function activateSmartContract($SERVER_ID,$USER_ID,$THE_SMART_CONTRACT) {
-		return OTAPI_Basic_activateSmartContract($SERVER_ID,$USER_ID,$THE_SMART_CONTRACT);
-	}
-
-	static function triggerClause($SERVER_ID,$USER_ID,$TRANSACTION_NUMBER,$CLAUSE_NAME,$STR_PARAM) {
-		return OTAPI_Basic_triggerClause($SERVER_ID,$USER_ID,$TRANSACTION_NUMBER,$CLAUSE_NAME,$STR_PARAM);
-	}
-
-	static function Msg_HarvestTransactionNumbers($THE_MESSAGE,$USER_ID,$bHarvestingForRetry,$bReplyWasSuccess,$bReplyWasFailure,$bTransactionWasSuccess,$bTransactionWasFailure) {
-		return OTAPI_Basic_Msg_HarvestTransactionNumbers($THE_MESSAGE,$USER_ID,$bHarvestingForRetry,$bReplyWasSuccess,$bReplyWasFailure,$bTransactionWasSuccess,$bTransactionWasFailure);
-	}
-
-	static function LoadUserPubkey_Encryption($USER_ID) {
-		return OTAPI_Basic_LoadUserPubkey_Encryption($USER_ID);
-	}
-
-	static function LoadUserPubkey_Signing($USER_ID) {
-		return OTAPI_Basic_LoadUserPubkey_Signing($USER_ID);
-	}
-
-	static function LoadPubkey_Encryption($USER_ID) {
-		return OTAPI_Basic_LoadPubkey_Encryption($USER_ID);
-	}
-
-	static function LoadPubkey_Signing($USER_ID) {
-		return OTAPI_Basic_LoadPubkey_Signing($USER_ID);
-	}
-
-	static function VerifyUserPrivateKey($USER_ID) {
-		return OTAPI_Basic_VerifyUserPrivateKey($USER_ID);
-	}
-
-	static function LoadPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID) {
-		return OTAPI_Basic_LoadPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID);
-	}
-
-	static function LoadMint($SERVER_ID,$ASSET_TYPE_ID) {
-		return OTAPI_Basic_LoadMint($SERVER_ID,$ASSET_TYPE_ID);
-	}
-
-	static function LoadAssetContract($ASSET_TYPE_ID) {
-		return OTAPI_Basic_LoadAssetContract($ASSET_TYPE_ID);
-	}
-
-	static function LoadServerContract($SERVER_ID) {
-		return OTAPI_Basic_LoadServerContract($SERVER_ID);
-	}
-
-	static function Mint_IsStillGood($SERVER_ID,$ASSET_TYPE_ID) {
-		return OTAPI_Basic_Mint_IsStillGood($SERVER_ID,$ASSET_TYPE_ID);
-	}
-
-	static function IsBasketCurrency($ASSET_TYPE_ID) {
-		return OTAPI_Basic_IsBasketCurrency($ASSET_TYPE_ID);
-	}
-
-	static function Basket_GetMemberCount($BASKET_ASSET_TYPE_ID) {
-		return OTAPI_Basic_Basket_GetMemberCount($BASKET_ASSET_TYPE_ID);
-	}
-
-	static function Basket_GetMemberType($BASKET_ASSET_TYPE_ID,$nIndex) {
-		return OTAPI_Basic_Basket_GetMemberType($BASKET_ASSET_TYPE_ID,$nIndex);
-	}
-
-	static function Basket_GetMinimumTransferAmount($BASKET_ASSET_TYPE_ID) {
-		return OTAPI_Basic_Basket_GetMinimumTransferAmount($BASKET_ASSET_TYPE_ID);
-	}
-
-	static function Basket_GetMemberMinimumTransferAmount($BASKET_ASSET_TYPE_ID,$nIndex) {
-		return OTAPI_Basic_Basket_GetMemberMinimumTransferAmount($BASKET_ASSET_TYPE_ID,$nIndex);
-	}
-
-	static function LoadAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadInbox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadInbox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadOutbox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadOutbox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadInboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadInboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadOutboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadOutboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadPaymentInbox($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadPaymentInbox($SERVER_ID,$USER_ID);
-	}
-
-	static function LoadPaymentInboxNoVerify($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadPaymentInboxNoVerify($SERVER_ID,$USER_ID);
-	}
-
-	static function LoadRecordBox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadRecordBox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function LoadRecordBoxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_LoadRecordBoxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function ClearRecord($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nIndex,$bClearAll) {
-		return OTAPI_Basic_ClearRecord($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nIndex,$bClearAll);
-	}
-
-	static function LoadExpiredBox($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadExpiredBox($SERVER_ID,$USER_ID);
-	}
-
-	static function LoadExpiredBoxNoVerify($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadExpiredBoxNoVerify($SERVER_ID,$USER_ID);
-	}
-
-	static function ClearExpired($SERVER_ID,$USER_ID,$nIndex,$bClearAll) {
-		return OTAPI_Basic_ClearExpired($SERVER_ID,$USER_ID,$nIndex,$bClearAll);
-	}
-
-	static function Ledger_GetCount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER) {
-		return OTAPI_Basic_Ledger_GetCount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER);
-	}
-
-	static function Ledger_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$ORIGINAL_LEDGER) {
-		return OTAPI_Basic_Ledger_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$ORIGINAL_LEDGER);
-	}
-
-	static function Ledger_GetTransactionByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
-		return OTAPI_Basic_Ledger_GetTransactionByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
-	}
-
-	static function Ledger_GetTransactionByID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_Ledger_GetTransactionByID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$TRANSACTION_NUMBER);
-	}
-
-	static function Ledger_GetTransactionIDByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
-		return OTAPI_Basic_Ledger_GetTransactionIDByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
-	}
-
-	static function Ledger_AddTransaction($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$THE_TRANSACTION) {
-		return OTAPI_Basic_Ledger_AddTransaction($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$THE_TRANSACTION);
-	}
-
-	static function Transaction_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$RESPONSE_LEDGER,$ORIGINAL_TRANSACTION,$BOOL_DO_I_ACCEPT) {
-		return OTAPI_Basic_Transaction_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$RESPONSE_LEDGER,$ORIGINAL_TRANSACTION,$BOOL_DO_I_ACCEPT);
-	}
-
-	static function Ledger_FinalizeResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER) {
-		return OTAPI_Basic_Ledger_FinalizeResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER);
-	}
-
-	static function Ledger_GetInstrument($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
-		return OTAPI_Basic_Ledger_GetInstrument($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
-	}
-
-	static function RecordPayment($SERVER_ID,$USER_ID,$bIsInbox,$nIndex,$bSaveCopy) {
-		return OTAPI_Basic_RecordPayment($SERVER_ID,$USER_ID,$bIsInbox,$nIndex,$bSaveCopy);
-	}
-
-	static function Transaction_GetType($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetType($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function ReplyNotice_GetRequestNum($SERVER_ID,$USER_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_ReplyNotice_GetRequestNum($SERVER_ID,$USER_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetVoucher($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetVoucher($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_IsCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_IsCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Pending_GetNote($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Pending_GetNote($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetSenderUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetSenderUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetSenderAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetSenderAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetRecipientUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetRecipientUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetRecipientAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetRecipientAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function Transaction_GetDisplayReferenceToNum($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		return OTAPI_Basic_Transaction_GetDisplayReferenceToNum($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-	}
-
-	static function SavePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
-		return OTAPI_Basic_SavePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
-	}
-
-	static function CreatePurse($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$SIGNER_ID) {
-		return OTAPI_Basic_CreatePurse($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$SIGNER_ID);
-	}
-
-	static function CreatePurse_Passphrase($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID) {
-		return OTAPI_Basic_CreatePurse_Passphrase($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID);
-	}
-
-	static function Purse_GetTotalValue($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_GetTotalValue($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE);
-	}
-
-	static function Purse_Count($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_Count($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE);
-	}
-
-	static function Purse_HasPassword($SERVER_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_HasPassword($SERVER_ID,$THE_PURSE);
-	}
-
-	static function Purse_Peek($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_Peek($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$THE_PURSE);
-	}
-
-	static function Purse_Pop($SERVER_ID,$ASSET_TYPE_ID,$OWNER_OR_SIGNER_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_Pop($SERVER_ID,$ASSET_TYPE_ID,$OWNER_OR_SIGNER_ID,$THE_PURSE);
-	}
-
-	static function Purse_Push($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$OWNER_ID,$THE_PURSE,$THE_TOKEN) {
-		return OTAPI_Basic_Purse_Push($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$OWNER_ID,$THE_PURSE,$THE_TOKEN);
-	}
-
-	static function Purse_Empty($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$THE_PURSE) {
-		return OTAPI_Basic_Purse_Empty($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$THE_PURSE);
-	}
-
-	static function Wallet_ImportPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
-		return OTAPI_Basic_Wallet_ImportPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
-	}
-
-	static function exchangePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
-		return OTAPI_Basic_exchangePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
-	}
-
-	static function Token_ChangeOwner($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN,$SIGNER_NYM_ID,$OLD_OWNER,$NEW_OWNER) {
-		return OTAPI_Basic_Token_ChangeOwner($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN,$SIGNER_NYM_ID,$OLD_OWNER,$NEW_OWNER);
-	}
-
-	static function Token_GetID($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		return OTAPI_Basic_Token_GetID($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-	}
-
-	static function Token_GetDenomination($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		return OTAPI_Basic_Token_GetDenomination($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-	}
-
-	static function Token_GetSeries($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		return OTAPI_Basic_Token_GetSeries($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-	}
-
-	static function Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		return OTAPI_Basic_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-	}
-
-	static function Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		return OTAPI_Basic_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-	}
-
-	static function Token_GetAssetID($THE_TOKEN) {
-		return OTAPI_Basic_Token_GetAssetID($THE_TOKEN);
-	}
-
-	static function Token_GetServerID($THE_TOKEN) {
-		return OTAPI_Basic_Token_GetServerID($THE_TOKEN);
-	}
-
-	static function Instrmnt_GetAmount($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetAmount($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetTransNum($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetTransNum($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetValidFrom($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetValidFrom($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetValidTo($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetValidTo($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetMemo($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetMemo($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetType($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetType($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetServerID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetServerID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetAssetID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetAssetID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetSenderUserID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetSenderUserID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetSenderAcctID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetSenderAcctID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetRemitterUserID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetRemitterUserID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetRemitterAcctID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetRemitterAcctID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetRecipientUserID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetRecipientUserID($THE_INSTRUMENT);
-	}
-
-	static function Instrmnt_GetRecipientAcctID($THE_INSTRUMENT) {
-		return OTAPI_Basic_Instrmnt_GetRecipientAcctID($THE_INSTRUMENT);
-	}
-
-	static function checkServerID($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_checkServerID($SERVER_ID,$USER_ID);
-	}
-
-	static function createUserAccount($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_createUserAccount($SERVER_ID,$USER_ID);
-	}
-
-	static function deleteUserAccount($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_deleteUserAccount($SERVER_ID,$USER_ID);
-	}
-
-	static function deleteAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
-		return OTAPI_Basic_deleteAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID);
-	}
-
-	static function usageCredits($SERVER_ID,$USER_ID,$USER_ID_CHECK,$ADJUSTMENT) {
-		return OTAPI_Basic_usageCredits($SERVER_ID,$USER_ID,$USER_ID_CHECK,$ADJUSTMENT);
-	}
-
-	static function Message_GetUsageCredits($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetUsageCredits($THE_MESSAGE);
-	}
-
-	static function checkUser($SERVER_ID,$USER_ID,$USER_ID_CHECK) {
-		return OTAPI_Basic_checkUser($SERVER_ID,$USER_ID,$USER_ID_CHECK);
-	}
-
-	static function sendUserMessage($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_MESSAGE) {
-		return OTAPI_Basic_sendUserMessage($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_MESSAGE);
-	}
-
-	static function sendUserInstrument($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER) {
-		return OTAPI_Basic_sendUserInstrument($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER);
-	}
-
-	static function getRequest($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_getRequest($SERVER_ID,$USER_ID);
-	}
-
-	static function getTransactionNumber($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_getTransactionNumber($SERVER_ID,$USER_ID);
-	}
-
-	static function issueAssetType($SERVER_ID,$USER_ID,$THE_CONTRACT) {
-		return OTAPI_Basic_issueAssetType($SERVER_ID,$USER_ID,$THE_CONTRACT);
-	}
-
-	static function getContract($SERVER_ID,$USER_ID,$ASSET_ID) {
-		return OTAPI_Basic_getContract($SERVER_ID,$USER_ID,$ASSET_ID);
-	}
-
-	static function getMint($SERVER_ID,$USER_ID,$ASSET_ID) {
-		return OTAPI_Basic_getMint($SERVER_ID,$USER_ID,$ASSET_ID);
-	}
-
-	static function createAssetAccount($SERVER_ID,$USER_ID,$ASSET_ID) {
-		return OTAPI_Basic_createAssetAccount($SERVER_ID,$USER_ID,$ASSET_ID);
-	}
-
-	static function getAccount($SERVER_ID,$USER_ID,$ACCT_ID) {
-		return OTAPI_Basic_getAccount($SERVER_ID,$USER_ID,$ACCT_ID);
-	}
-
-	static function getAccountFiles($SERVER_ID,$USER_ID,$ACCT_ID) {
-		return OTAPI_Basic_getAccountFiles($SERVER_ID,$USER_ID,$ACCT_ID);
-	}
-
-	static function GenerateBasketCreation($USER_ID,$MINIMUM_TRANSFER) {
-		return OTAPI_Basic_GenerateBasketCreation($USER_ID,$MINIMUM_TRANSFER);
-	}
-
-	static function AddBasketCreationItem($USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$MINIMUM_TRANSFER) {
-		return OTAPI_Basic_AddBasketCreationItem($USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$MINIMUM_TRANSFER);
-	}
-
-	static function issueBasket($SERVER_ID,$USER_ID,$THE_BASKET) {
-		return OTAPI_Basic_issueBasket($SERVER_ID,$USER_ID,$THE_BASKET);
-	}
-
-	static function GenerateBasketExchange($SERVER_ID,$USER_ID,$BASKET_ASSET_TYPE_ID,$BASKET_ASSET_ACCT_ID,$TRANSFER_MULTIPLE) {
-		return OTAPI_Basic_GenerateBasketExchange($SERVER_ID,$USER_ID,$BASKET_ASSET_TYPE_ID,$BASKET_ASSET_ACCT_ID,$TRANSFER_MULTIPLE);
-	}
-
-	static function AddBasketExchangeItem($SERVER_ID,$USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$ASSET_ACCT_ID) {
-		return OTAPI_Basic_AddBasketExchangeItem($SERVER_ID,$USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$ASSET_ACCT_ID);
-	}
-
-	static function exchangeBasket($SERVER_ID,$USER_ID,$BASKET_ASSET_ID,$THE_BASKET,$BOOL_EXCHANGE_IN_OR_OUT) {
-		return OTAPI_Basic_exchangeBasket($SERVER_ID,$USER_ID,$BASKET_ASSET_ID,$THE_BASKET,$BOOL_EXCHANGE_IN_OR_OUT);
-	}
-
-	static function notarizeWithdrawal($SERVER_ID,$USER_ID,$ACCT_ID,$AMOUNT) {
-		return OTAPI_Basic_notarizeWithdrawal($SERVER_ID,$USER_ID,$ACCT_ID,$AMOUNT);
-	}
-
-	static function notarizeDeposit($SERVER_ID,$USER_ID,$ACCT_ID,$THE_PURSE) {
-		return OTAPI_Basic_notarizeDeposit($SERVER_ID,$USER_ID,$ACCT_ID,$THE_PURSE);
-	}
-
-	static function notarizeTransfer($SERVER_ID,$USER_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE) {
-		return OTAPI_Basic_notarizeTransfer($SERVER_ID,$USER_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE);
-	}
-
-	static function getInbox($SERVER_ID,$USER_ID,$ACCT_ID) {
-		return OTAPI_Basic_getInbox($SERVER_ID,$USER_ID,$ACCT_ID);
-	}
-
-	static function getOutbox($SERVER_ID,$USER_ID,$ACCT_ID) {
-		return OTAPI_Basic_getOutbox($SERVER_ID,$USER_ID,$ACCT_ID);
-	}
-
-	static function getNymbox($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_getNymbox($SERVER_ID,$USER_ID);
-	}
-
-	static function LoadNymbox($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadNymbox($SERVER_ID,$USER_ID);
-	}
-
-	static function LoadNymboxNoVerify($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_LoadNymboxNoVerify($SERVER_ID,$USER_ID);
-	}
-
-	static function Nymbox_GetReplyNotice($SERVER_ID,$USER_ID,$REQUEST_NUMBER) {
-		return OTAPI_Basic_Nymbox_GetReplyNotice($SERVER_ID,$USER_ID,$REQUEST_NUMBER);
-	}
-
-	static function HaveAlreadySeenReply($SERVER_ID,$USER_ID,$REQUEST_NUMBER) {
-		return OTAPI_Basic_HaveAlreadySeenReply($SERVER_ID,$USER_ID,$REQUEST_NUMBER);
-	}
-
-	static function getBoxReceipt($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_getBoxReceipt($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER);
-	}
-
-	static function DoesBoxReceiptExist($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_DoesBoxReceiptExist($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER);
-	}
-
-	static function processInbox($SERVER_ID,$USER_ID,$ACCT_ID,$ACCT_LEDGER) {
-		return OTAPI_Basic_processInbox($SERVER_ID,$USER_ID,$ACCT_ID,$ACCT_LEDGER);
-	}
-
-	static function processNymbox($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_processNymbox($SERVER_ID,$USER_ID);
-	}
-
-	static function withdrawVoucher($SERVER_ID,$USER_ID,$ACCT_ID,$RECIPIENT_USER_ID,$CHEQUE_MEMO,$AMOUNT) {
-		return OTAPI_Basic_withdrawVoucher($SERVER_ID,$USER_ID,$ACCT_ID,$RECIPIENT_USER_ID,$CHEQUE_MEMO,$AMOUNT);
-	}
-
-	static function payDividend($SERVER_ID,$ISSUER_USER_ID,$DIVIDEND_FROM_ACCT_ID,$SHARES_ASSET_TYPE_ID,$DIVIDEND_MEMO,$AMOUNT_PER_SHARE) {
-		return OTAPI_Basic_payDividend($SERVER_ID,$ISSUER_USER_ID,$DIVIDEND_FROM_ACCT_ID,$SHARES_ASSET_TYPE_ID,$DIVIDEND_MEMO,$AMOUNT_PER_SHARE);
-	}
-
-	static function depositCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE) {
-		return OTAPI_Basic_depositCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE);
-	}
-
-	static function depositPaymentPlan($SERVER_ID,$USER_ID,$THE_PAYMENT_PLAN) {
-		return OTAPI_Basic_depositPaymentPlan($SERVER_ID,$USER_ID,$THE_PAYMENT_PLAN);
-	}
-
-	static function issueMarketOffer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$MARKET_SCALE,$MINIMUM_INCREMENT,$TOTAL_ASSETS_ON_OFFER,$PRICE_LIMIT,$bBuyingOrSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE) {
-		return OTAPI_Basic_issueMarketOffer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$MARKET_SCALE,$MINIMUM_INCREMENT,$TOTAL_ASSETS_ON_OFFER,$PRICE_LIMIT,$bBuyingOrSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE);
-	}
-
-	static function getMarketList($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_getMarketList($SERVER_ID,$USER_ID);
-	}
-
-	static function getMarketOffers($SERVER_ID,$USER_ID,$MARKET_ID,$MAX_DEPTH) {
-		return OTAPI_Basic_getMarketOffers($SERVER_ID,$USER_ID,$MARKET_ID,$MAX_DEPTH);
-	}
-
-	static function getMarketRecentTrades($SERVER_ID,$USER_ID,$MARKET_ID) {
-		return OTAPI_Basic_getMarketRecentTrades($SERVER_ID,$USER_ID,$MARKET_ID);
-	}
-
-	static function getNym_MarketOffers($SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_getNym_MarketOffers($SERVER_ID,$USER_ID);
-	}
-
-	static function killMarketOffer($SERVER_ID,$USER_ID,$ASSET_ACCT_ID,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_killMarketOffer($SERVER_ID,$USER_ID,$ASSET_ACCT_ID,$TRANSACTION_NUMBER);
-	}
-
-	static function killPaymentPlan($SERVER_ID,$USER_ID,$FROM_ACCT_ID,$TRANSACTION_NUMBER) {
-		return OTAPI_Basic_killPaymentPlan($SERVER_ID,$USER_ID,$FROM_ACCT_ID,$TRANSACTION_NUMBER);
-	}
-
-	static function PopMessageBuffer($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_PopMessageBuffer($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
-	}
-
-	static function FlushMessageBuffer() {
-		OTAPI_Basic_FlushMessageBuffer();
-	}
-
-	static function GetSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_GetSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
-	}
-
-	static function RemoveSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
-		return OTAPI_Basic_RemoveSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
-	}
-
-	static function FlushSentMessages($bHarvestingForRetry,$SERVER_ID,$USER_ID,$THE_NYMBOX) {
-		OTAPI_Basic_FlushSentMessages($bHarvestingForRetry,$SERVER_ID,$USER_ID,$THE_NYMBOX);
-	}
-
-	static function Sleep($MILLISECONDS) {
-		OTAPI_Basic_Sleep($MILLISECONDS);
-	}
-
-	static function ResyncNymWithServer($SERVER_ID,$USER_ID,$THE_MESSAGE) {
-		return OTAPI_Basic_ResyncNymWithServer($SERVER_ID,$USER_ID,$THE_MESSAGE);
-	}
-
-	static function Message_GetCommand($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetCommand($THE_MESSAGE);
-	}
-
-	static function Message_GetSuccess($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetSuccess($THE_MESSAGE);
-	}
-
-	static function queryAssetTypes($SERVER_ID,$USER_ID,$ENCODED_MAP) {
-		return OTAPI_Basic_queryAssetTypes($SERVER_ID,$USER_ID,$ENCODED_MAP);
-	}
-
-	static function Message_GetPayload($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetPayload($THE_MESSAGE);
-	}
-
-	static function Message_GetDepth($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetDepth($THE_MESSAGE);
-	}
-
-	static function Message_GetTransactionSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetTransactionSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
-	}
-
-	static function Message_IsTransactionCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
-		return OTAPI_Basic_Message_IsTransactionCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
-	}
-
-	static function Message_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
-	}
-
-	static function Message_GetLedger($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetLedger($THE_MESSAGE);
-	}
-
-	static function Message_GetNewAssetTypeID($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetNewAssetTypeID($THE_MESSAGE);
-	}
-
-	static function Message_GetNewIssuerAcctID($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetNewIssuerAcctID($THE_MESSAGE);
-	}
-
-	static function Message_GetNewAcctID($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetNewAcctID($THE_MESSAGE);
-	}
-
-	static function Message_GetNymboxHash($THE_MESSAGE) {
-		return OTAPI_Basic_Message_GetNymboxHash($THE_MESSAGE);
-	}
-
-	static function ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD) {
-		return OTAPI_Basic_ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD);
-	}
-
-	static function ProcessSockets() {
-		return OTAPI_Basic_ProcessSockets();
+	function setTime($_time) {
+		WrapTimeT_setTime($this->_cPtr,$_time);
 	}
 }
 
-class OTMadeEasy {
+class OTAPI_Wrap {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+	function __construct($h) {
+		$this->_cPtr=$h;
+	}
+
+	static function SetExecutor($exec) {
+		return OTAPI_Wrap_SetExecutor($exec);
+	}
+
+	static function Exec() {
+		return OTAPI_Wrap_Exec();
+	}
+
+	static function It() {
+		return OTAPI_Wrap_It();
+	}
+
+	static function OTAPI() {
+		return OTAPI_Wrap_OTAPI();
+	}
+
+	static function StringToLong($strNumber) {
+		return OTAPI_Wrap_StringToLong($strNumber);
+	}
+
+	static function LongToString($lNumber) {
+		return OTAPI_Wrap_LongToString($lNumber);
+	}
+
+	static function StringToUlong($strNumber) {
+		return OTAPI_Wrap_StringToUlong($strNumber);
+	}
+
+	static function UlongToString($lNumber) {
+		return OTAPI_Wrap_UlongToString($lNumber);
+	}
+
+	static function AppInit() {
+		return OTAPI_Wrap_AppInit();
+	}
+
+	static function AppCleanup() {
+		return OTAPI_Wrap_AppCleanup();
+	}
+
+	static function SetAppBinaryFolder($strFolder) {
+		OTAPI_Wrap_SetAppBinaryFolder($strFolder);
+	}
+
+	static function SetHomeFolder($strFolder) {
+		OTAPI_Wrap_SetHomeFolder($strFolder);
+	}
+
+	static function SetWallet($strWalletFilename) {
+		return OTAPI_Wrap_SetWallet($strWalletFilename);
+	}
+
+	static function WalletExists() {
+		return OTAPI_Wrap_WalletExists();
+	}
+
+	static function LoadWallet() {
+		return OTAPI_Wrap_LoadWallet();
+	}
+
+	static function SwitchWallet() {
+		return OTAPI_Wrap_SwitchWallet();
+	}
+
+	static function Output($nLogLevel,$strOutput) {
+		OTAPI_Wrap_Output($nLogLevel,$strOutput);
+	}
+
+	static function GetTime() {
+		$r=OTAPI_Wrap_GetTime();
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function NumList_Add($strNumList,$strNumbers) {
+		return OTAPI_Wrap_NumList_Add($strNumList,$strNumbers);
+	}
+
+	static function NumList_Remove($strNumList,$strNumbers) {
+		return OTAPI_Wrap_NumList_Remove($strNumList,$strNumbers);
+	}
+
+	static function NumList_VerifyQuery($strNumList,$strNumbers) {
+		return OTAPI_Wrap_NumList_VerifyQuery($strNumList,$strNumbers);
+	}
+
+	static function NumList_VerifyAll($strNumList,$strNumbers) {
+		return OTAPI_Wrap_NumList_VerifyAll($strNumList,$strNumbers);
+	}
+
+	static function NumList_Count($strNumList) {
+		return OTAPI_Wrap_NumList_Count($strNumList);
+	}
+
+	static function Encode($strPlaintext,$bLineBreaks) {
+		return OTAPI_Wrap_Encode($strPlaintext,$bLineBreaks);
+	}
+
+	static function Decode($strEncoded,$bLineBreaks) {
+		return OTAPI_Wrap_Decode($strEncoded,$bLineBreaks);
+	}
+
+	static function Encrypt($RECIPIENT_NYM_ID,$strPlaintext) {
+		return OTAPI_Wrap_Encrypt($RECIPIENT_NYM_ID,$strPlaintext);
+	}
+
+	static function Decrypt($RECIPIENT_NYM_ID,$strCiphertext) {
+		return OTAPI_Wrap_Decrypt($RECIPIENT_NYM_ID,$strCiphertext);
+	}
+
+	static function CreateSymmetricKey() {
+		return OTAPI_Wrap_CreateSymmetricKey();
+	}
+
+	static function SymmetricEncrypt($SYMMETRIC_KEY,$PLAintEXT) {
+		return OTAPI_Wrap_SymmetricEncrypt($SYMMETRIC_KEY,$PLAintEXT);
+	}
+
+	static function SymmetricDecrypt($SYMMETRIC_KEY,$CIPHERTEXT_ENVELOPE) {
+		return OTAPI_Wrap_SymmetricDecrypt($SYMMETRIC_KEY,$CIPHERTEXT_ENVELOPE);
+	}
+
+	static function SignContract($SIGNER_NYM_ID,$THE_CONTRACT) {
+		return OTAPI_Wrap_SignContract($SIGNER_NYM_ID,$THE_CONTRACT);
+	}
+
+	static function FlatSign($SIGNER_NYM_ID,$THE_INPUT,$CONTRACT_TYPE) {
+		return OTAPI_Wrap_FlatSign($SIGNER_NYM_ID,$THE_INPUT,$CONTRACT_TYPE);
+	}
+
+	static function AddSignature($SIGNER_NYM_ID,$THE_CONTRACT) {
+		return OTAPI_Wrap_AddSignature($SIGNER_NYM_ID,$THE_CONTRACT);
+	}
+
+	static function VerifySignature($SIGNER_NYM_ID,$THE_CONTRACT) {
+		return OTAPI_Wrap_VerifySignature($SIGNER_NYM_ID,$THE_CONTRACT);
+	}
+
+	static function VerifyAndRetrieveXMLContents($THE_CONTRACT,$SIGNER_ID) {
+		return OTAPI_Wrap_VerifyAndRetrieveXMLContents($THE_CONTRACT,$SIGNER_ID);
+	}
+
+	static function GetMemlogSize() {
+		return OTAPI_Wrap_GetMemlogSize();
+	}
+
+	static function GetMemlogAtIndex($nIndex) {
+		return OTAPI_Wrap_GetMemlogAtIndex($nIndex);
+	}
+
+	static function PeekMemlogFront() {
+		return OTAPI_Wrap_PeekMemlogFront();
+	}
+
+	static function PeekMemlogBack() {
+		return OTAPI_Wrap_PeekMemlogBack();
+	}
+
+	static function PopMemlogFront() {
+		return OTAPI_Wrap_PopMemlogFront();
+	}
+
+	static function PopMemlogBack() {
+		return OTAPI_Wrap_PopMemlogBack();
+	}
+
+	static function CreateNym($nKeySize,$NYM_ID_SOURCE,$ALT_LOCATION) {
+		return OTAPI_Wrap_CreateNym($nKeySize,$NYM_ID_SOURCE,$ALT_LOCATION);
+	}
+
+	static function GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID) {
+		return OTAPI_Wrap_GetNym_ActiveCronItemIDs($NYM_ID,$SERVER_ID);
+	}
+
+	static function GetActiveCronItem($SERVER_ID,$lTransNum) {
+		return OTAPI_Wrap_GetActiveCronItem($SERVER_ID,$lTransNum);
+	}
+
+	static function GetNym_SourceForID($NYM_ID) {
+		return OTAPI_Wrap_GetNym_SourceForID($NYM_ID);
+	}
+
+	static function GetNym_AltSourceLocation($NYM_ID) {
+		return OTAPI_Wrap_GetNym_AltSourceLocation($NYM_ID);
+	}
+
+	static function GetNym_CredentialCount($NYM_ID) {
+		return OTAPI_Wrap_GetNym_CredentialCount($NYM_ID);
+	}
+
+	static function GetNym_CredentialID($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_CredentialID($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_CredentialContents($NYM_ID,$CREDENTIAL_ID) {
+		return OTAPI_Wrap_GetNym_CredentialContents($NYM_ID,$CREDENTIAL_ID);
+	}
+
+	static function GetNym_RevokedCredCount($NYM_ID) {
+		return OTAPI_Wrap_GetNym_RevokedCredCount($NYM_ID);
+	}
+
+	static function GetNym_RevokedCredID($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_RevokedCredID($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_RevokedCredContents($NYM_ID,$CREDENTIAL_ID) {
+		return OTAPI_Wrap_GetNym_RevokedCredContents($NYM_ID,$CREDENTIAL_ID);
+	}
+
+	static function GetNym_SubcredentialCount($NYM_ID,$MASTER_CRED_ID) {
+		return OTAPI_Wrap_GetNym_SubcredentialCount($NYM_ID,$MASTER_CRED_ID);
+	}
+
+	static function GetNym_SubCredentialID($NYM_ID,$MASTER_CRED_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_SubCredentialID($NYM_ID,$MASTER_CRED_ID,$nIndex);
+	}
+
+	static function GetNym_SubCredentialContents($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID) {
+		return OTAPI_Wrap_GetNym_SubCredentialContents($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID);
+	}
+
+	static function AddSubcredential($NYM_ID,$MASTER_CRED_ID,$nKeySize) {
+		return OTAPI_Wrap_AddSubcredential($NYM_ID,$MASTER_CRED_ID,$nKeySize);
+	}
+
+	static function RevokeSubcredential($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID) {
+		return OTAPI_Wrap_RevokeSubcredential($NYM_ID,$MASTER_CRED_ID,$SUB_CRED_ID);
+	}
+
+	static function CreateServerContract($NYM_ID,$strXMLcontents) {
+		return OTAPI_Wrap_CreateServerContract($NYM_ID,$strXMLcontents);
+	}
+
+	static function CreateAssetContract($NYM_ID,$strXMLcontents) {
+		return OTAPI_Wrap_CreateAssetContract($NYM_ID,$strXMLcontents);
+	}
+
+	static function CalculateAssetContractID($str_Contract) {
+		return OTAPI_Wrap_CalculateAssetContractID($str_Contract);
+	}
+
+	static function CalculateServerContractID($str_Contract) {
+		return OTAPI_Wrap_CalculateServerContractID($str_Contract);
+	}
+
+	static function AddServerContract($strContract) {
+		return OTAPI_Wrap_AddServerContract($strContract);
+	}
+
+	static function AddAssetContract($strContract) {
+		return OTAPI_Wrap_AddAssetContract($strContract);
+	}
+
+	static function GetServerCount() {
+		return OTAPI_Wrap_GetServerCount();
+	}
+
+	static function GetAssetTypeCount() {
+		return OTAPI_Wrap_GetAssetTypeCount();
+	}
+
+	static function GetAccountCount() {
+		return OTAPI_Wrap_GetAccountCount();
+	}
+
+	static function GetNymCount() {
+		return OTAPI_Wrap_GetNymCount();
+	}
+
+	static function GetServer_ID($nIndex) {
+		return OTAPI_Wrap_GetServer_ID($nIndex);
+	}
+
+	static function GetServer_Name($SERVER_ID) {
+		return OTAPI_Wrap_GetServer_Name($SERVER_ID);
+	}
+
+	static function GetServer_Contract($SERVER_ID) {
+		return OTAPI_Wrap_GetServer_Contract($SERVER_ID);
+	}
+
+	static function FormatAmount($ASSET_TYPE_ID,$THE_AMOUNT) {
+		return OTAPI_Wrap_FormatAmount($ASSET_TYPE_ID,$THE_AMOUNT);
+	}
+
+	static function StringToAmount($ASSET_TYPE_ID,$str_input) {
+		return OTAPI_Wrap_StringToAmount($ASSET_TYPE_ID,$str_input);
+	}
+
+	static function GetAssetType_ID($nIndex) {
+		return OTAPI_Wrap_GetAssetType_ID($nIndex);
+	}
+
+	static function GetAssetType_Name($ASSET_TYPE_ID) {
+		return OTAPI_Wrap_GetAssetType_Name($ASSET_TYPE_ID);
+	}
+
+	static function GetAssetType_TLA($ASSET_TYPE_ID) {
+		return OTAPI_Wrap_GetAssetType_TLA($ASSET_TYPE_ID);
+	}
+
+	static function GetAssetType_Contract($ASSET_TYPE_ID) {
+		return OTAPI_Wrap_GetAssetType_Contract($ASSET_TYPE_ID);
+	}
+
+	static function GetAccountWallet_ID($nIndex) {
+		return OTAPI_Wrap_GetAccountWallet_ID($nIndex);
+	}
+
+	static function GetAccountWallet_Name($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_Name($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_Balance($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_Balance($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_Type($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_Type($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_AssetTypeID($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_AssetTypeID($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_ServerID($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_ServerID($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_NymID($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_NymID($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_InboxHash($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_InboxHash($ACCOUNT_ID);
+	}
+
+	static function GetAccountWallet_OutboxHash($ACCOUNT_ID) {
+		return OTAPI_Wrap_GetAccountWallet_OutboxHash($ACCOUNT_ID);
+	}
+
+	static function VerifyAccountReceipt($SERVER_ID,$NYM_ID,$ACCT_ID) {
+		return OTAPI_Wrap_VerifyAccountReceipt($SERVER_ID,$NYM_ID,$ACCT_ID);
+	}
+
+	static function GetNym_TransactionNumCount($SERVER_ID,$NYM_ID) {
+		return OTAPI_Wrap_GetNym_TransactionNumCount($SERVER_ID,$NYM_ID);
+	}
+
+	static function GetNym_ID($nIndex) {
+		return OTAPI_Wrap_GetNym_ID($nIndex);
+	}
+
+	static function GetNym_Name($NYM_ID) {
+		return OTAPI_Wrap_GetNym_Name($NYM_ID);
+	}
+
+	static function GetNym_Stats($NYM_ID) {
+		return OTAPI_Wrap_GetNym_Stats($NYM_ID);
+	}
+
+	static function GetNym_NymboxHash($SERVER_ID,$NYM_ID) {
+		return OTAPI_Wrap_GetNym_NymboxHash($SERVER_ID,$NYM_ID);
+	}
+
+	static function GetNym_RecentHash($SERVER_ID,$NYM_ID) {
+		return OTAPI_Wrap_GetNym_RecentHash($SERVER_ID,$NYM_ID);
+	}
+
+	static function GetNym_InboxHash($ACCOUNT_ID,$NYM_ID) {
+		return OTAPI_Wrap_GetNym_InboxHash($ACCOUNT_ID,$NYM_ID);
+	}
+
+	static function GetNym_OutboxHash($ACCOUNT_ID,$NYM_ID) {
+		return OTAPI_Wrap_GetNym_OutboxHash($ACCOUNT_ID,$NYM_ID);
+	}
+
+	static function IsNym_RegisteredAtServer($NYM_ID,$SERVER_ID) {
+		return OTAPI_Wrap_IsNym_RegisteredAtServer($NYM_ID,$SERVER_ID);
+	}
+
+	static function GetNym_MailCount($NYM_ID) {
+		return OTAPI_Wrap_GetNym_MailCount($NYM_ID);
+	}
+
+	static function GetNym_MailContentsByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_MailContentsByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_MailSenderIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_MailSenderIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_MailServerIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_MailServerIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_RemoveMailByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_RemoveMailByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_VerifyMailByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_VerifyMailByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutmailCount($NYM_ID) {
+		return OTAPI_Wrap_GetNym_OutmailCount($NYM_ID);
+	}
+
+	static function GetNym_OutmailContentsByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutmailContentsByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutmailRecipientIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutmailServerIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutmailServerIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_RemoveOutmailByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_RemoveOutmailByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_VerifyOutmailByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_VerifyOutmailByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutpaymentsCount($NYM_ID) {
+		return OTAPI_Wrap_GetNym_OutpaymentsCount($NYM_ID);
+	}
+
+	static function GetNym_OutpaymentsContentsByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutpaymentsRecipientIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function GetNym_OutpaymentsServerIDByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_RemoveOutpaymentsByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Nym_VerifyOutpaymentsByIndex($NYM_ID,$nIndex) {
+		return OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex($NYM_ID,$nIndex);
+	}
+
+	static function Wallet_CanRemoveServer($SERVER_ID) {
+		return OTAPI_Wrap_Wallet_CanRemoveServer($SERVER_ID);
+	}
+
+	static function Wallet_RemoveServer($SERVER_ID) {
+		return OTAPI_Wrap_Wallet_RemoveServer($SERVER_ID);
+	}
+
+	static function Wallet_CanRemoveAssetType($ASSET_ID) {
+		return OTAPI_Wrap_Wallet_CanRemoveAssetType($ASSET_ID);
+	}
+
+	static function Wallet_RemoveAssetType($ASSET_ID) {
+		return OTAPI_Wrap_Wallet_RemoveAssetType($ASSET_ID);
+	}
+
+	static function Wallet_CanRemoveNym($NYM_ID) {
+		return OTAPI_Wrap_Wallet_CanRemoveNym($NYM_ID);
+	}
+
+	static function Wallet_RemoveNym($NYM_ID) {
+		return OTAPI_Wrap_Wallet_RemoveNym($NYM_ID);
+	}
+
+	static function Wallet_CanRemoveAccount($ACCOUNT_ID) {
+		return OTAPI_Wrap_Wallet_CanRemoveAccount($ACCOUNT_ID);
+	}
+
+	static function Wallet_ChangePassphrase() {
+		return OTAPI_Wrap_Wallet_ChangePassphrase();
+	}
+
+	static function Wallet_ExportNym($NYM_ID) {
+		return OTAPI_Wrap_Wallet_ExportNym($NYM_ID);
+	}
+
+	static function Wallet_ImportNym($FILE_CONTENTS) {
+		return OTAPI_Wrap_Wallet_ImportNym($FILE_CONTENTS);
+	}
+
+	static function Wallet_ImportCert($DISPLAY_NAME,$FILE_CONTENTS) {
+		return OTAPI_Wrap_Wallet_ImportCert($DISPLAY_NAME,$FILE_CONTENTS);
+	}
+
+	static function Wallet_ExportCert($NYM_ID) {
+		return OTAPI_Wrap_Wallet_ExportCert($NYM_ID);
+	}
+
+	static function Wallet_GetNymIDFromPartial($PARTIAL_ID) {
+		return OTAPI_Wrap_Wallet_GetNymIDFromPartial($PARTIAL_ID);
+	}
+
+	static function Wallet_GetServerIDFromPartial($PARTIAL_ID) {
+		return OTAPI_Wrap_Wallet_GetServerIDFromPartial($PARTIAL_ID);
+	}
+
+	static function Wallet_GetAssetIDFromPartial($PARTIAL_ID) {
+		return OTAPI_Wrap_Wallet_GetAssetIDFromPartial($PARTIAL_ID);
+	}
+
+	static function Wallet_GetAccountIDFromPartial($PARTIAL_ID) {
+		return OTAPI_Wrap_Wallet_GetAccountIDFromPartial($PARTIAL_ID);
+	}
+
+	static function SetNym_Name($NYM_ID,$SIGNER_NYM_ID,$NYM_NEW_NAME) {
+		return OTAPI_Wrap_SetNym_Name($NYM_ID,$SIGNER_NYM_ID,$NYM_NEW_NAME);
+	}
+
+	static function SetAccountWallet_Name($ACCT_ID,$SIGNER_NYM_ID,$ACCT_NEW_NAME) {
+		return OTAPI_Wrap_SetAccountWallet_Name($ACCT_ID,$SIGNER_NYM_ID,$ACCT_NEW_NAME);
+	}
+
+	static function SetAssetType_Name($ASSET_ID,$STR_NEW_NAME) {
+		return OTAPI_Wrap_SetAssetType_Name($ASSET_ID,$STR_NEW_NAME);
+	}
+
+	static function SetServer_Name($SERVER_ID,$STR_NEW_NAME) {
+		return OTAPI_Wrap_SetServer_Name($SERVER_ID,$STR_NEW_NAME);
+	}
+
+	static function WriteCheque($SERVER_ID,$CHEQUE_AMOUNT,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$CHEQUE_MEMO,$RECIPIENT_USER_ID) {
+		return OTAPI_Wrap_WriteCheque($SERVER_ID,$CHEQUE_AMOUNT,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$CHEQUE_MEMO,$RECIPIENT_USER_ID);
+	}
+
+	static function DiscardCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE) {
+		return OTAPI_Wrap_DiscardCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE);
+	}
+
+	static function ProposePaymentPlan($SERVER_ID,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT_AMOUNT,$INITIAL_PAYMENT_DELAY,$PAYMENT_PLAN_AMOUNT,$PAYMENT_PLAN_DELAY,$PAYMENT_PLAN_PERIOD,$PAYMENT_PLAN_LENGTH,$PAYMENT_PLAN_MAX_PAYMENTS) {
+		return OTAPI_Wrap_ProposePaymentPlan($SERVER_ID,$VALID_FROM,$VALID_TO,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT_AMOUNT,$INITIAL_PAYMENT_DELAY,$PAYMENT_PLAN_AMOUNT,$PAYMENT_PLAN_DELAY,$PAYMENT_PLAN_PERIOD,$PAYMENT_PLAN_LENGTH,$PAYMENT_PLAN_MAX_PAYMENTS);
+	}
+
+	static function EasyProposePlan($SERVER_ID,$DATE_RANGE,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT,$PAYMENT_PLAN,$PLAN_EXPIRY) {
+		return OTAPI_Wrap_EasyProposePlan($SERVER_ID,$DATE_RANGE,$SENDER_ACCT_ID,$SENDER_USER_ID,$PLAN_CONSIDERATION,$RECIPIENT_ACCT_ID,$RECIPIENT_USER_ID,$INITIAL_PAYMENT,$PAYMENT_PLAN,$PLAN_EXPIRY);
+	}
+
+	static function ConfirmPaymentPlan($SERVER_ID,$SENDER_USER_ID,$SENDER_ACCT_ID,$RECIPIENT_USER_ID,$PAYMENT_PLAN) {
+		return OTAPI_Wrap_ConfirmPaymentPlan($SERVER_ID,$SENDER_USER_ID,$SENDER_ACCT_ID,$RECIPIENT_USER_ID,$PAYMENT_PLAN);
+	}
+
+	static function Create_SmartContract($SIGNER_NYM_ID,$VALID_FROM,$VALID_TO) {
+		return OTAPI_Wrap_Create_SmartContract($SIGNER_NYM_ID,$VALID_FROM,$VALID_TO);
+	}
+
+	static function SmartContract_AddBylaw($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME) {
+		return OTAPI_Wrap_SmartContract_AddBylaw($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME);
+	}
+
+	static function SmartContract_AddClause($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CLAUSE_NAME,$SOURCE_CODE) {
+		return OTAPI_Wrap_SmartContract_AddClause($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CLAUSE_NAME,$SOURCE_CODE);
+	}
+
+	static function SmartContract_AddVariable($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$VAR_NAME,$VAR_ACCESS,$VAR_TYPE,$VAR_VALUE) {
+		return OTAPI_Wrap_SmartContract_AddVariable($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$VAR_NAME,$VAR_ACCESS,$VAR_TYPE,$VAR_VALUE);
+	}
+
+	static function SmartContract_AddCallback($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CALLBACK_NAME,$CLAUSE_NAME) {
+		return OTAPI_Wrap_SmartContract_AddCallback($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$CALLBACK_NAME,$CLAUSE_NAME);
+	}
+
+	static function SmartContract_AddHook($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$HOOK_NAME,$CLAUSE_NAME) {
+		return OTAPI_Wrap_SmartContract_AddHook($THE_CONTRACT,$SIGNER_NYM_ID,$BYLAW_NAME,$HOOK_NAME,$CLAUSE_NAME);
+	}
+
+	static function SmartContract_AddParty($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$AGENT_NAME) {
+		return OTAPI_Wrap_SmartContract_AddParty($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$AGENT_NAME);
+	}
+
+	static function SmartContract_AddAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$ASSET_TYPE_ID) {
+		return OTAPI_Wrap_SmartContract_AddAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$ASSET_TYPE_ID);
+	}
+
+	static function SmartContract_CountNumsNeeded($THE_CONTRACT,$AGENT_NAME) {
+		return OTAPI_Wrap_SmartContract_CountNumsNeeded($THE_CONTRACT,$AGENT_NAME);
+	}
+
+	static function SmartContract_ConfirmAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$AGENT_NAME,$ACCT_ID) {
+		return OTAPI_Wrap_SmartContract_ConfirmAccount($THE_CONTRACT,$SIGNER_NYM_ID,$PARTY_NAME,$ACCT_NAME,$AGENT_NAME,$ACCT_ID);
+	}
+
+	static function SmartContract_ConfirmParty($THE_CONTRACT,$PARTY_NAME,$NYM_ID) {
+		return OTAPI_Wrap_SmartContract_ConfirmParty($THE_CONTRACT,$PARTY_NAME,$NYM_ID);
+	}
+
+	static function Smart_AreAllPartiesConfirmed($THE_CONTRACT) {
+		return OTAPI_Wrap_Smart_AreAllPartiesConfirmed($THE_CONTRACT);
+	}
+
+	static function Smart_GetBylawCount($THE_CONTRACT) {
+		return OTAPI_Wrap_Smart_GetBylawCount($THE_CONTRACT);
+	}
+
+	static function Smart_GetBylawByIndex($THE_CONTRACT,$nIndex) {
+		return OTAPI_Wrap_Smart_GetBylawByIndex($THE_CONTRACT,$nIndex);
+	}
+
+	static function Bylaw_GetLanguage($THE_CONTRACT,$BYLAW_NAME) {
+		return OTAPI_Wrap_Bylaw_GetLanguage($THE_CONTRACT,$BYLAW_NAME);
+	}
+
+	static function Bylaw_GetClauseCount($THE_CONTRACT,$BYLAW_NAME) {
+		return OTAPI_Wrap_Bylaw_GetClauseCount($THE_CONTRACT,$BYLAW_NAME);
+	}
+
+	static function Clause_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
+		return OTAPI_Wrap_Clause_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
+	}
+
+	static function Clause_GetContents($THE_CONTRACT,$BYLAW_NAME,$CLAUSE_NAME) {
+		return OTAPI_Wrap_Clause_GetContents($THE_CONTRACT,$BYLAW_NAME,$CLAUSE_NAME);
+	}
+
+	static function Bylaw_GetVariableCount($THE_CONTRACT,$BYLAW_NAME) {
+		return OTAPI_Wrap_Bylaw_GetVariableCount($THE_CONTRACT,$BYLAW_NAME);
+	}
+
+	static function Variable_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
+		return OTAPI_Wrap_Variable_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
+	}
+
+	static function Variable_GetType($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
+		return OTAPI_Wrap_Variable_GetType($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
+	}
+
+	static function Variable_GetAccess($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
+		return OTAPI_Wrap_Variable_GetAccess($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
+	}
+
+	static function Variable_GetContents($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME) {
+		return OTAPI_Wrap_Variable_GetContents($THE_CONTRACT,$BYLAW_NAME,$VARIABLE_NAME);
+	}
+
+	static function Bylaw_GetHookCount($THE_CONTRACT,$BYLAW_NAME) {
+		return OTAPI_Wrap_Bylaw_GetHookCount($THE_CONTRACT,$BYLAW_NAME);
+	}
+
+	static function Hook_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
+		return OTAPI_Wrap_Hook_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
+	}
+
+	static function Hook_GetClauseCount($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME) {
+		return OTAPI_Wrap_Hook_GetClauseCount($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME);
+	}
+
+	static function Hook_GetClauseAtIndex($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME,$nIndex) {
+		return OTAPI_Wrap_Hook_GetClauseAtIndex($THE_CONTRACT,$BYLAW_NAME,$HOOK_NAME,$nIndex);
+	}
+
+	static function Bylaw_GetCallbackCount($THE_CONTRACT,$BYLAW_NAME) {
+		return OTAPI_Wrap_Bylaw_GetCallbackCount($THE_CONTRACT,$BYLAW_NAME);
+	}
+
+	static function Callback_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex) {
+		return OTAPI_Wrap_Callback_GetNameByIndex($THE_CONTRACT,$BYLAW_NAME,$nIndex);
+	}
+
+	static function Callback_GetClause($THE_CONTRACT,$BYLAW_NAME,$CALLBACK_NAME) {
+		return OTAPI_Wrap_Callback_GetClause($THE_CONTRACT,$BYLAW_NAME,$CALLBACK_NAME);
+	}
+
+	static function Smart_GetPartyCount($THE_CONTRACT) {
+		return OTAPI_Wrap_Smart_GetPartyCount($THE_CONTRACT);
+	}
+
+	static function Smart_GetPartyByIndex($THE_CONTRACT,$nIndex) {
+		return OTAPI_Wrap_Smart_GetPartyByIndex($THE_CONTRACT,$nIndex);
+	}
+
+	static function Smart_IsPartyConfirmed($THE_CONTRACT,$PARTY_NAME) {
+		return OTAPI_Wrap_Smart_IsPartyConfirmed($THE_CONTRACT,$PARTY_NAME);
+	}
+
+	static function Party_GetID($THE_CONTRACT,$PARTY_NAME) {
+		return OTAPI_Wrap_Party_GetID($THE_CONTRACT,$PARTY_NAME);
+	}
+
+	static function Party_GetAcctCount($THE_CONTRACT,$PARTY_NAME) {
+		return OTAPI_Wrap_Party_GetAcctCount($THE_CONTRACT,$PARTY_NAME);
+	}
+
+	static function Party_GetAcctNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex) {
+		return OTAPI_Wrap_Party_GetAcctNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex);
+	}
+
+	static function Party_GetAcctID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
+		return OTAPI_Wrap_Party_GetAcctID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
+	}
+
+	static function Party_GetAcctAssetID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
+		return OTAPI_Wrap_Party_GetAcctAssetID($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
+	}
+
+	static function Party_GetAcctAgentName($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME) {
+		return OTAPI_Wrap_Party_GetAcctAgentName($THE_CONTRACT,$PARTY_NAME,$ACCT_NAME);
+	}
+
+	static function Party_GetAgentCount($THE_CONTRACT,$PARTY_NAME) {
+		return OTAPI_Wrap_Party_GetAgentCount($THE_CONTRACT,$PARTY_NAME);
+	}
+
+	static function Party_GetAgentNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex) {
+		return OTAPI_Wrap_Party_GetAgentNameByIndex($THE_CONTRACT,$PARTY_NAME,$nIndex);
+	}
+
+	static function Party_GetAgentID($THE_CONTRACT,$PARTY_NAME,$AGENT_NAME) {
+		return OTAPI_Wrap_Party_GetAgentID($THE_CONTRACT,$PARTY_NAME,$AGENT_NAME);
+	}
+
+	static function activateSmartContract($SERVER_ID,$USER_ID,$THE_SMART_CONTRACT) {
+		return OTAPI_Wrap_activateSmartContract($SERVER_ID,$USER_ID,$THE_SMART_CONTRACT);
+	}
+
+	static function triggerClause($SERVER_ID,$USER_ID,$TRANSACTION_NUMBER,$CLAUSE_NAME,$STR_PARAM) {
+		return OTAPI_Wrap_triggerClause($SERVER_ID,$USER_ID,$TRANSACTION_NUMBER,$CLAUSE_NAME,$STR_PARAM);
+	}
+
+	static function Msg_HarvestTransactionNumbers($THE_MESSAGE,$USER_ID,$bHarvestingForRetry,$bReplyWasSuccess,$bReplyWasFailure,$bTransactionWasSuccess,$bTransactionWasFailure) {
+		return OTAPI_Wrap_Msg_HarvestTransactionNumbers($THE_MESSAGE,$USER_ID,$bHarvestingForRetry,$bReplyWasSuccess,$bReplyWasFailure,$bTransactionWasSuccess,$bTransactionWasFailure);
+	}
+
+	static function LoadUserPubkey_Encryption($USER_ID) {
+		return OTAPI_Wrap_LoadUserPubkey_Encryption($USER_ID);
+	}
+
+	static function LoadUserPubkey_Signing($USER_ID) {
+		return OTAPI_Wrap_LoadUserPubkey_Signing($USER_ID);
+	}
+
+	static function LoadPubkey_Encryption($USER_ID) {
+		return OTAPI_Wrap_LoadPubkey_Encryption($USER_ID);
+	}
+
+	static function LoadPubkey_Signing($USER_ID) {
+		return OTAPI_Wrap_LoadPubkey_Signing($USER_ID);
+	}
+
+	static function VerifyUserPrivateKey($USER_ID) {
+		return OTAPI_Wrap_VerifyUserPrivateKey($USER_ID);
+	}
+
+	static function LoadPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID);
+	}
+
+	static function LoadMint($SERVER_ID,$ASSET_TYPE_ID) {
+		return OTAPI_Wrap_LoadMint($SERVER_ID,$ASSET_TYPE_ID);
+	}
+
+	static function LoadAssetContract($ASSET_TYPE_ID) {
+		return OTAPI_Wrap_LoadAssetContract($ASSET_TYPE_ID);
+	}
+
+	static function LoadServerContract($SERVER_ID) {
+		return OTAPI_Wrap_LoadServerContract($SERVER_ID);
+	}
+
+	static function Mint_IsStillGood($SERVER_ID,$ASSET_TYPE_ID) {
+		return OTAPI_Wrap_Mint_IsStillGood($SERVER_ID,$ASSET_TYPE_ID);
+	}
+
+	static function IsBasketCurrency($ASSET_TYPE_ID) {
+		return OTAPI_Wrap_IsBasketCurrency($ASSET_TYPE_ID);
+	}
+
+	static function Basket_GetMemberCount($BASKET_ASSET_TYPE_ID) {
+		return OTAPI_Wrap_Basket_GetMemberCount($BASKET_ASSET_TYPE_ID);
+	}
+
+	static function Basket_GetMemberType($BASKET_ASSET_TYPE_ID,$nIndex) {
+		return OTAPI_Wrap_Basket_GetMemberType($BASKET_ASSET_TYPE_ID,$nIndex);
+	}
+
+	static function Basket_GetMinimumTransferAmount($BASKET_ASSET_TYPE_ID) {
+		return OTAPI_Wrap_Basket_GetMinimumTransferAmount($BASKET_ASSET_TYPE_ID);
+	}
+
+	static function Basket_GetMemberMinimumTransferAmount($BASKET_ASSET_TYPE_ID,$nIndex) {
+		return OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount($BASKET_ASSET_TYPE_ID,$nIndex);
+	}
+
+	static function LoadAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadInbox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadInbox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadOutbox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadOutbox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadInboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadInboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadOutboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadOutboxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadPaymentInbox($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadPaymentInbox($SERVER_ID,$USER_ID);
+	}
+
+	static function LoadPaymentInboxNoVerify($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadPaymentInboxNoVerify($SERVER_ID,$USER_ID);
+	}
+
+	static function LoadRecordBox($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadRecordBox($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function LoadRecordBoxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_LoadRecordBoxNoVerify($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function ClearRecord($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nIndex,$bClearAll) {
+		return OTAPI_Wrap_ClearRecord($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nIndex,$bClearAll);
+	}
+
+	static function LoadExpiredBox($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadExpiredBox($SERVER_ID,$USER_ID);
+	}
+
+	static function LoadExpiredBoxNoVerify($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadExpiredBoxNoVerify($SERVER_ID,$USER_ID);
+	}
+
+	static function ClearExpired($SERVER_ID,$USER_ID,$nIndex,$bClearAll) {
+		return OTAPI_Wrap_ClearExpired($SERVER_ID,$USER_ID,$nIndex,$bClearAll);
+	}
+
+	static function Ledger_GetCount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER) {
+		return OTAPI_Wrap_Ledger_GetCount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER);
+	}
+
+	static function Ledger_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$ORIGINAL_LEDGER) {
+		return OTAPI_Wrap_Ledger_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$ORIGINAL_LEDGER);
+	}
+
+	static function Ledger_GetTransactionByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
+		return OTAPI_Wrap_Ledger_GetTransactionByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
+	}
+
+	static function Ledger_GetTransactionByID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$TRANSACTION_NUMBER) {
+		return OTAPI_Wrap_Ledger_GetTransactionByID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$TRANSACTION_NUMBER);
+	}
+
+	static function Ledger_GetTransactionIDByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
+		return OTAPI_Wrap_Ledger_GetTransactionIDByIndex($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
+	}
+
+	static function Ledger_AddTransaction($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Ledger_AddTransaction($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$THE_TRANSACTION);
+	}
+
+	static function Transaction_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$RESPONSE_LEDGER,$ORIGINAL_TRANSACTION,$BOOL_DO_I_ACCEPT) {
+		return OTAPI_Wrap_Transaction_CreateResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$RESPONSE_LEDGER,$ORIGINAL_TRANSACTION,$BOOL_DO_I_ACCEPT);
+	}
+
+	static function Ledger_FinalizeResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER) {
+		return OTAPI_Wrap_Ledger_FinalizeResponse($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER);
+	}
+
+	static function Ledger_GetInstrument($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex) {
+		return OTAPI_Wrap_Ledger_GetInstrument($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_LEDGER,$nIndex);
+	}
+
+	static function RecordPayment($SERVER_ID,$USER_ID,$bIsInbox,$nIndex,$bSaveCopy) {
+		return OTAPI_Wrap_RecordPayment($SERVER_ID,$USER_ID,$bIsInbox,$nIndex,$bSaveCopy);
+	}
+
+	static function Transaction_GetType($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetType($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function ReplyNotice_GetRequestNum($SERVER_ID,$USER_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_ReplyNotice_GetRequestNum($SERVER_ID,$USER_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetVoucher($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetVoucher($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_IsCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_IsCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		$r=OTAPI_Wrap_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Pending_GetNote($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Pending_GetNote($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetSenderUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetSenderUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetSenderAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetSenderAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetRecipientUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetRecipientUserID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetRecipientAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetRecipientAcctID($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function Transaction_GetDisplayReferenceToNum($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
+		return OTAPI_Wrap_Transaction_GetDisplayReferenceToNum($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
+	}
+
+	static function SavePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_SavePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
+	}
+
+	static function CreatePurse($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$SIGNER_ID) {
+		return OTAPI_Wrap_CreatePurse($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$SIGNER_ID);
+	}
+
+	static function CreatePurse_Passphrase($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID) {
+		return OTAPI_Wrap_CreatePurse_Passphrase($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID);
+	}
+
+	static function Purse_GetTotalValue($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_GetTotalValue($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE);
+	}
+
+	static function Purse_Count($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_Count($SERVER_ID,$ASSET_TYPE_ID,$THE_PURSE);
+	}
+
+	static function Purse_HasPassword($SERVER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_HasPassword($SERVER_ID,$THE_PURSE);
+	}
+
+	static function Purse_Peek($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_Peek($SERVER_ID,$ASSET_TYPE_ID,$OWNER_ID,$THE_PURSE);
+	}
+
+	static function Purse_Pop($SERVER_ID,$ASSET_TYPE_ID,$OWNER_OR_SIGNER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_Pop($SERVER_ID,$ASSET_TYPE_ID,$OWNER_OR_SIGNER_ID,$THE_PURSE);
+	}
+
+	static function Purse_Push($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$OWNER_ID,$THE_PURSE,$THE_TOKEN) {
+		return OTAPI_Wrap_Purse_Push($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$OWNER_ID,$THE_PURSE,$THE_TOKEN);
+	}
+
+	static function Purse_Empty($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Purse_Empty($SERVER_ID,$ASSET_TYPE_ID,$SIGNER_ID,$THE_PURSE);
+	}
+
+	static function Wallet_ImportPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_Wallet_ImportPurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
+	}
+
+	static function exchangePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE) {
+		return OTAPI_Wrap_exchangePurse($SERVER_ID,$ASSET_TYPE_ID,$USER_ID,$THE_PURSE);
+	}
+
+	static function Token_ChangeOwner($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN,$SIGNER_NYM_ID,$OLD_OWNER,$NEW_OWNER) {
+		return OTAPI_Wrap_Token_ChangeOwner($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN,$SIGNER_NYM_ID,$OLD_OWNER,$NEW_OWNER);
+	}
+
+	static function Token_GetID($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
+		return OTAPI_Wrap_Token_GetID($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
+	}
+
+	static function Token_GetDenomination($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
+		return OTAPI_Wrap_Token_GetDenomination($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
+	}
+
+	static function Token_GetSeries($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
+		return OTAPI_Wrap_Token_GetSeries($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
+	}
+
+	static function Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
+		$r=OTAPI_Wrap_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
+		$r=OTAPI_Wrap_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function Token_GetAssetID($THE_TOKEN) {
+		return OTAPI_Wrap_Token_GetAssetID($THE_TOKEN);
+	}
+
+	static function Token_GetServerID($THE_TOKEN) {
+		return OTAPI_Wrap_Token_GetServerID($THE_TOKEN);
+	}
+
+	static function Instrmnt_GetAmount($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetAmount($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetTransNum($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetTransNum($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetValidFrom($THE_INSTRUMENT) {
+		$r=OTAPI_Wrap_Instrmnt_GetValidFrom($THE_INSTRUMENT);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function Instrmnt_GetValidTo($THE_INSTRUMENT) {
+		$r=OTAPI_Wrap_Instrmnt_GetValidTo($THE_INSTRUMENT);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new WrapTimeT($r);
+		}
+		return $r;
+	}
+
+	static function Instrmnt_GetMemo($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetMemo($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetType($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetType($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetServerID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetServerID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetAssetID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetAssetID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetSenderUserID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetSenderUserID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetSenderAcctID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetSenderAcctID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetRemitterUserID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetRemitterUserID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetRemitterAcctID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetRemitterAcctID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetRecipientUserID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetRecipientUserID($THE_INSTRUMENT);
+	}
+
+	static function Instrmnt_GetRecipientAcctID($THE_INSTRUMENT) {
+		return OTAPI_Wrap_Instrmnt_GetRecipientAcctID($THE_INSTRUMENT);
+	}
+
+	static function checkServerID($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_checkServerID($SERVER_ID,$USER_ID);
+	}
+
+	static function createUserAccount($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_createUserAccount($SERVER_ID,$USER_ID);
+	}
+
+	static function deleteUserAccount($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_deleteUserAccount($SERVER_ID,$USER_ID);
+	}
+
+	static function deleteAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID) {
+		return OTAPI_Wrap_deleteAssetAccount($SERVER_ID,$USER_ID,$ACCOUNT_ID);
+	}
+
+	static function usageCredits($SERVER_ID,$USER_ID,$USER_ID_CHECK,$ADJUSTMENT) {
+		return OTAPI_Wrap_usageCredits($SERVER_ID,$USER_ID,$USER_ID_CHECK,$ADJUSTMENT);
+	}
+
+	static function Message_GetUsageCredits($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetUsageCredits($THE_MESSAGE);
+	}
+
+	static function checkUser($SERVER_ID,$USER_ID,$USER_ID_CHECK) {
+		return OTAPI_Wrap_checkUser($SERVER_ID,$USER_ID,$USER_ID_CHECK);
+	}
+
+	static function sendUserMessage($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_MESSAGE) {
+		return OTAPI_Wrap_sendUserMessage($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_MESSAGE);
+	}
+
+	static function sendUserInstrument($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER) {
+		return OTAPI_Wrap_sendUserInstrument($SERVER_ID,$USER_ID,$USER_ID_RECIPIENT,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER);
+	}
+
+	static function getRequest($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_getRequest($SERVER_ID,$USER_ID);
+	}
+
+	static function getTransactionNumber($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_getTransactionNumber($SERVER_ID,$USER_ID);
+	}
+
+	static function issueAssetType($SERVER_ID,$USER_ID,$THE_CONTRACT) {
+		return OTAPI_Wrap_issueAssetType($SERVER_ID,$USER_ID,$THE_CONTRACT);
+	}
+
+	static function getContract($SERVER_ID,$USER_ID,$ASSET_ID) {
+		return OTAPI_Wrap_getContract($SERVER_ID,$USER_ID,$ASSET_ID);
+	}
+
+	static function getMint($SERVER_ID,$USER_ID,$ASSET_ID) {
+		return OTAPI_Wrap_getMint($SERVER_ID,$USER_ID,$ASSET_ID);
+	}
+
+	static function createAssetAccount($SERVER_ID,$USER_ID,$ASSET_ID) {
+		return OTAPI_Wrap_createAssetAccount($SERVER_ID,$USER_ID,$ASSET_ID);
+	}
+
+	static function getAccount($SERVER_ID,$USER_ID,$ACCT_ID) {
+		return OTAPI_Wrap_getAccount($SERVER_ID,$USER_ID,$ACCT_ID);
+	}
+
+	static function getAccountFiles($SERVER_ID,$USER_ID,$ACCT_ID) {
+		return OTAPI_Wrap_getAccountFiles($SERVER_ID,$USER_ID,$ACCT_ID);
+	}
+
+	static function GenerateBasketCreation($USER_ID,$MINIMUM_TRANSFER) {
+		return OTAPI_Wrap_GenerateBasketCreation($USER_ID,$MINIMUM_TRANSFER);
+	}
+
+	static function AddBasketCreationItem($USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$MINIMUM_TRANSFER) {
+		return OTAPI_Wrap_AddBasketCreationItem($USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$MINIMUM_TRANSFER);
+	}
+
+	static function issueBasket($SERVER_ID,$USER_ID,$THE_BASKET) {
+		return OTAPI_Wrap_issueBasket($SERVER_ID,$USER_ID,$THE_BASKET);
+	}
+
+	static function GenerateBasketExchange($SERVER_ID,$USER_ID,$BASKET_ASSET_TYPE_ID,$BASKET_ASSET_ACCT_ID,$TRANSFER_MULTIPLE) {
+		return OTAPI_Wrap_GenerateBasketExchange($SERVER_ID,$USER_ID,$BASKET_ASSET_TYPE_ID,$BASKET_ASSET_ACCT_ID,$TRANSFER_MULTIPLE);
+	}
+
+	static function AddBasketExchangeItem($SERVER_ID,$USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$ASSET_ACCT_ID) {
+		return OTAPI_Wrap_AddBasketExchangeItem($SERVER_ID,$USER_ID,$THE_BASKET,$ASSET_TYPE_ID,$ASSET_ACCT_ID);
+	}
+
+	static function exchangeBasket($SERVER_ID,$USER_ID,$BASKET_ASSET_ID,$THE_BASKET,$BOOL_EXCHANGE_IN_OR_OUT) {
+		return OTAPI_Wrap_exchangeBasket($SERVER_ID,$USER_ID,$BASKET_ASSET_ID,$THE_BASKET,$BOOL_EXCHANGE_IN_OR_OUT);
+	}
+
+	static function notarizeWithdrawal($SERVER_ID,$USER_ID,$ACCT_ID,$AMOUNT) {
+		return OTAPI_Wrap_notarizeWithdrawal($SERVER_ID,$USER_ID,$ACCT_ID,$AMOUNT);
+	}
+
+	static function notarizeDeposit($SERVER_ID,$USER_ID,$ACCT_ID,$THE_PURSE) {
+		return OTAPI_Wrap_notarizeDeposit($SERVER_ID,$USER_ID,$ACCT_ID,$THE_PURSE);
+	}
+
+	static function notarizeTransfer($SERVER_ID,$USER_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE) {
+		return OTAPI_Wrap_notarizeTransfer($SERVER_ID,$USER_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE);
+	}
+
+	static function getInbox($SERVER_ID,$USER_ID,$ACCT_ID) {
+		return OTAPI_Wrap_getInbox($SERVER_ID,$USER_ID,$ACCT_ID);
+	}
+
+	static function getOutbox($SERVER_ID,$USER_ID,$ACCT_ID) {
+		return OTAPI_Wrap_getOutbox($SERVER_ID,$USER_ID,$ACCT_ID);
+	}
+
+	static function getNymbox($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_getNymbox($SERVER_ID,$USER_ID);
+	}
+
+	static function LoadNymbox($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadNymbox($SERVER_ID,$USER_ID);
+	}
+
+	static function LoadNymboxNoVerify($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_LoadNymboxNoVerify($SERVER_ID,$USER_ID);
+	}
+
+	static function Nymbox_GetReplyNotice($SERVER_ID,$USER_ID,$REQUEST_NUMBER) {
+		return OTAPI_Wrap_Nymbox_GetReplyNotice($SERVER_ID,$USER_ID,$REQUEST_NUMBER);
+	}
+
+	static function HaveAlreadySeenReply($SERVER_ID,$USER_ID,$REQUEST_NUMBER) {
+		return OTAPI_Wrap_HaveAlreadySeenReply($SERVER_ID,$USER_ID,$REQUEST_NUMBER);
+	}
+
+	static function getBoxReceipt($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER) {
+		return OTAPI_Wrap_getBoxReceipt($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER);
+	}
+
+	static function DoesBoxReceiptExist($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER) {
+		return OTAPI_Wrap_DoesBoxReceiptExist($SERVER_ID,$USER_ID,$ACCOUNT_ID,$nBoxType,$TRANSACTION_NUMBER);
+	}
+
+	static function processInbox($SERVER_ID,$USER_ID,$ACCT_ID,$ACCT_LEDGER) {
+		return OTAPI_Wrap_processInbox($SERVER_ID,$USER_ID,$ACCT_ID,$ACCT_LEDGER);
+	}
+
+	static function processNymbox($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_processNymbox($SERVER_ID,$USER_ID);
+	}
+
+	static function withdrawVoucher($SERVER_ID,$USER_ID,$ACCT_ID,$RECIPIENT_USER_ID,$CHEQUE_MEMO,$AMOUNT) {
+		return OTAPI_Wrap_withdrawVoucher($SERVER_ID,$USER_ID,$ACCT_ID,$RECIPIENT_USER_ID,$CHEQUE_MEMO,$AMOUNT);
+	}
+
+	static function payDividend($SERVER_ID,$ISSUER_USER_ID,$DIVIDEND_FROM_ACCT_ID,$SHARES_ASSET_TYPE_ID,$DIVIDEND_MEMO,$AMOUNT_PER_SHARE) {
+		return OTAPI_Wrap_payDividend($SERVER_ID,$ISSUER_USER_ID,$DIVIDEND_FROM_ACCT_ID,$SHARES_ASSET_TYPE_ID,$DIVIDEND_MEMO,$AMOUNT_PER_SHARE);
+	}
+
+	static function depositCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE) {
+		return OTAPI_Wrap_depositCheque($SERVER_ID,$USER_ID,$ACCT_ID,$THE_CHEQUE);
+	}
+
+	static function depositPaymentPlan($SERVER_ID,$USER_ID,$THE_PAYMENT_PLAN) {
+		return OTAPI_Wrap_depositPaymentPlan($SERVER_ID,$USER_ID,$THE_PAYMENT_PLAN);
+	}
+
+	static function issueMarketOffer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$MARKET_SCALE,$MINIMUM_INCREMENT,$TOTAL_ASSETS_ON_OFFER,$PRICE_LIMIT,$bBuyingOrSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE) {
+		return OTAPI_Wrap_issueMarketOffer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$MARKET_SCALE,$MINIMUM_INCREMENT,$TOTAL_ASSETS_ON_OFFER,$PRICE_LIMIT,$bBuyingOrSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE);
+	}
+
+	static function getMarketList($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_getMarketList($SERVER_ID,$USER_ID);
+	}
+
+	static function getMarketOffers($SERVER_ID,$USER_ID,$MARKET_ID,$MAX_DEPTH) {
+		return OTAPI_Wrap_getMarketOffers($SERVER_ID,$USER_ID,$MARKET_ID,$MAX_DEPTH);
+	}
+
+	static function getMarketRecentTrades($SERVER_ID,$USER_ID,$MARKET_ID) {
+		return OTAPI_Wrap_getMarketRecentTrades($SERVER_ID,$USER_ID,$MARKET_ID);
+	}
+
+	static function getNym_MarketOffers($SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_getNym_MarketOffers($SERVER_ID,$USER_ID);
+	}
+
+	static function killMarketOffer($SERVER_ID,$USER_ID,$ASSET_ACCT_ID,$TRANSACTION_NUMBER) {
+		return OTAPI_Wrap_killMarketOffer($SERVER_ID,$USER_ID,$ASSET_ACCT_ID,$TRANSACTION_NUMBER);
+	}
+
+	static function killPaymentPlan($SERVER_ID,$USER_ID,$FROM_ACCT_ID,$TRANSACTION_NUMBER) {
+		return OTAPI_Wrap_killPaymentPlan($SERVER_ID,$USER_ID,$FROM_ACCT_ID,$TRANSACTION_NUMBER);
+	}
+
+	static function PopMessageBuffer($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_PopMessageBuffer($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
+	}
+
+	static function FlushMessageBuffer() {
+		OTAPI_Wrap_FlushMessageBuffer();
+	}
+
+	static function GetSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_GetSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
+	}
+
+	static function RemoveSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID) {
+		return OTAPI_Wrap_RemoveSentMessage($REQUEST_NUMBER,$SERVER_ID,$USER_ID);
+	}
+
+	static function FlushSentMessages($bHarvestingForRetry,$SERVER_ID,$USER_ID,$THE_NYMBOX) {
+		OTAPI_Wrap_FlushSentMessages($bHarvestingForRetry,$SERVER_ID,$USER_ID,$THE_NYMBOX);
+	}
+
+	static function Sleep($MILLISECONDS) {
+		OTAPI_Wrap_Sleep($MILLISECONDS);
+	}
+
+	static function ResyncNymWithServer($SERVER_ID,$USER_ID,$THE_MESSAGE) {
+		return OTAPI_Wrap_ResyncNymWithServer($SERVER_ID,$USER_ID,$THE_MESSAGE);
+	}
+
+	static function Message_GetCommand($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetCommand($THE_MESSAGE);
+	}
+
+	static function Message_GetSuccess($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetSuccess($THE_MESSAGE);
+	}
+
+	static function queryAssetTypes($SERVER_ID,$USER_ID,$ENCODED_MAP) {
+		return OTAPI_Wrap_queryAssetTypes($SERVER_ID,$USER_ID,$ENCODED_MAP);
+	}
+
+	static function Message_GetPayload($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetPayload($THE_MESSAGE);
+	}
+
+	static function Message_GetDepth($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetDepth($THE_MESSAGE);
+	}
+
+	static function Message_GetTransactionSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetTransactionSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
+	}
+
+	static function Message_IsTransactionCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
+		return OTAPI_Wrap_Message_IsTransactionCanceled($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
+	}
+
+	static function Message_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetBalanceAgreementSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_MESSAGE);
+	}
+
+	static function Message_GetLedger($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetLedger($THE_MESSAGE);
+	}
+
+	static function Message_GetNewAssetTypeID($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetNewAssetTypeID($THE_MESSAGE);
+	}
+
+	static function Message_GetNewIssuerAcctID($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetNewIssuerAcctID($THE_MESSAGE);
+	}
+
+	static function Message_GetNewAcctID($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetNewAcctID($THE_MESSAGE);
+	}
+
+	static function Message_GetNymboxHash($THE_MESSAGE) {
+		return OTAPI_Wrap_Message_GetNymboxHash($THE_MESSAGE);
+	}
+
+	static function ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD) {
+		return OTAPI_Wrap_ConnectServer($SERVER_ID,$USER_ID,$strCA_FILE,$strKEY_FILE,$strKEY_PASSWORD);
+	}
+
+	static function ProcessSockets() {
+		return OTAPI_Wrap_ProcessSockets();
+	}
+}
+
+class OT_ME {
 	public $_cPtr=null;
 	protected $_pData=array();
 
@@ -1875,255 +2177,306 @@ class OTMadeEasy {
 	}
 
 	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTMadeEasy') {
+		if (is_resource($res) && get_resource_type($res) === '_p_OT_ME') {
 			$this->_cPtr=$res;
 			return;
 		}
-		$this->_cPtr=new_OTMadeEasy();
+		$this->_cPtr=new_OT_ME();
+	}
+
+	function opentxs_copy_variables() {
+		OT_ME_opentxs_copy_variables($this->_cPtr);
+	}
+
+	function opentxs_main_loop() {
+		return OT_ME_opentxs_main_loop($this->_cPtr);
 	}
 
 	function make_sure_enough_trans_nums($nNumberNeeded,$SERVER_ID,$NYM_ID) {
-		return OTMadeEasy_make_sure_enough_trans_nums($this->_cPtr,$nNumberNeeded,$SERVER_ID,$NYM_ID);
+		return OT_ME_make_sure_enough_trans_nums($this->_cPtr,$nNumberNeeded,$SERVER_ID,$NYM_ID);
 	}
 
 	function register_nym($SERVER_ID,$NYM_ID) {
-		return OTMadeEasy_register_nym($this->_cPtr,$SERVER_ID,$NYM_ID);
+		return OT_ME_register_nym($this->_cPtr,$SERVER_ID,$NYM_ID);
 	}
 
 	function check_user($SERVER_ID,$NYM_ID,$TARGET_NYM_ID) {
-		return OTMadeEasy_check_user($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
+		return OT_ME_check_user($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
 	}
 
 	function create_pseudonym($nKeybits,$NYM_ID_SOURCE,$ALT_LOCATION) {
-		return OTMadeEasy_create_pseudonym($this->_cPtr,$nKeybits,$NYM_ID_SOURCE,$ALT_LOCATION);
+		return OT_ME_create_pseudonym($this->_cPtr,$nKeybits,$NYM_ID_SOURCE,$ALT_LOCATION);
 	}
 
 	function issue_asset_type($SERVER_ID,$NYM_ID,$THE_CONTRACT) {
-		return OTMadeEasy_issue_asset_type($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_CONTRACT);
+		return OT_ME_issue_asset_type($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_CONTRACT);
 	}
 
 	function issue_basket_currency($SERVER_ID,$NYM_ID,$THE_BASKET) {
-		return OTMadeEasy_issue_basket_currency($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_BASKET);
+		return OT_ME_issue_basket_currency($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_BASKET);
 	}
 
 	function exchange_basket_currency($SERVER_ID,$NYM_ID,$ASSET_TYPE_ID,$THE_BASKET,$ACCOUNT_ID,$IN_OR_OUT) {
-		return OTMadeEasy_exchange_basket_currency($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_TYPE_ID,$THE_BASKET,$ACCOUNT_ID,$IN_OR_OUT);
+		return OT_ME_exchange_basket_currency($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_TYPE_ID,$THE_BASKET,$ACCOUNT_ID,$IN_OR_OUT);
 	}
 
 	function retrieve_contract($SERVER_ID,$NYM_ID,$CONTRACT_ID) {
-		return OTMadeEasy_retrieve_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$CONTRACT_ID);
+		return OT_ME_retrieve_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$CONTRACT_ID);
 	}
 
 	function load_or_retrieve_contract($SERVER_ID,$NYM_ID,$CONTRACT_ID) {
-		return OTMadeEasy_load_or_retrieve_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$CONTRACT_ID);
+		return OT_ME_load_or_retrieve_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$CONTRACT_ID);
 	}
 
 	function create_asset_acct($SERVER_ID,$NYM_ID,$ASSET_TYPE_ID) {
-		return OTMadeEasy_create_asset_acct($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_TYPE_ID);
+		return OT_ME_create_asset_acct($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_TYPE_ID);
 	}
 
 	function stat_asset_account($ACCOUNT_ID) {
-		return OTMadeEasy_stat_asset_account($this->_cPtr,$ACCOUNT_ID);
+		return OT_ME_stat_asset_account($this->_cPtr,$ACCOUNT_ID);
 	}
 
 	function retrieve_account($SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload=null) {
 		switch (func_num_args()) {
-		case 3: $r=OTMadeEasy_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID); break;
-		default: $r=OTMadeEasy_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload);
+		case 3: $r=OT_ME_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID); break;
+		default: $r=OT_ME_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload);
 		}
 		return $r;
 	}
 
 	function retrieve_nym($SERVER_ID,$NYM_ID,$bForceDownload=null) {
 		switch (func_num_args()) {
-		case 2: $r=OTMadeEasy_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID); break;
-		default: $r=OTMadeEasy_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID,$bForceDownload);
+		case 2: $r=OT_ME_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID); break;
+		default: $r=OT_ME_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID,$bForceDownload);
 		}
 		return $r;
 	}
 
 	function send_transfer($SERVER_ID,$NYM_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE) {
-		return OTMadeEasy_send_transfer($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE);
+		return OT_ME_send_transfer($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE);
 	}
 
 	function process_inbox($SERVER_ID,$NYM_ID,$ACCOUNT_ID,$RESPONSE_LEDGER) {
-		return OTMadeEasy_process_inbox($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$RESPONSE_LEDGER);
+		return OT_ME_process_inbox($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$RESPONSE_LEDGER);
 	}
 
 	function accept_inbox_items($ACCOUNT_ID,$nItemType,$INDICES) {
-		return OTMadeEasy_accept_inbox_items($this->_cPtr,$ACCOUNT_ID,$nItemType,$INDICES);
+		return OT_ME_accept_inbox_items($this->_cPtr,$ACCOUNT_ID,$nItemType,$INDICES);
 	}
 
 	function discard_incoming_payments($SERVER_ID,$NYM_ID,$INDICES) {
-		return OTMadeEasy_discard_incoming_payments($this->_cPtr,$SERVER_ID,$NYM_ID,$INDICES);
+		return OT_ME_discard_incoming_payments($this->_cPtr,$SERVER_ID,$NYM_ID,$INDICES);
 	}
 
 	function cancel_outgoing_payments($NYM_ID,$ACCOUNT_ID,$INDICES) {
-		return OTMadeEasy_cancel_outgoing_payments($this->_cPtr,$NYM_ID,$ACCOUNT_ID,$INDICES);
+		return OT_ME_cancel_outgoing_payments($this->_cPtr,$NYM_ID,$ACCOUNT_ID,$INDICES);
 	}
 
 	function accept_from_paymentbox($ACCOUNT_ID,$INDICES,$PAYMENT_TYPE) {
-		return OTMadeEasy_accept_from_paymentbox($this->_cPtr,$ACCOUNT_ID,$INDICES,$PAYMENT_TYPE);
+		return OT_ME_accept_from_paymentbox($this->_cPtr,$ACCOUNT_ID,$INDICES,$PAYMENT_TYPE);
 	}
 
 	function load_public_encryption_key($NYM_ID) {
-		return OTMadeEasy_load_public_encryption_key($this->_cPtr,$NYM_ID);
+		return OT_ME_load_public_encryption_key($this->_cPtr,$NYM_ID);
 	}
 
 	function load_public_signing_key($NYM_ID) {
-		return OTMadeEasy_load_public_signing_key($this->_cPtr,$NYM_ID);
+		return OT_ME_load_public_signing_key($this->_cPtr,$NYM_ID);
 	}
 
 	function load_or_retrieve_encrypt_key($SERVER_ID,$NYM_ID,$TARGET_NYM_ID) {
-		return OTMadeEasy_load_or_retrieve_encrypt_key($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
+		return OT_ME_load_or_retrieve_encrypt_key($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
 	}
 
 	function load_or_retrieve_signing_key($SERVER_ID,$NYM_ID,$TARGET_NYM_ID) {
-		return OTMadeEasy_load_or_retrieve_signing_key($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
+		return OT_ME_load_or_retrieve_signing_key($this->_cPtr,$SERVER_ID,$NYM_ID,$TARGET_NYM_ID);
 	}
 
 	function send_user_msg_pubkey($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_MESSAGE) {
-		return OTMadeEasy_send_user_msg_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_MESSAGE);
+		return OT_ME_send_user_msg_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_MESSAGE);
 	}
 
 	function send_user_pmnt_pubkey($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT) {
-		return OTMadeEasy_send_user_pmnt_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT);
+		return OT_ME_send_user_pmnt_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT);
 	}
 
 	function send_user_cash_pubkey($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER) {
-		return OTMadeEasy_send_user_cash_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER);
+		return OT_ME_send_user_cash_pubkey($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$RECIPIENT_PUBKEY,$THE_INSTRUMENT,$INSTRUMENT_FOR_SENDER);
 	}
 
 	function send_user_msg($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_MESSAGE) {
-		return OTMadeEasy_send_user_msg($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_MESSAGE);
+		return OT_ME_send_user_msg($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_MESSAGE);
 	}
 
 	function send_user_payment($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT) {
-		return OTMadeEasy_send_user_payment($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT);
+		return OT_ME_send_user_payment($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT);
 	}
 
 	function send_user_cash($SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT,$SENDERS_COPY) {
-		return OTMadeEasy_send_user_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT,$SENDERS_COPY);
+		return OT_ME_send_user_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$RECIPIENT_NYM_ID,$THE_PAYMENT,$SENDERS_COPY);
 	}
 
 	function withdraw_and_send_cash($ACCT_ID,$RECIPIENT_NYM_ID,$MEMO,$AMOUNT) {
-		return OTMadeEasy_withdraw_and_send_cash($this->_cPtr,$ACCT_ID,$RECIPIENT_NYM_ID,$MEMO,$AMOUNT);
+		return OT_ME_withdraw_and_send_cash($this->_cPtr,$ACCT_ID,$RECIPIENT_NYM_ID,$MEMO,$AMOUNT);
 	}
 
 	function get_payment_instrument($SERVER_ID,$NYM_ID,$nIndex,$PRELOADED_INBOX=null) {
 		switch (func_num_args()) {
-		case 3: $r=OTMadeEasy_get_payment_instrument($this->_cPtr,$SERVER_ID,$NYM_ID,$nIndex); break;
-		default: $r=OTMadeEasy_get_payment_instrument($this->_cPtr,$SERVER_ID,$NYM_ID,$nIndex,$PRELOADED_INBOX);
+		case 3: $r=OT_ME_get_payment_instrument($this->_cPtr,$SERVER_ID,$NYM_ID,$nIndex); break;
+		default: $r=OT_ME_get_payment_instrument($this->_cPtr,$SERVER_ID,$NYM_ID,$nIndex,$PRELOADED_INBOX);
 		}
 		return $r;
 	}
 
 	function get_box_receipt($SERVER_ID,$NYM_ID,$ACCT_ID,$nBoxType,$TRANS_NUM) {
-		return OTMadeEasy_get_box_receipt($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$nBoxType,$TRANS_NUM);
+		return OT_ME_get_box_receipt($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$nBoxType,$TRANS_NUM);
 	}
 
 	function retrieve_mint($SERVER_ID,$NYM_ID,$ASSET_ID) {
-		return OTMadeEasy_retrieve_mint($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ID);
+		return OT_ME_retrieve_mint($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ID);
 	}
 
 	function load_or_retrieve_mint($SERVER_ID,$NYM_ID,$ASSET_ID) {
-		return OTMadeEasy_load_or_retrieve_mint($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ID);
+		return OT_ME_load_or_retrieve_mint($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ID);
 	}
 
 	function query_asset_types($SERVER_ID,$NYM_ID,$ENCODED_MAP) {
-		return OTMadeEasy_query_asset_types($this->_cPtr,$SERVER_ID,$NYM_ID,$ENCODED_MAP);
+		return OT_ME_query_asset_types($this->_cPtr,$SERVER_ID,$NYM_ID,$ENCODED_MAP);
 	}
 
-	function create_market_offer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$scale,$minIncrement,$quantity,$price,$bSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE) {
-		return OTMadeEasy_create_market_offer($this->_cPtr,$ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$scale,$minIncrement,$quantity,$price,$bSelling,$LIFESPAN_IN_SECONDS,$STOP_SIGN,$ACTIVATION_PRICE);
+	function create_market_offer($ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$scale,$minIncrement,$quantity,$price,$bSelling,$lLifespanInSeconds,$STOP_SIGN,$ACTIVATION_PRICE) {
+		return OT_ME_create_market_offer($this->_cPtr,$ASSET_ACCT_ID,$CURRENCY_ACCT_ID,$scale,$minIncrement,$quantity,$price,$bSelling,$lLifespanInSeconds,$STOP_SIGN,$ACTIVATION_PRICE);
 	}
 
 	function kill_market_offer($SERVER_ID,$NYM_ID,$ASSET_ACCT_ID,$TRANS_NUM) {
-		return OTMadeEasy_kill_market_offer($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ACCT_ID,$TRANS_NUM);
+		return OT_ME_kill_market_offer($this->_cPtr,$SERVER_ID,$NYM_ID,$ASSET_ACCT_ID,$TRANS_NUM);
 	}
 
 	function kill_payment_plan($SERVER_ID,$NYM_ID,$ACCT_ID,$TRANS_NUM) {
-		return OTMadeEasy_kill_payment_plan($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$TRANS_NUM);
+		return OT_ME_kill_payment_plan($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$TRANS_NUM);
 	}
 
 	function cancel_payment_plan($SERVER_ID,$NYM_ID,$THE_PAYMENT_PLAN) {
-		return OTMadeEasy_cancel_payment_plan($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_PAYMENT_PLAN);
+		return OT_ME_cancel_payment_plan($this->_cPtr,$SERVER_ID,$NYM_ID,$THE_PAYMENT_PLAN);
 	}
 
 	function activate_smart_contract($SERVER_ID,$NYM_ID,$ACCT_ID,$AGENT_NAME,$THE_SMART_CONTRACT) {
-		return OTMadeEasy_activate_smart_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$AGENT_NAME,$THE_SMART_CONTRACT);
+		return OT_ME_activate_smart_contract($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$AGENT_NAME,$THE_SMART_CONTRACT);
 	}
 
 	function trigger_clause($SERVER_ID,$NYM_ID,$TRANS_NUM,$CLAUSE_NAME,$STR_PARAM) {
-		return OTMadeEasy_trigger_clause($this->_cPtr,$SERVER_ID,$NYM_ID,$TRANS_NUM,$CLAUSE_NAME,$STR_PARAM);
+		return OT_ME_trigger_clause($this->_cPtr,$SERVER_ID,$NYM_ID,$TRANS_NUM,$CLAUSE_NAME,$STR_PARAM);
 	}
 
 	function withdraw_cash($SERVER_ID,$NYM_ID,$ACCT_ID,$AMOUNT) {
-		return OTMadeEasy_withdraw_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$AMOUNT);
+		return OT_ME_withdraw_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$AMOUNT);
 	}
 
 	function easy_withdraw_cash($ACCT_ID,$AMOUNT) {
-		return OTMadeEasy_easy_withdraw_cash($this->_cPtr,$ACCT_ID,$AMOUNT);
+		return OT_ME_easy_withdraw_cash($this->_cPtr,$ACCT_ID,$AMOUNT);
 	}
 
 	function export_cash($SERVER_ID,$FROM_NYM_ID,$ASSET_TYPE_ID,$TO_NYM_ID,$STR_INDICES,$bPasswordProtected,$STR_RETAINED_COPY) {
-		return OTMadeEasy_export_cash($this->_cPtr,$SERVER_ID,$FROM_NYM_ID,$ASSET_TYPE_ID,$TO_NYM_ID,$STR_INDICES,$bPasswordProtected,$STR_RETAINED_COPY);
+		return OT_ME_export_cash($this->_cPtr,$SERVER_ID,$FROM_NYM_ID,$ASSET_TYPE_ID,$TO_NYM_ID,$STR_INDICES,$bPasswordProtected,$STR_RETAINED_COPY);
 	}
 
 	function withdraw_voucher($SERVER_ID,$NYM_ID,$ACCT_ID,$RECIP_NYM_ID,$STR_MEMO,$AMOUNT) {
-		return OTMadeEasy_withdraw_voucher($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$RECIP_NYM_ID,$STR_MEMO,$AMOUNT);
+		return OT_ME_withdraw_voucher($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$RECIP_NYM_ID,$STR_MEMO,$AMOUNT);
 	}
 
 	function pay_dividend($SERVER_ID,$NYM_ID,$SOURCE_ACCT_ID,$SHARES_ASSET_ID,$STR_MEMO,$AMOUNT_PER_SHARE) {
-		return OTMadeEasy_pay_dividend($this->_cPtr,$SERVER_ID,$NYM_ID,$SOURCE_ACCT_ID,$SHARES_ASSET_ID,$STR_MEMO,$AMOUNT_PER_SHARE);
+		return OT_ME_pay_dividend($this->_cPtr,$SERVER_ID,$NYM_ID,$SOURCE_ACCT_ID,$SHARES_ASSET_ID,$STR_MEMO,$AMOUNT_PER_SHARE);
 	}
 
 	function deposit_cheque($SERVER_ID,$NYM_ID,$ACCT_ID,$STR_CHEQUE) {
-		return OTMadeEasy_deposit_cheque($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_CHEQUE);
+		return OT_ME_deposit_cheque($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_CHEQUE);
 	}
 
 	function deposit_cash($SERVER_ID,$NYM_ID,$ACCT_ID,$STR_PURSE) {
-		return OTMadeEasy_deposit_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_PURSE);
+		return OT_ME_deposit_cash($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_PURSE);
 	}
 
 	function deposit_local_purse($SERVER_ID,$NYM_ID,$ACCT_ID,$STR_INDICES) {
-		return OTMadeEasy_deposit_local_purse($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_INDICES);
+		return OT_ME_deposit_local_purse($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCT_ID,$STR_INDICES);
 	}
 
 	function get_market_list($SERVER_ID,$NYM_ID) {
-		return OTMadeEasy_get_market_list($this->_cPtr,$SERVER_ID,$NYM_ID);
+		return OT_ME_get_market_list($this->_cPtr,$SERVER_ID,$NYM_ID);
 	}
 
 	function get_market_offers($SERVER_ID,$NYM_ID,$MARKET_ID,$MAX_DEPTH) {
-		return OTMadeEasy_get_market_offers($this->_cPtr,$SERVER_ID,$NYM_ID,$MARKET_ID,$MAX_DEPTH);
+		return OT_ME_get_market_offers($this->_cPtr,$SERVER_ID,$NYM_ID,$MARKET_ID,$MAX_DEPTH);
 	}
 
 	function get_nym_market_offers($SERVER_ID,$NYM_ID) {
-		return OTMadeEasy_get_nym_market_offers($this->_cPtr,$SERVER_ID,$NYM_ID);
+		return OT_ME_get_nym_market_offers($this->_cPtr,$SERVER_ID,$NYM_ID);
 	}
 
 	function get_market_recent_trades($SERVER_ID,$NYM_ID,$MARKET_ID) {
-		return OTMadeEasy_get_market_recent_trades($this->_cPtr,$SERVER_ID,$NYM_ID,$MARKET_ID);
+		return OT_ME_get_market_recent_trades($this->_cPtr,$SERVER_ID,$NYM_ID,$MARKET_ID);
 	}
 
 	function adjust_usage_credits($SERVER_ID,$USER_NYM_ID,$TARGET_NYM_ID,$ADJUSTMENT) {
-		return OTMadeEasy_adjust_usage_credits($this->_cPtr,$SERVER_ID,$USER_NYM_ID,$TARGET_NYM_ID,$ADJUSTMENT);
+		return OT_ME_adjust_usage_credits($this->_cPtr,$SERVER_ID,$USER_NYM_ID,$TARGET_NYM_ID,$ADJUSTMENT);
 	}
 
 	function VerifyMessageSuccess($str_Message) {
-		return OTMadeEasy_VerifyMessageSuccess($this->_cPtr,$str_Message);
+		return OT_ME_VerifyMessageSuccess($this->_cPtr,$str_Message);
 	}
 
 	function VerifyMsgBalanceAgrmntSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
-		return OTMadeEasy_VerifyMsgBalanceAgrmntSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
+		return OT_ME_VerifyMsgBalanceAgrmntSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
 	}
 
 	function VerifyMsgTrnxSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
-		return OTMadeEasy_VerifyMsgTrnxSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
+		return OT_ME_VerifyMsgTrnxSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
 	}
 
 	function InterpretTransactionMsgReply($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response) {
-		return OTMadeEasy_InterpretTransactionMsgReply($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response);
+		return OT_ME_InterpretTransactionMsgReply($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response);
+	}
+
+	function ExecuteScript_ReturnString($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnBool($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnInt($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnVoid($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code); break;
+		default: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+	}
+
+	function AddVariable($str_var_name,$theVar) {
+		OT_ME_AddVariable($this->_cPtr,$str_var_name,$theVar);
+	}
+
+	function FindVariable($str_var_name) {
+		return OT_ME_FindVariable($this->_cPtr,$str_var_name);
+	}
+
+	static function FindVariable2($str_var_name) {
+		return OT_ME_FindVariable2($str_var_name);
 	}
 }
 
@@ -2206,6 +2559,16 @@ abstract class Storage {
 		case 2: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr); break;
 		case 3: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr,$twoStr); break;
 		default: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr,$twoStr,$threeStr);
+		}
+		return $r;
+	}
+
+	function FormPathString($strOutput,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
+		switch (func_num_args()) {
+		case 2: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder); break;
+		case 3: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr); break;
+		case 4: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr,$twoStr); break;
+		default: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr,$twoStr,$threeStr);
 		}
 		return $r;
 	}
@@ -2364,7 +2727,7 @@ class Blob extends Storable {
 	}
 
 	function __get($var) {
-		if ($var === 'm_memBuffer') return Blob_m_memBuffer_get($this->_cPtr);
+		if ($var === 'm_memBuffer') return new VectorUnsignedChar(Blob_m_memBuffer_get($this->_cPtr));
 		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
 		return Storable::__get($var);
 	}
@@ -2399,7 +2762,7 @@ class StringMap extends Storable {
 	}
 
 	function __get($var) {
-		if ($var === 'the_map') return StringMap_the_map_get($this->_cPtr);
+		if ($var === 'the_map') return new MapStringString(StringMap_the_map_get($this->_cPtr));
 		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
 		return Storable::__get($var);
 	}

@@ -1,14 +1,3 @@
-/***********************************************************
-
-OT_ME.h  aka "OT Made Easy" -- used for sending requests to the server.
-
-In this class only following types are accepted:
-bool, int32_t, int64_t, std::string
-
-This file is used like OTAPI.h
-
-*/
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -545,7 +534,7 @@ public:
     // --------------------------------------------------------------------------------
     EXPORT  std::string   ExecuteScript_ReturnString(const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
     EXPORT  bool          ExecuteScript_ReturnBool  (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
-    EXPORT  int32_t           ExecuteScript_ReturnInt   (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
+    EXPORT  int32_t       ExecuteScript_ReturnInt   (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
     EXPORT  void          ExecuteScript_ReturnVoid  (const std::string & str_Code, std::string str_DisplayName = "<BLANK>");
     // --------------------------------------------------------------------------------
     EXPORT  void          AddVariable(const std::string & str_var_name, OTVariable & theVar);

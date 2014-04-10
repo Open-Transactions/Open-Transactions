@@ -789,12 +789,12 @@ int64_t OTAPI_Wrap::Instrmnt_GetTransNum(const std::string & THE_INSTRUMENT)
     return Exec()->Instrmnt_GetTransNum(THE_INSTRUMENT);
 }
 
-time_t OTAPI_Wrap::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
+WrapTimeT OTAPI_Wrap::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
 {
     return Exec()->Instrmnt_GetValidFrom(THE_INSTRUMENT);
 }
 
-time_t OTAPI_Wrap::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
+WrapTimeT OTAPI_Wrap::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
 {
     return Exec()->Instrmnt_GetValidTo(THE_INSTRUMENT);
 }
@@ -914,7 +914,7 @@ std::string OTAPI_Wrap::GetAccountWallet_OutboxHash(const std::string & ACCOUNT_
     return Exec()->GetAccountWallet_OutboxHash(ACCOUNT_ID);
 }
 
-time_t OTAPI_Wrap::GetTime(void)
+WrapTimeT OTAPI_Wrap::GetTime(void)
 {
     return Exec()->GetTime();
 }
@@ -1014,7 +1014,7 @@ std::string OTAPI_Wrap::GetAccountWallet_NymID(const std::string & THE_ID)
     return Exec()->GetAccountWallet_NymID(THE_ID);
 }
 
-std::string OTAPI_Wrap::WriteCheque(const std::string & SERVER_ID, const int64_t & CHEQUE_AMOUNT, const time_t & VALID_FROM, const time_t & VALID_TO, const std::string & SENDER_ACCT_ID, const std::string & SENDER_USER_ID, const std::string & CHEQUE_MEMO, const std::string & RECIPIENT_USER_ID)
+std::string OTAPI_Wrap::WriteCheque(const std::string & SERVER_ID, const int64_t & CHEQUE_AMOUNT, const WrapTimeT & VALID_FROM, const WrapTimeT & VALID_TO, const std::string & SENDER_ACCT_ID, const std::string & SENDER_USER_ID, const std::string & CHEQUE_MEMO, const std::string & RECIPIENT_USER_ID)
 {
     return Exec()->WriteCheque(SERVER_ID, CHEQUE_AMOUNT, VALID_FROM, VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
 }
@@ -1024,7 +1024,7 @@ bool OTAPI_Wrap::DiscardCheque(const std::string & SERVER_ID, const std::string 
     return Exec()->DiscardCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
 }
 
-std::string OTAPI_Wrap::ProposePaymentPlan(const std::string & SERVER_ID, const time_t & VALID_FROM, const time_t & VALID_TO, const std::string & SENDER_ACCT_ID, const std::string & SENDER_USER_ID, const std::string & PLAN_CONSIDERATION, const std::string & RECIPIENT_ACCT_ID, const std::string & RECIPIENT_USER_ID, const int64_t & INITIAL_PAYMENT_AMOUNT, const time_t & INITIAL_PAYMENT_DELAY, const int64_t & PAYMENT_PLAN_AMOUNT, const time_t & PAYMENT_PLAN_DELAY, const time_t & PAYMENT_PLAN_PERIOD, const time_t & PAYMENT_PLAN_LENGTH, const int32_t & PAYMENT_PLAN_MAX_PAYMENTS)
+std::string OTAPI_Wrap::ProposePaymentPlan(const std::string & SERVER_ID, const WrapTimeT & VALID_FROM, const WrapTimeT & VALID_TO, const std::string & SENDER_ACCT_ID, const std::string & SENDER_USER_ID, const std::string & PLAN_CONSIDERATION, const std::string & RECIPIENT_ACCT_ID, const std::string & RECIPIENT_USER_ID, const int64_t & INITIAL_PAYMENT_AMOUNT, const WrapTimeT & INITIAL_PAYMENT_DELAY, const int64_t & PAYMENT_PLAN_AMOUNT, const WrapTimeT & PAYMENT_PLAN_DELAY, const WrapTimeT & PAYMENT_PLAN_PERIOD, const WrapTimeT & PAYMENT_PLAN_LENGTH, const int32_t & PAYMENT_PLAN_MAX_PAYMENTS)
 {
     return Exec()->ProposePaymentPlan(SERVER_ID, VALID_FROM, VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, INITIAL_PAYMENT_DELAY, PAYMENT_PLAN_AMOUNT, PAYMENT_PLAN_DELAY, PAYMENT_PLAN_PERIOD, PAYMENT_PLAN_LENGTH, PAYMENT_PLAN_MAX_PAYMENTS);
 }
@@ -1039,7 +1039,7 @@ std::string OTAPI_Wrap::ConfirmPaymentPlan(const std::string & SERVER_ID, const 
     return Exec()->ConfirmPaymentPlan(SERVER_ID, SENDER_USER_ID, SENDER_ACCT_ID, RECIPIENT_USER_ID, PAYMENT_PLAN);
 }
 
-std::string OTAPI_Wrap::Create_SmartContract(const std::string & SIGNER_NYM_ID, const time_t & VALID_FROM, const time_t & VALID_TO)
+std::string OTAPI_Wrap::Create_SmartContract(const std::string & SIGNER_NYM_ID, const WrapTimeT & VALID_FROM, const WrapTimeT & VALID_TO)
 {
     return Exec()->Create_SmartContract(SIGNER_NYM_ID, VALID_FROM, VALID_TO);
 }
@@ -1494,7 +1494,7 @@ int64_t OTAPI_Wrap::ReplyNotice_GetRequestNum(const std::string & SERVER_ID, con
     return Exec()->ReplyNotice_GetRequestNum(SERVER_ID, USER_ID, THE_TRANSACTION);
 }
 
-time_t OTAPI_Wrap::Transaction_GetDateSigned(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION)
+WrapTimeT OTAPI_Wrap::Transaction_GetDateSigned(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION)
 {
     return Exec()->Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
 }
@@ -1604,12 +1604,12 @@ int32_t OTAPI_Wrap::Token_GetSeries(const std::string & SERVER_ID, const std::st
     return Exec()->Token_GetSeries(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
 }
 
-time_t OTAPI_Wrap::Token_GetValidFrom(const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN)
+WrapTimeT OTAPI_Wrap::Token_GetValidFrom(const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN)
 {
     return Exec()->Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
 }
 
-time_t OTAPI_Wrap::Token_GetValidTo(const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN)
+WrapTimeT OTAPI_Wrap::Token_GetValidTo(const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN)
 {
     return Exec()->Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
 }
@@ -1829,7 +1829,7 @@ int32_t OTAPI_Wrap::killPaymentPlan(const std::string & SERVER_ID, const std::st
     return Exec()->killPaymentPlan(SERVER_ID, USER_ID, FROM_ACCT_ID, TRANSACTION_NUMBER);
 }
 
-int32_t OTAPI_Wrap::issueMarketOffer(const std::string & ASSET_ACCT_ID, const std::string & CURRENCY_ACCT_ID, const int64_t & MARKET_SCALE, const int64_t & MINIMUM_INCREMENT, const int64_t & TOTAL_ASSETS_ON_OFFER, const int64_t & PRICE_LIMIT, const bool & bBuyingOrSelling, const time_t & LIFESPAN_IN_SECONDS, const std::string & STOP_SIGN, const int64_t & ACTIVATION_PRICE)
+int32_t OTAPI_Wrap::issueMarketOffer(const std::string & ASSET_ACCT_ID, const std::string & CURRENCY_ACCT_ID, const int64_t & MARKET_SCALE, const int64_t & MINIMUM_INCREMENT, const int64_t & TOTAL_ASSETS_ON_OFFER, const int64_t & PRICE_LIMIT, const bool & bBuyingOrSelling, const WrapTimeT & LIFESPAN_IN_SECONDS, const std::string & STOP_SIGN, const int64_t & ACTIVATION_PRICE)
 {
     return Exec()->issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, LIFESPAN_IN_SECONDS, STOP_SIGN, ACTIVATION_PRICE);
 }

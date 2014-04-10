@@ -8,21 +8,17 @@
 
 namespace OpenTransactions.OTAPI {
 
-public class OTAPI_Basic : global::System.IDisposable {
+public class OTAPI_Wrap : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
-  internal OTAPI_Basic(global::System.IntPtr cPtr, bool cMemoryOwn) {
+  internal OTAPI_Wrap(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
   }
 
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(OTAPI_Basic obj) {
+  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(OTAPI_Wrap obj) {
     return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~OTAPI_Basic() {
-    Dispose();
   }
 
   public virtual void Dispose() {
@@ -30,7 +26,7 @@ public class OTAPI_Basic : global::System.IDisposable {
       if (swigCPtr.Handle != global::System.IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          otapiPINVOKE.delete_OTAPI_Basic(swigCPtr);
+          throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
@@ -38,1967 +34,2004 @@ public class OTAPI_Basic : global::System.IDisposable {
     }
   }
 
-  public OTAPI_Basic() : this(otapiPINVOKE.new_OTAPI_Basic(), true) {
-  }
-
-  public static bool AppStartup() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_AppStartup();
+  public static SWIGTYPE_p_OTAPI_Exec SetExecutor(SWIGTYPE_p_OTAPI_Exec exec) {
+    global::System.IntPtr cPtr = otapiPINVOKE.OTAPI_Wrap_SetExecutor(SWIGTYPE_p_OTAPI_Exec.getCPtr(exec));
+    SWIGTYPE_p_OTAPI_Exec ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTAPI_Exec(cPtr, false);
     return ret;
   }
 
-  public static bool AppShutdown() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_AppShutdown();
+  public static SWIGTYPE_p_OTAPI_Exec Exec() {
+    global::System.IntPtr cPtr = otapiPINVOKE.OTAPI_Wrap_Exec();
+    SWIGTYPE_p_OTAPI_Exec ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTAPI_Exec(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_OTAPI_Exec It() {
+    global::System.IntPtr cPtr = otapiPINVOKE.OTAPI_Wrap_It();
+    SWIGTYPE_p_OTAPI_Exec ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTAPI_Exec(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_OT_API OTAPI() {
+    global::System.IntPtr cPtr = otapiPINVOKE.OTAPI_Wrap_OTAPI();
+    SWIGTYPE_p_OT_API ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OT_API(cPtr, false);
+    return ret;
+  }
+
+  public static long StringToLong(string strNumber) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_StringToLong(strNumber);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string LongToString(long lNumber) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_LongToString(lNumber);
+    return ret;
+  }
+
+  public static ulong StringToUlong(string strNumber) {
+    ulong ret = otapiPINVOKE.OTAPI_Wrap_StringToUlong(strNumber);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string UlongToString(ulong lNumber) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_UlongToString(lNumber);
+    return ret;
+  }
+
+  public static bool AppInit() {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_AppInit();
+    return ret;
+  }
+
+  public static bool AppCleanup() {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_AppCleanup();
     return ret;
   }
 
   public static void SetAppBinaryFolder(string strFolder) {
-    otapiPINVOKE.OTAPI_Basic_SetAppBinaryFolder(strFolder);
+    otapiPINVOKE.OTAPI_Wrap_SetAppBinaryFolder(strFolder);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public static void SetHomeFolder(string strFolder) {
-    otapiPINVOKE.OTAPI_Basic_SetHomeFolder(strFolder);
+    otapiPINVOKE.OTAPI_Wrap_SetHomeFolder(strFolder);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static bool Init() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Init();
-    return ret;
-  }
-
   public static bool SetWallet(string strWalletFilename) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SetWallet(strWalletFilename);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SetWallet(strWalletFilename);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool WalletExists() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_WalletExists();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_WalletExists();
     return ret;
   }
 
   public static bool LoadWallet() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_LoadWallet();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_LoadWallet();
     return ret;
   }
 
   public static bool SwitchWallet() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SwitchWallet();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SwitchWallet();
     return ret;
   }
 
   public static void Output(int nLogLevel, string strOutput) {
-    otapiPINVOKE.OTAPI_Basic_Output(nLogLevel, strOutput);
+    otapiPINVOKE.OTAPI_Wrap_Output(nLogLevel, strOutput);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static string GetTime() {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetTime();
+  public static WrapTimeT GetTime() {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_GetTime(), true);
     return ret;
   }
 
   public static string NumList_Add(string strNumList, string strNumbers) {
-    string ret = otapiPINVOKE.OTAPI_Basic_NumList_Add(strNumList, strNumbers);
+    string ret = otapiPINVOKE.OTAPI_Wrap_NumList_Add(strNumList, strNumbers);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string NumList_Remove(string strNumList, string strNumbers) {
-    string ret = otapiPINVOKE.OTAPI_Basic_NumList_Remove(strNumList, strNumbers);
+    string ret = otapiPINVOKE.OTAPI_Wrap_NumList_Remove(strNumList, strNumbers);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool NumList_VerifyQuery(string strNumList, string strNumbers) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_NumList_VerifyQuery(strNumList, strNumbers);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_NumList_VerifyQuery(strNumList, strNumbers);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool NumList_VerifyAll(string strNumList, string strNumbers) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_NumList_VerifyAll(strNumList, strNumbers);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_NumList_VerifyAll(strNumList, strNumbers);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int NumList_Count(string strNumList) {
-    int ret = otapiPINVOKE.OTAPI_Basic_NumList_Count(strNumList);
+    int ret = otapiPINVOKE.OTAPI_Wrap_NumList_Count(strNumList);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Encode(string strPlaintext, bool bLineBreaks) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Encode(strPlaintext, bLineBreaks);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Encode(strPlaintext, bLineBreaks);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Decode(string strEncoded, bool bLineBreaks) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Decode(strEncoded, bLineBreaks);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Decode(strEncoded, bLineBreaks);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Encrypt(string RECIPIENT_NYM_ID, string strPlaintext) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Encrypt(RECIPIENT_NYM_ID, strPlaintext);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Encrypt(RECIPIENT_NYM_ID, strPlaintext);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Decrypt(string RECIPIENT_NYM_ID, string strCiphertext) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Decrypt(RECIPIENT_NYM_ID, strCiphertext);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Decrypt(RECIPIENT_NYM_ID, strCiphertext);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CreateSymmetricKey() {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreateSymmetricKey();
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreateSymmetricKey();
     return ret;
   }
 
   public static string SymmetricEncrypt(string SYMMETRIC_KEY, string PLAintEXT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SymmetricEncrypt(SYMMETRIC_KEY, PLAintEXT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SymmetricEncrypt(SYMMETRIC_KEY, PLAintEXT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SymmetricDecrypt(string SYMMETRIC_KEY, string CIPHERTEXT_ENVELOPE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SymmetricDecrypt(SYMMETRIC_KEY, CIPHERTEXT_ENVELOPE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SymmetricDecrypt(SYMMETRIC_KEY, CIPHERTEXT_ENVELOPE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SignContract(string SIGNER_NYM_ID, string THE_CONTRACT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SignContract(SIGNER_NYM_ID, THE_CONTRACT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SignContract(SIGNER_NYM_ID, THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string FlatSign(string SIGNER_NYM_ID, string THE_INPUT, string CONTRACT_TYPE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_FlatSign(SIGNER_NYM_ID, THE_INPUT, CONTRACT_TYPE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_FlatSign(SIGNER_NYM_ID, THE_INPUT, CONTRACT_TYPE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string AddSignature(string SIGNER_NYM_ID, string THE_CONTRACT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_AddSignature(SIGNER_NYM_ID, THE_CONTRACT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_AddSignature(SIGNER_NYM_ID, THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool VerifySignature(string SIGNER_NYM_ID, string THE_CONTRACT) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_VerifySignature(SIGNER_NYM_ID, THE_CONTRACT);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_VerifySignature(SIGNER_NYM_ID, THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string VerifyAndRetrieveXMLContents(string THE_CONTRACT, string SIGNER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_VerifyAndRetrieveXMLContents(THE_CONTRACT, SIGNER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_VerifyAndRetrieveXMLContents(THE_CONTRACT, SIGNER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetMemlogSize() {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetMemlogSize();
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetMemlogSize();
     return ret;
   }
 
   public static string GetMemlogAtIndex(int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetMemlogAtIndex(nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetMemlogAtIndex(nIndex);
     return ret;
   }
 
   public static string PeekMemlogFront() {
-    string ret = otapiPINVOKE.OTAPI_Basic_PeekMemlogFront();
+    string ret = otapiPINVOKE.OTAPI_Wrap_PeekMemlogFront();
     return ret;
   }
 
   public static string PeekMemlogBack() {
-    string ret = otapiPINVOKE.OTAPI_Basic_PeekMemlogBack();
+    string ret = otapiPINVOKE.OTAPI_Wrap_PeekMemlogBack();
     return ret;
   }
 
   public static bool PopMemlogFront() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_PopMemlogFront();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_PopMemlogFront();
     return ret;
   }
 
   public static bool PopMemlogBack() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_PopMemlogBack();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_PopMemlogBack();
     return ret;
   }
 
   public static string CreateNym(int nKeySize, string NYM_ID_SOURCE, string ALT_LOCATION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreateNym(nKeySize, NYM_ID_SOURCE, ALT_LOCATION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreateNym(nKeySize, NYM_ID_SOURCE, ALT_LOCATION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_ActiveCronItemIDs(string NYM_ID, string SERVER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_ActiveCronItemIDs(NYM_ID, SERVER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_ActiveCronItemIDs(NYM_ID, SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string GetActiveCronItem(string SERVER_ID, string TRANSACTION_NUMBER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetActiveCronItem(SERVER_ID, TRANSACTION_NUMBER);
+  public static string GetActiveCronItem(string SERVER_ID, long lTransNum) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetActiveCronItem(SERVER_ID, lTransNum);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_SourceForID(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_SourceForID(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_SourceForID(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_AltSourceLocation(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_AltSourceLocation(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_AltSourceLocation(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_CredentialCount(string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_CredentialCount(NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_CredentialCount(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_CredentialID(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_CredentialID(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_CredentialID(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_CredentialContents(string NYM_ID, string CREDENTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_CredentialContents(NYM_ID, CREDENTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_CredentialContents(NYM_ID, CREDENTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_RevokedCredCount(string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_RevokedCredCount(NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_RevokedCredCount(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_RevokedCredID(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_RevokedCredID(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_RevokedCredID(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_RevokedCredContents(string NYM_ID, string CREDENTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_RevokedCredContents(NYM_ID, CREDENTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_RevokedCredContents(NYM_ID, CREDENTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_SubcredentialCount(string NYM_ID, string MASTER_CRED_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_SubcredentialCount(NYM_ID, MASTER_CRED_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_SubcredentialCount(NYM_ID, MASTER_CRED_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_SubCredentialID(string NYM_ID, string MASTER_CRED_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_SubCredentialID(NYM_ID, MASTER_CRED_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_SubCredentialID(NYM_ID, MASTER_CRED_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_SubCredentialContents(string NYM_ID, string MASTER_CRED_ID, string SUB_CRED_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_SubCredentialContents(NYM_ID, MASTER_CRED_ID, SUB_CRED_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_SubCredentialContents(NYM_ID, MASTER_CRED_ID, SUB_CRED_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string AddSubcredential(string NYM_ID, string MASTER_CRED_ID, int nKeySize) {
-    string ret = otapiPINVOKE.OTAPI_Basic_AddSubcredential(NYM_ID, MASTER_CRED_ID, nKeySize);
+    string ret = otapiPINVOKE.OTAPI_Wrap_AddSubcredential(NYM_ID, MASTER_CRED_ID, nKeySize);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool RevokeSubcredential(string NYM_ID, string MASTER_CRED_ID, string SUB_CRED_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_RevokeSubcredential(NYM_ID, MASTER_CRED_ID, SUB_CRED_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_RevokeSubcredential(NYM_ID, MASTER_CRED_ID, SUB_CRED_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CreateServerContract(string NYM_ID, string strXMLcontents) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreateServerContract(NYM_ID, strXMLcontents);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreateServerContract(NYM_ID, strXMLcontents);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CreateAssetContract(string NYM_ID, string strXMLcontents) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreateAssetContract(NYM_ID, strXMLcontents);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreateAssetContract(NYM_ID, strXMLcontents);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CalculateAssetContractID(string str_Contract) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CalculateAssetContractID(str_Contract);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CalculateAssetContractID(str_Contract);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CalculateServerContractID(string str_Contract) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CalculateServerContractID(str_Contract);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CalculateServerContractID(str_Contract);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int AddServerContract(string strContract) {
-    int ret = otapiPINVOKE.OTAPI_Basic_AddServerContract(strContract);
+    int ret = otapiPINVOKE.OTAPI_Wrap_AddServerContract(strContract);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int AddAssetContract(string strContract) {
-    int ret = otapiPINVOKE.OTAPI_Basic_AddAssetContract(strContract);
+    int ret = otapiPINVOKE.OTAPI_Wrap_AddAssetContract(strContract);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetServerCount() {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetServerCount();
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetServerCount();
     return ret;
   }
 
   public static int GetAssetTypeCount() {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetAssetTypeCount();
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetAssetTypeCount();
     return ret;
   }
 
   public static int GetAccountCount() {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetAccountCount();
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetAccountCount();
     return ret;
   }
 
   public static int GetNymCount() {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNymCount();
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNymCount();
     return ret;
   }
 
   public static string GetServer_ID(int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetServer_ID(nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetServer_ID(nIndex);
     return ret;
   }
 
   public static string GetServer_Name(string SERVER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetServer_Name(SERVER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetServer_Name(SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetServer_Contract(string SERVER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetServer_Contract(SERVER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetServer_Contract(SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string FormatAmount(string ASSET_TYPE_ID, string THE_AMOUNT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_FormatAmount(ASSET_TYPE_ID, THE_AMOUNT);
+  public static string FormatAmount(string ASSET_TYPE_ID, long THE_AMOUNT) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_FormatAmount(ASSET_TYPE_ID, THE_AMOUNT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string StringToAmount(string ASSET_TYPE_ID, string str_input) {
-    string ret = otapiPINVOKE.OTAPI_Basic_StringToAmount(ASSET_TYPE_ID, str_input);
+  public static long StringToAmount(string ASSET_TYPE_ID, string str_input) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_StringToAmount(ASSET_TYPE_ID, str_input);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAssetType_ID(int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_ID(nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAssetType_ID(nIndex);
     return ret;
   }
 
   public static string GetAssetType_Name(string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_Name(ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAssetType_Name(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAssetType_TLA(string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_TLA(ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAssetType_TLA(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAssetType_Contract(string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAssetType_Contract(ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAssetType_Contract(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_ID(int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_ID(nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_ID(nIndex);
     return ret;
   }
 
   public static string GetAccountWallet_Name(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_Name(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_Name(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string GetAccountWallet_Balance(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_Balance(ACCOUNT_ID);
+  public static long GetAccountWallet_Balance(string ACCOUNT_ID) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_Balance(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_Type(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_Type(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_Type(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_AssetTypeID(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_AssetTypeID(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_AssetTypeID(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_ServerID(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_ServerID(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_ServerID(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_NymID(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_NymID(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_NymID(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_InboxHash(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_InboxHash(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_InboxHash(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetAccountWallet_OutboxHash(string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetAccountWallet_OutboxHash(ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetAccountWallet_OutboxHash(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool VerifyAccountReceipt(string SERVER_ID, string NYM_ID, string ACCT_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_VerifyAccountReceipt(SERVER_ID, NYM_ID, ACCT_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_VerifyAccountReceipt(SERVER_ID, NYM_ID, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_TransactionNumCount(string SERVER_ID, string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_TransactionNumCount(SERVER_ID, NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_TransactionNumCount(SERVER_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_ID(int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_ID(nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_ID(nIndex);
     return ret;
   }
 
   public static string GetNym_Name(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_Name(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_Name(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_Stats(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_Stats(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_Stats(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_NymboxHash(string SERVER_ID, string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_NymboxHash(SERVER_ID, NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_NymboxHash(SERVER_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_RecentHash(string SERVER_ID, string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_RecentHash(SERVER_ID, NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_RecentHash(SERVER_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_InboxHash(string ACCOUNT_ID, string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_InboxHash(ACCOUNT_ID, NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_InboxHash(ACCOUNT_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutboxHash(string ACCOUNT_ID, string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutboxHash(ACCOUNT_ID, NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutboxHash(ACCOUNT_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool IsNym_RegisteredAtServer(string NYM_ID, string SERVER_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_IsNym_RegisteredAtServer(NYM_ID, SERVER_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_IsNym_RegisteredAtServer(NYM_ID, SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_MailCount(string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_MailCount(NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_MailCount(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_MailContentsByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_MailContentsByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_MailContentsByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_MailSenderIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_MailSenderIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_MailSenderIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_MailServerIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_MailServerIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_MailServerIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_RemoveMailByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_RemoveMailByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_RemoveMailByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_VerifyMailByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_VerifyMailByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_VerifyMailByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_OutmailCount(string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutmailCount(NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutmailCount(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutmailContentsByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutmailContentsByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutmailContentsByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutmailRecipientIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutmailRecipientIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutmailServerIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutmailServerIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutmailServerIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_RemoveOutmailByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_RemoveOutmailByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_RemoveOutmailByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_VerifyOutmailByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_VerifyOutmailByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_VerifyOutmailByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int GetNym_OutpaymentsCount(string NYM_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutpaymentsCount(NYM_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutpaymentsCount(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutpaymentsContentsByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutpaymentsContentsByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutpaymentsRecipientIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GetNym_OutpaymentsServerIDByIndex(string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex(NYM_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_RemoveOutpaymentsByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_RemoveOutpaymentsByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Nym_VerifyOutpaymentsByIndex(string NYM_ID, int nIndex) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Nym_VerifyOutpaymentsByIndex(NYM_ID, nIndex);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex(NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_CanRemoveServer(string SERVER_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_CanRemoveServer(SERVER_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_CanRemoveServer(SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_RemoveServer(string SERVER_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_RemoveServer(SERVER_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_RemoveServer(SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_CanRemoveAssetType(string ASSET_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_CanRemoveAssetType(ASSET_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_CanRemoveAssetType(ASSET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_RemoveAssetType(string ASSET_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_RemoveAssetType(ASSET_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_RemoveAssetType(ASSET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_CanRemoveNym(string NYM_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_CanRemoveNym(NYM_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_CanRemoveNym(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_RemoveNym(string NYM_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_RemoveNym(NYM_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_RemoveNym(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_CanRemoveAccount(string ACCOUNT_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_CanRemoveAccount(ACCOUNT_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_CanRemoveAccount(ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_ChangePassphrase() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_ChangePassphrase();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ChangePassphrase();
     return ret;
   }
 
   public static string Wallet_ExportNym(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_ExportNym(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ExportNym(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_ImportNym(string FILE_CONTENTS) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_ImportNym(FILE_CONTENTS);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ImportNym(FILE_CONTENTS);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_ImportCert(string DISPLAY_NAME, string FILE_CONTENTS) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_ImportCert(DISPLAY_NAME, FILE_CONTENTS);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ImportCert(DISPLAY_NAME, FILE_CONTENTS);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_ExportCert(string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_ExportCert(NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ExportCert(NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_GetNymIDFromPartial(string PARTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_GetNymIDFromPartial(PARTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_GetNymIDFromPartial(PARTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_GetServerIDFromPartial(string PARTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_GetServerIDFromPartial(PARTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_GetServerIDFromPartial(PARTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_GetAssetIDFromPartial(string PARTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_GetAssetIDFromPartial(PARTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_GetAssetIDFromPartial(PARTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Wallet_GetAccountIDFromPartial(string PARTIAL_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Wallet_GetAccountIDFromPartial(PARTIAL_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Wallet_GetAccountIDFromPartial(PARTIAL_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool SetNym_Name(string NYM_ID, string SIGNER_NYM_ID, string NYM_NEW_NAME) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SetNym_Name(NYM_ID, SIGNER_NYM_ID, NYM_NEW_NAME);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SetNym_Name(NYM_ID, SIGNER_NYM_ID, NYM_NEW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool SetAccountWallet_Name(string ACCT_ID, string SIGNER_NYM_ID, string ACCT_NEW_NAME) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SetAccountWallet_Name(ACCT_ID, SIGNER_NYM_ID, ACCT_NEW_NAME);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SetAccountWallet_Name(ACCT_ID, SIGNER_NYM_ID, ACCT_NEW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool SetAssetType_Name(string ASSET_ID, string STR_NEW_NAME) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SetAssetType_Name(ASSET_ID, STR_NEW_NAME);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SetAssetType_Name(ASSET_ID, STR_NEW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool SetServer_Name(string SERVER_ID, string STR_NEW_NAME) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SetServer_Name(SERVER_ID, STR_NEW_NAME);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SetServer_Name(SERVER_ID, STR_NEW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string WriteCheque(string SERVER_ID, string CHEQUE_AMOUNT, string VALID_FROM, string VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string CHEQUE_MEMO, string RECIPIENT_USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, VALID_FROM, VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
+  public static string WriteCheque(string SERVER_ID, long CHEQUE_AMOUNT, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string CHEQUE_MEMO, string RECIPIENT_USER_ID) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool DiscardCheque(string SERVER_ID, string USER_ID, string ACCT_ID, string THE_CHEQUE) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_DiscardCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_DiscardCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string ProposePaymentPlan(string SERVER_ID, string VALID_FROM, string VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string PLAN_CONSIDERATION, string RECIPIENT_ACCT_ID, string RECIPIENT_USER_ID, string INITIAL_PAYMENT_AMOUNT, string INITIAL_PAYMENT_DELAY, string PAYMENT_PLAN_AMOUNT, string PAYMENT_PLAN_DELAY, string PAYMENT_PLAN_PERIOD, string PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
-    string ret = otapiPINVOKE.OTAPI_Basic_ProposePaymentPlan(SERVER_ID, VALID_FROM, VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, INITIAL_PAYMENT_DELAY, PAYMENT_PLAN_AMOUNT, PAYMENT_PLAN_DELAY, PAYMENT_PLAN_PERIOD, PAYMENT_PLAN_LENGTH, PAYMENT_PLAN_MAX_PAYMENTS);
+  public static string ProposePaymentPlan(string SERVER_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string PLAN_CONSIDERATION, string RECIPIENT_ACCT_ID, string RECIPIENT_USER_ID, long INITIAL_PAYMENT_AMOUNT, WrapTimeT INITIAL_PAYMENT_DELAY, long PAYMENT_PLAN_AMOUNT, WrapTimeT PAYMENT_PLAN_DELAY, WrapTimeT PAYMENT_PLAN_PERIOD, WrapTimeT PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_ProposePaymentPlan(SERVER_ID, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, WrapTimeT.getCPtr(INITIAL_PAYMENT_DELAY), PAYMENT_PLAN_AMOUNT, WrapTimeT.getCPtr(PAYMENT_PLAN_DELAY), WrapTimeT.getCPtr(PAYMENT_PLAN_PERIOD), WrapTimeT.getCPtr(PAYMENT_PLAN_LENGTH), PAYMENT_PLAN_MAX_PAYMENTS);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string EasyProposePlan(string SERVER_ID, string DATE_RANGE, string SENDER_ACCT_ID, string SENDER_USER_ID, string PLAN_CONSIDERATION, string RECIPIENT_ACCT_ID, string RECIPIENT_USER_ID, string INITIAL_PAYMENT, string PAYMENT_PLAN, string PLAN_EXPIRY) {
-    string ret = otapiPINVOKE.OTAPI_Basic_EasyProposePlan(SERVER_ID, DATE_RANGE, SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT, PAYMENT_PLAN, PLAN_EXPIRY);
+    string ret = otapiPINVOKE.OTAPI_Wrap_EasyProposePlan(SERVER_ID, DATE_RANGE, SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT, PAYMENT_PLAN, PLAN_EXPIRY);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string ConfirmPaymentPlan(string SERVER_ID, string SENDER_USER_ID, string SENDER_ACCT_ID, string RECIPIENT_USER_ID, string PAYMENT_PLAN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_ConfirmPaymentPlan(SERVER_ID, SENDER_USER_ID, SENDER_ACCT_ID, RECIPIENT_USER_ID, PAYMENT_PLAN);
+    string ret = otapiPINVOKE.OTAPI_Wrap_ConfirmPaymentPlan(SERVER_ID, SENDER_USER_ID, SENDER_ACCT_ID, RECIPIENT_USER_ID, PAYMENT_PLAN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Create_SmartContract(string SIGNER_NYM_ID, string VALID_FROM, string VALID_TO) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Create_SmartContract(SIGNER_NYM_ID, VALID_FROM, VALID_TO);
+  public static string Create_SmartContract(string SIGNER_NYM_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_Create_SmartContract(SIGNER_NYM_ID, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO));
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddBylaw(string THE_CONTRACT, string SIGNER_NYM_ID, string BYLAW_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddBylaw(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddBylaw(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddClause(string THE_CONTRACT, string SIGNER_NYM_ID, string BYLAW_NAME, string CLAUSE_NAME, string SOURCE_CODE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddClause(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, CLAUSE_NAME, SOURCE_CODE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddClause(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, CLAUSE_NAME, SOURCE_CODE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddVariable(string THE_CONTRACT, string SIGNER_NYM_ID, string BYLAW_NAME, string VAR_NAME, string VAR_ACCESS, string VAR_TYPE, string VAR_VALUE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddVariable(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, VAR_NAME, VAR_ACCESS, VAR_TYPE, VAR_VALUE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddVariable(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, VAR_NAME, VAR_ACCESS, VAR_TYPE, VAR_VALUE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddCallback(string THE_CONTRACT, string SIGNER_NYM_ID, string BYLAW_NAME, string CALLBACK_NAME, string CLAUSE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddCallback(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, CALLBACK_NAME, CLAUSE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddCallback(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, CALLBACK_NAME, CLAUSE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddHook(string THE_CONTRACT, string SIGNER_NYM_ID, string BYLAW_NAME, string HOOK_NAME, string CLAUSE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddHook(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, HOOK_NAME, CLAUSE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddHook(THE_CONTRACT, SIGNER_NYM_ID, BYLAW_NAME, HOOK_NAME, CLAUSE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddParty(string THE_CONTRACT, string SIGNER_NYM_ID, string PARTY_NAME, string AGENT_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddParty(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, AGENT_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddParty(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, AGENT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_AddAccount(string THE_CONTRACT, string SIGNER_NYM_ID, string PARTY_NAME, string ACCT_NAME, string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_AddAccount(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, ACCT_NAME, ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_AddAccount(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, ACCT_NAME, ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int SmartContract_CountNumsNeeded(string THE_CONTRACT, string AGENT_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_SmartContract_CountNumsNeeded(THE_CONTRACT, AGENT_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_CountNumsNeeded(THE_CONTRACT, AGENT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_ConfirmAccount(string THE_CONTRACT, string SIGNER_NYM_ID, string PARTY_NAME, string ACCT_NAME, string AGENT_NAME, string ACCT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_ConfirmAccount(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, ACCT_NAME, AGENT_NAME, ACCT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_ConfirmAccount(THE_CONTRACT, SIGNER_NYM_ID, PARTY_NAME, ACCT_NAME, AGENT_NAME, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string SmartContract_ConfirmParty(string THE_CONTRACT, string PARTY_NAME, string NYM_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_SmartContract_ConfirmParty(THE_CONTRACT, PARTY_NAME, NYM_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_SmartContract_ConfirmParty(THE_CONTRACT, PARTY_NAME, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Smart_AreAllPartiesConfirmed(string THE_CONTRACT) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Smart_AreAllPartiesConfirmed(THE_CONTRACT);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool Smart_IsPartyConfirmed(string THE_CONTRACT, string PARTY_NAME) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Smart_IsPartyConfirmed(THE_CONTRACT, PARTY_NAME);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Smart_AreAllPartiesConfirmed(THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Smart_GetBylawCount(string THE_CONTRACT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Smart_GetBylawCount(THE_CONTRACT);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Smart_GetBylawCount(THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Smart_GetBylawByIndex(string THE_CONTRACT, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Smart_GetBylawByIndex(THE_CONTRACT, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Smart_GetBylawByIndex(THE_CONTRACT, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Bylaw_GetLanguage(string THE_CONTRACT, string BYLAW_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Bylaw_GetLanguage(THE_CONTRACT, BYLAW_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Bylaw_GetLanguage(THE_CONTRACT, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Bylaw_GetClauseCount(string THE_CONTRACT, string BYLAW_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Bylaw_GetClauseCount(THE_CONTRACT, BYLAW_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Bylaw_GetClauseCount(THE_CONTRACT, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Clause_GetNameByIndex(string THE_CONTRACT, string BYLAW_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Clause_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Clause_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Clause_GetContents(string THE_CONTRACT, string BYLAW_NAME, string CLAUSE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Clause_GetContents(THE_CONTRACT, BYLAW_NAME, CLAUSE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Clause_GetContents(THE_CONTRACT, BYLAW_NAME, CLAUSE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Bylaw_GetVariableCount(string THE_CONTRACT, string BYLAW_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Bylaw_GetVariableCount(THE_CONTRACT, BYLAW_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Bylaw_GetVariableCount(THE_CONTRACT, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Variable_GetNameByIndex(string THE_CONTRACT, string BYLAW_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Variable_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Variable_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Variable_GetType(string THE_CONTRACT, string BYLAW_NAME, string VARIABLE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Variable_GetType(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Variable_GetType(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Variable_GetAccess(string THE_CONTRACT, string BYLAW_NAME, string VARIABLE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Variable_GetAccess(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Variable_GetAccess(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Variable_GetContents(string THE_CONTRACT, string BYLAW_NAME, string VARIABLE_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Variable_GetContents(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Variable_GetContents(THE_CONTRACT, BYLAW_NAME, VARIABLE_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Bylaw_GetHookCount(string THE_CONTRACT, string BYLAW_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Bylaw_GetHookCount(THE_CONTRACT, BYLAW_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Bylaw_GetHookCount(THE_CONTRACT, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Hook_GetNameByIndex(string THE_CONTRACT, string BYLAW_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Hook_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Hook_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Hook_GetClauseCount(string THE_CONTRACT, string BYLAW_NAME, string HOOK_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Hook_GetClauseCount(THE_CONTRACT, BYLAW_NAME, HOOK_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Hook_GetClauseCount(THE_CONTRACT, BYLAW_NAME, HOOK_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Hook_GetClauseAtIndex(string THE_CONTRACT, string BYLAW_NAME, string HOOK_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Hook_GetClauseAtIndex(THE_CONTRACT, BYLAW_NAME, HOOK_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Hook_GetClauseAtIndex(THE_CONTRACT, BYLAW_NAME, HOOK_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Bylaw_GetCallbackCount(string THE_CONTRACT, string BYLAW_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Bylaw_GetCallbackCount(THE_CONTRACT, BYLAW_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Bylaw_GetCallbackCount(THE_CONTRACT, BYLAW_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Callback_GetNameByIndex(string THE_CONTRACT, string BYLAW_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Callback_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Callback_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Callback_GetClause(string THE_CONTRACT, string BYLAW_NAME, string CALLBACK_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Callback_GetClause(THE_CONTRACT, BYLAW_NAME, CALLBACK_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Callback_GetClause(THE_CONTRACT, BYLAW_NAME, CALLBACK_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Smart_GetPartyCount(string THE_CONTRACT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Smart_GetPartyCount(THE_CONTRACT);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Smart_GetPartyCount(THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Smart_GetPartyByIndex(string THE_CONTRACT, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Smart_GetPartyByIndex(THE_CONTRACT, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Smart_GetPartyByIndex(THE_CONTRACT, nIndex);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool Smart_IsPartyConfirmed(string THE_CONTRACT, string PARTY_NAME) {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Smart_IsPartyConfirmed(THE_CONTRACT, PARTY_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetID(string THE_CONTRACT, string PARTY_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetID(THE_CONTRACT, PARTY_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetID(THE_CONTRACT, PARTY_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Party_GetAcctCount(string THE_CONTRACT, string PARTY_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Party_GetAcctCount(THE_CONTRACT, PARTY_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAcctCount(THE_CONTRACT, PARTY_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAcctNameByIndex(string THE_CONTRACT, string PARTY_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAcctNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAcctNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAcctID(string THE_CONTRACT, string PARTY_NAME, string ACCT_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAcctID(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAcctID(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAcctAssetID(string THE_CONTRACT, string PARTY_NAME, string ACCT_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAcctAssetID(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAcctAssetID(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAcctAgentName(string THE_CONTRACT, string PARTY_NAME, string ACCT_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAcctAgentName(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAcctAgentName(THE_CONTRACT, PARTY_NAME, ACCT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Party_GetAgentCount(string THE_CONTRACT, string PARTY_NAME) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Party_GetAgentCount(THE_CONTRACT, PARTY_NAME);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAgentCount(THE_CONTRACT, PARTY_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAgentNameByIndex(string THE_CONTRACT, string PARTY_NAME, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAgentNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAgentNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Party_GetAgentID(string THE_CONTRACT, string PARTY_NAME, string AGENT_NAME) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Party_GetAgentID(THE_CONTRACT, PARTY_NAME, AGENT_NAME);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Party_GetAgentID(THE_CONTRACT, PARTY_NAME, AGENT_NAME);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int activateSmartContract(string SERVER_ID, string USER_ID, string THE_SMART_CONTRACT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_activateSmartContract(SERVER_ID, USER_ID, THE_SMART_CONTRACT);
+    int ret = otapiPINVOKE.OTAPI_Wrap_activateSmartContract(SERVER_ID, USER_ID, THE_SMART_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int triggerClause(string SERVER_ID, string USER_ID, string TRANSACTION_NUMBER, string CLAUSE_NAME, string STR_PARAM) {
-    int ret = otapiPINVOKE.OTAPI_Basic_triggerClause(SERVER_ID, USER_ID, TRANSACTION_NUMBER, CLAUSE_NAME, STR_PARAM);
+  public static int triggerClause(string SERVER_ID, string USER_ID, long TRANSACTION_NUMBER, string CLAUSE_NAME, string STR_PARAM) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_triggerClause(SERVER_ID, USER_ID, TRANSACTION_NUMBER, CLAUSE_NAME, STR_PARAM);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Msg_HarvestTransactionNumbers(string THE_MESSAGE, string USER_ID, bool bHarvestingForRetry, bool bReplyWasSuccess, bool bReplyWasFailure, bool bTransactionWasSuccess, bool bTransactionWasFailure) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Msg_HarvestTransactionNumbers(THE_MESSAGE, USER_ID, bHarvestingForRetry, bReplyWasSuccess, bReplyWasFailure, bTransactionWasSuccess, bTransactionWasFailure);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Msg_HarvestTransactionNumbers(THE_MESSAGE, USER_ID, bHarvestingForRetry, bReplyWasSuccess, bReplyWasFailure, bTransactionWasSuccess, bTransactionWasFailure);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadUserPubkey_Encryption(string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadUserPubkey_Encryption(USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadUserPubkey_Encryption(USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadUserPubkey_Signing(string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadUserPubkey_Signing(USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadUserPubkey_Signing(USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadPubkey_Encryption(string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadPubkey_Encryption(USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadPubkey_Encryption(USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadPubkey_Signing(string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadPubkey_Signing(USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadPubkey_Signing(USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool VerifyUserPrivateKey(string USER_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_VerifyUserPrivateKey(USER_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_VerifyUserPrivateKey(USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadPurse(string SERVER_ID, string ASSET_TYPE_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadPurse(SERVER_ID, ASSET_TYPE_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadPurse(SERVER_ID, ASSET_TYPE_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadMint(string SERVER_ID, string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadMint(SERVER_ID, ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadMint(SERVER_ID, ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadAssetContract(string ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadAssetContract(ASSET_TYPE_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadAssetContract(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadServerContract(string SERVER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadServerContract(SERVER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadServerContract(SERVER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Mint_IsStillGood(string SERVER_ID, string ASSET_TYPE_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Mint_IsStillGood(SERVER_ID, ASSET_TYPE_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Mint_IsStillGood(SERVER_ID, ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool IsBasketCurrency(string ASSET_TYPE_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_IsBasketCurrency(ASSET_TYPE_ID);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_IsBasketCurrency(ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Basket_GetMemberCount(string BASKET_ASSET_TYPE_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Basket_GetMemberCount(BASKET_ASSET_TYPE_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Basket_GetMemberCount(BASKET_ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Basket_GetMemberType(string BASKET_ASSET_TYPE_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Basket_GetMemberType(BASKET_ASSET_TYPE_ID, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Basket_GetMemberType(BASKET_ASSET_TYPE_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Basket_GetMinimumTransferAmount(string BASKET_ASSET_TYPE_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Basket_GetMinimumTransferAmount(BASKET_ASSET_TYPE_ID);
+  public static long Basket_GetMinimumTransferAmount(string BASKET_ASSET_TYPE_ID) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Basket_GetMinimumTransferAmount(BASKET_ASSET_TYPE_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Basket_GetMemberMinimumTransferAmount(string BASKET_ASSET_TYPE_ID, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Basket_GetMemberMinimumTransferAmount(BASKET_ASSET_TYPE_ID, nIndex);
+  public static long Basket_GetMemberMinimumTransferAmount(string BASKET_ASSET_TYPE_ID, int nIndex) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount(BASKET_ASSET_TYPE_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadAssetAccount(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadAssetAccount(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadAssetAccount(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadInbox(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadInbox(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadInbox(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadOutbox(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadOutbox(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadOutbox(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadInboxNoVerify(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadInboxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadInboxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadOutboxNoVerify(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadOutboxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadOutboxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadPaymentInbox(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadPaymentInbox(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadPaymentInbox(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadPaymentInboxNoVerify(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadPaymentInboxNoVerify(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadPaymentInboxNoVerify(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadRecordBox(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadRecordBox(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadRecordBox(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadRecordBoxNoVerify(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadRecordBoxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadRecordBoxNoVerify(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool ClearRecord(string SERVER_ID, string USER_ID, string ACCOUNT_ID, int nIndex, bool bClearAll) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_ClearRecord(SERVER_ID, USER_ID, ACCOUNT_ID, nIndex, bClearAll);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_ClearRecord(SERVER_ID, USER_ID, ACCOUNT_ID, nIndex, bClearAll);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadExpiredBox(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadExpiredBox(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadExpiredBox(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadExpiredBoxNoVerify(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadExpiredBoxNoVerify(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadExpiredBoxNoVerify(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool ClearExpired(string SERVER_ID, string USER_ID, int nIndex, bool bClearAll) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_ClearExpired(SERVER_ID, USER_ID, nIndex, bClearAll);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_ClearExpired(SERVER_ID, USER_ID, nIndex, bClearAll);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Ledger_GetCount(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Ledger_GetCount(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Ledger_GetCount(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Ledger_CreateResponse(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string ORIGINAL_LEDGER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_CreateResponse(SERVER_ID, USER_ID, ACCOUNT_ID, ORIGINAL_LEDGER);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_CreateResponse(SERVER_ID, USER_ID, ACCOUNT_ID, ORIGINAL_LEDGER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Ledger_GetTransactionByIndex(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_GetTransactionByIndex(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_GetTransactionByIndex(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Ledger_GetTransactionByID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, string TRANSACTION_NUMBER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_GetTransactionByID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, TRANSACTION_NUMBER);
+  public static string Ledger_GetTransactionByID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, long TRANSACTION_NUMBER) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_GetTransactionByID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, TRANSACTION_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Ledger_GetTransactionIDByIndex(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_GetTransactionIDByIndex(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
+  public static long Ledger_GetTransactionIDByIndex(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, int nIndex) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Ledger_GetTransactionIDByIndex(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Ledger_AddTransaction(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_AddTransaction(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_AddTransaction(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_CreateResponse(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string RESPONSE_LEDGER, string ORIGINAL_TRANSACTION, bool BOOL_DO_I_ACCEPT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_CreateResponse(SERVER_ID, USER_ID, ACCOUNT_ID, RESPONSE_LEDGER, ORIGINAL_TRANSACTION, BOOL_DO_I_ACCEPT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_CreateResponse(SERVER_ID, USER_ID, ACCOUNT_ID, RESPONSE_LEDGER, ORIGINAL_TRANSACTION, BOOL_DO_I_ACCEPT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Ledger_FinalizeResponse(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_FinalizeResponse(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_FinalizeResponse(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Ledger_GetInstrument(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_LEDGER, int nIndex) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Ledger_GetInstrument(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Ledger_GetInstrument(SERVER_ID, USER_ID, ACCOUNT_ID, THE_LEDGER, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool RecordPayment(string SERVER_ID, string USER_ID, bool bIsInbox, int nIndex, bool bSaveCopy) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_RecordPayment(SERVER_ID, USER_ID, bIsInbox, nIndex, bSaveCopy);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_RecordPayment(SERVER_ID, USER_ID, bIsInbox, nIndex, bSaveCopy);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetType(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetType(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetType(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string ReplyNotice_GetRequestNum(string SERVER_ID, string USER_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_ReplyNotice_GetRequestNum(SERVER_ID, USER_ID, THE_TRANSACTION);
+  public static long ReplyNotice_GetRequestNum(string SERVER_ID, string USER_ID, string THE_TRANSACTION) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_ReplyNotice_GetRequestNum(SERVER_ID, USER_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetVoucher(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetVoucher(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetVoucher(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Transaction_GetSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Transaction_IsCanceled(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Transaction_IsCanceled(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Transaction_IsCanceled(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Transaction_GetBalanceAgreementSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Transaction_GetDateSigned(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+  public static WrapTimeT Transaction_GetDateSigned(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Transaction_GetAmount(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetAmount(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+  public static long Transaction_GetAmount(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetAmount(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Pending_GetNote(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Pending_GetNote(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Pending_GetNote(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetSenderUserID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetSenderUserID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetSenderUserID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetSenderAcctID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetSenderAcctID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetSenderAcctID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetRecipientUserID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetRecipientUserID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetRecipientUserID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Transaction_GetRecipientAcctID(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetRecipientAcctID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetRecipientAcctID(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Transaction_GetDisplayReferenceToNum(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Transaction_GetDisplayReferenceToNum(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
+  public static long Transaction_GetDisplayReferenceToNum(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Transaction_GetDisplayReferenceToNum(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool SavePurse(string SERVER_ID, string ASSET_TYPE_ID, string USER_ID, string THE_PURSE) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_SavePurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_SavePurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CreatePurse(string SERVER_ID, string ASSET_TYPE_ID, string OWNER_ID, string SIGNER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreatePurse(SERVER_ID, ASSET_TYPE_ID, OWNER_ID, SIGNER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreatePurse(SERVER_ID, ASSET_TYPE_ID, OWNER_ID, SIGNER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string CreatePurse_Passphrase(string SERVER_ID, string ASSET_TYPE_ID, string SIGNER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_CreatePurse_Passphrase(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_CreatePurse_Passphrase(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Purse_GetTotalValue(string SERVER_ID, string ASSET_TYPE_ID, string THE_PURSE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Purse_GetTotalValue(SERVER_ID, ASSET_TYPE_ID, THE_PURSE);
+  public static long Purse_GetTotalValue(string SERVER_ID, string ASSET_TYPE_ID, string THE_PURSE) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Purse_GetTotalValue(SERVER_ID, ASSET_TYPE_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Purse_Count(string SERVER_ID, string ASSET_TYPE_ID, string THE_PURSE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Purse_Count(SERVER_ID, ASSET_TYPE_ID, THE_PURSE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Purse_Count(SERVER_ID, ASSET_TYPE_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Purse_HasPassword(string SERVER_ID, string THE_PURSE) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Purse_HasPassword(SERVER_ID, THE_PURSE);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Purse_HasPassword(SERVER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Purse_Peek(string SERVER_ID, string ASSET_TYPE_ID, string OWNER_ID, string THE_PURSE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Purse_Peek(SERVER_ID, ASSET_TYPE_ID, OWNER_ID, THE_PURSE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Purse_Peek(SERVER_ID, ASSET_TYPE_ID, OWNER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Purse_Pop(string SERVER_ID, string ASSET_TYPE_ID, string OWNER_OR_SIGNER_ID, string THE_PURSE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Purse_Pop(SERVER_ID, ASSET_TYPE_ID, OWNER_OR_SIGNER_ID, THE_PURSE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Purse_Pop(SERVER_ID, ASSET_TYPE_ID, OWNER_OR_SIGNER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Purse_Push(string SERVER_ID, string ASSET_TYPE_ID, string SIGNER_ID, string OWNER_ID, string THE_PURSE, string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Purse_Push(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID, OWNER_ID, THE_PURSE, THE_TOKEN);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Purse_Push(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID, OWNER_ID, THE_PURSE, THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Purse_Empty(string SERVER_ID, string ASSET_TYPE_ID, string SIGNER_ID, string THE_PURSE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Purse_Empty(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID, THE_PURSE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Purse_Empty(SERVER_ID, ASSET_TYPE_ID, SIGNER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool Wallet_ImportPurse(string SERVER_ID, string ASSET_TYPE_ID, string USER_ID, string THE_PURSE) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_Wallet_ImportPurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_Wallet_ImportPurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int exchangePurse(string SERVER_ID, string ASSET_TYPE_ID, string USER_ID, string THE_PURSE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_exchangePurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_exchangePurse(SERVER_ID, ASSET_TYPE_ID, USER_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Token_ChangeOwner(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN, string SIGNER_NYM_ID, string OLD_OWNER, string NEW_OWNER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_ChangeOwner(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN, SIGNER_NYM_ID, OLD_OWNER, NEW_OWNER);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Token_ChangeOwner(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN, SIGNER_NYM_ID, OLD_OWNER, NEW_OWNER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Token_GetID(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetID(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Token_GetID(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Token_GetDenomination(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetDenomination(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
+  public static long Token_GetDenomination(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Token_GetDenomination(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Token_GetSeries(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Token_GetSeries(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Token_GetSeries(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Token_GetValidFrom(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
+  public static WrapTimeT Token_GetValidFrom(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Token_GetValidTo(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
+  public static WrapTimeT Token_GetValidTo(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Token_GetAssetID(string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetAssetID(THE_TOKEN);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Token_GetAssetID(THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Token_GetServerID(string THE_TOKEN) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Token_GetServerID(THE_TOKEN);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Token_GetServerID(THE_TOKEN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Instrmnt_GetAmount(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetAmount(THE_INSTRUMENT);
+  public static long Instrmnt_GetAmount(string THE_INSTRUMENT) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetAmount(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Instrmnt_GetTransNum(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetTransNum(THE_INSTRUMENT);
+  public static long Instrmnt_GetTransNum(string THE_INSTRUMENT) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetTransNum(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Instrmnt_GetValidFrom(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetValidFrom(THE_INSTRUMENT);
+  public static WrapTimeT Instrmnt_GetValidFrom(string THE_INSTRUMENT) {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidFrom(THE_INSTRUMENT), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Instrmnt_GetValidTo(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetValidTo(THE_INSTRUMENT);
+  public static WrapTimeT Instrmnt_GetValidTo(string THE_INSTRUMENT) {
+    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidTo(THE_INSTRUMENT), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetMemo(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetMemo(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetMemo(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetType(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetType(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetType(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetServerID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetServerID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetServerID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetAssetID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetAssetID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetAssetID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetSenderUserID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetSenderUserID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetSenderUserID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetSenderAcctID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetSenderAcctID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetSenderAcctID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetRemitterUserID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetRemitterUserID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetRemitterUserID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetRemitterAcctID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetRemitterAcctID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetRemitterAcctID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetRecipientUserID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetRecipientUserID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetRecipientUserID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Instrmnt_GetRecipientAcctID(string THE_INSTRUMENT) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Instrmnt_GetRecipientAcctID(THE_INSTRUMENT);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetRecipientAcctID(THE_INSTRUMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int checkServerID(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_checkServerID(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_checkServerID(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int createUserAccount(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_createUserAccount(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_createUserAccount(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int deleteUserAccount(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_deleteUserAccount(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_deleteUserAccount(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int deleteAssetAccount(string SERVER_ID, string USER_ID, string ACCOUNT_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_deleteAssetAccount(SERVER_ID, USER_ID, ACCOUNT_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_deleteAssetAccount(SERVER_ID, USER_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int usageCredits(string SERVER_ID, string USER_ID, string USER_ID_CHECK, string ADJUSTMENT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_usageCredits(SERVER_ID, USER_ID, USER_ID_CHECK, ADJUSTMENT);
+  public static int usageCredits(string SERVER_ID, string USER_ID, string USER_ID_CHECK, long ADJUSTMENT) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_usageCredits(SERVER_ID, USER_ID, USER_ID_CHECK, ADJUSTMENT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Message_GetUsageCredits(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetUsageCredits(THE_MESSAGE);
+  public static long Message_GetUsageCredits(string THE_MESSAGE) {
+    long ret = otapiPINVOKE.OTAPI_Wrap_Message_GetUsageCredits(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int checkUser(string SERVER_ID, string USER_ID, string USER_ID_CHECK) {
-    int ret = otapiPINVOKE.OTAPI_Basic_checkUser(SERVER_ID, USER_ID, USER_ID_CHECK);
+    int ret = otapiPINVOKE.OTAPI_Wrap_checkUser(SERVER_ID, USER_ID, USER_ID_CHECK);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int sendUserMessage(string SERVER_ID, string USER_ID, string USER_ID_RECIPIENT, string RECIPIENT_PUBKEY, string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_sendUserMessage(SERVER_ID, USER_ID, USER_ID_RECIPIENT, RECIPIENT_PUBKEY, THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_sendUserMessage(SERVER_ID, USER_ID, USER_ID_RECIPIENT, RECIPIENT_PUBKEY, THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int sendUserInstrument(string SERVER_ID, string USER_ID, string USER_ID_RECIPIENT, string RECIPIENT_PUBKEY, string THE_INSTRUMENT, string INSTRUMENT_FOR_SENDER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_sendUserInstrument(SERVER_ID, USER_ID, USER_ID_RECIPIENT, RECIPIENT_PUBKEY, THE_INSTRUMENT, INSTRUMENT_FOR_SENDER);
+    int ret = otapiPINVOKE.OTAPI_Wrap_sendUserInstrument(SERVER_ID, USER_ID, USER_ID_RECIPIENT, RECIPIENT_PUBKEY, THE_INSTRUMENT, INSTRUMENT_FOR_SENDER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getRequest(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getRequest(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getRequest(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getTransactionNumber(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getTransactionNumber(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getTransactionNumber(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int issueAssetType(string SERVER_ID, string USER_ID, string THE_CONTRACT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_issueAssetType(SERVER_ID, USER_ID, THE_CONTRACT);
+    int ret = otapiPINVOKE.OTAPI_Wrap_issueAssetType(SERVER_ID, USER_ID, THE_CONTRACT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getContract(string SERVER_ID, string USER_ID, string ASSET_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getContract(SERVER_ID, USER_ID, ASSET_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getContract(SERVER_ID, USER_ID, ASSET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getMint(string SERVER_ID, string USER_ID, string ASSET_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getMint(SERVER_ID, USER_ID, ASSET_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getMint(SERVER_ID, USER_ID, ASSET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int createAssetAccount(string SERVER_ID, string USER_ID, string ASSET_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_createAssetAccount(SERVER_ID, USER_ID, ASSET_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_createAssetAccount(SERVER_ID, USER_ID, ASSET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getAccount(string SERVER_ID, string USER_ID, string ACCT_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getAccount(SERVER_ID, USER_ID, ACCT_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getAccount(SERVER_ID, USER_ID, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getAccountFiles(string SERVER_ID, string USER_ID, string ACCT_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getAccountFiles(SERVER_ID, USER_ID, ACCT_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getAccountFiles(SERVER_ID, USER_ID, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string GenerateBasketCreation(string USER_ID, string MINIMUM_TRANSFER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GenerateBasketCreation(USER_ID, MINIMUM_TRANSFER);
+  public static string GenerateBasketCreation(string USER_ID, long MINIMUM_TRANSFER) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_GenerateBasketCreation(USER_ID, MINIMUM_TRANSFER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string AddBasketCreationItem(string USER_ID, string THE_BASKET, string ASSET_TYPE_ID, string MINIMUM_TRANSFER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_AddBasketCreationItem(USER_ID, THE_BASKET, ASSET_TYPE_ID, MINIMUM_TRANSFER);
+  public static string AddBasketCreationItem(string USER_ID, string THE_BASKET, string ASSET_TYPE_ID, long MINIMUM_TRANSFER) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_AddBasketCreationItem(USER_ID, THE_BASKET, ASSET_TYPE_ID, MINIMUM_TRANSFER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int issueBasket(string SERVER_ID, string USER_ID, string THE_BASKET) {
-    int ret = otapiPINVOKE.OTAPI_Basic_issueBasket(SERVER_ID, USER_ID, THE_BASKET);
+    int ret = otapiPINVOKE.OTAPI_Wrap_issueBasket(SERVER_ID, USER_ID, THE_BASKET);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string GenerateBasketExchange(string SERVER_ID, string USER_ID, string BASKET_ASSET_TYPE_ID, string BASKET_ASSET_ACCT_ID, int TRANSFER_MULTIPLE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GenerateBasketExchange(SERVER_ID, USER_ID, BASKET_ASSET_TYPE_ID, BASKET_ASSET_ACCT_ID, TRANSFER_MULTIPLE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_GenerateBasketExchange(SERVER_ID, USER_ID, BASKET_ASSET_TYPE_ID, BASKET_ASSET_ACCT_ID, TRANSFER_MULTIPLE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string AddBasketExchangeItem(string SERVER_ID, string USER_ID, string THE_BASKET, string ASSET_TYPE_ID, string ASSET_ACCT_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_AddBasketExchangeItem(SERVER_ID, USER_ID, THE_BASKET, ASSET_TYPE_ID, ASSET_ACCT_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_AddBasketExchangeItem(SERVER_ID, USER_ID, THE_BASKET, ASSET_TYPE_ID, ASSET_ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int exchangeBasket(string SERVER_ID, string USER_ID, string BASKET_ASSET_ID, string THE_BASKET, bool BOOL_EXCHANGE_IN_OR_OUT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_exchangeBasket(SERVER_ID, USER_ID, BASKET_ASSET_ID, THE_BASKET, BOOL_EXCHANGE_IN_OR_OUT);
+    int ret = otapiPINVOKE.OTAPI_Wrap_exchangeBasket(SERVER_ID, USER_ID, BASKET_ASSET_ID, THE_BASKET, BOOL_EXCHANGE_IN_OR_OUT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int notarizeWithdrawal(string SERVER_ID, string USER_ID, string ACCT_ID, string AMOUNT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_notarizeWithdrawal(SERVER_ID, USER_ID, ACCT_ID, AMOUNT);
+  public static int notarizeWithdrawal(string SERVER_ID, string USER_ID, string ACCT_ID, long AMOUNT) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_notarizeWithdrawal(SERVER_ID, USER_ID, ACCT_ID, AMOUNT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int notarizeDeposit(string SERVER_ID, string USER_ID, string ACCT_ID, string THE_PURSE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_notarizeDeposit(SERVER_ID, USER_ID, ACCT_ID, THE_PURSE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_notarizeDeposit(SERVER_ID, USER_ID, ACCT_ID, THE_PURSE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int notarizeTransfer(string SERVER_ID, string USER_ID, string ACCT_FROM, string ACCT_TO, string AMOUNT, string NOTE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_notarizeTransfer(SERVER_ID, USER_ID, ACCT_FROM, ACCT_TO, AMOUNT, NOTE);
+  public static int notarizeTransfer(string SERVER_ID, string USER_ID, string ACCT_FROM, string ACCT_TO, long AMOUNT, string NOTE) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_notarizeTransfer(SERVER_ID, USER_ID, ACCT_FROM, ACCT_TO, AMOUNT, NOTE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getInbox(string SERVER_ID, string USER_ID, string ACCT_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getInbox(SERVER_ID, USER_ID, ACCT_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getInbox(SERVER_ID, USER_ID, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getOutbox(string SERVER_ID, string USER_ID, string ACCT_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getOutbox(SERVER_ID, USER_ID, ACCT_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getOutbox(SERVER_ID, USER_ID, ACCT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getNymbox(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getNymbox(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getNymbox(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadNymbox(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadNymbox(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadNymbox(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string LoadNymboxNoVerify(string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_LoadNymboxNoVerify(SERVER_ID, USER_ID);
+    string ret = otapiPINVOKE.OTAPI_Wrap_LoadNymboxNoVerify(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string Nymbox_GetReplyNotice(string SERVER_ID, string USER_ID, string REQUEST_NUMBER) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Nymbox_GetReplyNotice(SERVER_ID, USER_ID, REQUEST_NUMBER);
+  public static string Nymbox_GetReplyNotice(string SERVER_ID, string USER_ID, long REQUEST_NUMBER) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_Nymbox_GetReplyNotice(SERVER_ID, USER_ID, REQUEST_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool HaveAlreadySeenReply(string SERVER_ID, string USER_ID, string REQUEST_NUMBER) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_HaveAlreadySeenReply(SERVER_ID, USER_ID, REQUEST_NUMBER);
+  public static bool HaveAlreadySeenReply(string SERVER_ID, string USER_ID, long REQUEST_NUMBER) {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_HaveAlreadySeenReply(SERVER_ID, USER_ID, REQUEST_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int getBoxReceipt(string SERVER_ID, string USER_ID, string ACCOUNT_ID, int nBoxType, string TRANSACTION_NUMBER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getBoxReceipt(SERVER_ID, USER_ID, ACCOUNT_ID, nBoxType, TRANSACTION_NUMBER);
+  public static int getBoxReceipt(string SERVER_ID, string USER_ID, string ACCOUNT_ID, int nBoxType, long TRANSACTION_NUMBER) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_getBoxReceipt(SERVER_ID, USER_ID, ACCOUNT_ID, nBoxType, TRANSACTION_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool DoesBoxReceiptExist(string SERVER_ID, string USER_ID, string ACCOUNT_ID, int nBoxType, string TRANSACTION_NUMBER) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_DoesBoxReceiptExist(SERVER_ID, USER_ID, ACCOUNT_ID, nBoxType, TRANSACTION_NUMBER);
+  public static bool DoesBoxReceiptExist(string SERVER_ID, string USER_ID, string ACCOUNT_ID, int nBoxType, long TRANSACTION_NUMBER) {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_DoesBoxReceiptExist(SERVER_ID, USER_ID, ACCOUNT_ID, nBoxType, TRANSACTION_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int processInbox(string SERVER_ID, string USER_ID, string ACCT_ID, string ACCT_LEDGER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_processInbox(SERVER_ID, USER_ID, ACCT_ID, ACCT_LEDGER);
+    int ret = otapiPINVOKE.OTAPI_Wrap_processInbox(SERVER_ID, USER_ID, ACCT_ID, ACCT_LEDGER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int processNymbox(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_processNymbox(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_processNymbox(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int withdrawVoucher(string SERVER_ID, string USER_ID, string ACCT_ID, string RECIPIENT_USER_ID, string CHEQUE_MEMO, string AMOUNT) {
-    int ret = otapiPINVOKE.OTAPI_Basic_withdrawVoucher(SERVER_ID, USER_ID, ACCT_ID, RECIPIENT_USER_ID, CHEQUE_MEMO, AMOUNT);
+  public static int withdrawVoucher(string SERVER_ID, string USER_ID, string ACCT_ID, string RECIPIENT_USER_ID, string CHEQUE_MEMO, long AMOUNT) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_withdrawVoucher(SERVER_ID, USER_ID, ACCT_ID, RECIPIENT_USER_ID, CHEQUE_MEMO, AMOUNT);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int payDividend(string SERVER_ID, string ISSUER_USER_ID, string DIVIDEND_FROM_ACCT_ID, string SHARES_ASSET_TYPE_ID, string DIVIDEND_MEMO, string AMOUNT_PER_SHARE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_payDividend(SERVER_ID, ISSUER_USER_ID, DIVIDEND_FROM_ACCT_ID, SHARES_ASSET_TYPE_ID, DIVIDEND_MEMO, AMOUNT_PER_SHARE);
+  public static int payDividend(string SERVER_ID, string ISSUER_USER_ID, string DIVIDEND_FROM_ACCT_ID, string SHARES_ASSET_TYPE_ID, string DIVIDEND_MEMO, long AMOUNT_PER_SHARE) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_payDividend(SERVER_ID, ISSUER_USER_ID, DIVIDEND_FROM_ACCT_ID, SHARES_ASSET_TYPE_ID, DIVIDEND_MEMO, AMOUNT_PER_SHARE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int depositCheque(string SERVER_ID, string USER_ID, string ACCT_ID, string THE_CHEQUE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_depositCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_depositCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int depositPaymentPlan(string SERVER_ID, string USER_ID, string THE_PAYMENT_PLAN) {
-    int ret = otapiPINVOKE.OTAPI_Basic_depositPaymentPlan(SERVER_ID, USER_ID, THE_PAYMENT_PLAN);
+    int ret = otapiPINVOKE.OTAPI_Wrap_depositPaymentPlan(SERVER_ID, USER_ID, THE_PAYMENT_PLAN);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int issueMarketOffer(string ASSET_ACCT_ID, string CURRENCY_ACCT_ID, string MARKET_SCALE, string MINIMUM_INCREMENT, string TOTAL_ASSETS_ON_OFFER, string PRICE_LIMIT, bool bBuyingOrSelling, string LIFESPAN_IN_SECONDS, string STOP_SIGN, string ACTIVATION_PRICE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, LIFESPAN_IN_SECONDS, STOP_SIGN, ACTIVATION_PRICE);
+  public static int issueMarketOffer(string ASSET_ACCT_ID, string CURRENCY_ACCT_ID, long MARKET_SCALE, long MINIMUM_INCREMENT, long TOTAL_ASSETS_ON_OFFER, long PRICE_LIMIT, bool bBuyingOrSelling, WrapTimeT LIFESPAN_IN_SECONDS, string STOP_SIGN, long ACTIVATION_PRICE) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, WrapTimeT.getCPtr(LIFESPAN_IN_SECONDS), STOP_SIGN, ACTIVATION_PRICE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getMarketList(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getMarketList(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getMarketList(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int getMarketOffers(string SERVER_ID, string USER_ID, string MARKET_ID, string MAX_DEPTH) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getMarketOffers(SERVER_ID, USER_ID, MARKET_ID, MAX_DEPTH);
+  public static int getMarketOffers(string SERVER_ID, string USER_ID, string MARKET_ID, long MAX_DEPTH) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_getMarketOffers(SERVER_ID, USER_ID, MARKET_ID, MAX_DEPTH);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getMarketRecentTrades(string SERVER_ID, string USER_ID, string MARKET_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getMarketRecentTrades(SERVER_ID, USER_ID, MARKET_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getMarketRecentTrades(SERVER_ID, USER_ID, MARKET_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int getNym_MarketOffers(string SERVER_ID, string USER_ID) {
-    int ret = otapiPINVOKE.OTAPI_Basic_getNym_MarketOffers(SERVER_ID, USER_ID);
+    int ret = otapiPINVOKE.OTAPI_Wrap_getNym_MarketOffers(SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int killMarketOffer(string SERVER_ID, string USER_ID, string ASSET_ACCT_ID, string TRANSACTION_NUMBER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_killMarketOffer(SERVER_ID, USER_ID, ASSET_ACCT_ID, TRANSACTION_NUMBER);
+  public static int killMarketOffer(string SERVER_ID, string USER_ID, string ASSET_ACCT_ID, long TRANSACTION_NUMBER) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_killMarketOffer(SERVER_ID, USER_ID, ASSET_ACCT_ID, TRANSACTION_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static int killPaymentPlan(string SERVER_ID, string USER_ID, string FROM_ACCT_ID, string TRANSACTION_NUMBER) {
-    int ret = otapiPINVOKE.OTAPI_Basic_killPaymentPlan(SERVER_ID, USER_ID, FROM_ACCT_ID, TRANSACTION_NUMBER);
+  public static int killPaymentPlan(string SERVER_ID, string USER_ID, string FROM_ACCT_ID, long TRANSACTION_NUMBER) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_killPaymentPlan(SERVER_ID, USER_ID, FROM_ACCT_ID, TRANSACTION_NUMBER);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static string PopMessageBuffer(string REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, USER_ID);
+  public static string PopMessageBuffer(long REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_PopMessageBuffer(REQUEST_NUMBER, SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static void FlushMessageBuffer() {
-    otapiPINVOKE.OTAPI_Basic_FlushMessageBuffer();
+    otapiPINVOKE.OTAPI_Wrap_FlushMessageBuffer();
   }
 
-  public static string GetSentMessage(string REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Basic_GetSentMessage(REQUEST_NUMBER, SERVER_ID, USER_ID);
+  public static string GetSentMessage(long REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_GetSentMessage(REQUEST_NUMBER, SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static bool RemoveSentMessage(string REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_RemoveSentMessage(REQUEST_NUMBER, SERVER_ID, USER_ID);
+  public static bool RemoveSentMessage(long REQUEST_NUMBER, string SERVER_ID, string USER_ID) {
+    bool ret = otapiPINVOKE.OTAPI_Wrap_RemoveSentMessage(REQUEST_NUMBER, SERVER_ID, USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static void FlushSentMessages(bool bHarvestingForRetry, string SERVER_ID, string USER_ID, string THE_NYMBOX) {
-    otapiPINVOKE.OTAPI_Basic_FlushSentMessages(bHarvestingForRetry, SERVER_ID, USER_ID, THE_NYMBOX);
+    otapiPINVOKE.OTAPI_Wrap_FlushSentMessages(bHarvestingForRetry, SERVER_ID, USER_ID, THE_NYMBOX);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static void Sleep(string MILLISECONDS) {
-    otapiPINVOKE.OTAPI_Basic_Sleep(MILLISECONDS);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  public static void Sleep(long MILLISECONDS) {
+    otapiPINVOKE.OTAPI_Wrap_Sleep(MILLISECONDS);
   }
 
   public static bool ResyncNymWithServer(string SERVER_ID, string USER_ID, string THE_MESSAGE) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_ResyncNymWithServer(SERVER_ID, USER_ID, THE_MESSAGE);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_ResyncNymWithServer(SERVER_ID, USER_ID, THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetCommand(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetCommand(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetCommand(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Message_GetSuccess(string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Message_GetSuccess(THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Message_GetSuccess(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int queryAssetTypes(string SERVER_ID, string USER_ID, string ENCODED_MAP) {
-    int ret = otapiPINVOKE.OTAPI_Basic_queryAssetTypes(SERVER_ID, USER_ID, ENCODED_MAP);
+    int ret = otapiPINVOKE.OTAPI_Wrap_queryAssetTypes(SERVER_ID, USER_ID, ENCODED_MAP);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetPayload(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetPayload(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetPayload(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Message_GetDepth(string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Message_GetDepth(THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Message_GetDepth(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Message_GetTransactionSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Message_IsTransactionCanceled(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Message_IsTransactionCanceled(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Message_IsTransactionCanceled(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static int Message_GetBalanceAgreementSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_MESSAGE) {
-    int ret = otapiPINVOKE.OTAPI_Basic_Message_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
+    int ret = otapiPINVOKE.OTAPI_Wrap_Message_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetLedger(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetLedger(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetLedger(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetNewAssetTypeID(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetNewAssetTypeID(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetNewAssetTypeID(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetNewIssuerAcctID(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetNewIssuerAcctID(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetNewIssuerAcctID(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetNewAcctID(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetNewAcctID(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetNewAcctID(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static string Message_GetNymboxHash(string THE_MESSAGE) {
-    string ret = otapiPINVOKE.OTAPI_Basic_Message_GetNymboxHash(THE_MESSAGE);
+    string ret = otapiPINVOKE.OTAPI_Wrap_Message_GetNymboxHash(THE_MESSAGE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool ConnectServer(string SERVER_ID, string USER_ID, string strCA_FILE, string strKEY_FILE, string strKEY_PASSWORD) {
-    bool ret = otapiPINVOKE.OTAPI_Basic_ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
+    bool ret = otapiPINVOKE.OTAPI_Wrap_ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public static bool ProcessSockets() {
-    bool ret = otapiPINVOKE.OTAPI_Basic_ProcessSockets();
+    bool ret = otapiPINVOKE.OTAPI_Wrap_ProcessSockets();
     return ret;
   }
 

@@ -186,6 +186,170 @@ class otapiPINVOKE {
   }
 
 
+  protected class SWIGWStringHelper {
+
+    public delegate string SWIGWStringDelegate(global::System.IntPtr message);
+    static SWIGWStringDelegate wstringDelegate = new SWIGWStringDelegate(CreateWString);
+
+    [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="SWIGRegisterWStringCallback_otapi")]
+    public static extern void SWIGRegisterWStringCallback_otapi(SWIGWStringDelegate wstringDelegate);
+
+    static string CreateWString([global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPWStr)]global::System.IntPtr cString) {
+      return global::System.Runtime.InteropServices.Marshal.PtrToStringUni(cString);
+    }
+
+    static SWIGWStringHelper() {
+      SWIGRegisterWStringCallback_otapi(wstringDelegate);
+    }
+  }
+
+  static protected SWIGWStringHelper swigWStringHelper = new SWIGWStringHelper();
+
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxdiv_t_quot_set")]
+  public static extern void imaxdiv_t_quot_set(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxdiv_t_quot_get")]
+  public static extern long imaxdiv_t_quot_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxdiv_t_rem_set")]
+  public static extern void imaxdiv_t_rem_set(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxdiv_t_rem_get")]
+  public static extern long imaxdiv_t_rem_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_imaxdiv_t")]
+  public static extern global::System.IntPtr new_imaxdiv_t();
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_imaxdiv_t")]
+  public static extern void delete_imaxdiv_t(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxabs")]
+  public static extern long imaxabs(long jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_imaxdiv")]
+  public static extern global::System.IntPtr imaxdiv(long jarg1, long jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Clear")]
+  public static extern void VectorUnsignedChar_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Add")]
+  public static extern void VectorUnsignedChar_Add(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_size")]
+  public static extern uint VectorUnsignedChar_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_capacity")]
+  public static extern uint VectorUnsignedChar_capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_reserve")]
+  public static extern void VectorUnsignedChar_reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_VectorUnsignedChar__SWIG_0")]
+  public static extern global::System.IntPtr new_VectorUnsignedChar__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_VectorUnsignedChar__SWIG_1")]
+  public static extern global::System.IntPtr new_VectorUnsignedChar__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_VectorUnsignedChar__SWIG_2")]
+  public static extern global::System.IntPtr new_VectorUnsignedChar__SWIG_2(int jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_getitemcopy")]
+  public static extern byte VectorUnsignedChar_getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_getitem")]
+  public static extern byte VectorUnsignedChar_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_setitem")]
+  public static extern void VectorUnsignedChar_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, byte jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_AddRange")]
+  public static extern void VectorUnsignedChar_AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_GetRange")]
+  public static extern global::System.IntPtr VectorUnsignedChar_GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Insert")]
+  public static extern void VectorUnsignedChar_Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, byte jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_InsertRange")]
+  public static extern void VectorUnsignedChar_InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_RemoveAt")]
+  public static extern void VectorUnsignedChar_RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_RemoveRange")]
+  public static extern void VectorUnsignedChar_RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Repeat")]
+  public static extern global::System.IntPtr VectorUnsignedChar_Repeat(byte jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Reverse__SWIG_0")]
+  public static extern void VectorUnsignedChar_Reverse__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Reverse__SWIG_1")]
+  public static extern void VectorUnsignedChar_Reverse__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_SetRange")]
+  public static extern void VectorUnsignedChar_SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Contains")]
+  public static extern bool VectorUnsignedChar_Contains(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_IndexOf")]
+  public static extern int VectorUnsignedChar_IndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_LastIndexOf")]
+  public static extern int VectorUnsignedChar_LastIndexOf(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_VectorUnsignedChar_Remove")]
+  public static extern bool VectorUnsignedChar_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_VectorUnsignedChar")]
+  public static extern void delete_VectorUnsignedChar(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_MapStringString__SWIG_0")]
+  public static extern global::System.IntPtr new_MapStringString__SWIG_0();
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_MapStringString__SWIG_1")]
+  public static extern global::System.IntPtr new_MapStringString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_size")]
+  public static extern uint MapStringString_size(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_empty")]
+  public static extern bool MapStringString_empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_Clear")]
+  public static extern void MapStringString_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_getitem")]
+  public static extern string MapStringString_getitem(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_setitem")]
+  public static extern void MapStringString_setitem(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_ContainsKey")]
+  public static extern bool MapStringString_ContainsKey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_Add")]
+  public static extern void MapStringString_Add(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_Remove")]
+  public static extern bool MapStringString_Remove(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_create_iterator_begin")]
+  public static extern global::System.IntPtr MapStringString_create_iterator_begin(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_get_next_key")]
+  public static extern string MapStringString_get_next_key(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_MapStringString_destroy_iterator")]
+  public static extern void MapStringString_destroy_iterator(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_MapStringString")]
+  public static extern void delete_MapStringString(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_PW_DISPLAY_get")]
   public static extern string OT_PW_DISPLAY_get();
 
@@ -229,22 +393,22 @@ class otapiPINVOKE {
   public static extern int OTPassword_setPassword(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_setPassword_uint8")]
-  public static extern global::System.IntPtr OTPassword_setPassword_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  public static extern int OTPassword_setPassword_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_addChar")]
-  public static extern bool OTPassword_addChar(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_addChar(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizePassword__SWIG_0")]
-  public static extern global::System.IntPtr OTPassword_randomizePassword__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern int OTPassword_randomizePassword__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizePassword__SWIG_1")]
-  public static extern global::System.IntPtr OTPassword_randomizePassword__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern int OTPassword_randomizePassword__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizePassword_uint8")]
-  public static extern bool OTPassword_randomizePassword_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_randomizePassword_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizePassword__SWIG_2")]
-  public static extern bool OTPassword_randomizePassword__SWIG_2(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_randomizePassword__SWIG_2(string jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_isMemory")]
   public static extern bool OTPassword_isMemory(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -259,55 +423,55 @@ class otapiPINVOKE {
   public static extern global::System.IntPtr OTPassword_getMemoryWritable(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_setMemory")]
-  public static extern global::System.IntPtr OTPassword_setMemory(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  public static extern int OTPassword_setMemory(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_addMemory")]
-  public static extern global::System.IntPtr OTPassword_addMemory(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  public static extern int OTPassword_addMemory(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizeMemory__SWIG_0")]
-  public static extern global::System.IntPtr OTPassword_randomizeMemory__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern int OTPassword_randomizeMemory__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizeMemory__SWIG_1")]
-  public static extern global::System.IntPtr OTPassword_randomizeMemory__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern int OTPassword_randomizeMemory__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizeMemory_uint8")]
-  public static extern bool OTPassword_randomizeMemory_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_randomizeMemory_uint8(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_randomizeMemory__SWIG_2")]
-  public static extern bool OTPassword_randomizeMemory__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_randomizeMemory__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_getBlockSize")]
-  public static extern global::System.IntPtr OTPassword_getBlockSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint OTPassword_getBlockSize(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_Compare")]
   public static extern bool OTPassword_Compare(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_getPasswordSize")]
-  public static extern global::System.IntPtr OTPassword_getPasswordSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint OTPassword_getPasswordSize(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_getMemorySize")]
-  public static extern global::System.IntPtr OTPassword_getMemorySize(global::System.Runtime.InteropServices.HandleRef jarg1);
+  public static extern uint OTPassword_getMemorySize(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_zeroMemory__SWIG_0")]
   public static extern void OTPassword_zeroMemory__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_zeroMemory__SWIG_1")]
-  public static extern void OTPassword_zeroMemory__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern void OTPassword_zeroMemory__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_zeroMemory__SWIG_2")]
-  public static extern void OTPassword_zeroMemory__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern void OTPassword_zeroMemory__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_safe_memcpy__SWIG_0")]
-  public static extern global::System.IntPtr OTPassword_safe_memcpy__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, bool jarg5);
+  public static extern global::System.IntPtr OTPassword_safe_memcpy__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4, bool jarg5);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_safe_memcpy__SWIG_1")]
-  public static extern global::System.IntPtr OTPassword_safe_memcpy__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+  public static extern global::System.IntPtr OTPassword_safe_memcpy__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_CreateTextBuffer")]
   public static extern global::System.IntPtr OTPassword_CreateTextBuffer();
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTPassword_SetSize")]
-  public static extern bool OTPassword_SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern bool OTPassword_SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_0")]
   public static extern global::System.IntPtr new_OTPassword__SWIG_0(int jarg1);
@@ -319,22 +483,22 @@ class otapiPINVOKE {
   public static extern global::System.IntPtr new_OTPassword__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_3")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_3(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_3(string jarg1, uint jarg2, int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_4")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_4(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_4(string jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_5")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_5(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_6")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_6(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_7")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_7(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, int jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTPassword__SWIG_8")]
-  public static extern global::System.IntPtr new_OTPassword__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+  public static extern global::System.IntPtr new_OTPassword__SWIG_8(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_OTPassword")]
   public static extern void delete_OTPassword(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -393,1196 +557,1280 @@ class otapiPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTCaller_callTwo")]
   public static extern void OTCaller_callTwo(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTAPI_Basic")]
-  public static extern global::System.IntPtr new_OTAPI_Basic();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_WrapTimeT")]
+  public static extern global::System.IntPtr new_WrapTimeT();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_OTAPI_Basic")]
-  public static extern void delete_OTAPI_Basic(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_WrapTimeT_getTime")]
+  public static extern long WrapTimeT_getTime(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AppStartup")]
-  public static extern bool OTAPI_Basic_AppStartup();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_WrapTimeT_setTime")]
+  public static extern void WrapTimeT_setTime(global::System.Runtime.InteropServices.HandleRef jarg1, long jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AppShutdown")]
-  public static extern bool OTAPI_Basic_AppShutdown();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_WrapTimeT")]
+  public static extern void delete_WrapTimeT(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetAppBinaryFolder")]
-  public static extern void OTAPI_Basic_SetAppBinaryFolder(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetExecutor")]
+  public static extern global::System.IntPtr OTAPI_Wrap_SetExecutor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetHomeFolder")]
-  public static extern void OTAPI_Basic_SetHomeFolder(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Exec")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Exec();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Init")]
-  public static extern bool OTAPI_Basic_Init();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_It")]
+  public static extern global::System.IntPtr OTAPI_Wrap_It();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetWallet")]
-  public static extern bool OTAPI_Basic_SetWallet(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_OTAPI")]
+  public static extern global::System.IntPtr OTAPI_Wrap_OTAPI();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_WalletExists")]
-  public static extern bool OTAPI_Basic_WalletExists();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_StringToLong")]
+  public static extern long OTAPI_Wrap_StringToLong(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadWallet")]
-  public static extern bool OTAPI_Basic_LoadWallet();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LongToString")]
+  public static extern string OTAPI_Wrap_LongToString(long jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SwitchWallet")]
-  public static extern bool OTAPI_Basic_SwitchWallet();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_StringToUlong")]
+  public static extern ulong OTAPI_Wrap_StringToUlong(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Output")]
-  public static extern void OTAPI_Basic_Output(int jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_UlongToString")]
+  public static extern string OTAPI_Wrap_UlongToString(ulong jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetTime")]
-  public static extern string OTAPI_Basic_GetTime();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AppInit")]
+  public static extern bool OTAPI_Wrap_AppInit();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_NumList_Add")]
-  public static extern string OTAPI_Basic_NumList_Add(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AppCleanup")]
+  public static extern bool OTAPI_Wrap_AppCleanup();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_NumList_Remove")]
-  public static extern string OTAPI_Basic_NumList_Remove(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetAppBinaryFolder")]
+  public static extern void OTAPI_Wrap_SetAppBinaryFolder(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_NumList_VerifyQuery")]
-  public static extern bool OTAPI_Basic_NumList_VerifyQuery(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetHomeFolder")]
+  public static extern void OTAPI_Wrap_SetHomeFolder(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_NumList_VerifyAll")]
-  public static extern bool OTAPI_Basic_NumList_VerifyAll(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetWallet")]
+  public static extern bool OTAPI_Wrap_SetWallet(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_NumList_Count")]
-  public static extern int OTAPI_Basic_NumList_Count(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_WalletExists")]
+  public static extern bool OTAPI_Wrap_WalletExists();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Encode")]
-  public static extern string OTAPI_Basic_Encode(string jarg1, bool jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadWallet")]
+  public static extern bool OTAPI_Wrap_LoadWallet();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Decode")]
-  public static extern string OTAPI_Basic_Decode(string jarg1, bool jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SwitchWallet")]
+  public static extern bool OTAPI_Wrap_SwitchWallet();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Encrypt")]
-  public static extern string OTAPI_Basic_Encrypt(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Output")]
+  public static extern void OTAPI_Wrap_Output(int jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Decrypt")]
-  public static extern string OTAPI_Basic_Decrypt(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetTime")]
+  public static extern global::System.IntPtr OTAPI_Wrap_GetTime();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreateSymmetricKey")]
-  public static extern string OTAPI_Basic_CreateSymmetricKey();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_NumList_Add")]
+  public static extern string OTAPI_Wrap_NumList_Add(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SymmetricEncrypt")]
-  public static extern string OTAPI_Basic_SymmetricEncrypt(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_NumList_Remove")]
+  public static extern string OTAPI_Wrap_NumList_Remove(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SymmetricDecrypt")]
-  public static extern string OTAPI_Basic_SymmetricDecrypt(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_NumList_VerifyQuery")]
+  public static extern bool OTAPI_Wrap_NumList_VerifyQuery(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SignContract")]
-  public static extern string OTAPI_Basic_SignContract(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_NumList_VerifyAll")]
+  public static extern bool OTAPI_Wrap_NumList_VerifyAll(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_FlatSign")]
-  public static extern string OTAPI_Basic_FlatSign(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_NumList_Count")]
+  public static extern int OTAPI_Wrap_NumList_Count(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddSignature")]
-  public static extern string OTAPI_Basic_AddSignature(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Encode")]
+  public static extern string OTAPI_Wrap_Encode(string jarg1, bool jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_VerifySignature")]
-  public static extern bool OTAPI_Basic_VerifySignature(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Decode")]
+  public static extern string OTAPI_Wrap_Decode(string jarg1, bool jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_VerifyAndRetrieveXMLContents")]
-  public static extern string OTAPI_Basic_VerifyAndRetrieveXMLContents(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Encrypt")]
+  public static extern string OTAPI_Wrap_Encrypt(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetMemlogSize")]
-  public static extern int OTAPI_Basic_GetMemlogSize();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Decrypt")]
+  public static extern string OTAPI_Wrap_Decrypt(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetMemlogAtIndex")]
-  public static extern string OTAPI_Basic_GetMemlogAtIndex(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreateSymmetricKey")]
+  public static extern string OTAPI_Wrap_CreateSymmetricKey();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_PeekMemlogFront")]
-  public static extern string OTAPI_Basic_PeekMemlogFront();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SymmetricEncrypt")]
+  public static extern string OTAPI_Wrap_SymmetricEncrypt(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_PeekMemlogBack")]
-  public static extern string OTAPI_Basic_PeekMemlogBack();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SymmetricDecrypt")]
+  public static extern string OTAPI_Wrap_SymmetricDecrypt(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_PopMemlogFront")]
-  public static extern bool OTAPI_Basic_PopMemlogFront();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SignContract")]
+  public static extern string OTAPI_Wrap_SignContract(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_PopMemlogBack")]
-  public static extern bool OTAPI_Basic_PopMemlogBack();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_FlatSign")]
+  public static extern string OTAPI_Wrap_FlatSign(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreateNym")]
-  public static extern string OTAPI_Basic_CreateNym(int jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddSignature")]
+  public static extern string OTAPI_Wrap_AddSignature(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_ActiveCronItemIDs")]
-  public static extern string OTAPI_Basic_GetNym_ActiveCronItemIDs(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_VerifySignature")]
+  public static extern bool OTAPI_Wrap_VerifySignature(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetActiveCronItem")]
-  public static extern string OTAPI_Basic_GetActiveCronItem(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_VerifyAndRetrieveXMLContents")]
+  public static extern string OTAPI_Wrap_VerifyAndRetrieveXMLContents(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_SourceForID")]
-  public static extern string OTAPI_Basic_GetNym_SourceForID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetMemlogSize")]
+  public static extern int OTAPI_Wrap_GetMemlogSize();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_AltSourceLocation")]
-  public static extern string OTAPI_Basic_GetNym_AltSourceLocation(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetMemlogAtIndex")]
+  public static extern string OTAPI_Wrap_GetMemlogAtIndex(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_CredentialCount")]
-  public static extern int OTAPI_Basic_GetNym_CredentialCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_PeekMemlogFront")]
+  public static extern string OTAPI_Wrap_PeekMemlogFront();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_CredentialID")]
-  public static extern string OTAPI_Basic_GetNym_CredentialID(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_PeekMemlogBack")]
+  public static extern string OTAPI_Wrap_PeekMemlogBack();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_CredentialContents")]
-  public static extern string OTAPI_Basic_GetNym_CredentialContents(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_PopMemlogFront")]
+  public static extern bool OTAPI_Wrap_PopMemlogFront();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_RevokedCredCount")]
-  public static extern int OTAPI_Basic_GetNym_RevokedCredCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_PopMemlogBack")]
+  public static extern bool OTAPI_Wrap_PopMemlogBack();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_RevokedCredID")]
-  public static extern string OTAPI_Basic_GetNym_RevokedCredID(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreateNym")]
+  public static extern string OTAPI_Wrap_CreateNym(int jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_RevokedCredContents")]
-  public static extern string OTAPI_Basic_GetNym_RevokedCredContents(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_ActiveCronItemIDs")]
+  public static extern string OTAPI_Wrap_GetNym_ActiveCronItemIDs(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_SubcredentialCount")]
-  public static extern int OTAPI_Basic_GetNym_SubcredentialCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetActiveCronItem")]
+  public static extern string OTAPI_Wrap_GetActiveCronItem(string jarg1, long jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_SubCredentialID")]
-  public static extern string OTAPI_Basic_GetNym_SubCredentialID(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_SourceForID")]
+  public static extern string OTAPI_Wrap_GetNym_SourceForID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_SubCredentialContents")]
-  public static extern string OTAPI_Basic_GetNym_SubCredentialContents(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_AltSourceLocation")]
+  public static extern string OTAPI_Wrap_GetNym_AltSourceLocation(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddSubcredential")]
-  public static extern string OTAPI_Basic_AddSubcredential(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_CredentialCount")]
+  public static extern int OTAPI_Wrap_GetNym_CredentialCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_RevokeSubcredential")]
-  public static extern bool OTAPI_Basic_RevokeSubcredential(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_CredentialID")]
+  public static extern string OTAPI_Wrap_GetNym_CredentialID(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreateServerContract")]
-  public static extern string OTAPI_Basic_CreateServerContract(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_CredentialContents")]
+  public static extern string OTAPI_Wrap_GetNym_CredentialContents(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreateAssetContract")]
-  public static extern string OTAPI_Basic_CreateAssetContract(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_RevokedCredCount")]
+  public static extern int OTAPI_Wrap_GetNym_RevokedCredCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CalculateAssetContractID")]
-  public static extern string OTAPI_Basic_CalculateAssetContractID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_RevokedCredID")]
+  public static extern string OTAPI_Wrap_GetNym_RevokedCredID(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CalculateServerContractID")]
-  public static extern string OTAPI_Basic_CalculateServerContractID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_RevokedCredContents")]
+  public static extern string OTAPI_Wrap_GetNym_RevokedCredContents(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddServerContract")]
-  public static extern int OTAPI_Basic_AddServerContract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_SubcredentialCount")]
+  public static extern int OTAPI_Wrap_GetNym_SubcredentialCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddAssetContract")]
-  public static extern int OTAPI_Basic_AddAssetContract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_SubCredentialID")]
+  public static extern string OTAPI_Wrap_GetNym_SubCredentialID(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetServerCount")]
-  public static extern int OTAPI_Basic_GetServerCount();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_SubCredentialContents")]
+  public static extern string OTAPI_Wrap_GetNym_SubCredentialContents(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetTypeCount")]
-  public static extern int OTAPI_Basic_GetAssetTypeCount();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddSubcredential")]
+  public static extern string OTAPI_Wrap_AddSubcredential(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountCount")]
-  public static extern int OTAPI_Basic_GetAccountCount();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_RevokeSubcredential")]
+  public static extern bool OTAPI_Wrap_RevokeSubcredential(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNymCount")]
-  public static extern int OTAPI_Basic_GetNymCount();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreateServerContract")]
+  public static extern string OTAPI_Wrap_CreateServerContract(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetServer_ID")]
-  public static extern string OTAPI_Basic_GetServer_ID(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreateAssetContract")]
+  public static extern string OTAPI_Wrap_CreateAssetContract(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetServer_Name")]
-  public static extern string OTAPI_Basic_GetServer_Name(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CalculateAssetContractID")]
+  public static extern string OTAPI_Wrap_CalculateAssetContractID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetServer_Contract")]
-  public static extern string OTAPI_Basic_GetServer_Contract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CalculateServerContractID")]
+  public static extern string OTAPI_Wrap_CalculateServerContractID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_FormatAmount")]
-  public static extern string OTAPI_Basic_FormatAmount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddServerContract")]
+  public static extern int OTAPI_Wrap_AddServerContract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_StringToAmount")]
-  public static extern string OTAPI_Basic_StringToAmount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddAssetContract")]
+  public static extern int OTAPI_Wrap_AddAssetContract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_ID")]
-  public static extern string OTAPI_Basic_GetAssetType_ID(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetServerCount")]
+  public static extern int OTAPI_Wrap_GetServerCount();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_Name")]
-  public static extern string OTAPI_Basic_GetAssetType_Name(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAssetTypeCount")]
+  public static extern int OTAPI_Wrap_GetAssetTypeCount();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_TLA")]
-  public static extern string OTAPI_Basic_GetAssetType_TLA(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountCount")]
+  public static extern int OTAPI_Wrap_GetAccountCount();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAssetType_Contract")]
-  public static extern string OTAPI_Basic_GetAssetType_Contract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNymCount")]
+  public static extern int OTAPI_Wrap_GetNymCount();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_ID")]
-  public static extern string OTAPI_Basic_GetAccountWallet_ID(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetServer_ID")]
+  public static extern string OTAPI_Wrap_GetServer_ID(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_Name")]
-  public static extern string OTAPI_Basic_GetAccountWallet_Name(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetServer_Name")]
+  public static extern string OTAPI_Wrap_GetServer_Name(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_Balance")]
-  public static extern string OTAPI_Basic_GetAccountWallet_Balance(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetServer_Contract")]
+  public static extern string OTAPI_Wrap_GetServer_Contract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_Type")]
-  public static extern string OTAPI_Basic_GetAccountWallet_Type(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_FormatAmount")]
+  public static extern string OTAPI_Wrap_FormatAmount(string jarg1, long jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_AssetTypeID")]
-  public static extern string OTAPI_Basic_GetAccountWallet_AssetTypeID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_StringToAmount")]
+  public static extern long OTAPI_Wrap_StringToAmount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_ServerID")]
-  public static extern string OTAPI_Basic_GetAccountWallet_ServerID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAssetType_ID")]
+  public static extern string OTAPI_Wrap_GetAssetType_ID(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_NymID")]
-  public static extern string OTAPI_Basic_GetAccountWallet_NymID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAssetType_Name")]
+  public static extern string OTAPI_Wrap_GetAssetType_Name(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_InboxHash")]
-  public static extern string OTAPI_Basic_GetAccountWallet_InboxHash(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAssetType_TLA")]
+  public static extern string OTAPI_Wrap_GetAssetType_TLA(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetAccountWallet_OutboxHash")]
-  public static extern string OTAPI_Basic_GetAccountWallet_OutboxHash(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAssetType_Contract")]
+  public static extern string OTAPI_Wrap_GetAssetType_Contract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_VerifyAccountReceipt")]
-  public static extern bool OTAPI_Basic_VerifyAccountReceipt(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_ID")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_ID(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_TransactionNumCount")]
-  public static extern int OTAPI_Basic_GetNym_TransactionNumCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_Name")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_Name(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_ID")]
-  public static extern string OTAPI_Basic_GetNym_ID(int jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_Balance")]
+  public static extern long OTAPI_Wrap_GetAccountWallet_Balance(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_Name")]
-  public static extern string OTAPI_Basic_GetNym_Name(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_Type")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_Type(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_Stats")]
-  public static extern string OTAPI_Basic_GetNym_Stats(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_AssetTypeID")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_AssetTypeID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_NymboxHash")]
-  public static extern string OTAPI_Basic_GetNym_NymboxHash(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_ServerID")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_ServerID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_RecentHash")]
-  public static extern string OTAPI_Basic_GetNym_RecentHash(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_NymID")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_NymID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_InboxHash")]
-  public static extern string OTAPI_Basic_GetNym_InboxHash(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_InboxHash")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_InboxHash(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutboxHash")]
-  public static extern string OTAPI_Basic_GetNym_OutboxHash(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetAccountWallet_OutboxHash")]
+  public static extern string OTAPI_Wrap_GetAccountWallet_OutboxHash(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_IsNym_RegisteredAtServer")]
-  public static extern bool OTAPI_Basic_IsNym_RegisteredAtServer(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_VerifyAccountReceipt")]
+  public static extern bool OTAPI_Wrap_VerifyAccountReceipt(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_MailCount")]
-  public static extern int OTAPI_Basic_GetNym_MailCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_TransactionNumCount")]
+  public static extern int OTAPI_Wrap_GetNym_TransactionNumCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_MailContentsByIndex")]
-  public static extern string OTAPI_Basic_GetNym_MailContentsByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_ID")]
+  public static extern string OTAPI_Wrap_GetNym_ID(int jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_MailSenderIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_MailSenderIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_Name")]
+  public static extern string OTAPI_Wrap_GetNym_Name(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_MailServerIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_MailServerIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_Stats")]
+  public static extern string OTAPI_Wrap_GetNym_Stats(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_RemoveMailByIndex")]
-  public static extern bool OTAPI_Basic_Nym_RemoveMailByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_NymboxHash")]
+  public static extern string OTAPI_Wrap_GetNym_NymboxHash(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_VerifyMailByIndex")]
-  public static extern bool OTAPI_Basic_Nym_VerifyMailByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_RecentHash")]
+  public static extern string OTAPI_Wrap_GetNym_RecentHash(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutmailCount")]
-  public static extern int OTAPI_Basic_GetNym_OutmailCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_InboxHash")]
+  public static extern string OTAPI_Wrap_GetNym_InboxHash(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutmailContentsByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutmailContentsByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutboxHash")]
+  public static extern string OTAPI_Wrap_GetNym_OutboxHash(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutmailRecipientIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutmailRecipientIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_IsNym_RegisteredAtServer")]
+  public static extern bool OTAPI_Wrap_IsNym_RegisteredAtServer(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutmailServerIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutmailServerIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_MailCount")]
+  public static extern int OTAPI_Wrap_GetNym_MailCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_RemoveOutmailByIndex")]
-  public static extern bool OTAPI_Basic_Nym_RemoveOutmailByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_MailContentsByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_MailContentsByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_VerifyOutmailByIndex")]
-  public static extern bool OTAPI_Basic_Nym_VerifyOutmailByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_MailSenderIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_MailSenderIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutpaymentsCount")]
-  public static extern int OTAPI_Basic_GetNym_OutpaymentsCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_MailServerIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_MailServerIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutpaymentsContentsByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutpaymentsContentsByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_RemoveMailByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_RemoveMailByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutpaymentsRecipientIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_VerifyMailByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_VerifyMailByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex")]
-  public static extern string OTAPI_Basic_GetNym_OutpaymentsServerIDByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutmailCount")]
+  public static extern int OTAPI_Wrap_GetNym_OutmailCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_RemoveOutpaymentsByIndex")]
-  public static extern bool OTAPI_Basic_Nym_RemoveOutpaymentsByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutmailContentsByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutmailContentsByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nym_VerifyOutpaymentsByIndex")]
-  public static extern bool OTAPI_Basic_Nym_VerifyOutpaymentsByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_CanRemoveServer")]
-  public static extern bool OTAPI_Basic_Wallet_CanRemoveServer(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutmailServerIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutmailServerIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_RemoveServer")]
-  public static extern bool OTAPI_Basic_Wallet_RemoveServer(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_RemoveOutmailByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_RemoveOutmailByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_CanRemoveAssetType")]
-  public static extern bool OTAPI_Basic_Wallet_CanRemoveAssetType(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_VerifyOutmailByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_VerifyOutmailByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_RemoveAssetType")]
-  public static extern bool OTAPI_Basic_Wallet_RemoveAssetType(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutpaymentsCount")]
+  public static extern int OTAPI_Wrap_GetNym_OutpaymentsCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_CanRemoveNym")]
-  public static extern bool OTAPI_Basic_Wallet_CanRemoveNym(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_RemoveNym")]
-  public static extern bool OTAPI_Basic_Wallet_RemoveNym(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_CanRemoveAccount")]
-  public static extern bool OTAPI_Basic_Wallet_CanRemoveAccount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex")]
+  public static extern string OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ChangePassphrase")]
-  public static extern bool OTAPI_Basic_Wallet_ChangePassphrase();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ExportNym")]
-  public static extern string OTAPI_Basic_Wallet_ExportNym(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex")]
+  public static extern bool OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ImportNym")]
-  public static extern string OTAPI_Basic_Wallet_ImportNym(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_CanRemoveServer")]
+  public static extern bool OTAPI_Wrap_Wallet_CanRemoveServer(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ImportCert")]
-  public static extern string OTAPI_Basic_Wallet_ImportCert(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_RemoveServer")]
+  public static extern bool OTAPI_Wrap_Wallet_RemoveServer(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ExportCert")]
-  public static extern string OTAPI_Basic_Wallet_ExportCert(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_CanRemoveAssetType")]
+  public static extern bool OTAPI_Wrap_Wallet_CanRemoveAssetType(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_GetNymIDFromPartial")]
-  public static extern string OTAPI_Basic_Wallet_GetNymIDFromPartial(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_RemoveAssetType")]
+  public static extern bool OTAPI_Wrap_Wallet_RemoveAssetType(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_GetServerIDFromPartial")]
-  public static extern string OTAPI_Basic_Wallet_GetServerIDFromPartial(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_CanRemoveNym")]
+  public static extern bool OTAPI_Wrap_Wallet_CanRemoveNym(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_GetAssetIDFromPartial")]
-  public static extern string OTAPI_Basic_Wallet_GetAssetIDFromPartial(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_RemoveNym")]
+  public static extern bool OTAPI_Wrap_Wallet_RemoveNym(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_GetAccountIDFromPartial")]
-  public static extern string OTAPI_Basic_Wallet_GetAccountIDFromPartial(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_CanRemoveAccount")]
+  public static extern bool OTAPI_Wrap_Wallet_CanRemoveAccount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetNym_Name")]
-  public static extern bool OTAPI_Basic_SetNym_Name(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ChangePassphrase")]
+  public static extern bool OTAPI_Wrap_Wallet_ChangePassphrase();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetAccountWallet_Name")]
-  public static extern bool OTAPI_Basic_SetAccountWallet_Name(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ExportNym")]
+  public static extern string OTAPI_Wrap_Wallet_ExportNym(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetAssetType_Name")]
-  public static extern bool OTAPI_Basic_SetAssetType_Name(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ImportNym")]
+  public static extern string OTAPI_Wrap_Wallet_ImportNym(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SetServer_Name")]
-  public static extern bool OTAPI_Basic_SetServer_Name(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ImportCert")]
+  public static extern string OTAPI_Wrap_Wallet_ImportCert(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_WriteCheque")]
-  public static extern string OTAPI_Basic_WriteCheque(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7, string jarg8);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ExportCert")]
+  public static extern string OTAPI_Wrap_Wallet_ExportCert(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_DiscardCheque")]
-  public static extern bool OTAPI_Basic_DiscardCheque(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_GetNymIDFromPartial")]
+  public static extern string OTAPI_Wrap_Wallet_GetNymIDFromPartial(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ProposePaymentPlan")]
-  public static extern string OTAPI_Basic_ProposePaymentPlan(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7, string jarg8, string jarg9, string jarg10, string jarg11, string jarg12, string jarg13, string jarg14, int jarg15);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_GetServerIDFromPartial")]
+  public static extern string OTAPI_Wrap_Wallet_GetServerIDFromPartial(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_EasyProposePlan")]
-  public static extern string OTAPI_Basic_EasyProposePlan(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7, string jarg8, string jarg9, string jarg10);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_GetAssetIDFromPartial")]
+  public static extern string OTAPI_Wrap_Wallet_GetAssetIDFromPartial(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ConfirmPaymentPlan")]
-  public static extern string OTAPI_Basic_ConfirmPaymentPlan(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_GetAccountIDFromPartial")]
+  public static extern string OTAPI_Wrap_Wallet_GetAccountIDFromPartial(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Create_SmartContract")]
-  public static extern string OTAPI_Basic_Create_SmartContract(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetNym_Name")]
+  public static extern bool OTAPI_Wrap_SetNym_Name(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddBylaw")]
-  public static extern string OTAPI_Basic_SmartContract_AddBylaw(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetAccountWallet_Name")]
+  public static extern bool OTAPI_Wrap_SetAccountWallet_Name(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddClause")]
-  public static extern string OTAPI_Basic_SmartContract_AddClause(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetAssetType_Name")]
+  public static extern bool OTAPI_Wrap_SetAssetType_Name(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddVariable")]
-  public static extern string OTAPI_Basic_SmartContract_AddVariable(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SetServer_Name")]
+  public static extern bool OTAPI_Wrap_SetServer_Name(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddCallback")]
-  public static extern string OTAPI_Basic_SmartContract_AddCallback(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_WriteCheque")]
+  public static extern string OTAPI_Wrap_WriteCheque(string jarg1, long jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, string jarg5, string jarg6, string jarg7, string jarg8);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddHook")]
-  public static extern string OTAPI_Basic_SmartContract_AddHook(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_DiscardCheque")]
+  public static extern bool OTAPI_Wrap_DiscardCheque(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddParty")]
-  public static extern string OTAPI_Basic_SmartContract_AddParty(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ProposePaymentPlan")]
+  public static extern string OTAPI_Wrap_ProposePaymentPlan(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, string jarg4, string jarg5, string jarg6, string jarg7, string jarg8, long jarg9, global::System.Runtime.InteropServices.HandleRef jarg10, long jarg11, global::System.Runtime.InteropServices.HandleRef jarg12, global::System.Runtime.InteropServices.HandleRef jarg13, global::System.Runtime.InteropServices.HandleRef jarg14, int jarg15);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_AddAccount")]
-  public static extern string OTAPI_Basic_SmartContract_AddAccount(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_EasyProposePlan")]
+  public static extern string OTAPI_Wrap_EasyProposePlan(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7, string jarg8, string jarg9, string jarg10);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_CountNumsNeeded")]
-  public static extern int OTAPI_Basic_SmartContract_CountNumsNeeded(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ConfirmPaymentPlan")]
+  public static extern string OTAPI_Wrap_ConfirmPaymentPlan(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_ConfirmAccount")]
-  public static extern string OTAPI_Basic_SmartContract_ConfirmAccount(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Create_SmartContract")]
+  public static extern string OTAPI_Wrap_Create_SmartContract(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SmartContract_ConfirmParty")]
-  public static extern string OTAPI_Basic_SmartContract_ConfirmParty(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddBylaw")]
+  public static extern string OTAPI_Wrap_SmartContract_AddBylaw(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_AreAllPartiesConfirmed")]
-  public static extern bool OTAPI_Basic_Smart_AreAllPartiesConfirmed(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddClause")]
+  public static extern string OTAPI_Wrap_SmartContract_AddClause(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_IsPartyConfirmed")]
-  public static extern bool OTAPI_Basic_Smart_IsPartyConfirmed(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddVariable")]
+  public static extern string OTAPI_Wrap_SmartContract_AddVariable(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_GetBylawCount")]
-  public static extern int OTAPI_Basic_Smart_GetBylawCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddCallback")]
+  public static extern string OTAPI_Wrap_SmartContract_AddCallback(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_GetBylawByIndex")]
-  public static extern string OTAPI_Basic_Smart_GetBylawByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddHook")]
+  public static extern string OTAPI_Wrap_SmartContract_AddHook(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Bylaw_GetLanguage")]
-  public static extern string OTAPI_Basic_Bylaw_GetLanguage(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddParty")]
+  public static extern string OTAPI_Wrap_SmartContract_AddParty(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Bylaw_GetClauseCount")]
-  public static extern int OTAPI_Basic_Bylaw_GetClauseCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_AddAccount")]
+  public static extern string OTAPI_Wrap_SmartContract_AddAccount(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Clause_GetNameByIndex")]
-  public static extern string OTAPI_Basic_Clause_GetNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_CountNumsNeeded")]
+  public static extern int OTAPI_Wrap_SmartContract_CountNumsNeeded(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Clause_GetContents")]
-  public static extern string OTAPI_Basic_Clause_GetContents(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_ConfirmAccount")]
+  public static extern string OTAPI_Wrap_SmartContract_ConfirmAccount(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Bylaw_GetVariableCount")]
-  public static extern int OTAPI_Basic_Bylaw_GetVariableCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SmartContract_ConfirmParty")]
+  public static extern string OTAPI_Wrap_SmartContract_ConfirmParty(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Variable_GetNameByIndex")]
-  public static extern string OTAPI_Basic_Variable_GetNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_AreAllPartiesConfirmed")]
+  public static extern bool OTAPI_Wrap_Smart_AreAllPartiesConfirmed(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Variable_GetType")]
-  public static extern string OTAPI_Basic_Variable_GetType(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_GetBylawCount")]
+  public static extern int OTAPI_Wrap_Smart_GetBylawCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Variable_GetAccess")]
-  public static extern string OTAPI_Basic_Variable_GetAccess(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_GetBylawByIndex")]
+  public static extern string OTAPI_Wrap_Smart_GetBylawByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Variable_GetContents")]
-  public static extern string OTAPI_Basic_Variable_GetContents(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Bylaw_GetLanguage")]
+  public static extern string OTAPI_Wrap_Bylaw_GetLanguage(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Bylaw_GetHookCount")]
-  public static extern int OTAPI_Basic_Bylaw_GetHookCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Bylaw_GetClauseCount")]
+  public static extern int OTAPI_Wrap_Bylaw_GetClauseCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Hook_GetNameByIndex")]
-  public static extern string OTAPI_Basic_Hook_GetNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Clause_GetNameByIndex")]
+  public static extern string OTAPI_Wrap_Clause_GetNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Hook_GetClauseCount")]
-  public static extern int OTAPI_Basic_Hook_GetClauseCount(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Clause_GetContents")]
+  public static extern string OTAPI_Wrap_Clause_GetContents(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Hook_GetClauseAtIndex")]
-  public static extern string OTAPI_Basic_Hook_GetClauseAtIndex(string jarg1, string jarg2, string jarg3, int jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Bylaw_GetVariableCount")]
+  public static extern int OTAPI_Wrap_Bylaw_GetVariableCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Bylaw_GetCallbackCount")]
-  public static extern int OTAPI_Basic_Bylaw_GetCallbackCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Variable_GetNameByIndex")]
+  public static extern string OTAPI_Wrap_Variable_GetNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Callback_GetNameByIndex")]
-  public static extern string OTAPI_Basic_Callback_GetNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Variable_GetType")]
+  public static extern string OTAPI_Wrap_Variable_GetType(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Callback_GetClause")]
-  public static extern string OTAPI_Basic_Callback_GetClause(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Variable_GetAccess")]
+  public static extern string OTAPI_Wrap_Variable_GetAccess(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_GetPartyCount")]
-  public static extern int OTAPI_Basic_Smart_GetPartyCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Variable_GetContents")]
+  public static extern string OTAPI_Wrap_Variable_GetContents(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Smart_GetPartyByIndex")]
-  public static extern string OTAPI_Basic_Smart_GetPartyByIndex(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Bylaw_GetHookCount")]
+  public static extern int OTAPI_Wrap_Bylaw_GetHookCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetID")]
-  public static extern string OTAPI_Basic_Party_GetID(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Hook_GetNameByIndex")]
+  public static extern string OTAPI_Wrap_Hook_GetNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAcctCount")]
-  public static extern int OTAPI_Basic_Party_GetAcctCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Hook_GetClauseCount")]
+  public static extern int OTAPI_Wrap_Hook_GetClauseCount(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAcctNameByIndex")]
-  public static extern string OTAPI_Basic_Party_GetAcctNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Hook_GetClauseAtIndex")]
+  public static extern string OTAPI_Wrap_Hook_GetClauseAtIndex(string jarg1, string jarg2, string jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAcctID")]
-  public static extern string OTAPI_Basic_Party_GetAcctID(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Bylaw_GetCallbackCount")]
+  public static extern int OTAPI_Wrap_Bylaw_GetCallbackCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAcctAssetID")]
-  public static extern string OTAPI_Basic_Party_GetAcctAssetID(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Callback_GetNameByIndex")]
+  public static extern string OTAPI_Wrap_Callback_GetNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAcctAgentName")]
-  public static extern string OTAPI_Basic_Party_GetAcctAgentName(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Callback_GetClause")]
+  public static extern string OTAPI_Wrap_Callback_GetClause(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAgentCount")]
-  public static extern int OTAPI_Basic_Party_GetAgentCount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_GetPartyCount")]
+  public static extern int OTAPI_Wrap_Smart_GetPartyCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAgentNameByIndex")]
-  public static extern string OTAPI_Basic_Party_GetAgentNameByIndex(string jarg1, string jarg2, int jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_GetPartyByIndex")]
+  public static extern string OTAPI_Wrap_Smart_GetPartyByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Party_GetAgentID")]
-  public static extern string OTAPI_Basic_Party_GetAgentID(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Smart_IsPartyConfirmed")]
+  public static extern bool OTAPI_Wrap_Smart_IsPartyConfirmed(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_activateSmartContract")]
-  public static extern int OTAPI_Basic_activateSmartContract(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetID")]
+  public static extern string OTAPI_Wrap_Party_GetID(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_triggerClause")]
-  public static extern int OTAPI_Basic_triggerClause(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAcctCount")]
+  public static extern int OTAPI_Wrap_Party_GetAcctCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Msg_HarvestTransactionNumbers")]
-  public static extern bool OTAPI_Basic_Msg_HarvestTransactionNumbers(string jarg1, string jarg2, bool jarg3, bool jarg4, bool jarg5, bool jarg6, bool jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAcctNameByIndex")]
+  public static extern string OTAPI_Wrap_Party_GetAcctNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadUserPubkey_Encryption")]
-  public static extern string OTAPI_Basic_LoadUserPubkey_Encryption(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAcctID")]
+  public static extern string OTAPI_Wrap_Party_GetAcctID(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadUserPubkey_Signing")]
-  public static extern string OTAPI_Basic_LoadUserPubkey_Signing(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAcctAssetID")]
+  public static extern string OTAPI_Wrap_Party_GetAcctAssetID(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadPubkey_Encryption")]
-  public static extern string OTAPI_Basic_LoadPubkey_Encryption(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAcctAgentName")]
+  public static extern string OTAPI_Wrap_Party_GetAcctAgentName(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadPubkey_Signing")]
-  public static extern string OTAPI_Basic_LoadPubkey_Signing(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAgentCount")]
+  public static extern int OTAPI_Wrap_Party_GetAgentCount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_VerifyUserPrivateKey")]
-  public static extern bool OTAPI_Basic_VerifyUserPrivateKey(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAgentNameByIndex")]
+  public static extern string OTAPI_Wrap_Party_GetAgentNameByIndex(string jarg1, string jarg2, int jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadPurse")]
-  public static extern string OTAPI_Basic_LoadPurse(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Party_GetAgentID")]
+  public static extern string OTAPI_Wrap_Party_GetAgentID(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadMint")]
-  public static extern string OTAPI_Basic_LoadMint(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_activateSmartContract")]
+  public static extern int OTAPI_Wrap_activateSmartContract(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadAssetContract")]
-  public static extern string OTAPI_Basic_LoadAssetContract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_triggerClause")]
+  public static extern int OTAPI_Wrap_triggerClause(string jarg1, string jarg2, long jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadServerContract")]
-  public static extern string OTAPI_Basic_LoadServerContract(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Msg_HarvestTransactionNumbers")]
+  public static extern bool OTAPI_Wrap_Msg_HarvestTransactionNumbers(string jarg1, string jarg2, bool jarg3, bool jarg4, bool jarg5, bool jarg6, bool jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Mint_IsStillGood")]
-  public static extern bool OTAPI_Basic_Mint_IsStillGood(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadUserPubkey_Encryption")]
+  public static extern string OTAPI_Wrap_LoadUserPubkey_Encryption(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_IsBasketCurrency")]
-  public static extern bool OTAPI_Basic_IsBasketCurrency(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadUserPubkey_Signing")]
+  public static extern string OTAPI_Wrap_LoadUserPubkey_Signing(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Basket_GetMemberCount")]
-  public static extern int OTAPI_Basic_Basket_GetMemberCount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadPubkey_Encryption")]
+  public static extern string OTAPI_Wrap_LoadPubkey_Encryption(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Basket_GetMemberType")]
-  public static extern string OTAPI_Basic_Basket_GetMemberType(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadPubkey_Signing")]
+  public static extern string OTAPI_Wrap_LoadPubkey_Signing(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Basket_GetMinimumTransferAmount")]
-  public static extern string OTAPI_Basic_Basket_GetMinimumTransferAmount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_VerifyUserPrivateKey")]
+  public static extern bool OTAPI_Wrap_VerifyUserPrivateKey(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Basket_GetMemberMinimumTransferAmount")]
-  public static extern string OTAPI_Basic_Basket_GetMemberMinimumTransferAmount(string jarg1, int jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadPurse")]
+  public static extern string OTAPI_Wrap_LoadPurse(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadAssetAccount")]
-  public static extern string OTAPI_Basic_LoadAssetAccount(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadMint")]
+  public static extern string OTAPI_Wrap_LoadMint(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadInbox")]
-  public static extern string OTAPI_Basic_LoadInbox(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadAssetContract")]
+  public static extern string OTAPI_Wrap_LoadAssetContract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadOutbox")]
-  public static extern string OTAPI_Basic_LoadOutbox(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadServerContract")]
+  public static extern string OTAPI_Wrap_LoadServerContract(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadInboxNoVerify")]
-  public static extern string OTAPI_Basic_LoadInboxNoVerify(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Mint_IsStillGood")]
+  public static extern bool OTAPI_Wrap_Mint_IsStillGood(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadOutboxNoVerify")]
-  public static extern string OTAPI_Basic_LoadOutboxNoVerify(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_IsBasketCurrency")]
+  public static extern bool OTAPI_Wrap_IsBasketCurrency(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadPaymentInbox")]
-  public static extern string OTAPI_Basic_LoadPaymentInbox(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Basket_GetMemberCount")]
+  public static extern int OTAPI_Wrap_Basket_GetMemberCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadPaymentInboxNoVerify")]
-  public static extern string OTAPI_Basic_LoadPaymentInboxNoVerify(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Basket_GetMemberType")]
+  public static extern string OTAPI_Wrap_Basket_GetMemberType(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadRecordBox")]
-  public static extern string OTAPI_Basic_LoadRecordBox(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Basket_GetMinimumTransferAmount")]
+  public static extern long OTAPI_Wrap_Basket_GetMinimumTransferAmount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadRecordBoxNoVerify")]
-  public static extern string OTAPI_Basic_LoadRecordBoxNoVerify(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount")]
+  public static extern long OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ClearRecord")]
-  public static extern bool OTAPI_Basic_ClearRecord(string jarg1, string jarg2, string jarg3, int jarg4, bool jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadAssetAccount")]
+  public static extern string OTAPI_Wrap_LoadAssetAccount(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadExpiredBox")]
-  public static extern string OTAPI_Basic_LoadExpiredBox(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadInbox")]
+  public static extern string OTAPI_Wrap_LoadInbox(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadExpiredBoxNoVerify")]
-  public static extern string OTAPI_Basic_LoadExpiredBoxNoVerify(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadOutbox")]
+  public static extern string OTAPI_Wrap_LoadOutbox(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ClearExpired")]
-  public static extern bool OTAPI_Basic_ClearExpired(string jarg1, string jarg2, int jarg3, bool jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadInboxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadInboxNoVerify(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_GetCount")]
-  public static extern int OTAPI_Basic_Ledger_GetCount(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadOutboxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadOutboxNoVerify(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_CreateResponse")]
-  public static extern string OTAPI_Basic_Ledger_CreateResponse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadPaymentInbox")]
+  public static extern string OTAPI_Wrap_LoadPaymentInbox(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_GetTransactionByIndex")]
-  public static extern string OTAPI_Basic_Ledger_GetTransactionByIndex(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadPaymentInboxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadPaymentInboxNoVerify(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_GetTransactionByID")]
-  public static extern string OTAPI_Basic_Ledger_GetTransactionByID(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadRecordBox")]
+  public static extern string OTAPI_Wrap_LoadRecordBox(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_GetTransactionIDByIndex")]
-  public static extern string OTAPI_Basic_Ledger_GetTransactionIDByIndex(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadRecordBoxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadRecordBoxNoVerify(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_AddTransaction")]
-  public static extern string OTAPI_Basic_Ledger_AddTransaction(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ClearRecord")]
+  public static extern bool OTAPI_Wrap_ClearRecord(string jarg1, string jarg2, string jarg3, int jarg4, bool jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_CreateResponse")]
-  public static extern string OTAPI_Basic_Transaction_CreateResponse(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, bool jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadExpiredBox")]
+  public static extern string OTAPI_Wrap_LoadExpiredBox(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_FinalizeResponse")]
-  public static extern string OTAPI_Basic_Ledger_FinalizeResponse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadExpiredBoxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadExpiredBoxNoVerify(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Ledger_GetInstrument")]
-  public static extern string OTAPI_Basic_Ledger_GetInstrument(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ClearExpired")]
+  public static extern bool OTAPI_Wrap_ClearExpired(string jarg1, string jarg2, int jarg3, bool jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_RecordPayment")]
-  public static extern bool OTAPI_Basic_RecordPayment(string jarg1, string jarg2, bool jarg3, int jarg4, bool jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_GetCount")]
+  public static extern int OTAPI_Wrap_Ledger_GetCount(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetType")]
-  public static extern string OTAPI_Basic_Transaction_GetType(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_CreateResponse")]
+  public static extern string OTAPI_Wrap_Ledger_CreateResponse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ReplyNotice_GetRequestNum")]
-  public static extern string OTAPI_Basic_ReplyNotice_GetRequestNum(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_GetTransactionByIndex")]
+  public static extern string OTAPI_Wrap_Ledger_GetTransactionByIndex(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetVoucher")]
-  public static extern string OTAPI_Basic_Transaction_GetVoucher(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_GetTransactionByID")]
+  public static extern string OTAPI_Wrap_Ledger_GetTransactionByID(string jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetSuccess")]
-  public static extern int OTAPI_Basic_Transaction_GetSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_GetTransactionIDByIndex")]
+  public static extern long OTAPI_Wrap_Ledger_GetTransactionIDByIndex(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_IsCanceled")]
-  public static extern int OTAPI_Basic_Transaction_IsCanceled(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_AddTransaction")]
+  public static extern string OTAPI_Wrap_Ledger_AddTransaction(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetBalanceAgreementSuccess")]
-  public static extern int OTAPI_Basic_Transaction_GetBalanceAgreementSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_CreateResponse")]
+  public static extern string OTAPI_Wrap_Transaction_CreateResponse(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, bool jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetDateSigned")]
-  public static extern string OTAPI_Basic_Transaction_GetDateSigned(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_FinalizeResponse")]
+  public static extern string OTAPI_Wrap_Ledger_FinalizeResponse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetAmount")]
-  public static extern string OTAPI_Basic_Transaction_GetAmount(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Ledger_GetInstrument")]
+  public static extern string OTAPI_Wrap_Ledger_GetInstrument(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Pending_GetNote")]
-  public static extern string OTAPI_Basic_Pending_GetNote(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_RecordPayment")]
+  public static extern bool OTAPI_Wrap_RecordPayment(string jarg1, string jarg2, bool jarg3, int jarg4, bool jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetSenderUserID")]
-  public static extern string OTAPI_Basic_Transaction_GetSenderUserID(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetType")]
+  public static extern string OTAPI_Wrap_Transaction_GetType(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetSenderAcctID")]
-  public static extern string OTAPI_Basic_Transaction_GetSenderAcctID(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ReplyNotice_GetRequestNum")]
+  public static extern long OTAPI_Wrap_ReplyNotice_GetRequestNum(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetRecipientUserID")]
-  public static extern string OTAPI_Basic_Transaction_GetRecipientUserID(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetVoucher")]
+  public static extern string OTAPI_Wrap_Transaction_GetVoucher(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetRecipientAcctID")]
-  public static extern string OTAPI_Basic_Transaction_GetRecipientAcctID(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetSuccess")]
+  public static extern int OTAPI_Wrap_Transaction_GetSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Transaction_GetDisplayReferenceToNum")]
-  public static extern string OTAPI_Basic_Transaction_GetDisplayReferenceToNum(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_IsCanceled")]
+  public static extern int OTAPI_Wrap_Transaction_IsCanceled(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_SavePurse")]
-  public static extern bool OTAPI_Basic_SavePurse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess")]
+  public static extern int OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreatePurse")]
-  public static extern string OTAPI_Basic_CreatePurse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetDateSigned")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Transaction_GetDateSigned(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_CreatePurse_Passphrase")]
-  public static extern string OTAPI_Basic_CreatePurse_Passphrase(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetAmount")]
+  public static extern long OTAPI_Wrap_Transaction_GetAmount(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_GetTotalValue")]
-  public static extern string OTAPI_Basic_Purse_GetTotalValue(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Pending_GetNote")]
+  public static extern string OTAPI_Wrap_Pending_GetNote(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_Count")]
-  public static extern int OTAPI_Basic_Purse_Count(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetSenderUserID")]
+  public static extern string OTAPI_Wrap_Transaction_GetSenderUserID(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_HasPassword")]
-  public static extern bool OTAPI_Basic_Purse_HasPassword(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetSenderAcctID")]
+  public static extern string OTAPI_Wrap_Transaction_GetSenderAcctID(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_Peek")]
-  public static extern string OTAPI_Basic_Purse_Peek(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetRecipientUserID")]
+  public static extern string OTAPI_Wrap_Transaction_GetRecipientUserID(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_Pop")]
-  public static extern string OTAPI_Basic_Purse_Pop(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetRecipientAcctID")]
+  public static extern string OTAPI_Wrap_Transaction_GetRecipientAcctID(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_Push")]
-  public static extern string OTAPI_Basic_Purse_Push(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Transaction_GetDisplayReferenceToNum")]
+  public static extern long OTAPI_Wrap_Transaction_GetDisplayReferenceToNum(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Purse_Empty")]
-  public static extern string OTAPI_Basic_Purse_Empty(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_SavePurse")]
+  public static extern bool OTAPI_Wrap_SavePurse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Wallet_ImportPurse")]
-  public static extern bool OTAPI_Basic_Wallet_ImportPurse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreatePurse")]
+  public static extern string OTAPI_Wrap_CreatePurse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_exchangePurse")]
-  public static extern int OTAPI_Basic_exchangePurse(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_CreatePurse_Passphrase")]
+  public static extern string OTAPI_Wrap_CreatePurse_Passphrase(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_ChangeOwner")]
-  public static extern string OTAPI_Basic_Token_ChangeOwner(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_GetTotalValue")]
+  public static extern long OTAPI_Wrap_Purse_GetTotalValue(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetID")]
-  public static extern string OTAPI_Basic_Token_GetID(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_Count")]
+  public static extern int OTAPI_Wrap_Purse_Count(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetDenomination")]
-  public static extern string OTAPI_Basic_Token_GetDenomination(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_HasPassword")]
+  public static extern bool OTAPI_Wrap_Purse_HasPassword(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetSeries")]
-  public static extern int OTAPI_Basic_Token_GetSeries(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_Peek")]
+  public static extern string OTAPI_Wrap_Purse_Peek(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetValidFrom")]
-  public static extern string OTAPI_Basic_Token_GetValidFrom(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_Pop")]
+  public static extern string OTAPI_Wrap_Purse_Pop(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetValidTo")]
-  public static extern string OTAPI_Basic_Token_GetValidTo(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_Push")]
+  public static extern string OTAPI_Wrap_Purse_Push(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetAssetID")]
-  public static extern string OTAPI_Basic_Token_GetAssetID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Purse_Empty")]
+  public static extern string OTAPI_Wrap_Purse_Empty(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Token_GetServerID")]
-  public static extern string OTAPI_Basic_Token_GetServerID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Wallet_ImportPurse")]
+  public static extern bool OTAPI_Wrap_Wallet_ImportPurse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetAmount")]
-  public static extern string OTAPI_Basic_Instrmnt_GetAmount(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_exchangePurse")]
+  public static extern int OTAPI_Wrap_exchangePurse(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetTransNum")]
-  public static extern string OTAPI_Basic_Instrmnt_GetTransNum(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_ChangeOwner")]
+  public static extern string OTAPI_Wrap_Token_ChangeOwner(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetValidFrom")]
-  public static extern string OTAPI_Basic_Instrmnt_GetValidFrom(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetID")]
+  public static extern string OTAPI_Wrap_Token_GetID(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetValidTo")]
-  public static extern string OTAPI_Basic_Instrmnt_GetValidTo(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetDenomination")]
+  public static extern long OTAPI_Wrap_Token_GetDenomination(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetMemo")]
-  public static extern string OTAPI_Basic_Instrmnt_GetMemo(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetSeries")]
+  public static extern int OTAPI_Wrap_Token_GetSeries(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetType")]
-  public static extern string OTAPI_Basic_Instrmnt_GetType(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetValidFrom")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Token_GetValidFrom(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetServerID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetServerID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetValidTo")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Token_GetValidTo(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetAssetID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetAssetID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetAssetID")]
+  public static extern string OTAPI_Wrap_Token_GetAssetID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetSenderUserID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetSenderUserID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Token_GetServerID")]
+  public static extern string OTAPI_Wrap_Token_GetServerID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetSenderAcctID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetSenderAcctID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetAmount")]
+  public static extern long OTAPI_Wrap_Instrmnt_GetAmount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetRemitterUserID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetRemitterUserID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetTransNum")]
+  public static extern long OTAPI_Wrap_Instrmnt_GetTransNum(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetRemitterAcctID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetRemitterAcctID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetValidFrom")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Instrmnt_GetValidFrom(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetRecipientUserID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetRecipientUserID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetValidTo")]
+  public static extern global::System.IntPtr OTAPI_Wrap_Instrmnt_GetValidTo(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Instrmnt_GetRecipientAcctID")]
-  public static extern string OTAPI_Basic_Instrmnt_GetRecipientAcctID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetMemo")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetMemo(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_checkServerID")]
-  public static extern int OTAPI_Basic_checkServerID(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetType")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetType(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_createUserAccount")]
-  public static extern int OTAPI_Basic_createUserAccount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetServerID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetServerID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_deleteUserAccount")]
-  public static extern int OTAPI_Basic_deleteUserAccount(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetAssetID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetAssetID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_deleteAssetAccount")]
-  public static extern int OTAPI_Basic_deleteAssetAccount(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetSenderUserID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetSenderUserID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_usageCredits")]
-  public static extern int OTAPI_Basic_usageCredits(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetSenderAcctID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetSenderAcctID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetUsageCredits")]
-  public static extern string OTAPI_Basic_Message_GetUsageCredits(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetRemitterUserID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetRemitterUserID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_checkUser")]
-  public static extern int OTAPI_Basic_checkUser(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetRemitterAcctID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetRemitterAcctID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_sendUserMessage")]
-  public static extern int OTAPI_Basic_sendUserMessage(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetRecipientUserID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetRecipientUserID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_sendUserInstrument")]
-  public static extern int OTAPI_Basic_sendUserInstrument(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Instrmnt_GetRecipientAcctID")]
+  public static extern string OTAPI_Wrap_Instrmnt_GetRecipientAcctID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getRequest")]
-  public static extern int OTAPI_Basic_getRequest(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_checkServerID")]
+  public static extern int OTAPI_Wrap_checkServerID(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getTransactionNumber")]
-  public static extern int OTAPI_Basic_getTransactionNumber(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_createUserAccount")]
+  public static extern int OTAPI_Wrap_createUserAccount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_issueAssetType")]
-  public static extern int OTAPI_Basic_issueAssetType(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_deleteUserAccount")]
+  public static extern int OTAPI_Wrap_deleteUserAccount(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getContract")]
-  public static extern int OTAPI_Basic_getContract(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_deleteAssetAccount")]
+  public static extern int OTAPI_Wrap_deleteAssetAccount(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getMint")]
-  public static extern int OTAPI_Basic_getMint(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_usageCredits")]
+  public static extern int OTAPI_Wrap_usageCredits(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_createAssetAccount")]
-  public static extern int OTAPI_Basic_createAssetAccount(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetUsageCredits")]
+  public static extern long OTAPI_Wrap_Message_GetUsageCredits(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getAccount")]
-  public static extern int OTAPI_Basic_getAccount(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_checkUser")]
+  public static extern int OTAPI_Wrap_checkUser(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getAccountFiles")]
-  public static extern int OTAPI_Basic_getAccountFiles(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_sendUserMessage")]
+  public static extern int OTAPI_Wrap_sendUserMessage(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GenerateBasketCreation")]
-  public static extern string OTAPI_Basic_GenerateBasketCreation(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_sendUserInstrument")]
+  public static extern int OTAPI_Wrap_sendUserInstrument(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddBasketCreationItem")]
-  public static extern string OTAPI_Basic_AddBasketCreationItem(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getRequest")]
+  public static extern int OTAPI_Wrap_getRequest(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_issueBasket")]
-  public static extern int OTAPI_Basic_issueBasket(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getTransactionNumber")]
+  public static extern int OTAPI_Wrap_getTransactionNumber(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GenerateBasketExchange")]
-  public static extern string OTAPI_Basic_GenerateBasketExchange(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_issueAssetType")]
+  public static extern int OTAPI_Wrap_issueAssetType(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_AddBasketExchangeItem")]
-  public static extern string OTAPI_Basic_AddBasketExchangeItem(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getContract")]
+  public static extern int OTAPI_Wrap_getContract(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_exchangeBasket")]
-  public static extern int OTAPI_Basic_exchangeBasket(string jarg1, string jarg2, string jarg3, string jarg4, bool jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getMint")]
+  public static extern int OTAPI_Wrap_getMint(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_notarizeWithdrawal")]
-  public static extern int OTAPI_Basic_notarizeWithdrawal(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_createAssetAccount")]
+  public static extern int OTAPI_Wrap_createAssetAccount(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_notarizeDeposit")]
-  public static extern int OTAPI_Basic_notarizeDeposit(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getAccount")]
+  public static extern int OTAPI_Wrap_getAccount(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_notarizeTransfer")]
-  public static extern int OTAPI_Basic_notarizeTransfer(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getAccountFiles")]
+  public static extern int OTAPI_Wrap_getAccountFiles(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getInbox")]
-  public static extern int OTAPI_Basic_getInbox(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GenerateBasketCreation")]
+  public static extern string OTAPI_Wrap_GenerateBasketCreation(string jarg1, long jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getOutbox")]
-  public static extern int OTAPI_Basic_getOutbox(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddBasketCreationItem")]
+  public static extern string OTAPI_Wrap_AddBasketCreationItem(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getNymbox")]
-  public static extern int OTAPI_Basic_getNymbox(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_issueBasket")]
+  public static extern int OTAPI_Wrap_issueBasket(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadNymbox")]
-  public static extern string OTAPI_Basic_LoadNymbox(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GenerateBasketExchange")]
+  public static extern string OTAPI_Wrap_GenerateBasketExchange(string jarg1, string jarg2, string jarg3, string jarg4, int jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_LoadNymboxNoVerify")]
-  public static extern string OTAPI_Basic_LoadNymboxNoVerify(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_AddBasketExchangeItem")]
+  public static extern string OTAPI_Wrap_AddBasketExchangeItem(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Nymbox_GetReplyNotice")]
-  public static extern string OTAPI_Basic_Nymbox_GetReplyNotice(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_exchangeBasket")]
+  public static extern int OTAPI_Wrap_exchangeBasket(string jarg1, string jarg2, string jarg3, string jarg4, bool jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_HaveAlreadySeenReply")]
-  public static extern bool OTAPI_Basic_HaveAlreadySeenReply(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_notarizeWithdrawal")]
+  public static extern int OTAPI_Wrap_notarizeWithdrawal(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getBoxReceipt")]
-  public static extern int OTAPI_Basic_getBoxReceipt(string jarg1, string jarg2, string jarg3, int jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_notarizeDeposit")]
+  public static extern int OTAPI_Wrap_notarizeDeposit(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_DoesBoxReceiptExist")]
-  public static extern bool OTAPI_Basic_DoesBoxReceiptExist(string jarg1, string jarg2, string jarg3, int jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_notarizeTransfer")]
+  public static extern int OTAPI_Wrap_notarizeTransfer(string jarg1, string jarg2, string jarg3, string jarg4, long jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_processInbox")]
-  public static extern int OTAPI_Basic_processInbox(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getInbox")]
+  public static extern int OTAPI_Wrap_getInbox(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_processNymbox")]
-  public static extern int OTAPI_Basic_processNymbox(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getOutbox")]
+  public static extern int OTAPI_Wrap_getOutbox(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_withdrawVoucher")]
-  public static extern int OTAPI_Basic_withdrawVoucher(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getNymbox")]
+  public static extern int OTAPI_Wrap_getNymbox(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_payDividend")]
-  public static extern int OTAPI_Basic_payDividend(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadNymbox")]
+  public static extern string OTAPI_Wrap_LoadNymbox(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_depositCheque")]
-  public static extern int OTAPI_Basic_depositCheque(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_LoadNymboxNoVerify")]
+  public static extern string OTAPI_Wrap_LoadNymboxNoVerify(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_depositPaymentPlan")]
-  public static extern int OTAPI_Basic_depositPaymentPlan(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Nymbox_GetReplyNotice")]
+  public static extern string OTAPI_Wrap_Nymbox_GetReplyNotice(string jarg1, string jarg2, long jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_issueMarketOffer")]
-  public static extern int OTAPI_Basic_issueMarketOffer(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, bool jarg7, string jarg8, string jarg9, string jarg10);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_HaveAlreadySeenReply")]
+  public static extern bool OTAPI_Wrap_HaveAlreadySeenReply(string jarg1, string jarg2, long jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getMarketList")]
-  public static extern int OTAPI_Basic_getMarketList(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getBoxReceipt")]
+  public static extern int OTAPI_Wrap_getBoxReceipt(string jarg1, string jarg2, string jarg3, int jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getMarketOffers")]
-  public static extern int OTAPI_Basic_getMarketOffers(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_DoesBoxReceiptExist")]
+  public static extern bool OTAPI_Wrap_DoesBoxReceiptExist(string jarg1, string jarg2, string jarg3, int jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getMarketRecentTrades")]
-  public static extern int OTAPI_Basic_getMarketRecentTrades(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_processInbox")]
+  public static extern int OTAPI_Wrap_processInbox(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_getNym_MarketOffers")]
-  public static extern int OTAPI_Basic_getNym_MarketOffers(string jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_processNymbox")]
+  public static extern int OTAPI_Wrap_processNymbox(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_killMarketOffer")]
-  public static extern int OTAPI_Basic_killMarketOffer(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_withdrawVoucher")]
+  public static extern int OTAPI_Wrap_withdrawVoucher(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, long jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_killPaymentPlan")]
-  public static extern int OTAPI_Basic_killPaymentPlan(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_payDividend")]
+  public static extern int OTAPI_Wrap_payDividend(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5, long jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_PopMessageBuffer")]
-  public static extern string OTAPI_Basic_PopMessageBuffer(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_depositCheque")]
+  public static extern int OTAPI_Wrap_depositCheque(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_FlushMessageBuffer")]
-  public static extern void OTAPI_Basic_FlushMessageBuffer();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_depositPaymentPlan")]
+  public static extern int OTAPI_Wrap_depositPaymentPlan(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_GetSentMessage")]
-  public static extern string OTAPI_Basic_GetSentMessage(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_issueMarketOffer")]
+  public static extern int OTAPI_Wrap_issueMarketOffer(string jarg1, string jarg2, long jarg3, long jarg4, long jarg5, long jarg6, bool jarg7, global::System.Runtime.InteropServices.HandleRef jarg8, string jarg9, long jarg10);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_RemoveSentMessage")]
-  public static extern bool OTAPI_Basic_RemoveSentMessage(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getMarketList")]
+  public static extern int OTAPI_Wrap_getMarketList(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_FlushSentMessages")]
-  public static extern void OTAPI_Basic_FlushSentMessages(bool jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getMarketOffers")]
+  public static extern int OTAPI_Wrap_getMarketOffers(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Sleep")]
-  public static extern void OTAPI_Basic_Sleep(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getMarketRecentTrades")]
+  public static extern int OTAPI_Wrap_getMarketRecentTrades(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ResyncNymWithServer")]
-  public static extern bool OTAPI_Basic_ResyncNymWithServer(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_getNym_MarketOffers")]
+  public static extern int OTAPI_Wrap_getNym_MarketOffers(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetCommand")]
-  public static extern string OTAPI_Basic_Message_GetCommand(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_killMarketOffer")]
+  public static extern int OTAPI_Wrap_killMarketOffer(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetSuccess")]
-  public static extern int OTAPI_Basic_Message_GetSuccess(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_killPaymentPlan")]
+  public static extern int OTAPI_Wrap_killPaymentPlan(string jarg1, string jarg2, string jarg3, long jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_queryAssetTypes")]
-  public static extern int OTAPI_Basic_queryAssetTypes(string jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_PopMessageBuffer")]
+  public static extern string OTAPI_Wrap_PopMessageBuffer(long jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetPayload")]
-  public static extern string OTAPI_Basic_Message_GetPayload(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_FlushMessageBuffer")]
+  public static extern void OTAPI_Wrap_FlushMessageBuffer();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetDepth")]
-  public static extern int OTAPI_Basic_Message_GetDepth(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_GetSentMessage")]
+  public static extern string OTAPI_Wrap_GetSentMessage(long jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetTransactionSuccess")]
-  public static extern int OTAPI_Basic_Message_GetTransactionSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_RemoveSentMessage")]
+  public static extern bool OTAPI_Wrap_RemoveSentMessage(long jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_IsTransactionCanceled")]
-  public static extern int OTAPI_Basic_Message_IsTransactionCanceled(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_FlushSentMessages")]
+  public static extern void OTAPI_Wrap_FlushSentMessages(bool jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetBalanceAgreementSuccess")]
-  public static extern int OTAPI_Basic_Message_GetBalanceAgreementSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Sleep")]
+  public static extern void OTAPI_Wrap_Sleep(long jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetLedger")]
-  public static extern string OTAPI_Basic_Message_GetLedger(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ResyncNymWithServer")]
+  public static extern bool OTAPI_Wrap_ResyncNymWithServer(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetNewAssetTypeID")]
-  public static extern string OTAPI_Basic_Message_GetNewAssetTypeID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetCommand")]
+  public static extern string OTAPI_Wrap_Message_GetCommand(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetNewIssuerAcctID")]
-  public static extern string OTAPI_Basic_Message_GetNewIssuerAcctID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetSuccess")]
+  public static extern int OTAPI_Wrap_Message_GetSuccess(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetNewAcctID")]
-  public static extern string OTAPI_Basic_Message_GetNewAcctID(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_queryAssetTypes")]
+  public static extern int OTAPI_Wrap_queryAssetTypes(string jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_Message_GetNymboxHash")]
-  public static extern string OTAPI_Basic_Message_GetNymboxHash(string jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetPayload")]
+  public static extern string OTAPI_Wrap_Message_GetPayload(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ConnectServer")]
-  public static extern bool OTAPI_Basic_ConnectServer(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetDepth")]
+  public static extern int OTAPI_Wrap_Message_GetDepth(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Basic_ProcessSockets")]
-  public static extern bool OTAPI_Basic_ProcessSockets();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetTransactionSuccess")]
+  public static extern int OTAPI_Wrap_Message_GetTransactionSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OTMadeEasy")]
-  public static extern global::System.IntPtr new_OTMadeEasy();
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_IsTransactionCanceled")]
+  public static extern int OTAPI_Wrap_Message_IsTransactionCanceled(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_OTMadeEasy")]
-  public static extern void delete_OTMadeEasy(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetBalanceAgreementSuccess")]
+  public static extern int OTAPI_Wrap_Message_GetBalanceAgreementSuccess(string jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_make_sure_enough_trans_nums")]
-  public static extern bool OTMadeEasy_make_sure_enough_trans_nums(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetLedger")]
+  public static extern string OTAPI_Wrap_Message_GetLedger(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_register_nym")]
-  public static extern string OTMadeEasy_register_nym(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetNewAssetTypeID")]
+  public static extern string OTAPI_Wrap_Message_GetNewAssetTypeID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_check_user")]
-  public static extern string OTMadeEasy_check_user(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetNewIssuerAcctID")]
+  public static extern string OTAPI_Wrap_Message_GetNewIssuerAcctID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_create_pseudonym")]
-  public static extern string OTMadeEasy_create_pseudonym(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetNewAcctID")]
+  public static extern string OTAPI_Wrap_Message_GetNewAcctID(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_issue_asset_type")]
-  public static extern string OTMadeEasy_issue_asset_type(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetNymboxHash")]
+  public static extern string OTAPI_Wrap_Message_GetNymboxHash(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_issue_basket_currency")]
-  public static extern string OTMadeEasy_issue_basket_currency(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ConnectServer")]
+  public static extern bool OTAPI_Wrap_ConnectServer(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_exchange_basket_currency")]
-  public static extern string OTMadeEasy_exchange_basket_currency(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, bool jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ProcessSockets")]
+  public static extern bool OTAPI_Wrap_ProcessSockets();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_contract")]
-  public static extern string OTMadeEasy_retrieve_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_GetArgsCount")]
+  public static extern int OT_CLI_GetArgsCount(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_or_retrieve_contract")]
-  public static extern string OTMadeEasy_load_or_retrieve_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_GetValueByKey")]
+  public static extern string OT_CLI_GetValueByKey(string jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_create_asset_acct")]
-  public static extern string OTMadeEasy_create_asset_acct(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_GetValueByIndex")]
+  public static extern string OT_CLI_GetValueByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_stat_asset_account")]
-  public static extern string OTMadeEasy_stat_asset_account(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_GetKeyByIndex")]
+  public static extern string OT_CLI_GetKeyByIndex(string jarg1, int jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_account__SWIG_0")]
-  public static extern bool OTMadeEasy_retrieve_account__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_ReadLine")]
+  public static extern string OT_CLI_ReadLine();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_account__SWIG_1")]
-  public static extern bool OTMadeEasy_retrieve_account__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, bool jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_ReadUntilEOF")]
+  public static extern string OT_CLI_ReadUntilEOF();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_nym__SWIG_0")]
-  public static extern bool OTMadeEasy_retrieve_nym__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_new_OT_ME")]
+  public static extern global::System.IntPtr new_OT_ME();
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_nym__SWIG_1")]
-  public static extern bool OTMadeEasy_retrieve_nym__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_OT_ME")]
+  public static extern void delete_OT_ME(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_transfer")]
-  public static extern string OTMadeEasy_send_transfer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_opentxs_copy_variables")]
+  public static extern void OT_ME_opentxs_copy_variables(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_process_inbox")]
-  public static extern string OTMadeEasy_process_inbox(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_opentxs_main_loop")]
+  public static extern int OT_ME_opentxs_main_loop(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_accept_inbox_items")]
-  public static extern bool OTMadeEasy_accept_inbox_items(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_make_sure_enough_trans_nums")]
+  public static extern bool OT_ME_make_sure_enough_trans_nums(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_discard_incoming_payments")]
-  public static extern bool OTMadeEasy_discard_incoming_payments(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_register_nym")]
+  public static extern string OT_ME_register_nym(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_cancel_outgoing_payments")]
-  public static extern bool OTMadeEasy_cancel_outgoing_payments(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_check_user")]
+  public static extern string OT_ME_check_user(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_accept_from_paymentbox")]
-  public static extern int OTMadeEasy_accept_from_paymentbox(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_create_pseudonym")]
+  public static extern string OT_ME_create_pseudonym(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_public_encryption_key")]
-  public static extern string OTMadeEasy_load_public_encryption_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_issue_asset_type")]
+  public static extern string OT_ME_issue_asset_type(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_public_signing_key")]
-  public static extern string OTMadeEasy_load_public_signing_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_issue_basket_currency")]
+  public static extern string OT_ME_issue_basket_currency(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_or_retrieve_encrypt_key")]
-  public static extern string OTMadeEasy_load_or_retrieve_encrypt_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_exchange_basket_currency")]
+  public static extern string OT_ME_exchange_basket_currency(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, bool jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_or_retrieve_signing_key")]
-  public static extern string OTMadeEasy_load_or_retrieve_signing_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_contract")]
+  public static extern string OT_ME_retrieve_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_msg_pubkey")]
-  public static extern string OTMadeEasy_send_user_msg_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_or_retrieve_contract")]
+  public static extern string OT_ME_load_or_retrieve_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_pmnt_pubkey")]
-  public static extern string OTMadeEasy_send_user_pmnt_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_create_asset_acct")]
+  public static extern string OT_ME_create_asset_acct(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_cash_pubkey")]
-  public static extern string OTMadeEasy_send_user_cash_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_stat_asset_account")]
+  public static extern string OT_ME_stat_asset_account(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_msg")]
-  public static extern string OTMadeEasy_send_user_msg(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_account__SWIG_0")]
+  public static extern bool OT_ME_retrieve_account__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_payment")]
-  public static extern string OTMadeEasy_send_user_payment(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_account__SWIG_1")]
+  public static extern bool OT_ME_retrieve_account__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, bool jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_send_user_cash")]
-  public static extern string OTMadeEasy_send_user_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_nym__SWIG_0")]
+  public static extern bool OT_ME_retrieve_nym__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_withdraw_and_send_cash")]
-  public static extern bool OTMadeEasy_withdraw_and_send_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_nym__SWIG_1")]
+  public static extern bool OT_ME_retrieve_nym__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_payment_instrument__SWIG_0")]
-  public static extern string OTMadeEasy_get_payment_instrument__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, int jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_transfer")]
+  public static extern string OT_ME_send_transfer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, long jarg6, string jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_payment_instrument__SWIG_1")]
-  public static extern string OTMadeEasy_get_payment_instrument__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, int jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_process_inbox")]
+  public static extern string OT_ME_process_inbox(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_box_receipt")]
-  public static extern string OTMadeEasy_get_box_receipt(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, int jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_accept_inbox_items")]
+  public static extern bool OT_ME_accept_inbox_items(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_retrieve_mint")]
-  public static extern string OTMadeEasy_retrieve_mint(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_discard_incoming_payments")]
+  public static extern bool OT_ME_discard_incoming_payments(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_load_or_retrieve_mint")]
-  public static extern string OTMadeEasy_load_or_retrieve_mint(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_cancel_outgoing_payments")]
+  public static extern bool OT_ME_cancel_outgoing_payments(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_query_asset_types")]
-  public static extern string OTMadeEasy_query_asset_types(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_accept_from_paymentbox")]
+  public static extern int OT_ME_accept_from_paymentbox(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_create_market_offer")]
-  public static extern string OTMadeEasy_create_market_offer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7, bool jarg8, string jarg9, string jarg10, string jarg11);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_public_encryption_key")]
+  public static extern string OT_ME_load_public_encryption_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_kill_market_offer")]
-  public static extern string OTMadeEasy_kill_market_offer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_public_signing_key")]
+  public static extern string OT_ME_load_public_signing_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_kill_payment_plan")]
-  public static extern string OTMadeEasy_kill_payment_plan(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_or_retrieve_encrypt_key")]
+  public static extern string OT_ME_load_or_retrieve_encrypt_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_cancel_payment_plan")]
-  public static extern string OTMadeEasy_cancel_payment_plan(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_or_retrieve_signing_key")]
+  public static extern string OT_ME_load_or_retrieve_signing_key(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_activate_smart_contract")]
-  public static extern string OTMadeEasy_activate_smart_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_msg_pubkey")]
+  public static extern string OT_ME_send_user_msg_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_trigger_clause")]
-  public static extern string OTMadeEasy_trigger_clause(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_pmnt_pubkey")]
+  public static extern string OT_ME_send_user_pmnt_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_withdraw_cash")]
-  public static extern string OTMadeEasy_withdraw_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_cash_pubkey")]
+  public static extern string OT_ME_send_user_cash_pubkey(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_easy_withdraw_cash")]
-  public static extern int OTMadeEasy_easy_withdraw_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_msg")]
+  public static extern string OT_ME_send_user_msg(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_export_cash")]
-  public static extern string OTMadeEasy_export_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, bool jarg7, global::System.Runtime.InteropServices.HandleRef jarg8);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_payment")]
+  public static extern string OT_ME_send_user_payment(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_withdraw_voucher")]
-  public static extern string OTMadeEasy_withdraw_voucher(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_send_user_cash")]
+  public static extern string OT_ME_send_user_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_pay_dividend")]
-  public static extern string OTMadeEasy_pay_dividend(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, string jarg7);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_withdraw_and_send_cash")]
+  public static extern bool OT_ME_withdraw_and_send_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_deposit_cheque")]
-  public static extern string OTMadeEasy_deposit_cheque(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_payment_instrument__SWIG_0")]
+  public static extern string OT_ME_get_payment_instrument__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, int jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_deposit_cash")]
-  public static extern int OTMadeEasy_deposit_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_payment_instrument__SWIG_1")]
+  public static extern string OT_ME_get_payment_instrument__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, int jarg4, string jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_deposit_local_purse")]
-  public static extern int OTMadeEasy_deposit_local_purse(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_box_receipt")]
+  public static extern string OT_ME_get_box_receipt(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, int jarg5, long jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_market_list")]
-  public static extern string OTMadeEasy_get_market_list(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_retrieve_mint")]
+  public static extern string OT_ME_retrieve_mint(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_market_offers")]
-  public static extern string OTMadeEasy_get_market_offers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_load_or_retrieve_mint")]
+  public static extern string OT_ME_load_or_retrieve_mint(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_nym_market_offers")]
-  public static extern string OTMadeEasy_get_nym_market_offers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_query_asset_types")]
+  public static extern string OT_ME_query_asset_types(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_get_market_recent_trades")]
-  public static extern string OTMadeEasy_get_market_recent_trades(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_create_market_offer")]
+  public static extern string OT_ME_create_market_offer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, long jarg4, long jarg5, long jarg6, long jarg7, bool jarg8, long jarg9, string jarg10, long jarg11);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_adjust_usage_credits")]
-  public static extern string OTMadeEasy_adjust_usage_credits(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_kill_market_offer")]
+  public static extern string OT_ME_kill_market_offer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_VerifyMessageSuccess")]
-  public static extern int OTMadeEasy_VerifyMessageSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_kill_payment_plan")]
+  public static extern string OT_ME_kill_payment_plan(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess")]
-  public static extern int OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_cancel_payment_plan")]
+  public static extern string OT_ME_cancel_payment_plan(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_VerifyMsgTrnxSuccess")]
-  public static extern int OTMadeEasy_VerifyMsgTrnxSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_activate_smart_contract")]
+  public static extern string OT_ME_activate_smart_contract(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTMadeEasy_InterpretTransactionMsgReply")]
-  public static extern int OTMadeEasy_InterpretTransactionMsgReply(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_trigger_clause")]
+  public static extern string OT_ME_trigger_clause(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, long jarg4, string jarg5, string jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_withdraw_cash")]
+  public static extern string OT_ME_withdraw_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_easy_withdraw_cash")]
+  public static extern int OT_ME_easy_withdraw_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, long jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_export_cash")]
+  public static extern string OT_ME_export_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, bool jarg7, global::System.Runtime.InteropServices.HandleRef jarg8);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_withdraw_voucher")]
+  public static extern string OT_ME_withdraw_voucher(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, long jarg7);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_pay_dividend")]
+  public static extern string OT_ME_pay_dividend(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6, long jarg7);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_deposit_cheque")]
+  public static extern string OT_ME_deposit_cheque(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_deposit_cash")]
+  public static extern int OT_ME_deposit_cash(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_deposit_local_purse")]
+  public static extern int OT_ME_deposit_local_purse(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_market_list")]
+  public static extern string OT_ME_get_market_list(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_market_offers")]
+  public static extern string OT_ME_get_market_offers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, long jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_nym_market_offers")]
+  public static extern string OT_ME_get_nym_market_offers(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_get_market_recent_trades")]
+  public static extern string OT_ME_get_market_recent_trades(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_adjust_usage_credits")]
+  public static extern string OT_ME_adjust_usage_credits(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_VerifyMessageSuccess")]
+  public static extern int OT_ME_VerifyMessageSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_VerifyMsgBalanceAgrmntSuccess")]
+  public static extern int OT_ME_VerifyMsgBalanceAgrmntSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_VerifyMsgTrnxSuccess")]
+  public static extern int OT_ME_VerifyMsgTrnxSuccess(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_InterpretTransactionMsgReply")]
+  public static extern int OT_ME_InterpretTransactionMsgReply(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnString__SWIG_0")]
+  public static extern string OT_ME_ExecuteScript_ReturnString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnString__SWIG_1")]
+  public static extern string OT_ME_ExecuteScript_ReturnString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnBool__SWIG_0")]
+  public static extern bool OT_ME_ExecuteScript_ReturnBool__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnBool__SWIG_1")]
+  public static extern bool OT_ME_ExecuteScript_ReturnBool__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnInt__SWIG_0")]
+  public static extern int OT_ME_ExecuteScript_ReturnInt__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnInt__SWIG_1")]
+  public static extern int OT_ME_ExecuteScript_ReturnInt__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnVoid__SWIG_0")]
+  public static extern void OT_ME_ExecuteScript_ReturnVoid__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_ExecuteScript_ReturnVoid__SWIG_1")]
+  public static extern void OT_ME_ExecuteScript_ReturnVoid__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_AddVariable")]
+  public static extern void OT_ME_AddVariable(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_FindVariable")]
+  public static extern global::System.IntPtr OT_ME_FindVariable(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_ME_FindVariable2")]
+  public static extern global::System.IntPtr OT_ME_FindVariable2(string jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_Storable")]
   public static extern void delete_Storable(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -1610,6 +1858,18 @@ class otapiPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_Exists__SWIG_3")]
   public static extern bool Storage_Exists__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_0")]
+  public static extern long Storage_FormPathString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_1")]
+  public static extern long Storage_FormPathString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_2")]
+  public static extern long Storage_FormPathString__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_3")]
+  public static extern long Storage_FormPathString__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_Storage")]
   public static extern void delete_Storage(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -1745,6 +2005,18 @@ class otapiPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Exists__SWIG_3")]
   public static extern bool Exists__SWIG_3(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_0")]
+  public static extern long FormPathString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_1")]
+  public static extern long FormPathString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_2")]
+  public static extern long FormPathString__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_3")]
+  public static extern long FormPathString__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_StoreString__SWIG_0")]
   public static extern bool StoreString__SWIG_0(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
