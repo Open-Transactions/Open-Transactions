@@ -220,19 +220,19 @@ private:  // Private prevents erroneous use by other classes.
 public:
 	// From parent:  (This must be called first, before the other two methods below can be called.)
 	//
-	//	bool		SetAgreement(const long & lTransactionNum,	const OTString & strConsideration,
+	//	bool		SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
 	//							 const time_t & VALID_FROM=0,	const time_t & VALID_TO=0);
 
 	// Then call one (or both) of these:
 
-EXPORT	bool		SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+EXPORT	bool		SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
 
 	// These two can be called independent of each other. You can
 	// have an initial payment, AND/OR a payment plan.
 
-EXPORT	bool		SetPaymentPlan(const long & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
+EXPORT	bool		SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
 							   time_t tBetweenPayments=LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
-							   time_t tPlanLength=0, int nMaxPayments=0);
+							   time_t tPlanLength=0, int32_t nMaxPayments=0);
 
 	// VerifyAgreement()
     // This function verifies both Nyms and both signatures.
@@ -255,12 +255,12 @@ EXPORT	bool		SetPaymentPlan(const long & lPaymentAmount, time_t tTimeUntilPlanSt
 public:
 	inline bool				HasInitialPayment()		const	{ return m_bInitialPayment; }
 	inline const time_t &	GetInitialPaymentDate()	const	{ return m_tInitialPaymentDate; }
-	inline const long &		GetInitialPaymentAmount()const	{ return m_lInitialPaymentAmount; }
+	inline const int64_t &		GetInitialPaymentAmount()const	{ return m_lInitialPaymentAmount; }
 	inline bool				IsInitialPaymentDone()	const	{ return m_bInitialPaymentDone; }
 
 	inline const time_t &	GetInitialPaymentCompletedDate() const	{ return m_tInitialPaymentCompletedDate; }
 	inline const time_t &	GetLastFailedInitialPaymentDate() const	{ return m_tFailedInitialPaymentDate; }
-	inline int				GetNoInitialFailures()	 const	{ return m_nNumberInitialFailures; }
+	inline int32_t				GetNoInitialFailures()	 const	{ return m_nNumberInitialFailures; }
 
 
 	// "INITIAL PAYMENT" private MEMBERS
@@ -269,15 +269,15 @@ private:
 	time_t	m_tInitialPaymentDate;			// Date of the initial payment, measured seconds after creation.
 	time_t	m_tInitialPaymentCompletedDate;	// Date the initial payment was finally transacted.
 	time_t	m_tFailedInitialPaymentDate;	// Date of the last failed payment, measured seconds after creation.
-	long	m_lInitialPaymentAmount;		// Amount of the initial payment.
+	int64_t	m_lInitialPaymentAmount;		// Amount of the initial payment.
 	bool	m_bInitialPaymentDone;			// Has the initial payment been made?
-	int		m_nNumberInitialFailures;		// If we've tried to process this multiple times, we'll know.
+	int32_t		m_nNumberInitialFailures;		// If we've tried to process this multiple times, we'll know.
 
 	// --------------------------------------------------------------------------
 	// "INITIAL PAYMENT" protected SET METHODS
 protected:
 	inline void SetInitialPaymentDate(const time_t & tInitialPaymentDate) { m_tInitialPaymentDate = tInitialPaymentDate; }
-	inline void SetInitialPaymentAmount(const long & lAmount)	{ m_lInitialPaymentAmount = lAmount; }
+	inline void SetInitialPaymentAmount(const int64_t & lAmount)	{ m_lInitialPaymentAmount = lAmount; }
 
 	// Sets the bool that officially the initial payment has been done. (Checks first to make sure not already done.)
 	bool SetInitialPaymentDone();
@@ -287,7 +287,7 @@ protected:
 	inline void SetLastFailedInitialPaymentDate(const time_t & tFailedInitialPaymentDate)
 	{ m_tFailedInitialPaymentDate = tFailedInitialPaymentDate; }
 
-	inline void	SetNoInitialFailures(const int & nNoFailures)	{ m_nNumberInitialFailures = nNoFailures; }
+	inline void	SetNoInitialFailures(const int32_t & nNoFailures)	{ m_nNumberInitialFailures = nNoFailures; }
 	inline void	IncrementNoInitialFailures()					{ m_nNumberInitialFailures++; }
 
 
@@ -298,47 +298,47 @@ protected:
 	// ********************* "PAYMENT PLAN" public GET METHODS *********************
 public:
 	inline bool				HasPaymentPlan()		 const	{ return m_bPaymentPlan; }
-	inline const long &		GetPaymentPlanAmount()	 const	{ return m_lPaymentPlanAmount; }
+	inline const int64_t &		GetPaymentPlanAmount()	 const	{ return m_lPaymentPlanAmount; }
 	inline const time_t &	GetTimeBetweenPayments() const	{ return m_tTimeBetweenPayments; }
 	inline const time_t &	GetPaymentPlanStartDate()const	{ return m_tPaymentPlanStartDate; }
 	inline const time_t &	GetPaymentPlanLength()	 const	{ return m_tPaymentPlanLength; }
-	inline int				GetMaximumNoPayments()	 const	{ return m_nMaximumNoPayments; }
+	inline int32_t				GetMaximumNoPayments()	 const	{ return m_nMaximumNoPayments; }
 
 	inline const time_t &	GetDateOfLastPayment()	 const	{ return m_tDateOfLastPayment; }
 	inline const time_t &	GetDateOfLastFailedPayment() const { return m_tDateOfLastFailedPayment; }
 
-	inline int				GetNoPaymentsDone()		 const	{ return m_nNoPaymentsDone; }
-	inline int				GetNoFailedPayments()	 const	{ return m_nNoFailedPayments; }
+	inline int32_t				GetNoPaymentsDone()		 const	{ return m_nNoPaymentsDone; }
+	inline int32_t				GetNoFailedPayments()	 const	{ return m_nNoFailedPayments; }
 
 	// --------------------------------------------------------------------------
 	// "PAYMENT PLAN" private MEMBERS
 private:
 	bool	m_bPaymentPlan;			// Will there be a payment plan?
-	long	m_lPaymentPlanAmount;	// Amount of each payment.
-	time_t	m_tTimeBetweenPayments;	// How long between each payment?
+	int64_t	m_lPaymentPlanAmount;	// Amount of each payment.
+	time_t	m_tTimeBetweenPayments;	// How int64_t between each payment?
 	time_t	m_tPaymentPlanStartDate;// Date for the first payment plan payment.
 	time_t	m_tPaymentPlanLength;	// Optional. Plan length measured in seconds since plan start.
-	int		m_nMaximumNoPayments;	// Optional. The most number of payments that are authorized.
+	int32_t		m_nMaximumNoPayments;	// Optional. The most number of payments that are authorized.
 
 	time_t	m_tDateOfLastPayment;	// Recording of date of the last payment.
 	time_t	m_tDateOfLastFailedPayment;	// Recording of date of the last failed payment.
-	int		m_nNoPaymentsDone;		// Recording of the number of payments already processed.
-	int		m_nNoFailedPayments;	// Every time a payment fails, we record that here.
+	int32_t		m_nNoPaymentsDone;		// Recording of the number of payments already processed.
+	int32_t		m_nNoFailedPayments;	// Every time a payment fails, we record that here.
 
 	// --------------------------------------------------------------------------
 	// "PAYMENT PLAN" protected SET METHODS
 protected:
-	inline void SetPaymentPlanAmount(const		 long &	lAmount)		{ m_lPaymentPlanAmount		= lAmount; }
+	inline void SetPaymentPlanAmount(const		 int64_t &	lAmount)		{ m_lPaymentPlanAmount		= lAmount; }
 	inline void SetTimeBetweenPayments(const	 time_t&tTimeBetween)	{ m_tTimeBetweenPayments	= tTimeBetween; }
 	inline void SetPaymentPlanStartDate(const	 time_t&tPlanStartDate)	{ m_tPaymentPlanStartDate	= tPlanStartDate; }
 	inline void SetPaymentPlanLength(const		 time_t&tPlanLength)	{ m_tPaymentPlanLength		= tPlanLength; }
-	inline void SetMaximumNoPayments(			 int	nMaxNoPayments)	{ m_nMaximumNoPayments		= nMaxNoPayments; }
+	inline void SetMaximumNoPayments(			 int32_t	nMaxNoPayments)	{ m_nMaximumNoPayments		= nMaxNoPayments; }
 
 	inline void SetDateOfLastPayment(const		 time_t&tDateOfLast)	{ m_tDateOfLastPayment		= tDateOfLast; }
 	inline void SetDateOfLastFailedPayment(const time_t&tDateOfLast)	{ m_tDateOfLastFailedPayment= tDateOfLast; }
 
-	inline void SetNoPaymentsDone(				 int	nNoPaymentsDone){ m_nNoPaymentsDone			= nNoPaymentsDone; }
-	inline void SetNoFailedPayments(			 int	nNoFailed)		{ m_nNoFailedPayments		= nNoFailed; }
+	inline void SetNoPaymentsDone(				 int32_t	nNoPaymentsDone){ m_nNoPaymentsDone			= nNoPaymentsDone; }
+	inline void SetNoFailedPayments(			 int32_t	nNoFailed)		{ m_nNoFailedPayments		= nNoFailed; }
 
 	inline void IncrementNoPaymentsDone()								{ m_nNoPaymentsDone++; }
 	inline void IncrementNoFailedPayments()								{ m_nNoFailedPayments++; }
@@ -380,8 +380,8 @@ public:
 
 	// From OTTrackable (parent class of OTCronItem, parent class of OTAgreement, parent of this)
 	/*
-	 inline long GetTransactionNum() const { return m_lTransactionNum; }
-	 inline void SetTransactionNum(long lTransactionNum) { m_lTransactionNum = lTransactionNum; }
+	 inline int64_t GetTransactionNum() const { return m_lTransactionNum; }
+	 inline void SetTransactionNum(int64_t lTransactionNum) { m_lTransactionNum = lTransactionNum; }
 
 	 inline const   OTIdentifier &	GetSenderAcctID()               { return m_SENDER_ACCT_ID; }
 	 inline const   OTIdentifier &	GetSenderUserID()               { return m_SENDER_USER_ID; }
@@ -415,7 +415,7 @@ protected:
 //  virtual void onFinalReceipt();        // Now handled in the parent class.
 //  virtual void onRemovalFromCron();     // Now handled in the parent class.
 
-	bool ProcessPayment(const long & lAmount);
+	bool ProcessPayment(const int64_t & lAmount);
 	void ProcessInitialPayment();
 	void ProcessPaymentPlan();
 	// --------------------------------------------
@@ -433,7 +433,7 @@ EXPORT	virtual ~OTPaymentPlan();
 	void Release_PaymentPlan();
 	// --------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };

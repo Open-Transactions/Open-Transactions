@@ -557,7 +557,7 @@ namespace OTDB
 		return pStorage->Exists(strFolder, oneStr, twoStr, threeStr);
 	}
 
-    long FormPathString(std::string & strOutput,
+    int64_t FormPathString(std::string & strOutput,
                         std::string   strFolder,     std::string oneStr/*=""*/,
                         std::string   twoStr/*=""*/, std::string threeStr/*=""*/)
     {
@@ -1183,9 +1183,9 @@ namespace OTDB
 
 	// ----------------------------------------------------------
 
-	const unsigned char * BufferMsgpack::GetData()
+	const uint8_t * BufferMsgpack::GetData()
 	{
-		return reinterpret_cast<const unsigned char *>(m_buffer.data());
+		return reinterpret_cast<const uint8_t *>(m_buffer.data());
 	}
 
 	size_t BufferMsgpack::GetSize()
@@ -1193,9 +1193,9 @@ namespace OTDB
 		return m_buffer.size();
 	}
 
-	void BufferMsgpack::SetData(const unsigned char * pData, size_t theSize)
+	void BufferMsgpack::SetData(const uint8_t * pData, size_t theSize)
 	{
-		unsigned int nSize = theSize;
+		uint32_t nSize = theSize;
 		m_buffer.write(reinterpret_cast<const char*>(pData), nSize);
 	}
 
@@ -1231,7 +1231,7 @@ namespace OTDB
 		return false;
 	}
 
-	bool BufferMsgpack::ReadFromIStream(std::istream &inStream, long lFilesize)
+	bool BufferMsgpack::ReadFromIStream(std::istream &inStream, int64_t lFilesize)
 	{
 		char * buf = new char[lFilesize];
 		OT_ASSERT(NULL != buf);
@@ -1445,7 +1445,7 @@ namespace OTDB
 	 // optional string bitcoin_id = 1;
 	 inline bool has_bitcoin_id() const;
 	 inline void clear_bitcoin_id();
-	 static const int kBitcoinIdFieldNumber = 1;
+	 static const int32_t kBitcoinIdFieldNumber = 1;
 	 inline const ::std::string& bitcoin_id() const;
 	 inline void set_bitcoin_id(const ::std::string& value);
 	 inline void set_bitcoin_id(const char* value);
@@ -1456,7 +1456,7 @@ namespace OTDB
 	 // optional string bitcoin_name = 2;
 	 inline bool has_bitcoin_name() const;
 	 inline void clear_bitcoin_name();
-	 static const int kBitcoinNameFieldNumber = 2;
+	 static const int32_t kBitcoinNameFieldNumber = 2;
 	 inline const ::std::string& bitcoin_name() const;
 	 inline void set_bitcoin_name(const ::std::string& value);
 	 inline void set_bitcoin_name(const char* value);
@@ -1467,7 +1467,7 @@ namespace OTDB
 	 // optional string gui_label = 3;
 	 inline bool has_gui_label() const;
 	 inline void clear_gui_label();
-	 static const int kGuiLabelFieldNumber = 3;
+	 static const int32_t kGuiLabelFieldNumber = 3;
 	 inline const ::std::string& gui_label() const;
 	 inline void set_gui_label(const ::std::string& value);
 	 inline void set_gui_label(const char* value);
@@ -1713,17 +1713,18 @@ namespace OTDB
 	}
 
 
-	bool BufferPB::ReadFromIStream(std::istream& inStream, long lFilesize)
+    bool BufferPB::ReadFromIStream(std::istream& inStream, int64_t lFilesize)
 	{
-		//bool	ParseFromIstream(istream * input)
-		char * buf = new char[lFilesize];
+        unsigned long size = static_cast<unsigned long>(lFilesize);
+
+        char * buf = new char[size];
 		OT_ASSERT(NULL != buf);
 
-		inStream.read(buf, lFilesize);
+        inStream.read(buf, size);
 
 		if (inStream.good())
 		{
-			m_buffer.assign(buf, lFilesize);
+            m_buffer.assign(buf, size);
 			delete [] buf;
 			return true;
 		}
@@ -1753,9 +1754,9 @@ namespace OTDB
 		//m_buffer.SerializeToOstream(&outStream);
 	}
 
-	const unsigned char * BufferPB::GetData()
+	const uint8_t * BufferPB::GetData()
 	{
-		return reinterpret_cast<const unsigned char *>(m_buffer.c_str());
+		return reinterpret_cast<const uint8_t *>(m_buffer.c_str());
 	}
 
 	size_t BufferPB::GetSize()
@@ -1763,7 +1764,7 @@ namespace OTDB
 		return m_buffer.size();
 	}
 
-	void BufferPB::SetData(const unsigned char * pData, size_t theSize)
+	void BufferPB::SetData(const uint8_t * pData, size_t theSize)
 	{
 		m_buffer.assign(reinterpret_cast<const char*>(pData), theSize);
 	}
@@ -1807,7 +1808,7 @@ namespace OTDB
 #define OT_IMPLEMENT_PB_LIST_UNPACK(pb_name, element_type, ELEMENT_ENUM) \
 	while (Get##element_type##Count() > 0) \
 		Remove##element_type(0); \
-	for (int i = 0; i < __pb_obj.pb_name##_size(); i++) \
+	for (int32_t i = 0; i < __pb_obj.pb_name##_size(); i++) \
 	{ \
 		const element_type##_InternalPB & theInternal = __pb_obj.pb_name(i); \
 		element_type##PB * pNewWrapper = dynamic_cast<element_type##PB *>(Storable::Create(ELEMENT_ENUM, PACK_PROTOCOL_BUFFERS)); \
@@ -1864,7 +1865,7 @@ namespace OTDB
 
 		the_map.clear();
 
-		for (int i = 0; i < __pb_obj.node_size(); i++)
+		for (int32_t i = 0; i < __pb_obj.node_size(); i++)
 		{
 			const KeyValue_InternalPB & theNode = __pb_obj.node(i);
 
@@ -2736,7 +2737,7 @@ namespace OTDB
 		}
 		// ---------------------------
 		//OTPackedBuffer:
-//		virtual const	unsigned char *	GetData()=0;
+//		virtual const	uint8_t *	GetData()=0;
 //		virtual			size_t			GetSize()=0;
 		//
 		const uint32_t nNewSize	= static_cast<const uint32_t>(pBuffer->GetSize());
@@ -2796,7 +2797,7 @@ namespace OTDB
 		// ---------------------------
 		// Put thePayload's contents into pBuffer here.
 		//
-		pBuffer->SetData(static_cast<const unsigned char*>(thePayload.GetPayloadPointer()), thePayload.GetSize());
+		pBuffer->SetData(static_cast<const uint8_t*>(thePayload.GetPayloadPointer()), thePayload.GetSize());
 
 		// Now let's unpack it and return the Storable object.
 
@@ -2881,7 +2882,7 @@ namespace OTDB
 	  1+	-- File found and it's length.
 
 	 */
-	long StorageFS::ConstructAndCreatePath(       std::string & strOutput,
+	int64_t StorageFS::ConstructAndCreatePath(       std::string & strOutput,
 		const std::string strFolder,      const std::string oneStr/*=""*/,
 		const std::string twoStr/*=""*/,  const std::string threeStr/*=""*/)
 	{
@@ -2890,7 +2891,7 @@ namespace OTDB
 
     // ----------------------------------------------------------------------
 
-    long StorageFS::ConstructAndConfirmPath(      std::string & strOutput,
+    int64_t StorageFS::ConstructAndConfirmPath(      std::string & strOutput,
 		const std::string strFolder,      const std::string oneStr/*=""*/,
 		const std::string twoStr/*=""*/,  const std::string threeStr/*=""*/)
 	{
@@ -2898,7 +2899,7 @@ namespace OTDB
 	}
 
 
-    long StorageFS::ConstructAndConfirmPathImp(
+    int64_t StorageFS::ConstructAndConfirmPathImp(
         const bool bMakePath,
         std::string & strOutput,
         const std::string zeroStr,
@@ -3008,7 +3009,7 @@ namespace OTDB
         }
 
         {
-            long lFileLength = 0;
+            int64_t lFileLength = 0;
             const bool bFileExists = OTPaths::FileExists(strPath.c_str(), lFileLength);
 
             if (bFileExists) return lFileLength;
@@ -3062,7 +3063,7 @@ namespace OTDB
 	{
 		std::string strOutput;
 
-		long lRet = ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr);
+		int64_t lRet = ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr);
 
 		if (0 > lRet)
 		{
@@ -3148,7 +3149,7 @@ namespace OTDB
 	{
 		std::string strOutput;
 
-		long lRet = ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr);
+		int64_t lRet = ConstructAndConfirmPath(strOutput, strFolder, oneStr, twoStr, threeStr);
 
         if (0 > lRet)
 		{
@@ -3293,7 +3294,7 @@ namespace OTDB
     // -----------------------------------------
     // Returns path size, plus path in strOutput.
     //
-    long StorageFS::FormPathString(std::string & strOutput,
+    int64_t StorageFS::FormPathString(std::string & strOutput,
                                    std::string   strFolder,       std::string oneStr/*=""*/,
                                    std::string   twoStr/*=""*/,   std::string threeStr/*=""*/)
     {

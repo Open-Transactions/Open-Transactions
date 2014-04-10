@@ -177,7 +177,7 @@ extern "C"
 
 	// For signal handling in Windows.
 	//
-	long  Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo);
+	LONG  Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo);
 	void  LogStackFrames(void *FaultAdress, char *);
 
 #else // else if NOT _WIN32
@@ -201,7 +201,7 @@ extern "C"
 	// Fucking Apple!
 	struct sigcontext
 	{
-		int eip;
+		int32_t eip;
 	};
 #endif // defined __APPLE__
 
@@ -215,11 +215,11 @@ extern "C"
 #include <asm/signal.h>           /* for stack_t */
 
     typedef struct ucontext {
-        unsigned long uc_flags;
+        uint64_t uc_flags;
         struct ucontext *uc_link;
         stack_t uc_stack;
         struct sigcontext uc_mcontext;
-        unsigned long uc_sigmask;
+        uint64_t uc_sigmask;
     } ucontext_t;
 
 #endif // ucontext_h_seen
@@ -294,7 +294,7 @@ const OTString OTLog::m_strPathSeparator = "/";
 
 
 //static
-bool OTLog::Init(const OTString & strThreadContext, const int & nLogLevel)
+bool OTLog::Init(const OTString & strThreadContext, const int32_t & nLogLevel)
 {
 	if (NULL == pLogger)
 	{
@@ -407,10 +407,10 @@ const char *		OTLog::LogFilePath()   { return OTLog::GetLogFilePath().Get(); }
 const OTString &	OTLog::GetLogFilePath() { return pLogger->m_strLogFilePath; }
 
 //static
-int                 OTLog::LogLevel()  { if (NULL != pLogger) return pLogger->m_nLogLevel; else return 0; }
+int32_t                 OTLog::LogLevel()  { if (NULL != pLogger) return pLogger->m_nLogLevel; else return 0; }
 
 //static
-bool			    OTLog::SetLogLevel(const int & nLogLevel)
+bool			    OTLog::SetLogLevel(const int32_t & nLogLevel)
 {
     if (NULL == pLogger) { OT_FAIL; }
     else { pLogger->m_nLogLevel = nLogLevel; return true; }
@@ -474,12 +474,12 @@ bool OTLog::LogToFile(const OTString & strOutput)
 
 // *********************************************************************************
 
-const OTString OTLog::GetMemlogAtIndex(const int nIndex)
+const OTString OTLog::GetMemlogAtIndex(const int32_t nIndex)
 {
 	// lets check if we are Initialized in this context
 	CheckLogger(OTLog::pLogger);
 
-	unsigned int uIndex = static_cast<unsigned int> (nIndex);
+	uint32_t uIndex = static_cast<uint32_t> (nIndex);
 
 	if ((nIndex < 0) || (uIndex >= OTLog::pLogger->logDeque.size()))
 	{
@@ -500,12 +500,12 @@ const OTString OTLog::GetMemlogAtIndex(const int nIndex)
 // --------------------------------------------------
 // We keep 1024 logs in memory, to make them available via the API.
 
-int OTLog::GetMemlogSize()
+int32_t OTLog::GetMemlogSize()
 {
 	// lets check if we are Initialized in this context
 	CheckLogger(OTLog::pLogger);
 
-	return static_cast<int> (OTLog::pLogger->logDeque.size());
+	return static_cast<int32_t> (OTLog::pLogger->logDeque.size());
 }
 
 
@@ -614,10 +614,10 @@ bool OTLog::PushMemlogBack(const OTString & strLog)
 // -------------------------------------------------------
 
 //static
-bool OTLog::SleepSeconds(long lSeconds)
+bool OTLog::SleepSeconds(int64_t lSeconds)
 {
 #ifdef _WIN32
-	Sleep(1000 * lSeconds);
+    Sleep(static_cast<DWORD>(1000 * lSeconds));
 #else
 	sleep(lSeconds);
 #endif
@@ -625,10 +625,10 @@ bool OTLog::SleepSeconds(long lSeconds)
 }
 
 //static
-bool OTLog::SleepMilliseconds(long lMilliseconds)
+bool OTLog::SleepMilliseconds(int64_t lMilliseconds)
 {
 #ifdef _WIN32
-	Sleep( lMilliseconds );
+	Sleep(static_cast<DWORD>(lMilliseconds));
 #else
 	usleep( lMilliseconds * 1000 );
 #endif
@@ -686,7 +686,7 @@ size_t OTLog::logAssert(const char * szFilename, size_t nLinenumber, const char 
 // For normal output. The higher the verbosity, the less important the message.
 // (Verbose level 0 ALWAYS logs.) Currently goes to stdout.
 
-void OTLog::Output(int nVerbosity, const char *szOutput)
+void OTLog::Output(int32_t nVerbosity, const char *szOutput)
 {
 	bool bHaveLogger(false);
 	if (NULL != pLogger)
@@ -748,7 +748,7 @@ void OTLog::Output(int nVerbosity, const char *szOutput)
 
 // -----------------------------------------------------------------
 
-void OTLog::Output(int nVerbosity, OTString & strOutput)
+void OTLog::Output(int32_t nVerbosity, OTString & strOutput)
 {
 	bool bHaveLogger(false);
 	if (NULL != pLogger)
@@ -764,7 +764,7 @@ void OTLog::Output(int nVerbosity, OTString & strOutput)
 // -----------------------------------------------------------------
 
 // the vOutput is to avoid name conflicts.
-void OTLog::vOutput(int nVerbosity, const char *szOutput, ...)
+void OTLog::vOutput(int32_t nVerbosity, const char *szOutput, ...)
 {
 	bool bHaveLogger(false);
 	if (NULL != pLogger)
@@ -887,10 +887,10 @@ void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
 	// lets check if we are Initialized in this context
 	if (bHaveLogger) CheckLogger(OTLog::pLogger);
 
-	const int errnum = errno;
+	const int32_t errnum = errno;
 	char buf[128]; buf[0] = '\0';
 
-	int nstrerr = 0;
+	int32_t nstrerr = 0;
 	char * szErrString = NULL;
 
 	//#if((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !defined(_GNU_SOURCE))
@@ -918,31 +918,31 @@ void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
 }
 // -----------------------------------------------------------------
 
-void OTLog::sOutput(int nVerbosity,const OTString & strOne)
+void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get());
 	}
-void OTLog::sOutput(int nVerbosity,const OTString & strOne, const OTString & strTwo)
+void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get());
 	}
-void OTLog::sOutput(int nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree)
+void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get());
 	}
-void OTLog::sOutput(int nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour)
+void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get());
 	}
-void OTLog::sOutput(int nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive)
+void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get());
 	}
-void	OTLog::sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix)
+void	OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSix.Get());
 	}
-void	OTLog::sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven)
+void	OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSix.Get(),strSeven.Get());
 	}
@@ -985,14 +985,14 @@ void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTStr
 //
 //
 
-bool OTLog::StringFill(OTString & out_strString, const char * szString, const int iLength, const char * szAppend)
+bool OTLog::StringFill(OTString & out_strString, const char * szString, const int32_t iLength, const char * szAppend)
 {
 	std::string strString(szString);
 
 	if (NULL != szAppend)
         strString.append(szAppend);
 
-	for(;(static_cast<int>(strString.length()) < iLength); strString.append(" "))
+	for(;(static_cast<int32_t>(strString.length()) < iLength); strString.append(" "))
         ;
 
 	out_strString.Set(strString.c_str());
@@ -1066,12 +1066,12 @@ void ot_terminate()
 #if !defined(_WIN32) && !defined(ANDROID) // we don't have to deal with mangled_names on windows. (well I'm not going to attempt to.)
 
 	void * array[50];
-	int size = backtrace(array, 50);
+	int32_t size = backtrace(array, 50);
 
 	char ** messages = backtrace_symbols(array, size);
 
 	// skip first stack frame (points here)
-	for (int i = 1; i < size && messages != NULL; ++i)
+	for (int32_t i = 1; i < size && messages != NULL; ++i)
 	{
 		char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
@@ -1101,7 +1101,7 @@ void ot_terminate()
 			*offset_begin++ = '\0';
 			*offset_end++ = '\0';
 
-			int status;
+			int32_t status;
 			char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
 			// if demangling is successful, output the demangled function name
@@ -1148,7 +1148,7 @@ void ot_terminate()
 //static
 void OTLog::SetupSignalHandler()
 {
-	static int nCount = 0;
+	static int32_t nCount = 0;
 
 	if (0 == nCount)
 	{
@@ -1186,7 +1186,7 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 	case EXCEPTION_GUARD_PAGE                : FaultTx = "GUARD PAGE"               ; break;
 	default: FaultTx = "(unknown)";           break;
 	}
-	int    wsFault    = ExInfo->ExceptionRecord->ExceptionCode;
+	int32_t    wsFault    = ExInfo->ExceptionRecord->ExceptionCode;
 	void * CodeAdress = ExInfo->ExceptionRecord->ExceptionAddress;
 
 	// (using stderr.)
@@ -1198,7 +1198,7 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 		fprintf(stderr, "*** A Programm Fault occured:\n");
 		fprintf(stderr, "*** Error code %08X: %s\n", wsFault, FaultTx);
 		fprintf(stderr, "****************************************************\n");
-		fprintf(stderr, "***   Address: %08X\n", (int)CodeAdress);
+		fprintf(stderr, "***   Address: %08X\n", (int32_t)CodeAdress);
 		fprintf(stderr, "***     Flags: %08X\n", ExInfo->ExceptionRecord->ExceptionFlags);
 
 #if defined (_CONSOLE)
@@ -1266,18 +1266,18 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 	// Quote from Microsoft Documentation:
 	// ## Windows Server 2003 and Windows XP:
 	// ## The sum of the FramesToSkip and FramesToCapture parameters must be less than 63.
-	const int kMaxCallers = 62;
+	const int32_t kMaxCallers = 62;
 
 	void* callers[kMaxCallers];
-	int count = (func)(0, kMaxCallers, callers, NULL);
-	for(int i = 0; i < count; i++)
+	int32_t count = (func)(0, kMaxCallers, callers, NULL);
+	for(int32_t i = 0; i < count; i++)
 		fprintf(stderr, "*** %d called from %p\n", i, callers[i]);
 
 #elif defined (_WIN32) // not _WIN64 ? Must be _WIN32
 
 	char *p = NULL, *pBP = NULL;
-	unsigned i = 0, x = 0, BpPassed = 0;
-	static int  CurrentlyInTheStackDump = 0;
+	uint32_t i = 0, x = 0, BpPassed = 0;
+	static int32_t  CurrentlyInTheStackDump = 0;
 
 	if(CurrentlyInTheStackDump)
 	{
@@ -1313,7 +1313,7 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 		_asm mov     eNextBP, eBp
 	}
 	else
-		fprintf(stderr, "\n  Fault Occured At $ADDRESS:%08LX\n", (int)FaultAdress);
+		fprintf(stderr, "\n  Fault Occured At $ADDRESS:%08LX\n", (int32_t)FaultAdress);
 
 
 	// prevent infinite loops
@@ -1327,7 +1327,7 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 		// Write 20 Bytes of potential arguments
 		fprintf(stderr, "         with ");
 		for(x = 0; p < eNextBP && x < 20; p++, x++)
-			fprintf(stderr, "%02X ", *(unsigned char *)p);
+			fprintf(stderr, "%02X ", *(uint8_t *)p);
 
 		fprintf(stderr, "\n\n");
 
@@ -1369,7 +1369,7 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 
 struct sig_ucontext_t {
 	//  typedef struct _sig_ucontext {
-	unsigned long     uc_flags;
+	uint64_t     uc_flags;
 	struct ucontext   *uc_link;
 	stack_t           uc_stack;
 	struct sigcontext uc_mcontext;
@@ -1380,18 +1380,18 @@ extern "C" {
 	// This structure mirrors the one found in /usr/include/asm/ucontext.h
 	//
 
-	void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext);
+	void crit_err_hdlr(int32_t sig_num, siginfo_t * info, void * ucontext);
 }
 
 #if defined(OT_NO_DEMANGLING_STACK_TRACE)
 
 // this version doesn't do demangling.
-void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
+void crit_err_hdlr(int32_t sig_num, siginfo_t * info, void * ucontext)
 {
 	void *             array[50];
 	void *             caller_address;
 	char **            messages;
-	int                size, i;
+	int32_t                size, i;
 	sig_ucontext_t *   uc;
 
 	static tthread::mutex the_Mutex;
@@ -1434,7 +1434,7 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
 // This version DOES do demangling.
 //
 /*
-void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
+void crit_err_hdlr(int32_t sig_num, siginfo_t * info, void * ucontext)
 {
     sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
 
@@ -1446,14 +1446,14 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
     << std::endl << std::endl;
 
     void * array[50];
-    int size = backtrace(array, 50);
+    int32_t size = backtrace(array, 50);
 
     array[1] = caller_address;
 
     char ** messages = backtrace_symbols(array, size);
 
     // skip first stack frame (points here)
-    for (int i = 1; i < size && messages != NULL; ++i)
+    for (int32_t i = 1; i < size && messages != NULL; ++i)
     {
         char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
@@ -1483,7 +1483,7 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
             *offset_begin++ = '\0';
             *offset_end++ = '\0';
 
-            int status;
+            int32_t status;
             char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
             // if demangling is successful, output the demangled function name
@@ -1517,7 +1517,7 @@ void crit_err_hdlr(int sig_num, siginfo_t * info, void * ucontext)
 }
 */
 
-void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
+void crit_err_hdlr(int32_t sig_num, siginfo_t *info, void *v)
 {
 #ifndef ANDROID
 	static tthread::mutex the_Mutex;
@@ -1527,7 +1527,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 
 	OT_ASSERT(NULL != v);
 
-	int read = 0;
+	int32_t read = 0;
 
 #ifdef _LP64
 	typedef uint64_t ot_ulong;
@@ -1601,7 +1601,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 		* FreeBSD 7 machines on which to verify this.
 		*/
 		char vec;
-		int r;
+		int32_t r;
 
 		vec = 0;
 		r = mincore((void*)addr, 1, &vec);
@@ -1625,14 +1625,14 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 		<< std::endl << std::endl;
 
 	void * array[50];
-	int size = backtrace(array, 50);
+	int32_t size = backtrace(array, 50);
 
 	array[1] = caller_address;
 
 	char ** messages = backtrace_symbols(array, size);
 
 	// skip first stack frame (points here)
-	for (int i = 1; i < size && messages != NULL; ++i)
+	for (int32_t i = 1; i < size && messages != NULL; ++i)
 	{
 		char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
@@ -1662,7 +1662,7 @@ void crit_err_hdlr(int sig_num, siginfo_t *info, void *v)
 			*offset_begin++ = '\0';
 			*offset_end++ = '\0';
 
-			int status;
+			int32_t status;
 			char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
 			// if demangling is successful, output the demangled function name
@@ -1726,7 +1726,7 @@ struct sigaction new_action, old_action; \
 //static
 void OTLog::SetupSignalHandler()
 {
-	static int nCount = 0;
+	static int32_t nCount = 0;
 
 	if (0 == nCount)
 	{

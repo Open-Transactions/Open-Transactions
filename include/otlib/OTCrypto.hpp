@@ -183,8 +183,8 @@ extern "C"
 #include <openssl/engine.h>
 #endif
 
-	int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days);
-	int add_ext(X509 *cert, int nid, char *value);
+	int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
+	int32_t add_ext(X509 *cert, int32_t nid, char *value);
 }
 
 // -------------------------------------------------------------------------------------------
@@ -215,12 +215,12 @@ private:
 		bool bIsNew(false);
 
 		{
-			long nValue = 0;
+			int64_t nValue = 0;
 			config.CheckSet_long("crypto",strKeyName,nDefaultValue,nValue,bIsNew);
 
 			if (NULL != out_nValue) { delete out_nValue; out_nValue = NULL; }
 
-			out_nValue = new int32_t(bIsNew ? nDefaultValue : nValue);
+			out_nValue = new int32_t(bIsNew ? nDefaultValue : static_cast<int32_t>(nValue));
 		}
 
 		return true;
@@ -311,7 +311,7 @@ typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 class OTCrypto
 {
 private:
-    static  int  s_nCount;   // Instance count, should never exceed 1.
+    static  int32_t  s_nCount;   // Instance count, should never exceed 1.
 protected:
     OTCrypto();
 
@@ -353,7 +353,7 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 
     // Lower-level version:
     // Caller is responsible to delete. Todo: return a unqiue pointer.
-    virtual char    * Base64Encode(const uint8_t * input, int       in_len, bool bLineBreaks) const=0; // NOTE: the 'int' here is very worrying to me. The reason it's here is because that's what OpenSSL uses. So we may need to find another way of doing it, so we can use a safer parameter here than what it currently is. Todo security.
+    virtual char    * Base64Encode(const uint8_t * input, int32_t       in_len, bool bLineBreaks) const=0; // NOTE: the 'int32_t' here is very worrying to me. The reason it's here is because that's what OpenSSL uses. So we may need to find another way of doing it, so we can use a safer parameter here than what it currently is. Todo security.
     virtual uint8_t * Base64Decode(const char    * input, size_t * out_len, bool bLineBreaks) const=0;
     // ----------------------------------
     // KEY DERIVATION
@@ -546,7 +546,7 @@ public:
     // BASE 64 ENCODING
     // Lower-level version:
     // Caller is responsible to delete. Todo: return a unqiue pointer.
-    virtual char    * Base64Encode(const uint8_t * input, int       in_len, bool bLineBreaks) const; // todo security ('int')
+    virtual char    * Base64Encode(const uint8_t * input, int32_t       in_len, bool bLineBreaks) const; // todo security ('int32_t')
     virtual uint8_t * Base64Decode(const char    * input, size_t * out_len, bool bLineBreaks) const;
     // ----------------------------------
     // KEY DERIVATION
@@ -704,14 +704,14 @@ public:
 
 
 /*
- int PKCS5_PBKDF2_HMAC_SHA1	(
+ int32_t PKCS5_PBKDF2_HMAC_SHA1	(
     const void * 	password,
     size_t          password_len,
 
     const void * 	salt,
     size_t          salt_len,
 
-    unsigned long 	iter,
+    uint64_t 	iter,
 
     size_t          keylen,
     void *          key

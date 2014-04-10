@@ -391,7 +391,7 @@ bool OTAgent::IsAGroup() const
 // access and rights to the same key, then why not just both keep a copy of it? In which case now
 // it really IS only one Nym in reality, as well as in the software.
 // But if one prefers to have his private key, and another his, then they will begin as separate and
-// independent individuals. One Nym will not be found within the other as a long-lost, under-developed
+// independent individuals. One Nym will not be found within the other as a int64_t-lost, under-developed
 // twin!
 // Just as reality enforces separate individuals, so does the software end up in the situation where
 // two separate Nyms now wish to act with one as agent for the other. This wish is perfectly valid and
@@ -450,7 +450,7 @@ bool OTAgent::GetRoleID(OTIdentifier& theOutput) const
 // That is why certain agents are unacceptable in certain scripts. They are PASSIVE.
 //
 // There is an "active" agent who has a signerID, but there is also a "passive" agent who only has
-// a group name, and acts based on notifications and replies in the long-term, versus being immediately
+// a group name, and acts based on notifications and replies in the int64_t-term, versus being immediately
 // able to act as part of the operation of a script.
 //
 // Basically if !IsIndividual(), then GetSignerID() will fail and thus anything needing that,
@@ -582,7 +582,7 @@ bool OTAgent::IsAuthorizingAgentForParty()
 
 // Checks opening number on party, and closing numbers on his accounts.
 //
-bool OTParty::HasTransactionNum(const long & lInput) const
+bool OTParty::HasTransactionNum(const int64_t & lInput) const
 {
     if (lInput == m_lOpeningTransNo)
         return true;
@@ -610,7 +610,7 @@ void OTParty::GetAllTransactionNumbers(OTNumList & numlistOutput) const
 		const OTPartyAccount * pAcct = (*it).second;
 		OT_ASSERT_MSG(NULL  != pAcct, "Unexpected NULL partyaccount pointer in party map.");
 		// ---------------------------------
-        const long lTemp = pAcct->GetClosingTransNo();
+        const int64_t lTemp = pAcct->GetClosingTransNo();
         if (lTemp > 0)
             numlistOutput.Add(lTemp);
 	}
@@ -620,9 +620,9 @@ void OTParty::GetAllTransactionNumbers(OTNumList & numlistOutput) const
 
 // Only counts accounts authorized for str_agent_name.
 //
-int OTParty::GetAccountCount(const std::string str_agent_name) const
+int32_t OTParty::GetAccountCount(const std::string str_agent_name) const
 {
-	int nCount = 0;
+	int32_t nCount = 0;
 
 	FOR_EACH_CONST(mapOfPartyAccounts, m_mapPartyAccounts)
 	{
@@ -642,7 +642,7 @@ int OTParty::GetAccountCount(const std::string str_agent_name) const
 // Returns the number of accounts, owned by this agent's party, that this agent
 // is the authorized agent FOR.
 //
-int OTAgent::GetCountAuthorizedAccts()
+int32_t OTAgent::GetCountAuthorizedAccts()
 {
 	if (NULL == m_pForParty)
 	{
@@ -717,7 +717,7 @@ OTPartyAccount::OTPartyAccount()
 // For an account to be party to an agreement, there must be a closing transaction #
 // provided, for the finalReceipt for that account.
 //
-OTPartyAccount::OTPartyAccount(const std::string str_account_name, const OTString & strAgentName, OTAccount & theAccount, long lClosingTransNo)
+OTPartyAccount::OTPartyAccount(const std::string str_account_name, const OTString & strAgentName, OTAccount & theAccount, int64_t lClosingTransNo)
 : m_pForParty(NULL), // This gets set when this partyaccount is added to its party.
   m_pAccount(&theAccount),
   m_lClosingTransNo(lClosingTransNo),
@@ -731,7 +731,7 @@ OTPartyAccount::OTPartyAccount(const std::string str_account_name, const OTStrin
 
 
 OTPartyAccount::OTPartyAccount(const OTString & strName, const OTString & strAgentName, const OTString & strAcctID,
-							   const OTString & strAssetTypeID, long lClosingTransNo)
+							   const OTString & strAssetTypeID, int64_t lClosingTransNo)
 : m_pForParty(NULL), // This gets set when this partyaccount is added to its party.
   m_pAccount(NULL),
   m_lClosingTransNo(lClosingTransNo),
@@ -923,7 +923,7 @@ OTParty::OTParty(const std::string		str_PartyName,
 				 const std::string		str_agent_name,
 				 OTAccount *			pAccount/*=NULL*/,
 				 const std::string *	pstr_account_name/*=NULL*/,
-				 const long				lClosingTransNo/*=0*/
+				 const int64_t				lClosingTransNo/*=0*/
 				 )
 : m_pstr_party_name(new std::string(str_PartyName)), m_bPartyIsNym(true),
   m_lOpeningTransNo(0), m_pOwnerAgreement(NULL)
@@ -940,7 +940,7 @@ OTParty::OTParty(const std::string		str_PartyName,
     m_str_owner_id = strNymID.Get();
 
 //	std::string			m_str_authorizing_agent;	// Empty until contract is confirmed. Contains the name of the authorizing agent (the one who supplied the opening Trans#)
-//	long				m_lOpeningTransNo;			// Empty until contract is confirmed. Each party (to a smart contract anyway) must provide an opening transaction #.
+//	int64_t				m_lOpeningTransNo;			// Empty until contract is confirmed. Each party (to a smart contract anyway) must provide an opening transaction #.
 //	OTString			m_strMySignedCopy;			// Empty until contract is confirmed.
 //	mapOfAgents			m_mapAgents;				// (Often) empty until contract is confirmed. These are owned.
 //	mapOfPartyAccounts	m_mapPartyAccounts;			// These are owned. Each contains a Closing Transaction#.
@@ -1019,7 +1019,7 @@ bool OTParty::AddAccount(const OTString& strAgentName,
 						 const OTString& strName,
 						 const OTString & strAcctID,
 						 const OTString & strAssetTypeID,
-						 const long lClosingTransNo)
+						 const int64_t lClosingTransNo)
 {
 	OTPartyAccount * pPartyAccount = new OTPartyAccount(strName, strAgentName, strAcctID, strAssetTypeID, lClosingTransNo);
 	OT_ASSERT(NULL != pPartyAccount);
@@ -1037,7 +1037,7 @@ bool OTParty::AddAccount(const OTString& strAgentName,
 bool OTParty::AddAccount(const OTString& strAgentName,
 						 const char * szAcctName,
 						 OTAccount& theAccount,
-						 const long lClosingTransNo)
+						 const int64_t lClosingTransNo)
 {
 	OTPartyAccount * pPartyAccount = new OTPartyAccount(szAcctName, strAgentName, theAccount, lClosingTransNo);
 	OT_ASSERT(NULL != pPartyAccount);
@@ -1096,7 +1096,7 @@ bool OTParty::AddAccount(OTPartyAccount& thePartyAcct)
 // -------------------
 
 
-long OTParty::GetClosingTransNo(const std::string str_for_acct_name) const
+int64_t OTParty::GetClosingTransNo(const std::string str_for_acct_name) const
 {
 	mapOfPartyAccounts::const_iterator it = m_mapPartyAccounts.find(str_for_acct_name);
 
@@ -1358,7 +1358,7 @@ OTAgent * OTParty::GetAgent(const std::string & str_agent_name)
 
 /// Get Agent pointer by Index. Returns NULL on failure.
 ///
-OTAgent * OTParty::GetAgentByIndex(int nIndex)
+OTAgent * OTParty::GetAgentByIndex(int32_t nIndex)
 {
     if (false == ((nIndex >= 0) && (nIndex < static_cast<int64_t>(m_mapAgents.size()))))
     {
@@ -1366,7 +1366,7 @@ OTAgent * OTParty::GetAgentByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfAgents, m_mapAgents)
         {
@@ -1429,7 +1429,7 @@ OTPartyAccount * OTParty::GetAccount(const std::string & str_acct_name) const
 
 /// Get OTPartyAccount pointer by Index. Returns NULL on failure.
 ///
-OTPartyAccount * OTParty::GetAccountByIndex(int nIndex)
+OTPartyAccount * OTParty::GetAccountByIndex(int32_t nIndex)
 {
     if (false == ((nIndex >= 0) && (nIndex < static_cast<int64_t>(m_mapPartyAccounts.size()))))
     {
@@ -1437,7 +1437,7 @@ OTPartyAccount * OTParty::GetAccountByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfPartyAccounts, m_mapPartyAccounts)
         {
@@ -1857,7 +1857,7 @@ bool OTParty::VerifyOwnershipOfAccount(const OTAccount & theAccount) const
 bool OTParty::DropFinalReceiptToInboxes(mapOfNyms * pNymMap,
 										const OTString & strServerID,
 										OTPseudonym & theServerNym,
-										const long & lNewTransactionNumber,
+										const int64_t & lNewTransactionNumber,
 										const OTString & strOrigCronItem,
 										OTString * pstrNote/*=NULL*/,
 										OTString * pstrAttachment/*=NULL*/)
@@ -1910,7 +1910,7 @@ bool OTPartyAccount::DropFinalReceiptToInbox(mapOfNyms * pNymMap,
 											 const OTString & strServerID,
 											 OTPseudonym & theServerNym,
 											 OTSmartContract & theSmartContract,
-											 const long & lNewTransactionNumber,
+											 const int64_t & lNewTransactionNumber,
 											 const OTString & strOrigCronItem,
 											 OTString * pstrNote/*=NULL*/,
 											 OTString * pstrAttachment/*=NULL*/)
@@ -1971,8 +1971,8 @@ bool OTAgent::DropFinalReceiptToInbox(mapOfNyms * pNymMap,
 									  OTPseudonym & theServerNym,
 									  OTSmartContract & theSmartContract,
 									  const OTIdentifier & theAccountID,
-									  const long & lNewTransactionNumber,
-									  const long & lClosingNumber,
+									  const int64_t & lNewTransactionNumber,
+									  const int64_t & lClosingNumber,
 									  const OTString & strOrigCronItem,
 									  OTString * pstrNote/*=NULL*/,
 									  OTString * pstrAttachment/*=NULL*/)
@@ -2059,7 +2059,7 @@ bool OTAgent::DropFinalReceiptToInbox(mapOfNyms * pNymMap,
 
 // This is only for SmartContracts, NOT all scriptables.
 //
-bool OTParty::DropFinalReceiptToNymboxes(const long & lNewTransactionNumber,
+bool OTParty::DropFinalReceiptToNymboxes(const int64_t & lNewTransactionNumber,
 										 const OTString & strOrigCronItem,
 										 OTString      * pstrNote/*=NULL*/,
 										 OTString      * pstrAttachment/*=NULL*/,
@@ -2103,7 +2103,7 @@ bool OTParty::DropFinalReceiptToNymboxes(const long & lNewTransactionNumber,
 
 
 bool OTAgent::DropFinalReceiptToNymbox(OTSmartContract & theSmartContract,
-									   const long & lNewTransactionNumber,
+									   const int64_t & lNewTransactionNumber,
 									   const OTString & strOrigCronItem,
 									   OTString      * pstrNote/*=NULL*/,
 									   OTString      * pstrAttachment/*=NULL*/,
@@ -2139,8 +2139,8 @@ bool OTAgent::DropFinalReceiptToNymbox(OTSmartContract & theSmartContract,
 bool OTAgent::DropServerNoticeToNymbox(bool bSuccessMsg, // Added this so we can notify smart contract parties when it FAILS to activate.
                                        OTPseudonym & theServerNym,
 									   const OTIdentifier & theServerID,
-									   const long & lNewTransactionNumber,
-									   const long & lInReferenceTo,
+									   const int64_t & lNewTransactionNumber,
+									   const int64_t & lInReferenceTo,
 									   const OTString & strReference,
 									   OTString      * pstrNote/*=NULL*/,
 									   OTString      * pstrAttachment/*=NULL*/,
@@ -2181,8 +2181,8 @@ bool OTAgent::DropServerNoticeToNymbox(bool bSuccessMsg, // Added this so we can
 bool OTParty::SendNoticeToParty(bool bSuccessMsg,
                                 OTPseudonym & theServerNym,
 								const OTIdentifier & theServerID,
-								const long & lNewTransactionNumber,
-//								const long & lInReferenceTo, // todo Maybe have each party just use their own opening trans# here. Maybe not.
+								const int64_t & lNewTransactionNumber,
+//								const int64_t & lInReferenceTo, // todo Maybe have each party just use their own opening trans# here. Maybe not.
 								const OTString & strReference,
 								OTString      * pstrNote/*=NULL*/,
 								OTString      * pstrAttachment/*=NULL*/,
@@ -2196,7 +2196,7 @@ bool OTParty::SendNoticeToParty(bool bSuccessMsg,
 		return false;
 	}
 	// ----------------------------------------------
-	const long lOpeningTransNo = this->GetOpeningTransNo();
+	const int64_t lOpeningTransNo = this->GetOpeningTransNo();
 
     if (lOpeningTransNo > 0)
         FOR_EACH(mapOfAgents, m_mapAgents)
@@ -2652,7 +2652,7 @@ void OTParty::HarvestClosingNumbers(OTPseudonym & theNym, const OTString & strSe
 }
 
 
-bool OTAgent::VerifyIssuedNumber(const long & lNumber, const OTString & strServerID)
+bool OTAgent::VerifyIssuedNumber(const int64_t & lNumber, const OTString & strServerID)
 {
 	// Todo: this function may change when entities / roles are added.
 	if (!IsAnIndividual() || !DoesRepresentHimself())
@@ -2672,7 +2672,7 @@ bool OTAgent::VerifyIssuedNumber(const long & lNumber, const OTString & strServe
 }
 
 
-bool OTAgent::VerifyTransactionNumber(const long & lNumber, const OTString & strServerID)
+bool OTAgent::VerifyTransactionNumber(const int64_t & lNumber, const OTString & strServerID)
 {
 	// Todo: this function may change when entities / roles are added.
 	if (!IsAnIndividual() || !DoesRepresentHimself())
@@ -2698,7 +2698,7 @@ bool OTAgent::VerifyTransactionNumber(const long & lNumber, const OTString & str
 // Done
 // ASSUMES m_pNym is set already -- doesn't bother loading the nym!
 //
-bool OTAgent::HarvestTransactionNumber(const long & lNumber,
+bool OTAgent::HarvestTransactionNumber(const int64_t & lNumber,
                                        const OTString & strServerID,
                                        bool bSave/*=false*/, // Each agent's nym is used if pSignerNym is NULL, whereas the server
                                        OTPseudonym * pSignerNym/*=NULL*/) // uses this optional arg to substitute serverNym as signer.
@@ -2735,8 +2735,8 @@ bool OTAgent::HarvestTransactionNumber(const long & lNumber,
             // ever be called, since we are harvesting it back for future use. Therefore the number
             // is currently no longer in play, therefore we remove it from the list of open cron numbers.
             //
-            std::set<long>         & theIDSet = m_pNym->GetSetOpenCronItems();
-            std::set<long>::iterator theSetIT = theIDSet.find(lNumber);
+            std::set<int64_t>         & theIDSet = m_pNym->GetSetOpenCronItems();
+            std::set<int64_t>::iterator theSetIT = theIDSet.find(lNumber);
 
             if (theIDSet.end() != theSetIT) // IF it was there, THEN remove it. (Client doesn't even track these, though server does.)
                 theIDSet.erase(lNumber);
@@ -2824,7 +2824,7 @@ void OTParty::HarvestAllTransactionNumbers(const OTString & strServerID)
 // This means the transaction number has just been USED (and it now must stay open/outstanding until CLOSED.)
 // Therefore we also add it to the set of open cron items, which the server keeps track of (for opening AND closing numbers.)
 //
-bool OTAgent::RemoveTransactionNumber(const long & lNumber, const OTString & strServerID, OTPseudonym & SIGNER_NYM, bool bSave/*=true*/)
+bool OTAgent::RemoveTransactionNumber(const int64_t & lNumber, const OTString & strServerID, OTPseudonym & SIGNER_NYM, bool bSave/*=true*/)
 {
 	// Todo: this function may change when entities / roles are added.
 	if (!IsAnIndividual() || !DoesRepresentHimself())
@@ -2836,7 +2836,7 @@ bool OTAgent::RemoveTransactionNumber(const long & lNumber, const OTString & str
 	// -----------------------------------------
 	if (NULL != m_pNym)
 	{
-		std::set<long> & theIDSet = m_pNym->GetSetOpenCronItems(); // The transaction is now in play, so we are going to add it to this list.
+		std::set<int64_t> & theIDSet = m_pNym->GetSetOpenCronItems(); // The transaction is now in play, so we are going to add it to this list.
         const bool bSuccess       = m_pNym->RemoveTransactionNum(strServerID, lNumber);  // Doesn't save.
 
         if (bSuccess)
@@ -2863,7 +2863,7 @@ bool OTAgent::RemoveTransactionNumber(const long & lNumber, const OTString & str
 // This means the transaction number has just been CLOSED.
 // Therefore we remove it from the set of open cron items, which the server keeps track of (for opening AND closing numbers.)
 //
-bool OTAgent::RemoveIssuedNumber(const long & lNumber,
+bool OTAgent::RemoveIssuedNumber(const int64_t & lNumber,
                                  const OTString & strServerID,
                                  bool bSave/*=false*/,
                                  OTPseudonym * pSignerNym/*=NULL*/)
@@ -2878,7 +2878,7 @@ bool OTAgent::RemoveIssuedNumber(const long & lNumber,
 	// -----------------------------------------
 	if (NULL != m_pNym)
     {
-        std::set<long> & theIDSet = m_pNym->GetSetOpenCronItems(); // The transaction is being removed from play, so we will remove it from this list.
+        std::set<int64_t> & theIDSet = m_pNym->GetSetOpenCronItems(); // The transaction is being removed from play, so we will remove it from this list.
         const bool bSuccess       = m_pNym->RemoveIssuedNum(strServerID, lNumber);  // Doesn't save.
 
         if (bSuccess)
@@ -2888,7 +2888,7 @@ bool OTAgent::RemoveIssuedNumber(const long & lNumber,
             // -----------------------------------
             // Since the Trans# is now out of play, the server removes it as an open cron item.
             //
-            std::set<long>::iterator theSetIT = theIDSet.find(lNumber);
+            std::set<int64_t>::iterator theSetIT = theIDSet.find(lNumber);
 
             if (theIDSet.end() != theSetIT) // IF it was there, THEN remove it. (Client doesn't even track these, though server does.)
                 theIDSet.erase(lNumber);
@@ -3030,7 +3030,7 @@ bool OTParty::ReserveTransNumsForConfirm(const OTString & strServerID)
 // Done
 bool OTAgent::ReserveClosingTransNum(const OTString & strServerID, OTPartyAccount & thePartyAcct)
 {
-	long lTransactionNumber = 0;
+	int64_t lTransactionNumber = 0;
 
 	if (IsAnIndividual() && DoesRepresentHimself() && (NULL != m_pNym))
 	{
@@ -3077,7 +3077,7 @@ bool OTAgent::ReserveClosingTransNum(const OTString & strServerID, OTPartyAccoun
 // Done
 bool OTAgent::ReserveOpeningTransNum(const OTString & strServerID)
 {
-	long lTransactionNumber = 0;
+	int64_t lTransactionNumber = 0;
 
 	if (IsAnIndividual() && DoesRepresentHimself() && (NULL != m_pNym))
 	{
@@ -3499,7 +3499,7 @@ OTVariable::OTVariable(const std::string str_Name, const std::string str_Value,	
 }
 
 // INT
-OTVariable::OTVariable(const std::string str_Name, const int nValue, const OTVariable_Access theAccess/*=Var_Persistent*/)
+OTVariable::OTVariable(const std::string str_Name, const int32_t nValue, const OTVariable_Access theAccess/*=Var_Persistent*/)
 : m_strName(str_Name.c_str()),
   m_nValue(nValue),
   m_bValue(false),
@@ -3540,11 +3540,11 @@ OTVariable::~OTVariable()
 }
 
 
-bool OTVariable::SetValue(const int & nValue)
+bool OTVariable::SetValue(const int32_t & nValue)
 {
 	if (!IsInteger())
 	{
-		OTLog::vError("OTVariable::SetValue(long): Error: This variable (%s) is not an integer.\n",
+		OTLog::vError("OTVariable::SetValue(int64_t): Error: This variable (%s) is not an integer.\n",
 					  m_strName.Get());
 		return false;
 	}
@@ -3608,14 +3608,14 @@ bool OTVariable::SetValue(const std::string & str_Value)
 
 	OTString	m_strName;		// Name of this variable.
 	std::string m_str_Value;	// If a string, the value is stored here.
-	int			m_nValue;		// If a long, the value is stored here.
+	int32_t			m_nValue;		// If a int64_t, the value is stored here.
 	bool		m_bValue;		// If a bool...
 	std::string m_str_ValueBackup;	// If a string, the value backup is stored here. (So we can see if it has changed since execution)
-	long		m_lValueBackup;	// If a long, the value backup is stored here.  (So we can see if it has changed since execution)
+	int64_t		m_lValueBackup;	// If a int64_t, the value backup is stored here.  (So we can see if it has changed since execution)
 	bool		m_bValueBackup; // If a bool...
 	OTBylaw	*	m_pBylaw;		// the Bylaw that this variable belongs to.
 
-	OTVariable_Type		m_Type;  // Currently long or string.
+	OTVariable_Type		m_Type;  // Currently int64_t or string.
 	OTVariable_Access	m_Access;  // Determines how the variable is used inside the script.
  */
 
@@ -4279,7 +4279,7 @@ bool OTParty::CopyAcctsToConfirmingParty(OTParty & theParty) const
 }
 
 
-const std::string OTBylaw::GetCallbackNameByIndex(int nIndex)
+const std::string OTBylaw::GetCallbackNameByIndex(int32_t nIndex)
 {
     if ((nIndex < 0) || (nIndex >= static_cast<int64_t>(m_mapCallbacks.size())))
     {
@@ -4287,7 +4287,7 @@ const std::string OTBylaw::GetCallbackNameByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfCallbacks, m_mapCallbacks)
         {
@@ -4426,7 +4426,7 @@ OTVariable * OTBylaw::GetVariable(const std::string str_var_name) // not a refer
 
 /// Get Variable pointer by Index. Returns NULL on failure.
 ///
-OTVariable * OTBylaw::GetVariableByIndex(int nIndex)
+OTVariable * OTBylaw::GetVariableByIndex(int32_t nIndex)
 {
     if (false == ((nIndex >= 0) && (nIndex < static_cast<int64_t>(m_mapVariables.size()))))
     {
@@ -4434,7 +4434,7 @@ OTVariable * OTBylaw::GetVariableByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfVariables, m_mapVariables)
         {
@@ -4474,7 +4474,7 @@ OTClause * OTBylaw::GetClause(const std::string str_clause_name)
 
 /// Get Clause pointer by Index. Returns NULL on failure.
 ///
-OTClause * OTBylaw::GetClauseByIndex(int nIndex)
+OTClause * OTBylaw::GetClauseByIndex(int32_t nIndex)
 {
     if (false == ((nIndex >= 0) && (nIndex < static_cast<int64_t>(m_mapClauses.size()))))
     {
@@ -4482,7 +4482,7 @@ OTClause * OTBylaw::GetClauseByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfClauses, m_mapClauses)
         {
@@ -4499,7 +4499,7 @@ OTClause * OTBylaw::GetClauseByIndex(int nIndex)
 }
 
 
-const std::string OTBylaw::GetHookNameByIndex(int nIndex)
+const std::string OTBylaw::GetHookNameByIndex(int32_t nIndex)
 {
     if ((nIndex < 0) || (nIndex >= static_cast<int64_t>(m_mapHooks.size())))
     {
@@ -4507,7 +4507,7 @@ const std::string OTBylaw::GetHookNameByIndex(int nIndex)
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
 
         FOR_EACH(mapOfHooks, m_mapHooks)
         {
@@ -4660,7 +4660,7 @@ bool OTBylaw::AddVariable(const std::string str_Name, const std::string str_Valu
 }
 
 
-bool OTBylaw::AddVariable(const std::string str_Name, const int nValue, const OTVariable::OTVariable_Access theAccess/*=Var_Persistent*/)
+bool OTBylaw::AddVariable(const std::string str_Name, const int32_t nValue, const OTVariable::OTVariable_Access theAccess/*=Var_Persistent*/)
 {
 	OTVariable * pVar = new OTVariable(str_Name, nValue, theAccess);
 	OT_ASSERT(NULL != pVar);
@@ -4832,8 +4832,8 @@ OTBylaw::~OTBylaw()
 
 
 /*
- long GetAmount() const { return m_lAmount; }
- void SetAmount(const long lAmount) { m_lAmount = lAmount; }
+ int64_t GetAmount() const { return m_lAmount; }
+ void SetAmount(const int64_t lAmount) { m_lAmount = lAmount; }
 
  const OTString & GetAssetTypeID() { return m_strAssetTypeID; }
  */
@@ -4844,13 +4844,13 @@ OTStashItem::OTStashItem() : m_lAmount(0)
 
 }
 
-OTStashItem::OTStashItem(const OTString & strAssetTypeID, const long lAmount/*=0*/)
+OTStashItem::OTStashItem(const OTString & strAssetTypeID, const int64_t lAmount/*=0*/)
 : m_strAssetTypeID(strAssetTypeID), m_lAmount(lAmount)
 {
 
 }
 
-OTStashItem::OTStashItem(const OTIdentifier & theAssetTypeID, const long lAmount/*=0*/)
+OTStashItem::OTStashItem(const OTIdentifier & theAssetTypeID, const int64_t lAmount/*=0*/)
 : m_strAssetTypeID(theAssetTypeID), m_lAmount(lAmount)
 {
 
@@ -4880,7 +4880,7 @@ OTStashItem::~OTStashItem()
  */
 
 
-bool OTStashItem::CreditStash(const long &lAmount)
+bool OTStashItem::CreditStash(const int64_t &lAmount)
 {
 	if (lAmount < 0)
 	{
@@ -4894,7 +4894,7 @@ bool OTStashItem::CreditStash(const long &lAmount)
 	return true;
 }
 
-bool OTStashItem::DebitStash(const long &lAmount)
+bool OTStashItem::DebitStash(const int64_t &lAmount)
 {
 	if (lAmount < 0)
 	{
@@ -4903,7 +4903,7 @@ bool OTStashItem::DebitStash(const long &lAmount)
 		return false;
 	}
 
-	const long lTentativeNewBalance = (m_lAmount - lAmount);
+	const int64_t lTentativeNewBalance = (m_lAmount - lAmount);
 
 	if (lTentativeNewBalance < 0)
 	{
@@ -4941,7 +4941,7 @@ void OTStash::Serialize(OTString & strAppend)
 
 
 
-int OTStash::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strStashName, const OTString & strItemCount)
+int32_t OTStash::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strStashName, const OTString & strItemCount)
 {
 	if (!strStashName.Exists())
 	{
@@ -4955,7 +4955,7 @@ int OTStash::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strSt
 	//
 	// Load up the stash items.
 	//
-	int nCount	= strItemCount.Exists() ? atoi(strItemCount.Get()) : 0;
+	int32_t nCount	= strItemCount.Exists() ? atoi(strItemCount.Get()) : 0;
 	if (nCount > 0)
 	{
 		while (nCount-- > 0)
@@ -5013,7 +5013,7 @@ OTStash::OTStash()
 	//m_mapStashItems
 }
 
-OTStash::OTStash(const OTString & strAssetTypeID, const long lAmount/*=0*/)
+OTStash::OTStash(const OTString & strAssetTypeID, const int64_t lAmount/*=0*/)
 {
 	OTStashItem * pItem = new OTStashItem(strAssetTypeID, lAmount);
 	OT_ASSERT(NULL != pItem);
@@ -5021,7 +5021,7 @@ OTStash::OTStash(const OTString & strAssetTypeID, const long lAmount/*=0*/)
 	m_mapStashItems.insert(std::pair<std::string, OTStashItem *>(strAssetTypeID.Get(), pItem));
 }
 
-OTStash::OTStash(const OTIdentifier & theAssetTypeID, const long lAmount/*=0*/)
+OTStash::OTStash(const OTIdentifier & theAssetTypeID, const int64_t lAmount/*=0*/)
 {
 	OTStashItem * pItem = new OTStashItem(theAssetTypeID, lAmount);
 	OT_ASSERT(NULL != pItem);
@@ -5069,7 +5069,7 @@ OTStashItem * OTStash::GetStash(const std::string & str_asset_type_id)
 }
 
 
-long OTStash::GetAmount(const std::string str_asset_type_id)
+int64_t OTStash::GetAmount(const std::string str_asset_type_id)
 {
 	OTStashItem * pStashItem = GetStash(str_asset_type_id); // (Always succeeds, and will OT_ASSERT() if failure.)
 
@@ -5077,14 +5077,14 @@ long OTStash::GetAmount(const std::string str_asset_type_id)
 }
 
 
-bool OTStash::CreditStash(const std::string str_asset_type_id, const long &lAmount)
+bool OTStash::CreditStash(const std::string str_asset_type_id, const int64_t &lAmount)
 {
 	OTStashItem * pStashItem = GetStash(str_asset_type_id); // (Always succeeds, and will OT_ASSERT() if failure.)
 
 	return pStashItem->CreditStash(lAmount);
 }
 
-bool OTStash::DebitStash(const std::string str_asset_type_id, const long &lAmount)
+bool OTStash::DebitStash(const std::string str_asset_type_id, const int64_t &lAmount)
 {
 	OTStashItem * pStashItem = GetStash(str_asset_type_id); // (Always succeeds, and will OT_ASSERT() if failure.)
 

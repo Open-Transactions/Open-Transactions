@@ -177,19 +177,19 @@
 
 
 #ifdef _WIN32
-int OTCron::__trans_refill_amount		= 500;		// The number of transaction numbers Cron will grab for itself, when it gets low, before each round.
-int OTCron::__cron_ms_between_process	= 10000;	// The number of milliseconds (ideally) between each "Cron Process" event.
-int OTCron::__cron_max_items_per_nym    = 10; // The maximum number of cron items any given Nym can have active at the same time.
+int32_t OTCron::__trans_refill_amount		= 500;		// The number of transaction numbers Cron will grab for itself, when it gets low, before each round.
+int32_t OTCron::__cron_ms_between_process	= 10000;	// The number of milliseconds (ideally) between each "Cron Process" event.
+int32_t OTCron::__cron_max_items_per_nym    = 10; // The maximum number of cron items any given Nym can have active at the same time.
 #endif
 
 
 // These are default values. There are configurable in ~/.ot/server.cfg
 // (static)
 
-long OTServer::__min_market_scale = 1;
+int64_t OTServer::__min_market_scale = 1;
 
-int OTServer::__heartbeat_no_requests = 10; // The number of client requests that will be processed per heartbeat.
-int OTServer::__heartbeat_ms_between_beats = 100; // number of ms between each heartbeat.
+int32_t OTServer::__heartbeat_no_requests = 10; // The number of client requests that will be processed per heartbeat.
+int32_t OTServer::__heartbeat_ms_between_beats = 100; // number of ms between each heartbeat.
 
 std::string	OTServer::__override_nym_id;  // The Nym who's allowed to do certain commands even if they are turned off.
 
@@ -303,7 +303,7 @@ void OTServer::ProcessCron()
 	// So every time before I call Cron.Process(), I make sure to replenish first.
 	while (m_Cron.GetTransactionCount() < OTCron::GetCronRefillAmount())
 	{
-		long lTransNum = 0;
+		int64_t lTransNum = 0;
 		bool bSuccess = IssueNextTransactionNumber(m_nymServer, lTransNum, false); // bStoreTheNumber = false
 
 		if (bSuccess)
@@ -477,7 +477,7 @@ _SharedPtr<OTAccount> OTServer::GetVoucherAccount(const OTIdentifier & ASSET_TYP
 
 
 /// Lookup the current mint for any given asset type ID and series.
-OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // Each asset contract has its own Mint.
+OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int32_t nSeries) // Each asset contract has its own Mint.
 {
 	OTMint * pMint = NULL;
 
@@ -573,7 +573,7 @@ OTMint * OTServer::GetMint(const OTIdentifier & ASSET_TYPE_ID, int nSeries) // E
 /// that it actually put it into the inbox by checking it's own nymfile for that transaction
 /// number. Instead it would just check its own server signature on the inbox. But I digress...
 ///
-bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransactionNumber,
+bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, int64_t &lTransactionNumber,
 										  bool bStoreTheNumber/*=true*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
@@ -635,7 +635,7 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, long &lTransacti
 /// Transaction numbers are now stored in the nym file (on client and server side) for whichever nym
 /// they were issued to. This function verifies whether or not the transaction number is present and valid
 /// for any specific nym (i.e. for the nym passed in.)
-bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const long &lTransactionNumber) // passed by reference for speed, but not a return value.
+bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const int64_t &lTransactionNumber) // passed by reference for speed, but not a return value.
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
 
@@ -669,7 +669,7 @@ bool OTServer::VerifyTransactionNumber(OTPseudonym & theNym, const long &lTransa
 
 
 /// Remove a transaction number from the Nym record once it's officially used/spent.
-bool OTServer::RemoveTransactionNumber(OTPseudonym & theNym, const long &lTransactionNumber, bool bSave/*=false*/)
+bool OTServer::RemoveTransactionNumber(OTPseudonym & theNym, const int64_t &lTransactionNumber, bool bSave/*=false*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
 
@@ -695,7 +695,7 @@ bool OTServer::RemoveTransactionNumber(OTPseudonym & theNym, const long &lTransa
 
 
 /// Remove an issued number from the Nym record once that nym accepts the receipt from his inbox.
-bool OTServer::RemoveIssuedNumber(OTPseudonym & theNym, const long &lTransactionNumber, bool bSave/*=false*/)
+bool OTServer::RemoveIssuedNumber(OTPseudonym & theNym, const int64_t &lTransactionNumber, bool bSave/*=false*/)
 {
 	OTIdentifier NYM_ID(theNym), SERVER_NYM_ID(m_nymServer);
 
@@ -959,9 +959,9 @@ bool OTServer::LoadConfigFile()
 	// LOG LEVEL
 	{
 		bool bIsNewKey;
-		long lValue;
+		int64_t lValue;
 		p_Config->CheckSet_long("logging","log_level",0,lValue,bIsNewKey);
-		OTLog::SetLogLevel(static_cast<int> (lValue));
+		OTLog::SetLogLevel(static_cast<int32_t> (lValue));
 	}
 
 
@@ -996,9 +996,9 @@ bool OTServer::LoadConfigFile()
 		"; while in the middle of processing, it will put a WARNING into your server log.\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("cron","refill_trans_number",500,lValue,bIsNewKey,szComment);
-        OTCron::SetCronRefillAmount(static_cast<int>(lValue));
+        OTCron::SetCronRefillAmount(static_cast<int32_t>(lValue));
 	}
 
 	{
@@ -1007,9 +1007,9 @@ bool OTServer::LoadConfigFile()
 		"; (all the trades, all the smart contracts, etc every 10 seconds.)\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("cron","ms_between_cron_beats",10000,lValue,bIsNewKey,szComment);
-        OTCron::SetCronMsBetweenProcess(static_cast<int>(lValue));
+        OTCron::SetCronMsBetweenProcess(static_cast<int32_t>(lValue));
 	}
 
 	{
@@ -1018,9 +1018,9 @@ bool OTServer::LoadConfigFile()
 		"; plans) that any given Nym is allowed to have live and active at the same time.\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("cron","max_items_per_nym",10,lValue,bIsNewKey,szComment);
-        OTCron::SetCronMaxItemsPerNym(static_cast<int>(lValue));
+        OTCron::SetCronMaxItemsPerNym(static_cast<int32_t>(lValue));
 	}
 
 	// -----------------------------------
@@ -1039,9 +1039,9 @@ bool OTServer::LoadConfigFile()
 		"; no_requests is the number of client requests the server processes per heartbeat.\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("heartbeat","no_requests",10,lValue,bIsNewKey,szComment);
-        OTServer::SetHeartbeatNoRequests(static_cast<int>(lValue));
+        OTServer::SetHeartbeatNoRequests(static_cast<int32_t>(lValue));
 	}
 
 	{
@@ -1049,9 +1049,9 @@ bool OTServer::LoadConfigFile()
 		"; ms_between_beats is the number of milliseconds between each heartbeat.\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("heartbeat","ms_between_beats",100,lValue,bIsNewKey,szComment);
-        OTServer::SetHeartbeatMsBetweenBeats(static_cast<int>(lValue));
+        OTServer::SetHeartbeatMsBetweenBeats(static_cast<int32_t>(lValue));
 	}
 
 
@@ -1094,7 +1094,7 @@ bool OTServer::LoadConfigFile()
 		"; (1oz, 10oz, 100oz, 1000oz.)\n";
 
 	bool bIsNewKey;
-	long lValue;
+	int64_t lValue;
 	p_Config -> CheckSet_long("markets","minimum_scale",GetMinMarketScale(),lValue,bIsNewKey,szComment);
 	this->SetMinMarketScale(lValue);
 	}
@@ -1105,15 +1105,15 @@ bool OTServer::LoadConfigFile()
 	// Master Key Timeout
 	{
         const char * szComment =
-            "; master_key_timeout is how long the master key will be in memory until a thread wipes it out.\n"
+            "; master_key_timeout is how int64_t the master key will be in memory until a thread wipes it out.\n"
             "; 0   : means you have to type your password EVERY time OT uses a private key. (Even multiple times in a single function.)\n"
             "; 300 : means you only have to type it once per 5 minutes.\n"
             "; -1  : means you only type it once PER RUN (popular for servers.)\n";
 
         bool bIsNewKey;
-        long lValue;
+        int64_t lValue;
         p_Config->CheckSet_long("security","master_key_timeout",SERVER_MASTER_KEY_TIMEOUT_DEFAULT,lValue,bIsNewKey,szComment);
-        OTCachedKey::It()->SetTimeoutSeconds(static_cast<int>(lValue));
+        OTCachedKey::It()->SetTimeoutSeconds(static_cast<int32_t>(lValue));
 	}
 
 	// Use System Keyring
@@ -1352,7 +1352,7 @@ void OTServer::Init(bool bReadOnly/*=false*/)
                 // There was a real PID in there.
                 if (old_pid != 0)
                 {
-                    const unsigned long lPID = static_cast<unsigned long>(old_pid);
+                    const uint64_t lPID = static_cast<uint64_t>(old_pid);
                     OTLog::vError("\n\n\nIS OPEN-TRANSACTIONS ALREADY RUNNING?\n\n"
                                   "I found a PID (%lu) in the data lock file, located at: %s\n\n"
                                   "If the OT process with PID %lu is truly not running anymore, "
@@ -1556,7 +1556,7 @@ std::string OT_CLI_ReadUntilEOF()
     //	std::istream_iterator<char> end;
     //	std::string results(it, end);
 
-    //	int onechar;
+    //	int32_t onechar;
 
 	std::string result("");
 
@@ -1565,7 +1565,7 @@ std::string OT_CLI_ReadUntilEOF()
 		std::string input_line("");
 
         // -----
-        //        int n;
+        //        int32_t n;
         ////      std::string sn;
         //        std::stringstream ssn;
         //
@@ -1711,7 +1711,7 @@ bool OTServer::CreateMainFile()
         "</notaryServer>\n\n"
         ;
 
-    const long lTransNum = 5; // a starting point, for the new server.
+    const int64_t lTransNum = 5; // a starting point, for the new server.
 
     OTString strNotaryFile;
     strNotaryFile.Format(szBlankFile,
@@ -2154,7 +2154,7 @@ void OTServer::UserCmdGetMarketList(OTPseudonym & theNym, OTMessage & MsgIn, OTM
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 
 	OTASCIIArmor ascOutput;
-	int nMarketCount = 0;
+	int32_t nMarketCount = 0;
 
 	msgOut.m_bSuccess = m_Cron.GetMarketList(ascOutput, nMarketCount);
 
@@ -2194,7 +2194,7 @@ void OTServer::UserCmdGetMarketOffers(OTPseudonym & theNym, OTMessage & MsgIn, O
 	msgOut.m_strNymID2		= MsgIn.m_strNymID2;// Market ID.
 //	msgOut.m_strServerID	= m_strServerID;	// This is already set in ProcessUserCommand.
 
-	long lDepth = MsgIn.m_lDepth;
+	int64_t lDepth = MsgIn.m_lDepth;
 	if (lDepth < 0)
 		lDepth = 0;
 
@@ -2208,7 +2208,7 @@ void OTServer::UserCmdGetMarketOffers(OTPseudonym & theNym, OTMessage & MsgIn, O
 	if ((msgOut.m_bSuccess = ((pMarket != NULL) ? true:false) )) // if assigned true
 	{
 		OTASCIIArmor ascOutput;
-		int nOfferCount = 0;
+		int32_t nOfferCount = 0;
 
 		msgOut.m_bSuccess = pMarket->GetOfferList(ascOutput, lDepth, nOfferCount);
 
@@ -2256,7 +2256,7 @@ void OTServer::UserCmdGetMarketRecentTrades(OTPseudonym & theNym, OTMessage & Ms
 	if ((msgOut.m_bSuccess =  ((pMarket != NULL) ? true:false) )) // if assigned true
 	{
 		OTASCIIArmor ascOutput;
-		int nTradeCount = 0;
+		int32_t nTradeCount = 0;
 
 		msgOut.m_bSuccess = pMarket->GetRecentTradeList(ascOutput, nTradeCount);
 
@@ -2305,7 +2305,7 @@ void OTServer::UserCmdGetNym_MarketOffers(OTPseudonym & theNym, OTMessage & MsgI
 	// ------------------------------------------
 
 	OTASCIIArmor ascOutput;
-	int nOfferCount = 0;
+	int32_t nOfferCount = 0;
 
 	msgOut.m_bSuccess = m_Cron.GetNym_OfferList(ascOutput, NYM_ID, nOfferCount);
 
@@ -2385,7 +2385,7 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
     // re-download the nymbox and other intermediary files.
     //
 	// ------------------------------------------------------------
-	int nCount = theNym.GetTransactionNumCount(SERVER_ID);
+	int32_t nCount = theNym.GetTransactionNumCount(SERVER_ID);
 	// ------------------------------------------------------------
     const
     OTIdentifier  theMsgNymboxHash(MsgIn.m_strNymboxHash);    // theMsgNymboxHash is the hash sent by the client side
@@ -2428,14 +2428,14 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
         //
         OTNumList   theNumlist;
 
-        long    lFirstTransNum = 0; // While there may be 20 transaction numbers on this tranasction, ONE of them (the first one) is the "official" number of this transaction. The rest are just attached in an extra variable.
+        int64_t    lFirstTransNum = 0; // While there may be 20 transaction numbers on this tranasction, ONE of them (the first one) is the "official" number of this transaction. The rest are just attached in an extra variable.
 
         // Update: Now we're going to grab 20 or 30 transaction numbers,
         // instead of just 1 like before!!!
         //
-        for (int i = 0; i < 100; i++) // todo, hardcoding!!!! (But notice we grab 100 transaction numbers at a time now.)
+        for (int32_t i = 0; i < 100; i++) // todo, hardcoding!!!! (But notice we grab 100 transaction numbers at a time now.)
         {
-            long lTransNum = 0;
+            int64_t lTransNum = 0;
             // This call will save the new transaction number to the nym's file.
             // ??? Why did I say that, when clearly the last parameter is false?
             // AHHHH Because I drop it into the Nymbox instead, and make him sign for it!
@@ -2515,12 +2515,12 @@ void OTServer::UserCmdGetTransactionNum(OTPseudonym & theNym, OTMessage & MsgIn,
 			OTLog::Error("Error verifying Nymbox in OTServer::UserCmdGetTransactionNum\n");
 		}
         // ------------------------------------------------------------
-        std::set<long> theList;
+        std::set<int64_t> theList;
         theNumlist.Output(theList);
 
-        FOR_EACH(std::set<long>, theList)
+        FOR_EACH(std::set<int64_t>, theList)
         {
-            const long lTransNum = *it;
+            const int64_t lTransNum = *it;
             // ----------------------------
             RemoveTransactionNumber (theNym, lTransNum, false); //bSave=false
             RemoveIssuedNumber      (theNym, lTransNum, false); // I'll drop it in his Nymbox -- he can SIGN for it.
@@ -2567,7 +2567,7 @@ void OTServer::UserCmdGetRequest(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 
     msgOut.m_strRequestNum.Set(MsgIn.m_strRequestNum); // Outoing reply contains same request num coming in (1).
 
-    long lReqNum = 1; // The request number being REQUESTED (in this message) will be sent in msgOut.m_lNewRequestNum
+    int64_t lReqNum = 1; // The request number being REQUESTED (in this message) will be sent in msgOut.m_lNewRequestNum
 
 	msgOut.m_bSuccess	= theNym.GetCurrentRequestNum(m_strServerID, lReqNum);
 
@@ -2792,7 +2792,7 @@ bool OTServer::DropMessageToNymbox(const OTIdentifier & SERVER_ID,
     // ------------------------
     const char * szFunc = "OTServer::DropMessageToNymbox";
     // ------------------------
-	long lTransNum = 0;
+	int64_t lTransNum = 0;
 	const bool bGotNextTransNum = this->IssueNextTransactionNumber(m_nymServer, lTransNum, false); // bool bStoreTheNumber = false
 
     if (!bGotNextTransNum)
@@ -3066,7 +3066,7 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
                                    (0 == OTServer::GetOverrideNymID().compare((MsgIn.m_strNymID.Get())))); // And if the acting Nym IS the override Nym...
 	// -----------------------------------
     // The amount the usage credits are being ADJUSTED by.
-	const long lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
+	const int64_t lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
 
 	msgOut.m_lDepth = 0; // Returns total Usage Credits on Nym at the end.
 	// -----------------------------------
@@ -3159,9 +3159,9 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 	{
 		// Get the current usage credits, which will be sent in the reply.
 		//
-		const long &	lOldCredits   = pNym->GetUsageCredits();
-        const long      lTentativeNew = lOldCredits + lAdjustment;
-		const long		lNewCredits   = (lTentativeNew < 0) ? (-1) : lTentativeNew; // It can never be less than -1.
+		const int64_t &	lOldCredits   = pNym->GetUsageCredits();
+        const int64_t      lTentativeNew = lOldCredits + lAdjustment;
+		const int64_t		lNewCredits   = (lTentativeNew < 0) ? (-1) : lTentativeNew; // It can never be less than -1.
 
 		// if adjustment is non-zero, and the acting Nym has authority to make adjustments...
 //         if ((0 != lAdjustment) && bIsPrivilegedNym)
@@ -3169,7 +3169,7 @@ void OTServer::UserCmdUsageCredits(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
         // Note: if the adjustment is non-zero, then we ALREADY know the acting Nym has the authority.
         // How do we know?
         //
-        // long lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
+        // int64_t lAdjustment  = (bIsPrivilegedNym && OTServer::__admin_usage_credits) ? MsgIn.m_lDepth : 0;
         //
         // (Therefore we also know that the server is in usage credits mode, as well.)
         //
@@ -3495,7 +3495,7 @@ void OTServer::UserCmdIssueAssetType(OTPseudonym & theNym, OTMessage & MsgIn, OT
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,
                                       false,    // trans success (not a transaction...)
@@ -3561,7 +3561,7 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
             //
             bool bSubCurrenciesAllExist = true;
 
-            for (int i = 0; i < theBasket.Count(); i++)
+            for (int32_t i = 0; i < theBasket.Count(); i++)
             {
                 BasketItem * pItem = theBasket.At(i);
                 OT_ASSERT(NULL != pItem);
@@ -3590,7 +3590,7 @@ void OTServer::UserCmdIssueBasket(OTPseudonym & theNym, OTMessage & MsgIn, OTMes
                 // We need to actually create all the sub-accounts.
                 // This loop also sets the Account ID onto the basket items (which formerly was blank, from the client.)
                 // This loop also adds the BASKET_ID and the NEW ACCOUNT ID to a map on the server for later reference.
-                for (int i = 0; i < theBasket.Count(); i++)
+                for (int32_t i = 0; i < theBasket.Count(); i++)
                 {
                     BasketItem * pItem = theBasket.At(i);
                     OT_ASSERT(NULL != pItem);
@@ -3924,7 +3924,7 @@ void OTServer::UserCmdCreateAccount(OTPseudonym & theNym, OTMessage & MsgIn, OTM
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum, // No need to update the NymboxHash in this case.
@@ -4137,7 +4137,7 @@ void OTServer::NotarizeTransfer(OTPseudonym & theNym, OTAccount & theFromAccount
 			{
 				// Generate new transaction number for these new transactions
 				// todo check this generation for failure (can it fail?)
-				long lNewTransactionNumber = 0;
+				int64_t lNewTransactionNumber = 0;
 
 				IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 				// ------------------------------------------
@@ -4532,10 +4532,10 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 
                 // UPDATE: We now use a transaction number owned by the remitter, instead of the transaction server.
                 //
-//				long lNewTransactionNumber = 0;
+//				int64_t lNewTransactionNumber = 0;
 //				IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber); // bStoreTheNumber defaults to true. We save the transaction
                                                                                 // number on the server Nym (normally we'd discard it) because
-				const long lAmount = theVoucherRequest.GetAmount();				// when the cheque is deposited, the server nym, as the owner of
+				const int64_t lAmount = theVoucherRequest.GetAmount();				// when the cheque is deposited, the server nym, as the owner of
 				const OTIdentifier & RECIPIENT_ID = theVoucherRequest.GetRecipientUserID();	// the voucher account, needs to verify the transaction # on the
                                                                                             // cheque (to prevent double-spending of cheques.)
 				bool bIssueVoucher = theVoucher.IssueCheque(
@@ -4948,7 +4948,7 @@ OTAcctFunctor_PayDividend::OTAcctFunctor_PayDividend(const OTIdentifier  & theSe
                                                      const OTIdentifier  & theVoucherAcctID,
                                                      const OTString      & strMemo,
                                                            OTServer      & theServer,
-                                                           long            lPayoutPerShare,
+                                                           int64_t            lPayoutPerShare,
                                                            mapOfAccounts * pLoadedAccounts/*=NULL*/)
 : OTAcctFunctor(theServerID, pLoadedAccounts),
   m_pUserID       (new OTIdentifier(theUserID)),
@@ -4989,7 +4989,7 @@ OTAcctFunctor_PayDividend::~OTAcctFunctor_PayDividend()
 //
 bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theSharesAccount is, say, a Pepsi shares account.  Here, we'll send a dollars voucher to its owner.
 {
-    const long lPayoutAmount = (theSharesAccount.GetBalance() * this->GetPayoutPerShare());
+    const int64_t lPayoutAmount = (theSharesAccount.GetBalance() * this->GetPayoutPerShare());
 
     if (lPayoutAmount <= 0)
     {
@@ -5041,7 +5041,7 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
     const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
     const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
 
-    long        lNewTransactionNumber = 0;
+    int64_t        lNewTransactionNumber = 0;
 
     const bool  bGotNextTransNum =
     theServer.IssueNextTransactionNumber(theServerNym, lNewTransactionNumber);    // bStoreTheNumber defaults to true. We save the transaction
@@ -5297,7 +5297,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
 		pResponseBalanceItem->SetReferenceString(strBalanceItem); // the response item carries a copy of what it's responding to.
 		pResponseBalanceItem->SetReferenceToNum(pItem->GetTransactionNum()); // This response item is IN RESPONSE to pItem and its Owner Transaction.
 		// ----------------------------------------------------
-        const long lTotalCostOfDividend = pItem->GetAmount();
+        const int64_t lTotalCostOfDividend = pItem->GetAmount();
 		// ----------------------------------------------------
         OTCheque	theVoucherRequest;
         OTString    strVoucherRequest, strItemNote; // When paying a dividend, you create a voucher request (the same as in withdrawVoucher). It's just for information
@@ -5323,7 +5323,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
             // Whereas pItem contains lTotalCostOfDividend, which is the total cost (the
             // payout multiplied by number of shares.)
             //
-            const long lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
+            const int64_t lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
             // ----------------------------------------------------
             const OTIdentifier SHARES_ISSUER_ACCT_ID = theVoucherRequest.GetSenderAcctID();
 
@@ -5394,8 +5394,8 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                szFunc, strIssuerAcctID.Get(), strAccountID.Get());
             }
             // ----------------------------------------------------
-//          const long lTotalCostOfDividend = pItem->GetAmount();
-//          const long lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
+//          const int64_t lTotalCostOfDividend = pItem->GetAmount();
+//          const int64_t lAmountPerShare = theVoucherRequest.GetAmount(); // already validated, just above.
             //
             // Make sure the share issuer's account balance (number of shares issued * (-1)),
             // when multiplied by the dividend "amount payout per share", equals the "total cost of dividend"
@@ -5613,7 +5613,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                 //
                                 // REFUND ANY LEFTOVERS
                                 //
-                                const long lLeftovers = lTotalCostOfDividend - (actionPayDividend.GetAmountPaidOut() +
+                                const int64_t lLeftovers = lTotalCostOfDividend - (actionPayDividend.GetAmountPaidOut() +
                                                                                 actionPayDividend.GetAmountReturned());
                                 if (lLeftovers > 0)
                                 {
@@ -5637,7 +5637,7 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                     const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
                                     const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
 
-                                    long        lNewTransactionNumber = 0;
+                                    int64_t        lNewTransactionNumber = 0;
                                     const bool  bGotNextTransNum =
                                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber);     // bStoreTheNumber defaults to true. We save the transaction
                                                                                                         // number on the server Nym (normally we'd discard it) because
@@ -6005,7 +6005,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                     {
                         // Generate new transaction number (for putting the check receipt in the sender's inbox.)
                         // todo check this generation for failure (can it fail?)
-                        long lNewTransactionNumber = 0;
+                        int64_t lNewTransactionNumber = 0;
 
                         IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
@@ -6145,7 +6145,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
 				// passed that way to all of the commands (including the one we are in now.)
 				//
 				// I THEN do the logic BELOW as additional to that. Make sure if you change anything that you
-				// think long and hard about what you are doing!!
+				// think int64_t and hard about what you are doing!!
 				//
 				// Here's the logic:
 				// -- theNym is the depositor (for sure.)
@@ -6674,7 +6674,7 @@ void OTServer::NotarizeDeposit(OTPseudonym & theNym, OTAccount & theAccount, OTT
                             {
                                 // Generate new transaction number (for putting the check receipt in the sender's inbox.)
                                 // todo check this generation for failure (can it fail?)
-                                long lNewTransactionNumber = 0;
+                                int64_t lNewTransactionNumber = 0;
 
                                 IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
@@ -7207,14 +7207,14 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                 OTIdentifier theCancelerNymID;
                 const bool bCancelling  = (pPlan->IsCanceled() && pPlan->GetCancelerID(theCancelerNymID));
                 // ----------------------------------------------------
-                const long lExpectedNum = bCancelling ? 0 : pItem->GetTransactionNum();
-                const long lFoundNum    = pPlan->GetTransactionNum();
+                const int64_t lExpectedNum = bCancelling ? 0 : pItem->GetTransactionNum();
+                const int64_t lFoundNum    = pPlan->GetTransactionNum();
                 // ----------------------------------------------------
                 const OTIdentifier & FOUND_USER_ID = bCancelling ? pPlan->GetRecipientUserID() : pPlan->GetSenderUserID();
                 const OTIdentifier & FOUND_ACCT_ID = bCancelling ? pPlan->GetRecipientAcctID() : pPlan->GetSenderAcctID();
                 // ----------------------------------------------------
-                const long lFoundOpeningNum = pPlan->GetOpeningNumber(FOUND_USER_ID);
-                const long lFoundClosingNum = pPlan->GetClosingNumber(FOUND_ACCT_ID);
+                const int64_t lFoundOpeningNum = pPlan->GetOpeningNumber(FOUND_USER_ID);
+                const int64_t lFoundClosingNum = pPlan->GetClosingNumber(FOUND_ACCT_ID);
                 // ----------------------------------------------------
                 if (lFoundNum != lExpectedNum)
                 {
@@ -7478,7 +7478,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     // Server side, the Nym stores a list of all open cron item numbers.
                                     // (So we know if there is still stuff open on Cron for that Nym, and we know what it is.)
                                     //
-                                    std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
+                                    std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
                                     theIDSet.insert(pPlan->GetTransactionNum());
                                     theIDSet.insert(pPlan->GetClosingNum());
 //                                  theNym.SaveSignedNymfile(m_nymServer); // saved below
@@ -7499,7 +7499,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
 
                                     // ***************************************************************
 
-                                    std::set<long> & theIDSet2 = pRecipientNym->GetSetOpenCronItems();
+                                    std::set<int64_t> & theIDSet2 = pRecipientNym->GetSetOpenCronItems();
                                     theIDSet2.insert(pPlan->GetRecipientOpeningNum());
                                     theIDSet2.insert(pPlan->GetRecipientClosingNum());
 //                                  pRecipientNym->SaveSignedNymfile(m_nymServer); // saved below
@@ -7516,7 +7516,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     // (So they can deal with their payments inbox and outpayments box,
                                     // where pending copies of the instrument may still be waiting.)
                                     //
-                                    long lOtherNewTransNumber = 0;
+                                    int64_t lOtherNewTransNumber = 0;
                                     IssueNextTransactionNumber(m_nymServer, lOtherNewTransNumber, false); // bStoreTheNumber = false
 
                                     if (false == pPlan->SendNoticeToAllParties(true, //bSuccessMsg=true
@@ -7548,7 +7548,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                     // DROP REJECTION NOTICE HERE TO ALL PARTIES....
                                     // SO THEY CAN CLAW BACK THEIR TRANSACTION #s....
                                     //
-                                    long lOtherNewTransNumber = 0;
+                                    int64_t lOtherNewTransNumber = 0;
                                     IssueNextTransactionNumber(m_nymServer, lOtherNewTransNumber, false); // bStoreTheNumber = false
 
                                     if (false == pPlan->SendNoticeToAllParties(false, //bSuccessMsg=false (OTItem::rejection)
@@ -7705,11 +7705,11 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                 OTIdentifier theCancelerNymID;
                 const bool bCancelling  = (pContract->IsCanceled() && pContract->GetCancelerID(theCancelerNymID));
                 // ----------------------------------------------------
-                const long lFoundNum    = pContract->GetTransactionNum();
-                const long lExpectedNum = pItem->GetTransactionNum();
+                const int64_t lFoundNum    = pContract->GetTransactionNum();
+                const int64_t lExpectedNum = pItem->GetTransactionNum();
                 // ----------------------------------------------------
-                long lFoundOpeningNum = 0;
-                long lFoundClosingNum = 0;
+                int64_t lFoundOpeningNum = 0;
+                int64_t lFoundClosingNum = 0;
 
                 OTIdentifier FOUND_USER_ID;
                 OTIdentifier FOUND_ACCT_ID;
@@ -7993,7 +7993,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                     // DROP REJECTION NOTICE HERE TO ALL PARTIES....
                     // SO THEY CAN CLAW BACK THEIR TRANSACTION #s....
                     //
-                    long lNewTransactionNumber = 0;
+                    int64_t lNewTransactionNumber = 0;
                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
                     if (false == pContract->SendNoticeToAllParties(false, //bSuccessMsg=false (OTItem::rejection)
@@ -8027,7 +8027,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                 //
                 else
                 {
-                    long lNewTransactionNumber = 0;
+                    int64_t lNewTransactionNumber = 0;
                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
                     if (false == pContract->SendNoticeToAllParties(true, //bSuccessMsg=true
@@ -8187,7 +8187,7 @@ void OTServer::NotarizeCancelCronItem(OTPseudonym & theNym, OTAccount & theAsset
 		{
 			pResponseBalanceItem->SetStatus(OTItem::acknowledgement); // the transaction agreement was successful.
 
-            const long lReferenceToNum = pItem->GetReferenceToNum();
+            const int64_t lReferenceToNum = pItem->GetReferenceToNum();
 
 			// I'm using the operator== because it exists. (Although now I believe != exists also)
 			// If the ID on the "from" account that was passed in,
@@ -8369,7 +8369,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
             pItem->GetAttachment(strBasket);
             // -------------------------------------
 
-            long lTransferAmount = 0;
+            int64_t lTransferAmount = 0;
 
             // Now we have the Contract ID from the basket account,
             // we can get a pointer to its asset contract...
@@ -8435,7 +8435,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 
                         bool bFoundSameAcctTwice = false;
 
-                        for (int i = 0; i < theRequestBasket.Count(); i++)
+                        for (int32_t i = 0; i < theRequestBasket.Count(); i++)
                         {
                             BasketItem * pItem = theRequestBasket.At(i);
                             OT_ASSERT(NULL != pItem);
@@ -8457,7 +8457,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                         if (!bFoundSameAcctTwice) // Let's do it!
                         {
                             // Loop through the request AND the actual basket TOGETHER...
-                            for (int i = 0; i < theBasket.Count(); i++)
+                            for (int32_t i = 0; i < theBasket.Count(); i++)
                             {
                                 BasketItem * pBasketItem	= theBasket.At(i);
                                 BasketItem * pRequestItem	= theRequestBasket.At(i); // we already know these are the same length
@@ -8617,7 +8617,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 
                                             // Generate new transaction number (for putting the basketReceipt in the exchanger's inbox.)
                                             // todo check this generation for failure (can it fail?)
-                                            long lNewTransactionNumber = 0;
+                                            int64_t lNewTransactionNumber = 0;
 
                                             IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
@@ -8726,7 +8726,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
 
                                     // Generate new transaction number (for putting the basketReceipt in the exchanger's inbox.)
                                     // todo check this generation for failure (can it fail?)
-                                    long lNewTransactionNumber = 0;
+                                    int64_t lNewTransactionNumber = 0;
 
                                     IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
@@ -8853,7 +8853,7 @@ void OTServer::NotarizeExchangeBasket(OTPseudonym & theNym, OTAccount & theAccou
                                 // Remove my ability to use the "closing" numbers in the future.
                                 // (Since I'm using them to do this exchange...)
                                 //
-                                for (int i = 0; i < theRequestBasket.Count(); i++)
+                                for (int32_t i = 0; i < theRequestBasket.Count(); i++)
                                 {
                                     BasketItem * pRequestItem	= theRequestBasket.At(i);
 
@@ -8929,7 +8929,7 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 	OTString strBasket(MsgIn.m_ascPayload);
 	OTBasket theBasket, theRequestBasket;
 
-	long lTransferAmount = 0;
+	int64_t lTransferAmount = 0;
 
 	// Now we have the Contract ID from the basket account,
 	// we can get a pointer to its asset contract...
@@ -8975,7 +8975,7 @@ void OTServer::UserCmdExchangeBasket(OTPseudonym & theNym, OTMessage & MsgIn, OT
 				theBasket.GetMinimumTransfer() == theRequestBasket.GetMinimumTransfer())
 			{
 				// Loop through the request AND the actual basket TOGETHER...
-				for (int i = 0; i < theBasket.Count(); i++)
+				for (int32_t i = 0; i < theBasket.Count(); i++)
 				{
 					BasketItem * pBasketItem	= theBasket.At(i);
 					BasketItem * pRequestItem	= theRequestBasket.At(i); // we already know these are the same length
@@ -9470,7 +9470,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
                     // Server side, the Nym stores a list of all open cron item numbers.
                     // (So we know if there is still stuff open on Cron for that Nym, and we know what it is.)
                     //
-                    std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
+                    std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
                     theIDSet.insert(pTrade->GetTransactionNum());
                     theIDSet.insert(pTrade->GetAssetAcctClosingNum());
                     theIDSet.insert(pTrade->GetCurrencyAcctClosingNum());
@@ -9529,7 +9529,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
 {
 	bool bSuccess = bOutSuccess = false;
 
-	const	long			lTransactionNumber = tranIn.GetTransactionNum();
+	const	int64_t			lTransactionNumber = tranIn.GetTransactionNum();
 	const	OTIdentifier	SERVER_ID(m_strServerID);
 			OTIdentifier	USER_ID;
 	theNym.GetIdentifier(	USER_ID);
@@ -9723,7 +9723,7 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
                     // For all transaction numbers used on cron items, we keep track of them in
                     // the GetSetOpenCronItems. This will be removed again below, if the transaction
                     // fails.
-                    std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
+                    std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
                     theIDSet.insert(lTransactionNumber);
                     // ----------------------------------------------
 					NotarizeSmartContract(theNym, theFromAccount, tranIn, tranOut, bOutSuccess);
@@ -9792,8 +9792,8 @@ void OTServer::NotarizeTransaction(OTPseudonym & theNym, OTTransaction & tranIn,
                             // list of open cron items as well.
                             if (bIsCronItem)
                             {
-                                std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
-                                std::set<long>::iterator theSetIT = theIDSet.find(lTransactionNumber);
+                                std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
+                                std::set<int64_t>::iterator theSetIT = theIDSet.find(lTransactionNumber);
                                 if (theSetIT != theIDSet.end()) // Found it.
                                     theIDSet.erase(lTransactionNumber);
                             }
@@ -9875,7 +9875,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
     bool bTransSuccess = false; // for the Nymbox notice.
     bool bCancelled    = false; // for "failed" transactions that were actually successful cancellations.
 
-    long lTransactionNumber = 0, lResponseNumber = 0;
+    int64_t lTransactionNumber = 0, lResponseNumber = 0;
     // --------------------------
     // Since the one going back (above) is a new ledger, we have to call GenerateLedger.
     // Whereas the ledger we received from the server was generated there, so we don't
@@ -9929,7 +9929,7 @@ void OTServer::UserCmdNotarizeTransactions(OTPseudonym & theNym, OTMessage & Msg
         // But so far, the code only actually has one, ever being sent. Otherwise the messages
         // get too big IMO.
         //
-        int nCounter = 0;
+        int32_t nCounter = 0;
         FOR_EACH(mapOfTransactions, theLedger.GetTransactionMap())
         {
             OTTransaction * pTransaction = (*it).second;
@@ -10059,7 +10059,7 @@ send_message:
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         //      this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum, bTransSuccess, &theNym); // We don't want to update the Nym in this case (I don't think.)
@@ -10094,7 +10094,7 @@ send_message:
 void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
                                        const OTIdentifier & USER_ID,
                                        const OTString & strMessage,
-                                       const long & lRequestNum,
+                                       const int64_t & lRequestNum,
                                        const bool   bReplyTransSuccess,
                                        OTPseudonym * pActualNym/*=NULL*/)
 {
@@ -10116,7 +10116,7 @@ void OTServer::DropReplyNoticeToNymbox(const OTIdentifier & SERVER_ID,
 	// --------------------------------------------------------------------
 	else
 	{
-		long lReplyNoticeTransNum=0;
+		int64_t lReplyNoticeTransNum=0;
 		bool bGotNextTransNum = IssueNextTransactionNumber(m_nymServer, lReplyNoticeTransNum, false); // bool bStoreTheNumber = false
 
 		if (!bGotNextTransNum)
@@ -10887,7 +10887,7 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
 
 	OTLedger theLedger(USER_ID, USER_ID, SERVER_ID);
 
-    std::set<long> & theSetofCronItemIDs = theNym.GetSetOpenCronItems();
+    std::set<int64_t> & theSetofCronItemIDs = theNym.GetSetOpenCronItems();
 
     // If success loading Nymbox, and there are transactions still inside, THEN FAIL!!!
     // (Can't delete a Nym with open receipts...)
@@ -10937,13 +10937,13 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
         //
         while (theNym.GetTransactionNumCount(SERVER_ID) > 0)
         {
-            long lTemp = theNym.GetTransactionNum(SERVER_ID, 0); // index 0
+            int64_t lTemp = theNym.GetTransactionNum(SERVER_ID, 0); // index 0
             RemoveTransactionNumber(theNym, lTemp, false); // bSave = false
         }
 
         while (theNym.GetIssuedNumCount(SERVER_ID) > 0)
         {
-            long lTemp = theNym.GetIssuedNum(SERVER_ID, 0); // index 0
+            int64_t lTemp = theNym.GetIssuedNum(SERVER_ID, 0); // index 0
             RemoveIssuedNumber(theNym, lTemp, false); // bSave = false
         }
         // --------------------------------
@@ -10990,7 +10990,7 @@ void OTServer::UserCmdDeleteUser(OTPseudonym & theNym, OTMessage & MsgIn, OTMess
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,
@@ -11308,7 +11308,7 @@ void OTServer::UserCmdDeleteAssetAcct(OTPseudonym & theNym, OTMessage & MsgIn, O
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,
@@ -11608,7 +11608,7 @@ send_message:
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum,    // (We don't want to update the NymboxHash on the Nym, here in processNymbox, at least, not at this current point AFTER the reply message has already been signed.)
@@ -11733,15 +11733,15 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
                     else    // INSTEAD of merely adding the TRANSACTION NUMBER of the blank to the Nym,
                     {       // we actually add an entire list of numbers retrieved from the blank, including
                             // its main number.
-                        std::set<long> theNumbers;
+                        std::set<int64_t> theNumbers;
                         listNumbersNymbox.Output(theNumbers);
 
                         // Looping through the transaction numbers on the Nymbox blank transaction.
                         // (There's probably 20 of them.)
                         //
-                        FOR_EACH(std::set<long>, theNumbers)
+                        FOR_EACH(std::set<int64_t>, theNumbers)
                         {
-                            const long lTransactionNumber = *it;
+                            const int64_t lTransactionNumber = *it;
                             // -----------------------------------------------
                             // (We don't add it if it's already there.)
                             //
@@ -11782,9 +11782,9 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 			OTLog::vOutput(0, "%s: transactions in processNymbox message do not match actual nymbox.\n", __FUNCTION__);
 
 			// Remove all issued nums from theNym that are stored on theTempNym HERE.
-			for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+			for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 			{
-				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+				int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
 			}
 		}
@@ -11798,9 +11798,9 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 			OTLog::vOutput(0, "%s: ERROR verifying transaction statement.\n", __FUNCTION__);
 
 			// Remove all issued nums from theNym that are stored on theTempNym HERE.
-			for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+			for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 			{
-				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+				int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
 			}
 		}
@@ -11809,9 +11809,9 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 		else // TRANSACTION AGREEMENT WAS SUCCESSFUL.......
 		{
 			// Remove all issued nums from theNym that are stored on theTempNym HERE.
-			for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+			for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 			{
-				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+				int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
 			}
 
@@ -12000,7 +12000,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 							// Add the success notice to the Nymbox, so if the Nym fails to see the server reply, he can still get his
 							// transaction # later, from the notice, instead of going out of sync.
 							//
-							long lSuccessNoticeTransNum=0;
+							int64_t lSuccessNoticeTransNum=0;
 							bool bGotNextTransNum = IssueNextTransactionNumber(m_nymServer, lSuccessNoticeTransNum, false); // bool bStoreTheNumber = false
 
 							if (!bGotNextTransNum)
@@ -12104,7 +12104,7 @@ void OTServer::NotarizeProcessNymbox(OTPseudonym & theNym, OTTransaction & tranI
 				}
 				else
 				{
-					const int nStatus	= pItem->GetStatus();
+					const int32_t nStatus	= pItem->GetStatus();
 					OTString strItemType;
 					pItem->GetTypeString(strItemType);
 
@@ -12280,7 +12280,7 @@ void OTServer::UserCmdProcessInbox(OTPseudonym & theNym, OTMessage & MsgIn, OTMe
 			}
 			else
 			{
-				const long lTransactionNumber = pTransaction->GetTransactionNum();
+				const int64_t lTransactionNumber = pTransaction->GetTransactionNum();
 
 				// ---------------------------
 				// We create a transaction response and add that to the response ledger...
@@ -12434,7 +12434,7 @@ send_message:
     if (msgOut.m_bSuccess)
     {
         const OTString strReplyMessage(msgOut);
-        const long lReqNum = atol(MsgIn.m_strRequestNum.Get());
+        const int64_t lReqNum = atol(MsgIn.m_strRequestNum.Get());
 
         // If it fails, it logs already.
         this->DropReplyNoticeToNymbox(SERVER_ID, USER_ID, strReplyMessage, lReqNum, // We don't want to update the Nym's copy here in processInbox (I don't think.)
@@ -12532,11 +12532,11 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 		//
 		//
 
-        std::list<long> theListOfInboxReceiptsBeingRemoved;
-//      std::set<long>  setOfRefNumsProcessed; // To make sure each inbox item refers to a different number. (If two of them refer to the same number, that's bad and is not allowed. You can't process the same inbox item twice simultaneously! Or even at all.)
+        std::list<int64_t> theListOfInboxReceiptsBeingRemoved;
+//      std::set<int64_t>  setOfRefNumsProcessed; // To make sure each inbox item refers to a different number. (If two of them refer to the same number, that's bad and is not allowed. You can't process the same inbox item twice simultaneously! Or even at all.)
 
 		bool bSuccessFindingAllTransactions = true;
-		long lTotalBeingAccepted = 0;
+		int64_t lTotalBeingAccepted = 0;
 
 		FOR_EACH_IT(listOfItems, tranIn.GetItemList(), it_bigloop)
 		{
@@ -12572,7 +12572,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // For example, I might have two transfer receipts that are both in reference to the same notarizeInbox.
 //                    {
 //
-//                        std::set<long>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
+//                        std::set<int64_t>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
 //
 //                        if (setOfRefNumsProcessed.end() != it_ref) // It's already there!! (Bad.)
 //                        {
@@ -12601,7 +12601,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // For example, I might have two transfer receipts that are both in reference to the same notarizeInbox.
 //                    {
 //
-//                        std::set<long>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
+//                        std::set<int64_t>::iterator it_ref = setOfRefNumsProcessed.find(pItem->GetReferenceToNum()); // It had BETTER not be on this list already!
 //
 //                        if (setOfRefNumsProcessed.end() != it_ref) // It's already there!! (Bad.)
 //                        {
@@ -12622,7 +12622,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                 {
                     OTString strItemType;
                     pItem->GetTypeString(strItemType);
-                    int nItemType = pItem->GetType();
+                    int32_t nItemType = pItem->GetType();
 
                     pServerTransaction = NULL;
                     bSuccessFindingAllTransactions = false;
@@ -12683,8 +12683,8 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // ONCE THE INBOX RECEIPT IS FOUND, if *IT* is "in reference to" pServerTransaction->GetReferenceToNum(),
                     // Then increment the count for the transaction.  COMPARE *THAT* to theInbox.GetCount and we're golden!!
                 {
-//                  int nRefCount = 0; // Using std::set here instead of a simple int. (To prevent duplicates.)
-                    std::set<long> setOfRefNumbers; // we'll store them here, and disallow duplicates, to make sure they are all unique IDs (no repeats.)
+//                  int32_t nRefCount = 0; // Using std::set here instead of a simple int32_t. (To prevent duplicates.)
+                    std::set<int64_t> setOfRefNumbers; // we'll store them here, and disallow duplicates, to make sure they are all unique IDs (no repeats.)
 
 					FOR_EACH(listOfItems, tranIn.GetItemList())
                     {
@@ -12704,7 +12704,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // -------------------
 
                     if ( pInbox->GetTransactionCountInRefTo(pServerTransaction->GetReferenceToNum()) !=
-                         static_cast<int>(setOfRefNumbers.size()) )
+                         static_cast<int32_t>(setOfRefNumbers.size()) )
                     {
                         OTLog::vOutput(0, "%s: User tried to close a finalReceipt, "
                                        "without also closing all related receipts. (Those that share the IN REF TO number.)\n",
@@ -12719,9 +12719,9 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                     // Server side stores a list of open cron items on each Nym.
                     // The closing transaction number on the final receipt SHOULD be on that list.
                     //
-                    std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
+                    std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
 
-                    std::set<long>::iterator theSetIT = theIDSet.find(pServerTransaction->GetClosingNum());
+                    std::set<int64_t>::iterator theSetIT = theIDSet.find(pServerTransaction->GetClosingNum());
 
                     // If we FOUND it on the Nym, then we add it to the list to be removed from Nym's open cron items.
                     // (If it wasn't there before, then we wouldn't want to "re-add" it, now would we?)
@@ -12904,7 +12904,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
             //
             while (!theListOfInboxReceiptsBeingRemoved.empty())
             {
-				long lTemp = theListOfInboxReceiptsBeingRemoved.front();
+				int64_t lTemp = theListOfInboxReceiptsBeingRemoved.front();
 				theListOfInboxReceiptsBeingRemoved.pop_front();
 
 				// Notice I don't call DeleteBoxReceipt(lTemp) here like I normally would when calling
@@ -12922,9 +12922,9 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
             // Also, we're ONLY removing these because we verified above that they were really there.
             // Otherwise it'd be pretty stupid to "re-add" them, eh?
             //
-            for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+            for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 			{
-				long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+				int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 				theNym.RemoveIssuedNum(m_strServerID, lTemp);
 			}
 
@@ -12940,9 +12940,9 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
             // **********************************************************************
 
             // Here, add all the issued nums back (that had been temporarily removed from theNym) that were stored on theTempNym for safe-keeping.
-            for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+            for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
             {
-                long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+                int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
                 theNym.AddIssuedNum(m_strServerID, lTemp);
             }
             // (They are removed for real at the bottom of this function, IF everything is successful between now and then.)
@@ -13383,7 +13383,7 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
                                     else
                                     {
                                         // Generate a new transaction number for the sender's inbox (to notice him of acceptance.)
-                                        long lNewTransactionNumber = 0;
+                                        int64_t lNewTransactionNumber = 0;
                                         IssueNextTransactionNumber(m_nymServer, lNewTransactionNumber, false); // bStoreTheNumber = false
 
                                         // Generate a new transaction... (to notice the sender of acceptance.)
@@ -13563,19 +13563,19 @@ void OTServer::NotarizeProcessInbox(OTPseudonym & theNym, OTAccount & theAccount
 		// Therefore, remove any relevant issued numbers from theNym (those he's
         // now officially no longer responsible for), and save.
         //
-		for (int i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
+		for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(SERVER_ID); i++)
 		{
-			long lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
+			int64_t lTemp = theTempNym.GetIssuedNum(SERVER_ID, i);
 			theNym.RemoveIssuedNum(m_nymServer, m_strServerID, lTemp, false); // bSave = false (saved below)
 		}
 		//-------------------------------------------
         // The Nym (server side) stores a list of all opening and closing cron #s.
         // So when the number is released from the Nym, we also take it off that list.
         //
-        std::set<long> & theIDSet = theNym.GetSetOpenCronItems();
-        for (int i = 0; i < theTempClosingNumNym.GetIssuedNumCount(SERVER_ID); i++)
+        std::set<int64_t> & theIDSet = theNym.GetSetOpenCronItems();
+        for (int32_t i = 0; i < theTempClosingNumNym.GetIssuedNumCount(SERVER_ID); i++)
         {
-			long lTemp = theTempClosingNumNym.GetIssuedNum(SERVER_ID, i);
+			int64_t lTemp = theTempClosingNumNym.GetIssuedNum(SERVER_ID, i);
             theIDSet.erase(lTemp); // now it's erased from within the Nym.
         }
 		theNym.SaveSignedNymfile(m_nymServer);
@@ -14251,7 +14251,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 				// Request numbers start at 100 (currently). (Since certain special messages USE 1 already...
                 // Such as messages that occur before requestnumbers are possible, like CreateUserAccount.)
                 //
-				long lRequestNumber = 0;
+				int64_t lRequestNumber = 0;
 
 				if (false == pNym->GetCurrentRequestNum(m_strServerID, lRequestNumber))
 				{
@@ -14298,7 +14298,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 							((OTServer::GetOverrideNymID().size() <= 0) ||	// AND (there's no Override Nym ID listed --OR-- the Override Nym ID doesn't
 							 (0 != OTServer::GetOverrideNymID().compare((theMessage.m_strNymID.Get())))))	// match the Nym's ID who sent this message)
 						{
-							const long & lUsageCredits = pNym->GetUsageCredits();
+							const int64_t & lUsageCredits = pNym->GetUsageCredits();
 
 							if (0 == lUsageCredits) // If the User has ZERO USAGE CREDITS LEFT. (Too bad, even 1 would have squeezed him by here.)
 							{
@@ -14307,7 +14307,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 								return false;
 							}
 
-							const long lUsageFinal = (lUsageCredits-1);
+							const int64_t lUsageFinal = (lUsageCredits-1);
 							pNym->SetUsageCredits(lUsageFinal);
 						}
 						// ----------------------------------------------------------------------------
@@ -14419,7 +14419,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     bool bIsDirtyNym    = false; // if we add any acknowledged replies to the server-side list, we will want to save (at the end.)
     bool bIsDirtyNymbox = false; // if we remove any replyNotices from the Nymbox, then we will want to save the Nymbox (at the end.)
 
-    std::set<long> numlist_ack_reply;
+    std::set<int64_t> numlist_ack_reply;
     if (theMessage.m_AcknowledgedReplies.Output(numlist_ack_reply)) // returns false if the numlist was empty.
     {
         // Load Nymbox
@@ -14428,9 +14428,9 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 
         if (theNymbox.LoadNymbox() && theNymbox.VerifySignature(m_nymServer))
         {
-            FOR_EACH(std::set<long>, numlist_ack_reply)
+            FOR_EACH(std::set<int64_t>, numlist_ack_reply)
             {
-                const long lRequestNum = *it;
+                const int64_t lRequestNum = *it;
                 // ----------------------------
                 // If the # already appears on its internal list, then it does nothing. (It must have already done
                 // whatever it needed to do, since it already has the number recorded as acknowledged.)
@@ -14488,13 +14488,13 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
     // then remove it from my own (server's) internal list as well.
     //
     OTNumList numlist_to_remove; // a temp variable where we will put the numbers "to be removed" (so we can remove them all at once, after the loop.)
-    const int nAcknowledgedNumCount = pNym->GetAcknowledgedNumCount(SERVER_ID);
+    const int32_t nAcknowledgedNumCount = pNym->GetAcknowledgedNumCount(SERVER_ID);
 
     if (nAcknowledgedNumCount > 0)
     {
-        for (int i = 0; i < nAcknowledgedNumCount; i++)
+        for (int32_t i = 0; i < nAcknowledgedNumCount; i++)
         {
-            const long lAcknowledgedNum = pNym->GetAcknowledgedNum(SERVER_ID, i); // index
+            const int64_t lAcknowledgedNum = pNym->GetAcknowledgedNum(SERVER_ID, i); // index
 
             // For any numbers on the server's internal list but NOT on the client's list (according
             // to the incoming message) the server removes them from its internal list. (If the client
@@ -14508,12 +14508,12 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
         // ---------------------------------
         if (numlist_to_remove.Count() > 0)
         {
-            std::set<long> set_server_ack;
+            std::set<int64_t> set_server_ack;
             // -----------------------------------
             if (numlist_to_remove.Output(set_server_ack))
-                FOR_EACH(std::set<long>, set_server_ack)
+                FOR_EACH(std::set<int64_t>, set_server_ack)
                 {
-                    const long lRequestNum = *it;
+                    const int64_t lRequestNum = *it;
                     // --------------------------
                     if (pNym->RemoveAcknowledgedNum(m_nymServer, m_strServerID, lRequestNum, false)) // bSave=false
                         bIsDirtyNym = true;
@@ -14933,7 +14933,7 @@ bool OTServer::ProcessUserCommand(OTMessage & theMessage,
 
 
 
-bool OTServer::GetConnectInfo(OTString & strHostname, int & nPort)
+bool OTServer::GetConnectInfo(OTString & strHostname, int32_t & nPort)
 {
 	if (NULL == m_pServerContract)
 		return false;

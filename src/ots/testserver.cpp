@@ -230,7 +230,7 @@ extern "C"
 
 
 
-int main (int argc, char **argv)
+int32_t main (int32_t argc, char **argv)
 {
 	OTLog::vOutput(0, "\n\nWelcome to Open Transactions... Test Server -- version %s\n"
 				   "(transport build: OTMessage -> TCP -> SSL)\n"
@@ -249,7 +249,7 @@ int main (int argc, char **argv)
 #ifdef _WIN32
 	WSADATA wsaData;
 	WORD wVersionRequested = MAKEWORD( 2, 2 );
-	int err = WSAStartup( wVersionRequested, &wsaData );
+	int32_t err = WSAStartup( wVersionRequested, &wsaData );
 
 	/* Tell the user that we could not find a usable		*/
 	/* Winsock DLL.											*/
@@ -400,12 +400,12 @@ int main (int argc, char **argv)
 	//
 	//
 	OTString	strHostname;	// The hostname of this server, according to its own contract.
-	int			nPort=0;		// The port of this server, according to its own contract.
+	int32_t			nPort=0;		// The port of this server, according to its own contract.
 
 	OT_ASSERT_MSG(theServer.GetConnectInfo(strHostname, nPort),
 				  "Unable to find my own connect info (which is in my server contract BTW.)\n");
 
-	const int	nServerPort = nPort;
+	const int32_t	nServerPort = nPort;
 
 	// -----------------------------------------------------------------------
 
@@ -418,7 +418,7 @@ int main (int argc, char **argv)
 	OT_ASSERT_MSG(NULL != socket, "SFSocketAlloc Failed\n");
 
     // Initialize SSL Socket
-	int nSFSocketInit = SFSocketInit(socket,
+	int32_t nSFSocketInit = SFSocketInit(socket,
 					 strCAFile.Get(),
 					 strDHFile.Get(),
 					 strKeyFile.Get(),
@@ -428,7 +428,7 @@ int main (int argc, char **argv)
 	OT_ASSERT_MSG(nSFSocketInit >= 0, "SFSocketInit Context Failed\n");
 
     // Listen on Address/Port
-	int nSFSocketListen = SFSocketListen(socket, INADDR_ANY, nServerPort);
+	int32_t nSFSocketListen = SFSocketListen(socket, INADDR_ANY, nServerPort);
 
 	OT_ASSERT_MSG(nSFSocketListen >= 0, "nSFSocketListen Failed\n");
 
@@ -560,12 +560,12 @@ int main (int argc, char **argv)
 }
 
 /*
- int do_server_loop(SSL *ssl)
+ int32_t do_server_loop(SSL *ssl)
  {
- int  err, nread;
+ int32_t  err, nread;
  union u_header theCMD;
- int retVal = 0;
- int bClosed = 0;
+ int32_t retVal = 0;
+ int32_t bClosed = 0;
 
  do
  {

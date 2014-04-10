@@ -181,7 +181,7 @@ protected:
 	OTIdentifier	m_ServerID;   // Mandatory
 	OTIdentifier	m_AssetID;    // Mandatory
 	// ----------------------------------------------
-	long            m_lTotalValue;   // Push increments this by denomination, and Pop decrements it by denomination.
+	int64_t            m_lTotalValue;   // Push increments this by denomination, and Pop decrements it by denomination.
 	// ----------------------------------------------
 	bool            m_bPasswordProtected;  // this purse might be encrypted to a passphrase, instead of a Nym.
 	// If that's the case, BTW, then there will be a Symmetric Key and a Master Key.
@@ -214,7 +214,7 @@ public:
 	EXPORT	static OTPurse * LowLevelInstantiate(const OTString & strFirstLine, const OTIdentifier & SERVER_ID);
 	EXPORT	static OTPurse * LowLevelInstantiate(const OTString & strFirstLine, const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
 	// ----------------------------------------------
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	// ----------------------------------------------
 	// What if you DON'T want to encrypt the purse to your Nym??
 	// What if you just want to use a passphrase instead?
@@ -240,10 +240,10 @@ public:
 	EXPORT	OTToken *    Pop (OTNym_or_SymmetricKey theOwner); // Caller IS responsible to delete. (Peek
 	EXPORT	OTToken *    Peek(OTNym_or_SymmetricKey theOwner) const; // Caller IS responsible to delete. (Peek returns a copy of the token.)
 	// ----------------------------------------------
-	EXPORT	int			 Count() const;
+	EXPORT	int32_t			 Count() const;
 	EXPORT	bool		 IsEmpty() const;
 	// ----------------------------------------------
-	inline long	GetTotalValue() const { return m_lTotalValue; }
+	inline int64_t	GetTotalValue() const { return m_lTotalValue; }
 	// ----------------------------------------------
     EXPORT  time_t GetLatestValidFrom() const;
     EXPORT  time_t GetEarliestValidTo() const;

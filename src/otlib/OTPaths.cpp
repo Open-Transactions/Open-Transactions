@@ -742,7 +742,7 @@ bool OTPaths::PathExists(const OTString & strPath)
     {
         if ('/' != *l_strPath.rbegin())
         {
-            long temp_l=0;
+            int64_t temp_l=0;
             return FileExists(strPath,temp_l);
         }
         else
@@ -754,7 +754,7 @@ bool OTPaths::PathExists(const OTString & strPath)
 }
 
 //static
-bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
+bool OTPaths::FileExists(const OTString & strFilePath, int64_t & nFileLength)
 {
     if (!strFilePath.Exists()) { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strFilePath" ); OT_FAIL; }
 
@@ -774,7 +774,7 @@ bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
 
     if ('/' != *l_strPath.rbegin())
     {
-        int status=0; // todo security (this whole block)
+        int32_t status=0; // todo security (this whole block)
 #ifdef _WIN32
         struct _stat st_buf;
         memset(&st_buf, 0, sizeof(st_buf));
@@ -794,7 +794,7 @@ bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
         {
             // good we have a file.
             size_t lFileLength = st_buf.st_size;
-            nFileLength = static_cast<long>(lFileLength);
+            nFileLength = static_cast<int64_t>(lFileLength);
             return true;
         }
     }
@@ -821,7 +821,7 @@ bool OTPaths::FolderExists(const OTString & strFolderPath)
     if ('/' == *l_strPath.rbegin())
     {
 
-        int status=0; // todo security (this whole block)
+        int32_t status=0; // todo security (this whole block)
 #ifdef _WIN32
         struct _stat st_buf;
         memset(&st_buf, 0, sizeof(st_buf));
@@ -957,7 +957,7 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
 #endif
 #else
 
-    long path_max=0;
+    int64_t path_max=0;
 #ifdef PATH_MAX
     path_max = PATH_MAX;
 #else
@@ -986,8 +986,8 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
         OT_ASSERT_MSG((errno != EACCES),"Error (Realpath: EACCES): Unable to build RealPath: access denied");
         OT_ASSERT_MSG((errno != EINVAL),"Error (RealPath: EINVAL): Input value into RealPath was NULL");
         OT_ASSERT_MSG((errno != ELOOP),"Error (RealPath: ELOOP): Resloving links resulted in a loop.");
-        OT_ASSERT_MSG((errno != ENAMETOOLONG),"Error (RealPath: ENAMETOOLONG): Name too long.");
-        OT_ASSERT_MSG((errno != ERANGE),"Error (RealPath: ERANGE): Resulting path is too long for the buffer");
+        OT_ASSERT_MSG((errno != ENAMETOOLONG),"Error (RealPath: ENAMETOOLONG): Name too int64_t.");
+        OT_ASSERT_MSG((errno != ERANGE),"Error (RealPath: ERANGE): Resulting path is too int64_t for the buffer");
         OT_ASSERT_MSG((errno != EIO),"Error (RealPath: EIO): Unable to access path.");
 
         OT_ASSERT_MSG((false),"Error (RealPath: OTHER): Something bad Happend with 'realpath'.");
@@ -1002,7 +1002,7 @@ const bool GetExecutable(OTString & strExecutablePath)
 #ifdef TARGET_OS_MAC
     char bufPath[PATH_MAX + 1]="";
     uint32_t size = sizeof(bufPath);
-    int  bufsize = sizeof(bufPath);
+    int32_t  bufsize = sizeof(bufPath);
     if (_NSGetExecutablePath(bufPath, &size) == 0)
         strExecutablePath.Set(bufPath);
     else return false;

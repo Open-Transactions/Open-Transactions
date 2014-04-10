@@ -150,7 +150,7 @@
 #endif
 
 /*
- int vsnprintf(char *str, size_t size, const char *format, va_list ap);
+ int32_t vsnprintf(char *str, size_t size, const char *format, va_list ap);
 
        Upon successful return, these functions return the number of characters
        printed  (not  including  the  trailing  '\0'  used  to  end  output to
@@ -184,8 +184,8 @@ bool OTString::vformat(const char * fmt, va_list * pvl, std::string & str_Output
     OT_ASSERT(NULL != fmt);
     OT_ASSERT(NULL != pvl);
     // ------------------
-	int size=0;
-	int nsize=0;
+	int32_t size=0;
+	int32_t nsize=0;
 	char * buffer = NULL;
 	va_list args;
 
@@ -436,8 +436,8 @@ const std::string OTString::replace_chars(
 
 std::wstring OTString::s2ws(const std::string& s)
 {
-    int len;
-    int slength = (int)s.length() + 1;
+    int32_t len;
+    int32_t slength = (int32_t)s.length() + 1;
     len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0); 
     std::wstring r(len, L'\0');
     MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, &r[0], len);
@@ -447,8 +447,8 @@ std::wstring OTString::s2ws(const std::string& s)
 
 std::string OTString::ws2s(const std::wstring& s)
 {
-    int len;
-    int slength = (int)s.length() + 1;
+    int32_t len;
+    int32_t slength = (int32_t)s.length() + 1;
     len = WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, 0, 0, 0, 0); 
     std::string r(len, '\0');
     WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, &r[0], len, 0, 0); 
@@ -589,7 +589,7 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
         // Therefore we need to iterate through the tokens, and create a single string
         // with spaces between the tokens.
         //
-        for (unsigned int i = 0; 
+        for (uint32_t i = 0; 
             (i < (exp_result.we_wordc - 1))      && 
             (exp_result.we_wordv[i]   != NULL)   && 
             (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
@@ -613,11 +613,11 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
 
     const char * txt = Get();
     std::string buf = txt;
-    for (int i = 0; txt[i] != 0;)
+    for (int32_t i = 0; txt[i] != 0;)
     {
         while (txt[i] == ' ') i++;
-        int k = i;
-        int k2 = i;
+        int32_t k = i;
+        int32_t k2 = i;
         if (txt[i] == '\'' || txt[i] == '"')
         {
             // quoted string
@@ -640,8 +640,8 @@ bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & ma
         const std::string key = buf.substr(k, k2 - k);
 
         while (txt[i] == ' ') i++;
-        int v = i;
-        int v2 = i;
+        int32_t v = i;
+        int32_t v2 = i;
         if (txt[i] == '\'' || txt[i] == '"')
         {
             // quoted string
@@ -988,7 +988,7 @@ void OTString::LowLevelSetStr(const OTString & strBuf)
 // That is, up through index 8 (9th byte) instead of index 9 (10th byte.) This is because
 // we are assuming the buffer has no more room than 10 bytes, and thus index 9 (10th byte)
 // MUST be reserved for the null terminating '\0'. Therefore, if the string is actually 10
-// bytes long, necessitating an 11th byte for the null terminator, then you should pass 11
+// bytes int64_t, necessitating an 11th byte for the null terminator, then you should pass 11
 // here, aka OTString::GetLength()+1. That way the entire string will fit.
 //
 void OTString::LowLevelSet(const char * new_string, uint32_t nEnforcedMaxLength)
@@ -1391,7 +1391,7 @@ bool OTString::DecodeIfArmored(bool bEscapedIsAllowed/*=true*/)
 // ----------------------------------------------------------------------
 
 /*
- char *str_dup2(const char *str, int length)
+ char *str_dup2(const char *str, int32_t length)
  {
 	 char *str_new;
 	 str_new = new char [length + 1];
@@ -1405,11 +1405,11 @@ bool OTString::DecodeIfArmored(bool bEscapedIsAllowed/*=true*/)
 
 //inline bool vformat(const char * fmt, va_list vl, std::string & str_output)
 //{
-//    int size      = 512;
+//    int32_t size      = 512;
 //    char * buffer = new char[size];
 //    buffer[0]     = '\0';
 //    // ------------------------------------    
-//    int nsize = vsnprintf(buffer,size,fmt,vl);
+//    int32_t nsize = vsnprintf(buffer,size,fmt,vl);
 //    
 //    //fail -- delete buffer and try again
 //    if(size <= nsize)
@@ -1544,7 +1544,7 @@ char *str_dup1(const char *str)
 // true  == there are more lines to read.
 // false == this is the last line. Like EOF.
 //
-bool OTString::sgets(char * szBuffer, unsigned nBufSize)
+bool OTString::sgets(char * szBuffer, uint32_t nBufSize)
 {
 	if (NULL == szBuffer)
 	{

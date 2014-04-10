@@ -212,7 +212,7 @@ protected:
     bool        m_bIsShares;   // default: false. (defaults to currency, not shares.)
     // ----------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 // ----------------------------------
 public:
     virtual void CreateContents(); // Only used when first generating an asset or server contract. Meant for contracts which never change after that point.  Otherwise does the same thing as UpdateContents. (But meant for a different purpose.)
@@ -235,9 +235,9 @@ EXPORT    bool EraseAccountRecord(const OTIdentifier & theAcctID);  // removes t
 
 EXPORT    bool ForEachAccountRecord(OTAcctFunctor & theAction); // Loops through all the accounts for a given asset type, and calls Functor on each.
 	// ----------------------------------
-EXPORT    static std::string formatLongAmount(long & lOriginalValue, int nFactor=100, int nPower=2, const char * szSymbol="",
+EXPORT    static std::string formatLongAmount(int64_t & lOriginalValue, int32_t nFactor=100, int32_t nPower=2, const char * szSymbol="",
                                               const char * szSeparator=",", const char * szDecimalPoint=".");
-EXPORT    static bool        ParseFormatted(long & lResult, const std::string & str_input, int nFactor=100, int nPower=2,
+EXPORT    static bool        ParseFormatted(int64_t & lResult, const std::string & str_input, int32_t nFactor=100, int32_t nPower=2,
                                             const char * szSeparator=",", const char * szDecimalPoint=".");
 	// ----------------------------------
     // For parsing and formatting amounts based on the currency contract.

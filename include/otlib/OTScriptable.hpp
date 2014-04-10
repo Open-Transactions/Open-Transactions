@@ -198,15 +198,15 @@ protected:
 	bool	m_bSpecifyParties;	// Serialized. See above note.
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
     OTString  m_strLabel; // OTSmartContract can put its trans# here. (Allowing us to use it in the OTScriptable methods where any smart contract would normally want to log its transaction #, not just the clause name.)
 public:
     // ----------------------------------------------------
     virtual void SetDisplayLabel(const std::string * pstrLabel=NULL);
 	// ----------------------------------------------------
-	int GetPartyCount() const { return static_cast<int> (m_mapParties.size()); }
-	int GetBylawCount() const { return static_cast<int> (m_mapBylaws.size()); }
+	int32_t GetPartyCount() const { return static_cast<int32_t> (m_mapParties.size()); }
+	int32_t GetBylawCount() const { return static_cast<int32_t> (m_mapBylaws.size()); }
 	// ----------------------------------------------------
 	virtual bool AddParty(OTParty & theParty); // Takes ownership.
 	virtual bool AddBylaw(OTBylaw & theBylaw); // takes ownership.
@@ -217,8 +217,8 @@ EXPORT	OTParty  * GetParty	(const std::string str_party_name );
 EXPORT	OTBylaw  * GetBylaw	(const std::string str_bylaw_name );
 EXPORT	OTClause * GetClause(const std::string str_clause_name);
 	// ----------------------------------------------------
-EXPORT	OTParty  * GetPartyByIndex(int nIndex);
-EXPORT	OTBylaw  * GetBylawByIndex(int nIndex);
+EXPORT	OTParty  * GetPartyByIndex(int32_t nIndex);
+EXPORT	OTBylaw  * GetBylawByIndex(int32_t nIndex);
 	// ----------------------------------------------------
 EXPORT	OTParty * FindPartyBasedOnNymAsAgent(OTPseudonym & theNym, OTAgent ** ppAgent=NULL);
 EXPORT	OTParty * FindPartyBasedOnNymAsAuthAgent(OTPseudonym & theNym, OTAgent ** ppAgent=NULL);
@@ -237,7 +237,7 @@ EXPORT	OTParty * FindPartyBasedOnNymAsAuthAgent(OTPseudonym & theNym, OTAgent **
 	// agent is the authorizing agent, plus a closing number for every acct of which agent is the
 	// authorized agent.)
 	//
-EXPORT	int  GetCountTransNumsNeededForAgent(const std::string str_agent_name);
+EXPORT	int32_t  GetCountTransNumsNeededForAgent(const std::string str_agent_name);
 	// ----------------------------------------------------
 	// Verifies that Nym is actually an agent for this agreement.
 	// (Verifies that Nym has signed this agreement, if it's a trade or a payment plan, OR
@@ -300,8 +300,8 @@ EXPORT	bool AllPartiesHaveSupposedlyConfirmed();
 EXPORT	bool SendNoticeToAllParties(bool bSuccessMsg,
                                     OTPseudonym & theServerNym,
                                     const OTIdentifier & theServerID,
-                                    const long & lNewTransactionNumber,
-//                                  const long & lInReferenceTo, // each party has its own opening trans #.
+                                    const int64_t & lNewTransactionNumber,
+//                                  const int64_t & lInReferenceTo, // each party has its own opening trans #.
                                     const OTString & strReference,
                                     OTString * pstrNote=NULL,
                                     OTString * pstrAttachment=NULL,
@@ -334,7 +334,7 @@ EXPORT	static OTScriptable * InstantiateScriptable(const OTString & strInput);
 	// ------------------------
 	// For use from inside server-side scripts.
 	//
-	static std::string GetTime(); // Returns a string, containing seconds as int. (Time in seconds.)
+	static std::string GetTime(); // Returns a string, containing seconds as int32_t. (Time in seconds.)
 	// ------------------------
 	OTScriptable();
 	virtual ~OTScriptable();

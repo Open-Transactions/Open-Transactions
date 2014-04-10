@@ -22,7 +22,7 @@
 // -----------------------------------------------------
 
 /** Print a demangled stack backtrace of the caller function to FILE* out. */
-static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames = 63)
+static inline void print_stacktrace(FILE *out = stderr, uint32_t max_frames = 63)
 {
 #ifdef _WIN32
 	//TODO: Write Winodws Code
@@ -39,7 +39,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
     void* addrlist[max_frames+1];
 
     // retrieve current stack addresses
-    int addrlen = backtrace(addrlist, sizeof(addrlist) / sizeof(void*));
+    int32_t addrlen = backtrace(addrlist, sizeof(addrlist) / sizeof(void*));
 
     if (addrlen == 0) {
 	fprintf(out, "  <empty, possibly corrupt>\n");
@@ -56,7 +56,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
 
     // iterate over the returned symbol lines. skip the first, it is the
     // address of this function.
-    for (int i = 1; i < addrlen; i++)
+    for (int32_t i = 1; i < addrlen; i++)
     {
         char *begin_name = 0, *begin_offset = 0, *end_offset = 0;
 
@@ -85,7 +85,7 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
             // offset in [begin_offset, end_offset). now apply
             // __cxa_demangle():
 
-            int status;
+            int32_t status;
             char* ret = abi::__cxa_demangle(begin_name,
                             funcname, &funcnamesize, &status);
             if (status == 0) {

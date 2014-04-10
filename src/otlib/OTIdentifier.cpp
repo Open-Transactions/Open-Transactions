@@ -242,7 +242,7 @@ bool OTIdentifier::operator >=(const OTIdentifier &s2)  const
 
 OTIdentifier::~OTIdentifier() { }
 
-void OTIdentifier::CopyTo(unsigned char * szNewLocation) const
+void OTIdentifier::CopyTo(uint8_t * szNewLocation) const
 {
 	if (GetSize())
 	{
@@ -425,9 +425,9 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput, const OTString & st
 bool OTIdentifier::XOR(const OTIdentifier & theInput)
 {
 	// Go with the smallest of the two
-	const long lSize = (GetSize() > theInput.GetSize() ? theInput.GetSize() : GetSize());
+	const int64_t lSize = (GetSize() > theInput.GetSize() ? theInput.GetSize() : GetSize());
 	
-	for (int i = 0; i < lSize; i++)
+	for (int32_t i = 0; i < lSize; i++)
 	{
 		// When converting to BigInteger internally, this will be a bit more efficient.
 		((char*)GetPointer())[i] ^= ((char*)theInput.GetPointer())[i]; // todo cast

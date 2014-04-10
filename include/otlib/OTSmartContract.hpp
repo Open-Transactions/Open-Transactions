@@ -147,11 +147,11 @@ class OTPseudonym;
 class OTSmartContract;
 
 
-// global with long parameter
+// global with int64_t parameter
 //bool g_MoveAcctFundsL(OTSmartContract * pContract,
 //					 const std::string from_acct_name,
 //					 const std::string to_acct_name,
-//					 const long lAmount);
+//					 const int64_t lAmount);
 //
 //
 //// global with string parameter
@@ -204,7 +204,7 @@ protected:
 	// --------------------------------------------------------------------------
 	virtual void onActivate();		// called by OTCronItem::HookActivationOnCron().
 
-    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTransactionNumber,
+    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewTransactionNumber,
                                 OTPseudonym & theOriginator,
                                 OTPseudonym * pRemover);
     virtual void onRemovalFromCron();
@@ -233,8 +233,8 @@ public:
 	const OTString & GetLastRecipientUserID()	const { return m_strLastRecipientUser; }
 	const OTString & GetLastRecipientAcctID()	const { return m_strLastRecipientAcct; }
 	// --------------------------------------------------------------------------
-	int GetCountStashes()    const;
-	int GetCountStashAccts() const;
+	int32_t GetCountStashes()    const;
+	int32_t GetCountStashAccts() const;
 	// --------------------------------------------------------------------------
 	// FROM PAYMENT PLAN:
 //  bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
@@ -279,8 +279,8 @@ public:
 	// --------------------------------------------------------------------------
 	// From OTTrackable (parent class of OTCronItem, parent class of this)
 	/*
-	 inline long GetTransactionNum() const { return m_lTransactionNum; }
-	 inline void SetTransactionNum(long lTransactionNum) { m_lTransactionNum = lTransactionNum; }
+	 inline int64_t GetTransactionNum() const { return m_lTransactionNum; }
+	 inline void SetTransactionNum(int64_t lTransactionNum) { m_lTransactionNum = lTransactionNum; }
 
 	 inline const OTIdentifier &	GetSenderAcctID()               { return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier &	GetSenderUserID()               { return m_SENDER_USER_ID; }
@@ -288,7 +288,7 @@ public:
 	 inline void  SetSenderUserID(const OTIdentifier & USER_ID)		{ m_SENDER_USER_ID = USER_ID; }
 	 */
 
-    virtual bool HasTransactionNum(const long & lInput) const;
+    virtual bool HasTransactionNum(const int64_t & lInput) const;
     virtual void GetAllTransactionNumbers(OTNumList & numlistOutput) const;
 
 	// --------------------------------------------------------------------------
@@ -354,7 +354,7 @@ EXPORT	bool VerifySmartContract(OTPseudonym & theNym, OTAccount & theAcct,
 	// to make sure that certain IDs and transaction #s are set, so the smart contract
 	// will interoperate with the old Cron Item system of doing things.
 	//
-EXPORT	void PrepareToActivate(const long & lOpeningTransNo,	const long & lClosingTransNo,
+EXPORT	void PrepareToActivate(const int64_t & lOpeningTransNo,	const int64_t & lClosingTransNo,
                                const OTIdentifier & theUserID,	const OTIdentifier & theAcctID);
 
 	// --------------------------------------------------------------------------
@@ -374,10 +374,10 @@ EXPORT	void PrepareToActivate(const long & lOpeningTransNo,	const long & lClosin
 	void		SetRemainingTimer(const std::string str_seconds_from_now); // onProcess will trigger X seconds from now... (And not until then, either.)
 	std::string	GetRemainingTimer() const; // returns seconds left on the timer, in string format, or "0".
 	// --------------------------------------------------------------------------
-	// class member, with long parameter
+	// class member, with int64_t parameter
 //	bool MoveAcctFundsL(const std::string from_acct_name,
 //					   const std::string to_acct_name,
-//					   const long lAmount); // calls OTCronItem::MoveFunds()
+//					   const int64_t lAmount); // calls OTCronItem::MoveFunds()
 
 	// class member, with string parameter
 	bool MoveAcctFundsStr(const std::string from_acct_name,
@@ -435,7 +435,7 @@ EXPORT	void ExecuteClauses (mapOfClauses & theClauses, OTString * pParam=NULL);
 	// a script, is to call StashAcctFunds() or UnstashAcctFunds() (BELOW)
 	//
 EXPORT	bool StashFunds(const	mapOfNyms		&	map_NymsAlreadyLoaded,
-                        const	long			&	lAmount,	// negative amount here means UNstash. Positive means STASH.
+                        const	int64_t			&	lAmount,	// negative amount here means UNstash. Positive means STASH.
                         const	OTIdentifier	&	PARTY_ACCT_ID,
                         const	OTIdentifier	&	PARTY_USER_ID,
                                 OTStash			&	theStash);
@@ -471,13 +471,13 @@ EXPORT	virtual ~OTSmartContract();
 	static void CleanupNyms(mapOfNyms & theMap);
 	static void CleanupAccts(mapOfAccounts & theMap);
 	// ------------------------------------------------------
-	virtual bool IsValidOpeningNumber(const long & lOpeningNum) const;
+	virtual bool IsValidOpeningNumber(const int64_t & lOpeningNum) const;
 
-	virtual long GetOpeningNumber(const OTIdentifier	& theNymID) const;
-    virtual long GetClosingNumber(const OTIdentifier	& theAcctID) const;
+	virtual int64_t GetOpeningNumber(const OTIdentifier	& theNymID) const;
+    virtual int64_t GetClosingNumber(const OTIdentifier	& theAcctID) const;
     // ------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	virtual bool SaveContractWallet(std::ofstream & ofs);

@@ -156,7 +156,7 @@ extern "C"
 }
 
 #ifdef _WIN32
-void OT_Sleep(int nMS);
+void OT_Sleep(int32_t nMS);
 #endif
 
 #include "OTIdentifier.h"
@@ -218,7 +218,7 @@ extern OTPseudonym *g_pTemporaryNym;
 
 
 
-int main (int argc, char **argv)
+int32_t main (int32_t argc, char **argv)
 {
 	OTLog::vOutput(0, "\n\nWelcome to Open Transactions... Test Client -- version %s\n"
 				   "(transport build: OTMessage -> TCP -> SSL)\n"
@@ -332,9 +332,9 @@ int main (int argc, char **argv)
 	//	   Then continue back up to the prompt at step (1).
 
     char buf[200] = "";
- 	int retVal = 0;
+ 	int32_t retVal = 0;
 
-	int nExpectResponse = 0;
+	int32_t nExpectResponse = 0;
 
 	OTLog::Output(0, "You may wish to 'load' then 'connect' then 'stat'.\n");
 	OTLog::vOutput(4, "Starting client loop. u_header size in C code is %d.\n", OT_CMD_HEADER_SIZE);
@@ -416,7 +416,7 @@ int main (int argc, char **argv)
 			// I don't have to contact the server to write a payment plan -- as long as I already have a transaction
 			// number I can use to write it. Otherwise I'd have to ask the server to send me one first.
 			OTString strServerID(pAccount->GetRealServerID());
-			long lTransactionNumber=0;
+			int64_t lTransactionNumber=0;
 
 			if (false == g_pTemporaryNym->GetNextTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber))
 			{
@@ -462,7 +462,7 @@ int main (int argc, char **argv)
 						  "6 months		== 15552000 Seconds\n\n"
 						  );
 
-			long lExpirationInSeconds = 86400;
+			int64_t lExpirationInSeconds = 86400;
 			OTLog::vOutput(0, "How many seconds before payment plan expires? (defaults to 1 day: %ld): ", lExpirationInSeconds);
 			strTemp.Release();
 			strTemp.OTfgets(std::cin);
@@ -505,13 +505,13 @@ int main (int argc, char **argv)
 
 			OTLog::Output(0, "What is the Initial Payment Amount, if any? [0]: ");
 			strTemp.Release(); strTemp.OTfgets(std::cin);
-			long lInitialPayment = atol(strTemp.Get());
+			int64_t lInitialPayment = atol(strTemp.Get());
 
 			if (lInitialPayment > 0)
 			{
 				time_t	PAYMENT_DELAY = 60; // 60 seconds.
 
-				OTLog::vOutput(0, "From the Start Date forward, how long until the Initial Payment should charge?\n"
+				OTLog::vOutput(0, "From the Start Date forward, how int64_t until the Initial Payment should charge?\n"
 							   "(defaults to one minute, in seconds) [%d]: ", PAYMENT_DELAY);
 				strTemp.Release();
 				strTemp.OTfgets(std::cin);
@@ -538,7 +538,7 @@ int main (int argc, char **argv)
 
 			OTLog::Output(0, "What is the regular payment amount, if any? [0]: ");
 			strTemp.Release(); strTemp.OTfgets(std::cin);
-			long lRegularPayment = atol(strTemp.Get());
+			int64_t lRegularPayment = atol(strTemp.Get());
 
 			if (lRegularPayment > 0) // If there are regular payments.
 			{
@@ -546,7 +546,7 @@ int main (int argc, char **argv)
 
 				time_t	PAYMENT_DELAY = 120; // 120 seconds.
 
-				OTLog::vOutput(0, "From the Start Date forward, how long until the Regular Payments start?\n"
+				OTLog::vOutput(0, "From the Start Date forward, how int64_t until the Regular Payments start?\n"
 							   "(defaults to two minutes, in seconds) [%d]: ", PAYMENT_DELAY);
 				strTemp.Release();
 				strTemp.OTfgets(std::cin);
@@ -582,7 +582,7 @@ int main (int argc, char **argv)
 
 				OTLog::Output(0, "Should there be some maximum number of payments? (Zero for no maximum.) [0]: ");
 				strTemp.Release(); strTemp.OTfgets(std::cin);
-				int nMaxPayments = atoi(strTemp.Get());
+				int32_t nMaxPayments = atoi(strTemp.Get());
 
 				bSuccessSetPaymentPlan = thePlan.SetPaymentPlan(lRegularPayment, PAYMENT_DELAY, PAYMENT_PERIOD, PLAN_LENGTH, nMaxPayments);
 			}
@@ -637,7 +637,7 @@ int main (int argc, char **argv)
 			// I don't have to contact the server to write a cheque -- as long as I already have a transaction
 			// number I can use to write it. Otherwise I'd have to ask the server to send me one first.
 			OTString strServerID(pAccount->GetRealServerID());
-			long lTransactionNumber=0;
+			int64_t lTransactionNumber=0;
 
 			if (false == g_pTemporaryNym->GetNextTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber))
 			{
@@ -659,7 +659,7 @@ int main (int argc, char **argv)
 			OTLog::Output(0, "Enter an amount: ");
 			strTemp.Release();
 			strTemp.OTfgets(std::cin);
-			const long lAmount = atol(strTemp.Get());
+			const int64_t lAmount = atol(strTemp.Get());
 
 			// -----------------------------------------------------------------------
 
@@ -681,7 +681,7 @@ int main (int argc, char **argv)
 					"6 months	== 15552000 Seconds\n\n"
 					);
 
-			long lExpirationInSeconds = 3600;
+			int64_t lExpirationInSeconds = 3600;
 			OTLog::vOutput(0, "How many seconds before cheque expires? (defaults to 1 hour: %ld): ", lExpirationInSeconds);
 			strTemp.Release();
 			strTemp.OTfgets(std::cin);

@@ -224,7 +224,7 @@ void OTLowLevelKeyData::Cleanup()
 }
 
 
-bool OTLowLevelKeyData::MakeNewKeypair(int nBits/*=1024*/)
+bool OTLowLevelKeyData::MakeNewKeypair(int32_t nBits/*=1024*/)
 {
     // ---------------------------------------
 //	OpenSSL_BIO		bio_err	=	NULL;
@@ -431,7 +431,7 @@ void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateK
                              "Enter your exported Nym's passphrase.  (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)");
     // ---------------------------
     //typedef
-    //int OT_OPENSSL_CALLBACK (char *buf, int size, int rwflag, void *userdata);
+    //int32_t OT_OPENSSL_CALLBACK (char *buf, int32_t size, int32_t rwflag, void *userdata);
     /*
     EVP_PKEY *  CopyPublicKey (EVP_PKEY & theKey);
     EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey);
@@ -767,7 +767,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordD
 	// ----------------------------------------
 	// write a public key to that buffer, from theKey (parameter.)
     //
-	int nWriteBio = PEM_write_bio_PUBKEY(bmem, &theKey);
+	int32_t nWriteBio = PEM_write_bio_PUBKEY(bmem, &theKey);
 	
 	if (0 == nWriteBio)
 	{
@@ -782,7 +782,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordD
 		// After the below call, pChar will point to the memory buffer where the public key
         // supposedly is, and lSize will contain the size of that memory.
         //
-		const long      lSize = BIO_get_mem_data(bmem, &pChar);
+		const int64_t      lSize = BIO_get_mem_data(bmem, &pChar);
         const uint32_t  nSize = static_cast<uint32_t>(lSize);
         
         if (nSize > 0)
@@ -876,7 +876,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPrivateKey(EVP_PKEY & theKey, OTPassword
     // and then load it up again, saving the encrypt/decrypt step that otherwise occurs, and then as long as we OpenSSL_cleanse
     // the BIO, then it SHOULD stil be safe, right?
     //
-    int nWriteBio = false;
+    int32_t nWriteBio = false;
     
     if (NULL == pImportPassword)
         nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, pCipher,
@@ -898,7 +898,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPrivateKey(EVP_PKEY & theKey, OTPassword
 		// After the below call, pChar will point to the memory buffer where the private key supposedly is,
 		// and lSize will contain the size of that memory.
         //
-        const long      lSize = BIO_get_mem_data(bmem, &pChar);
+        const int64_t      lSize = BIO_get_mem_data(bmem, &pChar);
         const uint32_t  nSize = static_cast<uint32_t>(lSize);
         
         if (nSize > 0)
@@ -973,11 +973,11 @@ bool OTAsymmetricKey_OpenSSL::ArmorPublicKey(EVP_PKEY & theKey, OTASCIIArmor & a
 	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());    
 	OT_ASSERT_MSG(NULL != bmem, "OTAsymmetricKey_OpenSSL::ArmorPublicKey: ASSERT: NULL != bmem");
     
-    long lSize = 0;
+    int64_t lSize = 0;
 	// ----------------------------------------
 	// write a public key to that buffer, from theKey (parameter.)
     //
-	int nWriteBio = PEM_write_bio_PUBKEY(bmem, &theKey);
+	int32_t nWriteBio = PEM_write_bio_PUBKEY(bmem, &theKey);
 	
 	if (0 == nWriteBio)
 	{
@@ -1154,11 +1154,11 @@ bool OTAsymmetricKey_OpenSSL::ReEncryptPrivateKey(OTPassword & theExportPassword
             OpenSSL_BIO bmem = BIO_new(BIO_s_mem());
             OT_ASSERT(NULL != bmem);
             
-            long lSize = 0;
+            int64_t lSize = 0;
             // ----------------------------------------
             // write a private key to that buffer, from pClearKey
             //            
-            int nWriteBio = 0;
+            int32_t nWriteBio = 0;
             
             // If we're importing, that means we just loaded up the (previously) exported Nym
             // using theExportedPassphrase, so now we need to save it back again using the
@@ -1325,7 +1325,7 @@ bool OTAsymmetricKey_OpenSSL::ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & 
 	OpenSSL_BIO bmem = BIO_new(BIO_s_mem());    
 	OT_ASSERT(NULL != bmem);
     
-    long lSize = 0;
+    int64_t lSize = 0;
 	// ----------------------------------------
 	// write a private key to that buffer, from theKey
     //
@@ -1334,7 +1334,7 @@ bool OTAsymmetricKey_OpenSSL::ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & 
     if (NULL == pPWData)
         pPWData = &thePWData;
     
-    int nWriteBio = 0;
+    int32_t nWriteBio = 0;
 
     if (NULL == pImportPassword)
         nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, EVP_des_ede3_cbc(), // todo should this algorithm be hardcoded?
@@ -1416,9 +1416,9 @@ bool OTAsymmetricKey_OpenSSL::SaveCertToString(OTString & strOutput, const OTStr
     // ---------------------------------------
     bool bSuccess = false;
     
-	unsigned char buffer_x509[8192] = ""; // todo hardcoded
+	uint8_t buffer_x509[8192] = ""; // todo hardcoded
 	OTString      strx509;
-	int           len = 0;
+	int32_t           len = 0;
 	
     // todo hardcoded 4080 (see array above.)
     //
@@ -1487,8 +1487,8 @@ bool OTAsymmetricKey_OpenSSL::SavePrivateKeyToString(OTString & strOutput, const
     // ---------------------------------------
     bool bSuccess = false;
     
-	int           len = 0;
-	unsigned char buffer_pri [4096] = ""; // todo hardcoded
+	int32_t           len = 0;
+	uint8_t buffer_pri [4096] = ""; // todo hardcoded
 	
     // todo hardcoded 4080 (see array above.)
     if (0 < (len = BIO_read(bio_out_pri, buffer_pri, 4080))) // returns number of bytes successfully read.
@@ -1533,18 +1533,18 @@ typedef struct
 }  PgpKeys;
 
 
-PgpKeys ExportRsaKey(unsigned char *pbData, int dataLength)
+PgpKeys ExportRsaKey(uint8_t *pbData, int32_t dataLength)
 {
 	PgpKeys pgpKeys;
-	int i;
+	int32_t i;
 	
 	OT_ASSERT(NULL != pbData);
 	
 	memset(&pgpKeys, 0, sizeof(pgpKeys));
 	for (i = 0; i < dataLength; )
 	{
-		int packetLength;
-		unsigned char packetTag = pbData[i++];
+		int32_t packetLength;
+		uint8_t packetTag = pbData[i++];
 		if ((packetTag & 0x80) == 0) 
 			break;
 		if ((packetTag & 0x40))
@@ -1583,8 +1583,8 @@ PgpKeys ExportRsaKey(unsigned char *pbData, int dataLength)
 		
 		if( (packetTag==6) || (packetTag==14) )  //  a public key
 		{
-			int algorithm;
-			int version = pbData[i++];
+			int32_t algorithm;
+			int32_t version = pbData[i++];
 			
 			// skip time over 4 bytes
 			i += 4;
@@ -1599,7 +1599,7 @@ PgpKeys ExportRsaKey(unsigned char *pbData, int dataLength)
 			
 			if( (algorithm == 1) || (algorithm == 2) || (algorithm == 3) ) // an RSA key
 			{
-				int modulusLength, exponentLength;
+				int32_t modulusLength, exponentLength;
 				RSA* pKey = RSA_new();
 				
 				// Get the modulus
@@ -1618,7 +1618,7 @@ PgpKeys ExportRsaKey(unsigned char *pbData, int dataLength)
 			}
 			else if (algorithm == 17) // a DSA key
 			{
-				int pLen, qLen, gLen, yLen;
+				int32_t pLen, qLen, gLen, yLen;
 				DSA* pKey = DSA_new();
 				
 				// Get Prime P
@@ -1647,7 +1647,7 @@ PgpKeys ExportRsaKey(unsigned char *pbData, int dataLength)
 			}
 			else if ((algorithm == 16) || (algorithm == 20)) // Elgamal key (not supported by OpenSSL
 			{
-				int pLen, gLen, yLen;
+				int32_t pLen, gLen, yLen;
 				ELGAMAL* pKey = (ELGAMAL*) malloc(sizeof(ELGAMAL));
 				if (NULL == pKey) {OTLog::vError("%s: Error: pKey is NULL!", __FUNCTION__); OT_FAIL; }
 				
@@ -1717,8 +1717,8 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKe
 	 * or FITNESS FOR A PARTICULAR PURPOSE.
 	 * 
 	 */
-	int iRet =-1, len;
-	unsigned char buffer[520]; // Making it a bit bigger than 512 for safety reasons.
+	int32_t iRet =-1, len;
+	uint8_t buffer[520]; // Making it a bit bigger than 512 for safety reasons.
 	BUF_MEM *bptr;
 	PgpKeys pgpKeys;
 	
@@ -1732,7 +1732,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKe
 
     BIO_get_mem_ptr(bio_out, &bptr); bio_out.setFreeOnly();
 	
-	pgpKeys = ExportRsaKey((unsigned char*)bptr->data, static_cast<int> (bptr->length));
+	pgpKeys = ExportRsaKey((uint8_t*)bptr->data, static_cast<int32_t> (bptr->length));
 	
 	if(!pgpKeys.pRsa)
 	{  
@@ -1847,7 +1847,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKe
 	{
 		OTLog::Output(0, "Extracted ElGamal Key from PGP public key block, but currently do not support it (sorry))\n");
         //
-		// int EVP_PKEY_assign_EC_KEY(EVP_PKEY *pkey,EC_KEY *key); // Here is the assign function for El Gamal 
+		// int32_t EVP_PKEY_assign_EC_KEY(EVP_PKEY *pkey,EC_KEY *key); // Here is the assign function for El Gamal 
 		// (assuming that "EC" stands for eliptical curve... kind of hard to tell with the OpenSSL docs...)
         //
 		free(pgpKeys.pElgamal); 
@@ -2064,22 +2064,22 @@ bool OT_API_Set_PasswordCallback(OTCaller & theCaller) // Caller must have Callb
 /*
  extern "C"
  {
- typedef int OT_OPENSSL_CALLBACK(char *buf, int size, int rwflag, void *u); // <== Callback type, used for declaring.
+ typedef int32_t OT_OPENSSL_CALLBACK(char *buf, int32_t size, int32_t rwflag, void *u); // <== Callback type, used for declaring.
  }
  
  // Used for the actual function definition (in the .cpp file).
- #define OPENSSL_CALLBACK_FUNC(name) extern \"C\" int (name)(char *buf, int size, int rwflag, void *u)
+ #define OPENSSL_CALLBACK_FUNC(name) extern \"C\" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *u)
  */
 
 
 
 
 // If the password callback isn't set, then it uses the default ("test") password.
-// #define OPENSSL_CALLBACK_FUNC(name) extern "C" int (name)(char *buf, int size, int rwflag, void *userdata)
+// #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 //
 OPENSSL_CALLBACK_FUNC(default_pass_cb)
 {
-	int len = 0;
+	int32_t len = 0;
     const uint32_t theSize = uint32_t(size);
 	// ------------------------------------
 	// We'd probably do something else if 'rwflag' is 1
@@ -2115,7 +2115,7 @@ OPENSSL_CALLBACK_FUNC(default_pass_cb)
 	const char *tmp_passwd = "test";
 //	const char *tmp_passwd = str_Password.c_str();
 
-	len = static_cast<int> (strlen(tmp_passwd));
+	len = static_cast<int32_t> (strlen(tmp_passwd));
 //	len = str_Password.size();
 	
 	if (len <= 0)
@@ -2124,7 +2124,7 @@ OPENSSL_CALLBACK_FUNC(default_pass_cb)
 		return 0;
 	}
 	
-	// if too long, truncate
+	// if too int64_t, truncate
 	if (len > size) 
 		len = size;
 	
@@ -2162,7 +2162,7 @@ OPENSSL_CALLBACK_FUNC(default_pass_cb)
 // If we return 0, that's bad, that means the password caller and callback failed somehow.
 //
 //typedef
-//int OT_OPENSSL_CALLBACK (char *buf, int size, int rwflag, void *userdata); // <== Callback type, used for declaring.
+//int32_t OT_OPENSSL_CALLBACK (char *buf, int32_t size, int32_t rwflag, void *userdata); // <== Callback type, used for declaring.
 //
 OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
 {
@@ -2268,7 +2268,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
             // ---------------------------------------
             // The dialog should display this string (so the user knows what he is authorizing.)
             //
-            pCaller->SetDisplay(str_userdata.c_str(), static_cast<int> (str_userdata.size()));
+            pCaller->SetDisplay(str_userdata.c_str(), static_cast<int32_t> (str_userdata.size()));
             
             // ---------------------------------------
             if (1 == rwflag)
@@ -2314,7 +2314,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
 	 http://openssl.org/docs/crypto/pem.html#
 	 "The callback must return the number of characters in the passphrase or 0 if an error occurred."
 	 */
-	int len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
+	int32_t len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
 	
 	if (len < 0) 
 	{
@@ -2333,7 +2333,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
                        "Substituting default password 'test'.\n", __FUNCTION__); // todo: security: is this safe? Here's what's driving this: We can't return 0 length string, but users wanted to be able to "just hit enter" and use an empty passphrase. So for cases where the user has explicitly "hit enter" we will substitute "test" as their passphrase instead. They still have to do this explicitly--it only happens when they use an empty one. 
 		
         if (thePassword.isPassword())
-            thePassword.setPassword(szDefault, static_cast<int>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)));
+            thePassword.setPassword(szDefault, static_cast<int32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)));
         else
             thePassword.setMemory(static_cast<const void *>(szDefault),
                                   static_cast<uint32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)) + 1); // setMemory doesn't assume the null terminator like setPassword does.
@@ -2350,7 +2350,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     // --------------------------------------	
     else if (NULL != buf)
     {
-        // if too long, truncate
+        // if too int64_t, truncate
         if (len > size) 
             len = size;
         
@@ -2368,7 +2368,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
                                    //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
             buf[theLength] = '\0'; // null terminator.
             
-//          int nSize = static_cast<int>(thePassword.getPasswordSize());
+//          int32_t nSize = static_cast<int32_t>(thePassword.getPasswordSize());
 //          OTLog::vError("%s: AFTER TEXT PASSWORD: %s  LENGTH: %d\n", __FUNCTION__, buf, nSize);
         }
         else
@@ -2379,7 +2379,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
                                     theLength); // length of source.
                                    //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
             
-//          int nSize = static_cast<int>(thePassword.getMemorySize());
+//          int32_t nSize = static_cast<int32_t>(thePassword.getMemorySize());
 //          OTLog::vError("%s: (BINARY PASSWORD)  LENGTH: %d\n", __FUNCTION__, nSize);
         }
         

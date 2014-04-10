@@ -310,7 +310,7 @@ OTASCIIArmor & OTASCIIArmor::operator=(const OTASCIIArmor & strValue)
 /** Compress a STL string using zlib with given compression level and return
  * the binary data. */
 std::string compress_string(const std::string& str,
-                            int compressionlevel = Z_BEST_COMPRESSION)
+                            int32_t compressionlevel = Z_BEST_COMPRESSION)
 {
     z_stream zs;                        // z_stream is zlib's control structure
     memset(&zs, 0, sizeof(zs));
@@ -321,7 +321,7 @@ std::string compress_string(const std::string& str,
     zs.next_in = (Bytef*)str.data();
     zs.avail_in = static_cast<uInt>(str.size());           // set the z_stream's input
     
-    int ret;
+    int32_t ret;
     char outbuffer[32768];
     std::string outstring;
     
@@ -362,7 +362,7 @@ std::string decompress_string(const std::string& str)
     zs.next_in = (Bytef*)str.data();
     zs.avail_in = static_cast<uInt>(str.size());
     
-    int ret;
+    int32_t ret;
     char outbuffer[32768];
     std::string outstring;
     
@@ -435,7 +435,7 @@ bool OTASCIIArmor::GetAndUnpackString(OTString & strData, bool bLineBreaks) cons
 		OT_ASSERT(NULL != pBuffer);
 		OTCleanup<OTDB::PackedBuffer> theBufferAngel(*pBuffer); // This will make sure buffer is deleted later.
 		      
-        pBuffer->SetData(reinterpret_cast<const unsigned char *>(str_uncompressed.data()), str_uncompressed.size());
+        pBuffer->SetData(reinterpret_cast<const uint8_t *>(str_uncompressed.data()), str_uncompressed.size());
 		// -----------------------------
 		OTDB::OTDBString * pOTDBString = dynamic_cast<OTDB::OTDBString *>(OTDB::CreateObject(OTDB::STORED_OBJ_STRING));
 		OT_ASSERT(NULL != pOTDBString);
@@ -507,7 +507,7 @@ bool OTASCIIArmor::GetAndUnpackStringMap(std::map<std::string, std::string> & th
 		OT_ASSERT(NULL != pBuffer);
 		OTCleanup<OTDB::PackedBuffer> theBufferAngel(*pBuffer); // make sure buffer is deleted.
 		
-		pBuffer->SetData(static_cast<const unsigned char*>(pData), outSize);
+		pBuffer->SetData(static_cast<const uint8_t*>(pData), outSize);
 		delete [] pData; pData=NULL; 
 		// -----------------------------
 		
@@ -579,8 +579,8 @@ bool OTASCIIArmor::SetAndPackStringMap(const std::map<std::string, std::string> 
 	const size_t theSize = pBuffer->GetSize();
 	
 	if (NULL != pUint)
-        pString = OTCrypto::It()->Base64Encode(pUint, static_cast<int>(theSize), bLineBreaks);
-//		pString = OT_base64_encode(pUint, static_cast<int> (theSize), (bLineBreaks ? 1 : 0));
+        pString = OTCrypto::It()->Base64Encode(pUint, static_cast<int32_t>(theSize), bLineBreaks);
+//		pString = OT_base64_encode(pUint, static_cast<int32_t> (theSize), (bLineBreaks ? 1 : 0));
 	else 
 	{
 		OTLog::Error("Error while base64_encoding in OTASCIIArmor::SetAndPackStringMap.\n");
@@ -637,7 +637,7 @@ bool OTASCIIArmor::GetAndUnpackData(OTData & theData, bool bLineBreaks) const //
 		OT_ASSERT(NULL != pBuffer);
 		OTCleanup<OTDB::PackedBuffer> theBufferAngel(*pBuffer); // make sure buffer is deleted.
 		
-		pBuffer->SetData(static_cast<const unsigned char*>(pData), outSize);
+		pBuffer->SetData(static_cast<const uint8_t*>(pData), outSize);
 		delete [] pData; pData=NULL; 
 		// -----------------------------
 		OTDB::Blob * pBlob = dynamic_cast<OTDB::Blob *>(OTDB::CreateObject(OTDB::STORED_OBJ_BLOB));
@@ -696,8 +696,8 @@ bool OTASCIIArmor::SetAndPackData(const OTData & theData, bool bLineBreaks/*=tru
 	OT_ASSERT(NULL != pBlob); // Beyond this point, responsible to delete pBlob.
 	OTCleanup<OTDB::Blob> theBlobAngel(*pBlob); // make sure memory is cleaned up.
 	// ----------------------------
-	pBlob->m_memBuffer.assign(static_cast<const unsigned char *>(theData.GetPointer()), 
-							  static_cast<const unsigned char *>(theData.GetPointer())+theData.GetSize());
+	pBlob->m_memBuffer.assign(static_cast<const uint8_t *>(theData.GetPointer()), 
+							  static_cast<const uint8_t *>(theData.GetPointer())+theData.GetSize());
 		
 	OTDB::PackedBuffer * pBuffer = pPacker->Pack(*pBlob); // Now we PACK our data before compressing/encoding it.
 	
@@ -713,8 +713,8 @@ bool OTASCIIArmor::SetAndPackData(const OTData & theData, bool bLineBreaks/*=tru
 	const size_t theSize = pBuffer->GetSize();
 	
 	if (NULL != pUint)
-        pString = OTCrypto::It()->Base64Encode(pUint, static_cast<int>(theSize), bLineBreaks);
-//		pString = OT_base64_encode(pUint, static_cast<int> (theSize), (bLineBreaks ? 1 : 0));
+        pString = OTCrypto::It()->Base64Encode(pUint, static_cast<int32_t>(theSize), bLineBreaks);
+//		pString = OT_base64_encode(pUint, static_cast<int32_t> (theSize), (bLineBreaks ? 1 : 0));
 	else 
 	{
 		OTLog::Error("Error while base64_encoding in OTASCIIArmor::SetAndPackData.\n");
@@ -742,7 +742,7 @@ bool OTASCIIArmor::SetAndPackData(const OTData & theData, bool bLineBreaks/*=tru
 /// Then it Compresses the packed binary data using zlib. (ezcompress.)
 /// Then it Base64-Encodes the compressed binary and sets it as a string on THIS OBJECT.
 /// 
-/// I added these pieces 1-by-1 over time. At first the messages were too long, so I started compressing them.
+/// I added these pieces 1-by-1 over time. At first the messages were too int64_t, so I started compressing them.
 /// Then they were not binary compatible across various platforms, so I added the packing.
 //
 bool OTASCIIArmor::SetAndPackString(const OTString & strData, bool bLineBreaks) //=true
@@ -787,8 +787,8 @@ bool OTASCIIArmor::SetAndPackString(const OTString & strData, bool bLineBreaks) 
     if (str_compressed.size())
 	{
 		// Now let's base-64 encode it...
-        // TODO: remove static cast, add check for longer than 'int' length? (da2ce7)
-        char * pString = OTCrypto::It()->Base64Encode((const uint8_t*)(str_compressed.data()), static_cast<int>(str_compressed.size()), bLineBreaks);
+        // TODO: remove static cast, add check for longer than 'int32_t' length? (da2ce7)
+        char * pString = OTCrypto::It()->Base64Encode((const uint8_t*)(str_compressed.data()), static_cast<int32_t>(str_compressed.size()), bLineBreaks);
 		
 		if (pString)
 		{
@@ -1007,8 +1007,8 @@ bool OTASCIIArmor::LoadFromString(OTString & theStr, // input
     // *smile*
     const std::string str_end_line = "-----END"; // Someday maybe allow parameterized option for this.
     // ------------------------------------------
-    const int nBufSize  = 2100; // todo: hardcoding
-    const int nBufSize2 = 2048; // todo: hardcoding
+    const int32_t nBufSize  = 2100; // todo: hardcoding
+    const int32_t nBufSize2 = 2048; // todo: hardcoding
     // -----------------------------
 	char buffer1[2100];         // todo: hardcoding
     

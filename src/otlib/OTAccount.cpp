@@ -174,7 +174,7 @@ char const * const __TypeStrings[] =
 };
 
 char const * OTAccount::_GetTypeString(AccountType theType) {
-	int nType = static_cast<int> (theType);
+	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
@@ -369,7 +369,7 @@ bool OTAccount::SaveAccount()
 
 
 // Debit a certain amount from the account (presumably the same amount is being credited somewhere else)
-bool OTAccount::Debit(const long & lAmount)
+bool OTAccount::Debit(const int64_t & lAmount)
 {
 	/* // TODO: Decide whether or not to allow negative Debits and negative Credits.
 	  // (Currrently allowed -- a negative cheque is the same thing as an invoice.)
@@ -377,9 +377,9 @@ bool OTAccount::Debit(const long & lAmount)
 		return false;
 	 */
 
-	long lOldBalance = atol(m_BalanceAmount.Get());
+	int64_t lOldBalance = atol(m_BalanceAmount.Get());
 
-	long lNewBalance = lOldBalance - lAmount;	// The MINUS here is the big difference between Debit and Credit
+	int64_t lNewBalance = lOldBalance - lAmount;	// The MINUS here is the big difference between Debit and Credit
 
 	// This is where issuer accounts get a pass. They just go negative.
 	if ((lNewBalance < 0)				&&	// IF the new balance is less than zero...
@@ -399,18 +399,18 @@ bool OTAccount::Debit(const long & lAmount)
 
 
 // Credit a certain amount to the account (presumably the same amount is being debited somewhere else)
-bool OTAccount::Credit(const long & lAmount)
+bool OTAccount::Credit(const int64_t & lAmount)
 {
 	/* // TODO: Decide whether or not to allow negative Debits and negative Credits. (Currrently allowed.)
 	 if (lAmount < 0)
 	 return false;
 	 */
 
-	long lOldBalance = atol(m_BalanceAmount.Get());
+	int64_t lOldBalance = atol(m_BalanceAmount.Get());
 
-	long lNewBalance = lOldBalance + lAmount;  // The PLUS here is the big difference between Debit and Credit.
+	int64_t lNewBalance = lOldBalance + lAmount;  // The PLUS here is the big difference between Debit and Credit.
 
-	// If the balance gets too big, it may flip to negative due to us using long int.
+	// If the balance gets too big, it may flip to negative due to us using int64_t int32_t.
 	// We'll maybe explicitly check that it's not negative in order to prevent that. TODO.
 //	if (lNewBalance > 0 || (OTAccount::simple != m_AcctType))
 //	{
@@ -509,14 +509,14 @@ bool OTAccount::VerifyOwnerByID(const OTIdentifier & theNymID) const
 
 
 
-char* myGetTimeOfDay(char* buffer, int bufferLength)
+char* myGetTimeOfDay(char* buffer, int32_t bufferLength)
 {
     using namespace std;
 
     OT_ASSERT(NULL != buffer);
 
     // this const was part of a class...
-    const int getTimeOfDayBufferLength = 27;
+    const int32_t getTimeOfDayBufferLength = 27;
 
     if (bufferLength < getTimeOfDayBufferLength)
     {
@@ -620,7 +620,7 @@ OTAccount * OTAccount::LoadExistingAccount(const OTIdentifier & theAccountID, co
 OTAccount * OTAccount::GenerateNewAccount(const OTIdentifier & theUserID,	const OTIdentifier & theServerID,
 										  const OTPseudonym & theServerNym,	const OTMessage & theMessage,
 										  const OTAccount::AccountType eAcctType/*=OTAccount::simple*/,
-										  long lStashTransNum/*=0*/)
+										  int64_t lStashTransNum/*=0*/)
 {
 	OTAccount * pAccount = new OTAccount(theUserID, theServerID);
 
@@ -652,7 +652,7 @@ theMessage.m_strServerID;
 // The above method uses this one internally...
 bool OTAccount::GenerateNewAccount(const OTPseudonym & theServer, const OTMessage & theMessage,
 								   const OTAccount::AccountType eAcctType/*=OTAccount::simple*/,
-								   long lStashTransNum/*=0*/)
+								   int64_t lStashTransNum/*=0*/)
 {
     const char *szFunc = "OTAccount::GenerateNewAccount";
     // -----------------------------------------------
@@ -765,7 +765,7 @@ bool OTAccount::GenerateNewAccount(const OTPseudonym & theServer, const OTMessag
 }
 
 
-long OTAccount::GetBalance() const
+int64_t OTAccount::GetBalance() const
 {
 	if (m_BalanceAmount.Exists())
 		return atol(m_BalanceAmount.Get());
@@ -982,9 +982,9 @@ void OTAccount::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
+int32_t OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 
     const OTString strNodeName(xml->getNodeName());
 
@@ -1087,11 +1087,11 @@ int OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 		m_BalanceDate	= xml->getAttributeValue("date");
 		m_BalanceAmount	= xml->getAttributeValue("amount");
 
-		// I convert to integer / long and back to string.
+		// I convert to integer / int64_t and back to string.
 		// (Just an easy way to keep the data clean.)
 
-		int nDate		= atoi(m_BalanceDate.Get());
-		long lAmount	= atol(m_BalanceAmount.Get());
+		int32_t nDate		= atoi(m_BalanceDate.Get());
+		int64_t lAmount	= atol(m_BalanceAmount.Get());
 
 		m_BalanceDate.Format("%d", nDate);
 		m_BalanceAmount.Format("%ld", lAmount);
@@ -1112,7 +1112,7 @@ int OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 			return (-1);
 		}
 		// ------------------------------------------------------------------------
-		long lTransNum = 0;
+		int64_t lTransNum = 0;
 		const OTString	strStashTransNum	= xml->getAttributeValue("cronItemNum");
 		if (!strStashTransNum.Exists() || ((lTransNum = atol(strStashTransNum.Get())) <= 0))
 		{
@@ -1284,7 +1284,7 @@ void OTAcctList::Serialize(OTString & strAppend)
 // --------------------
 
 
-int OTAcctList::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcctType, const OTString & strAcctCount)
+int32_t OTAcctList::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcctType, const OTString & strAcctCount)
 {
 	if (!strAcctType.Exists())
 	{
@@ -1304,7 +1304,7 @@ int OTAcctList::ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & st
 	//
 	// Load up the account IDs.
 	//
-	int nCount	= strAcctCount.Exists() ? atoi(strAcctCount.Get()) : 0;
+	int32_t nCount	= strAcctCount.Exists() ? atoi(strAcctCount.Get()) : 0;
 	if (nCount > 0)
 	{
 		while (nCount-- > 0)
@@ -1409,7 +1409,7 @@ _SharedPtr<OTAccount> OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNy
 												   const OTIdentifier	& ASSET_TYPE_ID,
 												   const OTIdentifier	& SERVER_ID,
 												   bool					& bWasAcctCreated, // this will be set to true if the acct is created here. Otherwise set to false;
-												   const long             lStashTransNum/*=0*/)
+												   const int64_t             lStashTransNum/*=0*/)
 {
 	_SharedPtr<OTAccount> pRetVal;
 	bWasAcctCreated = false;

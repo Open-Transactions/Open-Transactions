@@ -66,8 +66,8 @@ public boolean equals(Object obj) {
 		equal = ((($javaclassname)obj).swigCPtr == this.swigCPtr);  // Look at this cast! I am using polymorphism, I can't cast like this....
     return equal;
 }
-public int hashCode() {
-	return (int)getPointer();
+public int32_t hashCode() {
+	return (int32_t)getPointer();
 }
 #endif
 %enddef
@@ -84,7 +84,7 @@ public int hashCode() {
 // (Anyway, doesn't it already have a pointer to its container?)
 %define OT_BEFORE_STORABLE_TYPE(STORABLE_TYPE_A)
 //%typemap(javaout) STORABLE_TYPE_A * ot_dynamic_cast { 
-//    long cPtr = $jnicall; 
+//    int64_t cPtr = $jnicall; 
 //    $javaclassname ret = null; 
 //    if (cPtr != 0) { 
 //		ret = new $javaclassname(cPtr, $owner);
@@ -129,7 +129,7 @@ public int hashCode() {
 // of dangling C++ pointer. Intended for methods that return pointers or
 // references to a member variable.
 %typemap(javaout,noblock=1) THE_ELEMENT_TYPE_A * Get##THE_ELEMENT_TYPE_A {
-    long cPtr = $jnicall;
+    int64_t cPtr = $jnicall;
     $javaclassname ret = null;
     if (cPtr != 0) {
 		ret = new $javaclassname(cPtr, $owner);
@@ -187,7 +187,7 @@ public int hashCode() {
 // of only the latest one. (None of them should go out of scope until this object does.)
 
 %define OT_ADD_ELEMENT(THE_ELEMENT_TYPE_B)  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRef##THE_ELEMENT_TYPE_B(long lIndex) {
+private int64_t removeRef##THE_ELEMENT_TYPE_B(int64_t lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -201,7 +201,7 @@ private long removeRef##THE_ELEMENT_TYPE_B(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(int32_t intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -220,11 +220,11 @@ private long removeRef##THE_ELEMENT_TYPE_B(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRef##THE_ELEMENT_TYPE_B(THE_ELEMENT_TYPE_B element) {
+private int64_t getCPtrAddRef##THE_ELEMENT_TYPE_B(THE_ELEMENT_TYPE_B element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(int32_t intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 

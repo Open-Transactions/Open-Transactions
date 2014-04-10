@@ -147,8 +147,8 @@ EXPORT	virtual ~OTStringXML();
 
 	using OTString::swap;
 
-	int read(void* buffer, unsigned sizeToRead);
-	int getSize();
+	int32_t read(void* buffer, uint32_t sizeToRead);
+	int32_t getSize();
 };
 
 #endif // __OTSTRING_XML_HPP__

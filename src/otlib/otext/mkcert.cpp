@@ -41,12 +41,12 @@ extern "C" {
 #endif
 
 
-int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days);
-int add_ext(X509 *cert, int nid, char *value);
+int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
+int32_t add_ext(X509 *cert, int32_t nid, char *value);
 
 
 /*
-int main(int argc, char **argv)
+int32_t main(int32_t argc, char **argv)
         {
         BIO *bio_err;
         X509 *x509=NULL;
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 
 
 
-static void callback(int p, int n, void *arg)
+static void callback(int32_t p, int32_t n, void *arg)
         {
         char c='B';
 
@@ -91,7 +91,7 @@ static void callback(int p, int n, void *arg)
         }
 
 
-int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
+int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days)
 {
     bool bCreatedKey  = false;
     bool bCreatedX509 = false;
@@ -160,7 +160,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         X509_set_version(x, 2);
         ASN1_INTEGER_set(X509_get_serialNumber(x), serial);
         X509_gmtime_adj (X509_get_notBefore(x), 0);
-        X509_gmtime_adj (X509_get_notAfter (x), static_cast<long>(60*60*24*days));
+        X509_gmtime_adj (X509_get_notAfter (x), static_cast<int64_t>(60*60*24*days));
         X509_set_pubkey (x, pk);
 
         name = X509_get_subject_name(x);
@@ -171,11 +171,11 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
          */
         X509_NAME_add_entry_by_txt(name,"C",
                                 MBSTRING_ASC,
-                                   (const unsigned char *)"UK",
+                                   (const uint8_t *)"UK",
                                    -1, -1, 0);
         X509_NAME_add_entry_by_txt(name,"CN",
                                 MBSTRING_ASC,
-                                   (const unsigned char *)"OpenSSL Group",
+                                   (const uint8_t *)"OpenSSL Group",
                                    -1, -1, 0);
 
         /* Its self signed so set the issuer name to be the same as the
@@ -213,7 +213,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
 #ifdef CUSTOM_EXT
         // Maybe even add our own extension based on existing
         {
-                int nid;
+                int32_t nid;
                 nid = OBJ_create("1.2.3.4", "MyAlias", "My Test Alias Extension");
                 X509V3_EXT_add_alias(nid, NID_netscape_comment);
                 add_ext(x, nid, "example comment alias");
@@ -252,7 +252,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
  * because we won't reference any other sections.
  */
 
-int add_ext(X509 *cert, int nid, char *value)
+int32_t add_ext(X509 *cert, int32_t nid, char *value)
         {
         X509_EXTENSION *ex;
         X509V3_CTX ctx;

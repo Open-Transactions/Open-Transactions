@@ -153,10 +153,10 @@ class OTTrade;
 // Multiple offers, mapped by price limit.
 // Using multi-map since there will be more than one offer for each single price.
 // (Map would only allow a single item on the map for each price.)
-typedef std::multimap<long, OTOffer *>	mapOfOffers;
+typedef std::multimap<int64_t, OTOffer *>	mapOfOffers;
 
 // The same offers are also mapped (uniquely) to transaction number.
-typedef std::map  <long, OTOffer *>	mapOfOffersTrnsNum;
+typedef std::map  <int64_t, OTOffer *>	mapOfOffersTrnsNum;
 
 class OTMarket : public OTContract
 {
@@ -181,9 +181,9 @@ private:
 
 	// Each Offer on the market must have a minimum increment that this divides equally into.
 	// (There is a "gold for dollars, minimum 1 oz" market, a "gold for dollars, min 500 oz" market, etc.)
-	long            m_lScale;
+	int64_t            m_lScale;
 
-	long            m_lLastSalePrice;
+	int64_t            m_lLastSalePrice;
     std::string     m_strLastSaleDate;
 
 	// The server stores a map of markets, one for each unique combination of asset types.
@@ -198,16 +198,16 @@ private:
 public:
 	bool ValidateOfferForMarket(OTOffer & theOffer, OTString * pReason=NULL);
 
-	OTOffer *	GetOffer(const long & lTransactionNum);
+	OTOffer *	GetOffer(const int64_t & lTransactionNum);
 	bool		AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile=true, time_t tDateAddedToMarket=0);
-	bool		RemoveOffer(const long & lTransactionNum);
+	bool		RemoveOffer(const int64_t & lTransactionNum);
 	// -----------------------------------------------------
 	// returns general information about offers on the market
-EXPORT	bool GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferCount);
-EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
+EXPORT	bool GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & nOfferCount);
+EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCount);
 
 	// Returns more detailed information about offers for a specific Nym.
-	bool GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int & nNymOfferCount);
+	bool GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int32_t & nNymOfferCount);
 
 	// Assumes a few things: Offer is part of Trade, and both have been
 	// proven already to be a part of this market.
@@ -218,8 +218,8 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
 	void ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & theOtherOffer);
 	bool ProcessTrade(OTTrade & theTrade, OTOffer & theOffer);
 
-	long	GetHighestBidPrice();
-	long	GetLowestAskPrice();
+	int64_t	GetHighestBidPrice();
+	int64_t	GetLowestAskPrice();
 
 	mapOfOffers::size_type GetBidCount() { return m_mapBids.size(); }
 	mapOfOffers::size_type GetAskCount() { return m_mapAsks.size(); }
@@ -232,24 +232,24 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
 	inline const OTIdentifier & GetCurrencyID()	const { return m_CURRENCY_TYPE_ID; }
 	inline const OTIdentifier & GetServerID()	const { return m_SERVER_ID; }
 
-	inline const long & GetScale()
+	inline const int64_t & GetScale()
 		{ if (m_lScale < 1) m_lScale = 1; return m_lScale; }
-	inline void SetScale(const long & lScale)
+	inline void SetScale(const int64_t & lScale)
 		{ m_lScale = lScale; if (m_lScale < 1) m_lScale = 1; }
 
-	inline const long & GetLastSalePrice()
+	inline const int64_t & GetLastSalePrice()
 		{ if (m_lLastSalePrice < 1) m_lLastSalePrice = 1; return m_lLastSalePrice; }
-	inline void SetLastSalePrice(const long & lLastSalePrice)
+	inline void SetLastSalePrice(const int64_t & lLastSalePrice)
 		{ m_lLastSalePrice = lLastSalePrice; if (m_lLastSalePrice < 1) m_lLastSalePrice = 1; }
 
     const std::string & GetLastSaleDate() { return m_strLastSaleDate; }
 	// -----------------------------
-	long GetTotalAvailableAssets();
+	int64_t GetTotalAvailableAssets();
 	// -----------------------------------------------------
 	OTMarket();
 	OTMarket(const char * szFilename);
 	OTMarket(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_TYPE_ID,
-			 const OTIdentifier & CURRENCY_TYPE_ID, const long & lScale);
+			 const OTIdentifier & CURRENCY_TYPE_ID, const int64_t & lScale);
 
 	virtual ~OTMarket();
 
@@ -269,7 +269,7 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount);
 	void Release_Market();
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 

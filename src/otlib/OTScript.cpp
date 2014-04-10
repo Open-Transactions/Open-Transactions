@@ -439,12 +439,12 @@ bool OTScript::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 #ifdef OT_USE_SCRIPT_CHAI
 
 /*
-double x_function(int i, double j)
+double x_function(int32_t i, double j)
 {
     return i * j;
 }
 
-int main()
+int32_t main()
 {
     chaiscript::ChaiScript chai;
     this->chai->add(chaiscript::fun(&x_function), "x_function");
@@ -536,7 +536,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
                   
          OTVariable_Access      GetAccess() const { return m_Access; }
          
-         long           &	GetValueLong() { return m_lValue; }
+         int64_t           &	GetValueLong() { return m_lValue; }
          bool           &	GetValueBool() { return m_bValue; }
          std::string	&	GetValueString() { return m_str_Value; }
          */
@@ -552,7 +552,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
             {
                 case OTVariable::Var_Integer:
                 {
-                    int & nValue = pVar->GetValueInteger();
+                    int32_t & nValue = pVar->GetValueInteger();
                 
                     if (OTVariable::Var_Constant == pVar->GetAccess()) // no pointer here, since it's constant.
                         this->chai->add_global_const(const_var(pVar->CopyValueInteger()), var_name.c_str());
@@ -626,7 +626,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
                 {
                     case OTVariable::Var_Integer:
                     {
-                        int nResult = this->chai->eval<int>(m_str_script.c_str(), 
+                        int32_t nResult = this->chai->eval<int32_t>(m_str_script.c_str(), 
                                                      exception_specification<const std::exception &>(),
                                                      m_str_display_filename);
                         pReturnVar->SetValue(nResult);
@@ -697,7 +697,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 
             
 //          OTLog::Error("CALL STACK:\n\n");
-//          int nStack = 0;
+//          int32_t nStack = 0;
 //          FOR_EACH_CONST(std::vector<AST_NodePtr>, e.call_stack)
 //          {
 //              AST_NodePtr pNode = *it;
@@ -724,7 +724,7 @@ bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 //      catch (chaiscript::Boxed_Value bv) 
         catch (...)
         {
-//          int i = chaiscript::boxed_cast<int>(bv);
+//          int32_t i = chaiscript::boxed_cast<int32_t>(bv);
             OTLog::Error("OTScriptChai::ExecuteScript: Caught exception.\n");
             return false;
         }

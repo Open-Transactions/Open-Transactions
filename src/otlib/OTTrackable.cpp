@@ -176,7 +176,7 @@ void OTTrackable::InitTrackable()
 }
 
 
-bool OTTrackable::HasTransactionNum(const long & lInput) const
+bool OTTrackable::HasTransactionNum(const int64_t & lInput) const
 {
     return (lInput == m_lTransactionNum);
 }
@@ -207,11 +207,11 @@ void OTTrackable::Release()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 //    OTLog::Error("OTTrackable::ProcessXMLNode...\n");
     
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
     
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -239,7 +239,7 @@ int OTTrackable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 //        
 //        if (strClosingNumber.Exists())
 //        {
-//            const long lClosingNumber = atol(strClosingNumber.Get());					
+//            const int64_t lClosingNumber = atol(strClosingNumber.Get());					
 //            
 //            this->AddClosingTransactionNo(lClosingNumber);
 //        }

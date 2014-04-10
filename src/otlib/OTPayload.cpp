@@ -182,7 +182,7 @@ uint32_t OTPayload::ReadBytesFrom(OTData & theData, uint32_t lSize)
 	Assign(refPayload.GetPayloadPointer(), lSize);
 
 	// Create a temp var, starting from theData+lSize, copying to the end of theData
-	OTData TEMPdata((unsigned char *)refPayload.GetPayloadPointer() + lSize, theData.GetSize() - lSize);
+	OTData TEMPdata((uint8_t *)refPayload.GetPayloadPointer() + lSize, theData.GetSize() - lSize);
 
 	// theData is assigned to TEMPdata (thus removing from it the bytes that we just read into this.)
 	theData.Assign(TEMPdata);

@@ -143,15 +143,15 @@
 
 // Also allows for x == 1.
 //
-bool isPowerOfTen( const long & x )
+bool isPowerOfTen( const int64_t & x )
 {
 	if (1 == x)
 		return true;
 	
-	const long lBase = 10;
-	long lIt = lBase;
+	const int64_t lBase = 10;
+	int64_t lIt = lBase;
 	
-	for (int i = 1; i < 23; i++)
+	for (int32_t i = 1; i < 23; i++)
 	{
 		if (x == lIt)
 			return true;
@@ -207,7 +207,7 @@ void OTOffer::GetIdentifier(OTIdentifier & theIdentifier)
 {	
 	OTString	strTemp, strAsset(GetAssetID()), strCurrency(GetCurrencyID());
 
-	long		lScale = GetScale();
+	int64_t		lScale = GetScale();
 	
 	// In this way we generate a unique ID that will always be consistent
 	// for the same asset ID, currency ID, and market scale.
@@ -233,9 +233,9 @@ bool OTOffer::IsLimitOrder () const
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -274,7 +274,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		SetCurrencyID(CURRENCY_TYPE_ID);
 		// ------------------------------------
 		const OTString strScale	= xml->getAttributeValue("marketScale");
-		const long lScale		= strScale.Exists() ? atol(strScale.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
+		const int64_t lScale		= strScale.Exists() ? atol(strScale.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 				
 		if (false == isPowerOfTen( lScale ))
 		{
@@ -286,7 +286,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			SetScale(lScale);
 		// ------------------------------------
 		const OTString strPriceLimit = xml->getAttributeValue("priceLimit");
-		const long lPriceLimit       = strPriceLimit.Exists() ? atol(strPriceLimit.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
+		const int64_t lPriceLimit       = strPriceLimit.Exists() ? atol(strPriceLimit.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
         
         // NOTE: Market Orders (new) have a 0 price, so this error condition was changed.
 		if (!strPriceLimit.Exists())
@@ -300,7 +300,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			SetPriceLimit(lPriceLimit);
 		// ------------------------------------
 		const OTString strTotal	= xml->getAttributeValue("totalAssetsOnOffer");
-		const long lTotal		= strTotal.Exists() ? atol(strTotal.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
+		const int64_t lTotal		= strTotal.Exists() ? atol(strTotal.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 		if (lTotal < 1)
 		{
 			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: totalAssetsOnOffer *must* be larger than 0. Instead I got: %ld.\n",
@@ -311,7 +311,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			SetTotalAssetsOnOffer(lTotal);
 		// ------------------------------------
 		const OTString strFinished	= xml->getAttributeValue("finishedSoFar");
-		const long lFinished		= strFinished.Exists() ? atol(strFinished.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
+		const int64_t lFinished		= strFinished.Exists() ? atol(strFinished.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 		if (lFinished < 0)
 		{
 			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: finishedSoFar *must* be 0 or larger. Instead I got: %ld.\n",
@@ -322,7 +322,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			SetFinishedSoFar(lFinished);
 		// ------------------------------------
 		const OTString	strMinInc	= xml->getAttributeValue("minimumIncrement");
-		const long		lMinInc		= strMinInc.Exists() ? atol(strMinInc.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
+		const int64_t		lMinInc		= strMinInc.Exists() ? atol(strMinInc.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 		if ((lMinInc < 1) || (lMinInc > lTotal)) // Minimum increment cannot logically be higher than the total assets on offer...
 		{
 			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: minimumIncrement *must* be 1 or larger, \n"
@@ -334,7 +334,7 @@ int OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			SetMinimumIncrement(lMinInc);
 		// -----------------------------------
 		const OTString strTransNum = xml->getAttributeValue("transactionNum");
-		const long lTransNum = strTransNum.Exists() ? atol(strTransNum.Get()) : 0;
+		const int64_t lTransNum = strTransNum.Exists() ? atol(strTransNum.Get()) : 0;
 		
 		SetTransactionNum(lTransNum);
 		// ----------------------------------------------------------------
@@ -381,7 +381,7 @@ void OTOffer::UpdateContents()
 	
     const int64_t lFrom                 = static_cast<int64_t> (GetValidFrom()),
                   lTo                   = static_cast<int64_t> (GetValidTo());
-	const long    lPriceLimit           = GetPriceLimit(),
+	const int64_t    lPriceLimit           = GetPriceLimit(),
                   lTotalAssetsOnOffer   = GetTotalAssetsOnOffer(),
                   lFinishedSoFar        = GetFinishedSoFar(),
                   lScale                = GetScale(),
@@ -427,10 +427,10 @@ void OTOffer::UpdateContents()
 
 
 bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False == BUYING
-				  const long & lPriceLimit,         // Per Minimum Increment... (Zero price means it's a market order.)
-				  const long & lTotalAssetsOffer,   // Total assets available for sale or purchase.
-				  const long & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
-				  const long & lTransactionNum,     // The transaction number authorizing this trade.
+				  const int64_t & lPriceLimit,         // Per Minimum Increment... (Zero price means it's a market order.)
+				  const int64_t & lTotalAssetsOffer,   // Total assets available for sale or purchase.
+				  const int64_t & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
+				  const int64_t & lTransactionNum,     // The transaction number authorizing this trade.
 				  const time_t & VALID_FROM/*=0*/,  // defaults to RIGHT NOW
 				  const time_t & VALID_TO/*=0*/)    // defaults to 24 hours (a "Day Order")
 {
@@ -442,7 +442,7 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 
 	// Make sure minimum increment isn't bigger than total Assets.
 	// (If you pass them into this function as the same value, it's functionally a "FILL OR KILL" order.)
-	long lRealMinInc = lMinimumIncrement;
+	int64_t lRealMinInc = lMinimumIncrement;
 	if (lMinimumIncrement > lTotalAssetsOffer)		// Once the total, minus finish so far, is smaller than the minimum increment,
 		lRealMinInc = lTotalAssetsOffer;			// then the OTTrade object I am linked to will expire and remove me from the market.
 													// OR it could set the minimum increment to the remainder. But then need to calc price.
@@ -500,7 +500,7 @@ OTOffer::OTOffer()
 
 
 
-OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const long & lScale) 
+OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const int64_t & lScale) 
 : ot_super(SERVER_ID, ASSET_ID), m_tDateAddedToMarket(0), m_pTrade(NULL), // No need to free m_pTrade, not responsible. Only here for convenience.
     m_bSelling			(false),
     m_lPriceLimit		(0),

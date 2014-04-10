@@ -44,7 +44,7 @@ static string categoryName[] =
 typedef struct
 {
     string command;
-    int category;
+    int32_t category;
 } MapCategory;
 
 MapCategory map_categories[] =
@@ -268,7 +268,7 @@ MapHelp map_help[] =
 typedef struct
 {
     string command;
-    int(*function)();
+    int32_t(*function)();
 } MapFunction;
 
 MapFunction map_functions[] =
@@ -379,7 +379,7 @@ MapFunction map_functions[] =
 
 
 
-int OT_OPENTXS_OT main_not_coded_yet()
+int32_t OT_OPENTXS_OT main_not_coded_yet()
 {
     print("\n\n  Congratulations, you've been selected to add that option to this program! \n It's real easy: just edit ot_commands_ot.cpp, and copy some code\ninto it based on whichever sample script is appropriate.\nThen edit the opentxs script, and add your new main\nfunction to the list map_functions near the bottom. Done!\n\n");
 
@@ -387,7 +387,7 @@ int OT_OPENTXS_OT main_not_coded_yet()
 }
 
 
-int OT_OPENTXS_OT interpret_command(const string & strInput)
+int32_t OT_OPENTXS_OT interpret_command(const string & strInput)
 {
     if ("quit" == strInput)
     {
@@ -397,7 +397,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
     if ("list" == strInput)
     {
         OTAPI_Wrap::Output(0, "\nCommands: \n\n");
-        for (int i = 0; map_functions[i].command != ""; i++)
+        for (int32_t i = 0; map_functions[i].command != ""; i++)
         {
             MapFunction & func = map_functions[i];
             OTAPI_Wrap::Output(0, func.command + (func.command.length() > 7 ? "\t" : "\t\t"));
@@ -424,12 +424,12 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
         string strNyms = "";
 
         OTAPI_Wrap::Output(0, "\nCommands: \n\n");
-        for (int i = 0; map_functions[i].command != ""; i++)
+        for (int32_t i = 0; map_functions[i].command != ""; i++)
         {
             MapFunction & func = map_functions[i];
 
             string line = "";
-            for (int j = 0; map_help[j].command != ""; j++)
+            for (int32_t j = 0; map_help[j].command != ""; j++)
             {
                 MapHelp & help = map_help[j];
                 if (help.command == func.command)
@@ -439,7 +439,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
                 }
             }
 
-            for (int j = 0; map_categories[j].command != ""; j++)
+            for (int32_t j = 0; map_categories[j].command != ""; j++)
             {
                 MapCategory & cat = map_categories[j];
                 if (cat.command == func.command)
@@ -476,14 +476,14 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
     }
 
     // all other commands.
-    for (int i = 0; map_functions[i].command != ""; i++)
+    for (int32_t i = 0; map_functions[i].command != ""; i++)
     {
         MapFunction & func = map_functions[i];
         if (func.command == strInput)
         {
             if (func.function != NULL)
             {
-                int nReturn = (*func.function)();
+                int32_t nReturn = (*func.function)();
                 OTAPI_Wrap::Output(2, "\n Returning error code: \"" + to_string(nReturn) + "\".\n\n");
                 switch (nReturn)
                 {
@@ -517,7 +517,7 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
 
 
 
-int OT_OPENTXS_OT OT_ME::opentxs_main_loop()
+int32_t OT_OPENTXS_OT OT_ME::opentxs_main_loop()
 {
     OTVariable *pVar;
     Args     = (pVar = FindVariable("Args"    )) == NULL ? "" : pVar->GetValueString();

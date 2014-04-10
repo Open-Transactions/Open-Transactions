@@ -158,7 +158,7 @@ char const * const __TypeStrings[] =
 };
 
 char const * OTLedger::_GetTypeString(ledgerType theType) {
-	int nType = static_cast<int> (theType);
+	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
@@ -186,7 +186,7 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 		case OTLedger::recordBox:
 		case OTLedger::expiredBox:
 		{
-			std::set<long> setUnloaded;
+			std::set<int64_t> setUnloaded;
 			// if psetUnloaded passed in, then use it to return the #s that weren't there as box receipts.
 //			bool bLoadedBoxReceipts =
 			this->LoadBoxReceipts(&setUnloaded); // Note: Also useful for suppressing errors here.
@@ -194,7 +194,7 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 				break;
 		default:
 		{
-			const int nLedgerType = static_cast<int>(this->GetType());
+			const int32_t nLedgerType = static_cast<int32_t>(this->GetType());
 			const OTIdentifier	theNymID(theNym);
 			const OTString		strNymID(theNymID);
 			OTString strAccountID;
@@ -263,7 +263,7 @@ bool OTLedger::SaveBoxReceipts()	// For ALL full transactions, save the actual b
 // --------------------------------------------------------
 
 
-bool OTLedger::SaveBoxReceipt(const long & lTransactionNum)
+bool OTLedger::SaveBoxReceipt(const int64_t & lTransactionNum)
 {
     // --------------------------------------------------------
     // First, see if the transaction itself exists on this ledger.
@@ -282,7 +282,7 @@ bool OTLedger::SaveBoxReceipt(const long & lTransactionNum)
 // --------------------------------------------------------
 
 
-bool OTLedger::DeleteBoxReceipt(const long & lTransactionNum)
+bool OTLedger::DeleteBoxReceipt(const int64_t & lTransactionNum)
 {
     // --------------------------------------------------------
     // First, see if the transaction itself exists on this ledger.
@@ -310,11 +310,11 @@ bool OTLedger::DeleteBoxReceipt(const long & lTransactionNum)
 // For all failures to load the box receipt, if a set pointer was passed in,
 // then add that transaction# to the set. (psetUnloaded)
 //
-bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if psetUnloaded passed in, then use it to return the #s that weren't there.
+bool OTLedger::LoadBoxReceipts(std::set<int64_t> * psetUnloaded/*=NULL*/) // if psetUnloaded passed in, then use it to return the #s that weren't there.
 {
     // Grab a copy of all the transaction #s stored inside this ledger.
     //
-    std::set<long> the_set;
+    std::set<int64_t> the_set;
 
     FOR_EACH(mapOfTransactions, m_mapTransactions)
     {
@@ -327,9 +327,9 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
     //
     bool bRetVal = true;
 
-    FOR_EACH(std::set<long>, the_set)
+    FOR_EACH(std::set<int64_t>, the_set)
 	{
-		long lSetNum = *it;
+		int64_t lSetNum = *it;
         // ------------------------
         OTTransaction * pTransaction = this->GetTransaction(lSetNum);
         OT_ASSERT(NULL != pTransaction);
@@ -344,7 +344,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
             //
 			pTransaction	= NULL;
 			bRetVal			= false;
-			int nLogLevel	= 0;
+			int32_t nLogLevel	= 0;
 			// --------------
 			if (NULL != psetUnloaded)
 			{
@@ -379,7 +379,7 @@ bool OTLedger::LoadBoxReceipts(std::set<long> * psetUnloaded/*=NULL*/) // if pse
  With a specific receipt denoted by transaction: "nymbox/SERVER_ID/USER_ID.r/TRANSACTION_ID.rct"
  */
 
-bool OTLedger::LoadBoxReceipt(const long & lTransactionNum)
+bool OTLedger::LoadBoxReceipt(const int64_t & lTransactionNum)
 {
     // First, see if the transaction itself exists on this ledger.
     // Get a pointer to it.
@@ -1105,7 +1105,7 @@ mapOfTransactions & OTLedger::GetTransactionMap()
 /// If transaction #87, in reference to #74, is in the inbox, you can remove it
 /// by calling this function and passing in 87. Deletes.
 ///
-bool OTLedger::RemoveTransaction(long lTransactionNum, bool bDeleteIt/*=true*/)
+bool OTLedger::RemoveTransaction(int64_t lTransactionNum, bool bDeleteIt/*=true*/)
 {
     const char * szFunc = "OTLedger::RemoveTransaction";
 
@@ -1181,12 +1181,12 @@ OTTransaction * OTLedger::GetTransaction(const OTTransaction::transactionType th
 
 
 // if not found, returns -1
-int OTLedger::GetTransactionIndex(long lTransactionNum)
+int32_t OTLedger::GetTransactionIndex(int64_t lTransactionNum)
 {
 	// loop through the transactions inside this ledger
     // If a specific transaction is found, returns its index inside the ledger
     //
-    int nIndex = -1;
+    int32_t nIndex = -1;
 
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
@@ -1206,7 +1206,7 @@ int OTLedger::GetTransactionIndex(long lTransactionNum)
 
 // Look up a transaction by transaction number and see if it is in the ledger.
 // If it is, return a pointer to it, otherwise return NULL.
-OTTransaction * OTLedger::GetTransaction(long lTransactionNum)
+OTTransaction * OTLedger::GetTransaction(int64_t lTransactionNum)
 {
 	// loop through the transactions inside this ledger
 
@@ -1229,9 +1229,9 @@ OTTransaction * OTLedger::GetTransaction(long lTransactionNum)
 //
 // Might want to change this so that it only counts ACCEPTED receipts.
 //
-int OTLedger::GetTransactionCountInRefTo(const long lReferenceNum)
+int32_t OTLedger::GetTransactionCountInRefTo(const int64_t lReferenceNum)
 {
-    int nCount = 0;
+    int32_t nCount = 0;
 
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
@@ -1250,13 +1250,13 @@ int OTLedger::GetTransactionCountInRefTo(const long lReferenceNum)
 
 // Look up a transaction by transaction number and see if it is in the ledger.
 // If it is, return a pointer to it, otherwise return NULL.
-OTTransaction * OTLedger::GetTransactionByIndex(int nIndex)
+OTTransaction * OTLedger::GetTransactionByIndex(int32_t nIndex)
 {
 	// Out of bounds.
 	if ((nIndex < 0) || (nIndex >= GetTransactionCount()))
 		return NULL;
 
-	int nIndexCount = -1;
+	int32_t nIndexCount = -1;
 
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
 	{
@@ -1277,7 +1277,7 @@ OTTransaction * OTLedger::GetTransactionByIndex(int nIndex)
 // Nymbox-only.
 // Looks up replyNotice by REQUEST NUMBER.
 //
-OTTransaction * OTLedger::GetReplyNotice(const long & lRequestNum)
+OTTransaction * OTLedger::GetReplyNotice(const int64_t & lRequestNum)
 {
 	// loop through the transactions that make up this ledger.
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
@@ -1296,7 +1296,7 @@ OTTransaction * OTLedger::GetReplyNotice(const long & lRequestNum)
 }
 
 
-OTTransaction * OTLedger::GetTransferReceipt(long lNumberOfOrigin)
+OTTransaction * OTLedger::GetTransferReceipt(int64_t lNumberOfOrigin)
 {
 	// loop through the transactions that make up this ledger.
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
@@ -1361,7 +1361,7 @@ OTTransaction * OTLedger::GetTransferReceipt(long lNumberOfOrigin)
 // (But of course do NOT delete the OTTransaction that's returned, since that is
 // owned by the ledger.)
 //
-OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
+OTTransaction * OTLedger::GetChequeReceipt(const int64_t lChequeNum,
                                            OTCheque ** ppChequeOut/*=NULL*/) // CALLER RESPONSIBLE TO DELETE.
 {
     FOR_EACH(mapOfTransactions, m_mapTransactions)
@@ -1451,7 +1451,7 @@ OTTransaction * OTLedger::GetChequeReceipt(const long lChequeNum,
 // the same original transaction that they do.  The below function makes it easy to find that
 // final receipt, if it exists.
 //
-OTTransaction * OTLedger::GetFinalReceipt(long lReferenceNum)
+OTTransaction * OTLedger::GetFinalReceipt(int64_t lReferenceNum)
 {
 	// loop through the transactions that make up this ledger.
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
@@ -1474,7 +1474,7 @@ OTTransaction * OTLedger::GetFinalReceipt(long lReferenceNum)
 // It's used to verify that any are even there. The pointer is returned only for
 // convenience.
 //
-OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the opening number for the cron item that this is a receipt for.
+OTTransaction * OTLedger::GetPaymentReceipt(int64_t lReferenceNum, // pass in the opening number for the cron item that this is a receipt for.
                                             OTPayment ** ppPaymentOut/*=NULL*/) // CALLER RESPONSIBLE TO DELETE.
 {
 	// loop through the transactions that make up this ledger.
@@ -1532,7 +1532,7 @@ OTTransaction * OTLedger::GetPaymentReceipt(long lReferenceNum, // pass in the o
 ///
 /// returns a new balance statement item containing the inbox report
 /// CALLER IS RESPONSIBLE TO DELETE.
-OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTransaction & theOwner,
+OTItem * OTLedger::GenerateBalanceStatement(const int64_t lAdjustment, const OTTransaction & theOwner,
 											OTPseudonym & theNym, const OTAccount & theAccount, OTLedger & theOutbox)
 {
 	if (OTLedger::inbox != GetType())
@@ -1625,7 +1625,7 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 
 	// ---------------------------------------------------------
 
-	long lCurrentBalance = theAccount.GetBalance();
+	int64_t lCurrentBalance = theAccount.GetBalance();
 
 	pBalanceItem->SetAmount(lCurrentBalance + lAdjustment);  // <==== Here's the new (predicted) balance for after the transaction is complete. (item.GetAmount)
 
@@ -1666,9 +1666,9 @@ OTItem * OTLedger::GenerateBalanceStatement(const long lAdjustment, const OTTran
 // for inbox only, allows you to lookup the total value of pending transfers within the inbox.
 // (And it really loads the items to check the amount, but does all this ONLY for pending transfers.)
 //
-long OTLedger::GetTotalPendingValue()
+int64_t OTLedger::GetTotalPendingValue()
 {
-	long lTotalPendingValue = 0;
+	int64_t lTotalPendingValue = 0;
 
 	if (OTLedger::inbox != GetType())
 	{
@@ -1756,8 +1756,8 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 	//
 	if (pTransaction->IsAbbreviated())
 	{
-		this->LoadBoxReceipt(static_cast<long>(lTransactionNum)); // I don't check return val here because I still want it to send the abbreviated form, if this fails.
-		pTransaction = this->GetTransaction(static_cast<long>(lTransactionNum));
+		this->LoadBoxReceipt(static_cast<int64_t>(lTransactionNum)); // I don't check return val here because I still want it to send the abbreviated form, if this fails.
+		pTransaction = this->GetTransaction(static_cast<int64_t>(lTransactionNum));
 		// -------------------------
 		if (NULL == pTransaction)
 		{
@@ -1903,7 +1903,7 @@ bool OTLedger::LoadLedgerFromString(const OTString & theStr)
 void OTLedger::UpdateContents() // Before transmission or serialization, this is where the ledger saves its contents
 {
 	bool	bSavingAbbreviated	= true;	// The default. Only OTLedger::message changes this to false.
-	int		nPartialRecordCount	= 0;	// We store this, so we know how many abbreviated records to read back later.
+	int32_t		nPartialRecordCount	= 0;	// We store this, so we know how many abbreviated records to read back later.
 
 	// --------------------------------
 	switch (this->GetType())
@@ -1924,7 +1924,7 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 		case OTLedger::recordBox:
 		case OTLedger::expiredBox:
 			bSavingAbbreviated	= true;
-			nPartialRecordCount	= static_cast<int> (m_mapTransactions.size()); // We store this, so we know how many abbreviated records to read back later.
+			nPartialRecordCount	= static_cast<int32_t> (m_mapTransactions.size()); // We store this, so we know how many abbreviated records to read back later.
 			break;
 			// -----------------------------
 		default:
@@ -1949,7 +1949,7 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 	// ------------------------------------------------------
     OTString strLedgerContents = "";
 
-    int nPartialACTUALCount = 0;
+    int32_t nPartialACTUALCount = 0;
 
 	// loop through the transactions and print them out here.
 	FOR_EACH(mapOfTransactions, m_mapTransactions)
@@ -2021,7 +2021,7 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 
 // LoadContract will call this function at the right time.
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     const char * szFunc = "OTLedger::ProcessXMLNode";
     // -------------------------------
@@ -2088,7 +2088,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// Load up the partial records, based on the expected count...
 		//
 		strNumPartialRecords	= xml->getAttributeValue("numPartialRecords");
-		int	nPartialRecordCount = (strNumPartialRecords.Exists() ? atoi(strNumPartialRecords.Get()) : 0);
+		int32_t	nPartialRecordCount = (strNumPartialRecords.Exists() ? atoi(strNumPartialRecords.Get()) : 0);
 		// -------------------------------------
 		OTString strExpected;	// The record type has a different name for each box.
         OTNumList   theNumList;
@@ -2146,22 +2146,22 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 				if (strLoopNodeName.Exists() && (xml->getNodeType() == irr::io::EXN_ELEMENT) && (strExpected.Compare(strLoopNodeName)))
 				{
-					long lNumberOfOrigin	= 0;
-					long lTransactionNum	= 0;
-					long lInRefTo			= 0;
-					long lInRefDisplay		= 0;
+					int64_t lNumberOfOrigin	= 0;
+					int64_t lTransactionNum	= 0;
+					int64_t lInRefTo			= 0;
+					int64_t lInRefDisplay		= 0;
 					// -------------------------------------
 					time_t the_DATE_SIGNED	= 0;
 					OTTransaction::transactionType theType = OTTransaction::error_state; // default
 					OTString strHash;
 					// -------------------------------------
-					long lAdjustment		= 0;
-					long lDisplayValue		= 0;
-					long lClosingNum		= 0;
-                    long lRequestNum        = 0;
+					int64_t lAdjustment		= 0;
+					int64_t lDisplayValue		= 0;
+					int64_t lClosingNum		= 0;
+                    int64_t lRequestNum        = 0;
                     bool bReplyTransSuccess = false;
 					// -------------------------------------
-					int nAbbrevRetVal =
+					int32_t nAbbrevRetVal =
 						OTTransaction::LoadAbbreviatedRecord(xml,
 															 lNumberOfOrigin,
 															 lTransactionNum,
@@ -2406,7 +2406,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 						OTLog::vOutput(0, "--- Apparently this is old data (the transaction is still stored inside the ledger itself)... \n");
 						m_bLoadedLegacyData = true; // Only place this is set true.
 
-						const int nBoxType = static_cast<int>(this->GetType());
+						const int32_t nBoxType = static_cast<int32_t>(this->GetType());
 
 						const bool bBoxReceiptAlreadyExists =
 							OTTransaction::VerifyBoxReceiptExists(pTransaction->GetRealServerID(),
@@ -2420,7 +2420,7 @@ int OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 							//
 							OTLog::vOutput(0, "--- The BoxReceipt doesn't exist separately (yet.) Creating it in local storage...\n");
 
-							const long lBoxType = static_cast<long>(nBoxType);
+							const int64_t lBoxType = static_cast<int64_t>(nBoxType);
 
 							if (false == pTransaction->SaveBoxReceipt(lBoxType)) //  <======== SAVE BOX RECEIPT
 								OTLog::Error("--- FAILED trying to save BoxReceipt from legacy data to local storage!\n");

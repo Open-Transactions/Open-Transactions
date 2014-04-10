@@ -116,9 +116,9 @@
 		else { return true }
 	}
 	// ---------------------------------------
-    def VerifyIntVal(nValue) // used for real int
+    def VerifyIntVal(nValue) // used for real int32_t
     {
-        if (nValue.is_var_null() || nValue.is_var_undef() || ( !nValue.is_type("int32_t") && !nValue.is_type("int64_t") && !nValue.is_type("long") &&  !nValue.is_type("int") && !nValue.is_type("size_t"))   )
+        if (nValue.is_var_null() || nValue.is_var_undef() || ( !nValue.is_type("int32_t") && !nValue.is_type("int64_t") && !nValue.is_type("int64_t") &&  !nValue.is_type("int32_t") && !nValue.is_type("size_t"))   )
         {
             OT_API_Output(0, "Not integer type: "+nValue.get_type_info().name() + "\n")
             return false
@@ -678,7 +678,7 @@ def ObjRef::assign(rhs)
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum)
         {
@@ -938,7 +938,7 @@ def ObjRef::assign(rhs)
 
 
 
-//public static int this.getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload,
+//public static int32_t this.getAndProcessNymbox(String serverID, String nymID, OTBool bWasMsgSent, boolean bForceDownload,
 //                                      var nRequestNumber, // nRequestNumber refers to a PREVIOUS msg (like a cash withdrawal) that had an error and then called this while trying to resync. (The caller will want to know whether it was found in the Nymbox.)
 //                                      OTBool bFoundNymboxItem,  // bFoundNymboxItem is OUTPUT bool, telling caller whether it was found.
 //                                      boolean bHarvestingForRetry, // bHarvestingForRetry is INPUT, in the case nRequestNumber needs to be harvested before a flush occurs.
@@ -1156,7 +1156,7 @@ def Utility::getAndProcessNymbox_8(serverID, nymID, bWasMsgSent, bForceDownload,
         // all those other server messages send a copy of that hash back, not just the this.getNymbox msg.)
         // 
         // 
-        //            void OT_API_FlushSentMessages(const int bHarvestingForRetry, // bHarvestingForRetry is actually OT_BOOL
+        //            void OT_API_FlushSentMessages(const int32_t bHarvestingForRetry, // bHarvestingForRetry is actually OT_BOOL
         //                              const char * SERVER_ID, 
         //                              const char * USER_ID,
         //                              const char * THE_NYMBOX); 
@@ -1496,9 +1496,9 @@ def Utility::getAndProcessNymbox_4(serverID, nymID, bWasMsgSent, bForceDownload)
 
 
 
-//  public static int getNymboxLowLevel(String serverID, String nymID)
-//  public static int receiveNymboxLowLevel(String serverID, String nymID, var nRequestNum)
-//  public static int processNymboxLowLevel(String serverID, String nymID) {
+//  public static int32_t getNymboxLowLevel(String serverID, String nymID)
+//  public static int32_t receiveNymboxLowLevel(String serverID, String nymID, var nRequestNum)
+//  public static int32_t processNymboxLowLevel(String serverID, String nymID) {
 
 // ------------------------------------------------------------------------------------------------
 
@@ -1529,7 +1529,7 @@ def Utility::getAndProcessNymbox_3(serverID, nymID, bWasMsgSent)
 // >0 If the Transaction status (from the server reply) is SUCCESS, then this function
 //    returns the REQUEST NUMBER from when it was originally sent. 
 //
-//public static int processNymbox(String    serverID, String nymID,
+//public static int32_t processNymbox(String    serverID, String nymID,
 //                                OTBool    bWasMsgSent,
 //                                // --------------------------------
 //                                OTInteger nMsgSentRequestNumOut,
@@ -1841,7 +1841,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return false // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return false // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum)
         {
@@ -1897,7 +1897,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
     }
     
     // called by insureHaveAllBoxReceipts     DONE
-    def Utility::getBoxReceiptWithErrorCorrection(serverID, nymID, accountID, nBoxType, strTransactionNum) // nBoxType is int 
+    def Utility::getBoxReceiptWithErrorCorrection(serverID, nymID, accountID, nBoxType, strTransactionNum) // nBoxType is int32_t 
     {
         var strLocation = "Utility::getBoxReceiptWithErrorCorrection"
         
@@ -1932,7 +1932,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
     // not necessarily loaded into memory. (Yet.)
     // NOTE: If nBoxType is 0 (nymbox) then pass nymID as the accountID as well!
     //
-    def Utility::insureHaveAllBoxReceipts(serverID, nymID, accountID, nBoxType) // nBoxType is int
+    def Utility::insureHaveAllBoxReceipts(serverID, nymID, accountID, nBoxType) // nBoxType is int32_t
     {
         var bFoundIt = OTBool(false)
         var nRequestSeeking = 0
@@ -2152,7 +2152,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
             // which do NOT appear on the client list, are REMOVED From the server list. After all, the
             // client has clearly now removed them, so the server doesn't have to keep them around either.
             //
-            // These are useful for synchronization but also there's a long term benefit, if we include
+            // These are useful for synchronization but also there's a int64_t term benefit, if we include
             // them in the signed receipt (which they will be already, if the receipt contains the entire
             // message and not just the transaction.) That benefit is that we can prove receipt of notice.
             // At least, notice of server replies. But for other notice types, such as notice of upcoming
@@ -2193,13 +2193,13 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
      static void getBoxReceipt(  const std::string	SERVER_ID,
                                  const std::string	USER_ID,
                                  const std::string	ACCT_ID,	// If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-                                 const int		nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
+                                 const int32_t		nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
                                  const std::string	TRANSACTION_NUMBER);
      
      static bool DoesBoxReceiptExist(const std::string	SERVER_ID,
                                      const std::string	USER_ID,
                                      const std::string	ACCT_ID,	// If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-                                     const int		nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
+                                     const int32_t		nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
                                      const std::string	TRANSACTION_NUMBER);
      */
     // If the transaction number requests fail, this function will try to resync
@@ -2221,7 +2221,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)            
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)            
         }
         else if ((-1) == nRequestNum)
         {
@@ -2885,7 +2885,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum)
         {
@@ -3056,7 +3056,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum)
         {
@@ -3206,7 +3206,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum) // if the requestNumber returned by the send-attempt is -1, that means it DIDN'T SEND (error)
         {
@@ -3287,7 +3287,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
     }
 
 // DEPRECATED
-    //public static int getOutboxLowLevel(String serverID, String nymID, String accountID, OTBool bWasSent, boolean bForce) // bForce defaults to FALSE 
+    //public static int32_t getOutboxLowLevel(String serverID, String nymID, String accountID, OTBool bWasSent, boolean bForce) // bForce defaults to FALSE 
     def Utility::getOutboxLowLevel( serverID,  nymID,  accountID,  bWasSent,  bForce) // bForce defaults to FALSE 
     {        
         bWasSent.setBooleanValue(false)
@@ -3334,7 +3334,7 @@ def Utility::sendProcessNymboxLowLevel(serverID, nymID) // bWasSent is an output
         if ((-2) == nRequestNum)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
-            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+            return (-1) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         }
         else if ((-1) == nRequestNum) // if the requestNumber returned by the send-attempt is -1, that means it DIDN'T SEND (error)
         {
