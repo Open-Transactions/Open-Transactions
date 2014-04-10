@@ -149,7 +149,7 @@ private:  // Private prevents erroneous use by other classes.
     typedef OTContract ot_super;
 // ------------------------------------------------------------------------------
 protected:
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	void InitMint();
 
@@ -165,7 +165,7 @@ protected:
 
 	OTIdentifier	  m_AssetID;            // Each Asset type has its own mint.
 
-	int				  m_nDenominationCount; // How many denominations of the currency are issued by this Mint?
+	int32_t				  m_nDenominationCount; // How many denominations of the currency are issued by this Mint?
                                             // (Each requires its own key pair.)
 
 	bool			  m_bSavePrivateKeys;   // Determines whether it serializes private keys (no if false).
@@ -173,7 +173,7 @@ protected:
                                             // (The signing process will then automatically set it back to false again.)
 
 	// --- MINT SERIES with EXPIRATION DATES ------------------
-	int				  m_nSeries;		// Each series of the mint has a valid from and to date. Series should rotate.
+	int32_t				  m_nSeries;		// Each series of the mint has a valid from and to date. Series should rotate.
                                         // (That is, the new one should be introduced halfway through the validity period
                                         // of the current one, and so on...)
 
@@ -192,7 +192,7 @@ protected:
                                         // the tokens expire, is the server operator's money to keep!
 // ------------------------------------------------------------------------------
 public:
-	inline	int		GetSeries()		const { return m_nSeries; }		// The series ID
+	inline	int32_t		GetSeries()		const { return m_nSeries; }		// The series ID
 	inline	time_t	GetValidFrom()	const { return m_VALID_FROM; }	// The token "valid from" date for this series
 	inline	time_t	GetValidTo()	const { return m_VALID_TO; }	// The token "valid until" date for this series
 	inline	time_t	GetExpiration()	const { return m_EXPIRATION; }	// The date the mint expires (should be halfway
@@ -230,14 +230,14 @@ EXPORT	bool SaveMint(const char * szAppend=NULL);
 	inline void SetSavePrivateKeys(bool bDoIt=true) { m_bSavePrivateKeys = bDoIt; }
 
 	// The denomination indicated here is the actual denomination...1, 5, 20, 50, 100, etc
-	bool GetPrivate(OTASCIIArmor & theArmor, long lDenomination);
-	bool GetPublic (OTASCIIArmor & theArmor, long lDenomination);
+	bool GetPrivate(OTASCIIArmor & theArmor, int64_t lDenomination);
+	bool GetPublic (OTASCIIArmor & theArmor, int64_t lDenomination);
 
-        long GetDenomination(int nIndex);
-EXPORT	long GetLargestDenomination(long lAmount);
-virtual bool AddDenomination(OTPseudonym & theNotary, long lDenomination, int nPrimeLength=1024)=0;
+        int64_t GetDenomination(int32_t nIndex);
+EXPORT	int64_t GetLargestDenomination(int64_t lAmount);
+virtual bool AddDenomination(OTPseudonym & theNotary, int64_t lDenomination, int32_t nPrimeLength=1024)=0;
 
-	inline int GetDenominationCount() const { return m_nDenominationCount; }
+	inline int32_t GetDenominationCount() const { return m_nDenominationCount; }
 
 	virtual bool VerifyContractID();
 
@@ -248,21 +248,21 @@ EXPORT	bool VerifyMint(const OTPseudonym & theOperator);
 	inline void SetAssetID(const OTIdentifier & newID) { m_AssetID = newID; }
 
 	// Lucre step 1: generate new mint
-EXPORT	void GenerateNewMint(int nSeries, time_t VALID_FROM, time_t VALID_TO,  time_t MINT_EXPIRATION,
+EXPORT	void GenerateNewMint(int32_t nSeries, time_t VALID_FROM, time_t VALID_TO,  time_t MINT_EXPIRATION,
 						 const OTIdentifier & theAssetID, const OTIdentifier & theServerID,
 						 OTPseudonym & theNotary,
-						 long nDenom1=0, long nDenom2=0, long nDenom3=0, long nDenom4=0, long nDenom5=0,
-						 long nDenom6=0, long nDenom7=0, long nDenom8=0, long nDenom9=0, long nDenom10=0);
+						 int64_t nDenom1=0, int64_t nDenom2=0, int64_t nDenom3=0, int64_t nDenom4=0, int64_t nDenom5=0,
+						 int64_t nDenom6=0, int64_t nDenom7=0, int64_t nDenom8=0, int64_t nDenom9=0, int64_t nDenom10=0);
 
 	// step 2: (coin request is in OTToken)
 
 	// Lucre step 3: mint signs token
-EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int nTokenIndex)=0;
+EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int32_t nTokenIndex)=0;
 
 	// step 4: (unblind coin is in OTToken)
 
 	// Lucre step 5: mint verifies token when it is redeemed by merchant.
-EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, long lDenomination)=0;
+EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, int64_t lDenomination)=0;
 
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
@@ -291,10 +291,10 @@ EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strAssetTypeI
 EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strServerNymID, const OTString & strAssetTypeID);
 // ------------------------------------------------------------------------------
 public:
-virtual bool AddDenomination(OTPseudonym & theNotary, long lDenomination, int nPrimeLength=1024);
+virtual bool AddDenomination(OTPseudonym & theNotary, int64_t lDenomination, int32_t nPrimeLength=1024);
 
-EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int nTokenIndex);
-EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, long lDenomination);
+EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int32_t nTokenIndex);
+EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, int64_t lDenomination);
 
 EXPORT	virtual ~OTMint_Lucre();
 // ------------------------------------------------------------------------------

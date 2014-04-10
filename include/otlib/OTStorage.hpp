@@ -182,7 +182,7 @@
 // style interfaces, to do everything I wanted it to do.
 //
 // I will probably create a more general-purpose header file for OT
-// and these sorts of #defines will probably end up there long-term.
+// and these sorts of #defines will probably end up there int64_t-term.
 // Much of OT might be separable out into a more general-purpose utility
 // lib, which I will get to whenever it is more important than anything else.
 //
@@ -408,7 +408,7 @@ namespace OTDB
 	public:
 		virtual ~Storable() {}
 
-		// %ignore spam(unsigned short); API users don't need this function, it's for internal purposes.
+		// %ignore spam(uint16_t); API users don't need this function, it's for internal purposes.
 		EXPORT	static Storable * Create(StoredObjectType eType, PackType thePackType);
 
 		DEFINE_OT_DYNAMIC_CAST(Storable)
@@ -433,13 +433,13 @@ namespace OTDB
 		virtual bool PackString(std::string& theString)=0;
 		virtual bool UnpackString(std::string& theString)=0;
 
-		virtual bool ReadFromIStream(std::istream &inStream, long lFilesize)=0;
+		virtual bool ReadFromIStream(std::istream &inStream, int64_t lFilesize)=0;
 		virtual bool WriteToOStream(std::ostream &outStream)=0;
 
-		virtual const	unsigned char *	GetData()=0;
+		virtual const	uint8_t *	GetData()=0;
 		virtual			size_t			GetSize()=0;
 
-		virtual	void SetData(const unsigned char * pData, size_t theSize)=0;
+		virtual	void SetData(const uint8_t * pData, size_t theSize)=0;
 	};
 
 	// --------------------------------
@@ -465,11 +465,11 @@ namespace OTDB
 	virtual ~theNewType() {} \
 	virtual bool PackString(std::string& theString); \
 	virtual bool UnpackString(std::string& theString); \
-	virtual bool ReadFromIStream(std::istream &inStream, long lFilesize); \
+    virtual bool ReadFromIStream(std::istream &inStream, int64_t lFilesize); \
 	virtual bool WriteToOStream(std::ostream &outStream); \
-	virtual const	unsigned char *	GetData(); \
+	virtual const	uint8_t *	GetData(); \
 	virtual			size_t			GetSize(); \
-	virtual	void SetData(const unsigned char * pData, size_t theSize); \
+	virtual	void SetData(const uint8_t * pData, size_t theSize); \
 	theInternalType & GetBuffer() { return m_buffer; } \
 	}
 
@@ -490,7 +490,7 @@ namespace OTDB
 	// abstract base class for a packer
 	//
 
-	// %ignore spam(unsigned short);  (probably for all packers.)
+	// %ignore spam(uint16_t);  (probably for all packers.)
 	class OTPacker
 	{
 	protected:
@@ -619,7 +619,7 @@ namespace OTDB
 		virtual bool Exists(std::string strFolder,
 			std::string oneStr="", std::string twoStr="", std::string threeStr="")=0;
 
-        virtual long FormPathString(std::string & strOutput,
+        virtual int64_t FormPathString(std::string & strOutput,
                                     std::string   strFolder,   std::string oneStr="",
                                     std::string   twoStr="",   std::string threeStr="")=0;
 
@@ -721,7 +721,7 @@ namespace OTDB
 	EXPORT	bool Exists(std::string strFolder,
 		std::string oneStr="", std::string twoStr="", std::string threeStr="");
 
-    EXPORT  long FormPathString(std::string & strOutput,
+    EXPORT  int64_t FormPathString(std::string & strOutput,
                                 std::string   strFolder,   std::string oneStr="",
                                 std::string   twoStr="",   std::string threeStr="");
 	// --------
@@ -836,7 +836,7 @@ public: \
 	public:
 		virtual ~Blob() { }
 
-		std::vector<unsigned char> m_memBuffer; // Where the actual binary data is stored, before packing.
+		std::vector<uint8_t> m_memBuffer; // Where the actual binary data is stored, before packing.
 
 		DEFINE_OT_DYNAMIC_CAST(Blob)
 	};
@@ -1533,18 +1533,18 @@ namespace OTDB
 		// But from there, however you Init, Store, Query, etc is entirely up to you.
 
         // Confirms if a file exists.  If it exists at path; return length.
-		long ConstructAndConfirmPath(std::string & strOutput,
+		int64_t ConstructAndConfirmPath(std::string & strOutput,
 			const std::string strFolder, const std::string oneStr="",
 			const std::string twoStr="", const std::string threeStr="");
 
         // Verifies whether path exists AND creates folders where necessary.
-		long ConstructAndCreatePath(std::string & strOutput,
+		int64_t ConstructAndCreatePath(std::string & strOutput,
 			const std::string strFolder, const std::string oneStr="",
 			const std::string twoStr="", const std::string threeStr="");
 
 	private:
 
-		long ConstructAndConfirmPathImp(
+		int64_t ConstructAndConfirmPathImp(
 			const bool bMakePath,
 				  std::string & strOutput,
 			const std::string zeroStr,
@@ -1587,7 +1587,7 @@ namespace OTDB
 		virtual bool Exists(std::string strFolder,
 			std::string oneStr="", std::string twoStr="", std::string threeStr="");
 
-        virtual long FormPathString(std::string & strOutput,
+        virtual int64_t FormPathString(std::string & strOutput,
                                     std::string   strFolder,   std::string oneStr="",
                                     std::string   twoStr="",   std::string threeStr="");
 
@@ -1728,10 +1728,10 @@ protected: \
 public: \
 	static Storable * Instantiate() { return dynamic_cast<Storable *>(new theType); } \
 	\
-	theType() : theBaseType(), IStorableMsgpack() { m_Type = StoredObjectTypeStrings[static_cast<int>(theObjectType)]; m_Type += "Msgpack"; \
+	theType() : theBaseType(), IStorableMsgpack() { m_Type = StoredObjectTypeStrings[static_cast<int32_t>(theObjectType)]; m_Type += "Msgpack"; \
 } \
 	\
-	theType(const theType & rhs) : theBaseType(), IStorableMsgpack() { m_Type = StoredObjectTypeStrings[static_cast<int>(theObjectType)]; m_Type += "Msgpack"; \
+	theType(const theType & rhs) : theBaseType(), IStorableMsgpack() { m_Type = StoredObjectTypeStrings[static_cast<int32_t>(theObjectType)]; m_Type += "Msgpack"; \
 	(const_cast<theType &>(rhs)).CopyToObject(const_cast<theType&>(*this)); } \
 	\
 	void CopyToObject(theType & theNewStorable) const { \
@@ -2177,7 +2177,7 @@ theNewType() : PackedBuffer() {} \
 virtual ~theNewType(); \
 virtual bool PackString(std::string& theString); \
 virtual bool UnpackString(std::string& theString); \
-virtual bool ReadFromIStream(std::istream &inStream, long lFilesize); \
+virtual bool ReadFromIStream(std::istream &inStream, int64_t lFilesize); \
 virtual bool WriteToOStream(std::ostream &outStream); \
 }
 */
@@ -2222,11 +2222,11 @@ namespace OTDB
 		static Storable * Instantiate()
 		{ return dynamic_cast<Storable *>(new ProtobufSubclass<theBaseType, theInternalType, theObjectType>); }
 
-		ProtobufSubclass() : theBaseType(), IStorablePB() { m_Type = StoredObjectTypeStrings[static_cast<int>(theObjectType)]; m_Type += "PB";
+		ProtobufSubclass() : theBaseType(), IStorablePB() { m_Type = StoredObjectTypeStrings[static_cast<int32_t>(theObjectType)]; m_Type += "PB";
 		/*std::cout << m_Type.c_str() << " -- Constructor" << std::endl;*/ }
 
 		ProtobufSubclass(const ProtobufSubclass<theBaseType,theInternalType,theObjectType> & rhs) : theBaseType(), IStorablePB()
-		{ m_Type = StoredObjectTypeStrings[static_cast<int>(theObjectType)]; m_Type += "PB";
+		{ m_Type = StoredObjectTypeStrings[static_cast<int32_t>(theObjectType)]; m_Type += "PB";
 		/*std::cout << m_Type.c_str() << " -- Copy Constructor" << std::endl; */ rhs.CopyToObject(*this); }
 
 		ProtobufSubclass<theBaseType,theInternalType,theObjectType> &

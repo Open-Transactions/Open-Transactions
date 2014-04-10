@@ -154,7 +154,7 @@ OTMadeEasy::~OTMadeEasy()
 
 // **********************************************************************
 
-bool OTMadeEasy::make_sure_enough_trans_nums(const long   nNumberNeeded,
+bool OTMadeEasy::make_sure_enough_trans_nums(const int64_t   nNumberNeeded,
                                              const std::string & SERVER_ID,
                                              const std::string & NYM_ID)
 {
@@ -177,7 +177,7 @@ std::string OTMadeEasy::check_user(const std::string  & SERVER_ID,
 }
 
 
-std::string OTMadeEasy::create_pseudonym(const long          nKeybits,
+std::string OTMadeEasy::create_pseudonym(const int64_t          nKeybits,
                                          const std::string & NYM_ID_SOURCE,
                                          const std::string & ALT_LOCATION)
 {
@@ -293,7 +293,7 @@ std::string OTMadeEasy::process_inbox(const std::string  & SERVER_ID,
 
 
 bool OTMadeEasy::accept_inbox_items(const std::string  & ACCOUNT_ID,  // this method specific to asset account inbox.
-                                          long           nItemType,
+                                          int64_t           nItemType,
                                     const std::string  & INDICES)
 {
  	return m_pME->accept_inbox_items(ACCOUNT_ID, nItemType, INDICES);
@@ -313,7 +313,7 @@ bool OTMadeEasy::cancel_outgoing_payments (const std::string  & NYM_ID,
  	return m_pME->cancel_outgoing_payments(NYM_ID, ACCOUNT_ID, INDICES);
 }
 
-long OTMadeEasy::accept_from_paymentbox(const std::string  & ACCOUNT_ID, // This acct better have the right asset type, based on chosen indices.
+int64_t OTMadeEasy::accept_from_paymentbox(const std::string  & ACCOUNT_ID, // This acct better have the right asset type, based on chosen indices.
                                         const std::string  & INDICES,
                                         const std::string  & PAYMENT_TYPE)
 {
@@ -410,7 +410,7 @@ std::string OTMadeEasy::send_user_cash(const std::string  & SERVER_ID,
 
 std::string OTMadeEasy::get_payment_instrument(const std::string  & SERVER_ID,
                                                const std::string  & NYM_ID,
-                                               const long           nIndex)
+                                               const int64_t           nIndex)
 {
     return m_pME->get_payment_instrument(SERVER_ID, NYM_ID, static_cast<int32_t>(nIndex));
 }
@@ -418,7 +418,7 @@ std::string OTMadeEasy::get_payment_instrument(const std::string  & SERVER_ID,
 
 std::string OTMadeEasy::get_payment_instrument(const std::string  & SERVER_ID,
                                                const std::string  & NYM_ID,
-                                               const long           nIndex,
+                                               const int64_t           nIndex,
                                                const std::string  & PRELOADED_INBOX) // PRELOADED_INBOX is optional.
 {
     return m_pME->get_payment_instrument(SERVER_ID, NYM_ID, static_cast<int32_t>(nIndex), PRELOADED_INBOX);
@@ -428,7 +428,7 @@ std::string OTMadeEasy::get_payment_instrument(const std::string  & SERVER_ID,
 std::string OTMadeEasy::get_box_receipt(const std::string  & SERVER_ID,
                                         const std::string  & NYM_ID,
                                         const std::string  & ACCT_ID,
-                                        const long           nBoxType,
+                                        const int64_t           nBoxType,
                                         const std::string  & TRANS_NUM)
 {
     return m_pME->get_box_receipt(SERVER_ID, NYM_ID, ACCT_ID, static_cast<int32_t>(nBoxType), OTAPI_Wrap::StringToLong(TRANS_NUM));
@@ -556,10 +556,10 @@ std::string OTMadeEasy::withdraw_cash(const std::string  & SERVER_ID,
                                 OTAPI_Wrap::StringToLong(AMOUNT));
 }
 
-long OTMadeEasy::easy_withdraw_cash(const std::string  & ACCT_ID,
+int64_t OTMadeEasy::easy_withdraw_cash(const std::string  & ACCT_ID,
                                     const std::string  & AMOUNT)
 {
-    return static_cast<long>(m_pME->easy_withdraw_cash(ACCT_ID,
+    return static_cast<int64_t>(m_pME->easy_withdraw_cash(ACCT_ID,
                                                        OTAPI_Wrap::StringToLong(AMOUNT)));
 }
 
@@ -636,23 +636,23 @@ std::string OTMadeEasy::deposit_cheque(const std::string  & SERVER_ID,
                                  STR_CHEQUE);
 }
 
-long OTMadeEasy::deposit_cash(const std::string  & SERVER_ID,
+int64_t OTMadeEasy::deposit_cash(const std::string  & SERVER_ID,
                               const std::string  & NYM_ID,
                               const std::string  & ACCT_ID,
                               const std::string  & STR_PURSE)
 {
-    return static_cast<long>(m_pME->deposit_cash(SERVER_ID,
+    return static_cast<int64_t>(m_pME->deposit_cash(SERVER_ID,
                                                  NYM_ID,
                                                  ACCT_ID,
                                                  STR_PURSE));
 }
 
-long OTMadeEasy::deposit_local_purse(const std::string  & SERVER_ID,
+int64_t OTMadeEasy::deposit_local_purse(const std::string  & SERVER_ID,
                                      const std::string  & NYM_ID,
                                      const std::string  & ACCT_ID,
                                      const std::string  & STR_INDICES)
 {
-    return static_cast<long>(m_pME->deposit_local_purse(SERVER_ID,
+    return static_cast<int64_t>(m_pME->deposit_local_purse(SERVER_ID,
                                                         NYM_ID,
                                                         ACCT_ID,
                                                         STR_INDICES));
@@ -701,40 +701,40 @@ std::string OTMadeEasy::adjust_usage_credits(const std::string  & SERVER_ID,
 }
 
 
-long OTMadeEasy::VerifyMessageSuccess(const std::string & str_Message)
+int64_t OTMadeEasy::VerifyMessageSuccess(const std::string & str_Message)
 {
-    const long lReturn = static_cast<long>(m_pME->VerifyMessageSuccess(str_Message));
+    const int64_t lReturn = static_cast<int64_t>(m_pME->VerifyMessageSuccess(str_Message));
     return lReturn;
 }
 
 
-long OTMadeEasy::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
+int64_t OTMadeEasy::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
                                                const std::string & USER_ID,
                                                const std::string & ACCOUNT_ID,
                                                const std::string & str_Message)
 {
-    const long lReturn = static_cast<long>(m_pME->VerifyMsgBalanceAgrmntSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
+    const int64_t lReturn = static_cast<int64_t>(m_pME->VerifyMsgBalanceAgrmntSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
     return lReturn;
 }
 
 
-long OTMadeEasy::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
+int64_t OTMadeEasy::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
                                       const std::string & USER_ID,
                                       const std::string & ACCOUNT_ID,
                                       const std::string & str_Message)
 {
-    const long lReturn = static_cast<long>(m_pME->VerifyMsgTrnxSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
+    const int64_t lReturn = static_cast<int64_t>(m_pME->VerifyMsgTrnxSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, str_Message));
     return lReturn;
 }
 
 
-long OTMadeEasy::InterpretTransactionMsgReply(const std::string & SERVER_ID,
+int64_t OTMadeEasy::InterpretTransactionMsgReply(const std::string & SERVER_ID,
                                               const std::string & USER_ID,
                                               const std::string & ACCOUNT_ID,
                                               const std::string & str_Attempt,
                                               const std::string & str_Response)
 {
-    const long lReturn = static_cast<long>(m_pME->InterpretTransactionMsgReply(SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response));
+    const int64_t lReturn = static_cast<int64_t>(m_pME->InterpretTransactionMsgReply(SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response));
     return lReturn;
 }
 

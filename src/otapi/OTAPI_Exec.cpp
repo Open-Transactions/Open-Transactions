@@ -622,7 +622,7 @@ std::string OTAPI_Exec::GetActiveCronItem(const std::string & SERVER_ID, int64_t
     const OTIdentifier serverId(SERVER_ID);
     std::string        str_return;
     // --------------------------------------
-    const long lTransactionNum = static_cast<long>(lTransNum);
+    const int64_t lTransactionNum = static_cast<int64_t>(lTransNum);
 
     OTCronItem * pCronItem = OTCronItem::LoadActiveCronReceipt(lTransactionNum, serverId);
     OTCleanup<OTCronItem> theCronItemAngel(pCronItem);
@@ -694,7 +694,7 @@ std::string OTAPI_Exec::GetNym_CredentialID(const std::string & NYM_ID,
     if (NULL == pNym) return "";
 	// ---------------------------------------------------------
     std::string    str_return;
-    const OTCredential * pCredential = pNym->GetMasterCredentialByIndex(static_cast<const int>(nIndex));
+    const OTCredential * pCredential = pNym->GetMasterCredentialByIndex(static_cast<const int32_t>(nIndex));
 
     if (NULL != pCredential)
         str_return = pCredential->GetMasterCredID().Get();
@@ -752,7 +752,7 @@ std::string OTAPI_Exec::GetNym_RevokedCredID(const std::string & NYM_ID,
     if (NULL == pNym) return "";
 	// ---------------------------------------------------------
     std::string str_return;
-    const OTCredential * pCredential = pNym->GetRevokedCredentialByIndex(static_cast<const int>(nIndex));
+    const OTCredential * pCredential = pNym->GetRevokedCredentialByIndex(static_cast<const int32_t>(nIndex));
 
     if (NULL != pCredential)
     {
@@ -829,7 +829,7 @@ std::string OTAPI_Exec::GetNym_SubCredentialID(const std::string & NYM_ID,
     OTCredential * pCredential = pNym->GetMasterCredential(strCredID);
 
     if (NULL != pCredential) // Found the master credential...
-        return pCredential->GetSubcredentialIDByIndex(static_cast<const int>(nIndex));
+        return pCredential->GetSubcredentialIDByIndex(static_cast<const int32_t>(nIndex));
 
     return "";
 }
@@ -1878,13 +1878,13 @@ bool OTAPI_Exec::DoesBoxReceiptExist(const std::string & SERVER_ID,
 		theUserID,
 		theAccountID,   // If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
 		nBoxType,       // 0/nymbox, 1/inbox, 2/outbox
-		static_cast<long>(lTransactionNum));
+		static_cast<int64_t>(lTransactionNum));
 }
 
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -1930,13 +1930,13 @@ int32_t OTAPI_Exec::getBoxReceipt(const std::string & SERVER_ID,
 		theUserID,
 		theAccountID, // If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
 		nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
-		static_cast<long>(lTransactionNum));
+		static_cast<int64_t>(lTransactionNum));
 }
 
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -3222,7 +3222,7 @@ int64_t OTAPI_Exec::Instrmnt_GetAmount(const std::string & THE_INSTRUMENT)
 	// into the OTPayment object. (Meaning we can now return the requested data...)
 
 	OTString      strOutput;
-	long          lOutput  = 0;
+	int64_t          lOutput  = 0;
 	const bool &  bGotData = thePayment.GetAmount(lOutput); // <========
 
 	return bGotData ? lOutput : -1;
@@ -3257,7 +3257,7 @@ int64_t OTAPI_Exec::Instrmnt_GetTransNum(const std::string & THE_INSTRUMENT)
 	// BY THIS POINT, we have definitely loaded up all the values of the instrument
 	// into the OTPayment object. (Meaning we can now return the requested data...)
 	OTString      strOutput;
-	long          lOutput = 0;
+	int64_t          lOutput = 0;
 	const bool &  bGotData = thePayment.GetTransactionNum(lOutput); // <========
 
 	return bGotData ? lOutput : -1;
@@ -4713,7 +4713,7 @@ theCheque.IssueCheque( AMOUNT // The amount of the cheque, in string form, which
 // allowed, since that is how OT implements invoices.
 // (An invoice is just a cheque with a negative amount.)
 
-lTransactionNumber,   // The API will supply this automatically, as int64_t as
+lTransactionNumber,   // The API will supply this automatically, as long as
 // there are some transaction numbers in the wallet. (Call
 // OTAPI_Exec::getTransactionNumber() if your wallet needs more.)
 
@@ -4761,7 +4761,7 @@ std::string OTAPI_Exec::WriteCheque(const std::string & SERVER_ID,
 		strMemo.Set(CHEQUE_MEMO);
 
 	OTCheque * pCheque = OTAPI()->WriteCheque(theServerID,
-		static_cast<long>(lAmount),
+		static_cast<int64_t>(lAmount),
 		time_From, time_To,
 		theSenderAcctID,
 		theSenderUserID,
@@ -4882,15 +4882,15 @@ std::string OTAPI_Exec::ProposePaymentPlan(
 		OTIdentifier(RECIPIENT_ACCT_ID),
 		OTIdentifier(RECIPIENT_USER_ID),
 		// ----------------------------------------
-		static_cast<long>(INITIAL_PAYMENT_AMOUNT),
+		static_cast<int64_t>(INITIAL_PAYMENT_AMOUNT),
 		INITIAL_PAYMENT_DELAY,
 		// ----------------------------------------
-		static_cast<long>(PAYMENT_PLAN_AMOUNT),
+		static_cast<int64_t>(PAYMENT_PLAN_AMOUNT),
 		PAYMENT_PLAN_DELAY,
 		PAYMENT_PLAN_PERIOD,
 		// ----------------------------------------
 		PAYMENT_PLAN_LENGTH,
-		static_cast<int>(PAYMENT_PLAN_MAX_PAYMENTS)
+		static_cast<int32_t>(PAYMENT_PLAN_MAX_PAYMENTS)
 		));
     // ---------------------------------------
 	OTCleanup<OTPaymentPlan> theAngel(pPlan); // Handles cleanup. (If necessary.)
@@ -4976,7 +4976,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // VALID_FROM
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 VALID_FROM = static_cast<time_t>(lVal);
             theList.Pop();
@@ -4985,7 +4985,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // VALID_TO
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 VALID_TO = static_cast<time_t>(lVal);
             theList.Pop();
@@ -5002,7 +5002,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // INITIAL_PAYMENT_AMOUNT
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 INITIAL_PAYMENT_AMOUNT = static_cast<int64_t>(lVal);
             theList.Pop();
@@ -5011,7 +5011,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // INITIAL_PAYMENT_DELAY
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 INITIAL_PAYMENT_DELAY = static_cast<time_t>(lVal);
             theList.Pop();
@@ -5028,7 +5028,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // PAYMENT_PLAN_AMOUNT
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 PAYMENT_PLAN_AMOUNT = static_cast<int64_t>(lVal);
             theList.Pop();
@@ -5037,7 +5037,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // PAYMENT_PLAN_DELAY
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 PAYMENT_PLAN_DELAY = static_cast<time_t>(lVal);
             theList.Pop();
@@ -5046,7 +5046,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // PAYMENT_PLAN_PERIOD
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 PAYMENT_PLAN_PERIOD = static_cast<time_t>(lVal);
             theList.Pop();
@@ -5063,7 +5063,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // PAYMENT_PLAN_LENGTH
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 PAYMENT_PLAN_LENGTH = static_cast<time_t>(lVal);
             theList.Pop();
@@ -5072,7 +5072,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         // PAYMENT_PLAN_MAX_PAYMENTS
         if (theList.Count() > 0)
         {
-            long lVal = 0;
+            int64_t lVal = 0;
             if (theList.Peek(lVal))
                 PAYMENT_PLAN_MAX_PAYMENTS = static_cast<int32_t>(lVal);
             theList.Pop();
@@ -5807,7 +5807,7 @@ std::string OTAPI_Exec::Smart_GetPartyByIndex(const std::string & THE_CONTRACT,
     {
 		theContractAngel.SetCleanupTarget(*pScriptable);  // Auto-cleanup.
         // -----------------------------------------------------
-        const int nTempIndex = static_cast<const int>(nIndex);
+        const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
         OTParty * pParty = pScriptable->GetPartyByIndex(nTempIndex); // has range-checking built-in.
         // -----------------------------------------------------
         if (NULL == pParty)
@@ -5842,7 +5842,7 @@ std::string OTAPI_Exec::Smart_GetBylawByIndex(const std::string & THE_CONTRACT,
     {
 		theContractAngel.SetCleanupTarget(*pScriptable);  // Auto-cleanup.
         // -----------------------------------------------------
-        const int nTempIndex = static_cast<const int>(nIndex);
+        const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
         OTBylaw * pBylaw = pScriptable->GetBylawByIndex(nTempIndex); // has range-checking built-in.
         // -----------------------------------------------------
         if (NULL == pBylaw)
@@ -6072,7 +6072,7 @@ std::string OTAPI_Exec::Clause_GetNameByIndex(const std::string & THE_CONTRACT,
         }
         else // We found the bylaw...
         {
-            const int nTempIndex = static_cast<const int>(nIndex);
+            const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
 
             OTClause * pClause = pBylaw->GetClauseByIndex(nTempIndex);
 
@@ -6170,7 +6170,7 @@ std::string OTAPI_Exec::Variable_GetNameByIndex(const std::string & THE_CONTRACT
         }
         else // We found the bylaw...
         {
-            const int nTempIndex = static_cast<const int>(nIndex);
+            const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
 
             OTVariable * pVar = pBylaw->GetVariableByIndex(nTempIndex);
 
@@ -6376,7 +6376,7 @@ std::string OTAPI_Exec::Hook_GetNameByIndex(const std::string & THE_CONTRACT,
         }
         else // We found the bylaw...
         {
-            const int nTempIndex = static_cast<const int>(nIndex);
+            const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
             const std::string str_name(pBylaw->GetHookNameByIndex(nTempIndex));
             return str_name;
         }
@@ -6518,7 +6518,7 @@ std::string OTAPI_Exec::Callback_GetNameByIndex(const std::string & THE_CONTRACT
         }
         else // We found the bylaw...
         {
-            const int nTempIndex = static_cast<const int>(nIndex);
+            const int32_t nTempIndex = static_cast<const int32_t>(nIndex);
             const std::string str_name(pBylaw->GetCallbackNameByIndex(nTempIndex));
             return str_name;
         }
@@ -6715,7 +6715,7 @@ std::string OTAPI_Exec::Party_GetAcctNameByIndex(const std::string & THE_CONTRAC
         }
         else // We found the party...
         {
-            const int nTempIndex   = static_cast<const int>(nIndex);
+            const int32_t nTempIndex   = static_cast<const int32_t>(nIndex);
             OTPartyAccount * pAcct = pParty->GetAccountByIndex(nTempIndex);
 
             if (NULL == pAcct)
@@ -6910,7 +6910,7 @@ std::string OTAPI_Exec::Party_GetAgentNameByIndex(const std::string & THE_CONTRA
         }
         else // We found the party...
         {
-            const int nTempIndex   = static_cast<const int>(nIndex);
+            const int32_t nTempIndex   = static_cast<const int32_t>(nIndex);
             OTAgent * pAgent = pParty->GetAgentByIndex(nTempIndex);
 
             if (NULL == pAgent)
@@ -7001,7 +7001,7 @@ std::string OTAPI_Exec::Party_GetAgentID(const std::string & THE_CONTRACT,
 //
 // See OTAPI_Exec::Create_SmartContract (etc.)
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -7031,7 +7031,7 @@ int32_t OTAPI_Exec::activateSmartContract(const std::string & SERVER_ID,
 // to trigger clauses on that smart contract, by name. This is NOT a transaction,
 // but it DOES message the server.
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -7057,7 +7057,7 @@ int32_t OTAPI_Exec::triggerClause(const std::string & SERVER_ID,
 	const OTString strParam((STR_PARAM.empty()) ? "" : STR_PARAM);
 	return OTAPI()->triggerClause(theServerID,
                                               theUserID,
-                                              static_cast<long>(lTransactionNum),
+                                              static_cast<int64_t>(lTransactionNum),
                                               strClauseName,
                                               STR_PARAM.empty() ? NULL : &strParam);
 }
@@ -7637,7 +7637,7 @@ std::string OTAPI_Exec::Nymbox_GetReplyNotice(const std::string & SERVER_ID,
 		return "";
 	}
 	// -----------------------------------
-	OTTransaction * pTransaction = pLedger->GetReplyNotice(static_cast<long>(lRequestNumber));
+	OTTransaction * pTransaction = pLedger->GetReplyNotice(static_cast<int64_t>(lRequestNumber));
 	// No need to cleanup this transaction, the ledger owns it already.
 
 	if (NULL == pTransaction)
@@ -7664,8 +7664,8 @@ std::string OTAPI_Exec::Nymbox_GetReplyNotice(const std::string & SERVER_ID,
 
 	if (pTransaction->IsAbbreviated())
 	{
-		pLedger->LoadBoxReceipt(static_cast<long>(lTransactionNum));
-		OTTransaction * pFullTransaction = pLedger->GetTransaction(static_cast<long>(lTransactionNum));
+		pLedger->LoadBoxReceipt(static_cast<int64_t>(lTransactionNum));
+		OTTransaction * pFullTransaction = pLedger->GetTransaction(static_cast<int64_t>(lTransactionNum));
 		// -------------------------
 
 		if (NULL != pFullTransaction)
@@ -7745,7 +7745,7 @@ bool OTAPI_Exec::HaveAlreadySeenReply(const std::string & SERVER_ID,
 	// There is an OT_ASSERT in here for memory failure,
 	// but it still might return "" if various verification fails.
 
-	const bool & bTemp = OTAPI()->HaveAlreadySeenReply(theServerID, theUserID, static_cast<long>(lRequestNumber));
+	const bool & bTemp = OTAPI()->HaveAlreadySeenReply(theServerID, theUserID, static_cast<int64_t>(lRequestNumber));
 	return bTemp;
 }
 
@@ -8435,8 +8435,8 @@ std::string OTAPI_Exec::Ledger_GetTransactionByIndex(const std::string & SERVER_
 	//
 	if (pTransaction->IsAbbreviated())
 	{
-		theLedger.LoadBoxReceipt(static_cast<long>(lTransactionNum)); // I don't check return val here because I still want it to send the abbreviated form, if this fails.
-		pTransaction = theLedger.GetTransaction(static_cast<long>(lTransactionNum));
+		theLedger.LoadBoxReceipt(static_cast<int64_t>(lTransactionNum)); // I don't check return val here because I still want it to send the abbreviated form, if this fails.
+		pTransaction = theLedger.GetTransaction(static_cast<int64_t>(lTransactionNum));
 		// -------------------------
 		if (NULL == pTransaction)
 		{
@@ -8504,7 +8504,7 @@ std::string OTAPI_Exec::Ledger_GetTransactionByID(const std::string & SERVER_ID,
 	// At this point, I know theLedger loaded successfully.
 	// -----------------------------------------------------
 
-	OTTransaction * pTransaction = theLedger.GetTransaction(static_cast<long>(lTransactionNumber));
+	OTTransaction * pTransaction = theLedger.GetTransaction(static_cast<int64_t>(lTransactionNumber));
 	// No need to cleanup this transaction, the ledger owns it already.
 
 	if (NULL == pTransaction)
@@ -8533,13 +8533,13 @@ std::string OTAPI_Exec::Ledger_GetTransactionByID(const std::string & SERVER_ID,
 		// (Perhaps it has already been downloaded sometime in the past, and simply
 		// needs to be loaded up. Worth a shot.)
 		//
-		const bool & bLoadedBoxReceipt = theLedger.LoadBoxReceipt(static_cast<long>(lTransactionNum)); // I still want it to send the abbreviated form, if this fails.
+		const bool & bLoadedBoxReceipt = theLedger.LoadBoxReceipt(static_cast<int64_t>(lTransactionNum)); // I still want it to send the abbreviated form, if this fails.
 
 		// Grab this pointer again, since the object was re-instantiated
 		// in the case of a successful LoadBoxReceipt.
 		//
 		if (bLoadedBoxReceipt)
-			pTransaction = theLedger.GetTransaction(static_cast<long>(lTransactionNum));
+			pTransaction = theLedger.GetTransaction(static_cast<int64_t>(lTransactionNum));
 
 		// (else if false == bLoadedBoxReceipt, then pTransaction ALREADY points
 		// to the abbreviated version.)
@@ -8997,7 +8997,7 @@ std::string OTAPI_Exec::Transaction_CreateResponse(const std::string & SERVER_ID
 	if (NULL == pResponse)
 	{
 		OTString strServerID(theServerID);
-		long lTransactionNumber=0;
+		int64_t lTransactionNumber=0;
 		bool bGotTransNum = pNym->GetNextTransactionNum(*pNym, strServerID, lTransactionNumber);
 
 		if (false == bGotTransNum)
@@ -9074,7 +9074,7 @@ std::string OTAPI_Exec::Transaction_CreateResponse(const std::string & SERVER_ID
 	}
     // -------------------------------------------------
 	int64_t  lReferenceTransactionNum = 0;
-    long     lNumberOfOrigin          = 0;
+    int64_t     lNumberOfOrigin          = 0;
     OTString strNote;
     // -------------------------------------------------
 	switch (pTransaction->GetType())
@@ -9151,7 +9151,7 @@ std::string OTAPI_Exec::Transaction_CreateResponse(const std::string & SERVER_ID
 	// Set up the "accept" transaction item to be sent to the server
 	// (this item references and accepts another item by its transaction number--
 	//  one that is already there in my inbox)
-	pAcceptItem->SetReferenceToNum(static_cast<long>(lReferenceTransactionNum)); // This is critical. Server needs this to look up the original.
+	pAcceptItem->SetReferenceToNum(static_cast<int64_t>(lReferenceTransactionNum)); // This is critical. Server needs this to look up the original.
 	// Don't need to set transaction num on item since the constructor already got it off the owner transaction.
     // ------------------------------------------------------------------
 	pAcceptItem->SetAmount(pTransaction->GetReceiptAmount()); // Server validates this, so make sure it's right.
@@ -9172,7 +9172,7 @@ std::string OTAPI_Exec::Transaction_CreateResponse(const std::string & SERVER_ID
 //    if (NULL != pExistingItem)
 //    {
 //        OTLog::vError("%s: Error: There's already a response item in reference to the same receipt! (In Ref: %ld User: %s Account: %s) Failure.\n\n",
-//                      __FUNCTION__, static_cast<long>(lReferenceTransactionNum), USER_ID.c_str(), ACCOUNT_ID.c_str());
+//                      __FUNCTION__, static_cast<int64_t>(lReferenceTransactionNum), USER_ID.c_str(), ACCOUNT_ID.c_str());
 //
 //        const OTString strAccept(*pAcceptItem);
 //        OTLog::vError("===> Failed accept item:\n%s\n\n", strAccept.Get());
@@ -9583,7 +9583,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 
 						// ---------------------------------------------
 						//
-						if (static_cast<int>(setOfRefNumbers.size())
+						if (static_cast<int32_t>(setOfRefNumbers.size())
 							!=   // IS NOT EQUAL TO...
 							theInbox.GetTransactionCountInRefTo(pServerTransaction->GetReferenceToNum()))
 							/* todo: Notice I'm not making sure the count is entirely composed of ACCEPTED receipts. (vs DISPUTED...)
@@ -9683,7 +9683,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 		int64_t lTemp = theListOfInboxReceiptsBeingRemoved.front();
 		theListOfInboxReceiptsBeingRemoved.pop_front();
 
-		if (false == theInbox.RemoveTransaction(static_cast<long>(lTemp)))    // <================
+		if (false == theInbox.RemoveTransaction(static_cast<int64_t>(lTemp)))    // <================
 			OTLog::vError("%s: Failed removing receipt from temporary Inbox: %ld \n", __FUNCTION__, lTemp);
 	}
 
@@ -9700,14 +9700,14 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 	for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(theServerID); i++)
 	{
 		int64_t lTemp = theTempNym.GetIssuedNum(theServerID, i);
-		pNym->RemoveIssuedNum(strServerID, static_cast<long>(lTemp));
+		pNym->RemoveIssuedNum(strServerID, static_cast<int64_t>(lTemp));
 	}
 	// -----------------------------------------
 	// BALANCE AGREEMENT
 	//
 	// The item is signed and saved within this call as well. No need to do that again.
 	//
-	OTItem * pBalanceItem = theInbox.GenerateBalanceStatement(static_cast<long>(lTotalBeingAccepted), *pTransaction, *pNym, *pAccount, theOutbox);
+	OTItem * pBalanceItem = theInbox.GenerateBalanceStatement(static_cast<int64_t>(lTotalBeingAccepted), *pTransaction, *pNym, *pAccount, theOutbox);
 	// -----------------------------------------
 	// Here I am adding these numbers back again, since I removed them to generate the balance agreement.
 	// (They won't be removed for real until I receive the server's acknowledgment that those numbers
@@ -9716,7 +9716,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 	for (int32_t i = 0; i < theTempNym.GetIssuedNumCount(theServerID); i++)
 	{
 		int64_t lTemp = theTempNym.GetIssuedNum(theServerID, i);
-		pNym->AddIssuedNum(strServerID, static_cast<long>(lTemp));
+		pNym->AddIssuedNum(strServerID, static_cast<int64_t>(lTemp));
 	}
 
 	// *****************************************************************
@@ -9919,7 +9919,7 @@ std::string OTAPI_Exec::Transaction_GetSenderUserID(const std::string & SERVER_I
 			return "";
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt.\n", __FUNCTION__);
@@ -10008,7 +10008,7 @@ std::string OTAPI_Exec::Transaction_GetRecipientUserID(const std::string & SERVE
 			return "";
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt.", __FUNCTION__);
@@ -10113,7 +10113,7 @@ std::string OTAPI_Exec::Transaction_GetSenderAcctID(const std::string & SERVER_I
 			return "";
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt. \n", __FUNCTION__);
@@ -10205,7 +10205,7 @@ std::string OTAPI_Exec::Transaction_GetRecipientAcctID(const std::string & SERVE
 			return "";
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt.\n", __FUNCTION__);
@@ -10310,7 +10310,7 @@ std::string OTAPI_Exec::Pending_GetNote(const std::string & SERVER_ID,
 			return "";
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt. \n", __FUNCTION__);
@@ -10421,7 +10421,7 @@ int64_t OTAPI_Exec::Transaction_GetAmount(const std::string & SERVER_ID,
 			return -1;
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt. \n", __FUNCTION__);
@@ -10686,7 +10686,7 @@ OT_BOOL OTAPI_Exec::Transaction_GetSuccess(const std::string & SERVER_ID,
 			return OT_ERROR;
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt. \n", __FUNCTION__);
@@ -10769,7 +10769,7 @@ OT_BOOL OTAPI_Exec::Transaction_IsCanceled(const std::string & SERVER_ID,
 			return OT_ERROR;
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt. \n", __FUNCTION__);
@@ -10848,7 +10848,7 @@ OT_BOOL OTAPI_Exec::Transaction_GetBalanceAgreementSuccess(const std::string & S
 			return OT_ERROR;
 		}
 		// --------------
-		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<long>(lBoxType));
+		pTransaction = OTTransaction::LoadBoxReceipt(theTransaction, static_cast<int64_t>(lBoxType));
 		if (NULL == pTransaction)
 		{
 			OTLog::vError("%s: Error loading from abbreviated transaction: failed loading box receipt.\n", __FUNCTION__);
@@ -11414,7 +11414,7 @@ std::string OTAPI_Exec::Purse_Peek(const std::string & SERVER_ID,
 //
 std::string OTAPI_Exec::Purse_Pop(const std::string & SERVER_ID,
 							 const std::string & ASSET_TYPE_ID,
-							 const std::string & OWNER_OR_SIGNER_ID, // The purse, in order to be changed, must be re-signed, which requires a private Nym. If the purse is password-protected, then there's no owner, but you still need to pass a Nym in here to sign it (doesn't really matter which one, as int64_t as the private key is available, for signing.) In that case, he's the signer. But if the purse DOES have a Nym owner, then you MUST pass the owner's Nym ID here, in order for this action to be successful. (Because we must be able to load the private key for that Nym, in order to perform the pop. In which case we might as well use the same Nym for signing...)
+							 const std::string & OWNER_OR_SIGNER_ID, // The purse, in order to be changed, must be re-signed, which requires a private Nym. If the purse is password-protected, then there's no owner, but you still need to pass a Nym in here to sign it (doesn't really matter which one, as long as the private key is available, for signing.) In that case, he's the signer. But if the purse DOES have a Nym owner, then you MUST pass the owner's Nym ID here, in order for this action to be successful. (Because we must be able to load the private key for that Nym, in order to perform the pop. In which case we might as well use the same Nym for signing...)
 							 const std::string & THE_PURSE)
 {
 	OTString strOutput; // for later.
@@ -11684,7 +11684,7 @@ bool OTAPI_Exec::Wallet_ImportPurse(const std::string & SERVER_ID,
 // cash tokens.) This way all cash token exchanges can go through the same Nym. (Although
 // it must be stressed, that the cash is untraceable whether you use your own Nym or not.)
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12130,7 +12130,7 @@ int64_t OTAPI_Exec::Basket_GetMemberMinimumTransferAmount(const std::string & BA
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12150,7 +12150,7 @@ int32_t OTAPI_Exec::checkServerID(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12169,7 +12169,7 @@ int32_t OTAPI_Exec::createUserAccount(const std::string & SERVER_ID,
 	return OTAPI()->createUserAccount(theServerID, theUserID);
 }
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12191,7 +12191,7 @@ int32_t OTAPI_Exec::deleteUserAccount(const std::string & SERVER_ID,
 
 
 // If THE_MESSAGE is of command type @usageCredits, and IF it was a SUCCESS,
-// then this function returns the usage credits BALANCE (it's a int64_t int, but
+// then this function returns the usage credits BALANCE (it's a int64_t int32_t, but
 // passed as a string). If you adjusted the balance using the usageCredits
 // message (THE_MESSAGE being the server's reply to that) then you will see
 // the balance AFTER the adjustment. (The "Current" Usage Credits balance.)
@@ -12245,14 +12245,14 @@ int64_t OTAPI_Exec::Message_GetUsageCredits(const std::string & THE_MESSAGE)
 	// ----------------------------------------------
 	// By this point, we know the message was a successful @usageCredits, loaded
 	// properly from the string that was passed in. Let's return the usage credits
-	// balance (a int64_t int, returned in string format.)
+	// balance (a int64_t int32_t, returned in string format.)
 
 	return theMessage.m_lDepth;
 }
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12275,11 +12275,11 @@ int32_t OTAPI_Exec::usageCredits(const std::string & SERVER_ID,
 
 	const int64_t lAdjustment = ADJUSTMENT; // "" resolves as 0.
 
-	return OTAPI()->usageCredits(theServerID, theUserID, theOtherUserID, static_cast<long>(lAdjustment));
+	return OTAPI()->usageCredits(theServerID, theUserID, theOtherUserID, static_cast<int64_t>(lAdjustment));
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12301,7 +12301,7 @@ int32_t OTAPI_Exec::checkUser(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12330,7 +12330,7 @@ int32_t OTAPI_Exec::sendUserMessage(const std::string & SERVER_ID,
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12410,7 +12410,7 @@ int32_t OTAPI_Exec::sendUserInstrument(const std::string & SERVER_ID,
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 //  0 means NO error, but also: no message was sent.
 //  1 means the "getRequest" message was successfully SENT.
@@ -12428,7 +12428,7 @@ int32_t OTAPI_Exec::getRequest(const std::string & SERVER_ID,
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12452,7 +12452,7 @@ int32_t OTAPI_Exec::issueAssetType(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12474,7 +12474,7 @@ int32_t OTAPI_Exec::getContract(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12496,7 +12496,7 @@ int32_t OTAPI_Exec::getMint(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12520,7 +12520,7 @@ int32_t OTAPI_Exec::createAssetAccount(const std::string & SERVER_ID,
 
 
 // Sends a message to the server to retrieve latest copy of an asset acct.
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12545,7 +12545,7 @@ int32_t OTAPI_Exec::getAccount(const std::string & SERVER_ID,
 
 
 // Sends a message to the server to retrieve latest copy of an asset acct.
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12590,7 +12590,7 @@ std::string OTAPI_Exec::GenerateBasketCreation(const std::string & USER_ID,
 	int64_t lMinimumTransfer = MINIMUM_TRANSFER == 0 ? 10 : MINIMUM_TRANSFER;
 	// ----------------------------------------------
 
-	OTBasket * pBasket = OTAPI()->GenerateBasketCreation(theUserID, static_cast<long>(lMinimumTransfer)); // Must be above zero. If <= 0, defaults to 10.
+	OTBasket * pBasket = OTAPI()->GenerateBasketCreation(theUserID, static_cast<int64_t>(lMinimumTransfer)); // Must be above zero. If <= 0, defaults to 10.
 
 	OTCleanup<OTBasket> theAngel(pBasket);
 
@@ -12652,7 +12652,7 @@ std::string OTAPI_Exec::AddBasketCreationItem(const std::string & USER_ID, // fo
 		bAdded = OTAPI()->AddBasketCreationItem(theUserID, // for signature.
 			theBasket, // created in above call.
 			theAssetTypeID, // Adding an asset type to the new basket.
-			static_cast<long>(lMinimumTransfer)); // The amount of the asset type that is in the basket (per).
+			static_cast<int64_t>(lMinimumTransfer)); // The amount of the asset type that is in the basket (per).
 	}
 
 	if (false == bAdded)
@@ -12681,7 +12681,7 @@ std::string OTAPI_Exec::AddBasketCreationItem(const std::string & USER_ID, // fo
 // This means anyone can define a basket, and all may use it -- but no one
 // controls it except the server.
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12833,7 +12833,7 @@ std::string OTAPI_Exec::AddBasketExchangeItem(const std::string & SERVER_ID,
 // use any other asset type (open accounts, write cheques, withdraw cash, trade
 // on markets, etc.)
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12876,7 +12876,7 @@ int32_t OTAPI_Exec::exchangeBasket(const std::string & SERVER_ID,
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12897,7 +12897,7 @@ int32_t OTAPI_Exec::getTransactionNumber(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12917,11 +12917,11 @@ int32_t OTAPI_Exec::notarizeWithdrawal(const std::string & SERVER_ID,
 
 	OTIdentifier theServerID(SERVER_ID), theUserID(USER_ID), theAcctID(ACCT_ID);
 
-	return OTAPI()->notarizeWithdrawal(theServerID, theUserID, theAcctID, static_cast<long>(AMOUNT));
+	return OTAPI()->notarizeWithdrawal(theServerID, theUserID, theAcctID, static_cast<int64_t>(AMOUNT));
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12946,7 +12946,7 @@ int32_t OTAPI_Exec::notarizeDeposit(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -12974,11 +12974,11 @@ int32_t OTAPI_Exec::notarizeTransfer(const std::string & SERVER_ID,
 
 	int64_t lAmount = AMOUNT;
 
-	return OTAPI()->notarizeTransfer(theServerID, theUserID, theFromAcct, theToAcct, static_cast<long>(lAmount), strNote);
+	return OTAPI()->notarizeTransfer(theServerID, theUserID, theFromAcct, theToAcct, static_cast<int64_t>(lAmount), strNote);
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13000,7 +13000,7 @@ int32_t OTAPI_Exec::getInbox(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13020,7 +13020,7 @@ int32_t OTAPI_Exec::getNymbox(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13042,7 +13042,7 @@ int32_t OTAPI_Exec::getOutbox(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13100,7 +13100,7 @@ int32_t OTAPI_Exec::processNymbox(const std::string & SERVER_ID,
 }
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13128,7 +13128,7 @@ int32_t OTAPI_Exec::withdrawVoucher(const std::string & SERVER_ID,
 	OTString strMemo(CHEQUE_MEMO);
 	int64_t  lAmount = AMOUNT;
 
-	return OTAPI()->withdrawVoucher(theServerID, theUserID, theAcctID, theRecipientUserID, strMemo, static_cast<long>(lAmount));
+	return OTAPI()->withdrawVoucher(theServerID, theUserID, theAcctID, theRecipientUserID, strMemo, static_cast<int64_t>(lAmount));
 }
 
 
@@ -13161,12 +13161,12 @@ int32_t OTAPI_Exec::payDividend(const std::string & SERVER_ID,
 		theDividendFromAcctID,
 		theSharesAssetTypeID,
 		strMemo,
-		static_cast<long>(lAmount));
+		static_cast<int64_t>(lAmount));
 }
 
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13201,7 +13201,7 @@ int32_t OTAPI_Exec::depositCheque(const std::string & SERVER_ID,
 //
 // See OTAPI_Exec::WritePaymentPlan as well.
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13229,7 +13229,7 @@ int32_t OTAPI_Exec::depositPaymentPlan(const std::string & SERVER_ID,
 // DONE: Change inner call from cancelNymMarketOffer to cancelCronItem
 // DONE: Make a copy of this function called cancelPaymentPlan.
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13251,13 +13251,13 @@ int32_t OTAPI_Exec::killMarketOffer(const std::string & SERVER_ID,
 
 	const OTIdentifier theServerID(SERVER_ID), theUserID(USER_ID), theAssetAcctID(ASSET_ACCT_ID);
 
-	return OTAPI()->cancelCronItem(theServerID, theUserID, theAssetAcctID, static_cast<long>(lTransactionNumber));
+	return OTAPI()->cancelCronItem(theServerID, theUserID, theAssetAcctID, static_cast<int64_t>(lTransactionNumber));
 }
 
 // OTAPI_Exec::cancelPaymentPlan
 // Cancel a payment plan by transaction number.
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13279,14 +13279,14 @@ int32_t OTAPI_Exec::killPaymentPlan(const std::string & SERVER_ID,
 
 	const OTIdentifier theServerID(SERVER_ID), theUserID(USER_ID), theFromAcctID(FROM_ACCT_ID);
 
-	return OTAPI()->cancelCronItem(theServerID, theUserID, theFromAcctID, static_cast<long>(lTransactionNumber));
+	return OTAPI()->cancelCronItem(theServerID, theUserID, theFromAcctID, static_cast<int64_t>(lTransactionNumber));
 }
 
 
 // --------------------------------------------------
 // ISSUE MARKET OFFER
 //
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13360,14 +13360,14 @@ int32_t OTAPI_Exec::issueMarketOffer(const std::string & ASSET_ACCT_ID,     // P
                                                  theAssetAcctID,
                                                  theCurrencyAcctID,
                                                  // -------------------------------------------
-                                                 static_cast<long>(lMarketScale),
-                                                 static_cast<long>(lMinIncrement),
-                                                 static_cast<long>(lTotalAssetsOnOffer),
-                                                 static_cast<long>(lPriceLimit),
+                                                 static_cast<int64_t>(lMarketScale),
+                                                 static_cast<int64_t>(lMinIncrement),
+                                                 static_cast<int64_t>(lTotalAssetsOnOffer),
+                                                 static_cast<int64_t>(lPriceLimit),
                                                  bBuyingOrSelling,
                                                  LIFESPAN_IN_SECONDS,
                                                  cStopSign,
-                                                 static_cast<long>(ACTIVATION_PRICE));
+                                                 static_cast<int64_t>(ACTIVATION_PRICE));
 }
 
 
@@ -13375,7 +13375,7 @@ int32_t OTAPI_Exec::issueMarketOffer(const std::string & ASSET_ACCT_ID,     // P
 // -----------------------------------------------------------
 
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13397,7 +13397,7 @@ int32_t OTAPI_Exec::getMarketList(const std::string & SERVER_ID,
 
 // -----------------------------------------------------------
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13419,12 +13419,12 @@ int32_t OTAPI_Exec::getMarketOffers(const std::string & SERVER_ID,
 	const int64_t lDepth = MAX_DEPTH;
 	if (0 > lDepth) { OTLog::vError("%s: lDepth is out of bounds (it's in the negative!)\n", __FUNCTION__); OT_FAIL; }
 
-	return OTAPI()->getMarketOffers(theServerID, theUserID, theMarketID, static_cast<long>(lDepth));
+	return OTAPI()->getMarketOffers(theServerID, theUserID, theMarketID, static_cast<int64_t>(lDepth));
 }
 
 // -----------------------------------------------------------
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13447,7 +13447,7 @@ int32_t OTAPI_Exec::getMarketRecentTrades(const std::string & SERVER_ID,
 
 // -----------------------------------------------------------
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.
@@ -13510,7 +13510,7 @@ std::string OTAPI_Exec::PopMessageBuffer(const int64_t & REQUEST_NUMBER,
 	const OTIdentifier  theServerID(SERVER_ID),
 		theUserID(USER_ID);
 	// ------------------------------------------------
-	OTMessage * pMsg = OTAPI()->PopMessageBuffer(static_cast<long>(lRequestNum), theServerID, theUserID); // caller responsible to delete.
+	OTMessage * pMsg = OTAPI()->PopMessageBuffer(static_cast<int64_t>(lRequestNum), theServerID, theUserID); // caller responsible to delete.
 	OTCleanup<OTMessage> theAngel(pMsg);  // Just making sure it gets cleaned up.
 
 	if (NULL == pMsg) // The buffer was empty.
@@ -13573,7 +13573,7 @@ std::string OTAPI_Exec::GetSentMessage(const int64_t & REQUEST_NUMBER,
 	const OTIdentifier  theServerID(SERVER_ID),
 		theUserID(USER_ID);
 	// ------------------------------------------------
-	OTMessage * pMsg = OTAPI()->GetSentMessage(static_cast<long>(lRequestNum), theServerID, theUserID);
+	OTMessage * pMsg = OTAPI()->GetSentMessage(static_cast<int64_t>(lRequestNum), theServerID, theUserID);
 	//	OTCleanup<OTMessage> theAngel(pMsg);    // caller NOT responsible to delete.
 
 	if (NULL == pMsg) // The message wasn't found with that request number.
@@ -13610,7 +13610,7 @@ bool OTAPI_Exec::RemoveSentMessage(const int64_t & REQUEST_NUMBER,
 	const OTIdentifier  theServerID(SERVER_ID),
 		theUserID(USER_ID);
 	// ------------------------------------------------
-	const bool & bSuccess = OTAPI()->RemoveSentMessage(static_cast<long>(lRequestNum), theServerID, theUserID);
+	const bool & bSuccess = OTAPI()->RemoveSentMessage(static_cast<int64_t>(lRequestNum), theServerID, theUserID);
 
 	return bSuccess;
 }
@@ -13693,7 +13693,7 @@ void OTAPI_Exec::Sleep(const int64_t & MILLISECONDS)
 
 	const int64_t lMilliseconds = MILLISECONDS;
 
-	OTLog::SleepMilliseconds(static_cast<long>(lMilliseconds));
+	OTLog::SleepMilliseconds(static_cast<int64_t>(lMilliseconds));
 }
 
 
@@ -13803,7 +13803,7 @@ bool OTAPI_Exec::ResyncNymWithServer(const std::string & SERVER_ID, const std::s
 // StringMap in advance of calling this function.
 //
 
-// Returns int:
+// Returns int32_t:
 // -1 means error; no message was sent.
 // -2 means the message was sent, but the request number must be passed as a string, so call OTAPI_Exec::GetLargeRequestNum.
 //  0 means NO error, but also: no message was sent.

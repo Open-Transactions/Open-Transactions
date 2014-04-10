@@ -5,10 +5,10 @@ OTMadeEasy.h   --	A C++ wrapper class (named OTMadeEasy)
 This class wraps OT_ME
 
 In this class only following types are accepted:
-bool, long, std::string
+bool, int64_t, std::string
 Every other type will be wrapped in a std::string.
 
-long is used where OT_ME.h would use long
+int64_t is used where OT_ME.h would use int64_t
 string is used where OT_ME.h would use std::string
 
 This file is wrapped by SWIG (Python, Ruby, Java, PHP, etc.)
@@ -162,7 +162,7 @@ public:
     EXPORT ~OTMadeEasy();
 
     EXPORT  bool make_sure_enough_trans_nums(
-        const long   nNumberNeeded,
+        const int64_t   nNumberNeeded,
         const std::string & SERVER_ID,
         const std::string & NYM_ID);
 
@@ -176,7 +176,7 @@ public:
         const std::string  & TARGET_NYM_ID);
 
     EXPORT  std::string create_pseudonym(
-        const long            nKeybits,
+        const int64_t            nKeybits,
         const std::string   & NYM_ID_SOURCE,
         const std::string   & ALT_LOCATION);
 
@@ -251,7 +251,7 @@ public:
 
     EXPORT  bool accept_inbox_items(
         const std::string  & ACCOUNT_ID,  // this method specific to asset account inbox.
-        long           nItemType,
+        int64_t           nItemType,
         const std::string  & INDICES);
 
     EXPORT  bool discard_incoming_payments(
@@ -264,7 +264,7 @@ public:
         const std::string  & ACCOUNT_ID, // can be blank if a cheque. But if a voucher, smart contract or payment plan, you need to provide this. And it better match for the chosen indices. For example for a voucher, must have the same asset type.
         const std::string  & INDICES);
 
-    EXPORT  long accept_from_paymentbox(
+    EXPORT  int64_t accept_from_paymentbox(
         const std::string  & ACCOUNT_ID, // This acct better have the right asset type, based on chosen indices.
         const std::string  & INDICES,
         const std::string  & PAYMENT_TYPE);
@@ -333,19 +333,19 @@ public:
     EXPORT  std::string get_payment_instrument(
         const std::string & SERVER_ID,
         const std::string  & NYM_ID,
-        const long   nIndex);
+        const int64_t   nIndex);
 
     EXPORT  std::string get_payment_instrument(
         const std::string & SERVER_ID,
         const std::string  & NYM_ID,
-        const long   nIndex,
+        const int64_t   nIndex,
         const std::string  & PRELOADED_INBOX); // PRELOADED_INBOX is optional.
 
     EXPORT  std::string get_box_receipt(
         const std::string & SERVER_ID,
         const std::string  & NYM_ID,
         const std::string  & ACCT_ID,
-        const long   nBoxType,
+        const int64_t   nBoxType,
         const std::string & TRANS_NUM);
 
     EXPORT  std::string retrieve_mint(
@@ -412,7 +412,7 @@ public:
         const std::string  & ACCT_ID,
         const std::string  & AMOUNT);
 
-    EXPORT  long easy_withdraw_cash(
+    EXPORT  int64_t easy_withdraw_cash(
         const std::string  & ACCT_ID,
         const std::string  & AMOUNT);
 
@@ -447,13 +447,13 @@ public:
         const std::string  & ACCT_ID,
         const std::string  & STR_CHEQUE);
 
-    EXPORT  long deposit_cash(
+    EXPORT  int64_t deposit_cash(
         const std::string & SERVER_ID,
         const std::string  & NYM_ID,
         const std::string  & ACCT_ID,
         const std::string  & STR_PURSE);
 
-    EXPORT  long deposit_local_purse(
+    EXPORT  int64_t deposit_local_purse(
         const std::string & SERVER_ID,
         const std::string  & NYM_ID,
         const std::string  & ACCT_ID,
@@ -484,21 +484,21 @@ public:
         const std::string  & TARGET_NYM_ID,
         const std::string  & ADJUSTMENT);
 
-    EXPORT  long VerifyMessageSuccess(const std::string & str_Message);
+    EXPORT  int64_t VerifyMessageSuccess(const std::string & str_Message);
 
-    EXPORT  long VerifyMsgBalanceAgrmntSuccess(
+    EXPORT  int64_t VerifyMsgBalanceAgrmntSuccess(
         const std::string & SERVER_ID,
         const std::string & USER_ID,
         const std::string & ACCOUNT_ID,
         const std::string & str_Message);
 
-    EXPORT  long VerifyMsgTrnxSuccess(
+    EXPORT  int64_t VerifyMsgTrnxSuccess(
         const std::string & SERVER_ID,
         const std::string & USER_ID,
         const std::string & ACCOUNT_ID,
         const std::string & str_Message);
 
-    EXPORT  long InterpretTransactionMsgReply(
+    EXPORT  int64_t InterpretTransactionMsgReply(
         const std::string & SERVER_ID,
         const std::string & USER_ID,
         const std::string & ACCOUNT_ID,

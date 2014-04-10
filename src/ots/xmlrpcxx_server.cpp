@@ -191,10 +191,10 @@ class OTSocket
 	bool		m_HasContext;
 	bool		m_bIsListening;
 
-	long		m_lLatencySendMs;
-	int			m_nLatencySendNoTries;
-	long		m_lLatencyReceiveMs;
-	int			m_nLatencyReceiveNoTries;
+	int64_t		m_lLatencySendMs;
+	int32_t			m_nLatencySendNoTries;
+	int64_t		m_lLatencyReceiveMs;
+	int32_t			m_nLatencyReceiveNoTries;
 	bool		m_bIsBlocking;
 
 	bool const HandlePollingError();
@@ -210,11 +210,11 @@ public:
 	const bool Init();
 
 	const bool Init(
-		const long	   & lLatencySendMs,
-		const int	   & nLatencySendNoTries,
-		const long	   & lLatencyReceiveMs,
-		const int	   & nLatencyReceiveNoTries,
-		const long	   & lLatencyDelayAfter,
+		const int64_t	   & lLatencySendMs,
+		const int32_t	   & nLatencySendNoTries,
+		const int64_t	   & lLatencyReceiveMs,
+		const int32_t	   & nLatencyReceiveNoTries,
+		const int64_t	   & lLatencyDelayAfter,
 		const bool	   & bIsBlocking
 		);
 
@@ -270,11 +270,11 @@ const bool OTSocket::Init()
 }
 
 const bool OTSocket::Init(
-		const long	   & lLatencySendMs,
-		const int	   & nLatencySendNoTries,
-		const long	   & lLatencyReceiveMs,
-		const int	   & nLatencyReceiveNoTries,
-		const long	   & lLatencyDelayAfter,
+		const int64_t	   & lLatencySendMs,
+		const int32_t	   & nLatencySendNoTries,
+		const int64_t	   & lLatencyReceiveMs,
+		const int32_t	   & nLatencyReceiveNoTries,
+		const int64_t	   & lLatencyDelayAfter,
 		const bool	   & bIsBlocking
 		)
 {
@@ -305,17 +305,17 @@ const bool OTSocket::Init(OTSettings * pSettings)
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_SEND_MS,		m_lLatencySendMs,		m_lLatencySendMs,		bIsNew)) { OT_FAIL; };
 	}
 	{
-		long lResult = 0;
+		int64_t lResult = 0;
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_SEND_NO_TRIES,	m_nLatencySendNoTries,	lResult,				bIsNew)) { OT_FAIL;  };
-		m_nLatencySendNoTries = static_cast<int>(lResult);
+		m_nLatencySendNoTries = static_cast<int32_t>(lResult);
 	}
 	{
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_MS,		m_lLatencyReceiveMs,	m_lLatencyReceiveMs,	bIsNew)) { OT_FAIL;  };
 	}
 	{
-		long lResult = 0;
+		int64_t lResult = 0;
 		if(!pSettings->CheckSet_long("latency", KEY_LATENCY_RECEIVE_NO_TRIES, m_nLatencyReceiveNoTries, lResult,			bIsNew)) { OT_FAIL;  };
-		m_nLatencyReceiveNoTries = static_cast<int>(lResult);
+		m_nLatencyReceiveNoTries = static_cast<int32_t>(lResult);
 	}
 	{
 		if(!pSettings->CheckSet_bool("latency", KEY_IS_BLOCKING,			m_bIsBlocking,			m_bIsBlocking,			bIsNew)) { OT_FAIL;  };
@@ -371,10 +371,10 @@ const bool OTSocket::Listen(const OTString &strBind)
 
 	//  Configure socket to not wait at close time
     //
-	const int linger = 0; // close immediately
+	const int32_t linger = 0; // close immediately
 	m_pSocket->setsockopt (ZMQ_LINGER, &linger, sizeof (linger));
     /*
-     int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
+     int32_t zmq_setsockopt (void *socket, int32_t option_name, const void *option_value, size_t option_len);
 
      Caution: All options, with the exception of ZMQ_SUBSCRIBE, ZMQ_UNSUBSCRIBE and ZMQ_LINGER, only take effect for subsequent socket bind/connects.
      */
@@ -391,7 +391,7 @@ const bool OTSocket::Listen(const OTString &strBind)
  typedef struct
  {
  void *socket;
- int fd;
+ int32_t fd;
  short events;
  short revents;
  } zmq_pollitem_t;
@@ -536,8 +536,8 @@ const bool OTSocket::Send(const std::string & str_Reply)
 	if (!m_bIsListening) return false;
 
 	// -----------------------------------
-	const long lLatencySendMilliSec	= this->m_lLatencySendMs;
-	const long lLatencySendMicroSec	= lLatencySendMilliSec*1000; // Microsecond is 1000 times smaller than millisecond.
+	const int64_t lLatencySendMilliSec	= this->m_lLatencySendMs;
+	const int64_t lLatencySendMicroSec	= lLatencySendMilliSec*1000; // Microsecond is 1000 times smaller than millisecond.
 
 	// Convert the std::string (reply) into a ZMQ message
 	zmq::message_t reply (str_Reply.length());
@@ -552,8 +552,8 @@ const bool OTSocket::Send(const std::string & str_Reply)
 	}
 	else // not blocking
 	{
-		int		nSendTries	= this->m_nLatencySendNoTries;
-		long	lDoubling	= lLatencySendMicroSec;
+		int32_t		nSendTries	= this->m_nLatencySendNoTries;
+		int64_t	lDoubling	= lLatencySendMicroSec;
 		bool	bKeepTrying = true;
 
 		while (bKeepTrying && (nSendTries > 0))
@@ -562,7 +562,7 @@ const bool OTSocket::Send(const std::string & str_Reply)
 				{ (*m_pSocket), 0, ZMQ_POLLOUT,	0 }
 			};
 
-			const int nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)
+			const int32_t nPoll = zmq::poll(&items[0], 1, lDoubling);	// ZMQ_POLLOUT, 1 item, timeout (microseconds in ZMQ 2.1; changes to milliseconds in 3.0)
 			lDoubling *= 2;
 
 			if (items[0].revents & ZMQ_POLLOUT)
@@ -603,8 +603,8 @@ const bool OTSocket::Receive(std::string & str_Message)
 	if (!m_bIsListening) return false;
 
 	// -----------------------------------
-	const long lLatencyRecvMilliSec	= this->m_lLatencyReceiveMs;
-	const long lLatencyRecvMicroSec	= lLatencyRecvMilliSec*1000;
+	const int64_t lLatencyRecvMilliSec	= this->m_lLatencyReceiveMs;
+	const int64_t lLatencyRecvMicroSec	= lLatencyRecvMilliSec*1000;
 
 	// ***********************************
 	//  Get the request.
@@ -620,15 +620,15 @@ const bool OTSocket::Receive(std::string & str_Message)
 	}
 	else	// not blocking
 	{
-		long	lDoubling = lLatencyRecvMicroSec;
-		int		nReceiveTries = this->m_nLatencyReceiveNoTries;
+		int64_t	lDoubling = lLatencyRecvMicroSec;
+		int32_t		nReceiveTries = this->m_nLatencyReceiveNoTries;
 		bool	expect_request = true;
 		while (expect_request)
 		{
 			//  Poll socket for a request, with timeout
 			zmq::pollitem_t items[] = { { *m_pSocket, 0, ZMQ_POLLIN, 0 } };
 
-			const int nPoll = zmq::poll (&items[0], 1, lDoubling);
+			const int32_t nPoll = zmq::poll (&items[0], 1, lDoubling);
 			lDoubling *= 2; // 100 ms, then 200 ms, then 400 ms == total of 700 ms per receive. (About 15 per 10 seconds.)
 
 			//  If we got a request, process it
@@ -684,7 +684,7 @@ const bool OTSocket::Receive(std::string & str_Message)
 //
 // After initialization, this function becomes the "main loop" of OT server.
 //
-int main(int argc, char* argv[])
+int32_t main(int32_t argc, char* argv[])
 {
 	if(!OTLog::Init(SERVER_CONFIG_KEY,0)) { assert(false); };  // setup the logger.
 
@@ -697,7 +697,7 @@ int main(int argc, char* argv[])
 
 	WSADATA wsaData;
 	WORD wVersionRequested = MAKEWORD( 2, 2 );
-	int err = WSAStartup( wVersionRequested, &wsaData );
+	int32_t err = WSAStartup( wVersionRequested, &wsaData );
 
 	/* Tell the user that we could not find a usable		*/
 	/* Winsock DLL.											*/
@@ -849,13 +849,13 @@ int main(int argc, char* argv[])
 	//
 	//
 	OTString	strHostname;	// The hostname of this server, according to its own contract.
-	int			nPort=0;		// The port of this server, according to its own contract.
+	int32_t			nPort=0;		// The port of this server, according to its own contract.
 
     const bool bConnectInfo = pServer->GetConnectInfo(strHostname, nPort);
 
 	OT_ASSERT_MSG(bConnectInfo, "server main: Unable to find my own connect info (which SHOULD be in my server contract, BTW.) Perhaps you failed trying to open that contract? Have you tried the test password? (\"test\")\n");
 
-	const int   nServerPort = nPort;
+	const int32_t   nServerPort = nPort;
 
 	// -----------------------------------------------------------------------
     // OT CRON
@@ -953,7 +953,7 @@ int main(int argc, char* argv[])
         // Theoretically the "number of requests" that we process EACH PULSE.
         // (The timing code here is still pretty new, need to do some load testing.)
         //
-		for (int i = 0; i < /*10*/OTServer::GetHeartbeatNoRequests(); i++)
+		for (int32_t i = 0; i < /*10*/OTServer::GetHeartbeatNoRequests(); i++)
 		{
 			std::string	str_Message;
 
@@ -1010,8 +1010,8 @@ int main(int argc, char* argv[])
         // processing a message. There could be plenty of dead time in between...)
         //
 		const	double tick2	= t.getElapsedTimeInMilliSec();
-		const	long elapsed	= static_cast<long>(tick2 - tick1);
-		long	lSleepMS		= 0;
+		const	int64_t elapsed	= static_cast<int64_t>(tick2 - tick1);
+		int64_t	lSleepMS		= 0;
 
 		if (elapsed < /*100*/OTServer::GetHeartbeatMsBetweenBeats())
 		{

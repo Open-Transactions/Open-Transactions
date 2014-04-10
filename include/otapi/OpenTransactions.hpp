@@ -214,11 +214,11 @@ class OTSocket
 
 	OTString		m_strConnectPath;
 
-    long		m_lLatencySendMs;
-	int			m_nLatencySendNoTries;
-    long		m_lLatencyReceiveMs;
-	int			m_nLatencyReceiveNoTries;
-    long		m_lLatencyDelayAfter;
+    int64_t		m_lLatencySendMs;
+	int32_t			m_nLatencySendNoTries;
+    int64_t		m_lLatencyReceiveMs;
+	int32_t			m_nLatencyReceiveNoTries;
+    int64_t		m_lLatencyDelayAfter;
 	bool		m_bIsBlocking;
 
 	OTASCIIArmor	m_ascLastMsgSent;
@@ -237,11 +237,11 @@ public:
 	EXPORT bool Init();
 
 	EXPORT bool Init(
-		const long	   & lLatencySendMs,
-		const int	   & nLatencySendNoTries,
-		const long	   & lLatencyReceiveMs,
-		const int	   & nLatencyReceiveNoTries,
-		const long	   & lLatencyDelayAfter,
+		const int64_t	   & lLatencySendMs,
+		const int32_t	   & nLatencySendNoTries,
+		const int64_t	   & lLatencyReceiveMs,
+		const int32_t	   & nLatencyReceiveNoTries,
+		const int64_t	   & lLatencyDelayAfter,
 		const bool	   & bIsBlocking
 		);
 
@@ -1055,8 +1055,8 @@ EXPORT	OTServerContract * LoadServerContract(const OTIdentifier & SERVER_ID);
                                            // ----------------------------------------
                                            const	OTString		& VAR_NAME,		// The Variable's name as referenced in the smart contract. (And the scripts...)
                                            const	OTString		& VAR_ACCESS,	// "constant", "persistent", or "important".
-                                           const	OTString		& VAR_TYPE,		// "string", "long", or "bool"
-                                           const	OTString		& VAR_VALUE,	// Contains a string. If type is long, atol() will be used to convert value to a long. If type is bool, the strings "true" or "false" are expected here in order to convert to a bool.
+                                           const	OTString		& VAR_TYPE,		// "string", "int64_t", or "bool"
+                                           const	OTString		& VAR_VALUE,	// Contains a string. If type is int64_t, atol() will be used to convert value to a int64_t. If type is bool, the strings "true" or "false" are expected here in order to convert to a bool.
                                            // ----------------------------------------
                                                     OTString		& strOutput);
 

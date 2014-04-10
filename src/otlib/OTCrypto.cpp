@@ -257,7 +257,7 @@ uint32_t OTCryptoConfig::Digest2Size()          { return GetValue(sp_nDigest2Siz
 
 
 //static
-int OTCrypto::s_nCount = 0;   // Instance count, should never exceed 1. (At this point, anyway.)
+int32_t OTCrypto::s_nCount = 0;   // Instance count, should never exceed 1. (At this point, anyway.)
 
 
 // -------------------------------------------------------------------------------------------
@@ -274,7 +274,7 @@ bool OTCrypto::IsBase62(const std::string &str) const
 /*
 extern "C"
 {
-void SetStdinEcho(int enable)
+void SetStdinEcho(int32_t enable)
 {
 #ifdef WIN32
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
@@ -303,9 +303,9 @@ void SetStdinEcho(int enable)
 */
 
 /*
-int _getch( void ); // windows only  #include <conio.h>
+int32_t _getch( void ); // windows only  #include <conio.h>
 
-int main()
+int32_t main()
 {
     std::string password;
     char ch;
@@ -372,7 +372,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 			strPassword = strPass;
 
 #endif
-			theOutput.setPassword(strPassword.c_str(), static_cast<int>(strPassword.length() -1));
+			theOutput.setPassword(strPassword.c_str(), static_cast<int32_t>(strPassword.length() -1));
 		}
 
 		std::cout << std::endl; //new line.
@@ -386,7 +386,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 	{
 		char buf[_PASSWORD_LEN + 10] = "", buff[_PASSWORD_LEN + 10] = "";
 
-		int nReadPW = 0;
+		int32_t nReadPW = 0;
 
 		//  char * szPass = getpass(szPrompt); // "This function is obsolete. Do not use it."
 		if ((nReadPW = UI_UTIL_read_pw(buf,buff,_PASSWORD_LEN,szPrompt,0)) == 0) // verify=0
@@ -418,7 +418,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 
 		// get pass phrase, length 'len' into 'tmp'
 		/*
-		int len=0;
+		int32_t len=0;
 		char *tmp=NULL;
 //		tmp = "test";
 		len = strlen(tmp);
@@ -426,7 +426,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 		if (len <= 0)
 			return 0;
 
-		// if too long, truncate
+		// if too int64_t, truncate
 		if (len > size)
 			len = size;
 
@@ -440,7 +440,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 
 bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=false*/) const
 {
-    int nAttempts = 0;
+    int32_t nAttempts = 0;
 
     for(;;)
     {
@@ -585,9 +585,9 @@ bool OTCrypto::Base64Encode(const OTData & theInput, OTString & strOutput, bool 
 {
     // --------------------------------------
     const uint8_t * pDataIn = static_cast<const uint8_t *>(theInput.GetPointer());
-          int       nLength = static_cast<int>            (theInput.GetSize());
+          int32_t       nLength = static_cast<int32_t>            (theInput.GetSize());
     // --------------------------------------
-    OT_ASSERT_MSG(nLength >= 0, "ASSERT!!! nLength is an int, matching the openssl interface, and a size was just attempted that wouldn't fit into an int, after static casting.\n");
+    OT_ASSERT_MSG(nLength >= 0, "ASSERT!!! nLength is an int32_t, matching the openssl interface, and a size was just attempted that wouldn't fit into an int32_t, after static casting.\n");
     // --------------------------------------
     // Caller is responsible to delete.
     char * pChar = this->Base64Encode(pDataIn, nLength, bLineBreaks);
@@ -777,13 +777,13 @@ extern "C"
 
 //	// Just trying to get Whirlpool working since they added it to OpenSSL
 //	//
-//	static int init(EVP_MD_CTX *ctx)
+//	static int32_t init(EVP_MD_CTX *ctx)
 //	{ return WHIRLPOOL_Init((WHIRLPOOL_CTX*)ctx->md_data); }
 //
-//	static int update(EVP_MD_CTX *ctx,const void *data,size_t count)
+//	static int32_t update(EVP_MD_CTX *ctx,const void *data,size_t count)
 //	{ return WHIRLPOOL_Update((WHIRLPOOL_CTX*)ctx->md_data,data,count); }
 //
-//	static int final(EVP_MD_CTX *ctx,unsigned char *md)
+//	static int32_t final(EVP_MD_CTX *ctx,uint8_t *md)
 //	{ return WHIRLPOOL_Final(md,(WHIRLPOOL_CTX*)ctx->md_data); }
 //
 //
@@ -831,7 +831,7 @@ OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
 
 
  #include <openssl/ssl.h>
- int SSL_library_init(void);
+ int32_t SSL_library_init(void);
  //#define OpenSSL_add_ssl_algorithms()    SSL_library_init()
  //#define SSLeay_add_ssl_algorithms()     SSL_library_init()
 
@@ -851,7 +851,7 @@ OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
  #include <openssl/conf.h>
  void CONF_modules_free(void);
  //void CONF_modules_finish(void);
- //void CONF_modules_unload(int all);
+ //void CONF_modules_unload(int32_t all);
  */
 
 // *********************************************************************************
@@ -864,27 +864,27 @@ OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
 typedef struct crypto_threadid_st
         {
         void *ptr;
-        unsigned long val;
+        uint64_t val;
         } CRYPTO_THREADID;
 
 // Only use CRYPTO_THREADID_set_[numeric|pointer]() within callbacks
-void CRYPTO_THREADID_set_numeric(CRYPTO_THREADID *id, unsigned long val);
+void CRYPTO_THREADID_set_numeric(CRYPTO_THREADID *id, uint64_t val);
 void CRYPTO_THREADID_set_pointer(CRYPTO_THREADID *id, void *ptr);
 
-int CRYPTO_THREADID_set_callback(void (*threadid_func)(CRYPTO_THREADID *));
+int32_t CRYPTO_THREADID_set_callback(void (*threadid_func)(CRYPTO_THREADID *));
 
 void (*CRYPTO_THREADID_get_callback(void))(CRYPTO_THREADID *);
 
 void CRYPTO_THREADID_current(CRYPTO_THREADID *id);
 
-int CRYPTO_THREADID_cmp(const CRYPTO_THREADID *a,
+int32_t CRYPTO_THREADID_cmp(const CRYPTO_THREADID *a,
                         const CRYPTO_THREADID *b);
 void CRYPTO_THREADID_cpy(CRYPTO_THREADID *dest,
                          const CRYPTO_THREADID *src);
 
- unsigned long CRYPTO_THREADID_hash(const CRYPTO_THREADID *id);
+ uint64_t CRYPTO_THREADID_hash(const CRYPTO_THREADID *id);
 
-int CRYPTO_num_locks(void);
+int32_t CRYPTO_num_locks(void);
 
  Description
 
@@ -892,7 +892,7 @@ int CRYPTO_num_locks(void);
  OpenSSL can safely be used in multi-threaded applications provided that at least two callback functions are set,
  locking_function and threadid_func.
 
- locking_function(int mode, int n, const char *file, int line) is needed to perform locking on shared data structures.
+ locking_function(int32_t mode, int32_t n, const char *file, int32_t line) is needed to perform locking on shared data structures.
  (Note that OpenSSL uses a number of global data structures that will be implicitly shared whenever multiple threads
  use OpenSSL.) Multi-threaded applications will crash at random if it is not set.
 
@@ -917,18 +917,18 @@ int CRYPTO_num_locks(void);
 struct CRYPTO_dynlock_value;
 
 void CRYPTO_set_dynlock_create_callback(struct CRYPTO_dynlock_value *
-       (*dyn_create_function)(char *file, int line));
+       (*dyn_create_function)(char *file, int32_t line));
 void CRYPTO_set_dynlock_lock_callback(void (*dyn_lock_function)
-       (int mode, struct CRYPTO_dynlock_value *l,
-       const char *file, int line));
+       (int32_t mode, struct CRYPTO_dynlock_value *l,
+       const char *file, int32_t line));
 void CRYPTO_set_dynlock_destroy_callback(void (*dyn_destroy_function)
-       (struct CRYPTO_dynlock_value *l, const char *file, int line));
+       (struct CRYPTO_dynlock_value *l, const char *file, int32_t line));
 
-int CRYPTO_get_new_dynlockid(void);
+int32_t CRYPTO_get_new_dynlockid(void);
 
-void CRYPTO_destroy_dynlockid(int i);
+void CRYPTO_destroy_dynlockid(int32_t i);
 
-void CRYPTO_lock(int mode, int n, const char *file, int line);
+void CRYPTO_lock(int32_t mode, int32_t n, const char *file, int32_t line);
 
 #define CRYPTO_w_lock(type)    \
        CRYPTO_lock(CRYPTO_LOCK|CRYPTO_WRITE,type,__FILE__,__LINE__)
@@ -953,12 +953,12 @@ extern "C"
 {
 #if OPENSSL_VERSION_NUMBER-0 < 0x10000000L
     unsigned
-    long  ot_openssl_thread_id(void);
+    int64_t  ot_openssl_thread_id(void);
 #else
     void  ot_openssl_thread_id(CRYPTO_THREADID *);
 #endif
     // ---------------------------------
-    void  ot_openssl_locking_callback( int mode, int type, char *file, int line);
+    void  ot_openssl_locking_callback( int32_t mode, int32_t type, char *file, int32_t line);
 }
 
 
@@ -977,9 +977,9 @@ extern "C"
 // *********************************************************************************
 
 #if OPENSSL_VERSION_NUMBER-0 < 0x10000000L
-unsigned long ot_openssl_thread_id()
+uint64_t ot_openssl_thread_id()
 {
-	unsigned long ret = this_thread::get_raw_id();
+	uint64_t ret = this_thread::get_raw_id();
 
 	return (ret);
 }
@@ -989,13 +989,13 @@ void ot_openssl_thread_id(CRYPTO_THREADID * id)
 {
     OT_ASSERT(NULL != id);
 
-    // TODO: Possibly do this by pointer instead of by unsigned long,
+    // TODO: Possibly do this by pointer instead of by uint64_t,
     // for certain platforms. (OpenSSL provides functions for both.)
     //
 
     unsigned long val = tthread::this_thread::get_raw_id();
 
-//    void CRYPTO_THREADID_set_numeric(CRYPTO_THREADID *id, unsigned long val);
+//    void CRYPTO_THREADID_set_numeric(CRYPTO_THREADID *id, uint64_t val);
 //    void CRYPTO_THREADID_set_pointer(CRYPTO_THREADID *id, void *ptr);
 
            CRYPTO_THREADID_set_numeric(id, val);
@@ -1006,7 +1006,7 @@ void ot_openssl_thread_id(CRYPTO_THREADID * id)
 
 
 /*
- locking_function(int mode, int n, const char *file, int line) is needed to perform locking on
+ locking_function(int32_t mode, int32_t n, const char *file, int32_t line) is needed to perform locking on
  shared data structures. (Note that OpenSSL uses a number of global data structures that will
  be implicitly shared whenever multiple threads use OpenSSL.) Multi-threaded applications will
  crash at random if it is not set.
@@ -1018,7 +1018,7 @@ void ot_openssl_thread_id(CRYPTO_THREADID * id)
  debugging.
  */
 
-void ot_openssl_locking_callback(int mode, int type, const char *file, int line)
+void ot_openssl_locking_callback(int32_t mode, int32_t type, const char *file, int32_t line)
 {
 	if (mode & CRYPTO_LOCK)
     {
@@ -1034,8 +1034,8 @@ void ot_openssl_locking_callback(int mode, int type, const char *file, int line)
 /*
  --- More code for Base64 Decoding using OpenSSL:
 
- void base64Decode(unsigned char* pIn, int inLen, unsigned char* pOut,
-                  int& outLen)
+ void base64Decode(uint8_t* pIn, int32_t inLen, uint8_t* pOut,
+                  int32_t& outLen)
 {
     // create a memory buffer containing base64 encoded data
     OpenSSL_BIO bmem = BIO_new_mem_buf((void*)pIn, inLen);
@@ -1046,13 +1046,13 @@ void ot_openssl_locking_callback(int mode, int type, const char *file, int line)
     BIO_set_flags(bioCmd, BIO_FLAGS_BASE64_NO_NL);
     bmem = BIO_push(bioCmd, bmem);
 
-    int finalLen = BIO_read(bmem, (void*)pOut, outLen);
+    int32_t finalLen = BIO_read(bmem, (void*)pOut, outLen);
     outLen = finalLen;
 }
 
 --- Another example of similar code:
 
-char *unbase64(unsigned char *input, int length)
+char *unbase64(uint8_t *input, int32_t length)
 {
     OpenSSL_BIO b64(NULL), bmem(NULL);
 
@@ -1120,7 +1120,7 @@ bool OTASCIIArmor::SetString(const OTString & strData, bool bLineBreaks) // =tru
 
 extern "C"
 {
-    char * ot_openssl_base64_encode(const uint8_t * input, int in_len, int bLineBreaks)
+    char * ot_openssl_base64_encode(const uint8_t * input, int32_t in_len, int32_t bLineBreaks)
     {
         char    * buf  = NULL;
         BUF_MEM * bptr = NULL;
@@ -1160,14 +1160,14 @@ extern "C"
         return buf;
     }
 
-    uint8_t * ot_openssl_base64_decode(const char * input, size_t * out_len, int bLineBreaks)
+    uint8_t * ot_openssl_base64_decode(const char * input, size_t * out_len, int32_t bLineBreaks)
     {
         // -------------------------------
         OT_ASSERT(NULL != input);
         // -------------------------------
-        int             in_len      = static_cast<int> (strlen(input)); // todo security (strlen)
-        int             out_max_len = (in_len*6+7)/8;
-        unsigned char * buf         = new unsigned char [out_max_len];
+        int32_t             in_len      = static_cast<int32_t> (strlen(input)); // todo security (strlen)
+        int32_t             out_max_len = (in_len*6+7)/8;
+        uint8_t * buf         = new uint8_t [out_max_len];
         OT_ASSERT(NULL != buf);
         memset(buf, 0, out_max_len); // todo security
         // -------------------------------
@@ -1200,7 +1200,7 @@ extern "C"
 // --------------------------------------------------------------------------------------------
 // Caller responsible to delete.
 //
-char * OTCrypto_OpenSSL::Base64Encode(const uint8_t * input, int in_len, bool bLineBreaks) const
+char * OTCrypto_OpenSSL::Base64Encode(const uint8_t * input, int32_t in_len, bool bLineBreaks) const
 {
     return ot_openssl_base64_encode(input, in_len, (bLineBreaks ? 1 : 0));
 }
@@ -1261,7 +1261,7 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	OT_ASSERT(NULL != pBigNum);
   	// -----------------------------------------
 	// Convert from Hex String to BIGNUM.
-    const int nToHex = BN_hex2bn(&pBigNum, strHEX_VERSION.c_str());
+    const int32_t nToHex = BN_hex2bn(&pBigNum, strHEX_VERSION.c_str());
 	OT_ASSERT (0 < nToHex);
 	// -----------------------------------------
 	// Convert from Hex String to BigInteger (unwieldy, I know. Future versions will improve.)
@@ -1269,7 +1269,7 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	uint32_t nBigNumBytes = BN_num_bytes(pBigNum);
 	theOutput.SetSize(nBigNumBytes);
 	// ---------------------------------------
-    const int nConverted = BN_bn2bin(pBigNum, (unsigned char *)(theOutput.GetPointer()) ); // Todo casting.
+    const int32_t nConverted = BN_bn2bin(pBigNum, (uint8_t *)(theOutput.GetPointer()) ); // Todo casting.
 	OT_ASSERT(nConverted);
     // ---------------------------------------
 	// BN_bn2bin() converts the absolute value of param 1 into big-endian form and stores it at param2.
@@ -1300,7 +1300,7 @@ void OTCrypto_OpenSSL::SetBase62StringFromID(const OTIdentifier & theInput, OTSt
 	BIGNUM * pBigNum = BN_new();
 	OT_ASSERT(NULL != pBigNum);
 
-    BN_bin2bn((unsigned char *)(theInput.GetPointer()), theInput.GetSize(), pBigNum); // todo cast
+    BN_bin2bn((uint8_t *)(theInput.GetPointer()), theInput.GetSize(), pBigNum); // todo cast
 	// -----------------------------------------
 	// Convert from BIGNUM to Hex String.
 	//
@@ -1332,8 +1332,8 @@ bool OTCrypto_OpenSSL::RandomizeMemory(uint8_t * szDestination, uint32_t nNewSiz
      RAND_pseudo_bytes() returns 1 if the bytes generated are cryptographically strong, 0 otherwise.
      Both functions return -1 if they are not supported by the current RAND method.
      */
-    const int nRAND_bytes = RAND_bytes(reinterpret_cast<uint8_t*>(szDestination),
-                                       static_cast<int>(nNewSize));
+    const int32_t nRAND_bytes = RAND_bytes(reinterpret_cast<uint8_t*>(szDestination),
+                                       static_cast<int32_t>(nNewSize));
 
 	if ((-1) == nRAND_bytes)
 	{
@@ -1405,20 +1405,20 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 	// --------------------------------------------------
     // Key derivation in OpenSSL.
     //
-    // int PKCS5_PBKDF2_HMAC_SHA1(const char*, int, const unsigned char*, int, int, int, unsigned char*)
+    // int32_t PKCS5_PBKDF2_HMAC_SHA1(const char*, int32_t, const uint8_t*, int32_t, int32_t, int32_t, uint8_t*)
     //
 	PKCS5_PBKDF2_HMAC_SHA1(
 		reinterpret_cast<const char *>   // If is password... supply password, otherwise supply memory.
 		(
 		userPassword.isPassword() ? userPassword.getPassword_uint8() : userPassword.getMemory_uint8()
 		),
-        static_cast <const int>             (userPassword.isPassword() ? userPassword.getPasswordSize() :
+        static_cast <const int32_t>             (userPassword.isPassword() ? userPassword.getPasswordSize() :
                                              userPassword.getMemorySize()),         // Password Length
-		static_cast <const unsigned char *> (dataSalt.GetPayloadPointer()),         // Salt Data
-		static_cast <const int>             (dataSalt.GetSize()),                   // Salt Length
-		static_cast <const int>             (uIterations),                          // Number Of Iterations
-		static_cast <const int>             (pDerivedKey->getMemorySize()),         // Output Length
-		static_cast <unsigned char *>       (pDerivedKey->getMemoryWritable())      // Output Key (not const!)
+		static_cast <const uint8_t *> (dataSalt.GetPayloadPointer()),         // Salt Data
+		static_cast <const int32_t>             (dataSalt.GetSize()),                   // Salt Length
+		static_cast <const int32_t>             (uIterations),                          // Number Of Iterations
+		static_cast <const int32_t>             (pDerivedKey->getMemorySize()),         // Output Length
+		static_cast <uint8_t *>       (pDerivedKey->getMemoryWritable())      // Output Key (not const!)
 		);
 
     // For The HashCheck
@@ -1435,12 +1435,12 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 
 	PKCS5_PBKDF2_HMAC_SHA1(
 		reinterpret_cast<const char *>          (pDerivedKey->getMemory()),        // Derived Key
-		static_cast     <const int>             (pDerivedKey->getMemorySize()),    // Password Length
-		static_cast     <const unsigned char *> (dataSalt.GetPayloadPointer()),    // Salt Data
-		static_cast     <const int>             (dataSalt.GetSize()),              // Salt Length
-		static_cast     <const int>             (uIterations),                     // Number Of Iterations
-		static_cast     <const int>             (tmpHashCheck.GetSize()),          // Output Length
-		const_cast<unsigned char *>(static_cast<const unsigned char *>(tmpHashCheck.GetPayloadPointer())))  // Output Key (not const!)
+		static_cast     <const int32_t>             (pDerivedKey->getMemorySize()),    // Password Length
+		static_cast     <const uint8_t *> (dataSalt.GetPayloadPointer()),    // Salt Data
+		static_cast     <const int32_t>             (dataSalt.GetSize()),              // Salt Length
+		static_cast     <const int32_t>             (uIterations),                     // Number Of Iterations
+		static_cast     <const int32_t>             (tmpHashCheck.GetSize()),          // Output Length
+		const_cast<uint8_t *>(static_cast<const uint8_t *>(tmpHashCheck.GetPayloadPointer())))  // Output Key (not const!)
 		;
 
 	if (bHaveCheckHash)
@@ -1537,8 +1537,8 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTString & strInput, const OTString
     EVP_MD_CTX mdctx;
 	const EVP_MD *md = NULL;
 
-	unsigned int md_len = 0;
-	unsigned char md_value[EVP_MAX_MD_SIZE];	// I believe this is safe, having just analyzed this function.
+	uint32_t md_len = 0;
+	uint8_t md_value[EVP_MAX_MD_SIZE];	// I believe this is safe, having just analyzed this function.
 	// ----------------------------------------------
 	// Okay, it wasn't any internal hash algorithm, so then which one was it?
     //
@@ -1580,8 +1580,8 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 	EVP_MD_CTX mdctx;
 	const EVP_MD *md = NULL;
 
-	unsigned int md_len = 0;
-	unsigned char md_value[EVP_MAX_MD_SIZE];	// I believe this is safe, shouldn't ever be larger than MAX SIZE.
+	uint32_t md_len = 0;
+	uint8_t md_value[EVP_MAX_MD_SIZE];	// I believe this is safe, shouldn't ever be larger than MAX SIZE.
     // ----------------------------------------------
 	// Okay, it wasn't any internal hash algorithm, so then which one was it?
     //
@@ -1609,10 +1609,10 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 // --------------------
 /*
  SHA256_CTX context;
- unsigned char md[SHA256_DIGEST_LENGTH];
+ uint8_t md[SHA256_DIGEST_LENGTH];
 
  SHA256_Init(&context);
- SHA256_Update(&context, (unsigned char*)input, length);
+ SHA256_Update(&context, (uint8_t*)input, length);
  SHA256_Final(md, &context);
  */
 // ----------------------
@@ -1625,7 +1625,7 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 // todo return a smartpointer here.
 OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
 {
-    unsigned char *  tmp_data = new unsigned char[OTCryptoConfig::SymmetricKeySize()];
+    uint8_t *  tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
     OTPassword    * pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
     OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
 
@@ -1653,7 +1653,7 @@ void OTCrypto_OpenSSL::thread_setup()
 #if OPENSSL_VERSION_NUMBER-0 < 0x10000000L
     CRYPTO_set_id_callback       (ot_openssl_thread_id);
 #else
-    int nResult =
+    int32_t nResult =
     CRYPTO_THREADID_set_callback (ot_openssl_thread_id);
     ++nResult; --nResult;
 #endif
@@ -2090,7 +2090,7 @@ bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The sym
     std::vector<uint8_t> vBuffer_out(OTCryptoConfig::SymmetricBufferSize() + EVP_MAX_IV_LENGTH);
 
 	uint32_t		len     = 0;
-    int				len_out = 0;
+    int32_t				len_out = 0;
     // -----------------------------------------------
 	memset(&vBuffer.at(0),     0, OTCryptoConfig::SymmetricBufferSize() );
 	memset(&vBuffer_out.at(0), 0, OTCryptoConfig::SymmetricBufferSize() + EVP_MAX_IV_LENGTH);
@@ -2216,7 +2216,7 @@ bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The sym
     std::vector<uint8_t> vBuffer_out(OTCryptoConfig::SymmetricBufferSize() + EVP_MAX_IV_LENGTH);
 
 	uint32_t		len     = 0;
-    int				len_out = 0;
+    int32_t				len_out = 0;
     // -----------------------------------------------
 	memset(&vBuffer.at(0),     0, OTCryptoConfig::SymmetricBufferSize() );
 	memset(&vBuffer_out.at(0), 0, OTCryptoConfig::SymmetricBufferSize() + EVP_MAX_IV_LENGTH);
@@ -2346,7 +2346,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
     uint8_t	 iv[EVP_MAX_IV_LENGTH];
 
 	uint32_t         len     = 0;
-    int              len_out = 0;
+    int32_t              len_out = 0;
     // -----------------------------------------------
 
 	memset(buffer, 0, 4096);
@@ -2361,7 +2361,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
     //
     EVP_PKEY      ** array_pubkey = NULL;  // These will be pointers we use, but do NOT need to clean-up.
     uint8_t       ** ek           = NULL;  // These we DO need to cleanup...
-    int           *  eklen        = NULL;  // This will just be an array of integers.
+    int32_t           *  eklen        = NULL;  // This will just be an array of integers.
 
     bool             bFinalized   = false; // If this is set true, then we don't bother to cleanup the ctx. (See the destructor below.)
 
@@ -2378,16 +2378,16 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
         EVP_CIPHER_CTX              &   m_ctx;                  // reference to openssl cipher context.
         EVP_PKEY                    *** m_array_pubkey;         // pointer to array of public key pointers.
         uint8_t                     *** m_ek;                   // pointer to array of encrypted symmetric keys.
-        int                         **  m_eklen;                // pointer to array of lengths for each encrypted symmetric key
+        int32_t                         **  m_eklen;                // pointer to array of lengths for each encrypted symmetric key
         mapOfAsymmetricKeys         &   m_RecipPubKeys;         // array of public keys (to initialize the above members with.)
-        int                             m_nLastPopulatedIndex;  // We store the highest-populated index (so we can free() up 'til the same index, in destructor.)
+        int32_t                             m_nLastPopulatedIndex;  // We store the highest-populated index (so we can free() up 'til the same index, in destructor.)
         bool                        &   m_bFinalized;
     public:
         _OTEnv_Seal(const char            * param_szFunc,
                     EVP_CIPHER_CTX        & theCTX,
                     EVP_PKEY            *** param_array_pubkey,
                     uint8_t             *** param_ek,
-                    int                  ** param_eklen,
+                    int32_t                  ** param_eklen,
                     mapOfAsymmetricKeys   & param_RecipPubKeys,
                     bool                  & param_Finalized) :
             m_szFunc(param_szFunc),
@@ -2436,9 +2436,9 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
             // ----------------------------------------------
             // (*m_eklen)[] array must also have m_RecipPubKeys.size() no. of elements (each containing a size as integer.)
             //
-            *m_eklen = static_cast<int *>(malloc(m_RecipPubKeys.size() * sizeof(int)));
+            *m_eklen = static_cast<int32_t *>(malloc(m_RecipPubKeys.size() * sizeof(int32_t)));
             OT_ASSERT(NULL != *m_eklen);
-            memset(*m_eklen, 0, m_RecipPubKeys.size() * sizeof(int)); // size of array length * sizeof(int)
+            memset(*m_eklen, 0, m_RecipPubKeys.size() * sizeof(int32_t)); // size of array length * sizeof(int32_t)
             // ----------------------------------------------
             //
             // ABOVE is all just above allocating the memory and setting it to 0 / NULL.
@@ -2446,7 +2446,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
             // Whereas BELOW is about populating that memory, so the actual OTEnvelope::Seal() function can use it.
             //
             // -----------------------------------------------
-            int nKeyIndex = -1; // it will be 0 upon first iteration.
+            int32_t nKeyIndex = -1; // it will be 0 upon first iteration.
 
             FOR_EACH(mapOfAsymmetricKeys, m_RecipPubKeys)
             {
@@ -2491,7 +2491,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
             // Plus we have m_nLastPopulatedIndex, which is obviously as far as we will go.
             //
             // -------------------------------
-            int    nKeyIndex = -1; // it will be 0 upon first iteration.
+            int32_t    nKeyIndex = -1; // it will be 0 upon first iteration.
             while (nKeyIndex < m_nLastPopulatedIndex) // if m_nLastPopulatedIndex is 0, then this loop will iterate ONCE, with nKeyIndex incrementing to 0 on the first line.
             {
                 ++nKeyIndex; // 0 on first iteration.
@@ -2551,10 +2551,10 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
     const EVP_CIPHER * cipher_type = EVP_aes_128_cbc(); // todo hardcoding.
     // --------------------------
     /*
-    int EVP_SealInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type,
-                     unsigned char **ek,  int *ekl,
-                     unsigned char *iv,
-                     EVP_PKEY **pubk,     int npubk);
+    int32_t EVP_SealInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type,
+                     uint8_t **ek,  int32_t *ekl,
+                     uint8_t *iv,
+                     EVP_PKEY **pubk,     int32_t npubk);
 
      -- ek is an array of buffers where the public-key-encrypted secret key will be written (for each recipient.)
      -- Each buffer must contain enough room for the corresponding encrypted key: that is,
@@ -2564,14 +2564,14 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
      */
 
 //    EVP_PKEY      ** array_pubkey = NULL;  // These will be pointers we use, but do NOT need to clean-up.
-//    unsigned char ** ek           = NULL;  // These we DO need to cleanup...
-//    int           *  eklen        = NULL;  // This will just be an array of integers.
+//    uint8_t ** ek           = NULL;  // These we DO need to cleanup...
+//    int32_t           *  eklen        = NULL;  // This will just be an array of integers.
     // **********************************************************
 
     if (!EVP_SealInit(&ctx, cipher_type,
                       ek,   eklen, // array of buffers for output of encrypted copies of the symmetric "session key". (Plus array of ints, to receive the size of each key.)
                       iv,          // A buffer where the generated IV is written. Must contain room for the corresponding cipher's IV, as determined by (for example) EVP_CIPHER_iv_length(type).
-                      array_pubkey, static_cast<int> (RecipPubKeys.size()))) // array of public keys we are addressing this envelope to.
+                      array_pubkey, static_cast<int32_t> (RecipPubKeys.size()))) // array of public keys we are addressing this envelope to.
     {
         OTLog::vError("%s: EVP_SealInit: failed.\n", szFunc);
 		return false;
@@ -2599,8 +2599,8 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
     // ------------------------------------------------------------
 
     OTLog::vOutput(5, "%s: Envelope type:  %d    Array size: %ld\n", __FUNCTION__,
-                   static_cast<int>(ntohs(env_type_n)),
-                   static_cast<long>(ntohl(array_size_n))
+                   static_cast<int32_t>(ntohs(env_type_n)),
+                   static_cast<int64_t>(ntohl(array_size_n))
                    );
 
     // ------------------------------------------------------------
@@ -2648,10 +2648,10 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
                                static_cast<uint32_t>(nymid_len)); // (+1 for null terminator is included here already, from above.)
         // -----------------------------------------
         OTLog::vOutput(5, "%s: INDEX: %ld  NymID length:  %ld   Nym ID: %s   Strlen (should be a byte shorter): %ld\n", __FUNCTION__,
-                       static_cast<long>(ii),
-                       static_cast<long>(ntohl(nymid_len_n)),
+                       static_cast<int64_t>(ii),
+                       static_cast<int64_t>(ntohl(nymid_len_n)),
                        strNymID.Get(),
-                       static_cast<long>(strNymID.GetLength())
+                       static_cast<int64_t>(strNymID.GetLength())
                        );
 
 
@@ -2660,8 +2660,8 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
 //      Write eklen_n and ek for EACH encrypted symmetric key,
 //
 //        EVP_PKEY      ** array_pubkey = NULL;  // These will be pointers we use, but do NOT need to clean-up.
-//        unsigned char ** ek           = NULL;  // These we DO need to cleanup...
-//        int           *  eklen        = NULL;  // This will just be an array of integers.
+//        uint8_t ** ek           = NULL;  // These we DO need to cleanup...
+//        int32_t           *  eklen        = NULL;  // This will just be an array of integers.
 
         // --------------------------
         OT_ASSERT(NULL != ek[ii]); // assert key pointer not null.
@@ -2676,9 +2676,9 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
                                static_cast<uint32_t>(eklen[ii]));
 
         OTLog::vOutput(5, "%s: EK length:  %ld     First byte: %d      Last byte: %d\n", __FUNCTION__,
-                       static_cast<long>(ntohl(eklen_n)),
-                       static_cast<int>((ek[ii])[0]),
-                       static_cast<int>((ek[ii])[eklen[ii]-1])
+                       static_cast<int64_t>(ntohl(eklen_n)),
+                       static_cast<int32_t>((ek[ii])[0]),
+                       static_cast<int32_t>((ek[ii])[eklen[ii]-1])
                        );
 
         // -------------------
@@ -2700,9 +2700,9 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
 
     OTLog::vOutput(5, "%s: iv_size: %ld   IV first byte: %d    IV last byte: %d   \n",
                    __FUNCTION__,
-                   static_cast<long>(ntohl(ivlen_n)),
-                   static_cast<int>(iv[0]),
-                   static_cast<int>(iv[ivlen-1])
+                   static_cast<int64_t>(ntohl(ivlen_n)),
+                   static_cast<int32_t>(iv[0]),
+                   static_cast<int32_t>(iv[ivlen-1])
                    );
 
     // -----------------------------------------------
@@ -2719,7 +2719,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
     while (0 < (len = plaintext.OTfread(reinterpret_cast<uint8_t*>(buffer),
                                         static_cast<uint32_t>(sizeof(buffer)))))
     {
-        if (!EVP_SealUpdate(&ctx, buffer_out, &len_out, buffer, static_cast<int>(len)))
+        if (!EVP_SealUpdate(&ctx, buffer_out, &len_out, buffer, static_cast<int32_t>(len)))
         {
             OTLog::vError("%s: EVP_SealUpdate failed.\n", szFunc);
 			return false;
@@ -2761,18 +2761,18 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
 
 /*
 #include <openssl/evp.h>
-int EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,unsigned char *ek,
-				 int ekl,unsigned char *iv,EVP_PKEY *priv);
-int EVP_OpenUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out,
-				   int *outl, unsigned char *in, int inl);
-int EVP_OpenFinal(EVP_CIPHER_CTX *ctx, unsigned char *out,
-				  int *outl);
+int32_t EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,uint8_t *ek,
+				 int32_t ekl,uint8_t *iv,EVP_PKEY *priv);
+int32_t EVP_OpenUpdate(EVP_CIPHER_CTX *ctx, uint8_t *out,
+				   int32_t *outl, uint8_t *in, int32_t inl);
+int32_t EVP_OpenFinal(EVP_CIPHER_CTX *ctx, uint8_t *out,
+				  int32_t *outl);
 DESCRIPTION
 
 The EVP envelope routines are a high level interface to envelope decryption. They decrypt a public key
  encrypted symmetric key and then decrypt data using it.
 
- int EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,unsigned char *ek, int ekl,unsigned char *iv,EVP_PKEY *priv);
+ int32_t EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,uint8_t *ek, int32_t ekl,uint8_t *iv,EVP_PKEY *priv);
 EVP_OpenInit() initializes a cipher context ctx for decryption with cipher type. It decrypts the encrypted
  symmetric key of length ekl bytes passed in the ek parameter using the private key priv. The IV is supplied
  in the iv parameter.
@@ -2813,7 +2813,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     uint8_t	iv[EVP_MAX_IV_LENGTH];
     // ------------------------------------
     uint32_t    len     = 0;
-    int         len_out = 0;
+    int32_t         len_out = 0;
     bool        bFinalized = false;  // We only clean up the ctx if the Open "Final" function hasn't been called, since it does that automatically already.
 	// ------------------------------------------------
 	memset(buffer, 0, 4096);
@@ -2951,13 +2951,13 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     if (1 != env_type)
 	{
 		OTLog::vError("%s: Error: Expected Envelope for Asymmetric key (type 1) but instead found type %d.\n",
-                      szFunc, static_cast<int>(env_type));
+                      szFunc, static_cast<int32_t>(env_type));
         print_stacktrace();
 		return false;
 	}
     else
         OTLog::vOutput(5, "%s: Envelope type: %d\n", __FUNCTION__,
-                       static_cast<int>(env_type)
+                       static_cast<int32_t>(env_type)
                        );
 
     // ****************************************************************************
@@ -2980,7 +2980,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     const uint32_t array_size = ntohl(array_size_n);
 
     OTLog::vOutput(5, "%s: Array size: %ld\n", __FUNCTION__,
-                   static_cast<long>(array_size)
+                   static_cast<int64_t>(array_size)
                    );
 
 //  nRunningTotal += array_size;    // NOPE! Just because there are 10 array elements doesn't mean I want to add "10" here to the running total!! Not logical.
@@ -3025,7 +3025,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 
 
         OTLog::vOutput(5, "%s: NymID length: %ld\n", __FUNCTION__,
-                       static_cast<long>(nymid_len)
+                       static_cast<int64_t>(nymid_len)
                        );
 
 
@@ -3048,13 +3048,13 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
         OT_ASSERT(nReadNymID == static_cast<uint32_t>(sizeof(uint8_t) * nymid_len));
 //      OT_ASSERT(nymid_len == nReadNymID);
         // ----------------------------------------------------------------------------
-        nymid[nymid_len-1] = '\0'; // for null terminator. If string is 10 bytes long, it's from 0-9, and the null terminator is at index 9.
+        nymid[nymid_len-1] = '\0'; // for null terminator. If string is 10 bytes int64_t, it's from 0-9, and the null terminator is at index 9.
         const OTString loopStrNymID(reinterpret_cast<char *>(nymid));
         free(nymid); nymid = NULL;
         // ****************************************************************************
         OTLog::vOutput(5, "%s: (LOOP) Current NymID: %s    Strlen:  %ld\n", __FUNCTION__,
                        loopStrNymID.Get(),
-                       static_cast<long>(loopStrNymID.GetLength())
+                       static_cast<int64_t>(loopStrNymID.GetLength())
                        );
         //
         // loopStrNymID ... if this matches strNymID then it's the one we're looking for.
@@ -3088,13 +3088,13 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 //      eklen  = EVP_PKEY_size(private_key);  // We read this size from file now...
 
         OTLog::vOutput(5, "%s: EK length:  %ld   \n", __FUNCTION__,
-                       static_cast<long>(eklen));
+                       static_cast<int64_t>(eklen));
 
 //      nRunningTotal += eklen;  // Nope!
         // ----------------------------------------------------------------------------
-        ek     = static_cast<uint8_t*>(malloc(static_cast<int>(eklen) * sizeof(uint8_t)));  // I assume this is for the AES key
+        ek     = static_cast<uint8_t*>(malloc(static_cast<int32_t>(eklen) * sizeof(uint8_t)));  // I assume this is for the AES key
         OT_ASSERT(NULL != ek);
-        memset(static_cast<void *>(ek), 0, static_cast<int>(eklen));
+        memset(static_cast<void *>(ek), 0, static_cast<int32_t>(eklen));
         // ----------------------------------------------------------------------------
         // Next we read the encrypted key itself...
         //
@@ -3108,8 +3108,8 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
         nRunningTotal += nReadKey;
 
         OTLog::vOutput(5, "%s:    EK First byte: %d     EK Last byte: %d\n", __FUNCTION__,
-                       static_cast<int>(ek[0]),
-                       static_cast<int>(ek[eklen-1])
+                       static_cast<int32_t>(ek[0]),
+                       static_cast<int32_t>(ek[eklen-1])
                        );
 
         OT_ASSERT(nReadKey == static_cast<uint32_t>(eklen));
@@ -3185,14 +3185,14 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 
     if (iv_size_host_order > max_iv_length)
     {
-        const long l1 = iv_size_host_order, l2 = max_iv_length;
+        const int64_t l1 = iv_size_host_order, l2 = max_iv_length;
         OTLog::vError("%s: Error: iv_size (%ld) is larger than max_iv_length (%ld).\n",
                       __FUNCTION__, l1, l2);
         return false;
     }
     else
         OTLog::vOutput(5, "%s: IV size: %ld\n", __FUNCTION__,
-                       static_cast<long>(iv_size_host_order)
+                       static_cast<int64_t>(iv_size_host_order)
                        );
 
     // ****************************************************************************
@@ -3211,8 +3211,8 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 	// ----------------------------------------------------------------------------
 
     OTLog::vOutput(5, "%s:    IV First byte: %d     IV Last byte: %d\n", __FUNCTION__,
-                   static_cast<int>   (iv[0]),
-                   static_cast<int>   (iv[iv_size_host_order-1])
+                   static_cast<int32_t>   (iv[0]),
+                   static_cast<int32_t>   (iv[iv_size_host_order-1])
                    );
 
     // We read the encrypted key size, then we read the encrypted key itself, with nReadKey containing
@@ -3244,19 +3244,19 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     //	void         Assign     (const void * pNewData, uint32_t lNewSize);
     //	void         Concatenate(const void * pNewData, uint32_t lNewSize);
     // ----------------------------------------------
-    // int EVP_OpenInit(
+    // int32_t EVP_OpenInit(
     //          EVP_CIPHER_CTX *ctx,
     //          EVP_CIPHER *type,
-    //          unsigned char *ek,
-    //          int ekl,
-    //          unsigned char *iv,
+    //          uint8_t *ek,
+    //          int32_t ekl,
+    //          uint8_t *iv,
     //          EVP_PKEY *priv);
     // ----------------------------------------------
 //  if (!EVP_OpenInit(&ctx, cipher_type, ek, eklen, iv, private_key))
 	if (!EVP_OpenInit(&ctx, cipher_type,
-                      static_cast<const unsigned char *>(theRawEncryptedKey.GetPayloadPointer()),
-                      static_cast<int>(theRawEncryptedKey.GetSize()),
-                      static_cast<const unsigned char *>(iv),
+                      static_cast<const uint8_t *>(theRawEncryptedKey.GetPayloadPointer()),
+                      static_cast<int32_t>(theRawEncryptedKey.GetSize()),
+                      static_cast<const uint8_t *>(iv),
                       private_key))
     {
 
@@ -3278,7 +3278,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     while (0 < (len = ciphertext.OTfread(reinterpret_cast<uint8_t*>(buffer),
                                          static_cast<uint32_t>(sizeof(buffer)))))
     {
-        if (!EVP_OpenUpdate(&ctx, buffer_out, &len_out, buffer, static_cast<int>(len)))
+        if (!EVP_OpenUpdate(&ctx, buffer_out, &len_out, buffer, static_cast<int32_t>(len)))
         {
             OTLog::vError("%s: EVP_OpenUpdate: failed.\n", szFunc);
             return false;
@@ -3317,7 +3317,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     // if size is 10, then indices are 0..9 and we pass '10' as the size here.
     // Since it's an OTData, then the 10th byte (at index 9) is expected to contain
     // the null terminator.
-    // Thus the ACTUAL string is only 9 bytes long, and is contained in indices 0..8.
+    // Thus the ACTUAL string is only 9 bytes int64_t, and is contained in indices 0..8.
     //
     const bool bSetMem = theOutput.MemSet(static_cast<const char *>(plaintext.GetPointer()),
                                           plaintext.GetSize());
@@ -3338,7 +3338,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 // Therefore '9' is the 10th byte, starting from 0.
 // Therefore "GetSize()" would be 10,
 // and "GetSize()-1" would be 9, which is the 10th byte starting from 0.
-// Therefore if the string is 9 bytes long, it will have data from 0 through 8, with 9 being \0.
+// Therefore if the string is 9 bytes int64_t, it will have data from 0 through 8, with 9 being \0.
 // Normally you wouldn't expect a string to include the null terminator as part of its length.
 // But for OTData, you WOULD expect the null 0 to be at the end.
 //
@@ -3369,17 +3369,17 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 #include <openssl/rand.h>
 
 
-int main(int argc, char** argv)
+int32_t main(int32_t argc, char** argv)
 {
 	RSA* pRsaKey = NULL;
-	unsigned char pDigest[32];
+	uint8_t pDigest[32];
 	size_t uDigestLen = 32;
 	const char* szMessage = "This is the string to be signed";
 	EVP_MD_CTX md_ctx;
-	unsigned char EM[128];
-	unsigned char pSignature[128];
-	unsigned char pDecrypted[128];
-	int status = 0;
+	uint8_t EM[128];
+	uint8_t pSignature[128];
+	uint8_t pDecrypted[128];
+	int32_t status = 0;
 
 	// openssl initialization
 	ERR_load_crypto_strings();
@@ -3495,17 +3495,17 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	// These two contain the output of the two message digest
 	// functions that we're using (SHA-256 and WHIRLPOOL.)
 	// the two output hashes are then merged together into this one.
-	std::vector<unsigned char> vOutputHash1(OTCryptoConfig::SymmetricKeySizeMax());
-	std::vector<unsigned char> vOutputHash2(OTCryptoConfig::SymmetricKeySizeMax());
-	std::vector<unsigned char> vDigest     (OTCryptoConfig::SymmetricKeySizeMax());
+	std::vector<uint8_t> vOutputHash1(OTCryptoConfig::SymmetricKeySizeMax());
+	std::vector<uint8_t> vOutputHash2(OTCryptoConfig::SymmetricKeySizeMax());
+	std::vector<uint8_t> vDigest     (OTCryptoConfig::SymmetricKeySizeMax());
 
 	// This stores the message digest, pre-encrypted, but with the padding added.
 	// This stores the final signature, when the EM value has been signed by RSA private key.
-	std::vector<unsigned char> vEM        (OTCryptoConfig::PublicKeysizeMax());
-	std::vector<unsigned char> vpSignature(OTCryptoConfig::PublicKeysizeMax());
+	std::vector<uint8_t> vEM        (OTCryptoConfig::PublicKeysizeMax());
+	std::vector<uint8_t> vpSignature(OTCryptoConfig::PublicKeysizeMax());
 
-	unsigned int	uDigest1Len  = OTCryptoConfig::Digest1Size(); // 32 bytes == 256 bits. (These are used for function output below, not input.)
-	unsigned int	uDigest2Len  = OTCryptoConfig::Digest2Size(); // 64 bytes == 512 bits. (These are used for function output below, not input.)
+	uint32_t	uDigest1Len  = OTCryptoConfig::Digest1Size(); // 32 bytes == 256 bits. (These are used for function output below, not input.)
+	uint32_t	uDigest2Len  = OTCryptoConfig::Digest2Size(); // 64 bytes == 512 bits. (These are used for function output below, not input.)
 	// --------------------------
 	EVP_MD_CTX  mdHash1_ctx, mdHash2_ctx;
 
@@ -3573,18 +3573,18 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	EVP_MD_CTX_cleanup(&mdHash2_ctx); // cleanup
 
 	// (Goes with the smaller size.)
-	const unsigned int uDigestMergedLength = (uDigest1Len > uDigest2Len ? uDigest2Len : uDigest1Len);
+	const uint32_t uDigestMergedLength = (uDigest1Len > uDigest2Len ? uDigest2Len : uDigest1Len);
 
 	// XOR the two together
 	//
-	for (unsigned int i = 0; i < uDigestMergedLength; i++)
+	for (uint32_t i = 0; i < uDigestMergedLength; i++)
 	{
 		vDigest.at(i) = ((vOutputHash1.at(i)) ^ (vOutputHash2.at(i)));
 	}
 //#else // ANDROID
-//	const unsigned int uDigestMergedLength = uDigest1Len;
+//	const uint32_t uDigestMergedLength = uDigest1Len;
 //
-//	for (int i = 0; i < uDigestMergedLength; i++)
+//	for (int32_t i = 0; i < uDigestMergedLength; i++)
 //	{
 //		pDigest[i] = (vOutputHash1.at(i));
 //	}
@@ -3616,12 +3616,12 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	// the result goes into EM.
 
 	/*
-	 int RSA_padding_add_PKCS1_PSS(RSA *rsa, unsigned char *EM,
-     const unsigned char *mHash,
-     const EVP_MD *Hash, int sLen);
+	 int32_t RSA_padding_add_PKCS1_PSS(RSA *rsa, uint8_t *EM,
+     const uint8_t *mHash,
+     const EVP_MD *Hash, int32_t sLen);
 	 */
-    //	int RSA_padding_add_xxx(unsigned char *to, int tlen,
-    //							unsigned char *f, int fl);
+    //	int32_t RSA_padding_add_xxx(uint8_t *to, int32_t tlen,
+    //							uint8_t *f, int32_t fl);
 	// RSA_padding_add_xxx() encodes *fl* bytes from *f* so as to fit into *tlen*
 	// bytes and stores the result at *to*.
 	// An error occurs if fl does not meet the size requirements of the encoding method.
@@ -3630,7 +3630,7 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 
     //   rsa	EM	mHash	  Hash	  sLen
     //	  in	OUT	  IN		in		in
-	int status = RSA_padding_add_PKCS1_PSS(pRsaKey, &vEM.at(0), &vDigest.at(0), digest1, -2); //maximum salt length
+	int32_t status = RSA_padding_add_PKCS1_PSS(pRsaKey, &vEM.at(0), &vDigest.at(0), digest1, -2); //maximum salt length
 
 	// Above, pDigest is the input, but its length is not needed, since it is determined
 	// by the digest algorithm (digest1.) In this case, that size is 32 bytes == 256 bits.
@@ -3638,7 +3638,7 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	// Also notice that digest1 and digest2 are both processed, and then digest1 is used here
 	// again, since RSA_padding_add_PKCS1_PSS requires a digest. Might be optimization opportunities there.
 	//
-	// More clearly: pDigest is 256 bits long, aka 32 bytes. The call to RSA_padding_add_PKCS1_PSS above
+	// More clearly: pDigest is 256 bits int64_t, aka 32 bytes. The call to RSA_padding_add_PKCS1_PSS above
 	// is transforming its contents based on digest1, into EM. Once this is done, the new digest stored in
 	// EM will be RSA_size(pRsaKey)-11 bytes in size, with the rest padded.
 	// Therefore if this is sucessful, then we can call RSA_private_encrypt without any further padding,
@@ -3661,8 +3661,8 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	// encoding method and stores the recovered data of at most tlen bytes (for RSA_NO_PADDING: of size tlen) at to.
 
 	// RSA_private_encrypt
-    //	int RSA_private_encrypt(int flen, unsigned char *from,
-    //							unsigned char *to, RSA *rsa, int padding);
+    //	int32_t RSA_private_encrypt(int32_t flen, uint8_t *from,
+    //							uint8_t *to, RSA *rsa, int32_t padding);
 	// RSA_private_encrypt() signs the *flen* bytes at *from* (usually a message digest with
 	// an algorithm identifier) using the private key rsa and stores the signature in *to*.
 	// to must point to RSA_size(rsa) bytes of memory.
@@ -3721,14 +3721,14 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
     // ----------------------------
 	bool bReturnValue = false;
 
-	std::vector<unsigned char> vOutputHash1(OTCryptoConfig::SymmetricKeySizeMax());	// These two contain the output of the two message digest
-	std::vector<unsigned char> vOutputHash2(OTCryptoConfig::SymmetricKeySizeMax());	// functions that we're using (SHA-256 and WHIRLPOOL.)
-	std::vector<unsigned char> vDigest(OTCryptoConfig::SymmetricKeySizeMax()); // the two output hashes are then merged together into this one.
+	std::vector<uint8_t> vOutputHash1(OTCryptoConfig::SymmetricKeySizeMax());	// These two contain the output of the two message digest
+	std::vector<uint8_t> vOutputHash2(OTCryptoConfig::SymmetricKeySizeMax());	// functions that we're using (SHA-256 and WHIRLPOOL.)
+	std::vector<uint8_t> vDigest(OTCryptoConfig::SymmetricKeySizeMax()); // the two output hashes are then merged together into this one.
 
-	std::vector<unsigned char> vDecrypted(OTCryptoConfig::PublicKeysizeMax());	// Contains the decrypted signature.
+	std::vector<uint8_t> vDecrypted(OTCryptoConfig::PublicKeysizeMax());	// Contains the decrypted signature.
 
-	unsigned int    uDigest1Len = OTCryptoConfig::Digest1Size(); // 32 bytes == 256 bits. (These are used for function output below, not input.)
-	unsigned int    uDigest2Len = OTCryptoConfig::Digest2Size(); // 64 bytes == 512 bits. (These are used for function output below, not input.)
+	uint32_t    uDigest1Len = OTCryptoConfig::Digest1Size(); // 32 bytes == 256 bits. (These are used for function output below, not input.)
+	uint32_t    uDigest2Len = OTCryptoConfig::Digest2Size(); // 64 bytes == 512 bits. (These are used for function output below, not input.)
     // ----------------------------
 	EVP_MD_CTX mdHash1_ctx, mdHash2_ctx;
 
@@ -3782,19 +3782,19 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	EVP_MD_CTX_cleanup(&mdHash2_ctx); // cleanup
 
 	// (Goes with the smaller size.)
-	const unsigned int uDigestMergedLength = (uDigest1Len > uDigest2Len ? uDigest2Len : uDigest1Len);
+	const uint32_t uDigestMergedLength = (uDigest1Len > uDigest2Len ? uDigest2Len : uDigest1Len);
 
 	// XOR the two together
-	for (unsigned int i = 0; i < uDigestMergedLength; i++)
+	for (uint32_t i = 0; i < uDigestMergedLength; i++)
 	{
 		vDigest.at(i) = ((vOutputHash1.at(i)) ^ (vOutputHash2.at(i)));
 	}
 //#else // ** is ** ANDROID
 //    // ----------------------------
 //	// (Goes with the smaller size.)
-//	const unsigned int uDigestMergedLength = uDigest1Len;
+//	const uint32_t uDigestMergedLength = uDigest1Len;
 //
-//	for (int i = 0; i < uDigest1Len; i++)
+//	for (int32_t i = 0; i < uDigest1Len; i++)
 //	{
 //		pDigest[i] = (pOutputHash1[i]);
 //	}
@@ -3816,9 +3816,9 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 		return false;
 	}
 	// --------------------------------------------------------
-	const int nSignatureSize = static_cast<int> (binSignature.GetSize()); // converting from unsigned to signed (since openssl wants it that way.)
+	const int32_t nSignatureSize = static_cast<int32_t> (binSignature.GetSize()); // converting from unsigned to signed (since openssl wants it that way.)
 
-	if ((binSignature.GetSize()	< static_cast<unsigned int>(RSA_size(pRsaKey))) ||
+	if ((binSignature.GetSize()	< static_cast<uint32_t>(RSA_size(pRsaKey))) ||
 		(nSignatureSize			< RSA_size(pRsaKey))) // this one probably unnecessary.
 	{
 		OTLog::vError("%s: Decoded base64-encoded data for signature, but resulting size was < RSA_size(pRsaKey): "
@@ -3837,17 +3837,17 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 
 	// the 128 in the below call was a BUG. The SIZE of the ciphertext (signature) being decrypted is NOT 128 (modulus / cleartext size).
 	// Rather, the size of the signature is RSA_size(pRsaKey).  Will have to revisit this likely, elsewhere in the code.
-    //	status = RSA_public_decrypt(128, static_cast<const unsigned char*>(binSignature.GetPointer()), pDecrypted, pRsaKey, RSA_NO_PADDING);
-	int status = RSA_public_decrypt(nSignatureSize,	// length of signature, aka RSA_size(rsa)
-									static_cast<const unsigned char*>(binSignature.GetPayloadPointer()), // location of signature
+    //	status = RSA_public_decrypt(128, static_cast<const uint8_t*>(binSignature.GetPointer()), pDecrypted, pRsaKey, RSA_NO_PADDING);
+	int32_t status = RSA_public_decrypt(nSignatureSize,	// length of signature, aka RSA_size(rsa)
+									static_cast<const uint8_t*>(binSignature.GetPayloadPointer()), // location of signature
 									&vDecrypted.at(0),		// Output--must be large enough to hold the md (which is smaller than RSA_size(rsa) - 11)
 									pRsaKey,		// signer's public key
 									RSA_NO_PADDING);
 
-	// int RSA_public_decrypt(int flen, unsigned char *from,
-	//							unsigned char *to, RSA *rsa, int padding);
+	// int32_t RSA_public_decrypt(int32_t flen, uint8_t *from,
+	//							uint8_t *to, RSA *rsa, int32_t padding);
 
-	// RSA_public_decrypt() recovers the message digest from the *flen* bytes long signature at *from*,
+	// RSA_public_decrypt() recovers the message digest from the *flen* bytes int64_t signature at *from*,
 	// using the signer's public key *rsa*.
 	// padding is the padding mode that was used to sign the data.
 	// *to* must point to a memory section large enough to hold the message digest
@@ -3874,8 +3874,8 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	// (supposedly the same message digest, which we calculated above based on the message itself.)
 	// They SHOULD be the same.
 	/*
-	 int RSA_verify_PKCS1_PSS(RSA *rsa, const unsigned char *mHash,
-     const EVP_MD *Hash, const unsigned char *EM, int sLen)
+	 int32_t RSA_verify_PKCS1_PSS(RSA *rsa, const uint8_t *mHash,
+     const EVP_MD *Hash, const uint8_t *EM, int32_t sLen)
 	 */							// rsa		mHash	Hash alg.	EM		 sLen
 	status = RSA_verify_PKCS1_PSS(pRsaKey, &vDigest.at(0), digest1, &vDecrypted.at(0), -2); // salt length recovered from signature
 
@@ -3953,10 +3953,10 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	/*
 	 #include <openssl/rsa.h>
 
-	 int RSA_sign(int type, const unsigned char *m, unsigned int m_len,
-     unsigned char *sigret, unsigned int *siglen, RSA *rsa);
-	 int RSA_verify(int type, const unsigned char *m, unsigned int m_len,
-     unsigned char *sigbuf, unsigned int siglen, RSA *rsa);
+	 int32_t RSA_sign(int32_t type, const uint8_t *m, uint32_t m_len,
+     uint8_t *sigret, uint32_t *siglen, RSA *rsa);
+	 int32_t RSA_verify(int32_t type, const uint8_t *m, uint32_t m_len,
+     uint8_t *sigbuf, uint32_t siglen, RSA *rsa);
 
 	 DESCRIPTION
 
@@ -4042,7 +4042,7 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	 >  * The minimum signable data quantity in OpenSSL is 1 byte
 	 >  * The minimum size RSA key that can be used to sign 1 byte is 89 bits
 	 >  * A signature created using a 64-bit RSA key would create a number 64
-	 > bits long, BUT:
+	 > bits int64_t, BUT:
 	 >    - This is not possible to do in OpenSSL because the maximum signable
 	 > quantity for a 64
 	 >       bit RSA key is only a few bits, and OpenSSL input/output is done on
@@ -4127,11 +4127,11 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	 > Hi all :x
 	 > I encountered an error when using function RSA_private_encrypt with
 	 > RSA_NO_PADDING option.
-	 > I had an unsigned char array a with length = 20, RSA* r,
-	 > unsigned char* sig = (unsigned char*) malloc(RSA_size(r)) and then I invoked
-	 > function int i = RSA_private_encrypt(20,a ,sign,r,RSA_NO_PADDING ); The
+	 > I had an uint8_t array a with length = 20, RSA* r,
+	 > uint8_t* sig = (uint8_t*) malloc(RSA_size(r)) and then I invoked
+	 > function int32_t i = RSA_private_encrypt(20,a ,sign,r,RSA_NO_PADDING ); The
 	 > returned value  i = -1 means that this function failed. However, when I
-	 > invoked int i = RSA_private_encrypt(20,a,sig,r,RSA_PKCS1_PADDING ), it did
+	 > invoked int32_t i = RSA_private_encrypt(20,a,sig,r,RSA_PKCS1_PADDING ), it did
 	 > run smoothly. I'm confused whether it is an error of the library or not but
 	 > I don't know how to solve this problem.
 	 > Please help me :-<
@@ -4225,7 +4225,7 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	 CHANGE the 128 to this value:
 	 RSA_size(pRsaKey)
 	 for now you can change the entire line to this:
-	 status = RSA_public_decrypt(RSA_size(pRsaKey), static_cast<const unsigned char*>(binSignature.GetPointer()), pDecrypted, pRsaKey, RSA_NO_PADDING);
+	 status = RSA_public_decrypt(RSA_size(pRsaKey), static_cast<const uint8_t*>(binSignature.GetPointer()), pDecrypted, pRsaKey, RSA_NO_PADDING);
 	 Then see if your bug goes away
 	 I will still need to make fixes someday though, even if this works, and will have to lose or convert data.
 	 4:48
@@ -4361,10 +4361,10 @@ bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
 		EVP_SignUpdate (&md_ctx, strContractUnsigned.Get(), strContractUnsigned.GetLength());
 	}
     // ----------------------------------------------
-    unsigned char sig_buf [4096]; // Safe since we pass the size when we use it.
+    uint8_t sig_buf [4096]; // Safe since we pass the size when we use it.
 
-	int sig_len = sizeof(sig_buf);
-	int err = EVP_SignFinal (&md_ctx, sig_buf, (unsigned int *)&sig_len, (EVP_PKEY *)pkey);  // todo cast
+	int32_t sig_len = sizeof(sig_buf);
+	int32_t err = EVP_SignFinal (&md_ctx, sig_buf, (uint32_t *)&sig_len, (EVP_PKEY *)pkey);  // todo cast
 
 	if (err != 1)
 	{
@@ -4526,8 +4526,8 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
 	// EVP_VerifyFinal() returns 1 for a correct signature,
     // 0 for failure and -1 if some other error occurred.
     //
-	int nErr = EVP_VerifyFinal(&ctx, (const unsigned char *)binSignature.GetPayloadPointer(),  // todo cast
-							   (unsigned int)binSignature.GetSize(), (EVP_PKEY *)pkey); // todo cast
+	int32_t nErr = EVP_VerifyFinal(&ctx, (const uint8_t *)binSignature.GetPayloadPointer(),  // todo cast
+							   (uint32_t)binSignature.GetSize(), (EVP_PKEY *)pkey); // todo cast
 	// --------------------------
 	EVP_MD_CTX_cleanup(&ctx);
 	// --------------------------
@@ -4762,11 +4762,11 @@ void OpenSSL_BIO::setFreeOnly()
 
  char * passwd = "secret password";
 
- unsigned char salt[8];
+ uint8_t salt[8];
 
- int iter = 65535;
+ int32_t iter = 65535;
 
- unsigned char key[16];
+ uint8_t key[16];
 
  RAND_bytes(salt, sizeof(salt));
 
@@ -4781,7 +4781,7 @@ void OpenSSL_BIO::setFreeOnly()
 
  // perform aes encryption here...
 
- unsigned char iv[16];
+ uint8_t iv[16];
  RAND_bytes(iv,   sizeof(iv));
 
 
@@ -4791,25 +4791,25 @@ void OpenSSL_BIO::setFreeOnly()
 
  // Note: Salt is generated randomly when the symmetric key is created from the passphrase.
  // Then the salt must be STORED with the symmetric key, so that the passphrase / salt / encrypted symmetric key
- // can later be used to produce a decrypted symmetric key (which should not stay in memory for long...)
+ // can later be used to produce a decrypted symmetric key (which should not stay in memory for int64_t...)
  //
 
-int main()
+int32_t main()
 {
 	char *pass = "password";
 	char *salt = "12340000";
-	int ic = 1;
-	unsigned char buf[1024];
+	int32_t ic = 1;
+	uint8_t buf[1024];
 
 	ic = 1;
-	PKCS5_PBKDF2_HMAC_SHA1(pass, strlen(pass), (unsigned char*)salt, strlen(salt), ic, 32+16, buf);
+	PKCS5_PBKDF2_HMAC_SHA1(pass, strlen(pass), (uint8_t*)salt, strlen(salt), ic, 32+16, buf);
 	printf("PKCS5_PBKDF2_HMAC_SHA1(\"%s\", \"%s\", %d)=\n", pass, salt, ic);
 	print_hex(buf, 32+16);
 
  // NOTE: The above function is used INSTEAD of the one below!
 
     ic = 1;
-	EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha1(), (unsigned char*)salt, (unsigned char*)pass, strlen(pass), ic, buf, buf+32);
+	EVP_BytesToKey(EVP_aes_256_cbc(), EVP_sha1(), (uint8_t*)salt, (uint8_t*)pass, strlen(pass), ic, buf, buf+32);
 	printf("EVP_BytesToKey(\"%s\", \"%s\", %d)=\n", pass, salt, ic);
 	print_hex(buf, 32+16);
 
@@ -4820,11 +4820,11 @@ int main()
 
 
 
- int EVP_BytesToKey(const EVP_CIPHER *type,const EVP_MD *md,
-                    const unsigned char *salt,
-                    const unsigned char *data, int datal,
-                    int count,
-                    unsigned char *key,unsigned char *iv);
+ int32_t EVP_BytesToKey(const EVP_CIPHER *type,const EVP_MD *md,
+                    const uint8_t *salt,
+                    const uint8_t *data, int32_t datal,
+                    int32_t count,
+                    uint8_t *key,uint8_t *iv);
 
  EVP_BytesToKey() derives a key and IV from various parameters.
     type is the cipher to derive the key and IV for.
@@ -4845,12 +4845,12 @@ int main()
  and decrypted with a private key. The keys can just be passed in or whatever.
 
 
-int PKCS5_PBKDF2_HMAC_SHA1	(
+int32_t PKCS5_PBKDF2_HMAC_SHA1	(
     const void * 	password,
     size_t          password_len,
     const void * 	salt,
     size_t          salt_len,
-    unsigned long 	iter,
+    uint64_t 	iter,
     size_t          keylen,
     void *          key
 )
@@ -4858,11 +4858,11 @@ int PKCS5_PBKDF2_HMAC_SHA1	(
 
  OPENSSL's version:
 
- int PKCS5_PBKDF2_HMAC_SHA1(
-    const char *pass, int passlen,
-    const unsigned char *salt, int saltlen,
-    int iter,
-    int keylen,  unsigned char *out);
+ int32_t PKCS5_PBKDF2_HMAC_SHA1(
+    const char *pass, int32_t passlen,
+    const uint8_t *salt, int32_t saltlen,
+    int32_t iter,
+    int32_t keylen,  uint8_t *out);
 
  */
 
@@ -4871,20 +4871,20 @@ int PKCS5_PBKDF2_HMAC_SHA1	(
 
 
 /*
-int do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
+int32_t do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
 {
-    int retval = 0;
+    int32_t retval = 0;
     RSA *rsa_pkey = NULL;
     EVP_PKEY *pkey = EVP_PKEY_new();
     EVP_CIPHER_CTX ctx;
-    unsigned char buffer[4096];
-    unsigned char buffer_out[4096 + EVP_MAX_IV_LENGTH];
+    uint8_t buffer[4096];
+    uint8_t buffer_out[4096 + EVP_MAX_IV_LENGTH];
     size_t len;
-    int len_out;
-    unsigned char *ek;
-    int eklen;
+    int32_t len_out;
+    uint8_t *ek;
+    int32_t eklen;
     uint32_t eklen_n;
-    unsigned char iv[EVP_MAX_IV_LENGTH];
+    uint8_t iv[EVP_MAX_IV_LENGTH];
 
     if (!PEM_read_RSA_PUBKEY(rsa_pkey_file, &rsa_pkey, OTAsymmetricKey::GetPasswordCallback(), NULL))
     {
@@ -4984,10 +4984,10 @@ out:
     return retval;
 }
 
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char *argv[])
 {
     FILE *rsa_pkey_file;
-    int rv;
+    int32_t rv;
 
     if (argc < 2)
     {

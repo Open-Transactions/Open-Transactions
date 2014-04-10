@@ -623,7 +623,7 @@ bool OTKeyring::Mac_DeleteSecret(const OTString    & strUser,
     SecKeychainSearchRef      theSearch  = NULL;
     OSStatus                  theStatus  = 0;
     OSErr                     theResult;
-    int                       numberOfItemsFound = 0;
+    int32_t                       numberOfItemsFound = 0;
     // ---------------------------------------------------------
     theResult = theKeychain.SearchCreateFromAttributes(NULL,
                                                        NULL, // CFTypeRef SecItemClass, // unused here.
@@ -853,8 +853,8 @@ bool OTKeyring::Gnome_RetrieveSecret(const OTString    & strUser,
     // if the password exists in the keyring, set it in
     // thePassword (output argument.)
     //
-    int  nCount = -1;
-    long lSleep = 1;
+    int32_t  nCount = -1;
+    int64_t lSleep = 1;
 
     while ((GNOME_KEYRING_RESULT_OK  != theResult))
     {
@@ -996,7 +996,7 @@ bool OTKeyring::InitKApp()
 		if (! KApplication::instance())
 		{
 			static char kdeAppName[] = "opentxs-kwallet";
-			int argc = 1;
+			int32_t argc = 1;
 			char *argv[2] = { kdeAppName, NULL };
 			QByteArray qbApp(kdeAppName);
 			KAboutData about(qbApp, qbApp, KLocalizedString(),QByteArray("1.0"));

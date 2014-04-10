@@ -237,7 +237,7 @@ bool OTAPI_Basic::SwitchWallet()
 }
 
 void OTAPI_Basic::Output(
-	long nLogLevel,
+	int64_t nLogLevel,
 	const std::string & strOutput
 	)
 {
@@ -293,7 +293,7 @@ bool OTAPI_Basic::NumList_VerifyAll(
 	return OTAPI_Wrap::NumList_VerifyAll(strNumList,strNumbers);
 }
 
-long OTAPI_Basic::NumList_Count(
+int64_t OTAPI_Basic::NumList_Count(
 	const std::string & strNumList
 	)
 {
@@ -422,9 +422,9 @@ std::string OTAPI_Basic::VerifyAndRetrieveXMLContents(
 		);
 }
 
-long OTAPI_Basic::GetMemlogSize() { return OTAPI_Wrap::GetMemlogSize(); }
+int64_t OTAPI_Basic::GetMemlogSize() { return OTAPI_Wrap::GetMemlogSize(); }
 
-std::string OTAPI_Basic::GetMemlogAtIndex(const long & nIndex) { return OTAPI_Wrap::GetMemlogAtIndex(nIndex); }
+std::string OTAPI_Basic::GetMemlogAtIndex(const int64_t & nIndex) { return OTAPI_Wrap::GetMemlogAtIndex(nIndex); }
 
 std::string OTAPI_Basic::PeekMemlogFront() { return OTAPI_Wrap::PeekMemlogFront(); }
 std::string OTAPI_Basic::PeekMemlogBack() { return OTAPI_Wrap::PeekMemlogBack(); }
@@ -432,7 +432,7 @@ std::string OTAPI_Basic::PeekMemlogBack() { return OTAPI_Wrap::PeekMemlogBack();
 bool OTAPI_Basic::PopMemlogFront() { return OTAPI_Wrap::PopMemlogFront(); }
 bool OTAPI_Basic::PopMemlogBack() {return OTAPI_Wrap::PopMemlogBack(); }
 
-std::string OTAPI_Basic::CreateNym(const long & nKeySize, // must be 1024, 2048, 4096, or 8192
+std::string OTAPI_Basic::CreateNym(const int64_t & nKeySize, // must be 1024, 2048, 4096, or 8192
                               const std::string & NYM_ID_SOURCE,
                               const std::string & ALT_LOCATION)
 {
@@ -469,13 +469,13 @@ std::string OTAPI_Basic::GetNym_AltSourceLocation(const std::string & NYM_ID)
 }
 
 
-long OTAPI_Basic::GetNym_CredentialCount(const std::string & NYM_ID)
+int64_t OTAPI_Basic::GetNym_CredentialCount(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_CredentialCount(NYM_ID);
 }
 
 
-std::string OTAPI_Basic::GetNym_CredentialID(const std::string & NYM_ID, const long & nIndex)
+std::string OTAPI_Basic::GetNym_CredentialID(const std::string & NYM_ID, const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetNym_CredentialID(NYM_ID, nIndex);
 }
@@ -487,13 +487,13 @@ std::string OTAPI_Basic::GetNym_CredentialContents(const std::string & NYM_ID, c
 }
 
 
-long OTAPI_Basic::GetNym_RevokedCredCount(const std::string & NYM_ID)
+int64_t OTAPI_Basic::GetNym_RevokedCredCount(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_RevokedCredCount(NYM_ID);
 }
 
 
-std::string OTAPI_Basic::GetNym_RevokedCredID(const std::string & NYM_ID, const long & nIndex)
+std::string OTAPI_Basic::GetNym_RevokedCredID(const std::string & NYM_ID, const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetNym_RevokedCredID(NYM_ID, nIndex);
 }
@@ -505,13 +505,13 @@ std::string OTAPI_Basic::GetNym_RevokedCredContents(const std::string & NYM_ID, 
 }
 
 
-long OTAPI_Basic::GetNym_SubcredentialCount(const std::string & NYM_ID, const std::string & MASTER_CRED_ID)
+int64_t OTAPI_Basic::GetNym_SubcredentialCount(const std::string & NYM_ID, const std::string & MASTER_CRED_ID)
 {
 	return OTAPI_Wrap::GetNym_SubcredentialCount(NYM_ID, MASTER_CRED_ID);
 }
 
 
-std::string OTAPI_Basic::GetNym_SubCredentialID(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const long & nIndex)
+std::string OTAPI_Basic::GetNym_SubCredentialID(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetNym_SubCredentialID(NYM_ID, MASTER_CRED_ID, nIndex);
 }
@@ -522,7 +522,7 @@ std::string OTAPI_Basic::GetNym_SubCredentialContents(const std::string & NYM_ID
 	return OTAPI_Wrap::GetNym_SubCredentialContents(NYM_ID, MASTER_CRED_ID, SUB_CRED_ID);
 }
 
-std::string OTAPI_Basic::AddSubcredential(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const long & nKeySize)
+std::string OTAPI_Basic::AddSubcredential(const std::string & NYM_ID, const std::string & MASTER_CRED_ID, const int64_t & nKeySize)
 {
     return OTAPI_Wrap::AddSubcredential(NYM_ID, MASTER_CRED_ID, nKeySize);
 }
@@ -568,30 +568,30 @@ std::string OTAPI_Basic::CalculateServerContractID(const std::string & str_Contr
 }
 
 
-long OTAPI_Basic::AddServerContract(const std::string & strContract)
+int64_t OTAPI_Basic::AddServerContract(const std::string & strContract)
 {
 	return OTAPI_Wrap::AddServerContract(
 		strContract
 		);
 }
 
-long OTAPI_Basic::AddAssetContract(const std::string & strContract)
+int64_t OTAPI_Basic::AddAssetContract(const std::string & strContract)
 {
 	return OTAPI_Wrap::AddAssetContract(
 		strContract
 		);
 }
 
-long OTAPI_Basic::GetServerCount()    { return OTAPI_Wrap::GetServerCount(); }
-long OTAPI_Basic::GetAssetTypeCount() { return OTAPI_Wrap::GetAssetTypeCount(); }
-long OTAPI_Basic::GetAccountCount()   { return OTAPI_Wrap::GetAccountCount(); }
-long OTAPI_Basic::GetNymCount()
+int64_t OTAPI_Basic::GetServerCount()    { return OTAPI_Wrap::GetServerCount(); }
+int64_t OTAPI_Basic::GetAssetTypeCount() { return OTAPI_Wrap::GetAssetTypeCount(); }
+int64_t OTAPI_Basic::GetAccountCount()   { return OTAPI_Wrap::GetAccountCount(); }
+int64_t OTAPI_Basic::GetNymCount()
 {
-	const long nNymCount = OTAPI_Wrap::GetNymCount();
+	const int64_t nNymCount = OTAPI_Wrap::GetNymCount();
 	return nNymCount;
 }
 
-std::string OTAPI_Basic::GetServer_ID(const long & nIndex)
+std::string OTAPI_Basic::GetServer_ID(const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetServer_ID(
 		nIndex
@@ -624,7 +624,7 @@ std::string OTAPI_Basic::StringToAmount(const std::string & ASSET_TYPE_ID, const
 }
 
 
-std::string OTAPI_Basic::GetAssetType_ID(const long & nIndex)
+std::string OTAPI_Basic::GetAssetType_ID(const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetAssetType_ID(
 		nIndex
@@ -652,7 +652,7 @@ std::string OTAPI_Basic::GetAssetType_Contract(const std::string & ASSET_TYPE_ID
 		);
 }
 
-std::string OTAPI_Basic::GetAccountWallet_ID(const long & nIndex)
+std::string OTAPI_Basic::GetAccountWallet_ID(const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetAccountWallet_ID(
 		nIndex
@@ -726,7 +726,7 @@ bool OTAPI_Basic::VerifyAccountReceipt(
 		);
 }
 
-long OTAPI_Basic::GetNym_TransactionNumCount(
+int64_t OTAPI_Basic::GetNym_TransactionNumCount(
 	const std::string & SERVER_ID,
 	const std::string & NYM_ID
 	)
@@ -737,7 +737,7 @@ long OTAPI_Basic::GetNym_TransactionNumCount(
 		);
 }
 
-std::string OTAPI_Basic::GetNym_ID(const long & nIndex)
+std::string OTAPI_Basic::GetNym_ID(const int64_t & nIndex)
 {
 	return OTAPI_Wrap::GetNym_ID(
 		nIndex
@@ -810,7 +810,7 @@ bool OTAPI_Basic::IsNym_RegisteredAtServer(const std::string & NYM_ID, const std
 		);	
 }
 
-long OTAPI_Basic::GetNym_MailCount(const std::string & NYM_ID)
+int64_t OTAPI_Basic::GetNym_MailCount(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_MailCount(
 		NYM_ID
@@ -819,7 +819,7 @@ long OTAPI_Basic::GetNym_MailCount(const std::string & NYM_ID)
 
 std::string OTAPI_Basic::GetNym_MailContentsByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_MailContentsByIndex(
@@ -830,7 +830,7 @@ std::string OTAPI_Basic::GetNym_MailContentsByIndex(
 
 std::string OTAPI_Basic::GetNym_MailSenderIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_MailSenderIDByIndex(
@@ -841,7 +841,7 @@ std::string OTAPI_Basic::GetNym_MailSenderIDByIndex(
 
 std::string OTAPI_Basic::GetNym_MailServerIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_MailServerIDByIndex(
@@ -852,7 +852,7 @@ std::string OTAPI_Basic::GetNym_MailServerIDByIndex(
 
 bool OTAPI_Basic::Nym_RemoveMailByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_RemoveMailByIndex(
@@ -863,7 +863,7 @@ bool OTAPI_Basic::Nym_RemoveMailByIndex(
 
 bool OTAPI_Basic::Nym_VerifyMailByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_VerifyMailByIndex(
@@ -872,7 +872,7 @@ bool OTAPI_Basic::Nym_VerifyMailByIndex(
 		);	
 }
 
-long OTAPI_Basic::GetNym_OutmailCount(const std::string & NYM_ID)
+int64_t OTAPI_Basic::GetNym_OutmailCount(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_OutmailCount(
 		NYM_ID
@@ -881,7 +881,7 @@ long OTAPI_Basic::GetNym_OutmailCount(const std::string & NYM_ID)
 
 std::string OTAPI_Basic::GetNym_OutmailContentsByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutmailContentsByIndex(
@@ -892,7 +892,7 @@ std::string OTAPI_Basic::GetNym_OutmailContentsByIndex(
 
 std::string OTAPI_Basic::GetNym_OutmailRecipientIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex(
@@ -903,7 +903,7 @@ std::string OTAPI_Basic::GetNym_OutmailRecipientIDByIndex(
 
 std::string OTAPI_Basic::GetNym_OutmailServerIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutmailServerIDByIndex(
@@ -914,7 +914,7 @@ std::string OTAPI_Basic::GetNym_OutmailServerIDByIndex(
 
 bool OTAPI_Basic::Nym_RemoveOutmailByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_RemoveOutmailByIndex(
@@ -925,7 +925,7 @@ bool OTAPI_Basic::Nym_RemoveOutmailByIndex(
 
 bool OTAPI_Basic::Nym_VerifyOutmailByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_VerifyOutmailByIndex(
@@ -934,7 +934,7 @@ bool OTAPI_Basic::Nym_VerifyOutmailByIndex(
 		);	
 }
 
-long OTAPI_Basic::GetNym_OutpaymentsCount(const std::string & NYM_ID)
+int64_t OTAPI_Basic::GetNym_OutpaymentsCount(const std::string & NYM_ID)
 {
 	return OTAPI_Wrap::GetNym_OutpaymentsCount(
 		NYM_ID
@@ -943,7 +943,7 @@ long OTAPI_Basic::GetNym_OutpaymentsCount(const std::string & NYM_ID)
 
 std::string OTAPI_Basic::GetNym_OutpaymentsContentsByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex(
@@ -954,7 +954,7 @@ std::string OTAPI_Basic::GetNym_OutpaymentsContentsByIndex(
 
 std::string OTAPI_Basic::GetNym_OutpaymentsRecipientIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex(
@@ -965,7 +965,7 @@ std::string OTAPI_Basic::GetNym_OutpaymentsRecipientIDByIndex(
 
 std::string OTAPI_Basic::GetNym_OutpaymentsServerIDByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex(
@@ -976,7 +976,7 @@ std::string OTAPI_Basic::GetNym_OutpaymentsServerIDByIndex(
 
 bool OTAPI_Basic::Nym_RemoveOutpaymentsByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex(
@@ -987,7 +987,7 @@ bool OTAPI_Basic::Nym_RemoveOutpaymentsByIndex(
 
 bool OTAPI_Basic::Nym_VerifyOutpaymentsByIndex(
 	const std::string & NYM_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex(
@@ -1201,7 +1201,7 @@ std::string OTAPI_Basic::ProposePaymentPlan(
 		const std::string & PAYMENT_PLAN_DELAY,
 		const std::string & PAYMENT_PLAN_PERIOD,
 		const std::string & PAYMENT_PLAN_LENGTH,
-		const long & PAYMENT_PLAN_MAX_PAYMENTS
+		const int64_t & PAYMENT_PLAN_MAX_PAYMENTS
 		)
 {
 	//const int64_t lVALID_FROM				= OTAPI_Wrap::StringToLong(VALID_FROM);
@@ -1418,7 +1418,7 @@ std::string OTAPI_Basic::SmartContract_AddAccount(
 		);
 }	
 
-long OTAPI_Basic::SmartContract_CountNumsNeeded(
+int64_t OTAPI_Basic::SmartContract_CountNumsNeeded(
 	const std::string & THE_CONTRACT,
 	const std::string & AGENT_NAME
 	)
@@ -1475,13 +1475,13 @@ bool OTAPI_Basic::Smart_IsPartyConfirmed(const std::string & THE_CONTRACT, const
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Smart_GetBylawCount(const std::string & THE_CONTRACT)
+int64_t OTAPI_Basic::Smart_GetBylawCount(const std::string & THE_CONTRACT)
 {
 	return OTAPI_Wrap::Smart_GetBylawCount(THE_CONTRACT);
 }
 
 
-std::string OTAPI_Basic::Smart_GetBylawByIndex(const std::string & THE_CONTRACT, const long & nIndex) // returns the name of the bylaw.
+std::string OTAPI_Basic::Smart_GetBylawByIndex(const std::string & THE_CONTRACT, const int64_t & nIndex) // returns the name of the bylaw.
 {
 	return OTAPI_Wrap::Smart_GetBylawByIndex(THE_CONTRACT, nIndex);
 }
@@ -1496,13 +1496,13 @@ std::string OTAPI_Basic::Bylaw_GetLanguage(const std::string & THE_CONTRACT, con
 
 // ----------------------------------------------------------
 
-long OTAPI_Basic::Bylaw_GetClauseCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
+int64_t OTAPI_Basic::Bylaw_GetClauseCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
 {
 	return OTAPI_Wrap::Bylaw_GetClauseCount(THE_CONTRACT, BYLAW_NAME);
 }
 
 
-std::string OTAPI_Basic::Clause_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex) // returns the name of the clause.
+std::string OTAPI_Basic::Clause_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const int64_t & nIndex) // returns the name of the clause.
 {
 	return OTAPI_Wrap::Clause_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
 }
@@ -1515,13 +1515,13 @@ std::string OTAPI_Basic::Clause_GetContents(const std::string & THE_CONTRACT, co
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Bylaw_GetVariableCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
+int64_t OTAPI_Basic::Bylaw_GetVariableCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
 {
     return OTAPI_Wrap::Bylaw_GetVariableCount(THE_CONTRACT, BYLAW_NAME);
 }
 
 
-std::string OTAPI_Basic::Variable_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex) // returns the name of the variable.
+std::string OTAPI_Basic::Variable_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const int64_t & nIndex) // returns the name of the variable.
 {
 	return OTAPI_Wrap::Variable_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
 }
@@ -1546,38 +1546,38 @@ std::string OTAPI_Basic::Variable_GetContents(const std::string & THE_CONTRACT, 
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Bylaw_GetHookCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
+int64_t OTAPI_Basic::Bylaw_GetHookCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
 {
     return OTAPI_Wrap::Bylaw_GetHookCount(THE_CONTRACT, BYLAW_NAME);
 }
 
 
-std::string OTAPI_Basic::Hook_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex) // returns the name of the hook.
+std::string OTAPI_Basic::Hook_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const int64_t & nIndex) // returns the name of the hook.
 {
     return OTAPI_Wrap::Hook_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
 }
 
 
-long OTAPI_Basic::Hook_GetClauseCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME) // for iterating clauses on a hook.
+int64_t OTAPI_Basic::Hook_GetClauseCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME) // for iterating clauses on a hook.
 {
     return OTAPI_Wrap::Hook_GetClauseCount(THE_CONTRACT, BYLAW_NAME, HOOK_NAME);
 }
 
 
-std::string OTAPI_Basic::Hook_GetClauseAtIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME, const long & nIndex)
+std::string OTAPI_Basic::Hook_GetClauseAtIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const std::string & HOOK_NAME, const int64_t & nIndex)
 {
     return OTAPI_Wrap::Hook_GetClauseAtIndex(THE_CONTRACT, BYLAW_NAME, HOOK_NAME, nIndex);
 }
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Bylaw_GetCallbackCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
+int64_t OTAPI_Basic::Bylaw_GetCallbackCount(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME)
 {
     return OTAPI_Wrap::Bylaw_GetCallbackCount(THE_CONTRACT, BYLAW_NAME);
 }
 
 
-std::string OTAPI_Basic::Callback_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const long & nIndex) // returns the name of the callback.
+std::string OTAPI_Basic::Callback_GetNameByIndex(const std::string & THE_CONTRACT, const std::string & BYLAW_NAME, const int64_t & nIndex) // returns the name of the callback.
 {
     return OTAPI_Wrap::Callback_GetNameByIndex(THE_CONTRACT, BYLAW_NAME, nIndex);
 }
@@ -1590,13 +1590,13 @@ std::string OTAPI_Basic::Callback_GetClause(const std::string & THE_CONTRACT, co
 
 
 // **********************************************************
-long OTAPI_Basic::Smart_GetPartyCount(const std::string & THE_CONTRACT)
+int64_t OTAPI_Basic::Smart_GetPartyCount(const std::string & THE_CONTRACT)
 {
     return OTAPI_Wrap::Smart_GetPartyCount(THE_CONTRACT);
 }
 
 
-std::string OTAPI_Basic::Smart_GetPartyByIndex(const std::string & THE_CONTRACT, const long & nIndex) // returns the name of the party.
+std::string OTAPI_Basic::Smart_GetPartyByIndex(const std::string & THE_CONTRACT, const int64_t & nIndex) // returns the name of the party.
 {
     return OTAPI_Wrap::Smart_GetPartyByIndex(THE_CONTRACT, nIndex);
 }
@@ -1609,13 +1609,13 @@ std::string OTAPI_Basic::Party_GetID(const std::string & THE_CONTRACT, const std
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Party_GetAcctCount(const std::string & THE_CONTRACT, const std::string & PARTY_NAME)
+int64_t OTAPI_Basic::Party_GetAcctCount(const std::string & THE_CONTRACT, const std::string & PARTY_NAME)
 {
     return OTAPI_Wrap::Party_GetAcctCount(THE_CONTRACT, PARTY_NAME);
 }
 
 
-std::string OTAPI_Basic::Party_GetAcctNameByIndex(const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const long & nIndex) // returns the name of the clause.
+std::string OTAPI_Basic::Party_GetAcctNameByIndex(const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const int64_t & nIndex) // returns the name of the clause.
 {
  	return OTAPI_Wrap::Party_GetAcctNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
 }
@@ -1640,13 +1640,13 @@ std::string OTAPI_Basic::Party_GetAcctAgentName(const std::string & THE_CONTRACT
 
 
 // ----------------------------------------------------------
-long OTAPI_Basic::Party_GetAgentCount(const std::string & THE_CONTRACT, const std::string & PARTY_NAME)
+int64_t OTAPI_Basic::Party_GetAgentCount(const std::string & THE_CONTRACT, const std::string & PARTY_NAME)
 {
     return OTAPI_Wrap::Party_GetAgentCount(THE_CONTRACT, PARTY_NAME);
 }
 
 
-std::string OTAPI_Basic::Party_GetAgentNameByIndex(const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const long & nIndex) // returns the name of the agent.
+std::string OTAPI_Basic::Party_GetAgentNameByIndex(const std::string & THE_CONTRACT, const std::string & PARTY_NAME, const int64_t & nIndex) // returns the name of the agent.
 {
     return OTAPI_Wrap::Party_GetAgentNameByIndex(THE_CONTRACT, PARTY_NAME, nIndex);
 }
@@ -1658,7 +1658,7 @@ std::string OTAPI_Basic::Party_GetAgentID(const std::string & THE_CONTRACT, cons
 }
 
 
-long OTAPI_Basic::activateSmartContract(
+int64_t OTAPI_Basic::activateSmartContract(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & THE_SMART_CONTRACT
@@ -1671,7 +1671,7 @@ long OTAPI_Basic::activateSmartContract(
 		);
 }
 
-long OTAPI_Basic::triggerClause(
+int64_t OTAPI_Basic::triggerClause(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & TRANSACTION_NUMBER,
@@ -1801,7 +1801,7 @@ bool OTAPI_Basic::IsBasketCurrency(const std::string & ASSET_TYPE_ID)
 		);
 }
 
-long OTAPI_Basic::Basket_GetMemberCount(const std::string & BASKET_ASSET_TYPE_ID)
+int64_t OTAPI_Basic::Basket_GetMemberCount(const std::string & BASKET_ASSET_TYPE_ID)
 {
 	return OTAPI_Wrap::Basket_GetMemberCount(
 		BASKET_ASSET_TYPE_ID
@@ -1810,7 +1810,7 @@ long OTAPI_Basic::Basket_GetMemberCount(const std::string & BASKET_ASSET_TYPE_ID
 
 std::string OTAPI_Basic::Basket_GetMemberType(
 	const std::string & BASKET_ASSET_TYPE_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Basket_GetMemberType(
@@ -1826,7 +1826,7 @@ std::string OTAPI_Basic::Basket_GetMinimumTransferAmount(const std::string & BAS
 
 std::string OTAPI_Basic::Basket_GetMemberMinimumTransferAmount(
 	const std::string & BASKET_ASSET_TYPE_ID,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::LongToString(OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount(
@@ -1970,7 +1970,7 @@ std::string OTAPI_Basic::LoadExpiredBoxNoVerify(
 		);
 }
 
-long OTAPI_Basic::Ledger_GetCount(
+int64_t OTAPI_Basic::Ledger_GetCount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
@@ -2005,7 +2005,7 @@ std::string OTAPI_Basic::Ledger_GetTransactionByIndex(
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
 	const std::string & THE_LEDGER,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::Ledger_GetTransactionByIndex(
@@ -2041,7 +2041,7 @@ std::string OTAPI_Basic::Ledger_GetTransactionIDByIndex(
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
 	const std::string & THE_LEDGER,
-	const long & nIndex
+	const int64_t & nIndex
 	)
 {
 	return OTAPI_Wrap::LongToString(OTAPI_Wrap::Ledger_GetTransactionIDByIndex(
@@ -2109,7 +2109,7 @@ std::string OTAPI_Basic::Ledger_GetInstrument(
                                          const std::string & USER_ID,
                                          const std::string & ACCOUNT_ID,
                                          const std::string & THE_LEDGER,
-                                         const long & nIndex
+                                         const int64_t & nIndex
                                          )
 {
 	return OTAPI_Wrap::Ledger_GetInstrument(
@@ -2127,7 +2127,7 @@ bool OTAPI_Basic::RecordPayment(
                                 const std::string & SERVER_ID,
                                 const std::string & USER_ID,
                                 const bool   & bIsInbox,
-                                const long   & nIndex,
+                                const int64_t   & nIndex,
                                 const bool   & bSaveCopy)
 {
 	return OTAPI_Wrap::RecordPayment(
@@ -2145,7 +2145,7 @@ bool OTAPI_Basic::ClearRecord(
                               const std::string & SERVER_ID,
                               const std::string & USER_ID,
                               const std::string & ACCOUNT_ID, // USER_ID can be passed here as well.
-                              const long   & nIndex,
+                              const int64_t   & nIndex,
                               const bool   & bClearAll) // if true, nIndex is ignored.
 {
 	return OTAPI_Wrap::ClearRecord(
@@ -2160,7 +2160,7 @@ bool OTAPI_Basic::ClearRecord(
 bool OTAPI_Basic::ClearExpired(
                                const std::string & SERVER_ID,
                                const std::string & USER_ID,
-                               const long   & nIndex,
+                               const int64_t   & nIndex,
                                const bool   & bClearAll) // if true, nIndex is ignored.
 {
 	return OTAPI_Wrap::ClearExpired(
@@ -2216,8 +2216,8 @@ std::string OTAPI_Basic::Transaction_GetVoucher(
 		);
 }
 
-// OT_BOOL (long) contains -1, 0, or 1
-long OTAPI_Basic::Transaction_GetSuccess(
+// OT_BOOL (int64_t) contains -1, 0, or 1
+int64_t OTAPI_Basic::Transaction_GetSuccess(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
@@ -2232,7 +2232,7 @@ long OTAPI_Basic::Transaction_GetSuccess(
 		);
 }
 
-long OTAPI_Basic::Transaction_IsCanceled(
+int64_t OTAPI_Basic::Transaction_IsCanceled(
     const std::string & SERVER_ID,
     const std::string & USER_ID,
     const std::string & ACCOUNT_ID,
@@ -2247,8 +2247,8 @@ long OTAPI_Basic::Transaction_IsCanceled(
 		);
 }
 
-// OT_BOOL (long) contains -1, 0, or 1
-long OTAPI_Basic::Transaction_GetBalanceAgreementSuccess(
+// OT_BOOL (int64_t) contains -1, 0, or 1
+int64_t OTAPI_Basic::Transaction_GetBalanceAgreementSuccess(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
@@ -2423,7 +2423,7 @@ std::string OTAPI_Basic::Purse_GetTotalValue(
 		return OTAPI_Wrap::LongToString(OTAPI_Wrap::Purse_GetTotalValue(SERVER_ID,ASSET_TYPE_ID,THE_PURSE));
 	}
 
-long OTAPI_Basic::Purse_Count(
+int64_t OTAPI_Basic::Purse_Count(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_PURSE
@@ -2494,7 +2494,7 @@ bool OTAPI_Basic::Wallet_ImportPurse(
 		return OTAPI_Wrap::Wallet_ImportPurse(SERVER_ID,ASSET_TYPE_ID,USER_ID,THE_PURSE);
 	}
 
-long OTAPI_Basic::exchangePurse(
+int64_t OTAPI_Basic::exchangePurse(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & USER_ID,
@@ -2535,7 +2535,7 @@ std::string OTAPI_Basic::Token_GetDenomination(
 		return OTAPI_Wrap::LongToString(OTAPI_Wrap::Token_GetDenomination(SERVER_ID,ASSET_TYPE_ID,THE_TOKEN));
 	}
 
-long OTAPI_Basic::Token_GetSeries(
+int64_t OTAPI_Basic::Token_GetSeries(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_TOKEN
@@ -2592,7 +2592,7 @@ std::string OTAPI_Basic::Instrmnt_GetRemitterAcctID(const std::string & THE_INST
 std::string OTAPI_Basic::Instrmnt_GetRecipientUserID(const std::string & THE_INSTRUMENT)  { return OTAPI_Wrap::Instrmnt_GetRecipientUserID(THE_INSTRUMENT); }
 std::string OTAPI_Basic::Instrmnt_GetRecipientAcctID(const std::string & THE_INSTRUMENT)  { return OTAPI_Wrap::Instrmnt_GetRecipientAcctID(THE_INSTRUMENT); }
 
-long OTAPI_Basic::checkServerID(
+int64_t OTAPI_Basic::checkServerID(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -2604,7 +2604,7 @@ long OTAPI_Basic::checkServerID(
 }
 
 
-long OTAPI_Basic::createUserAccount(
+int64_t OTAPI_Basic::createUserAccount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -2615,7 +2615,7 @@ long OTAPI_Basic::createUserAccount(
 		);
 }
 
-long OTAPI_Basic::deleteUserAccount(
+int64_t OTAPI_Basic::deleteUserAccount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -2626,7 +2626,7 @@ long OTAPI_Basic::deleteUserAccount(
 		);
 }
 
-long OTAPI_Basic::deleteAssetAccount(
+int64_t OTAPI_Basic::deleteAssetAccount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID
@@ -2639,7 +2639,7 @@ long OTAPI_Basic::deleteAssetAccount(
 		);
 }
 
-long OTAPI_Basic::usageCredits(
+int64_t OTAPI_Basic::usageCredits(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & USER_ID_CHECK,
@@ -2661,7 +2661,7 @@ std::string OTAPI_Basic::Message_GetUsageCredits(const std::string & THE_MESSAGE
 		));
 }
 
-long OTAPI_Basic::checkUser(
+int64_t OTAPI_Basic::checkUser(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & USER_ID_CHECK
@@ -2674,7 +2674,7 @@ long OTAPI_Basic::checkUser(
 		);
 }
 
-long OTAPI_Basic::sendUserMessage(
+int64_t OTAPI_Basic::sendUserMessage(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & USER_ID_RECIPIENT,
@@ -2691,7 +2691,7 @@ long OTAPI_Basic::sendUserMessage(
 		);
 }
 
-long OTAPI_Basic::sendUserInstrument(
+int64_t OTAPI_Basic::sendUserInstrument(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & USER_ID_RECIPIENT,
@@ -2710,7 +2710,7 @@ long OTAPI_Basic::sendUserInstrument(
 		);
 }
 
-long OTAPI_Basic::getRequest(
+int64_t OTAPI_Basic::getRequest(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -2721,7 +2721,7 @@ long OTAPI_Basic::getRequest(
 		);
 }
 
-long OTAPI_Basic::getTransactionNumber(
+int64_t OTAPI_Basic::getTransactionNumber(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -2732,7 +2732,7 @@ long OTAPI_Basic::getTransactionNumber(
 		);
 }
 
-long OTAPI_Basic::issueAssetType(
+int64_t OTAPI_Basic::issueAssetType(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & THE_CONTRACT
@@ -2745,7 +2745,7 @@ long OTAPI_Basic::issueAssetType(
 		);
 }
 
-long OTAPI_Basic::getContract(
+int64_t OTAPI_Basic::getContract(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ASSET_ID
@@ -2758,7 +2758,7 @@ long OTAPI_Basic::getContract(
 		);
 }
 
-long OTAPI_Basic::getMint(
+int64_t OTAPI_Basic::getMint(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ASSET_ID
@@ -2771,7 +2771,7 @@ long OTAPI_Basic::getMint(
 		);
 }
 
-long OTAPI_Basic::createAssetAccount(
+int64_t OTAPI_Basic::createAssetAccount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ASSET_ID
@@ -2786,7 +2786,7 @@ long OTAPI_Basic::createAssetAccount(
 
 
 // NOTE: Deprecated. Replaced by getAccountFiles
-long OTAPI_Basic::getAccount(
+int64_t OTAPI_Basic::getAccount(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID
@@ -2799,7 +2799,7 @@ long OTAPI_Basic::getAccount(
 		);
 }
 
-long OTAPI_Basic::getAccountFiles(
+int64_t OTAPI_Basic::getAccountFiles(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID
@@ -2843,7 +2843,7 @@ std::string OTAPI_Basic::AddBasketCreationItem(
 		);	
 }
 
-long OTAPI_Basic::issueBasket(
+int64_t OTAPI_Basic::issueBasket(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & THE_BASKET
@@ -2862,7 +2862,7 @@ std::string OTAPI_Basic::GenerateBasketExchange(
 	const std::string & BASKET_ASSET_TYPE_ID,
 	const std::string & BASKET_ASSET_ACCT_ID,
 	// -------------------------------------
-	const long & TRANSFER_MULTIPLE
+	const int64_t & TRANSFER_MULTIPLE
 	)
 {
 	return OTAPI_Wrap::GenerateBasketExchange(
@@ -2891,7 +2891,7 @@ std::string OTAPI_Basic::AddBasketExchangeItem(
 		);
 }
 
-long OTAPI_Basic::exchangeBasket(
+int64_t OTAPI_Basic::exchangeBasket(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & BASKET_ASSET_ID,
@@ -2908,7 +2908,7 @@ long OTAPI_Basic::exchangeBasket(
 		);
 }
 
-long OTAPI_Basic::notarizeWithdrawal(
+int64_t OTAPI_Basic::notarizeWithdrawal(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID,
@@ -2923,7 +2923,7 @@ long OTAPI_Basic::notarizeWithdrawal(
 		);
 }
 
-long OTAPI_Basic::notarizeDeposit(
+int64_t OTAPI_Basic::notarizeDeposit(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID,
@@ -2938,7 +2938,7 @@ long OTAPI_Basic::notarizeDeposit(
 		);
 }
 
-long OTAPI_Basic::notarizeTransfer(
+int64_t OTAPI_Basic::notarizeTransfer(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_FROM,
@@ -2960,7 +2960,7 @@ long OTAPI_Basic::notarizeTransfer(
 }
 
 // NOTE: Deprecated. Replaced by getAccountFiles
-long OTAPI_Basic::getInbox(
+int64_t OTAPI_Basic::getInbox(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID
@@ -2974,7 +2974,7 @@ long OTAPI_Basic::getInbox(
 }
 
 // NOTE: Deprecated. Replaced by getAccountFiles
-long OTAPI_Basic::getOutbox(
+int64_t OTAPI_Basic::getOutbox(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID
@@ -2987,7 +2987,7 @@ long OTAPI_Basic::getOutbox(
 		);
 }
 
-long OTAPI_Basic::getNymbox(
+int64_t OTAPI_Basic::getNymbox(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -3050,11 +3050,11 @@ bool OTAPI_Basic::HaveAlreadySeenReply(
 		);
 }
 
-long OTAPI_Basic::getBoxReceipt(
+int64_t OTAPI_Basic::getBoxReceipt(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
-	const long & nBoxType,
+	const int64_t & nBoxType,
 	const std::string & TRANSACTION_NUMBER
 	)
 {
@@ -3073,7 +3073,7 @@ bool OTAPI_Basic::DoesBoxReceiptExist(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
-	const long & nBoxType,
+	const int64_t & nBoxType,
 	const std::string & TRANSACTION_NUMBER
 	)
 {
@@ -3087,7 +3087,7 @@ bool OTAPI_Basic::DoesBoxReceiptExist(
 		OTAPI_Wrap::StringToLong(TRANSACTION_NUMBER)
 		);
 }
-long OTAPI_Basic::processInbox(
+int64_t OTAPI_Basic::processInbox(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID,
@@ -3102,7 +3102,7 @@ long OTAPI_Basic::processInbox(
 		);
 }
 
-long OTAPI_Basic::processNymbox(
+int64_t OTAPI_Basic::processNymbox(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -3113,7 +3113,7 @@ long OTAPI_Basic::processNymbox(
 		);
 }
 
-long OTAPI_Basic::withdrawVoucher(
+int64_t OTAPI_Basic::withdrawVoucher(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID,
@@ -3134,7 +3134,7 @@ long OTAPI_Basic::withdrawVoucher(
 		);
 }
 
-long OTAPI_Basic::payDividend(
+int64_t OTAPI_Basic::payDividend(
 	const std::string & SERVER_ID,
 	const std::string & ISSUER_USER_ID,
 	const std::string & DIVIDEND_FROM_ACCT_ID,
@@ -3155,7 +3155,7 @@ long OTAPI_Basic::payDividend(
 		);
 }
 
-long OTAPI_Basic::depositCheque(
+int64_t OTAPI_Basic::depositCheque(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCT_ID,
@@ -3170,7 +3170,7 @@ long OTAPI_Basic::depositCheque(
 		);
 }
 
-long OTAPI_Basic::depositPaymentPlan(
+int64_t OTAPI_Basic::depositPaymentPlan(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & THE_PAYMENT_PLAN
@@ -3183,7 +3183,7 @@ long OTAPI_Basic::depositPaymentPlan(
 		);
 }
 
-long OTAPI_Basic::issueMarketOffer(
+int64_t OTAPI_Basic::issueMarketOffer(
 	const std::string & ASSET_ACCT_ID,
 	const std::string & CURRENCY_ACCT_ID,
 	const std::string & MARKET_SCALE,
@@ -3211,7 +3211,7 @@ long OTAPI_Basic::issueMarketOffer(
 		);
 }
 
-long OTAPI_Basic::getMarketList(
+int64_t OTAPI_Basic::getMarketList(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -3222,7 +3222,7 @@ long OTAPI_Basic::getMarketList(
 		);
 }
 
-long OTAPI_Basic::getMarketOffers(
+int64_t OTAPI_Basic::getMarketOffers(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID, 
 	const std::string & MARKET_ID,
@@ -3239,7 +3239,7 @@ long OTAPI_Basic::getMarketOffers(
 		);
 }
 
-long OTAPI_Basic::getMarketRecentTrades(
+int64_t OTAPI_Basic::getMarketRecentTrades(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID, 
 	const std::string & MARKET_ID
@@ -3252,7 +3252,7 @@ long OTAPI_Basic::getMarketRecentTrades(
 		);
 }
 
-long OTAPI_Basic::getNym_MarketOffers(
+int64_t OTAPI_Basic::getNym_MarketOffers(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID
 	)
@@ -3263,7 +3263,7 @@ long OTAPI_Basic::getNym_MarketOffers(
 		);
 }
 
-long OTAPI_Basic::killMarketOffer(
+int64_t OTAPI_Basic::killMarketOffer(
 	const std::string & SERVER_ID, 
 	const std::string & USER_ID, 
 	const std::string & ASSET_ACCT_ID, 
@@ -3280,7 +3280,7 @@ long OTAPI_Basic::killMarketOffer(
 		);
 }
 
-long OTAPI_Basic::killPaymentPlan(
+int64_t OTAPI_Basic::killPaymentPlan(
 	const std::string & SERVER_ID, 
 	const std::string & USER_ID, 
 	const std::string & FROM_ACCT_ID, 
@@ -3392,14 +3392,14 @@ std::string OTAPI_Basic::Message_GetCommand(const std::string & THE_MESSAGE)
 		);		
 }
 
-long OTAPI_Basic::Message_GetSuccess(const std::string & THE_MESSAGE)
+int64_t OTAPI_Basic::Message_GetSuccess(const std::string & THE_MESSAGE)
 {
 	return OTAPI_Wrap::Message_GetSuccess(
 		THE_MESSAGE
 		);	
 }
 
-long OTAPI_Basic::queryAssetTypes(
+int64_t OTAPI_Basic::queryAssetTypes(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ENCODED_MAP
@@ -3419,14 +3419,14 @@ std::string OTAPI_Basic::Message_GetPayload(const std::string & THE_MESSAGE)
 		);		
 }
 
-long OTAPI_Basic::Message_GetDepth(const std::string & THE_MESSAGE)
+int64_t OTAPI_Basic::Message_GetDepth(const std::string & THE_MESSAGE)
 {
 	return OTAPI_Wrap::Message_GetDepth(
 		THE_MESSAGE
 		);
 }
 
-long OTAPI_Basic::Message_GetTransactionSuccess(
+int64_t OTAPI_Basic::Message_GetTransactionSuccess(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,
@@ -3442,7 +3442,7 @@ long OTAPI_Basic::Message_GetTransactionSuccess(
 }
 
 
-long OTAPI_Basic::Message_IsTransactionCanceled(
+int64_t OTAPI_Basic::Message_IsTransactionCanceled(
     const std::string & SERVER_ID,
     const std::string & USER_ID,
     const std::string & ACCOUNT_ID,
@@ -3457,7 +3457,7 @@ long OTAPI_Basic::Message_IsTransactionCanceled(
         );    
 }
 
-long OTAPI_Basic::Message_GetBalanceAgreementSuccess(
+int64_t OTAPI_Basic::Message_GetBalanceAgreementSuccess(
 	const std::string & SERVER_ID,
 	const std::string & USER_ID,
 	const std::string & ACCOUNT_ID,

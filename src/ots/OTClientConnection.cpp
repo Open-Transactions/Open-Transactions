@@ -151,7 +151,7 @@ extern "C"
 
 
 
-void SetupHeader( union u_header * pCMD, int nTypeID, int nCmdID, OTPayload & thePayload)
+void SetupHeader( union u_header * pCMD, int32_t nTypeID, int32_t nCmdID, OTPayload & thePayload)
 {
 	OT_ASSERT(NULL != pCMD);
 
@@ -162,7 +162,7 @@ void SetupHeader( union u_header * pCMD, int nTypeID, int nCmdID, OTPayload & th
 	pCMD->fields.checksum	= CalcChecksum(pCMD->buf, OT_CMD_HEADER_SIZE-1);
 
 	BYTE byChecksum	= (BYTE)pCMD->fields.checksum;
-	int nChecksum	= byChecksum;
+	int32_t nChecksum	= byChecksum;
 
 	uint32_t nTemp	= thePayload.GetSize();
 	OTLog::vOutput(4, "(Payload size %d, TYPE %d command, checksum: %d...)\n", nTemp, nTypeID, nChecksum);
@@ -173,7 +173,7 @@ void SetupHeader( union u_header * pCMD, int nTypeID, int nCmdID, OTPayload & th
 /*
 void OTClientConnection::ProcessBuffer()
 {
-	int  err, nread;
+	int32_t  err, nread;
 	union u_header theCMD;
 
 	// clear the header object.
@@ -224,11 +224,11 @@ void OTClientConnection::ProcessBuffer()
 
 	 struct
 	 {
-		 unsigned char type_id;    // 1 byte
-		 unsigned char command_id; // 1 byte
+		 uint8_t type_id;    // 1 byte
+		 uint8_t command_id; // 1 byte
 		 BYTE filler[2];
 		 uint32_t size;     // 4 bytes to describe size of payload
-		 unsigned char  checksum;  // 1 byte
+		 uint8_t  checksum;  // 1 byte
 
 	 } fields;  // total of 9 bytes
  }
@@ -240,7 +240,7 @@ void OTClientConnection::ProcessBuffer()
 {
 	if (!m_bHaveHeader)
 	{
-		int  err = 0, nread = 0;
+		int32_t  err = 0, nread = 0;
 		union u_header theCMD;
 
 		// clear the header object.
@@ -274,7 +274,7 @@ void OTClientConnection::ProcessBuffer()
 			m_CMD			= theCMD;	// grab a copy of the header
 			m_bHaveHeader	= true;		// We need to remember that we are now in "header mode"
 
-			int nChecksum	= theCMD.fields.checksum;
+			int32_t nChecksum	= theCMD.fields.checksum;
 
 			OTLog::vOutput(2, "\n************************************************************\n===> Reading header from client message.\n"
 					"First 9 bytes are: %d %d %d %d %d %d %d %d %d.\nSize is: %d...\n",
@@ -322,11 +322,11 @@ void OTClientConnection::ReadBytesIntoBuffer()
 {
 	// At this point, the checksum has already validated.
 	// Might as well get the PAYLOAD next.
-	int			err = 0;
+	int32_t			err = 0;
 	uint32_t	nread = 0;
 
-	const unsigned int  nBufferSize = 8192; // todo no hardcoding.
-	unsigned char       szBuffer[8300]; // I made this a little bigger just for safety reasons.
+	const uint32_t  nBufferSize = 8192; // todo no hardcoding.
+	uint8_t       szBuffer[8300]; // I made this a little bigger just for safety reasons.
 
 	memset(szBuffer, 0, 8299);  // just in case.
 
@@ -401,7 +401,7 @@ void OTClientConnection::ProcessMessage(u_header & theCMD)
 	else
 	{
 		//gDebugLog.Write("Unknown command type");
-		int nCommandType = theCMD.fields.type_id;
+		int32_t nCommandType = theCMD.fields.type_id;
 		OTLog::vError("Unknown command type: %d\n", nCommandType);
 	}
 
@@ -411,7 +411,7 @@ void OTClientConnection::ProcessMessage(u_header & theCMD)
 	// Should probably send an Error message back, as well.
 	if (bSuccess == false)
 	{
-		int  err = 0, nread = 0;
+		int32_t  err = 0, nread = 0;
 
 		for(;;)
 		{
@@ -459,7 +459,7 @@ bool OTClientConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theMessa
 {
 	// At this point, the checksum has already validated.
 	// Might as well get the PAYLOAD next.
-//	int  err;
+//	int32_t  err;
 	uint32_t nread, lSize = theCMD.fields.size;
 
 	// Make sure our byte-order is correct here.
@@ -474,7 +474,7 @@ bool OTClientConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theMessa
 	for (nread = 0;  nread < theCMD.fields.size;  nread += err)
 	{
 		err = SFSocketRead(m_pSocket,
-						   (unsigned char *)thePayload.GetPayloadPointer() + nread,
+						   (uint8_t *)thePayload.GetPayloadPointer() + nread,
 						   theCMD.fields.size - nread);
 
 		// if we don't read anything more, stop reading and move on
@@ -666,7 +666,7 @@ void OTClientConnection::ProcessReply(OTMessage &theReply)
 {
     OT_ASSERT(NULL != m_pPublicKey);
 
-    int  err = 0;
+    int32_t  err = 0;
 	uint32_t nwritten = 0;
 	bool bSendCommand = false;
 	bool bSendPayload = false;
@@ -733,7 +733,7 @@ void OTClientConnection::ProcessReply(OTMessage &theReply)
 	if (bSendCommand)
 	{
 
-		const unsigned int nHeaderSize = OT_CMD_HEADER_SIZE;
+		const uint32_t nHeaderSize = OT_CMD_HEADER_SIZE;
 
 		for (nwritten = 0;  nwritten < nHeaderSize;  nwritten += err)
 		{
@@ -756,7 +756,7 @@ void OTClientConnection::ProcessReply(OTMessage &theReply)
 
 		for (nwritten = 0;  nwritten < nPayloadSize;  nwritten += err)
 		{
-//			err = SFSocketWrite(m_pSocket, (unsigned char *)thePayload.GetPayloadPointer() + nwritten, nPayloadSize - nwritten);
+//			err = SFSocketWrite(m_pSocket, (uint8_t *)thePayload.GetPayloadPointer() + nwritten, nPayloadSize - nwritten);
 
 #ifdef _WIN32
 			if (0 == err || SOCKET_ERROR == err) // 0 means disconnect. error means error. >0 means bytes read.

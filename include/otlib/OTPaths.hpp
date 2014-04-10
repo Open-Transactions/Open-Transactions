@@ -134,7 +134,7 @@
  **************************************************************/
 
 
-// The long-awaited paths class.
+// The int64_t-awaited paths class.
 
 #ifndef __OTPATHS_HPP__
 #define __OTPATHS_HPP__
@@ -218,7 +218,7 @@ public:
 	EXPORT static bool FixPath(const OTString & strPath, OTString & out_strFixedPath, const bool & bIsFolder);
 	EXPORT static bool PathExists(const OTString & strPath); // returns true if path exists.
 
-	EXPORT static bool FileExists(const OTString & strFilePath, long & nFileLength); // returns true if file exists and its length.
+	EXPORT static bool FileExists(const OTString & strFilePath, int64_t & nFileLength); // returns true if file exists and its length.
 	EXPORT static bool FolderExists(const OTString & strFolderPath); // returns true if folder exists
 
 	EXPORT static bool ConfirmCreateFolder(const OTString & strExactPath, bool & out_Exists, bool & out_IsNew);

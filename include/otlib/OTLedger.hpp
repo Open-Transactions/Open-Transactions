@@ -149,12 +149,12 @@ class OTPseudonym;
 class OTIdentifier;
 class OTCheque;
 
-// transaction ID is a long, assigned by the server. Each transaction has one.
+// transaction ID is a int64_t, assigned by the server. Each transaction has one.
 // FIRST the server issues the ID. THEN we create the blank transaction object with the
 // ID in it and store it in our inbox. THEN if we want to send a transaction, we use
 // the blank to do so. If there is no blank available, we message the server and request one.
 
-typedef std::map  <long, OTTransaction *>	mapOfTransactions;
+typedef std::map  <int64_t, OTTransaction *>	mapOfTransactions;
 
 // the "inbox" and "outbox" functionality is implemented in this class
 //
@@ -170,7 +170,7 @@ private:
 
 protected:
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int		ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t		ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void	UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 
     OTLedger(); // Hopefully stays here.
@@ -208,26 +208,26 @@ EXPORT	bool	LoadedLegacyData() const { return m_bLoadedLegacyData; }
 	// reply from the server, KEEP THAT RECEIPT. Well, OT will do that for you.)
 	// You only have to keep the latest receipt, unlike systems that don't store balance
 	// agreement.  We also store a list of issued transactions, the new balance, and the outbox hash.
-EXPORT	OTItem * GenerateBalanceStatement(const long lAdjustment, const OTTransaction & theOwner,
+EXPORT	OTItem * GenerateBalanceStatement(const int64_t lAdjustment, const OTTransaction & theOwner,
                                           OTPseudonym & theNym, const OTAccount & theAccount, OTLedger & theOutbox);
 
 EXPORT  void ProduceOutboxReport(OTItem & theBalanceItem);
 
 	// ------------------------------------
 EXPORT	bool AddTransaction(OTTransaction & theTransaction);
-EXPORT	bool RemoveTransaction(long lTransactionNum, bool bDeleteIt=true); // if false, transaction wasn't found.
+EXPORT	bool RemoveTransaction(int64_t lTransactionNum, bool bDeleteIt=true); // if false, transaction wasn't found.
 
 EXPORT	OTTransaction * GetTransaction       (const OTTransaction::transactionType theType);
-EXPORT	OTTransaction * GetTransaction       (long lTransactionNum);
-EXPORT	OTTransaction * GetTransactionByIndex(int  nIndex);
-EXPORT	OTTransaction * GetFinalReceipt      (long lReferenceNum);
-EXPORT  OTTransaction * GetPaymentReceipt    (long lReferenceNum, OTPayment ** ppPaymentOut=NULL); // CALLER RESPONSIBLE TO DELETE.
-EXPORT	OTTransaction * GetTransferReceipt   (long lNumberOfOrigin);
-EXPORT	OTTransaction * GetChequeReceipt     (const long lChequeNum, OTCheque ** ppChequeOut=NULL); // CALLER RESPONSIBLE TO DELETE.
+EXPORT	OTTransaction * GetTransaction       (int64_t lTransactionNum);
+EXPORT	OTTransaction * GetTransactionByIndex(int32_t  nIndex);
+EXPORT	OTTransaction * GetFinalReceipt      (int64_t lReferenceNum);
+EXPORT  OTTransaction * GetPaymentReceipt    (int64_t lReferenceNum, OTPayment ** ppPaymentOut=NULL); // CALLER RESPONSIBLE TO DELETE.
+EXPORT	OTTransaction * GetTransferReceipt   (int64_t lNumberOfOrigin);
+EXPORT	OTTransaction * GetChequeReceipt     (const int64_t lChequeNum, OTCheque ** ppChequeOut=NULL); // CALLER RESPONSIBLE TO DELETE.
 	// ------------------------------------
-EXPORT	int             GetTransactionIndex  (long lTransactionNum); // if not found, returns -1
+EXPORT	int32_t             GetTransactionIndex  (int64_t lTransactionNum); // if not found, returns -1
 	// ------------------------------------
-EXPORT	OTTransaction * GetReplyNotice(const long & lRequestNum);
+EXPORT	OTTransaction * GetReplyNotice(const int64_t & lRequestNum);
 	// ------------------------------------
     // Caller is responsible to delete.
     //
@@ -247,17 +247,17 @@ EXPORT  OTPayment     * GetInstrument(      OTPseudonym  & theNym,
 EXPORT	virtual bool VerifyAccount(OTPseudonym & theNym);
 	// ------------------------------------
 	// For ALL abbreviated transactions, load the actual box receipt for each.
-EXPORT	bool LoadBoxReceipts(std::set<long> * psetUnloaded=NULL); // if psetUnloaded passed in, then use it to return the #s that weren't there.
+EXPORT	bool LoadBoxReceipts(std::set<int64_t> * psetUnloaded=NULL); // if psetUnloaded passed in, then use it to return the #s that weren't there.
 EXPORT	bool SaveBoxReceipts();	// For all "full version" transactions, save the actual box receipt for each.
 	// ------------------------------------
 	// Verifies the abbreviated form exists first, and then loads the
 	// full version and compares the two. Returns success / fail.
 	//
-EXPORT	bool LoadBoxReceipt(const long & lTransactionNum);
+EXPORT	bool LoadBoxReceipt(const int64_t & lTransactionNum);
         // Saves the Box Receipt separately.
-EXPORT  bool SaveBoxReceipt(const long & lTransactionNum);
+EXPORT  bool SaveBoxReceipt(const int64_t & lTransactionNum);
         // "Deletes" it by adding MARKED_FOR_DELETION to the bottom of the file.
-EXPORT  bool DeleteBoxReceipt(const long & lTransactionNum);
+EXPORT  bool DeleteBoxReceipt(const int64_t & lTransactionNum);
 	// ------------------------------------
 EXPORT	bool LoadInbox();
 EXPORT	bool SaveInbox(OTIdentifier * pInboxHash=NULL);  // If you pass the identifier in, the hash is recorded there
@@ -291,9 +291,9 @@ EXPORT  bool LoadRecordBoxFromString   (const OTString & strBox);
 EXPORT  bool LoadExpiredBoxFromString  (const OTString & strBox);
 	// ------------------------------------
         // inline for the top one only.
-inline  int		GetTransactionCount() const { return static_cast<int> (m_mapTransactions.size()); }
-EXPORT	int		GetTransactionCountInRefTo(const long lReferenceNum);
-EXPORT  long	GetTotalPendingValue(); // for inbox only, allows you to lookup the total value of pending transfers within.
+inline  int32_t		GetTransactionCount() const { return static_cast<int32_t> (m_mapTransactions.size()); }
+EXPORT	int32_t		GetTransactionCountInRefTo(const int64_t lReferenceNum);
+EXPORT  int64_t	GetTotalPendingValue(); // for inbox only, allows you to lookup the total value of pending transfers within.
 	// ------------------------------------
 EXPORT	mapOfTransactions & GetTransactionMap();
 	// ------------------------------------

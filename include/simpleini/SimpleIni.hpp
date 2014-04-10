@@ -297,14 +297,14 @@ public:
     struct Entry {
         const SI_CHAR * pItem;
         const SI_CHAR * pComment;
-        int             nOrder;
+        int32_t             nOrder;
 
-        Entry(const SI_CHAR * a_pszItem = NULL, int a_nOrder = 0)
+        Entry(const SI_CHAR * a_pszItem = NULL, int32_t a_nOrder = 0)
             : pItem(a_pszItem)
             , pComment(NULL)
             , nOrder(a_nOrder)
         { }
-        Entry(const SI_CHAR * a_pszItem, const SI_CHAR * a_pszComment, int a_nOrder)
+        Entry(const SI_CHAR * a_pszItem, const SI_CHAR * a_pszComment, int32_t a_nOrder)
             : pItem(a_pszItem)
             , pComment(a_pszComment)
             , nOrder(a_nOrder)
@@ -819,7 +819,7 @@ public:
         @return -1              Section does not exist in the file
         @return >=0             Number of keys in the section
      */
-    int GetSectionSize(
+    int32_t GetSectionSize(
         const SI_CHAR * a_pSection
         ) const;
 
@@ -878,10 +878,10 @@ public:
         @return a_nDefault      Key was not found in the section
         @return other           Value of the key
      */
-    long GetLongValue(
+    int64_t GetLongValue(
         const SI_CHAR * a_pSection,
         const SI_CHAR * a_pKey,
-        long            a_nDefault     = 0,
+        int64_t            a_nDefault     = 0,
         bool *          a_pHasMultiple = NULL
         ) const;
 
@@ -996,7 +996,7 @@ public:
     SI_Error SetLongValue(
         const SI_CHAR * a_pSection,
         const SI_CHAR * a_pKey,
-        long            a_nValue,
+        int64_t         a_nValue,
         const SI_CHAR * a_pComment      = NULL,
         bool            a_bUseHex       = false,
         bool            a_bForceReplace = false
@@ -1238,7 +1238,7 @@ private:
     /** Next order value, used to ensure sections and keys are output in the
         same order that they are loaded/added.
      */
-    int m_nOrder;
+    int32_t m_nOrder;
 };
 
 // ---------------------------------------------------------------------------
@@ -1345,7 +1345,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::LoadFile(
     )
 {
     // load the raw file data
-    int retval = fseek(a_fpFile, 0, SEEK_END);
+    int32_t retval = fseek(a_fpFile, 0, SEEK_END);
     if (retval != 0) {
         return SI_FILE;
     }
@@ -1728,7 +1728,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::LoadMultiLineText(
             // in this comment if another comment follows, so read ahead
             // to find out.
             SI_CHAR * pCurr = a_pData;
-            int nNewLines = 0;
+            int32_t nNewLines = 0;
             while (IsSpace(*pCurr)) {
                 if (IsNewLineChar(*pCurr)) {
                     ++nNewLines;
@@ -1896,7 +1896,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::AddEntry(
 
     // remove all existing entries but save the load order and
     // comment of the first entry
-    int nLoadOrder = ++m_nOrder;
+    int32_t nLoadOrder = ++m_nOrder;
     if (iKey != keyval.end() && m_bAllowMultiKey && a_bForceReplace) {
         const SI_CHAR * pComment = NULL;
         while (iKey != keyval.end() && !IsLess(a_pKey, iKey->first.pItem)) {
@@ -1983,11 +1983,11 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetValue(
 }
 
 template<class SI_CHAR, class SI_STRLESS, class SI_CONVERTER>
-long
+int64_t
 CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetLongValue(
     const SI_CHAR * a_pSection,
     const SI_CHAR * a_pKey,
-    long            a_nDefault,
+    int64_t            a_nDefault,
     bool *          a_pHasMultiple
     ) const
 {
@@ -2003,7 +2003,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetLongValue(
     }
 
     // handle the value as hex if prefaced with "0x"
-    long nValue = a_nDefault;
+    int64_t nValue = a_nDefault;
     char * pszSuffix = szValue;
     if (szValue[0] == '0' && (szValue[1] == 'x' || szValue[1] == 'X')) {
     	if (!szValue[2]) return a_nDefault;
@@ -2026,7 +2026,7 @@ SI_Error
 CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::SetLongValue(
     const SI_CHAR * a_pSection,
     const SI_CHAR * a_pKey,
-    long            a_nValue,
+    int64_t            a_nValue,
     const SI_CHAR * a_pComment,
     bool            a_bUseHex,
     bool            a_bForceReplace
@@ -2212,7 +2212,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetAllValues(
 }
 
 template<class SI_CHAR, class SI_STRLESS, class SI_CONVERTER>
-int
+int32_t
 CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetSectionSize(
     const SI_CHAR * a_pSection
     ) const
@@ -2231,14 +2231,14 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetSectionSize(
     // the number of keys that we have.
     if (!m_bAllowMultiKey || section.empty())
 	{
-        return static_cast<int> (section.size());
+        return static_cast<int32_t> (section.size());
     }
 
     // otherwise we need to count them
-    int nCount = 0;
+    int32_t nCount = 0;
     const SI_CHAR * pLastKey = NULL;
     typename TKeyVal::const_iterator iKeyVal = section.begin();
-    for (int n = 0; iKeyVal != section.end(); ++iKeyVal, ++n) {
+    for (int32_t n = 0; iKeyVal != section.end(); ++iKeyVal, ++n) {
         if (!pLastKey || IsLess(pLastKey, iKeyVal->first.pItem)) {
             ++nCount;
             pLastKey = iKeyVal->first.pItem;
@@ -2270,7 +2270,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetAllSections(
 {
     a_names.clear();
     typename TSection::const_iterator i = m_data.begin();
-    for (int n = 0; i != m_data.end(); ++i, ++n ) {
+    for (int32_t n = 0; i != m_data.end(); ++i, ++n ) {
         a_names.push_back(i->first);
     }
 }
@@ -2296,7 +2296,7 @@ CSimpleIniTempl<SI_CHAR,SI_STRLESS,SI_CONVERTER>::GetAllKeys(
     const TKeyVal & section = iSection->second;
     const SI_CHAR * pLastKey = NULL;
     typename TKeyVal::const_iterator iKeyVal = section.begin();
-    for (int n = 0; iKeyVal != section.end(); ++iKeyVal, ++n ) {
+    for (int32_t n = 0; iKeyVal != section.end(); ++iKeyVal, ++n ) {
         if (!pLastKey || IsLess(pLastKey, iKeyVal->first.pItem)) {
             a_names.push_back(iKeyVal->first);
             pLastKey = iKeyVal->first.pItem;
@@ -2633,9 +2633,9 @@ struct SI_GenericCase {
 	bool operator()(const SI_CHAR * pLeft, const SI_CHAR * pRight) const {
 		SI_ASSERT(NULL != pLeft);
 		SI_ASSERT(NULL != pRight);
-		long cmp;
+		int64_t cmp;
 		for ( ;*pLeft && *pRight; ++pLeft, ++pRight) {
-			cmp = (long) *pLeft - (long) *pRight;
+			cmp = (int64_t) *pLeft - (int64_t) *pRight;
 			if (cmp != 0) {
 				return cmp < 0;
 			}
@@ -2658,9 +2658,9 @@ struct SI_GenericNoCase {
 	bool operator()(const SI_CHAR * pLeft, const SI_CHAR * pRight) const {
 		SI_ASSERT(NULL != pLeft);
 		SI_ASSERT(NULL != pRight);
-		long cmp;
+		int64_t cmp;
 		for ( ;*pLeft && *pRight; ++pLeft, ++pRight) {
-			cmp = (long) locase(*pLeft) - (long) locase(*pRight);
+			cmp = (int64_t) locase(*pLeft) - (int64_t) locase(*pRight);
 			if (cmp != 0) {
 				return cmp < 0;
 			}
@@ -3279,9 +3279,9 @@ public:
     {
         SI_ASSERT(a_uInputDataLen != static_cast<size_t> (-1));
 
-        int retval = MultiByteToWideChar(
+        int32_t retval = MultiByteToWideChar(
             m_uCodePage, 0,
-            a_pInputData, static_cast<int> (a_uInputDataLen),
+            a_pInputData, static_cast<int32_t> (a_uInputDataLen),
             0, 0);
         return static_cast<size_t> (retval > 0 ? retval : -1);
     }
@@ -3305,10 +3305,10 @@ public:
         SI_CHAR *       a_pOutputData,
         size_t          a_uOutputDataSize)
     {
-        int nSize = MultiByteToWideChar(
+        int32_t nSize = MultiByteToWideChar(
             m_uCodePage, 0,
-            a_pInputData, static_cast<int> (a_uInputDataLen),
-            (wchar_t *) a_pOutputData, static_cast<int> (a_uOutputDataSize));
+            a_pInputData, static_cast<int32_t> (a_uInputDataLen),
+            (wchar_t *) a_pOutputData, static_cast<int32_t> (a_uOutputDataSize));
         return (nSize > 0);
     }
 
@@ -3325,7 +3325,7 @@ public:
     size_t SizeToStore(
         const SI_CHAR * a_pInputData)
     {
-        int retval = WideCharToMultiByte(
+        int32_t retval = WideCharToMultiByte(
             m_uCodePage, 0,
             (const wchar_t *) a_pInputData, -1,
             0, 0, 0, 0);
@@ -3350,10 +3350,10 @@ public:
         char *          a_pOutputData,
         size_t          a_uOutputDataSize)
     {
-        int retval = WideCharToMultiByte(
+        int32_t retval = WideCharToMultiByte(
             m_uCodePage, 0,
             (const wchar_t *) a_pInputData, -1,
-            a_pOutputData, static_cast<int> (a_uOutputDataSize), 0, 0);
+            a_pOutputData, static_cast<int32_t> (a_uOutputDataSize), 0, 0);
         return retval > 0;
     }
 };

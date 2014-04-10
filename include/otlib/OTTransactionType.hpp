@@ -500,8 +500,8 @@ protected:
 										// might be the only reference someone has. They'll want my NymID.)
     // ----------------------------------------------------------------
 	// I put this in protected because there are now Get/Set methods...so use them!
-	long	m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	long	m_lInReferenceToTransaction;
+	int64_t	m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+	int64_t	m_lInReferenceToTransaction;
 								// Sometimes an item is in reference to some other transaction, which does NOT need to be
 								// included in the item (since the server already has it) but instead can be referenced by
 								// transaction ID.
@@ -514,7 +514,7 @@ protected:
     // ALL OF THOSE transactions and receipts will have origin #100 attached to them.
     // This:
     //
-    long            m_lNumberOfOrigin;  // In reference to in reference to in reference to in reference to the origin.
+    int64_t            m_lNumberOfOrigin;  // In reference to in reference to in reference to in reference to the origin.
     // ----------------------------------------------------------------
 	OTASCIIArmor	m_ascInReferenceTo;	// This item may be in reference to a different item.
     bool            m_bLoadSecurely;    // Defaults to true.
@@ -603,7 +603,7 @@ EXPORT	virtual bool VerifyContractID();
 	// both the Account ID and the ServerID.
 	OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID);
 	OTTransactionType(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID,
-					  long lTransactionNum);
+					  int64_t lTransactionNum);
 
 	void InitTransactionType();
 	virtual ~OTTransactionType();
@@ -611,25 +611,25 @@ EXPORT	virtual bool VerifyContractID();
 	void Release_TransactionType();
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-//	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+//	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 //	void UpdateContents(); // I don't think I need this here. My parent and child classes do well enough.
 
 	// need to know the transaction number of this transaction? Call this.
-EXPORT	long GetTransactionNum() const;
-        void SetTransactionNum(const long lTransactionNum);
+EXPORT	int64_t GetTransactionNum() const;
+        void SetTransactionNum(const int64_t lTransactionNum);
 
 EXPORT  virtual void CalculateNumberOfOrigin();  // Calculates number of origin.
-EXPORT	virtual long GetNumberOfOrigin();  // Calculates IF NECESSARY.
+EXPORT	virtual int64_t GetNumberOfOrigin();  // Calculates IF NECESSARY.
 
-EXPORT  long GetRawNumberOfOrigin() const;       // Gets WITHOUT calculating.
+EXPORT  int64_t GetRawNumberOfOrigin() const;       // Gets WITHOUT calculating.
 
-EXPORT	void SetNumberOfOrigin(const long lTransactionNum);
+EXPORT	void SetNumberOfOrigin(const int64_t lTransactionNum);
 EXPORT	void SetNumberOfOrigin(OTTransactionType & setFrom);
 
 EXPORT  bool VerifyNumberOfOrigin(OTTransactionType & compareTo);
 
-EXPORT	long GetReferenceToNum() const;
-EXPORT	void SetReferenceToNum(const long lTransactionNum);
+EXPORT	int64_t GetReferenceToNum() const;
+EXPORT	void SetReferenceToNum(const int64_t lTransactionNum);
 
 EXPORT	void GetReferenceString(OTString & theStr) const;
 EXPORT	void SetReferenceString(const OTString & theStr);

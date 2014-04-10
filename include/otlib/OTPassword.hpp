@@ -149,7 +149,7 @@
  OTPassword thePass(strPassword, strPassword.length());
 
  const char * szPassword	= thePass.getPassword();
- const int    nPassLength	= thePass.getPasswordSize();
+ const int32_t    nPassLength	= thePass.getPasswordSize();
 
  If the instance of OTPassword is not going to be destroyed immediately
  after the password is used, then make sure to call zeroMemory() after
@@ -424,7 +424,7 @@ EXPORT	const		char *		getPassword()	const; // asserts if m_bIsText is false.
 EXPORT				uint8_t *	getPasswordWritable(); // asserts if m_bIsText is false.
 EXPORT				char *		getPasswordWritable_char(); // asserts if m_bIsText is false.
 
-EXPORT				int			setPassword(const char * szInput, int nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
+EXPORT				int32_t			setPassword(const char * szInput, int32_t nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
 EXPORT				int32_t		setPassword_uint8(const uint8_t * szInput, uint32_t nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
 EXPORT				bool		addChar(uint8_t theChar);
     // ---------------------
@@ -532,7 +532,7 @@ EXPORT	bool	GetPassword(OTPassword & theOutput) const;	// Grab the password when
 EXPORT	void	ZeroOutPassword();	// Then ZERO IT OUT so copies aren't floating around...
 
 EXPORT	const char * GetDisplay() const;
-EXPORT	void SetDisplay(const char * szDisplay, int nLength);
+EXPORT	void SetDisplay(const char * szDisplay, int32_t nLength);
 
 EXPORT	void delCallback();
 EXPORT	void setCallback(OTCallback *cb);
@@ -565,7 +565,7 @@ EXPORT	void callTwo(); // Asks for password twice. (For confirmation during nym 
 
 
 
-int  main(int argc, char **argv)
+int32_t  main(int32_t argc, char **argv)
 
  {
 

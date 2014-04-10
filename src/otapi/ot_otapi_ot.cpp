@@ -394,7 +394,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
             OTAPI_Wrap::Output(0, concat(strError, "p_strData2"));
         }
         accountID2 = p_strParam;
-        lData = p_lData; // long Amount;
+        lData = p_lData; // int64_t Amount;
         strData = p_strData2; // str  Note;
     }
     else
@@ -447,7 +447,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
         }
         nymID2 = p_strParam; // str  Recipient Nym ID;
         strData = p_strData; // str  Memo;
-        lData = p_lData2; // long Amount;
+        lData = p_lData2; // int64_t Amount;
     }
 
     //      var theRequest := OTAPI_Func(ot_Msg.PAY_DIVIDEND, SERVER_ID, NYM_ID, SOURCE_ACCT_ID, SHARES_ASSET_ID, STR_MEMO, STR_AMOUNT_PER_SHARE)
@@ -463,7 +463,7 @@ OTAPI_Func::OTAPI_Func(const OTAPI_Func_Type theType, const string & p_serverID,
         }
         assetID = p_strParam; // str  Shares Asset ID;
         strData = p_strData; // str  Memo;
-        lData = p_lData2; // long Amount Per Share;
+        lData = p_lData2; // int64_t Amount Per Share;
     }
 
     else

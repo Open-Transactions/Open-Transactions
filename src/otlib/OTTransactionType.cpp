@@ -259,7 +259,7 @@ OTTransactionType::OTTransactionType(const OTIdentifier & theUserID, const OTIde
 OTTransactionType::OTTransactionType(const OTIdentifier & theUserID,
                                      const OTIdentifier & theAccountID,
 									 const OTIdentifier & theServerID,
-                                     long lTransactionNum) : OTContract(theAccountID),
+                                     int64_t lTransactionNum) : OTContract(theAccountID),
     m_lTransactionNum(0), m_lInReferenceToTransaction(0), m_lNumberOfOrigin(0), m_bLoadSecurely(true)
 {
 	// This initializes m_lTransactionNum, so it must come FIRST.
@@ -437,13 +437,13 @@ bool OTTransactionType::VerifyContractID()
 // -----------------------------------------------------------------------------
 
 // Need to know the transaction number of this transaction? Call this.
-long OTTransactionType::GetTransactionNum() const
+int64_t OTTransactionType::GetTransactionNum() const
 {
 	return m_lTransactionNum;
 }
 
 
-void OTTransactionType::SetTransactionNum(const long lTransactionNum)
+void OTTransactionType::SetTransactionNum(const int64_t lTransactionNum)
 {
 	m_lTransactionNum = lTransactionNum;
 }
@@ -458,7 +458,7 @@ void OTTransactionType::CalculateNumberOfOrigin()
 
 // Need to know the transaction number of the ORIGINAL transaction? Call this.
 // virtual
-long OTTransactionType::GetNumberOfOrigin()
+int64_t OTTransactionType::GetNumberOfOrigin()
 {
     if (0 == m_lNumberOfOrigin)
         this->CalculateNumberOfOrigin();
@@ -467,14 +467,14 @@ long OTTransactionType::GetNumberOfOrigin()
 }
 
 // Gets WITHOUT calculating.
-long OTTransactionType::GetRawNumberOfOrigin() const
+int64_t OTTransactionType::GetRawNumberOfOrigin() const
 {
     return m_lNumberOfOrigin;
 }
 
 // -----------------------------------------------------------------------------
 
-void OTTransactionType::SetNumberOfOrigin(const long lTransactionNum)
+void OTTransactionType::SetNumberOfOrigin(const int64_t lTransactionNum)
 {
 	m_lNumberOfOrigin = lTransactionNum;
 }
@@ -507,13 +507,13 @@ bool OTTransactionType::VerifyNumberOfOrigin(OTTransactionType & compareTo)
 
 
 // Need to know the transaction number that this is in reference to? Call this.
-long OTTransactionType::GetReferenceToNum() const
+int64_t OTTransactionType::GetReferenceToNum() const
 {
 	return m_lInReferenceToTransaction;
 }
 
 
-void OTTransactionType::SetReferenceToNum(const long lTransactionNum)
+void OTTransactionType::SetReferenceToNum(const int64_t lTransactionNum)
 {
 	m_lInReferenceToTransaction = lTransactionNum;
 }

@@ -10,17 +10,17 @@
 
 
  3:25:14 PM FellowTraveler: so chaiscript is using this file OTAPI.h, and the data types are
-            int32_t for "int" and int64_t for "long" -- right?
+            int32_t for "int32_t" and int64_t for "int64_t" -- right?
  3:25:14 PM FellowTraveler: and strings are only for real strings.
  3:25:15 PM FellowTraveler: right?
- 3:27:19 PM FellowTraveler: in other words, where I might pass int for  −1, or 0, or 1 or 2,
-            then chaiscript is using int32_t —— whereas where I might pass long for a transaction #,
+ 3:27:19 PM FellowTraveler: in other words, where I might pass int32_t for  −1, or 0, or 1 or 2,
+            then chaiscript is using int32_t —— whereas where I might pass int64_t for a transaction #,
             then chaiscript is usingint64_t
  3:27:31 PM FellowTraveler: Also, where I might pass a currency AMOUNT, chaiscript is using int64_t
  3:27:32 PM FellowTraveler: right?
- 3:28:32 PM da2ce7: yep... -1, 0, 1, 2 are int > int32_t
- 3:28:41 PM da2ce7: but in siwg are long
- 3:29:02 PM da2ce7: and AMOUNT long > int64_t
+ 3:28:32 PM da2ce7: yep... -1, 0, 1, 2 are int32_t > int32_t
+ 3:28:41 PM da2ce7: but in siwg are int64_t
+ 3:29:02 PM da2ce7: and AMOUNT int64_t > int64_t
  3:29:08 PM da2ce7: and in swig will be std::string
  3:30:32 PM FellowTraveler: why no int64_t in swig?
  3:30:35 PM FellowTraveler: doesn't work ?
@@ -345,7 +345,7 @@ public:
 	// ********************************************************************
 
 	//OTNumList is a class that encapsulates working with a comma-separated list
-	// of long integers, stored in a std::set and easily serializable in/out of a string.
+	// of int64_t integers, stored in a std::set and easily serializable in/out of a string.
 	// (It's useful.)
 	//
 	EXPORT static std::string NumList_Add (const std::string & strNumList, const std::string & strNumbers);
@@ -1062,7 +1062,7 @@ public:
 	OTCheque theCheque( SERVER_ID, ASSET_TYPE_ID );
 
 	theCheque.IssueCheque( AMOUNT // The amount of the cheque, in string form, which OTAPI
-	// will convert to a long integer. Negative amounts
+	// will convert to a int64_t integer. Negative amounts
 	// allowed, since that is how OT implements invoices.
 	// (An invoice is just a cheque with a negative amount.)
 
@@ -1162,7 +1162,7 @@ public:
 
 	----------------------------------------------------------------------------------------
 	(Optional initial payment):
-	bool	OTPaymentPlan::SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+	bool	OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
 	----------------------------------------------------------------------------------------
 
 	These two (above and below) can be called independent of each other. You can
@@ -1170,7 +1170,7 @@ public:
 
 	----------------------------------------------------------------------------------------
 	(Optional regular payments):
-	bool	OTPaymentPlan::SetPaymentPlan(const long & lPaymentAmount,
+	bool	OTPaymentPlan::SetPaymentPlan(const int64_t & lPaymentAmount,
                 time_t tTimeUntilPlanStart  =LENGTH_OF_MONTH_IN_SECONDS, // Default: 1st payment in 30 days
                 time_t tBetweenPayments     =LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
                 time_t tPlanLength=0, int32_t nMaxPayments=0);
@@ -1291,8 +1291,8 @@ public:
 		// ----------------------------------------
 		const std::string & VAR_NAME,       // The Variable's name as referenced in the smart contract. (And the scripts...)
 		const std::string & VAR_ACCESS,     // "constant", "persistent", or "important".
-		const std::string & VAR_TYPE,       // "string", "long", or "bool"
-		const std::string & VAR_VALUE       // Contains a string. If type is long, atol() will be used to convert value to a long. If type is bool, the strings "true" or "false" are expected here in order to convert to a bool.
+		const std::string & VAR_TYPE,       // "string", "int64_t", or "bool"
+		const std::string & VAR_VALUE       // Contains a string. If type is int64_t, atol() will be used to convert value to a int64_t. If type is bool, the strings "true" or "false" are expected here in order to convert to a bool.
 		);
 
 	// returns: the updated smart contract (or NULL)
@@ -1656,7 +1656,7 @@ public:
 	/** ----------------------------------------------------
 	// GET BASKET MINIMUM TRANSFER AMOUNT
 	//
-	// Returns a long containing the minimum transfer
+	// Returns a int64_t containing the minimum transfer
 	// amount for the entire basket.
 	//
 	// FOR EXAMPLE:
@@ -1671,7 +1671,7 @@ public:
 	/** ----------------------------------------------------
 	// GET BASKET MEMBER's MINIMUM TRANSFER AMOUNT
 	//
-	// Returns a long containing the minimum transfer
+	// Returns a int64_t containing the minimum transfer
 	// amount for one of the member currencies in the basket.
 	//
 	// FOR EXAMPLE:
@@ -1990,7 +1990,7 @@ public:
 	//
 	// If you withdrew into a voucher instead of cash, this function allows
 	// you to retrieve the actual voucher cheque from the reply transaction.
-	// (A voucher is a cheque drawn on an int server account instead
+	// (A voucher is a cheque drawn on an int32_t server account instead
 	// of a user's asset account, so the voucher cannot ever bounce due to
 	// insufficient funds. We are accustomed to this functionality already
 	// in our daily lives, via "money orders" and "cashier's cheques".)
@@ -3427,7 +3427,7 @@ public:
 	// This is VERY similar to withdrawing cash, except the server gives you
 	// a voucher instead of cash. It's the same thing as a CASHIER'S CHEQUE...
 	//
-	// Basically the funds are moved into an int server account, and then
+	// Basically the funds are moved into an int32_t server account, and then
 	// the server gives you a cheque drawn on its own account. This way you can
 	// use it like a cheque, but it will never bounce.
 	//
@@ -3473,7 +3473,7 @@ public:
 	// server asking it to deposit the cheque into one of your asset accounts.
 	// (Of course the account and the cheque must be the same asset type.)
 	//
-	// Since a voucher is simply a cheque drawn on an int server account,
+	// Since a voucher is simply a cheque drawn on an int32_t server account,
 	// you can deposit a voucher the same as any other cheque.
 	//
 	// Returns int32_t:

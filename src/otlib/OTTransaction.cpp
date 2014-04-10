@@ -208,7 +208,7 @@ char const * const __TypeStrings[] =
 };
 
 const char * OTTransaction::_GetTypeString(transactionType theType) {
-	int nType = static_cast<int> (theType);
+	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
@@ -216,13 +216,13 @@ const char * OTTransaction::_GetTypeString(transactionType theType) {
 
 // ---------------------------------------------------------
 // Used in balance agreement, part of the inbox report.
-long OTTransaction::GetClosingNum() const
+int64_t OTTransaction::GetClosingNum() const
 {
 	return m_lClosingTransactionNo; 
 }	
 
 
-void OTTransaction::SetClosingNum(const long lClosingNum)
+void OTTransaction::SetClosingNum(const int64_t lClosingNum)
 {
 	m_lClosingTransactionNo = lClosingNum;
 }
@@ -617,7 +617,7 @@ bool OTTransaction::HarvestOpeningNumber(OTPseudonym & theNym,
                 class _getRecipientOpeningNum
                 {
                 public:
-                    long Run(OTTransaction & theTransaction)
+                    int64_t Run(OTTransaction & theTransaction)
                     {
                         OTItem * pItem = theTransaction.GetItem(OTItem::paymentPlan);
                         if (NULL != pItem)
@@ -648,7 +648,7 @@ bool OTTransaction::HarvestOpeningNumber(OTPseudonym & theNym,
                 if (bReplyWasFailure && !bHarvestingForRetry)
                 {
                     _getRecipientOpeningNum getRecipientOpeningNum;
-                    const long lRecipientOpeningNum = getRecipientOpeningNum.Run(*this);
+                    const int64_t lRecipientOpeningNum = getRecipientOpeningNum.Run(*this);
                     
                     if (lRecipientOpeningNum > 0)
                         bSuccess = theNym.ClawbackTransactionNumber(GetPurportedServerID(), lRecipientOpeningNum); //bSave=false, pSignerNym=NULL
@@ -677,7 +677,7 @@ bool OTTransaction::HarvestOpeningNumber(OTPseudonym & theNym,
                         // opening number is DEFINITELY STILL GOOD.
                         //
                         _getRecipientOpeningNum getRecipientOpeningNum;
-                        const long lRecipientOpeningNum = getRecipientOpeningNum.Run(*this);
+                        const int64_t lRecipientOpeningNum = getRecipientOpeningNum.Run(*this);
                         
                         if (lRecipientOpeningNum > 0)
                             bSuccess = theNym.ClawbackTransactionNumber(GetPurportedServerID(), lRecipientOpeningNum); //bSave=false, pSignerNym=NULL
@@ -1344,14 +1344,14 @@ bool OTTransaction::VerifyTransactionReceipt(OTPseudonym & SERVER_NYM,
 		
 		if (pTrans->IsAbbreviated())
 		{
-			long lBoxType = 0;
+			int64_t lBoxType = 0;
 			
-                 if (pTrans->Contains("nymboxRecord"))		  lBoxType = static_cast<long>(OTLedger::nymbox);
-			else if (pTrans->Contains("inboxRecord"))         lBoxType = static_cast<long>(OTLedger::inbox);
-			else if (pTrans->Contains("outboxRecord"))        lBoxType = static_cast<long>(OTLedger::outbox);
-			else if (pTrans->Contains("paymentInboxRecord"))  lBoxType = static_cast<long>(OTLedger::paymentInbox);
-			else if (pTrans->Contains("recordBoxRecord"))	  lBoxType = static_cast<long>(OTLedger::recordBox);
-			else if (pTrans->Contains("expiredBoxRecord"))	  lBoxType = static_cast<long>(OTLedger::expiredBox);
+                 if (pTrans->Contains("nymboxRecord"))		  lBoxType = static_cast<int64_t>(OTLedger::nymbox);
+			else if (pTrans->Contains("inboxRecord"))         lBoxType = static_cast<int64_t>(OTLedger::inbox);
+			else if (pTrans->Contains("outboxRecord"))        lBoxType = static_cast<int64_t>(OTLedger::outbox);
+			else if (pTrans->Contains("paymentInboxRecord"))  lBoxType = static_cast<int64_t>(OTLedger::paymentInbox);
+			else if (pTrans->Contains("recordBoxRecord"))	  lBoxType = static_cast<int64_t>(OTLedger::recordBox);
+			else if (pTrans->Contains("expiredBoxRecord"))	  lBoxType = static_cast<int64_t>(OTLedger::expiredBox);
 			else
 			{
 				OTLog::Error("OTTransaction::VerifyTransactionReceipt: Error loading from abbreviated transaction: "
@@ -1436,14 +1436,14 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM,
 	
 	if (tranOut.IsAbbreviated()) // should never happen
 	{
-		long lBoxType = 0;
+		int64_t lBoxType = 0;
 		
-             if (tranOut.Contains("nymboxRecord"))          lBoxType = static_cast<long>(OTLedger::nymbox);
-		else if (tranOut.Contains("inboxRecord"))           lBoxType = static_cast<long>(OTLedger::inbox);
-		else if (tranOut.Contains("outboxRecord"))          lBoxType = static_cast<long>(OTLedger::outbox);
-		else if (tranOut.Contains("paymentInboxRecord"))	lBoxType = static_cast<long>(OTLedger::paymentInbox);
-		else if (tranOut.Contains("recordBoxRecord"))		lBoxType = static_cast<long>(OTLedger::recordBox);
-		else if (tranOut.Contains("expiredBoxRecord"))		lBoxType = static_cast<long>(OTLedger::expiredBox);
+             if (tranOut.Contains("nymboxRecord"))          lBoxType = static_cast<int64_t>(OTLedger::nymbox);
+		else if (tranOut.Contains("inboxRecord"))           lBoxType = static_cast<int64_t>(OTLedger::inbox);
+		else if (tranOut.Contains("outboxRecord"))          lBoxType = static_cast<int64_t>(OTLedger::outbox);
+		else if (tranOut.Contains("paymentInboxRecord"))	lBoxType = static_cast<int64_t>(OTLedger::paymentInbox);
+		else if (tranOut.Contains("recordBoxRecord"))		lBoxType = static_cast<int64_t>(OTLedger::recordBox);
+		else if (tranOut.Contains("expiredBoxRecord"))		lBoxType = static_cast<int64_t>(OTLedger::expiredBox);
 		else
 		{
 			OTLog::vError("OTTransaction::VerifyBalanceReceipt: Error loading from abbreviated transaction: "
@@ -1936,7 +1936,7 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 	
 	// LOOP THROUGH THE BALANCE STATEMENT ITEMS (INBOX AND OUTBOX) TO GATHER SOME DATA...
 	
-	int nInboxItemCount = 0, nOutboxItemCount = 0;
+	int32_t nInboxItemCount = 0, nOutboxItemCount = 0;
 	
 	
 //	OTLog::vError("BEFORE LOOP nInboxItemCount: %d  nOutboxItemCount: %d\n", nInboxItemCount, nOutboxItemCount);
@@ -1944,7 +1944,7 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 	const char * szInbox        = "Inbox";
 	const char * szOutbox       = "Outbox";
 	const char * pszLedgerType  = NULL;
-	long lReceiptBalanceChange  = 0; // For measuring the amount of the total of items in the inbox that have changed the balance (like cheque receipts)
+	int64_t lReceiptBalanceChange  = 0; // For measuring the amount of the total of items in the inbox that have changed the balance (like cheque receipts)
 	
 	// Notice here, I'm back to using pBalanceItem instead of pItemWithIssuedList, since this is the inbox/outbox section...
 	OTLog::vOutput(1, "Number of inbox/outbox items on the balance statement: %d\n", pBalanceItem->GetItemCount());
@@ -1956,10 +1956,10 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
     // related paymentReceipts/marketReceipts have been CLOSED OUT.)
     //
     
-	for (int i=0; i < pBalanceItem->GetItemCount(); i++)
+	for (int32_t i=0; i < pBalanceItem->GetItemCount(); i++)
 	{
         // for outbox calculations. (It's the only case where GetReceiptAmount() is wrong and needs -1 multiplication.)
-		long lReceiptAmountMultiplier = 1; 
+		int64_t lReceiptAmountMultiplier = 1; 
 
 		OTItem * pSubItem = pBalanceItem->GetItem(i);
 		
@@ -2053,9 +2053,9 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 
 		OTTransaction * pTransaction = NULL;
 		
-		long lTempTransactionNum = 0; // Used for the below block.
-		long lTempReferenceToNum = 0; // Used for the below block.
-		long lTempNumberOfOrigin = 0; // Used for the below block.
+		int64_t lTempTransactionNum = 0; // Used for the below block.
+		int64_t lTempReferenceToNum = 0; // Used for the below block.
+		int64_t lTempNumberOfOrigin = 0; // Used for the below block.
 		
 		// What's going on here? In the original balance statement, ONLY IN CASES OF OUTOING TRANSFER, 
         // the user has put transaction # "1" in his outbox, in anticipation that
@@ -2203,7 +2203,7 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 			return false;
 		}
         // ----------------------------------------------------------------------------------
-		long lTransactionAmount	 =	pTransaction->GetReceiptAmount();
+		int64_t lTransactionAmount	 =	pTransaction->GetReceiptAmount();
 		lTransactionAmount		*=	lReceiptAmountMultiplier;
 		
 		if (pSubItem->GetAmount() != lTransactionAmount)
@@ -2326,10 +2326,10 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 
 	// LOOP THROUGH LATEST INBOX AND GATHER DATA / VALIDATE AGAINST LAST RECEIPT.
 	
-	long lInboxBalanceChange = 0; // Change in the account balance we'd expect, based on TOTAL receipts in the inbox.
-	long lInboxSupposedDifference = 0; // Change in the account balance we'd expect, based on the NEW receipts in the inbox.
+	int64_t lInboxBalanceChange = 0; // Change in the account balance we'd expect, based on TOTAL receipts in the inbox.
+	int64_t lInboxSupposedDifference = 0; // Change in the account balance we'd expect, based on the NEW receipts in the inbox.
 
-	for (int i=0; i < pInbox->GetTransactionCount(); i++)
+	for (int32_t i=0; i < pInbox->GetTransactionCount(); i++)
 	{
 		OTTransaction * pTransaction = pInbox->GetTransactionByIndex(i);
 		
@@ -2551,7 +2551,7 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 		// I found in my inbox, by looking up the number from within the receipt...
 		//
 		OTString strRespTo;
-		long lIssuedNum = 0; // The number that must STILL be signed out to me, in order for this receipt not be warrant disputing.
+		int64_t lIssuedNum = 0; // The number that must STILL be signed out to me, in order for this receipt not be warrant disputing.
         OTTransaction * pFinalReceiptTransaction = NULL;
         
 		switch (pTransaction->GetType())
@@ -2688,9 +2688,9 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 	// balance is what would be expected.
 	//
 									// -1099					// -99 (example of 1000 absolute difference)
-	const long lAbsoluteDifference	= abs(lInboxBalanceChange - lReceiptBalanceChange); // How much money came out? (Or went in, if the chequeReceipt was for an invoice...)
+	const int64_t lAbsoluteDifference	= abs(lInboxBalanceChange - lReceiptBalanceChange); // How much money came out? (Or went in, if the chequeReceipt was for an invoice...)
 									// 901						// -99 (example of 1000 absolute difference)
-	const long lNegativeDifference	= (lAbsoluteDifference*(-1));
+	const int64_t lNegativeDifference	= (lAbsoluteDifference*(-1));
 	
 	// The new (current) inbox has a larger overall value than the balance in the old (receipt) inbox. (As shown by subitem.)
 	const bool bNewInboxWasBigger		= ((lInboxBalanceChange > lReceiptBalanceChange) ? true : false);
@@ -2698,7 +2698,7 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 	
 	// --------------------------------
 	
-	long lActualDifference;
+	int64_t lActualDifference;
 	
 	if (bNewInboxWasBigger)
 		lActualDifference = lAbsoluteDifference;
@@ -2849,10 +2849,10 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 
 
 //static
-bool OTTransaction::SetupBoxReceiptFilename(const long		 lLedgerType,
+bool OTTransaction::SetupBoxReceiptFilename(const int64_t		 lLedgerType,
 											const OTString	& strUserOrAcctID,
 											const OTString	& strServerID,
-											const long		& lTransactionNum,
+											const int64_t		& lTransactionNum,
 											const char * szCaller,
 											OTString & strFolder1name,
 											OTString & strFolder2name,
@@ -2894,7 +2894,7 @@ bool OTTransaction::SetupBoxReceiptFilename(const long		 lLedgerType,
 // Just used locally here to prevent some code duplication.
 //
 //static
-bool OTTransaction::SetupBoxReceiptFilename(const long lLedgerType,
+bool OTTransaction::SetupBoxReceiptFilename(const int64_t lLedgerType,
 											OTTransaction & theTransaction,
 											const char * szCaller,
 											OTString & strFolder1name,
@@ -2926,7 +2926,7 @@ bool OTTransaction::SetupBoxReceiptFilename(OTLedger & theLedger,
 											OTString & strFolder3name, 
 											OTString & strFilename)
 {
-	long lLedgerType = 0;
+	int64_t lLedgerType = 0;
     // --------------------------------------------------------
 	switch (theLedger.GetType()) 
 	{
@@ -3027,7 +3027,7 @@ bool OTTransaction::DeleteBoxReceipt(OTLedger & theLedger)
 
 
 
-bool OTTransaction::SaveBoxReceipt(const long lLedgerType)
+bool OTTransaction::SaveBoxReceipt(const int64_t lLedgerType)
 {
 	// ---------------------------------
     if (IsAbbreviated())
@@ -3093,7 +3093,7 @@ bool OTTransaction::SaveBoxReceipt(const long lLedgerType)
 //static
 OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, OTLedger & theLedger)
 {	
-	const long lLedgerType = static_cast<long> (theLedger.GetType());
+	const int64_t lLedgerType = static_cast<int64_t> (theLedger.GetType());
 	
 	return OTTransaction::LoadBoxReceipt(theAbbrev, lLedgerType);
 }
@@ -3101,7 +3101,7 @@ OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, OTLedge
 
 // Caller IS responsible to delete.
 //static
-OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, const long lLedgerType)
+OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, const int64_t lLedgerType)
 {
     // See if the appropriate file exists, and load it up from
     // local storage, into a string.
@@ -3254,7 +3254,7 @@ OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, const l
 // reading from.
 bool OTTransaction::SaveBoxReceipt(OTLedger & theLedger)
 {
-	long lLedgerType = 0;
+	int64_t lLedgerType = 0;
 	
 	switch (theLedger.GetType()) 
 	{
@@ -3278,10 +3278,10 @@ bool OTTransaction::SaveBoxReceipt(OTLedger & theLedger)
 bool OTTransaction::VerifyBoxReceiptExists(const OTIdentifier & SERVER_ID,
 										   const OTIdentifier & USER_ID,	// Unused here for now, but still convention.
 										   const OTIdentifier & ACCOUNT_ID,	// If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-										   const int			nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
-										   const long		  &	lTransactionNum)
+										   const int32_t			nBoxType,	// 0/nymbox, 1/inbox, 2/outbox
+										   const int64_t		  &	lTransactionNum)
 {
-	const long lLedgerType = static_cast<long> (nBoxType);
+	const int64_t lLedgerType = static_cast<int64_t> (nBoxType);
 	// --------------------------------------------------------------------
 	const OTString strServerID(SERVER_ID), strUserOrAcctID(0 == lLedgerType ? USER_ID : ACCOUNT_ID); // (For Nymbox aka type 0, the UserID will be here.)
 	// --------------------------------------------------------------------	
@@ -3420,8 +3420,8 @@ bool OTTransaction::VerifyItems(OTPseudonym & theNym)
 
 /*
 bool				m_bIsAbbreviated;	
-long				m_lAbbrevAmount;
-long				m_lDisplayAmount;
+int64_t				m_lAbbrevAmount;
+int64_t				m_lDisplayAmount;
 OTIdentifier		m_Hash;			// todo: make this const and force it to be set during construction.
 time_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
 transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
@@ -3494,7 +3494,7 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID, const OTIdentifier 
 OTTransaction::OTTransaction(const OTIdentifier & theUserID,
 							 const OTIdentifier & theAccountID,
 							 const OTIdentifier & theServerID,
-							 long lTransactionNum)
+							 int64_t lTransactionNum)
 : ot_super(theUserID, theAccountID, theServerID, lTransactionNum),
 // --------------------------------------------
 	m_pParent(NULL),
@@ -3535,17 +3535,17 @@ void OTTransaction::InitTransaction()
 OTTransaction::OTTransaction(const OTIdentifier	& theUserID, 
 							 const OTIdentifier	& theAccountID,
 							 const OTIdentifier	& theServerID,
-							 const long			& lNumberOfOrigin,
-							 const long			& lTransactionNum,
-							 const long			& lInRefTo,
-							 const long			& lInRefDisplay, 
+							 const int64_t			& lNumberOfOrigin,
+							 const int64_t			& lTransactionNum,
+							 const int64_t			& lInRefTo,
+							 const int64_t			& lInRefDisplay, 
 							 const time_t		the_DATE_SIGNED, 
 							 const transactionType theType,
 							 const OTString		& strHash,
-							 const long			& lAdjustment,
-							 const long			& lDisplayValue,
-							 const long			& lClosingNum,
-                             const long         & lRequestNum,
+							 const int64_t			& lAdjustment,
+							 const int64_t			& lDisplayValue,
+							 const int64_t			& lClosingNum,
+                             const int64_t         & lRequestNum,
                              const bool           bReplyTransSuccess,
                              OTNumList          * pNumList/*=NULL*/)
 : ot_super(theUserID, theAccountID, theServerID, lTransactionNum), 
@@ -3620,19 +3620,19 @@ OTTransaction::OTTransaction(const OTIdentifier	& theUserID,
 
 
 // ----------------------------------
-//bool GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, long lTransactionNum);
+//bool GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, int64_t lTransactionNum);
 //
 //static
 //OTTransaction * GenerateTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, 
 //									const OTIdentifier & theServerID, transactionType theType, 
-//									long lTransactionNum=0);
+//									int64_t lTransactionNum=0);
 //static
-//OTTransaction * GenerateTransaction(const OTLedger & theOwner, transactionType theType, long lTransactionNum=0);
+//OTTransaction * GenerateTransaction(const OTLedger & theOwner, transactionType theType, int64_t lTransactionNum=0);
 // ----------------------------------
 
 
 //static
-OTTransaction * OTTransaction::GenerateTransaction(const OTLedger & theOwner, transactionType theType, long lTransactionNum/*=0*/)
+OTTransaction * OTTransaction::GenerateTransaction(const OTLedger & theOwner, transactionType theType, int64_t lTransactionNum/*=0*/)
 {
 	OTTransaction * pTransaction = GenerateTransaction(theOwner.GetUserID(), theOwner.GetPurportedAccountID(), 
 													   theOwner.GetPurportedServerID(), theType, lTransactionNum);	
@@ -3647,7 +3647,7 @@ OTTransaction * OTTransaction::GenerateTransaction(const OTLedger & theOwner, tr
 OTTransaction * OTTransaction::GenerateTransaction(const OTIdentifier & theUserID, 
 												   const OTIdentifier & theAccountID, 
 												   const OTIdentifier & theServerID, transactionType theType,
-												   long lTransactionNum/*=0*/)
+												   int64_t lTransactionNum/*=0*/)
 {
 	OTTransaction * pTransaction = new OTTransaction(theUserID, theAccountID, theServerID, lTransactionNum);
 	OT_ASSERT(NULL != pTransaction);
@@ -3673,7 +3673,7 @@ OTTransaction * OTTransaction::GenerateTransaction(const OTIdentifier & theUserI
 // If you wish to create a transaction object, but SET the internal members (you KNOW 
 // they are correct or you want to generate them here) then use this function or make one like it.
 //
-bool OTTransaction::GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, long lTransactionNum)
+bool OTTransaction::GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, int64_t lTransactionNum)
 {
 	// Presumably the constructor was just called, so m_ID and m_ServerID are already set properly.
 	// I might make a class factory in order to enforce this. Sounds like an appropriate situation.
@@ -3766,7 +3766,7 @@ OTItem * OTTransaction::GetItem(const OTItem::itemType theType)
 // While processing a transaction, you may wish to query it for items in
 // reference to a particular transaction number.
 //
-OTItem * OTTransaction::GetItemInRefTo(const long lReference) 
+OTItem * OTTransaction::GetItemInRefTo(const int64_t lReference) 
 {
     if (this->GetItemCountInRefTo(lReference) > 1)
     {
@@ -3789,9 +3789,9 @@ OTItem * OTTransaction::GetItemInRefTo(const long lReference)
 //
 // Might want to change this so that it only counts ACCEPTED receipts.
 //
-int	OTTransaction::GetItemCountInRefTo(const long lReference)
+int32_t	OTTransaction::GetItemCountInRefTo(const int64_t lReference)
 {
-    int nCount = 0;
+    int32_t nCount = 0;
     
 	FOR_EACH(listOfItems, m_listItems)
 	{
@@ -4220,18 +4220,18 @@ OTTransaction::transactionType OTTransaction::GetTypeFromString(const OTString &
 
 // Returns 1 if success, -1 if error.
 //static
-int OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
-										 long	& lNumberOfOrigin,
-										 long	& lTransactionNum,
-										 long	& lInRefTo,
-										 long	& lInRefDisplay,
+int32_t OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
+										 int64_t	& lNumberOfOrigin,
+										 int64_t	& lTransactionNum,
+										 int64_t	& lInRefTo,
+										 int64_t	& lInRefDisplay,
 										 time_t	& the_DATE_SIGNED,
 										 OTTransaction::transactionType & theType,
 										 OTString & strHash,
-										 long	& lAdjustment,
-										 long	& lDisplayValue,
-										 long	& lClosingNum,
-                                         long   & lRequestNum,
+										 int64_t	& lAdjustment,
+										 int64_t	& lDisplayValue,
+										 int64_t	& lClosingNum,
+                                         int64_t   & lRequestNum,
                                          bool   & bReplyTransSuccess,
                                          OTNumList * pNumList/*=NULL*/)
 {
@@ -4257,7 +4257,7 @@ int OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
         lNumberOfOrigin = atol(strOrigin.Get());
 	// -------------------------------------
 	// DATE SIGNED
-	const long lDateSigned	= atol(strDateSigned.Get()); // (We already verified it Exists() just above.)
+	const int64_t lDateSigned	= atol(strDateSigned.Get()); // (We already verified it Exists() just above.)
 	the_DATE_SIGNED			= static_cast<time_t>(lDateSigned);
 	// -------------------------------------
 	// Transaction TYPE for the abbreviated record...
@@ -4368,17 +4368,17 @@ int OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
 
 /*
  bool				m_bIsAbbreviated;	
- long				m_lAbbrevAmount; // adjustment. 
- long				m_lDisplayAmount; // a $50 receipt, is +50 adjustment in the outbox, and -50 adjustment in the inbox, but 50 in the display.
- long				m_lInRefDisplay;  // The "In Ref For Display" value
+ int64_t				m_lAbbrevAmount; // adjustment. 
+ int64_t				m_lDisplayAmount; // a $50 receipt, is +50 adjustment in the outbox, and -50 adjustment in the inbox, but 50 in the display.
+ int64_t				m_lInRefDisplay;  // The "In Ref For Display" value
  OTIdentifier		m_Hash;			// todo: make this const and force it to be set during construction.
  time_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
  transactionType	m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, payDividend, etc.
- long				m_lClosingTransactionNo;	// used by finalReceipt
+ int64_t				m_lClosingTransactionNo;	// used by finalReceipt
  */
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {	
     const OTString strNodeName = xml->getNodeName();
     
@@ -4396,22 +4396,22 @@ int OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         strNodeName.Compare("recordBoxRecord")      ||
         strNodeName.Compare("expiredBoxRecord"))
     {
-		long lNumberOfOrigin	= 0;
-		long lTransactionNum	= 0;
-		long lInRefTo			= 0;
-		long lInRefDisplay		= 0;
+		int64_t lNumberOfOrigin	= 0;
+		int64_t lTransactionNum	= 0;
+		int64_t lInRefTo			= 0;
+		int64_t lInRefDisplay		= 0;
 		// -------------------------------------
 		time_t the_DATE_SIGNED	= 0;
 		OTTransaction::transactionType theType = OTTransaction::error_state; // default
 		OTString strHash;
 		// -------------------------------------
-		long lAdjustment		= 0;
-		long lDisplayValue		= 0;
-		long lClosingNum		= 0;
-        long lRequestNumber     = 0;
+		int64_t lAdjustment		= 0;
+		int64_t lDisplayValue		= 0;
+		int64_t lClosingNum		= 0;
+        int64_t lRequestNumber     = 0;
         bool bReplyTransSuccess = false;
 		// -------------------------------------
-		int nAbbrevRetVal =
+		int32_t nAbbrevRetVal =
 			OTTransaction::LoadAbbreviatedRecord(xml,
                                                  lNumberOfOrigin,
                                                  lTransactionNum,
@@ -4478,7 +4478,7 @@ int OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             m_bCancelled = false;
 		// -------------------------------------
 		OTString strDateSigned	= xml->getAttributeValue("dateSigned");
-		const long lDateSigned	= strDateSigned.Exists() ? atol(strDateSigned.Get()) : 0;
+		const int64_t lDateSigned	= strDateSigned.Exists() ? atol(strDateSigned.Get()) : 0;
 		m_DATE_SIGNED			= lDateSigned; // Todo casting ?
 		// -------------------------------------
 		const OTString strAcctID	= xml->getAttributeValue("accountID"); 
@@ -4530,7 +4530,7 @@ int OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             m_Numlist.Release();
             
             if (strTotalList.Exists())
-                m_Numlist.Add(strTotalList); // (Comma-separated list of numbers now becomes std::set<long>.)
+                m_Numlist.Add(strTotalList); // (Comma-separated list of numbers now becomes std::set<int64_t>.)
         }
    
         // -------------------------------------	
@@ -4750,7 +4750,7 @@ void OTTransaction::UpdateContents()
 					strUserID(GetUserID());	
 	// -----------------------------------------------------
 	m_DATE_SIGNED = time(NULL); // We store the timestamp of when this transaction was signed.
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// -----------------------------------------------------	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -4896,7 +4896,7 @@ void OTTransaction::UpdateContents()
  */
 void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 {
-	long lDisplayValue = 0;
+	int64_t lDisplayValue = 0;
 	// ----------------------------------------------
     switch (m_Type) 
     {
@@ -4930,7 +4930,7 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -4955,12 +4955,12 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 	 transactionType		m_Type;				// blank, pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
 	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
-	 long					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	 long					m_lClosingTransactionNo; // used by finalReceipt
-	 long					m_lInReferenceToTransaction; 
-	 long					m_lInRefDisplay
+	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+	 int64_t					m_lClosingTransactionNo; // used by finalReceipt
+	 int64_t					m_lInReferenceToTransaction; 
+	 int64_t					m_lInRefDisplay
 	 */
 	/*	This is set upon loading in abbreviated form, and then cleared again 
 	    when the actual box receipt is loaded:
@@ -4987,7 +4987,7 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 
 void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 {
-	long lDisplayValue = 0;
+	int64_t lDisplayValue = 0;
 	// ----------------------------------------------
     switch (m_Type) 
     {
@@ -5034,7 +5034,7 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5059,11 +5059,11 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 	 transactionType		m_Type;				// instrumentNotice
 	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
-	 long					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	 long					m_lInReferenceToTransaction; 
-	 long					m_lInRefDisplay
+	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+	 int64_t					m_lInReferenceToTransaction; 
+	 int64_t					m_lInRefDisplay
 	 */
 	/*	This is set upon loading in abbreviated form, and then cleared again 
 	    when the actual box receipt is loaded:
@@ -5101,7 +5101,7 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
  */
 //void OTTransaction::SaveAbbrevPaymentOutboxRecord(OTString & strOutput)
 //{
-//	long lDisplayValue = 0;
+//	int64_t lDisplayValue = 0;
 //	
 //	if (IsAbbreviated())
 //	{
@@ -5132,7 +5132,7 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 //	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 //	// ----------------------------------------------
 //	// DATE SIGNED
-//	const long lDateSigned = m_DATE_SIGNED;
+//	const int64_t lDateSigned = m_DATE_SIGNED;
 //	// ----------------------------------------------
 //	// HASH OF THE COMPLETE "BOX RECEIPT"
 //	//
@@ -5198,7 +5198,7 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 	// Some recordBoxes DO, and some DON'T (the different kinds store different
 	// kinds of receipts. See above comment.)
 	
-	long lAdjustment = 0, lDisplayValue = 0;
+	int64_t lAdjustment = 0, lDisplayValue = 0;
 	// ----------------------------------------------
     switch (m_Type) 
     {
@@ -5314,7 +5314,7 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5339,12 +5339,12 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 	 transactionType		m_Type;				// pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
 	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
-	 long					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	 long					m_lClosingTransactionNo; // used by finalReceipt
-	 long					m_lInReferenceToTransaction; 
-	 long					m_lInRefDisplay
+	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+	 int64_t					m_lClosingTransactionNo; // used by finalReceipt
+	 int64_t					m_lInReferenceToTransaction; 
+	 int64_t					m_lInRefDisplay
 	 */
 	/*	This is set upon loading in abbreviated form, and then cleared again 
 	    when the actual box receipt is loaded:
@@ -5407,7 +5407,7 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 //
 void OTTransaction::SaveAbbreviatedNymboxRecord(OTString & strOutput)
 {
-    long lDisplayValue = 0;
+    int64_t lDisplayValue = 0;
 	// ----------------------------------------------    
     OTString strDisplayValue;   // IF this transaction is passing through on its way to the paymentInbox, it will have a displayValue.
     OTString strListOfBlanks;   // IF this transaction is "blank" or "successNotice" this will serialize the list of transaction numbers for it. (They now support multiple numbers.)
@@ -5470,7 +5470,7 @@ void OTTransaction::SaveAbbreviatedNymboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5530,7 +5530,7 @@ void OTTransaction::SaveAbbreviatedNymboxRecord(OTString & strOutput)
 
 void OTTransaction::SaveAbbreviatedOutboxRecord(OTString & strOutput)
 {
-	long lAdjustment = 0, lDisplayValue = 0;
+	int64_t lAdjustment = 0, lDisplayValue = 0;
 
     switch (m_Type) 
     {
@@ -5565,7 +5565,7 @@ void OTTransaction::SaveAbbreviatedOutboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5619,7 +5619,7 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 	// NOTE: A similar logic envelops the GetReferenceNumForDisplay() field, which, instead of returning the ACTUAL
 	// ref# that OT needs to use, it will return the one that the user probably wants to see.	
 	//
-	long lAdjustment = 0, lDisplayValue = 0;
+	int64_t lAdjustment = 0, lDisplayValue = 0;
 	// ----------------------------------------------
     switch (m_Type) 
     {
@@ -5696,7 +5696,7 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const long lDateSigned = static_cast<long> (m_DATE_SIGNED);
+	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5721,12 +5721,12 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 	 transactionType		m_Type;				// blank, pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
 	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
-	 long					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
-	 long					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
-	 long					m_lClosingTransactionNo; // used by finalReceipt
-	 long					m_lInReferenceToTransaction; 
-	 long					m_lInRefDisplay
+	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
+	 int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+	 int64_t					m_lClosingTransactionNo; // used by finalReceipt
+	 int64_t					m_lInReferenceToTransaction; 
+	 int64_t					m_lInRefDisplay
 	 */
 	/*	This is set upon loading in abbreviated form, and then cleared again 
 	    when the actual box receipt is loaded:
@@ -5908,7 +5908,7 @@ void OTTransaction::ProduceInboxReportItem(OTItem & theBalanceItem)
 	
 	if (NULL != pReportItem) // above line will assert if mem allocation fails.
 	{		
-		long lAmount = GetReceiptAmount();
+		int64_t lAmount = GetReceiptAmount();
 		pReportItem->SetAmount(lAmount);
 		
 		pReportItem->SetTransactionNum(GetTransactionNum()); // Just making sure these both get set.
@@ -5964,7 +5964,7 @@ void OTTransaction::ProduceOutboxReportItem(OTItem & theBalanceItem)
 		// already verified that this is ONLY an OTTransaction::transfer before even
 		// getting this far. There is no other transaction type that I even have to 
 		// worry about.
-		const long lAmount = GetReceiptAmount()*(-1); // in outbox, a transfer is leaving my account. Balance gets smaller.
+		const int64_t lAmount = GetReceiptAmount()*(-1); // in outbox, a transfer is leaving my account. Balance gets smaller.
 		pReportItem->SetAmount(lAmount);
 		
 		pReportItem->SetTransactionNum(GetTransactionNum()); // Just making sure these both get set.
@@ -5995,12 +5995,12 @@ void OTTransaction::ProduceOutboxReportItem(OTItem & theBalanceItem)
 // NOTE: Not ALL transaction types with an amount are listed here,
 // just the ones necessary for balance agreement.
 //
-long OTTransaction::GetReceiptAmount()
+int64_t OTTransaction::GetReceiptAmount()
 {
 	if (IsAbbreviated())
 		return GetAbbrevAdjustment();
 	// ---------------------------
-	long lAdjustment = 0;
+	int64_t lAdjustment = 0;
 		
 	OTItem * pOriginalItem = NULL;
     OTCleanup<OTItem> theItemAngel;
@@ -6162,7 +6162,7 @@ long OTTransaction::GetReceiptAmount()
 
 // Need to know the transaction number of the ORIGINAL transaction? Call this.
 // virtual
-long OTTransaction::GetNumberOfOrigin()
+int64_t OTTransaction::GetNumberOfOrigin()
 {
     // --------------------------------
     if (0 == m_lNumberOfOrigin)
@@ -6314,12 +6314,12 @@ void OTTransaction::CalculateNumberOfOrigin()
 /// trades. But the user merely wants to see that his receipt is in reference to the original market offer,
 /// so he can line up his receipts with his offers. What else does he care?
 ///
-long OTTransaction::GetReferenceNumForDisplay()
+int64_t OTTransaction::GetReferenceNumForDisplay()
 {
    if (IsAbbreviated())
       return GetAbbrevInRefDisplay();
    // ----------------------------
-   long lReferenceNum = 0;
+   int64_t lReferenceNum = 0;
    
 	OTCleanup<OTItem> theItemAngel;
 		

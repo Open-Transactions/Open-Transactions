@@ -716,7 +716,7 @@
     {
         var ot_Msg := OTAPI_Func()
         // -------------------------
-//      int OT_API_activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
+//      int32_t OT_API_activateSmartContract(SERVER_ID, NYM_ID, THE_SMART_CONTRACT)
 
         var theRequest := OTAPI_Func(ot_Msg.ACTIVATE_SMART_CONTRACT, SERVER_ID, NYM_ID, ACCT_ID, AGENT_NAME, THE_SMART_CONTRACT)
         var	strResponse = theRequest.SendTransaction(theRequest, "ACTIVATE_SMART_CONTRACT")
@@ -738,7 +738,7 @@
         //
         var strSenderAcctID = OT_API_Instrmnt_GetSenderAcctID(THE_PAYMENT_PLAN)
         
-//      int OT_API_depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
+//      int32_t OT_API_depositPaymentPlan(SERVER_ID, NYM_ID, THE_PAYMENT_PLAN)
         var theRequest := OTAPI_Func(ot_Msg.DEPOSIT_PAYMENT_PLAN, SERVER_ID, NYM_ID, strSenderAcctID, THE_PAYMENT_PLAN)
         var	strResponse = theRequest.SendTransaction(theRequest, "DEPOSIT_PAYMENT_PLAN")
         return strResponse
@@ -785,7 +785,7 @@ def OT_ME_trigger_clause(SERVER_ID, NYM_ID, STR_TRANS_NUM, CLAUSE_NAME, STR_PARA
     var ot_Msg := OTAPI_Func()
     // -------------------------
     
-    //      int OT_API_triggerClause(const char * SERVER_ID,
+    //      int32_t OT_API_triggerClause(const char * SERVER_ID,
     //                               const char * USER_ID,
     //                               const char * TRANSACTION_NUMBER,
     //                               const char * CLAUSE_NAME,
@@ -863,7 +863,7 @@ def OT_ME_get_market_list(SERVER_ID, NYM_ID)
     return strResponse
 }
 
-//int OT_API_getMarketOffers(const char * SERVER_ID,
+//int32_t OT_API_getMarketOffers(const char * SERVER_ID,
 //                           const char * USER_ID,
 //                           const char * MARKET_ID, 
 //                           const char * MAX_DEPTH) 

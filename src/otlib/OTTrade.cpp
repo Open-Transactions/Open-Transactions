@@ -183,9 +183,9 @@ bool OTTrade::VerifyNymAsAgentForAccount(OTPseudonym & theNym, OTAccount & theAc
 // -------------------------------------------------------------
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -366,9 +366,9 @@ void OTTrade::UpdateContents()
     // Often where Cron items are involved such as this payment plan, or in baskets,
     // where many asset accounts are involved and require receipts to be closed out.
 
-    for (int i = 0; i < GetCountClosingNumbers(); i++)
+    for (int32_t i = 0; i < GetCountClosingNumbers(); i++)
     {
-        long lClosingNumber = GetClosingTransactionNoAt(i);
+        int64_t lClosingNumber = GetClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
 
         m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%ld\"/>\n\n",
@@ -635,7 +635,7 @@ OTOffer	* OTTrade::GetOffer(OTIdentifier * pOFFER_MARKET_ID/*=NULL*/, OTMarket *
     //
 	else if (IsStopOrder() && !m_bHasStopActivated)
 	{
-		long lRelevantPrice = 0;
+		int64_t lRelevantPrice = 0;
 
 		// If the stop order is trying to sell something, then it cares about the highest bidder.
 		if (pOffer->IsAsk())
@@ -714,8 +714,8 @@ void OTTrade::onRemovalFromCron()
     // store the original internally) and I will look up the scale.
     //
 
-    long lScale = 1; // todo stop hardcoding.
-    long lTransactionNum = 0;
+    int64_t lScale = 1; // todo stop hardcoding.
+    int64_t lTransactionNum = 0;
 
     if (NULL == m_pOffer)
     {
@@ -792,7 +792,7 @@ void OTTrade::onRemovalFromCron()
 //	GetSenderAcctID()	-- asset account.
 //	GetCurrencyAcctID()	-- currency account.
 
-long OTTrade::GetClosingNumber(const OTIdentifier & theAcctID) const
+int64_t OTTrade::GetClosingNumber(const OTIdentifier & theAcctID) const
 {
 	const OTIdentifier & theAssetAcctID		= this->GetSenderAcctID();
 	const OTIdentifier & theCurrencyAcctID	= this->GetCurrencyAcctID();
@@ -808,12 +808,12 @@ long OTTrade::GetClosingNumber(const OTIdentifier & theAcctID) const
 // ---------------------------------------------------
 
 
-long OTTrade::GetAssetAcctClosingNum() const
+int64_t OTTrade::GetAssetAcctClosingNum() const
 {
     return (GetCountClosingNumbers() > 0) ? GetClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
 
-long OTTrade::GetCurrencyAcctClosingNum() const
+int64_t OTTrade::GetCurrencyAcctClosingNum() const
 {
     return (GetCountClosingNumbers() > 1) ? GetClosingTransactionNoAt(1) : 0; // todo stop hardcoding.
 }
@@ -886,7 +886,7 @@ bool OTTrade::CanRemoveItemFromCron(OTPseudonym & theNym)
 // This is called by OTCronItem::HookRemovalFromCron
 // (After calling this method, HookRemovalFromCron then calls onRemovalFromCron.)
 //
-void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTransactionNumber,
+void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewTransactionNumber,
                              OTPseudonym & theOriginator,
                              OTPseudonym * pRemover)
 {
@@ -904,10 +904,10 @@ void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTran
     // Second, we're verifying the CLOSING number, and using it as the closing number
     // on the FINAL RECEIPT (with that receipt being "InReferenceTo" this->GetTransactionNum())
     //
-    const long lOpeningNumber   = theOrigCronItem.GetTransactionNum();
+    const int64_t lOpeningNumber   = theOrigCronItem.GetTransactionNum();
     // ---------------------------------------------------------------------------
-    const long lClosingAssetNumber    = (theOrigCronItem.GetCountClosingNumbers() > 0) ? theOrigCronItem.GetClosingTransactionNoAt(0) : 0;
-    const long lClosingCurrencyNumber = (theOrigCronItem.GetCountClosingNumbers() > 1) ? theOrigCronItem.GetClosingTransactionNoAt(1) : 0;
+    const int64_t lClosingAssetNumber    = (theOrigCronItem.GetCountClosingNumbers() > 0) ? theOrigCronItem.GetClosingTransactionNoAt(0) : 0;
+    const int64_t lClosingCurrencyNumber = (theOrigCronItem.GetCountClosingNumbers() > 1) ? theOrigCronItem.GetClosingTransactionNoAt(1) : 0;
     // ---------------------------------------------------------------------
     const OTString strServerID(GetServerID());
 
@@ -966,7 +966,7 @@ void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTran
         // The Nym (server side) stores a list of all opening and closing cron #s.
         // So when the number is released from the Nym, we also take it off that list.
         //
-        std::set<long> & theIDSet = theOriginator.GetSetOpenCronItems();
+        std::set<int64_t> & theIDSet = theOriginator.GetSetOpenCronItems();
         theIDSet.erase(lOpeningNumber);
 
         theOriginator.RemoveIssuedNum(*pServerNym, strServerID, lOpeningNumber, false); //bSave=false
@@ -1191,16 +1191,16 @@ bool OTTrade::ProcessCron()
 X OTIdentifier	m_CURRENCY_TYPE_ID;	// GOLD (Asset) is trading for DOLLARS (Currency).
 X OTIdentifier	m_CURRENCY_ACCT_ID;	// My Dollar account, used for paying for my Gold (say) trades.
 
-X long			m_lStopPrice;		// The price limit that activates the STOP order.
+X int64_t			m_lStopPrice;		// The price limit that activates the STOP order.
 X char			m_cStopSign;		// Value is 0, or '<', or '>'.
 
 X time_t		m_CREATION_DATE;	// The date, in seconds, when the trade was authorized.
-X int			m_nTradesAlreadyDone;	// How many trades have already processed through this order? We keep track.
+X int32_t			m_nTradesAlreadyDone;	// How many trades have already processed through this order? We keep track.
 */
 
 // This is called by the client side. First you call MakeOffer() to set up the Offer,
 // then you call IssueTrade() and pass the Offer into it here.
-bool OTTrade::IssueTrade(OTOffer & theOffer, char cStopSign/*=0*/, long lStopPrice/*=0*/)
+bool OTTrade::IssueTrade(OTOffer & theOffer, char cStopSign/*=0*/, int64_t lStopPrice/*=0*/)
 {
 	// Make sure the Stop Sign is within parameters (0, '<', or '>')
 	if ((cStopSign ==  0 )	||

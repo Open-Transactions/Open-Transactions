@@ -323,23 +323,23 @@ protected:
 	OTItem(); // <============================= Here for now, if I can get away with it.
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	// ----------------------------------------------------------------
 	OTIdentifier	m_AcctToID;     // DESTINATION ACCOUNT for transfers. NOT the account holder.
-	long			m_lAmount;      // For balance, or fee, etc. Only an item can actually have an amount. (Or a "TO" account.)
+	int64_t			m_lAmount;      // For balance, or fee, etc. Only an item can actually have an amount. (Or a "TO" account.)
 	listOfItems		m_listItems;    // Sometimes an item needs to have a list of yet more items. Like balance statements have a list of inbox items. (Just the relevant data, not all the attachments and everything.)
 	itemType		m_Type;         // the item type. Could be a transfer, a fee, a balance or client accept/rejecting an item
 	itemStatus		m_Status;       // request, acknowledgment, or rejection.
 	// ----------------------------------------------------------------
-	long			m_lNewOutboxTransNum;	// Used for balance agreement. The user puts transaction "1" in his outbox when doing a transfer, since he has no idea
+	int64_t			m_lNewOutboxTransNum;	// Used for balance agreement. The user puts transaction "1" in his outbox when doing a transfer, since he has no idea
 											// what # will actually be issued on the server side after he sends his message. Let's say the server issues # 34, and
 											// puts that in the outbox. It thus sets this member to 34, and it is understood that 1 in the client request corresponds
 											// to 34 on this member variable in the reply.  Only one transfer can be done at a time. In cases where verifying a balance
 											// receipt and you come across transaction #1 in the outbox, simply look up this variable on the server's portion of the reply
 											// and then look up that number instead.
 
-    long            m_lClosingTransactionNo; // Used in balance agreement (to represent an inbox item)
+    int64_t            m_lClosingTransactionNo; // Used in balance agreement (to represent an inbox item)
     // ----------------------------------------------------------------
 public:
 	// ----------------------------------------------------------------
@@ -349,20 +349,20 @@ public:
     //
 EXPORT    bool AddBlankNumbersToItem(const OTNumList & theAddition);
     // -------------------------------------------
-    long GetClosingNum() const;
-	void SetClosingNum(const long lClosingNum);
+    int64_t GetClosingNum() const;
+	void SetClosingNum(const int64_t lClosingNum);
 	// ----------------------------------------------------------------
-EXPORT	virtual long GetNumberOfOrigin();
+EXPORT	virtual int64_t GetNumberOfOrigin();
 EXPORT  virtual void CalculateNumberOfOrigin();
 	// ----------------------------------------------------------------
 	// used for looping through the items in a few places.
 	inline listOfItems & GetItemList() { return m_listItems; }
     // ----------------------------------------------------------------
-	OTItem * GetItem(int nIndex); // While processing an item, you may wish to query it for sub-items of a certain type.
-	OTItem * GetItemByTransactionNum(const long lTransactionNumber); // While processing an item, you may wish to query it for sub-items
-	OTItem * GetFinalReceiptItemByReferenceNum(const long lReferenceNumber); // The final receipt item MAY be present, and co-relates to others that share its "in reference to" value. (Others such as marketReceipts and paymentReceipts.)
-    int	GetItemCountInRefTo(const long lReference); // Count the number of items that are IN REFERENCE TO some transaction#.
-	inline int	GetItemCount() const { return static_cast<int> (m_listItems.size()); }
+	OTItem * GetItem(int32_t nIndex); // While processing an item, you may wish to query it for sub-items of a certain type.
+	OTItem * GetItemByTransactionNum(const int64_t lTransactionNumber); // While processing an item, you may wish to query it for sub-items
+	OTItem * GetFinalReceiptItemByReferenceNum(const int64_t lReferenceNumber); // The final receipt item MAY be present, and co-relates to others that share its "in reference to" value. (Others such as marketReceipts and paymentReceipts.)
+    int32_t	GetItemCountInRefTo(const int64_t lReference); // Count the number of items that are IN REFERENCE TO some transaction#.
+	inline int32_t	GetItemCount() const { return static_cast<int32_t> (m_listItems.size()); }
 	void AddItem(OTItem & theItem); // You have to allocate the item on the heap and then pass it in as a reference.
 	// OTItem will take care of it from there and will delete it in destructor.
 	// ----------------------------------------------------------------
@@ -372,8 +372,8 @@ EXPORT  virtual void CalculateNumberOfOrigin();
 	// ----------------------------------------------------------------
 	// the "From" accountID and the ServerID are now in the parent class. (2 of each.)
 
-	inline void		SetNewOutboxTransNum(const long lTransNum) { m_lNewOutboxTransNum =  lTransNum; }
-	inline long		GetNewOutboxTransNum() const { return m_lNewOutboxTransNum; } // See above comment in protected section.
+	inline void		SetNewOutboxTransNum(const int64_t lTransNum) { m_lNewOutboxTransNum =  lTransNum; }
+	inline int64_t		GetNewOutboxTransNum() const { return m_lNewOutboxTransNum; } // See above comment in protected section.
     // ----------------------------------------------------------------
 	OTASCIIArmor	m_ascNote;			// a text field for the user. Cron may also store receipt data here. Also inbox reports go here for balance agreement
 	OTASCIIArmor	m_ascAttachment;	// the digital cash token is sent here, signed, and returned here. (or purse of tokens.)
@@ -381,13 +381,13 @@ EXPORT  virtual void CalculateNumberOfOrigin();
     // ----------------------------------------------------------------
 	// Call this on the server side, on a balanceStatement item, to verify
 	// whether the wallet side set it up correctly (and thus it's okay to sign and return with acknowledgement.)
-EXPORT	bool VerifyBalanceStatement(const long lActualAdjustment,
+EXPORT	bool VerifyBalanceStatement(const int64_t lActualAdjustment,
 								OTPseudonym & THE_NYM,
 								OTLedger & THE_INBOX,
 								OTLedger & THE_OUTBOX,
 								const OTAccount & THE_ACCOUNT,
 								OTTransaction & TARGET_TRANSACTION,
-								const long lOutboxTrnsNum=0);	// Used in special case of transfers (the user
+								const int64_t lOutboxTrnsNum=0);	// Used in special case of transfers (the user
 																// didn't know the outbox trans# when constructing
 																// the original request.) Unused when 0.
 	// server-side
@@ -399,8 +399,8 @@ EXPORT	bool VerifyTransactionStatement(OTPseudonym & THE_NYM, OTTransaction & TA
 	inline OTItem::itemType GetType() const { return m_Type; }
 	inline void SetType(OTItem::itemType theType) { m_Type = theType; }
     // ----------------------------------------------------------------
-	inline long GetAmount() const { return m_lAmount; }
-	inline void SetAmount(long lAmount) { m_lAmount = lAmount; }
+	inline int64_t GetAmount() const { return m_lAmount; }
+	inline void SetAmount(int64_t lAmount) { m_lAmount = lAmount; }
     // ----------------------------------------------------------------
 EXPORT	void GetNote(OTString & theStr) const;
 EXPORT	void SetNote(const OTString & theStr);
@@ -411,7 +411,7 @@ EXPORT	void SetAttachment(const OTString & theStr);
 	inline const OTIdentifier & GetDestinationAcctID() const { return m_AcctToID; }
 	inline void					SetDestinationAcctID(const OTIdentifier & theID) {  m_AcctToID = theID; }
     // ----------------------------------------------------------------
-EXPORT	static OTItem * CreateItemFromString(const OTString & strItem, const OTIdentifier & theServerID, long lTransactionNumber);
+EXPORT	static OTItem * CreateItemFromString(const OTString & strItem, const OTIdentifier & theServerID, int64_t lTransactionNumber);
 
 
 EXPORT	static OTItem * CreateItemFromTransaction(const OTTransaction & theOwner, OTItem::itemType theType, OTIdentifier * pDestinationAcctID=NULL);

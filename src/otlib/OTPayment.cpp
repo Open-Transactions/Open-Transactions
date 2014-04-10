@@ -166,7 +166,7 @@ char const * const __TypeStrings[] =
 
 //static
 const char * OTPayment::_GetTypeString(paymentType theType) {
-	int nType = static_cast<int> (theType);
+	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
@@ -174,7 +174,7 @@ const char * OTPayment::_GetTypeString(paymentType theType) {
 OTPayment::paymentType OTPayment::GetTypeFromString(const OTString & strType)
 {
 #define OT_NUM_ELEM(blah) (sizeof (blah) / sizeof (*(blah)))    
-    for (unsigned int i = 0; i < ( OT_NUM_ELEM(__TypeStrings) - 1 ); i++ )
+    for (uint32_t i = 0; i < ( OT_NUM_ELEM(__TypeStrings) - 1 ); i++ )
     {
         if (strType.Compare(__TypeStrings[i]))
             return static_cast<OTPayment::paymentType>(i);
@@ -511,7 +511,7 @@ bool OTPayment::GetMemo(OTString & strOutput) const
 
 
 
-bool OTPayment::GetAmount(long & lOutput) const
+bool OTPayment::GetAmount(int64_t & lOutput) const
 {
     lOutput = 0;
     // ----------------------
@@ -616,7 +616,7 @@ bool OTPayment::GetAllTransactionNumbers(OTNumList & numlistOutput) const
 
 // This works with a cheque who has a transaction number.
 // It also works with a payment plan or smart contract, for opening AND closing numbers.
-bool OTPayment::HasTransactionNum(const long & lInput) const
+bool OTPayment::HasTransactionNum(const int64_t & lInput) const
 {    
     // SMART CONTRACTS and PAYMENT PLANS get a little special
     // treatment here at the top.
@@ -686,7 +686,7 @@ bool OTPayment::HasTransactionNum(const long & lInput) const
 
 
 
-bool OTPayment::GetClosingNum(      long         & lOutput,
+bool OTPayment::GetClosingNum(      int64_t         & lOutput,
                               const OTIdentifier & theAcctID)   const
 {
     lOutput = 0;
@@ -759,7 +759,7 @@ bool OTPayment::GetClosingNum(      long         & lOutput,
 }
 
 
-bool OTPayment::GetOpeningNum(      long         & lOutput,
+bool OTPayment::GetOpeningNum(      int64_t         & lOutput,
                               const OTIdentifier & theNymID)   const
 {
     lOutput = 0;
@@ -857,7 +857,7 @@ bool OTPayment::GetOpeningNum(      long         & lOutput,
 }
 
 
-bool OTPayment::GetTransactionNum(long & lOutput) const
+bool OTPayment::GetTransactionNum(int64_t & lOutput) const
 {
     lOutput = 0;
     // ----------------------
@@ -1653,7 +1653,7 @@ void OTPayment::UpdateContents() // Before transmission or serialization, this i
 
 
 
-int OTPayment::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTPayment::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     const OTString strNodeName(xml->getNodeName());
     

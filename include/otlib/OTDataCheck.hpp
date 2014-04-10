@@ -138,7 +138,7 @@
 
 
 
-typedef unsigned char OT_BYTE;
+typedef uint8_t OT_BYTE;
 typedef bool OT_BOOL;
 
 

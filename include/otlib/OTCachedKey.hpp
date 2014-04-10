@@ -193,7 +193,7 @@ class OTIdentifier;
     to replace the master key without forcing a change of the password itself. Likewise it is
     also possible to change the password, without changing the underlying key that it opens.
     Adding the session key will further ensure that neither password nor master key ever appears
-    in RAM (for very long) nor on the harddrive in cleartext form.
+    in RAM (for very int64_t) nor on the harddrive in cleartext form.
 
  -- Adding the use of a standard protected memory API such as gpg-agent means there is no risk
     of swapping or core dumps revealing vital information from within OT itself. Nevertheless,
@@ -226,7 +226,7 @@ class OTIdentifier;
     containing those items, AND sign the message containing that transaction. Perhaps OT has to
     use that private key 4 or 5 times in a row, all within a fraction of a second. Should the user
     therefore have to enter his passphrase 4 or 5 times, for a cash withdrawal? Isn't once enough?
-    But it's not that simple, because each operation opens the master key just long enough for OpenSSL
+    But it's not that simple, because each operation opens the master key just int64_t enough for OpenSSL
     to perform the requested operation, and then destroys it again immediately after the operation is
     completed. (Even when the timeout is active, what's being stored isn't the master key itself, but
     the master key password used to open it JUST LONG ENOUGH to use it, and then destroy it again.)
@@ -261,7 +261,7 @@ class OTCachedKey
 {
 private:
 	tthread::thread       *  m_pThread;         // The thread used for destroying the password after the timeout period.
-	int                      m_nTimeoutSeconds; // The master password will be stored internally for X seconds, and then destroyed.
+	int32_t                      m_nTimeoutSeconds; // The master password will be stored internally for X seconds, and then destroyed.
 	OTPassword            *  m_pMasterPassword; // Created when password is passed in; destroyed by Timer after X seconds.
 
 	bool                     m_bUse_System_Keyring; // if set to true, then additionally use the local OS's standard API for storing/retrieving secrets. (Store the master key here whenever it's decrypted, and try to retrieve from here whenever it's needed, before resorting to asking the user to type his passphrase.) This is configurable in the config file.
@@ -270,7 +270,7 @@ private:
 	tthread::mutex           m_Mutex;           // Mutex used for serializing access to this instance.
 	bool                     m_bPaused;         // If you want to force the old system, PAUSE the master key (REMEMBER to Unpause when done!)
 	// -----------------------------------------------------------
-	OTCachedKey(int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
+	OTCachedKey(int32_t nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
 	// -----------------------------------------------------------
     static tthread::mutex   s_mutexThreadTimeout;
 	// -----------------------------------------------------------
@@ -313,8 +313,8 @@ public:
 	EXPORT    void   SetCachedKey(const OTASCIIArmor & ascCachedKey); // OTServer/OTWallet calls this, I instantiate.
 	// --------------------------------
 
-	EXPORT    int    GetTimeoutSeconds();
-	EXPORT    void   SetTimeoutSeconds(int nTimeoutSeconds); // So we can load from the config file.
+	EXPORT    int32_t    GetTimeoutSeconds();
+	EXPORT    void   SetTimeoutSeconds(int32_t nTimeoutSeconds); // So we can load from the config file.
 
 	// For Nyms, which have a global master key serving as their "passphrase" (for that wallet),
 	// The password callback uses OTCachedKey::It() to get the instance, and then GetMasterPassword
@@ -333,7 +333,7 @@ public:
 	// Caller must delete!
 	EXPORT  static _SharedPtr<OTCachedKey> CreateMasterPassword(OTPassword & theOutput,
                                                               const char * szDisplay=NULL,
-                                                              int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
+                                                              int32_t nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT);
 	// --------------------------------
 
 	EXPORT   void DestroyMasterPassword(); // The thread, when the time comes, calls this method using the instance pointer that was passed into the thread originally. The actual encrypted version is kept -- only the temporary cleartext version is destroyed.

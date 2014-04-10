@@ -177,8 +177,8 @@ private:
 public:
 
 	/// Any time a message is sent to the server, its request number is copied here.
-	/// Most server message functions return int, but technically a request number can
-	/// be long. So if the number being returned is too large for that int, it will return
+	/// Most server message functions return int32_t, but technically a request number can
+	/// be int64_t. So if the number being returned is too large for that int32_t, it will return
 	/// -2 instead, and then another function can be called that returns lMostRecentRequestNumber
 	/// in string form, or whatever is easiest.
 	///
@@ -314,7 +314,7 @@ public:
 	bool m_bInitialized; // this will be false until InitClient() is called.
 	// ------------------------------------------------------------
 	// These functions manipulate the internal m_pConnection member:
-	void ProcessMessageOut(char *buf, int * pnExpectReply);
+	void ProcessMessageOut(char *buf, int32_t * pnExpectReply);
 	void ProcessMessageOut(OTMessage & theMessage);
 	bool ProcessInBuffer(OTMessage & theServerReply);
 	// ------------------------------------------------------------
