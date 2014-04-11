@@ -23,6 +23,258 @@ type _ unsafe.Pointer
 type _swig_fnptr *byte
 type _swig_memberptr *byte
 
+type SwigcptrImaxdiv_t uintptr
+
+func (p SwigcptrImaxdiv_t) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrImaxdiv_t) SwigIsImaxdiv_t() {
+}
+
+func _swig_wrap_imaxdiv_t_quot_set(SwigcptrImaxdiv_t, int64)
+
+func (arg1 SwigcptrImaxdiv_t) SetQuot(arg2 int64) {
+	_swig_wrap_imaxdiv_t_quot_set(arg1, arg2)
+}
+
+func _swig_wrap_imaxdiv_t_quot_get(SwigcptrImaxdiv_t) int64
+
+func (arg1 SwigcptrImaxdiv_t) GetQuot() int64 {
+	return _swig_wrap_imaxdiv_t_quot_get(arg1)
+}
+
+func _swig_wrap_imaxdiv_t_rem_set(SwigcptrImaxdiv_t, int64)
+
+func (arg1 SwigcptrImaxdiv_t) SetRem(arg2 int64) {
+	_swig_wrap_imaxdiv_t_rem_set(arg1, arg2)
+}
+
+func _swig_wrap_imaxdiv_t_rem_get(SwigcptrImaxdiv_t) int64
+
+func (arg1 SwigcptrImaxdiv_t) GetRem() int64 {
+	return _swig_wrap_imaxdiv_t_rem_get(arg1)
+}
+
+func _swig_wrap_new_imaxdiv_t() SwigcptrImaxdiv_t
+
+func NewImaxdiv_t() Imaxdiv_t {
+	return _swig_wrap_new_imaxdiv_t()
+}
+
+func _swig_wrap_delete_imaxdiv_t(uintptr)
+
+func DeleteImaxdiv_t(arg1 Imaxdiv_t) {
+	_swig_wrap_delete_imaxdiv_t(arg1.Swigcptr())
+}
+
+type Imaxdiv_t interface {
+	Swigcptr() uintptr
+	SwigIsImaxdiv_t()
+	SetQuot(arg2 int64)
+	GetQuot() int64
+	SetRem(arg2 int64)
+	GetRem() int64
+}
+
+func Imaxabs(int64) int64
+func _swig_wrap_imaxdiv(int64, int64) SwigcptrImaxdiv_t
+
+func Imaxdiv(arg1 int64, arg2 int64) Imaxdiv_t {
+	return _swig_wrap_imaxdiv(arg1, arg2)
+}
+
+type SwigcptrVectorUnsignedChar uintptr
+
+func (p SwigcptrVectorUnsignedChar) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrVectorUnsignedChar) SwigIsVectorUnsignedChar() {
+}
+
+func _swig_wrap_new_VectorUnsignedChar__SWIG_0() SwigcptrVectorUnsignedChar
+
+func NewVectorUnsignedChar__SWIG_0() VectorUnsignedChar {
+	return _swig_wrap_new_VectorUnsignedChar__SWIG_0()
+}
+
+func _swig_wrap_new_VectorUnsignedChar__SWIG_1(int64) SwigcptrVectorUnsignedChar
+
+func NewVectorUnsignedChar__SWIG_1(arg1 int64) VectorUnsignedChar {
+	return _swig_wrap_new_VectorUnsignedChar__SWIG_1(arg1)
+}
+
+func NewVectorUnsignedChar(a ...interface{}) VectorUnsignedChar {
+	argc := len(a)
+	if argc == 0 {
+		return NewVectorUnsignedChar__SWIG_0()
+	}
+	if argc == 1 {
+		return NewVectorUnsignedChar__SWIG_1(a[0].(int64))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_VectorUnsignedChar_size(SwigcptrVectorUnsignedChar) int64
+
+func (arg1 SwigcptrVectorUnsignedChar) Size() int64 {
+	return _swig_wrap_VectorUnsignedChar_size(arg1)
+}
+
+func _swig_wrap_VectorUnsignedChar_capacity(SwigcptrVectorUnsignedChar) int64
+
+func (arg1 SwigcptrVectorUnsignedChar) Capacity() int64 {
+	return _swig_wrap_VectorUnsignedChar_capacity(arg1)
+}
+
+func _swig_wrap_VectorUnsignedChar_reserve(SwigcptrVectorUnsignedChar, int64)
+
+func (arg1 SwigcptrVectorUnsignedChar) Reserve(arg2 int64) {
+	_swig_wrap_VectorUnsignedChar_reserve(arg1, arg2)
+}
+
+func _swig_wrap_VectorUnsignedChar_isEmpty(SwigcptrVectorUnsignedChar) bool
+
+func (arg1 SwigcptrVectorUnsignedChar) IsEmpty() bool {
+	return _swig_wrap_VectorUnsignedChar_isEmpty(arg1)
+}
+
+func _swig_wrap_VectorUnsignedChar_clear(SwigcptrVectorUnsignedChar)
+
+func (arg1 SwigcptrVectorUnsignedChar) Clear() {
+	_swig_wrap_VectorUnsignedChar_clear(arg1)
+}
+
+func _swig_wrap_VectorUnsignedChar_add(SwigcptrVectorUnsignedChar, byte)
+
+func (arg1 SwigcptrVectorUnsignedChar) Add(arg2 byte) {
+	_swig_wrap_VectorUnsignedChar_add(arg1, arg2)
+}
+
+func _swig_wrap_VectorUnsignedChar_get(SwigcptrVectorUnsignedChar, int) byte
+
+func (arg1 SwigcptrVectorUnsignedChar) Get(arg2 int) byte {
+	return _swig_wrap_VectorUnsignedChar_get(arg1, arg2)
+}
+
+func _swig_wrap_VectorUnsignedChar_set(SwigcptrVectorUnsignedChar, int, byte)
+
+func (arg1 SwigcptrVectorUnsignedChar) Set(arg2 int, arg3 byte) {
+	_swig_wrap_VectorUnsignedChar_set(arg1, arg2, arg3)
+}
+
+func _swig_wrap_delete_VectorUnsignedChar(uintptr)
+
+func DeleteVectorUnsignedChar(arg1 VectorUnsignedChar) {
+	_swig_wrap_delete_VectorUnsignedChar(arg1.Swigcptr())
+}
+
+type VectorUnsignedChar interface {
+	Swigcptr() uintptr
+	SwigIsVectorUnsignedChar()
+	Size() int64
+	Capacity() int64
+	Reserve(arg2 int64)
+	IsEmpty() bool
+	Clear()
+	Add(arg2 byte)
+	Get(arg2 int) byte
+	Set(arg2 int, arg3 byte)
+}
+
+type SwigcptrMapStringString uintptr
+
+func (p SwigcptrMapStringString) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrMapStringString) SwigIsMapStringString() {
+}
+
+func _swig_wrap_new_MapStringString__SWIG_0() SwigcptrMapStringString
+
+func NewMapStringString__SWIG_0() MapStringString {
+	return _swig_wrap_new_MapStringString__SWIG_0()
+}
+
+func _swig_wrap_new_MapStringString__SWIG_1(uintptr) SwigcptrMapStringString
+
+func NewMapStringString__SWIG_1(arg1 MapStringString) MapStringString {
+	return _swig_wrap_new_MapStringString__SWIG_1(arg1.Swigcptr())
+}
+
+func NewMapStringString(a ...interface{}) MapStringString {
+	argc := len(a)
+	if argc == 0 {
+		return NewMapStringString__SWIG_0()
+	}
+	if argc == 1 {
+		return NewMapStringString__SWIG_1(a[0].(MapStringString))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_MapStringString_size(SwigcptrMapStringString) uint
+
+func (arg1 SwigcptrMapStringString) Size() uint {
+	return _swig_wrap_MapStringString_size(arg1)
+}
+
+func _swig_wrap_MapStringString_empty(SwigcptrMapStringString) bool
+
+func (arg1 SwigcptrMapStringString) Empty() bool {
+	return _swig_wrap_MapStringString_empty(arg1)
+}
+
+func _swig_wrap_MapStringString_clear(SwigcptrMapStringString)
+
+func (arg1 SwigcptrMapStringString) Clear() {
+	_swig_wrap_MapStringString_clear(arg1)
+}
+
+func _swig_wrap_MapStringString_get(SwigcptrMapStringString, string) string
+
+func (arg1 SwigcptrMapStringString) Get(arg2 string) string {
+	return _swig_wrap_MapStringString_get(arg1, arg2)
+}
+
+func _swig_wrap_MapStringString_set(SwigcptrMapStringString, string, string)
+
+func (arg1 SwigcptrMapStringString) Set(arg2 string, arg3 string) {
+	_swig_wrap_MapStringString_set(arg1, arg2, arg3)
+}
+
+func _swig_wrap_MapStringString_del(SwigcptrMapStringString, string)
+
+func (arg1 SwigcptrMapStringString) Del(arg2 string) {
+	_swig_wrap_MapStringString_del(arg1, arg2)
+}
+
+func _swig_wrap_MapStringString_has_key(SwigcptrMapStringString, string) bool
+
+func (arg1 SwigcptrMapStringString) Has_key(arg2 string) bool {
+	return _swig_wrap_MapStringString_has_key(arg1, arg2)
+}
+
+func _swig_wrap_delete_MapStringString(uintptr)
+
+func DeleteMapStringString(arg1 MapStringString) {
+	_swig_wrap_delete_MapStringString(arg1.Swigcptr())
+}
+
+type MapStringString interface {
+	Swigcptr() uintptr
+	SwigIsMapStringString()
+	Size() uint
+	Empty() bool
+	Clear()
+	Get(arg2 string) string
+	Set(arg2 string, arg3 string)
+	Del(arg2 string)
+	Has_key(arg2 string) bool
+}
+
 const OT_PW_DISPLAY string = "Enter master passphrase for wallet."
 const OTPASSWORD_BLOCKSIZE int = 128
 const OTPASSWORD_MEMSIZE int = 129
@@ -56,9 +308,9 @@ func (arg1 SwigcptrOTPassword) IsPassword() bool {
 	return _swig_wrap_OTPassword_isPassword(arg1)
 }
 
-func _swig_wrap_OTPassword_getPassword_uint8(SwigcptrOTPassword) SwigcptrUint8_t
+func _swig_wrap_OTPassword_getPassword_uint8(SwigcptrOTPassword) string
 
-func (arg1 SwigcptrOTPassword) GetPassword_uint8() Uint8_t {
+func (arg1 SwigcptrOTPassword) GetPassword_uint8() string {
 	return _swig_wrap_OTPassword_getPassword_uint8(arg1)
 }
 
@@ -68,9 +320,9 @@ func (arg1 SwigcptrOTPassword) GetPassword() string {
 	return _swig_wrap_OTPassword_getPassword(arg1)
 }
 
-func _swig_wrap_OTPassword_getPasswordWritable(SwigcptrOTPassword) SwigcptrUint8_t
+func _swig_wrap_OTPassword_getPasswordWritable(SwigcptrOTPassword) string
 
-func (arg1 SwigcptrOTPassword) GetPasswordWritable() Uint8_t {
+func (arg1 SwigcptrOTPassword) GetPasswordWritable() string {
 	return _swig_wrap_OTPassword_getPasswordWritable(arg1)
 }
 
@@ -86,42 +338,32 @@ func (arg1 SwigcptrOTPassword) SetPassword(arg2 string, arg3 int) int {
 	return _swig_wrap_OTPassword_setPassword(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTPassword_setPassword_uint8(SwigcptrOTPassword, uintptr, uintptr) SwigcptrInt32_t
+func _swig_wrap_OTPassword_setPassword_uint8(SwigcptrOTPassword, string, uint) int
 
-func (arg1 SwigcptrOTPassword) SetPassword_uint8(arg2 Uint8_t, arg3 Uint32_t) Int32_t {
-	return _swig_wrap_OTPassword_setPassword_uint8(arg1, arg2.Swigcptr(), arg3.Swigcptr())
+func (arg1 SwigcptrOTPassword) SetPassword_uint8(arg2 string, arg3 uint) int {
+	return _swig_wrap_OTPassword_setPassword_uint8(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTPassword_addChar(SwigcptrOTPassword, uintptr) bool
+func _swig_wrap_OTPassword_addChar(SwigcptrOTPassword, byte) bool
 
-func (arg1 SwigcptrOTPassword) AddChar(arg2 Uint8_t) bool {
-	return _swig_wrap_OTPassword_addChar(arg1, arg2.Swigcptr())
+func (arg1 SwigcptrOTPassword) AddChar(arg2 byte) bool {
+	return _swig_wrap_OTPassword_addChar(arg1, arg2)
 }
 
-func _swig_wrap_OTPassword_randomizePassword__SWIG_0(SwigcptrOTPassword, uintptr) SwigcptrInt32_t
+func _swig_wrap_OTPassword_randomizePassword__SWIG_0(SwigcptrOTPassword, uint) int
 
-func (arg1 SwigcptrOTPassword) RandomizePassword__SWIG_0(arg2 Uint32_t) Int32_t {
-	return _swig_wrap_OTPassword_randomizePassword__SWIG_0(arg1, arg2.Swigcptr())
+func (arg1 SwigcptrOTPassword) RandomizePassword__SWIG_0(arg2 uint) int {
+	return _swig_wrap_OTPassword_randomizePassword__SWIG_0(arg1, arg2)
 }
 
-func _swig_wrap_OTPassword_randomizePassword__SWIG_1(SwigcptrOTPassword) SwigcptrInt32_t
+func _swig_wrap_OTPassword_randomizePassword__SWIG_1(SwigcptrOTPassword) int
 
-func (arg1 SwigcptrOTPassword) RandomizePassword__SWIG_1() Int32_t {
+func (arg1 SwigcptrOTPassword) RandomizePassword__SWIG_1() int {
 	return _swig_wrap_OTPassword_randomizePassword__SWIG_1(arg1)
 }
 
-func _swig_wrap_OTPassword_randomizePassword_uint8(uintptr, uintptr) bool
-
-func OTPasswordRandomizePassword_uint8(arg1 Uint8_t, arg2 Uint32_t) bool {
-	return _swig_wrap_OTPassword_randomizePassword_uint8(arg1.Swigcptr(), arg2.Swigcptr())
-}
-
-func _swig_wrap_OTPassword_randomizePassword__SWIG_2(string, uintptr) bool
-
-func OTPasswordRandomizePassword__SWIG_2(arg1 string, arg2 Uint32_t) bool {
-	return _swig_wrap_OTPassword_randomizePassword__SWIG_2(arg1, arg2.Swigcptr())
-}
-
+func OTPasswordRandomizePassword_uint8(string, uint) bool
+func OTPasswordRandomizePassword__SWIG_2(string, uint) bool
 func OTPasswordRandomizePassword(a ...interface{}) interface{} {
 	argc := len(a)
 	if argc == 1 {
@@ -131,11 +373,11 @@ func OTPasswordRandomizePassword(a ...interface{}) interface{} {
 		if _, ok := a[0].(SwigcptrOTPassword); !ok {
 			goto check_2
 		}
-		return a[0].(SwigcptrOTPassword).RandomizePassword__SWIG_0(a[1].(Uint32_t))
+		return a[0].(SwigcptrOTPassword).RandomizePassword__SWIG_0(a[1].(uint))
 	}
 check_2:
 	if argc == 2 {
-		return OTPasswordRandomizePassword__SWIG_2(a[0].(string), a[1].(Uint32_t))
+		return OTPasswordRandomizePassword__SWIG_2(a[0].(string), a[1].(uint))
 	}
 	panic("No match for overloaded function call")
 }
@@ -152,9 +394,9 @@ func (arg1 SwigcptrOTPassword) GetMemory() uintptr {
 	return _swig_wrap_OTPassword_getMemory(arg1)
 }
 
-func _swig_wrap_OTPassword_getMemory_uint8(SwigcptrOTPassword) SwigcptrUint8_t
+func _swig_wrap_OTPassword_getMemory_uint8(SwigcptrOTPassword) string
 
-func (arg1 SwigcptrOTPassword) GetMemory_uint8() Uint8_t {
+func (arg1 SwigcptrOTPassword) GetMemory_uint8() string {
 	return _swig_wrap_OTPassword_getMemory_uint8(arg1)
 }
 
@@ -164,42 +406,32 @@ func (arg1 SwigcptrOTPassword) GetMemoryWritable() uintptr {
 	return _swig_wrap_OTPassword_getMemoryWritable(arg1)
 }
 
-func _swig_wrap_OTPassword_setMemory(SwigcptrOTPassword, uintptr, uintptr) SwigcptrInt32_t
+func _swig_wrap_OTPassword_setMemory(SwigcptrOTPassword, uintptr, uint) int
 
-func (arg1 SwigcptrOTPassword) SetMemory(arg2 uintptr, arg3 Uint32_t) Int32_t {
-	return _swig_wrap_OTPassword_setMemory(arg1, arg2, arg3.Swigcptr())
+func (arg1 SwigcptrOTPassword) SetMemory(arg2 uintptr, arg3 uint) int {
+	return _swig_wrap_OTPassword_setMemory(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTPassword_addMemory(SwigcptrOTPassword, uintptr, uintptr) SwigcptrInt32_t
+func _swig_wrap_OTPassword_addMemory(SwigcptrOTPassword, uintptr, uint) int
 
-func (arg1 SwigcptrOTPassword) AddMemory(arg2 uintptr, arg3 Uint32_t) Int32_t {
-	return _swig_wrap_OTPassword_addMemory(arg1, arg2, arg3.Swigcptr())
+func (arg1 SwigcptrOTPassword) AddMemory(arg2 uintptr, arg3 uint) int {
+	return _swig_wrap_OTPassword_addMemory(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTPassword_randomizeMemory__SWIG_0(SwigcptrOTPassword, uintptr) SwigcptrInt32_t
+func _swig_wrap_OTPassword_randomizeMemory__SWIG_0(SwigcptrOTPassword, uint) int
 
-func (arg1 SwigcptrOTPassword) RandomizeMemory__SWIG_0(arg2 Uint32_t) Int32_t {
-	return _swig_wrap_OTPassword_randomizeMemory__SWIG_0(arg1, arg2.Swigcptr())
+func (arg1 SwigcptrOTPassword) RandomizeMemory__SWIG_0(arg2 uint) int {
+	return _swig_wrap_OTPassword_randomizeMemory__SWIG_0(arg1, arg2)
 }
 
-func _swig_wrap_OTPassword_randomizeMemory__SWIG_1(SwigcptrOTPassword) SwigcptrInt32_t
+func _swig_wrap_OTPassword_randomizeMemory__SWIG_1(SwigcptrOTPassword) int
 
-func (arg1 SwigcptrOTPassword) RandomizeMemory__SWIG_1() Int32_t {
+func (arg1 SwigcptrOTPassword) RandomizeMemory__SWIG_1() int {
 	return _swig_wrap_OTPassword_randomizeMemory__SWIG_1(arg1)
 }
 
-func _swig_wrap_OTPassword_randomizeMemory_uint8(uintptr, uintptr) bool
-
-func OTPasswordRandomizeMemory_uint8(arg1 Uint8_t, arg2 Uint32_t) bool {
-	return _swig_wrap_OTPassword_randomizeMemory_uint8(arg1.Swigcptr(), arg2.Swigcptr())
-}
-
-func _swig_wrap_OTPassword_randomizeMemory__SWIG_2(uintptr, uintptr) bool
-
-func OTPasswordRandomizeMemory__SWIG_2(arg1 uintptr, arg2 Uint32_t) bool {
-	return _swig_wrap_OTPassword_randomizeMemory__SWIG_2(arg1, arg2.Swigcptr())
-}
-
+func OTPasswordRandomizeMemory_uint8(string, uint) bool
+func OTPasswordRandomizeMemory__SWIG_2(uintptr, uint) bool
 func OTPasswordRandomizeMemory(a ...interface{}) interface{} {
 	argc := len(a)
 	if argc == 1 {
@@ -209,18 +441,18 @@ func OTPasswordRandomizeMemory(a ...interface{}) interface{} {
 		if _, ok := a[0].(SwigcptrOTPassword); !ok {
 			goto check_2
 		}
-		return a[0].(SwigcptrOTPassword).RandomizeMemory__SWIG_0(a[1].(Uint32_t))
+		return a[0].(SwigcptrOTPassword).RandomizeMemory__SWIG_0(a[1].(uint))
 	}
 check_2:
 	if argc == 2 {
-		return OTPasswordRandomizeMemory__SWIG_2(a[0].(uintptr), a[1].(Uint32_t))
+		return OTPasswordRandomizeMemory__SWIG_2(a[0].(uintptr), a[1].(uint))
 	}
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OTPassword_getBlockSize(SwigcptrOTPassword) SwigcptrUint32_t
+func _swig_wrap_OTPassword_getBlockSize(SwigcptrOTPassword) uint
 
-func (arg1 SwigcptrOTPassword) GetBlockSize() Uint32_t {
+func (arg1 SwigcptrOTPassword) GetBlockSize() uint {
 	return _swig_wrap_OTPassword_getBlockSize(arg1)
 }
 
@@ -230,15 +462,15 @@ func (arg1 SwigcptrOTPassword) Compare(arg2 OTPassword) bool {
 	return _swig_wrap_OTPassword_Compare(arg1, arg2.Swigcptr())
 }
 
-func _swig_wrap_OTPassword_getPasswordSize(SwigcptrOTPassword) SwigcptrUint32_t
+func _swig_wrap_OTPassword_getPasswordSize(SwigcptrOTPassword) uint
 
-func (arg1 SwigcptrOTPassword) GetPasswordSize() Uint32_t {
+func (arg1 SwigcptrOTPassword) GetPasswordSize() uint {
 	return _swig_wrap_OTPassword_getPasswordSize(arg1)
 }
 
-func _swig_wrap_OTPassword_getMemorySize(SwigcptrOTPassword) SwigcptrUint32_t
+func _swig_wrap_OTPassword_getMemorySize(SwigcptrOTPassword) uint
 
-func (arg1 SwigcptrOTPassword) GetMemorySize() Uint32_t {
+func (arg1 SwigcptrOTPassword) GetMemorySize() uint {
 	return _swig_wrap_OTPassword_getMemorySize(arg1)
 }
 
@@ -248,16 +480,16 @@ func (arg1 SwigcptrOTPassword) ZeroMemory__SWIG_0() {
 	_swig_wrap_OTPassword_zeroMemory__SWIG_0(arg1)
 }
 
-func _swig_wrap_OTPassword_zeroMemory__SWIG_1(uintptr, uintptr)
+func _swig_wrap_OTPassword_zeroMemory__SWIG_1(string, uint)
 
-func OTPasswordZeroMemory__SWIG_1(arg1 Uint8_t, arg2 Uint32_t) {
-	_swig_wrap_OTPassword_zeroMemory__SWIG_1(arg1.Swigcptr(), arg2.Swigcptr())
+func OTPasswordZeroMemory__SWIG_1(arg1 string, arg2 uint) {
+	_swig_wrap_OTPassword_zeroMemory__SWIG_1(arg1, arg2)
 }
 
-func _swig_wrap_OTPassword_zeroMemory__SWIG_2(uintptr, uintptr)
+func _swig_wrap_OTPassword_zeroMemory__SWIG_2(uintptr, uint)
 
-func OTPasswordZeroMemory__SWIG_2(arg1 uintptr, arg2 Uint32_t) {
-	_swig_wrap_OTPassword_zeroMemory__SWIG_2(arg1, arg2.Swigcptr())
+func OTPasswordZeroMemory__SWIG_2(arg1 uintptr, arg2 uint) {
+	_swig_wrap_OTPassword_zeroMemory__SWIG_2(arg1, arg2)
 }
 
 func OTPasswordZeroMemory(a ...interface{}) {
@@ -267,39 +499,29 @@ func OTPasswordZeroMemory(a ...interface{}) {
 		return
 	}
 	if argc == 2 {
-		if _, ok := a[0].(SwigcptrUint8_t); !ok {
+		if _, ok := a[0].(uintptr); !ok {
 			goto check_2
 		}
-		OTPasswordZeroMemory__SWIG_1(a[0].(Uint8_t), a[1].(Uint32_t))
+		OTPasswordZeroMemory__SWIG_2(a[0].(uintptr), a[1].(uint))
 		return
 	}
 check_2:
 	if argc == 2 {
-		OTPasswordZeroMemory__SWIG_2(a[0].(uintptr), a[1].(Uint32_t))
+		OTPasswordZeroMemory__SWIG_1(a[0].(string), a[1].(uint))
 		return
 	}
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OTPassword_safe_memcpy__SWIG_0(uintptr, uintptr, uintptr, uintptr, bool) uintptr
-
-func OTPasswordSafe_memcpy__SWIG_0(arg1 uintptr, arg2 Uint32_t, arg3 uintptr, arg4 Uint32_t, arg5 bool) uintptr {
-	return _swig_wrap_OTPassword_safe_memcpy__SWIG_0(arg1, arg2.Swigcptr(), arg3, arg4.Swigcptr(), arg5)
-}
-
-func _swig_wrap_OTPassword_safe_memcpy__SWIG_1(uintptr, uintptr, uintptr, uintptr) uintptr
-
-func OTPasswordSafe_memcpy__SWIG_1(arg1 uintptr, arg2 Uint32_t, arg3 uintptr, arg4 Uint32_t) uintptr {
-	return _swig_wrap_OTPassword_safe_memcpy__SWIG_1(arg1, arg2.Swigcptr(), arg3, arg4.Swigcptr())
-}
-
+func OTPasswordSafe_memcpy__SWIG_0(uintptr, uint, uintptr, uint, bool) uintptr
+func OTPasswordSafe_memcpy__SWIG_1(uintptr, uint, uintptr, uint) uintptr
 func OTPasswordSafe_memcpy(a ...interface{}) uintptr {
 	argc := len(a)
 	if argc == 4 {
-		return OTPasswordSafe_memcpy__SWIG_1(a[0].(uintptr), a[1].(Uint32_t), a[2].(uintptr), a[3].(Uint32_t))
+		return OTPasswordSafe_memcpy__SWIG_1(a[0].(uintptr), a[1].(uint), a[2].(uintptr), a[3].(uint))
 	}
 	if argc == 5 {
-		return OTPasswordSafe_memcpy__SWIG_0(a[0].(uintptr), a[1].(Uint32_t), a[2].(uintptr), a[3].(Uint32_t), a[4].(bool))
+		return OTPasswordSafe_memcpy__SWIG_0(a[0].(uintptr), a[1].(uint), a[2].(uintptr), a[3].(uint), a[4].(bool))
 	}
 	panic("No match for overloaded function call")
 }
@@ -310,10 +532,10 @@ func OTPasswordCreateTextBuffer() OTPassword {
 	return _swig_wrap_OTPassword_CreateTextBuffer()
 }
 
-func _swig_wrap_OTPassword_SetSize(SwigcptrOTPassword, uintptr) bool
+func _swig_wrap_OTPassword_SetSize(SwigcptrOTPassword, uint) bool
 
-func (arg1 SwigcptrOTPassword) SetSize(arg2 Uint32_t) bool {
-	return _swig_wrap_OTPassword_SetSize(arg1, arg2.Swigcptr())
+func (arg1 SwigcptrOTPassword) SetSize(arg2 uint) bool {
+	return _swig_wrap_OTPassword_SetSize(arg1, arg2)
 }
 
 func _swig_wrap_new_OTPassword__SWIG_0(OTPasswordBlockSize) SwigcptrOTPassword
@@ -334,40 +556,40 @@ func NewOTPassword__SWIG_2(arg1 OTPassword) OTPassword {
 	return _swig_wrap_new_OTPassword__SWIG_2(arg1.Swigcptr())
 }
 
-func _swig_wrap_new_OTPassword__SWIG_3(string, uintptr, OTPasswordBlockSize) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_3(string, uint, OTPasswordBlockSize) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_3(arg1 string, arg2 Uint32_t, arg3 OTPasswordBlockSize) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_3(arg1, arg2.Swigcptr(), arg3)
+func NewOTPassword__SWIG_3(arg1 string, arg2 uint, arg3 OTPasswordBlockSize) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_3(arg1, arg2, arg3)
 }
 
-func _swig_wrap_new_OTPassword__SWIG_4(string, uintptr) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_4(string, uint) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_4(arg1 string, arg2 Uint32_t) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_4(arg1, arg2.Swigcptr())
+func NewOTPassword__SWIG_4(arg1 string, arg2 uint) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_4(arg1, arg2)
 }
 
-func _swig_wrap_new_OTPassword__SWIG_5(uintptr, uintptr, OTPasswordBlockSize) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_5(string, uint, OTPasswordBlockSize) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_5(arg1 Uint8_t, arg2 Uint32_t, arg3 OTPasswordBlockSize) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_5(arg1.Swigcptr(), arg2.Swigcptr(), arg3)
+func NewOTPassword__SWIG_5(arg1 string, arg2 uint, arg3 OTPasswordBlockSize) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_5(arg1, arg2, arg3)
 }
 
-func _swig_wrap_new_OTPassword__SWIG_6(uintptr, uintptr) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_6(string, uint) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_6(arg1 Uint8_t, arg2 Uint32_t) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_6(arg1.Swigcptr(), arg2.Swigcptr())
+func NewOTPassword__SWIG_6(arg1 string, arg2 uint) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_6(arg1, arg2)
 }
 
-func _swig_wrap_new_OTPassword__SWIG_7(uintptr, uintptr, OTPasswordBlockSize) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_7(uintptr, uint, OTPasswordBlockSize) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_7(arg1 uintptr, arg2 Uint32_t, arg3 OTPasswordBlockSize) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_7(arg1, arg2.Swigcptr(), arg3)
+func NewOTPassword__SWIG_7(arg1 uintptr, arg2 uint, arg3 OTPasswordBlockSize) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_7(arg1, arg2, arg3)
 }
 
-func _swig_wrap_new_OTPassword__SWIG_8(uintptr, uintptr) SwigcptrOTPassword
+func _swig_wrap_new_OTPassword__SWIG_8(uintptr, uint) SwigcptrOTPassword
 
-func NewOTPassword__SWIG_8(arg1 uintptr, arg2 Uint32_t) OTPassword {
-	return _swig_wrap_new_OTPassword__SWIG_8(arg1, arg2.Swigcptr())
+func NewOTPassword__SWIG_8(arg1 uintptr, arg2 uint) OTPassword {
+	return _swig_wrap_new_OTPassword__SWIG_8(arg1, arg2)
 }
 
 func NewOTPassword(a ...interface{}) OTPassword {
@@ -386,38 +608,30 @@ check_2:
 		return NewOTPassword__SWIG_2(a[0].(OTPassword))
 	}
 	if argc == 2 {
-		if _, ok := a[0].(SwigcptrUint8_t); !ok {
+		if _, ok := a[0].(uintptr); !ok {
 			goto check_4
 		}
-		return NewOTPassword__SWIG_6(a[0].(Uint8_t), a[1].(Uint32_t))
+		return NewOTPassword__SWIG_8(a[0].(uintptr), a[1].(uint))
 	}
 check_4:
 	if argc == 2 {
-		if _, ok := a[0].(uintptr); !ok {
-			goto check_5
-		}
-		return NewOTPassword__SWIG_8(a[0].(uintptr), a[1].(Uint32_t))
+		return NewOTPassword__SWIG_6(a[0].(string), a[1].(uint))
 	}
-check_5:
 	if argc == 2 {
-		return NewOTPassword__SWIG_4(a[0].(string), a[1].(Uint32_t))
+		return NewOTPassword__SWIG_4(a[0].(string), a[1].(uint))
 	}
 	if argc == 3 {
 		if _, ok := a[0].(uintptr); !ok {
 			goto check_7
 		}
-		return NewOTPassword__SWIG_7(a[0].(uintptr), a[1].(Uint32_t), a[2].(OTPasswordBlockSize))
+		return NewOTPassword__SWIG_7(a[0].(uintptr), a[1].(uint), a[2].(OTPasswordBlockSize))
 	}
 check_7:
 	if argc == 3 {
-		if _, ok := a[0].(SwigcptrUint8_t); !ok {
-			goto check_8
-		}
-		return NewOTPassword__SWIG_5(a[0].(Uint8_t), a[1].(Uint32_t), a[2].(OTPasswordBlockSize))
+		return NewOTPassword__SWIG_3(a[0].(string), a[1].(uint), a[2].(OTPasswordBlockSize))
 	}
-check_8:
 	if argc == 3 {
-		return NewOTPassword__SWIG_3(a[0].(string), a[1].(Uint32_t), a[2].(OTPasswordBlockSize))
+		return NewOTPassword__SWIG_5(a[0].(string), a[1].(uint), a[2].(OTPasswordBlockSize))
 	}
 	panic("No match for overloaded function call")
 }
@@ -433,24 +647,24 @@ type OTPassword interface {
 	SwigIsOTPassword()
 	GetM_theBlockSize() OTPasswordBlockSize
 	IsPassword() bool
-	GetPassword_uint8() Uint8_t
+	GetPassword_uint8() string
 	GetPassword() string
-	GetPasswordWritable() Uint8_t
+	GetPasswordWritable() string
 	GetPasswordWritable_char() string
 	SetPassword(arg2 string, arg3 int) int
-	SetPassword_uint8(arg2 Uint8_t, arg3 Uint32_t) Int32_t
-	AddChar(arg2 Uint8_t) bool
+	SetPassword_uint8(arg2 string, arg3 uint) int
+	AddChar(arg2 byte) bool
 	IsMemory() bool
 	GetMemory() uintptr
-	GetMemory_uint8() Uint8_t
+	GetMemory_uint8() string
 	GetMemoryWritable() uintptr
-	SetMemory(arg2 uintptr, arg3 Uint32_t) Int32_t
-	AddMemory(arg2 uintptr, arg3 Uint32_t) Int32_t
-	GetBlockSize() Uint32_t
+	SetMemory(arg2 uintptr, arg3 uint) int
+	AddMemory(arg2 uintptr, arg3 uint) int
+	GetBlockSize() uint
 	Compare(arg2 OTPassword) bool
-	GetPasswordSize() Uint32_t
-	GetMemorySize() Uint32_t
-	SetSize(arg2 Uint32_t) bool
+	GetPasswordSize() uint
+	GetMemorySize() uint
+	SetSize(arg2 uint) bool
 }
 
 type _swig_DirectorOTCallback struct {
@@ -663,494 +877,611 @@ type OTCaller interface {
 	CallTwo()
 }
 
-type SwigcptrOTAPI_Basic uintptr
+type SwigcptrWrapTimeT uintptr
 
-func (p SwigcptrOTAPI_Basic) Swigcptr() uintptr {
+func (p SwigcptrWrapTimeT) Swigcptr() uintptr {
 	return (uintptr)(p)
 }
 
-func (p SwigcptrOTAPI_Basic) SwigIsOTAPI_Basic() {
+func (p SwigcptrWrapTimeT) SwigIsWrapTimeT() {
 }
 
-func _swig_wrap_new_OTAPI_Basic() SwigcptrOTAPI_Basic
+func _swig_wrap_new_WrapTimeT() SwigcptrWrapTimeT
 
-func NewOTAPI_Basic() OTAPI_Basic {
-	return _swig_wrap_new_OTAPI_Basic()
+func NewWrapTimeT() WrapTimeT {
+	return _swig_wrap_new_WrapTimeT()
 }
 
-func _swig_wrap_delete_OTAPI_Basic(uintptr)
+func _swig_wrap_WrapTimeT_getTime(SwigcptrWrapTimeT) int64
 
-func DeleteOTAPI_Basic(arg1 OTAPI_Basic) {
-	_swig_wrap_delete_OTAPI_Basic(arg1.Swigcptr())
+func (arg1 SwigcptrWrapTimeT) GetTime() int64 {
+	return _swig_wrap_WrapTimeT_getTime(arg1)
 }
 
-func OTAPI_BasicAppStartup() bool
-func OTAPI_BasicAppShutdown() bool
-func _swig_wrap_OTAPI_Basic_SetAppBinaryFolder(string)
+func _swig_wrap_WrapTimeT_setTime(SwigcptrWrapTimeT, int64)
 
-func OTAPI_BasicSetAppBinaryFolder(arg1 string) {
-	_swig_wrap_OTAPI_Basic_SetAppBinaryFolder(arg1)
+func (arg1 SwigcptrWrapTimeT) SetTime(arg2 int64) {
+	_swig_wrap_WrapTimeT_setTime(arg1, arg2)
 }
 
-func _swig_wrap_OTAPI_Basic_SetHomeFolder(string)
+func _swig_wrap_delete_WrapTimeT(uintptr)
 
-func OTAPI_BasicSetHomeFolder(arg1 string) {
-	_swig_wrap_OTAPI_Basic_SetHomeFolder(arg1)
+func DeleteWrapTimeT(arg1 WrapTimeT) {
+	_swig_wrap_delete_WrapTimeT(arg1.Swigcptr())
 }
 
-func OTAPI_BasicInit() bool
-func OTAPI_BasicSetWallet(string) bool
-func OTAPI_BasicWalletExists() bool
-func OTAPI_BasicLoadWallet() bool
-func OTAPI_BasicSwitchWallet() bool
-func _swig_wrap_OTAPI_Basic_Output(int64, string)
-
-func OTAPI_BasicOutput(arg1 int64, arg2 string) {
-	_swig_wrap_OTAPI_Basic_Output(arg1, arg2)
-}
-
-func OTAPI_BasicGetTime() string
-func OTAPI_BasicNumList_Add(string, string) string
-func OTAPI_BasicNumList_Remove(string, string) string
-func OTAPI_BasicNumList_VerifyQuery(string, string) bool
-func OTAPI_BasicNumList_VerifyAll(string, string) bool
-func OTAPI_BasicNumList_Count(string) int64
-func OTAPI_BasicEncode(string, bool) string
-func OTAPI_BasicDecode(string, bool) string
-func OTAPI_BasicEncrypt(string, string) string
-func OTAPI_BasicDecrypt(string, string) string
-func OTAPI_BasicCreateSymmetricKey() string
-func OTAPI_BasicSymmetricEncrypt(string, string) string
-func OTAPI_BasicSymmetricDecrypt(string, string) string
-func OTAPI_BasicSignContract(string, string) string
-func OTAPI_BasicFlatSign(string, string, string) string
-func OTAPI_BasicAddSignature(string, string) string
-func OTAPI_BasicVerifySignature(string, string) bool
-func OTAPI_BasicVerifyAndRetrieveXMLContents(string, string) string
-func OTAPI_BasicGetMemlogSize() int64
-func OTAPI_BasicGetMemlogAtIndex(int64) string
-func OTAPI_BasicPeekMemlogFront() string
-func OTAPI_BasicPeekMemlogBack() string
-func OTAPI_BasicPopMemlogFront() bool
-func OTAPI_BasicPopMemlogBack() bool
-func OTAPI_BasicCreateNym(int64, string, string) string
-func OTAPI_BasicGetNym_ActiveCronItemIDs(string, string) string
-func OTAPI_BasicGetActiveCronItem(string, string) string
-func OTAPI_BasicGetNym_SourceForID(string) string
-func OTAPI_BasicGetNym_AltSourceLocation(string) string
-func OTAPI_BasicGetNym_CredentialCount(string) int64
-func OTAPI_BasicGetNym_CredentialID(string, int64) string
-func OTAPI_BasicGetNym_CredentialContents(string, string) string
-func OTAPI_BasicGetNym_RevokedCredCount(string) int64
-func OTAPI_BasicGetNym_RevokedCredID(string, int64) string
-func OTAPI_BasicGetNym_RevokedCredContents(string, string) string
-func OTAPI_BasicGetNym_SubcredentialCount(string, string) int64
-func OTAPI_BasicGetNym_SubCredentialID(string, string, int64) string
-func OTAPI_BasicGetNym_SubCredentialContents(string, string, string) string
-func OTAPI_BasicAddSubcredential(string, string, int64) string
-func OTAPI_BasicRevokeSubcredential(string, string, string) bool
-func OTAPI_BasicCreateServerContract(string, string) string
-func OTAPI_BasicCreateAssetContract(string, string) string
-func OTAPI_BasicCalculateAssetContractID(string) string
-func OTAPI_BasicCalculateServerContractID(string) string
-func OTAPI_BasicAddServerContract(string) int64
-func OTAPI_BasicAddAssetContract(string) int64
-func OTAPI_BasicGetServerCount() int64
-func OTAPI_BasicGetAssetTypeCount() int64
-func OTAPI_BasicGetAccountCount() int64
-func OTAPI_BasicGetNymCount() int64
-func OTAPI_BasicGetServer_ID(int64) string
-func OTAPI_BasicGetServer_Name(string) string
-func OTAPI_BasicGetServer_Contract(string) string
-func OTAPI_BasicFormatAmount(string, string) string
-func OTAPI_BasicStringToAmount(string, string) string
-func OTAPI_BasicGetAssetType_ID(int64) string
-func OTAPI_BasicGetAssetType_Name(string) string
-func OTAPI_BasicGetAssetType_TLA(string) string
-func OTAPI_BasicGetAssetType_Contract(string) string
-func OTAPI_BasicGetAccountWallet_ID(int64) string
-func OTAPI_BasicGetAccountWallet_Name(string) string
-func OTAPI_BasicGetAccountWallet_Balance(string) string
-func OTAPI_BasicGetAccountWallet_Type(string) string
-func OTAPI_BasicGetAccountWallet_AssetTypeID(string) string
-func OTAPI_BasicGetAccountWallet_ServerID(string) string
-func OTAPI_BasicGetAccountWallet_NymID(string) string
-func OTAPI_BasicGetAccountWallet_InboxHash(string) string
-func OTAPI_BasicGetAccountWallet_OutboxHash(string) string
-func OTAPI_BasicVerifyAccountReceipt(string, string, string) bool
-func OTAPI_BasicGetNym_TransactionNumCount(string, string) int64
-func OTAPI_BasicGetNym_ID(int64) string
-func OTAPI_BasicGetNym_Name(string) string
-func OTAPI_BasicGetNym_Stats(string) string
-func OTAPI_BasicGetNym_NymboxHash(string, string) string
-func OTAPI_BasicGetNym_RecentHash(string, string) string
-func OTAPI_BasicGetNym_InboxHash(string, string) string
-func OTAPI_BasicGetNym_OutboxHash(string, string) string
-func OTAPI_BasicIsNym_RegisteredAtServer(string, string) bool
-func OTAPI_BasicGetNym_MailCount(string) int64
-func OTAPI_BasicGetNym_MailContentsByIndex(string, int64) string
-func OTAPI_BasicGetNym_MailSenderIDByIndex(string, int64) string
-func OTAPI_BasicGetNym_MailServerIDByIndex(string, int64) string
-func OTAPI_BasicNym_RemoveMailByIndex(string, int64) bool
-func OTAPI_BasicNym_VerifyMailByIndex(string, int64) bool
-func OTAPI_BasicGetNym_OutmailCount(string) int64
-func OTAPI_BasicGetNym_OutmailContentsByIndex(string, int64) string
-func OTAPI_BasicGetNym_OutmailRecipientIDByIndex(string, int64) string
-func OTAPI_BasicGetNym_OutmailServerIDByIndex(string, int64) string
-func OTAPI_BasicNym_RemoveOutmailByIndex(string, int64) bool
-func OTAPI_BasicNym_VerifyOutmailByIndex(string, int64) bool
-func OTAPI_BasicGetNym_OutpaymentsCount(string) int64
-func OTAPI_BasicGetNym_OutpaymentsContentsByIndex(string, int64) string
-func OTAPI_BasicGetNym_OutpaymentsRecipientIDByIndex(string, int64) string
-func OTAPI_BasicGetNym_OutpaymentsServerIDByIndex(string, int64) string
-func OTAPI_BasicNym_RemoveOutpaymentsByIndex(string, int64) bool
-func OTAPI_BasicNym_VerifyOutpaymentsByIndex(string, int64) bool
-func OTAPI_BasicWallet_CanRemoveServer(string) bool
-func OTAPI_BasicWallet_RemoveServer(string) bool
-func OTAPI_BasicWallet_CanRemoveAssetType(string) bool
-func OTAPI_BasicWallet_RemoveAssetType(string) bool
-func OTAPI_BasicWallet_CanRemoveNym(string) bool
-func OTAPI_BasicWallet_RemoveNym(string) bool
-func OTAPI_BasicWallet_CanRemoveAccount(string) bool
-func OTAPI_BasicWallet_ChangePassphrase() bool
-func OTAPI_BasicWallet_ExportNym(string) string
-func OTAPI_BasicWallet_ImportNym(string) string
-func OTAPI_BasicWallet_ImportCert(string, string) string
-func OTAPI_BasicWallet_ExportCert(string) string
-func OTAPI_BasicWallet_GetNymIDFromPartial(string) string
-func OTAPI_BasicWallet_GetServerIDFromPartial(string) string
-func OTAPI_BasicWallet_GetAssetIDFromPartial(string) string
-func OTAPI_BasicWallet_GetAccountIDFromPartial(string) string
-func OTAPI_BasicSetNym_Name(string, string, string) bool
-func OTAPI_BasicSetAccountWallet_Name(string, string, string) bool
-func OTAPI_BasicSetAssetType_Name(string, string) bool
-func OTAPI_BasicSetServer_Name(string, string) bool
-func OTAPI_BasicWriteCheque(string, string, string, string, string, string, string, string) string
-func OTAPI_BasicDiscardCheque(string, string, string, string) bool
-func OTAPI_BasicProposePaymentPlan(string, string, string, string, string, string, string, string, string, string, string, string, string, string, int64) string
-func OTAPI_BasicEasyProposePlan(string, string, string, string, string, string, string, string, string, string) string
-func OTAPI_BasicConfirmPaymentPlan(string, string, string, string, string) string
-func OTAPI_BasicCreate_SmartContract(string, string, string) string
-func OTAPI_BasicSmartContract_AddBylaw(string, string, string) string
-func OTAPI_BasicSmartContract_AddClause(string, string, string, string, string) string
-func OTAPI_BasicSmartContract_AddVariable(string, string, string, string, string, string, string) string
-func OTAPI_BasicSmartContract_AddCallback(string, string, string, string, string) string
-func OTAPI_BasicSmartContract_AddHook(string, string, string, string, string) string
-func OTAPI_BasicSmartContract_AddParty(string, string, string, string) string
-func OTAPI_BasicSmartContract_AddAccount(string, string, string, string, string) string
-func OTAPI_BasicSmartContract_CountNumsNeeded(string, string) int64
-func OTAPI_BasicSmartContract_ConfirmAccount(string, string, string, string, string, string) string
-func OTAPI_BasicSmartContract_ConfirmParty(string, string, string) string
-func OTAPI_BasicSmart_AreAllPartiesConfirmed(string) bool
-func OTAPI_BasicSmart_IsPartyConfirmed(string, string) bool
-func OTAPI_BasicSmart_GetBylawCount(string) int64
-func OTAPI_BasicSmart_GetBylawByIndex(string, int64) string
-func OTAPI_BasicBylaw_GetLanguage(string, string) string
-func OTAPI_BasicBylaw_GetClauseCount(string, string) int64
-func OTAPI_BasicClause_GetNameByIndex(string, string, int64) string
-func OTAPI_BasicClause_GetContents(string, string, string) string
-func OTAPI_BasicBylaw_GetVariableCount(string, string) int64
-func OTAPI_BasicVariable_GetNameByIndex(string, string, int64) string
-func OTAPI_BasicVariable_GetType(string, string, string) string
-func OTAPI_BasicVariable_GetAccess(string, string, string) string
-func OTAPI_BasicVariable_GetContents(string, string, string) string
-func OTAPI_BasicBylaw_GetHookCount(string, string) int64
-func OTAPI_BasicHook_GetNameByIndex(string, string, int64) string
-func OTAPI_BasicHook_GetClauseCount(string, string, string) int64
-func OTAPI_BasicHook_GetClauseAtIndex(string, string, string, int64) string
-func OTAPI_BasicBylaw_GetCallbackCount(string, string) int64
-func OTAPI_BasicCallback_GetNameByIndex(string, string, int64) string
-func OTAPI_BasicCallback_GetClause(string, string, string) string
-func OTAPI_BasicSmart_GetPartyCount(string) int64
-func OTAPI_BasicSmart_GetPartyByIndex(string, int64) string
-func OTAPI_BasicParty_GetID(string, string) string
-func OTAPI_BasicParty_GetAcctCount(string, string) int64
-func OTAPI_BasicParty_GetAcctNameByIndex(string, string, int64) string
-func OTAPI_BasicParty_GetAcctID(string, string, string) string
-func OTAPI_BasicParty_GetAcctAssetID(string, string, string) string
-func OTAPI_BasicParty_GetAcctAgentName(string, string, string) string
-func OTAPI_BasicParty_GetAgentCount(string, string) int64
-func OTAPI_BasicParty_GetAgentNameByIndex(string, string, int64) string
-func OTAPI_BasicParty_GetAgentID(string, string, string) string
-func OTAPI_BasicActivateSmartContract(string, string, string) int64
-func OTAPI_BasicTriggerClause(string, string, string, string, string) int64
-func OTAPI_BasicMsg_HarvestTransactionNumbers(string, string, bool, bool, bool, bool, bool) bool
-func OTAPI_BasicLoadUserPubkey_Encryption(string) string
-func OTAPI_BasicLoadUserPubkey_Signing(string) string
-func OTAPI_BasicLoadPubkey_Encryption(string) string
-func OTAPI_BasicLoadPubkey_Signing(string) string
-func OTAPI_BasicVerifyUserPrivateKey(string) bool
-func OTAPI_BasicLoadPurse(string, string, string) string
-func OTAPI_BasicLoadMint(string, string) string
-func OTAPI_BasicLoadAssetContract(string) string
-func OTAPI_BasicLoadServerContract(string) string
-func OTAPI_BasicMint_IsStillGood(string, string) bool
-func OTAPI_BasicIsBasketCurrency(string) bool
-func OTAPI_BasicBasket_GetMemberCount(string) int64
-func OTAPI_BasicBasket_GetMemberType(string, int64) string
-func OTAPI_BasicBasket_GetMinimumTransferAmount(string) string
-func OTAPI_BasicBasket_GetMemberMinimumTransferAmount(string, int64) string
-func OTAPI_BasicLoadAssetAccount(string, string, string) string
-func OTAPI_BasicLoadInbox(string, string, string) string
-func OTAPI_BasicLoadOutbox(string, string, string) string
-func OTAPI_BasicLoadInboxNoVerify(string, string, string) string
-func OTAPI_BasicLoadOutboxNoVerify(string, string, string) string
-func OTAPI_BasicLoadPaymentInbox(string, string) string
-func OTAPI_BasicLoadPaymentInboxNoVerify(string, string) string
-func OTAPI_BasicLoadRecordBox(string, string, string) string
-func OTAPI_BasicLoadRecordBoxNoVerify(string, string, string) string
-func OTAPI_BasicClearRecord(string, string, string, int64, bool) bool
-func OTAPI_BasicLoadExpiredBox(string, string) string
-func OTAPI_BasicLoadExpiredBoxNoVerify(string, string) string
-func OTAPI_BasicClearExpired(string, string, int64, bool) bool
-func OTAPI_BasicLedger_GetCount(string, string, string, string) int64
-func OTAPI_BasicLedger_CreateResponse(string, string, string, string) string
-func OTAPI_BasicLedger_GetTransactionByIndex(string, string, string, string, int64) string
-func OTAPI_BasicLedger_GetTransactionByID(string, string, string, string, string) string
-func OTAPI_BasicLedger_GetTransactionIDByIndex(string, string, string, string, int64) string
-func OTAPI_BasicLedger_AddTransaction(string, string, string, string, string) string
-func OTAPI_BasicTransaction_CreateResponse(string, string, string, string, string, bool) string
-func OTAPI_BasicLedger_FinalizeResponse(string, string, string, string) string
-func OTAPI_BasicLedger_GetInstrument(string, string, string, string, int64) string
-func OTAPI_BasicRecordPayment(string, string, bool, int64, bool) bool
-func OTAPI_BasicTransaction_GetType(string, string, string, string) string
-func OTAPI_BasicReplyNotice_GetRequestNum(string, string, string) string
-func OTAPI_BasicTransaction_GetVoucher(string, string, string, string) string
-func OTAPI_BasicTransaction_GetSuccess(string, string, string, string) int64
-func OTAPI_BasicTransaction_IsCanceled(string, string, string, string) int64
-func OTAPI_BasicTransaction_GetBalanceAgreementSuccess(string, string, string, string) int64
-func OTAPI_BasicTransaction_GetDateSigned(string, string, string, string) string
-func OTAPI_BasicTransaction_GetAmount(string, string, string, string) string
-func OTAPI_BasicPending_GetNote(string, string, string, string) string
-func OTAPI_BasicTransaction_GetSenderUserID(string, string, string, string) string
-func OTAPI_BasicTransaction_GetSenderAcctID(string, string, string, string) string
-func OTAPI_BasicTransaction_GetRecipientUserID(string, string, string, string) string
-func OTAPI_BasicTransaction_GetRecipientAcctID(string, string, string, string) string
-func OTAPI_BasicTransaction_GetDisplayReferenceToNum(string, string, string, string) string
-func OTAPI_BasicSavePurse(string, string, string, string) bool
-func OTAPI_BasicCreatePurse(string, string, string, string) string
-func OTAPI_BasicCreatePurse_Passphrase(string, string, string) string
-func OTAPI_BasicPurse_GetTotalValue(string, string, string) string
-func OTAPI_BasicPurse_Count(string, string, string) int64
-func OTAPI_BasicPurse_HasPassword(string, string) bool
-func OTAPI_BasicPurse_Peek(string, string, string, string) string
-func OTAPI_BasicPurse_Pop(string, string, string, string) string
-func OTAPI_BasicPurse_Push(string, string, string, string, string, string) string
-func OTAPI_BasicPurse_Empty(string, string, string, string) string
-func OTAPI_BasicWallet_ImportPurse(string, string, string, string) bool
-func OTAPI_BasicExchangePurse(string, string, string, string) int64
-func OTAPI_BasicToken_ChangeOwner(string, string, string, string, string, string) string
-func OTAPI_BasicToken_GetID(string, string, string) string
-func OTAPI_BasicToken_GetDenomination(string, string, string) string
-func OTAPI_BasicToken_GetSeries(string, string, string) int64
-func OTAPI_BasicToken_GetValidFrom(string, string, string) string
-func OTAPI_BasicToken_GetValidTo(string, string, string) string
-func OTAPI_BasicToken_GetAssetID(string) string
-func OTAPI_BasicToken_GetServerID(string) string
-func OTAPI_BasicInstrmnt_GetAmount(string) string
-func OTAPI_BasicInstrmnt_GetTransNum(string) string
-func OTAPI_BasicInstrmnt_GetValidFrom(string) string
-func OTAPI_BasicInstrmnt_GetValidTo(string) string
-func OTAPI_BasicInstrmnt_GetMemo(string) string
-func OTAPI_BasicInstrmnt_GetType(string) string
-func OTAPI_BasicInstrmnt_GetServerID(string) string
-func OTAPI_BasicInstrmnt_GetAssetID(string) string
-func OTAPI_BasicInstrmnt_GetSenderUserID(string) string
-func OTAPI_BasicInstrmnt_GetSenderAcctID(string) string
-func OTAPI_BasicInstrmnt_GetRemitterUserID(string) string
-func OTAPI_BasicInstrmnt_GetRemitterAcctID(string) string
-func OTAPI_BasicInstrmnt_GetRecipientUserID(string) string
-func OTAPI_BasicInstrmnt_GetRecipientAcctID(string) string
-func OTAPI_BasicCheckServerID(string, string) int64
-func OTAPI_BasicCreateUserAccount(string, string) int64
-func OTAPI_BasicDeleteUserAccount(string, string) int64
-func OTAPI_BasicDeleteAssetAccount(string, string, string) int64
-func OTAPI_BasicUsageCredits(string, string, string, string) int64
-func OTAPI_BasicMessage_GetUsageCredits(string) string
-func OTAPI_BasicCheckUser(string, string, string) int64
-func OTAPI_BasicSendUserMessage(string, string, string, string, string) int64
-func OTAPI_BasicSendUserInstrument(string, string, string, string, string, string) int64
-func OTAPI_BasicGetRequest(string, string) int64
-func OTAPI_BasicGetTransactionNumber(string, string) int64
-func OTAPI_BasicIssueAssetType(string, string, string) int64
-func OTAPI_BasicGetContract(string, string, string) int64
-func OTAPI_BasicGetMint(string, string, string) int64
-func OTAPI_BasicCreateAssetAccount(string, string, string) int64
-func OTAPI_BasicGetAccount(string, string, string) int64
-func OTAPI_BasicGetAccountFiles(string, string, string) int64
-func OTAPI_BasicGenerateBasketCreation(string, string) string
-func OTAPI_BasicAddBasketCreationItem(string, string, string, string) string
-func OTAPI_BasicIssueBasket(string, string, string) int64
-func OTAPI_BasicGenerateBasketExchange(string, string, string, string, int64) string
-func OTAPI_BasicAddBasketExchangeItem(string, string, string, string, string) string
-func OTAPI_BasicExchangeBasket(string, string, string, string, bool) int64
-func OTAPI_BasicNotarizeWithdrawal(string, string, string, string) int64
-func OTAPI_BasicNotarizeDeposit(string, string, string, string) int64
-func OTAPI_BasicNotarizeTransfer(string, string, string, string, string, string) int64
-func OTAPI_BasicGetInbox(string, string, string) int64
-func OTAPI_BasicGetOutbox(string, string, string) int64
-func OTAPI_BasicGetNymbox(string, string) int64
-func OTAPI_BasicLoadNymbox(string, string) string
-func OTAPI_BasicLoadNymboxNoVerify(string, string) string
-func OTAPI_BasicNymbox_GetReplyNotice(string, string, string) string
-func OTAPI_BasicHaveAlreadySeenReply(string, string, string) bool
-func OTAPI_BasicGetBoxReceipt(string, string, string, int64, string) int64
-func OTAPI_BasicDoesBoxReceiptExist(string, string, string, int64, string) bool
-func OTAPI_BasicProcessInbox(string, string, string, string) int64
-func OTAPI_BasicProcessNymbox(string, string) int64
-func OTAPI_BasicWithdrawVoucher(string, string, string, string, string, string) int64
-func OTAPI_BasicPayDividend(string, string, string, string, string, string) int64
-func OTAPI_BasicDepositCheque(string, string, string, string) int64
-func OTAPI_BasicDepositPaymentPlan(string, string, string) int64
-func OTAPI_BasicIssueMarketOffer(string, string, string, string, string, string, bool, string, string, string) int64
-func OTAPI_BasicGetMarketList(string, string) int64
-func OTAPI_BasicGetMarketOffers(string, string, string, string) int64
-func OTAPI_BasicGetMarketRecentTrades(string, string, string) int64
-func OTAPI_BasicGetNym_MarketOffers(string, string) int64
-func OTAPI_BasicKillMarketOffer(string, string, string, string) int64
-func OTAPI_BasicKillPaymentPlan(string, string, string, string) int64
-func OTAPI_BasicPopMessageBuffer(string, string, string) string
-func _swig_wrap_OTAPI_Basic_FlushMessageBuffer()
-
-func OTAPI_BasicFlushMessageBuffer() {
-	_swig_wrap_OTAPI_Basic_FlushMessageBuffer()
-}
-
-func OTAPI_BasicGetSentMessage(string, string, string) string
-func OTAPI_BasicRemoveSentMessage(string, string, string) bool
-func _swig_wrap_OTAPI_Basic_FlushSentMessages(bool, string, string, string)
-
-func OTAPI_BasicFlushSentMessages(arg1 bool, arg2 string, arg3 string, arg4 string) {
-	_swig_wrap_OTAPI_Basic_FlushSentMessages(arg1, arg2, arg3, arg4)
-}
-
-func _swig_wrap_OTAPI_Basic_Sleep(string)
-
-func OTAPI_BasicSleep(arg1 string) {
-	_swig_wrap_OTAPI_Basic_Sleep(arg1)
-}
-
-func OTAPI_BasicResyncNymWithServer(string, string, string) bool
-func OTAPI_BasicMessage_GetCommand(string) string
-func OTAPI_BasicMessage_GetSuccess(string) int64
-func OTAPI_BasicQueryAssetTypes(string, string, string) int64
-func OTAPI_BasicMessage_GetPayload(string) string
-func OTAPI_BasicMessage_GetDepth(string) int64
-func OTAPI_BasicMessage_GetTransactionSuccess(string, string, string, string) int64
-func OTAPI_BasicMessage_IsTransactionCanceled(string, string, string, string) int64
-func OTAPI_BasicMessage_GetBalanceAgreementSuccess(string, string, string, string) int64
-func OTAPI_BasicMessage_GetLedger(string) string
-func OTAPI_BasicMessage_GetNewAssetTypeID(string) string
-func OTAPI_BasicMessage_GetNewIssuerAcctID(string) string
-func OTAPI_BasicMessage_GetNewAcctID(string) string
-func OTAPI_BasicMessage_GetNymboxHash(string) string
-func OTAPI_BasicConnectServer(string, string, string, string, string) bool
-func OTAPI_BasicProcessSockets() bool
-type OTAPI_Basic interface {
+type WrapTimeT interface {
 	Swigcptr() uintptr
-	SwigIsOTAPI_Basic()
+	SwigIsWrapTimeT()
+	GetTime() int64
+	SetTime(arg2 int64)
 }
 
-type SwigcptrOTMadeEasy uintptr
+type SwigcptrOTAPI_Wrap uintptr
 
-func (p SwigcptrOTMadeEasy) Swigcptr() uintptr {
+func (p SwigcptrOTAPI_Wrap) Swigcptr() uintptr {
 	return (uintptr)(p)
 }
 
-func (p SwigcptrOTMadeEasy) SwigIsOTMadeEasy() {
+func (p SwigcptrOTAPI_Wrap) SwigIsOTAPI_Wrap() {
 }
 
-func _swig_wrap_new_OTMadeEasy() SwigcptrOTMadeEasy
+func _swig_wrap_OTAPI_Wrap_SetExecutor(uintptr) SwigcptrOTAPI_Exec
 
-func NewOTMadeEasy() OTMadeEasy {
-	return _swig_wrap_new_OTMadeEasy()
+func OTAPI_WrapSetExecutor(arg1 OTAPI_Exec) OTAPI_Exec {
+	return _swig_wrap_OTAPI_Wrap_SetExecutor(arg1.Swigcptr())
 }
 
-func _swig_wrap_delete_OTMadeEasy(uintptr)
+func _swig_wrap_OTAPI_Wrap_Exec() SwigcptrOTAPI_Exec
 
-func DeleteOTMadeEasy(arg1 OTMadeEasy) {
-	_swig_wrap_delete_OTMadeEasy(arg1.Swigcptr())
+func OTAPI_WrapExec() OTAPI_Exec {
+	return _swig_wrap_OTAPI_Wrap_Exec()
 }
 
-func _swig_wrap_OTMadeEasy_make_sure_enough_trans_nums(SwigcptrOTMadeEasy, int64, string, string) bool
+func _swig_wrap_OTAPI_Wrap_It() SwigcptrOTAPI_Exec
 
-func (arg1 SwigcptrOTMadeEasy) Make_sure_enough_trans_nums(arg2 int64, arg3 string, arg4 string) bool {
-	return _swig_wrap_OTMadeEasy_make_sure_enough_trans_nums(arg1, arg2, arg3, arg4)
+func OTAPI_WrapIt() OTAPI_Exec {
+	return _swig_wrap_OTAPI_Wrap_It()
 }
 
-func _swig_wrap_OTMadeEasy_register_nym(SwigcptrOTMadeEasy, string, string) string
+func _swig_wrap_OTAPI_Wrap_OTAPI() SwigcptrOT_API
 
-func (arg1 SwigcptrOTMadeEasy) Register_nym(arg2 string, arg3 string) string {
-	return _swig_wrap_OTMadeEasy_register_nym(arg1, arg2, arg3)
+func OTAPI_WrapOTAPI() OT_API {
+	return _swig_wrap_OTAPI_Wrap_OTAPI()
 }
 
-func _swig_wrap_OTMadeEasy_check_user(SwigcptrOTMadeEasy, string, string, string) string
+func OTAPI_WrapStringToLong(string) int64
+func OTAPI_WrapLongToString(int64) string
+func OTAPI_WrapStringToUlong(string) uint64
+func OTAPI_WrapUlongToString(uint64) string
+func OTAPI_WrapAppInit() bool
+func OTAPI_WrapAppCleanup() bool
+func _swig_wrap_OTAPI_Wrap_SetAppBinaryFolder(string)
 
-func (arg1 SwigcptrOTMadeEasy) Check_user(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_check_user(arg1, arg2, arg3, arg4)
+func OTAPI_WrapSetAppBinaryFolder(arg1 string) {
+	_swig_wrap_OTAPI_Wrap_SetAppBinaryFolder(arg1)
 }
 
-func _swig_wrap_OTMadeEasy_create_pseudonym(SwigcptrOTMadeEasy, int64, string, string) string
+func _swig_wrap_OTAPI_Wrap_SetHomeFolder(string)
 
-func (arg1 SwigcptrOTMadeEasy) Create_pseudonym(arg2 int64, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_create_pseudonym(arg1, arg2, arg3, arg4)
+func OTAPI_WrapSetHomeFolder(arg1 string) {
+	_swig_wrap_OTAPI_Wrap_SetHomeFolder(arg1)
 }
 
-func _swig_wrap_OTMadeEasy_issue_asset_type(SwigcptrOTMadeEasy, string, string, string) string
+func OTAPI_WrapSetWallet(string) bool
+func OTAPI_WrapWalletExists() bool
+func OTAPI_WrapLoadWallet() bool
+func OTAPI_WrapSwitchWallet() bool
+func _swig_wrap_OTAPI_Wrap_Output(int, string)
 
-func (arg1 SwigcptrOTMadeEasy) Issue_asset_type(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_issue_asset_type(arg1, arg2, arg3, arg4)
+func OTAPI_WrapOutput(arg1 int, arg2 string) {
+	_swig_wrap_OTAPI_Wrap_Output(arg1, arg2)
 }
 
-func _swig_wrap_OTMadeEasy_issue_basket_currency(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OTAPI_Wrap_GetTime() SwigcptrWrapTimeT
 
-func (arg1 SwigcptrOTMadeEasy) Issue_basket_currency(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_issue_basket_currency(arg1, arg2, arg3, arg4)
+func OTAPI_WrapGetTime() WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_GetTime()
 }
 
-func _swig_wrap_OTMadeEasy_exchange_basket_currency(SwigcptrOTMadeEasy, string, string, string, string, string, bool) string
+func OTAPI_WrapNumList_Add(string, string) string
+func OTAPI_WrapNumList_Remove(string, string) string
+func OTAPI_WrapNumList_VerifyQuery(string, string) bool
+func OTAPI_WrapNumList_VerifyAll(string, string) bool
+func OTAPI_WrapNumList_Count(string) int
+func OTAPI_WrapEncode(string, bool) string
+func OTAPI_WrapDecode(string, bool) string
+func OTAPI_WrapEncrypt(string, string) string
+func OTAPI_WrapDecrypt(string, string) string
+func OTAPI_WrapCreateSymmetricKey() string
+func OTAPI_WrapSymmetricEncrypt(string, string) string
+func OTAPI_WrapSymmetricDecrypt(string, string) string
+func OTAPI_WrapSignContract(string, string) string
+func OTAPI_WrapFlatSign(string, string, string) string
+func OTAPI_WrapAddSignature(string, string) string
+func OTAPI_WrapVerifySignature(string, string) bool
+func OTAPI_WrapVerifyAndRetrieveXMLContents(string, string) string
+func OTAPI_WrapGetMemlogSize() int
+func OTAPI_WrapGetMemlogAtIndex(int) string
+func OTAPI_WrapPeekMemlogFront() string
+func OTAPI_WrapPeekMemlogBack() string
+func OTAPI_WrapPopMemlogFront() bool
+func OTAPI_WrapPopMemlogBack() bool
+func OTAPI_WrapCreateNym(int, string, string) string
+func OTAPI_WrapGetNym_ActiveCronItemIDs(string, string) string
+func OTAPI_WrapGetActiveCronItem(string, int64) string
+func OTAPI_WrapGetNym_SourceForID(string) string
+func OTAPI_WrapGetNym_AltSourceLocation(string) string
+func OTAPI_WrapGetNym_CredentialCount(string) int
+func OTAPI_WrapGetNym_CredentialID(string, int) string
+func OTAPI_WrapGetNym_CredentialContents(string, string) string
+func OTAPI_WrapGetNym_RevokedCredCount(string) int
+func OTAPI_WrapGetNym_RevokedCredID(string, int) string
+func OTAPI_WrapGetNym_RevokedCredContents(string, string) string
+func OTAPI_WrapGetNym_SubcredentialCount(string, string) int
+func OTAPI_WrapGetNym_SubCredentialID(string, string, int) string
+func OTAPI_WrapGetNym_SubCredentialContents(string, string, string) string
+func OTAPI_WrapAddSubcredential(string, string, int) string
+func OTAPI_WrapRevokeSubcredential(string, string, string) bool
+func OTAPI_WrapCreateServerContract(string, string) string
+func OTAPI_WrapCreateAssetContract(string, string) string
+func OTAPI_WrapCalculateAssetContractID(string) string
+func OTAPI_WrapCalculateServerContractID(string) string
+func OTAPI_WrapAddServerContract(string) int
+func OTAPI_WrapAddAssetContract(string) int
+func OTAPI_WrapGetServerCount() int
+func OTAPI_WrapGetAssetTypeCount() int
+func OTAPI_WrapGetAccountCount() int
+func OTAPI_WrapGetNymCount() int
+func OTAPI_WrapGetServer_ID(int) string
+func OTAPI_WrapGetServer_Name(string) string
+func OTAPI_WrapGetServer_Contract(string) string
+func OTAPI_WrapFormatAmount(string, int64) string
+func OTAPI_WrapStringToAmount(string, string) int64
+func OTAPI_WrapGetAssetType_ID(int) string
+func OTAPI_WrapGetAssetType_Name(string) string
+func OTAPI_WrapGetAssetType_TLA(string) string
+func OTAPI_WrapGetAssetType_Contract(string) string
+func OTAPI_WrapGetAccountWallet_ID(int) string
+func OTAPI_WrapGetAccountWallet_Name(string) string
+func OTAPI_WrapGetAccountWallet_Balance(string) int64
+func OTAPI_WrapGetAccountWallet_Type(string) string
+func OTAPI_WrapGetAccountWallet_AssetTypeID(string) string
+func OTAPI_WrapGetAccountWallet_ServerID(string) string
+func OTAPI_WrapGetAccountWallet_NymID(string) string
+func OTAPI_WrapGetAccountWallet_InboxHash(string) string
+func OTAPI_WrapGetAccountWallet_OutboxHash(string) string
+func OTAPI_WrapVerifyAccountReceipt(string, string, string) bool
+func OTAPI_WrapGetNym_TransactionNumCount(string, string) int
+func OTAPI_WrapGetNym_ID(int) string
+func OTAPI_WrapGetNym_Name(string) string
+func OTAPI_WrapGetNym_Stats(string) string
+func OTAPI_WrapGetNym_NymboxHash(string, string) string
+func OTAPI_WrapGetNym_RecentHash(string, string) string
+func OTAPI_WrapGetNym_InboxHash(string, string) string
+func OTAPI_WrapGetNym_OutboxHash(string, string) string
+func OTAPI_WrapIsNym_RegisteredAtServer(string, string) bool
+func OTAPI_WrapGetNym_MailCount(string) int
+func OTAPI_WrapGetNym_MailContentsByIndex(string, int) string
+func OTAPI_WrapGetNym_MailSenderIDByIndex(string, int) string
+func OTAPI_WrapGetNym_MailServerIDByIndex(string, int) string
+func OTAPI_WrapNym_RemoveMailByIndex(string, int) bool
+func OTAPI_WrapNym_VerifyMailByIndex(string, int) bool
+func OTAPI_WrapGetNym_OutmailCount(string) int
+func OTAPI_WrapGetNym_OutmailContentsByIndex(string, int) string
+func OTAPI_WrapGetNym_OutmailRecipientIDByIndex(string, int) string
+func OTAPI_WrapGetNym_OutmailServerIDByIndex(string, int) string
+func OTAPI_WrapNym_RemoveOutmailByIndex(string, int) bool
+func OTAPI_WrapNym_VerifyOutmailByIndex(string, int) bool
+func OTAPI_WrapGetNym_OutpaymentsCount(string) int
+func OTAPI_WrapGetNym_OutpaymentsContentsByIndex(string, int) string
+func OTAPI_WrapGetNym_OutpaymentsRecipientIDByIndex(string, int) string
+func OTAPI_WrapGetNym_OutpaymentsServerIDByIndex(string, int) string
+func OTAPI_WrapNym_RemoveOutpaymentsByIndex(string, int) bool
+func OTAPI_WrapNym_VerifyOutpaymentsByIndex(string, int) bool
+func OTAPI_WrapWallet_CanRemoveServer(string) bool
+func OTAPI_WrapWallet_RemoveServer(string) bool
+func OTAPI_WrapWallet_CanRemoveAssetType(string) bool
+func OTAPI_WrapWallet_RemoveAssetType(string) bool
+func OTAPI_WrapWallet_CanRemoveNym(string) bool
+func OTAPI_WrapWallet_RemoveNym(string) bool
+func OTAPI_WrapWallet_CanRemoveAccount(string) bool
+func OTAPI_WrapWallet_ChangePassphrase() bool
+func OTAPI_WrapWallet_ExportNym(string) string
+func OTAPI_WrapWallet_ImportNym(string) string
+func OTAPI_WrapWallet_ImportCert(string, string) string
+func OTAPI_WrapWallet_ExportCert(string) string
+func OTAPI_WrapWallet_GetNymIDFromPartial(string) string
+func OTAPI_WrapWallet_GetServerIDFromPartial(string) string
+func OTAPI_WrapWallet_GetAssetIDFromPartial(string) string
+func OTAPI_WrapWallet_GetAccountIDFromPartial(string) string
+func OTAPI_WrapSetNym_Name(string, string, string) bool
+func OTAPI_WrapSetAccountWallet_Name(string, string, string) bool
+func OTAPI_WrapSetAssetType_Name(string, string) bool
+func OTAPI_WrapSetServer_Name(string, string) bool
+func _swig_wrap_OTAPI_Wrap_WriteCheque(string, int64, uintptr, uintptr, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Exchange_basket_currency(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool) string {
-	return _swig_wrap_OTMadeEasy_exchange_basket_currency(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+func OTAPI_WrapWriteCheque(arg1 string, arg2 int64, arg3 WrapTimeT, arg4 WrapTimeT, arg5 string, arg6 string, arg7 string, arg8 string) string {
+	return _swig_wrap_OTAPI_Wrap_WriteCheque(arg1, arg2, arg3.Swigcptr(), arg4.Swigcptr(), arg5, arg6, arg7, arg8)
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_contract(SwigcptrOTMadeEasy, string, string, string) string
+func OTAPI_WrapDiscardCheque(string, string, string, string) bool
+func _swig_wrap_OTAPI_Wrap_ProposePaymentPlan(string, uintptr, uintptr, string, string, string, string, string, int64, uintptr, int64, uintptr, uintptr, uintptr, int) string
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_contract(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_retrieve_contract(arg1, arg2, arg3, arg4)
+func OTAPI_WrapProposePaymentPlan(arg1 string, arg2 WrapTimeT, arg3 WrapTimeT, arg4 string, arg5 string, arg6 string, arg7 string, arg8 string, arg9 int64, arg10 WrapTimeT, arg11 int64, arg12 WrapTimeT, arg13 WrapTimeT, arg14 WrapTimeT, arg15 int) string {
+	return _swig_wrap_OTAPI_Wrap_ProposePaymentPlan(arg1, arg2.Swigcptr(), arg3.Swigcptr(), arg4, arg5, arg6, arg7, arg8, arg9, arg10.Swigcptr(), arg11, arg12.Swigcptr(), arg13.Swigcptr(), arg14.Swigcptr(), arg15)
 }
 
-func _swig_wrap_OTMadeEasy_load_or_retrieve_contract(SwigcptrOTMadeEasy, string, string, string) string
+func OTAPI_WrapEasyProposePlan(string, string, string, string, string, string, string, string, string, string) string
+func OTAPI_WrapConfirmPaymentPlan(string, string, string, string, string) string
+func _swig_wrap_OTAPI_Wrap_Create_SmartContract(string, uintptr, uintptr) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_or_retrieve_contract(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_load_or_retrieve_contract(arg1, arg2, arg3, arg4)
+func OTAPI_WrapCreate_SmartContract(arg1 string, arg2 WrapTimeT, arg3 WrapTimeT) string {
+	return _swig_wrap_OTAPI_Wrap_Create_SmartContract(arg1, arg2.Swigcptr(), arg3.Swigcptr())
 }
 
-func _swig_wrap_OTMadeEasy_create_asset_acct(SwigcptrOTMadeEasy, string, string, string) string
+func OTAPI_WrapSmartContract_AddBylaw(string, string, string) string
+func OTAPI_WrapSmartContract_AddClause(string, string, string, string, string) string
+func OTAPI_WrapSmartContract_AddVariable(string, string, string, string, string, string, string) string
+func OTAPI_WrapSmartContract_AddCallback(string, string, string, string, string) string
+func OTAPI_WrapSmartContract_AddHook(string, string, string, string, string) string
+func OTAPI_WrapSmartContract_AddParty(string, string, string, string) string
+func OTAPI_WrapSmartContract_AddAccount(string, string, string, string, string) string
+func OTAPI_WrapSmartContract_CountNumsNeeded(string, string) int
+func OTAPI_WrapSmartContract_ConfirmAccount(string, string, string, string, string, string) string
+func OTAPI_WrapSmartContract_ConfirmParty(string, string, string) string
+func OTAPI_WrapSmart_AreAllPartiesConfirmed(string) bool
+func OTAPI_WrapSmart_GetBylawCount(string) int
+func OTAPI_WrapSmart_GetBylawByIndex(string, int) string
+func OTAPI_WrapBylaw_GetLanguage(string, string) string
+func OTAPI_WrapBylaw_GetClauseCount(string, string) int
+func OTAPI_WrapClause_GetNameByIndex(string, string, int) string
+func OTAPI_WrapClause_GetContents(string, string, string) string
+func OTAPI_WrapBylaw_GetVariableCount(string, string) int
+func OTAPI_WrapVariable_GetNameByIndex(string, string, int) string
+func OTAPI_WrapVariable_GetType(string, string, string) string
+func OTAPI_WrapVariable_GetAccess(string, string, string) string
+func OTAPI_WrapVariable_GetContents(string, string, string) string
+func OTAPI_WrapBylaw_GetHookCount(string, string) int
+func OTAPI_WrapHook_GetNameByIndex(string, string, int) string
+func OTAPI_WrapHook_GetClauseCount(string, string, string) int
+func OTAPI_WrapHook_GetClauseAtIndex(string, string, string, int) string
+func OTAPI_WrapBylaw_GetCallbackCount(string, string) int
+func OTAPI_WrapCallback_GetNameByIndex(string, string, int) string
+func OTAPI_WrapCallback_GetClause(string, string, string) string
+func OTAPI_WrapSmart_GetPartyCount(string) int
+func OTAPI_WrapSmart_GetPartyByIndex(string, int) string
+func OTAPI_WrapSmart_IsPartyConfirmed(string, string) bool
+func OTAPI_WrapParty_GetID(string, string) string
+func OTAPI_WrapParty_GetAcctCount(string, string) int
+func OTAPI_WrapParty_GetAcctNameByIndex(string, string, int) string
+func OTAPI_WrapParty_GetAcctID(string, string, string) string
+func OTAPI_WrapParty_GetAcctAssetID(string, string, string) string
+func OTAPI_WrapParty_GetAcctAgentName(string, string, string) string
+func OTAPI_WrapParty_GetAgentCount(string, string) int
+func OTAPI_WrapParty_GetAgentNameByIndex(string, string, int) string
+func OTAPI_WrapParty_GetAgentID(string, string, string) string
+func OTAPI_WrapActivateSmartContract(string, string, string) int
+func OTAPI_WrapTriggerClause(string, string, int64, string, string) int
+func OTAPI_WrapMsg_HarvestTransactionNumbers(string, string, bool, bool, bool, bool, bool) bool
+func OTAPI_WrapLoadUserPubkey_Encryption(string) string
+func OTAPI_WrapLoadUserPubkey_Signing(string) string
+func OTAPI_WrapLoadPubkey_Encryption(string) string
+func OTAPI_WrapLoadPubkey_Signing(string) string
+func OTAPI_WrapVerifyUserPrivateKey(string) bool
+func OTAPI_WrapLoadPurse(string, string, string) string
+func OTAPI_WrapLoadMint(string, string) string
+func OTAPI_WrapLoadAssetContract(string) string
+func OTAPI_WrapLoadServerContract(string) string
+func OTAPI_WrapMint_IsStillGood(string, string) bool
+func OTAPI_WrapIsBasketCurrency(string) bool
+func OTAPI_WrapBasket_GetMemberCount(string) int
+func OTAPI_WrapBasket_GetMemberType(string, int) string
+func OTAPI_WrapBasket_GetMinimumTransferAmount(string) int64
+func OTAPI_WrapBasket_GetMemberMinimumTransferAmount(string, int) int64
+func OTAPI_WrapLoadAssetAccount(string, string, string) string
+func OTAPI_WrapLoadInbox(string, string, string) string
+func OTAPI_WrapLoadOutbox(string, string, string) string
+func OTAPI_WrapLoadInboxNoVerify(string, string, string) string
+func OTAPI_WrapLoadOutboxNoVerify(string, string, string) string
+func OTAPI_WrapLoadPaymentInbox(string, string) string
+func OTAPI_WrapLoadPaymentInboxNoVerify(string, string) string
+func OTAPI_WrapLoadRecordBox(string, string, string) string
+func OTAPI_WrapLoadRecordBoxNoVerify(string, string, string) string
+func OTAPI_WrapClearRecord(string, string, string, int, bool) bool
+func OTAPI_WrapLoadExpiredBox(string, string) string
+func OTAPI_WrapLoadExpiredBoxNoVerify(string, string) string
+func OTAPI_WrapClearExpired(string, string, int, bool) bool
+func OTAPI_WrapLedger_GetCount(string, string, string, string) int
+func OTAPI_WrapLedger_CreateResponse(string, string, string, string) string
+func OTAPI_WrapLedger_GetTransactionByIndex(string, string, string, string, int) string
+func OTAPI_WrapLedger_GetTransactionByID(string, string, string, string, int64) string
+func OTAPI_WrapLedger_GetTransactionIDByIndex(string, string, string, string, int) int64
+func OTAPI_WrapLedger_AddTransaction(string, string, string, string, string) string
+func OTAPI_WrapTransaction_CreateResponse(string, string, string, string, string, bool) string
+func OTAPI_WrapLedger_FinalizeResponse(string, string, string, string) string
+func OTAPI_WrapLedger_GetInstrument(string, string, string, string, int) string
+func OTAPI_WrapRecordPayment(string, string, bool, int, bool) bool
+func OTAPI_WrapTransaction_GetType(string, string, string, string) string
+func OTAPI_WrapReplyNotice_GetRequestNum(string, string, string) int64
+func OTAPI_WrapTransaction_GetVoucher(string, string, string, string) string
+func OTAPI_WrapTransaction_GetSuccess(string, string, string, string) int
+func OTAPI_WrapTransaction_IsCanceled(string, string, string, string) int
+func OTAPI_WrapTransaction_GetBalanceAgreementSuccess(string, string, string, string) int
+func _swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(string, string, string, string) SwigcptrWrapTimeT
 
-func (arg1 SwigcptrOTMadeEasy) Create_asset_acct(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_create_asset_acct(arg1, arg2, arg3, arg4)
+func OTAPI_WrapTransaction_GetDateSigned(arg1 string, arg2 string, arg3 string, arg4 string) WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_stat_asset_account(SwigcptrOTMadeEasy, string) string
+func OTAPI_WrapTransaction_GetAmount(string, string, string, string) int64
+func OTAPI_WrapPending_GetNote(string, string, string, string) string
+func OTAPI_WrapTransaction_GetSenderUserID(string, string, string, string) string
+func OTAPI_WrapTransaction_GetSenderAcctID(string, string, string, string) string
+func OTAPI_WrapTransaction_GetRecipientUserID(string, string, string, string) string
+func OTAPI_WrapTransaction_GetRecipientAcctID(string, string, string, string) string
+func OTAPI_WrapTransaction_GetDisplayReferenceToNum(string, string, string, string) int64
+func OTAPI_WrapSavePurse(string, string, string, string) bool
+func OTAPI_WrapCreatePurse(string, string, string, string) string
+func OTAPI_WrapCreatePurse_Passphrase(string, string, string) string
+func OTAPI_WrapPurse_GetTotalValue(string, string, string) int64
+func OTAPI_WrapPurse_Count(string, string, string) int
+func OTAPI_WrapPurse_HasPassword(string, string) bool
+func OTAPI_WrapPurse_Peek(string, string, string, string) string
+func OTAPI_WrapPurse_Pop(string, string, string, string) string
+func OTAPI_WrapPurse_Push(string, string, string, string, string, string) string
+func OTAPI_WrapPurse_Empty(string, string, string, string) string
+func OTAPI_WrapWallet_ImportPurse(string, string, string, string) bool
+func OTAPI_WrapExchangePurse(string, string, string, string) int
+func OTAPI_WrapToken_ChangeOwner(string, string, string, string, string, string) string
+func OTAPI_WrapToken_GetID(string, string, string) string
+func OTAPI_WrapToken_GetDenomination(string, string, string) int64
+func OTAPI_WrapToken_GetSeries(string, string, string) int
+func _swig_wrap_OTAPI_Wrap_Token_GetValidFrom(string, string, string) SwigcptrWrapTimeT
 
-func (arg1 SwigcptrOTMadeEasy) Stat_asset_account(arg2 string) string {
-	return _swig_wrap_OTMadeEasy_stat_asset_account(arg1, arg2)
+func OTAPI_WrapToken_GetValidFrom(arg1 string, arg2 string, arg3 string) WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_Token_GetValidFrom(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_account__SWIG_0(SwigcptrOTMadeEasy, string, string, string) bool
+func _swig_wrap_OTAPI_Wrap_Token_GetValidTo(string, string, string) SwigcptrWrapTimeT
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_account__SWIG_0(arg2 string, arg3 string, arg4 string) bool {
-	return _swig_wrap_OTMadeEasy_retrieve_account__SWIG_0(arg1, arg2, arg3, arg4)
+func OTAPI_WrapToken_GetValidTo(arg1 string, arg2 string, arg3 string) WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_Token_GetValidTo(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_account__SWIG_1(SwigcptrOTMadeEasy, string, string, string, bool) bool
+func OTAPI_WrapToken_GetAssetID(string) string
+func OTAPI_WrapToken_GetServerID(string) string
+func OTAPI_WrapInstrmnt_GetAmount(string) int64
+func OTAPI_WrapInstrmnt_GetTransNum(string) int64
+func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(string) SwigcptrWrapTimeT
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_account__SWIG_1(arg2 string, arg3 string, arg4 string, arg5 bool) bool {
-	return _swig_wrap_OTMadeEasy_retrieve_account__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+func OTAPI_WrapInstrmnt_GetValidFrom(arg1 string) WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(arg1)
 }
 
-func (p SwigcptrOTMadeEasy) Retrieve_account(a ...interface{}) bool {
+func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(string) SwigcptrWrapTimeT
+
+func OTAPI_WrapInstrmnt_GetValidTo(arg1 string) WrapTimeT {
+	return _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(arg1)
+}
+
+func OTAPI_WrapInstrmnt_GetMemo(string) string
+func OTAPI_WrapInstrmnt_GetType(string) string
+func OTAPI_WrapInstrmnt_GetServerID(string) string
+func OTAPI_WrapInstrmnt_GetAssetID(string) string
+func OTAPI_WrapInstrmnt_GetSenderUserID(string) string
+func OTAPI_WrapInstrmnt_GetSenderAcctID(string) string
+func OTAPI_WrapInstrmnt_GetRemitterUserID(string) string
+func OTAPI_WrapInstrmnt_GetRemitterAcctID(string) string
+func OTAPI_WrapInstrmnt_GetRecipientUserID(string) string
+func OTAPI_WrapInstrmnt_GetRecipientAcctID(string) string
+func OTAPI_WrapCheckServerID(string, string) int
+func OTAPI_WrapCreateUserAccount(string, string) int
+func OTAPI_WrapDeleteUserAccount(string, string) int
+func OTAPI_WrapDeleteAssetAccount(string, string, string) int
+func OTAPI_WrapUsageCredits(string, string, string, int64) int
+func OTAPI_WrapMessage_GetUsageCredits(string) int64
+func OTAPI_WrapCheckUser(string, string, string) int
+func OTAPI_WrapSendUserMessage(string, string, string, string, string) int
+func OTAPI_WrapSendUserInstrument(string, string, string, string, string, string) int
+func OTAPI_WrapGetRequest(string, string) int
+func OTAPI_WrapGetTransactionNumber(string, string) int
+func OTAPI_WrapIssueAssetType(string, string, string) int
+func OTAPI_WrapGetContract(string, string, string) int
+func OTAPI_WrapGetMint(string, string, string) int
+func OTAPI_WrapCreateAssetAccount(string, string, string) int
+func OTAPI_WrapGetAccount(string, string, string) int
+func OTAPI_WrapGetAccountFiles(string, string, string) int
+func OTAPI_WrapGenerateBasketCreation(string, int64) string
+func OTAPI_WrapAddBasketCreationItem(string, string, string, int64) string
+func OTAPI_WrapIssueBasket(string, string, string) int
+func OTAPI_WrapGenerateBasketExchange(string, string, string, string, int) string
+func OTAPI_WrapAddBasketExchangeItem(string, string, string, string, string) string
+func OTAPI_WrapExchangeBasket(string, string, string, string, bool) int
+func OTAPI_WrapNotarizeWithdrawal(string, string, string, int64) int
+func OTAPI_WrapNotarizeDeposit(string, string, string, string) int
+func OTAPI_WrapNotarizeTransfer(string, string, string, string, int64, string) int
+func OTAPI_WrapGetInbox(string, string, string) int
+func OTAPI_WrapGetOutbox(string, string, string) int
+func OTAPI_WrapGetNymbox(string, string) int
+func OTAPI_WrapLoadNymbox(string, string) string
+func OTAPI_WrapLoadNymboxNoVerify(string, string) string
+func OTAPI_WrapNymbox_GetReplyNotice(string, string, int64) string
+func OTAPI_WrapHaveAlreadySeenReply(string, string, int64) bool
+func OTAPI_WrapGetBoxReceipt(string, string, string, int, int64) int
+func OTAPI_WrapDoesBoxReceiptExist(string, string, string, int, int64) bool
+func OTAPI_WrapProcessInbox(string, string, string, string) int
+func OTAPI_WrapProcessNymbox(string, string) int
+func OTAPI_WrapWithdrawVoucher(string, string, string, string, string, int64) int
+func OTAPI_WrapPayDividend(string, string, string, string, string, int64) int
+func OTAPI_WrapDepositCheque(string, string, string, string) int
+func OTAPI_WrapDepositPaymentPlan(string, string, string) int
+func _swig_wrap_OTAPI_Wrap_issueMarketOffer(string, string, int64, int64, int64, int64, bool, uintptr, string, int64) int
+
+func OTAPI_WrapIssueMarketOffer(arg1 string, arg2 string, arg3 int64, arg4 int64, arg5 int64, arg6 int64, arg7 bool, arg8 WrapTimeT, arg9 string, arg10 int64) int {
+	return _swig_wrap_OTAPI_Wrap_issueMarketOffer(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8.Swigcptr(), arg9, arg10)
+}
+
+func OTAPI_WrapGetMarketList(string, string) int
+func OTAPI_WrapGetMarketOffers(string, string, string, int64) int
+func OTAPI_WrapGetMarketRecentTrades(string, string, string) int
+func OTAPI_WrapGetNym_MarketOffers(string, string) int
+func OTAPI_WrapKillMarketOffer(string, string, string, int64) int
+func OTAPI_WrapKillPaymentPlan(string, string, string, int64) int
+func OTAPI_WrapPopMessageBuffer(int64, string, string) string
+func _swig_wrap_OTAPI_Wrap_FlushMessageBuffer()
+
+func OTAPI_WrapFlushMessageBuffer() {
+	_swig_wrap_OTAPI_Wrap_FlushMessageBuffer()
+}
+
+func OTAPI_WrapGetSentMessage(int64, string, string) string
+func OTAPI_WrapRemoveSentMessage(int64, string, string) bool
+func _swig_wrap_OTAPI_Wrap_FlushSentMessages(bool, string, string, string)
+
+func OTAPI_WrapFlushSentMessages(arg1 bool, arg2 string, arg3 string, arg4 string) {
+	_swig_wrap_OTAPI_Wrap_FlushSentMessages(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OTAPI_Wrap_Sleep(int64)
+
+func OTAPI_WrapSleep(arg1 int64) {
+	_swig_wrap_OTAPI_Wrap_Sleep(arg1)
+}
+
+func OTAPI_WrapResyncNymWithServer(string, string, string) bool
+func OTAPI_WrapMessage_GetCommand(string) string
+func OTAPI_WrapMessage_GetSuccess(string) int
+func OTAPI_WrapQueryAssetTypes(string, string, string) int
+func OTAPI_WrapMessage_GetPayload(string) string
+func OTAPI_WrapMessage_GetDepth(string) int
+func OTAPI_WrapMessage_GetTransactionSuccess(string, string, string, string) int
+func OTAPI_WrapMessage_IsTransactionCanceled(string, string, string, string) int
+func OTAPI_WrapMessage_GetBalanceAgreementSuccess(string, string, string, string) int
+func OTAPI_WrapMessage_GetLedger(string) string
+func OTAPI_WrapMessage_GetNewAssetTypeID(string) string
+func OTAPI_WrapMessage_GetNewIssuerAcctID(string) string
+func OTAPI_WrapMessage_GetNewAcctID(string) string
+func OTAPI_WrapMessage_GetNymboxHash(string) string
+func OTAPI_WrapConnectServer(string, string, string, string, string) bool
+func OTAPI_WrapProcessSockets() bool
+type OTAPI_Wrap interface {
+	Swigcptr() uintptr
+	SwigIsOTAPI_Wrap()
+}
+
+func OT_CLI_GetArgsCount(string) int
+func OT_CLI_GetValueByKey(string, string) string
+func OT_CLI_GetValueByIndex(string, int) string
+func OT_CLI_GetKeyByIndex(string, int) string
+func OT_CLI_ReadLine() string
+func OT_CLI_ReadUntilEOF() string
+type SwigcptrOT_ME uintptr
+
+func (p SwigcptrOT_ME) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrOT_ME) SwigIsOT_ME() {
+}
+
+func _swig_wrap_new_OT_ME() SwigcptrOT_ME
+
+func NewOT_ME() OT_ME {
+	return _swig_wrap_new_OT_ME()
+}
+
+func _swig_wrap_delete_OT_ME(uintptr)
+
+func DeleteOT_ME(arg1 OT_ME) {
+	_swig_wrap_delete_OT_ME(arg1.Swigcptr())
+}
+
+func _swig_wrap_OT_ME_opentxs_main_loop(SwigcptrOT_ME) int
+
+func (arg1 SwigcptrOT_ME) Opentxs_main_loop() int {
+	return _swig_wrap_OT_ME_opentxs_main_loop(arg1)
+}
+
+func _swig_wrap_OT_ME_make_sure_enough_trans_nums(SwigcptrOT_ME, int, string, string) bool
+
+func (arg1 SwigcptrOT_ME) Make_sure_enough_trans_nums(arg2 int, arg3 string, arg4 string) bool {
+	return _swig_wrap_OT_ME_make_sure_enough_trans_nums(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_register_nym(SwigcptrOT_ME, string, string) string
+
+func (arg1 SwigcptrOT_ME) Register_nym(arg2 string, arg3 string) string {
+	return _swig_wrap_OT_ME_register_nym(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_check_user(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Check_user(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_check_user(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_create_pseudonym(SwigcptrOT_ME, int, string, string) string
+
+func (arg1 SwigcptrOT_ME) Create_pseudonym(arg2 int, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_create_pseudonym(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_issue_asset_type(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Issue_asset_type(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_issue_asset_type(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_issue_basket_currency(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Issue_basket_currency(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_issue_basket_currency(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_exchange_basket_currency(SwigcptrOT_ME, string, string, string, string, string, bool) string
+
+func (arg1 SwigcptrOT_ME) Exchange_basket_currency(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool) string {
+	return _swig_wrap_OT_ME_exchange_basket_currency(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+}
+
+func _swig_wrap_OT_ME_retrieve_contract(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Retrieve_contract(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_retrieve_contract(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_load_or_retrieve_contract(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Load_or_retrieve_contract(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_load_or_retrieve_contract(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_create_asset_acct(SwigcptrOT_ME, string, string, string) string
+
+func (arg1 SwigcptrOT_ME) Create_asset_acct(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_create_asset_acct(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_stat_asset_account(SwigcptrOT_ME, string) string
+
+func (arg1 SwigcptrOT_ME) Stat_asset_account(arg2 string) string {
+	return _swig_wrap_OT_ME_stat_asset_account(arg1, arg2)
+}
+
+func _swig_wrap_OT_ME_retrieve_account__SWIG_0(SwigcptrOT_ME, string, string, string) bool
+
+func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_0(arg2 string, arg3 string, arg4 string) bool {
+	return _swig_wrap_OT_ME_retrieve_account__SWIG_0(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OT_ME_retrieve_account__SWIG_1(SwigcptrOT_ME, string, string, string, bool) bool
+
+func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_1(arg2 string, arg3 string, arg4 string, arg5 bool) bool {
+	return _swig_wrap_OT_ME_retrieve_account__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+}
+
+func (p SwigcptrOT_ME) Retrieve_account(a ...interface{}) bool {
 	argc := len(a)
 	if argc == 3 {
 		return p.Retrieve_account__SWIG_0(a[0].(string), a[1].(string), a[2].(string))
@@ -1161,19 +1492,19 @@ func (p SwigcptrOTMadeEasy) Retrieve_account(a ...interface{}) bool {
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_nym__SWIG_0(SwigcptrOTMadeEasy, string, string) bool
+func _swig_wrap_OT_ME_retrieve_nym__SWIG_0(SwigcptrOT_ME, string, string) bool
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_nym__SWIG_0(arg2 string, arg3 string) bool {
-	return _swig_wrap_OTMadeEasy_retrieve_nym__SWIG_0(arg1, arg2, arg3)
+func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_0(arg2 string, arg3 string) bool {
+	return _swig_wrap_OT_ME_retrieve_nym__SWIG_0(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_nym__SWIG_1(SwigcptrOTMadeEasy, string, string, bool) bool
+func _swig_wrap_OT_ME_retrieve_nym__SWIG_1(SwigcptrOT_ME, string, string, bool) bool
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_nym__SWIG_1(arg2 string, arg3 string, arg4 bool) bool {
-	return _swig_wrap_OTMadeEasy_retrieve_nym__SWIG_1(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_1(arg2 string, arg3 string, arg4 bool) bool {
+	return _swig_wrap_OT_ME_retrieve_nym__SWIG_1(arg1, arg2, arg3, arg4)
 }
 
-func (p SwigcptrOTMadeEasy) Retrieve_nym(a ...interface{}) bool {
+func (p SwigcptrOT_ME) Retrieve_nym(a ...interface{}) bool {
 	argc := len(a)
 	if argc == 2 {
 		return p.Retrieve_nym__SWIG_0(a[0].(string), a[1].(string))
@@ -1184,300 +1515,413 @@ func (p SwigcptrOTMadeEasy) Retrieve_nym(a ...interface{}) bool {
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OTMadeEasy_send_transfer(SwigcptrOTMadeEasy, string, string, string, string, string, string) string
+func _swig_wrap_OT_ME_send_transfer(SwigcptrOT_ME, string, string, string, string, int64, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_transfer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string {
-	return _swig_wrap_OTMadeEasy_send_transfer(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+func (arg1 SwigcptrOT_ME) Send_transfer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 int64, arg7 string) string {
+	return _swig_wrap_OT_ME_send_transfer(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 }
 
-func _swig_wrap_OTMadeEasy_process_inbox(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_process_inbox(SwigcptrOT_ME, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Process_inbox(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_process_inbox(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Process_inbox(arg2 string, arg3 string, arg4 string, arg5 string) string {
+	return _swig_wrap_OT_ME_process_inbox(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_accept_inbox_items(SwigcptrOTMadeEasy, string, int64, string) bool
+func _swig_wrap_OT_ME_accept_inbox_items(SwigcptrOT_ME, string, int, string) bool
 
-func (arg1 SwigcptrOTMadeEasy) Accept_inbox_items(arg2 string, arg3 int64, arg4 string) bool {
-	return _swig_wrap_OTMadeEasy_accept_inbox_items(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Accept_inbox_items(arg2 string, arg3 int, arg4 string) bool {
+	return _swig_wrap_OT_ME_accept_inbox_items(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_discard_incoming_payments(SwigcptrOTMadeEasy, string, string, string) bool
+func _swig_wrap_OT_ME_discard_incoming_payments(SwigcptrOT_ME, string, string, string) bool
 
-func (arg1 SwigcptrOTMadeEasy) Discard_incoming_payments(arg2 string, arg3 string, arg4 string) bool {
-	return _swig_wrap_OTMadeEasy_discard_incoming_payments(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Discard_incoming_payments(arg2 string, arg3 string, arg4 string) bool {
+	return _swig_wrap_OT_ME_discard_incoming_payments(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_cancel_outgoing_payments(SwigcptrOTMadeEasy, string, string, string) bool
+func _swig_wrap_OT_ME_cancel_outgoing_payments(SwigcptrOT_ME, string, string, string) bool
 
-func (arg1 SwigcptrOTMadeEasy) Cancel_outgoing_payments(arg2 string, arg3 string, arg4 string) bool {
-	return _swig_wrap_OTMadeEasy_cancel_outgoing_payments(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Cancel_outgoing_payments(arg2 string, arg3 string, arg4 string) bool {
+	return _swig_wrap_OT_ME_cancel_outgoing_payments(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_accept_from_paymentbox(SwigcptrOTMadeEasy, string, string, string) int64
+func _swig_wrap_OT_ME_accept_from_paymentbox(SwigcptrOT_ME, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) Accept_from_paymentbox(arg2 string, arg3 string, arg4 string) int64 {
-	return _swig_wrap_OTMadeEasy_accept_from_paymentbox(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Accept_from_paymentbox(arg2 string, arg3 string, arg4 string) int {
+	return _swig_wrap_OT_ME_accept_from_paymentbox(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_load_public_encryption_key(SwigcptrOTMadeEasy, string) string
+func _swig_wrap_OT_ME_load_public_encryption_key(SwigcptrOT_ME, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_public_encryption_key(arg2 string) string {
-	return _swig_wrap_OTMadeEasy_load_public_encryption_key(arg1, arg2)
+func (arg1 SwigcptrOT_ME) Load_public_encryption_key(arg2 string) string {
+	return _swig_wrap_OT_ME_load_public_encryption_key(arg1, arg2)
 }
 
-func _swig_wrap_OTMadeEasy_load_public_signing_key(SwigcptrOTMadeEasy, string) string
+func _swig_wrap_OT_ME_load_public_signing_key(SwigcptrOT_ME, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_public_signing_key(arg2 string) string {
-	return _swig_wrap_OTMadeEasy_load_public_signing_key(arg1, arg2)
+func (arg1 SwigcptrOT_ME) Load_public_signing_key(arg2 string) string {
+	return _swig_wrap_OT_ME_load_public_signing_key(arg1, arg2)
 }
 
-func _swig_wrap_OTMadeEasy_load_or_retrieve_encrypt_key(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_load_or_retrieve_encrypt_key(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_or_retrieve_encrypt_key(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_load_or_retrieve_encrypt_key(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Load_or_retrieve_encrypt_key(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_load_or_retrieve_encrypt_key(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_load_or_retrieve_signing_key(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_load_or_retrieve_signing_key(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_or_retrieve_signing_key(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_load_or_retrieve_signing_key(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Load_or_retrieve_signing_key(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_load_or_retrieve_signing_key(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_msg_pubkey(SwigcptrOTMadeEasy, string, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_msg_pubkey(SwigcptrOT_ME, string, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_msg_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_msg_pubkey(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Send_user_msg_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
+	return _swig_wrap_OT_ME_send_user_msg_pubkey(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_pmnt_pubkey(SwigcptrOTMadeEasy, string, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_pmnt_pubkey(SwigcptrOT_ME, string, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_pmnt_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_pmnt_pubkey(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Send_user_pmnt_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
+	return _swig_wrap_OT_ME_send_user_pmnt_pubkey(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_cash_pubkey(SwigcptrOTMadeEasy, string, string, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_cash_pubkey(SwigcptrOT_ME, string, string, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_cash_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_cash_pubkey(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+func (arg1 SwigcptrOT_ME) Send_user_cash_pubkey(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string {
+	return _swig_wrap_OT_ME_send_user_cash_pubkey(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_msg(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_msg(SwigcptrOT_ME, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_msg(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_msg(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Send_user_msg(arg2 string, arg3 string, arg4 string, arg5 string) string {
+	return _swig_wrap_OT_ME_send_user_msg(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_payment(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_payment(SwigcptrOT_ME, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_payment(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_payment(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Send_user_payment(arg2 string, arg3 string, arg4 string, arg5 string) string {
+	return _swig_wrap_OT_ME_send_user_payment(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_send_user_cash(SwigcptrOTMadeEasy, string, string, string, string, string) string
+func _swig_wrap_OT_ME_send_user_cash(SwigcptrOT_ME, string, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Send_user_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_send_user_cash(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Send_user_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
+	return _swig_wrap_OT_ME_send_user_cash(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_withdraw_and_send_cash(SwigcptrOTMadeEasy, string, string, string, string) bool
+func _swig_wrap_OT_ME_withdraw_and_send_cash(SwigcptrOT_ME, string, string, string, int64) bool
 
-func (arg1 SwigcptrOTMadeEasy) Withdraw_and_send_cash(arg2 string, arg3 string, arg4 string, arg5 string) bool {
-	return _swig_wrap_OTMadeEasy_withdraw_and_send_cash(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Withdraw_and_send_cash(arg2 string, arg3 string, arg4 string, arg5 int64) bool {
+	return _swig_wrap_OT_ME_withdraw_and_send_cash(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_0(SwigcptrOTMadeEasy, string, string, int64) string
+func _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(SwigcptrOT_ME, string, string, int) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_payment_instrument__SWIG_0(arg2 string, arg3 string, arg4 int64) string {
-	return _swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_0(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_0(arg2 string, arg3 string, arg4 int) string {
+	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_1(SwigcptrOTMadeEasy, string, string, int64, string) string
+func _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(SwigcptrOT_ME, string, string, int, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_payment_instrument__SWIG_1(arg2 string, arg3 string, arg4 int64, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_get_payment_instrument__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_1(arg2 string, arg3 string, arg4 int, arg5 string) string {
+	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(arg1, arg2, arg3, arg4, arg5)
 }
 
-func (p SwigcptrOTMadeEasy) Get_payment_instrument(a ...interface{}) string {
+func (p SwigcptrOT_ME) Get_payment_instrument(a ...interface{}) string {
 	argc := len(a)
 	if argc == 3 {
-		return p.Get_payment_instrument__SWIG_0(a[0].(string), a[1].(string), a[2].(int64))
+		return p.Get_payment_instrument__SWIG_0(a[0].(string), a[1].(string), a[2].(int))
 	}
 	if argc == 4 {
-		return p.Get_payment_instrument__SWIG_1(a[0].(string), a[1].(string), a[2].(int64), a[3].(string))
+		return p.Get_payment_instrument__SWIG_1(a[0].(string), a[1].(string), a[2].(int), a[3].(string))
 	}
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OTMadeEasy_get_box_receipt(SwigcptrOTMadeEasy, string, string, string, int64, string) string
+func _swig_wrap_OT_ME_get_box_receipt(SwigcptrOT_ME, string, string, string, int, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_box_receipt(arg2 string, arg3 string, arg4 string, arg5 int64, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_get_box_receipt(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Get_box_receipt(arg2 string, arg3 string, arg4 string, arg5 int, arg6 int64) string {
+	return _swig_wrap_OT_ME_get_box_receipt(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_retrieve_mint(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_retrieve_mint(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Retrieve_mint(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_retrieve_mint(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Retrieve_mint(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_retrieve_mint(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_load_or_retrieve_mint(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_load_or_retrieve_mint(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Load_or_retrieve_mint(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_load_or_retrieve_mint(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Load_or_retrieve_mint(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_load_or_retrieve_mint(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_query_asset_types(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_query_asset_types(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Query_asset_types(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_query_asset_types(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Query_asset_types(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_query_asset_types(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_create_market_offer(SwigcptrOTMadeEasy, string, string, string, string, string, string, bool, string, string, string) string
+func _swig_wrap_OT_ME_create_market_offer(SwigcptrOT_ME, string, string, int64, int64, int64, int64, bool, int64, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Create_market_offer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string, arg8 bool, arg9 string, arg10 string, arg11 string) string {
-	return _swig_wrap_OTMadeEasy_create_market_offer(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11)
+func (arg1 SwigcptrOT_ME) Create_market_offer(arg2 string, arg3 string, arg4 int64, arg5 int64, arg6 int64, arg7 int64, arg8 bool, arg9 int64, arg10 string, arg11 int64) string {
+	return _swig_wrap_OT_ME_create_market_offer(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11)
 }
 
-func _swig_wrap_OTMadeEasy_kill_market_offer(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_kill_market_offer(SwigcptrOT_ME, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Kill_market_offer(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_kill_market_offer(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Kill_market_offer(arg2 string, arg3 string, arg4 string, arg5 int64) string {
+	return _swig_wrap_OT_ME_kill_market_offer(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_kill_payment_plan(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_kill_payment_plan(SwigcptrOT_ME, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Kill_payment_plan(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_kill_payment_plan(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Kill_payment_plan(arg2 string, arg3 string, arg4 string, arg5 int64) string {
+	return _swig_wrap_OT_ME_kill_payment_plan(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_cancel_payment_plan(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_cancel_payment_plan(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Cancel_payment_plan(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_cancel_payment_plan(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Cancel_payment_plan(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_cancel_payment_plan(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_activate_smart_contract(SwigcptrOTMadeEasy, string, string, string, string, string) string
+func _swig_wrap_OT_ME_activate_smart_contract(SwigcptrOT_ME, string, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Activate_smart_contract(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_activate_smart_contract(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Activate_smart_contract(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
+	return _swig_wrap_OT_ME_activate_smart_contract(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_trigger_clause(SwigcptrOTMadeEasy, string, string, string, string, string) string
+func _swig_wrap_OT_ME_trigger_clause(SwigcptrOT_ME, string, string, int64, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Trigger_clause(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string {
-	return _swig_wrap_OTMadeEasy_trigger_clause(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) Trigger_clause(arg2 string, arg3 string, arg4 int64, arg5 string, arg6 string) string {
+	return _swig_wrap_OT_ME_trigger_clause(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-func _swig_wrap_OTMadeEasy_withdraw_cash(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_withdraw_cash(SwigcptrOT_ME, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Withdraw_cash(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_withdraw_cash(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Withdraw_cash(arg2 string, arg3 string, arg4 string, arg5 int64) string {
+	return _swig_wrap_OT_ME_withdraw_cash(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_easy_withdraw_cash(SwigcptrOTMadeEasy, string, string) int64
+func _swig_wrap_OT_ME_easy_withdraw_cash(SwigcptrOT_ME, string, int64) int
 
-func (arg1 SwigcptrOTMadeEasy) Easy_withdraw_cash(arg2 string, arg3 string) int64 {
-	return _swig_wrap_OTMadeEasy_easy_withdraw_cash(arg1, arg2, arg3)
+func (arg1 SwigcptrOT_ME) Easy_withdraw_cash(arg2 string, arg3 int64) int {
+	return _swig_wrap_OT_ME_easy_withdraw_cash(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_export_cash(SwigcptrOTMadeEasy, string, string, string, string, string, bool, *string) string
+func _swig_wrap_OT_ME_export_cash(SwigcptrOT_ME, string, string, string, string, string, bool, *string) string
 
-func (arg1 SwigcptrOTMadeEasy) Export_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool, arg8 *string) string {
-	return _swig_wrap_OTMadeEasy_export_cash(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
+func (arg1 SwigcptrOT_ME) Export_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool, arg8 *string) string {
+	return _swig_wrap_OT_ME_export_cash(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
 }
 
-func _swig_wrap_OTMadeEasy_withdraw_voucher(SwigcptrOTMadeEasy, string, string, string, string, string, string) string
+func _swig_wrap_OT_ME_withdraw_voucher(SwigcptrOT_ME, string, string, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Withdraw_voucher(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string {
-	return _swig_wrap_OTMadeEasy_withdraw_voucher(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+func (arg1 SwigcptrOT_ME) Withdraw_voucher(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 int64) string {
+	return _swig_wrap_OT_ME_withdraw_voucher(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 }
 
-func _swig_wrap_OTMadeEasy_pay_dividend(SwigcptrOTMadeEasy, string, string, string, string, string, string) string
+func _swig_wrap_OT_ME_pay_dividend(SwigcptrOT_ME, string, string, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Pay_dividend(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string {
-	return _swig_wrap_OTMadeEasy_pay_dividend(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
+func (arg1 SwigcptrOT_ME) Pay_dividend(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 int64) string {
+	return _swig_wrap_OT_ME_pay_dividend(arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 }
 
-func _swig_wrap_OTMadeEasy_deposit_cheque(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_deposit_cheque(SwigcptrOT_ME, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Deposit_cheque(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_deposit_cheque(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Deposit_cheque(arg2 string, arg3 string, arg4 string, arg5 string) string {
+	return _swig_wrap_OT_ME_deposit_cheque(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_deposit_cash(SwigcptrOTMadeEasy, string, string, string, string) int64
+func _swig_wrap_OT_ME_deposit_cash(SwigcptrOT_ME, string, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) Deposit_cash(arg2 string, arg3 string, arg4 string, arg5 string) int64 {
-	return _swig_wrap_OTMadeEasy_deposit_cash(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Deposit_cash(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_deposit_cash(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_deposit_local_purse(SwigcptrOTMadeEasy, string, string, string, string) int64
+func _swig_wrap_OT_ME_deposit_local_purse(SwigcptrOT_ME, string, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) Deposit_local_purse(arg2 string, arg3 string, arg4 string, arg5 string) int64 {
-	return _swig_wrap_OTMadeEasy_deposit_local_purse(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Deposit_local_purse(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_deposit_local_purse(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_get_market_list(SwigcptrOTMadeEasy, string, string) string
+func _swig_wrap_OT_ME_get_market_list(SwigcptrOT_ME, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_market_list(arg2 string, arg3 string) string {
-	return _swig_wrap_OTMadeEasy_get_market_list(arg1, arg2, arg3)
+func (arg1 SwigcptrOT_ME) Get_market_list(arg2 string, arg3 string) string {
+	return _swig_wrap_OT_ME_get_market_list(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_get_market_offers(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_get_market_offers(SwigcptrOT_ME, string, string, string, int64) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_market_offers(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_get_market_offers(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Get_market_offers(arg2 string, arg3 string, arg4 string, arg5 int64) string {
+	return _swig_wrap_OT_ME_get_market_offers(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_get_nym_market_offers(SwigcptrOTMadeEasy, string, string) string
+func _swig_wrap_OT_ME_get_nym_market_offers(SwigcptrOT_ME, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_nym_market_offers(arg2 string, arg3 string) string {
-	return _swig_wrap_OTMadeEasy_get_nym_market_offers(arg1, arg2, arg3)
+func (arg1 SwigcptrOT_ME) Get_nym_market_offers(arg2 string, arg3 string) string {
+	return _swig_wrap_OT_ME_get_nym_market_offers(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTMadeEasy_get_market_recent_trades(SwigcptrOTMadeEasy, string, string, string) string
+func _swig_wrap_OT_ME_get_market_recent_trades(SwigcptrOT_ME, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Get_market_recent_trades(arg2 string, arg3 string, arg4 string) string {
-	return _swig_wrap_OTMadeEasy_get_market_recent_trades(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Get_market_recent_trades(arg2 string, arg3 string, arg4 string) string {
+	return _swig_wrap_OT_ME_get_market_recent_trades(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OTMadeEasy_adjust_usage_credits(SwigcptrOTMadeEasy, string, string, string, string) string
+func _swig_wrap_OT_ME_adjust_usage_credits(SwigcptrOT_ME, string, string, string, string) string
 
-func (arg1 SwigcptrOTMadeEasy) Adjust_usage_credits(arg2 string, arg3 string, arg4 string, arg5 string) string {
-	return _swig_wrap_OTMadeEasy_adjust_usage_credits(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Adjust_usage_credits(arg2 string, arg3 string, arg4 string, arg5 string) string {
+	return _swig_wrap_OT_ME_adjust_usage_credits(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_VerifyMessageSuccess(SwigcptrOTMadeEasy, string) int64
+func _swig_wrap_OT_ME_VerifyMessageSuccess(SwigcptrOT_ME, string) int
 
-func (arg1 SwigcptrOTMadeEasy) VerifyMessageSuccess(arg2 string) int64 {
-	return _swig_wrap_OTMadeEasy_VerifyMessageSuccess(arg1, arg2)
+func (arg1 SwigcptrOT_ME) VerifyMessageSuccess(arg2 string) int {
+	return _swig_wrap_OT_ME_VerifyMessageSuccess(arg1, arg2)
 }
 
-func _swig_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(SwigcptrOTMadeEasy, string, string, string, string) int64
+func _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(SwigcptrOT_ME, string, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int64 {
-	return _swig_wrap_OTMadeEasy_VerifyMsgBalanceAgrmntSuccess(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_VerifyMsgTrnxSuccess(SwigcptrOTMadeEasy, string, string, string, string) int64
+func _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(SwigcptrOT_ME, string, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int64 {
-	return _swig_wrap_OTMadeEasy_VerifyMsgTrnxSuccess(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OTMadeEasy_InterpretTransactionMsgReply(SwigcptrOTMadeEasy, string, string, string, string, string) int64
+func _swig_wrap_OT_ME_InterpretTransactionMsgReply(SwigcptrOT_ME, string, string, string, string, string) int
 
-func (arg1 SwigcptrOTMadeEasy) InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int64 {
-	return _swig_wrap_OTMadeEasy_InterpretTransactionMsgReply(arg1, arg2, arg3, arg4, arg5, arg6)
+func (arg1 SwigcptrOT_ME) InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int {
+	return _swig_wrap_OT_ME_InterpretTransactionMsgReply(arg1, arg2, arg3, arg4, arg5, arg6)
 }
 
-type OTMadeEasy interface {
+func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(SwigcptrOT_ME, string, string) string
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_0(arg2 string, arg3 string) string {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(SwigcptrOT_ME, string) string
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_1(arg2 string) string {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnString(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnString__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnString__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(SwigcptrOT_ME, string, string) bool
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_0(arg2 string, arg3 string) bool {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(SwigcptrOT_ME, string) bool
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_1(arg2 string) bool {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnBool(a ...interface{}) bool {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnBool__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnBool__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(SwigcptrOT_ME, string, string) int
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_0(arg2 string, arg3 string) int {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(SwigcptrOT_ME, string) int
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_1(arg2 string) int {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnInt(a ...interface{}) int {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnInt__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnInt__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(SwigcptrOT_ME, string, string)
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_0(arg2 string, arg3 string) {
+	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(SwigcptrOT_ME, string)
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_1(arg2 string) {
+	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnVoid(a ...interface{}) {
+	argc := len(a)
+	if argc == 1 {
+		p.ExecuteScript_ReturnVoid__SWIG_1(a[0].(string))
+		return
+	}
+	if argc == 2 {
+		p.ExecuteScript_ReturnVoid__SWIG_0(a[0].(string), a[1].(string))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_AddVariable(SwigcptrOT_ME, string, uintptr)
+
+func (arg1 SwigcptrOT_ME) AddVariable(arg2 string, arg3 OTVariable) {
+	_swig_wrap_OT_ME_AddVariable(arg1, arg2, arg3.Swigcptr())
+}
+
+func _swig_wrap_OT_ME_FindVariable(SwigcptrOT_ME, string) SwigcptrOTVariable
+
+func (arg1 SwigcptrOT_ME) FindVariable(arg2 string) OTVariable {
+	return _swig_wrap_OT_ME_FindVariable(arg1, arg2)
+}
+
+func _swig_wrap_OT_ME_FindVariable2(string) SwigcptrOTVariable
+
+func OT_MEFindVariable2(arg1 string) OTVariable {
+	return _swig_wrap_OT_ME_FindVariable2(arg1)
+}
+
+type OT_ME interface {
 	Swigcptr() uintptr
-	SwigIsOTMadeEasy()
-	Make_sure_enough_trans_nums(arg2 int64, arg3 string, arg4 string) bool
+	SwigIsOT_ME()
+	Opentxs_main_loop() int
+	Make_sure_enough_trans_nums(arg2 int, arg3 string, arg4 string) bool
 	Register_nym(arg2 string, arg3 string) string
 	Check_user(arg2 string, arg3 string, arg4 string) string
-	Create_pseudonym(arg2 int64, arg3 string, arg4 string) string
+	Create_pseudonym(arg2 int, arg3 string, arg4 string) string
 	Issue_asset_type(arg2 string, arg3 string, arg4 string) string
 	Issue_basket_currency(arg2 string, arg3 string, arg4 string) string
 	Exchange_basket_currency(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool) string
@@ -1487,12 +1931,12 @@ type OTMadeEasy interface {
 	Stat_asset_account(arg2 string) string
 	Retrieve_account(a ...interface{}) bool
 	Retrieve_nym(a ...interface{}) bool
-	Send_transfer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string
+	Send_transfer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 int64, arg7 string) string
 	Process_inbox(arg2 string, arg3 string, arg4 string, arg5 string) string
-	Accept_inbox_items(arg2 string, arg3 int64, arg4 string) bool
+	Accept_inbox_items(arg2 string, arg3 int, arg4 string) bool
 	Discard_incoming_payments(arg2 string, arg3 string, arg4 string) bool
 	Cancel_outgoing_payments(arg2 string, arg3 string, arg4 string) bool
-	Accept_from_paymentbox(arg2 string, arg3 string, arg4 string) int64
+	Accept_from_paymentbox(arg2 string, arg3 string, arg4 string) int
 	Load_public_encryption_key(arg2 string) string
 	Load_public_signing_key(arg2 string) string
 	Load_or_retrieve_encrypt_key(arg2 string, arg3 string, arg4 string) string
@@ -1503,35 +1947,41 @@ type OTMadeEasy interface {
 	Send_user_msg(arg2 string, arg3 string, arg4 string, arg5 string) string
 	Send_user_payment(arg2 string, arg3 string, arg4 string, arg5 string) string
 	Send_user_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string
-	Withdraw_and_send_cash(arg2 string, arg3 string, arg4 string, arg5 string) bool
+	Withdraw_and_send_cash(arg2 string, arg3 string, arg4 string, arg5 int64) bool
 	Get_payment_instrument(a ...interface{}) string
-	Get_box_receipt(arg2 string, arg3 string, arg4 string, arg5 int64, arg6 string) string
+	Get_box_receipt(arg2 string, arg3 string, arg4 string, arg5 int, arg6 int64) string
 	Retrieve_mint(arg2 string, arg3 string, arg4 string) string
 	Load_or_retrieve_mint(arg2 string, arg3 string, arg4 string) string
 	Query_asset_types(arg2 string, arg3 string, arg4 string) string
-	Create_market_offer(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string, arg8 bool, arg9 string, arg10 string, arg11 string) string
-	Kill_market_offer(arg2 string, arg3 string, arg4 string, arg5 string) string
-	Kill_payment_plan(arg2 string, arg3 string, arg4 string, arg5 string) string
+	Create_market_offer(arg2 string, arg3 string, arg4 int64, arg5 int64, arg6 int64, arg7 int64, arg8 bool, arg9 int64, arg10 string, arg11 int64) string
+	Kill_market_offer(arg2 string, arg3 string, arg4 string, arg5 int64) string
+	Kill_payment_plan(arg2 string, arg3 string, arg4 string, arg5 int64) string
 	Cancel_payment_plan(arg2 string, arg3 string, arg4 string) string
 	Activate_smart_contract(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string
-	Trigger_clause(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) string
-	Withdraw_cash(arg2 string, arg3 string, arg4 string, arg5 string) string
-	Easy_withdraw_cash(arg2 string, arg3 string) int64
+	Trigger_clause(arg2 string, arg3 string, arg4 int64, arg5 string, arg6 string) string
+	Withdraw_cash(arg2 string, arg3 string, arg4 string, arg5 int64) string
+	Easy_withdraw_cash(arg2 string, arg3 int64) int
 	Export_cash(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 bool, arg8 *string) string
-	Withdraw_voucher(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string
-	Pay_dividend(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string) string
+	Withdraw_voucher(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 int64) string
+	Pay_dividend(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 int64) string
 	Deposit_cheque(arg2 string, arg3 string, arg4 string, arg5 string) string
-	Deposit_cash(arg2 string, arg3 string, arg4 string, arg5 string) int64
-	Deposit_local_purse(arg2 string, arg3 string, arg4 string, arg5 string) int64
+	Deposit_cash(arg2 string, arg3 string, arg4 string, arg5 string) int
+	Deposit_local_purse(arg2 string, arg3 string, arg4 string, arg5 string) int
 	Get_market_list(arg2 string, arg3 string) string
-	Get_market_offers(arg2 string, arg3 string, arg4 string, arg5 string) string
+	Get_market_offers(arg2 string, arg3 string, arg4 string, arg5 int64) string
 	Get_nym_market_offers(arg2 string, arg3 string) string
 	Get_market_recent_trades(arg2 string, arg3 string, arg4 string) string
 	Adjust_usage_credits(arg2 string, arg3 string, arg4 string, arg5 string) string
-	VerifyMessageSuccess(arg2 string) int64
-	VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int64
-	VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int64
-	InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int64
+	VerifyMessageSuccess(arg2 string) int
+	VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
+	VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
+	InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int
+	ExecuteScript_ReturnString(a ...interface{}) string
+	ExecuteScript_ReturnBool(a ...interface{}) bool
+	ExecuteScript_ReturnInt(a ...interface{}) int
+	ExecuteScript_ReturnVoid(a ...interface{})
+	AddVariable(arg2 string, arg3 OTVariable)
+	FindVariable(arg2 string) OTVariable
 }
 
 type OTDBPackType int
@@ -1698,6 +2148,47 @@ func (p SwigcptrStorage) Exists(a ...interface{}) bool {
 	}
 	if argc == 4 {
 		return p.Exists__SWIG_0(a[0].(string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_0(SwigcptrStorage, *string, string, string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_0(arg2 *string, arg3 string, arg4 string, arg5 string, arg6 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_0(arg1, arg2, arg3, arg4, arg5, arg6)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_1(SwigcptrStorage, *string, string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_1(arg2 *string, arg3 string, arg4 string, arg5 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_2(SwigcptrStorage, *string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_2(arg2 *string, arg3 string, arg4 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_2(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_3(SwigcptrStorage, *string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_3(arg2 *string, arg3 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_3(arg1, arg2, arg3)
+}
+
+func (p SwigcptrStorage) FormPathString(a ...interface{}) int64 {
+	argc := len(a)
+	if argc == 2 {
+		return p.FormPathString__SWIG_3(a[0].(*string), a[1].(string))
+	}
+	if argc == 3 {
+		return p.FormPathString__SWIG_2(a[0].(*string), a[1].(string), a[2].(string))
+	}
+	if argc == 4 {
+		return p.FormPathString__SWIG_1(a[0].(*string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	if argc == 5 {
+		return p.FormPathString__SWIG_0(a[0].(*string), a[1].(string), a[2].(string), a[3].(string), a[4].(string))
 	}
 	panic("No match for overloaded function call")
 }
@@ -2030,6 +2521,7 @@ type Storage interface {
 	SwigIsStorage()
 	GetPacker(a ...interface{}) OTPacker
 	Exists(a ...interface{}) bool
+	FormPathString(a ...interface{}) int64
 	StoreString(a ...interface{}) bool
 	QueryString(a ...interface{}) string
 	StorePlainString(a ...interface{}) bool
@@ -2109,6 +2601,27 @@ func Exists(a ...interface{}) bool {
 	}
 	if argc == 4 {
 		return Exists__SWIG_0(a[0].(string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func FormPathString__SWIG_0(*string, string, string, string, string) int64
+func FormPathString__SWIG_1(*string, string, string, string) int64
+func FormPathString__SWIG_2(*string, string, string) int64
+func FormPathString__SWIG_3(*string, string) int64
+func FormPathString(a ...interface{}) int64 {
+	argc := len(a)
+	if argc == 2 {
+		return FormPathString__SWIG_3(a[0].(*string), a[1].(string))
+	}
+	if argc == 3 {
+		return FormPathString__SWIG_2(a[0].(*string), a[1].(string), a[2].(string))
+	}
+	if argc == 4 {
+		return FormPathString__SWIG_1(a[0].(*string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	if argc == 5 {
+		return FormPathString__SWIG_0(a[0].(*string), a[1].(string), a[2].(string), a[3].(string), a[4].(string))
 	}
 	panic("No match for overloaded function call")
 }
@@ -2384,13 +2897,13 @@ func DeleteBlob(arg1 Blob) {
 
 func _swig_wrap_Blob_m_memBuffer_set(SwigcptrBlob, uintptr)
 
-func (arg1 SwigcptrBlob) SetM_memBuffer(arg2 Std_vector_Sl_unsigned_SS_char_Sg_) {
+func (arg1 SwigcptrBlob) SetM_memBuffer(arg2 VectorUnsignedChar) {
 	_swig_wrap_Blob_m_memBuffer_set(arg1, arg2.Swigcptr())
 }
 
-func _swig_wrap_Blob_m_memBuffer_get(SwigcptrBlob) SwigcptrStd_vector_Sl_unsigned_SS_char_Sg_
+func _swig_wrap_Blob_m_memBuffer_get(SwigcptrBlob) SwigcptrVectorUnsignedChar
 
-func (arg1 SwigcptrBlob) GetM_memBuffer() Std_vector_Sl_unsigned_SS_char_Sg_ {
+func (arg1 SwigcptrBlob) GetM_memBuffer() VectorUnsignedChar {
 	return _swig_wrap_Blob_m_memBuffer_get(arg1)
 }
 
@@ -2416,8 +2929,8 @@ func (p SwigcptrBlob) SwigGetStorable() Storable {
 type Blob interface {
 	Swigcptr() uintptr
 	SwigIsBlob()
-	SetM_memBuffer(arg2 Std_vector_Sl_unsigned_SS_char_Sg_)
-	GetM_memBuffer() Std_vector_Sl_unsigned_SS_char_Sg_
+	SetM_memBuffer(arg2 VectorUnsignedChar)
+	GetM_memBuffer() VectorUnsignedChar
 	SwigIsStorable()
 	SwigGetStorable() Storable
 }
@@ -2439,13 +2952,13 @@ func DeleteStringMap(arg1 StringMap) {
 
 func _swig_wrap_StringMap_the_map_set(SwigcptrStringMap, uintptr)
 
-func (arg1 SwigcptrStringMap) SetThe_map(arg2 Std_map_Sl_std_string_Sc_std_string_Sg_) {
+func (arg1 SwigcptrStringMap) SetThe_map(arg2 MapStringString) {
 	_swig_wrap_StringMap_the_map_set(arg1, arg2.Swigcptr())
 }
 
-func _swig_wrap_StringMap_the_map_get(SwigcptrStringMap) SwigcptrStd_map_Sl_std_string_Sc_std_string_Sg_
+func _swig_wrap_StringMap_the_map_get(SwigcptrStringMap) SwigcptrMapStringString
 
-func (arg1 SwigcptrStringMap) GetThe_map() Std_map_Sl_std_string_Sc_std_string_Sg_ {
+func (arg1 SwigcptrStringMap) GetThe_map() MapStringString {
 	return _swig_wrap_StringMap_the_map_get(arg1)
 }
 
@@ -2483,8 +2996,8 @@ func (p SwigcptrStringMap) SwigGetStorable() Storable {
 type StringMap interface {
 	Swigcptr() uintptr
 	SwigIsStringMap()
-	SetThe_map(arg2 Std_map_Sl_std_string_Sc_std_string_Sg_)
-	GetThe_map() Std_map_Sl_std_string_Sc_std_string_Sg_
+	SetThe_map(arg2 MapStringString)
+	GetThe_map() MapStringString
 	SetValue(arg2 string, arg3 string)
 	GetValue(arg2 string) string
 	SwigIsStorable()
@@ -5950,19 +6463,19 @@ func OT_API_Set_PasswordCallback(arg1 OTCaller) bool {
 }
 
 
-type SwigcptrStd_vector_Sl_unsigned_SS_char_Sg_ uintptr
-type Std_vector_Sl_unsigned_SS_char_Sg_ interface {
+type SwigcptrOTVariable uintptr
+type OTVariable interface {
 	Swigcptr() uintptr;
 }
-func (p SwigcptrStd_vector_Sl_unsigned_SS_char_Sg_) Swigcptr() uintptr {
+func (p SwigcptrOTVariable) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
-type SwigcptrUint8_t uintptr
-type Uint8_t interface {
+type SwigcptrOT_API uintptr
+type OT_API interface {
 	Swigcptr() uintptr;
 }
-func (p SwigcptrUint8_t) Swigcptr() uintptr {
+func (p SwigcptrOT_API) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
@@ -5974,35 +6487,19 @@ func (p SwigcptrOTPacker) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
+type SwigcptrOTAPI_Exec uintptr
+type OTAPI_Exec interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrOTAPI_Exec) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
 type SwigcptrSwigDirector_OTCallback uintptr
 type SwigDirector_OTCallback interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrSwigDirector_OTCallback) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrStd_map_Sl_std_string_Sc_std_string_Sg_ uintptr
-type Std_map_Sl_std_string_Sc_std_string_Sg_ interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrStd_map_Sl_std_string_Sc_std_string_Sg_) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrInt32_t uintptr
-type Int32_t interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrInt32_t) Swigcptr() uintptr {
-	return uintptr(p)
-}
-
-type SwigcptrUint32_t uintptr
-type Uint32_t interface {
-	Swigcptr() uintptr;
-}
-func (p SwigcptrUint32_t) Swigcptr() uintptr {
 	return uintptr(p)
 }
 

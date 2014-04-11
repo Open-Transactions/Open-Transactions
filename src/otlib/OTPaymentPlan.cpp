@@ -143,9 +143,9 @@
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -301,9 +301,9 @@ void OTPaymentPlan::UpdateContents()
     // where many asset accounts are involved and require receipts to be closed out.
     
     // OTCronItem
-    for (int i = 0; i < GetCountClosingNumbers(); i++)
+    for (int32_t i = 0; i < GetCountClosingNumbers(); i++)
     {
-        long lClosingNumber = GetClosingTransactionNoAt(i);
+        int64_t lClosingNumber = GetClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
         
         m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%ld\"/>\n\n",
@@ -315,9 +315,9 @@ void OTPaymentPlan::UpdateContents()
     // For the recipient, his OPENING *and* CLOSING transaction numbers go on
     // this list. (For sender, the "opening" number is the GetTransactionNum()
     // on this object, and the "closing" number is in the above list.)
-    for (int i = 0; i < GetRecipientCountClosingNumbers(); i++)
+    for (int32_t i = 0; i < GetRecipientCountClosingNumbers(); i++)
     {
-        long lClosingNumber = GetRecipientClosingTransactionNoAt(i);
+        int64_t lClosingNumber = GetRecipientClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
         
         m_xmlUnsigned.Concatenate("<closingRecipientNumber value=\"%ld\"/>\n\n",
@@ -331,8 +331,8 @@ void OTPaymentPlan::UpdateContents()
 	if (HasInitialPayment())
 	{
 		const time_t	tInitialPaymentDate			 = GetInitialPaymentDate();
-		const long		lAmount						 = GetInitialPaymentAmount();
-		const int		nNumberOfFailedAttempts		 = GetNoInitialFailures();
+		const int64_t		lAmount						 = GetInitialPaymentAmount();
+		const int32_t		nNumberOfFailedAttempts		 = GetNoInitialFailures();
 		const time_t	tFailedInitialPaymentDate	 = GetLastFailedInitialPaymentDate();
 		const time_t	tCompletedInitialPaymentDate = GetInitialPaymentCompletedDate();
 		
@@ -358,14 +358,14 @@ void OTPaymentPlan::UpdateContents()
 		
 	if (HasPaymentPlan())
 	{
-		const long	  lAmountPerPayment        = GetPaymentPlanAmount();
+		const int64_t	  lAmountPerPayment        = GetPaymentPlanAmount();
 		const int64_t lTimeBetween             = static_cast<int64_t> (GetTimeBetweenPayments()),
                       lPlanStartDate           = static_cast<int64_t> (GetPaymentPlanStartDate()),
                       lPlanLength              = static_cast<int64_t> (GetPaymentPlanLength()),
                       lDateOfLastPayment       = static_cast<int64_t> (GetDateOfLastPayment()),
                       lDateOfLastFailedPayment = static_cast<int64_t> (GetDateOfLastPayment());
 		
-		const int	nMaxNoPayments		= GetMaximumNoPayments(),
+		const int32_t	nMaxNoPayments		= GetMaximumNoPayments(),
 					nNoPaymentsComplete	= GetNoPaymentsDone(),
 					nNoFailedPayments	= GetNoFailedPayments();
 		
@@ -425,7 +425,7 @@ void OTPaymentPlan::UpdateContents()
 // *** Set Initial Payment ***  / Make sure to call SetAgreement() first.
 
 
-bool OTPaymentPlan::SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment/*=0*/)
+bool OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment/*=0*/)
 {
 	m_bInitialPayment		= true; // There is now an initial payment.
 	m_bInitialPaymentDone	= false;// It has not yet been paid.
@@ -502,7 +502,7 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
                       "OR there weren't enough closing numbers.\n", __FUNCTION__, GetTransactionNum());
         return false;
     }
-    for (int i = 0; i < GetCountClosingNumbers(); i++)
+    for (int32_t i = 0; i < GetCountClosingNumbers(); i++)
         if (!SENDER_NYM.VerifyIssuedNum(strServerID, GetClosingTransactionNoAt(i)))
         {
             OTLog::vError("OTPaymentPlan::%s: Closing transaction number %ld isn't on sender's issued list.\n",
@@ -518,7 +518,7 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
                       __FUNCTION__);
         return false;
     }
-    for (int i = 0; i < GetRecipientCountClosingNumbers(); i++)
+    for (int32_t i = 0; i < GetRecipientCountClosingNumbers(); i++)
         if (!RECIPIENT_NYM.VerifyIssuedNum(strServerID, GetRecipientClosingTransactionNoAt(i)))
         {
             OTLog::vError("OTPaymentPlan::%s: Recipient's Closing transaction number %ld isn't on recipient's issued list.\n",
@@ -555,9 +555,9 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
 // --------------------------------------------------------------------------
 // *** Set Payment Plan *** / Make sure to call SetAgreement() first.
 																// default: 1st payment in 30 days
-bool OTPaymentPlan::SetPaymentPlan(const long & lPaymentAmount, time_t tTimeUntilPlanStart/*=2592000*/, 
+bool OTPaymentPlan::SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPlanStart/*=2592000*/, 
 								   time_t tBetweenPayments/*=2592000*/, // Default: 30 days.
-								   time_t tPlanLength/*=0*/, int nMaxPayments/*=0*/)
+								   time_t tPlanLength/*=0*/, int32_t nMaxPayments/*=0*/)
 {		
 	// -----------------------------------------
 	if (lPaymentAmount <= 0 )
@@ -662,7 +662,7 @@ bool OTPaymentPlan::SetInitialPaymentDone()
 // This can be called by either the initial payment code, or by the payment plan code.
 // true == success, false == failure.
 //
-bool OTPaymentPlan::ProcessPayment(const long & lAmount)
+bool OTPaymentPlan::ProcessPayment(const int64_t & lAmount)
 {	
 	const OTCron * pCron = GetCron();
 	OT_ASSERT(NULL != pCron);
@@ -952,7 +952,7 @@ bool OTPaymentPlan::ProcessPayment(const long & lAmount)
 		else 
 		{
 			// Generate new transaction numbers for these new transactions
-			long lNewTransactionNumber = GetCron()->GetNextTransactionNumber();
+			int64_t lNewTransactionNumber = GetCron()->GetNextTransactionNumber();
 			
 //			OT_ASSERT(lNewTransactionNumber > 0); // this can be my reminder.			
 			if (0 == lNewTransactionNumber)
@@ -1468,7 +1468,7 @@ bool OTPaymentPlan::ProcessCron()
 		//
 		// Can also just add the TimeBetweenPayments to the DateOfLastPayment...
 		//
-		const long nNoPaymentsThatShouldHaveHappenedByNow = static_cast<long> ((DURATION_SINCE_START/GetTimeBetweenPayments()) + 1);
+		const int64_t nNoPaymentsThatShouldHaveHappenedByNow = static_cast<int64_t> ((DURATION_SINCE_START/GetTimeBetweenPayments()) + 1);
 		// The +1 is because it charges on the 1st day of the plan. So 14 days, which is 7 times 2, equals *3* payments, not 2.
 
 //		OTLog::vOutput(3, "Payments that should have happened by now: %d\n"
@@ -1559,7 +1559,7 @@ void OTPaymentPlan::InitPaymentPlan()
 	// Payment Plan...
 	m_bPaymentPlan				= false;	// Will there be a payment plan?
 	m_lPaymentPlanAmount		= 0;		// Amount of each payment.
-	m_tTimeBetweenPayments		= 2592000;	// How long between each payment? (Default: 30 days) // TODO don't hardcode.
+	m_tTimeBetweenPayments		= 2592000;	// How int64_t between each payment? (Default: 30 days) // TODO don't hardcode.
 	m_tPaymentPlanStartDate		= 0;		// Date for the first payment plan payment. Measured seconds after creation.
 	
 	m_tPaymentPlanLength		= 0;		// Optional. Plan length measured in seconds since plan start.

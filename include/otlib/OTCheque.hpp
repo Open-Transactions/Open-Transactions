@@ -134,13 +134,9 @@
 #ifndef __OT_CHEQUE_HPP__
 #define __OT_CHEQUE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
-
-#include _CINTTYPES
 
 class OTCheque : public OTTrackable
 {
@@ -148,9 +144,9 @@ private:  // Private prevents erroneous use by other classes.
     typedef OTTrackable ot_super;
 
 protected:
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
-	long			m_lAmount;
+	int64_t			m_lAmount;
 	OTString		m_strMemo;
 	OTIdentifier	m_RECIPIENT_USER_ID;// Optional. If present, must match depositor's user ID.
 	bool			m_bHasRecipient;
@@ -164,7 +160,7 @@ public:
         m_bHasRemitter = true; m_strContractType = "VOUCHER";  }
     // ---------------------------------------------------------------------------
 	inline const OTString     &	GetMemo()             const { return m_strMemo;           }
-	inline const long         & GetAmount()           const { return m_lAmount;           }
+	inline const int64_t         & GetAmount()           const { return m_lAmount;           }
     // ---------------------------------------------------------------------------
 	inline const OTIdentifier &	GetRecipientUserID()  const { return m_RECIPIENT_USER_ID; }
 	inline bool                 HasRecipient()        const { return m_bHasRecipient;     }
@@ -179,7 +175,7 @@ public:
     // --------------------------------------------------
 	
 	// Calling this function is like writing a check...
-EXPORT	bool IssueCheque(const long	  & lAmount,    const long   & lTransactionNum,
+EXPORT	bool IssueCheque(const int64_t	  & lAmount,    const int64_t   & lTransactionNum,
                          const time_t & VALID_FROM, const time_t & VALID_TO, // The expiration date (valid from/to dates.)
                          const OTIdentifier & SENDER_ACCT_ID,                // The asset account the cheque is drawn on.
                          const OTIdentifier & SENDER_USER_ID,                // This ID must match the user ID on the asset account, 
@@ -193,7 +189,7 @@ EXPORT  void CancelCheque(); // You still need to re-sign the cheque after doing
 	/*
 	 // A cheque can be written offline, provided you have a transaction
 	 // number handy to write it with. (Necessary to prevent double-spending.)
-	 inline       long              GetTransactionNum() const  { return m_lTransactionNum; }
+	 inline       int64_t              GetTransactionNum() const  { return m_lTransactionNum; }
 	 inline const OTIdentifier &	GetSenderAcctID()		   { return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier &	GetSenderUserID()		   { return m_SENDER_USER_ID; }
 	 */

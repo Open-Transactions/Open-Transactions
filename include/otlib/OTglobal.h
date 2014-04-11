@@ -134,11 +134,8 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
-#include <ExportWrapper.h>
-#include <WinsockWrapper.h>
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
-#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {
@@ -153,8 +150,8 @@ extern "C" {
 	
 #define OT_CMD_HEADER_SIZE  9
 	
-	typedef unsigned char	BYTE;
-	typedef unsigned short	USHORT;
+	typedef uint8_t	BYTE;
+	typedef uint16_t	USHORT;
 	
 	union u_header
 	{

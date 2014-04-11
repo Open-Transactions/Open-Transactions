@@ -34,7 +34,7 @@ public class ContactNym extends Displayable {
     }
     super.delete();
   }
-/*@SWIG:swig\otapi\OTAPI.i,158,OT_CAN_BE_CONTAINED_BY@*/
+/*@SWIG:swig\otapi\OTAPI.i,175,OT_CAN_BE_CONTAINED_BY@*/
 	// Ensure that the GC doesn't collect any OT_CONTAINER instance set from Java
 	private Contact containerRefContact;
 	// ----------------	
@@ -44,11 +44,11 @@ public class ContactNym extends Displayable {
 	// ----------------
 /*@SWIG@*/
 	// ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,112,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:swig\otapi\OTAPI.i,129,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefServerInfo(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefServerInfo(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -62,7 +62,7 @@ private long removeRefServerInfo(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -81,11 +81,11 @@ private long removeRefServerInfo(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefServerInfo(ServerInfo element) {
+private Long getCPtrAddRefServerInfo(ServerInfo element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 

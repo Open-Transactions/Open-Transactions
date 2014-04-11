@@ -37,14 +37,13 @@ public class Blob : Storable {
     }
   }
 
-  public SWIGTYPE_p_std__vectorT_unsigned_char_t m_memBuffer {
+  public VectorUnsignedChar m_memBuffer {
     set {
-      otapiPINVOKE.Blob_m_memBuffer_set(swigCPtr, SWIGTYPE_p_std__vectorT_unsigned_char_t.getCPtr(value));
-      if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+      otapiPINVOKE.Blob_m_memBuffer_set(swigCPtr, VectorUnsignedChar.getCPtr(value));
     } 
     get {
-      SWIGTYPE_p_std__vectorT_unsigned_char_t ret = new SWIGTYPE_p_std__vectorT_unsigned_char_t(otapiPINVOKE.Blob_m_memBuffer_get(swigCPtr), true);
-      if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+      global::System.IntPtr cPtr = otapiPINVOKE.Blob_m_memBuffer_get(swigCPtr);
+      VectorUnsignedChar ret = (cPtr == global::System.IntPtr.Zero) ? null : new VectorUnsignedChar(cPtr, false);
       return ret;
     } 
   }

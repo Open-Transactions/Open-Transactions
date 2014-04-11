@@ -1,11 +1,7 @@
 #ifndef _ANYOPTION_H
 #define _ANYOPTION_H
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
+#include "OTCommon.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -42,8 +38,8 @@ class AnyOption
 
 public: /* the public interface */
 EXPORT	AnyOption();
-	AnyOption(int maxoptions ); 
-	AnyOption(int maxoptions , int maxcharoptions); 
+	AnyOption(int32_t maxoptions ); 
+	AnyOption(int32_t maxoptions , int32_t maxcharoptions); 
 EXPORT	~AnyOption();
 
 	/* 
@@ -63,7 +59,7 @@ EXPORT	~AnyOption();
          * option file name  to use;
 	 */
 
-	void useCommandArgs( int _argc, char **_argv );
+	void useCommandArgs( int32_t _argc, char **_argv );
 	void useFiileName( const char *_filename );
 
 	/* 
@@ -131,14 +127,14 @@ EXPORT	void setFileOption( const char *opt_string );
          */
 	void processOptions();  
 	void processCommandArgs();
-EXPORT	void processCommandArgs( int max_args );
+EXPORT	void processCommandArgs( int32_t max_args );
 EXPORT	bool processFile();
 
 	/*
          * process the specified options 
          */
-EXPORT	void processCommandArgs( int _argc, char **_argv );
-	void processCommandArgs( int _argc, char **_argv, int max_args );
+EXPORT	void processCommandArgs( int32_t _argc, char **_argv );
+	void processCommandArgs( int32_t _argc, char **_argv, int32_t max_args );
 EXPORT	bool processFile( const char *_filename );
 	
 	/*
@@ -163,43 +159,43 @@ EXPORT	void addUsage( const char *line );
 	/* 
          * get the argument count and arguments sans the options
          */
-EXPORT	int   getArgc();
-EXPORT	char* getArgv( int index );
+EXPORT	int32_t   getArgc();
+EXPORT	char* getArgv( int32_t index );
 EXPORT	bool  hasOptions();
 
 private: /* the hidden data structure */
-	int argc;		/* commandline arg count  */
+	int32_t argc;		/* commandline arg count  */
 	char **argv;  		/* commndline args */
 	const char* filename; 	/* the option file */
 	char* appname; 	/* the application name from argv[0] */
 
-	int *new_argv; 		/* arguments sans options (index to argv) */
-	int new_argc;   	/* argument count sans the options */
-	int max_legal_args; 	/* ignore extra arguments */
+	int32_t *new_argv; 		/* arguments sans options (index to argv) */
+	int32_t new_argc;   	/* argument count sans the options */
+	int32_t max_legal_args; 	/* ignore extra arguments */
 
 
 	/* option strings storage + indexing */
-	int max_options; 	/* maximum number of options */
+	int32_t max_options; 	/* maximum number of options */
 	const char **options; 	/* storage */
-	int *optiontype; 	/* type - common, command, file */
-	int *optionindex;	/* index into value storage */
-	int option_counter; 	/* counter for added options  */
+	int32_t *optiontype; 	/* type - common, command, file */
+	int32_t *optionindex;	/* index into value storage */
+	int32_t option_counter; 	/* counter for added options  */
 
 	/* option chars storage + indexing */
-	int max_char_options; 	/* maximum number options */
+	int32_t max_char_options; 	/* maximum number options */
 	char *optionchars; 	/*  storage */
-	int *optchartype; 	/* type - common, command, file */
-	int *optcharindex; 	/* index into value storage */
-	int optchar_counter; 	/* counter for added options  */
+	int32_t *optchartype; 	/* type - common, command, file */
+	int32_t *optcharindex; 	/* index into value storage */
+	int32_t optchar_counter; 	/* counter for added options  */
 
 	/* values */
 	char **values; 		/* common value storage */
-	int g_value_counter; 	/* globally updated value index LAME! */
+	int32_t g_value_counter; 	/* globally updated value index LAME! */
 
 	/* help and usage */
 	const char **usage; 	/* usage */
-	int max_usage_lines;	/* max usage lines reseverd */
-	int usage_lines;	/* number of usage lines */
+	int32_t max_usage_lines;	/* max usage lines reseverd */
+	int32_t usage_lines;	/* number of usage lines */
 
 	bool command_set;	/* if argc/argv were provided */
 	bool file_set;		/* if a filename was provided */
@@ -228,7 +224,7 @@ private: /* the hidden data structure */
 
 private: /* the hidden utils */
 	void init();	
-	void init(int maxopt, int maxcharopt );	
+	void init(int32_t maxopt, int32_t maxcharopt );	
 	bool alloc();
 	void cleanup();
 	bool valueStoreOK();
@@ -243,8 +239,8 @@ private: /* the hidden utils */
 	bool setValue( char optchar , char *value);
 	bool setFlagOn( char optchar );
 
-	void addOption( const char* option , int type );
-	void addOption( char optchar , int type );
+	void addOption( const char* option , int32_t type );
+	void addOption( char optchar , int32_t type );
 	void addOptionError( const char *opt);
 	void addOptionError( char opt);
 	bool findFlag( char* value );
@@ -254,15 +250,15 @@ private: /* the hidden utils */
 	bool POSIX();
 
 	char parsePOSIX( char* arg );
-	int parseGNU( char *arg );
+	int32_t parseGNU( char *arg );
 	bool matchChar( char c );
-	int matchOpt( char *opt );
+	int32_t matchOpt( char *opt );
 
 	/* dot file methods */
 	char *readFile();
 	char *readFile( const char* fname );
 	bool consumeFile( char *buffer );
-	void processLine( char *theline, int length );
+	void processLine( char *theline, int32_t length );
 	char *chomp( char *str );
 	void valuePairs( char *type, char *value ); 
 	void justValue( char *value );

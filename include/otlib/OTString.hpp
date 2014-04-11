@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTString.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,11 +134,7 @@
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
+#include "OTCommon.hpp"
 
 #include <list>
 #include <map>
@@ -150,7 +146,6 @@
 #endif
 
 #include <cstdarg>
-
 
 class OTIdentifier;
 class OTContract;
@@ -221,7 +216,7 @@ typedef std::list   <std::string>                   listOfStrings;
 //
 char *str_dup1(const char *str);
 char *str_dup2(const char *str, uint32_t length);
-int   len_cmp(char *s1, char *s2);
+int32_t   len_cmp(char *s1, char *s2);
 
 
 template <class T>
@@ -262,7 +257,7 @@ inline size_t strlcpy(char *dst, const char *src, size_t siz)
     char *d = dst;
     const char *s = src;
     size_t n = siz;
-	
+
     /* Copy as many bytes as will fit */
     if (n != 0)
     {
@@ -272,7 +267,7 @@ inline size_t strlcpy(char *dst, const char *src, size_t siz)
                 break;
         }
     }
-	
+
     /* Not enough room in dst, add NUL and traverse rest of src */
     if (n == 0)
     {
@@ -281,7 +276,7 @@ inline size_t strlcpy(char *dst, const char *src, size_t siz)
         while (*s++)
             ;
     }
-	
+
     return(s - src - 1); /* count does not include NUL */
 }
 /*
@@ -297,13 +292,13 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
     const char *s = src;
     size_t n = siz;
     size_t dlen;
-	
+
     /* Find the end of dst and adjust bytes left but don't go past end */
     while (n-- != 0 && *d != '\0')
         d++;
     dlen = d - dst;
     n = siz - dlen;
-	
+
     if (n == 0)
         return(dlen + strlen(s));
     while (*s != '\0')
@@ -316,7 +311,7 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
         s++;
     }
     *d = '\0';
-	
+
     return(dlen + (s - src)); /* count does not include NUL */
 }
 // (End of the Todd Miller code.)
@@ -343,7 +338,7 @@ EXPORT	virtual ~OTString();
 EXPORT	OTString& operator=(OTString rhs);
 //	OTString& operator=(const char * new_string);       // Many unexpected side-effects if you mess with this.  }:-)
 //	OTString& operator=(const std::string & strValue);
-    
+
 	// ----------------------------------------------
 static   bool vformat(const char * fmt, std::va_list * pvl, std::string & str_output);
 
@@ -390,23 +385,23 @@ EXPORT static std::string  ws2s(const std::wstring & s);
         {
             if (empties == split::no_empties)
             {
-                next = s.find_first_not_of(delimiters, static_cast<unsigned int>(next)+1);
+                next = s.find_first_not_of(delimiters, static_cast<uint32_t>(next)+1);
                 if (next == Container::value_type::npos) break;
                 next -= 1;
             }
             current = static_cast<size_t>(next + 1);
             next = s.find_first_of( delimiters, current );
-            result.push_back(s.substr(current, static_cast<unsigned int>(next) - current));
+            result.push_back(s.substr(current, static_cast<uint32_t>(next) - current));
         }
         while (next != Container::value_type::npos);
         return result;
     }
 	// ----------------------------------------------
-    
+
 private: 	// Implementation
 	// You better have called Initialize() or Release() before you dare call this.
 	void LowLevelSetStr(const OTString & strBuf);
-	
+
 	// Only call this right after calling Initialize() or Release().
 	// Also, this function ASSUMES the new_string pointer is good.
 	void LowLevelSet(const char * new_string, uint32_t nEnforcedMaxLength);
@@ -422,14 +417,14 @@ EXPORT    static bool safe_strcpy(char * dest,
     // ----------------------------------------------
     static size_t safe_strlen(const char * s, size_t max);
 	// ----------------------------
-    
+
 EXPORT  static int64_t StringToLong(const std::string & strNumber);
-	
+
 EXPORT  int64_t ToLong() const;
 
-    
+
 EXPORT  static uint64_t StringToUlong(const std::string & strNumber);
-    
+
 EXPORT  uint64_t ToUlong() const;
 
     // ----------------------------
@@ -444,18 +439,18 @@ EXPORT uint32_t GetLength(void) const;
 	// ----------------------------------------------
 EXPORT        bool   Compare(const char     * strCompare) const;
 EXPORT        bool   Compare(const OTString & strCompare) const;
-	
+
 EXPORT	      bool   Contains(const char     * strCompare) const;
               bool   Contains(const OTString & strCompare) const;
-	
+
 EXPORT	const char * Get(void) const;
 	// ----------------------------
-	// new_string MUST be at least nEnforcedMaxLength in size if 
+	// new_string MUST be at least nEnforcedMaxLength in size if
     // nEnforcedMaxLength is passed in at all.
     //
-	// That's because this function forces the null terminator at 
+	// That's because this function forces the null terminator at
     // that length, minus 1. For example, if the max is set to 10, then
-    // the valid range is 0..9. Therefore 9 (10 minus 1) is where the 
+    // the valid range is 0..9. Therefore 9 (10 minus 1) is where the
     // NULL terminator goes.
     //
 EXPORT	void   Set         (const char     * new_string, uint32_t nEnforcedMaxLength=0);
@@ -481,8 +476,8 @@ EXPORT	void OTfgets(std::istream & ofs);
 	// ----------------------------------------------
 	// true  == there are more lines to read.
 	// false == this is the last line. Like EOF.
-	bool sgets(char * szBuffer, unsigned nBufSize);
-	
+	bool sgets(char * szBuffer, uint32_t nBufSize);
+
     char sgetc(void);
     void sungetc(void);
     void reset(void);

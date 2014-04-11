@@ -128,15 +128,11 @@
 #ifndef __OTSTRING_XML_HPP__
 #define __OTSTRING_XML_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTString.hpp"
 
 #include "irrxml/irrXML.hpp"
-
-#include _CINTTYPES
 
 class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 {
@@ -151,8 +147,8 @@ EXPORT	virtual ~OTStringXML();
 
 	using OTString::swap;
 
-	int read(void* buffer, unsigned sizeToRead);
-	int getSize();
+	int32_t read(void* buffer, uint32_t sizeToRead);
+	int32_t getSize();
 };
 
 #endif // __OTSTRING_XML_HPP__

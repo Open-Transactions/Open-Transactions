@@ -7,7 +7,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,14 +134,10 @@
 #ifndef __OT_SYMMETRIC_KEY_HPP__
 #define __OT_SYMMETRIC_KEY_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTPayload.hpp"
 #include "OTIdentifier.hpp"
-
-#include _CINTTYPES
 
 class OTString;
 class OTASCIIArmor;
@@ -150,8 +146,6 @@ class OTPassword;
 
 
 // ---------------------------------------------------
-
-
 
 class OTSymmetricKey
 {
@@ -172,13 +166,13 @@ private:
 public:
 	// ------------------------------------------------------------------------
 	// The highest-level possible interface (used by the API)
-    
+
 	// Caller must delete.
 	EXPORT	static OTPassword * GetPassphraseFromUser(
                                                       const OTString * pstrDisplay = NULL,
                                                       const bool		 bAskTwice = false
                                                       ); // returns a text OTPassword, or NULL.
-    
+
 	// ------------------------------------------------------------------------
 	// If you already have the passphrase, you can pass it in as an optional arg.
 	// That way if you have to use it 100 times in a row, the user doesn't actually have
@@ -198,7 +192,7 @@ public:
                                 const bool		   bBookends	  = true,
                                 const OTPassword * pAlreadyHavePW = NULL
                                 );
-    
+
 	EXPORT	static bool Decrypt(
                                 const OTString	 & strKey,
                                       OTString	 & strCiphertext,
@@ -206,7 +200,7 @@ public:
                                 const OTString	 * pstrDisplay	  = NULL,
                                 const OTPassword * pAlreadyHavePW = NULL
                                 );
-    
+
 	// ------------------------------------------------------------------------
 	EXPORT	static bool Encrypt(
                                 const OTSymmetricKey & theKey,
@@ -216,7 +210,7 @@ public:
                                 const bool			   bBookends	  = true,
                                 const OTPassword	 * pAlreadyHavePW = NULL
                                 );
-    
+
 	EXPORT	static bool Decrypt(
                                 const OTSymmetricKey & theKey,
                                       OTString		 & strCiphertext,
@@ -224,14 +218,14 @@ public:
                                 const OTString		 * pstrDisplay	  = NULL,
                                 const OTPassword	 * pAlreadyHavePW = NULL
                                 );
-    
+
 	// ------------------------------------------------------------------------
 	EXPORT	bool SerializeTo (OTPayload & theOutput) const;
 	EXPORT	bool SerializeFrom (OTPayload & theInput);
-    
+
 	EXPORT	bool SerializeTo (OTASCIIArmor & ascOutput) const;
 	EXPORT	bool SerializeFrom (const OTASCIIArmor & ascInput);
-    
+
 	EXPORT	bool SerializeTo (OTString & strOutput, bool bEscaped=false) const;
 	EXPORT	bool SerializeFrom (const OTString & strInput, bool bEscaped=false);
 	// ------------------------------------------------------------------------
@@ -244,20 +238,20 @@ public:
 	// The derived key is used for decrypting the actual symmetric key.
 	// It's called the derived key because it is derived from the passphrase.
 	//
-    
-    
+
+
 	// Must have a hash-check already!
 	EXPORT	OTPassword * CalculateDerivedKeyFromPassphrase(
                                                            const OTPassword & thePassphrase,
                                                            const bool bCheckForHashCheck = true
                                                            ) const;
-    
-    
+
+
 	// Must not have a hash-check yet!
 	EXPORT	OTPassword * CalculateNewDerivedKeyFromPassphrase(
                                                               const OTPassword & thePassphrase
                                                               ); // not const!
-    
+
 	// ------------------------------------------------------------------------
 	// Assumes key is already generated. Tries to get the raw clear key from its
 	// encrypted form, via its passphrase being used to derive a key for that purpose.
@@ -267,41 +261,41 @@ public:
                                          OTPassword & theRawKeyOutput,
                                          OTPassword * pDerivedKey=NULL
                                          ) const;
-    
-	// Assumes key is already generated. Tries to get the raw clear key 
+
+	// Assumes key is already generated. Tries to get the raw clear key
 	// from its encrypted form, via a derived key.
 	//
 	EXPORT	bool GetRawKeyFromDerivedKey(
-                                         const OTPassword & theDerivedKey, 
+                                         const OTPassword & theDerivedKey,
                                                OTPassword & theRawKeyOutput
-                                         ) const; 
-	// ------------------------------------------------------------------------ 
-	// Generates this OTSymmetricKey based on an OTPassword. The generated key is 
+                                         ) const;
+	// ------------------------------------------------------------------------
+	// Generates this OTSymmetricKey based on an OTPassword. The generated key is
 	// stored in encrypted form, based on a derived key from that password.
 	//
 	EXPORT	bool GenerateKey(
                              const OTPassword &  thePassphrase,
                                    OTPassword ** ppDerivedKey=NULL // If you want, I can pass this back to you.
                              );
-    
-	// ------------------------------------------------------------------------ 
+
+	// ------------------------------------------------------------------------
 	// For old SymmetricKey's that do not yet have a hash-check.
 	// This will generate a hash check for them.
 	//
 	EXPORT	bool GenerateHashCheck(const OTPassword & thePassphrase);
-    
-	// ------------------------------------------------------------------------ 
+
+	// ------------------------------------------------------------------------
 	// Re-generates a hash-check for some reason. (maybe it was wrong?)
 	//
 	EXPORT	bool ReGenerateHashCheck(const OTPassword & thePassphrase);
-	
+
 	// ------------------------------------------------------------------------
 	EXPORT	OTSymmetricKey();
 	EXPORT	OTSymmetricKey(const OTPassword & thePassword);
-    
+
 	EXPORT	virtual ~OTSymmetricKey();
 	EXPORT	virtual void Release();
-    
+
 	EXPORT	void Release_SymmetricKey();
 	// ------------------------------------------------------------------------
 };

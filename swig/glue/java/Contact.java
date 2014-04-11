@@ -34,7 +34,7 @@ public class Contact extends Displayable {
     }
     super.delete();
   }
-/*@SWIG:swig\otapi\OTAPI.i,158,OT_CAN_BE_CONTAINED_BY@*/
+/*@SWIG:swig\otapi\OTAPI.i,175,OT_CAN_BE_CONTAINED_BY@*/
 	// Ensure that the GC doesn't collect any OT_CONTAINER instance set from Java
 	private AddressBook containerRefAddressBook;
 	// ----------------	
@@ -44,11 +44,11 @@ public class Contact extends Displayable {
 	// ----------------
 /*@SWIG@*/
 	// ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,112,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:swig\otapi\OTAPI.i,129,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefContactNym(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefContactNym(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -62,7 +62,7 @@ private long removeRefContactNym(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -81,11 +81,11 @@ private long removeRefContactNym(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefContactNym(ContactNym element) {
+private Long getCPtrAddRefContactNym(ContactNym element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -107,8 +107,8 @@ private long getCPtrAddRefContactNym(ContactNym element) {
 	return ContactNym.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefContactAcct(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,206,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefContactAcct(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -122,7 +122,7 @@ private long removeRefContactAcct(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -141,11 +141,11 @@ private long removeRefContactAcct(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefContactAcct(ContactAcct element) {
+private Long getCPtrAddRefContactAcct(ContactAcct element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 

@@ -419,7 +419,7 @@ bool OTKeypair::LoadPublicKeyFromCertFile(const OTString   & strFoldername,
 
 
 
-bool OTKeypair::MakeNewKeypair(int nBits/*=1024*/)
+bool OTKeypair::MakeNewKeypair(int32_t nBits/*=1024*/)
 {
     const char * szFunc = "OTKeypair::MakeNewKeypair";
 	// ---------------------------------------------------------------
@@ -817,9 +817,9 @@ void OTSubcredential::UpdateContents()
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
-int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
     const OTString strNodeName(xml->getNodeName());
 
@@ -892,10 +892,10 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
         OTString strCount;
         strCount = xml->getAttributeValue("count");
-        const int nCount = strCount.Exists() ? atoi(strCount.Get()) : 0;
+        const int32_t nCount = strCount.Exists() ? atoi(strCount.Get()) : 0;
         if (nCount > 0)
         {
-            int nTempCount = nCount;
+            int32_t nTempCount = nCount;
             mapOfStrings mapPublic;
             
             while (nTempCount-- > 0)
@@ -983,10 +983,10 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
         OTString strCount;
         strCount = xml->getAttributeValue("count");
-        const int nCount = strCount.Exists() ? atoi(strCount.Get()) : 0;
+        const int32_t nCount = strCount.Exists() ? atoi(strCount.Get()) : 0;
         if (nCount > 0)
         {
-            int nTempCount = nCount;
+            int32_t nTempCount = nCount;
             mapOfStrings mapPrivate;
             
             while (nTempCount-- > 0)
@@ -1086,9 +1086,9 @@ int OTSubcredential::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
-int OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTSubkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = ot_super::ProcessXMLNode(xml);
+	int32_t nReturnVal = ot_super::ProcessXMLNode(xml);
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -1190,9 +1190,9 @@ void OTSubkey::UpdateContents()
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
-int OTMasterkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTMasterkey::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = ot_super::ProcessXMLNode(xml);
+	int32_t nReturnVal = ot_super::ProcessXMLNode(xml);
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -1445,7 +1445,7 @@ bool OTSubkey::VerifySignedByMaster()
 
 // ---------------------------------------
 
-int OTKeypair::GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // Inclusive means, return the key even when theSignature has no metadata.
+int32_t OTKeypair::GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // Inclusive means, return the key even when theSignature has no metadata.
                                        const OTSignature & theSignature, bool bInclusive/*=false*/) const
 {
     OT_ASSERT(NULL != m_pkeyPublic);
@@ -1492,7 +1492,7 @@ int OTKeypair::GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // Inc
 // pubkeys based on that 1-letter criteria, instead of its normal behavior, which is to return all
 // possible matching pubkeys based on a full match of the metadata.
 //
-int OTKeyCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
+int32_t OTKeyCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
                                               const OTSignature & theSignature,
                                               char cKeyType/*='0'*/) const // 'S' (signing key) or 'E' (encryption key) or 'A' (authentication key)
 {
@@ -1505,7 +1505,7 @@ int OTKeyCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
     // By this point, we know that EITHER exact metadata matches must occur, and the signature DOES have metadata, ('0')
     // OR the search is only for 'A', 'E', or 'S' candidates, based on cKeyType, and that the signature's metadata
     // can additionally narrow the search down, if it's present, which in this case it's not guaranteed to be.
-    int nCount = 0;
+    int32_t nCount = 0;
     switch (cKeyType)
     {
             // Specific search only for signatures with metadata.
@@ -1540,11 +1540,11 @@ int OTKeyCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
 // keys. It also means that metadata must match IF it's present, but that otherwise, if theSignature has no metadata at
 // all, then it will still be a "presumed match" and returned as a possibility. (With the 'A', 'E', or 'S' enforced.)
 //
-int OTCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
+int32_t OTCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
                                            const OTSignature & theSignature,
                                            char cKeyType/*='0'*/) const // 'S' (signing key) or 'E' (encryption key) or 'A' (authentication key)
 {
-    int nCount = 0;
+    int32_t nCount = 0;
     FOR_EACH_CONST(mapOfSubcredentials, m_mapSubcredentials)
     {
         const OTSubcredential * pSub = (*it).second;
@@ -1553,7 +1553,7 @@ int OTCredential::GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
         const OTSubkey * pKey = dynamic_cast<const OTSubkey *>(pSub);
         if (NULL == pKey) continue; // Skip all non-key credentials. We're looking for keys.
         // -------------------------
-        const int nTempCount = pKey->GetPublicKeysBySignature(listOutput, theSignature, cKeyType);
+        const int32_t nTempCount = pKey->GetPublicKeysBySignature(listOutput, theSignature, cKeyType);
         nCount += nTempCount;
     }
     return nCount;
@@ -1713,7 +1713,7 @@ bool OTCredential::VerifyAgainstSource() const
 		return false;
 	}
     // NOTE: This spot will have a significant delay, TODO OPTIMIZE. Performing a Freenet lookup, or DNS, etc,
-    // will introduce delay inside the call VerifyAgainstSource. Therefore in the long term, we must have a
+    // will introduce delay inside the call VerifyAgainstSource. Therefore in the int64_t term, we must have a
     // separate server process which will verify identities for some specified period of time (specified in
     // their credentials I suppose...) That way, when we call VerifyAgainstSource, we are verifying against
     // some server-signed authorization, based on a lookup that some separate process did within the past
@@ -1748,7 +1748,7 @@ bool OTMasterkey::VerifyAgainstSource() const
     // Public key is the default because that's the original behavior
     // of OT anyway: the public key was hashed to form the NymID. We will
     // continue to support this as a default, but now we are additionally
-    // also allowing other sources such as Namecoin, Freenet, etc. As long
+    // also allowing other sources such as Namecoin, Freenet, etc. As int64_t
     // as a Nym's source hashes to its correct ID, and as long as its master
     // credentials can be verified from that same source, then all master
     // credentials can be verified (as well as subcredentials) from any source
@@ -1972,7 +1972,7 @@ void OTKeyCredential::Release_Subkey()
 }
 // --------------------------------------
 
-bool OTKeyCredential::GenerateKeys(int nBits/*=1024*/)       // Gotta start somewhere.
+bool OTKeyCredential::GenerateKeys(int32_t nBits/*=1024*/)       // Gotta start somewhere.
 {
     const bool bSign = m_SigningKey.MakeNewKeypair(nBits);
     const bool bAuth = m_AuthentKey.MakeNewKeypair(nBits);
@@ -2887,7 +2887,7 @@ bool OTCredential::SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifi
 
 // ---------------------------------------------------------------------------------
 
-bool OTCredential::GenerateMasterkey(int nBits/*=1024*/) // CreateMaster is able to create keys from scratch (by calling this function.)
+bool OTCredential::GenerateMasterkey(int32_t nBits/*=1024*/) // CreateMaster is able to create keys from scratch (by calling this function.)
 {
     return m_Masterkey.GenerateKeys(nBits);
 }
@@ -3055,7 +3055,7 @@ bool OTCredential::LoadSubkeyFromString(const OTString & strInput, const OTStrin
     }
     // --------------------------------------
     
-    this->SetImportPassword(NULL); // Only set long enough for LoadContractFromString above to use it.
+    this->SetImportPassword(NULL); // Only set int64_t enough for LoadContractFromString above to use it.
     
     // --------------------------------------
     pSub->SetMetadata();
@@ -3137,7 +3137,7 @@ bool OTCredential::LoadSubcredentialFromString(const OTString & strInput, const 
     }
     // --------------------------------------
     
-    this->SetImportPassword(NULL); // This is only set long enough for LoadContractFromString to use it. (Then back to NULL.)
+    this->SetImportPassword(NULL); // This is only set int64_t enough for LoadContractFromString to use it. (Then back to NULL.)
     
     // --------------------------------------
     m_mapSubcredentials.insert(std::pair<std::string, OTSubcredential *>(strSubID.Get(), pSub));
@@ -3185,7 +3185,7 @@ bool OTCredential::LoadSubcredential(const OTString & strSubID)
 // For adding subcredentials that are specifically *subkeys*. Meaning it will
 // contain 3 keypairs: signing, authentication, and encryption.
 //
-bool OTCredential::AddNewSubkey(const int            nBits       /*=1024*/, // Ignored unless pmapPrivate is NULL
+bool OTCredential::AddNewSubkey(const int32_t            nBits       /*=1024*/, // Ignored unless pmapPrivate is NULL
                                 const mapOfStrings * pmapPrivate /*=NULL*/, // Public keys are derived from the private.
                                     OTPasswordData * pPWData     /*=NULL*/, // The master key will sign the subkey.
                                     OTSubkey      ** ppSubkey    /*=NULL*/) // output
@@ -3315,7 +3315,7 @@ bool OTCredential::AddNewSubcredential(const mapOfStrings & mapPrivate,
 //
 //static
 OTCredential * OTCredential::CreateMaster(const OTString     & strSourceForNymID,
-                                          const int            nBits/*=1024*/,       // Ignored unless pmapPrivate is NULL.
+                                          const int32_t            nBits/*=1024*/,       // Ignored unless pmapPrivate is NULL.
                                           const mapOfStrings * pmapPrivate/*=NULL*/, // If NULL, then the keys are generated in here.
                                           const mapOfStrings * pmapPublic /*=NULL*/, // In the case of key credentials, public is optional since it can already be derived from private. But not all credentials are keys...
                                           OTPasswordData * pPWData/*=NULL*/)
@@ -3427,7 +3427,7 @@ const OTSubcredential * OTCredential::GetSubcredential(const OTString & strSubID
 
 
 
-const OTSubcredential * OTCredential::GetSubcredentialByIndex(int nIndex) const
+const OTSubcredential * OTCredential::GetSubcredentialByIndex(int32_t nIndex) const
 {
     if ((nIndex < 0) || (nIndex >= static_cast<int64_t>(m_mapSubcredentials.size())))
     {
@@ -3435,7 +3435,7 @@ const OTSubcredential * OTCredential::GetSubcredentialByIndex(int nIndex) const
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
         
         FOR_EACH_CONST(mapOfSubcredentials, m_mapSubcredentials)
         {
@@ -3463,7 +3463,7 @@ const std::string OTCredential::GetSubcredentialIDByIndex(size_t nIndex) const
     }
     else
     {
-        int nLoopIndex = -1;
+        int32_t nLoopIndex = -1;
         
         FOR_EACH_CONST(mapOfSubcredentials, m_mapSubcredentials)
         {

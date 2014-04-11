@@ -15,17 +15,13 @@
 #ifndef TIMER_H_DEF
 #define TIMER_H_DEF
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
-#include _CINTTYPES
 
 #ifdef _WIN32   // Windows system specific
 #else          // Unix based system specific
 #include <sys/time.h>
 #endif
-
 
 class Timer
 {
@@ -49,7 +45,7 @@ protected:
 private:
     double startTimeInMicroSec;                 // starting time in micro-second
     double endTimeInMicroSec;                   // ending time in micro-second
-    int    stopped;                             // stop flag 
+    int32_t    stopped;                             // stop flag 
 #ifdef WIN32
     LARGE_INTEGER frequency;                    // ticks per second
     LARGE_INTEGER startCount;                   //
