@@ -133,30 +133,12 @@
 #ifndef __OTCLIENT_HPP__
 #define __OTCLIENT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTServerConnection.hpp"
 
-#ifndef IMPORT
-#define IMPORT
-#ifndef IMPORT_SET
-#define IMPORT_SET
-#endif
-#endif
-
 #include "OTMessageBuffer.hpp"
 
-#ifdef IMPORT_SET
-#undef IMPORT_SET
-#ifdef IMPORT
-#undef IMPORT
-#include "ExportWrapper.h"
-#endif
-#endif
-
-#include _CINTTYPES
 
 struct TransportCallback;
 
@@ -195,14 +177,14 @@ private:
 public:
 
 	/// Any time a message is sent to the server, its request number is copied here.
-	/// Most server message functions return int, but technically a request number can
-	/// be long. So if the number being returned is too large for that int, it will return
+	/// Most server message functions return int32_t, but technically a request number can
+	/// be int64_t. So if the number being returned is too large for that int32_t, it will return
 	/// -2 instead, and then another function can be called that returns lMostRecentRequestNumber
 	/// in string form, or whatever is easiest.
 	///
-	long m_lMostRecentRequestNumber;
+	int64_t m_lMostRecentRequestNumber;
 	// ---------------------------------------------
-	int  CalcReturnVal(const long & lRequestNumber);
+	int32_t  CalcReturnVal(const int64_t & lRequestNumber);
 	// ---------------------------------------------
 	bool IsRunningAsScript() const { return m_bRunningAsScript; }
 	void SetRunningAsScript()      { m_bRunningAsScript = true; } // (default is false.)
@@ -332,20 +314,20 @@ public:
 	bool m_bInitialized; // this will be false until InitClient() is called.
 	// ------------------------------------------------------------
 	// These functions manipulate the internal m_pConnection member:
-	void ProcessMessageOut(char *buf, int * pnExpectReply);
+	void ProcessMessageOut(char *buf, int32_t * pnExpectReply);
 	void ProcessMessageOut(OTMessage & theMessage);
 	bool ProcessInBuffer(OTMessage & theServerReply);
 	// ------------------------------------------------------------
 	// These functions are for command processing:
 
-	EXPORT int ProcessUserCommand(
+	EXPORT int32_t ProcessUserCommand(
 		OT_CLIENT_CMD_TYPE requestedCommand,
 		OTMessage & theMessage,
 		OTPseudonym & theNym,
 		// OTAssetContract & theContract,
 		OTServerContract & theServer,
 		OTAccount * pAccount=NULL,
-		long lTransactionAmount = 0,
+		int64_t lTransactionAmount = 0,
 		OTAssetContract * pMyAssetContract=NULL,
 		OTIdentifier * pHisNymID=NULL,
 		OTIdentifier * pHisAcctID=NULL

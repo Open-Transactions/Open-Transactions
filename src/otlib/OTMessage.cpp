@@ -261,9 +261,9 @@ void OTMessage::SetAcknowledgments(OTPseudonym & theNym)
 		
 		if (!(pDeque->empty()) && (theServerID == theTempID) ) // only for the matching serverID.
 		{
-			for (unsigned i = 0; i < pDeque->size(); i++)
+			for (uint32_t i = 0; i < pDeque->size(); i++)
 			{
-				const long lAckRequestNumber = pDeque->at(i);
+				const int64_t lAckRequestNumber = pDeque->at(i);
 				
                 m_AcknowledgedReplies.Add(lAckRequestNumber);
 			}
@@ -288,7 +288,7 @@ void OTMessage::UpdateContents()
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
     
-    m_lTime = static_cast<long>(time(NULL));
+    m_lTime = static_cast<int64_t>(time(NULL));
     
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
 	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%ld\">\n\n",
@@ -1994,9 +1994,9 @@ void OTMessage::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,

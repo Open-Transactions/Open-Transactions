@@ -189,14 +189,14 @@ OTStringXML::~OTStringXML()
 	// (And that calls Release_String().)
 }
 
-int OTStringXML::read(void* buffer, unsigned sizeToRead)
+int32_t OTStringXML::read(void* buffer, uint32_t sizeToRead)
 {
 	if (buffer && sizeToRead && Exists())
 	{
 		char * pBuf = (char *) buffer;
 		
-		int nBytesToCopy = (sizeToRead > GetLength() ? GetLength() : sizeToRead);
-		int i;
+		int32_t nBytesToCopy = (sizeToRead > GetLength() ? GetLength() : sizeToRead);
+		int32_t i;
 		for (i = 0; i < nBytesToCopy; i++) {
 			pBuf[i] = sgetc();
 		}
@@ -209,7 +209,7 @@ int OTStringXML::read(void* buffer, unsigned sizeToRead)
 
 }
 
-int OTStringXML::getSize()
+int32_t OTStringXML::getSize()
 {
 	return GetLength();
 }

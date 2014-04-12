@@ -9,6 +9,38 @@
 package org.opentransactions.otapi;
 
 public class otapi implements otapiConstants {
+  public static long imaxabs(long n) {
+    return otapiJNI.imaxabs(n);
+  }
+
+  public static imaxdiv_t imaxdiv(long numer, long denom) {
+    return new imaxdiv_t(otapiJNI.imaxdiv(numer, denom), true);
+  }
+
+  public static int OT_CLI_GetArgsCount(String str_Args) {
+    return otapiJNI.OT_CLI_GetArgsCount(str_Args);
+  }
+
+  public static String OT_CLI_GetValueByKey(String str_Args, String str_key) {
+    return otapiJNI.OT_CLI_GetValueByKey(str_Args, str_key);
+  }
+
+  public static String OT_CLI_GetValueByIndex(String str_Args, int nIndex) {
+    return otapiJNI.OT_CLI_GetValueByIndex(str_Args, nIndex);
+  }
+
+  public static String OT_CLI_GetKeyByIndex(String str_Args, int nIndex) {
+    return otapiJNI.OT_CLI_GetKeyByIndex(str_Args, nIndex);
+  }
+
+  public static String OT_CLI_ReadLine() {
+    return otapiJNI.OT_CLI_ReadLine();
+  }
+
+  public static String OT_CLI_ReadUntilEOF() {
+    return otapiJNI.OT_CLI_ReadUntilEOF();
+  }
+
   public static boolean InitDefaultStorage(int eStoreType, int ePackType) {
     return otapiJNI.InitDefaultStorage(eStoreType, ePackType);
   }
@@ -55,6 +87,22 @@ public class otapi implements otapiConstants {
 
   public static boolean Exists(String strFolder) {
     return otapiJNI.Exists__SWIG_3(strFolder);
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr, String threeStr) {
+    return otapiJNI.FormPathString__SWIG_0(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr) {
+    return otapiJNI.FormPathString__SWIG_1(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr) {
+    return otapiJNI.FormPathString__SWIG_2(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder) {
+    return otapiJNI.FormPathString__SWIG_3(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
   }
 
   public static boolean StoreString(String strContents, String strFolder, String oneStr, String twoStr, String threeStr) {

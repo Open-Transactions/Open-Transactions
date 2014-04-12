@@ -8,12 +8,10 @@
 
 // -----------------------------------------------
 
-// -----------------------------------------------
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,11 +21,11 @@ extern "C" {
 #include <openssl/pem.h>
 #include <openssl/conf.h>
 #include <openssl/x509v3.h>
-    
+
 #ifdef ANDROID
 #include <openssl/bn.h>
 #endif
-    
+
 #ifndef OPENSSL_NO_ENGINE
 #include <openssl/engine.h>
 #endif
@@ -42,13 +40,13 @@ extern "C" {
 extern "C" {
 #endif
 
-    
-int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days);
-int add_ext(X509 *cert, int nid, char *value);
+
+int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
+int32_t add_ext(X509 *cert, int32_t nid, char *value);
 
 
 /*
-int main(int argc, char **argv)
+int32_t main(int32_t argc, char **argv)
         {
         BIO *bio_err;
         X509 *x509=NULL;
@@ -81,7 +79,7 @@ int main(int argc, char **argv)
 
 
 
-static void callback(int p, int n, void *arg)
+static void callback(int32_t p, int32_t n, void *arg)
         {
         char c='B';
 
@@ -93,7 +91,7 @@ static void callback(int p, int n, void *arg)
         }
 
 
-int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
+int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days)
 {
     bool bCreatedKey  = false;
     bool bCreatedX509 = false;
@@ -102,14 +100,13 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         EVP_PKEY  * pk   = NULL;
         RSA       * rsa  = NULL;
         X509_NAME * name = NULL;
-        
+
         if ((pkeyp == NULL) || (*pkeyp == NULL))
         {
             if ((pk = EVP_PKEY_new()) == NULL)
             {
                 abort();  // todo
-
-                //return(0); undeeded after abort.
+                //return(0); unneeded after abort.
             }
             bCreatedKey = true;
         }
@@ -126,7 +123,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
                 }
                 return(0);
             }
-            
+
             bCreatedX509 = true;
         }
         else
@@ -137,16 +134,16 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
 #ifdef ANDROID
         rsa         = RSA_new();
         BIGNUM * e1 = BN_new();
-    
+
         if ((NULL == rsa) || (NULL == e1))
             abort(); // todo
-    
+
 //      BN_set_word(e1, 65537);
         BN_set_word(e1, RSA_F4);
-    
+
         if (!RSA_generate_key_ex(rsa, bits, e1, NULL))
             abort(); // todo
-    
+
         BN_free(e1);
 #else
         rsa = RSA_generate_key(bits, RSA_F4, callback, NULL);
@@ -163,7 +160,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         X509_set_version(x, 2);
         ASN1_INTEGER_set(X509_get_serialNumber(x), serial);
         X509_gmtime_adj (X509_get_notBefore(x), 0);
-        X509_gmtime_adj (X509_get_notAfter (x), static_cast<long>(60*60*24*days));
+        X509_gmtime_adj (X509_get_notAfter (x), static_cast<int64_t>(60*60*24*days));
         X509_set_pubkey (x, pk);
 
         name = X509_get_subject_name(x);
@@ -173,12 +170,12 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
          * Normally we'd check the return value for errors...
          */
         X509_NAME_add_entry_by_txt(name,"C",
-                                MBSTRING_ASC, 
-                                   (const unsigned char *)"UK", 
+                                MBSTRING_ASC,
+                                   (const uint8_t *)"UK",
                                    -1, -1, 0);
         X509_NAME_add_entry_by_txt(name,"CN",
                                 MBSTRING_ASC,
-                                   (const unsigned char *)"OpenSSL Group",
+                                   (const uint8_t *)"OpenSSL Group",
                                    -1, -1, 0);
 
         /* Its self signed so set the issuer name to be the same as the
@@ -187,7 +184,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         X509_set_issuer_name(x, name);
         // ----------------------------------------------------------------------------
         /* Add various extensions: standard extensions */
-            
+
         char * szConstraints  = new char[100]();
         char * szKeyUsage     = new char[100]();
         char * szSubjectKeyID = new char[100]();
@@ -212,11 +209,11 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
         delete [] szCertType;      szCertType     = NULL;
         delete [] szComment;       szComment      = NULL;
         // ----------------------------------------------------------------------------
-            
+
 #ifdef CUSTOM_EXT
         // Maybe even add our own extension based on existing
         {
-                int nid;
+                int32_t nid;
                 nid = OBJ_create("1.2.3.4", "MyAlias", "My Test Alias Extension");
                 X509V3_EXT_add_alias(nid, NID_netscape_comment);
                 add_ext(x, nid, "example comment alias");
@@ -231,23 +228,23 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
             //
             if (bCreatedX509)
                 X509_free(x);
-            
+
             // NOTE: not sure if x owns pk, in which case pk is already freed above.
             // Todo: find out and then determine whether or not to uncomment this.
             // (Presumably this would be a rare occurrence anyway.)
             //
 //            if (bCreatedKey)
 //                EVP_PKEY_free(pk);
-            
+
             x  = NULL;
             pk = NULL;
-            
+
             return 0;
         }
         // ------------------------------
         *x509p = x;
         *pkeyp = pk;
-            
+
         return(1);
 }
 
@@ -255,7 +252,7 @@ int mkcert(X509 **x509p, EVP_PKEY **pkeyp, int bits, int serial, int days)
  * because we won't reference any other sections.
  */
 
-int add_ext(X509 *cert, int nid, char *value)
+int32_t add_ext(X509 *cert, int32_t nid, char *value)
         {
         X509_EXTENSION *ex;
         X509V3_CTX ctx;
@@ -267,7 +264,7 @@ int add_ext(X509 *cert, int nid, char *value)
          */
         X509V3_set_ctx(&ctx, cert, cert, NULL, NULL, 0);
         ex = X509V3_EXT_conf_nid(NULL, &ctx, nid, value);
-            
+
         if (!ex)
             return 0;
 
@@ -275,7 +272,7 @@ int add_ext(X509 *cert, int nid, char *value)
         X509_EXTENSION_free(ex);
         return 1;
         }
-    
+
 #ifdef __cplusplus
 } // closing brace for extern "C"
 #endif

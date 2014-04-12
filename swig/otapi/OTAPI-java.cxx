@@ -602,8 +602,25 @@ namespace Swig {
   }
 }
 
+#include <inttypes.h>
+
+
+#include <stdint.h>		// Use the C99 official header
+
+
 #include <string>
+
+
+#include <stdexcept>
+
+
+#include <vector>
+#include <stdexcept>
+
+
 #include <map>
+#include <algorithm>
+#include <stdexcept>
 
 
 
@@ -611,16 +628,52 @@ namespace Swig {
 #define IMPORT
 #endif
 
+#include <string>
+#include <vector>
+#include <map>
+
 #include "../../include/otlib/OTPassword.hpp"
-#include "../../include/otapi/OTAPI_Basic.hpp"
-#include "../../include/otapi/OTMadeEasy.hpp"
+#include "../../include/otapi/OTAPI.hpp"
+#include "../../include/otapi/OT_ME.hpp"
 #include "../../include/otlib/OTStorage.hpp"
 #include "../../include/otlib/OTAsymmetricKey.hpp"
 
 
-
-#include <string>
-
+SWIGINTERN std::vector< unsigned char >::const_reference std_vector_Sl_unsigned_SS_char_Sg__get(std::vector< unsigned char > *self,int i){
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    return (*self)[i];
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+SWIGINTERN void std_vector_Sl_unsigned_SS_char_Sg__set(std::vector< unsigned char > *self,int i,std::vector< unsigned char >::value_type const &val){
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    (*self)[i] = val;
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+SWIGINTERN std::string const &std_map_Sl_std_string_Sc_std_string_Sg__get(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                if (i != self->end())
+                    return i->second;
+                else
+                    throw std::out_of_range("key not found");
+            }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__set(std::map< std::string,std::string > *self,std::string const &key,std::string const &x){
+                (*self)[key] = x;
+            }
+SWIGINTERN void std_map_Sl_std_string_Sc_std_string_Sg__del(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                if (i != self->end())
+                    self->erase(i);
+                else
+                    throw std::out_of_range("key not found");
+            }
+SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__has_key(std::map< std::string,std::string > *self,std::string const &key){
+                std::map<std::string,std::string >::iterator i = self->find(key);
+                return i != self->end();
+            }
 
 	using namespace OTDB;
 	
@@ -747,6 +800,480 @@ void SwigDirector_OTCallback::swig_connect_director(JNIEnv *jenv, jobject jself,
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxdiv_1t_1quot_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(imaxdiv_t **)&jarg1; 
+  arg2 = (long long)jarg2; 
+  if (arg1) (arg1)->quot = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxdiv_1t_1quot_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(imaxdiv_t **)&jarg1; 
+  result = (long long) ((arg1)->quot);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxdiv_1t_1rem_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(imaxdiv_t **)&jarg1; 
+  arg2 = (long long)jarg2; 
+  if (arg1) (arg1)->rem = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxdiv_1t_1rem_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  long long result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(imaxdiv_t **)&jarg1; 
+  result = (long long) ((arg1)->rem);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1imaxdiv_1t(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  imaxdiv_t *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (imaxdiv_t *)new imaxdiv_t();
+  *(imaxdiv_t **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1imaxdiv_1t(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  imaxdiv_t *arg1 = (imaxdiv_t *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(imaxdiv_t **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxabs(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  intmax_t arg1 ;
+  intmax_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (intmax_t)jarg1; 
+  result = (intmax_t)imaxabs(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_imaxdiv(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+  jlong jresult = 0 ;
+  intmax_t arg1 ;
+  intmax_t arg2 ;
+  imaxdiv_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (intmax_t)jarg1; 
+  arg2 = (intmax_t)jarg2; 
+  result = imaxdiv(arg1,arg2);
+  *(imaxdiv_t **)&jresult = new imaxdiv_t((const imaxdiv_t &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1VectorUnsignedChar_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >();
+  *(std::vector< unsigned char > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1VectorUnsignedChar_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  std::vector< unsigned char >::size_type arg1 ;
+  std::vector< unsigned char > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (std::vector< unsigned char >::size_type)jarg1; 
+  result = (std::vector< unsigned char > *)new std::vector< unsigned char >(arg1);
+  *(std::vector< unsigned char > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  result = ((std::vector< unsigned char > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  result = ((std::vector< unsigned char > const *)arg1)->capacity();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  arg2 = (std::vector< unsigned char >::size_type)jarg2; 
+  (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  result = (bool)((std::vector< unsigned char > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  std::vector< unsigned char >::value_type *arg2 = 0 ;
+  std::vector< unsigned char >::value_type temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  temp2 = (std::vector< unsigned char >::value_type)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->push_back((std::vector< unsigned char >::value_type const &)*arg2);
+}
+
+
+SWIGEXPORT jshort JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jshort jresult = 0 ;
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  std::vector< unsigned char >::value_type *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  try {
+    result = (std::vector< unsigned char >::value_type *) &std_vector_Sl_unsigned_SS_char_Sg__get(arg1,arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = (jshort)*result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_VectorUnsignedChar_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jshort jarg3) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  int arg2 ;
+  std::vector< unsigned char >::value_type *arg3 = 0 ;
+  std::vector< unsigned char >::value_type temp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  temp3 = (std::vector< unsigned char >::value_type)jarg3; 
+  arg3 = &temp3; 
+  try {
+    std_vector_Sl_unsigned_SS_char_Sg__set(arg1,arg2,(unsigned char const &)*arg3);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1VectorUnsignedChar(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::vector< unsigned char > *arg1 = (std::vector< unsigned char > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::vector< unsigned char > **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1MapStringString_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  std::map< std::string,std::string > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >();
+  *(std::map< std::string,std::string > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1MapStringString_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::map< std::string,std::string > *arg1 = 0 ;
+  std::map< std::string,std::string > *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::map< std::string,std::string > const & reference is null");
+    return 0;
+  } 
+  result = (std::map< std::string,std::string > *)new std::map< std::string,std::string >((std::map< std::string,std::string > const &)*arg1);
+  *(std::map< std::string,std::string > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  result = (unsigned int)((std::map< std::string,std::string > const *)arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1empty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  result = (bool)((std::map< std::string,std::string > const *)arg1)->empty();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  try {
+    result = (std::string *) &std_map_Sl_std_string_Sc_std_string_Sg__get(arg1,(std::string const &)*arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  
+  jresult = jenv->NewStringUTF(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  std_map_Sl_std_string_Sc_std_string_Sg__set(arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1del(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  try {
+    std_map_Sl_std_string_Sc_std_string_Sg__del(arg1,(std::string const &)*arg2);
+  }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+  
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_MapStringString_1has_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jboolean jresult = 0 ;
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (bool)std_map_Sl_std_string_Sc_std_string_Sg__has_key(arg1,(std::string const &)*arg2);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1MapStringString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  std::map< std::string,std::string > *arg1 = (std::map< std::string,std::string > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::map< std::string,std::string > **)&jarg1; 
+  delete arg1;
+}
+
 
 SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1PW_1DISPLAY_1get(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
@@ -950,8 +1477,8 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1set
   jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
-  int result;
+  int32_t arg3 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -962,20 +1489,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1set
     arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
     if (!arg2) return 0;
   }
-  arg3 = (int)jarg3; 
-  result = (int)(arg1)->setPassword((char const *)arg2,arg3);
+  arg3 = (int32_t)jarg3; 
+  result = (int32_t)(arg1)->setPassword((char const *)arg2,arg3);
   jresult = (jint)result; 
   if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1setPassword_1uint8(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1setPassword_1uint8(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t *arg2 = (uint8_t *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   (void)jenv;
@@ -983,66 +1509,49 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1se
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
   arg2 = *(uint8_t **)&jarg2; 
-  argp3 = *(uint32_t **)&jarg3; 
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->setPassword_uint8((uint8_t const *)arg2,arg3);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1addChar(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1addChar(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jshort jarg2) {
   jboolean jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint8_t arg2 ;
-  uint8_t *argp2 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  argp2 = *(uint8_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint8_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint8_t)jarg2; 
   result = (bool)(arg1)->addChar(arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizePassword_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizePassword_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = (arg1)->randomizePassword(arg2);
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  arg2 = (uint32_t)jarg2; 
+  result = (int32_t)(arg1)->randomizePassword(arg2);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizePassword_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizePassword_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   int32_t result;
   
@@ -1050,8 +1559,8 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ra
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  result = (arg1)->randomizePassword();
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  result = (int32_t)(arg1)->randomizePassword();
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1060,18 +1569,12 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
   jboolean jresult = 0 ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(uint8_t **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizePassword_uint8(arg1,arg2);
   jresult = (jboolean)result; 
   return jresult;
@@ -1082,7 +1585,6 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
   jboolean jresult = 0 ;
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   (void)jenv;
@@ -1092,12 +1594,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
     arg1 = (char *)jenv->GetStringUTFChars(jarg1, 0);
     if (!arg1) return 0;
   }
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizePassword(arg1,arg2);
   jresult = (jboolean)result; 
   if (arg1) jenv->ReleaseStringUTFChars(jarg1, (const char *)arg1);
@@ -1165,12 +1662,11 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ge
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1setMemory(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1setMemory(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   (void)jenv;
@@ -1178,24 +1674,18 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1se
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
   arg2 = *(void **)&jarg2; 
-  argp3 = *(uint32_t **)&jarg3; 
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->setMemory((void const *)arg2,arg3);
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->setMemory((void const *)arg2,arg3);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1addMemory(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1addMemory(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   void *arg2 = (void *) 0 ;
   uint32_t arg3 ;
-  uint32_t *argp3 ;
   int32_t result;
   
   (void)jenv;
@@ -1203,43 +1693,32 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ad
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
   arg2 = *(void **)&jarg2; 
-  argp3 = *(uint32_t **)&jarg3; 
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg3 = *argp3; 
-  result = (arg1)->addMemory((void const *)arg2,arg3);
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  arg3 = (uint32_t)jarg3; 
+  result = (int32_t)(arg1)->addMemory((void const *)arg2,arg3);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizeMemory_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizeMemory_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
-  result = (arg1)->randomizeMemory(arg2);
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  arg2 = (uint32_t)jarg2; 
+  result = (int32_t)(arg1)->randomizeMemory(arg2);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizeMemory_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1randomizeMemory_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   int32_t result;
   
@@ -1247,8 +1726,8 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ra
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  result = (arg1)->randomizeMemory();
-  *(int32_t **)&jresult = new int32_t((const int32_t &)result); 
+  result = (int32_t)(arg1)->randomizeMemory();
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1257,18 +1736,12 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
   jboolean jresult = 0 ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(uint8_t **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizeMemory_uint8(arg1,arg2);
   jresult = (jboolean)result; 
   return jresult;
@@ -1279,18 +1752,12 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
   jboolean jresult = 0 ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)OTPassword::randomizeMemory(arg1,arg2);
   jresult = (jboolean)result; 
   return jresult;
@@ -1306,8 +1773,8 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ge
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  result = ((OTPassword const *)arg1)->getBlockSize();
-  *(uint32_t **)&jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getBlockSize();
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -1343,8 +1810,8 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ge
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  result = ((OTPassword const *)arg1)->getPasswordSize();
-  *(uint32_t **)&jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getPasswordSize();
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -1358,8 +1825,8 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1ge
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  result = ((OTPassword const *)arg1)->getMemorySize();
-  *(uint32_t **)&jresult = new uint32_t((const uint32_t &)result); 
+  result = (uint32_t)((OTPassword const *)arg1)->getMemorySize();
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -1378,17 +1845,11 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1zer
 SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1zeroMemory_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(uint8_t **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return ;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   OTPassword::zeroMemory(arg1,arg2);
 }
 
@@ -1396,17 +1857,11 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1zer
 SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1zeroMemory_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return ;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   OTPassword::zeroMemory(arg1,arg2);
 }
 
@@ -1418,26 +1873,14 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1sa
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
   bool arg5 ;
-  uint32_t *argp2 ;
-  uint32_t *argp4 ;
   void *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = *(void **)&jarg3; 
-  argp4 = *(uint32_t **)&jarg4; 
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg4 = *argp4; 
+  arg4 = (uint32_t)jarg4; 
   arg5 = jarg5 ? true : false; 
   result = (void *)OTPassword::safe_memcpy(arg1,arg2,(void const *)arg3,arg4,arg5);
   *(void **)&jresult = result; 
@@ -1451,26 +1894,14 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_1sa
   uint32_t arg2 ;
   void *arg3 = (void *) 0 ;
   uint32_t arg4 ;
-  uint32_t *argp2 ;
-  uint32_t *argp4 ;
   void *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = *(void **)&jarg3; 
-  argp4 = *(uint32_t **)&jarg4; 
-  if (!argp4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg4 = *argp4; 
+  arg4 = (uint32_t)jarg4; 
   result = (void *)OTPassword::safe_memcpy(arg1,arg2,(void const *)arg3,arg4);
   *(void **)&jresult = result; 
   return jresult;
@@ -1493,19 +1924,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTPassword_
   jboolean jresult = 0 ;
   OTPassword *arg1 = (OTPassword *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTPassword **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (bool)(arg1)->SetSize(arg2);
   jresult = (jboolean)result; 
   return jresult;
@@ -1562,7 +1987,6 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
@@ -1572,12 +1996,7 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
     arg1 = (char *)jenv->GetStringUTFChars(jarg1, 0);
     if (!arg1) return 0;
   }
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((char const *)arg1,arg2,arg3);
   *(OTPassword **)&jresult = result; 
@@ -1590,7 +2009,6 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   jlong jresult = 0 ;
   char *arg1 = (char *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
@@ -1600,12 +2018,7 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
     arg1 = (char *)jenv->GetStringUTFChars(jarg1, 0);
     if (!arg1) return 0;
   }
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((char const *)arg1,arg2);
   *(OTPassword **)&jresult = result; 
   if (arg1) jenv->ReleaseStringUTFChars(jarg1, (const char *)arg1);
@@ -1618,18 +2031,12 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(uint8_t **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((uint8_t const *)arg1,arg2,arg3);
   *(OTPassword **)&jresult = result; 
@@ -1641,18 +2048,12 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   jlong jresult = 0 ;
   uint8_t *arg1 = (uint8_t *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(uint8_t **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((uint8_t const *)arg1,arg2);
   *(OTPassword **)&jresult = result; 
   return jresult;
@@ -1664,18 +2065,12 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
   OTPassword::BlockSize arg3 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   arg3 = (OTPassword::BlockSize)jarg3; 
   result = (OTPassword *)new OTPassword((void const *)arg1,arg2,arg3);
   *(OTPassword **)&jresult = result; 
@@ -1687,18 +2082,12 @@ SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTPasswor
   jlong jresult = 0 ;
   void *arg1 = (void *) 0 ;
   uint32_t arg2 ;
-  uint32_t *argp2 ;
   OTPassword *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(void **)&jarg1; 
-  argp2 = *(uint32_t **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null uint32_t");
-    return 0;
-  }
-  arg2 = *argp2; 
+  arg2 = (uint32_t)jarg2; 
   result = (OTPassword *)new OTPassword((void const *)arg1,arg2);
   *(OTPassword **)&jresult = result; 
   return jresult;
@@ -1930,7 +2319,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTCaller_1Ge
 SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTCaller_1SetDisplay(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
   OTCaller *arg1 = (OTCaller *) 0 ;
   char *arg2 = (char *) 0 ;
-  int arg3 ;
+  int32_t arg3 ;
   
   (void)jenv;
   (void)jcls;
@@ -1941,7 +2330,7 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTCaller_1SetDi
     arg2 = (char *)jenv->GetStringUTFChars(jarg2, 0);
     if (!arg2) return ;
   }
-  arg3 = (int)jarg3; 
+  arg3 = (int32_t)jarg3; 
   (arg1)->SetDisplay((char const *)arg2,arg3);
   if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
 }
@@ -2009,53 +2398,247 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTCaller_1callT
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTAPI_1Basic(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1WrapTimeT(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
-  OTAPI_Basic *result = 0 ;
+  WrapTimeT *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  result = (OTAPI_Basic *)new OTAPI_Basic();
-  *(OTAPI_Basic **)&jresult = result; 
+  result = (WrapTimeT *)new WrapTimeT();
+  *(WrapTimeT **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1OTAPI_1Basic(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  OTAPI_Basic *arg1 = (OTAPI_Basic *) 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_WrapTimeT_1getTime(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(OTAPI_Basic **)&jarg1; 
+  (void)jarg1_;
+  arg1 = *(WrapTimeT **)&jarg1; 
+  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_WrapTimeT_1setTime(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(WrapTimeT **)&jarg1; 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  (arg1)->setTime((int64_t const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1WrapTimeT(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(WrapTimeT **)&jarg1; 
   delete arg1;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AppStartup(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetExecutor(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
+  OTAPI_Exec *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(OTAPI_Exec **)&jarg1; 
+  result = (OTAPI_Exec *)OTAPI_Wrap::SetExecutor(arg1);
+  *(OTAPI_Exec **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Exec(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  OTAPI_Exec *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (OTAPI_Exec *)OTAPI_Wrap::Exec();
+  *(OTAPI_Exec **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1It(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  OTAPI_Exec *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (OTAPI_Exec *)OTAPI_Wrap::It();
+  *(OTAPI_Exec **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1OTAPI(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  OT_API *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (OT_API *)OTAPI_Wrap::OTAPI();
+  *(OT_API **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1StringToLong(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int64_t)OTAPI_Wrap::StringToLong((std::string const &)*arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LongToString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jstring jresult = 0 ;
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
+  result = OTAPI_Wrap::LongToString((long long const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1StringToUlong(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  std::string *arg1 = 0 ;
+  uint64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (uint64_t)OTAPI_Wrap::StringToUlong((std::string const &)*arg1);
+  {
+    jbyteArray ba = jenv->NewByteArray(9);
+    jbyte* bae = jenv->GetByteArrayElements(ba, 0);
+    jclass clazz = jenv->FindClass("java/math/BigInteger");
+    jmethodID mid = jenv->GetMethodID(clazz, "<init>", "([B)V");
+    jobject bigint;
+    int i;
+    
+    bae[0] = 0;
+    for(i=1; i<9; i++ ) {
+      bae[i] = (jbyte)(result>>8*(8-i));
+    }
+    
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+    bigint = jenv->NewObject(clazz, mid, ba);
+    jresult = bigint;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1UlongToString(JNIEnv *jenv, jclass jcls, jobject jarg1) {
+  jstring jresult = 0 ;
+  uint64_t *arg1 = 0 ;
+  uint64_t temp1 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  {
+    jclass clazz;
+    jmethodID mid;
+    jbyteArray ba;
+    jbyte* bae;
+    jsize sz;
+    int i;
+    
+    if (!jarg1) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "BigInteger null");
+      return 0;
+    }
+    clazz = jenv->GetObjectClass(jarg1);
+    mid = jenv->GetMethodID(clazz, "toByteArray", "()[B");
+    ba = (jbyteArray)jenv->CallObjectMethod(jarg1, mid);
+    bae = jenv->GetByteArrayElements(ba, 0);
+    sz = jenv->GetArrayLength(ba);
+    arg1 = &temp1;
+    temp1 = 0;
+    for(i=0; i<sz; i++) {
+      temp1 = (temp1 << 8) | (uint64_t)(unsigned char)bae[i];
+    }
+    jenv->ReleaseByteArrayElements(ba, bae, 0);
+  }
+  result = OTAPI_Wrap::UlongToString((unsigned long long const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AppInit(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::AppStartup();
+  result = (bool)OTAPI_Wrap::AppInit();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AppShutdown(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AppCleanup(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::AppShutdown();
+  result = (bool)OTAPI_Wrap::AppCleanup();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetAppBinaryFolder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetAppBinaryFolder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   std::string *arg1 = 0 ;
   
   (void)jenv;
@@ -2069,11 +2652,11 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1S
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  OTAPI_Basic::SetAppBinaryFolder((std::string const &)*arg1);
+  OTAPI_Wrap::SetAppBinaryFolder((std::string const &)*arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetHomeFolder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetHomeFolder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   std::string *arg1 = 0 ;
   
   (void)jenv;
@@ -2087,23 +2670,11 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1S
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  OTAPI_Basic::SetHomeFolder((std::string const &)*arg1);
+  OTAPI_Wrap::SetHomeFolder((std::string const &)*arg1);
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Init(JNIEnv *jenv, jclass jcls) {
-  jboolean jresult = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (bool)OTAPI_Basic::Init();
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetWallet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetWallet(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -2119,55 +2690,57 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::SetWallet((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::SetWallet((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1WalletExists(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1WalletExists(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::WalletExists();
+  result = (bool)OTAPI_Wrap::WalletExists();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadWallet(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadWallet(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::LoadWallet();
+  result = (bool)OTAPI_Wrap::LoadWallet();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SwitchWallet(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SwitchWallet(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::SwitchWallet();
+  result = (bool)OTAPI_Wrap::SwitchWallet();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Output(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2) {
-  long arg1 ;
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Output(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2) {
+  int32_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
+  int32_t temp1 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return ;
@@ -2177,55 +2750,23 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1O
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  OTAPI_Basic::Output(arg1,(std::string const &)*arg2);
+  OTAPI_Wrap::Output((int const &)*arg1,(std::string const &)*arg2);
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetTime(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  std::string result;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetTime(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  WrapTimeT result;
   
   (void)jenv;
   (void)jcls;
-  result = OTAPI_Basic::GetTime();
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = OTAPI_Wrap::GetTime();
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1NumList_1Add(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1NumList_1Remove(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1NumList_1Add(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2251,13 +2792,45 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::NumList_Add((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1NumList_1VerifyQuery(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1NumList_1Remove(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OTAPI_Wrap::NumList_Remove((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1NumList_1VerifyQuery(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2283,13 +2856,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::NumList_VerifyQuery((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1NumList_1VerifyAll(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1NumList_1VerifyAll(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2315,16 +2888,16 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::NumList_VerifyAll((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1NumList_1Count(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1NumList_1Count(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -2337,13 +2910,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1N
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::NumList_Count((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::NumList_Count((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Encode(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Encode(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
@@ -2363,13 +2936,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   temp2 = jarg2 ? true : false; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Encode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Encode((std::string const &)*arg1,(bool const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Decode(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Decode(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   bool *arg2 = 0 ;
@@ -2389,13 +2962,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   temp2 = jarg2 ? true : false; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Decode((std::string const &)*arg1,(bool const &)*arg2);
+  result = OTAPI_Wrap::Decode((std::string const &)*arg1,(bool const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Encrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Encrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2421,13 +2994,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Encrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Decrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Decrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2453,57 +3026,25 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Decrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreateSymmetricKey(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreateSymmetricKey(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  result = OTAPI_Basic::CreateSymmetricKey();
+  result = OTAPI_Wrap::CreateSymmetricKey();
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SymmetricEncrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SymmetricDecrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SymmetricEncrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2529,13 +3070,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricEncrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SignContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SymmetricDecrypt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2561,13 +3102,45 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::SymmetricDecrypt((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1FlatSign(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SignContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OTAPI_Wrap::SignContract((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1FlatSign(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2585,6 +3158,214 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = OTAPI_Wrap::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddSignature(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OTAPI_Wrap::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1VerifySignature(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jboolean jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (bool)OTAPI_Wrap::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1VerifyAndRetrieveXMLContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OTAPI_Wrap::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetMemlogSize(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int32_t)OTAPI_Wrap::GetMemlogSize();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetMemlogAtIndex(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jstring jresult = 0 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
+  result = OTAPI_Wrap::GetMemlogAtIndex((int const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1PeekMemlogFront(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = OTAPI_Wrap::PeekMemlogFront();
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1PeekMemlogBack(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = OTAPI_Wrap::PeekMemlogBack();
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1PopMemlogFront(JNIEnv *jenv, jclass jcls) {
+  jboolean jresult = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (bool)OTAPI_Wrap::PopMemlogFront();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1PopMemlogBack(JNIEnv *jenv, jclass jcls) {
+  jboolean jresult = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (bool)OTAPI_Wrap::PopMemlogBack();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreateNym(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2, jstring jarg3) {
+  jstring jresult = 0 ;
+  int32_t *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t temp1 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  temp1 = (int32_t)jarg1; 
+  arg1 = &temp1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -2603,13 +3384,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::FlatSign((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreateNym((int const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddSignature(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1ActiveCronItemIDs(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2635,48 +3416,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::AddSignature((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1VerifySignature(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jboolean jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::VerifySignature((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1VerifyAndRetrieveXMLContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetActiveCronItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int64_t arg2 ;
   std::string result;
   
   (void)jenv;
@@ -2690,137 +3439,84 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::VerifyAndRetrieveXMLContents((std::string const &)*arg1,(std::string const &)*arg2);
+  arg2 = (int64_t)jarg2; 
+  result = OTAPI_Wrap::GetActiveCronItem((std::string const &)*arg1,arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetMemlogSize(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1SourceForID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = OTAPI_Wrap::GetNym_SourceForID((std::string const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1AltSourceLocation(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = OTAPI_Wrap::GetNym_AltSourceLocation((std::string const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1CredentialCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
-  long result;
+  std::string *arg1 = 0 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (long)OTAPI_Basic::GetMemlogSize();
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int32_t)OTAPI_Wrap::GetNym_CredentialCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetMemlogAtIndex(JNIEnv *jenv, jclass jcls, jint jarg1) {
-  jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  temp1 = (long)jarg1; 
-  arg1 = &temp1; 
-  result = OTAPI_Basic::GetMemlogAtIndex((long const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1PeekMemlogFront(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = OTAPI_Basic::PeekMemlogFront();
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1PeekMemlogBack(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = OTAPI_Basic::PeekMemlogBack();
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1PopMemlogFront(JNIEnv *jenv, jclass jcls) {
-  jboolean jresult = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (bool)OTAPI_Basic::PopMemlogFront();
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1PopMemlogBack(JNIEnv *jenv, jclass jcls) {
-  jboolean jresult = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (bool)OTAPI_Basic::PopMemlogBack();
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreateNym(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  temp1 = (long)jarg1; 
-  arg1 = &temp1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::CreateNym((long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1ActiveCronItemIDs(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1CredentialID(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -2834,146 +3530,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_ActiveCronItemIDs((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetActiveCronItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetActiveCronItem((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1SourceForID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetNym_SourceForID((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1AltSourceLocation(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetNym_AltSourceLocation((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1CredentialCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jint jresult = 0 ;
-  std::string *arg1 = 0 ;
-  long result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::GetNym_CredentialCount((std::string const &)*arg1);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1CredentialID(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_CredentialID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialID((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1CredentialContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1CredentialContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -2999,16 +3564,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_CredentialContents((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1RevokedCredCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1RevokedCredCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3021,17 +3586,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::GetNym_RevokedCredCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_RevokedCredCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1RevokedCredID(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1RevokedCredID(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -3045,15 +3610,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_RevokedCredID((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredID((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1RevokedCredContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1RevokedCredContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3079,17 +3644,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RevokedCredContents((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1SubcredentialCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1SubcredentialCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3111,18 +3676,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_SubcredentialCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1SubCredentialID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1SubCredentialID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -3145,15 +3710,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialID((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1SubCredentialContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1SubCredentialContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3189,18 +3754,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetNym_SubCredentialContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddSubcredential(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddSubcredential(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -3223,15 +3788,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::AddSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1RevokeSubcredential(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1RevokeSubcredential(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3267,13 +3832,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RevokeSubcredential((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreateServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreateServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3299,13 +3864,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateServerContract((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreateAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreateAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3331,13 +3896,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::CreateAssetContract((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CalculateAssetContractID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CalculateAssetContractID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3353,13 +3918,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::CalculateAssetContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateAssetContractID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CalculateServerContractID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CalculateServerContractID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3375,16 +3940,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::CalculateServerContractID((std::string const &)*arg1);
+  result = OTAPI_Wrap::CalculateServerContractID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3397,16 +3962,16 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1A
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::AddServerContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddServerContract((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3419,77 +3984,77 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1A
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::AddAssetContract((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::AddAssetContract((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetServerCount(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetServerCount(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (long)OTAPI_Basic::GetServerCount();
+  result = (int32_t)OTAPI_Wrap::GetServerCount();
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAssetTypeCount(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAssetTypeCount(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (long)OTAPI_Basic::GetAssetTypeCount();
+  result = (int32_t)OTAPI_Wrap::GetAssetTypeCount();
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountCount(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountCount(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (long)OTAPI_Basic::GetAccountCount();
+  result = (int32_t)OTAPI_Wrap::GetAccountCount();
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNymCount(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNymCount(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (long)OTAPI_Basic::GetNymCount();
+  result = (int32_t)OTAPI_Wrap::GetNymCount();
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetServer_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetServer_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetServer_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetServer_ID((int const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetServer_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetServer_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3505,13 +4070,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetServer_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Name((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetServer_1Contract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetServer_1Contract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3527,17 +4092,43 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetServer_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetServer_Contract((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1FormatAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1FormatAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2) {
   jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::FormatAmount((std::string const &)*arg1,(long long const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1StringToAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3559,61 +4150,29 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::FormatAmount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1StringToAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAssetType_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::StringToAmount((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAssetType_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
-  jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  long temp1 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetAssetType_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_ID((int const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAssetType_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAssetType_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3629,13 +4188,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAssetType_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Name((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAssetType_1TLA(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAssetType_1TLA(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3651,13 +4210,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAssetType_TLA((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_TLA((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAssetType_1Contract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAssetType_1Contract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3673,29 +4232,29 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAssetType_Contract((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAssetType_Contract((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetAccountWallet_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ID((int const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3711,13 +4270,35 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Name((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1Balance(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1Balance(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int64_t)OTAPI_Wrap::GetAccountWallet_Balance((std::string const &)*arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1Type(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3733,13 +4314,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_Balance((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_Type((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1Type(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1AssetTypeID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3755,13 +4336,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_Type((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1AssetTypeID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1ServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3777,13 +4358,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_AssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_ServerID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1ServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1NymID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3799,13 +4380,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_ServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_NymID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1NymID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1InboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3821,13 +4402,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_NymID((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_InboxHash((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1InboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetAccountWallet_1OutboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3843,35 +4424,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_InboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetAccountWallet_OutboxHash((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetAccountWallet_1OutboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetAccountWallet_OutboxHash((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1VerifyAccountReceipt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1VerifyAccountReceipt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -3907,17 +4466,17 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::VerifyAccountReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1TransactionNumCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1TransactionNumCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -3939,29 +4498,29 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::GetNym_TransactionNumCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1ID(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jstring jresult = 0 ;
-  long *arg1 = 0 ;
-  long temp1 ;
+  int32_t *arg1 = 0 ;
+  int32_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  temp1 = (long)jarg1; 
+  temp1 = (int32_t)jarg1; 
   arg1 = &temp1; 
-  result = OTAPI_Basic::GetNym_ID((long const &)*arg1);
+  result = OTAPI_Wrap::GetNym_ID((int const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3977,13 +4536,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetNym_Name((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Name((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1Stats(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1Stats(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -3999,45 +4558,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::GetNym_Stats((std::string const &)*arg1);
+  result = OTAPI_Wrap::GetNym_Stats((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1NymboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1RecentHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1NymboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4063,13 +4590,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_NymboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1InboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1RecentHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4095,13 +4622,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_RecentHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1InboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4127,13 +4654,45 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::GetNym_InboxHash((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1IsNym_1RegisteredAtServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OTAPI_Wrap::GetNym_OutboxHash((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1IsNym_1RegisteredAtServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4159,16 +4718,16 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::IsNym_RegisteredAtServer((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1MailCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1MailCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -4181,17 +4740,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::GetNym_MailCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_MailCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1MailContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1MailContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4205,19 +4764,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1MailSenderIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1MailSenderIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4231,19 +4790,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailSenderIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1MailServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1MailServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4257,19 +4816,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_MailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_MailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1RemoveMailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1RemoveMailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4283,19 +4842,19 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveMailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveMailByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1VerifyMailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1VerifyMailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4309,18 +4868,18 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyMailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyMailByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutmailCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutmailCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -4333,17 +4892,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::GetNym_OutmailCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_OutmailCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutmailContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutmailContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4357,19 +4916,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutmailRecipientIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutmailRecipientIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4383,19 +4942,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutmailServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutmailServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4409,19 +4968,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutmailServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1RemoveOutmailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1RemoveOutmailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4435,19 +4994,19 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1VerifyOutmailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1VerifyOutmailByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4461,18 +5020,18 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutmailByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutpaymentsCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutpaymentsCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -4485,17 +5044,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1G
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::GetNym_OutpaymentsCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::GetNym_OutpaymentsCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutpaymentsContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutpaymentsContentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4509,19 +5068,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsContentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutpaymentsRecipientIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutpaymentsRecipientIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4535,19 +5094,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsRecipientIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetNym_1OutpaymentsServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetNym_1OutpaymentsServerIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -4561,19 +5120,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::GetNym_OutpaymentsServerIDByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1RemoveOutpaymentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1RemoveOutpaymentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4587,19 +5146,19 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_RemoveOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nym_1VerifyOutpaymentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nym_1VerifyOutpaymentsByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   bool result;
   
   (void)jenv;
@@ -4613,15 +5172,15 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = (bool)OTAPI_Basic::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = (bool)OTAPI_Wrap::Nym_VerifyOutpaymentsByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1CanRemoveServer(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1CanRemoveServer(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4637,13 +5196,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveServer((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveServer((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1RemoveServer(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1RemoveServer(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4659,13 +5218,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_RemoveServer((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveServer((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1CanRemoveAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1CanRemoveAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4681,13 +5240,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAssetType((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAssetType((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1RemoveAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1RemoveAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4703,13 +5262,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_RemoveAssetType((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveAssetType((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1CanRemoveNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1CanRemoveNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4725,13 +5284,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveNym((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveNym((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1RemoveNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1RemoveNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4747,13 +5306,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_RemoveNym((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_RemoveNym((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1CanRemoveAccount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1CanRemoveAccount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -4769,47 +5328,25 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_CanRemoveAccount((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Wallet_CanRemoveAccount((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ChangePassphrase(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ChangePassphrase(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::Wallet_ChangePassphrase();
+  result = (bool)OTAPI_Wrap::Wallet_ChangePassphrase();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ExportNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_ExportNym((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ImportNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ExportNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4825,13 +5362,35 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_ImportNym((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportNym((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ImportCert(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ImportNym(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = OTAPI_Wrap::Wallet_ImportNym((std::string const &)*arg1);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ImportCert(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -4857,13 +5416,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Wallet_ImportCert((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ExportCert(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ExportCert(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4879,13 +5438,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_ExportCert((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_ExportCert((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1GetNymIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1GetNymIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4901,13 +5460,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetNymIDFromPartial((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1GetServerIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1GetServerIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4923,13 +5482,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetServerIDFromPartial((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1GetAssetIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1GetAssetIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4945,13 +5504,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetAssetIDFromPartial((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1GetAccountIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1GetAccountIDFromPartial(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -4967,13 +5526,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
+  result = OTAPI_Wrap::Wallet_GetAccountIDFromPartial((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetNym_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetNym_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5009,13 +5568,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetNym_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetAccountWallet_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetAccountWallet_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5051,13 +5610,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::SetAccountWallet_Name((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetAssetType_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetAssetType_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5083,13 +5642,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetAssetType_Name((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SetServer_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SetServer_1Name(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5115,26 +5674,174 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::SetServer_Name((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1WriteCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1WriteCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8) {
   jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  WrapTimeT *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg3_;
+  (void)jarg4_;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  arg3 = *(WrapTimeT **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
+    return 0;
+  } 
+  arg4 = *(WrapTimeT **)&jarg4;
+  if (!arg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
+    return 0;
+  } 
+  if(!jarg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
+  if (!arg5_pstr) return 0;
+  std::string arg5_str(arg5_pstr);
+  arg5 = &arg5_str;
+  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
+  if(!jarg6) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
+  if (!arg6_pstr) return 0;
+  std::string arg6_str(arg6_pstr);
+  arg6 = &arg6_str;
+  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
+  if(!jarg7) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
+  if (!arg7_pstr) return 0;
+  std::string arg7_str(arg7_pstr);
+  arg7 = &arg7_str;
+  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
+  if(!jarg8) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg8_pstr = (const char *)jenv->GetStringUTFChars(jarg8, 0); 
+  if (!arg8_pstr) return 0;
+  std::string arg8_str(arg8_pstr);
+  arg8 = &arg8_str;
+  jenv->ReleaseStringUTFChars(jarg8, arg8_pstr); 
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1DiscardCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+  jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  std::string arg4_str(arg4_pstr);
+  arg4 = &arg4_str;
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  result = (bool)OTAPI_Wrap::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ProposePaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8, jlong jarg9, jlong jarg10, jobject jarg10_, jlong jarg11, jlong jarg12, jobject jarg12_, jlong jarg13, jobject jarg13_, jlong jarg14, jobject jarg14_, jint jarg15) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
+  int64_t *arg9 = 0 ;
+  WrapTimeT *arg10 = 0 ;
+  int64_t *arg11 = 0 ;
+  WrapTimeT *arg12 = 0 ;
+  WrapTimeT *arg13 = 0 ;
+  WrapTimeT *arg14 = 0 ;
+  int32_t *arg15 = 0 ;
+  int64_t temp9 ;
+  int64_t temp11 ;
+  int32_t temp15 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
+  (void)jarg2_;
+  (void)jarg3_;
+  (void)jarg10_;
+  (void)jarg12_;
+  (void)jarg13_;
+  (void)jarg14_;
   if(!jarg1) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -5144,24 +5851,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  arg2 = *(WrapTimeT **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  } 
+  arg3 = *(WrapTimeT **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  } 
   if(!jarg4) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -5207,221 +5906,39 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg8_str(arg8_pstr);
   arg8 = &arg8_str;
   jenv->ReleaseStringUTFChars(jarg8, arg8_pstr); 
-  result = OTAPI_Basic::WriteCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1DiscardCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
-  jboolean jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  temp9 = (int64_t)jarg9; 
+  arg9 = &temp9; 
+  arg10 = *(WrapTimeT **)&jarg10;
+  if (!arg10) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  } 
+  temp11 = (int64_t)jarg11; 
+  arg11 = &temp11; 
+  arg12 = *(WrapTimeT **)&jarg12;
+  if (!arg12) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  } 
+  arg13 = *(WrapTimeT **)&jarg13;
+  if (!arg13) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  } 
+  arg14 = *(WrapTimeT **)&jarg14;
+  if (!arg14) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (bool)OTAPI_Basic::DiscardCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ProposePaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8, jstring jarg9, jstring jarg10, jstring jarg11, jstring jarg12, jstring jarg13, jstring jarg14, jint jarg15) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string *arg8 = 0 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
-  std::string *arg12 = 0 ;
-  std::string *arg13 = 0 ;
-  std::string *arg14 = 0 ;
-  long *arg15 = 0 ;
-  long temp15 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  if(!jarg7) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
-  if (!arg7_pstr) return 0;
-  std::string arg7_str(arg7_pstr);
-  arg7 = &arg7_str;
-  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
-  if(!jarg8) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg8_pstr = (const char *)jenv->GetStringUTFChars(jarg8, 0); 
-  if (!arg8_pstr) return 0;
-  std::string arg8_str(arg8_pstr);
-  arg8 = &arg8_str;
-  jenv->ReleaseStringUTFChars(jarg8, arg8_pstr); 
-  if(!jarg9) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg9_pstr = (const char *)jenv->GetStringUTFChars(jarg9, 0); 
-  if (!arg9_pstr) return 0;
-  std::string arg9_str(arg9_pstr);
-  arg9 = &arg9_str;
-  jenv->ReleaseStringUTFChars(jarg9, arg9_pstr); 
-  if(!jarg10) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg10_pstr = (const char *)jenv->GetStringUTFChars(jarg10, 0); 
-  if (!arg10_pstr) return 0;
-  std::string arg10_str(arg10_pstr);
-  arg10 = &arg10_str;
-  jenv->ReleaseStringUTFChars(jarg10, arg10_pstr); 
-  if(!jarg11) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg11_pstr = (const char *)jenv->GetStringUTFChars(jarg11, 0); 
-  if (!arg11_pstr) return 0;
-  std::string arg11_str(arg11_pstr);
-  arg11 = &arg11_str;
-  jenv->ReleaseStringUTFChars(jarg11, arg11_pstr); 
-  if(!jarg12) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg12_pstr = (const char *)jenv->GetStringUTFChars(jarg12, 0); 
-  if (!arg12_pstr) return 0;
-  std::string arg12_str(arg12_pstr);
-  arg12 = &arg12_str;
-  jenv->ReleaseStringUTFChars(jarg12, arg12_pstr); 
-  if(!jarg13) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg13_pstr = (const char *)jenv->GetStringUTFChars(jarg13, 0); 
-  if (!arg13_pstr) return 0;
-  std::string arg13_str(arg13_pstr);
-  arg13 = &arg13_str;
-  jenv->ReleaseStringUTFChars(jarg13, arg13_pstr); 
-  if(!jarg14) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg14_pstr = (const char *)jenv->GetStringUTFChars(jarg14, 0); 
-  if (!arg14_pstr) return 0;
-  std::string arg14_str(arg14_pstr);
-  arg14 = &arg14_str;
-  jenv->ReleaseStringUTFChars(jarg14, arg14_pstr); 
-  temp15 = (long)jarg15; 
+  } 
+  temp15 = (int32_t)jarg15; 
   arg15 = &temp15; 
-  result = OTAPI_Basic::ProposePaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11,(std::string const &)*arg12,(std::string const &)*arg13,(std::string const &)*arg14,(long const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1EasyProposePlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8, jstring jarg9, jstring jarg10) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1EasyProposePlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jstring jarg8, jstring jarg9, jstring jarg10) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5527,13 +6044,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg10_str(arg10_pstr);
   arg10 = &arg10_str;
   jenv->ReleaseStringUTFChars(jarg10, arg10_pstr); 
-  result = OTAPI_Basic::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  result = OTAPI_Wrap::EasyProposePlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ConfirmPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ConfirmPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5589,13 +6106,49 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::ConfirmPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Create_1SmartContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Create_1SmartContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  WrapTimeT *arg2 = 0 ;
+  WrapTimeT *arg3 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  (void)jarg3_;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = *(WrapTimeT **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
+    return 0;
+  } 
+  arg3 = *(WrapTimeT **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
+    return 0;
+  } 
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddBylaw(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5631,55 +6184,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Create_SmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddBylaw(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::SmartContract_AddBylaw((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5735,13 +6246,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddVariable(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddVariable(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5817,13 +6328,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg7_str(arg7_pstr);
   arg7 = &arg7_str;
   jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
-  result = OTAPI_Basic::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = OTAPI_Wrap::SmartContract_AddVariable((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddCallback(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddCallback(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5879,13 +6390,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddCallback((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddHook(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddHook(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5941,13 +6452,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddHook((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddParty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddParty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -5993,13 +6504,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::SmartContract_AddParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1AddAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1AddAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6055,17 +6566,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::SmartContract_AddAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1CountNumsNeeded(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1CountNumsNeeded(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6087,13 +6598,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1S
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::SmartContract_CountNumsNeeded((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1ConfirmAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1ConfirmAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6159,13 +6670,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = OTAPI_Basic::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::SmartContract_ConfirmAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SmartContract_1ConfirmParty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SmartContract_1ConfirmParty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6201,13 +6712,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::SmartContract_ConfirmParty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1AreAllPartiesConfirmed(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1AreAllPartiesConfirmed(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -6223,48 +6734,16 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::Smart_AreAllPartiesConfirmed((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1IsPartyConfirmed(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
-  jboolean jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1GetBylawCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1GetBylawCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6277,17 +6756,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1S
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::Smart_GetBylawCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Smart_GetBylawCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1GetBylawByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1GetBylawByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -6301,15 +6780,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Smart_GetBylawByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetBylawByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Bylaw_1GetLanguage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Bylaw_1GetLanguage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6335,17 +6814,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Bylaw_GetLanguage((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Bylaw_1GetClauseCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Bylaw_1GetClauseCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6367,18 +6846,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1B
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Clause_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Clause_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -6401,15 +6880,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Clause_1GetContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Clause_1GetContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6445,17 +6924,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Clause_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Bylaw_1GetVariableCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Bylaw_1GetVariableCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6477,18 +6956,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1B
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetVariableCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Variable_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Variable_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -6511,15 +6990,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Variable_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Variable_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6555,13 +7034,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Variable_1GetAccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Variable_1GetAccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6597,13 +7076,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetAccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Variable_1GetContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Variable_1GetContents(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6639,17 +7118,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Variable_GetContents((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Bylaw_1GetHookCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Bylaw_1GetHookCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6671,18 +7150,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1B
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetHookCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Hook_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Hook_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -6705,20 +7184,20 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Hook_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Hook_1GetClauseCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Hook_1GetClauseCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6749,19 +7228,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1H
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Hook_GetClauseCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Hook_1GetClauseAtIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Hook_1GetClauseAtIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  long temp4 ;
+  int32_t *arg4 = 0 ;
+  int32_t temp4 ;
   std::string result;
   
   (void)jenv;
@@ -6793,19 +7272,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
-  result = OTAPI_Basic::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4);
+  result = OTAPI_Wrap::Hook_GetClauseAtIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Bylaw_1GetCallbackCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Bylaw_1GetCallbackCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6827,18 +7306,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1B
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Bylaw_GetCallbackCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Callback_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Callback_1GetNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -6861,15 +7340,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Callback_1GetClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Callback_1GetClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6905,16 +7384,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Callback_GetClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1GetPartyCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1GetPartyCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -6927,17 +7406,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1S
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::Smart_GetPartyCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Smart_GetPartyCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Smart_1GetPartyByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1GetPartyByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -6951,15 +7430,47 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Smart_GetPartyByIndex((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Smart_GetPartyByIndex((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Smart_1IsPartyConfirmed(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jboolean jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (bool)OTAPI_Wrap::Smart_IsPartyConfirmed((std::string const &)*arg1,(std::string const &)*arg2);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -6985,17 +7496,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::Party_GetID((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAcctCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAcctCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7017,18 +7528,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1P
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Party_GetAcctCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAcctNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAcctNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -7051,15 +7562,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7095,13 +7606,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAcctAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAcctAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7137,13 +7648,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAssetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAcctAgentName(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAcctAgentName(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7179,17 +7690,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAcctAgentName((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAgentCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAgentCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7211,18 +7722,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1P
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::Party_GetAgentCount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAgentNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAgentNameByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
-  long temp3 ;
+  int32_t *arg3 = 0 ;
+  int32_t temp3 ;
   std::string result;
   
   (void)jenv;
@@ -7245,15 +7756,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
-  result = OTAPI_Basic::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentNameByIndex((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Party_1GetAgentID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Party_1GetAgentID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7289,18 +7800,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Party_GetAgentID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1activateSmartContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1activateSmartContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7331,20 +7842,21 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1a
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::activateSmartContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1triggerClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1triggerClause(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
+  int64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int64_t temp3 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7366,15 +7878,8 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1t
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
   if(!jarg4) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -7393,13 +7898,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1t
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)OTAPI_Basic::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::triggerClause((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Msg_1HarvestTransactionNumbers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jboolean jarg4, jboolean jarg5, jboolean jarg6, jboolean jarg7) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Msg_1HarvestTransactionNumbers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jboolean jarg4, jboolean jarg5, jboolean jarg6, jboolean jarg7) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7445,13 +7950,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   arg6 = &temp6; 
   temp7 = jarg7 ? true : false; 
   arg7 = &temp7; 
-  result = (bool)OTAPI_Basic::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
+  result = (bool)OTAPI_Wrap::Msg_HarvestTransactionNumbers((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(bool const &)*arg4,(bool const &)*arg5,(bool const &)*arg6,(bool const &)*arg7);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadUserPubkey_1Encryption(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadUserPubkey_1Encryption(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7467,13 +7972,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadUserPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Encryption((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadUserPubkey_1Signing(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadUserPubkey_1Signing(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7489,13 +7994,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadUserPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadUserPubkey_Signing((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadPubkey_1Encryption(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadPubkey_1Encryption(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7511,13 +8016,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadPubkey_Encryption((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Encryption((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadPubkey_1Signing(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadPubkey_1Signing(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7533,13 +8038,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadPubkey_Signing((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadPubkey_Signing((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1VerifyUserPrivateKey(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1VerifyUserPrivateKey(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -7555,13 +8060,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::VerifyUserPrivateKey((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::VerifyUserPrivateKey((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadPurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadPurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7597,13 +8102,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadMint(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadMint(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7629,13 +8134,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadMint((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadAssetContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7651,13 +8156,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadAssetContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadAssetContract((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadServerContract(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -7673,13 +8178,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::LoadServerContract((std::string const &)*arg1);
+  result = OTAPI_Wrap::LoadServerContract((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Mint_1IsStillGood(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Mint_1IsStillGood(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7705,13 +8210,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Mint_IsStillGood((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1IsBasketCurrency(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1IsBasketCurrency(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   bool result;
@@ -7727,16 +8232,16 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (bool)OTAPI_Basic::IsBasketCurrency((std::string const &)*arg1);
+  result = (bool)OTAPI_Wrap::IsBasketCurrency((std::string const &)*arg1);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Basket_1GetMemberCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Basket_1GetMemberCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7749,17 +8254,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1B
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::Basket_GetMemberCount((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Basket_GetMemberCount((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Basket_1GetMemberType(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Basket_1GetMemberType(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
   std::string result;
   
   (void)jenv;
@@ -7773,18 +8278,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Basket_GetMemberType((std::string const &)*arg1,(long const &)*arg2);
+  result = OTAPI_Wrap::Basket_GetMemberType((std::string const &)*arg1,(int const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Basket_1GetMinimumTransferAmount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Basket_1GetMinimumTransferAmount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7797,18 +8302,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Basket_GetMinimumTransferAmount((std::string const &)*arg1);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Basket_1GetMemberMinimumTransferAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Basket_1GetMemberMinimumTransferAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
-  long *arg2 = 0 ;
-  long temp2 ;
-  std::string result;
+  int32_t *arg2 = 0 ;
+  int32_t temp2 ;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -7821,15 +8326,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  temp2 = (long)jarg2; 
+  temp2 = (int32_t)jarg2; 
   arg2 = &temp2; 
-  result = OTAPI_Basic::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(long const &)*arg2);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Basket_GetMemberMinimumTransferAmount((std::string const &)*arg1,(int const &)*arg2);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7865,13 +8370,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7907,13 +8412,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadOutbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadOutbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7949,13 +8454,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadInboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadInboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -7991,13 +8496,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadOutboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadOutboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8033,13 +8538,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadOutboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadPaymentInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadPaymentInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8065,13 +8570,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadPaymentInboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadPaymentInboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8097,55 +8602,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadPaymentInboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadRecordBox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadRecordBoxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadRecordBox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8181,20 +8644,62 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::LoadRecordBox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ClearRecord(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jboolean jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadRecordBoxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = OTAPI_Wrap::LoadRecordBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ClearRecord(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jboolean jarg5) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   bool result;
   
@@ -8227,17 +8732,17 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (bool)OTAPI_Basic::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::ClearRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadExpiredBox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadExpiredBox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8263,13 +8768,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadExpiredBoxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadExpiredBoxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8295,19 +8800,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadExpiredBoxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ClearExpired(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3, jboolean jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ClearExpired(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jint jarg3, jboolean jarg4) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long *arg3 = 0 ;
+  int32_t *arg3 = 0 ;
   bool *arg4 = 0 ;
-  long temp3 ;
+  int32_t temp3 ;
   bool temp4 ;
   bool result;
   
@@ -8331,23 +8836,23 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  temp3 = (long)jarg3; 
+  temp3 = (int32_t)jarg3; 
   arg3 = &temp3; 
   temp4 = jarg4 ? true : false; 
   arg4 = &temp4; 
-  result = (bool)OTAPI_Basic::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(long const &)*arg3,(bool const &)*arg4);
+  result = (bool)OTAPI_Wrap::ClearExpired((std::string const &)*arg1,(std::string const &)*arg2,(int const &)*arg3,(bool const &)*arg4);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1GetCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1GetCount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -8387,13 +8892,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1L
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Ledger_GetCount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1CreateResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1CreateResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8439,20 +8944,20 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1GetTransactionByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1GetTransactionByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   (void)jenv;
@@ -8493,15 +8998,127 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetTransactionByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1GetTransactionByID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1GetTransactionByID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int64_t temp5 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  std::string arg4_str(arg4_pstr);
+  arg4 = &arg4_str;
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = OTAPI_Wrap::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1GetTransactionIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  std::string arg4_str(arg4_pstr);
+  arg4 = &arg4_str;
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  temp5 = (int32_t)jarg5; 
+  arg5 = &temp5; 
+  result = (int64_t)OTAPI_Wrap::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1AddTransaction(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8557,131 +9174,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::Ledger_GetTransactionByID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1GetTransactionIDByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  temp5 = (long)jarg5; 
-  arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetTransactionIDByIndex((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1AddTransaction(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::Ledger_AddTransaction((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1CreateResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jboolean jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1CreateResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jboolean jarg6) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8741,13 +9240,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
   temp6 = jarg6 ? true : false; 
   arg6 = &temp6; 
-  result = OTAPI_Basic::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
+  result = OTAPI_Wrap::Transaction_CreateResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(bool const &)*arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1FinalizeResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1FinalizeResponse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8793,20 +9292,20 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Ledger_FinalizeResponse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Ledger_1GetInstrument(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Ledger_1GetInstrument(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   (void)jenv;
@@ -8847,23 +9346,23 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::Ledger_GetInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1RecordPayment(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jint jarg4, jboolean jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1RecordPayment(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jint jarg4, jboolean jarg5) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   bool *arg3 = 0 ;
-  long *arg4 = 0 ;
+  int32_t *arg4 = 0 ;
   bool *arg5 = 0 ;
   bool temp3 ;
-  long temp4 ;
+  int32_t temp4 ;
   bool temp5 ;
   bool result;
   
@@ -8889,17 +9388,17 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   temp3 = jarg3 ? true : false; 
   arg3 = &temp3; 
-  temp4 = (long)jarg4; 
+  temp4 = (int32_t)jarg4; 
   arg4 = &temp4; 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (bool)OTAPI_Basic::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(long const &)*arg4,(bool const &)*arg5);
+  result = (bool)OTAPI_Wrap::RecordPayment((std::string const &)*arg1,(std::string const &)*arg2,(bool const &)*arg3,(int const &)*arg4,(bool const &)*arg5);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -8945,18 +9444,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ReplyNotice_1GetRequestNum(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ReplyNotice_1GetRequestNum(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -8987,13 +9486,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::ReplyNotice_GetRequestNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetVoucher(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetVoucher(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9039,19 +9538,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9091,19 +9590,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1T
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_GetSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1IsCanceled(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1IsCanceled(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9143,19 +9642,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1T
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_IsCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetBalanceAgreementSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetBalanceAgreementSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9195,13 +9694,117 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1T
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Transaction_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetDateSigned(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetDateSigned(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  WrapTimeT result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  std::string arg4_str(arg4_pstr);
+  arg4 = &arg4_str;
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  std::string arg4_str(arg4_pstr);
+  arg4 = &arg4_str;
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  result = (int64_t)OTAPI_Wrap::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Pending_1GetNote(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9247,13 +9850,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetAmount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetSenderUserID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9299,13 +9902,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetAmount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Pending_1GetNote(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetSenderAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9351,13 +9954,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Pending_GetNote((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetSenderUserID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetRecipientUserID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9403,13 +10006,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetSenderUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetSenderAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetRecipientAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9455,19 +10058,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetSenderAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetRecipientUserID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Transaction_1GetDisplayReferenceToNum(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9507,117 +10110,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetRecipientUserID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetRecipientAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetRecipientAcctID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Transaction_1GetDisplayReferenceToNum(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Transaction_GetDisplayReferenceToNum((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1SavePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1SavePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9663,13 +10162,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (bool)OTAPI_Basic::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::SavePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreatePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreatePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9715,13 +10214,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::CreatePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1CreatePurse_1Passphrase(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1CreatePurse_1Passphrase(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9757,18 +10256,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::CreatePurse_Passphrase((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1GetTotalValue(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1GetTotalValue(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9799,18 +10298,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Purse_GetTotalValue((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1Count(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1Count(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -9841,13 +10340,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1P
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Purse_Count((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1HasPassword(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1HasPassword(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9873,13 +10372,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (bool)OTAPI_Basic::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (bool)OTAPI_Wrap::Purse_HasPassword((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1Peek(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1Peek(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9925,13 +10424,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Peek((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1Pop(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1Pop(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -9977,13 +10476,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Pop((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1Push(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1Push(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10049,13 +10548,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = OTAPI_Basic::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Purse_Push((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Purse_1Empty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Purse_1Empty(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10101,13 +10600,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = OTAPI_Wrap::Purse_Empty((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Wallet_1ImportPurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Wallet_1ImportPurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10153,19 +10652,19 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (bool)OTAPI_Basic::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)OTAPI_Wrap::Wallet_ImportPurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1exchangePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1exchangePurse(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10205,13 +10704,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1e
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::exchangePurse((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1ChangeOwner(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1ChangeOwner(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10277,13 +10776,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = OTAPI_Basic::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = OTAPI_Wrap::Token_ChangeOwner((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -10319,18 +10818,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::Token_GetID((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetDenomination(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetDenomination(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10361,18 +10860,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Token_GetDenomination((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetSeries(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetSeries(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10403,18 +10902,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1T
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::Token_GetSeries((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetValidFrom(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetValidFrom(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  WrapTimeT result;
   
   (void)jenv;
   (void)jcls;
@@ -10445,18 +10944,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetValidTo(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetValidTo(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  WrapTimeT result;
   
   (void)jenv;
   (void)jcls;
@@ -10487,13 +10986,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10509,13 +11008,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Token_GetAssetID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Token_GetAssetID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Token_1GetServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Token_1GetServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10531,13 +11030,101 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Token_GetServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Token_GetServerID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetAmount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetAmount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetAmount((std::string const &)*arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetTransNum(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int64_t)OTAPI_Wrap::Instrmnt_GetTransNum((std::string const &)*arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetValidFrom(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  WrapTimeT result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetValidTo(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  WrapTimeT result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
+  *(WrapTimeT **)&jresult = new WrapTimeT((const WrapTimeT &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetMemo(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10553,13 +11140,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetAmount((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetMemo((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetTransNum(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10575,13 +11162,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetTransNum((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetType((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetValidFrom(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10597,13 +11184,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetValidFrom((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetServerID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetValidTo(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10619,13 +11206,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetValidTo((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetAssetID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetMemo(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetSenderUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10641,13 +11228,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetMemo((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetSenderUserID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetSenderAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10663,13 +11250,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetType((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetServerID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetRemitterUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10685,13 +11272,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetServerID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetAssetID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetRemitterAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10707,13 +11294,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetAssetID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetSenderUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetRecipientUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10729,13 +11316,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetSenderUserID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetSenderAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Instrmnt_1GetRecipientAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -10751,105 +11338,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetSenderAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetRemitterUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetRemitterUserID((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetRemitterAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetRemitterAcctID((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetRecipientUserID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetRecipientUserID((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Instrmnt_1GetRecipientAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Instrmnt_GetRecipientAcctID((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1checkServerID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1checkServerID(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10871,17 +11370,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1c
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::checkServerID((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1createUserAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1createUserAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10903,17 +11402,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1c
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::createUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1deleteUserAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1deleteUserAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10935,18 +11434,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1d
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::deleteUserAccount((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1deleteAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1deleteAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -10977,19 +11476,20 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1d
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::deleteAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1usageCredits(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1usageCredits(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11020,25 +11520,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1u
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::usageCredits((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetUsageCredits(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  jstring jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetUsageCredits(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
   std::string *arg1 = 0 ;
-  std::string result;
+  int64_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11051,18 +11544,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetUsageCredits((std::string const &)*arg1);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  result = (int64_t)OTAPI_Wrap::Message_GetUsageCredits((std::string const &)*arg1);
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1checkUser(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1checkUser(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11093,20 +11586,20 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1c
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::checkUser((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1sendUserMessage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1sendUserMessage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11155,13 +11648,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1s
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)OTAPI_Basic::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::sendUserMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1sendUserInstrument(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1sendUserInstrument(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -11169,7 +11662,7 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1s
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11227,17 +11720,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1s
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (long)OTAPI_Basic::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::sendUserInstrument((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getRequest(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getRequest(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11259,17 +11752,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getRequest((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getTransactionNumber(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getTransactionNumber(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11291,18 +11784,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getTransactionNumber((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1issueAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1issueAssetType(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11333,18 +11826,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1i
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::issueAssetType((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getContract(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11375,18 +11868,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getContract((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getMint(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getMint(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11417,18 +11910,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMint((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1createAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1createAssetAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11459,18 +11952,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1c
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::createAssetAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getAccount(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11501,18 +11994,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccount((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getAccountFiles(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getAccountFiles(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11543,16 +12036,45 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getAccountFiles((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GenerateBasketCreation(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GenerateBasketCreation(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2) {
+  jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  int64_t *arg2 = 0 ;
+  int64_t temp2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp2 = (int64_t)jarg2; 
+  arg2 = &temp2; 
+  result = OTAPI_Wrap::GenerateBasketCreation((std::string const &)*arg1,(long long const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddBasketCreationItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
   std::string result;
   
   (void)jenv;
@@ -11575,18 +12097,73 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::GenerateBasketCreation((std::string const &)*arg1,(std::string const &)*arg2);
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = OTAPI_Wrap::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddBasketCreationItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1issueBasket(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+  jint jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (int32_t)OTAPI_Wrap::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GenerateBasketExchange(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
+  int32_t *arg5 = 0 ;
+  int32_t temp5 ;
   std::string result;
   
   (void)jenv;
@@ -11627,111 +12204,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = OTAPI_Basic::AddBasketCreationItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1issueBasket(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
-  jint jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::issueBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GenerateBasketExchange(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5) {
-  jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long *arg5 = 0 ;
-  long temp5 ;
-  std::string result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  temp5 = (long)jarg5; 
+  temp5 = (int32_t)jarg5; 
   arg5 = &temp5; 
-  result = OTAPI_Basic::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long const &)*arg5);
+  result = OTAPI_Wrap::GenerateBasketExchange((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(int const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1AddBasketExchangeItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1AddBasketExchangeItem(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -11787,13 +12268,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = OTAPI_Basic::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = OTAPI_Wrap::AddBasketExchangeItem((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1exchangeBasket(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jboolean jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1exchangeBasket(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jboolean jarg5) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -11801,7 +12282,7 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1e
   std::string *arg4 = 0 ;
   bool *arg5 = 0 ;
   bool temp5 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11843,19 +12324,65 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1e
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
   temp5 = jarg5 ? true : false; 
   arg5 = &temp5; 
-  result = (long)OTAPI_Basic::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
+  result = (int32_t)OTAPI_Wrap::exchangeBasket((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(bool const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1notarizeWithdrawal(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1notarizeWithdrawal(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
+  jint jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1notarizeDeposit(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -11895,73 +12422,22 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1n
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::notarizeWithdrawal((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1notarizeDeposit(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1notarizeTransfer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5, jstring jarg6) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::notarizeDeposit((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1notarizeTransfer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
-  jint jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int64_t temp5 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12001,15 +12477,8 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1n
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
   if(!jarg6) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -12019,18 +12488,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1n
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (long)OTAPI_Basic::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)OTAPI_Wrap::notarizeTransfer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(long long const &)*arg5,(std::string const &)*arg6);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12061,18 +12530,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getOutbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getOutbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12103,17 +12572,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getOutbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12135,13 +12604,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -12167,13 +12636,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1LoadNymboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1LoadNymboxNoVerify(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -12199,18 +12668,94 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = OTAPI_Basic::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
+  result = OTAPI_Wrap::LoadNymboxNoVerify((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Nymbox_1GetReplyNotice(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Nymbox_1GetReplyNotice(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3) {
   jstring jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t temp3 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  result = OTAPI_Wrap::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1HaveAlreadySeenReply(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3) {
+  jboolean jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t temp3 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  result = (bool)OTAPI_Wrap::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getBoxReceipt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jlong jarg5) {
+  jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string result;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12241,17 +12786,25 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::Nymbox_GetReplyNotice((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  temp4 = (int32_t)jarg4; 
+  arg4 = &temp4; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = (int32_t)OTAPI_Wrap::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1HaveAlreadySeenReply(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1DoesBoxReceiptExist(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jlong jarg5) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int32_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int32_t temp4 ;
+  int64_t temp5 ;
   bool result;
   
   (void)jenv;
@@ -12283,131 +12836,23 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::HaveAlreadySeenReply((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  temp4 = (int32_t)jarg4; 
+  arg4 = &temp4; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  result = (bool)OTAPI_Wrap::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(int const &)*arg4,(long long const &)*arg5);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getBoxReceipt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jstring jarg5) {
-  jint jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  long temp4 ;
-  long result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  temp4 = (long)jarg4; 
-  arg4 = &temp4; 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)OTAPI_Basic::getBoxReceipt((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1DoesBoxReceiptExist(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jint jarg4, jstring jarg5) {
-  jboolean jresult = 0 ;
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  long temp4 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  temp4 = (long)jarg4; 
-  arg4 = &temp4; 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (bool)OTAPI_Basic::DoesBoxReceiptExist((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long const &)*arg4,(std::string const &)*arg5);
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1processInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1processInbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12447,17 +12892,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1p
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::processInbox((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1processNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1processNymbox(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12479,21 +12924,22 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1p
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::processNymbox((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1withdrawVoucher(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1withdrawVoucher(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jlong jarg6) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  long result;
+  int64_t *arg6 = 0 ;
+  int64_t temp6 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12542,30 +12988,24 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1w
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (long)OTAPI_Basic::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
+  result = (int32_t)OTAPI_Wrap::withdrawVoucher((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1payDividend(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1payDividend(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jlong jarg6) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  long result;
+  int64_t *arg6 = 0 ;
+  int64_t temp6 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12614,28 +13054,21 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1p
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (long)OTAPI_Basic::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
+  result = (int32_t)OTAPI_Wrap::payDividend((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(long long const &)*arg6);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1depositCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1depositCheque(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12675,18 +13108,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1d
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::depositCheque((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1depositPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1depositPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12717,29 +13150,35 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1d
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::depositPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1issueMarketOffer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jboolean jarg7, jstring jarg8, jstring jarg9, jstring jarg10) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1issueMarketOffer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jboolean jarg7, jlong jarg8, jobject jarg8_, jstring jarg9, jlong jarg10) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t *arg3 = 0 ;
+  int64_t *arg4 = 0 ;
+  int64_t *arg5 = 0 ;
+  int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  std::string *arg8 = 0 ;
+  WrapTimeT *arg8 = 0 ;
   std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
+  int64_t *arg10 = 0 ;
+  int64_t temp3 ;
+  int64_t temp4 ;
+  int64_t temp5 ;
+  int64_t temp6 ;
   bool temp7 ;
-  long result;
+  int64_t temp10 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
+  (void)jarg8_;
   if(!jarg1) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -12758,53 +13197,21 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1i
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
+  temp3 = (int64_t)jarg3; 
+  arg3 = &temp3; 
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  temp5 = (int64_t)jarg5; 
+  arg5 = &temp5; 
+  temp6 = (int64_t)jarg6; 
+  arg6 = &temp6; 
   temp7 = jarg7 ? true : false; 
   arg7 = &temp7; 
-  if(!jarg8) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+  arg8 = *(WrapTimeT **)&jarg8;
+  if (!arg8) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "WrapTimeT const & reference is null");
     return 0;
-  }
-  const char *arg8_pstr = (const char *)jenv->GetStringUTFChars(jarg8, 0); 
-  if (!arg8_pstr) return 0;
-  std::string arg8_str(arg8_pstr);
-  arg8 = &arg8_str;
-  jenv->ReleaseStringUTFChars(jarg8, arg8_pstr); 
+  } 
   if(!jarg9) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -12814,26 +13221,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1i
   std::string arg9_str(arg9_pstr);
   arg9 = &arg9_str;
   jenv->ReleaseStringUTFChars(jarg9, arg9_pstr); 
-  if(!jarg10) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg10_pstr = (const char *)jenv->GetStringUTFChars(jarg10, 0); 
-  if (!arg10_pstr) return 0;
-  std::string arg10_str(arg10_pstr);
-  arg10 = &arg10_str;
-  jenv->ReleaseStringUTFChars(jarg10, arg10_pstr); 
-  result = (long)OTAPI_Basic::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(bool const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,(std::string const &)*arg10);
+  temp10 = (int64_t)jarg10; 
+  arg10 = &temp10; 
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getMarketList(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getMarketList(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12855,19 +13255,20 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getMarketList((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getMarketOffers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getMarketOffers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12898,27 +13299,20 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::getMarketOffers((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getMarketRecentTrades(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getMarketRecentTrades(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12949,17 +13343,17 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::getMarketRecentTrades((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1getNym_1MarketOffers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1getNym_1MarketOffers(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -12981,19 +13375,20 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1g
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)OTAPI_Basic::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
+  result = (int32_t)OTAPI_Wrap::getNym_MarketOffers((std::string const &)*arg1,(std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1killMarketOffer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1killMarketOffer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13024,28 +13419,22 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1k
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::killMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1killPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1killPaymentPlan(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jlong jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  long result;
+  int64_t *arg4 = 0 ;
+  int64_t temp4 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13076,39 +13465,26 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1k
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  temp4 = (int64_t)jarg4; 
+  arg4 = &temp4; 
+  result = (int32_t)OTAPI_Wrap::killPaymentPlan((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(long long const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1PopMessageBuffer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1PopMessageBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13127,37 +13503,31 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::PopMessageBuffer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::PopMessageBuffer((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1FlushMessageBuffer(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1FlushMessageBuffer(JNIEnv *jenv, jclass jcls) {
   (void)jenv;
   (void)jcls;
-  OTAPI_Basic::FlushMessageBuffer();
+  OTAPI_Wrap::FlushMessageBuffer();
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1GetSentMessage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1GetSentMessage(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13176,30 +13546,24 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = OTAPI_Basic::GetSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = OTAPI_Wrap::GetSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1RemoveSentMessage(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1RemoveSentMessage(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
-  std::string *arg1 = 0 ;
+  int64_t *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  int64_t temp1 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return 0;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13218,13 +13582,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::RemoveSentMessage((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::RemoveSentMessage((long long const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1FlushSentMessages(JNIEnv *jenv, jclass jcls, jboolean jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1FlushSentMessages(JNIEnv *jenv, jclass jcls, jboolean jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   bool *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -13262,29 +13626,23 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1F
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  OTAPI_Basic::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  OTAPI_Wrap::FlushSentMessages((bool const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Sleep(JNIEnv *jenv, jclass jcls, jstring jarg1) {
-  std::string *arg1 = 0 ;
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Sleep(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  int64_t *arg1 = 0 ;
+  int64_t temp1 ;
   
   (void)jenv;
   (void)jcls;
-  if(!jarg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
-  if (!arg1_pstr) return ;
-  std::string arg1_str(arg1_pstr);
-  arg1 = &arg1_str;
-  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  OTAPI_Basic::Sleep((std::string const &)*arg1);
+  temp1 = (int64_t)jarg1; 
+  arg1 = &temp1; 
+  OTAPI_Wrap::Sleep((long long const &)*arg1);
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ResyncNymWithServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ResyncNymWithServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -13320,13 +13678,13 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (bool)OTAPI_Basic::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (bool)OTAPI_Wrap::ResyncNymWithServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetCommand(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetCommand(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13342,16 +13700,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetCommand((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetCommand((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13364,18 +13722,18 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1M
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::Message_GetSuccess((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetSuccess((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1queryAssetTypes(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1queryAssetTypes(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13406,13 +13764,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1q
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)OTAPI_Basic::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
+  result = (int32_t)OTAPI_Wrap::queryAssetTypes((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetPayload(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetPayload(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13428,16 +13786,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetPayload((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetPayload((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetDepth(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetDepth(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13450,19 +13808,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1M
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = (long)OTAPI_Basic::Message_GetDepth((std::string const &)*arg1);
+  result = (int32_t)OTAPI_Wrap::Message_GetDepth((std::string const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetTransactionSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetTransactionSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13502,19 +13860,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1M
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetTransactionSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1IsTransactionCanceled(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1IsTransactionCanceled(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13554,19 +13912,19 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1M
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_IsTransactionCanceled((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetBalanceAgreementSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetBalanceAgreementSuccess(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
@@ -13606,13 +13964,13 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1M
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)OTAPI_Basic::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)OTAPI_Wrap::Message_GetBalanceAgreementSuccess((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetLedger(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetLedger(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13628,13 +13986,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetLedger((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetLedger((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetNewAssetTypeID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetNewAssetTypeID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13650,13 +14008,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetNewAssetTypeID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAssetTypeID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetNewIssuerAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetNewIssuerAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13672,13 +14030,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetNewIssuerAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewIssuerAcctID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetNewAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetNewAcctID(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13694,13 +14052,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetNewAcctID((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNewAcctID((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1Message_1GetNymboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1Message_1GetNymboxHash(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jstring jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string result;
@@ -13716,13 +14074,13 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic
   std::string arg1_str(arg1_pstr);
   arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
-  result = OTAPI_Basic::Message_GetNymboxHash((std::string const &)*arg1);
+  result = OTAPI_Wrap::Message_GetNymboxHash((std::string const &)*arg1);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ConnectServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ConnectServer(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jboolean jresult = 0 ;
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
@@ -13778,50 +14136,186 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basi
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (bool)OTAPI_Basic::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Basic_1ProcessSockets(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTAPI_1Wrap_1ProcessSockets(JNIEnv *jenv, jclass jcls) {
   jboolean jresult = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
-  result = (bool)OTAPI_Basic::ProcessSockets();
+  result = (bool)OTAPI_Wrap::ProcessSockets();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OTMadeEasy(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  OTMadeEasy *result = 0 ;
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1GetArgsCount(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  std::string arg1 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (OTMadeEasy *)new OTMadeEasy();
-  *(OTMadeEasy **)&jresult = result; 
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (int32_t)OT_CLI_GetArgsCount(arg1);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1OTMadeEasy(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1GetValueByKey(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jstring jresult = 0 ;
+  std::string arg1 ;
+  std::string arg2 ;
+  std::string result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = OT_CLI_GetValueByKey(arg1,arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1GetValueByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+  jstring jresult = 0 ;
+  std::string arg1 ;
+  int32_t arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = (int32_t)jarg2; 
+  result = OT_CLI_GetValueByIndex(arg1,arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1GetKeyByIndex(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+  jstring jresult = 0 ;
+  std::string arg1 ;
+  int32_t arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  (&arg1)->assign(arg1_pstr);
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = (int32_t)jarg2; 
+  result = OT_CLI_GetKeyByIndex(arg1,arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1ReadLine(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = OT_CLI_ReadLine();
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1CLI_1ReadUntilEOF(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = OT_CLI_ReadUntilEOF();
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_new_1OT_1ME(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  OT_ME *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (OT_ME *)new OT_ME();
+  *(OT_ME **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1OT_1ME(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(OT_ME **)&jarg1; 
   delete arg1;
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1make_1sure_1enough_1trans_1nums(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1opentxs_1main_1loop(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  result = (int32_t)(arg1)->opentxs_main_loop();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1make_1sure_1enough_1trans_1nums(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   bool result;
@@ -13829,8 +14323,8 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
-  arg2 = (long)jarg2; 
+  arg1 = *(OT_ME **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
   if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13855,9 +14349,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1register_1nym(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1register_1nym(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
@@ -13865,7 +14359,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13890,9 +14384,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1check_1user(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1check_1user(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -13901,7 +14395,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13935,10 +14429,10 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1create_1pseudonym(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1create_1pseudonym(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
-  long arg2 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string result;
@@ -13946,8 +14440,8 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
-  arg2 = (long)jarg2; 
+  arg1 = *(OT_ME **)&jarg1; 
+  arg2 = (int32_t)jarg2; 
   if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -13972,9 +14466,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1issue_1asset_1type(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1issue_1asset_1type(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -13983,7 +14477,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14017,9 +14511,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1issue_1basket_1currency(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1issue_1basket_1currency(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14028,7 +14522,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14062,9 +14556,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1exchange_1basket_1currency(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jboolean jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1exchange_1basket_1currency(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jboolean jarg7) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14076,7 +14570,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14129,9 +14623,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14140,7 +14634,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14174,9 +14668,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1or_1retrieve_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1or_1retrieve_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14185,7 +14679,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14219,9 +14713,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1create_1asset_1acct(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1create_1asset_1acct(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14230,7 +14724,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14264,16 +14758,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1stat_1asset_1account(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1stat_1asset_1account(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14289,9 +14783,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1account_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1account_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14300,7 +14794,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14334,9 +14828,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1account_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jboolean jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1account_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jboolean jarg5) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14346,7 +14840,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14381,9 +14875,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1nym_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1nym_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   bool result;
@@ -14391,7 +14885,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14416,9 +14910,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1nym_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jboolean jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1nym_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jboolean jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   bool arg4 ;
@@ -14427,7 +14921,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14453,21 +14947,21 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1transfer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1transfer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jlong jarg6, jstring jarg7) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
+  int64_t arg6 ;
   std::string *arg7 = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14504,15 +14998,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
+  arg6 = (int64_t)jarg6; 
   if(!jarg7) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14522,15 +15008,15 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg7_str(arg7_pstr);
   arg7 = &arg7_str;
   jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
-  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6,(std::string const &)*arg7);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1process_1inbox(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1process_1inbox(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14540,7 +15026,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14583,18 +15069,18 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1accept_1inbox_1items(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1accept_1inbox_1items(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  long arg3 ;
+  int32_t arg3 ;
   std::string *arg4 = 0 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14604,7 +15090,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  arg3 = (long)jarg3; 
+  arg3 = (int32_t)jarg3; 
   if(!jarg4) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14620,9 +15106,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1discard_1incoming_1payments(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1discard_1incoming_1payments(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14631,7 +15117,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14665,9 +15151,9 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1cancel_1outgoing_1payments(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1cancel_1outgoing_1payments(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14676,7 +15162,7 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14710,18 +15196,18 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1accept_1from_1paymentbox(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1accept_1from_1paymentbox(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14749,22 +15235,22 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1acc
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (long)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (int32_t)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1public_1encryption_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1public_1encryption_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14780,16 +15266,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1public_1signing_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1public_1signing_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14805,9 +15291,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1or_1retrieve_1encrypt_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1or_1retrieve_1encrypt_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14816,7 +15302,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14850,9 +15336,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1or_1retrieve_1signing_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1or_1retrieve_1signing_1key(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14861,7 +15347,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14895,9 +15381,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1msg_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1msg_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14908,7 +15394,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -14960,9 +15446,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1pmnt_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1pmnt_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -14973,7 +15459,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15025,9 +15511,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1cash_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1cash_1pubkey(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15039,7 +15525,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15100,9 +15586,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1msg(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1msg(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15112,7 +15598,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15155,9 +15641,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1payment(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1payment(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15167,7 +15653,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15210,9 +15696,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1send_1user_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1send_1user_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15223,7 +15709,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15275,19 +15761,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1withdraw_1and_1send_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1withdraw_1and_1send_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
   jboolean jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   bool result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15315,33 +15801,25 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1payment_1instrument_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jint jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1payment_1instrument_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jint jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15360,26 +15838,26 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  arg4 = (long)jarg4; 
+  arg4 = (int32_t)jarg4; 
   result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1payment_1instrument_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jint jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1payment_1instrument_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jint jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  long arg4 ;
+  int32_t arg4 ;
   std::string *arg5 = 0 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15398,7 +15876,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  arg4 = (long)jarg4; 
+  arg4 = (int32_t)jarg4; 
   if(!jarg5) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15414,20 +15892,20 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1box_1receipt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1box_1receipt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jint jarg5, jlong jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  long arg5 ;
-  std::string *arg6 = 0 ;
+  int32_t arg5 ;
+  int64_t arg6 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15455,25 +15933,17 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  arg5 = (long)jarg5; 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,(std::string const &)*arg6);
+  arg5 = (int32_t)jarg5; 
+  arg6 = (int64_t)jarg6; 
+  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1retrieve_1mint(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1retrieve_1mint(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15482,7 +15952,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15516,9 +15986,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1load_1or_1retrieve_1mint(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1load_1or_1retrieve_1mint(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15527,7 +15997,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15561,9 +16031,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1query_1asset_1types(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1query_1asset_1types(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15572,7 +16042,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15606,25 +16076,25 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1create_1market_1offer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7, jboolean jarg8, jstring jarg9, jstring jarg10, jstring jarg11) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1create_1market_1offer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jboolean jarg8, jlong jarg9, jstring jarg10, jlong jarg11) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg4 ;
+  int64_t arg5 ;
+  int64_t arg6 ;
+  int64_t arg7 ;
   bool arg8 ;
-  std::string *arg9 = 0 ;
-  std::string *arg10 = 0 ;
-  std::string *arg11 = 0 ;
+  int64_t arg9 ;
+  std::string arg10 ;
+  int64_t arg11 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15643,89 +16113,40 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  if(!jarg6) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
-  if (!arg6_pstr) return 0;
-  std::string arg6_str(arg6_pstr);
-  arg6 = &arg6_str;
-  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  if(!jarg7) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
-  if (!arg7_pstr) return 0;
-  std::string arg7_str(arg7_pstr);
-  arg7 = &arg7_str;
-  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
+  arg4 = (int64_t)jarg4; 
+  arg5 = (int64_t)jarg5; 
+  arg6 = (int64_t)jarg6; 
+  arg7 = (int64_t)jarg7; 
   arg8 = jarg8 ? true : false; 
-  if(!jarg9) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg9_pstr = (const char *)jenv->GetStringUTFChars(jarg9, 0); 
-  if (!arg9_pstr) return 0;
-  std::string arg9_str(arg9_pstr);
-  arg9 = &arg9_str;
-  jenv->ReleaseStringUTFChars(jarg9, arg9_pstr); 
+  arg9 = (int64_t)jarg9; 
   if(!jarg10) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  }
+  } 
   const char *arg10_pstr = (const char *)jenv->GetStringUTFChars(jarg10, 0); 
   if (!arg10_pstr) return 0;
-  std::string arg10_str(arg10_pstr);
-  arg10 = &arg10_str;
+  (&arg10)->assign(arg10_pstr);
   jenv->ReleaseStringUTFChars(jarg10, arg10_pstr); 
-  if(!jarg11) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg11_pstr = (const char *)jenv->GetStringUTFChars(jarg11, 0); 
-  if (!arg11_pstr) return 0;
-  std::string arg11_str(arg11_pstr);
-  arg11 = &arg11_str;
-  jenv->ReleaseStringUTFChars(jarg11, arg11_pstr); 
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,arg8,(std::string const &)*arg9,(std::string const &)*arg10,(std::string const &)*arg11);
+  arg11 = (int64_t)jarg11; 
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1kill_1market_1offer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1kill_1market_1offer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15753,34 +16174,26 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1kill_1payment_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1kill_1payment_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15808,24 +16221,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1cancel_1payment_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1cancel_1payment_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15834,7 +16239,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15868,9 +16273,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1activate_1smart_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1activate_1smart_1contract(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -15881,7 +16286,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15933,12 +16338,12 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1trigger_1clause(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1trigger_1clause(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jlong jarg4, jstring jarg5, jstring jarg6) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
+  int64_t arg4 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string result;
@@ -15946,7 +16351,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15965,15 +16370,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  if(!jarg4) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return 0;
-  std::string arg4_str(arg4_pstr);
-  arg4 = &arg4_str;
-  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  arg4 = (int64_t)jarg4; 
   if(!jarg5) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -15992,25 +16389,25 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1withdraw_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1withdraw_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16038,32 +16435,24 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1easy_1withdraw_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1easy_1withdraw_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  long result;
+  int64_t arg3 ;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16073,24 +16462,16 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1eas
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if(!jarg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
-  if (!arg3_pstr) return 0;
-  std::string arg3_str(arg3_pstr);
-  arg3 = &arg3_str;
-  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  result = (long)(arg1)->easy_withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3);
+  arg3 = (int64_t)jarg3; 
+  result = (int32_t)(arg1)->easy_withdraw_cash((std::string const &)*arg2,arg3);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1export_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jboolean jarg7, jlong jarg8) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1export_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jboolean jarg7, jlong jarg8) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -16103,7 +16484,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16161,21 +16542,21 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1withdraw_1voucher(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1withdraw_1voucher(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jlong jarg7) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16221,36 +16602,28 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  if(!jarg7) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
-  if (!arg7_pstr) return 0;
-  std::string arg7_str(arg7_pstr);
-  arg7 = &arg7_str;
-  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
-  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  arg7 = (int64_t)jarg7; 
+  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1pay_1dividend(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jstring jarg7) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1pay_1dividend(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6, jlong jarg7) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
+  int64_t arg7 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16296,24 +16669,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  if(!jarg7) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg7_pstr = (const char *)jenv->GetStringUTFChars(jarg7, 0); 
-  if (!arg7_pstr) return 0;
-  std::string arg7_str(arg7_pstr);
-  arg7 = &arg7_str;
-  jenv->ReleaseStringUTFChars(jarg7, arg7_pstr); 
-  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  arg7 = (int64_t)jarg7; 
+  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1deposit_1cheque(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1deposit_1cheque(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -16323,7 +16688,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16366,19 +16731,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1deposit_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1deposit_1cash(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16415,25 +16780,25 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1dep
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1deposit_1local_1purse(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1deposit_1local_1purse(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16470,15 +16835,15 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1dep
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1market_1list(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1market_1list(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
@@ -16486,7 +16851,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16511,19 +16876,19 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1market_1offers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1market_1offers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jlong jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
+  int64_t arg5 ;
   std::string result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16551,24 +16916,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  if(!jarg5) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
-  if (!arg5_pstr) return 0;
-  std::string arg5_str(arg5_pstr);
-  arg5 = &arg5_str;
-  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  arg5 = (int64_t)jarg5; 
+  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
   jresult = jenv->NewStringUTF((&result)->c_str()); 
   return jresult;
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1nym_1market_1offers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1nym_1market_1offers(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string result;
@@ -16576,7 +16933,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16601,9 +16958,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1get_1market_1recent_1trades(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1get_1market_1recent_1trades(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -16612,7 +16969,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16646,9 +17003,9 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1adjust_1usage_1credits(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1adjust_1usage_1credits(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jstring jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
@@ -16658,7 +17015,7 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16701,16 +17058,16 @@ SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1VerifyMessageSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1VerifyMessageSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16720,25 +17077,25 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1Ver
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (long)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1VerifyMsgBalanceAgrmntSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1VerifyMsgBalanceAgrmntSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16775,25 +17132,25 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1Ver
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1VerifyMsgTrnxSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1VerifyMsgTrnxSuccess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16830,26 +17187,26 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1Ver
   std::string arg5_str(arg5_pstr);
   arg5 = &arg5_str;
   jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
-  result = (long)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1InterpretTransactionMsgReply(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1InterpretTransactionMsgReply(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
   jint jresult = 0 ;
-  OTMadeEasy *arg1 = (OTMadeEasy *) 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
-  long result;
+  int32_t result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(OTMadeEasy **)&jarg1; 
+  arg1 = *(OT_ME **)&jarg1; 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
@@ -16895,8 +17252,310 @@ SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OTMadeEasy_1Int
   std::string arg6_str(arg6_pstr);
   arg6 = &arg6_str;
   jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
-  result = (long)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
   jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnString_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jstring jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnString_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jstring jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnBool_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jboolean jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnBool_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jboolean jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnInt_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  jint jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnInt_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jint jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnVoid_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return ;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1ExecuteScript_1ReturnVoid_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1AddVariable(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  arg3 = *(OTVariable **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "OTVariable & reference is null");
+    return ;
+  } 
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1FindVariable(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jlong jresult = 0 ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OT_ME **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  *(OTVariable **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_OT_1ME_1FindVariable2(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  OTVariable *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  *(OTVariable **)&jresult = result; 
   return jresult;
 }
 
@@ -17480,6 +18139,180 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_Storage_1Ex
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   result = (bool)(arg1)->Exists(arg2);
   jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_Storage_1FormPathString_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3, jstring jarg4, jstring jarg5, jstring jarg6) {
+  jlong jresult = 0 ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string arg6 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OTDB::Storage **)&jarg1; 
+  arg2 = *(std::string **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  (&arg4)->assign(arg4_pstr);
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  if(!jarg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
+  if (!arg5_pstr) return 0;
+  (&arg5)->assign(arg5_pstr);
+  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
+  if(!jarg6) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg6_pstr = (const char *)jenv->GetStringUTFChars(jarg6, 0); 
+  if (!arg6_pstr) return 0;
+  (&arg6)->assign(arg6_pstr);
+  jenv->ReleaseStringUTFChars(jarg6, arg6_pstr); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5,arg6);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_Storage_1FormPathString_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+  jlong jresult = 0 ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OTDB::Storage **)&jarg1; 
+  arg2 = *(std::string **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  (&arg4)->assign(arg4_pstr);
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  if(!jarg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
+  if (!arg5_pstr) return 0;
+  (&arg5)->assign(arg5_pstr);
+  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4,arg5);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_Storage_1FormPathString_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3, jstring jarg4) {
+  jlong jresult = 0 ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OTDB::Storage **)&jarg1; 
+  arg2 = *(std::string **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  (&arg4)->assign(arg4_pstr);
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3,arg4);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_Storage_1FormPathString_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(OTDB::Storage **)&jarg1; 
+  arg2 = *(std::string **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (int64_t)(arg1)->FormPathString(*arg2,arg3);
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -19037,6 +19870,168 @@ SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_Exists_1_1S
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_FormPathString_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::string **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  (&arg4)->assign(arg4_pstr);
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  if(!jarg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg5_pstr = (const char *)jenv->GetStringUTFChars(jarg5, 0); 
+  if (!arg5_pstr) return 0;
+  (&arg5)->assign(arg5_pstr);
+  jenv->ReleaseStringUTFChars(jarg5, arg5_pstr); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4,arg5);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_FormPathString_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3, jstring jarg4) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::string **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  if(!jarg4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
+  if (!arg4_pstr) return 0;
+  (&arg4)->assign(arg4_pstr);
+  jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3,arg4);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_FormPathString_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2, jstring jarg3) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::string **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  (&arg3)->assign(arg3_pstr);
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2,arg3);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_FormPathString_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jstring jarg2) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  int64_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(std::string **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & reference is null");
+    return 0;
+  } 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  } 
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  (&arg2)->assign(arg2_pstr);
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  result = (int64_t)OTDB::FormPathString(*arg1,arg2);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jboolean JNICALL Java_org_opentransactions_otapi_otapiJNI_StoreString_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jstring jarg3, jstring jarg4, jstring jarg5) {
   jboolean jresult = 0 ;
   std::string arg1 ;
@@ -20224,36 +21219,31 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1Blob(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_Blob_1m_1memBuffer_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_Blob_1m_1memBuffer_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
-  std::vector< unsigned char > arg2 ;
-  std::vector< unsigned char > *argp2 ;
+  std::vector< uint8_t > *arg2 = (std::vector< uint8_t > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
+  (void)jarg2_;
   arg1 = *(OTDB::Blob **)&jarg1; 
-  argp2 = *(std::vector< unsigned char > **)&jarg2; 
-  if (!argp2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null std::vector< unsigned char >");
-    return ;
-  }
-  arg2 = *argp2; 
-  if (arg1) (arg1)->m_memBuffer = arg2;
+  arg2 = *(std::vector< uint8_t > **)&jarg2; 
+  if (arg1) (arg1)->m_memBuffer = *arg2;
 }
 
 
 SWIGEXPORT jlong JNICALL Java_org_opentransactions_otapi_otapiJNI_Blob_1m_1memBuffer_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   OTDB::Blob *arg1 = (OTDB::Blob *) 0 ;
-  std::vector< unsigned char > result;
+  std::vector< uint8_t > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(OTDB::Blob **)&jarg1; 
-  result =  ((arg1)->m_memBuffer);
-  *(std::vector< unsigned char > **)&jresult = new std::vector< unsigned char >((const std::vector< unsigned char > &)result); 
+  result = (std::vector< uint8_t > *)& ((arg1)->m_memBuffer);
+  *(std::vector< uint8_t > **)&jresult = result; 
   return jresult;
 }
 
@@ -20283,13 +21273,14 @@ SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_delete_1StringM
 }
 
 
-SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_StringMap_1the_1map_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_org_opentransactions_otapi_otapiJNI_StringMap_1the_1map_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   OTDB::StringMap *arg1 = (OTDB::StringMap *) 0 ;
   std::map< std::string,std::string > *arg2 = (std::map< std::string,std::string > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
+  (void)jarg2_;
   arg1 = *(OTDB::StringMap **)&jarg1; 
   arg2 = *(std::map< std::string,std::string > **)&jarg2; 
   if (arg1) (arg1)->the_map = *arg2;

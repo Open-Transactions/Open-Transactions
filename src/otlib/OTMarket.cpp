@@ -149,9 +149,9 @@
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -298,9 +298,9 @@ void OTMarket::UpdateContents()
 
 
 
-long OTMarket::GetTotalAvailableAssets()
+int64_t OTMarket::GetTotalAvailableAssets()
 {
-	long lTotal = 0;
+	int64_t lTotal = 0;
 	
 	FOR_EACH(mapOfOffers, m_mapAsks)
 	{
@@ -317,7 +317,7 @@ long OTMarket::GetTotalAvailableAssets()
 // ******************************************************
 // Get list of offers for a particular Nym, to send that Nym
 //
-bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int & nNymOfferCount)
+bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int32_t & nNymOfferCount)
 {
     nNymOfferCount = 0; // Outputs the count of offers for NYM_ID (on this market.)
     // ---------------------------------------
@@ -343,12 +343,12 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 		OTDB::OfferDataNym * pOfferData  = dynamic_cast<OTDB::OfferDataNym *>(OTDB::CreateObject(OTDB::STORED_OBJ_OFFER_DATA_NYM));
 		OTCleanup<OTDB::OfferDataNym> theDataAngel(*pOfferData);
 		// --------------------------------------------
-		const long & lTransactionNum			= pOffer->GetTransactionNum();
-		const long & lPriceLimit				= pOffer->GetPriceLimit();
-		const long & lTotalAssets				= pOffer->GetTotalAssetsOnOffer();
-		const long & lFinishedSoFar				= pOffer->GetFinishedSoFar();
-		const long & lMinimumIncrement			= pOffer->GetMinimumIncrement();
-		const long & lScale						= pOffer->GetScale();
+		const int64_t & lTransactionNum			= pOffer->GetTransactionNum();
+		const int64_t & lPriceLimit				= pOffer->GetPriceLimit();
+		const int64_t & lTotalAssets				= pOffer->GetTotalAssetsOnOffer();
+		const int64_t & lFinishedSoFar				= pOffer->GetFinishedSoFar();
+		const int64_t & lMinimumIncrement			= pOffer->GetMinimumIncrement();
+		const int64_t & lScale						= pOffer->GetScale();
 
 		const time_t tValidFrom					= pOffer->GetValidFrom();
 		const time_t tValidTo					= pOffer->GetValidTo();
@@ -372,17 +372,17 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 			// -------------------------------
 			if (!pOfferData->stop_sign.compare(">") || !pOfferData->stop_sign.compare("<"))
 			{
-				const long & lStopPrice	= pTrade->GetStopPrice();
-				pOfferData->stop_price	= to_string<long>(lStopPrice);
+				const int64_t & lStopPrice	= pTrade->GetStopPrice();
+				pOfferData->stop_price	= to_string<int64_t>(lStopPrice);
 			}
 		}
 		// ------------------------------------------------------
-		pOfferData->transaction_id		= to_string<long>(lTransactionNum);
-		pOfferData->price_per_scale		= to_string<long>(lPriceLimit);
-		pOfferData->total_assets		= to_string<long>(lTotalAssets);
-		pOfferData->finished_so_far		= to_string<long>(lFinishedSoFar);
-		pOfferData->minimum_increment	= to_string<long>(lMinimumIncrement);
-		pOfferData->scale				= to_string<long>(lScale);
+		pOfferData->transaction_id		= to_string<int64_t>(lTransactionNum);
+		pOfferData->price_per_scale		= to_string<int64_t>(lPriceLimit);
+		pOfferData->total_assets		= to_string<int64_t>(lTotalAssets);
+		pOfferData->finished_so_far		= to_string<int64_t>(lFinishedSoFar);
+		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
+		pOfferData->scale				= to_string<int64_t>(lScale);
 		
 		pOfferData->valid_from			= to_string<time_t>(tValidFrom);
 		pOfferData->valid_to			= to_string<time_t>(tValidTo);
@@ -411,7 +411,7 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 
 
 
-bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount)
+bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCount)
 {
     nTradeCount = 0;    // Output the count of trades in the list being returned. (If success..)
     
@@ -430,7 +430,7 @@ bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount)
 	//
     
     const size_t sizeList = m_pTradeList->GetTradeDataMarketCount();
-    nTradeCount = static_cast<int> (sizeList);
+    nTradeCount = static_cast<int32_t> (sizeList);
     
     if (nTradeCount == 0)
         return true; // Success, but there are 0 trade datas to return. (empty list.)
@@ -487,7 +487,7 @@ bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int & nTradeCount)
 
 // OTDB::OfferListMarket
 //
-bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferCount)
+bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & nOfferCount)
 {
     nOfferCount = 0;  // Outputs the actual count of offers being returned.
     // ----------------------------
@@ -504,7 +504,7 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferC
 //	mapOfOffers			m_mapAsks;		// The sellers, ordered by price limit
 
 	OTOffer * pOffer	= NULL;
-	int nTempDepth		= 0;
+	int32_t nTempDepth		= 0;
 	
 	FOR_EACH(mapOfOffers, m_mapBids)
 	{
@@ -514,7 +514,7 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferC
 		OTOffer * pOffer = (*it).second;
 		OT_ASSERT(NULL != pOffer);
 		// --------------------------------------------
-        const long & lPriceLimit		= pOffer->GetPriceLimit();
+        const int64_t & lPriceLimit		= pOffer->GetPriceLimit();
 
         if (0 == lPriceLimit) // Skipping any market orders.
             continue;
@@ -523,15 +523,15 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferC
 		OTDB::BidData * pOfferData  = dynamic_cast<OTDB::BidData *>(OTDB::CreateObject(OTDB::STORED_OBJ_BID_DATA));
 		OTCleanup<OTDB::BidData> theDataAngel(*pOfferData);
 		// --------------------------------------------
-		const long & lTransactionNum	= pOffer->GetTransactionNum();
-		const long	 lAvailableAssets	= pOffer->GetAmountAvailable();
-		const long & lMinimumIncrement	= pOffer->GetMinimumIncrement();
+		const int64_t & lTransactionNum	= pOffer->GetTransactionNum();
+		const int64_t	 lAvailableAssets	= pOffer->GetAmountAvailable();
+		const int64_t & lMinimumIncrement	= pOffer->GetMinimumIncrement();
         const time_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
 		
-		pOfferData->transaction_id		= to_string<long>(lTransactionNum);
-		pOfferData->price_per_scale		= to_string<long>(lPriceLimit);
-		pOfferData->available_assets	= to_string<long>(lAvailableAssets);
-		pOfferData->minimum_increment	= to_string<long>(lMinimumIncrement);
+		pOfferData->transaction_id		= to_string<int64_t>(lTransactionNum);
+		pOfferData->price_per_scale		= to_string<int64_t>(lPriceLimit);
+		pOfferData->available_assets	= to_string<int64_t>(lAvailableAssets);
+		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
         pOfferData->date                = to_string<time_t>(tDateAddedToMarket);
 		// ------------------------------------------------------
 		// *pOfferData is CLONED at this time (I'm still responsible to delete.)
@@ -556,16 +556,16 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferC
 		OTDB::AskData * pOfferData  = dynamic_cast<OTDB::AskData *>(OTDB::CreateObject(OTDB::STORED_OBJ_ASK_DATA));
 		OTCleanup<OTDB::AskData> theDataAngel(*pOfferData);
 		// --------------------------------------------
-		const long & lTransactionNum	= pOffer->GetTransactionNum();
-		const long & lPriceLimit		= pOffer->GetPriceLimit();
-		const long	 lAvailableAssets	= pOffer->GetAmountAvailable();
-		const long & lMinimumIncrement	= pOffer->GetMinimumIncrement();
+		const int64_t & lTransactionNum	= pOffer->GetTransactionNum();
+		const int64_t & lPriceLimit		= pOffer->GetPriceLimit();
+		const int64_t	 lAvailableAssets	= pOffer->GetAmountAvailable();
+		const int64_t & lMinimumIncrement	= pOffer->GetMinimumIncrement();
         const time_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
 
-		pOfferData->transaction_id		= to_string<long>(lTransactionNum);
-		pOfferData->price_per_scale		= to_string<long>(lPriceLimit);
-		pOfferData->available_assets	= to_string<long>(lAvailableAssets);
-		pOfferData->minimum_increment	= to_string<long>(lMinimumIncrement);
+		pOfferData->transaction_id		= to_string<int64_t>(lTransactionNum);
+		pOfferData->price_per_scale		= to_string<int64_t>(lPriceLimit);
+		pOfferData->available_assets	= to_string<int64_t>(lAvailableAssets);
+		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
         pOfferData->date                = to_string<time_t>(tDateAddedToMarket);
 		// ------------------------------------------------------
 		// *pOfferData is CLONED at this time (I'm still responsible to delete.)
@@ -634,13 +634,13 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, long lDepth, int & nOfferC
 // This way I can read them from the lower bound later, and always get them in the 
 // order received for that price.
 // 
-//typedef std::multimap<long, OTOffer *>	mapOfOffers;
+//typedef std::multimap<int64_t, OTOffer *>	mapOfOffers;
 //mapOfOffers	m_mapBids; // The buyers, ordered  
 //mapOfOffers	m_mapAsks; // The sellers, ordered
 
 
 
-OTOffer * OTMarket::GetOffer(const long & lTransactionNum)
+OTOffer * OTMarket::GetOffer(const int64_t & lTransactionNum)
 {
 	// See if there's something there with that transaction number.
 	mapOfOffersTrnsNum::iterator ii = m_mapOffers.find(lTransactionNum);
@@ -668,7 +668,7 @@ OTOffer * OTMarket::GetOffer(const long & lTransactionNum)
 }
 
 
-bool OTMarket::RemoveOffer(const long & lTransactionNum) // if false, offer wasn't found.
+bool OTMarket::RemoveOffer(const int64_t & lTransactionNum) // if false, offer wasn't found.
 {
 	bool bReturnValue = false;
 	
@@ -754,7 +754,7 @@ bool OTMarket::RemoveOffer(const long & lTransactionNum) // if false, offer wasn
 //
 bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=true*/, time_t tDateAddedToMarket/*=0*/)
 {
-	const long	lTransactionNum	= theOffer.GetTransactionNum(),
+	const int64_t	lTransactionNum	= theOffer.GetTransactionNum(),
 				lPriceLimit		= theOffer.GetPriceLimit();
 		
 	// Make sure the offer is even appropriate for this market...
@@ -800,13 +800,13 @@ bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=t
 			// since the code above basically already verifies that for us.
             
 			m_mapBids.insert (m_mapBids.lower_bound(lPriceLimit), // highest bidders go first, so I am last in line at lower bound.
-							  std::pair<long, OTOffer *>(lPriceLimit, &theOffer) );
+							  std::pair<int64_t, OTOffer *>(lPriceLimit, &theOffer) );
 			OTLog::Output(4, "Offer added as a bid to the market.\n");
 		}
 		else			
 		{
 			m_mapAsks.insert (m_mapAsks.upper_bound(lPriceLimit), // lowest price sells first, so I am last in line at upper bound.
-							  std::pair<long, OTOffer *>(lPriceLimit, &theOffer) );
+							  std::pair<int64_t, OTOffer *>(lPriceLimit, &theOffer) );
 			OTLog::Output(4, "Offer added as an ask to the market.\n");
 		}
         // ------------------------------------------------------------------------------
@@ -934,7 +934,7 @@ void OTMarket::GetIdentifier(OTIdentifier & theIdentifier)
 {	
 	OTString	strTemp, strAsset(GetAssetID()), strCurrency(GetCurrencyID());
 	
-	long		lScale = GetScale();
+	int64_t		lScale = GetScale();
 	
 	// In this way we generate a unique ID that will always be consistent
 	// for the same asset ID, currency ID, and market scale.
@@ -952,9 +952,9 @@ void OTMarket::GetIdentifier(OTIdentifier & theIdentifier)
 // -----------------------------------------------------------------------------
 
 // returns 0 if there are no bids. Otherwise returns the value of the highest bid on the market.
-long OTMarket::GetHighestBidPrice()
+int64_t OTMarket::GetHighestBidPrice()
 {
-	long lPrice = 0;
+	int64_t lPrice = 0;
 	
 	mapOfOffers::reverse_iterator rr = m_mapBids.rbegin();
 	
@@ -967,9 +967,9 @@ long OTMarket::GetHighestBidPrice()
 }
 
 // returns 0 if there are no asks. Otherwise returns the value of the lowest ask on the market.
-long OTMarket::GetLowestAskPrice()
+int64_t OTMarket::GetLowestAskPrice()
 {
-	long lPrice = 0;
+	int64_t lPrice = 0;
 	
 	mapOfOffers::iterator ii = m_mapAsks.begin();
 	
@@ -1025,8 +1025,8 @@ void cleanup_four_accounts(OTAccount * p1, OTAccount * p2, OTAccount * p3, OTAcc
 // Whereas if it had returned false (debit failed) then the false would be passed in here, and I would know
 // NOT to try to credit the account again, since the money never left.  If b1 is false, for each var, do nothing.
 // If true, try to roll it back.
-void rollback_four_accounts(OTAccount & p1, bool b1, const long & a1, OTAccount & p2, bool b2, const long & a2, 
-							OTAccount & p3, bool b3, const long & a3, OTAccount & p4, bool b4, const long & a4)
+void rollback_four_accounts(OTAccount & p1, bool b1, const int64_t & a1, OTAccount & p2, bool b2, const int64_t & a2, 
+							OTAccount & p3, bool b3, const int64_t & a3, OTAccount & p4, bool b4, const int64_t & a4)
 {
 	if (b1)
 		p1.Credit(a1);
@@ -1368,7 +1368,7 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 		else
 		{
 			// Generate new transaction numbers for these new transactions
-			long lNewTransactionNumber = pCron->GetNextTransactionNumber();
+			int64_t lNewTransactionNumber = pCron->GetNextTransactionNumber();
 			
 //			OT_ASSERT(lNewTransactionNumber > 0); // this can be my reminder.			
 			if (0 == lNewTransactionNumber)
@@ -1514,17 +1514,17 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 			}
             // ----------------------------------------------------------------
 			// Calculate minimum increment to be traded each round.
-			long lMinIncrementPerRound =
+			int64_t lMinIncrementPerRound =
 				((theOffer.GetMinimumIncrement() > theOtherOffer.GetMinimumIncrement())	?
 				  theOffer.GetMinimumIncrement() : theOtherOffer.GetMinimumIncrement());
             // ----------------------------------------------------------------
-			const long lMultiplier = (lMinIncrementPerRound / GetScale());	// If the Market scale is 10, and the minimum increment is 50, multiplier is 5..
+			const int64_t lMultiplier = (lMinIncrementPerRound / GetScale());	// If the Market scale is 10, and the minimum increment is 50, multiplier is 5..
 																			// The price limit is per scale. (Per 10.) So if 1oz gold is $1300, then 10oz scale
 																			// would be $13,000. So if my price limit is per SCALE, I might set my limit
 																			// to $12,000 or $13,000 (PER 10 OZ OF GOLD, which is the SCALE for this market.)
             // ----------------------------------------------------------------
 			// Calc price of each round.
-			long lPrice = ( lMultiplier * theOtherOffer.GetPriceLimit() );	// So if my minimum increment is 50, then my multiplier is 5, which means
+			int64_t lPrice = ( lMultiplier * theOtherOffer.GetPriceLimit() );	// So if my minimum increment is 50, then my multiplier is 5, which means
 																			// multiply my price by 5: $13,000 * 5 == $65,000 for 50 oz. per minimum inc.
 
 			// Why am I using the OTHER Offer's price limit, and not my own?
@@ -1537,10 +1537,10 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 			// two parties' "Most Available Left To Trade".) So I'll try THAT first, to avoid processing in 
 			// rounds. (Since the funds SHOULD be there...)
 			
-			long lMostAvailable = ((theOffer.GetAmountAvailable()      > theOtherOffer.GetAmountAvailable()) ?
+			int64_t lMostAvailable = ((theOffer.GetAmountAvailable()      > theOtherOffer.GetAmountAvailable()) ?
 								    theOtherOffer.GetAmountAvailable() : theOffer.GetAmountAvailable());
             // ----------------------------------------------------------------
-			long lTemp = lMostAvailable % GetScale(); // The Scale may not evenly divide into the amount available
+			int64_t lTemp = lMostAvailable % GetScale(); // The Scale may not evenly divide into the amount available
             // ----------------------------------------------------------------
 			lMostAvailable -= lTemp;	// We'll subtract remainder amount, so it's even to scale (which is how it's priced.)
             // ----------------------------------------------------------------
@@ -1551,10 +1551,10 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
             //
 			// Next question is: can both sides process the MOST AVAILABLE? If so, do THAT, instead of processing by rounds.
 			
-			const long lOverallMultiplier = lMostAvailable / GetScale(); // Price is per scale  // This line was commented with the line below it. They go together.
+			const int64_t lOverallMultiplier = lMostAvailable / GetScale(); // Price is per scale  // This line was commented with the line below it. They go together.
             // ----------------------------------------------------------------
 			// Why theOtherOffer's price limit instead of theOffer's? See notes top/bottom this function.
-			const long lMostPrice = ( lOverallMultiplier * theOtherOffer.GetPriceLimit() );
+			const int64_t lMostPrice = ( lOverallMultiplier * theOtherOffer.GetPriceLimit() );
 			// TO REMOVE MULTIPLIER FROM PRICE, AT LEAST THE ABOVE LINE WOULD REMOVE MULTIPLIER.
             // ----------------------------------------------------------------
 			// To avoid rounds, first I see if I can satisfy the entire order at once on either side...
@@ -1581,7 +1581,7 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 			
 			bool bSuccess = false;
 			
-			long lOfferFinished      = 0,
+			int64_t lOfferFinished      = 0,
                  lOtherOfferFinished = 0, // We store these up and then add the totals to the offers at the end (only upon success.)
                  lTotalPaidOut       = 0; // However much is paid for the assets, total.
 			
@@ -1694,15 +1694,15 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 					OTDB::TradeDataMarket * pTradeData  = dynamic_cast<OTDB::TradeDataMarket *>(OTDB::CreateObject(OTDB::STORED_OBJ_TRADE_DATA_MARKET));
 					OTCleanup<OTDB::TradeDataMarket> theDataAngel(*pTradeData);
 					// --------------------------------------------
-					const long & lTransactionNum = theOffer.GetTransactionNum();
+					const int64_t & lTransactionNum = theOffer.GetTransactionNum();
 					const time_t theDate         = time(NULL);
-					const long & lPriceLimit     = theOtherOffer.GetPriceLimit(); // Priced per scale.
-					const long & lAmountSold     = lOfferFinished;
+					const int64_t & lPriceLimit     = theOtherOffer.GetPriceLimit(); // Priced per scale.
+					const int64_t & lAmountSold     = lOfferFinished;
                     // ----------------------------------------------------------------
-					pTradeData->transaction_id = to_string<long>(lTransactionNum);
+					pTradeData->transaction_id = to_string<int64_t>(lTransactionNum);
 					pTradeData->date           = to_string<time_t>(theDate);
-					pTradeData->price          = to_string<long>(lPriceLimit);
-					pTradeData->amount_sold    = to_string<long>(lAmountSold);
+					pTradeData->price          = to_string<int64_t>(lPriceLimit);
+					pTradeData->amount_sold    = to_string<int64_t>(lAmountSold);
                     // ------------------------------------------------------
                     m_strLastSaleDate = pTradeData->date;
 					// ------------------------------------------------------
@@ -2097,10 +2097,10 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 //
 // The prices also were different when I came onto the market. Things were different then. Obviously
 // since I'm still here, I wasn't ALWAYS the lowest price. Maybe in fact the price was $3 before, and I had a
-// long-standing trade there that said not to sell for less than $8 (with a stop order too, so it didn't even
+// int64_t-standing trade there that said not to sell for less than $8 (with a stop order too, so it didn't even
 // activate until then.) THE POINT? I COULD have had the best price on the market THEN, whatever it was, simply
 // by checking it and then setting my limit to match. But I didn't choose that. Instead, I set it to $8 limit,
-// and then my trade sat there waiting for 6 months or god knows how long until it became valid, when market
+// and then my trade sat there waiting for 6 months or god knows how int64_t until it became valid, when market
 // conditions became more favorable to my trade.
 // THEN my trade, at some point, became the lowest price on the market (finally) so when someone's brand
 // new $10 limit bid comes in, he ALSO deserves the best price on the market, just as I had the same
@@ -2133,7 +2133,7 @@ bool OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer)
         return false;
     }
 	// --------------------------------------------------
-	long lRelevantPrice = 0;
+	int64_t lRelevantPrice = 0;
 	
 	// If I'm trying to SELL something, then I care about the highest bidder.
 	if (theOffer.IsAsk())
@@ -2419,7 +2419,7 @@ OTMarket::OTMarket() : OTContract(), m_pCron(NULL), m_pTradeList(NULL), m_lScale
 
 
 OTMarket::OTMarket(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_TYPE_ID,
-				   const OTIdentifier & CURRENCY_TYPE_ID, const long & lScale) : 
+				   const OTIdentifier & CURRENCY_TYPE_ID, const int64_t & lScale) : 
 	OTContract(), m_pCron(NULL), m_pTradeList(NULL), m_lScale(1), m_lLastSalePrice(0)
 {
 	m_pCron = NULL; // just for convenience, not responsible to delete.

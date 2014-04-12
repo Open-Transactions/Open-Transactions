@@ -9,6 +9,50 @@
 namespace OpenTransactions.OTAPI {
 
 public class otapi {
+  public static long imaxabs(long n) {
+    long ret = otapiPINVOKE.imaxabs(n);
+    return ret;
+  }
+
+  public static imaxdiv_t imaxdiv(long numer, long denom) {
+    imaxdiv_t ret = new imaxdiv_t(otapiPINVOKE.imaxdiv(numer, denom), true);
+    return ret;
+  }
+
+  public static int OT_CLI_GetArgsCount(string str_Args) {
+    int ret = otapiPINVOKE.OT_CLI_GetArgsCount(str_Args);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string OT_CLI_GetValueByKey(string str_Args, string str_key) {
+    string ret = otapiPINVOKE.OT_CLI_GetValueByKey(str_Args, str_key);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string OT_CLI_GetValueByIndex(string str_Args, int nIndex) {
+    string ret = otapiPINVOKE.OT_CLI_GetValueByIndex(str_Args, nIndex);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string OT_CLI_GetKeyByIndex(string str_Args, int nIndex) {
+    string ret = otapiPINVOKE.OT_CLI_GetKeyByIndex(str_Args, nIndex);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static string OT_CLI_ReadLine() {
+    string ret = otapiPINVOKE.OT_CLI_ReadLine();
+    return ret;
+  }
+
+  public static string OT_CLI_ReadUntilEOF() {
+    string ret = otapiPINVOKE.OT_CLI_ReadUntilEOF();
+    return ret;
+  }
+
   public static bool InitDefaultStorage(StorageType eStoreType, PackType ePackType) {
     bool ret = otapiPINVOKE.InitDefaultStorage((int)eStoreType, (int)ePackType);
     return ret;
@@ -70,6 +114,30 @@ public class otapi {
 
   public static bool Exists(string strFolder) {
     bool ret = otapiPINVOKE.Exists__SWIG_3(strFolder);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr, string threeStr) {
+    long ret = otapiPINVOKE.FormPathString__SWIG_0(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr) {
+    long ret = otapiPINVOKE.FormPathString__SWIG_1(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr) {
+    long ret = otapiPINVOKE.FormPathString__SWIG_2(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static long FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder) {
+    long ret = otapiPINVOKE.FormPathString__SWIG_3(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

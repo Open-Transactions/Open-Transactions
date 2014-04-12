@@ -167,15 +167,11 @@
 #ifndef __OT_CREDENTIAL_HPP__
 #define __OT_CREDENTIAL_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
 #include "OTAsymmetricKey.hpp"
-
-#include _CINTTYPES
 
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -231,7 +227,7 @@ class OTKeypair
     OTAsymmetricKey * m_pkeyPublic;     // This nym's public key
     OTAsymmetricKey * m_pkeyPrivate; // This nym's private key
 public:
-    EXPORT bool MakeNewKeypair(int nBits=1024);
+    EXPORT bool MakeNewKeypair(int32_t nBits=1024);
     EXPORT bool ReEncrypt(OTPassword & theExportPassword, bool bImporting, OTString & strOutput); // Used when importing/exporting a Nym to/from the wallet.
     // ---------------------------------------------------------------
     EXPORT bool HasPublicKey();
@@ -316,7 +312,7 @@ public:
     // ------------------------------------------------
     EXPORT void SetMetadata(const OTSignatureMetadata & theMetadata);
     // ------------------------------------------------
-    EXPORT int GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // inclusive means, return keys when theSignature has no metadata.
+    EXPORT int32_t GetPublicKeyBySignature(listOfAsymmetricKeys & listOutput, // inclusive means, return keys when theSignature has no metadata.
         const OTSignature & theSignature, bool bInclusive=false) const;
     // ------------------------------------------------
     EXPORT OTKeypair();
@@ -431,7 +427,7 @@ EXPORT virtual void CalculateContractID(OTIdentifier & newID);
     void Release_Subcredential();
     // ------------------------------
     virtual void UpdateContents();
-    virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
     virtual bool SaveContractWallet(std::ofstream & ofs) { return false; }
 };
@@ -490,7 +486,7 @@ public:
     OTKeypair   m_AuthentKey;  // Authentication keys, used for signing/verifying transmissions and stored files.
     OTKeypair   m_EncryptKey;  // Encryption keys, used for sealing/opening OTEnvelopes.
     // ------------------------------
-    bool GenerateKeys(int nBits=1024);   // Gotta start somewhere.
+    bool GenerateKeys(int32_t nBits=1024);   // Gotta start somewhere.
     bool ReEncryptKeys(OTPassword & theExportPassword, bool bImporting); // Used when importing/exporting a Nym to/from the wallet.
     // ------------------------------
     virtual bool VerifyInternally();     // Verify that m_strNymID is the same as the hash of m_strSourceForNymID. Also verify that *this == m_pOwner->m_MasterKey (the master credential.) Then verify the (self-signed) signature on *this.
@@ -504,7 +500,7 @@ public:
     // ------------------------------
     bool SignContract(OTContract & theContract, OTPasswordData * pPWData=NULL);
     // ------------------------------
-EXPORT int GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
+EXPORT int32_t GetPublicKeysBySignature(listOfAsymmetricKeys & listOutput,
                                     const OTSignature & theSignature,
                                     char cKeyType='0') const; // 'S' (signing key) or 'E' (encryption key) or 'A' (authentication key)
     // ------------------------------
@@ -542,7 +538,7 @@ public:
     virtual ~OTSubkey();
     // ------------------------------
     virtual void UpdateContents();
-    virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
 };
 
@@ -575,7 +571,7 @@ public:
     virtual ~OTMasterkey();
     // ------------------------------
     virtual void UpdateContents();
-    virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
 };
 
@@ -636,7 +632,7 @@ private:
     void SetSourceForNymID(const OTString & strSourceForNymID); // The source is the URL/DN/pubkey that hashes to form the NymID. Any credential must verify against its own source.
     void SetMasterCredID (const OTString & strID); // The master credential ID is a hash of the master credential m_MasterKey
     // -------------------------------------------------------------------------------
-    bool GenerateMasterkey(int nBits=1024); // CreateMaster is able to create keys from scratch (by calling this function.)
+    bool GenerateMasterkey(int32_t nBits=1024); // CreateMaster is able to create keys from scratch (by calling this function.)
     // -------------------------------------------------------------------------------
     bool SignNewMaster (OTPasswordData * pPWData=NULL); // SignMaster is used when creating master credential.
     bool SignNewSubcredential(OTSubcredential & theSubCred, OTIdentifier & theSubCredID_out, OTPasswordData * pPWData=NULL); // Used when creating a new subcredential.
@@ -646,7 +642,7 @@ public:
     EXPORT void SetImportPassword(OTPassword * pImportPassword) { m_pImportPassword = pImportPassword; }
     // -------------------------------------------------------------------------------
     static OTCredential * CreateMaster        (const OTString       & strSourceForNymID,
-                                               const int              nBits = 1024, // Ignored unless pmapPrivate is NULL
+                                               const int32_t              nBits = 1024, // Ignored unless pmapPrivate is NULL
                                                const mapOfStrings   * pmapPrivate = NULL,
                                                const mapOfStrings   * pmapPublic = NULL,
                                                      OTPasswordData * pPWData=NULL);
@@ -674,7 +670,7 @@ public:
     // For subcredentials that are specifically *subkeys*. Meaning it will
     // contain 3 keypairs: signing, authentication, and encryption. 
     //
-    EXPORT bool AddNewSubkey       (const int                nBits = 1024, // Ignored unless pmapPrivate is NULL
+    EXPORT bool AddNewSubkey       (const int32_t                nBits = 1024, // Ignored unless pmapPrivate is NULL
                                     const mapOfStrings     * pmapPrivate = NULL, // Public keys are derived from the private.
                                           OTPasswordData   * pPWData=NULL, // The master key will sign the subkey.
                                           OTSubkey        ** ppSubkey=NULL); // output
@@ -695,7 +691,7 @@ public:
     // ------------------------------
     EXPORT size_t GetSubcredentialCount() const;
     EXPORT const OTSubcredential * GetSubcredential (const OTString & strSubID, const listOfStrings * plistRevokedIDs=NULL) const;
-    EXPORT const OTSubcredential * GetSubcredentialByIndex (int nIndex) const;
+    EXPORT const OTSubcredential * GetSubcredentialByIndex (int32_t nIndex) const;
     EXPORT const std::string GetSubcredentialIDByIndex(size_t nIndex) const;
     // ------------------------------
     EXPORT const OTString & GetPubCredential() const; // Returns: m_Masterkey's public credential string.
@@ -721,7 +717,7 @@ public:
     // ------------------------------
     EXPORT const OTMasterkey & GetMasterkey() const { return m_Masterkey; }
     // ------------------------------
-    EXPORT int GetPublicKeysBySignature(      listOfAsymmetricKeys & listOutput,
+    EXPORT int32_t GetPublicKeysBySignature(      listOfAsymmetricKeys & listOutput,
                                         const OTSignature          & theSignature,
                                               char                   cKeyType='0' ) const; // 'S' (signing key) or 'E' (encryption key) or 'A' (authentication key)
     // ------------------------------
@@ -794,8 +790,6 @@ public:
  in the hopes that it will save others the trouble and
  time of figuring it out themselves.
 
- 
- 
 #include <stdio.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -809,20 +803,20 @@ public:
 #include <openssl/bio.h>
 
 
-int main(int argc, char * argv[])
+int32_t main(int32_t argc, char * argv[])
 {
    struct stat           sb;
-   unsigned char       * buff;
-   int                   fd;
+   uint8_t       * buff;
+   int32_t                   fd;
    ssize_t               len;
    BIO                 * bio;
    X509                * x;
-   unsigned              err;
-   int                   pos;
+   uint32_t              err;
+   int32_t                   pos;
    char                  errmsg[1024];
    const EVP_MD        * digest;
-   unsigned char         md[EVP_MAX_MD_SIZE];
-   unsigned int          n;
+   uint8_t         md[EVP_MAX_MD_SIZE];
+   uint32_t          n;
 
    // checks arguments
    if (argc != 2)

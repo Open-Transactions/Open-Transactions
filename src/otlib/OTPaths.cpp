@@ -1,13 +1,13 @@
-/*******************************************************************
-*    
+/************************************************************
+*
 *  OTPaths.cpp
-*  
+*
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -247,7 +247,7 @@ const OTString & OTPaths::HomeFolder()
 void OTPaths::SetHomeFolder(OTString strLocation)
 {
     OTPaths::s_strHomeFolder = strLocation;
-    
+
 #ifdef ANDROID
     OTPaths::s_settings.SetConfigFilePath(GlobalConfigFile());
 #endif
@@ -287,7 +287,7 @@ const OTString & OTPaths::GlobalConfigFile()
 
     OTString strGlobalConfigFile("");
 
-    
+
     if(!AppendFile(strGlobalConfigFile,AppDataFolder(),OT_INIT_CONFIG_FILENAME)) OT_FAIL;
 
     s_strGlobalConfigFile = strGlobalConfigFile;
@@ -325,8 +325,8 @@ const OTString & OTPaths::ScriptsFolder()
 
 // The LoadSet Functions will update the static values.
 //static
-bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/  
-    (    
+bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
+    (
     OTSettings & config,    //optional
     const OTString & strPrefixFolder                //optional
     //const bool & bIsRelative (cannot be relative);
@@ -421,7 +421,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
                     OTString strTmp = strPrefixFolder;
 
                     if(!ToReal(strTmp,strTmp)) { OT_FAIL; }
-                    
+
                     if(!FixPath(strTmp,strTmp,true)) { OT_FAIL; }
 
                     if (!strLocalPrefixPath.Compare(strTmp)) {
@@ -545,7 +545,7 @@ bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + [ if (NOT Android) "
     else
     {
         if(!ToReal(strConfigFolder, strConfigFolder)) { OT_FAIL; }
-        
+
         if(!FixPath(strConfigFolder, strConfigFolder, true)) { OT_FAIL; }
         s_strScriptsFolder = strConfigFolder; // set
     }
@@ -598,7 +598,7 @@ bool OTPaths::Get(
                 if (!bIsRelative) // lets fix the path, so it dosn't matter how people write it in the config.
                 {
                     if(!ToReal(strOutFolder,strOutFolder)) { OT_FAIL; }
-                    
+
                     if(!FixPath(strOutFolder,strOutFolder,true)) { OT_FAIL; }
                 }
 
@@ -735,14 +735,14 @@ bool OTPaths::PathExists(const OTString & strPath)
         l_strPath_stat = l_strPath.substr(0, l_strPath.size()-1);
     else l_strPath_stat = l_strPath;
 
-    struct stat st; 
+    struct stat st;
     memset(&st, 0, sizeof(st));
 
     if (0 == stat(l_strPath_stat.c_str(), &st)) // good we have at-least on a node
     {
         if ('/' != *l_strPath.rbegin())
         {
-            long temp_l=0;
+            int64_t temp_l=0;
             return FileExists(strPath,temp_l);
         }
         else
@@ -754,7 +754,7 @@ bool OTPaths::PathExists(const OTString & strPath)
 }
 
 //static
-bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
+bool OTPaths::FileExists(const OTString & strFilePath, int64_t & nFileLength)
 {
     if (!strFilePath.Exists()) { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strFilePath" ); OT_FAIL; }
 
@@ -774,7 +774,7 @@ bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
 
     if ('/' != *l_strPath.rbegin())
     {
-        int status=0; // todo security (this whole block)
+        int32_t status=0; // todo security (this whole block)
 #ifdef _WIN32
         struct _stat st_buf;
         memset(&st_buf, 0, sizeof(st_buf));
@@ -794,7 +794,7 @@ bool OTPaths::FileExists(const OTString & strFilePath, long & nFileLength)
         {
             // good we have a file.
             size_t lFileLength = st_buf.st_size;
-            nFileLength = static_cast<long>(lFileLength);
+            nFileLength = static_cast<int64_t>(lFileLength);
             return true;
         }
     }
@@ -821,7 +821,7 @@ bool OTPaths::FolderExists(const OTString & strFolderPath)
     if ('/' == *l_strPath.rbegin())
     {
 
-        int status=0; // todo security (this whole block)
+        int32_t status=0; // todo security (this whole block)
 #ifdef _WIN32
         struct _stat st_buf;
         memset(&st_buf, 0, sizeof(st_buf));
@@ -864,7 +864,7 @@ bool OTPaths::ConfirmCreateFolder(const OTString & strExactPath, bool & out_Exis
         out_IsNew = false;
         return true;  // Already Have Folder, lets return true!
     }
-    else 
+    else
     {
         // It dosn't exist: lets create it.
 
@@ -874,7 +874,7 @@ bool OTPaths::ConfirmCreateFolder(const OTString & strExactPath, bool & out_Exis
         bool bCreateDirSuccess = (mkdir(strExactPath.Get(), 0700) == 0);
 #endif
 
-        if (!bCreateDirSuccess) 
+        if (!bCreateDirSuccess)
         {
             OTLog::vError("OTPaths::%s: Unable To Confirm "
                 "Created Directory %s.\n", __FUNCTION__, strExactPath.Get());
@@ -884,17 +884,17 @@ bool OTPaths::ConfirmCreateFolder(const OTString & strExactPath, bool & out_Exis
         }
 
         // At this point if the folder still doesn't exist, nothing we can do. We
-        // already tried to create the folder, and SUCCEEDED, and then STILL failed 
+        // already tried to create the folder, and SUCCEEDED, and then STILL failed
         // to find it (if this is still false.)
 
-        else 
+        else
         {
             bool bCheckDirExist = PathExists(strExactPath);
 
-            if (!bCheckDirExist) 
+            if (!bCheckDirExist)
             {
                 OTLog::vError("OTPaths::%s: "
-                    "Unable To Confirm Created Directory %s.\n", 
+                    "Unable To Confirm Created Directory %s.\n",
                     __FUNCTION__, strExactPath.Get());
                 out_IsNew = false;
                 out_Exists = false;
@@ -917,7 +917,7 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
     if (!strExactPath.Exists())        { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strExactPath"); OT_FAIL; }
 
 #ifdef _WIN32
-#ifdef _UNICODE    
+#ifdef _UNICODE
 
     const char * szPath = strExactPath.Get();
     size_t newsize = strlen(szPath) + 1;
@@ -933,7 +933,7 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
         out_strCanonicalPath.Set(utf8util::UTF8FromUTF16(szBuf));
         return true;
     }
-    else 
+    else
     {
         out_strCanonicalPath.Set("");
         return false;
@@ -957,7 +957,7 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
 #endif
 #else
 
-    long path_max=0;
+    int64_t path_max=0;
 #ifdef PATH_MAX
     path_max = PATH_MAX;
 #else
@@ -986,8 +986,8 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
         OT_ASSERT_MSG((errno != EACCES),"Error (Realpath: EACCES): Unable to build RealPath: access denied");
         OT_ASSERT_MSG((errno != EINVAL),"Error (RealPath: EINVAL): Input value into RealPath was NULL");
         OT_ASSERT_MSG((errno != ELOOP),"Error (RealPath: ELOOP): Resloving links resulted in a loop.");
-        OT_ASSERT_MSG((errno != ENAMETOOLONG),"Error (RealPath: ENAMETOOLONG): Name too long.");
-        OT_ASSERT_MSG((errno != ERANGE),"Error (RealPath: ERANGE): Resulting path is too long for the buffer");
+        OT_ASSERT_MSG((errno != ENAMETOOLONG),"Error (RealPath: ENAMETOOLONG): Name too int64_t.");
+        OT_ASSERT_MSG((errno != ERANGE),"Error (RealPath: ERANGE): Resulting path is too int64_t for the buffer");
         OT_ASSERT_MSG((errno != EIO),"Error (RealPath: EIO): Unable to access path.");
 
         OT_ASSERT_MSG((false),"Error (RealPath: OTHER): Something bad Happend with 'realpath'.");
@@ -1002,7 +1002,7 @@ const bool GetExecutable(OTString & strExecutablePath)
 #ifdef TARGET_OS_MAC
     char bufPath[PATH_MAX + 1]="";
     uint32_t size = sizeof(bufPath);
-    int  bufsize = sizeof(bufPath);
+    int32_t  bufsize = sizeof(bufPath);
     if (_NSGetExecutablePath(bufPath, &size) == 0)
         strExecutablePath.Set(bufPath);
     else return false;
@@ -1184,7 +1184,7 @@ bool OTPaths::RelativeToCanonical(OTString & out_strCanonicalPath, const OTStrin
     if (!strBasePath.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strBasePath"    ); OT_FAIL; }
     if (!strRelativePath.Exists()) { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strRelativePath" ); OT_FAIL; }
 
-    
+
     OTString l_strBasePath_fix("");
     if(!FixPath(strBasePath,l_strBasePath_fix,true)) return false;
 
@@ -1361,7 +1361,7 @@ OTDataFolder * OTDataFolder::pDataFolder;
 // static
 bool OTDataFolder::Init(const OTString & strThreadContext)
 {
-    if (NULL != pDataFolder) return false; // we already have a data dir setup.
+    if (NULL != pDataFolder) return true; // we already have a data dir setup.
 
     if (!strThreadContext.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
     if (3 > strThreadContext.GetLength())       { OTLog::sError("%s: Too Short: %s !\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
@@ -1370,7 +1370,7 @@ bool OTDataFolder::Init(const OTString & strThreadContext)
 
     pDataFolder->m_bInitialized = false;
 
-    
+
     // setup the config instance.
     OTSettings * pSettings(new OTSettings(OTPaths::GlobalConfigFile()));
     pSettings->Reset();

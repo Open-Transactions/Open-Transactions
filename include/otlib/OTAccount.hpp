@@ -133,20 +133,14 @@
 #ifndef __OTACCOUNT_HPP__
 #define __OTACCOUNT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTransactionType.hpp"
-
-#include _CINTTYPES
-#include _MEMORY
 
 class OTPseudonym;
 class OTAccount;
 class OTMessage;
 class OTLedger;
-
 
 class OTAccount : public OTTransactionType 
 {
@@ -175,13 +169,13 @@ protected:
 	OTString		m_BalanceAmount;
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents();
 	OTAccount(const OTIdentifier & theUserID, const OTIdentifier & theServerID);
 	OTAccount();
 	// -------------------------------------------------
-	long	m_lStashTransNum;	// the Transaction Number of a smart contract running on cron, if this is a stash account.
+	int64_t	m_lStashTransNum;	// the Transaction Number of a smart contract running on cron, if this is a stash account.
 	// -------------------------------------------------
     bool	m_bMarkForDeletion; // Default FALSE. When set to true, saves a "DELETED" flag with this Account,
 								// for easy cleanup later when the server is doing some maintenance.
@@ -203,10 +197,10 @@ EXPORT  bool IsIssuer() const;
     // ---------------------------------------
 	// For accounts used by smart contracts, to stash funds while running.
 	//
-EXPORT	bool IsStashAcct() const { return (m_AcctType == stash); } 
+EXPORT	bool IsStashAcct() const { return (m_AcctType == stash); }
 	
-EXPORT	const long & GetStashTransNum() const { return m_lStashTransNum; }
-EXPORT	void SetStashTransNum(const long & lTransNum) { m_lStashTransNum = lTransNum; }	
+EXPORT	const int64_t & GetStashTransNum() const { return m_lStashTransNum; }
+EXPORT	void SetStashTransNum(const int64_t & lTransNum) { m_lStashTransNum = lTransNum; }
     // ---------------------------------------
 EXPORT  OTAccount(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID, const OTString & name);
 EXPORT	OTAccount(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID);
@@ -219,12 +213,12 @@ EXPORT  void Release_Account();
 EXPORT	static OTAccount * GenerateNewAccount(const OTIdentifier & theUserID, const OTIdentifier & theServerID, 
                                               const OTPseudonym & theServerNym, const OTMessage & theMessage,
                                               const AccountType eAcctType=simple,
-                                              long lStashTransNum=0);
+                                              int64_t lStashTransNum=0);
 
 EXPORT	bool GenerateNewAccount(const OTPseudonym & theServer, 
                                 const OTMessage   & theMessage, 
                                 const AccountType   eAcctType=simple,
-                                      long          lStashTransNum=0);
+                                      int64_t          lStashTransNum=0);
     // -----------------------------------------------------------------------
 	// Let's say you don't have or know the UserID, and you just want to load the damn thing up.
 	// Then call this function. It will set userID for you.
@@ -238,10 +232,10 @@ EXPORT	bool SaveOutbox(OTLedger &theBox, OTIdentifier * pHash=NULL);  // If you 
     // -----------------------------------------------------------------------
 EXPORT	const OTIdentifier & GetAssetTypeID() const;
     // -----------------------------------------------------------------------
-EXPORT	long GetBalance() const;
+EXPORT	int64_t GetBalance() const;
     // -----------------------------------------------------------------------
-EXPORT	bool Debit(const long & lAmount); // Debit a certain amount from the account (presumably the same amount is being added somewhere)
-EXPORT	bool Credit(const long & lAmount); // Credit a certain amount from the account (presumably the same amount is being subtracted somewhere)
+EXPORT	bool Debit(const int64_t & lAmount); // Debit a certain amount from the account (presumably the same amount is being added somewhere)
+EXPORT	bool Credit(const int64_t & lAmount); // Credit a certain amount from the account (presumably the same amount is being subtracted somewhere)
     // -----------------------------------------------------------------------
 	// Compares the NymID loaded from the account file with whatever Nym the programmer wants to verify.
 EXPORT	bool VerifyOwner(const OTPseudonym & theCandidate) const;
@@ -301,23 +295,23 @@ EXPORT	OTAcctList();
         OTAcctList(OTAccount::AccountType eAcctType);
 EXPORT	~OTAcctList();
 
-EXPORT  int  GetCountAccountIDs() const { return static_cast<int> (m_mapAcctIDs.size()); }
+EXPORT  int32_t  GetCountAccountIDs() const { return static_cast<int32_t> (m_mapAcctIDs.size()); }
 	
 EXPORT  void Release();
 
 EXPORT  void Release_AcctList();
 	
 EXPORT	void Serialize(OTString & strAppend);
-EXPORT	int  ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcctType, const OTString & strAcctCount);
+EXPORT	int32_t  ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcctType, const OTString & strAcctCount);
 	
         void SetType(OTAccount::AccountType eAcctType) { m_AcctType = eAcctType; }
 	
-EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym, 
+EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym,
                                                const OTIdentifier	& ACCOUNT_OWNER_ID, 
                                                const OTIdentifier	& ASSET_TYPE_ID, 
                                                const OTIdentifier	& SERVER_ID,
                                                bool					& bWasAcctCreated, // this will be set to true if the acct is created here. Otherwise set to false;
-                                               const long             lStashTransNum=0);
+                                               const int64_t             lStashTransNum=0);
 };
 
 

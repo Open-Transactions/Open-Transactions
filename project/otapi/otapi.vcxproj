@@ -29,82 +29,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\otapi\OpenTransactions.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTAPI.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OT_ME.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTAPI_Basic.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTMadeEasy.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/wd4503 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/wd4503 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/wd4503 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/wd4503 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTClient.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\testclient.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\testread.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\testwrite.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/wd4913 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/wd4913 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/wd4913 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/wd4913 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\scripts\ot\otapi.ot">
       <FileType>Document</FileType>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
@@ -255,13 +179,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\otapi\main.hpp" />
+    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OpenTransactions.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp" />
-    <ClInclude Include="..\..\include\otapi\OTAPI_Basic.hpp" />
+    <ClInclude Include="..\..\include\otapi\OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OTClient.hpp" />
-    <ClInclude Include="..\..\include\otapi\OTMadeEasy.hpp" />
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_command_ot.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\OT_ME.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_me_switch.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_otapi_ot.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_utility_ot.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\otapi\OpenTransactions.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTAPI.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTAPI_Exec.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTClient.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp" />
+    <ClCompile Include="..\..\src\otapi\ot_commands_ot.cpp" />
+    <ClCompile Include="..\..\src\otapi\ot_made_easy_ot.cpp" />
+    <ClCompile Include="..\..\src\otapi\OT_ME.cpp" />
+    <ClCompile Include="..\..\src\otapi\OT_ME_NEW.cpp" />
+    <ClCompile Include="..\..\src\otapi\ot_opentxs_ot.cpp" />
+    <ClCompile Include="..\..\src\otapi\ot_otapi_ot.cpp" />
+    <ClCompile Include="..\..\src\otapi\ot_utility_ot.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC1D1DC1-6AF7-4C38-A270-7F79A2888054}</ProjectGuid>
@@ -339,12 +282,11 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>libzmq.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -352,12 +294,11 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;_DEBUG;DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>libzmq.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -367,14 +308,13 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>libzmq.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -384,14 +324,13 @@
       <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;OT_ZMQ_MODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>libzmq.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

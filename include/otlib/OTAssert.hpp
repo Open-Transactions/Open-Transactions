@@ -128,11 +128,7 @@
 #ifndef __OTASSERT_HPP__
 #define __OTASSERT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
+#include "OTCommon.hpp"
 
 #include <cstddef>
 #include <exception>

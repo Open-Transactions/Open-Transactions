@@ -91,10 +91,10 @@
     public String   basket;
     public String   strData, strData2, strData3, strData4;
     public boolean  bBool;    
-    public int      nData;
-    public long     lData;
-    public int      nTransNumsNeeded;
-    public int      nRequestNum;
+    public int32_t      nData;
+    public int64_t     lData;
+    public int32_t      nTransNumsNeeded;
+    public int32_t      nRequestNum;
 */
 // -----------------------------------
 
@@ -416,7 +416,7 @@
             {	OT_API_Output(0, concat(strError, "p_strData2")); }
 			this.nymID2     = p_strParam // str  Recipient Nym ID
             this.strData    = p_strData  // str  Memo
-            this.lData      = p_strData2 // long Amount
+            this.lData      = p_strData2 // int64_t Amount
 		}
         
 //      var theRequest := OTAPI_Func(ot_Msg.PAY_DIVIDEND, SERVER_ID, NYM_ID, SOURCE_ACCT_ID, SHARES_ASSET_ID, STR_MEMO, STR_AMOUNT_PER_SHARE)
@@ -428,7 +428,7 @@
             {	OT_API_Output(0, concat(strError, "p_strData2")); }
 			this.assetID    = p_strParam   // str  Shares Asset ID
             this.strData    = p_strData    // str  Memo
-            this.lData      = p_strData2   // long Amount Per Share
+            this.lData      = p_strData2   // int64_t Amount Per Share
 		}
         
 //      var theRequest := OTAPI_Func(ot_Msg.SEND_TRANSFER, SERVER_ID, NYM_ID, ACCT_FROM, ACCT_TO, AMOUNT, NOTE)
@@ -439,7 +439,7 @@
             if (!VerifyStringVal(p_strData2))
             {	OT_API_Output(0, concat(strError, "p_strData2")); }
 			this.accountID2 = p_strParam
-            this.lData      = p_strData    // long Amount
+            this.lData      = p_strData    // int64_t Amount
             this.strData    = p_strData2   // str  Note
 		}
         else if (theType == this.SEND_USER_INSTRUMENT)
@@ -696,7 +696,7 @@
             
             theFunction.nRequestNum  = 0
         }
-        else if (nRun == (-2)) // -2 is also possible at some future date. (If the request number won't fit in an int, this is returned and then you can retrieve the actual number via a separate call.)
+        else if (nRun == (-2)) // -2 is also possible at some future date. (If the request number won't fit in an int32_t, this is returned and then you can retrieve the actual number via a separate call.)
         {
             OT_API_Output(0, strLocation + ": ERROR, not supported. (-2 was returned.)\n")
             
@@ -1279,7 +1279,7 @@ def convert_offerlist_to_maps(offerList)
     {        
         for (var nIndex = 0; nIndex < nCount; ++nIndex)
         {
-            nTemp = nIndex // convert from int to size_t
+            nTemp = nIndex // convert from int32_t to size_t
             var offerData := offerList.GetOfferDataNym(nTemp)
             
             if (!VerifyStorable(offerData, "OTDB_OfferDataNym"))

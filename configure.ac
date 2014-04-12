@@ -85,15 +85,15 @@ if test x"$ac_cv_ot_clang" == x"true"; then
 fi
 
 if test x"$ac_cv_ot_clang" == x"true"; then
-        AC_MSG_CHECKING([if compiling with clang TR1])
+	AC_MSG_CHECKING([if compiling with clang TR1])
 	AC_LANG_PUSH([C++])
-        AC_COMPILE_IFELSE(
-                [AC_LANG_PROGRAM([[#include <tr1/memory>]],
-                        [[]])],
-                [ac_cv_ot_clangtr1=true],
-                [ac_cv_ot_clangtr1=false])
+	   AC_COMPILE_IFELSE(
+			 [AC_LANG_PROGRAM([[#include <tr1/memory>]],
+				    [[]])],
+			 [ac_cv_ot_clangtr1=true],
+			[ac_cv_ot_clangtr1=false])
 	AC_LANG_POP
-        AC_MSG_RESULT([$ac_cv_ot_clangtr1])
+	AC_MSG_RESULT([$ac_cv_ot_clangtr1])
 fi
 
 if test x"$ac_cv_ot_clang" == x"false"; then
@@ -212,10 +212,11 @@ AC_ARG_WITH(	[transport],
 			testclient) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-transport]) ;;
 			esac],
-		[with_transport=zmq])
+		[with_transport="zmq4"])
 
 AM_CONDITIONAL(	[TRANSPORT_ZMQ],	[test x"$with_transport" == x"zmq"])
-AM_CONDITIONAL(	[TRANSPORT_TESTCLIENT],	[test x"$with_transport" == x"testclient"])
+AM_CONDITIONAL(	[TRANSPORT_ZMQ4],	[test x"$with_transport" == x"zmq4"])
+
 
 AS_IF(	[test x"$with_transport" == x"zmq"],
 	[PKG_CHECK_MODULES([ZMQ],[libzmq >= 2.1.4],
@@ -228,9 +229,11 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		[AC_MSG_RESULT([Warning: libzmq version >= 2.1.4 not found!])]
 		)
 	])
-	
+
 if test x"$with_transport" == x"zmq"; then
-	AC_DEFINE([TRANSPORT_ZMQ], [1], [Using ZMQ Transport])
+	AC_DEFINE([TRANSPORT_ZMQ],  [1], [Using ZMQ 2 Transport])
+elif test x"$with_transport" == x"zmq4"; then
+	AC_DEFINE([TRANSPORT_ZMQ4], [1], [Using ZMQ 4 Transport])
 else
 	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
 fi
@@ -284,6 +287,13 @@ AS_IF(	[test "$with_keyring" == x"kwallet"],
 	AC_DEFINE([KEYRING_KWALLET], [1], [Using KWallet Keyring])
 	])
 	
+AS_IF(  [test "$with_keyring" == x"flatfile"],
+    [
+    AC_SUBST(KRG_CFLAGS,  [""])
+    AC_SUBST(KRG_LIBS,  [""])
+    AC_DEFINE([KEYRING_FLATFILE], [1], [Using flatfile Keyring])
+    ])
+
 AS_IF(  [test "$with_keyring" == x"flatfile"],
     [
     AC_SUBST(KRG_CFLAGS,  [""])
@@ -543,6 +553,7 @@ AC_SUBST([DEPS_LIBS],	["$PROTOBUF_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LD
 AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_CFLAGS"])
 
 AC_CONFIG_FILES([Makefile
+                src/otlib/zmq/Makefile
 			src/otlib/otprotob/Makefile
 			src/otlib/bigint/Makefile
 			src/otlib/irrxml/Makefile

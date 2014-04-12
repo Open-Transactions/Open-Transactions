@@ -147,8 +147,8 @@
 bool OTAgreement::SendNoticeToAllParties(bool bSuccessMsg,
                                          OTPseudonym & theServerNym,
                                          const OTIdentifier & theServerID,
-                                         const long & lNewTransactionNumber,
-//                                       const long & lInReferenceTo,	// Each party has its own opening trans #.
+                                         const int64_t & lNewTransactionNumber,
+//                                       const int64_t & lInReferenceTo,	// Each party has its own opening trans #.
                                          const OTString & strReference,
                                          OTString * pstrNote/*=NULL*/,
                                          OTString * pstrAttachment/*=NULL*/,
@@ -274,8 +274,8 @@ bool OTAgreement::DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an 
                                            OTPseudonym & theServerNym,
                                            const OTIdentifier & SERVER_ID,
                                            const OTIdentifier & USER_ID,
-                                           const long & lNewTransactionNumber,
-                                           const long & lInReferenceTo,
+                                           const int64_t & lNewTransactionNumber,
+                                           const int64_t & lInReferenceTo,
                                            const OTString & strReference,
                                            OTString * pstrNote/*=NULL*/,
                                            OTString * pstrAttachment/*=NULL*/,
@@ -440,7 +440,7 @@ bool OTAgreement::DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an 
 
 
 // Overrides from OTTrackable.
-bool OTAgreement::HasTransactionNum(const long & lInput) const
+bool OTAgreement::HasTransactionNum(const int64_t & lInput) const
 {
     if (lInput == GetTransactionNum())
         return true;
@@ -475,7 +475,7 @@ void OTAgreement::GetAllTransactionNumbers(OTNumList & numlistOutput) const
     
     for (size_t nIndex = 0; nIndex < nSizeClosing; ++nIndex)
     {
-        const long lTemp = m_dequeClosingNumbers.at(nIndex);
+        const int64_t lTemp = m_dequeClosingNumbers.at(nIndex);
         if (lTemp > 0)
             numlistOutput.Add(lTemp);
     }
@@ -484,7 +484,7 @@ void OTAgreement::GetAllTransactionNumbers(OTNumList & numlistOutput) const
     
     for (size_t nIndex = 0; nIndex < nSizeRecipient; ++nIndex)
     {
-        const long lTemp = m_dequeRecipientClosingNumbers.at(nIndex);
+        const int64_t lTemp = m_dequeRecipientClosingNumbers.at(nIndex);
         if (lTemp > 0)
             numlistOutput.Add(lTemp);
     }
@@ -517,7 +517,7 @@ bool OTAgreement::VerifyNymAsAgentForAccount(OTPseudonym & theNym, OTAccount & t
 // (After calling this method, HookRemovalFromCron then calls onRemovalFromCron.)
 //
 void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
-                                 const long  & lNewTransactionNumber,
+                                 const int64_t  & lNewTransactionNumber,
                                  OTPseudonym & theOriginator,
                                  OTPseudonym * pRemover)
 {    
@@ -595,12 +595,12 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
     // Second, we're verifying the CLOSING number, and using it as the closing number
     // on the FINAL RECEIPT (with that receipt being "InReferenceTo" this->GetTransactionNum())
     //
-    const long lRecipientOpeningNumber = this->GetRecipientOpeningNum();
-    const long lRecipientClosingNumber = this->GetRecipientClosingNum();
+    const int64_t lRecipientOpeningNumber = this->GetRecipientOpeningNum();
+    const int64_t lRecipientClosingNumber = this->GetRecipientClosingNum();
     // -----------------------------------------------------------------------------------
-    const long lSenderOpeningNumber = theOrigCronItem.GetTransactionNum();
+    const int64_t lSenderOpeningNumber = theOrigCronItem.GetTransactionNum();
 
-    const long lSenderClosingNumber = (theOrigCronItem.GetCountClosingNumbers() > 0) ? 
+    const int64_t lSenderClosingNumber = (theOrigCronItem.GetCountClosingNumbers() > 0) ? 
         theOrigCronItem.GetClosingTransactionNoAt(0) : 0; // index 0 is closing number for sender, since GetTransactionNum() is his opening #.
     // ----------------------------------
     const OTString strServerID(GetServerID());
@@ -615,7 +615,7 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
         // The Nym (server side) stores a list of all opening and closing cron #s.
         // So when the number is released from the Nym, we also take it off that list.
         //
-        std::set<long> & theIDSet = theOriginator.GetSetOpenCronItems();
+        std::set<int64_t> & theIDSet = theOriginator.GetSetOpenCronItems();
         theIDSet.erase(lSenderOpeningNumber);
         
         // the RemoveIssued call means the original transaction# (to find this cron item on cron) is now CLOSED.
@@ -711,7 +711,7 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
         // The Nym (server side) stores a list of all opening and closing cron #s.
         // So when the number is released from the Nym, we also take it off that list.
         //
-        std::set<long> & theIDSet = pRecipient->GetSetOpenCronItems();
+        std::set<int64_t> & theIDSet = pRecipient->GetSetOpenCronItems();
         theIDSet.erase(lRecipientOpeningNumber);
         
         // the RemoveIssued call means the original transaction# (to find this cron item on cron) is now CLOSED.
@@ -793,7 +793,7 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
  */
 
 
-bool OTAgreement::IsValidOpeningNumber(const long & lOpeningNum) const
+bool OTAgreement::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 {
 	if (GetRecipientOpeningNum() == lOpeningNum)
 		return true;
@@ -898,7 +898,7 @@ void OTAgreement::HarvestClosingNumbers(OTPseudonym & theNym)
     }
 }
 
-long OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
+int64_t OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 {
 	const OTIdentifier & theRecipientNymID = this->GetRecipientUserID();
 	
@@ -911,7 +911,7 @@ long OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 
 // ------------------------------------------------------
 
-long OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
+int64_t OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 {
 	const OTIdentifier & theRecipientAcctID = this->GetRecipientAcctID();
 	
@@ -923,12 +923,12 @@ long OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 
 // ---------------------------------------------------
 
-long OTAgreement::GetRecipientOpeningNum() const
+int64_t OTAgreement::GetRecipientOpeningNum() const
 {
     return (GetRecipientCountClosingNumbers() > 0) ? GetRecipientClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
 
-long OTAgreement::GetRecipientClosingNum() const
+int64_t OTAgreement::GetRecipientClosingNum() const
 {
     return (GetRecipientCountClosingNumbers() > 1) ? GetRecipientClosingTransactionNoAt(1) : 0; // todo stop hardcoding.
 }
@@ -940,7 +940,7 @@ long OTAgreement::GetRecipientClosingNum() const
 // used for closing a transaction.
 //
 
-long OTAgreement::GetRecipientClosingTransactionNoAt(unsigned int nIndex) const
+int64_t OTAgreement::GetRecipientClosingTransactionNoAt(uint32_t nIndex) const
 {
     OT_ASSERT_MSG((nIndex < m_dequeRecipientClosingNumbers.size()) && (nIndex >= 0),
                   "OTAgreement::GetClosingTransactionNoAt: index out of bounds.");
@@ -949,13 +949,13 @@ long OTAgreement::GetRecipientClosingTransactionNoAt(unsigned int nIndex) const
 }
 
 
-int OTAgreement::GetRecipientCountClosingNumbers() const
+int32_t OTAgreement::GetRecipientCountClosingNumbers() const
 {
-	return static_cast<int> (m_dequeRecipientClosingNumbers.size());
+	return static_cast<int32_t> (m_dequeRecipientClosingNumbers.size());
 }
 
 
-void OTAgreement::AddRecipientClosingTransactionNo(const long & lClosingTransactionNo)
+void OTAgreement::AddRecipientClosingTransactionNo(const int64_t & lClosingTransactionNo)
 {
     m_dequeRecipientClosingNumbers.push_back(lClosingTransactionNo);
 }
@@ -1150,7 +1150,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		long lValidTo = static_cast<long> (VALID_TO);
+		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
 		OTLog::vError("%s: Negative value for valid_to: %ld\n", __FUNCTION__, lValidTo);
         
 		return false;
@@ -1160,7 +1160,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     //
     OTString strServerID(GetServerID());
     
-	long lTransactionNumber=0, lClosingTransactionNo=0;
+	int64_t lTransactionNumber=0, lClosingTransactionNo=0;
 	
     if (MERCHANT_NYM.GetTransactionNumCount(GetServerID()) < 2) // Need opening and closing numbers (that's 2)... 
     {
@@ -1264,7 +1264,7 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
     // The payer has to submit TWO transaction numbers in order to activate this agreement...
     //
     OTString strServerID(GetServerID());
-	long lTransactionNumber=0, lClosingTransactionNo=0;
+	int64_t lTransactionNumber=0, lClosingTransactionNo=0;
 	
 	if (false == PAYER_NYM.GetNextTransactionNum(PAYER_NYM, strServerID, lTransactionNumber))
 	{
@@ -1308,7 +1308,7 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
 // THIS FUNCTION IS DEPRECATED
 //
 /*
-bool OTAgreement::SetAgreement(const long & lTransactionNum,	const OTString & strConsideration,
+bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
 							   const time_t & VALID_FROM=0,	const time_t & VALID_TO=0)
 {
 	// Set the Transaction Number...
@@ -1343,7 +1343,7 @@ bool OTAgreement::SetAgreement(const long & lTransactionNum,	const OTString & st
 	{
 		if (VALID_TO < VALID_FROM) // If Valid-To date is EARLIER than Valid-From date...
 		{
-			long lValidTo = VALID_TO, lValidFrom = VALID_FROM;
+			int64_t lValidTo = VALID_TO, lValidFrom = VALID_FROM;
 			OTLog::vError("VALID_TO is earlier than VALID_FROM in SetAgreement: %ld, %ld\n", lValidTo, lValidFrom);
 			return false;
 		}
@@ -1352,7 +1352,7 @@ bool OTAgreement::SetAgreement(const long & lTransactionNum,	const OTString & st
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		long lValidTo = VALID_TO;
+		int64_t lValidTo = VALID_TO;
 		OTLog::vError("Negative value for valid_to in SetAgreement: %ld\n", lValidTo);
 		return false;
 	}
@@ -1447,9 +1447,9 @@ void OTAgreement::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-    int nReturnVal = 0;
+    int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -1556,7 +1556,7 @@ int OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	}
 
     // -------------------------------------------
-//  std::deque<long>   m_dequeRecipientClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
+//  std::deque<int64_t>   m_dequeRecipientClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
 
     else if (!strcmp("closingRecipientNumber", xml->getNodeName())) 
 	{		
@@ -1564,7 +1564,7 @@ int OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         
         if (strClosingNumber.Exists())
         {
-            const long lClosingNumber = atol(strClosingNumber.Get());					
+            const int64_t lClosingNumber = atol(strClosingNumber.Get());					
 
             this->AddRecipientClosingTransactionNo(lClosingNumber);
         }

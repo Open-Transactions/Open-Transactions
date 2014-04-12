@@ -323,34 +323,34 @@ OTPseudonym * OTWallet::GetNymByIDPartialMatch(const std::string PARTIAL_ID) // 
 
 
 // used by high-level wrapper.
-int OTWallet::GetNymCount()
+int32_t OTWallet::GetNymCount()
 {
-	return static_cast<int> (m_mapNyms.size());
+	return static_cast<int32_t> (m_mapNyms.size());
 }
 
-int OTWallet::GetServerCount()
+int32_t OTWallet::GetServerCount()
 {
-	return static_cast<int> (m_mapServers.size());
+	return static_cast<int32_t> (m_mapServers.size());
 }
 
-int OTWallet::GetAssetTypeCount()
+int32_t OTWallet::GetAssetTypeCount()
 {
-	return static_cast<int> (m_mapContracts.size());
+	return static_cast<int32_t> (m_mapContracts.size());
 }
 
-int OTWallet::GetAccountCount()
+int32_t OTWallet::GetAccountCount()
 {
-	return static_cast<int> (m_mapAccounts.size());
+	return static_cast<int32_t> (m_mapAccounts.size());
 }
 
 
 // used by high-level wrapper.
-bool OTWallet::GetNym(const int iIndex, OTIdentifier & NYM_ID, OTString & NYM_NAME)
+bool OTWallet::GetNym(const int32_t iIndex, OTIdentifier & NYM_ID, OTString & NYM_NAME)
 {
 	// if iIndex is within proper bounds (0 through count minus 1)
 	if (iIndex < GetNymCount() && iIndex >= 0)
 	{
-		int iCurrentIndex	= (-1);
+		int32_t iCurrentIndex	= (-1);
 		
 		FOR_EACH(mapOfNyms, m_mapNyms)
 		{
@@ -373,12 +373,12 @@ bool OTWallet::GetNym(const int iIndex, OTIdentifier & NYM_ID, OTString & NYM_NA
 
 
 // used by high-level wrapper.
-bool OTWallet::GetServer(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
+bool OTWallet::GetServer(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
 {
 	// if iIndex is within proper bounds (0 through count minus 1)
 	if (iIndex < GetServerCount() && iIndex >= 0)
 	{
-		int iCurrentIndex	= (-1);
+		int32_t iCurrentIndex	= (-1);
 		
 		FOR_EACH(mapOfServers, m_mapServers)
 		{	
@@ -400,12 +400,12 @@ bool OTWallet::GetServer(const int iIndex, OTIdentifier & THE_ID, OTString & THE
 }
 
 // used by high-level wrapper.
-bool OTWallet::GetAssetType(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
+bool OTWallet::GetAssetType(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
 {
 	// if iIndex is within proper bounds (0 through count minus 1)
 	if (iIndex < GetAssetTypeCount() && iIndex >= 0)
 	{
-		int iCurrentIndex	= (-1);
+		int32_t iCurrentIndex	= (-1);
 		
 		FOR_EACH(mapOfContracts, m_mapContracts)
 		{	
@@ -427,12 +427,12 @@ bool OTWallet::GetAssetType(const int iIndex, OTIdentifier & THE_ID, OTString & 
 }
 
 // used by high-level wrapper.
-bool OTWallet::GetAccount(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
+bool OTWallet::GetAccount(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
 {
 	// if iIndex is within proper bounds (0 through count minus 1)
 	if (iIndex < GetAccountCount() && iIndex >= 0)
 	{
-		int iCurrentIndex	= (-1);
+		int32_t iCurrentIndex	= (-1);
 		
 		FOR_EACH(mapOfAccounts, m_mapAccounts)
 		{	

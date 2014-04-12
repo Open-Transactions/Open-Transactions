@@ -145,12 +145,12 @@
 
 #include <sstream>
 
-#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
+#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
 #include <wordexp.h>
 #endif
 
 /*
- int vsnprintf(char *str, size_t size, const char *format, va_list ap);
+ int32_t vsnprintf(char *str, size_t size, const char *format, va_list ap);
 
        Upon successful return, these functions return the number of characters
        printed  (not  including  the  trailing  '\0'  used  to  end  output to
@@ -184,8 +184,8 @@ bool OTString::vformat(const char * fmt, va_list * pvl, std::string & str_Output
     OT_ASSERT(NULL != fmt);
     OT_ASSERT(NULL != pvl);
     // ------------------
-	int size=0;
-	int nsize=0;
+	int32_t size=0;
+	int32_t nsize=0;
 	char * buffer = NULL;
 	va_list args;
 
@@ -436,8 +436,8 @@ const std::string OTString::replace_chars(
 
 std::wstring OTString::s2ws(const std::string& s)
 {
-    int len;
-    int slength = (int)s.length() + 1;
+    int32_t len;
+    int32_t slength = (int32_t)s.length() + 1;
     len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0); 
     std::wstring r(len, L'\0');
     MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, &r[0], len);
@@ -447,8 +447,8 @@ std::wstring OTString::s2ws(const std::string& s)
 
 std::string OTString::ws2s(const std::wstring& s)
 {
-    int len;
-    int slength = (int)s.length() + 1;
+    int32_t len;
+    int32_t slength = (int32_t)s.length() + 1;
     len = WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, 0, 0, 0, 0); 
     std::string r(len, '\0');
     WideCharToMultiByte(CP_ACP, 0, s.c_str(), slength, &r[0], len, 0, 0); 
@@ -563,49 +563,113 @@ void fwrite_string(FILE *fl, const char *str)
 //
 bool OTString::TokenizeIntoKeyValuePairs(std::map<std::string, std::string> & mapOutput) const
 {
-#if !(_WIN32 || __IPHONE_7_0 || ANDROID)
-	if (!Exists())
-		return true;
-	// --------------
-	wordexp_t exp_result;
-    
+#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
+    // fabcy-pansy parser that allows for multiple level of quotes nesting and escaped quotes
+    if (!Exists())
+        return true;
+    // --------------
+    wordexp_t exp_result;
+
     exp_result.we_wordc = 0;
     exp_result.we_wordv = NULL;
     exp_result.we_offs  = 0;
 
-	if (wordexp(Get(), &exp_result, 0)) // non-zero == failure.
-	{
-		OTLog::vError("OTString::TokenizeIntoKeyValuePairs: Error calling wordexp() "
-                      "(to expand user-defined script args.)\nData: %s\n", Get());
-//		wordfree(&exp_result); 
-		return false;
-	}
-	// ----------------------------
-	
+    if (wordexp(Get(), &exp_result, 0)) // non-zero == failure.
+    {
+        OTLog::vError("OTString::TokenizeIntoKeyValuePairs: Error calling wordexp() "
+            "(to expand user-defined script args.)\nData: %s\n", Get());
+        //		wordfree(&exp_result); 
+        return false;
+    }
+    // ----------------------------
+
     if ((exp_result.we_wordc > 0) && (NULL != exp_result.we_wordv))
     {
         // wordexp tokenizes by space (as well as expands, which is why I'm using it.)
         // Therefore we need to iterate through the tokens, and create a single string
         // with spaces between the tokens.
         //
-        for (unsigned int i = 0; 
-             (i < (exp_result.we_wordc - 1))      && 
-             (exp_result.we_wordv[i]   != NULL)   && 
-             (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
-             i += 2)
+        for (uint32_t i = 0; 
+            (i < (exp_result.we_wordc - 1))      && 
+            (exp_result.we_wordv[i]   != NULL)   && 
+            (exp_result.we_wordv[i+1] != NULL); // odd man out. Only PAIRS of strings are processed!
+        i += 2)
         {
             const std::string str_key = exp_result.we_wordv[i];
             const std::string str_val = exp_result.we_wordv[i+1];
-            
+
+            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, str_key.c_str(), str_val.c_str());
             mapOutput.insert(std::pair<std::string, std::string>(str_key, str_val));		
         }
-        
+
         wordfree(&exp_result); 
     }
-	// --------------
-	return true;
+    // --------------
+    return true;
 #else
-	return false;
+    // simple parser that allows for one level of quotes nesting but no escaped quotes
+    if (!Exists())
+        return true;
+
+    const char * txt = Get();
+    std::string buf = txt;
+    for (int32_t i = 0; txt[i] != 0;)
+    {
+        while (txt[i] == ' ') i++;
+        int32_t k = i;
+        int32_t k2 = i;
+        if (txt[i] == '\'' || txt[i] == '"')
+        {
+            // quoted string
+            char quote = txt[i++];
+            k = i;
+            while (txt[i] != quote && txt[i] != 0) i++;
+            if (txt[i] != quote)
+            {
+                OTLog::vError("%s: Unmatched quotes in: %s\n", __FUNCTION__, txt);
+                return false;
+            }
+            k2 = i;
+            i++;
+        }
+        else
+        {
+            while (txt[i] != ' ' && txt[i] != 0) i++;
+            k2 = i;
+        }
+        const std::string key = buf.substr(k, k2 - k);
+
+        while (txt[i] == ' ') i++;
+        int32_t v = i;
+        int32_t v2 = i;
+        if (txt[i] == '\'' || txt[i] == '"')
+        {
+            // quoted string
+            char quote = txt[i++];
+            v = i;
+            while (txt[i] != quote && txt[i] != 0) i++;
+            if (txt[i] != quote)
+            {
+                OTLog::vError("%s: Unmatched quotes in: %s\n", __FUNCTION__, txt);
+                return false;
+            }
+            v2 = i;
+            i++;
+        }
+        else
+        {
+            while (txt[i] != ' ' && txt[i] != 0) i++;
+            v2 = i;
+        }
+        const std::string value = buf.substr(v, v2 - v);
+
+        if (key.length() != 0 && value.length() != 0)
+        {
+            OTLog::vOutput(2, "%s:Parsed: %s = %s\n", __FUNCTION__, key.c_str(), value.c_str());
+            mapOutput.insert(std::pair<std::string, std::string>(key, value));
+        }
+    }
+    return true;
 #endif
 }
 // ----------------------------------------------------------------------
@@ -924,7 +988,7 @@ void OTString::LowLevelSetStr(const OTString & strBuf)
 // That is, up through index 8 (9th byte) instead of index 9 (10th byte.) This is because
 // we are assuming the buffer has no more room than 10 bytes, and thus index 9 (10th byte)
 // MUST be reserved for the null terminating '\0'. Therefore, if the string is actually 10
-// bytes long, necessitating an 11th byte for the null terminator, then you should pass 11
+// bytes int64_t, necessitating an 11th byte for the null terminator, then you should pass 11
 // here, aka OTString::GetLength()+1. That way the entire string will fit.
 //
 void OTString::LowLevelSet(const char * new_string, uint32_t nEnforcedMaxLength)
@@ -1327,7 +1391,7 @@ bool OTString::DecodeIfArmored(bool bEscapedIsAllowed/*=true*/)
 // ----------------------------------------------------------------------
 
 /*
- char *str_dup2(const char *str, int length)
+ char *str_dup2(const char *str, int32_t length)
  {
 	 char *str_new;
 	 str_new = new char [length + 1];
@@ -1341,11 +1405,11 @@ bool OTString::DecodeIfArmored(bool bEscapedIsAllowed/*=true*/)
 
 //inline bool vformat(const char * fmt, va_list vl, std::string & str_output)
 //{
-//    int size      = 512;
+//    int32_t size      = 512;
 //    char * buffer = new char[size];
 //    buffer[0]     = '\0';
 //    // ------------------------------------    
-//    int nsize = vsnprintf(buffer,size,fmt,vl);
+//    int32_t nsize = vsnprintf(buffer,size,fmt,vl);
 //    
 //    //fail -- delete buffer and try again
 //    if(size <= nsize)
@@ -1480,7 +1544,7 @@ char *str_dup1(const char *str)
 // true  == there are more lines to read.
 // false == this is the last line. Like EOF.
 //
-bool OTString::sgets(char * szBuffer, unsigned nBufSize)
+bool OTString::sgets(char * szBuffer, uint32_t nBufSize)
 {
 	if (NULL == szBuffer)
 	{

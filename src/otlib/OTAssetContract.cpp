@@ -185,10 +185,10 @@ OTAmount& OTAmount::operator=(OTAmount other)
 
 // ----------------------------------------------------------------------------
 // static
-bool OTAssetContract::ParseFormatted(long & lResult,
+bool OTAssetContract::ParseFormatted(int64_t & lResult,
                                      const std::string & str_input,
-                                     int nFactor/*=100*/,
-                                     int nPower/*=2*/,
+                                     int32_t nFactor/*=100*/,
+                                     int32_t nPower/*=2*/,
                                      const char * szSeparator/*=","*/,
                                      const char * szDecimalPoint/*="."*/)
 {
@@ -200,23 +200,23 @@ bool OTAssetContract::ParseFormatted(long & lResult,
     char theSeparator    = szSeparator[0];
     char theDecimalPoint = szDecimalPoint[0];
     // ----------------------
-    long lDollars = 0;
-    long lCents   = 0;
-    long lOutput  = 0;
-    long lSign    = 1;
+    int64_t lDollars = 0;
+    int64_t lCents   = 0;
+    int64_t lOutput  = 0;
+    int64_t lSign    = 1;
     // ----------------------
     bool bHasEnteredDollars = false;
     bool bHasEnteredCents   = false;
     // ----------------------
-    int  nDigitsCollectedBeforeDot = 0;
-    int  nDigitsCollectedAfterDot  = 0;
+    int32_t  nDigitsCollectedBeforeDot = 0;
+    int32_t  nDigitsCollectedAfterDot  = 0;
     // ----------------------
 	// BUG: &mp isn't used.
     //const std::moneypunct<char, false> &mp = std::use_facet< std::moneypunct<char, false> >(std::locale ()); 
     // ----------------------
-    std::deque<long> deque_cents;
+    std::deque<int64_t> deque_cents;
     // ----------------------
-    for (unsigned int uIndex = 0; uIndex < str_input.length(); ++uIndex)
+    for (uint32_t uIndex = 0; uIndex < str_input.length(); ++uIndex)
     {
         char theChar = str_input[uIndex];
         // -------------------------------
@@ -288,7 +288,7 @@ bool OTAssetContract::ParseFormatted(long & lResult,
             // -----------------------------------
             // Okay, we're in the cents, so let's add this digit...
             //
-            deque_cents.push_back(static_cast<long>(theChar - '0'));
+            deque_cents.push_back(static_cast<int64_t>(theChar - '0'));
             // ----------------
             continue;
         }
@@ -304,15 +304,15 @@ bool OTAssetContract::ParseFormatted(long & lResult,
         // Let's add this digit...
         //
         lDollars *= 10; // Multiply existing dollars by 10, and then add the new digit.
-        lDollars += static_cast<long>(theChar - '0');
+        lDollars += static_cast<int64_t>(theChar - '0');
     } // for
     // -------------------------------
     // Time to put it all together...
     //
     lOutput += lDollars;
-    lOutput *= static_cast<long>(nFactor); // 1 dollar becomes 100 cents.
+    lOutput *= static_cast<int64_t>(nFactor); // 1 dollar becomes 100 cents.
     // -------------------------------
-    int nTempPower = nPower;
+    int32_t nTempPower = nPower;
     
     while (nTempPower > 0)
     {
@@ -336,7 +336,7 @@ bool OTAssetContract::ParseFormatted(long & lResult,
 }
 
 //static
-std::string OTAssetContract::formatLongAmount(long & lOriginalValue, int nFactor/*=100*/, int nPower/*=2*/, const char * szSymbol/*=""*/,
+std::string OTAssetContract::formatLongAmount(int64_t & lOriginalValue, int32_t nFactor/*=100*/, int32_t nPower/*=2*/, const char * szSymbol/*=""*/,
                                               const char * szSeparator/*=","*/, const char * szDecimalPoint/*="."*/)
 {
     std::stringstream sss;
@@ -362,10 +362,10 @@ std::string OTAssetContract::formatLongAmount(long & lOriginalValue, int nFactor
         return sss.str();
     }
     // --------------------------------------------------
-    long lAbsoluteValue = (lOriginalValue > 0) ? lOriginalValue : (lOriginalValue * (-1));
+    int64_t lAbsoluteValue = (lOriginalValue > 0) ? lOriginalValue : (lOriginalValue * (-1));
     // --------------------------------------------------    
-    long lValue     = lAbsoluteValue / nFactor; // For example, if 506 is supposed to be $5.06, then dividing 506 by factor of 100 results in 5 dollars.
-    long lRemainder = lAbsoluteValue % nFactor; // For example, if 506 is supposed to be $5.06, then 506 mod 100 results in 6 cents.
+    int64_t lValue     = lAbsoluteValue / nFactor; // For example, if 506 is supposed to be $5.06, then dividing 506 by factor of 100 results in 5 dollars.
+    int64_t lRemainder = lAbsoluteValue % nFactor; // For example, if 506 is supposed to be $5.06, then 506 mod 100 results in 6 cents.
     
     if (nFactor < 2) // Basically, if nFactor is 1.
         strRemainder.Set("");
@@ -430,14 +430,14 @@ std::string OTAssetContract::formatLongAmount(long & lOriginalValue, int nFactor
 //
 bool OTAssetContract::FormatAmount(const OTAmount & theInput, std::string & str_output) const // Convert 545 to $5.45.
 {
-    long lValue = static_cast<long>(theInput.GetAmount());
+    int64_t lValue = static_cast<int64_t>(theInput.GetAmount());
     // --------------------------------------------------------
-    int nFactor = atoi(m_strCurrencyFactor.Get()); // default is 100  (100 cents in a dollar)
+    int32_t nFactor = atoi(m_strCurrencyFactor.Get()); // default is 100  (100 cents in a dollar)
     if (nFactor < 1)
         nFactor = 1;
     OT_ASSERT(nFactor > 0); // should be 1, 10, 100, etc.
     // --------------------------------------------------------
-    int nPower = atoi(m_strCurrencyDecimalPower.Get()); // default is 2. ($5.05 is moved 2 decimal places.)
+    int32_t nPower = atoi(m_strCurrencyDecimalPower.Get()); // default is 2. ($5.05 is moved 2 decimal places.)
     if (nPower < 0)
         nPower = 0;
     OT_ASSERT(nPower >= 0); // should be 0, 1, 2, etc.
@@ -486,14 +486,14 @@ bool OTAssetContract::FormatAmount(const OTAmount & theInput, std::string & str_
 //
 bool OTAssetContract::StringToAmount(OTAmount & theOutput, const std::string & str_input) const // Convert $5.45 to amount 545.
 {
-    long lValue = 0;
+    int64_t lValue = 0;
     // --------------------------------------------------------
-    int nFactor = atoi(m_strCurrencyFactor.Get()); // default is 100  (100 cents in a dollar)
+    int32_t nFactor = atoi(m_strCurrencyFactor.Get()); // default is 100  (100 cents in a dollar)
     if (nFactor < 1)
         nFactor = 1;
     OT_ASSERT(nFactor > 0); // should be 1, 10, 100, etc.
     // --------------------------------------------------------
-    int nPower = atoi(m_strCurrencyDecimalPower.Get()); // default is 2. ($5.05 is moved 2 decimal places.)
+    int32_t nPower = atoi(m_strCurrencyDecimalPower.Get()); // default is 2. ($5.05 is moved 2 decimal places.)
     if (nPower < 0)
         nPower = 0;
     OT_ASSERT(nPower >= 0); // should be 0, 1, 2, etc.
@@ -696,7 +696,7 @@ bool OTAssetContract::ForEachAccountRecord(OTAcctFunctor & theAction)  // Loops 
         // -------------------------------------
         mapOfStrings & theMap = pMap->the_map;
         
-        // todo: optimize: will probably have to use a database for this, long term. 
+        // todo: optimize: will probably have to use a database for this, int64_t term. 
         // (What if there are a million acct IDs in this flat file? Not scaleable.)
         //
         FOR_EACH(mapOfStrings, theMap) 
@@ -1032,9 +1032,9 @@ void OTAssetContract::CreateContents()
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
-int OTAssetContract::ProcessXMLNode(IrrXMLReader*& xml)
+int32_t OTAssetContract::ProcessXMLNode(IrrXMLReader*& xml)
 {
-	int nReturnVal = OTContract::ProcessXMLNode(xml);
+	int32_t nReturnVal = OTContract::ProcessXMLNode(xml);
 
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -1115,7 +1115,7 @@ int OTAssetContract::ProcessXMLNode(IrrXMLReader*& xml)
 	
 //  share_type some type, for example, A or B, or NV (non voting)
 //        
-//  share_name this is the long legal name of the company
+//  share_name this is the int64_t legal name of the company
 //        
 //  share_symbol this is the trading name (8 chars max), as it might be 
 //      displayed in a market contect, and should be unique within some given market

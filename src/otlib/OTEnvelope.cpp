@@ -440,7 +440,7 @@ bool OTEnvelope::Decrypt(OTString & theOutput, const OTSymmetricKey & theKey, co
     if (iv_size_host_order > max_iv_length)
     {
         OTLog::vError("%s: Error: iv_size (%ld) is larger than max_iv_length (%ld).\n",
-                      szFunc, static_cast<long>(iv_size_host_order), static_cast<long>(max_iv_length));
+                      szFunc, static_cast<int64_t>(iv_size_host_order), static_cast<int64_t>(max_iv_length));
         return false;
     }
 //  nRunningTotal += iv_size_host_order; // Nope!

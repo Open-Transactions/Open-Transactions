@@ -133,14 +133,10 @@
 #ifndef __OTWALLET_HPP__
 #define __OTWALLET_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTAssetContract.hpp"
 #include "OTPseudonym.hpp"
-
-#include _CINTTYPES
 
 class OTAccount;
 class OTAssetContract;
@@ -207,15 +203,15 @@ EXPORT	OTAccount	* GetOrLoadAccount(OTPseudonym & theNym,
 	//------------------------------------------------------------	
 	// Used by high-level wrapper.
 	
-EXPORT	int GetNymCount(); 
-EXPORT	int GetServerCount();
-EXPORT	int GetAssetTypeCount();
-EXPORT	int GetAccountCount(); 
+EXPORT	int32_t GetNymCount(); 
+EXPORT	int32_t GetServerCount();
+EXPORT	int32_t GetAssetTypeCount();
+EXPORT	int32_t GetAccountCount(); 
 
-EXPORT	bool GetNym			(const int iIndex, OTIdentifier & NYM_ID, OTString & NYM_NAME);
-EXPORT	bool GetServer		(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
-EXPORT	bool GetAssetType	(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
-EXPORT	bool GetAccount		(const int iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
+EXPORT	bool GetNym			(const int32_t iIndex, OTIdentifier & NYM_ID, OTString & NYM_NAME);
+EXPORT	bool GetServer		(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
+EXPORT	bool GetAssetType	(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
+EXPORT	bool GetAccount		(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME);
 	//------------------------------------------------------------
 	
 EXPORT	void DisplayStatistics(OTString & strOutput);

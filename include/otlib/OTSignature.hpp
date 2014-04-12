@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTSignature.h
  *  
@@ -134,14 +134,10 @@
 #ifndef __OTSIGNATURE_HPP__
 #define __OTSIGNATURE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
-
-#include _CINTTYPES
 
 // ---------------------------------------------------------------------------
 
