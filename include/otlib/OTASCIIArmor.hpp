@@ -1,7 +1,7 @@
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -104,10 +104,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -128,16 +128,11 @@
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTString.hpp"
 
 #include "OTStorage.hpp"
-
-#include _CINTTYPES
-
 
 class OTData;
 class OTPayload;
@@ -162,11 +157,11 @@ extern const char * OT_BEGIN_SIGNED_escaped;
 // The Set() method assumes that you are PASSING IN a base64-encoded string.
 // The constructors assume that you are passing in a base64-encoded string.
 class OTASCIIArmor : public OTString
-{	
+{
 public:
 	static OTDB::OTPacker * GetPacker();
 	static OTDB::OTPacker * s_pPacker;
-	
+
 EXPORT	OTASCIIArmor();
 EXPORT	OTASCIIArmor(const char * szValue);
 EXPORT	OTASCIIArmor(const OTData & theValue);
@@ -175,14 +170,14 @@ EXPORT	OTASCIIArmor(const OTString & strValue);
 EXPORT	OTASCIIArmor(const OTASCIIArmor & strValue);
 EXPORT	OTASCIIArmor(const OTEnvelope & theEnvelope);
 EXPORT	virtual ~OTASCIIArmor();
-	
+
 	using OTString::swap;
-	
+
 EXPORT	OTASCIIArmor & operator=(const char * szValue);
 EXPORT	OTASCIIArmor & operator=(const OTData & theValue);
 EXPORT	OTASCIIArmor & operator=(const OTString & strValue);
 EXPORT	OTASCIIArmor & operator=(const OTASCIIArmor & strValue);
-	
+
     // ----------------------------------------------
 EXPORT	bool LoadFromFile(const OTString & foldername, const OTString & filename);
 EXPORT	bool LoadFrom_ifstream(std::ifstream & fin);
@@ -197,7 +192,7 @@ EXPORT	bool SaveToExactPath(const std::string & filename);
     // contents up properly into an OTASCIIArmor object. (That's what this function will do.)
     //
 EXPORT    static bool LoadFromString(OTASCIIArmor & ascArmor, const OTString & strInput, const std::string str_bookend="-----BEGIN"); // todo hardcoding. str_bookend is a default. So you could make it more specific like, -----BEGIN ENCRYPTED KEY (or whatever.)
-    
+
 EXPORT  bool LoadFromString(      OTString  & theStr,
                                   bool        bEscaped=false,
                             const // This sub-string determines where the content starts, when loading.
@@ -207,12 +202,12 @@ EXPORT  bool LoadFromString(      OTString  & theStr,
 EXPORT  bool WriteArmoredString(      OTString    & strOutput,
                                 const // for "-----BEGIN OT LEDGER-----", str_type would contain ==> "LEDGER" <==
                                       std::string   str_type, // There's no default, to force you to enter the right string.
-                                      bool          bEscaped=false);    
+                                      bool          bEscaped=false);
     // ----------------------------------------------
 EXPORT  bool WriteArmoredFile(const OTString & foldername, const OTString & filename,
                               const // for "-----BEGIN OT LEDGER-----", str_type would contain ==> "LEDGER" <==
                                     std::string      str_type, // There's no default, to force you to enter the right string.
-                                    bool             bEscaped=false);    
+                                    bool             bEscaped=false);
     // ----------------------------------------------
 	// This function will base64 DECODE the string contents (This class is a string)
 	// and return them as BINARY in theData
@@ -220,13 +215,13 @@ EXPORT  bool WriteArmoredFile(const OTString & foldername, const OTString & file
     //
 EXPORT	bool GetData         (OTData & theData, bool bLineBreaks=true) const;
 EXPORT  bool GetAndUnpackData(OTData & theData, bool bLineBreaks=true) const;
-	
+
         // This function will base64 ENCODE theData,
         // and then Set() that as the string contents.
         // Should be called "Encode Data And Set As Internal String"
 EXPORT  bool SetData       (const OTData & theData, bool bLineBreaks=true);
 EXPORT  bool SetAndPackData(const OTData & theData, bool bLineBreaks=true);
-	
+
         // This function will base64 DECODE the string contents
         // and return them as a STRING in theData
         //
@@ -239,18 +234,18 @@ EXPORT  bool GetAndUnpackString(OTString & theData, bool bLineBreaks=true) const
 EXPORT	bool SetString       (const OTString & theData, bool bLineBreaks=true);
 EXPORT  bool SetAndPackString(const OTString & theData, bool bLineBreaks=true);
 
-	
+
 EXPORT  bool GetStringMap(std::map<std::string, std::string> & the_map, bool bLineBreaks=true) const;
 EXPORT  bool GetAndUnpackStringMap(std::map<std::string, std::string> & the_map, bool bLineBreaks=true) const;
-	
+
 EXPORT  bool SetStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);
-EXPORT  bool SetAndPackStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);	
+EXPORT  bool SetAndPackStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);
 };
 
 typedef std::map <long, OTASCIIArmor *> mapOfArmor;
 
 
-#endif // __OT_ASCII_ARMOR_HPP__ 
+#endif // __OT_ASCII_ARMOR_HPP__
 
 
 

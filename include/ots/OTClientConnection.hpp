@@ -134,29 +134,11 @@
 #ifndef __OT_CLIENT_CONNECTION_HPP__
 #define __OT_CLIENT_CONNECTION_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#ifndef IMPORT
-#define IMPORT
-#ifndef IMPORT_SET
-#define IMPORT_SET
-#endif
-#endif
+#include "OTCommon.hpp"
 
 #include "OTData.hpp"
 #include "OTMessageBuffer.hpp"
 
-#ifdef IMPORT_SET
-#undef IMPORT_SET
-#ifdef IMPORT
-#undef IMPORT
-#include "ExportWrapper.h"
-#endif
-#endif
-
-#include _CINTTYPES
 
 #ifdef __cplusplus
 extern "C" {
@@ -189,7 +171,6 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
 
 class OTAsymmetricKey;
 class OTMessage;

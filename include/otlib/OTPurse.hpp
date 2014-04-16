@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTPurse.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,18 +134,13 @@
 #ifndef __OTPURSE_HPP__
 #define __OTPURSE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
 #include "OTASCIIArmor.hpp"
 #include "OTToken.hpp"
 #include "OTCachedKey.hpp"
-
-#include _CINTTYPES
-
 
 class OTPurse;
 class OTPseudonym;
@@ -169,14 +164,13 @@ class OTNym_or_SymmetricKey;
 typedef std::deque  <OTASCIIArmor *>            dequeOfTokens;
 typedef std::map    <std::string, OTToken *>    mapOfTokenPointers;
 
-
-class OTPurse : public OTContract 
+class OTPurse : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.
 	typedef OTContract ot_super;
 
 protected:
-	virtual void UpdateContents(); // Before transmission or serialization, this is where the Purse saves its contents 
+	virtual void UpdateContents(); // Before transmission or serialization, this is where the Purse saves its contents
 
 	dequeOfTokens	m_dequeTokens;
 
@@ -235,7 +229,7 @@ public:
 	EXPORT    bool                    GetPassphrase(OTPassword & theOutput, const char * szDisplay=NULL); // Retrieves the passphrase for this purse (which is cached by the master key.) Prompts the user to enter his actual passphrase, if necessary to unlock it. (May not need unlocking yet -- there is a timeout.)
 	// ----------------------------------------------
 	EXPORT    bool             IsNymIDIncluded() const { return m_bIsNymIDIncluded; } // NymID may be left blank, with user left guessing.
-	// ----------------------------------------------    
+	// ----------------------------------------------
 	EXPORT    bool             IsPasswordProtected() const { return m_bPasswordProtected; }
 	// ----------------------------------------------
 	// This will return false every time, if IsNymIDIncluded() is false.
@@ -243,7 +237,7 @@ public:
 	// ----------------------------------------------
 	// FYI: OTPurse::Push makes its own copy of theToken and does NOT take ownership of the one passed in.
 	EXPORT	bool		 Push(OTNym_or_SymmetricKey theOwner, const OTToken & theToken);
-	EXPORT	OTToken *    Pop (OTNym_or_SymmetricKey theOwner); // Caller IS responsible to delete. (Peek 
+	EXPORT	OTToken *    Pop (OTNym_or_SymmetricKey theOwner); // Caller IS responsible to delete. (Peek
 	EXPORT	OTToken *    Peek(OTNym_or_SymmetricKey theOwner) const; // Caller IS responsible to delete. (Peek returns a copy of the token.)
 	// ----------------------------------------------
 	EXPORT	int			 Count() const;
@@ -286,7 +280,7 @@ public:
 	EXPORT	void ReleaseTokens();
 
 	virtual bool SaveContractWallet(std::ofstream & ofs);
-	//	virtual bool SaveContractWallet(FILE * fl);	
+	//	virtual bool SaveContractWallet(FILE * fl);
 };
 
 

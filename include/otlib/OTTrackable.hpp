@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTTrackable.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,20 +134,15 @@
 #ifndef __OT_TRACKABLE_HPP__
 #define __OT_TRACKABLE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTInstrument.hpp"
 
-#include _CINTTYPES
 
 
 // OTTrackable is very similar to OTInstrument.
 // The difference is, it may have identifying info on it:
 // TRANSACTION NUMBER, SENDER USER ID (NYM ID), AND SENDER ACCOUNT ID.
-
-
 
 class OTTrackable : public OTInstrument
 {
@@ -155,10 +150,10 @@ private:  // Private prevents erroneous use by other classes.
     typedef OTInstrument ot_super;
 	// --------------------------------------------------------------------------
 protected:
-	long	m_lTransactionNum;	
-	// --------------------------------------------------------------------------	
+	long	m_lTransactionNum;
+	// --------------------------------------------------------------------------
 	OTIdentifier	m_SENDER_ACCT_ID;	// The asset account the instrument is drawn on.
-	OTIdentifier	m_SENDER_USER_ID;	// This ID must match the user ID on that asset account, 
+	OTIdentifier	m_SENDER_USER_ID;	// This ID must match the user ID on that asset account,
 										// AND must verify the instrument's signature with that user's key.
 	// --------------------------------------------------------------------------
 	inline void SetSenderAcctID(const OTIdentifier & ACCT_ID) { m_SENDER_ACCT_ID = ACCT_ID; }
@@ -170,26 +165,26 @@ public:
 	// -----------------------------------------------------------------
 	inline  long GetTransactionNum() const                  { return m_lTransactionNum; }
 	inline  void SetTransactionNum(long lTransactionNum)    { m_lTransactionNum = lTransactionNum; }
-	// -----------------------------------------------------------------	
+	// -----------------------------------------------------------------
 	inline  const OTIdentifier & GetSenderAcctID() const	{ return m_SENDER_ACCT_ID; }
 	inline  const OTIdentifier & GetSenderUserID() const	{ return m_SENDER_USER_ID; }
 	// -----------------------------------------------------------------
 	// From OTInstrument (parent class of OTCronItem, parent class of this)
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
-	 
+
 	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
 	 inline time_t GetValidTo()		const { return m_VALID_TO; }
-	 
+
 	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
 	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
-	 
+
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
-	 
+
 	 inline const OTIdentifier & GetAssetID() const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID; }
-	 
+
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
 	// --------------------------------------------------------------------------
@@ -206,7 +201,7 @@ public:
 	// --------------------------------------------------------------------------
 	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
-	virtual bool SaveContractWallet(std::ofstream & ofs);	
+	virtual bool SaveContractWallet(std::ofstream & ofs);
  };
 
 

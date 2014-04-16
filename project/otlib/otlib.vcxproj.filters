@@ -237,6 +237,9 @@
     <ClInclude Include="..\..\include\otlib\TR1_Wrapper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\otlib\OTCommon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\otlib\OTAccount.cpp">

@@ -5,9 +5,11 @@ ACLOCAL_AMFLAGS 	=	-I build-aux/m4
 
 ## Call to automake subdirs     ##
 
-SUBDIRS                 =	src
+## Call to automake subdirs     ##
 
-## Open-Transactions Installs        ##
+SUBDIRS                 =   src
+
+## Open-Transactions Installs ##
 
 #### autogen.sh, opentxs script CLI utility
 
@@ -17,7 +19,7 @@ dist_noinst_SCRIPTS		=	autogen.sh
 
 #### OT SCRIPTS (headers)
 
-opentxslibdir			=	$(pkglibdir)
+opentxslibdir           =  $(pkglibdir)
 
 dist_opentxslib_SCRIPTS =   scripts/ot/ot_commands.ot		\
                             scripts/ot/otapi.ot			\

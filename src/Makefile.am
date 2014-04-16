@@ -67,6 +67,7 @@ otapi_headers           =   $(otapi_headers_dir)/main.hpp             \
                             $(otapi_headers_dir)/OpenTransactions.hpp \
                             $(otapi_headers_dir)/OTAPI.hpp            \
                             $(otapi_headers_dir)/OT_ME.hpp            \
+                            $(otapi_headers_dir)/ot_switch_me.hpp   \
                             $(otapi_headers_dir)/OTClient.hpp         \
                             $(otapi_headers_dir)/OTServerConnection.hpp
                     

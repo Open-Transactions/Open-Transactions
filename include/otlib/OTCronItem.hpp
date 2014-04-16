@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTCronItem.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -137,20 +137,16 @@
 #ifndef __OTCRON_ITEM_HPP__
 #define __OTCRON_ITEM_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
 
-#include _CINTTYPES
 #include <deque>
 
 class OTIdentifier;
 class OTCron;
 class OTString;
 class OTPseudonym;
-
 
 class OTCronItem : public OTTrackable
 {
@@ -165,31 +161,31 @@ private:
 
 protected:
     std::deque<long> m_dequeClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
-    
+
 protected:
 	OTCronItem();
 	OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
 	OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID,
 			   const OTIdentifier & ACCT_ID,   const OTIdentifier & USER_ID);
-    
+
     OTIdentifier * m_pCancelerNymID;
-    
+
     bool m_bCanceled;       // This defaults to false. But if someone cancels it (BEFORE it is ever activated, just to nip it in the bud and harvest the numbers, and send the notices, etc) -- then we set this to true, and we also set the canceler Nym ID. (So we can see these values later and know whether it was canceled before activation, and if so, who did it.)
-    
+
     bool m_bRemovalFlag;	// Set this to true and the cronitem will be removed from Cron on next process.
                             // (And its offer will be removed from the Market as well, if appropriate.)
 	// -----------------------------------------------------------------
 	virtual void onActivate() {}  // called by HookActivationOnCron().
 
     virtual void onFinalReceipt(OTCronItem & theOrigCronItem,
-                                const long & lNewTransactionNumber, 
+                                const long & lNewTransactionNumber,
                                 OTPseudonym & theOriginator,
                                 OTPseudonym * pRemover);  // called by HookRemovalFromCron().
-	
+
     virtual void onRemovalFromCron() {}  // called by HookRemovalFromCron().
 	// -----------------------------------------------------------------
 	void ClearClosingNumbers();
-	
+
 public:
 	// To force the Nym to close out the closing number on the receipt.
     bool DropFinalReceiptToInbox(const OTIdentifier & USER_ID,
@@ -200,7 +196,7 @@ public:
                                        OTString     * pstrNote=NULL,
                                        OTString     * pstrAttachment=NULL,
                                        OTAccount    * pActualAcct=NULL);
-	
+
     // Notify the Nym that the OPENING number is now closed, so he can remove it from his issued list.
     bool DropFinalReceiptToNymbox(const OTIdentifier & USER_ID,
                                   const long         & lNewTransactionNumber,
@@ -216,11 +212,11 @@ public:
     // -----------------------------------------------------------------
 	// pActivator and pRemover are both "SOMETIMES NULL"
 	// I don't default the parameter, because I want to force the programmer to choose.
-	
+
     // Called in OTCron::AddCronItem.
-    void HookActivationOnCron(OTPseudonym * pActivator, 
+    void HookActivationOnCron(OTPseudonym * pActivator,
 							  bool bForTheFirstTime=false); // This calls onActivate, which is virtual.
-	
+
     // Called in OTCron::RemoveCronItem as well as OTCron::ProcessCron.
     void HookRemovalFromCron(OTPseudonym * pRemover); // This calls onFinalReceipt, then onRemovalFromCron. Both are virtual.
     // -----------------------------------------------------------------
@@ -242,15 +238,15 @@ EXPORT  static bool         GetActiveCronTransNums(      OTNumList    & output, 
     // -----------------------------------------------------------------
 	inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
 	inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
-	
+
 EXPORT	bool SetDateRange(const time_t VALID_FROM=0,  const time_t VALID_TO=0);
 	// --------------------------------------------
 	inline void SetLastProcessDate(const time_t & THE_DATE) { m_LAST_PROCESS_DATE = THE_DATE; }
 	inline const time_t & GetLastProcessDate() const { return m_LAST_PROCESS_DATE; }
-	
+
 	inline void SetProcessInterval(const time_t & THE_DATE) { m_PROCESS_INTERVAL = THE_DATE; }
 	inline const time_t & GetProcessInterval() const { return m_PROCESS_INTERVAL; }
-	
+
 	inline OTCron * GetCron() { return m_pCron; }
     // -----------------------------------------------------------------
 	// When first adding anything to Cron, a copy needs to be saved in a folder somewhere.
@@ -261,7 +257,7 @@ EXPORT	bool SaveActiveCronReceipt(const OTIdentifier & theNymID); // client side
 	// Specifically used in Smart Contracts, and it is also nearly identically copied in OTPaymentPlan.
 	//
 	bool MoveFunds(const mapOfNyms	  & map_NymsAlreadyLoaded,
-				   const long		  &	lAmount, 
+				   const long		  &	lAmount,
 				   const OTIdentifier &	SOURCE_ACCT_ID,		// GetSenderAcctID();
 				   const OTIdentifier &	SENDER_USER_ID,		// GetSenderUserID();
 				   const OTIdentifier &	RECIPIENT_ACCT_ID,	// GetRecipientAcctID();
@@ -277,38 +273,38 @@ EXPORT	bool SaveActiveCronReceipt(const OTIdentifier & theNymID); // client side
 	 inline const OTIdentifier & GetSenderAcctID() const	{ return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier & GetSenderUserID() const	{ return m_SENDER_USER_ID; }
 	 */
-	
+
 	// --------------------------------------------------------------------------
-	
+
 	// From OTInstrument (parent class of OTTrackable, parent class of this)
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
-	 
+
 	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
 	 inline time_t GetValidTo()		const { return m_VALID_TO; }
-	 
+
 	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
 	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
-	 
+
 	 inline const OTIdentifier & GetAssetID() const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID; }
-	 
+
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
-	 
+
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 bool IsExpired(); // Only tells if if it's past the "valid to" date.
 	 */
-	
+
 	// ---------------------------
 	// From OTScriptable:
 	//
 	//virtual void RegisterOTNativeCallsWithScript(OTScript & theScript);
 	// ----------------
 	virtual ~OTCronItem();
-	
+
 	void InitCronItem();
-	
+
 	virtual void Release();
 	void Release_CronItem();
     // ------------------------------------------------------
@@ -323,19 +319,19 @@ EXPORT      long    GetClosingTransactionNoAt(unsigned int nIndex) const;
 EXPORT      int     GetCountClosingNumbers() const;
 
 EXPORT      void    AddClosingTransactionNo(const long & lClosingTransactionNo);
-    
+
     // HIGHER LEVEL ABSTRACTIONS:
 EXPORT      long GetOpeningNum() const;
 EXPORT      long GetClosingNum() const;
     // ------------------------------------------------------
 	virtual bool IsValidOpeningNumber(const long & lOpeningNum)   const;
-	
+
     virtual long GetOpeningNumber(const OTIdentifier & theNymID)  const;
     virtual long GetClosingNumber(const OTIdentifier & theAcctID) const;
     // ------------------------------------------------------
 	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
-//	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents 
-//	virtual bool SaveContractWallet(std::ofstream & ofs);	
+//	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
+//	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
 

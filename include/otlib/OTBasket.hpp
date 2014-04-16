@@ -1,13 +1,13 @@
 /************************************************************
- *    
+ *
  *  OTBasket.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,24 +134,20 @@
 #ifndef __OTBASKET_HPP__
 #define __OTBASKET_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
-#include _CINTTYPES
-
 #include <deque>
 
-class BasketItem 
+class BasketItem
 {
 public:
 	OTIdentifier SUB_CONTRACT_ID;
 	OTIdentifier SUB_ACCOUNT_ID;
-	
+
 	long	lMinimumTransferAmount;
-    
+
     // lClosingTransactionNo:
     // Used when EXCHANGING a basket (NOT USED when first creating one.)
     // A basketReceipt must be dropped into each asset account during
@@ -160,8 +156,8 @@ public:
     // an issued transaction number (an open transaction) on that Nym.
     // (One must be supplied for EACH asset account during an exchange.)
     //
-	long	lClosingTransactionNo;  
-	
+	long	lClosingTransactionNo;
+
 	BasketItem();
 	~BasketItem() {}
 };
@@ -170,12 +166,11 @@ public:
 
 typedef std::deque <BasketItem *> dequeOfBasketItems;
 
-
 class OTBasket : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.
     typedef OTContract ot_super;
-						 
+
 protected:
 	int		m_nSubCount;
 	long	m_lMinimumTransfer;			// used in the actual basket
@@ -199,23 +194,23 @@ public:
 EXPORT	OTBasket();
 EXPORT	OTBasket(int nCount, long lMinimumTransferAmount);
 EXPORT	virtual ~OTBasket();
-		
+
 	virtual void UpdateContents();
-//	virtual bool SaveContractWallet(FILE * fl);	
+//	virtual bool SaveContractWallet(FILE * fl);
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 
 EXPORT	virtual void CalculateContractID(OTIdentifier & newID);
-	
+
 	inline long GetMinimumTransfer() const { return m_lMinimumTransfer; }
-	
+
 	inline int	GetTransferMultiple() const { return m_nTransferMultiple; }
-	inline void SetTransferMultiple(const int nTransferMultiple) { m_nTransferMultiple = nTransferMultiple; } 
-	
+	inline void SetTransferMultiple(const int nTransferMultiple) { m_nTransferMultiple = nTransferMultiple; }
+
     inline bool IsExchanging() const { return (m_nTransferMultiple > 0); }
-    
+
     inline bool GetExchangingIn() const { return m_bExchangingIn; }
-    inline void SetExchangingIn(const bool bDirection) { m_bExchangingIn = bDirection; } 
-    
+    inline void SetExchangingIn(const bool bDirection) { m_bExchangingIn = bDirection; }
+
 EXPORT	int Count() const;
 EXPORT	BasketItem * At(unsigned int nIndex);
 
@@ -223,31 +218,31 @@ EXPORT	BasketItem * At(unsigned int nIndex);
 
     inline long GetClosingNum() const { return m_lClosingTransactionNo; }
     inline void SetClosingNum(const long & lClosingNum) { m_lClosingTransactionNo = lClosingNum; }
-    
+
 	// For generating a real basket.  The user does this part, and the server creates Account ID later
 	// (That's why you don't see the account ID being passed in to the method.)
 EXPORT	void AddSubContract(const OTIdentifier & SUB_CONTRACT_ID, long lMinimumTransferAmount);
 	inline void IncrementSubCount() { m_nSubCount++; } // Used to abstract away this detail in the API.
-	
+
 	// For generating a user request to exchange in/out of a basket.
 	// Assumes that SetTransferMultiple has already been called.
-EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
+EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
                                    const OTIdentifier & SUB_ACCOUNT_ID,
                                    const long & lClosingTransactionNo);
-	
+
 	inline void SetRequestAccountID(const OTIdentifier & theAccountID) { m_RequestAccountID = theAccountID; }
 	inline const OTIdentifier & GetRequestAccountID() { return m_RequestAccountID; }
 
 	virtual void Release();
 	void Release_Basket();
-    
+
     // -----------------------------------------------------------------------------
     //
     // NOTE: Experimental / new (here):
-    
+
     // The basket itself only stores the CLOSING numbers.
     // For the opening number, you have to go deal with the exchangeBasket TRANSACTION.
-        
+
     // Normally do this if your transaction failed so you can get most of your numbers back
     //
 EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & theServerID, const bool bSave=true);
@@ -260,35 +255,35 @@ EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & the
 #endif // __OTBASKET_HPP__
 
 /*
- 
+
  I figured this one out, it's easy.
- 
+
  Someone creates a contract that contains 10 sub-contracts. It just delegates the issuence to the sub-issuers.
- 
- When he connects to the server he can upload the contract, but he has no control over it at that point, 
+
+ When he connects to the server he can upload the contract, but he has no control over it at that point,
  since he is not one of the real issuers.
- 
+
  The contract will only work if the sub-issuers actually have issued currencies on that transaction server.
- 
+
  Then, the transaction server itself becomes the "issuer" of the basket currency.  It simply creates an issuer
  account, and stores a list of sub-accounts to store the delegated cuts of "real" currencies.
- 
+
  For example, if I issue a currency that is 1 part dollar, 1 part gold, and 1 part silver, then the server
- creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and 
+ creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and
  trade it like any other asset.  It doesn't even have to be a special account that the trader uses. It's just
  a normal account, but the asset type ID links to the special basket issuer account maintained by the server.
- 
+
  Meanwhile, behind the scenes, the server's "goldbucks" issuer account is not OTAccount, but derived from it.
  suppose derived from OTAccount, that contains a list of 3 sub-accounts, 1 denominated in the dollar asset
  specified in the contract, 1 denominiated in the gold asset, and so on.
- 
+
  The OTAssetBasket contract (with sub-issuers) and the OTBasketAccount (issuer account) objects handle all the
  details of converting between the sub-accounts and the main account.
- 
- If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account 
+
+ If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account
  (controlled by the transaction server) must have at least -9 on its balance due to me. And its hidden 3 sub-accounts
  have at least +3 dollars, +3 gold, and +3 silver stored along with the rest that make up their total balances from
  all the users of that basket currency.
- 
+
  */
 

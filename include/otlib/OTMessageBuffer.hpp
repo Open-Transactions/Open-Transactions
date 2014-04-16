@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTMessageBuffer.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,17 +134,12 @@
 #ifndef __OTMESSAGEBUFFER_HPP__
 #define __OTMESSAGEBUFFER_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTString.hpp"
 
-#include _CINTTYPES
-
 #include <list>
 #include <map>
-
 
 class OTPseudonym;
 class OTMessage;
@@ -162,7 +157,7 @@ typedef std::multimap <long, OTMessage *> mapOfMessages;  // Your outgoing messa
 
 // The purpose of this class is to cache server replies (internally to OT)
 // so that the developer using the OT API has access to them.
-// 
+//
 // This class is pretty generic and so may be used as an output buffer
 // as well. (If "stack" form is preferable.)
 //
@@ -178,7 +173,7 @@ public:
 	OTMessageBuffer() {}
 EXPORT	~OTMessageBuffer();
 	// -------------------------------
-    
+
 EXPORT    void        Clear   ();
 EXPORT	void        Push    (OTMessage & theMessage);     // Push: theMessage must be heap-allocated. Takes ownership.
 EXPORT	OTMessage * Pop     (const long & lRequestNum,    // Pop:  Caller IS responsible to delete.
@@ -228,7 +223,7 @@ EXPORT	~OTMessageOutbuffer();
 EXPORT    void        Clear(const OTString * pstrServerID=NULL, const OTString * pstrNymID=NULL, OTPseudonym * pNym=NULL,
                       const bool     * pbHarvestingForRetry=NULL);
 EXPORT	void        AddSentMessage      (OTMessage & theMessage);   // Allocate theMsg on the heap (takes ownership.) Mapped by request num.
-	
+
 EXPORT    OTMessage * GetSentMessage      (const long & lRequestNum, const OTString & strServerID, const OTString & strNymID); // null == not found. caller NOT responsible to delete.
 EXPORT	bool        RemoveSentMessage   (const long & lRequestNum, const OTString & strServerID, const OTString & strNymID); // true == it was removed. false == it wasn't found.
 

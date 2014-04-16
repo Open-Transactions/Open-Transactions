@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTInstrument.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,21 +134,16 @@
 #ifndef __OT_INSTRUMENT_HPP__
 #define __OT_INSTRUMENT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTScriptable.hpp"
 
-#include _CINTTYPES
-
-
-class OTInstrument : public OTScriptable 
+class OTInstrument : public OTScriptable
 {
 private:  // Private prevents erroneous use by other classes.
     typedef OTScriptable ot_super;
 	// ------------------------------------------------------------------------
-protected:	
+protected:
 	OTIdentifier  m_AssetTypeID; // Every cheque or cash note has an Asset Type
 	OTIdentifier  m_ServerID;    // ...As well as a Server ID...
 	// ------------------------------------------------------------------------
@@ -167,12 +162,12 @@ protected:
 public:
 	inline time_t GetValidFrom()	const { return m_VALID_FROM; }
 	inline time_t GetValidTo()		const { return m_VALID_TO;   }
-	
+
 	inline const OTIdentifier & GetAssetID()  const { return m_AssetTypeID; }
 	inline const OTIdentifier & GetServerID() const { return m_ServerID;    }
 	// ---------------------------------------------------
 	void InitInstrument();
-	
+
 	OTInstrument();
 	OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
 	virtual ~OTInstrument();
@@ -187,7 +182,7 @@ EXPORT  bool IsExpired();			// Verify whether the CURRENT date is AFTER the the 
 	// ------------------------------------------------------------------------
 	// overridden in child classes, not here.
 //  virtual void UpdateContents(); // I may remove this, since the subclasses will handle it.
-	// ------------------------------------------------------------------------		
+	// ------------------------------------------------------------------------
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
