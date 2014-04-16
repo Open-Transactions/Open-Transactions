@@ -69,7 +69,7 @@ function test_command {
 # test zone.
 
 # Example test command with good escapes/quotes
-#COMPLEX_COMMAND=''${OPENTXS}' testcommand --mynym '${FTNYM}' --hisnym '${BOBNYM}''
+#COMPLEX_COMMAND="${OPENTXS} testcommand --mynym ${FTNYM} --hisnym ${BOBNYM}"
 MEMO="memo 'Test FTs testcommand memo.'"
 #ARG1='amount 2'
 #ARGS=''${MEMO}' '${ARG1}''
@@ -92,7 +92,7 @@ test_command "showassets" "${OPENTXS} showassets"
 
 
 #checknym       download a nym's public key based on his ID.
-COMPLEX_COMMAND=''${OPENTXS}' checknym --mynym '${FTNYM}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} checknym --mynym ${FTNYM} --hisnym ${BOBNYM}"
 test_command "checknym" "${COMPLEX_COMMAND}"
 
 
@@ -133,7 +133,7 @@ test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${FTNYM} -
 test_command "showmint" "${OPENTXS} showmint"
 
 #withdraw       withdraw cash. (From acct on server into local purse.)
-COMPLEX_COMMAND=''${OPENTXS}' withdraw --myacct '${FTACCT}''
+COMPLEX_COMMAND="${OPENTXS} withdraw --myacct ${FTACCT}"
 ARGS='amount 6'
 test_command "withdraw" "${COMPLEX_COMMAND}" "${ARGS}"
 
@@ -141,7 +141,7 @@ test_command "withdraw" "${COMPLEX_COMMAND}" "${ARGS}"
 test_command "showpurse" "${OPENTXS} showpurse --mynym ${FTNYM} --server ${SERVER} --mypurse ${SILVERPURSE}"
 
 #deposit		deposit cash, cheque, voucher, or tokens.
-COMPLEX_COMMAND=''${OPENTXS}' deposit --myacct '${FTACCT}''
+COMPLEX_COMMAND="${OPENTXS} deposit --myacct ${FTACCT}"
 ARGS='indices all'
 test_command "deposit cash" "${COMPLEX_COMMAND}" "${ARGS}"
 
@@ -155,7 +155,7 @@ test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} 
 test_command "showacct" "${OPENTXS} showacct --myacct ${BOBACCT}"
 
 #sendcash	send cash from mypurse to recipient, withdraw since purse should be empty.
-COMPLEX_COMMAND=''${OPENTXS}' sendcash --myacct '${FTACCT}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} sendcash --myacct ${FTACCT} --hisnym ${BOBNYM}"
 MEMO="memo 'Test FTs sendcash memo.'"
 ARG1='amount 16'
 ARGS=''${MEMO}' '${ARG1}''
@@ -175,7 +175,7 @@ test_command "showacct" "${OPENTXS} showacct --myacct ${BOBACCT}"
 # FIRST TRANSFER is for testing the "accepttransfers" command.
 
 #transfer       send a transfer from myacct to hisacct.
-COMPLEX_COMMAND=''${OPENTXS}' transfer --myacct '${FTACCT}' --hisacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} transfer --myacct ${FTACCT} --hisacct ${BOBACCT}"
 MEMO="memo 'Test FTs transfer memo.'"
 ARG1='amount 11'
 ARGS=''${MEMO}' '${ARG1}''
@@ -188,7 +188,7 @@ test_command "outbox" "${OPENTXS} outbox --myacct ${FTACCT}"
 test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} --myacct ${BOBACCT}"
 test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
 #accepttransfers    accept all incoming transfers for myacct.
-COMPLEX_COMMAND=''${OPENTXS}' accepttransfers --mynym '${BOBNYM}' --myacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} accepttransfers --mynym ${BOBNYM} --myacct ${BOBACCT}"
 test_command "accepttransfers" "${COMPLEX_COMMAND}"
 # show inbox again to see that the transfers are now gone...
 test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
@@ -200,43 +200,43 @@ test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
 # TESTING "MAIL" SYSTEM.
 
 #sendmsg		send a message to another nym's in-mail.
-COMPLEX_COMMAND=''${OPENTXS}' sendmsg --mynym '${FTNYM}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} sendmsg --mynym ${FTNYM} --hisnym ${BOBNYM}"
 test_command "sendmsg" "${COMPLEX_COMMAND}"
 
 # need to refresh Bob so we'll receive his incoming mail.
 test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
 
 #mail           display in-mail for a particular nym.
-COMPLEX_COMMAND=''${OPENTXS}' mail --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
 test_command "mail" "${COMPLEX_COMMAND}"
 
 
-COMPLEX_COMMAND=''${OPENTXS}' mail --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
 ARGS='index 0'
 test_command "read mail message" "${COMPLEX_COMMAND}" "${ARGS}"
 
 
 #delmail		delete an in-mail item.
-COMPLEX_COMMAND=''${OPENTXS}' delmail --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} delmail --mynym ${BOBNYM}"
 ARGS='index 0'
 test_command "delete mail message" "${COMPLEX_COMMAND}" "${ARGS}"
 
 
 #mail           display in-mail for a particular nym.
-COMPLEX_COMMAND=''${OPENTXS}' mail --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
 test_command "mail" "${COMPLEX_COMMAND}"
 
 #outmail		display out-mail for a particular nym.
-COMPLEX_COMMAND=''${OPENTXS}' outmail --mynym '${FTNYM}''
+COMPLEX_COMMAND="${OPENTXS} outmail --mynym ${FTNYM}"
 test_command "outmail" "${COMPLEX_COMMAND}"
 
 #deloutmail     delete an out-mail item.
-COMPLEX_COMMAND=''${OPENTXS}' deloutmail --mynym '${FTNYM}''
+COMPLEX_COMMAND="${OPENTXS} deloutmail --mynym ${FTNYM}"
 ARGS='index 0'
 test_command "delete outgoing mail message" "${COMPLEX_COMMAND}" "${ARGS}"
 
 #outmail		display out-mail for a particular nym.
-COMPLEX_COMMAND=''${OPENTXS}' outmail --mynym '${FTNYM}''
+COMPLEX_COMMAND="${OPENTXS} outmail --mynym ${FTNYM}"
 test_command "outmail" "${COMPLEX_COMMAND}"
 
 # ----------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ test_command "outmail" "${COMPLEX_COMMAND}"
 
 
 #sendcheque     write a cheque and then send it to the hisnym.
-COMPLEX_COMMAND=''${OPENTXS}' sendcheque --myacct '${FTACCT}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} sendcheque --myacct ${FTACCT} --hisnym ${BOBNYM}"
 MEMO="memo 'Test FTs sendcheque memo.'"
 ARG1='amount 1'
 ARG2='validfor 2592000'
@@ -262,13 +262,13 @@ test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BO
 test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
 
 #showpayment	show the details of Bob's incoming payment in the payments inbox.
-COMPLEX_COMMAND=''${OPENTXS}' showpayment --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} showpayment --mynym ${BOBNYM}"
 ARGS='index 0'
 test_command "show incoming payment" "${COMPLEX_COMMAND}" "${ARGS}"
 
 
 #acceptpayments     accept all incoming payments for mynym.
-COMPLEX_COMMAND=''${OPENTXS}' acceptpayments --mynym '${BOBNYM}' --myacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} acceptpayments --mynym ${BOBNYM} --myacct ${BOBACCT}"
 test_command "acceptpayments" "${COMPLEX_COMMAND}"
 
 #refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
@@ -293,7 +293,7 @@ test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
 
 # then acceptreceipts (to get the chequereceipt out of his inbox.)
 #acceptreceipts    accept all incoming receipts for myacct.
-COMPLEX_COMMAND=''${OPENTXS}' acceptreceipts --mynym '${FTNYM}' --myacct '${FTACCT}''
+COMPLEX_COMMAND="${OPENTXS} acceptreceipts --mynym ${FTNYM} --myacct ${FTACCT}"
 test_command "acceptreceipts" "${COMPLEX_COMMAND}"
 
 # Then show that his inbox is empty again.
@@ -311,7 +311,7 @@ test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
 # SECOND TRANSFER is for testing the "acceptinbox" command. (Note: might move this to a place where we know a receipt will already be in there... so we're testing the accepting of receipts too, and not just transfers -- which is what acceptinbox is for, after all.)
 
 #transfer       send a transfer from myacct to hisacct.
-COMPLEX_COMMAND=''${OPENTXS}' transfer --myacct '${FTACCT}' --hisacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} transfer --myacct ${FTACCT} --hisacct ${BOBACCT}"
 MEMO="memo 'Test FTs transfer memo.'"
 ARG1='amount 12'
 ARGS=''${MEMO}' '${ARG1}''
@@ -320,7 +320,7 @@ test_command "transfer" "${COMPLEX_COMMAND}" "${ARGS}"
 #refresh        refresh Bob's intermediary files before looking at his inbox.
 test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} --myacct ${BOBACCT}"
 #acceptinbox    accept all incoming transfers and receipts for myacct.
-COMPLEX_COMMAND=''${OPENTXS}' acceptinbox --mynym '${BOBNYM}' --myacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} acceptinbox --mynym ${BOBNYM} --myacct ${BOBACCT}"
 test_command "acceptinbox" "${COMPLEX_COMMAND}"
 # show inbox again to see that the transfers are now gone...
 test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
@@ -334,7 +334,7 @@ test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
 
 
 #sendinvoice	write an invoice and then send it to the recipient.
-COMPLEX_COMMAND=''${OPENTXS}' sendinvoice --myacct '${FTACCT}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} sendinvoice --myacct ${FTACCT} --hisnym ${BOBNYM}"
 MEMO="memo 'Test FTs sendinvoice memo.'"
 ARG1='amount 2'
 ARG2='validfor 2592000'
@@ -350,12 +350,12 @@ test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BO
 test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
 
 #showpayment	show the details of Bob's incoming payment in the payments inbox.
-COMPLEX_COMMAND=''${OPENTXS}' showpayment --mynym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} showpayment --mynym ${BOBNYM}"
 ARGS='index 0'
 test_command "show incoming payment" "${COMPLEX_COMMAND}" "${ARGS}"
 
 #acceptinvoices     accept all invoices in mynym's payments inbox.
-COMPLEX_COMMAND=''${OPENTXS}' acceptinvoices --mynym '${BOBNYM}' --myacct '${BOBACCT}''
+COMPLEX_COMMAND="${OPENTXS} acceptinvoices --mynym ${BOBNYM} --myacct ${BOBACCT}"
 test_command "acceptinvoices" "${COMPLEX_COMMAND}"
 
 #refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
@@ -380,7 +380,7 @@ test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
 
 # then acceptreceipts (to get the chequereceipt out of his inbox.)
 #acceptreceipts    accept all incoming receipts for myacct.
-COMPLEX_COMMAND=''${OPENTXS}' acceptreceipts --mynym '${FTNYM}' --myacct '${FTACCT}''
+COMPLEX_COMMAND="${OPENTXS} acceptreceipts --mynym ${FTNYM} --myacct ${FTACCT}"
 test_command "acceptreceipts" "${COMPLEX_COMMAND}"
 
 # Then show that his inbox is empty again.
@@ -398,7 +398,7 @@ test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
 #
 #
 #sendvoucher	withdraw a voucher and then send it to the recipient.
-COMPLEX_COMMAND=''${OPENTXS}' sendvoucher --mynym '${FTNYM}' --myacct '${FTACCT}' --hisnym '${BOBNYM}''
+COMPLEX_COMMAND="${OPENTXS} sendvoucher --mynym ${FTNYM} --myacct ${FTACCT} --hisnym ${BOBNYM}"
 MEMO="memo 'Test FTs sendvoucher memo.'"
 ARG1='amount 2'
 ARGS=''${MEMO}' '${ARG1}''

@@ -197,6 +197,7 @@ public:
     EXPORT OT_ME();
     EXPORT ~OT_ME();
 
+    EXPORT void opentxs_copy_variables();
     EXPORT int opentxs_main_loop();
 
     EXPORT  bool make_sure_enough_trans_nums(const int32_t nNumberNeeded,

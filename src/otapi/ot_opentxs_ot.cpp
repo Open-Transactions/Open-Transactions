@@ -516,19 +516,22 @@ int OT_OPENTXS_OT interpret_command(const string & strInput)
 }
 
 
+void OT_OPENTXS_OT OT_ME::opentxs_copy_variables()
+{
+    OTVariable *pVar;
+    Args = (pVar = FindVariable("Args")) == NULL ? "" : pVar->GetValueString();
+    HisAcct = (pVar = FindVariable("HisAcct")) == NULL ? "" : pVar->GetValueString();
+    HisNym = (pVar = FindVariable("HisNym")) == NULL ? "" : pVar->GetValueString();
+    HisPurse = (pVar = FindVariable("HisPurse")) == NULL ? "" : pVar->GetValueString();
+    MyAcct = (pVar = FindVariable("MyAcct")) == NULL ? "" : pVar->GetValueString();
+    MyNym = (pVar = FindVariable("MyNym")) == NULL ? "" : pVar->GetValueString();
+    MyPurse = (pVar = FindVariable("MyPurse")) == NULL ? "" : pVar->GetValueString();
+    Server = (pVar = FindVariable("Server")) == NULL ? "" : pVar->GetValueString();
+}
+
 
 int OT_OPENTXS_OT OT_ME::opentxs_main_loop()
 {
-    OTVariable *pVar;
-    Args     = (pVar = FindVariable("Args"    )) == NULL ? "" : pVar->GetValueString();
-    HisAcct  = (pVar = FindVariable("HisAcct" )) == NULL ? "" : pVar->GetValueString();
-    HisNym   = (pVar = FindVariable("HisNym"  )) == NULL ? "" : pVar->GetValueString();
-    HisPurse = (pVar = FindVariable("HisPurse")) == NULL ? "" : pVar->GetValueString();
-    MyAcct   = (pVar = FindVariable("MyAcct"  )) == NULL ? "" : pVar->GetValueString();
-    MyNym    = (pVar = FindVariable("MyNym"   )) == NULL ? "" : pVar->GetValueString();
-    MyPurse  = (pVar = FindVariable("MyPurse" )) == NULL ? "" : pVar->GetValueString();
-    Server   = (pVar = FindVariable("Server"  )) == NULL ? "" : pVar->GetValueString();
-
     // See if the command was passed in on the command line.
     if (VerifyExists("Args", false))
     {
