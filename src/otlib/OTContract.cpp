@@ -1,14 +1,14 @@
 /*************************************************************
- *    
+ *
  *  OTContract.cpp
- *  
+ *
  *  Base class for many of the OT classes.
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -111,10 +111,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -177,7 +177,7 @@ bool OTContract::DearmorAndTrim(const OTString & strInput, OTString & strOutput,
     }
     // --------------------------------------------------------------------
     strOutput.Set(strInput);
-    
+
     if (false == strOutput.DecodeIfArmored(false)) // bEscapedIsAllowed=true by default.
     {
         OTLog::vError("%s: Input string apparently was encoded and then failed decoding. Contents: \n%s\n",
@@ -186,27 +186,27 @@ bool OTContract::DearmorAndTrim(const OTString & strInput, OTString & strOutput,
     }
     // ------------------------------------------
     strOutput.reset(); // for sgets
-    
+
     // At this point, strOutput contains the actual contents, whether they
     // were originally ascii-armored OR NOT. (And they are also now trimmed, either way.)
     // ------------------------------------------
     static char		buf[75] = "";
 	buf[0] = 0; // probably unnecessary.
 	bool bGotLine = strOutput.sgets(buf, 70);
-    
+
 	if (!bGotLine)
 		return false;
-	
+
 	strFirstLine.Set(buf);
 	strOutput.reset(); // set the "file" pointer within this string back to index 0.
-	
+
 	// Now I feel pretty safe -- the string I'm examining is within
 	// the first 70 characters of the beginning of the contract, and
 	// it will NOT contain the escape "- " sequence. From there, if
 	// it contains the proper sequence, I will instantiate that type.
 	if (!strFirstLine.Exists() || strFirstLine.Contains("- -"))
 		return false;
-    
+
     return true;
 }
 
@@ -229,57 +229,57 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
     {
         // -----------------------------------------------------------
         OTContract * pContract = NULL;
-        
+
 //      if (strFirstLine.Contains("-----BEGIN SIGNED AGREEMENT-----"))  // this string is 32 chars long.
 //      {	pContract = new OTAgreement();		OT_ASSERT(NULL != pContract); }
-	
+
         if (strFirstLine.Contains("-----BEGIN SIGNED SMARTCONTRACT-----"))  // this string is 36 chars long.
         {	pContract = new OTSmartContract();	OT_ASSERT(NULL != pContract); }
-        
+
         if (strFirstLine.Contains("-----BEGIN SIGNED PAYMENT PLAN-----"))  // this string is 35 chars long.
         {	pContract = new OTPaymentPlan();	OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED TRADE-----"))  // this string is 28 chars long.
         {	pContract = new OTTrade();			OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED OFFER-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED OFFER-----"))
         {	pContract = new OTOffer();			OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED INVOICE-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED INVOICE-----"))
         {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED VOUCHER-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED VOUCHER-----"))
         {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED CHEQUE-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED CHEQUE-----"))
         {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED MESSAGE-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED MESSAGE-----"))
         {	pContract = new OTMessage();		OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED MINT-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED MINT-----"))
         {	pContract = OTMint::MintFactory();	OT_ASSERT(NULL != pContract); }
-        
-        else if (strFirstLine.Contains("-----BEGIN SIGNED FILE-----")) 
+
+        else if (strFirstLine.Contains("-----BEGIN SIGNED FILE-----"))
         {	pContract = new OTSignedFile();		OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED CASH-----"))
         {	pContract = OTToken::LowLevelInstantiate(strFirstLine); OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED CASH TOKEN-----"))
         {	pContract = OTToken::LowLevelInstantiate(strFirstLine); OT_ASSERT(NULL != pContract); }
-        
+
         else if (strFirstLine.Contains("-----BEGIN SIGNED LUCRE CASH TOKEN-----"))
         {	pContract = OTToken::LowLevelInstantiate(strFirstLine); OT_ASSERT(NULL != pContract); }
-    
-	
+
+
         // The Purse object requires the asset type ID in order to be instantiated.
         // I may remove this requirement (if possible) or not.
-//	
-//      else if (strFirstLine.Contains("-----BEGIN SIGNED PURSE-----")) 
+//
+//      else if (strFirstLine.Contains("-----BEGIN SIGNED PURSE-----"))
 //      {	pContract = new OTPurse();			OT_ASSERT(NULL != pContract); }
-	
-	
+
+
         // THESE OBJECTS REQUIRE YOU TO KNOW THE SERVER ID, USER ID, AND ACCT ID,
         // IN ORDER TO GENERATE A NEW INSTANCE, OR TO LOAD AN EXISTING ONE.
         // THUS, I AM REMOVING THEM FROM HERE FOR NOW.
@@ -287,28 +287,28 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
         // and then create these in there instead.
         //
 //      else if (strFirstLine.Contains("-----BEGIN SIGNED ACCOUNT-----"))
-//      {	pContract = new OTAccount();		OT_ASSERT(NULL != pContract); }	
-//      else if (strFirstLine.Contains("-----BEGIN SIGNED LEDGER-----")) 
+//      {	pContract = new OTAccount();		OT_ASSERT(NULL != pContract); }
+//      else if (strFirstLine.Contains("-----BEGIN SIGNED LEDGER-----"))
 //      {	pContract = new OTLedger();			OT_ASSERT(NULL != pContract); }
-//	
-//      else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION-----")) 
+//
+//      else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION-----"))
 //      {	pContract = new OTTransaction();	OT_ASSERT(NULL != pContract); }
-//	
-//      else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION ITEM-----")) 
+//
+//      else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION ITEM-----"))
 //      {	pContract = new OTItem();			OT_ASSERT(NULL != pContract); }
 //
-        
+
         // TODO: Might want to clarify in Asset and Server Contracts,
         // so I don't have to do this crap... The ones above are cleaner.
         //
         else if (strFirstLine.Contains("-----BEGIN SIGNED CONTRACT-----"))
         {
-            if (strContract.Contains("<notaryProviderContract version=\"1.0\">")) 
+            if (strContract.Contains("<notaryProviderContract version=\"1.0\">"))
             {	pContract = new OTServerContract();		OT_ASSERT(NULL != pContract); }
-            else if (strContract.Contains("<digitalAssetContract version=\"1.0\">")) 
+            else if (strContract.Contains("<digitalAssetContract version=\"1.0\">"))
             {	pContract = new OTAssetContract();		OT_ASSERT(NULL != pContract); }
         }
-            
+
         // ----------------------------------------------
         // The string didn't match any of the options in the factory.
         //
@@ -376,13 +376,13 @@ OTNumList::OTNumList(const std::string & strNumbers)
 
 OTNumList::OTNumList()
 {
-    
+
 }
 
 // -------------------
 OTNumList::~OTNumList()
 {
-    
+
 }
 
 // -------------------
@@ -407,32 +407,32 @@ bool OTNumList::Add(const std::string & strNumbers)  // if false, means the numb
 bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers were already there. (At least one of them.)
 {
     OT_ASSERT(NULL != szNumbers); // Should never happen.
-    
+
     bool    bSuccess    = true;
     long    lNum        = 0;
-    const 
+    const
     char *  pChar       = szNumbers;
 	std::locale loc;
 
     // Skip any whitespace.
 	while (std::isspace(*pChar, loc))
         pChar++;
-    
+
     // -------------------------------------
     bool bStartedANumber = false; // During the loop, set this to true when processing a digit, and set to false when anything else. That way when we go to add the number to the list, and it's "0", we'll know it's a real number we're supposed to add, and not just a default value.
-    
+
     for (;;) // We already know it's not null, due to the assert. (So at least one iteration will happen.)
     {
 		if (std::isdigit(*pChar, loc))
         {
             bStartedANumber = true;
-            
+
             int nDigit = (*pChar - '0');
-            
+
             lNum *= 10;  // Move it up a decimal place.
             lNum += nDigit;
         }
-        // if separator, or end of string, either way, add lNum to *this. 
+        // if separator, or end of string, either way, add lNum to *this.
 		else if ((',' == *pChar) || ('\0' == *pChar) || std::isspace(*pChar, loc)) // first sign of a space, and we are done with current number. (On to the next.)
         {
             if ((lNum > 0) || (bStartedANumber && (0 == lNum)))
@@ -465,7 +465,7 @@ bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers
             pChar++;
         // -------------------------------------
     } // while
-    
+
     return bSuccess;
 }
 // -------------------
@@ -473,7 +473,7 @@ bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers
 bool OTNumList::Add(const long & theValue)    // if false, means the value was already there.
 {
     std::set<long>::iterator it = m_setData.find(theValue);
-    
+
     if (m_setData.end() == it) // it's not already there, so add it.
     {
         m_setData.insert(theValue);
@@ -486,7 +486,7 @@ bool OTNumList::Add(const long & theValue)    // if false, means the value was a
 bool OTNumList::Peek(long & lPeek) const
 {
     std::set<long>::iterator it = m_setData.begin();
-    
+
     if (m_setData.end() != it) // it's there.
     {
         lPeek = *it;
@@ -499,7 +499,7 @@ bool OTNumList::Peek(long & lPeek) const
 bool OTNumList::Pop()
 {
     std::set<long>::iterator it = m_setData.begin();
-    
+
     if (m_setData.end() != it) // it's there.
     {
         m_setData.erase(it);
@@ -513,7 +513,7 @@ bool OTNumList::Pop()
 bool OTNumList::Remove(const long & theValue) // if false, means the value was NOT already there.
 {
     std::set<long>::iterator it = m_setData.find(theValue);
-    
+
     if (m_setData.end() != it) // it's there.
     {
         m_setData.erase(it);
@@ -526,7 +526,7 @@ bool OTNumList::Remove(const long & theValue) // if false, means the value was N
 bool OTNumList::Verify(const long & theValue) const // returns true/false (whether value is already there.)
 {
     std::set<long>::iterator it = m_setData.find(theValue);
-    
+
     return (m_setData.end() == it) ? false : true;
 }
 
@@ -539,15 +539,15 @@ bool OTNumList::Verify(const long & theValue) const // returns true/false (wheth
 bool OTNumList::Verify(const std::set<long> & theNumbers) const
 {
     bool bSuccess = true;
-    
+
     FOR_EACH_CONST(std::set<long>, theNumbers)
     {
         const long lValue = *it;
-        
+
         if (!this->Verify(lValue)) // It must have NOT already been there.
             bSuccess = false;
     }
-    
+
     return bSuccess;
 }
 
@@ -562,7 +562,7 @@ bool OTNumList::Verify(const OTNumList & rhs) const
     if (this->Count() != rhs.Count())
         return false;
     // -------------------
-    
+
     // Verify each value on *this is also found on rhs.
     //
     FOR_EACH(std::set<long>, m_setData)
@@ -572,7 +572,7 @@ bool OTNumList::Verify(const OTNumList & rhs) const
         if (false == rhs.Verify(lValue))
             return false;
     }
-    
+
     return true;
 }
 
@@ -596,7 +596,7 @@ bool OTNumList::VerifyAny(const std::set<long> & setData) const
         const long lValue = *it;
         // ----------
         std::set<long>::const_iterator it_find = setData.find(lValue);
-        
+
         if (it_find != setData.end()) // found a match.
             return true;
     }
@@ -610,7 +610,7 @@ bool OTNumList::Add(const OTNumList & theNumList)    // if false, means the numb
 {
     std::set<long> theOutput;
     theNumList.Output(theOutput); // returns false if the numlist was empty.
-    
+
     return this->Add(theOutput);
 }
 // -------------------
@@ -618,15 +618,15 @@ bool OTNumList::Add(const OTNumList & theNumList)    // if false, means the numb
 bool OTNumList::Add(const std::set<long> & theNumbers)    // if false, means the numbers were already there. (At least one of them.)
 {
     bool bSuccess = true;
-    
+
     FOR_EACH_CONST(std::set<long>, theNumbers)
     {
         const long lValue = *it;
-        
+
         if (!this->Add(lValue)) // It must have already been there.
             bSuccess = false;
     }
-    
+
     return bSuccess;
 }
 // -------------------
@@ -634,15 +634,15 @@ bool OTNumList::Add(const std::set<long> & theNumbers)    // if false, means the
 bool OTNumList::Remove(const std::set<long> & theNumbers) // if false, means the numbers were NOT already there. (At least one of them.)
 {
     bool bSuccess = true;
-    
+
     FOR_EACH_CONST(std::set<long>, theNumbers)
     {
         const long lValue = *it;
-        
+
         if (!this->Remove(lValue)) // It must have NOT already been there.
             bSuccess = false;
     }
-    
+
     return bSuccess;
 }
 // -------------------
@@ -654,7 +654,7 @@ bool OTNumList::Remove(const std::set<long> & theNumbers) // if false, means the
 bool OTNumList::Output(std::set<long> & theOutput) const // returns false if the numlist was empty.
 {
     theOutput = m_setData;
-    
+
     return (m_setData.size() > 0) ? true : false;
 }
 // -------------------
@@ -664,20 +664,20 @@ bool OTNumList::Output(std::set<long> & theOutput) const // returns false if the
 bool OTNumList::Output(OTString & strOutput) const // returns false if the numlist was empty.
 {
     int nIterationCount = 0;
-    
+
     FOR_EACH(std::set<long>, m_setData)
     {
         const long lValue = *it;
         nIterationCount ++;
         // ----------
-        
+
         strOutput.Concatenate("%s%ld",
                               // If first iteration, prepend a blank string (instead of a comma.)
                               // Like this:  "%ld"
                               // But for all subsequent iterations, concatenate: ",%ld"
                               (1 == nIterationCount) ? "" : ",", lValue);
     }
-    
+
     return (m_setData.size() > 0) ? true : false;
 }
 
@@ -685,16 +685,16 @@ bool OTNumList::Output(OTString & strOutput) const // returns false if the numli
 
 
 
-int OTNumList::Count() const 
-{ 
-    return static_cast<int> (m_setData.size()); 
+int OTNumList::Count() const
+{
+    return static_cast<int> (m_setData.size());
 }
 
 // -------------------
 
-void OTNumList::Release() 
-{ 
-    m_setData.clear(); 
+void OTNumList::Release()
+{
+    m_setData.clear();
 }
 
 // -----------------------------------------------------------------------------
@@ -712,11 +712,11 @@ OTContract::OTContract()
 OTContract::OTContract(const OTString & name, const OTString & foldername, const OTString & filename, const OTString & strID)
 {
 	Initialize();
-	
+
 	m_strName			= name;
 	m_strFoldername		= foldername;
 	m_strFilename		= filename;
-	
+
 	m_ID.SetString(strID);
 }
 
@@ -727,7 +727,7 @@ OTContract::OTContract(const OTString & name, const OTString & foldername, const
 OTContract::OTContract(const OTString & strID)
 {
 	Initialize();
-	
+
 	m_ID.SetString(strID);
 }
 
@@ -738,7 +738,7 @@ OTContract::OTContract(const OTString & strID)
 OTContract::OTContract(const OTIdentifier & theID)
 {
 	Initialize();
-	
+
 	m_ID = theID;
 }
 
@@ -748,9 +748,9 @@ OTContract::OTContract(const OTIdentifier & theID)
 
 void OTContract::Initialize()
 {
-	m_strContractType	= "CONTRACT";	// CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM 
+	m_strContractType	= "CONTRACT";	// CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM
 	// make sure subclasses set this in their own initialization routine.
-	
+
 	m_strSigHashType	= OTIdentifier::DefaultHashAlgorithm;
 	m_strVersion		= "2.0"; // since new credentials system.
 }
@@ -771,7 +771,7 @@ void OTContract::Release_Contract()
 	// So if I release the filename, now I can't load up from the file cause I just blanked it. DUh.
 	//
 	// m_strFilename.Release();
-	
+
 	m_strSigHashType = OTIdentifier::DefaultHashAlgorithm;
 	m_xmlUnsigned.Release();
 	m_strRawFile.Release();
@@ -782,13 +782,13 @@ void OTContract::Release_Contract()
     // ------------------
 	// Go through the existing list of nyms at this point, and delete them all.
 	while (!m_mapNyms.empty())
-	{		
+	{
 		OTPseudonym * pNym = m_mapNyms.begin()->second;
 		OT_ASSERT(NULL != pNym);
 		delete pNym;
 		pNym = NULL;
 		m_mapNyms.erase(m_mapNyms.begin());
-	}	
+	}
 }
 
 
@@ -796,9 +796,9 @@ void OTContract::Release_Contract()
 
 
 void OTContract::Release()
-{	
+{
 	Release_Contract();
-    
+
     // No call to ot_super::Release() here, since OTContract
     // is the base class.
 }
@@ -808,8 +808,8 @@ void OTContract::Release()
 
 
 OTContract::~OTContract()
-{	
-	
+{
+
 	Release_Contract();
 }
 
@@ -818,20 +818,20 @@ OTContract::~OTContract()
 // -------------------------------------------------------------------------------
 
 
-	
+
 bool OTContract::SaveToContractFolder()
 {
 	OTString strFoldername(OTFolders::Contract().Get()), strFilename;
-	
+
 	GetIdentifier(strFilename);
 
 	// -------------------------------------
 	// These are already set in SaveContract(), called below.
 //	m_strFoldername	= strFoldername;
 //	m_strFilename	= strFilename;
-	
+
 	OTLog::Output(2, "OTContract::SaveToContractFolder: Saving asset contract to disk...\n");
-	
+
 	return SaveContract(strFoldername.Get(), strFilename.Get());
 }
 
@@ -869,7 +869,7 @@ void OTContract::GetIdentifier(OTString & theIdentifier)
 
 
 
-// Make sure this contract checks out. Very high level. 
+// Make sure this contract checks out. Very high level.
 // Verifies ID, existence of public key, and signature.
 //
 bool OTContract::VerifyContract()
@@ -881,7 +881,7 @@ bool OTContract::VerifyContract()
 		OTLog::vOutput(1, "%s: Failed verifying contract ID.\n", __FUNCTION__);
 		return false;
 	}
-	
+
 	// Make sure we are able to read the official "contract" public key out of this contract.
 	const OTPseudonym * pNym = this->GetContractPublicNym();
 
@@ -890,7 +890,7 @@ bool OTContract::VerifyContract()
 		OTLog::vOutput(0, "%s: Failed retrieving public nym from contract.\n", __FUNCTION__);
 		return false;
 	}
-	
+
 	if (false == this->VerifySignature(*pNym))
 	{
         const OTIdentifier theNymID(*pNym);
@@ -901,7 +901,7 @@ bool OTContract::VerifyContract()
 		return false;
 	}
 
-	
+
 	OTLog::Output(1, "\nVerified -- The Contract ID from the wallet matches the newly-calculated hash of the contract file.\n"
 			"Verified -- A standard \"contract\" Public Key or x509 Cert WAS found inside the contract.\n"
 			"Verified -- And the **SIGNATURE VERIFIED** with THAT key.\n\n");
@@ -914,12 +914,12 @@ bool OTContract::VerifyContract()
 
 void OTContract::CalculateContractID(OTIdentifier & newID)
 {
-	// may be redundant...	
+	// may be redundant...
 	std::string str_Trim(m_strRawFile.Get());
 	std::string str_Trim2 = OTString::trim(str_Trim);
 
 	OTString strTemp(str_Trim2.c_str());
-	
+
 	if (!newID.CalculateDigest(strTemp))
 		OTLog::vError("%s: Error calculating Contract digest.\n", __FUNCTION__);
 }
@@ -932,13 +932,13 @@ bool OTContract::VerifyContractID()
 {
 	OTIdentifier newID;
     this->CalculateContractID(newID);
-	
-	// newID now contains the Hash aka Message Digest aka Fingerprint 
-	// aka thumbprint aka "IDENTIFIER" of the Contract. 
-	// 
+
+	// newID now contains the Hash aka Message Digest aka Fingerprint
+	// aka thumbprint aka "IDENTIFIER" of the Contract.
+	//
 	// Now let's compare that identifier to the one already loaded by the wallet
 	// for this contract and make sure they MATCH.
-	
+
 	// I use the == operator here because there is no != operator at this time.
 	// That's why you see the ! outside the parenthesis.
     //
@@ -967,14 +967,14 @@ bool OTContract::VerifyContractID()
 // -------------------------------------------------------------------------------
 
 
-		
+
 const OTPseudonym * OTContract::GetContractPublicNym()
 {
 	FOR_EACH(mapOfNyms, m_mapNyms)
-	{		
+	{
 		OTPseudonym * pNym = (*it).second;
 		OT_ASSERT_MSG(NULL != pNym, "NULL pseudonym pointer in OTContract::GetContractPublicNym.\n");
-		
+
         // We favor the new "credential" system over the old "public key" system.
         // No one will ever actually put BOTH in a single contract. But if they do,
         // we favor the new version over the old.
@@ -988,8 +988,8 @@ const OTPseudonym * OTContract::GetContractPublicNym()
 			return pNym;
 		}
 	}
-	
-	return NULL;	
+
+	return NULL;
 }
 
 // -------------------------------------------------------------------------------
@@ -1001,10 +1001,10 @@ const OTPseudonym * OTContract::GetContractPublicNym()
 const OTAsymmetricKey * OTContract::GetContractPublicKey()
 {
 	FOR_EACH(mapOfNyms, m_mapNyms)
-	{		
+	{
 		OTPseudonym	* pNym = (*it).second;
 		OT_ASSERT_MSG(NULL != pNym, "NULL pseudonym pointer in OTContract::GetContractPublicKey.\n");
-		
+
         // We favor the new "credential" system over the old "public key" system.
         // No one will ever actually put BOTH in a single contract. But if they do,
         // we favor the new version over the old.
@@ -1020,7 +1020,7 @@ const OTAsymmetricKey * OTContract::GetContractPublicKey()
 			return const_cast<OTAsymmetricKey *>(pKey);
 		}
 	}
-	
+
 	return NULL;
 }
 
@@ -1042,7 +1042,7 @@ bool OTContract::SignContract(const OTPseudonym & theNym,
 
 	if (bSigned)
 		m_listSignatures.push_back(pSig);
-	else 
+	else
 	{
         OTLog::vError("%s: Failure while calling this->SignContract(theNym, *pSig, pPWData)\n",
                       __FUNCTION__);
@@ -1065,7 +1065,7 @@ bool OTContract::SignContractAuthent(const OTPseudonym & theNym,
 
 	if (bSigned)
 		m_listSignatures.push_back(pSig);
-	else 
+	else
 	{
         OTLog::vError("%s: Failure while calling this->SignContractAuthent(theNym, *pSig, pPWData)\n",
                       __FUNCTION__);
@@ -1112,7 +1112,7 @@ bool OTContract::SignWithKey(const OTAsymmetricKey & theKey,
 	OT_ASSERT_MSG(NULL != pSig, "OTContract::SignWithKey: Error allocating memory for Signature.\n");
     // --------------------------------
 	bool bSigned = this->SignContract(theKey, *pSig, m_strSigHashType, pPWData);
-    
+
 	if (bSigned)
 		m_listSignatures.push_back(pSig);
 	else
@@ -1184,8 +1184,8 @@ bool OTContract::SignContract(const OTAsymmetricKey & theKey,
     // -------------------------------------------------
     // Update the contents, (not always necessary, many contracts are read-only)
 	// This is where we provide an overridable function for the child classes that
-	// need to update their contents at this point. 
-	// But the OTContract version of this function is actually empty, since the 
+	// need to update their contents at this point.
+	// But the OTContract version of this function is actually empty, since the
 	// default behavior is that contract contents don't change.
 	// (Accounts and Messages being two big exceptions.)
     //
@@ -1199,7 +1199,7 @@ bool OTContract::SignContract(const OTAsymmetricKey & theKey,
     {
 		OTLog::vError("%s: OTCrypto::It()->SignContract returned false.\n",
                       szFunc);
-		return false; 
+		return false;
     }
 	// --------------------------------------------------------------------
     return true;
@@ -1217,10 +1217,10 @@ bool OTContract::SignContract(const char     * szFoldername,
                               const char     * szFilename,    // for Certfile, for private key.
                               OTSignature    & theSignature,  // output
                               OTPasswordData * pPWData/*=NULL*/)
-{	
+{
 	OT_ASSERT(NULL != szFoldername);
 	OT_ASSERT(NULL != szFilename);
-	// --------------------------------------------------------------------	    
+	// --------------------------------------------------------------------
     const char * szFunc = "OTContract::SignContract";
 	// --------------------------------------------------------------------
 	if (false == OTDB::Exists(szFoldername, szFilename))
@@ -1231,7 +1231,7 @@ bool OTContract::SignContract(const char     * szFoldername,
 	}
 	// --------------------------------------------------------------------
     const std::string strCertFileContents(OTDB::QueryPlainString(szFoldername, szFilename)); // <=== LOADING FROM DATA STORE.
-	
+
 	if (strCertFileContents.length() < 2)
 	{
 		OTLog::vError("%s: Error reading file: %s%s%s\n", szFunc,
@@ -1245,8 +1245,8 @@ bool OTContract::SignContract(const char     * szFoldername,
     // --------------------------------------------------------------------
     // Update the contents, (not always necessary, many contracts are read-only)
 	// This is where we provide an overridable function for the child classes that
-	// need to update their contents at this point. 
-	// But the OTContract version of this function is actually empty, since the 
+	// need to update their contents at this point.
+	// But the OTContract version of this function is actually empty, since the
 	// default behavior is that contract contents don't change.
 	// (Accounts and Messages being two big exceptions.)
     //
@@ -1260,7 +1260,7 @@ bool OTContract::SignContract(const char     * szFoldername,
     {
 		OTLog::vError("%s: OTCrypto::It()->SignContract returned false, using Cert file: %s%s%s\n",
                       szFunc, szFoldername, OTLog::PathSeparator(), szFilename);
-		return false; 
+		return false;
     }
 	// --------------------------------------------------------------------
     return true;
@@ -1282,12 +1282,12 @@ bool OTContract::VerifySignature(const char        * szFoldername,
 {
 	OT_ASSERT_MSG(NULL != szFoldername, "Null foldername pointer passed to OTContract::VerifySignature");
 	OT_ASSERT_MSG(NULL != szFilename,   "Null filename pointer passed to OTContract::VerifySignature");
-	// --------------------------------------------------------------------	    	
+	// --------------------------------------------------------------------
     const char * szFunc = __FUNCTION__;
-	// --------------------------------------------------------------------	    
+	// --------------------------------------------------------------------
 	// Read public key
-	OTLog::vOutput(2, "%s: Reading public key from certfile in order to verify signature...\n", szFunc); 
-	// --------------------------------------------------------------------	
+	OTLog::vOutput(2, "%s: Reading public key from certfile in order to verify signature...\n", szFunc);
+	// --------------------------------------------------------------------
 	if (false == OTDB::Exists(szFoldername, szFilename))
 	{
 		OTLog::vError("%s: File does not exist: %s%s%s\n", szFunc,
@@ -1296,7 +1296,7 @@ bool OTContract::VerifySignature(const char        * szFoldername,
 	}
 	// --------------------------------------------------------------------
 	const std::string strCertFileContents(OTDB::QueryPlainString(szFoldername, szFilename)); // <=== LOADING FROM DATA STORE.
-	
+
 	if (strCertFileContents.length() < 2)
 	{
 		OTLog::vError("%s: Error reading file: %s%s%s\n", szFunc,
@@ -1316,7 +1316,7 @@ bool OTContract::VerifySignature(const char        * szFoldername,
     {
 		OTLog::vOutput(4, "%s: OTCrypto::It()->VerifySignature returned false, using Cert file: %s%s%s\n",
                       szFunc, szFoldername, OTLog::PathSeparator(), szFilename);
-		return false; 
+		return false;
     }
 	// --------------------------------------------------------------------
     return true;
@@ -1438,7 +1438,7 @@ bool OTContract::VerifySigAuthent(const OTPseudonym & theNym,
 
     OTPasswordData       thePWData("OTContract::VerifySigAuthent 1");
     listOfAsymmetricKeys listOutput;
-    
+
     const int nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'A'); // 'A' for authentication key.
 
     if (nCount > 0) // Found some (potentially) matching keys...
@@ -1480,7 +1480,7 @@ bool OTContract::VerifySignature(const OTPseudonym & theNym,
 
     OTPasswordData       thePWData("OTContract::VerifySignature 1");
     listOfAsymmetricKeys listOutput;
-    
+
     const int nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'S'); // 'S' for signing key.
 
     if (nCount > 0) // Found some (potentially) matching keys...
@@ -1556,7 +1556,7 @@ bool OTContract::VerifySignature(const OTAsymmetricKey & theKey,
 void OTContract::ReleaseSignatures()
 {
 	OTSignature * pSig = NULL;
-	
+
 	while (!m_listSignatures.empty())
 	{
 		pSig = m_listSignatures.front();
@@ -1575,8 +1575,8 @@ bool OTContract::DisplayStatistics(OTString & strContents) const
 {
 	// Subclasses may override this.
 	strContents.Concatenate(const_cast<char*>("ERROR:  OTContract::DisplayStatistics was called instead of a subclass...\n"));
-	
-	return false;	
+
+	return false;
 }
 
 
@@ -1586,7 +1586,7 @@ bool OTContract::DisplayStatistics(OTString & strContents) const
 bool OTContract::SaveContractWallet(OTString & strContents) const
 {
 	// Subclasses may use this.
-	
+
 	return false;
 }
 
@@ -1595,9 +1595,9 @@ bool OTContract::SaveContractWallet(OTString & strContents) const
 
 
 bool OTContract::SaveContents(std::ofstream & ofs) const
-{	
+{
 	ofs << m_xmlUnsigned.Get();
-	
+
 	return true;
 }
 
@@ -1622,18 +1622,18 @@ bool OTContract::SaveContract()
 {
 	OTString strTemp;
 	bool bSuccess = RewriteContract(strTemp);
-	
+
 	if (bSuccess)
 	{
 		m_strRawFile.Set(strTemp);
-		
+
 		// RewriteContract() already does this.
 		//
 //		std::string str_Trim(strTemp.Get());
 //		std::string str_Trim2 = OTString::trim(str_Trim);
 //		m_strRawFile.Set(str_Trim2.c_str());
 	}
-	
+
 	return bSuccess;
 }
 
@@ -1647,7 +1647,7 @@ void OTContract::UpdateContents()
 	// (OTAccount and OTMessage, for example.)
 	//
 	// This function is called just prior to the signing of a contract.
-    
+
     // Update: MOST child classes actually use this.
     // The server and asset contracts are not meant to ever change after
     // they are signed. However, many other contracts are meant to change
@@ -1668,17 +1668,17 @@ void OTContract::UpdateContents()
 bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContractType, OTPseudonym & theSigner, OTString & strOutput)
 {
 	const char * szFunc = "OTContract::SignFlatText";
-    // ----------------------    
+    // ----------------------
     // Trim the input to remove any extraneous whitespace
     //
     std::string str_Trim(strFlatText.Get());
 	std::string str_Trim2 = OTString::trim(str_Trim);
-	
+
 	strFlatText.Set(str_Trim2.c_str());
     // ---------------------------------------------------------
     char cNewline = 0;
     const uint32_t lLength = strFlatText.GetLength();
-    
+
     if ((3 > lLength) || !strFlatText.At(lLength - 1, cNewline))
     {
         OTLog::vError("%s: Invalid input: text is less than 3 bytes "
@@ -1686,7 +1686,7 @@ bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContra
                       "a newline is meant to be.\n", szFunc);
         return false;
     }
-    // ----------------------    
+    // ----------------------
     // ADD a newline, if necessary.
     // (The -----BEGIN part needs to start on its OWN LINE...)
     //
@@ -1695,7 +1695,7 @@ bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContra
     // Therefore the final newline should be at 9.
     // Therefore if char_at_index[lLength-1] != '\n'
     // Concatenate one!
-    
+
     OTString strInput;
     if ('\n' == cNewline) // It already has a newline
         strInput = strFlatText;
@@ -1704,16 +1704,16 @@ bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContra
     // ----------------------
     OTSignature      theSignature;
     OTPasswordData   thePWData("Signing flat text (need private key)");
-    
+
     if (false == OTCrypto::It()->SignContract(strInput,
                                               theSigner.GetPrivateSignKey(),
                                               theSignature, // the output
                                               OTIdentifier::DefaultHashAlgorithm,
                                               &thePWData))
     {
-        OTLog::vError("%s: SignContract failed. Contents:\n\n%s\n\n\n", 
+        OTLog::vError("%s: SignContract failed. Contents:\n\n%s\n\n\n",
                       szFunc, strInput.Get());
-        return false;        
+        return false;
     }
     // -----------------------------------
     listOfSignatures listSignatures;
@@ -1755,7 +1755,7 @@ bool OTContract::AddBookendsAroundContent(      OTString         & strOutput,
 {
 	OTString strTemp;
 	// ---------------------------------------------------------------
-	strTemp.Concatenate("-----BEGIN SIGNED %s-----\nHash: %s\n\n", 
+	strTemp.Concatenate("-----BEGIN SIGNED %s-----\nHash: %s\n\n",
 						strContractType.Get(), strHashType.Get());
 	// ---------------------------------------------------------------
     strTemp.Concatenate("%s", strContents.Get());
@@ -1784,8 +1784,8 @@ bool OTContract::AddBookendsAroundContent(      OTString         & strOutput,
 	std::string str_Trim(strTemp.Get());
 	std::string str_Trim2 = OTString::trim(str_Trim);
 	strOutput.Set(str_Trim2.c_str());
-	// ---------------------------------------------------------------	
-	return true;		
+	// ---------------------------------------------------------------
+	return true;
 }
 
 
@@ -1801,7 +1801,7 @@ bool OTContract::RewriteContract(OTString & strOutput) const
 {
 	OTString strContents;
 	this->SaveContents(strContents);
-	// ---------------------------------------------------------------    
+	// ---------------------------------------------------------------
     return OTContract::AddBookendsAroundContent(strOutput, strContents,
                                                 m_strContractType,
                                                 m_strSigHashType,
@@ -1809,49 +1809,49 @@ bool OTContract::RewriteContract(OTString & strOutput) const
 }
 
 // -------------------------------------------------------------------------------
-	
+
 bool OTContract::SaveContract(const char * szFoldername, const char * szFilename)
 {
 	OT_ASSERT_MSG(NULL != szFilename, "Null filename sent to OTContract::SaveContract\n");
 	OT_ASSERT_MSG(NULL != szFoldername, "Null foldername sent to OTContract::SaveContract\n");
-	
+
 	m_strFoldername.Set(szFoldername);
 	m_strFilename.Set(szFilename);
-	
+
 	OT_ASSERT(m_strFoldername.GetLength() > 2);
 	OT_ASSERT(m_strFilename.GetLength() > 2);
-	
+
 	// --------------------------------------------------------------------
-    
+
     if (!m_strRawFile.Exists())
     {
-		OTLog::vError("OTContract::SaveContract: Error saving file (contract contents are empty): %s%s%s\n", 
+		OTLog::vError("OTContract::SaveContract: Error saving file (contract contents are empty): %s%s%s\n",
 					  szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
     }
     // --------------------------------------------------------------------
 
 	OTString strFinal;
-    
+
     OTASCIIArmor ascTemp(m_strRawFile);
-    
+
     if (false == ascTemp.WriteArmoredString(strFinal, m_strContractType.Get()))
     {
-		OTLog::vError("OTContract::SaveContract: Error saving file (failed writing armored string): %s%s%s\n", 
+		OTLog::vError("OTContract::SaveContract: Error saving file (failed writing armored string): %s%s%s\n",
 					  szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
     }
     // --------------------------------------------------------------------
 	bool bSaved = OTDB::StorePlainString(strFinal.Get(), szFoldername, szFilename);
-	
+
 	if (!bSaved)
 	{
-		OTLog::vError("OTContract::SaveContract: Error saving file: %s%s%s\n", 
+		OTLog::vError("OTContract::SaveContract: Error saving file: %s%s%s\n",
 					  szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
-	// --------------------------------------------------------------------	
-	return true;	
+	// --------------------------------------------------------------------
+	return true;
 }
 
 
@@ -1866,34 +1866,34 @@ bool OTContract::SaveContract(const char * szFoldername, const char * szFilename
 // Then it reads that file into a string.
 // Then it parses that string into the object.
 bool OTContract::LoadContract()
-{		
+{
 	Release();
 	LoadContractRawFile(); // opens m_strFilename and reads into m_strRawFile
-	
+
 	return ParseRawFile(); // Parses m_strRawFile into the various member variables.
 }
 
 // -------------------------------------------------------------------------------
 
 
-	
-// The entire Raw File, signatures and all, is used to calculate the hash 
+
+// The entire Raw File, signatures and all, is used to calculate the hash
 // value that becomes the ID of the contract. If you change even one letter,
 // then you get a different ID.
 // This applies to all contracts except accounts, since their contents must
-// change periodically, their ID is not calculated from a hash of the file, 
+// change periodically, their ID is not calculated from a hash of the file,
 // but instead is chosen at random when the account is created.
 bool OTContract::LoadContractRawFile()
-{	
+{
 	const char * szFoldername = m_strFoldername.Get();
 	const char * szFilename = m_strFilename.Get();
-	
+
 	if (!m_strFoldername.Exists() || !m_strFilename.Exists())
 		return false;
 	// --------------------------------------------------------------------
 	if (false == OTDB::Exists(szFoldername, szFilename))
 	{
-		OTLog::vError("%s: File does not exist: %s%s%s\n", 
+		OTLog::vError("%s: File does not exist: %s%s%s\n",
 					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
@@ -1902,7 +1902,7 @@ bool OTContract::LoadContractRawFile()
 
 	if (false == strFileContents.Exists())
 	{
-		OTLog::vError("%s: Error reading file: %s%s%s\n", 
+		OTLog::vError("%s: Error reading file: %s%s%s\n",
 					  __FUNCTION__, szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
 	}
@@ -1929,16 +1929,16 @@ bool OTContract::LoadContractRawFile()
 bool OTContract::LoadContract(const char * szFoldername, const char * szFilename)
 {
 	Release();
-	
+
 	m_strFoldername.Set(szFoldername);
 	m_strFilename.Set(szFilename);
 	// --------------------------------------------
 	// opens m_strFilename and reads into m_strRawFile
 	if (LoadContractRawFile())
 		return ParseRawFile(); // Parses m_strRawFile into the various member variables.
-	else 
+	else
 	{
-		OTLog::vError("Failed loading raw contract file: %s%s%s\n", 
+		OTLog::vError("Failed loading raw contract file: %s%s%s\n",
 					  m_strFoldername.Get(), OTLog::PathSeparator(), m_strFilename.Get());
 	}
 	return false;
@@ -1961,7 +1961,7 @@ bool OTContract::LoadContractFromString(const OTString & theStr)
 	}
     // --------------------------------------------------------------------
     OTString strContract(theStr);
-    
+
     if (false == strContract.DecodeIfArmored()) // bEscapedIsAllowed=true by default.
     {
         OTLog::vError("%s: ERROR: Input string apparently was encoded and then failed decoding. "
@@ -1970,14 +1970,14 @@ bool OTContract::LoadContractFromString(const OTString & theStr)
     }
     // ------------------------------------------
     m_strRawFile.Set(strContract);
-    
+
 	// This populates m_xmlUnsigned with the contents of m_strRawFile (minus bookends, signatures, etc. JUST the XML.)
 	bool bSuccess = ParseRawFile(); // It also parses into the various member variables.
-	
+
     // Removed:
     // This was the bug where the version changed from 75 to 75c, and suddenly contract ID was wrong...
     //
-	// If it was a success, save back to m_strRawFile again so 
+	// If it was a success, save back to m_strRawFile again so
 	// the format is consistent and hashes will calculate properly.
 //	if (bSuccess)
 //	{
@@ -1985,8 +1985,8 @@ bool OTContract::LoadContractFromString(const OTString & theStr)
 //		// then we use that to generate the raw file again, re-attaching the signatures.
 //		// This function does that.
 //		SaveContract();
-//	} 
-	
+//	}
+
 	return bSuccess;
 }
 
@@ -1996,51 +1996,51 @@ bool OTContract::ParseRawFile()
 {
 	char buffer1[2100]; // a bit bigger than 2048, just for safety reasons.
 	OTSignature * pSig = NULL;
-	
+
 	std::string line;
-	
+
 	bool bSignatureMode = false; // "currently in signature mode"
 	bool bContentMode = false; // "currently in content mode"
 	bool bHaveEnteredContentMode = false; // "have yet to enter content mode"
-	
+
 	if (!m_strRawFile.GetLength())
 	{
-		OTLog::vError("Empty m_strRawFile in OTContract::ParseRawFile. Filename: %s%s%s.\n", 
+		OTLog::vError("Empty m_strRawFile in OTContract::ParseRawFile. Filename: %s%s%s.\n",
 					  m_strFoldername.Get(), OTLog::PathSeparator(), m_strFilename.Get());
 		return false;
 	}
-	
+
 	// This is redundant (I thought) but the problem hasn't cleared up yet.. so trying to really nail it now.
 	std::string str_Trim(m_strRawFile.Get());
 	std::string str_Trim2 = OTString::trim(str_Trim);
 	m_strRawFile.Set(str_Trim2.c_str());
 	// ----------------------------------------
-	
+
 	bool bIsEOF = false;
 	m_strRawFile.reset();
-	
+
 	do
 	{
 		// Just a fresh start at the top of the loop block... probably unnecessary.
 		memset(buffer1, 0, 2100); // todo remove this in optimization. (might be removed already...)
-		
+
 		// the call returns true if there's more to read, and false if there isn't.
 		bIsEOF = !(m_strRawFile.sgets(buffer1, 2048));
-		
+
 		line = buffer1;
 		const char * pConstBuf = line.c_str();
 		char * pBuf = (char *)pConstBuf;
-		
-		
+
+
 		if (line.length() < 2)
 		{
 			if (bSignatureMode)
 				continue;
 		}
-		
+
 		// if we're on a dashed line...
 		else if (line.at(0) == '-')
-		{			
+		{
 			if (bSignatureMode)
 			{
 				// we just reached the end of a signature
@@ -2049,17 +2049,17 @@ bool OTContract::ParseRawFile()
 				bSignatureMode = false;
 				continue;
 			}
-			
+
 			// if I'm NOT in signature mode, and I just hit a dash, that means there
 			// are only four options:
-			
+
 			// a. I have not yet even entered content mode, and just now entering it for the first time.
 			if (!bHaveEnteredContentMode)
 			{
-				if ((line.length() > 3) && 
-					(line.find("BEGIN")!=std::string::npos) && 
-					line.at(1) == '-' && 
-					line.at(2) == '-' && 
+				if ((line.length() > 3) &&
+					(line.find("BEGIN")!=std::string::npos) &&
+					line.at(1) == '-' &&
+					line.at(2) == '-' &&
 					line.at(3) == '-')
 				{
 //					OTLog::Error("\nProcessing contract... \n");
@@ -2070,10 +2070,10 @@ bool OTContract::ParseRawFile()
 				else
 				{
 					continue;
-				}				
-				
+				}
+
 			}
-			
+
 			// b. I am now entering signature mode!
 			else if (line.length() > 3 && line.find("SIGNATURE")!=std::string::npos && line.at(1) == '-' && line.at(2) == '-' && line.at(3) == '-')
 			{
@@ -2081,33 +2081,33 @@ bool OTContract::ParseRawFile()
 				//	OTLog::Output(3, "Finished reading contract.\n\nReading a signature at the bottom of the contract...\n");
 				//else
 				//	OTLog::Output(3, "Reading another signature...\n");
-				
+
 				bSignatureMode = true;
 				bContentMode   = false;
-				
+
 				pSig = new OTSignature();
-				
+
 				OT_ASSERT_MSG(NULL != pSig, "Error allocating memory for Signature in OTContract::ParseRawFile\n");
-				
+
 				m_listSignatures.push_back(pSig);
-				
+
 				continue;
 			}
 			// c. There is an error in the file!
 			else if (line.length() < 3 || line.at(1) != ' ' || line.at(2) != '-')
 			{
 				OTLog::vOutput(0, "Error in contract %s: a dash at the beginning of the "
-						"line should be followed by a space and another dash:\n%s\n", 
+						"line should be followed by a space and another dash:\n%s\n",
 							   m_strFilename.Get(), m_strRawFile.Get());
 				return false;
 			}
 			// d. It is an escaped dash, and therefore kosher, so I merely remove the escape and add it.
-			else 
+			else
 				; // I've decided not to remove the dashes but to keep them as part of the signed content.
 			// It's just much easier to deal with that way. The input code will insert the extra dashes.
-			//pBuf += 2;  
+			//pBuf += 2;
 		}
-		
+
 		// Else we're on a normal line, not a dashed line.
 		else
 		{
@@ -2118,46 +2118,46 @@ bool OTContract::ParseRawFile()
 					if (line.length() < 2)
 					{
 						OTLog::Output(3, "Skipping short line...\n");
-						
+
 						if (bIsEOF || !m_strRawFile.sgets(buffer1, 2048))
 						{
 							OTLog::vOutput(0, "Error in signature for contract %s: Unexpected EOF after short line.\n",
                                            m_strFilename.Get());
 							return false;
 						}
-						
+
 						continue;
 					}
 					else if (line.compare(0,8,"Version:") == 0)
 					{
 						OTLog::Output(3, "Skipping version section...\n");
-						
+
 						if (bIsEOF || !m_strRawFile.sgets(buffer1, 2048))
 						{
 							OTLog::vOutput(0, "Error in signature for contract %s: Unexpected EOF after \"Version:\"\n",
                                            m_strFilename.Get());
 							return false;
 						}
-						
+
 						continue;
 					}
 					else if (line.compare(0,8,"Comment:") == 0)
 					{
 						OTLog::Output(3, "Skipping comment section...\n");
-						
+
 						if (bIsEOF || !m_strRawFile.sgets(buffer1, 2048))
 						{
 							OTLog::vOutput(0, "Error in signature for contract %s: Unexpected EOF after \"Comment:\"\n",
                                            m_strFilename.Get());
 							return false;
 						}
-						
+
 						continue;
 					}
 					if (line.compare(0,5,"Meta:") == 0)
 					{
 						OTLog::Output(3, "Collecting signature metadata...\n");
-                        
+
                         if (line.length() != 13) // "Meta:    knms" (It will always be exactly 13 characters long.) knms represents the first characters of the Key type, NymID, Master Cred ID, and Subcred ID. Key type is (A|E|S) and the others are base62.
                         {
                             OTLog::vOutput(0, "Error in signature for contract %s: Unexpected length for \"Meta:\" comment.\n",
@@ -2170,7 +2170,7 @@ bool OTContract::ParseRawFile()
                         {
                             OTLog::vOutput(0, "Error in signature for contract %s: Unexpected metadata in the \"Meta:\" comment.\nLine: %s\n",
                                            m_strFilename.Get(), line.c_str());
-							return false;                            
+							return false;
                         }
                         // -----------------------------------------------------------
 						if (bIsEOF || !m_strRawFile.sgets(buffer1, 2048))
@@ -2179,7 +2179,7 @@ bool OTContract::ParseRawFile()
                                            m_strFilename.Get());
 							return false;
 						}
-						
+
 						continue;
 					}
 				}
@@ -2188,14 +2188,14 @@ bool OTContract::ParseRawFile()
 					if (line.compare(0,6,"Hash: ") == 0)
 					{
 						OTLog::Output(3, "Collecting message digest algorithm from contract header...\n");
-						
+
 						std::string strTemp = line.substr(6);
 						m_strSigHashType = strTemp.c_str();
 						m_strSigHashType.ConvertToUpperCase();
-						
+
 						if (bIsEOF || !m_strRawFile.sgets(buffer1, 2048))
 						{
-							OTLog::vOutput(0, "Error in contract %s: Unexpected EOF after \"Hash:\"\n", 
+							OTLog::vOutput(0, "Error in contract %s: Unexpected EOF after \"Hash:\"\n",
                                            m_strFilename.Get());
 							return false;
 						}
@@ -2208,7 +2208,7 @@ bool OTContract::ParseRawFile()
 		if (bSignatureMode)
 		{
 			OT_ASSERT_MSG(NULL != pSig, "Error: Null Signature pointer WHILE processing signature, in OTContract::ParseRawFile");
-			
+
 			pSig->Concatenate("%s\n", pBuf);
 		}
 		else if (bContentMode)
@@ -2216,7 +2216,7 @@ bool OTContract::ParseRawFile()
 	}
 	while(!bIsEOF);
 	//	while(!bIsEOF && (!bHaveEnteredContentMode || bContentMode || bSignatureMode));
-	
+
 	if (!bHaveEnteredContentMode)
 	{
 		OTLog::Error("Error in OTContract::ParseRawFile: Found no BEGIN for signed content.\n");
@@ -2243,7 +2243,7 @@ bool OTContract::ParseRawFile()
 //		OTLog::Error("Error in OTContract::ParseRawFile: Contract ID does not match hashed contract file.\n");
 //		return false;
 //	}
-	else 
+	else
 	{
 		return true;
 	}
@@ -2259,48 +2259,48 @@ bool OTContract::ParseRawFile()
 bool OTContract::LoadContractXML()
 {
 	int retProcess = 0;
-	
+
 	if (!m_xmlUnsigned.Exists())
 	{
 		return false;
 	}
-	
+
     m_xmlUnsigned.reset();
-    
+
 	IrrXMLReader* xml = createIrrXMLReader(&m_xmlUnsigned);
 	OT_ASSERT_MSG(NULL != xml, "Memory allocation issue with xml reader in OTContract::LoadContractXML()\n");
     OTCleanup<IrrXMLReader> xmlAngel(*xml);
-    
+
 	// parse the file until end reached
 	while(xml->read())
 	{
         OTString strNodeType;
-        
+
 		switch(xml->getNodeType())
 		{
 			case EXN_NONE:         strNodeType.Set("EXN_NONE");        goto switch_log;
 			case EXN_COMMENT:      strNodeType.Set("EXN_COMMENT");     goto switch_log;
 			case EXN_ELEMENT_END:  strNodeType.Set("EXN_ELEMENT_END"); goto switch_log;
 			case EXN_CDATA:        strNodeType.Set("EXN_CDATA");       goto switch_log;
-                
+
             switch_log:
 //                OTLog::vError("SKIPPING %s element in OTContract::LoadContractXML: "
-//                              "type: %d, name: %s, value: %s\n", 
+//                              "type: %d, name: %s, value: %s\n",
 //                              strNodeType.Get(), xml->getNodeType(), xml->getNodeName(), xml->getNodeData());
-				
+
                 break;
-				
+
 			case EXN_TEXT:
 			{
 				// unknown element type
-//				OTLog::vError( "SKIPPING unknown text element type in OTContract::LoadContractXML: %s, value: %s\n", 
+//				OTLog::vError( "SKIPPING unknown text element type in OTContract::LoadContractXML: %s, value: %s\n",
 //							  xml->getNodeName(), xml->getNodeData());
 			}
 				break;
 			case EXN_ELEMENT:
 				{
 					retProcess = ProcessXMLNode(xml);
-					
+
 					// an error was returned. file format or whatever.
 					if ((-1) == retProcess)
 					{
@@ -2311,23 +2311,23 @@ bool OTContract::LoadContractXML()
 					else if (0 == retProcess)
 					{
 						// unknown element type
-						OTLog::vError("UNKNOWN element type in OTContract::LoadContractXML: %s, value: %s\n", 
-								xml->getNodeName(), xml->getNodeData());                        
+						OTLog::vError("UNKNOWN element type in OTContract::LoadContractXML: %s, value: %s\n",
+								xml->getNodeName(), xml->getNodeData());
 					}
 					// else if 1 was returned, that means the node was processed.
 				}
 				break;
 			default:
 			{
-//                OTLog::vError("SKIPPING (default case) element in OTContract::LoadContractXML: %d, value: %s\n", 
-//                              xml->getNodeType(), xml->getNodeData());                
+//                OTLog::vError("SKIPPING (default case) element in OTContract::LoadContractXML: %d, value: %s\n",
+//                              xml->getNodeType(), xml->getNodeData());
 			}
 				continue;
-				
+
 		}
 	}
-		
-	return true;	
+
+	return true;
 }
 
 
@@ -2338,13 +2338,13 @@ bool OTContract::LoadContractXML()
 bool OTContract::SkipToElement(IrrXMLReader*& xml)
 {
 	OT_ASSERT_MSG(NULL != xml, "OTContract::SkipToElement -- assert: NULL != xml");
-	
+
     const char * szFunc = "OTContract::SkipToElement";
 	// ------------------
 	while(xml->read() && (xml->getNodeType() != EXN_ELEMENT))
 	{
 //      OTLog::vOutput(0, "%s: Looping to skip non-elements: currently on: %s \n", szFunc, xml->getNodeName());
-        
+
 		if (xml->getNodeType() == EXN_NONE)
 		{ OTLog::vOutput(0, "*** %s: EXN_NONE  (skipping)\n", szFunc); continue; }			// SKIP
 		else if (xml->getNodeType() == EXN_COMMENT)
@@ -2360,9 +2360,9 @@ bool OTContract::SkipToElement(IrrXMLReader*& xml)
 		{ OTLog::vOutput(0, "*** %s: EXN_ELEMENT\n", szFunc); break; }  // (Should never happen due to while() second condition.) Still returns true.
 		else
 		{ OTLog::vError("*** %s: SHOULD NEVER HAPPEN  (Unknown element type!)\n", szFunc); return false; }	// Failure / Error
-	}	
+	}
 	// ------------------
-	
+
 	return true;
 }
 
@@ -2393,16 +2393,16 @@ bool OTContract::SkipToTextField(IrrXMLReader*& xml)
 		{ OTLog::vError("*** %s: EXN_TEXT\n", szFunc); break; } // (Should never happen due to while() second condition.) Still returns true.
 		else
 		{ OTLog::vError("*** %s: SHOULD NEVER HAPPEN  (Unknown element type!)\n", szFunc); return false; }	// Failure / Error
-	}	
+	}
 	// ------------------
-	
+
 	return true;
 }
 
 
 // -------------------------------------------------------------------------------
 
-// AFTER you read an element or text field, there is some whitespace, and you 
+// AFTER you read an element or text field, there is some whitespace, and you
 // just want to bring your cursor back to wherever it should be for the next guy.
 // So you call this function..
 //
@@ -2410,9 +2410,9 @@ bool OTContract::SkipToTextField(IrrXMLReader*& xml)
 bool OTContract::SkipAfterLoadingField(IrrXMLReader*& xml)
 {
 	OT_ASSERT_MSG(NULL != xml, "OTContract::SkipAfterLoadingField -- assert: NULL != xml");
-	
+
     const char * szFunc = "OTContract::SkipAfterLoadingField";
-    
+
 	if (EXN_ELEMENT_END != xml->getNodeType())  // If we're not ALREADY on the ending element, then go there.
 	{
 		// move to the next node which SHOULD be the expected element_end.
@@ -2433,13 +2433,13 @@ bool OTContract::SkipAfterLoadingField(IrrXMLReader*& xml)
 			{ OTLog::vError("*** %s: EXN_TEXT  (Unexpected!)\n", szFunc); return false; }		// Failure / Error
 			else
 			{ OTLog::vError("*** %s: SHOULD NEVER HAPPEN  (Unknown element type!)\n", szFunc); return false; }	// Failure / Error
-		}	
+		}
 	}
 	// ------------------
 	// else ... (already on the ending element.)
 	//
 	// ------------------
-	
+
 	return true;
 }
 
@@ -2453,12 +2453,12 @@ bool OTContract::SkipAfterLoadingField(IrrXMLReader*& xml)
 bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTString & strOutput)
 {
 	OTASCIIArmor ascOutput;
-	
+
 	if (OTContract::LoadEncodedTextField(xml, ascOutput) && ascOutput.GetLength() > 2)
 	{
 		return ascOutput.GetString(strOutput, true); // linebreaks = true
 	}
-	
+
 	return false;
 }
 
@@ -2469,13 +2469,13 @@ bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTString & strOutput)
 //static
 bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTASCIIArmor & ascOutput)
 {
-	OT_ASSERT_MSG(NULL != xml, "OTContract::LoadEncodedTextField -- assert: NULL != xml");	
+	OT_ASSERT_MSG(NULL != xml, "OTContract::LoadEncodedTextField -- assert: NULL != xml");
 	// ------------------
     const char * szFunc = "OTContract::LoadEncodedTextField";
 	// ------------------
 	// If we're not ALREADY on a text field, maybe there is some whitespace, so let's skip ahead...
 	//
-	if (EXN_TEXT != xml->getNodeType())  
+	if (EXN_TEXT != xml->getNodeType())
 	{
         OTLog::vOutput(4, "%s: Skipping non-text field... \n", szFunc);
 
@@ -2494,7 +2494,7 @@ bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTASCIIArmor & ascOutp
 	if (EXN_TEXT == xml->getNodeType())  // SHOULD always be true, in fact this could be an assert().
 	{
 		OTString strNodeData = xml->getNodeData();
-		
+
 		// Sometimes the XML reads up the data with a prepended newline.
 		// This screws up my own objects which expect a consistent in/out
 		// So I'm checking here for that prepended newline, and removing it.
@@ -2509,24 +2509,24 @@ bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTASCIIArmor & ascOutp
 			else
 			{
 				ascOutput.Set(strNodeData.Get());
-			}			
+			}
 			// ----------------------------------------
 			// SkipAfterLoadingField() only skips ahead if it's not ALREADY
-			// sitting on an element_end node. 
+			// sitting on an element_end node.
 			//
 			xml->read(); // THIS PUTS us on the CLOSING TAG.  <========================
-            
+
 			// The below call won't advance any further if it's ALREADY on the closing tag (e.g. from the above xml->read() call.)
 			if (false == SkipAfterLoadingField(xml))
 			{ OTLog::vOutput(0, "*** %s: Bad data? Expected EXN_ELEMENT_END here, but "
 							"didn't get it. Returning false.\n", szFunc); return false; }
-            
+
 			return true;
 		}
 	}
-	else 
+	else
 		OTLog::vOutput(0, "%s: Failure: Unable to find expected text field. 2\n", szFunc);
-	
+
 	return false;
 }
 
@@ -2541,14 +2541,14 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTString & strOu
 											const char *& szName, mapOfStrings * pmapExtraVars/*=NULL*/)
 {
 	OT_ASSERT(NULL != szName);
-	
+
 	OTASCIIArmor ascOutput;
-	
+
 	if (OTContract::LoadEncodedTextFieldByName(xml, ascOutput, szName, pmapExtraVars) && ascOutput.GetLength() > 2)
 	{
 		return ascOutput.GetString(strOutput, true); // linebreaks = true
 	}
-	
+
 	return false;
 }
 
@@ -2579,7 +2579,7 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 			return false;
 		}
 	}
-	// ------------------		
+	// ------------------
 	if (EXN_ELEMENT == xml->getNodeType())  // SHOULD always be true...
 	{
 		if (!strcmp(pElementExpected, xml->getNodeName()))
@@ -2589,9 +2589,9 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 			if (NULL != pmapExtraVars) // If the caller wants values for certain names expected to be on this node.
 			{
 				mapOfStrings & mapExtraVars = (*pmapExtraVars);
-				
+
 				FOR_EACH(mapOfStrings, mapExtraVars)
-				{		
+				{
 
 					std::string first	= ((*it).first);
 //					std::string second	= ((*it).second);
@@ -2601,37 +2601,37 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 					if (strTemp.Exists())
 					{
 						mapExtraVars[first] = strTemp.Get();
-						
+
 //						mapExtraVars.erase(first);
 //						mapExtraVars.insert(std::pair<std::string, std::string>(first, strTemp.Get()));
 					}
 				}
 			} // Any attribute names passed in, now have their corresponding values set on mapExtraVars (for caller.)
-			
+
 			// ----------------------------------------
-			
+
 			if (false == OTContract::LoadEncodedTextField(xml, ascOutput)) // <====================================================
 			{
 				OTLog::vError("%s: Error loading %s field.\n", __FUNCTION__,
 							  pElementExpected);
 				return false; // error condition
 			}
-			else 
+			else
 			{
 				// ----------------------------------------
 				// SkipAfterLoadingField() only skips ahead if it's not ALREADY
-				// sitting on an element_end node. 
+				// sitting on an element_end node.
 				//
 				// Update: Above, LoadEncodedTextField() already does this (below).
 				//
 //				if (false == SkipAfterLoadingField(xml))
 //				{ OTLog::Output(0, "*** %s: Bad data? Expected EXN_ELEMENT_END here, but "
 //								"didn't get it. Returning false.\n", __FUNCTION__); return false; }
-				
+
 				return true;  // <============ SUCCESS!!!!
 			}
 		}
-		else 
+		else
 		{
 			OTLog::vError("%s: Error: missing %s element.\n",
                           __FUNCTION__, pElementExpected);
@@ -2666,12 +2666,12 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 // is unknown.
 //
 bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
-{	
+{
 	Release();
-    
+
     char cNewline = 0; // this is about to contain a byte read from the end of the contract.
     const uint32_t lLength = strContract.GetLength();
-    
+
     if ((3 > lLength) || !strContract.At(lLength - 1, cNewline))
     {
         OTLog::vError("%s: Invalid input: contract is less than 3 bytes "
@@ -2687,18 +2687,18 @@ bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
     // Therefore the final newline should be at 9.
     // Therefore if char_at_index[lLength-1] != '\n'
     // Concatenate one!
-    
+
     if ('\n' == cNewline) // It already has a newline
         m_xmlUnsigned = strContract;
     else
         m_xmlUnsigned.Format("%s\n", strContract.Get());
-    
+
     // ----------------------
 	// This function assumes that m_xmlUnsigned is ready to be processed.
 	// This function only processes that portion of the contract.
     //
 	bool bLoaded = this->LoadContractXML();
-	
+
 	if (bLoaded)
 	{
 		// -----------------------------------
@@ -2787,7 +2787,7 @@ bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
         // -----------------------------------
 		OTIdentifier NEW_ID;
 		this->CalculateContractID(NEW_ID);
-		m_ID = NEW_ID;	
+		m_ID = NEW_ID;
         // -----------------------------------
 		return true;
 	}
@@ -2825,17 +2825,17 @@ void OTContract::CreateInnerContents()
     // KEYS (old) / CREDENTIALS (new)
     //
     if (m_mapNyms.size() > 0)
-    {        
+    {
         OTString strTemp;
         // --------------------
         // KEYS  (Note: deprecated in favor of NymID source and credentials.)
-        //        
+        //
         FOR_EACH(mapOfNyms, m_mapNyms)
         {
             std::string   str_name = (*it).first;
             OTPseudonym * pNym     = (*it).second;
             OT_ASSERT_MSG(NULL != pNym, "1: NULL pseudonym pointer in OTContract::CreateInnerContents.\n");
-            
+
             if (("contract"            == str_name) ||
                 ("certification"       == str_name) ||
                 ("serverCertification" == str_name))
@@ -2863,7 +2863,7 @@ void OTContract::CreateInnerContents()
             std::string   str_name = (*it).first;
             OTPseudonym * pNym     = (*it).second;
             OT_ASSERT_MSG(NULL != pNym, "2: NULL pseudonym pointer in OTContract::CreateInnerContents.\n");
-            
+
             if ("signer" == str_name)
             {
                 const bool bHasCredentials = (pNym->GetMasterCredentialCount() > 0);
@@ -2913,7 +2913,7 @@ void OTContract::CreateInnerContents()
                     {    // -----------------------------------------------
                         OTString       strCredList;
                         mapOfStrings & theMap = pMap->the_map;
-                        
+
                         pNym->GetPublicCredentials(strCredList, &theMap);
                         // -----------------------------------------------
                         // Serialize the StringMap to a string...
@@ -2937,7 +2937,7 @@ void OTContract::CreateInnerContents()
                 // ----------------------------------
 
                 strTemp.Concatenate("</%s>\n\n", str_name.c_str());//"signer"
-                
+
             } // "signer"
         } // FOR_EACH
         // --------------------
@@ -2970,7 +2970,7 @@ void OTContract::CreateContents()
 int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
 {
     const OTString strNodeName(xml->getNodeName());
-    
+
 	if (strNodeName.Compare("entity"))
 	{
 		m_strEntityShortName = xml->getAttributeValue("shortname");
@@ -2979,8 +2979,8 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
         // ----------------------------------------
 		m_strEntityLongName  = xml->getAttributeValue("longname");
 		m_strEntityEmail     = xml->getAttributeValue("email");
-		
-		OTLog::vOutput(1, "Loaded Entity, shortname: %s\nLongname: %s, email: %s\n----------\n", 
+
+		OTLog::vOutput(1, "Loaded Entity, shortname: %s\nLongname: %s, email: %s\n----------\n",
 				m_strEntityShortName.Get(), m_strEntityLongName.Get(), m_strEntityEmail.Get());
 
 		return 1;
@@ -2994,7 +2994,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
         OTString strConditionValue;
 
 		strConditionName  = xml->getAttributeValue("name");
-		// ------------------		
+		// ------------------
 		if (false == SkipToTextField(xml))
 		{
 			OTLog::vOutput(0, "OTContract::ProcessXMLNode: Failure: Unable to find expected text field for xml node named: %s\n",
@@ -3018,9 +3018,9 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
         m_mapConditions.insert(std::pair<std::string, std::string>(strConditionName.Get(), strConditionValue.Get()));
         // ------------------
 		OTLog::vOutput(1, "---- Loaded condition \"%s\"\n", strConditionName.Get());
-//		OTLog::vOutput(1, "Loading condition \"%s\": %s----------(END DATA)----------\n", strConditionName.Get(), 
+//		OTLog::vOutput(1, "Loading condition \"%s\": %s----------(END DATA)----------\n", strConditionName.Get(),
 //				strConditionValue.Get());
-		
+
 		return 1;
 	}
     else if (strNodeName.Compare("signer"))
@@ -3069,7 +3069,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
                 OTLog::vError("%s: WARNING: No credentials provided. An alternate location is "
                               "listed, but that's not yet supported in the code.\nLocation: %s\n",
                               __FUNCTION__, strAltLocation.Get());
-                
+
                 // A signer ideally just has a NymID and source.
                 // Then we can directly just download the credentials from the source.
                 // But let's say the source doesn't include download info (like if it contains DN info.)
@@ -3102,7 +3102,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
         {
             // -----------------------------------------------------
             pElementExpected = "credentialList";
-            
+
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascArmor, pElementExpected))
             {
                 OTLog::vError("Error in %s: "
@@ -3112,7 +3112,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
             }
             // -----------------------------------------------------
             pElementExpected = "credentials";
-            
+
             if (false == OTContract::LoadEncodedTextFieldByName(xml, ascArmor2, pElementExpected))
             {
                 OTLog::vError("Error in %s: "
@@ -3134,7 +3134,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
             //
             OTString strCredentialList;
             ascArmor.GetString(strCredentialList);
-            
+
             if (strCredentialList.Exists())
             {
                 OTDB::Storable  * pStorable = OTDB::DecodeObject(OTDB::STORED_OBJ_STRING_MAP, ascArmor2.Get());
@@ -3151,7 +3151,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
                     OT_ASSERT(NULL != pNym);
                     OTCleanup<OTPseudonym> theNymAngel(pNym); // pNym will be automatically cleaned up.
                     pNym->SetIdentifier(strSignerNymID);
-                    
+
                     if (false == pNym->LoadFromString(strCredentialList, &theMap))
                     {
                         OTLog::vError("%s: Failure loading nym %s "
@@ -3176,7 +3176,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
                         // -------------------------------------------------------------
                         theNymAngel.SetCleanupTargetPointer(NULL); // so pNym won't be cleaned up.
                         m_mapNyms[strNodeName.Get() /*"signer"*/] = pNym; // Add pNym to the contract's internal list of nyms.
-                        
+
                         return 1; // <==== Success!
                     }
                 }
@@ -3192,7 +3192,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
         OTString strKeyValue;
 
 		strKeyName  = xml->getAttributeValue("name");
-		// ------------------		
+		// ------------------
 		if (false == SkipToTextField(xml))
 		{
 			OTLog::vOutput(0, "OTContract::ProcessXMLNode: Failure: Unable to find expected text "
@@ -3204,7 +3204,7 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
 		{
 			strKeyValue = xml->getNodeData();
 		}
-		else 
+		else
         {
 			OTLog::vError("Error in OTContract::ProcessXMLNode: Key without value: %s\n",
 					strKeyName.Get());
@@ -3212,19 +3212,19 @@ int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
 		}
 		// Create a new nym for this public key (or x509 cert, it works either way)
 		// and add it to the contract's internal list of nyms.
-		// 
+		//
 		// Later on, if someone needs to get the Public Key for this contract and
 		// use it to verify the signature on the contract, or to verify a message
 		// from the server, the contract can iterate the list of Nyms and get
 		// the public contract key based on a standard name such as the "contract" key.
 		// (Versus the "server" key or the "certification" key, etc.
-		
+
 		if (!InsertNym(strKeyName, strKeyValue))
 			OTLog::Error("Error performing OTContract::InsertNym.\n");
 
 		return 1;
 	}
-	
+
 	return 0;
 }
 
@@ -3240,24 +3240,24 @@ bool OTContract::InsertNym(const OTString & strKeyName, const OTString & strKeyV
 {
 	bool bResult		= false;
 	OTPseudonym * pNym	= new OTPseudonym;
-	
+
 	OT_ASSERT_MSG(NULL != pNym, "Error allocating memory for new Nym in OTContract::InsertNym\n");
-	
+
 	// This is the version of SetCertificate that handles escaped bookends. ( - -----BEGIN CERTIFICATE-----)
 	if (strKeyValue.Contains("CERTIFICATE") && pNym->SetCertificate(strKeyValue, true)) // it also defaults to true, FYI.
-	{											
+	{
 		m_mapNyms[strKeyName.Get()] = pNym;
 		pNym->SetIdentifierByPubkey();
 		OTLog::vOutput(1, "---- Loaded certificate \"%s\"\n", strKeyName.Get());
 		bResult = true;
-	}			
+	}
 	else if (strKeyValue.Contains("PUBLIC KEY") && pNym->SetPublicKey(strKeyValue, true)) // it also defaults to true, FYI.
-	{											
-		m_mapNyms[strKeyName.Get()] = pNym;	
+	{
+		m_mapNyms[strKeyName.Get()] = pNym;
 		pNym->SetIdentifierByPubkey();
 		OTLog::vOutput(1, "---- Loaded public key \"%s\"\n", strKeyName.Get());
 		bResult = true;
-	}	
+	}
 	else
 	{
 		delete pNym;

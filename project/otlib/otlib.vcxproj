@@ -37,6 +37,7 @@
     <ClInclude Include="..\..\include\otlib\OTBylaw.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCachedKey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCheque.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCommon.hpp" />
     <ClInclude Include="..\..\include\otlib\OTContract.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCredential.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCron.hpp" />

@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  testclient.cpp  (the actual command line test client that encapsulates OTClient)
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -130,8 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
@@ -140,7 +138,7 @@
 #include <WinsockWrapper.h>
 #endif
 
-extern "C" 
+extern "C"
 {
 #ifdef _WIN32
 //#include <WinSock.h>
@@ -178,10 +176,10 @@ void OT_Sleep(int nMS);
 
 
 
-// This global variable contains an OTWallet, an OTClient, etc. 
-// It's the C++ high-level interace to OT. 
+// This global variable contains an OTWallet, an OTClient, etc.
+// It's the C++ high-level interace to OT.
 // Any client software will have an instance of this.
-OT_API g_OT_API; 
+OT_API g_OT_API;
 // Note: Must call OT_API::Init() followed by g_OT_API.Init() in the main function, before using OT.
 
 
@@ -191,7 +189,7 @@ extern OTPseudonym *g_pTemporaryNym;
 // TODO REALLY NEED to move this crap to a config file...
 // ALso, FYI, the below paths may not work unless you put a fully-qualified path (which I haven't.)
 //#define KEY_PASSWORD        "test"  // RIGHT NOW THE PASSWORD FOR CONNECTING TO THE SERVER IS HARDCODED HERE.  TODO: config file, password prompt.
-#define KEY_PASSWORD        ""  
+#define KEY_PASSWORD        ""
 
 #ifdef _WIN32
 
@@ -208,7 +206,7 @@ extern OTPseudonym *g_pTemporaryNym;
 
 #endif
 
-// NOTE: this SSL connection is entirely different from the user's cert/pubkey that he uses for his UserID while 
+// NOTE: this SSL connection is entirely different from the user's cert/pubkey that he uses for his UserID while
 // talking to the server. I may be using the same key for that, but this code here is not about my wallet talking
 // to its mint. Rather, it's about an SSL client app talking to an SSL server, at a lower layer, before my app's
 // intelligence takes over.  Just like when you use SSH to connect somewhere on a terminal. There is some immediate
@@ -220,12 +218,12 @@ extern OTPseudonym *g_pTemporaryNym;
 
 
 
-int main (int argc, char **argv) 
+int main (int argc, char **argv)
 {
 	OTLog::vOutput(0, "\n\nWelcome to Open Transactions... Test Client -- version %s\n"
 				   "(transport build: OTMessage -> TCP -> SSL)\n"
 				   "IF YOU PREFER TO USE ZMQ (message based), then rebuild from main folder like this:\n"
-				   "cd ..; make clean; make\n\n", 
+				   "cd ..; make clean; make\n\n",
 				   OTLog::Version());
 
 	OT_API::InitOTAPI();
@@ -237,7 +235,7 @@ int main (int argc, char **argv)
 
 	{
 		CSimpleIniA ini; // We're assuming this file is on the path.
-		SI_Error rc = ini.LoadFile("./.ot_ini"); // todo: stop hardcoding. 
+		SI_Error rc = ini.LoadFile("./.ot_ini"); // todo: stop hardcoding.
 
 		if (rc >=0)
 		{
@@ -248,7 +246,7 @@ int main (int argc, char **argv)
 			else
 				strPath.Set(SERVER_PATH_DEFAULT);
 		}
-		else 
+		else
 		{
 			strPath.Set(SERVER_PATH_DEFAULT);
 		}
@@ -260,19 +258,19 @@ int main (int argc, char **argv)
 	if (argc < 2)
 	{
 		OTLog::vOutput(0, "\n==> USAGE:    %s   <SSL-password>  <absolute_path_to_data_folder>\n\n"
-#if defined (FELLOW_TRAVELER)					   
+#if defined (FELLOW_TRAVELER)
 				"(Password defaults to '%s' if left blank.)\n"
 				"(Folder defaults to '%s' if left blank.)\n"
 #else
 				"(The test password is always 'test'.\n'cd data_folder' then 'pwd' to see the absolute path.)\n"
 #endif
 					   "\n\n", argv[0]
-#if defined (FELLOW_TRAVELER)					   
-					   , KEY_PASSWORD, 
+#if defined (FELLOW_TRAVELER)
+					   , KEY_PASSWORD,
 					   strPath.Get()
-#endif					   
+#endif
 					   );
-	
+
 #if defined (FELLOW_TRAVELER)
 		strSSLPassword.Set(KEY_PASSWORD);
 
@@ -285,7 +283,7 @@ int main (int argc, char **argv)
 	else if (argc < 3)
 	{
 		OTLog::vOutput(0, "\n==> USAGE:    %s   <SSL-password>  <absolute_path_to_data_folder>\n\n"
-#if defined (FELLOW_TRAVELER)					      
+#if defined (FELLOW_TRAVELER)
 				"(Folder defaults to '%s' if left blank.)\n"
 #endif
 					   "\n\n", argv[0]
@@ -293,8 +291,8 @@ int main (int argc, char **argv)
 					   , strPath.Get()
 #endif
 					   );
-		
-#if defined (FELLOW_TRAVELER)					   
+
+#if defined (FELLOW_TRAVELER)
 		strSSLPassword.Set(argv[1]);
 
 		OTString strClientPath(strPath.Get());
@@ -303,13 +301,13 @@ int main (int argc, char **argv)
 		exit(1);
 #endif
 	}
-	else 
+	else
 	{
 		strSSLPassword.Set(argv[1]);
 
 		OTString strClientPath(argv[2]);
         g_OT_API.Init(strClientPath);  // SSL gets initialized in here, before any keys are loaded.
-	}	
+	}
 
 	OTLog::vOutput::(0, "Using as path to data folder:  %s\n", OTLog::Path());
 
@@ -368,7 +366,7 @@ int main (int argc, char **argv)
 		{
 			OTLog::Output(0, "User has instructed to load wallet.xml...\n");
 			g_OT_API.GetWallet()->LoadWallet("wallet.xml");
- 
+
 //			g_OT_API.GetWallet()->SaveWallet("NEWwallet.xml"); // todo remove this test code.
 
 			continue;
@@ -389,7 +387,7 @@ int main (int argc, char **argv)
 			OTLog::Output(0, "Successfully removed all issued and transaction numbers. Saving nym...\n");
 
 			continue;
-		}			
+		}
 
 		else if (strLine.compare(0,7,"payment") == 0)
 		{
@@ -433,17 +431,17 @@ int main (int argc, char **argv)
 
 			// Get the Recipient Nym ID
 			OTLog::Output(0, "Enter the Recipient's User ID (NymID): ");
-			str_RECIPIENT_USER_ID.OTfgets(std::cin);		
+			str_RECIPIENT_USER_ID.OTfgets(std::cin);
 
 
 			// THEN GET AN ACCOUNT ID in that same asset type
 			OTLog::Output(0, "Enter the Recipient's ACCOUNT ID (of the same asset type as your account): ");
-			str_RECIPIENT_ACCT_ID.OTfgets(std::cin);		
+			str_RECIPIENT_ACCT_ID.OTfgets(std::cin);
 
 			OTLog::Output(0, "Enter a memo describing consideration for the payment plan: ");
-			strConsideration.OTfgets(std::cin);		
+			strConsideration.OTfgets(std::cin);
 
-			const OTIdentifier	RECIPIENT_USER_ID(str_RECIPIENT_USER_ID), 
+			const OTIdentifier	RECIPIENT_USER_ID(str_RECIPIENT_USER_ID),
 								RECIPIENT_ACCT_ID(str_RECIPIENT_ACCT_ID);
 
 
@@ -454,7 +452,7 @@ int main (int argc, char **argv)
 			// -----------------------------------------------------------------------
 
 			// Valid date range (in seconds)
-			OTLog::Output(0, 
+			OTLog::Output(0,
 						  " 6 minutes	==      360 Seconds\n"
 						  "10 minutes	==      600 Seconds\n"
 						  "1 hour		==     3600 Seconds\n"
@@ -496,7 +494,7 @@ int main (int argc, char **argv)
 				OTLog::Output(0, "Failed trying to set the agreement!\n");
 
 				// IF FAILED, ADD TRANSACTION NUMBER BACK TO LIST OF AVAILABLE NUMBERS.
-				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true								
+				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true
 
 				continue;
 			}
@@ -531,7 +529,7 @@ int main (int argc, char **argv)
 				OTLog::Output(0, "Failed trying to set the initial payment!\n");
 
 				// IF FAILED, ADD TRANSACTION NUMBER BACK TO LIST OF AVAILABLE NUMBERS.
-				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true								
+				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true
 
 				continue;
 			}
@@ -594,7 +592,7 @@ int main (int argc, char **argv)
 				OTLog::Output(0, "Failed trying to set the payment plan!\n");
 
 				// IF FAILED, ADD TRANSACTION NUMBER BACK TO LIST OF AVAILABLE NUMBERS.
-				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true								
+				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true
 
 				continue;
 			}
@@ -604,10 +602,10 @@ int main (int argc, char **argv)
 
 			OTString strPlan(thePlan);
 
-			OTLog::vOutput(0, "\n\n(Make sure Both Parties sign the payment plan before submitting to server):\n\n\n%s\n", 
+			OTLog::vOutput(0, "\n\n(Make sure Both Parties sign the payment plan before submitting to server):\n\n\n%s\n",
 						   strPlan.Get());
 
-			continue;			
+			continue;
 		}
 
 
@@ -673,7 +671,7 @@ int main (int argc, char **argv)
 			// -----------------------------------------------------------------------
 
 			// Valid date range (in seconds)
-			OTLog::Output(0, 
+			OTLog::Output(0,
 					" 6 minutes	==      360 Seconds\n"
 					"10 minutes	==      600 Seconds\n"
 					"1 hour		==     3600 Seconds\n"
@@ -708,7 +706,7 @@ int main (int argc, char **argv)
 
 			// -----------------------------------------------------------------------
 
-			bool bIssueCheque = theCheque.IssueCheque(lAmount, lTransactionNumber, VALID_FROM, VALID_TO, 
+			bool bIssueCheque = theCheque.IssueCheque(lAmount, lTransactionNumber, VALID_FROM, VALID_TO,
 													  ACCOUNT_ID, USER_ID, strChequeMemo,
 													  (strRecipientUserID.GetLength() > 2) ? &(RECIPIENT_USER_ID) : NULL);
 
@@ -721,12 +719,12 @@ int main (int argc, char **argv)
 
 				OTLog::vOutput(0, "\n\nOUTPUT:\n\n\n%s\n", strCheque.Get());
 			}
-			else 
+			else
 			{
 				OTLog::Output(0, "Failed trying to issue the cheque!\n");
 
 				// IF FAILED, ADD TRANSACTION NUMBER BACK TO LIST OF AVAILABLE NUMBERS.
-				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true								
+				g_pTemporaryNym->AddTransactionNum(*g_pTemporaryNym, strServerID, lTransactionNumber, true); // bSave=true
 			}
 
 			continue;
@@ -752,7 +750,7 @@ int main (int argc, char **argv)
 					theArmoredText.Concatenate("%s\n", decode_buffer);
 					OTLog::Output(0, "> ");
 				}
-				else 
+				else
 				{
 					break;
 				}
@@ -783,7 +781,7 @@ int main (int argc, char **argv)
 					theArmoredText.Concatenate("%s\n", decode_buffer);
 					OTLog::Output(0, "> ");
 				}
-				else 
+				else
 				{
 					break;
 				}
@@ -813,7 +811,7 @@ int main (int argc, char **argv)
 					strDecodedText.Concatenate("%s", decode_buffer);
 					OTLog::Output(0, "> ");
 				}
-				else 
+				else
 				{
 					break;
 				}
@@ -843,7 +841,7 @@ int main (int argc, char **argv)
 					strDecodedText.Concatenate("%s\n", decode_buffer);
 					OTLog::Output(0, "> ");
 				}
-				else 
+				else
 				{
 					break;
 				}
@@ -901,7 +899,7 @@ int main (int argc, char **argv)
 			// Wallet, after loading, should contain a list of server
 			// contracts. Let's pull the hostname and port out of
 			// the first contract, and connect to that server.
-			bool bConnected = g_OT_API.GetClient()->ConnectToTheFirstServerOnList(*g_pTemporaryNym, strCAFile, strKeyFile, strSSLPassword); 
+			bool bConnected = g_OT_API.GetClient()->ConnectToTheFirstServerOnList(*g_pTemporaryNym, strCAFile, strKeyFile, strSSLPassword);
 
 			if (bConnected)
 				OTLog::Output(0, "Success. (Connected to the first notary server on your wallet's list.)\n");
@@ -920,7 +918,7 @@ int main (int argc, char **argv)
 
 		// 2) Process it out as an OTMessage to the server. It goes down the pipe.
 		g_OT_API.GetClient()->ProcessMessageOut(buf, &nExpectResponse);
-		
+
 		// 3) Sleep for 1 second.
 #ifdef _WIN32
 		OT_Sleep(1000);
@@ -932,7 +930,7 @@ int main (int argc, char **argv)
 
 		// 4) While there are messages to be read in response from the server,
 		//	  then process and handle them all.
-		do 
+		do
 		{
 			OTMessage * pMsg = new OTMessage;
 
@@ -950,7 +948,7 @@ int main (int argc, char **argv)
 //						"Successfully in-processed server response.\n\n%s\n", strReply.Get());
 				g_OT_API.GetClient()->ProcessServerReply(*pMsg); // the Client takes ownership and will handle cleanup.
 			}
-			else 
+			else
 			{
 				delete pMsg;
 				pMsg = NULL;

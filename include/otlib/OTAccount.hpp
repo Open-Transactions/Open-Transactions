@@ -133,20 +133,14 @@
 #ifndef __OTACCOUNT_HPP__
 #define __OTACCOUNT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTransactionType.hpp"
-
-#include _CINTTYPES
-#include _MEMORY
 
 class OTPseudonym;
 class OTAccount;
 class OTMessage;
 class OTLedger;
-
 
 class OTAccount : public OTTransactionType 
 {
@@ -203,10 +197,10 @@ EXPORT  bool IsIssuer() const;
     // ---------------------------------------
 	// For accounts used by smart contracts, to stash funds while running.
 	//
-EXPORT	bool IsStashAcct() const { return (m_AcctType == stash); } 
+EXPORT	bool IsStashAcct() const { return (m_AcctType == stash); }
 	
 EXPORT	const long & GetStashTransNum() const { return m_lStashTransNum; }
-EXPORT	void SetStashTransNum(const long & lTransNum) { m_lStashTransNum = lTransNum; }	
+EXPORT	void SetStashTransNum(const long & lTransNum) { m_lStashTransNum = lTransNum; }
     // ---------------------------------------
 EXPORT  OTAccount(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID, const OTString & name);
 EXPORT	OTAccount(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID);
@@ -312,7 +306,7 @@ EXPORT	int  ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcc
 	
         void SetType(OTAccount::AccountType eAcctType) { m_AcctType = eAcctType; }
 	
-EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym, 
+EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym,
                                                const OTIdentifier	& ACCOUNT_OWNER_ID, 
                                                const OTIdentifier	& ASSET_TYPE_ID, 
                                                const OTIdentifier	& SERVER_ID,

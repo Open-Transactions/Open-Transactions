@@ -1,13 +1,13 @@
 /**************************************************************
- *    
+ *
  *  OTIdentifier.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,19 +134,15 @@
 #ifndef __OTIDENTIFIER_HPP__
 #define __OTIDENTIFIER_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTData.hpp"
-
-#include _CINTTYPES
 
 #include <string>
 
 // An Identifier is basically a 256 bit hash value.
 // This class makes it easy to convert IDs back and forth to strings.
-// 
+//
 class OTString;
 class OTPseudonym;
 class OTOffer;
@@ -154,7 +150,6 @@ class OTMarket;
 class OTSymmetricKey;
 class OTCachedKey;
 class OTContract;
-
 
 class OTIdentifier : public OTData
 {
@@ -187,10 +182,10 @@ EXPORT	virtual ~OTIdentifier();
     // ----------------------------------------------
 	using OTData::swap;
 	using OTData::operator=;
-    // ----------------------------------------------	
+    // ----------------------------------------------
 EXPORT	bool operator==(const OTIdentifier &s2) const;
 EXPORT	bool operator!=(const OTIdentifier &s2) const;
-	
+
 EXPORT	bool operator > (const OTIdentifier &s2) const;
 EXPORT	bool operator < (const OTIdentifier &s2) const;
 EXPORT	bool operator <=(const OTIdentifier &s2) const;
@@ -198,7 +193,7 @@ EXPORT	bool operator >=(const OTIdentifier &s2) const;
     // ----------------------------------------------
 EXPORT	bool CalculateDigest(const OTData & dataInput);
 EXPORT	bool CalculateDigest(const OTString & strInput);
-	
+
 EXPORT	bool CalculateDigest(const OTString & strInput,  const OTString & strHashAlgorithm);
 EXPORT	bool CalculateDigest(const OTData   & dataInput, const OTString & strHashAlgorithm);
     // ----------------------------------------------

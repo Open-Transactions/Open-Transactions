@@ -6,18 +6,18 @@ This class wraps OTAPI_Wrap
 In this class only following types are accepted:
 bool, long, std::string
 Every other type will be wrapped in a std::string.
- 
+
  long is used where OTAPI.h would use int32_t
  string is used where OTAPI.h would use int64_t
 
  This file is wrapped by SWIG (Python, Ruby, Java, PHP, etc.)
- 
+
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -120,10 +120,10 @@ Every other type will be wrapped in a std::string.
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -144,11 +144,7 @@ Every other type will be wrapped in a std::string.
 #ifndef __OTAPI_BASIC_HPP__
 #define __OTAPI_BASIC_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include _CINTTYPES
+#include "OTCommon.hpp"
 
 #include <string>
 
@@ -168,16 +164,16 @@ public:
 
 	EXPORT static bool AppStartup();  // Call once at startup.
 	EXPORT static bool AppShutdown(); // Call once at shutdown.
-    
+
 	// --------------------------------------------------------------------
     // Optional. Used by Qt, Android. Call these (if necessary) before calling Init.
     //
     EXPORT static void SetAppBinaryFolder(const std::string & strFolder);
     EXPORT static void SetHomeFolder     (const std::string & strFolder);
 	// --------------------------------------------------------------------
-    
+
 	EXPORT static bool Init(); // Call until it returns true. Call AppStartup() first.
-    
+
 	// --------------------------------------------------------------------
 	/**
 	SET WALLET (optional)
@@ -189,7 +185,7 @@ public:
 	e.g. SetWallet("wallet2.xml");
 
 	*/
-	EXPORT static bool SetWallet(const std::string & strWalletFilename); 
+	EXPORT static bool SetWallet(const std::string & strWalletFilename);
 
 
 	// --------------------------------------------------------------------
@@ -216,7 +212,7 @@ public:
 	LoadWallet();
 
 	*/
-	EXPORT static bool LoadWallet(); 
+	EXPORT static bool LoadWallet();
 
 
 

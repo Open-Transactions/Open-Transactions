@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  OTAgreement.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -136,13 +136,10 @@
 #ifndef __OTAGREEMENT_HPP__
 #define __OTAGREEMENT_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTCronItem.hpp"
 
-#include _CINTTYPES
 
 
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.
@@ -150,10 +147,10 @@
 
 // While other instruments are derived from OTTrackable (like OTCheque) in order
 // to gain a transaction number and sender user/acct, Agreements are derived from
-// a further subclass of trackable: OTCronItem. 
+// a further subclass of trackable: OTCronItem.
 //
 // OTCronItems are allowed to be posted on the OTCron object, which performs regular
-// processing on a timely basis to the items that are posted there. In this way, 
+// processing on a timely basis to the items that are posted there. In this way,
 // payment authorizations can be posted (and expire properly), and trades can be
 // posted with valid date ranges, and payment plans can be instituted, and so on.
 //
@@ -161,7 +158,7 @@
 // on OTCron until a certain expiration period, so that third parties can query the
 // server and verify the agreements, and so that copies of the agreement, stamped
 // with the server's signature, can be made available to the parties and to 3rd parties.
-// 
+//
 
 class OTPseudonym;
 
@@ -173,7 +170,7 @@ private:  // Private prevents erroneous use by other classes.
 private:
 	OTIdentifier	m_RECIPIENT_ACCT_ID;
 	OTIdentifier	m_RECIPIENT_USER_ID;
-	
+
 protected:
 	OTString		m_strConsideration;	// Presumably an agreement is in return for some consideration. Memo here.
 
@@ -181,7 +178,7 @@ protected:
     // his own transaction numbers and signs it. This, unfortunately, invalidates the merchant's version, so we store
     // a copy of the merchant's signed agreement INSIDE our own. The server can do the hard work of comparing them, though
     // such will probably occur through a comparison function I'll have to add right here in this class.
-    
+
     virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTransactionNumber,
                                 OTPseudonym & theOriginator,
                                 OTPseudonym * pRemover);
@@ -195,7 +192,7 @@ public:
 	// --------------------------------------------------------------------------
     void SetMerchantSignedCopy(const OTString & strMerchantCopy) { m_strMerchantSignedCopy = strMerchantCopy; }
     const OTString & GetMerchantSignedCopy() { return m_strMerchantSignedCopy; }
-    
+
     // SetAgreement replaced with the 2 functions below. See notes even lower.
     //
 //	bool	SetAgreement(const long & lTransactionNum,	const OTString & strConsideration,
@@ -203,12 +200,12 @@ public:
 
 EXPORT    bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
                               const time_t VALID_FROM=0,  const time_t VALID_TO=0);
-    
+
 EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=NULL,
                           const OTIdentifier * p_id_MERCHANT_NYM=NULL);  // Merchant Nym is passed here so we can verify the signature before confirming.
-    
+
     // What should be the process here?
-    
+
     /*
         FIRST: (Construction)
      OTAgreement(const OTIdentifier & SERVER_ID,			const OTIdentifier & ASSET_ID);
@@ -217,18 +214,18 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
                 const OTIdentifier & SENDER_ACCT_ID,	const OTIdentifier & SENDER_USER_ID,
                 const OTIdentifier & RECIPIENT_ACCT_ID,	const OTIdentifier & RECIPIENT_USER_ID);
        OR:
-     OTPaymentPlan * pPlan = new OTPaymentPlan(pAccount->GetRealServerID(), 
+     OTPaymentPlan * pPlan = new OTPaymentPlan(pAccount->GetRealServerID(),
                                     pAccount->GetAssetTypeID(),
-                                    pAccount->GetRealAccountID(),	
+                                    pAccount->GetRealAccountID(),
                                     pAccount->GetUserID(),
                                     RECIPIENT_ACCT_ID, RECIPIENT_USER_ID);
      // --------------------------------------------------------------------------------------------------------
      THEN:  (Agreement)
-     
+
      bool bSuccessSetAgreement = pPlan->SetAgreement(lTransactionNumber, PLAN_CONSIDERATION, VALID_FROM, VALID_TO);
      // --------------------------------------------------------------------------------------------------------
      THEN, (OTPaymentPlan) adds TWO OPTIONS (additional and independent of each other):
-     
+
      bool		SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
      // --------------------------------------------------------------------------------------------------------
      bool		SetPaymentPlan(const long & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
@@ -236,48 +233,48 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
                                 time_t tPlanLength=0, int nMaxPayments=0);
 
      // ********************************************************************************
-     
+
      The new process is the same, but it adds some additional transaction numbers...
-     
+
      HERE IS THE WAY I ENVISION IT BEING CALLED:
-     
+
      ---- The MERCHANT does these steps: -----
-     
-     Step one, though it says PaymentPlan, is basically the OTAgreement constructor. 
+
+     Step one, though it says PaymentPlan, is basically the OTAgreement constructor.
      Its primary concern is with determining the server, payer, payee, accounts, etc.
-     
-     1) OTPaymentPlan * pPlan = 
-        new OTPaymentPlan(pAccount->GetRealServerID(), 
+
+     1) OTPaymentPlan * pPlan =
+        new OTPaymentPlan(pAccount->GetRealServerID(),
             pAccount->GetAssetTypeID(),
-            pAccount->GetRealAccountID(),	
+            pAccount->GetRealAccountID(),
             pAccount->GetUserID(),
             RECIPIENT_ACCT_ID, RECIPIENT_USER_ID);
 
     STILL, this is the MERCHANT. Step two is concerned with the specific terms of the offer.
-     
-     2) bool bOffer = 
+
+     2) bool bOffer =
             pPlan->SetProposal(MERCHANT_NYM,
                         PLAN_CONSIDERATION, VALID_FROM, VALID_TO);
       (lMerchantTransactionNumber, lMerchantClosingNumber are set internally using the MERCHANT_NYM.)
-     
+
      ==> Optionally, the merchant also calls SetInitialPayment and/or SetPaymentPlan at this time.
      ==> Next, the merchant signs it, and sends to the recipient.
-     
+
      THE RECIPIENT:
-     
+
      3) bool bConfirmation =  pPlan->Confirm(OTPseudonym & PAYER_NYM,
                                              OTPseudonym * pMERCHANT_NYM=NULL,
                                              OTIdentifier * p_id_MERCHANT_NYM=NULL);
 
      (Transaction number and closing number are retrieved from Nym at this time.)
-     
+
      NO NEED TO SIGN ANYTHING AFTER THIS POINT, and the Payment Plan should store a copy of itself at this time.
     (That is, STORE A COPY of the Merchant's signed version, since the above call to Confirm will change the plan
      and sign it again. The server is left with the chore of comparing the two against each other, which I will
      probably have to code right here in this class!  TOdo.)
-     
+
      */
-    
+
     // This function verifies both Nyms and both signatures.
     // Due to the peculiar nature of how OTAgreement/OTPaymentPlan works, there are two signed
     // copies stored. The merchant signs first, adding his transaction numbers (2), and then he
@@ -291,73 +288,73 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
     // the vital terms, values, clauses, etc are different between the two.
     //
     virtual bool VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & SENDER_NYM)=0;
-    
+
     virtual bool CompareAgreement(const OTAgreement & rhs) const;
-    
+
 	// --------------------------------------------------------------------------
-	
+
 	inline const OTIdentifier &	GetRecipientAcctID() const { return m_RECIPIENT_ACCT_ID; }
 	inline const OTIdentifier &	GetRecipientUserID() const { return m_RECIPIENT_USER_ID; }
 	inline void		SetRecipientAcctID(const OTIdentifier & ACCT_ID)	{ m_RECIPIENT_ACCT_ID = ACCT_ID; }
 	inline void		SetRecipientUserID(const OTIdentifier & USER_ID)	{ m_RECIPIENT_USER_ID = USER_ID; }
-	
+
 	// --------------------------------------------------------------------------
 
     // The recipient must also provide an opening and closing transaction number(s).
     //
 EXPORT    long    GetRecipientClosingTransactionNoAt(unsigned int nIndex) const;
 EXPORT    int     GetRecipientCountClosingNumbers() const;
-    
+
     void    AddRecipientClosingTransactionNo(const long & lClosingTransactionNo);
     // ----------------------------------------------------------------------------
-    
+
     // This is a higher-level than the above functions. It calls them.
     // Below is the abstraction, above is the implementation.
-    
+
 EXPORT    long    GetRecipientOpeningNum() const;
 EXPORT    long    GetRecipientClosingNum() const;
-    
+
     // ----------------------------------------------------------------------------
 	// From OTCronItem (parent class of this)
 	/*
-	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }	 
+	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
 	 inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
 	 inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
-     
+
      // ------------------------------------------------------
      // These are for:
-     // std::deque<long> m_dequeClosingNumbers; 
-     // 
+     // std::deque<long> m_dequeClosingNumbers;
+     //
      // They are numbers used for CLOSING a transaction. (finalReceipt, someday more.)
-     
+
      long    GetClosingTransactionNoAt(int nIndex) const;
      int     GetCountClosingNumbers() const;
-     
+
      void    AddClosingTransactionNo(const long & lClosingTransactionNo);
 	 */
         virtual bool CanRemoveItemFromCron(OTPseudonym & theNym);
-	
+
         virtual void HarvestOpeningNumber (OTPseudonym & theNym);
 EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
-    
+
     // Return True if should stay on OTCron's list for more processing.
 	// Return False if expired or otherwise should be removed.
 	virtual bool ProcessCron(); // OTCron calls this regularly, which is my chance to expire, etc.
-	
+
 	// --------------------------------------------------------------------------
 
 	// From OTTrackable (parent class of OTCronItem, parent class of this)
 	/*
 	 inline long GetTransactionNum() const { return m_lTransactionNum; }
 	 inline void SetTransactionNum(long lTransactionNum) { m_lTransactionNum = lTransactionNum; }
-	 
+
 	 inline const OTIdentifier &	GetSenderAcctID()		{ return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier &	GetSenderUserID()		{ return m_SENDER_USER_ID; }
 	 inline void			SetSenderAcctID(const OTIdentifier & ACCT_ID)		{ m_SENDER_ACCT_ID = ACCT_ID; }
 	 inline void			SetSenderUserID(const OTIdentifier & USER_ID)		{ m_SENDER_USER_ID = USER_ID; }
 	 */
-	
+
     virtual bool HasTransactionNum(const long & lInput) const;
     virtual void GetAllTransactionNumbers(OTNumList & numlistOutput) const;
 
@@ -366,31 +363,31 @@ EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
 	// From OTInstrument (parent class of OTTrackable, parent class of OTCronItem, parent class of this)
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
-	 
+
 	 inline const OTIdentifier & GetAssetID() const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID; }
-	 
+
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
-	 
+
 	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
 	 inline time_t GetValidTo()		const { return m_VALID_TO; }
-	 
+
 	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
 	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
-	 
+
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
-    
+
 	// From OTScriptable, we override this function. OTScriptable now does fancy stuff like checking to see
 	// if the Nym is an agent working on behalf of a party to the contract. That's how all OTScriptable-derived
 	// objects work by default.  But OTAgreement (payment plan) and OTTrade do it the old way: they just check to
 	// see if theNym has signed *this.
 	//
-	virtual bool VerifyNymAsAgent(OTPseudonym & theNym, 
-								  OTPseudonym & theSignerNym, 
+	virtual bool VerifyNymAsAgent(OTPseudonym & theNym,
+								  OTPseudonym & theSignerNym,
 								  mapOfNyms	* pmap_ALREADY_LOADED=NULL);
-	
+
 	virtual bool VerifyNymAsAgentForAccount(OTPseudonym & theNym, OTAccount & theAccount);
 
     /*
@@ -427,9 +424,9 @@ EXPORT static bool DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an
 				const OTIdentifier & SENDER_ACCT_ID,	const OTIdentifier & SENDER_USER_ID,
 				const OTIdentifier & RECIPIENT_ACCT_ID,	const OTIdentifier & RECIPIENT_USER_ID);
 	virtual ~OTAgreement();
-	
+
 	void InitAgreement();
-	
+
 	virtual void Release();
 	void Release_Agreement();
     // ------------------------------------------------------
@@ -440,7 +437,7 @@ EXPORT	virtual long GetOpeningNumber(const OTIdentifier & theNymID) const;
     // ------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
 	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
-	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents 
+	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 

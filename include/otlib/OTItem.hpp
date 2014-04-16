@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTItem.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,16 +134,11 @@
 #ifndef __OTITEM_HPP__
 #define __OTITEM_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTransactionType.hpp"
 
 #include "OTASCIIArmor.hpp"
-
-#include _CINTTYPES
-
 
 class OTAccount;
 class OTLedger;
@@ -159,77 +154,77 @@ typedef std::list  <OTItem *>	listOfItems;
 // Item as in "Transaction Item"
 // An OTLedger contains a list of transactions (pending transactions, inbox or outbox.)
 // Each transaction has a list of items that make up that transaction.
-// I think that the Item ID shall be the order in which the items are meant to 
+// I think that the Item ID shall be the order in which the items are meant to
 // be processed.
 // Items are like tracks on a CD. It is assumed there will be several of them, they
 // come in packs. You normally would deal with the transaction as a single entity,
 // not the item. A transaction contains a list of items.
 class OTItem : public OTTransactionType
-{	
+{
 private:  // Private prevents erroneous use by other classes.
     typedef OTTransactionType ot_super;
 
     friend OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput);
 
 public:
-	enum itemType 
+	enum itemType
 	{
 // ------------------------------------------------------------------------------
 		// TRANSFER
 		transfer,	// this item is an outgoing transfer, probably part of an outoing transaction.
 		atTransfer,	// Server reply.
 // ------------------------------------------------------------------------------
-		
+
 		// NYMBOX RESOLUTION
-		
+
 		acceptTransaction,		// this item is a client-side acceptance of a transaction number (a blank) in my Nymbox
-		atAcceptTransaction,	
+		atAcceptTransaction,
 		acceptMessage,			// this item is a client-side acceptance of a message in my Nymbox
-		atAcceptMessage,	
+		atAcceptMessage,
 		acceptNotice,			// this item is a client-side acceptance of a server notification in my Nymbox
-		atAcceptNotice,	
-		
+		atAcceptNotice,
+
 // ------------------------------------------------------------------------------
-		
+
 		// INBOX RESOLUTION
-		
+
 		acceptPending,		// this item is a client-side acceptance of a pending transfer
-		atAcceptPending,	
-		rejectPending,		// this item is a client-side rejection of a pending transfer	
+		atAcceptPending,
+		rejectPending,		// this item is a client-side rejection of a pending transfer
 		atRejectPending,
 
 		// RECEIPT ACKNOWLEDGMENT / DISPUTE
 		acceptCronReceipt,		// this item is a client-side acceptance of a cron receipt in his inbox.
 		atAcceptCronReceipt,	// this item is a server reply to that acceptance.
-        
+
 		acceptItemReceipt,		// this item is a client-side acceptance of an item receipt in his inbox.
 		atAcceptItemReceipt,	// this item is a server reply to that acceptance.
-		
+
 		disputeCronReceipt,		// this item is a client dispute of a cron receipt in his inbox.
 		atDisputeCronReceipt,	// Server reply to dispute message.
-        
+
 		disputeItemReceipt,		// this item is a client dispute of an item receipt in his inbox.
 		atDisputeItemReceipt,	// Server reply to dispute message.
-		
+
 		// Sometimes the attachment will be an OTItem, and sometimes it will be
-		// an OTPaymentPlan or OTTrade.  These different types above help the  
+		// an OTPaymentPlan or OTTrade.  These different types above help the
 		// code to differentiate.
         // --------------------------------------------
-		
+
         acceptFinalReceipt,     // this item is a client-side acceptance of a final receipt in his inbox. (All related receipts must also be closed!)
         atAcceptFinalReceipt,   // server reply
-        
+
         acceptBasketReceipt,    // this item is a client-side acceptance of a basket receipt in his inbox.
         atAcceptBasketReceipt,  // server reply
-        
+
         disputeFinalReceipt,     // this item is a client-side rejection of a final receipt in his inbox. (All related receipts must also be closed!)
         atDisputeFinalReceipt,   // server reply
-        
+
         disputeBasketReceipt,    // this item is a client-side rejection of a basket receipt in his inbox.
         atDisputeBasketReceipt,  // server reply
-        
+
 // ------------------------------------------------------------------------------
-		
+
 		// FEEs
 		serverfee,	// this item is a fee from the transaction server (per contract)
 		atServerfee,
@@ -295,10 +290,10 @@ public:
 		finalReceipt,	// server receipt dropped into inbox / nymbox as result of cron item expiring or being canceled.
 		basketReceipt,	// server receipt dropped into inbox as result of a basket exchange.
 // ------------------------------------------------------------------------------
-		replyNotice,	// server notice of a reply that nym should have already received as a response to a request. 
+		replyNotice,	// server notice of a reply that nym should have already received as a response to a request.
 		// (Some are so important, a copy of the server reply is dropped to your nymbox, to make SURE you got it and processed it.)
 		successNotice,	// server notice dropped into nymbox as result of a transaction# being successfully signed out.
-		notice,		// server notice dropped into nymbox as result of a smart contract processing. 
+		notice,		// server notice dropped into nymbox as result of a smart contract processing.
 		// Also could be used for ballots / elections, corporate meetings / minutes, etc.
 		// finalReceipt is also basically a notice (in the Nymbox, anyway) but it still is
 		// information that you have to act on as soon as you receive it, whereas THIS kind
@@ -311,7 +306,7 @@ public:
 	//				 The server may respond with type atTransfer and status Acknowledgment.
 	//							Make sense?
 
-	enum itemStatus 
+	enum itemStatus
 	{
 		request,			// This item is a request from the client
 		acknowledgement,	// This item is an acknowledgment from the server. (The server has signed it.)
@@ -326,7 +321,7 @@ protected:
 	// would have these items:  transfer, serverfee, balance, and possibly outboxhash.
 
 	OTItem(); // <============================= Here for now, if I can get away with it.
-	
+
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
 	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
@@ -343,7 +338,7 @@ protected:
 											// to 34 on this member variable in the reply.  Only one transfer can be done at a time. In cases where verifying a balance
 											// receipt and you come across transaction #1 in the outbox, simply look up this variable on the server's portion of the reply
 											// and then look up that number instead.
-    
+
     long            m_lClosingTransactionNo; // Used in balance agreement (to represent an inbox item)
     // ----------------------------------------------------------------
 public:
@@ -368,7 +363,7 @@ EXPORT  virtual void CalculateNumberOfOrigin();
 	OTItem * GetFinalReceiptItemByReferenceNum(const long lReferenceNumber); // The final receipt item MAY be present, and co-relates to others that share its "in reference to" value. (Others such as marketReceipts and paymentReceipts.)
     int	GetItemCountInRefTo(const long lReference); // Count the number of items that are IN REFERENCE TO some transaction#.
 	inline int	GetItemCount() const { return static_cast<int> (m_listItems.size()); }
-	void AddItem(OTItem & theItem); // You have to allocate the item on the heap and then pass it in as a reference. 
+	void AddItem(OTItem & theItem); // You have to allocate the item on the heap and then pass it in as a reference.
 	// OTItem will take care of it from there and will delete it in destructor.
 	// ----------------------------------------------------------------
 	void ReleaseItems();
@@ -376,7 +371,7 @@ EXPORT  virtual void CalculateNumberOfOrigin();
 	virtual void Release();
 	// ----------------------------------------------------------------
 	// the "From" accountID and the ServerID are now in the parent class. (2 of each.)
-	
+
 	inline void		SetNewOutboxTransNum(const long lTransNum) { m_lNewOutboxTransNum =  lTransNum; }
 	inline long		GetNewOutboxTransNum() const { return m_lNewOutboxTransNum; } // See above comment in protected section.
     // ----------------------------------------------------------------
@@ -386,7 +381,7 @@ EXPORT  virtual void CalculateNumberOfOrigin();
     // ----------------------------------------------------------------
 	// Call this on the server side, on a balanceStatement item, to verify
 	// whether the wallet side set it up correctly (and thus it's okay to sign and return with acknowledgement.)
-EXPORT	bool VerifyBalanceStatement(const long lActualAdjustment, 
+EXPORT	bool VerifyBalanceStatement(const long lActualAdjustment,
 								OTPseudonym & THE_NYM,
 								OTLedger & THE_INBOX,
 								OTLedger & THE_OUTBOX,
@@ -417,8 +412,8 @@ EXPORT	void SetAttachment(const OTString & theStr);
 	inline void					SetDestinationAcctID(const OTIdentifier & theID) {  m_AcctToID = theID; }
     // ----------------------------------------------------------------
 EXPORT	static OTItem * CreateItemFromString(const OTString & strItem, const OTIdentifier & theServerID, long lTransactionNumber);
-	
-	
+
+
 EXPORT	static OTItem * CreateItemFromTransaction(const OTTransaction & theOwner, OTItem::itemType theType, OTIdentifier * pDestinationAcctID=NULL);
     // ----------------------------------------------------------------
 EXPORT	static void GetStringFromType(OTItem::itemType theType, OTString & strType);
@@ -427,11 +422,11 @@ EXPORT	static void GetStringFromType(OTItem::itemType theType, OTString & strTyp
 	OTItem(const OTIdentifier & theUserID, const OTItem & theOwner);// From owner we can get acct ID, server ID, and transaction Num
 	OTItem(const OTIdentifier & theUserID, const OTTransaction & theOwner);// From owner we can get acct ID, server ID, and transaction Num
 	OTItem(const OTIdentifier & theUserID, const OTTransaction & theOwner, OTItem::itemType theType, OTIdentifier * pDestinationAcctID=NULL);
-	
+
 	virtual ~OTItem();
 //	OTItem& operator=(const OTItem& rhs);
 	void InitItem();
-	
+
 //	virtual bool SaveContractWallet(FILE * fl);
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
