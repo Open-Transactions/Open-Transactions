@@ -147,6 +147,16 @@ abstract class otapi {
 		return $r;
 	}
 
+	static function FormPathString($strOutput,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
+		switch (func_num_args()) {
+		case 2: $r=FormPathString($strOutput,$strFolder); break;
+		case 3: $r=FormPathString($strOutput,$strFolder,$oneStr); break;
+		case 4: $r=FormPathString($strOutput,$strFolder,$oneStr,$twoStr); break;
+		default: $r=FormPathString($strOutput,$strFolder,$oneStr,$twoStr,$threeStr);
+		}
+		return $r;
+	}
+
 	static function StoreString($strContents,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
 		switch (func_num_args()) {
 		case 2: $r=StoreString($strContents,$strFolder); break;
@@ -2206,6 +2216,16 @@ abstract class Storage {
 		case 2: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr); break;
 		case 3: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr,$twoStr); break;
 		default: $r=Storage_Exists($this->_cPtr,$strFolder,$oneStr,$twoStr,$threeStr);
+		}
+		return $r;
+	}
+
+	function FormPathString($strOutput,$strFolder,$oneStr=null,$twoStr=null,$threeStr=null) {
+		switch (func_num_args()) {
+		case 2: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder); break;
+		case 3: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr); break;
+		case 4: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr,$twoStr); break;
+		default: $r=Storage_FormPathString($this->_cPtr,$strOutput,$strFolder,$oneStr,$twoStr,$threeStr);
 		}
 		return $r;
 	}

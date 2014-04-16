@@ -517,6 +517,10 @@ public class otapiJNI {
   public final static native boolean Storage_Exists__SWIG_1(long jarg1, Storage jarg1_, String jarg2, String jarg3, String jarg4);
   public final static native boolean Storage_Exists__SWIG_2(long jarg1, Storage jarg1_, String jarg2, String jarg3);
   public final static native boolean Storage_Exists__SWIG_3(long jarg1, Storage jarg1_, String jarg2);
+  public final static native int Storage_FormPathString__SWIG_0(long jarg1, Storage jarg1_, long jarg2, String jarg3, String jarg4, String jarg5, String jarg6);
+  public final static native int Storage_FormPathString__SWIG_1(long jarg1, Storage jarg1_, long jarg2, String jarg3, String jarg4, String jarg5);
+  public final static native int Storage_FormPathString__SWIG_2(long jarg1, Storage jarg1_, long jarg2, String jarg3, String jarg4);
+  public final static native int Storage_FormPathString__SWIG_3(long jarg1, Storage jarg1_, long jarg2, String jarg3);
   public final static native void delete_Storage(long jarg1);
   public final static native boolean Storage_StoreString__SWIG_0(long jarg1, Storage jarg1_, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6);
   public final static native boolean Storage_StoreString__SWIG_1(long jarg1, Storage jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
@@ -562,6 +566,10 @@ public class otapiJNI {
   public final static native boolean Exists__SWIG_1(String jarg1, String jarg2, String jarg3);
   public final static native boolean Exists__SWIG_2(String jarg1, String jarg2);
   public final static native boolean Exists__SWIG_3(String jarg1);
+  public final static native int FormPathString__SWIG_0(long jarg1, String jarg2, String jarg3, String jarg4, String jarg5);
+  public final static native int FormPathString__SWIG_1(long jarg1, String jarg2, String jarg3, String jarg4);
+  public final static native int FormPathString__SWIG_2(long jarg1, String jarg2, String jarg3);
+  public final static native int FormPathString__SWIG_3(long jarg1, String jarg2);
   public final static native boolean StoreString__SWIG_0(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5);
   public final static native boolean StoreString__SWIG_1(String jarg1, String jarg2, String jarg3, String jarg4);
   public final static native boolean StoreString__SWIG_2(String jarg1, String jarg2, String jarg3);

@@ -3019,6 +3019,30 @@ class Storage {
     return ret;
   }
 
+  public tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr, char[] twoStr, char[] threeStr) {
+    auto ret = otapi_im.Storage_FormPathString__SWIG_0(cast(void*)swigCPtr, SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null), (twoStr ? tango.stdc.stringz.toStringz(twoStr) : null), (threeStr ? tango.stdc.stringz.toStringz(threeStr) : null));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
+  public tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr, char[] twoStr) {
+    auto ret = otapi_im.Storage_FormPathString__SWIG_1(cast(void*)swigCPtr, SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null), (twoStr ? tango.stdc.stringz.toStringz(twoStr) : null));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
+  public tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr) {
+    auto ret = otapi_im.Storage_FormPathString__SWIG_2(cast(void*)swigCPtr, SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
+  public tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder) {
+    auto ret = otapi_im.Storage_FormPathString__SWIG_3(cast(void*)swigCPtr, SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null));
+    if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+    return ret;
+  }
+
   public bool StoreString(char[] strContents, char[] strFolder, char[] oneStr, char[] twoStr, char[] threeStr) {
     bool ret = otapi_im.Storage_StoreString__SWIG_0(cast(void*)swigCPtr, (strContents ? tango.stdc.stringz.toStringz(strContents) : null), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null), (twoStr ? tango.stdc.stringz.toStringz(twoStr) : null), (threeStr ? tango.stdc.stringz.toStringz(threeStr) : null)) ? true : false;
     if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
@@ -3283,6 +3307,30 @@ bool Exists(char[] strFolder, char[] oneStr) {
 
 bool Exists(char[] strFolder) {
   bool ret = otapi_im.Exists__SWIG_3((strFolder ? tango.stdc.stringz.toStringz(strFolder) : null)) ? true : false;
+  if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+  return ret;
+}
+
+tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr, char[] twoStr, char[] threeStr) {
+  auto ret = otapi_im.FormPathString__SWIG_0(SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null), (twoStr ? tango.stdc.stringz.toStringz(twoStr) : null), (threeStr ? tango.stdc.stringz.toStringz(threeStr) : null));
+  if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+  return ret;
+}
+
+tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr, char[] twoStr) {
+  auto ret = otapi_im.FormPathString__SWIG_1(SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null), (twoStr ? tango.stdc.stringz.toStringz(twoStr) : null));
+  if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+  return ret;
+}
+
+tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder, char[] oneStr) {
+  auto ret = otapi_im.FormPathString__SWIG_2(SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null), (oneStr ? tango.stdc.stringz.toStringz(oneStr) : null));
+  if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
+  return ret;
+}
+
+tango.stdc.config.c_long FormPathString(SWIGTYPE_p_std__string strOutput, char[] strFolder) {
+  auto ret = otapi_im.FormPathString__SWIG_3(SWIGTYPE_p_std__string.swigGetCPtr(strOutput), (strFolder ? tango.stdc.stringz.toStringz(strFolder) : null));
   if (otapi_im.SwigPendingException.isPending) throw otapi_im.SwigPendingException.retrieve();
   return ret;
 }

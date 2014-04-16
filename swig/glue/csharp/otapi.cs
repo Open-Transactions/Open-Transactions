@@ -74,6 +74,30 @@ public class otapi {
     return ret;
   }
 
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr, string threeStr) {
+    int ret = otapiPINVOKE.FormPathString__SWIG_0(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr) {
+    int ret = otapiPINVOKE.FormPathString__SWIG_1(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr) {
+    int ret = otapiPINVOKE.FormPathString__SWIG_2(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder) {
+    int ret = otapiPINVOKE.FormPathString__SWIG_3(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public static bool StoreString(string strContents, string strFolder, string oneStr, string twoStr, string threeStr) {
     bool ret = otapiPINVOKE.StoreString__SWIG_0(strContents, strFolder, oneStr, twoStr, threeStr);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();

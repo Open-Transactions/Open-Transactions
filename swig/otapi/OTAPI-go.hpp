@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 #ifndef SWIG_otapi_WRAP_H_
 #define SWIG_otapi_WRAP_H_

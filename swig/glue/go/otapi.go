@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 package otapi
 
@@ -1702,6 +1702,47 @@ func (p SwigcptrStorage) Exists(a ...interface{}) bool {
 	panic("No match for overloaded function call")
 }
 
+func _swig_wrap_Storage_FormPathString__SWIG_0(SwigcptrStorage, *string, string, string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_0(arg2 *string, arg3 string, arg4 string, arg5 string, arg6 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_0(arg1, arg2, arg3, arg4, arg5, arg6)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_1(SwigcptrStorage, *string, string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_1(arg2 *string, arg3 string, arg4 string, arg5 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_2(SwigcptrStorage, *string, string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_2(arg2 *string, arg3 string, arg4 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_2(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_Storage_FormPathString__SWIG_3(SwigcptrStorage, *string, string) int64
+
+func (arg1 SwigcptrStorage) FormPathString__SWIG_3(arg2 *string, arg3 string) int64 {
+	return _swig_wrap_Storage_FormPathString__SWIG_3(arg1, arg2, arg3)
+}
+
+func (p SwigcptrStorage) FormPathString(a ...interface{}) int64 {
+	argc := len(a)
+	if argc == 2 {
+		return p.FormPathString__SWIG_3(a[0].(*string), a[1].(string))
+	}
+	if argc == 3 {
+		return p.FormPathString__SWIG_2(a[0].(*string), a[1].(string), a[2].(string))
+	}
+	if argc == 4 {
+		return p.FormPathString__SWIG_1(a[0].(*string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	if argc == 5 {
+		return p.FormPathString__SWIG_0(a[0].(*string), a[1].(string), a[2].(string), a[3].(string), a[4].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
 func _swig_wrap_delete_Storage(uintptr)
 
 func DeleteStorage(arg1 Storage) {
@@ -2030,6 +2071,7 @@ type Storage interface {
 	SwigIsStorage()
 	GetPacker(a ...interface{}) OTPacker
 	Exists(a ...interface{}) bool
+	FormPathString(a ...interface{}) int64
 	StoreString(a ...interface{}) bool
 	QueryString(a ...interface{}) string
 	StorePlainString(a ...interface{}) bool
@@ -2109,6 +2151,27 @@ func Exists(a ...interface{}) bool {
 	}
 	if argc == 4 {
 		return Exists__SWIG_0(a[0].(string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func FormPathString__SWIG_0(*string, string, string, string, string) int64
+func FormPathString__SWIG_1(*string, string, string, string) int64
+func FormPathString__SWIG_2(*string, string, string) int64
+func FormPathString__SWIG_3(*string, string) int64
+func FormPathString(a ...interface{}) int64 {
+	argc := len(a)
+	if argc == 2 {
+		return FormPathString__SWIG_3(a[0].(*string), a[1].(string))
+	}
+	if argc == 3 {
+		return FormPathString__SWIG_2(a[0].(*string), a[1].(string), a[2].(string))
+	}
+	if argc == 4 {
+		return FormPathString__SWIG_1(a[0].(*string), a[1].(string), a[2].(string), a[3].(string))
+	}
+	if argc == 5 {
+		return FormPathString__SWIG_0(a[0].(*string), a[1].(string), a[2].(string), a[3].(string), a[4].(string))
 	}
 	panic("No match for overloaded function call")
 }

@@ -12703,6 +12703,138 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Storage_Exists__SWIG_3(void * jarg1, 
 }
 
 
+SWIGEXPORT long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_0(void * jarg1, void * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+  long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string arg6 ;
+  long result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  if (!jarg6) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg6)->assign(jarg6); 
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_1(void * jarg1, void * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  long result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_2(void * jarg1, void * jarg2, char * jarg3, char * jarg4) {
+  long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  long result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_Storage_FormPathString__SWIG_3(void * jarg1, void * jarg2, char * jarg3) {
+  long jresult ;
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  long result;
+  
+  arg1 = (OTDB::Storage *)jarg1; 
+  arg2 = (std::string *)jarg2;
+  if (!arg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (long)(arg1)->FormPathString(*arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void SWIGSTDCALL CSharp_delete_Storage(void * jarg1) {
   OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
   
@@ -13852,6 +13984,130 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_Exists__SWIG_3(char * jarg1) {
   }
   (&arg1)->assign(jarg1); 
   result = (bool)OTDB::Exists(arg1);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_FormPathString__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  long result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  if (!jarg5) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg5)->assign(jarg5); 
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_FormPathString__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
+  long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  long result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  if (!jarg4) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg4)->assign(jarg4); 
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_FormPathString__SWIG_2(void * jarg1, char * jarg2, char * jarg3) {
+  long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  long result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  if (!jarg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT long SWIGSTDCALL CSharp_FormPathString__SWIG_3(void * jarg1, char * jarg2) {
+  long jresult ;
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  long result;
+  
+  arg1 = (std::string *)jarg1;
+  if (!arg1) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "std::string & type is null", 0);
+    return 0;
+  } 
+  if (!jarg2) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "null string", 0);
+    return 0;
+  }
+  (&arg2)->assign(jarg2); 
+  result = (long)OTDB::FormPathString(*arg1,arg2);
   jresult = result; 
   return jresult;
 }

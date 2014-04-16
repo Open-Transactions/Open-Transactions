@@ -55,6 +55,7 @@ package otapi;
 *CreateObject = *otapic::CreateObject;
 *CheckStringsExistInOrder = *otapic::CheckStringsExistInOrder;
 *Exists = *otapic::Exists;
+*FormPathString = *otapic::FormPathString;
 *StoreString = *otapic::StoreString;
 *QueryString = *otapic::QueryString;
 *StorePlainString = *otapic::StorePlainString;
@@ -744,6 +745,7 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 %ITERATORS = ();
 *GetPacker = *otapic::Storage_GetPacker;
 *Exists = *otapic::Storage_Exists;
+*FormPathString = *otapic::Storage_FormPathString;
 sub DESTROY {
     return unless $_[0]->isa('HASH');
     my $self = tied(%{$_[0]});

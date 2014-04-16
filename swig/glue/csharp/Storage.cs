@@ -74,6 +74,30 @@ public class Storage : global::System.IDisposable {
     return ret;
   }
 
+  public virtual int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr, string threeStr) {
+    int ret = otapiPINVOKE.Storage_FormPathString__SWIG_0(swigCPtr, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public virtual int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr, string twoStr) {
+    int ret = otapiPINVOKE.Storage_FormPathString__SWIG_1(swigCPtr, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public virtual int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder, string oneStr) {
+    int ret = otapiPINVOKE.Storage_FormPathString__SWIG_2(swigCPtr, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public virtual int FormPathString(SWIGTYPE_p_std__string strOutput, string strFolder) {
+    int ret = otapiPINVOKE.Storage_FormPathString__SWIG_3(swigCPtr, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool StoreString(string strContents, string strFolder, string oneStr, string twoStr, string threeStr) {
     bool ret = otapiPINVOKE.Storage_StoreString__SWIG_0(swigCPtr, strContents, strFolder, oneStr, twoStr, threeStr);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();

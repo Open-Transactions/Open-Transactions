@@ -34,7 +34,7 @@ public class ContactNym extends Displayable {
     }
     super.delete();
   }
-/*@SWIG:swig\otapi\OTAPI.i,158,OT_CAN_BE_CONTAINED_BY@*/
+/*@SWIG:otapi/OTAPI.i,162,OT_CAN_BE_CONTAINED_BY@*/
 	// Ensure that the GC doesn't collect any OT_CONTAINER instance set from Java
 	private Contact containerRefContact;
 	// ----------------	
@@ -44,10 +44,10 @@ public class ContactNym extends Displayable {
 	// ----------------
 /*@SWIG@*/
 	// ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,112,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:otapi/OTAPI.i,116,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,193,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private long removeRefServerInfo(long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
