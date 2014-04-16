@@ -94,26 +94,23 @@ OT_MADE_EASY_OT string MadeEasy::register_nym(const string & SERVER_ID, const st
     string strResponse = theRequest.SendRequest(theRequest, "CREATE_USER_ACCT");
     int32_t nSuccess = VerifyMessageSuccess(strResponse);
 
-    switch (nSuccess)
+    if(1 == nSuccess)
     {
-    case (1) :
-    {
-                 Utility MsgUtil;
+         Utility MsgUtil;
 
-                 // Use the getRequest command, thus insuring that the request number is in sync.
-                 //
-                 if (1 != MsgUtil.getRequestNumber(SERVER_ID, NYM_ID))
-                 {
-                     OTAPI_Wrap::Output(0, "\n Succeeded in register_nym, but strange: then failed calling getRequest, to sync the request number for the first time.\n");
-                     return "";
-                 }
-                 break;
+         // Use the getRequest command, thus insuring that the request number is in sync.
+         //
+         if (1 != MsgUtil.getRequestNumber(SERVER_ID, NYM_ID))
+         {
+             OTAPI_Wrap::Output(0, "\n Succeeded in register_nym, but strange: then failed calling getRequest, to sync the request number for the first time.\n");
+             return "";
+         }
     }
-
-    default:
+    else
     {
-               break;
-    }
+        // maybe an invalid server ID or the server contract isn't available (do AddServerContract(..) first)
+        OTAPI_Wrap::Output(0, "Failed to register_nym.\n");
+        return "";
     }
 
     return strResponse;
