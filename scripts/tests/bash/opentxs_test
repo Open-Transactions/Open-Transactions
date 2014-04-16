@@ -1,0 +1,517 @@
+#!/bin/bash
+
+# Todo:  Script to run all the various tests in this folder.
+
+
+#OPTIONS="start quit"
+#select opt in $OPTIONS; do
+#   if [ "$opt" = "quit" ]; then
+#    echo done
+#    exit
+#   elif [ "$opt" = "start" ]; then
+#    break
+#   else
+#    clear
+#    echo bad option
+#   fi
+#done
+
+
+# NOTE:  ot-sample-data folder is assumed to be the data folder.
+# So if you want to run this test script with any other data, you
+# might need to update the below IDs to match.
+
+# this will allow you to run 'bash ot_test' from the Windows target folders like lib/Win32/Debug:
+# OPENTXS='./ot.exe ..\..\..\scripts\opentxs'
+
+# modify this command with correct paths when necessary
+OPENTXS='opentxs'
+
+FTNYM='DYEB6U7dcpbwdGrftPnslNKz76BDuBTFAjiAgKaiY2n'
+BOBNYM='HpDoVBTix9GRLvZZoKBi2zv2f4IFVLmRrW2Q0nAA0OH'
+
+FTACCT='yQGh0vgm9YiqYOh6bfLDxyAA7Nnh2NmturCQmOt4LTo'
+BOBACCT='O8uUtFNyeKUqYdaBrroDR9OIgPhvtW91iBBVNEfbHDC'
+
+SILVERPURSE='JY7kEFnm2c50CGNphdpgnlVo2hOZuLrBua5cFqWWR9Q'
+TOKENSPURSE='7f8nlUn795x8931JParRnmKAyw8cegRyBMcFg9FccaF'
+
+SERVER='r1fUoHwJOWCuK3WBAAySjmKYqsG6G2TYIxdqY6YNuuG'
+
+
+function test_command {
+    THE_COMMAND=$1
+    if [ -n "$3" ]; then
+       THE_OUTPUT=`$2 --args "$3"`
+    else
+       THE_OUTPUT=`$2`
+    fi
+    RETURN_VAL=$?
+    THE_RESULT=$( printf '%03d' ${RETURN_VAL} )
+
+    echo "-----------------------------------------"
+    echo "Output:"
+    echo ""
+    echo "${THE_OUTPUT}"
+    echo ""
+
+    if [ ${RETURN_VAL} = 0 ]; then
+        echo "$(tput setaf 2 tput bold)${THE_COMMAND} returned zero. (Success.)$(tput sgr 0)"
+    else
+        echo "$(tput setaf 1 tput bold)${THE_COMMAND} returned: ${RETURN_VAL}   (0 is success)$(tput sgr 0)"
+    fi
+
+    echo "Press enter to continue..."
+   read CONTINUE
+}
+# ----------------------------------------------------------------------------------------
+
+# test zone.
+
+# Example test command with good escapes/quotes
+#COMPLEX_COMMAND="${OPENTXS} testcommand --mynym ${FTNYM} --hisnym ${BOBNYM}"
+MEMO="memo 'Test FTs testcommand memo.'"
+#ARG1='amount 2'
+#ARGS=''${MEMO}' '${ARG1}''
+#test_command "testcommand" "${COMPLEX_COMMAND}" "${ARGS}"
+
+# (end test zone)
+# ----------------------------------------------------------------------------------------
+
+
+#showaccounts	show the asset accounts in the wallet.
+test_command "showaccounts" "${OPENTXS} showaccounts"
+
+
+#showservers	show the server contracts in the wallet.
+test_command "showservers" "${OPENTXS} showservers"
+
+
+#showassets     show the currency contracts in the wallet.
+test_command "showassets" "${OPENTXS} showassets"
+
+
+#checknym       download a nym's public key based on his ID.
+COMPLEX_COMMAND="${OPENTXS} checknym --mynym ${FTNYM} --hisnym ${BOBNYM}"
+test_command "checknym" "${COMPLEX_COMMAND}"
+
+
+#shownyms       show the nyms in the wallet.
+test_command "shownyms" "${OPENTXS} shownyms"
+
+
+#stat           display wallet contents.
+test_command "stat" "${OPENTXS} stat"
+
+
+#shownym		show the statistics for a specific nym.
+test_command "shownym" "${OPENTXS} shownym --mynym ${FTNYM}"
+
+#getmarkets     download the list of markets.
+#showmarkets        display the list of markets on a particular server.
+test_command "getmarkets" "${OPENTXS} getmarkets --mynym ${FTNYM} --server ${SERVER}"
+test_command "showmarkets" "${OPENTXS} showmarkets --mynym ${FTNYM} --server ${SERVER}"
+
+#showacct       show account stats for a single account.
+test_command "showacct" "${OPENTXS} showacct --myacct ${FTACCT}"
+
+
+
+#balance		display balance for a specific account.
+test_command "balance" "${OPENTXS} balance --myacct ${FTACCT}"
+
+
+#refresh		performs both refreshnym and refreshacct.
+#refreshnym     download latest intermediary files for mynym.
+
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${FTNYM} --myacct ${FTACCT}"
+
+# ----------------------------------------------------------------------------------------
+# Cash Handling
+
+#showmint	show a mint file for specific asset ID. Download if necessary.
+test_command "showmint" "${OPENTXS} showmint"
+
+#withdraw       withdraw cash. (From acct on server into local purse.)
+COMPLEX_COMMAND="${OPENTXS} withdraw --myacct ${FTACCT}"
+ARGS='amount 6'
+test_command "withdraw" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#showpurse      show contents of cash purse.
+test_command "showpurse" "${OPENTXS} showpurse --mynym ${FTNYM} --server ${SERVER} --mypurse ${SILVERPURSE}"
+
+#deposit		deposit cash, cheque, voucher, or tokens.
+COMPLEX_COMMAND="${OPENTXS} deposit --myacct ${FTACCT}"
+ARGS='indices all'
+test_command "deposit cash" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#showpurse      show contents of cash purse.
+test_command "showpurse" "${OPENTXS} showpurse --mynym ${FTNYM} --server ${SERVER} --mypurse ${SILVERPURSE}"
+
+#refreshacct	download latest intermediary files for myacct.
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} --myacct ${BOBACCT}"
+
+#showacct       show account stats for a single account.
+test_command "showacct" "${OPENTXS} showacct --myacct ${BOBACCT}"
+
+#sendcash	send cash from mypurse to recipient, withdraw since purse should be empty.
+COMPLEX_COMMAND="${OPENTXS} sendcash --myacct ${FTACCT} --hisnym ${BOBNYM}"
+MEMO="memo 'Test FTs sendcash memo.'"
+ARG1='amount 16'
+ARGS=''${MEMO}' '${ARG1}''
+test_command "sendcash" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#acceptmoney	accept all incoming transfers and payments into MyAcct.
+test_command "acceptmoney" "${OPENTXS} acceptmoney --mynym ${BOBNYM} --myacct ${BOBACCT}"
+
+#showacct       show account stats for a single account.
+test_command "showacct" "${OPENTXS} showacct --myacct ${BOBACCT}"
+
+#
+# ----------------------------------------------------------------------------------------
+
+
+
+# FIRST TRANSFER is for testing the "accepttransfers" command.
+
+#transfer       send a transfer from myacct to hisacct.
+COMPLEX_COMMAND="${OPENTXS} transfer --myacct ${FTACCT} --hisacct ${BOBACCT}"
+MEMO="memo 'Test FTs transfer memo.'"
+ARG1='amount 11'
+ARGS=''${MEMO}' '${ARG1}''
+test_command "transfer" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#outbox         display outbox of a particular account.
+test_command "outbox" "${OPENTXS} outbox --myacct ${FTACCT}"
+#refresh        refresh Bob's intermediary files before looking at his inbox.
+#inbox          display inbox of a particular account.
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} --myacct ${BOBACCT}"
+test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
+#accepttransfers    accept all incoming transfers for myacct.
+COMPLEX_COMMAND="${OPENTXS} accepttransfers --mynym ${BOBNYM} --myacct ${BOBACCT}"
+test_command "accepttransfers" "${COMPLEX_COMMAND}"
+# show inbox again to see that the transfers are now gone...
+test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
+
+
+# ----------------------------------------------------------------------------------------
+
+
+# TESTING "MAIL" SYSTEM.
+
+#sendmsg		send a message to another nym's in-mail.
+COMPLEX_COMMAND="${OPENTXS} sendmsg --mynym ${FTNYM} --hisnym ${BOBNYM}"
+test_command "sendmsg" "${COMPLEX_COMMAND}"
+
+# need to refresh Bob so we'll receive his incoming mail.
+test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
+
+#mail           display in-mail for a particular nym.
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
+test_command "mail" "${COMPLEX_COMMAND}"
+
+
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
+ARGS='index 0'
+test_command "read mail message" "${COMPLEX_COMMAND}" "${ARGS}"
+
+
+#delmail		delete an in-mail item.
+COMPLEX_COMMAND="${OPENTXS} delmail --mynym ${BOBNYM}"
+ARGS='index 0'
+test_command "delete mail message" "${COMPLEX_COMMAND}" "${ARGS}"
+
+
+#mail           display in-mail for a particular nym.
+COMPLEX_COMMAND="${OPENTXS} mail --mynym ${BOBNYM}"
+test_command "mail" "${COMPLEX_COMMAND}"
+
+#outmail		display out-mail for a particular nym.
+COMPLEX_COMMAND="${OPENTXS} outmail --mynym ${FTNYM}"
+test_command "outmail" "${COMPLEX_COMMAND}"
+
+#deloutmail     delete an out-mail item.
+COMPLEX_COMMAND="${OPENTXS} deloutmail --mynym ${FTNYM}"
+ARGS='index 0'
+test_command "delete outgoing mail message" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#outmail		display out-mail for a particular nym.
+COMPLEX_COMMAND="${OPENTXS} outmail --mynym ${FTNYM}"
+test_command "outmail" "${COMPLEX_COMMAND}"
+
+# ----------------------------------------------------------------------------------------
+
+
+# SEND CHEQUE
+
+
+#sendcheque     write a cheque and then send it to the hisnym.
+COMPLEX_COMMAND="${OPENTXS} sendcheque --myacct ${FTACCT} --hisnym ${BOBNYM}"
+MEMO="memo 'Test FTs sendcheque memo.'"
+ARG1='amount 1'
+ARG2='validfor 2592000'
+ARGS=''${MEMO}' '${ARG1}' '${ARG2}''
+test_command "sendcheque" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#outpayment    display contents of outgoing payments box.
+test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
+
+#refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
+test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
+#payments       display contents of Bob's incoming payments box.
+test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
+
+#showpayment	show the details of Bob's incoming payment in the payments inbox.
+COMPLEX_COMMAND="${OPENTXS} showpayment --mynym ${BOBNYM}"
+ARGS='index 0'
+test_command "show incoming payment" "${COMPLEX_COMMAND}" "${ARGS}"
+
+
+#acceptpayments     accept all incoming payments for mynym.
+COMPLEX_COMMAND="${OPENTXS} acceptpayments --mynym ${BOBNYM} --myacct ${BOBACCT}"
+test_command "acceptpayments" "${COMPLEX_COMMAND}"
+
+#refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
+test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
+
+# show payments inbox again to see that the incoming payments are now gone (processed)...
+test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
+
+# --------
+
+# Next, refresh FT's Acct,
+# and then show his inbox (to see the chequereceipt)
+# then acceptreceipts (to get the chequereceipt out of his inbox.)
+# Then show that his inbox is empty again.
+# Then refresh FT's Nym, and show that his outpayment box is empty again.
+
+#refreshacct  refresh FT's intermediary files before looking at his asset acct inbox. (for cheque receipt.)
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${FTNYM} --myacct ${FTACCT}"
+
+# and then show his inbox (to see the chequereceipt)
+test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
+
+# then acceptreceipts (to get the chequereceipt out of his inbox.)
+#acceptreceipts    accept all incoming receipts for myacct.
+COMPLEX_COMMAND="${OPENTXS} acceptreceipts --mynym ${FTNYM} --myacct ${FTACCT}"
+test_command "acceptreceipts" "${COMPLEX_COMMAND}"
+
+# Then show that his inbox is empty again.
+test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
+
+# Show that his outpayment box is empty again (since accepting the chequeReceipt from inbox...)
+
+#outpayment    display contents of outgoing payments box.
+test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
+
+# ----------------------------------------------------------------------------------------
+
+
+
+# SECOND TRANSFER is for testing the "acceptinbox" command. (Note: might move this to a place where we know a receipt will already be in there... so we're testing the accepting of receipts too, and not just transfers -- which is what acceptinbox is for, after all.)
+
+#transfer       send a transfer from myacct to hisacct.
+COMPLEX_COMMAND="${OPENTXS} transfer --myacct ${FTACCT} --hisacct ${BOBACCT}"
+MEMO="memo 'Test FTs transfer memo.'"
+ARG1='amount 12'
+ARGS=''${MEMO}' '${ARG1}''
+test_command "transfer" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#refresh        refresh Bob's intermediary files before looking at his inbox.
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${BOBNYM} --myacct ${BOBACCT}"
+#acceptinbox    accept all incoming transfers and receipts for myacct.
+COMPLEX_COMMAND="${OPENTXS} acceptinbox --mynym ${BOBNYM} --myacct ${BOBACCT}"
+test_command "acceptinbox" "${COMPLEX_COMMAND}"
+# show inbox again to see that the transfers are now gone...
+test_command "inbox" "${OPENTXS} inbox --myacct ${BOBACCT}"
+
+
+# ----------------------------------------------------------------------------------------
+
+
+
+# SEND / PAY INVOICE
+
+
+#sendinvoice	write an invoice and then send it to the recipient.
+COMPLEX_COMMAND="${OPENTXS} sendinvoice --myacct ${FTACCT} --hisnym ${BOBNYM}"
+MEMO="memo 'Test FTs sendinvoice memo.'"
+ARG1='amount 2'
+ARG2='validfor 2592000'
+ARGS=''${MEMO}' '${ARG1}' '${ARG2}''
+test_command "sendinvoice" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#outpayment    display contents of outgoing payments box.
+test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
+
+#refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
+test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
+#payments       display contents of Bob's incoming payments box.
+test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
+
+#showpayment	show the details of Bob's incoming payment in the payments inbox.
+COMPLEX_COMMAND="${OPENTXS} showpayment --mynym ${BOBNYM}"
+ARGS='index 0'
+test_command "show incoming payment" "${COMPLEX_COMMAND}" "${ARGS}"
+
+#acceptinvoices     accept all invoices in mynym's payments inbox.
+COMPLEX_COMMAND="${OPENTXS} acceptinvoices --mynym ${BOBNYM} --myacct ${BOBACCT}"
+test_command "acceptinvoices" "${COMPLEX_COMMAND}"
+
+#refreshnym     refresh Bob's intermediary files before looking at his payments inbox.
+test_command "refreshnym" "${OPENTXS} refreshnym --server ${SERVER} --mynym ${BOBNYM}"
+
+# show payments inbox again to see that the incoming payments are now gone (processed)...
+test_command "payments" "${OPENTXS} payments --mynym ${BOBNYM}"
+
+# --------
+
+# Next, refresh FT's Acct,
+# and then show his inbox (to see the chequereceipt)
+# then acceptreceipts (to get the chequereceipt out of his inbox.)
+# Then show that his inbox is empty again.
+# Then refresh FT's Nym, and show that his outpayment box is empty again.
+
+#refreshacct  refresh FT's intermediary files before looking at his asset acct inbox. (for cheque receipt.)
+test_command "refresh" "${OPENTXS} refresh --server ${SERVER} --mynym ${FTNYM} --myacct ${FTACCT}"
+
+# and then show his inbox (to see the chequereceipt)
+test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
+
+# then acceptreceipts (to get the chequereceipt out of his inbox.)
+#acceptreceipts    accept all incoming receipts for myacct.
+COMPLEX_COMMAND="${OPENTXS} acceptreceipts --mynym ${FTNYM} --myacct ${FTACCT}"
+test_command "acceptreceipts" "${COMPLEX_COMMAND}"
+
+# Then show that his inbox is empty again.
+test_command "inbox" "${OPENTXS} inbox --myacct ${FTACCT}"
+
+# Show that his outpayment box is empty again (since accepting the chequeReceipt from inbox...)
+
+#outpayment    display contents of outgoing payments box.
+test_command "outpayment" "${OPENTXS} outpayment --mynym ${FTNYM}"
+
+# ----------------------------------------------------------------------------------------
+
+# -----------
+# VOUCHERS
+#
+#
+#sendvoucher	withdraw a voucher and then send it to the recipient.
+COMPLEX_COMMAND="${OPENTXS} sendvoucher --mynym ${FTNYM} --myacct ${FTACCT} --hisnym ${BOBNYM}"
+MEMO="memo 'Test FTs sendvoucher memo.'"
+ARG1='amount 2'
+ARGS=''${MEMO}' '${ARG1}''
+test_command "sendvoucher" "${COMPLEX_COMMAND}" "${ARGS}"
+
+
+
+#
+#
+# ------------------------------------------------------------------------------------------
+#payinvoice     pay an invoice.
+
+
+
+#
+# Financial instruments:
+
+#discard		discard/cancel a not-yet-cashed, outgoing instrument.
+
+
+
+#acceptall          accept all receipts, invoices, payments, and transfers.
+
+
+# ----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+#Commands: 
+#
+#
+# Advanced utilities: 
+#addsignature	add a signature to a contract without releasing others.
+#decode		OT-base64-decode out of armor.
+#decrypt		decrypt ciphertext using nym's private key.
+#encode		OT-base64-encode into armor.
+#encrypt		encrypt plaintext to a nym's public key.
+#exchange	exchange in/out of a basket currency.
+#getboxreceipt	downloads a box receipt based on transaction ID.
+#getcontract	download an asset or server contract by its ID.
+#issueasset	issue a currency contract onto an OT server.
+#newasset	create a new asset contract.
+#newbasket	create a new basket currency.
+#newkey		create a new symmetric key.
+#newserver	create a new server contract.
+#pass_decrypt	password-decrypt a ciphertext using a symmetric key.
+#pass_encrypt	password-encrypt a plaintext using a symmetric key.
+#register	register a nym onto an OT server.
+#showbaskets	show basket currencies issued on a particular server.
+
+#sign		sign a contract, releasing all other signatures first.
+#verifysig	verify a signature on a contract.
+#
+# The user wallet: 
+#addasset	paste an existing asset contract, import it into your wallet.
+#addserver	paste an existing server contract, import it into your wallet.
+#changepw	change the master passphrase for the wallet.
+#credentials	show the credentials for a specific nym.
+#editacct	edit an asset account's label, as it appears in your wallet.
+#editasset	edit a currency contract's label, as it appears in your wallet.
+#editnym		edit the nym's label, as it appears in your wallet.
+#editserver	edit a server contract's label, as it appears in your wallet.
+#exportcert	export the OpenSSL cert (only) for a specific Nym.
+#exportnym	export an OT Nym as a single importable file.
+#importcert	import an OpenSSL cert and create a Nym based on it.
+#importnym	import an OT Nym that was previously exported.
+#newcred		create a new credential for a specific nym.
+#newnym		create a new nym.
+
+#revokecred	revoke one of a nym's credentials.
+
+#showcred	show a specific credential in detail.
+#showincoming	show incoming payments for mynym+server and/or inbox for myacct.
+
+#verifyreceipt	verify your intermediary files against the last signed receipt.
+#
+# Misc: 
+#clearrecords	clear all archived records and receipts.
+#records		display contents of record box.
+#
+# Markets (bid/ask): 
+#canceloffer	cancel a still-running, recurring market offer.
+
+#getmyoffers	download mynym's list of market offers.
+#getoffers	download the list of market offers.
+#newoffer	create a new market offer.
+#paydividend	dividend payout, sent to all shareholders (in voucher form.)
+
+#showmyoffers	show mynym's offers on a particular server and market.
+#showoffers	show all offers on a particular server and market.
+#
+# Asset accounts: 
+#acceptall	accept all incoming transfers, receipts, payments, and invoices.
+
+#newacct		create a new asset account.
+
+#
+# Dealing with other users: 
+
+#payinvoice	pay an invoice.
+
+#
+# Financial instruments: 
+
+#cancelplan	cancel a still-running, recurring payment plan.
+#confirm		confirm your agreement to a smart contract or payment plan.
+#discard		discard/cancel a not-yet-cashed, outgoing instrument.
+
+#propose		as merchant, propose a payment plan to a customer.
+#trigger		trigger a clause on a running smart contract.
+
