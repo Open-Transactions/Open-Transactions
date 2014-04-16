@@ -734,6 +734,7 @@ int main(int argc, char* argv[])
 
 		// -----------------------------------------------
         OT_ME madeEasy;
+        madeEasy.opentxs_copy_variables();
         madeEasy.ExecuteScript_ReturnVoid(results, ("stdin"));
 		// --------------------------------------------------------------------
 
@@ -1306,13 +1307,20 @@ int main(int argc, char* argv[])
             }
             // ************************************************
 
+            madeEasy.opentxs_copy_variables();
+
             OTLog::Output(1, "Script output:\n\n");
 
             // OT SCRIPT PROMPT --------------------------------------------
 #if USE_OLD_CHAISCRIPT == 0
-            if (strFilename.find("scripts\\opentxs") != string::npos || strFilename.find("scripts/opentxs") != string::npos)
+            if (strFilename.size() >= 8)
             {
-                return madeEasy.opentxs_main_loop();
+                // request to run opentxs command line script?
+                string endsWith = strFilename.substr(strFilename.size() - 8, 8);
+                if (endsWith.compare("\\opentxs") == 0 || endsWith.compare("/opentxs") == 0)
+                {
+                    return madeEasy.opentxs_main_loop();
+                }
             }
 #endif
             return madeEasy.ExecuteScript_ReturnInt(results, strFilename);
@@ -1767,6 +1775,7 @@ int main(int argc, char* argv[])
 		{
 			std::string strScript ="print(\"Hello, world\")";
             OT_ME madeEasy;
+            madeEasy.opentxs_copy_variables();
             madeEasy.ExecuteScript_ReturnVoid(strScript, "hardcoded");
 
 			// --------------------------------------------------------------------
