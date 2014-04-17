@@ -61,6 +61,22 @@ public class Storage {
     return otapiJNI.Storage_Exists__SWIG_3(swigCPtr, this, strFolder);
   }
 
+  public int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr, String threeStr) {
+    return otapiJNI.Storage_FormPathString__SWIG_0(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+  }
+
+  public int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr) {
+    return otapiJNI.Storage_FormPathString__SWIG_1(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+  }
+
+  public int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr) {
+    return otapiJNI.Storage_FormPathString__SWIG_2(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+  }
+
+  public int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder) {
+    return otapiJNI.Storage_FormPathString__SWIG_3(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
+  }
+
   public boolean StoreString(String strContents, String strFolder, String oneStr, String twoStr, String threeStr) {
     return otapiJNI.Storage_StoreString__SWIG_0(swigCPtr, this, strContents, strFolder, oneStr, twoStr, threeStr);
   }

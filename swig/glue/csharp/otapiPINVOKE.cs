@@ -1611,6 +1611,18 @@ class otapiPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_Exists__SWIG_3")]
   public static extern bool Storage_Exists__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_0")]
+  public static extern int Storage_FormPathString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, string jarg5, string jarg6);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_1")]
+  public static extern int Storage_FormPathString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_2")]
+  public static extern int Storage_FormPathString__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Storage_FormPathString__SWIG_3")]
+  public static extern int Storage_FormPathString__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_delete_Storage")]
   public static extern void delete_Storage(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -1745,6 +1757,18 @@ class otapiPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_Exists__SWIG_3")]
   public static extern bool Exists__SWIG_3(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_0")]
+  public static extern int FormPathString__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_1")]
+  public static extern int FormPathString__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, string jarg4);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_2")]
+  public static extern int FormPathString__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_FormPathString__SWIG_3")]
+  public static extern int FormPathString__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_StoreString__SWIG_0")]
   public static extern bool StoreString__SWIG_0(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);

@@ -771,6 +771,10 @@ static this() {
   mixin(bindCode("Storage_Exists__SWIG_1", "D_Storage_Exists__SWIG_1"));
   mixin(bindCode("Storage_Exists__SWIG_2", "D_Storage_Exists__SWIG_2"));
   mixin(bindCode("Storage_Exists__SWIG_3", "D_Storage_Exists__SWIG_3"));
+  mixin(bindCode("Storage_FormPathString__SWIG_0", "D_Storage_FormPathString__SWIG_0"));
+  mixin(bindCode("Storage_FormPathString__SWIG_1", "D_Storage_FormPathString__SWIG_1"));
+  mixin(bindCode("Storage_FormPathString__SWIG_2", "D_Storage_FormPathString__SWIG_2"));
+  mixin(bindCode("Storage_FormPathString__SWIG_3", "D_Storage_FormPathString__SWIG_3"));
   mixin(bindCode("delete_Storage", "D_delete_Storage"));
   mixin(bindCode("Storage_StoreString__SWIG_0", "D_Storage_StoreString__SWIG_0"));
   mixin(bindCode("Storage_StoreString__SWIG_1", "D_Storage_StoreString__SWIG_1"));
@@ -816,6 +820,10 @@ static this() {
   mixin(bindCode("Exists__SWIG_1", "D_Exists__SWIG_1"));
   mixin(bindCode("Exists__SWIG_2", "D_Exists__SWIG_2"));
   mixin(bindCode("Exists__SWIG_3", "D_Exists__SWIG_3"));
+  mixin(bindCode("FormPathString__SWIG_0", "D_FormPathString__SWIG_0"));
+  mixin(bindCode("FormPathString__SWIG_1", "D_FormPathString__SWIG_1"));
+  mixin(bindCode("FormPathString__SWIG_2", "D_FormPathString__SWIG_2"));
+  mixin(bindCode("FormPathString__SWIG_3", "D_FormPathString__SWIG_3"));
   mixin(bindCode("StoreString__SWIG_0", "D_StoreString__SWIG_0"));
   mixin(bindCode("StoreString__SWIG_1", "D_StoreString__SWIG_1"));
   mixin(bindCode("StoreString__SWIG_2", "D_StoreString__SWIG_2"));
@@ -1913,6 +1921,10 @@ extern(C) uint function(void* jarg1, char* jarg2, char* jarg3, char* jarg4, char
 extern(C) uint function(void* jarg1, char* jarg2, char* jarg3, char* jarg4) Storage_Exists__SWIG_1;
 extern(C) uint function(void* jarg1, char* jarg2, char* jarg3) Storage_Exists__SWIG_2;
 extern(C) uint function(void* jarg1, char* jarg2) Storage_Exists__SWIG_3;
+extern(C) tango.stdc.config.c_long function(void* jarg1, void* jarg2, char* jarg3, char* jarg4, char* jarg5, char* jarg6) Storage_FormPathString__SWIG_0;
+extern(C) tango.stdc.config.c_long function(void* jarg1, void* jarg2, char* jarg3, char* jarg4, char* jarg5) Storage_FormPathString__SWIG_1;
+extern(C) tango.stdc.config.c_long function(void* jarg1, void* jarg2, char* jarg3, char* jarg4) Storage_FormPathString__SWIG_2;
+extern(C) tango.stdc.config.c_long function(void* jarg1, void* jarg2, char* jarg3) Storage_FormPathString__SWIG_3;
 extern(C) void function(void* jarg1) delete_Storage;
 extern(C) uint function(void* jarg1, char* jarg2, char* jarg3, char* jarg4, char* jarg5, char* jarg6) Storage_StoreString__SWIG_0;
 extern(C) uint function(void* jarg1, char* jarg2, char* jarg3, char* jarg4, char* jarg5) Storage_StoreString__SWIG_1;
@@ -1958,6 +1970,10 @@ extern(C) uint function(char* jarg1, char* jarg2, char* jarg3, char* jarg4) Exis
 extern(C) uint function(char* jarg1, char* jarg2, char* jarg3) Exists__SWIG_1;
 extern(C) uint function(char* jarg1, char* jarg2) Exists__SWIG_2;
 extern(C) uint function(char* jarg1) Exists__SWIG_3;
+extern(C) tango.stdc.config.c_long function(void* jarg1, char* jarg2, char* jarg3, char* jarg4, char* jarg5) FormPathString__SWIG_0;
+extern(C) tango.stdc.config.c_long function(void* jarg1, char* jarg2, char* jarg3, char* jarg4) FormPathString__SWIG_1;
+extern(C) tango.stdc.config.c_long function(void* jarg1, char* jarg2, char* jarg3) FormPathString__SWIG_2;
+extern(C) tango.stdc.config.c_long function(void* jarg1, char* jarg2) FormPathString__SWIG_3;
 extern(C) uint function(char* jarg1, char* jarg2, char* jarg3, char* jarg4, char* jarg5) StoreString__SWIG_0;
 extern(C) uint function(char* jarg1, char* jarg2, char* jarg3, char* jarg4) StoreString__SWIG_1;
 extern(C) uint function(char* jarg1, char* jarg2, char* jarg3) StoreString__SWIG_2;

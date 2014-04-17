@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 #define SWIGMODULE otapi
 #define SWIG_DIRECTORS
@@ -15128,6 +15128,124 @@ _wrap_Storage_Exists__SWIG_3(void *swig_v)
 
 
 void
+_wrap_Storage_FormPathString__SWIG_0(void *swig_v)
+{
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  std::string arg6 ;
+  long result;
+  
+  struct swigargs {
+    OTDB::Storage *arg1;
+    std::string *arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    _gostring_ arg6;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTDB::Storage **)&swig_a->arg1; 
+  arg2 = *(std::string **)&swig_a->arg2; 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  (&arg4)->assign(swig_a->arg4.p, swig_a->arg4.n); 
+  (&arg5)->assign(swig_a->arg5.p, swig_a->arg5.n); 
+  (&arg6)->assign(swig_a->arg6.p, swig_a->arg6.n); 
+  
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4,arg5,arg6);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_Storage_FormPathString__SWIG_1(void *swig_v)
+{
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  long result;
+  
+  struct swigargs {
+    OTDB::Storage *arg1;
+    std::string *arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTDB::Storage **)&swig_a->arg1; 
+  arg2 = *(std::string **)&swig_a->arg2; 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  (&arg4)->assign(swig_a->arg4.p, swig_a->arg4.n); 
+  (&arg5)->assign(swig_a->arg5.p, swig_a->arg5.n); 
+  
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4,arg5);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_Storage_FormPathString__SWIG_2(void *swig_v)
+{
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  long result;
+  
+  struct swigargs {
+    OTDB::Storage *arg1;
+    std::string *arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTDB::Storage **)&swig_a->arg1; 
+  arg2 = *(std::string **)&swig_a->arg2; 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  (&arg4)->assign(swig_a->arg4.p, swig_a->arg4.n); 
+  
+  result = (long)(arg1)->FormPathString(*arg2,arg3,arg4);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_Storage_FormPathString__SWIG_3(void *swig_v)
+{
+  OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  long result;
+  
+  struct swigargs {
+    OTDB::Storage *arg1;
+    std::string *arg2;
+    _gostring_ arg3;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTDB::Storage **)&swig_a->arg1; 
+  arg2 = *(std::string **)&swig_a->arg2; 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  result = (long)(arg1)->FormPathString(*arg2,arg3);
+  swig_a->result = result; 
+}
+
+
+void
 _wrap_delete_Storage(void *swig_v)
 {
   OTDB::Storage *arg1 = (OTDB::Storage *) 0 ;
@@ -16290,6 +16408,112 @@ _wrap_Exists__SWIG_3(void *swig_v)
   (&arg1)->assign(swig_a->arg1.p, swig_a->arg1.n); 
   
   result = (bool)OTDB::Exists(arg1);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_FormPathString__SWIG_0(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  std::string arg5 ;
+  long result;
+  
+  struct swigargs {
+    std::string *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(std::string **)&swig_a->arg1; 
+  (&arg2)->assign(swig_a->arg2.p, swig_a->arg2.n); 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  (&arg4)->assign(swig_a->arg4.p, swig_a->arg4.n); 
+  (&arg5)->assign(swig_a->arg5.p, swig_a->arg5.n); 
+  
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3,arg4,arg5);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_FormPathString__SWIG_1(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  std::string arg4 ;
+  long result;
+  
+  struct swigargs {
+    std::string *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(std::string **)&swig_a->arg1; 
+  (&arg2)->assign(swig_a->arg2.p, swig_a->arg2.n); 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  (&arg4)->assign(swig_a->arg4.p, swig_a->arg4.n); 
+  
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3,arg4);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_FormPathString__SWIG_2(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  std::string arg3 ;
+  long result;
+  
+  struct swigargs {
+    std::string *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(std::string **)&swig_a->arg1; 
+  (&arg2)->assign(swig_a->arg2.p, swig_a->arg2.n); 
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  result = (long)OTDB::FormPathString(*arg1,arg2,arg3);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_FormPathString__SWIG_3(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  std::string arg2 ;
+  long result;
+  
+  struct swigargs {
+    std::string *arg1;
+    _gostring_ arg2;
+    long : 0;
+    long long result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(std::string **)&swig_a->arg1; 
+  (&arg2)->assign(swig_a->arg2.p, swig_a->arg2.n); 
+  
+  result = (long)OTDB::FormPathString(*arg1,arg2);
   swig_a->result = result; 
 }
 

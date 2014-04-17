@@ -57,6 +57,22 @@ public class otapi implements otapiConstants {
     return otapiJNI.Exists__SWIG_3(strFolder);
   }
 
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr, String threeStr) {
+    return otapiJNI.FormPathString__SWIG_0(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr, threeStr);
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr, String twoStr) {
+    return otapiJNI.FormPathString__SWIG_1(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr, twoStr);
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder, String oneStr) {
+    return otapiJNI.FormPathString__SWIG_2(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder, oneStr);
+  }
+
+  public static int FormPathString(SWIGTYPE_p_std__string strOutput, String strFolder) {
+    return otapiJNI.FormPathString__SWIG_3(SWIGTYPE_p_std__string.getCPtr(strOutput), strFolder);
+  }
+
   public static boolean StoreString(String strContents, String strFolder, String oneStr, String twoStr, String threeStr) {
     return otapiJNI.StoreString__SWIG_0(strContents, strFolder, oneStr, twoStr, threeStr);
   }

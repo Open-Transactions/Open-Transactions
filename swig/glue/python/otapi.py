@@ -2355,6 +2355,7 @@ class Storage(_object):
     __repr__ = _swig_repr
     def GetPacker(self, *args): return _otapi.Storage_GetPacker(self, *args)
     def Exists(self, *args): return _otapi.Storage_Exists(self, *args)
+    def FormPathString(self, *args): return _otapi.Storage_FormPathString(self, *args)
     __swig_destroy__ = _otapi.delete_Storage
     __del__ = lambda self : None;
     def StoreString(self, *args): return _otapi.Storage_StoreString(self, *args)
@@ -2401,6 +2402,10 @@ CheckStringsExistInOrder = _otapi.CheckStringsExistInOrder
 def Exists(*args):
   return _otapi.Exists(*args)
 Exists = _otapi.Exists
+
+def FormPathString(*args):
+  return _otapi.FormPathString(*args)
+FormPathString = _otapi.FormPathString
 
 def StoreString(*args):
   return _otapi.StoreString(*args)
