@@ -133,14 +133,10 @@
 #ifndef __OTWALLET_HPP__
 #define __OTWALLET_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTAssetContract.hpp"
 #include "OTPseudonym.hpp"
-
-#include _CINTTYPES
 
 class OTAccount;
 class OTAssetContract;

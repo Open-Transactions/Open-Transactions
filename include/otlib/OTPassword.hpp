@@ -1,13 +1,13 @@
 /**************************************************************
- *    
+ *
  *  OTPassword.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -133,13 +133,9 @@
 #ifndef __OT_PASSWORD_HPP__
 #define __OT_PASSWORD_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTCachedKey.hpp"
-
-#include _CINTTYPES
 
 #include <string>
 
@@ -147,25 +143,25 @@
 
 /*
  To use:
- 
+
  OTPassword thePass;
  (Or...)
  OTPassword thePass(strPassword, strPassword.length());
- 
+
  const char * szPassword	= thePass.getPassword();
  const int    nPassLength	= thePass.getPasswordSize();
- 
+
  If the instance of OTPassword is not going to be destroyed immediately
  after the password is used, then make sure to call zeroMemory() after
  using the password. (Otherwise the destructor will handle this anyway.)
- 
+
  (The primary purpose of this class is that it zeros its memory out when
  it is destructed.)
- 
+
  This class gives me a safe way to hand-off a password, and off-load the
  handling risk to the user.  This class will be included as part of the
  OT-API SWIG interface so that it's available inside other languages.
- 
+
  */
 
 #define OT_PW_DISPLAY  "Enter master passphrase for wallet."
@@ -191,7 +187,7 @@
 
 // Done:  Although we have good memory ZEROING code (for destruction)
 // we don't have code yet that will keep the contents SECURE while they
-// are in memory. For example, that will prevent them from being paged 
+// are in memory. For example, that will prevent them from being paged
 // to the hard drive during swapping. Such code would make OTPassword much
 // more appropriate for use cases such as storing passphrases and private
 // keys, and would even allow timeout procedures...
@@ -200,24 +196,24 @@
 //
 /*
  #include <sys/mman.h>
- 
- void *locking_alloc(size_t numbytes) 
+
+ void *locking_alloc(size_t numbytes)
  {
     static short have_warned = 0;
- 
+
     void *mem = malloc(numbytes);
- 
+
     if (mlock(mem, numbytes) && !have_warned)
     {
- 
+
         // We probably do not have permission.
         // Sometimes, it might not be possible to lock enough memory.
- 
+
         fprintf(stderr, "Warning: Using insecure memory!\n");
 
         have_warned = 1;
 
-    }     
+    }
 
     return mem;
  }
@@ -229,11 +225,11 @@ There are some potentially negative consequences here. First, If your process lo
 Unlocking a chunk of memory looks exactly the same as locking it, except that you call munlock():
         munlock(mem, numbytes);
 
- 
+
  // TODO: Work in some usage of CryptProtectMemory and CryptUnprotectMemory (Windows only)
  // with sample code below.  Also should make some kind of UNIX version.
- 
- 
+
+
 #ifndef _WINDOWS_
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -287,10 +283,10 @@ void main()
 
     return hr;
 }
- 
- 
- 
- 
+
+
+
+
 #ifndef _WINDOWS_
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -305,34 +301,34 @@ void main()
 void main()
 {
     LPWSTR pEncryptedText;  // contains the encrypted text
-    DWORD cbEncryptedText;  // number of bytes to which 
+    DWORD cbEncryptedText;  // number of bytes to which
 	                        // pEncryptedText points
 
-    if (CryptUnprotectMemory(pEncryptedText, cbEncryptedText, 
+    if (CryptUnprotectMemory(pEncryptedText, cbEncryptedText,
 		CRYPTPROTECTMEMORY_SAME_PROCESS))
     {
         // Use the decrypted string.
     }
     else
     {
-        wprintf(L"CryptUnprotectMemory failed: %d\n", 
+        wprintf(L"CryptUnprotectMemory failed: %d\n",
 			GetLastError());
     }
 
     // Clear and free memory after using
-    // the decrypted string or if an error occurs. 
+    // the decrypted string or if an error occurs.
     SecureZeroMemory(pEncryptedText, cbEncryptedText);
     LocalFree(pEncryptedText);
     pEncryptedText = NULL;
 }
- 
- 
+
+
  */
 
 class OTString;
 
 
-/* 
+/*
  OTPasswordData
  This class is used for passing user data to the password callback.
  Whenever actually doing some OpenSSL call that involves a private key,
@@ -346,10 +342,10 @@ class OTString;
  master Nym. Whereas if it WAS activated for the Master Nym, then it will
  just pop up the passphrase dialog and get his passphrase, and use that to
  decrypt the master key.
- 
+
  NOTE: For internationalization later, we can add an OTPasswordData constructor
  that takes a STRING CODE instead of an actual string. We can use an enum for
- this. Then we just pass the code there, instead of the string itself, and 
+ this. Then we just pass the code there, instead of the string itself, and
  the class will do the work of looking up the actual string based on that code.
  */
 
@@ -361,7 +357,7 @@ private:
     OTPassword *        m_pMasterPW; // Used only when isForCachedKey is true, for output. Points to output value from original caller (not owned.)
     const std::string   m_strDisplay;
     bool                m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
-    
+
     _SharedPtr<OTCachedKey> m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
 public:
     // --------------------------------
@@ -389,7 +385,7 @@ EXPORT    ~OTPasswordData();
 // Specifically: when the clear version of a password or key must be stored
 // usually for temporary reasons, it must be stored in memory locked from swapping
 // to disk, and in an object like OTPassword that zeros the memory as soon as we're done.
-// 
+//
 
 class OTPassword
 {
@@ -398,7 +394,7 @@ public:
 		{
             DEFAULT_SIZE = OT_DEFAULT_BLOCKSIZE,  // (128 bytes max length for a password.)
             LARGER_SIZE  = OT_LARGE_BLOCKSIZE     // Update: now 32767 bytes if you use this size.
-        }; 	
+        };
 
 private:
 	uint32_t m_nPasswordSize; // [ 0..128 ]  Update: [ 0..9000 ]
@@ -413,13 +409,13 @@ private:
     // its key in an encrypted format, but whenever, for what brief moments that key is decrypted and
     // USED, the decrypted form of it will be stored in an OTPassword (in binary mode.)
     // This is basically just to save me from duplicating work that's already done here in OTPassword.
-    // 
+    //
     bool    m_bIsText;          // storing a text passphrase?
     bool    m_bIsBinary;        // storing binary memory?
     bool    m_bIsPageLocked;    // is the page locked to prevent us from swapping this secret memory to disk?
-    
+
 public:
-		const		BlockSize	m_theBlockSize;		
+		const		BlockSize	m_theBlockSize;
     // -----------------
 EXPORT	bool		isPassword() const;
 EXPORT	const		uint8_t *	getPassword_uint8() const; // asserts if m_bIsText is false.
@@ -427,7 +423,7 @@ EXPORT	const		uint8_t *	getPassword_uint8() const; // asserts if m_bIsText is fa
 EXPORT	const		char *		getPassword()	const; // asserts if m_bIsText is false.
 EXPORT				uint8_t *	getPasswordWritable(); // asserts if m_bIsText is false.
 EXPORT				char *		getPasswordWritable_char(); // asserts if m_bIsText is false.
-    
+
 EXPORT				int			setPassword(const char * szInput, int nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
 EXPORT				int32_t		setPassword_uint8(const uint8_t * szInput, uint32_t nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
 EXPORT				bool		addChar(uint8_t theChar);
@@ -509,7 +505,7 @@ EXPORT	~OTPassword();
 // ---------------------------------------------------------
 // Used for the password callback...
 
-class OTCallback 
+class OTCallback
 {
 public:
 	OTCallback() {}
@@ -520,28 +516,28 @@ EXPORT	virtual void runTwo(const char * szDisplay, OTPassword & theOutput); // A
 
 // ------------------------------------------------
 
-class OTCaller 
+class OTCaller
 {
 protected:
 	OTPassword	m_Password;	// The password will be stored here by the Java dialog, so that the C callback can retrieve it and pass it to OpenSSL
 	OTPassword	m_Display;	// A display string is set here before the Java dialog is shown. (OTPassword used here only for convenience.)
-	
+
 	OTCallback * _callback;
-	
+
 public:
 	OTCaller() : _callback(NULL) { }
 EXPORT	~OTCaller();
-	
+
 EXPORT	bool	GetPassword(OTPassword & theOutput) const;	// Grab the password when it is needed.
 EXPORT	void	ZeroOutPassword();	// Then ZERO IT OUT so copies aren't floating around...
-	
+
 EXPORT	const char * GetDisplay() const;
 EXPORT	void SetDisplay(const char * szDisplay, int nLength);
-	
+
 EXPORT	void delCallback();
 EXPORT	void setCallback(OTCallback *cb);
 EXPORT	bool isCallbackSet() const;
-	
+
 EXPORT	void callOne(); // Asks for password once. (For authentication when using the Nym's private key.)
 EXPORT	void callTwo(); // Asks for password twice. (For confirmation during nym creation and password change.)
 };
@@ -557,11 +553,10 @@ EXPORT	void callTwo(); // Asks for password twice. (For confirmation during nym 
 
 
 /*
- 
- 
+
+
  HOW TO PREVENT MEMORY FROM GOING INTO CORE DUMPS
- 
- 
+
 #include <sys/time.h>
 
 #include <sys/resource.h>
@@ -571,7 +566,7 @@ EXPORT	void callTwo(); // Asks for password twice. (For confirmation during nym 
 
 
 int  main(int argc, char **argv)
- 
+
  {
 
   struct rlimit rlim;
@@ -594,26 +589,26 @@ int  main(int argc, char **argv)
 
 }
 
- 
- 
+
+
  http://www.drdobbs.com/cpp/184401646
- 
- 
- 
- 
+
+
+
+
  MORE CODE FOR MEMLOCK:
- 
+
  namespace Botan
  {
- 
+
     bool has_mlock();
- 
+
     bool lock_mem(void* addr, size_t length);
- 
+
     void unlock_mem(void* addr, size_t length);
  }
- 
- 
+
+
 //
 // Memory Locking Functions
 // (C) 1999-2007 Jack Lloyd
@@ -673,7 +668,7 @@ void unlock_mem(void* ptr, size_t bytes)
    }
 
 }
- 
+
  */
 
 

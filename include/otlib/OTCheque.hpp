@@ -134,13 +134,9 @@
 #ifndef __OT_CHEQUE_HPP__
 #define __OT_CHEQUE_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
-
-#include _CINTTYPES
 
 class OTCheque : public OTTrackable
 {

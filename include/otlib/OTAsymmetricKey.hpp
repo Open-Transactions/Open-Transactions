@@ -1,13 +1,13 @@
 /*************************************************************
- *    
+ *
  *  OTAsymmetricKey.h
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -134,18 +134,12 @@
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "Timer.hpp"
 
-#include _CINTTYPES
-
 #include <list>
 #include <cstddef>
-
-
 
 class OTCaller;
 class OTKeypair;
@@ -198,7 +192,7 @@ extern "C"
 // --------------------------------------------------------
 
 // This is the only part of the API that actually accepts objects as parameters,
-// since the above objects have SWIG C++ wrappers. 
+// since the above objects have SWIG C++ wrappers.
 //
 EXPORT bool OT_API_Set_PasswordCallback(OTCaller & theCaller); // Caller must have Callback attached already.
 
@@ -209,7 +203,7 @@ EXPORT bool OT_API_Set_PasswordCallback(OTCaller & theCaller); // Caller must ha
 extern "C"
 {
 typedef int OT_OPENSSL_CALLBACK(char *buf, int size, int rwflag, void *userdata); // <== Callback type, used for declaring.
-	
+
 EXPORT	OT_OPENSSL_CALLBACK default_pass_cb;
 EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 }
@@ -234,19 +228,19 @@ public:
     bool MakeNewKeypair(int nBits=1024);
     void Cleanup();
     bool SetOntoKeypair(OTKeypair & theKeypair);
-    
+
     OTLowLevelKeyData();
     ~OTLowLevelKeyData();
 // ***************************************************************
 #if defined (OT_CRYPTO_USING_OPENSSL)
     X509         *  m_pX509;
-	EVP_PKEY     *	m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)    
+	EVP_PKEY     *	m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)
 // ***************************************************************
 #elif defined (OT_CRYPTO_USING_GPG)
 
 // ***************************************************************
 #else
-    
+
 #endif  // Crypto engine.
 };
 
@@ -280,7 +274,7 @@ protected: // PROTECTED MEMBER DATA
     Timer       m_timer;       // Useful for keeping track how long since I last entered my passphrase...
 public:
     OTSignatureMetadata *  m_pMetadata;  // Just access this directly, like a struct. (Check for NULL.)
-    
+
     // To use m_metadata, call m_metadata.HasMetadata(). If it's true, then you can see
     // these values:
 //    char m_metadata::GetKeyType()             // Can be A, E, or S (authentication, encryption, or signing. Also, E would be unusual.)
@@ -310,7 +304,7 @@ EXPORT	virtual ~OTAsymmetricKey();
 	virtual void Release();
 	void Release_AsymmetricKey();
 	void ReleaseKey();
-    
+
 // ********************************************
     // PUBLIC METHODS
     // ---------------------------------------------------------------
@@ -327,14 +321,14 @@ EXPORT	virtual ~OTAsymmetricKey();
     // and we're going to destroy it when we're done with it.  2. A timer
     // is running, and until the 10 minutes are up, the private key is available.
     // But: Presumably it's stored in PROTECTED MEMORY, either with specific
-    // tricks used to prevent swapping and to zero after we're done, and to 
+    // tricks used to prevent swapping and to zero after we're done, and to
     // prevent core dumps, or it's stored in ssh-agent or some similar standard
     // API (gpg-agent, keychain Mac Keychain, etc) or Windows protected memory
     // etc etc. Inside OT I can also give the option to go with our own security
     // tricks (listed above...) or to keep the timer length at 0, forcing the
     // password to be entered over and over again. IDEA: When the user enters
     // the passphrase for a specific Nym, hash it (so your plaintext passphrase isn't
-    // stored in memory anywhere) and then USE that hash as the passphrase on 
+    // stored in memory anywhere) and then USE that hash as the passphrase on
     // the actual key. (Meaning also that the user will not be able to use his
     // passphrase outside of OT, until he EXPORTS the Nym, since he would also have
     // to hash the passphrase before manipulating the raw key file.)
@@ -345,7 +339,7 @@ EXPORT	virtual ~OTAsymmetricKey();
     // to secure the memory (I have to do this part anyway, ANYTIME I touch certain
     // forms of data), or in ssh-agent, and so on, except a timer can be set after
     // the user first enters his passphrase. For ultimate security, just set the
-    // timer to 0 and type your passphrase every single time. But instead let's 
+    // timer to 0 and type your passphrase every single time. But instead let's
     // say you set it to 10 minutes. I don't want to store that password hash,
     // either. (The hash protects the plaintext password, but the hash IS the ACTUAL
     // password, so while the plaintext PW is protected, the actual one is still not.)
@@ -356,7 +350,7 @@ EXPORT	virtual ~OTAsymmetricKey();
     // the plaintext passphrase itself and use that? The answer is, to prevent making
     // it recoverable. You don't even want someone to get that session key and then
     // recover your PLAINTEXT password! Maybe he'll go use it on a thousand websites!
-    // 
+    //
     // Next: How to protect the session key (an OTSymmetricKey) from being found?
     // First: destroy it often. Make a new session key EVERY time the timeout happens.
     // Also: use it in protected memory as before. This could ALWAYS have a timeout
@@ -371,7 +365,7 @@ EXPORT	virtual ~OTAsymmetricKey();
     //
 	bool LoadPrivateKey(const OTString & strFoldername, const OTString & strFilename, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
 	bool LoadPublicKey (const OTString & strFoldername, const OTString & strFilename);
-	
+
     virtual bool LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKey)=0; // does NOT handle bookends.
     // ***************************************************************
     // LoadPrivateKeyFromCertString
@@ -394,7 +388,7 @@ EXPORT	virtual ~OTAsymmetricKey();
     // ---------------------------------------------------------------
     virtual bool SaveCertToString      (OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL)=0;
     virtual bool SavePrivateKeyToString(OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL)=0;
-    // ---------------------------------------------------------------    
+    // ---------------------------------------------------------------
     virtual bool ReEncryptPrivateKey   (OTPassword & theExportPassword, bool bImporting)=0;
     // ***************************************************************************************
     // PUBLIC KEY
@@ -416,12 +410,12 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
 
     // ***************************************************************************************
     // PRIVATE KEY
-	// Get the private key in ASCII-armored format with bookends 
+	// Get the private key in ASCII-armored format with bookends
 	// - ------- BEGIN ENCRYPTED PRIVATE KEY --------
 	// Notice the "- " before the rest of the bookend starts.
 	bool GetPrivateKey(OTString & strKey, bool bEscaped=true) const;
 	bool GetPrivateKey(OTASCIIArmor & strKey) const;  // Get the private key in ASCII-armored format
-	
+
 	// Decodes a private key from ASCII armor into an actual key pointer
 	// and sets that as the m_pKey on this object.
 	// This is the version that will handle the bookends ( -----BEGIN ENCRYPTED PRIVATE KEY-----)
@@ -437,7 +431,6 @@ typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 // *******************************************************************************************
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
 
 class OTAsymmetricKey_OpenSSL : public OTAsymmetricKey
 {
@@ -480,11 +473,11 @@ private:
     static bool ArmorPublicKey (EVP_PKEY & theKey, OTASCIIArmor & ascKey);
     // -------------------------------------
     static EVP_PKEY *  CopyPublicKey (EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
-    static EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!  
+    static EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
 // ***************************************************************
-    
+
     // INSTANCES...
-    
+
 private:
     // -----------------------------------------------------
     // PRIVATE MEMBER DATA
@@ -499,25 +492,25 @@ private:
     // HIGH LEVEL (internal) METHODS
     //
 EXPORT const EVP_PKEY * GetKey(OTPasswordData * pPWData=NULL);
-    
+
 	void SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey=false, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);
     // ---------------------------------------------------------------
     // LOW LEVEL (internal) METHODS
     //
     EVP_PKEY *  GetKeyLowLevel();
-    
+
     X509     *  GetX509() { return m_pX509; }
     void        SetX509(X509 * x509);
     // -----------------------------------------------------
 protected: // CONSTRUCTOR
     OTAsymmetricKey_OpenSSL();
-    
+
     // -----------------------------------------------------
 public: // DERSTRUCTION
     virtual ~OTAsymmetricKey_OpenSSL();
     virtual void Release();
     void Release_AsymmetricKey_OpenSSL();
-    
+
 protected:
     virtual void ReleaseKeyLowLevel_Hook();
 };

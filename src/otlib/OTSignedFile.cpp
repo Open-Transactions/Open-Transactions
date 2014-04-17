@@ -1,13 +1,13 @@
 /************************************************************************************
- *    
+ *
  *  OTSignedFile.cpp
- *  
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -138,28 +138,27 @@
 #include <OTASCIIArmor.hpp>
 
 
-
 void OTSignedFile::UpdateContents()
 {
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
-	
-	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
-	
+
+	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
+
 	m_xmlUnsigned.Concatenate("<signedFile\n version=\"%s\"\n"
 							  " localDir=\"%s\"\n"
 							  " filename=\"%s\""
-							  " >\n\n", 
+							  " >\n\n",
 							  m_strVersion.Get(),
 							  m_strLocalDir.Get(),
-							  m_strSignedFilename.Get());		
-	
+							  m_strSignedFilename.Get());
+
 	if (m_strSignedFilePayload.Exists())
 	{
-		OTASCIIArmor ascPayload(m_strSignedFilePayload);		
+		OTASCIIArmor ascPayload(m_strSignedFilePayload);
 		m_xmlUnsigned.Concatenate("<filePayload>\n%s</filePayload>\n\n", ascPayload.Get());
 	}
-	
+
 	m_xmlUnsigned.Concatenate("</signedFile>\n");
 }
 
@@ -167,7 +166,7 @@ void OTSignedFile::UpdateContents()
 int OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 	int nReturnVal = 0;
-	
+
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
 	// then we just return either way.  But if it comes back
@@ -178,35 +177,35 @@ int OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	// As I do below, in the case of OTAccount.
 	//if (nReturnVal = ot_super::ProcessXMLNode(xml))
 	//	return nReturnVal;
-	
-	if (!strcmp("signedFile", xml->getNodeName())) 
-	{		
-		m_strVersion			= xml->getAttributeValue("version");	
-		
-		m_strPurportedLocalDir	= xml->getAttributeValue("localDir");					
-		m_strPurportedFilename	= xml->getAttributeValue("filename");					
-		
+
+	if (!strcmp("signedFile", xml->getNodeName()))
+	{
+		m_strVersion			= xml->getAttributeValue("version");
+
+		m_strPurportedLocalDir	= xml->getAttributeValue("localDir");
+		m_strPurportedFilename	= xml->getAttributeValue("filename");
+
 		// ---------------------
-				
+
 		nReturnVal = 1;
 	}
-	
-	else if (!strcmp("filePayload", xml->getNodeName())) 
-	{		
+
+	else if (!strcmp("filePayload", xml->getNodeName()))
+	{
 		if (false == OTContract::LoadEncodedTextField(xml, m_strSignedFilePayload))
 		{
 			OTLog::Error("Error in OTSignedFile::ProcessXMLNode: filePayload field without value.\n");
 			return (-1); // error condition
 		}
-		
+
 		return 1;
 	}
-	
-	return nReturnVal;	
+
+	return nReturnVal;
 }
 
 
-	
+
 
 
 // We just loaded a certain subdirectory/filename
@@ -223,7 +222,7 @@ bool OTSignedFile::VerifyFile()
 	if (m_strLocalDir.      Compare(m_strPurportedLocalDir) &&
 		m_strSignedFilename.Compare(m_strPurportedFilename))
 		return true;
-	
+
     OTLog::vError("%s: Failed verifying signed file:\n"
                   "Expected directory: %s  Found: %s\n"
                   "Expected filename:  %s  Found: %s\n",
@@ -238,25 +237,25 @@ bool OTSignedFile::VerifyFile()
 OTSignedFile::OTSignedFile(const OTString & LOCAL_SUBDIR, const OTString & FILE_NAME) : ot_super()
 {
 	m_strContractType.Set("FILE");
-	
+
 	SetFilename(LOCAL_SUBDIR, FILE_NAME);
 }
 
 OTSignedFile::OTSignedFile(const char * LOCAL_SUBDIR, const OTString & FILE_NAME) : ot_super()
 {
 	m_strContractType.Set("FILE");
-	
+
 	OTString strLocalSubdir(LOCAL_SUBDIR);
-	
+
 	SetFilename(strLocalSubdir, FILE_NAME);
 }
 
 OTSignedFile::OTSignedFile(const char * LOCAL_SUBDIR, const char * FILE_NAME) : ot_super()
 {
 	m_strContractType.Set("FILE");
-	
+
 	OTString strLocalSubdir(LOCAL_SUBDIR), strFile_Name(FILE_NAME);
-	
+
 	SetFilename(strLocalSubdir, strFile_Name);
 }
 
@@ -268,12 +267,12 @@ bool OTSignedFile::SaveFile()
 {
 	const OTString strTheFileName(m_strFilename);
 	const OTString strTheFolderName(m_strFoldername);
-	
+
 	// OTContract doesn't natively make it easy to save a contract to its own filename.
 	// Funny, I know, but OTContract is designed to save either to a specific filename,
 	// or to a string parameter, or to the internal rawfile member. It doesn't normally
 	// save to its own filename that was used to load it. But OTSignedFile is different...
-	
+
 	// This saves to a file, the name passed in as a char *.
 	return SaveContract(strTheFolderName.Get(), strTheFileName.Get());
 }
@@ -282,7 +281,7 @@ bool OTSignedFile::SaveFile()
 bool OTSignedFile::LoadFile()
 {
 //	OTLog::vOutput(0, "DEBUG LoadFile (Signed) folder: %s file: %s \n", m_strFoldername.Get(), m_strFilename.Get());
-	
+
 	if (OTDB::Exists(m_strFoldername.Get(), m_strFilename.Get()))
 		return LoadContract();
 
@@ -294,7 +293,7 @@ void OTSignedFile::SetFilename(const OTString & LOCAL_SUBDIR, const OTString & F
 	// OTSignedFile specific variables.
 	m_strLocalDir		= LOCAL_SUBDIR;
 	m_strSignedFilename	= FILE_NAME;
-	
+
 	// OTContract variables.
 	m_strFoldername	= m_strLocalDir;
 	m_strFilename	= m_strSignedFilename;
@@ -323,32 +322,32 @@ OTSignedFile::~OTSignedFile()
 	Release_SignedFile();
 }
 
-	
+
 void OTSignedFile::Release_SignedFile()
 {
-	m_strSignedFilePayload.Release();	// This is the file contents we were wrapping. 
+	m_strSignedFilePayload.Release();	// This is the file contents we were wrapping.
 										// We can release this now.
-	
+
 //	m_strLocalDir.Release();			// We KEEP these, *not* release, because LoadContract()
 //	m_strSignedFilename.Release();		// calls Release(), and these are our core values. We don't
 										// want to lose them when the file is loaded.
-	
+
 	// Note: Additionally, neither does OTContract release m_strFilename here, for the SAME reason.
-	
-	m_strPurportedLocalDir.Release();	
+
+	m_strPurportedLocalDir.Release();
 	m_strPurportedFilename.Release();
 }
-	
+
 void OTSignedFile::Release()
 {
     Release_SignedFile();
-	
+
 	ot_super::Release();
 
 	m_strContractType.Set("FILE");
 }
-	
-	
+
+
 
 bool OTSignedFile::SaveContractWallet(std::ofstream & ofs)
 {

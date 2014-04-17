@@ -8,7 +8,6 @@
 #ifndef CHAISCRIPT_PROXY_FUNCTIONS_HPP_
 #define CHAISCRIPT_PROXY_FUNCTIONS_HPP_
 
-
 #include "boxed_value.hpp"
 #include "type_info.hpp"
 #include <string>

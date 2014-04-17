@@ -1,16 +1,16 @@
 /**************************************************************
-* 
+*
 * OTPaths.h
 * This Class Maintins where stuff should go;
 * You must create one and only one contex for
 * every instance of OT_API.
-* 
+*
 */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -113,10 +113,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -139,14 +139,11 @@
 #ifndef __OTPATHS_HPP__
 #define __OTPATHS_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
+#include "OTCommon.hpp"
 
 #include "OTSettings.hpp"
 #include "OTAssert.hpp"
 
-#include _CINTTYPES
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
@@ -172,11 +169,11 @@ public:
 
 	EXPORT static const OTString & AppBinaryFolder();   // Adding this for Mac, since it's sandboxed. (Don't want to put scripts in data folder.)
     EXPORT static void             SetAppBinaryFolder(OTString strLocation); // Note: Android should set this as the res/raw folder.
-    
-    
+
+
 	EXPORT static const OTString & HomeFolder();   // Adding this for Android, since it's sandboxed. Android will provide its own data folder here.
     EXPORT static void             SetHomeFolder(OTString strLocation); // The AppDataFolder (below) will be created from this folder, plus .ot or whatever.
-    
+
 	EXPORT static const OTString & AppDataFolder();		// eg. /home/user/.ot/ (auto).
 	EXPORT static const OTString & GlobalConfigFile();  // ie. AppDataFolder() + ot_config.cfg
 	EXPORT static const OTString & PrefixFolder();		// If not set, will run LoadSetPrefixFolder with default values.
@@ -185,7 +182,7 @@ public:
 	// The LoadSet Functions will update the static values.
 
 	EXPORT static bool LoadSetPrefixFolder	// eg. /usr/local/  (cannot be relative);
-		(	
+		(
 		OTSettings & config = s_settings, //optional
 		const OTString & strPrefixFolder = ""	//optional
 		//const bool & bIsRelative = false
@@ -334,7 +331,7 @@ private:
 
             if (!bIsNew) ret_strName = strResult;
             else         ret_strName = strDefaultName.c_str();
-            
+
             return true;
         }
     }
@@ -369,7 +366,7 @@ private:
     static OTString s_strSmartContracts;
     static OTString s_strSpent;
     static OTString s_strUserAcct;
- 
+
 public:
 
     EXPORT static const OTString & Account();
