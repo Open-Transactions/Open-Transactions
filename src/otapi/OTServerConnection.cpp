@@ -313,7 +313,7 @@ void OTServerConnection::OnServerResponseToGetRequestNumber(int64_t lNewRequestN
 {
 	if (m_pNym && m_pServerContract)
 	{
-		OTLog::vOutput(0,  "Received new request number from the server: %ld. Updating Nym records...\n",
+		OTLog::vOutput(0,  "Received new request number from the server: %lld. Updating Nym records...\n",
 				lNewRequestNumber);
 
 		OTString strServerID;
@@ -741,13 +741,13 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 		OT_ASSERT(NULL != m_pServerContract);
 
 		// Call the callback here.
-		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %ld\n",
+		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %lld\n",
                        theMessage.m_strCommand.Get(),
                        atol(theMessage.m_strRequestNum.Get()));
 
 		m_pCallback->operator()(*m_pServerContract, theEnvelope);
 
-		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %ld\n\n",
+		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %lld\n\n",
                        theMessage.m_strCommand.Get(),
                        atol(theMessage.m_strRequestNum.Get()));
 	}
@@ -1594,7 +1594,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int32_t * pnExpectReply)
 
 				m_pNym->AddTransactionNum(*m_pNym, strServerID, lTransactionNumber, true); // bool bSave=true
 
-				OTLog::vOutput(0, "Transaction number %ld added to both lists (on client side.)\n",
+				OTLog::vOutput(0, "Transaction number %lld added to both lists (on client side.)\n",
 							  lTransactionNumber);
 			}
 

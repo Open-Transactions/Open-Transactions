@@ -894,8 +894,8 @@ bool OTSymmetricKey::SerializeTo(OTPayload & theOutput) const
 
 	uint32_t   n_hash_check_size  = static_cast<uint32_t>(htonl(static_cast<uint32_t>(m_dataHashCheck.GetSize())));
     // -----------------------------------------------
-    OTLog::vOutput(5, "%s: is_generated: %d   key_size_bits: %d   iteration_count: %ld   \n  "
-                   "salt_size: %ld   iv_size: %ld   enc_key_size: %ld   \n",
+    OTLog::vOutput(5, "%s: is_generated: %d   key_size_bits: %d   iteration_count: %lld   \n  "
+                   "salt_size: %lld   iv_size: %lld   enc_key_size: %lld   \n",
                    __FUNCTION__,
                    static_cast<int32_t>(ntohs(n_is_generated)),
                    static_cast<int32_t>(ntohs(n_key_size_bits)),
@@ -1040,7 +1040,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     m_uIterationCount = static_cast<uint32_t>(ntohl(n_iteration_count));
 
-    OTLog::vOutput(5, "%s: iteration_count: %ld \n",
+    OTLog::vOutput(5, "%s: iteration_count: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(m_uIterationCount)
                    );
@@ -1066,7 +1066,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lSaltSize = static_cast<uint32_t>(ntohl(static_cast<uint32_t>(n_salt_size)));
 
-    OTLog::vOutput(5, "%s: salt_size value: %ld \n",
+    OTLog::vOutput(5, "%s: salt_size value: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(lSaltSize)
                    );
@@ -1083,7 +1083,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         OTLog::vError("%s: Error reading salt for symmetric key.\n", szFunc);
         return false;
     }
-    OTLog::vOutput(5, "%s: salt length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: salt length actually read: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(nRead)
                    );
@@ -1111,7 +1111,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lIVSize = ntohl(n_iv_size);
 
-    OTLog::vOutput(5, "%s: iv_size value: %ld \n",
+    OTLog::vOutput(5, "%s: iv_size value: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(lIVSize)
                    );
@@ -1129,7 +1129,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: iv length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: iv length actually read: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(nRead)
                    );
@@ -1157,7 +1157,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lEncKeySize = ntohl(n_enc_key_size);
 
-    OTLog::vOutput(5, "%s: enc_key_size value: %ld \n",
+    OTLog::vOutput(5, "%s: enc_key_size value: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(lEncKeySize)
                    );
@@ -1175,7 +1175,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: encrypted key length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: encrypted key length actually read: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(nRead)
                    );
@@ -1206,7 +1206,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lHashCheckSize = ntohl(n_hash_check_size);
 
-    OTLog::vOutput(5, "%s: hash_check_size value: %ld \n",
+    OTLog::vOutput(5, "%s: hash_check_size value: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(lHashCheckSize)
                    );
@@ -1224,7 +1224,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: hash check data actually read: %ld \n",
+    OTLog::vOutput(5, "%s: hash check data actually read: %lld \n",
                    __FUNCTION__,
                    static_cast<int64_t>(nRead)
                    );

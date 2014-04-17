@@ -746,7 +746,7 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, int64_t lDenominatio
         // ---------------------------		
 		// Success!
 		bReturnValue = true;
-		OTLog::vOutput(1, "Successfully added denomination: %ld\n", lDenomination);
+		OTLog::vOutput(1, "Successfully added denomination: %lld\n", lDenomination);
 	}
 	
 	return bReturnValue;
@@ -811,7 +811,7 @@ void OTMint::UpdateContents()
 				OTASCIIArmor * pArmor = (*it).second;
 				OT_ASSERT_MSG(NULL != pArmor, "NULL private mint pointer in OTMint::UpdateContents.\n");
 				
-				m_xmlUnsigned.Concatenate("<mintPrivateInfo denomination=\"%ld\">\n"
+				m_xmlUnsigned.Concatenate("<mintPrivateInfo denomination=\"%lld\">\n"
 										  "%s</mintPrivateInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 			}
@@ -821,7 +821,7 @@ void OTMint::UpdateContents()
 			OTASCIIArmor * pArmor = (*it).second;
 			OT_ASSERT_MSG(NULL != pArmor, "NULL public mint pointer in OTMint::UpdateContents.\n");
 			
-			m_xmlUnsigned.Concatenate("<mintPublicInfo denomination=\"%ld\">\n"
+			m_xmlUnsigned.Concatenate("<mintPublicInfo denomination=\"%lld\">\n"
 										  "%s</mintPublicInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 		}
@@ -1026,7 +1026,7 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 	//OTLog::Error("%s <bank file> <coin request> <coin signature> [<signature repeats>]\n",
     _OT_Lucre_Dumper setDumper;
 	
-//	OTLog::vError("OTMint::SignToken!!\nnTokenIndex: %d\n Denomination: %ld\n", nTokenIndex, theToken.GetDenomination());
+//	OTLog::vError("OTMint::SignToken!!\nnTokenIndex: %d\n Denomination: %lld\n", nTokenIndex, theToken.GetDenomination());
 	
     OpenSSL_BIO bioBank		= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioRequest		= BIO_new(BIO_s_mem()); // input

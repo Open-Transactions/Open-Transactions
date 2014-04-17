@@ -894,7 +894,7 @@ bool OTKeyring::Gnome_RetrieveSecret(const OTString    & strUser,
 //        }
         // ----------------------------------------------
         OTLog::vError("%s: gnome_keyring_find_password_sync returned %s.\n"
-                      "Remedy: Sleeping for %ld %s and then retrying (attempt %d)...\n", szFunc, strGnomeError.Get(),
+                      "Remedy: Sleeping for %lld %s and then retrying (attempt %d)...\n", szFunc, strGnomeError.Get(),
                       lSleep, 1 == lSleep ? "second" : "seconds",
                       nCount+2); // on first iteration, nCount is 0, and this will say "attempt 2" aka "second attempt," which is correct.
 

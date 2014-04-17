@@ -402,7 +402,7 @@ bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, 
 	if (! strKey.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 	if (strKey.Compare(""))			{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	OTString strValue; strValue.Format("%ld",lValue);
+	OTString strValue; strValue.Format("%lld",lValue);
 
 	const char * const szComment = (strComment.Exists() && !strComment.Compare("")) ? strComment.Get() : NULL;
 	

@@ -884,6 +884,7 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 
 		// 2. (IF FILE EXISTS WITH ANY PID INSIDE, THEN DIE.)
 		//
+
 		if (pid_infile.is_open()) // it existed already
 		{
 			uint32_t old_pid = 0;
@@ -893,10 +894,10 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 			// There was a real PID in there.
 			if (old_pid != 0)
 			{
-				const uint64_t lPID = static_cast<uint64_t>(old_pid);
+				const uint64_t lPID = old_pid;
 				OTLog::vError("\n\n\nIS OPEN-TRANSACTIONS ALREADY RUNNING?\n\n"
-					"I found a PID (%lu) in the data lock file, located at: %s\n\n"
-					"If the OT process with PID %lu is truly not running anymore, "
+					"I found a PID (%llu) in the data lock file, located at: %s\n\n"
+					"If the OT process with PID %llu is truly not running anymore, "
 					"then just erase that file and restart.\nThis is normally cleaned "
                               "up during AppCleanup / AppShutdown. (Or should be.)\n",
                               lPID, this->m_strPidFilePath.Get(), lPID);
@@ -912,12 +913,12 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 
 		// 3. GET THE CURRENT (ACTUAL) PROCESS ID.
 		//
-		uint32_t the_pid = 0;
+		uint64_t the_pid = 0;
 
 #ifdef _WIN32
-		the_pid = static_cast<uint32_t>(GetCurrentProcessId());
+		the_pid = GetCurrentProcessId();
 #else
-		the_pid = static_cast<uint32_t>(getpid());
+		the_pid = getpid();
 #endif
 
 		// 4. OPEN THE FILE IN WRITE MODE, AND SAVE THE PID TO IT.
@@ -932,7 +933,7 @@ void OT_API::Pid::OpenPid(const OTString strPidFilePath)
 		}
 		else
 		{
-			OTLog::vError("Failed trying to open data locking file (to store PID %lu): %s\n", the_pid, this->m_strPidFilePath.Get());
+			OTLog::vError("Failed trying to open data locking file (to store PID %llu): %s\n", the_pid, this->m_strPidFilePath.Get());
 			this->m_bIsPidOpen = false;
 		}
 	}

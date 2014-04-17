@@ -225,8 +225,8 @@ OTMessage * OTMessageBuffer::Pop(const int64_t & lRequestNum, const OTString & s
         }
         else // Server/Nym IDs match, BUT -- Wrong request num! (Discard message and skip.)
         {
-            OTLog::vOutput(0, "OTMessageBuffer::Pop: Warning: While looking for server (%s) reply to request number %ld for Nym (%s), "
-                           "discovered (and discarded) an old server reply for request number %ld "
+            OTLog::vOutput(0, "OTMessageBuffer::Pop: Warning: While looking for server (%s) reply to request number %lld for Nym (%s), "
+                           "discovered (and discarded) an old server reply for request number %lld "
                            "(A %s command. The client should have flushed it by now anyway, so it was probably slow on the network "
                            "and then assumed to have been dropped. It's okay--the protocol is designed to handle these occurrences.)\n",
                            strServerID.Get(), lRequestNum, strNymID.Get(), lMsgRequest, pMsg->m_strCommand.Get());
@@ -477,7 +477,7 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const int64_t & lRequestNum, cons
                      strServerID.Get(),          OTLog::PathSeparator(),
                      "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                      strNymID.Get());
-    strFile.Format("%ld.msg", lRequestNum);
+    strFile.Format("%lld.msg", lRequestNum);
     // -----------------------------------
     // Check the existing list, if it exists.
     //
@@ -662,7 +662,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                                  pstrServerID->Get(),        OTLog::PathSeparator(),
                                  "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                                  pstrNymID->Get());
-                strFile.Format("%ld.msg", lRequestNum);
+                strFile.Format("%lld.msg", lRequestNum);
                 // ---------------------------------------------------------------------------
                 OTNumList theNumList;
                 std::string str_data_filename("sent.dat");  // todo hardcoding.
@@ -754,7 +754,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const int64_t & lRequestNum, const OT
                      strServerID.Get(),          OTLog::PathSeparator(),
                      "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                      strNymID.Get());
-    strFile.Format("%ld.msg", lRequestNum);
+    strFile.Format("%lld.msg", lRequestNum);
     // ------------------------------------------------
     mapOfMessages::iterator it = m_mapMessages.begin();
     

@@ -7642,7 +7642,7 @@ std::string OTAPI_Exec::Nymbox_GetReplyNotice(const std::string & SERVER_ID,
 
 	if (NULL == pTransaction)
 	{
-		OTLog::vOutput(4, "%s: No replyNotice transactions found in ledger with request number: %ld\n", __FUNCTION__, lRequestNumber);
+		OTLog::vOutput(4, "%s: No replyNotice transactions found in ledger with request number: %lld\n", __FUNCTION__, lRequestNumber);
 		return ""; // Maybe he was just looking; this isn't necessarily an error.
 	}
 	// -----------------------------------
@@ -8509,7 +8509,7 @@ std::string OTAPI_Exec::Ledger_GetTransactionByID(const std::string & SERVER_ID,
 
 	if (NULL == pTransaction)
 	{
-		OTLog::vOutput(0, "%s: No transaction found in ledger with that number: %ld.\n", __FUNCTION__, lTransactionNumber);
+		OTLog::vOutput(0, "%s: No transaction found in ledger with that number: %lld.\n", __FUNCTION__, lTransactionNumber);
 		return ""; // Maybe he was just looking; this isn't necessarily an error.
 	}
 	// -----------------------------------------------------
@@ -8765,7 +8765,7 @@ int64_t OTAPI_Exec::Ledger_GetTransactionIDByIndex(const std::string & SERVER_ID
 
 	else if (0 >= (lTransactionNumber = pTransaction->GetTransactionNum()))
 	{
-		OTLog::vError("%s: negative or zero transaction num: %ld\n", __FUNCTION__, lTransactionNumber);
+		OTLog::vError("%s: negative or zero transaction num: %lld\n", __FUNCTION__, lTransactionNumber);
 		return -1;
 	}
 	else // success
@@ -9171,7 +9171,7 @@ std::string OTAPI_Exec::Transaction_CreateResponse(const std::string & SERVER_ID
 //    OTItem * pExistingItem = pResponse->GetItemInRefTo(lReferenceTransactionNum);
 //    if (NULL != pExistingItem)
 //    {
-//        OTLog::vError("%s: Error: There's already a response item in reference to the same receipt! (In Ref: %ld User: %s Account: %s) Failure.\n\n",
+//        OTLog::vError("%s: Error: There's already a response item in reference to the same receipt! (In Ref: %lld User: %s Account: %s) Failure.\n\n",
 //                      __FUNCTION__, static_cast<int64_t>(lReferenceTransactionNum), USER_ID.c_str(), ACCOUNT_ID.c_str());
 //
 //        const OTString strAccept(*pAcceptItem);
@@ -9356,19 +9356,19 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 		{
 
 //            if (theInbox.GetTransactionCountInRefTo(pItem->GetReferenceToNum()) > 1)
-//                OTLog::vError("%s: WARNING: There are MULTIPLE receipts 'in reference to' %ld. (It will return the first one...)\n",
+//                OTLog::vError("%s: WARNING: There are MULTIPLE receipts 'in reference to' %lld. (It will return the first one...)\n",
 //                              __FUNCTION__, pItem->GetReferenceToNum());
 
 
 			OTTransaction * pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum());
 
-			OTLog::vOutput(1, "%s: Checking inbox for expected pending or receipt (%ld) Nym: %s\n",
+			OTLog::vOutput(1, "%s: Checking inbox for expected pending or receipt (%lld) Nym: %s\n",
                            __FUNCTION__, pItem->GetReferenceToNum(), USER_ID.c_str()); // temp remove
 
 			if (NULL == pServerTransaction)
 			{
 				bSuccessFindingAllTransactions = false;
-				OTLog::vOutput(0, "%s: Expected receipt %ld NOT found! (Do you have the latest inbox?)\n",
+				OTLog::vOutput(0, "%s: Expected receipt %lld NOT found! (Do you have the latest inbox?)\n",
                                __FUNCTION__, pItem->GetReferenceToNum());
 				break;
 			}
@@ -9436,7 +9436,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 									theTempNym.AddIssuedNum(strServerID, theCheque.GetTransactionNum());
 								else
 									OTLog::vError("%s: cheque receipt, trying to 'remove' an issued "
-									"number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+									"number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
 									"then? Maybe need to download a fresh copy of it.)\n", __FUNCTION__,
 									theCheque.GetTransactionNum());
 							}
@@ -9451,7 +9451,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 								theTempNym.AddIssuedNum(strServerID, pOriginalItem->GetNumberOfOrigin());
 							else
 								OTLog::vError("%s: transferReceipt, trying to 'remove' an issued "
-								"number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+								"number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
 								"then? Maybe need to download a fresh copy of it.)\n", __FUNCTION__,
 								pOriginalItem->GetNumberOfOrigin());
 						}
@@ -9494,7 +9494,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 		{
 			OTTransaction * pServerTransaction = theInbox.GetTransaction(pItem->GetReferenceToNum());
 
-			OTLog::vOutput(2, "%s: Checking client-side inbox for expected cron or final or basket receipt: %ld... ",
+			OTLog::vOutput(2, "%s: Checking client-side inbox for expected cron or final or basket receipt: %lld... ",
                            __FUNCTION__, pItem->GetReferenceToNum()); // temp remove
 
 			if (NULL == pServerTransaction)
@@ -9591,7 +9591,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 						{
 							OTLog::vOutput(0,
 								"%s: When accepting a finalReceipt, you MUST accept all "
-								"related receipts (ones that share the same IN REFERENCE TO transaction number as the finalReceipt %ld)\n"
+								"related receipts (ones that share the same IN REFERENCE TO transaction number as the finalReceipt %lld)\n"
 								"Transaction item count (in ref to): %d    Inbox transaction count (in ref to): %d.\n", __FUNCTION__,
 								pServerTransaction->GetReferenceToNum(),
 								setOfRefNumbers.size(),
@@ -9612,9 +9612,9 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 						if (OTTransaction::finalReceipt	== pServerTransaction->GetType())
 						{
 							if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-								OTLog::vOutput(1, "%s: **** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", __FUNCTION__, pServerTransaction->GetReferenceToNum());
+								OTLog::vOutput(1, "%s: **** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", __FUNCTION__, pServerTransaction->GetReferenceToNum());
 							else
-								OTLog::vOutput(1, "%s: **** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n", __FUNCTION__, pServerTransaction->GetReferenceToNum());
+								OTLog::vOutput(1, "%s: **** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n", __FUNCTION__, pServerTransaction->GetReferenceToNum());
 						}
 						else
 							OTLog::vError("%s: Expected pServerTransaction to be a final receipt (while finalizing for process inbox.)\n", __FUNCTION__);
@@ -9636,7 +9636,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 						theTempNym.AddIssuedNum(strServerID, pServerTransaction->GetClosingNum());
 					else
 						OTLog::vError("%s: final or basket Receipt, trying to 'remove' an issued "
-						"number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+						"number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
 						"then? Maybe need to download a fresh copy of it.)\n", __FUNCTION__,
 						pServerTransaction->GetClosingNum());
 					break;
@@ -9684,7 +9684,7 @@ std::string OTAPI_Exec::Ledger_FinalizeResponse(const std::string & SERVER_ID,
 		theListOfInboxReceiptsBeingRemoved.pop_front();
 
 		if (false == theInbox.RemoveTransaction(static_cast<int64_t>(lTemp)))    // <================
-			OTLog::vError("%s: Failed removing receipt from temporary Inbox: %ld \n", __FUNCTION__, lTemp);
+			OTLog::vError("%s: Failed removing receipt from temporary Inbox: %lld \n", __FUNCTION__, lTemp);
 	}
 
 	// *****************************************************************
@@ -10707,7 +10707,7 @@ OT_BOOL OTAPI_Exec::Transaction_GetSuccess(const std::string & SERVER_ID,
 	{
 		const int64_t lTransactionNum = pTransaction->GetTransactionNum();
 
-		OTLog::vError("%s: ** FYI, this transaction has a 'failure' status from the server. TransNum: %ld\n", __FUNCTION__, lTransactionNum);
+		OTLog::vError("%s: ** FYI, this transaction has a 'failure' status from the server. TransNum: %lld\n", __FUNCTION__, lTransactionNum);
 	}
 
 	return OT_FALSE;
@@ -13578,7 +13578,7 @@ std::string OTAPI_Exec::GetSentMessage(const int64_t & REQUEST_NUMBER,
 
 	if (NULL == pMsg) // The message wasn't found with that request number.
 	{
-		OTLog::vOutput(1, "%s: Message not found with request number %ld, sorry.\n", __FUNCTION__, lRequestNum);
+		OTLog::vOutput(1, "%s: Message not found with request number %lld, sorry.\n", __FUNCTION__, lRequestNum);
 		return "";
 	}
 	// ------------------------------------------------
@@ -14163,14 +14163,14 @@ OT_BOOL OTAPI_Exec::Message_GetSuccess(const std::string & THE_MESSAGE)
 	// ---------------------------------------------
 	if (true == theMessage.m_bSuccess)
 	{
-		OTLog::vOutput(2, "%s: Server reply for RequestNum %ld (Message_GetSuccess was successful, but any transaction inside could have failed OR succeeded. Use Message_GetTransactionSuccess for that.)\n",// Contents: \n\n%s\n\n",
+		OTLog::vOutput(2, "%s: Server reply for RequestNum %lld (Message_GetSuccess was successful, but any transaction inside could have failed OR succeeded. Use Message_GetTransactionSuccess for that.)\n",// Contents: \n\n%s\n\n",
 			__FUNCTION__, StringToLong(theMessage.m_strRequestNum.Get()));//, THE_MESSAGE);
 		return OT_TRUE;
 	}
 	else
 	{
 		OTLog::vOutput(1, "%s: ** FYI, server reply was received, and "
-			"it said 'No.' (Status = failed). RequestNum: %ld\n",// Contents: \n\n%s\n\n",
+			"it said 'No.' (Status = failed). RequestNum: %lld\n",// Contents: \n\n%s\n\n",
 			__FUNCTION__, StringToLong(theMessage.m_strRequestNum.Get()));//, THE_MESSAGE);
 	}
 	return OT_FALSE;
@@ -14393,7 +14393,7 @@ OT_BOOL OTAPI_Exec::Message_GetTransactionSuccess(const std::string & SERVER_ID,
 		const int64_t lTransactionNum = pTransaction->GetTransactionNum();
 
 		OTLog::vOutput(1, "%s: ** FYI, server reply was received, and it said 'No.' (Status = failed). "
-                      "RequestNum: %ld, TransNum: %ld\n",// Contents: \n\n%s\n\n",
+                      "RequestNum: %lld, TransNum: %lld\n",// Contents: \n\n%s\n\n",
 			__FUNCTION__, lRequestNum, lTransactionNum);//, THE_MESSAGE);
 	}
 

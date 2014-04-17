@@ -244,7 +244,7 @@ int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		SetCurrencyID(CURRENCY_TYPE_ID);
 		SetCurrencyAcctID(CURRENCY_ACCT_ID);
 		// ---------------------------------------------------------------
-		OTLog::vOutput(3, "\n\nTrade. Transaction Number: %ld   Completed # of Trades: %d\n",
+		OTLog::vOutput(3, "\n\nTrade. Transaction Number: %lld   Completed # of Trades: %d\n",
 					   m_lTransactionNum, m_nTradesAlreadyDone);
 
 		OTLog::vOutput(1,
@@ -299,7 +299,7 @@ int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// ---------------------
 
 		OTLog::vOutput(3,
-					   "\n\nStop order -- %s when price %s %s: %ld.\n",
+					   "\n\nStop order -- %s when price %s %s: %lld.\n",
 					   (m_bHasStopActivated ? "Already activated" : "Will activate"),
 					   (m_bHasStopActivated ? "was" : "reaches"),
 					   (('<' == m_cStopSign) ? "LESS THAN" : "GREATER THAN"),
@@ -343,7 +343,7 @@ void OTTrade::UpdateContents()
 							  " currencyAcctID=\"%s\"\n"
 							  " userID=\"%s\"\n"
 							  " completedNoTrades=\"%d\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " creationDate=\"%" PRId64"\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\""
@@ -371,7 +371,7 @@ void OTTrade::UpdateContents()
         int64_t lClosingNumber = GetClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
 
-        m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%ld\"/>\n\n",
+        m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%lld\"/>\n\n",
                                   lClosingNumber);
 
     }
@@ -381,7 +381,7 @@ void OTTrade::UpdateContents()
 		m_xmlUnsigned.Concatenate("<stopOrder\n"
 								  " hasActivated=\"%s\"\n"
 								  " sign=\"%c\"\n"
-								  " price=\"%ld\""
+								  " price=\"%lld\""
 								  " />\n\n",
 								  (m_bHasStopActivated ? "true" : "false"),
 								  m_cStopSign,
@@ -1173,7 +1173,7 @@ bool OTTrade::ProcessCron()
         // ---------------------------------------
 		else // Process it!  <===================
 		{
-            OTLog::vOutput(2, "Processing trade: %ld.\n", GetTransactionNum());
+            OTLog::vOutput(2, "Processing trade: %lld.\n", GetTransactionNum());
 
 			bStayOnMarket = pMarket->ProcessTrade(*this, *pOffer);
 			// No need to save the Trade or Offer, since they will

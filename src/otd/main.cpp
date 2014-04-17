@@ -1570,12 +1570,12 @@ int32_t main(int32_t argc, char* argv[])
 		}
 		else if(opt->getFlag( 'b' ) || opt->getFlag( "balance" )   )
 		{
-			OTLog::vOutput(0, "\n ACCT BALANCE (server-side): %ld\n\n", pMyAccount->GetBalance());
+			OTLog::vOutput(0, "\n ACCT BALANCE (server-side): %lld\n\n", pMyAccount->GetBalance());
 
 			OTPurse * pPurse = OTAPI_Wrap::OTAPI()->LoadPurse(theServerID, thePurseAssetTypeID, MY_NYM_ID);
 			OTCleanup<OTPurse> thePurseAngel(pPurse);
 			if (NULL != pPurse)
-				OTLog::vOutput(0, " CASH PURSE (client-side): %ld\n", pPurse->GetTotalValue());
+				OTLog::vOutput(0, " CASH PURSE (client-side): %lld\n", pPurse->GetTotalValue());
 		}
 		else if( opt->getFlag( 'r' ) || opt->getFlag( "refresh" )   )
 		{
@@ -2725,7 +2725,7 @@ int32_t main(int32_t argc, char* argv[])
 
 				pMyNym->AddTransactionNum(*pMyNym, strTransNumServerID, lTransactionNumber, true); // bool bSave=true
 
-				OTLog::vOutput(0, "Transaction number %ld added to both lists (on client side.)\n",
+				OTLog::vOutput(0, "Transaction number %lld added to both lists (on client side.)\n",
 					lTransactionNumber);
 			}
 

@@ -388,7 +388,7 @@ bool OTAccount::Debit(const int64_t & lAmount)
 		return false;						// THEN FAIL. The "new less than old" requirement is recent,
 	else									// and it means that we now allow <0 debits on normal accounts,
 	{										// AS LONG AS the result is a HIGHER BALANCE  :-)
-		m_BalanceAmount.Format("%ld", lNewBalance);
+		m_BalanceAmount.Format("%lld", lNewBalance);
 
 		const time_t tDate = time(NULL); // Today, now.
 		m_BalanceDate.Format("%d", tDate);
@@ -414,7 +414,7 @@ bool OTAccount::Credit(const int64_t & lAmount)
 	// We'll maybe explicitly check that it's not negative in order to prevent that. TODO.
 //	if (lNewBalance > 0 || (OTAccount::simple != m_AcctType))
 //	{
-//		m_BalanceAmount.Format("%ld", lNewBalance);
+//		m_BalanceAmount.Format("%lld", lNewBalance);
 //		return true;
 //	}
 
@@ -425,7 +425,7 @@ bool OTAccount::Credit(const int64_t & lAmount)
 		return false;						// THEN FAIL. The "new less than old" requirement is recent,
 	else									// and it means that we now allow <0 credits on normal accounts,
 	{										// AS LONG AS the result is a HIGHER BALANCE  :-)
-		m_BalanceAmount.Format("%ld", lNewBalance);
+		m_BalanceAmount.Format("%lld", lNewBalance);
 
 		const time_t tDate = time(NULL); // Today, now.
 		m_BalanceDate.Format("%d", tDate);
@@ -954,7 +954,7 @@ void OTAccount::UpdateContents()
 							  " serverID=\"%s\"\n assetTypeID=\"%s\" >\n\n", m_strVersion.Get(), strAcctType.Get(),
 							  ACCOUNT_ID.Get(), USER_ID.Get(), SERVER_ID.Get(), strAssetTYPEID.Get());
 	if (IsStashAcct())
-		m_xmlUnsigned.Concatenate("<stashinfo cronItemNum=\"%ld\"/>\n\n", m_lStashTransNum);
+		m_xmlUnsigned.Concatenate("<stashinfo cronItemNum=\"%lld\"/>\n\n", m_lStashTransNum);
 
     // -------------------------------------------------
 	if (!m_InboxHash.IsEmpty())
@@ -1094,7 +1094,7 @@ int32_t OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 		int64_t lAmount	= atol(m_BalanceAmount.Get());
 
 		m_BalanceDate.Format("%d", nDate);
-		m_BalanceAmount.Format("%ld", lAmount);
+		m_BalanceAmount.Format("%lld", lAmount);
 
 //		OTLog::vOutput(1, "\nBALANCE  --  %s\n",
 //					   m_BalanceAmount.Get());
@@ -1117,7 +1117,7 @@ int32_t OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 		if (!strStashTransNum.Exists() || ((lTransNum = atol(strStashTransNum.Get())) <= 0))
 		{
 			m_lStashTransNum = 0;
-			OTLog::vError("OTAccount::ProcessXMLNode: Error: Bad transaction number for supposed corresponding cron item: %ld \n",
+			OTLog::vError("OTAccount::ProcessXMLNode: Error: Bad transaction number for supposed corresponding cron item: %lld \n",
 						 lTransNum);
 			return (-1);
 		}
@@ -1126,7 +1126,7 @@ int32_t OTAccount::ProcessXMLNode(IrrXMLReader*& xml)
 
 		// ------------------------------
 
-		OTLog::vOutput(3, "\nSTASH INFO:   CronItemNum     --  %ld\n", m_lStashTransNum);
+		OTLog::vOutput(3, "\nSTASH INFO:   CronItemNum     --  %lld\n", m_lStashTransNum);
 
 		nReturnVal = 1;
 	}

@@ -188,7 +188,7 @@ int32_t OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         m_bInitialPaymentDone = strCompleted.Compare("true");
 		// --------------------------------------------------------------------------
 		OTLog::vOutput(1,
-					   "\n\nInitial Payment. Amount: %ld.   Date: %" PRId64".   Completed Date: %" PRId64"\n"
+					   "\n\nInitial Payment. Amount: %lld.   Date: %" PRId64".   Completed Date: %" PRId64"\n"
 					   " Number of failed attempts: %d.   Date of last failed attempt: %" PRId64"\n"
 					   " Payment %s.\n",
 					   m_lInitialPaymentAmount, tDate, tDateCompleted,
@@ -227,7 +227,7 @@ int32_t OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		SetDateOfLastFailedPayment(static_cast<time_t>(tLastAttempt));
 		// ---------------------------------------------------------------
 		OTLog::vOutput(1,
-					   "\n\nPayment Plan. Amount per payment: %ld.  Time between payments: %" PRId64".\n"
+					   "\n\nPayment Plan. Amount per payment: %lld.  Time between payments: %" PRId64".\n"
 					   " Payment plan Start Date: %" PRId64".  Length: %" PRId64".   Maximum No. of Payments: %d.\n"
 					   " Completed No. of Payments: %d.  Failed No. of Payments: %d\n"
 					   " Date of last payment: %" PRId64"        Date of last failed payment: %" PRId64"\n",
@@ -275,7 +275,7 @@ void OTPaymentPlan::UpdateContents()
 							  " recipientUserID=\"%s\"\n"
 							  " canceled=\"%s\"\n"
 							  " cancelerUserID=\"%s\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " creationDate=\"%" PRId64"\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\""
@@ -306,7 +306,7 @@ void OTPaymentPlan::UpdateContents()
         int64_t lClosingNumber = GetClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
         
-        m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%ld\"/>\n\n",
+        m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%lld\"/>\n\n",
                                   lClosingNumber);
         
     }
@@ -320,7 +320,7 @@ void OTPaymentPlan::UpdateContents()
         int64_t lClosingNumber = GetRecipientClosingTransactionNoAt(i);
         OT_ASSERT(lClosingNumber > 0);
         
-        m_xmlUnsigned.Concatenate("<closingRecipientNumber value=\"%ld\"/>\n\n",
+        m_xmlUnsigned.Concatenate("<closingRecipientNumber value=\"%lld\"/>\n\n",
                                   lClosingNumber);
         
     }
@@ -338,7 +338,7 @@ void OTPaymentPlan::UpdateContents()
 		
 		m_xmlUnsigned.Concatenate("<initialPayment\n"
 								  " date=\"%" PRId64"\"\n"
-								  " amount=\"%ld\"\n"
+								  " amount=\"%lld\"\n"
 								  " numberOfAttempts=\"%d\"\n"
 								  " dateOfLastAttempt=\"%" PRId64"\"\n"
 								  " dateCompleted=\"%" PRId64"\"\n"
@@ -370,7 +370,7 @@ void OTPaymentPlan::UpdateContents()
 					nNoFailedPayments	= GetNoFailedPayments();
 		
 		m_xmlUnsigned.Concatenate("<paymentPlan\n"
-								  " amountPerPayment=\"%ld\"\n"
+								  " amountPerPayment=\"%lld\"\n"
 								  " timeBetweenPayments=\"%" PRId64"\"\n"
 								  " planStartDate=\"%" PRId64"\"\n"
 								  " planLength=\"%" PRId64"\"\n"
@@ -498,14 +498,14 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
     // Verify Transaction Num and Closing Nums against SENDER's issued list
     if ((GetCountClosingNumbers() < 1) || !SENDER_NYM.VerifyIssuedNum(strServerID, GetTransactionNum()))
     {
-        OTLog::vError("OTPaymentPlan::%s: Transaction number %ld isn't on sender's issued list, "
+        OTLog::vError("OTPaymentPlan::%s: Transaction number %lld isn't on sender's issued list, "
                       "OR there weren't enough closing numbers.\n", __FUNCTION__, GetTransactionNum());
         return false;
     }
     for (int32_t i = 0; i < GetCountClosingNumbers(); i++)
         if (!SENDER_NYM.VerifyIssuedNum(strServerID, GetClosingTransactionNoAt(i)))
         {
-            OTLog::vError("OTPaymentPlan::%s: Closing transaction number %ld isn't on sender's issued list.\n",
+            OTLog::vError("OTPaymentPlan::%s: Closing transaction number %lld isn't on sender's issued list.\n",
                           __FUNCTION__, GetClosingTransactionNoAt(i));
             return false;
         }
@@ -521,7 +521,7 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
     for (int32_t i = 0; i < GetRecipientCountClosingNumbers(); i++)
         if (!RECIPIENT_NYM.VerifyIssuedNum(strServerID, GetRecipientClosingTransactionNoAt(i)))
         {
-            OTLog::vError("OTPaymentPlan::%s: Recipient's Closing transaction number %ld isn't on recipient's issued list.\n",
+            OTLog::vError("OTPaymentPlan::%s: Recipient's Closing transaction number %lld isn't on recipient's issued list.\n",
                           __FUNCTION__, GetRecipientClosingTransactionNoAt(i));
             return false;
         }

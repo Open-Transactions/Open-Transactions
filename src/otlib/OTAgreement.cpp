@@ -842,7 +842,7 @@ void OTAgreement::HarvestOpeningNumber(OTPseudonym & theNym)
         
         if (!bClawedBack)
         {
-//          OTLog::vError("OTAgreement::HarvestOpeningNumber: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n", GetRecipientOpeningNum());
+//          OTLog::vError("OTAgreement::HarvestOpeningNumber: Number (%lld) failed as issued. (Thus didn't bother 'adding it back'.)\n", GetRecipientOpeningNum());
         }
     }
     
@@ -893,7 +893,7 @@ void OTAgreement::HarvestClosingNumbers(OTPseudonym & theNym)
 
         if (!bClawedBack)
         {
-//          OTLog::vError("OTAgreement::HarvestClosingNumbers: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n", GetRecipientClosingTransactionNoAt(i));
+//          OTLog::vError("OTAgreement::HarvestClosingNumbers: Number (%lld) failed as issued. (Thus didn't bother 'adding it back'.)\n", GetRecipientClosingTransactionNoAt(i));
         }
     }
 }
@@ -1151,7 +1151,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
 		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
-		OTLog::vError("%s: Negative value for valid_to: %ld\n", __FUNCTION__, lValidTo);
+		OTLog::vError("%s: Negative value for valid_to: %lld\n", __FUNCTION__, lValidTo);
         
 		return false;
 	}
@@ -1344,7 +1344,7 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 		if (VALID_TO < VALID_FROM) // If Valid-To date is EARLIER than Valid-From date...
 		{
 			int64_t lValidTo = VALID_TO, lValidFrom = VALID_FROM;
-			OTLog::vError("VALID_TO is earlier than VALID_FROM in SetAgreement: %ld, %ld\n", lValidTo, lValidFrom);
+			OTLog::vError("VALID_TO is earlier than VALID_FROM in SetAgreement: %lld, %lld\n", lValidTo, lValidFrom);
 			return false;
 		}
 		
@@ -1353,7 +1353,7 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
 		int64_t lValidTo = VALID_TO;
-		OTLog::vError("Negative value for valid_to in SetAgreement: %ld\n", lValidTo);
+		OTLog::vError("Negative value for valid_to in SetAgreement: %lld\n", lValidTo);
 		return false;
 	}
 
@@ -1517,7 +1517,7 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		SetRecipientAcctID(RECIPIENT_ACCT_ID);
 		SetRecipientUserID(RECIPIENT_USER_ID);
 		// ---------------------
-		OTLog::vOutput(1, "\n\n%sgreement. Transaction Number: %ld\n",
+		OTLog::vOutput(1, "\n\n%sgreement. Transaction Number: %lld\n",
                        m_bCanceled ? "Canceled a" : "A", m_lTransactionNum);
 		
 		OTLog::vOutput(2,

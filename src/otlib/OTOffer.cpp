@@ -211,7 +211,7 @@ void OTOffer::GetIdentifier(OTIdentifier & theIdentifier)
 	
 	// In this way we generate a unique ID that will always be consistent
 	// for the same asset ID, currency ID, and market scale.
-	strTemp.Format("ASSET TYPE:\n%s\nCURRENCY TYPE:\n%s\nMARKET SCALE:\n%ld\n",
+	strTemp.Format("ASSET TYPE:\n%s\nCURRENCY TYPE:\n%s\nMARKET SCALE:\n%lld\n",
 				   strAsset.Get(), strCurrency.Get(), lScale);
 	
 	m_ID.CalculateDigest(strTemp);
@@ -278,7 +278,7 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 				
 		if (false == isPowerOfTen( lScale ))
 		{
-			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: marketScale *must* be 1, or a power of 10. Instead I got: %ld.\n",
+			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: marketScale *must* be 1, or a power of 10. Instead I got: %lld.\n",
 						   lScale);
 			return (-1);
 		}
@@ -303,7 +303,7 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		const int64_t lTotal		= strTotal.Exists() ? atol(strTotal.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 		if (lTotal < 1)
 		{
-			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: totalAssetsOnOffer *must* be larger than 0. Instead I got: %ld.\n",
+			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: totalAssetsOnOffer *must* be larger than 0. Instead I got: %lld.\n",
 						   lTotal);
 			return (-1);
 		}
@@ -314,7 +314,7 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		const int64_t lFinished		= strFinished.Exists() ? atol(strFinished.Get()) : 0; // if it doesn't exist, the 0 here causes the below error to fire.
 		if (lFinished < 0)
 		{
-			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: finishedSoFar *must* be 0 or larger. Instead I got: %ld.\n",
+			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: finishedSoFar *must* be 0 or larger. Instead I got: %lld.\n",
 						   lFinished);
 			return (-1);
 		}
@@ -326,7 +326,7 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		if ((lMinInc < 1) || (lMinInc > lTotal)) // Minimum increment cannot logically be higher than the total assets on offer...
 		{
 			OTLog::vOutput(0, "OTOffer::ProcessXMLNode: Failure: minimumIncrement *must* be 1 or larger, \n"
-						   "and must also be less than the total assets on offer. Instead I got: %ld.\n",
+						   "and must also be less than the total assets on offer. Instead I got: %lld.\n",
 						   lMinInc);
 			return (-1);
 		}
@@ -355,10 +355,10 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		SetValidTo  (static_cast<time_t>(tValidTo));
 		// ----------------------------------------------------------------
 		OTLog::vOutput(4,
-					   "\n\nOffer. Transaction Number: %ld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
+					   "\n\nOffer. Transaction Number: %lld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
 					   " AssetTypeID: %s\n  CurrencyTypeID: %s\n ServerID: %s\n"
-					   " Price Limit: %ld,  Total Assets on Offer: %ld,  %s so far: %ld\n "
-					   " Scale: %ld.   Minimum Increment: %ld.  This offer is a%s.\n", 
+					   " Price Limit: %lld,  Total Assets on Offer: %lld,  %s so far: %lld\n "
+					   " Scale: %lld.   Minimum Increment: %lld.  This offer is a%s.\n", 
 					   m_lTransactionNum, tValidFrom, tValidTo,
 					   strAssetTypeID.Get(), strCurrencyTypeID.Get(), strServerID.Get(),
 					   GetPriceLimit(), GetTotalAssetsOnOffer(),  (m_bSelling ? "sold" : "bought"), 
@@ -398,12 +398,12 @@ void OTOffer::UpdateContents()
 							  " serverID=\"%s\"\n"
 							  " assetTypeID=\"%s\"\n"
 							  " currencyTypeID=\"%s\"\n"
-							  " priceLimit=\"%ld\"\n"
-							  " totalAssetsOnOffer=\"%ld\"\n"
-							  " finishedSoFar=\"%ld\"\n"
-							  " marketScale=\"%ld\"\n"
-							  " minimumIncrement=\"%ld\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " priceLimit=\"%lld\"\n"
+							  " totalAssetsOnOffer=\"%lld\"\n"
+							  " finishedSoFar=\"%lld\"\n"
+							  " marketScale=\"%lld\"\n"
+							  " minimumIncrement=\"%lld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\""
 							  " />\n\n", //  <=== the tag ends here.

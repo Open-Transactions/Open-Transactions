@@ -252,7 +252,7 @@ bool OTLedger::SaveBoxReceipts()	// For ALL full transactions, save the actual b
 
         if (!bRetVal)
         {
-            OTLog::vError("OTLedger::SaveBoxReceipts: Failed calling SaveBoxReceipt on transaction: %ld.\n",
+            OTLog::vError("OTLedger::SaveBoxReceipts: Failed calling SaveBoxReceipt on transaction: %lld.\n",
                           pTransaction->GetTransactionNum());
             break;
         }
@@ -272,7 +272,7 @@ bool OTLedger::SaveBoxReceipt(const int64_t & lTransactionNum)
 
     if (NULL == pTransaction)
     {
-        OTLog::vOutput(0, "OTLedger::SaveBoxReceipt: Unable to save box receipt %ld: "
+        OTLog::vOutput(0, "OTLedger::SaveBoxReceipt: Unable to save box receipt %lld: "
                        "couldn't find the transaction on this ledger.\n", lTransactionNum);
         return false;
     }
@@ -291,7 +291,7 @@ bool OTLedger::DeleteBoxReceipt(const int64_t & lTransactionNum)
 
     if (NULL == pTransaction)
     {
-        OTLog::vOutput(0, "OTLedger::DeleteBoxReceipt: Unable to delete (overwrite) box receipt %ld: "
+        OTLog::vOutput(0, "OTLedger::DeleteBoxReceipt: Unable to delete (overwrite) box receipt %lld: "
                        "couldn't find the transaction on this ledger.\n", lTransactionNum);
         return false;
     }
@@ -352,7 +352,7 @@ bool OTLedger::LoadBoxReceipts(std::set<int64_t> * psetUnloaded/*=NULL*/) // if 
 				nLogLevel = 3;
 			}
             OTLog::vOutput(nLogLevel, "OTLedger::LoadBoxReceipts: Failed calling LoadBoxReceipt on "
-						   "abbreviated transaction number: %ld.\n", lSetNum);
+						   "abbreviated transaction number: %lld.\n", lSetNum);
 			// If psetUnloaded is passed in, then we don't want to break, because we want to
 			// populate it with the conmplete list of IDs that wouldn't load as a Box Receipt.
 			// Thus, we only break if psetUnloaded is NULL, which is better optimization in that case.
@@ -396,7 +396,7 @@ bool OTLedger::LoadBoxReceipt(const int64_t & lTransactionNum)
 
     if (NULL == pTransaction)
     {
-        OTLog::vOutput(0, "%s: Unable to load box receipt %ld: couldn't find abbreviated "
+        OTLog::vOutput(0, "%s: Unable to load box receipt %lld: couldn't find abbreviated "
                        "version already on this ledger.\n", __FUNCTION__, lTransactionNum);
         return false;
     }
@@ -1115,7 +1115,7 @@ bool OTLedger::RemoveTransaction(int64_t lTransactionNum, bool bDeleteIt/*=true*
 	// If it's not already on the list, then there's nothing to remove.
 	if ( it == m_mapTransactions.end() )
 	{
-		OTLog::vError("%s: Attempt to remove Transaction from ledger, when not already there: %ld\n",
+		OTLog::vError("%s: Attempt to remove Transaction from ledger, when not already there: %lld\n",
 					  szFunc, lTransactionNum);
 		return false;
 	}
@@ -1151,7 +1151,7 @@ bool OTLedger::AddTransaction(OTTransaction & theTransaction)
 	// Otherwise, if it was already there, log an error.
 	else
 	{
-		OTLog::vError("Attempt to add Transaction to ledger when already there for that number: %ld\n",
+		OTLog::vError("Attempt to add Transaction to ledger when already there for that number: %lld\n",
 					  theTransaction.GetTransactionNum());
 	}
 
@@ -2186,7 +2186,7 @@ int32_t OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					OTTransaction * pExistingTrans = this->GetTransaction(lTransactionNum);
 					if (NULL != pExistingTrans) // Uh-oh, it's already there!
 					{
-						OTLog::vOutput(0, "%s: Error loading transaction %ld (%s), since one was "
+						OTLog::vOutput(0, "%s: Error loading transaction %lld (%s), since one was "
 									   "already there, in box for account: %s.\n", szFunc,
                                        lTransactionNum, strExpected.Get(),
 									   strLedgerAcctID.Get());
@@ -2253,7 +2253,7 @@ int32_t OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					}
 					else
 					{
-						OTLog::vError("%s: ERROR: verifying contract ID on abbreviated transaction %ld\n",
+						OTLog::vError("%s: ERROR: verifying contract ID on abbreviated transaction %lld\n",
 									  szFunc, pTransaction->GetTransactionNum());
 						delete pTransaction;
 						pTransaction = NULL;
@@ -2375,7 +2375,7 @@ int32_t OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                 if (NULL != pExistingTrans) // Uh-oh, it's already there!
                 {
                     const OTString strPurportedAcctID(this->GetPurportedAccountID());
-                    OTLog::vOutput(0, "%s: Error loading full transaction %ld, since one was "
+                    OTLog::vOutput(0, "%s: Error loading full transaction %lld, since one was "
                                    "already there, in box for account: %s.\n", szFunc,
                                    pTransaction->GetTransactionNum(), strPurportedAcctID.Get());
                     delete pTransaction; pTransaction = NULL;

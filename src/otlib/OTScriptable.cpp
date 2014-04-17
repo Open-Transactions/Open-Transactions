@@ -316,7 +316,7 @@ std::string OTScriptable::GetTime() // Returns a string, containing seconds as i
 	const	int64_t	lTime			=	static_cast<int64_t> (CURRENT_TIME);
 	// ----------------------------------
 	OTString strTime;
-	strTime.Format("%ld", lTime);
+	strTime.Format("%lld", lTime);
 	return	strTime.Get();
 }
 
@@ -1118,7 +1118,7 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 	{
 		if (false == pAuthorizingAgent->VerifyIssuedNumber(lOpeningNo, strServerID))
 		{
-			OTLog::vError("%s: Opening trans number %ld doesn't "
+			OTLog::vError("%s: Opening trans number %lld doesn't "
 						  "verify for the nym listed as the authorizing agent for party %s.\n",
                           __FUNCTION__, lOpeningNo, theParty.GetPartyName().c_str());
 			if (bHadToLoadItMyself && bNeedToCleanup)
@@ -1132,7 +1132,7 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 		{
 			if (false == pAuthorizingAgent->VerifyTransactionNumber(lOpeningNo, strServerID))
 			{
-				OTLog::vError("%s: Opening trans number %ld doesn't "
+				OTLog::vError("%s: Opening trans number %lld doesn't "
 							  "verify as available for use, for the nym listed as the authorizing agent for party: %s.\n",
                               __FUNCTION__, lOpeningNo, theParty.GetPartyName().c_str());
 				if (bHadToLoadItMyself && bNeedToCleanup)
@@ -1152,7 +1152,7 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 	else if (bBurnTransNo)  // In this case, bBurnTransNo=true, then the caller EXPECTED to burn a transaction
 	{						// num. But the number was 0! Therefore, FAILURE!
 		OTLog::vOutput(0, "%s: FAILURE. On Party %s, expected to burn a legitimate opening transaction "
-					   "number, but got this instead: %ld\n", __FUNCTION__, theParty.GetPartyName().c_str(), lOpeningNo);
+					   "number, but got this instead: %lld\n", __FUNCTION__, theParty.GetPartyName().c_str(), lOpeningNo);
 		if (bHadToLoadItMyself && bNeedToCleanup)
 			pAuthorizingAgent->ClearTemporaryPointers(); // We loaded the Nym ourselves, which goes out of scope after this function.
 		return false;
@@ -1473,7 +1473,7 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
 	{
 		if (false == pAuthorizedAgent->VerifyIssuedNumber(lClosingNo, strServerID))
 		{
-			OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %ld doesn't "
+			OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %lld doesn't "
 						   "verify for the nym listed as the authorized agent for account %s.\n", __FUNCTION__,
                            lClosingNo, thePartyAcct.GetName().Get());
 			return false;
@@ -1486,7 +1486,7 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
 		{
 			if (false == pAuthorizedAgent->VerifyTransactionNumber(lClosingNo, strServerID))
 			{
-				OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %ld doesn't "
+				OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %lld doesn't "
 							   "verify as available for use, for the nym listed as the authorized agent for acct: %s.\n",
 							   __FUNCTION__, lClosingNo, thePartyAcct.GetName().Get());
 				return false;
@@ -1504,7 +1504,7 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
 	else if (bBurnTransNo)  // In this case, bBurnTransNo=true, then the caller EXPECTED to burn a transaction
 	{						// num. But the number was 0! Therefore, FAILURE!
 		OTLog::vOutput(0, "OTScriptable::%s: FAILURE. On Acct %s, expected to burn a legitimate closing transaction "
-					   "number, but got this instead: %ld\n", __FUNCTION__, thePartyAcct.GetName().Get(), lClosingNo);
+					   "number, but got this instead: %lld\n", __FUNCTION__, thePartyAcct.GetName().Get(), lClosingNo);
 		return false;
 	}
 	// ----------------------------------------------

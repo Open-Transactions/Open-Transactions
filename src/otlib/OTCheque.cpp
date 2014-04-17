@@ -161,9 +161,9 @@ void OTCheque::UpdateContents()
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
 	
 	m_xmlUnsigned.Concatenate("<cheque\n version=\"%s\"\n"
-							  " amount=\"%ld\"\n"
+							  " amount=\"%lld\"\n"
 							  " assetTypeID=\"%s\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " serverID=\"%s\"\n"
 							  " senderAcctID=\"%s\"\n"
 							  " senderUserID=\"%s\"\n"
@@ -271,7 +271,7 @@ int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 		// ---------------------
 		
 		OTLog::vOutput(2,
-                       "\n\nCheque Amount: %ld.  Transaction Number: %ld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
+                       "\n\nCheque Amount: %lld.  Transaction Number: %lld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
                        " AssetTypeID: %s\n ServerID: %s\n"
                        " senderAcctID: %s\n senderUserID: %s\n "
                        " Has Recipient? %s. If yes, UserID of Recipient: %s\n"

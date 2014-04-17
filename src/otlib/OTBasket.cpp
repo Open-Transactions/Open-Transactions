@@ -201,7 +201,7 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
         if (bClawedBack)
             bNeedToSave = true;
 //		else 
-//			OTLog::vError("OTBasket::HarvestClosingNumbers: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
+//			OTLog::vError("OTBasket::HarvestClosingNumbers: Number (%lld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
 //						  lClosingTransNo);
     } // for
     // *************************************************************************
@@ -366,7 +366,7 @@ int32_t OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         if (strTemp.Exists())
             SetClosingNum(atol(	strTemp.Get()	));
 
-		OTLog::vOutput(2, "Basket Transfer multiple is %d. Direction is %s. Closing number is %ld. "
+		OTLog::vOutput(2, "Basket Transfer multiple is %d. Direction is %s. Closing number is %lld. "
                        "Target account is:\n%s\n", m_nTransferMultiple, strDirection.Get(),
                        m_lClosingTransactionNo, strRequestAccountID.Get());
 		
@@ -410,7 +410,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 	m_xmlUnsigned.Release();
 	
 	m_xmlUnsigned.Concatenate("<currencyBasket contractCount=\"%d\"\n" 
-							  " minimumTransfer=\"%ld\" >\n\n", 
+							  " minimumTransfer=\"%lld\" >\n\n", 
 							  m_nSubCount, m_lMinimumTransfer);
 	
     // Only uesd in Request Basket (requesting an exchange in/out.)
@@ -422,7 +422,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		m_xmlUnsigned.Concatenate("<requestExchange "
                                   "transferMultiple=\"%d\"\n "
                                   "transferAccountID=\"%s\"\n "
-                                  "closingTransactionNo=\"%ld\"\n "                               
+                                  "closingTransactionNo=\"%lld\"\n "                               
                                   "direction=\"%s\" />\n\n", 
 								  m_nTransferMultiple,
                                   strRequestAcctID.Get(),
@@ -439,8 +439,8 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		OTString strAcctID(pItem->SUB_ACCOUNT_ID), strContractID(pItem->SUB_CONTRACT_ID);
 		
         if (IsExchanging())
-            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
-                                  " closingTransactionNo=\"%ld\"\n"
+            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%lld\"\n"
+                                  " closingTransactionNo=\"%lld\"\n"
                                   " accountID=\"%s\"\n"
                                   " assetID=\"%s\" />\n\n", 
                                   pItem->lMinimumTransferAmount,
@@ -448,7 +448,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
                                   m_bHideAccountID ? "" : strAcctID.Get(),
                                   strContractID.Get());
 		else
-            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
+            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%lld\"\n"
                                   " accountID=\"%s\"\n"
                                   " assetID=\"%s\" />\n\n", 
                                   pItem->lMinimumTransferAmount,

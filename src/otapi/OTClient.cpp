@@ -494,7 +494,7 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
                 // ----------------------
 
                 if (false == pNym->VerifyTentativeNum(strServerID, lValue))
-                    OTLog::vOutput(1, "%s: OTTransaction::successNotice: This wasn't on my tentative list (%ld), I must have already processed it. "
+                    OTLog::vOutput(1, "%s: OTTransaction::successNotice: This wasn't on my tentative list (%lld), I must have already processed it. "
                     "(Or there was dropped message when I did, or the server is trying to slip me an old number.\n)", __FUNCTION__, lValue);
                 else
                     setNoticeNumbers.insert(lValue); // I only take the numbers that I had been expecting, as tentative numbers, 
@@ -701,10 +701,10 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
             // my future balance agreements. (The instant a finalReceipt appears, the "in ref to" # is already gone..)
             //
             if (pNym->RemoveIssuedNum(*pNym, strServerID, pTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                OTLog::vOutput(1, "%s: **** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                OTLog::vOutput(1, "%s: **** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", 
                 __FUNCTION__, pTransaction->GetReferenceToNum());
             else
-                OTLog::vOutput(1, "%s: **** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                OTLog::vOutput(1, "%s: **** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                 __FUNCTION__, pTransaction->GetReferenceToNum());
 
             //
@@ -765,7 +765,7 @@ bool OTClient::AcceptEntireNymbox(OTLedger				& theNymbox,
             //			if (lViolator != 0)
             //				OTLog::vError("OTClient::AcceptEntireNymbox: ERROR: Tried to update highest trans # for a server, with lower numbers!\n"
             //							  "This should NEVER HAPPEN, since these numbers are supposedly verified already before even getting this far.\n"
-            //							  "Violating number (too low): %ld, Nym ID: %s \n", lViolator, strNymID.Get());
+            //							  "Violating number (too low): %lld, Nym ID: %s \n", lViolator, strNymID.Get());
             //			else
             {
                 FOR_EACH(std::set<int64_t>, setNoticeNumbers)
@@ -1085,10 +1085,10 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                 if (OTTransaction::finalReceipt	== pTransaction->GetType())
                 {
                     if (pNym->RemoveIssuedNum(*pNym, strServerID, pTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                        OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                        OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", 
                         pTransaction->GetReferenceToNum());
                     else
-                        OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                        OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                         pTransaction->GetReferenceToNum());
 
                     // ----------------------------------------------
@@ -1124,7 +1124,7 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                 //
                 if (false == pNym->VerifyIssuedNum(strServerID, pTransaction->GetClosingNum()))
                     OTLog::vError("OTClient::AcceptEntireInbox: final or basket receipt, trying to 'remove' an issued "
-                    "number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+                    "number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
                     "then? Maybe you need to download a fresh copy of it.)\n", 
                     pTransaction->GetClosingNum());
 
@@ -1301,7 +1301,7 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                                 //
                                 if (false == pNym->VerifyIssuedNum(strServerID, theCheque.GetTransactionNum()))
                                     OTLog::vError("OTClient::%s: cheque or voucher receipt, trying to 'remove' an issued "
-                                    "number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+                                    "number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
                                     "then? Maybe need to download a fresh copy of it.)\n", __FUNCTION__,
                                     theCheque.GetTransactionNum());
                                 else
@@ -1340,7 +1340,7 @@ bool OTClient::AcceptEntireInbox(OTLedger			& theInbox,
                             //
                             if (false == pNym->VerifyIssuedNum(strServerID, pOriginalItem->GetNumberOfOrigin()))
                                 OTLog::vError("OTClient::%s: transfer receipt, trying to 'remove' an issued "
-                                "number (%ld) that already wasn't on my issued list. (So what is this in my inbox, "
+                                "number (%lld) that already wasn't on my issued list. (So what is this in my inbox, "
                                 "then? Maybe need to download a fresh copy of it.)\n", 
                                 __FUNCTION__, pOriginalItem->GetNumberOfOrigin());
                             else
@@ -1640,7 +1640,7 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
         //
         if ( false == pNym->VerifyIssuedNum(strServerID, pTransaction->GetTransactionNum()) )
         {
-            OTLog::vOutput(2, "OTClient::ProcessIncomingTransactions: Skipping processing of server reply to transaction number %ld "
+            OTLog::vOutput(2, "OTClient::ProcessIncomingTransactions: Skipping processing of server reply to transaction number %lld "
                 "since the number isn't even issued to me. Usually this means that I ALREADY processed it, and we are now "
                 "processing the nymbox notice for the same transaction.\n", pTransaction->GetTransactionNum());
             continue;	// If this trans# isn't even signed out to me anymore, then skip it. It's already closed.
@@ -2178,7 +2178,7 @@ void OTClient::ProcessIncomingTransactions(OTServerConnection & theConnection, O
 
                                                     if (!bAdded)
                                                     {
-                                                        OTLog::vError("%s: Unable to add transaction %ld to record box (after tentatively removing "
+                                                        OTLog::vError("%s: Unable to add transaction %lld to record box (after tentatively removing "
                                                             "from payment outbox, an action that is now canceled.)\n", __FUNCTION__,
                                                             pNewTransaction->GetTransactionNum());
                                                     }
@@ -2502,7 +2502,7 @@ void OTClient::ProcessDepositResponse(OTTransaction & theTransaction, OTServerCo
                                             if (false == pLedger->DeleteBoxReceipt(lRemoveTransaction))
                                             {
                                                 OTLog::vError("%s: Failed trying to delete the box receipt for a cheque being removed "
-                                                    "from a payments inbox: %ld\n", __FUNCTION__, lRemoveTransaction);
+                                                    "from a payments inbox: %lld\n", __FUNCTION__, lRemoveTransaction);
                                             }
                                             // -----------------------------------------------------
                                             if (pLedger->RemoveTransaction(lRemoveTransaction))
@@ -3302,7 +3302,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
         case 2:	//bSuccessLoading = pLedger->LoadOutbox();	break;
             break;
         default:
-            OTLog::vError("%s: @getBoxReceipt: Unknown box type: %ld\n", __FUNCTION__, theReply.m_lDepth);
+            OTLog::vError("%s: @getBoxReceipt: Unknown box type: %lld\n", __FUNCTION__, theReply.m_lDepth);
             bErrorCondition = true;
             break;
         }
@@ -3338,13 +3338,13 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                     __FUNCTION__, strTransType.Get());
                 // --------------------------------------------------------------------
                 else if (!pBoxReceipt->VerifyAccount(*pServerNym))
-                    OTLog::vError("%s: @getBoxReceipt: Error: Box Receipt %ld in %s fails VerifyAccount().\n",
+                    OTLog::vError("%s: @getBoxReceipt: Error: Box Receipt %lld in %s fails VerifyAccount().\n",
                     __FUNCTION__, pBoxReceipt->GetTransactionNum(),
                     (theReply.m_lDepth == 0) ? "nymbox" : ((theReply.m_lDepth == 1) ? "inbox" : "outbox")); // outbox is 2.);
                 // --------------------------------------------------------------------
                 else if (pBoxReceipt->GetTransactionNum() != theReply.m_lTransactionNum)
                     OTLog::vError("%s: @getBoxReceipt: Error: Transaction Number doesn't match "
-                    "on the box receipt itself (%ld), versus the one listed in the reply message (%ld).\n",
+                    "on the box receipt itself (%lld), versus the one listed in the reply message (%lld).\n",
                     __FUNCTION__, pBoxReceipt->GetTransactionNum(), theReply.m_lTransactionNum);
                 // --------------------------------------------------------------------
                 // Note: Account ID and Server ID were already verified, in VerifyAccount().				
@@ -3801,7 +3801,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                                 OTTransaction * pServerTransaction = NULL;
 
-                                OTLog::vOutput(1, "Checking client-side inbox for expected pending or receipt transaction: %ld... \n",
+                                OTLog::vOutput(1, "Checking client-side inbox for expected pending or receipt transaction: %lld... \n",
                                     pItem->GetReferenceToNum()); // temp remove
 
                                 switch (pReplyItem->GetType())
@@ -4139,7 +4139,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                                 case OTItem::atAcceptFinalReceipt:
                                     {
-                                        OTLog::vOutput(1, "OTClient::ProcessServerReply: Successfully removed finalReceipt with closing num: %ld\n", 
+                                        OTLog::vOutput(1, "OTClient::ProcessServerReply: Successfully removed finalReceipt with closing num: %lld\n", 
                                             pServerTransaction->GetClosingNum());
                                         pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetClosingNum(), true); // bool bSave=true
 
@@ -4148,10 +4148,10 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                         // while debugging:
                                         //
                                         if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                                            OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                                            OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", 
                                             pServerTransaction->GetReferenceToNum());
                                         else
-                                            OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                                            OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                                             pServerTransaction->GetReferenceToNum());
                                         // ----------------------------------------------
                                         // The client side keeps a list of active (recurring) transactions.
@@ -4174,7 +4174,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                                 case OTItem::atAcceptBasketReceipt:
                                     {
-                                        OTLog::vOutput(2, "OTClient::ProcessServerReply: Successfully removed basketReceipt with closing num: %ld\n", 
+                                        OTLog::vOutput(2, "OTClient::ProcessServerReply: Successfully removed basketReceipt with closing num: %lld\n", 
                                             pServerTransaction->GetClosingNum());
                                         pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetClosingNum(), true); // bool bSave=true	
                                     } // OTItem::atAcceptBasketReceipt
@@ -4235,7 +4235,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                                             if (!bAdded)
                                             {
-                                                OTLog::vError("%s: Unable to add transaction %ld to record box (still removing "
+                                                OTLog::vError("%s: Unable to add transaction %lld to record box (still removing "
                                                     "it from asset account inbox, however.)\n", __FUNCTION__,
                                                     pNewTransaction->GetTransactionNum());
                                             }
@@ -4517,7 +4517,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                             // ------------------------------------------------------------------------------------
                             OTTransaction * pServerTransaction = NULL;
 
-                            OTLog::vOutput(1, "%s: Checking client-side Nymbox for expected Nymbox item: %ld... \n",
+                            OTLog::vOutput(1, "%s: Checking client-side Nymbox for expected Nymbox item: %lld... \n",
                                 __FUNCTION__, pItem->GetReferenceToNum()); // temp remove
 
                             switch (pReplyItem->GetType())
@@ -4541,7 +4541,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                             // ---------------------------------------------------
                             if (NULL == pServerTransaction)
                             {
-                                OTLog::vOutput(1, "%s: The original processNymbox item referred to trans number %ld, but that receipt wasn't in my Nymbox. "
+                                OTLog::vOutput(1, "%s: The original processNymbox item referred to trans number %lld, but that receipt wasn't in my Nymbox. "
                                     "(We probably processed this server reply ALREADY, and now we're just seeing it again, since an extra copy "
                                     "was dropped into the Nymbox originally. It happens. Skipping.)", __FUNCTION__, pItem->GetReferenceToNum());
                                 break; // We must have processed this reply already, and it just came through again cause a copy was in a nymbox notice.
@@ -4944,7 +4944,7 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                                                                 if (!bAdded)
                                                                 {
-                                                                    OTLog::vError("%s: Unable to add transaction %ld to record box (after tentatively removing "
+                                                                    OTLog::vError("%s: Unable to add transaction %lld to record box (after tentatively removing "
                                                                         "from payment outbox, an action that is now canceled.)\n", __FUNCTION__,
                                                                         pNewTransaction->GetTransactionNum());
                                                                     return false;
@@ -5003,14 +5003,14 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
 
                             case OTItem::atAcceptFinalReceipt:
                                 OTLog::vOutput(2, "%s: Successfully removed finalReceipt "
-                                    "from Nymbox with opening num: %ld\n", __FUNCTION__,
+                                    "from Nymbox with opening num: %lld\n", __FUNCTION__,
                                     pServerTransaction->GetReferenceToNum());
 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pServerTransaction->GetReferenceToNum(), true)) // bool bSave=true
-                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", 
                                     pServerTransaction->GetReferenceToNum());
                                 else
-                                    OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                                    OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                                     pServerTransaction->GetReferenceToNum());
 
                                 // BUG: RemoveIssuedNum shouldn't be here. In Nymbox, finalReceipt is only a notice, and I shoulda
@@ -5287,14 +5287,14 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                             //
                             if (OTTransaction::finalReceipt == pTempTrans->GetType())
                             {
-                                OTLog::vOutput(2, "*** Removing opening issued number (%ld), since finalReceipt found when retrieving asset account inbox. ***\n",
+                                OTLog::vOutput(2, "*** Removing opening issued number (%lld), since finalReceipt found when retrieving asset account inbox. ***\n",
                                                pTempTrans->GetReferenceToNum());
                                 
                                 if (pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true)) // bool bSave=true
-                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n",
+                                    OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n",
                                                    pTempTrans->GetReferenceToNum());
                                 else
-                                    OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                                    OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                                                    pTempTrans->GetReferenceToNum());
                                 
 //                              pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true); // bSave = true;
@@ -5474,14 +5474,14 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                 //
                 if (OTTransaction::finalReceipt == pTempTrans->GetType())
                 {
-                    OTLog::vOutput(2, "*** Removing opening issued number (%ld), since finalReceipt found when getting asset account inbox. ***\n", 
+                    OTLog::vOutput(2, "*** Removing opening issued number (%lld), since finalReceipt found when getting asset account inbox. ***\n", 
                         pTempTrans->GetReferenceToNum());
 
                     if (pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true)) // bool bSave=true
-                        OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %ld \n", 
+                        OTLog::vOutput(1, "**** Due to finding a finalReceipt, REMOVING OPENING NUMBER FROM NYM:  %lld \n", 
                         pTempTrans->GetReferenceToNum());
                     else
-                        OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %ld had ALREADY been removed from nym. \n",
+                        OTLog::vOutput(1, "**** Noticed a finalReceipt, but Opening Number %lld had ALREADY been removed from nym. \n",
                         pTempTrans->GetReferenceToNum());
 
 //                  pNym->RemoveIssuedNum(*pNym, strServerID, pTempTrans->GetReferenceToNum(), true); // bSave = true;
@@ -6401,7 +6401,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
         {
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             //		OTLog::vOutput(0, "(User has instructed to send a deleteUserAccount command to the server...)\n");
@@ -6475,7 +6475,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) set up member variables 
@@ -6520,7 +6520,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 pMessage->m_strNymID		= strNymID;
                 pMessage->m_strNymID2		= strNymID2;
                 pMessage->m_strServerID		= strServerID;			
-                pMessage->m_strRequestNum.Format("%ld", lRequestNumber);
+                pMessage->m_strRequestNum.Format("%lld", lRequestNumber);
 
                 pMessage->SetAcknowledgments(theNym); // Must be called AFTER theMessage.m_strServerID is already set. (It uses it.)
 
@@ -6554,7 +6554,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) set up member variables 
@@ -6635,7 +6635,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                 // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                 theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                 theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                 // (1) Set up member variables 
@@ -6800,7 +6800,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                                 theRequestBasket.SetExchangingIn(bDirection);
                                 // --------------------------------------------------
                                 // Show the minimum transfer amount to the customer and ask him to choose a multiple for the transfer
-                                OTLog::vOutput(0, "The minimum transfer amount for this basket is %ld. You may only exchange in multiples of it.\n"
+                                OTLog::vOutput(0, "The minimum transfer amount for this basket is %lld. You may only exchange in multiples of it.\n"
                                     "Choose any multiple [1]: ", theBasket.GetMinimumTransfer());
                                 strTemp.OTfgets(std::cin);
                                 nTransferMultiple = atoi(strTemp.Get()); 
@@ -6911,7 +6911,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                                 // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                                 theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                                theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                                theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                                 theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                                 // (1) Set up member variables 
@@ -7038,7 +7038,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7072,7 +7072,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7286,7 +7286,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                     // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                     theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                    theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                    theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                     theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                     // (1) Set up member variables 
@@ -7487,7 +7487,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7569,7 +7569,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7653,7 +7653,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7753,7 +7753,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
         {			
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -7947,7 +7947,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -8041,7 +8041,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -8079,7 +8079,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -8117,7 +8117,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -8368,7 +8368,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                 // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                 theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                 theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                 // (1) Set up member variables 
@@ -8707,7 +8707,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                 // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                 theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                 theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                 // (1) Set up member variables 
@@ -8920,7 +8920,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                         // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                         theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                        theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                        theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                         theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                         // (1) Set up member variables 
@@ -9165,7 +9165,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                     // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                     theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                    theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                    theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                     theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                     // (1) Set up member variables 
@@ -9445,7 +9445,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                 // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                 theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                 theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                 // (1) Set up member variables 
@@ -9491,7 +9491,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
         {	
             // (0) Set up the REQUEST NUMBER and then INCREMENT IT
             theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-            theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+            theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
             theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
             // (1) Set up member variables 
@@ -9621,7 +9621,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                     for (;;)
                     {
-                        OTLog::vOutput(0, "The Market Scale is: %ld\n"
+                        OTLog::vOutput(0, "The Market Scale is: %lld\n"
                             "What is your price limit, in currency, PER SCALE of assets?\n"
                             "That is, what is the lowest amount of currency you'd sell for, (if selling)\n"
                             "Or the highest amount you'd pay (if you are buying).\nAgain, PER SCALE: ",
@@ -9747,7 +9747,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                         // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                         theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                        theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                        theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                         theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                         // (1) Set up member variables 
@@ -10004,7 +10004,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 );
 
             int64_t lExpirationInSeconds = 3600;
-            OTLog::vOutput(0, "How many seconds before cheque expires? (defaults to 1 hour: %ld): ", lExpirationInSeconds);
+            OTLog::vOutput(0, "How many seconds before cheque expires? (defaults to 1 hour: %lld): ", lExpirationInSeconds);
             OTString strTemp;
             strTemp.OTfgets(std::cin);
 
@@ -10016,7 +10016,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
 
-            OTLog::vOutput(0, "Cheque may be cashed STARTING date (defaults to now, in seconds) [%ld]: ", VALID_FROM);
+            OTLog::vOutput(0, "Cheque may be cashed STARTING date (defaults to now, in seconds) [%lld]: ", VALID_FROM);
             strTemp.Release();
             strTemp.OTfgets(std::cin);
 
@@ -10213,7 +10213,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 );
 
             int64_t lExpirationInSeconds = 86400;
-            OTLog::vOutput(0, "How many seconds before payment plan expires? (defaults to 1 day: %ld): ", 
+            OTLog::vOutput(0, "How many seconds before payment plan expires? (defaults to 1 day: %lld): ", 
                 lExpirationInSeconds);
             strTemp.Release();
             strTemp.OTfgets(std::cin);
@@ -10227,7 +10227,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
             time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
 
             OTLog::vOutput(0, "Payment plan becomes valid for processing STARTING date\n"
-                "(defaults to now, in seconds) [%ld]: ", VALID_FROM);
+                "(defaults to now, in seconds) [%lld]: ", VALID_FROM);
             strTemp.Release();
             strTemp.OTfgets(std::cin);
 
@@ -10540,7 +10540,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
                     // (0) Set up the REQUEST NUMBER and then INCREMENT IT
                     theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-                    theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+                    theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
                     theNym.IncrementRequestNum(theNym, strServerID); // since I used it for a server request, I have to increment it
 
                     // (1) Set up member variables 
@@ -10588,7 +10588,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
         {	
         // (0) Set up the REQUEST NUMBER and then INCREMENT IT
         theNym.GetCurrentRequestNum(strServerID, lRequestNumber);
-        theMessage.m_strRequestNum.Format("%ld", lRequestNumber); // Always have to send this.
+        theMessage.m_strRequestNum.Format("%lld", lRequestNumber); // Always have to send this.
         theNym.IncrementRequestNum(strServerID); // since I used it for a server request, I have to increment it
 
         // (1) Set up member variables 

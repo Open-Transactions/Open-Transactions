@@ -2744,7 +2744,7 @@ bool OTAgent::HarvestTransactionNumber(const int64_t & lNumber,
 			return true;
         }
 		else
-			OTLog::vError("%s: Number (%ld) failed to verify for agent: %s (Thus didn't bother "
+			OTLog::vError("%s: Number (%lld) failed to verify for agent: %s (Thus didn't bother "
                           "'adding it back'.)\n", __FUNCTION__, lNumber, m_strName.Get());
 	}
 	else
@@ -3160,7 +3160,7 @@ void OTPartyAccount::Serialize(OTString & strAppend,
 						  " acctID=\"%s\"\n"
 						  " assetTypeID=\"%s\"\n"
 						  " agentName=\"%s\"\n"
-						  " closingTransNo=\"%ld\" />\n\n",
+						  " closingTransNo=\"%lld\" />\n\n",
 						  m_strName.Get(),
 						  bCalculatingID ? "" : m_strAcctID.Get(),
 						  (bCalculatingID &&
@@ -3181,7 +3181,7 @@ void OTParty::Serialize(OTString & strAppend,
 	strAppend.Concatenate("<party\n name=\"%s\"\n"
 						  " ownerType=\"%s\"\n" // "nym" or "entity"
 						  " ownerID=\"%s\"\n"  // Entity or Nym ID.  Perhaps should just have both...
-						  " openingTransNo=\"%ld\"\n"  // fine here.
+						  " openingTransNo=\"%lld\"\n"  // fine here.
 						  " signedCopyProvided=\"%s\"\n" // true/false
 						  " authorizingAgent=\"%s\"\n" // When an agent activates this contract, it's HIS opening trans#.
 						  " numAgents=\"%d\"\n" // integer count.
@@ -4183,7 +4183,7 @@ bool OTParty::Compare(const OTParty & rhs) const
 		(this->GetOpeningTransNo() != rhs.GetOpeningTransNo())
 	   )
 	{
-		OTLog::vOutput(0, "OTParty::Compare: Opening transaction numbers don't match for party %s. ( %ld  /  %ld ) \n",
+		OTLog::vOutput(0, "OTParty::Compare: Opening transaction numbers don't match for party %s. ( %lld  /  %lld ) \n",
 					   GetPartyName().c_str(), this->GetOpeningTransNo(), rhs.GetOpeningTransNo());
 		return false;
 	}
@@ -4884,7 +4884,7 @@ bool OTStashItem::CreditStash(const int64_t &lAmount)
 {
 	if (lAmount < 0)
 	{
-		OTLog::vOutput(0, "OTStashItem::CreditStash: Failed attempt to credit a negative amount (%ld). Asset Type: %s \n",
+		OTLog::vOutput(0, "OTStashItem::CreditStash: Failed attempt to credit a negative amount (%lld). Asset Type: %s \n",
 					   lAmount, m_strAssetTypeID.Get());
 		return false;
 	}
@@ -4898,7 +4898,7 @@ bool OTStashItem::DebitStash(const int64_t &lAmount)
 {
 	if (lAmount < 0)
 	{
-		OTLog::vOutput(0, "OTStashItem::DebitStash: Failed attempt to debit a negative amount (%ld). Asset Type: %s \n",
+		OTLog::vOutput(0, "OTStashItem::DebitStash: Failed attempt to debit a negative amount (%lld). Asset Type: %s \n",
 					   lAmount, m_strAssetTypeID.Get());
 		return false;
 	}
@@ -4907,8 +4907,8 @@ bool OTStashItem::DebitStash(const int64_t &lAmount)
 
 	if (lTentativeNewBalance < 0)
 	{
-		OTLog::vOutput(0, "OTStashItem::DebitStash: Failed attempt to debit (amount of) %ld: New stash balance would have been a negative "
-					   "amount (%ld). Asset Type: %s \n", lAmount, lTentativeNewBalance, m_strAssetTypeID.Get());
+		OTLog::vOutput(0, "OTStashItem::DebitStash: Failed attempt to debit (amount of) %lld: New stash balance would have been a negative "
+					   "amount (%lld). Asset Type: %s \n", lAmount, lTentativeNewBalance, m_strAssetTypeID.Get());
 		return false;
 	}
 
@@ -4932,7 +4932,7 @@ void OTStash::Serialize(OTString & strAppend)
 				OTStashItem *	pStashItem			= (*it).second;
 		OT_ASSERT((str_asset_type_id.size()>0) && (NULL != pStashItem));
 
-		strAppend.Concatenate("<stashItem assetTypeID=\"%s\" balance=\"%ld\" />\n\n",
+		strAppend.Concatenate("<stashItem assetTypeID=\"%s\" balance=\"%lld\" />\n\n",
 							  pStashItem->GetAssetTypeID().Get(), pStashItem->GetAmount());
 	}
 	// -----------------

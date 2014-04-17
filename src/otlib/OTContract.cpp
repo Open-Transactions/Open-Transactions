@@ -671,10 +671,10 @@ bool OTNumList::Output(OTString & strOutput) const // returns false if the numli
         nIterationCount ++;
         // ----------
 
-        strOutput.Concatenate("%s%ld",
+        strOutput.Concatenate("%s%lld",
                               // If first iteration, prepend a blank string (instead of a comma.)
-                              // Like this:  "%ld"
-                              // But for all subsequent iterations, concatenate: ",%ld"
+                              // Like this:  "%lld"
+                              // But for all subsequent iterations, concatenate: ",%lld"
                               (1 == nIterationCount) ? "" : ",", lValue);
     }
 

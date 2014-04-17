@@ -356,7 +356,7 @@ std::string OTAssetContract::formatLongAmount(int64_t & lOriginalValue, int32_t 
             strRemainder.Format("%0*ld", nPower, 0);
         }
         else
-            strRemainder.Format("%ld", 0);
+            strRemainder.Format("%lld", 0);
         
         sss << strRemainder.Get();
         return sss.str();
@@ -390,7 +390,7 @@ std::string OTAssetContract::formatLongAmount(int64_t & lOriginalValue, int32_t 
     sss << szSymbol << " "; // Currency symbol
     // ------------------------------------------------------
     OTString strValue;
-    strValue.Format("%ld", lValue);
+    strValue.Format("%lld", lValue);
     // ---------------------------------
     char     cTemp = '\0';
     uint32_t uValueStrLength = strValue.GetLength();

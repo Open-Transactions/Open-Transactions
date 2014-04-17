@@ -784,7 +784,7 @@ void OTSmartContract::DeactivateSmartContract() // Called from within script.
 	// override says differently.)
 
 	OTLog::vOutput(0, "OTSmartContract::DeactivateSmartContract: deactivate_contract() was called from within the script. "
-				   "Flagging smartcontract for removal from Cron (%ld).\n", GetTransactionNum());
+				   "Flagging smartcontract for removal from Cron (%lld).\n", GetTransactionNum());
 
 	this->FlagForRemoval(); // Remove it from future Cron processing, please.
 }
@@ -975,7 +975,7 @@ void OTSmartContract::onActivate()
 	// -----------------------------------------------------------------------------
 	if (GetCron()->GetTransactionCount() < 1)
 	{
-		OTLog::vOutput(0, "%s: Failed to process smart contract %ld: Out of transaction numbers for receipts! Flagging for removal.\n",
+		OTLog::vOutput(0, "%s: Failed to process smart contract %lld: Out of transaction numbers for receipts! Flagging for removal.\n",
 					   __FUNCTION__, GetTransactionNum());
 		FlagForRemoval();
 		return;
@@ -1199,7 +1199,7 @@ std::string OTSmartContract::GetAcctBalance(const std::string from_acct_name)
 	// -----------------------------------------------------------------
 
 	OTString strBalance;
-	strBalance.Format("%ld", pPartyAssetAcct->GetBalance());
+	strBalance.Format("%lld", pPartyAssetAcct->GetBalance());
 
 	return strBalance.Get();
 }
@@ -1462,7 +1462,7 @@ std::string OTSmartContract::GetStashBalance(const std::string from_stash_name, 
 	//
 	// ****************************************************************************
 	OTString strBalance;
-	strBalance.Format("%ld", pStash->GetAmount(asset_type_id));
+	strBalance.Format("%lld", pStash->GetAmount(asset_type_id));
 	return strBalance.Get();
 }
 
@@ -1658,7 +1658,7 @@ bool OTSmartContract::StashAcctFunds(const std::string from_acct_name, const std
 
 	if (lAmount <= 0)
 	{
-		OTLog::vOutput(0, "OTSmartContract::StashAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %ld.)\n",
+		OTLog::vOutput(0, "OTSmartContract::StashAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %lld.)\n",
 					   lAmount);
 		return false;
 	}
@@ -1843,7 +1843,7 @@ bool OTSmartContract::StashAcctFunds(const std::string from_acct_name, const std
 	this->RetrieveNymPointers(map_Nyms_Already_Loaded);
 
 
-//	OTLog::vError("OTSmartContract::StashAcctFunds: DEBUGGING: lAmount is %ld.\n", lAmount);
+//	OTLog::vError("OTSmartContract::StashAcctFunds: DEBUGGING: lAmount is %lld.\n", lAmount);
 
 
 	bool bMoved = this->StashFunds(map_Nyms_Already_Loaded,
@@ -1852,7 +1852,7 @@ bool OTSmartContract::StashAcctFunds(const std::string from_acct_name, const std
 								   *pStash);
 	if (!bMoved)
 	{
-		OTLog::vOutput(0, "OTSmartContract::StashAcctFunds: Failed in final call. Values: from_acct: %s, to_stash: %s, lAmount: %ld. \n",
+		OTLog::vOutput(0, "OTSmartContract::StashAcctFunds: Failed in final call. Values: from_acct: %s, to_stash: %s, lAmount: %lld. \n",
 					   from_acct_name.c_str(), to_stash_name.c_str(), lAmount);
 		return false;
 	}
@@ -1900,7 +1900,7 @@ bool OTSmartContract::UnstashAcctFunds(const std::string to_acct_name, const std
 
 	if (lAmount <= 0)
 	{
-		OTLog::vOutput(0, "OTSmartContract::UnstashAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %ld.)\n",
+		OTLog::vOutput(0, "OTSmartContract::UnstashAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %lld.)\n",
 					   lAmount);
 		return false;
 	}
@@ -2077,7 +2077,7 @@ bool OTSmartContract::UnstashAcctFunds(const std::string to_acct_name, const std
 	this->RetrieveNymPointers(map_Nyms_Already_Loaded);
 
 
-//	OTLog::vError("OTSmartContract::UnstashAcctFunds: DEBUGGING: lAmount is %ld.\n", lNegativeAmount);
+//	OTLog::vError("OTSmartContract::UnstashAcctFunds: DEBUGGING: lAmount is %lld.\n", lNegativeAmount);
 
 
 	bool bMoved = this->StashFunds(map_Nyms_Already_Loaded,
@@ -2086,7 +2086,7 @@ bool OTSmartContract::UnstashAcctFunds(const std::string to_acct_name, const std
 								   *pStash);
 	if (!bMoved)
 	{
-		OTLog::vOutput(0, "OTSmartContract::UnstashAcctFunds: Failed in final call. Values: to_acct: %s, from_stash: %s, lAmount: %ld. \n",
+		OTLog::vOutput(0, "OTSmartContract::UnstashAcctFunds: Failed in final call. Values: to_acct: %s, from_stash: %s, lAmount: %lld. \n",
 					  to_acct_name.c_str(), from_stash_name.c_str(), lAmount);
 		return false;
 	}
@@ -2744,7 +2744,7 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 
 			// temp remove todo
 //			OTString strTempDebug(PARTY_ACCT_ID), strTempDebug2(PARTY_USER_ID), strTempDebug3(thePartyInbox);
-//			OTLog::vError("OTSmartContract::StashFunds: Finished saving Inbox with new receipt %ld (re: trans %ld by way of %ld) in it, for account: %s, user: %s. Status: %s\n"
+//			OTLog::vError("OTSmartContract::StashFunds: Finished saving Inbox with new receipt %lld (re: trans %lld by way of %lld) in it, for account: %s, user: %s. Status: %s\n"
 //						  "INBOX CONTENTS: \n\n%s\n\n",
 //						  lNewTransactionNumber, GetTransactionNum(), lPartyTransRefNo, strTempDebug.Get(), strTempDebug2.Get(), bSuccess ? "SUCCESS" : "FAILURE",
 //						  strTempDebug3.Get());
@@ -2866,7 +2866,7 @@ bool OTSmartContract::MoveAcctFundsStr(const std::string from_acct_name, const s
 
 	if (lAmount <= 0)
 	{
-		OTLog::vOutput(0, "OTSmartContract::MoveAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %ld.)\n",
+		OTLog::vOutput(0, "OTSmartContract::MoveAcctFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %lld.)\n",
 					   lAmount);
 		return false;
 	}
@@ -3474,7 +3474,7 @@ bool OTSmartContract::ProcessCron()
 //virtual
 void OTSmartContract::SetDisplayLabel(const std::string * pstrLabel/*=NULL*/)
 {
-    m_strLabel.Format("smartcontract trans# %ld, clause: %s",
+    m_strLabel.Format("smartcontract trans# %lld, clause: %s",
                               GetTransactionNum(),
                               (NULL != pstrLabel) ? pstrLabel->c_str() : "");
 }
@@ -3541,7 +3541,7 @@ void OTSmartContract::ExecuteClauses (mapOfClauses & theClauses, OTString * pPar
 			//
 			if (NULL != pBylaw->GetVariable(str_Name)) // disallow duplicate names.
 			{
-				OTLog::vError("OTSmartContract::ExecuteClauses: While preparing to run smartcontract trans# %ld, clause: %s.  Error: "
+				OTLog::vError("OTSmartContract::ExecuteClauses: While preparing to run smartcontract trans# %lld, clause: %s.  Error: "
 							  "Parameter variable named %s already exists. (Skipping the parameter actually passed in.)\n",
 							  GetTransactionNum(), str_clause_name.c_str(), str_Name.c_str());
 			}
@@ -3569,11 +3569,11 @@ void OTSmartContract::ExecuteClauses (mapOfClauses & theClauses, OTString * pPar
 			if (false == pScript->ExecuteScript())	// If I passed theReturnVal in here, then it'd be assumed a bool is expected to be returned inside it.
 //			if (false == pScript->ExecuteScript((str_clause_name.compare("process_clause") == 0) ? &theReturnVal : NULL))
 			{
-				OTLog::vError("OTSmartContract::ExecuteClauses: Error while running smartcontract trans# %ld, clause: %s \n\n",
+				OTLog::vError("OTSmartContract::ExecuteClauses: Error while running smartcontract trans# %lld, clause: %s \n\n",
 							 GetTransactionNum(), str_clause_name.c_str());
 			}
 			else
-				OTLog::vOutput(0, "OTSmartContract::ExecuteClauses: Success executing smartcontract trans# %ld, clause: %s \n\n",
+				OTLog::vOutput(0, "OTSmartContract::ExecuteClauses: Success executing smartcontract trans# %lld, clause: %s \n\n",
 							   GetTransactionNum(), str_clause_name.c_str());
 			// ****************************************
 //			For now, I've decided to allow ALL clauses to trigger on the hook. The flag only matters after
@@ -5086,7 +5086,7 @@ void OTSmartContract::UpdateContents()
 							  " lastRecipientAcctID=\"%s\"\n"
                               " canceled=\"%s\"\n"
 							  " cancelerUserID=\"%s\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " creationDate=\"%" PRId64"\"\n"
 							  " validFrom=\"%" PRId64"\"\n"
 							  " validTo=\"%" PRId64"\"\n"
@@ -5116,7 +5116,7 @@ void OTSmartContract::UpdateContents()
 			int64_t lClosingNumber = GetClosingTransactionNoAt(i);
 			OT_ASSERT(lClosingNumber > 0);
 
-			m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%ld\"/>\n\n",
+			m_xmlUnsigned.Concatenate("<closingTransactionNumber value=\"%lld\"/>\n\n",
 									  lClosingNumber);
 
 			// For OTSmartContract, this should only contain a single number, from the activator Nym.
@@ -5609,7 +5609,7 @@ int32_t OTSmartContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		m_strLastRecipientUser	= xml->getAttributeValue("lastRecipientUserID"); // Last User ID of a party who RECEIVED money.
 		m_strLastRecipientAcct	= xml->getAttributeValue("lastRecipientAcctID"); // Last Acct ID of a party who RECEIVED money.
         // ----------------------------------------------------------------------------
-		OTLog::vOutput(1, "\n\n Smartcontract. Transaction Number: %ld\n", m_lTransactionNum);
+		OTLog::vOutput(1, "\n\n Smartcontract. Transaction Number: %lld\n", m_lTransactionNum);
 
 		OTLog::vOutput(2,
 					   " Creation Date: %" PRId64"   Valid From: %" PRId64"\n Valid To: %" PRId64"\n"

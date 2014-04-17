@@ -501,7 +501,7 @@ int32_t OTCron::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
 		const int64_t lTransactionNum = atol(xml->getAttributeValue("value"));
 		
-		OTLog::vOutput(1, "Transaction Number %ld available for Cron.\n",
+		OTLog::vOutput(1, "Transaction Number %lld available for Cron.\n",
 					   lTransactionNum);
 		
 		AddTransactionNumber(lTransactionNum); // This doesn't save to disk. Make sure to save Cron when it changes.
@@ -539,7 +539,7 @@ int32_t OTCron::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			if (false == pItem->VerifySignature(*m_pServerNym))
 			{
 				OTLog::vError("OTCron::ProcessXMLNode: ERROR SECURITY: Server signature failed to "
-							  "verify on a cron item while loading: %ld\n", pItem->GetTransactionNum());
+							  "verify on a cron item while loading: %lld\n", pItem->GetTransactionNum());
 				delete pItem;
 				pItem = NULL;
 				return (-1);
@@ -638,7 +638,7 @@ void OTCron::UpdateContents()
 		m_xmlUnsigned.Concatenate("<market\n marketID=\"%s\"\n"
 								  " assetID=\"%s\"\n"
 								  " currencyID=\"%s\"\n"
-								  " marketScale=\"%ld\""
+								  " marketScale=\"%lld\""
 								  " />\n\n",
 								  str_MARKET_ID.Get(),
 								  str_ASSET_ID.Get(),
@@ -670,7 +670,7 @@ void OTCron::UpdateContents()
 	{	
 		lTransactionNumber = *it;
 		
-		m_xmlUnsigned.Concatenate("<transactionNum value=\"%ld\" />\n\n", 
+		m_xmlUnsigned.Concatenate("<transactionNum value=\"%lld\" />\n\n", 
 						   lTransactionNumber);
 	} // for
 	// -------------------------------------------------------------
@@ -758,7 +758,7 @@ void OTCron::ProcessCronItems()
 //      bool bVerifySig = pItem->VerifySignature(*m_pServerNym);
 //      if (bVerifySig)
         {
-			OTLog::vOutput(2, "OTCron::%s: Processing item number: %ld \n",
+			OTLog::vOutput(2, "OTCron::%s: Processing item number: %lld \n",
                            __FUNCTION__, pItem->GetTransactionNum());
 			
             bProcessCron = pItem->ProcessCron();
@@ -776,7 +776,7 @@ void OTCron::ProcessCronItems()
         //
 		if (false == bProcessCron)
 		{
-            OTLog::vOutput(0, "OTCron::%s: Removing cron item: %ld\n",
+            OTLog::vOutput(0, "OTCron::%s: Removing cron item: %lld\n",
                            __FUNCTION__, pItem->GetTransactionNum());
             // -------------------------------
             // Remove from MultiMap
@@ -880,10 +880,10 @@ bool OTCron::AddCronItem(OTCronItem  & theItem,
 			bSuccess = SaveCron();
 			
 			if (bSuccess)
-				OTLog::vOutput(0, "%s: New CronItem has been added to Cron: %ld\n",
+				OTLog::vOutput(0, "%s: New CronItem has been added to Cron: %lld\n",
 							  __FUNCTION__, theItem.GetTransactionNum());
 			else 				
-				OTLog::vError("%s: Error saving while adding new CronItem to Cron: %ld\n",
+				OTLog::vError("%s: Error saving while adding new CronItem to Cron: %lld\n",
                               __FUNCTION__, theItem.GetTransactionNum());
 		}
 		
@@ -892,7 +892,7 @@ bool OTCron::AddCronItem(OTCronItem  & theItem,
 	// Otherwise, if it was already there, log an error.
 	else 
 	{
-		OTLog::vError("%s: Failed attempt to add CronItem with pre-existing transaction number: %ld\n",
+		OTLog::vError("%s: Failed attempt to add CronItem with pre-existing transaction number: %lld\n",
 					  __FUNCTION__, theItem.GetTransactionNum());
 	}
 	
@@ -910,7 +910,7 @@ bool OTCron::RemoveCronItem(int64_t lTransactionNum, OTPseudonym & theRemover) /
 	// If it's not already on the list, then there's nothing to remove.
 	if ( m_mapCronItems.end() == it_map )
 	{
-		OTLog::vError("%s: Attempt to remove non-existent CronItem from OTCron. Transaction #: %ld\n",
+		OTLog::vError("%s: Attempt to remove non-existent CronItem from OTCron. Transaction #: %lld\n",
 					  __FUNCTION__, lTransactionNum);
 	}
     // ---------------------------------------------------------------------

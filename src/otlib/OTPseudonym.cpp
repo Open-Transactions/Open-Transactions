@@ -1862,7 +1862,7 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 
 		if (false == this->AddIssuedNum(strServerID, lNum))		// Add to list of numbers that haven't been closed yet.
 		{
-			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add IssuedNum (%ld) onto *this nym: %s, for server: %s\n",
+			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add IssuedNum (%lld) onto *this nym: %s, for server: %s\n",
 						  lNum, strNymID.Get(), strServerID.Get());
 			bSuccess = false;
 		}
@@ -1870,7 +1870,7 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 		{
 			setTransNumbers.insert(lNum);
 			// ---------------------------
-			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added IssuedNum (%ld) onto *this nym: %s, for server: %s \n",
+			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added IssuedNum (%lld) onto *this nym: %s, for server: %s \n",
 						   lNum, strNymID.Get(), strServerID.Get());
 		}
 	}
@@ -1881,7 +1881,7 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 
 		if (false == this->AddTransactionNum(strServerID, lNum))		// Add to list of available-to-use numbers.
 		{
-			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add TransactionNum (%ld) onto *this nym: %s, for server: %s\n",
+			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add TransactionNum (%lld) onto *this nym: %s, for server: %s\n",
 						  lNum, strNymID.Get(), strServerID.Get());
 			bSuccess = false;
 		}
@@ -1889,7 +1889,7 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 		{
 			setTransNumbers.insert(lNum);
 			// ---------------------------
-			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added TransactionNum (%ld) onto *this nym: %s, for server: %s \n",
+			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added TransactionNum (%lld) onto *this nym: %s, for server: %s \n",
 						   lNum, strNymID.Get(), strServerID.Get());
 		}
 	}
@@ -1914,12 +1914,12 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 
 		if (false == this->AddTentativeNum(strServerID, lNum)) // Add to list of tentatively-being-added numbers.
 		{
-			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add TentativeNum (%ld) onto *this nym: %s, for server: %s\n",
+			OTLog::vError("OTPseudonym::ResyncWithServer: Failed trying to add TentativeNum (%lld) onto *this nym: %s, for server: %s\n",
 						  lNum, strNymID.Get(), strServerID.Get());
 			bSuccess = false;
 		}
 		else
-			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added TentativeNum (%ld) onto *this nym: %s, for server: %s \n",
+			OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Added TentativeNum (%lld) onto *this nym: %s, for server: %s \n",
 						   lNum, strNymID.Get(), strServerID.Get());
 		// There's no "else insert to setTransNumbers" here, like the other two blocks above.
 		// Why not? Because setTransNumbers is for updating the Highest Trans Num record on this Nym,
@@ -1952,7 +1952,7 @@ bool OTPseudonym::ResyncWithServer(OTLedger & theNymbox, OTPseudonym & theMessag
 				{
 					// Then update the Nym's record!
 					this->m_mapHighTransNo[it_high_num->first] = lTransNum;
-					OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Updated HighestNum (%ld) record on *this nym: %s, for server: %s \n",
+					OTLog::vOutput(1, "OTPseudonym::ResyncWithServer: Updated HighestNum (%lld) record on *this nym: %s, for server: %s \n",
 								   lTransNum, strNymID.Get(), strServerID.Get());
 				}
 			}
@@ -2900,7 +2900,7 @@ int64_t OTPseudonym::UpdateHighestNum(OTPseudonym & SIGNER_NYM,
                     OTLog::vOutput(1, "OTPseudonym::UpdateHighestNum: New transaction number is less-than-or-equal-to "
                                    "last known 'highest trans number' record. (Must be seeing the same server reply for "
                                    "a second time, due to a receipt in my Nymbox.) "
-                                   "FYI, last known 'highest' number received: %ld (Current 'violator': %ld) Skipping...\n",
+                                   "FYI, last known 'highest' number received: %lld (Current 'violator': %lld) Skipping...\n",
                                    lOldHighestNumber, lSetNum);
                     setOutputBad.insert(lSetNum);
                 }
@@ -2961,7 +2961,7 @@ int64_t OTPseudonym::UpdateHighestNum(OTPseudonym & SIGNER_NYM,
     {
         if (bFoundServerID)
         {
-            OTLog::vOutput(0, "OTPseudonym::UpdateHighestNum: Raising Highest Trans Number from %ld to %ld.\n",
+            OTLog::vOutput(0, "OTPseudonym::UpdateHighestNum: Raising Highest Trans Number from %lld to %lld.\n",
                            m_mapHighTransNo[strID], lHighestInSet);
 
             // We KNOW it's there, so we can straight-away just
@@ -2978,7 +2978,7 @@ int64_t OTPseudonym::UpdateHighestNum(OTPseudonym & SIGNER_NYM,
         else
         {
             OTLog::vOutput(0, "OTPseudonym::UpdateHighestNum: Creating "
-                           "Highest Transaction Number entry for this server as '%ld'.\n",
+                           "Highest Transaction Number entry for this server as '%lld'.\n",
                            lHighestInSet);
             m_mapHighTransNo.insert(std::pair<std::string, int64_t>(strID, lHighestInSet));
         }
@@ -3093,7 +3093,7 @@ void OTPseudonym::IncrementRequestNum(OTPseudonym & SIGNER_NYM, const OTString &
 			m_mapRequestNum[it->first] = lOldRequestNumber + 1;
 
 			// Now we can log BOTH, before and after... // debug here
-			OTLog::vOutput(4, "Incremented Request Number from %ld to %ld. Saving...\n",
+			OTLog::vOutput(4, "Incremented Request Number from %lld to %lld. Saving...\n",
 					lOldRequestNumber, m_mapRequestNum[it->first]);
 
 			// The call has succeeded
@@ -3159,7 +3159,7 @@ void OTPseudonym::OnUpdateRequestNum(OTPseudonym & SIGNER_NYM, const OTString & 
 			m_mapRequestNum[it->first] = lNewRequestNumber;
 
 			// Now we can log BOTH, before and after...
-			OTLog::vOutput(4, "Updated Request Number from %ld to %ld. Saving...\n",
+			OTLog::vOutput(4, "Updated Request Number from %lld to %lld. Saving...\n",
 					lOldRequestNumber, m_mapRequestNum[it->first]);
 			break;
 		}
@@ -3170,7 +3170,7 @@ void OTPseudonym::OnUpdateRequestNum(OTPseudonym & SIGNER_NYM, const OTString & 
 
 	if (!bSuccess)
 	{
-		OTLog::vOutput(0, "Creating Request Number entry as '%ld'. Saving...\n", lNewRequestNumber);
+		OTLog::vOutput(0, "Creating Request Number entry as '%lld'. Saving...\n", lNewRequestNumber);
 		m_mapRequestNum[strServerID.Get()] = lNewRequestNumber;
 		bSuccess = true;
 	}
@@ -3600,7 +3600,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
         int64_t lRequestNumber		= it->second;
 
         // Now we can log BOTH, before and after...
-        strOutput.Concatenate("Req# is %ld for server ID: %s\n",
+        strOutput.Concatenate("Req# is %lld for server ID: %s\n",
                               lRequestNumber, strServerID.c_str());
     }
     // -------------------------------------
@@ -3609,7 +3609,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
         std::string	strServerID = (*it).first;
         const int64_t lHighestNum  = (*it).second;
 
-        strOutput.Concatenate("Highest trans# was %ld for server: %s\n",
+        strOutput.Concatenate("Highest trans# was %lld for server: %s\n",
                               lHighestNum, strServerID.c_str());
     }
 
@@ -3628,7 +3628,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
 			{
 				int64_t lTransactionNumber = pDeque->at(i);
 
-				strOutput.Concatenate(0 == i ? "%ld" : ", %ld", lTransactionNumber);
+				strOutput.Concatenate(0 == i ? "%lld" : ", %lld", lTransactionNumber);
 			}
             strOutput.Concatenate("\n");
 		}
@@ -3648,7 +3648,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
 			for (uint32_t i = 0; i < pDeque->size(); i++)
 			{
 				int64_t lTransactionNumber = pDeque->at(i);
-                strOutput.Concatenate(0 == i ? "%ld" : ", %ld", lTransactionNumber);
+                strOutput.Concatenate(0 == i ? "%lld" : ", %lld", lTransactionNumber);
 			}
             strOutput.Concatenate("\n");
 		}
@@ -3669,7 +3669,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
 			for (uint32_t i = 0; i < pDeque->size(); i++)
 			{
 				int64_t lRequestNumber = pDeque->at(i);
-                strOutput.Concatenate(0 == i ? "%ld" : ", %ld", lRequestNumber);
+                strOutput.Concatenate(0 == i ? "%lld" : ", %lld", lRequestNumber);
 
 			}
             strOutput.Concatenate("\n");
@@ -3716,7 +3716,7 @@ void OTPseudonym::DisplayStatistics(OTString & strOutput)
     // by querying the server.)
     // Therefore since m_lUsageCredits is unused on client side, why display
     // it in the client API? Makes no sense.
-//	strOutput.Concatenate("Usage Credits: %ld\n", m_lUsageCredits);
+//	strOutput.Concatenate("Usage Credits: %lld\n", m_lUsageCredits);
 
     strOutput.Concatenate("       Mail count: %d\n", m_dequeMail.size());
 	strOutput.Concatenate("    Outmail count: %d\n", m_dequeOutmail.size());
@@ -4094,7 +4094,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 	else
 		strNym.Concatenate("<OTuser version=\"%s\"\n"
 						   " nymID=\"%s\"\n"
-						   " usageCredits=\"%ld\""
+						   " usageCredits=\"%lld\""
 						   ">\n\n",
 						   m_strVersion.Get(),
 						   nymID.Get(),
@@ -4124,7 +4124,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 
 		strNym.Concatenate("<requestNum\n"
 						   " serverID=\"%s\"\n"
-						   " currentRequestNum=\"%ld\""
+						   " currentRequestNum=\"%lld\""
 						   "/>\n\n",
 						   strServerID.c_str(),
 						   lRequestNum
@@ -4140,7 +4140,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 
 		strNym.Concatenate("<highestTransNum\n"
 						   " serverID=\"%s\"\n"
-						   " mostRecent=\"%ld\""
+						   " mostRecent=\"%lld\""
 						   "/>\n\n",
 						   strServerID.c_str(),
 						   lHighestNum
@@ -4172,7 +4172,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 //
 //				strNym.Concatenate("<transactionNum\n"
 //								   " serverID=\"%s\"\n"
-//								   " transactionNum=\"%ld\""
+//								   " transactionNum=\"%lld\""
 //								   "/>\n\n",
 //								   strServerID.c_str(),
 //								   lTransactionNumber
@@ -4220,7 +4220,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 //
 //				strNym.Concatenate("<issuedNum\n"
 //								   " serverID=\"%s\"\n"
-//								   " transactionNum=\"%ld\""
+//								   " transactionNum=\"%lld\""
 //								   "/>\n\n",
 //								   strServerID.c_str(),
 //								   lTransactionNumber
@@ -4268,7 +4268,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 //
 //				strNym.Concatenate("<tentativeNum\n"
 //								   " serverID=\"%s\"\n"
-//								   " transactionNum=\"%ld\""
+//								   " transactionNum=\"%lld\""
 //								   "/>\n\n",
 //								   strServerID.c_str(),
 //								   lTransactionNumber
@@ -4321,7 +4321,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 //
 //				strNym.Concatenate("<acknowledgedNum\n"
 //								   " serverID=\"%s\"\n"
-//								   " requestNum=\"%ld\""
+//								   " requestNum=\"%lld\""
 //								   "/>\n\n",
 //								   strServerID.c_str(),
 //								   lRequestNumber
@@ -4431,7 +4431,7 @@ bool OTPseudonym::SavePseudonym(OTString & strNym)
 		{
             int64_t lCronItemTransNum = *it;
 
-            strNym.Concatenate("<hasOpenCronItem ID=\"%ld\" />\n\n",
+            strNym.Concatenate("<hasOpenCronItem ID=\"%lld\" />\n\n",
                                lCronItemTransNum);
 		}
 	}
@@ -5112,7 +5112,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
                     {
                         theNumList.Pop();
                         // ------------
-                        OTLog::vOutput(3, "Transaction Number %ld ready-to-use for ServerID: %s\n",
+                        OTLog::vOutput(3, "Transaction Number %lld ready-to-use for ServerID: %s\n",
                                        lTemp, tempServerID.Get());
                         AddTransactionNum(tempServerID, lTemp); // This version doesn't save to disk. (Why save to disk AS WE'RE LOADING?)
                     }
@@ -5139,7 +5139,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
                     {
                         theNumList.Pop();
                         // ------------
-                        OTLog::vOutput(3, "Currently liable for issued trans# %ld at ServerID: %s\n",
+                        OTLog::vOutput(3, "Currently liable for issued trans# %lld at ServerID: %s\n",
                                        lTemp, tempServerID.Get());
                         AddIssuedNum(tempServerID, lTemp); // This version doesn't save to disk. (Why save to disk AS WE'RE LOADING?)
                     }
@@ -5167,7 +5167,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
                         theNumList.Pop();
                         // ------------
                         OTLog::vOutput(3, "Tentative: Currently awaiting success notice, "
-                                       "for accepting trans# %ld for ServerID: %s\n",
+                                       "for accepting trans# %lld for ServerID: %s\n",
                                        lTemp, tempServerID.Get());
                         AddTentativeNum(tempServerID, lTemp); // This version doesn't save to disk. (Why save to disk AS WE'RE LOADING?)
                     }
@@ -5209,7 +5209,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
                     {
                         theNumList.Pop();
                         // ------------
-                        OTLog::vOutput(2, "Acknowledgment record exists for server reply, for Request Number %ld for ServerID: %s\n",
+                        OTLog::vOutput(2, "Acknowledgment record exists for server reply, for Request Number %lld for ServerID: %s\n",
                                        lTemp, tempServerID.Get());
                         AddAcknowledgedNum(tempServerID, lTemp); // This version doesn't save to disk. (Why save to disk AS WE'RE LOADING?)
                     }
@@ -5481,7 +5481,7 @@ bool OTPseudonym::LoadSignedNymfile(OTPseudonym & SIGNER_NYM)
 		{
 			const int64_t lLength = static_cast<int64_t> (theNymfile.GetFilePayload().GetLength());
 
-			OTLog::vError("%s: Bad length (%ld) while loading nymfile: %s\n",
+			OTLog::vError("%s: Bad length (%lld) while loading nymfile: %s\n",
                           __FUNCTION__, lLength, nymID.Get());
 		}
 	}
@@ -5586,7 +5586,7 @@ bool OTPseudonym::VerifyIssuedNumbersOnNym(OTPseudonym & THE_NYM)
 
 					if (false == VerifyIssuedNum(OTstrServerID, lTransactionNumber))
 					{
-						OTLog::vOutput(0, "OTPseudonym::%s: Issued transaction # %ld from THE_NYM not found on *this.\n",
+						OTLog::vOutput(0, "OTPseudonym::%s: Issued transaction # %lld from THE_NYM not found on *this.\n",
 									   __FUNCTION__, lTransactionNumber);
 
 						return false;
@@ -5647,7 +5647,7 @@ bool OTPseudonym::VerifyTransactionStatementNumbersOnNym(OTPseudonym & THE_NYM) 
 
 				if (false == THE_NYM.VerifyIssuedNum(OTstrServerID, lTransactionNumber))
 				{
-					OTLog::vOutput(0, "OTPseudonym::%s: Issued transaction # %ld from *this not found on THE_NYM.\n",
+					OTLog::vOutput(0, "OTPseudonym::%s: Issued transaction # %lld from *this not found on THE_NYM.\n",
 								   __FUNCTION__, lTransactionNumber);
 					return false;
 				}

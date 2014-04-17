@@ -185,7 +185,7 @@ bool OTItem::VerifyTransactionStatement(OTPseudonym & THE_NYM,  OTTransaction & 
 		
 		if (!bIWasFound)
 		{
-			OTLog::vOutput(0, "%s: Transaction# (%ld) doesn't appear on Nym's issued list.\n", 
+			OTLog::vOutput(0, "%s: Transaction# (%lld) doesn't appear on Nym's issued list.\n", 
 						   __FUNCTION__, GetTransactionNum());
 			return false;
 		}
@@ -208,7 +208,7 @@ bool OTItem::VerifyTransactionStatement(OTPseudonym & THE_NYM,  OTTransaction & 
                 if (THE_NYM.RemoveIssuedNum(SERVER_ID, this->GetTransactionNum())) // doesn't save.
                     theRemovedNym.AddIssuedNum(SERVER_ID, this->GetTransactionNum());
                 else
-                    OTLog::vOutput(0, "OTItem::VerifyTransactionStatemen: Expected THE_NYM to have trans# %ld but didn't find it.\n",
+                    OTLog::vOutput(0, "OTItem::VerifyTransactionStatemen: Expected THE_NYM to have trans# %lld but didn't find it.\n",
                                    this->GetTransactionNum());
                 break;
                 
@@ -328,8 +328,8 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 	
 	if ((THE_ACCOUNT.GetBalance() + lActualAdjustment) != this->GetAmount()) // this->GetAmount() contains what the balance WOULD be AFTER successful transaction.
 	{
-		OTLog::vOutput(0, "OTItem::%s: This balance statement has a value of %ld, but expected %ld. "
-                       "(Acct balance of %ld plus actualAdjustment of %ld.)\n", __FUNCTION__,
+		OTLog::vOutput(0, "OTItem::%s: This balance statement has a value of %lld, but expected %lld. "
+                       "(Acct balance of %lld plus actualAdjustment of %lld.)\n", __FUNCTION__,
 					   this->GetAmount(), (THE_ACCOUNT.GetBalance() + lActualAdjustment), 
                        THE_ACCOUNT.GetBalance(), lActualAdjustment);
 		return false;
@@ -454,14 +454,14 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		//
 		if ((lOutboxTrnsNum > 0) && (&THE_OUTBOX == pLedger) && (pSubItem->GetTransactionNum() == 1)) // TODO use a constant for this 1.
 		{
-            OTLog::vOutput(3, "OTItem::%s: Subitem is new Outbox Transaction... retrieving by special ID: %ld\n",
+            OTLog::vOutput(3, "OTItem::%s: Subitem is new Outbox Transaction... retrieving by special ID: %lld\n",
                            __FUNCTION__, lOutboxTrnsNum);
 
 			pTransaction = pLedger->GetTransaction(lOutboxTrnsNum);			
 		}
 		else
         {
-            OTLog::vOutput(4, "OTItem::%s: Subitem is normal Transaction... retrieving by ID: %ld\n",
+            OTLog::vOutput(4, "OTItem::%s: Subitem is normal Transaction... retrieving by ID: %lld\n",
                             __FUNCTION__, pSubItem->GetTransactionNum());
             
 			pTransaction = pLedger->GetTransaction(pSubItem->GetTransactionNum());
@@ -471,8 +471,8 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		// on the appropriate ledger (inbox or outbox).
 		if (NULL == pTransaction)
 		{
-			OTLog::vOutput(0, "OTItem::%s: Expected %s transaction (serv %ld, client %ld) "
-						   "not found. (Amount %ld.)\n", __FUNCTION__,
+			OTLog::vOutput(0, "OTItem::%s: Expected %s transaction (serv %lld, client %lld) "
+						   "not found. (Amount %lld.)\n", __FUNCTION__,
 						   pszLedgerType, lOutboxTrnsNum, pSubItem->GetTransactionNum(), 
                            pSubItem->GetAmount());
 			return false;
@@ -481,7 +481,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
         // -----------------------------------------------------------------
 		if (pSubItem->GetReferenceToNum() != pTransaction->GetReferenceToNum())
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) mismatch Reference Num: %ld, expected %ld\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) mismatch Reference Num: %lld, expected %lld\n",
                            __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum(),
                            pSubItem->GetReferenceToNum(), pTransaction->GetReferenceToNum());
 			return false;
@@ -489,7 +489,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
         // -----------------------------------------------------------------
 		if (pSubItem->GetRawNumberOfOrigin() != pTransaction->GetRawNumberOfOrigin())
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) mismatch Origin Num: %ld, expected %ld\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) mismatch Origin Num: %lld, expected %lld\n",
                            __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum(),
                            pSubItem->GetRawNumberOfOrigin(), pTransaction->GetRawNumberOfOrigin());
             
@@ -518,9 +518,9 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
             
             
             const OTString strTrans(*pTransaction);
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) mismatch Origin Num: %ld, expected %ld\n\nTRANSACTION:\n%s\n\n"
-                           "SubItem Type: %s  Amount: %ld\nAccount: %s\nServer: %s\nUser: %s\n"
-                           " Number of Origin: %ld\n Transaction Num: %ld\n In Reference To: %ld\n Closing Num: %d\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) mismatch Origin Num: %lld, expected %lld\n\nTRANSACTION:\n%s\n\n"
+                           "SubItem Type: %s  Amount: %lld\nAccount: %s\nServer: %s\nUser: %s\n"
+                           " Number of Origin: %lld\n Transaction Num: %lld\n In Reference To: %lld\n Closing Num: %d\n",
                            __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum(),
                            pSubItem->GetRawNumberOfOrigin(), pTransaction->GetRawNumberOfOrigin(),
                            strTrans.Get(),
@@ -536,8 +536,8 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		
 		if (pSubItem->GetAmount()	!= lTransactionAmount)
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) "
-						   "amounts don't match: report amount is %ld, but expected %ld. Trans Receipt Amt: %ld (this->GetAmount() == %ld.)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) "
+						   "amounts don't match: report amount is %lld, but expected %lld. Trans Receipt Amt: %lld (this->GetAmount() == %lld.)\n",
                            __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum(),
 						   pSubItem->GetAmount(), lTransactionAmount, pTransaction->GetReceiptAmount(),
 						   this->GetAmount());
@@ -547,7 +547,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::transfer) && 
 			(pTransaction->GetType()	!= OTTransaction::pending))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (transfer block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (transfer block)\n",
                            __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -555,7 +555,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::chequeReceipt) &&
 			(pTransaction->GetType()	!= OTTransaction::chequeReceipt))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (chequeReceipt block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (chequeReceipt block)\n",
 						   __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -563,7 +563,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::voucherReceipt) &&
 			(pTransaction->GetType()	!= OTTransaction::voucherReceipt))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (voucherReceipt block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (voucherReceipt block)\n",
 						   __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -571,7 +571,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::marketReceipt) &&
 			(pTransaction->GetType()	!= OTTransaction::marketReceipt))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (marketReceipt block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (marketReceipt block)\n",
 						   __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -579,7 +579,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::paymentReceipt) && 
 			(pTransaction->GetType()	!= OTTransaction::paymentReceipt))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (paymentReceipt block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (paymentReceipt block)\n",
 						   __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -587,7 +587,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 		if ((pSubItem->GetType()		== OTItem::transferReceipt) && 
 			(pTransaction->GetType()	!= OTTransaction::transferReceipt))
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type. (transferReceipt block)\n",
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type. (transferReceipt block)\n",
 						   __FUNCTION__, pszLedgerType, pSubItem->GetTransactionNum());
 			return false;
 		}
@@ -598,7 +598,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
              (pSubItem->GetClosingNum() != pTransaction->GetClosingNum()))
             )
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type or closing num (%ld). "
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type or closing num (%lld). "
                            "(basketReceipt block)\n", __FUNCTION__, pszLedgerType,
                            pSubItem->GetTransactionNum(), pSubItem->GetClosingNum());
 			return false;
@@ -610,7 +610,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
              (pSubItem->GetClosingNum() != pTransaction->GetClosingNum()))
             )
 		{
-			OTLog::vOutput(0, "OTItem::%s: %s transaction (%ld) wrong type or closing num (%ld). "
+			OTLog::vOutput(0, "OTItem::%s: %s transaction (%lld) wrong type or closing num (%lld). "
                            "(finalReceipt block)\n", __FUNCTION__, pszLedgerType,
                            pSubItem->GetTransactionNum(), pSubItem->GetClosingNum());
 			return false;
@@ -769,7 +769,7 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 					
 					if (false == THE_NYM.VerifyIssuedNum(OTstrServerID, lTransactionNumber)) // FAILURE
 					{
-						OTLog::vOutput(0, "OTItem::%s: Issued transaction # %ld from Message Nym not found on this side.\n", 
+						OTLog::vOutput(0, "OTItem::%s: Issued transaction # %lld from Message Nym not found on this side.\n", 
 									  __FUNCTION__, lTransactionNumber);
 						
 						// I have to do this whenever I RETURN :-(
@@ -1710,7 +1710,7 @@ int32_t OTItem::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// --------------------------------------------------------		
 		m_lAmount	= atol(xml->getAttributeValue("amount"));
 		// --------------------------------------------------------
-		OTLog::vOutput(3, "Loaded transaction Item, transaction num %ld, In Reference To: %ld, type: %s, status: %s\n",
+		OTLog::vOutput(3, "Loaded transaction Item, transaction num %lld, In Reference To: %lld, type: %s, status: %s\n",
 //				"fromAccountID:\n%s\n UserID:\n%s\n toAccountID:\n%s\n serverID:\n%s\n----------\n", 
 				GetTransactionNum(),
 				GetReferenceToNum(), strType.Get(), strStatus.Get()
@@ -1807,7 +1807,7 @@ int32_t OTItem::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
             
 			AddItem(*pItem);	// <======= adding to list.
 			
-			OTLog::vOutput(3, "Loaded transactionReport Item, transaction num %ld, In Reference To: %ld, type: %s\n",
+			OTLog::vOutput(3, "Loaded transactionReport Item, transaction num %lld, In Reference To: %lld, type: %s\n",
 //                         "fromAccountID:\n%s\n UserID:\n%s\n toAccountID:\n%s\n serverID:\n%s\n----------\n", 
 						   pItem->GetTransactionNum(),
 						   pItem->GetReferenceToNum(), strType.Get()
@@ -2112,15 +2112,15 @@ void OTItem::UpdateContents() // Before transmission or serialization, this is w
 	
 	if (m_lNewOutboxTransNum > 0) 
 		m_xmlUnsigned.Concatenate("<item type=\"%s\"\n status=\"%s\"\n"  
-								  " outboxNewTransNum=\"%ld\"\n" // only used in server reply item: atBalanceStatement. In cases where the statement includes a new outbox item, this variable is used to transport the new transaction number (generated on server side for that new outbox item) back to the client, so the client knows the transaction number to verify when he is verifying the outbox against the last signed receipt.
-								  " numberOfOrigin=\"%ld\"\n"
-								  " transactionNum=\"%ld\"\n"
+								  " outboxNewTransNum=\"%lld\"\n" // only used in server reply item: atBalanceStatement. In cases where the statement includes a new outbox item, this variable is used to transport the new transaction number (generated on server side for that new outbox item) back to the client, so the client knows the transaction number to verify when he is verifying the outbox against the last signed receipt.
+								  " numberOfOrigin=\"%lld\"\n"
+								  " transactionNum=\"%lld\"\n"
 								  " serverID=\"%s\"\n"
 								  " userID=\"%s\"\n"
 								  " fromAccountID=\"%s\"\n"
 								  " toAccountID=\"%s\"\n"
-								  " inReferenceTo=\"%ld\"\n" 
-								  " amount=\"%ld\" >\n\n", 
+								  " inReferenceTo=\"%lld\"\n" 
+								  " amount=\"%lld\" >\n\n", 
 								  strType.Get(), strStatus.Get(),
 								  m_lNewOutboxTransNum,
                                   GetRawNumberOfOrigin(), // GetRaw so it doesn't calculate.
@@ -2130,14 +2130,14 @@ void OTItem::UpdateContents() // Before transmission or serialization, this is w
 								  strFromAcctID.Get(), strToAcctID.Get(), GetReferenceToNum(), m_lAmount);
 	else
 		m_xmlUnsigned.Concatenate("<item type=\"%s\"\n status=\"%s\"\n"
-								  " numberOfOrigin=\"%ld\"\n"
-                                  " transactionNum=\"%ld\"\n%s"
+								  " numberOfOrigin=\"%lld\"\n"
+                                  " transactionNum=\"%lld\"\n%s"
                                   " serverID=\"%s\"\n"
                                   " userID=\"%s\"\n"
                                   " fromAccountID=\"%s\"\n"
                                   " toAccountID=\"%s\"\n"
-                                  " inReferenceTo=\"%ld\"\n" 
-                                  " amount=\"%ld\" >\n\n", 
+                                  " inReferenceTo=\"%lld\"\n" 
+                                  " amount=\"%lld\" >\n\n", 
                                   strType.Get(), strStatus.Get(),
                                   GetRawNumberOfOrigin(), // GetRaw so it doesn't calculate.
                                   GetTransactionNum(), strListOfBlanks.Get(),
@@ -2180,14 +2180,14 @@ void OTItem::UpdateContents() // Before transmission or serialization, this is w
 			GetStringFromType(pItem->GetType(), strReceiptType);
 			
 			m_xmlUnsigned.Concatenate("<transactionReport type=\"%s\"\n"
-									  " adjustment=\"%ld\"\n"
+									  " adjustment=\"%lld\"\n"
 									  " accountID=\"%s\"\n"
 									  " userID=\"%s\"\n"
 									  " serverID=\"%s\"\n"
-									  " numberOfOrigin=\"%ld\"\n"
-									  " transactionNum=\"%ld\"\n"
-									  " closingTransactionNum=\"%ld\"\n"
-									  " inReferenceTo=\"%ld\" />\n\n", 
+									  " numberOfOrigin=\"%lld\"\n"
+									  " transactionNum=\"%lld\"\n"
+									  " closingTransactionNum=\"%lld\"\n"
+									  " inReferenceTo=\"%lld\" />\n\n", 
 									  strReceiptType.Exists() ? strReceiptType.Get() : "error_state", 
 									  pItem->GetAmount(),
 									  strAcctID.Get(), 

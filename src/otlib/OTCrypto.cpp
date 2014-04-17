@@ -1145,7 +1145,7 @@ extern "C"
             {
                 (void)BIO_flush(b64join);
                 BIO_get_mem_ptr(b64join, &bptr);
-    //			OTLog::vOutput(5, "DEBUG base64_encode size: %ld,  in_len: %ld\n", bptr->length+1, in_len);
+    //			OTLog::vOutput(5, "DEBUG base64_encode size: %lld,  in_len: %lld\n", bptr->length+1, in_len);
                 buf = new char[bptr->length+1];
                 OT_ASSERT(NULL != buf);
                 memcpy(buf, bptr->data, bptr->length);  // Safe.
@@ -2598,7 +2598,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
                            static_cast<uint32_t>(sizeof(array_size_n)));
     // ------------------------------------------------------------
 
-    OTLog::vOutput(5, "%s: Envelope type:  %d    Array size: %ld\n", __FUNCTION__,
+    OTLog::vOutput(5, "%s: Envelope type:  %d    Array size: %lld\n", __FUNCTION__,
                    static_cast<int32_t>(ntohs(env_type_n)),
                    static_cast<int64_t>(ntohl(array_size_n))
                    );
@@ -2647,7 +2647,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
         dataOutput.Concatenate(reinterpret_cast<const void *>(strNymID.Get()),
                                static_cast<uint32_t>(nymid_len)); // (+1 for null terminator is included here already, from above.)
         // -----------------------------------------
-        OTLog::vOutput(5, "%s: INDEX: %ld  NymID length:  %ld   Nym ID: %s   Strlen (should be a byte shorter): %ld\n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: INDEX: %lld  NymID length:  %lld   Nym ID: %s   Strlen (should be a byte shorter): %lld\n", __FUNCTION__,
                        static_cast<int64_t>(ii),
                        static_cast<int64_t>(ntohl(nymid_len_n)),
                        strNymID.Get(),
@@ -2675,7 +2675,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
         dataOutput.Concatenate(reinterpret_cast<void *>(ek[ii]),
                                static_cast<uint32_t>(eklen[ii]));
 
-        OTLog::vOutput(5, "%s: EK length:  %ld     First byte: %d      Last byte: %d\n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: EK length:  %lld     First byte: %d      Last byte: %d\n", __FUNCTION__,
                        static_cast<int64_t>(ntohl(eklen_n)),
                        static_cast<int32_t>((ek[ii])[0]),
                        static_cast<int32_t>((ek[ii])[eklen[ii]-1])
@@ -2698,7 +2698,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
                            static_cast<uint32_t>(ivlen));
 
 
-    OTLog::vOutput(5, "%s: iv_size: %ld   IV first byte: %d    IV last byte: %d   \n",
+    OTLog::vOutput(5, "%s: iv_size: %lld   IV first byte: %d    IV last byte: %d   \n",
                    __FUNCTION__,
                    static_cast<int64_t>(ntohl(ivlen_n)),
                    static_cast<int32_t>(iv[0]),
@@ -2979,7 +2979,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     //
     const uint32_t array_size = ntohl(array_size_n);
 
-    OTLog::vOutput(5, "%s: Array size: %ld\n", __FUNCTION__,
+    OTLog::vOutput(5, "%s: Array size: %lld\n", __FUNCTION__,
                    static_cast<int64_t>(array_size)
                    );
 
@@ -3024,7 +3024,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
         uint32_t nymid_len = static_cast<uint32_t>(ntohl(static_cast<uint32_t>(nymid_len_n)));    // FYI: ntohl returns uint32_t !!!!!
 
 
-        OTLog::vOutput(5, "%s: NymID length: %ld\n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: NymID length: %lld\n", __FUNCTION__,
                        static_cast<int64_t>(nymid_len)
                        );
 
@@ -3052,7 +3052,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
         const OTString loopStrNymID(reinterpret_cast<char *>(nymid));
         free(nymid); nymid = NULL;
         // ****************************************************************************
-        OTLog::vOutput(5, "%s: (LOOP) Current NymID: %s    Strlen:  %ld\n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: (LOOP) Current NymID: %s    Strlen:  %lld\n", __FUNCTION__,
                        loopStrNymID.Get(),
                        static_cast<int64_t>(loopStrNymID.GetLength())
                        );
@@ -3087,7 +3087,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
         eklen  = static_cast<uint32_t>(ntohl(static_cast<uint32_t>(eklen_n)));
 //      eklen  = EVP_PKEY_size(private_key);  // We read this size from file now...
 
-        OTLog::vOutput(5, "%s: EK length:  %ld   \n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: EK length:  %lld   \n", __FUNCTION__,
                        static_cast<int64_t>(eklen));
 
 //      nRunningTotal += eklen;  // Nope!
@@ -3186,12 +3186,12 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     if (iv_size_host_order > max_iv_length)
     {
         const int64_t l1 = iv_size_host_order, l2 = max_iv_length;
-        OTLog::vError("%s: Error: iv_size (%ld) is larger than max_iv_length (%ld).\n",
+        OTLog::vError("%s: Error: iv_size (%lld) is larger than max_iv_length (%lld).\n",
                       __FUNCTION__, l1, l2);
         return false;
     }
     else
-        OTLog::vOutput(5, "%s: IV size: %ld\n", __FUNCTION__,
+        OTLog::vOutput(5, "%s: IV size: %lld\n", __FUNCTION__,
                        static_cast<int64_t>(iv_size_host_order)
                        );
 

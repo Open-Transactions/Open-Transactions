@@ -1074,7 +1074,7 @@ bool ProcessMessage_ZMQ(OTServer & theServer, const std::string & str_Message, s
 
 	// ----------------------------------------------------------------------
 
-//	OTLog::vError("Envelope: \n%s\n Size: %ld\n", ascMessage.Get(), ascMessage.GetLength());
+//	OTLog::vError("Envelope: \n%s\n Size: %lld\n", ascMessage.Get(), ascMessage.GetLength());
 
 
     bool bReturnVal = false; // "false" == no, do NOT disconnect. No errors. ("True" means YES, DISCONNECT!)

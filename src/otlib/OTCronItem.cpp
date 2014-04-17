@@ -238,7 +238,7 @@ OTCronItem * OTCronItem::NewCronItem(const OTString & strCronItem)
 OTCronItem * OTCronItem::LoadCronReceipt(const int64_t & lTransactionNum)
 {
 	OTString strFilename;
-	strFilename.Format("%ld.crn", lTransactionNum);
+	strFilename.Format("%lld.crn", lTransactionNum);
 
 	const char * szFoldername	= OTFolders::Cron().Get();
 	const char * szFilename		= strFilename.Get();
@@ -271,7 +271,7 @@ OTCronItem * OTCronItem::LoadCronReceipt(const int64_t & lTransactionNum)
 OTCronItem * OTCronItem::LoadActiveCronReceipt(const int64_t & lTransactionNum, const OTIdentifier & serverID) // Client-side only.
 {
     OTString strFilename, strServerID(serverID);
-	strFilename.Format("%ld.crn", lTransactionNum);
+	strFilename.Format("%lld.crn", lTransactionNum);
 
 	const char * szFoldername	= OTFolders::Cron().Get();
 	const char * szFilename		= strFilename.Get();
@@ -349,7 +349,7 @@ bool OTCronItem::EraseActiveCronReceipt(const int64_t         & lTransactionNum,
                                         const OTIdentifier & serverID)
 {
     OTString strFilename, strServerID(serverID);
-	strFilename.Format("%ld.crn", lTransactionNum);
+	strFilename.Format("%lld.crn", lTransactionNum);
 
 	const char * szFoldername	= OTFolders::Cron().Get();
 	const char * szFilename		= strFilename.Get();
@@ -456,14 +456,14 @@ bool OTCronItem::SaveActiveCronReceipt(const OTIdentifier & theNymID) // Client-
     const int64_t lOpeningNum = GetOpeningNumber(theNymID);
 	// --------------------------------------------------------------------
 	OTString strFilename, strServerID(GetServerID());
-	strFilename.Format("%ld.crn", lOpeningNum);
+	strFilename.Format("%lld.crn", lOpeningNum);
 
 	const char * szFoldername	= OTFolders::Cron().Get();  // cron
 	const char * szFilename		= strFilename.Get();        // cron/TRANSACTION_NUM.crn
 	// --------------------------------------------------------------------
 	if (OTDB::Exists(szFoldername, strServerID.Get(), szFilename))
 	{
-		OTLog::vOutput(2, "OTCronItem::%s: Cron Record already exists for transaction %ld %s%s%s%s%s, "
+		OTLog::vOutput(2, "OTCronItem::%s: Cron Record already exists for transaction %lld %s%s%s%s%s, "
                       "overwriting.\n",
 					  __FUNCTION__, GetTransactionNum(), szFoldername, OTLog::PathSeparator(),
                       strServerID.Get(), OTLog::PathSeparator(), szFilename);
@@ -562,14 +562,14 @@ bool OTCronItem::SaveActiveCronReceipt(const OTIdentifier & theNymID) // Client-
 bool OTCronItem::SaveCronReceipt()
 {
 	OTString strFilename;
-	strFilename.Format("%ld.crn", GetTransactionNum());
+	strFilename.Format("%lld.crn", GetTransactionNum());
 
 	const char * szFoldername	= OTFolders::Cron().Get();  // cron
 	const char * szFilename		= strFilename.Get();        // cron/TRANSACTION_NUM.crn
 	// --------------------------------------------------------------------
 	if (OTDB::Exists(szFoldername, szFilename))
 	{
-		OTLog::vError("OTCronItem::%s: Cron Record already exists for transaction %ld %s%s%s,\n"
+		OTLog::vError("OTCronItem::%s: Cron Record already exists for transaction %lld %s%s%s,\n"
                       "yet inexplicably attempted to record it again.\n",
 					  __FUNCTION__, GetTransactionNum(), szFoldername, OTLog::PathSeparator(), szFilename);
 		return false;
@@ -629,7 +629,7 @@ bool OTCronItem::MoveFunds(const mapOfNyms	  & map_NymsAlreadyLoaded,
 
 	if (lAmount <= 0)
 	{
-		OTLog::vOutput(0, " OTCronItem::MoveFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %ld.)\n",
+		OTLog::vOutput(0, " OTCronItem::MoveFunds: Error: lAmount cannot be 0 or <0. (Value passed in was %lld.)\n",
 					   lAmount);
 		return false;
 	}
@@ -2364,7 +2364,7 @@ void OTCronItem::HarvestClosingNumbers(OTPseudonym & theNym)
                                                  (i == (GetCountClosingNumbers()-1) ? true : false)); // bSave=true only on the last iteration.
 			if (!bClawedBack)
             {
-//				OTLog::vError("OTCronItem::HarvestClosingNumbers: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
+//				OTLog::vError("OTCronItem::HarvestClosingNumbers: Number (%lld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
 //							  GetClosingTransactionNoAt(i));
             }
         }

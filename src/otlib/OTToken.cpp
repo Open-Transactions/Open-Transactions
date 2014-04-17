@@ -740,7 +740,7 @@ void OTToken::UpdateContents()
 	
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
 	
-	m_xmlUnsigned.Concatenate("<token\n version=\"%s\"\n state=\"%s\"\n denomination=\"%ld\"\n"
+	m_xmlUnsigned.Concatenate("<token\n version=\"%s\"\n state=\"%s\"\n denomination=\"%lld\"\n"
 							  " assetTypeID=\"%s\"\n"
 							  " serverID=\"%s\"\n"
 							  " series=\"%d\"\n"
@@ -869,7 +869,7 @@ int32_t OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 		OTLog::vOutput(4,
 				//	"\n===> Loading XML for token into memory structures..."
-				"\n\nToken State: %s\n Denomination: %ld\n"
+				"\n\nToken State: %s\n Denomination: %lld\n"
 				" AssetTypeID: %s\nServerID: %s\n", 
 				strState.Get(), GetDenomination(), strAssetTypeID.Get(), strServerID.Get());
 		
