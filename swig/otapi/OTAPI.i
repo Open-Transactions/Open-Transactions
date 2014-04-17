@@ -15,6 +15,10 @@
 #ifdef New
   #undef New
 #endif
+
+#ifdef seed
+  #undef seed
+#endif
 %}
 #endif // SWIGPERL
 
