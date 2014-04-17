@@ -106,7 +106,7 @@ $ make install
 #
 #
 
-$ sudo apt-get debuild cdbs autotools-dev dh-autoreconf
+$ sudo apt-get install devscripts cdbs autotools-dev dh-autoreconf
 $ git clone https://github.com/randy-waterhouse/opentxs.git
 $ cd opentxs
 $ ./autogen.sh
