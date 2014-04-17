@@ -63,24 +63,23 @@ ot_sources              =   otd/main.cpp
 
 otapi_headers_dir       =   $(opentxs_include_dir)/otapi
 
-otapi_headers           =   $(otapi_headers_dir)/main.hpp             \
-                            $(otapi_headers_dir)/OpenTransactions.hpp \
-                            $(otapi_headers_dir)/OTAPI.hpp            \
-                            $(otapi_headers_dir)/OT_ME.hpp            \
-                            $(otapi_headers_dir)/ot_switch_me.hpp   \
-                            $(otapi_headers_dir)/OTClient.hpp         \
+otapi_headers           =   $(otapi_headers_dir)/main.hpp		\
+                            $(otapi_headers_dir)/OpenTransactions.hpp	\
+                            $(otapi_headers_dir)/OTAPI.hpp		\
+                            $(otapi_headers_dir)/OT_ME.hpp		\
+                            $(otapi_headers_dir)/OTClient.hpp		\
                             $(otapi_headers_dir)/OTServerConnection.hpp
                     
 
 #### OT Server
 
-otserver_sources        =   ots/OTClientConnection.cpp  \
+otserver_sources        =   ots/OTClientConnection.cpp	\
                             ots/OTServer.cpp
 
 otserver_headers_dir    =   $(opentxs_include_dir)/ots
 
-otserver_headers        =   $(otserver_headers_dir)/main.hpp   \
-                            $(otserver_headers_dir)/OTClientConnection.hpp \
+otserver_headers        =   $(otserver_headers_dir)/main.hpp			\
+                            $(otserver_headers_dir)/OTClientConnection.hpp	\
                             $(otserver_headers_dir)/OTServer.hpp
                             
 if KEYRING_FLATFILE
