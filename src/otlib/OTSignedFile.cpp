@@ -138,6 +138,9 @@
 #include <OTASCIIArmor.hpp>
 
 
+#include "irrxml/irrXML.hpp"
+
+
 void OTSignedFile::UpdateContents()
 {
 	// I release this because I'm about to repopulate it.

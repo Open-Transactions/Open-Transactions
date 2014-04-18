@@ -138,8 +138,6 @@
 
 #include "OTString.hpp"
 
-#include "irrxml/irrXML.hpp"
-
 #include <map>
 #include <string>
 
@@ -164,6 +162,20 @@ class OTPartyAccount;
 
 class OTScriptable;
 class OTSmartContract;
+
+
+// forward decleration.  (need to match what is in the irr source code). Cam.
+namespace irr{
+    namespace io{
+        template<class char_type, class super_class>
+        class IIrrXMLReader;
+
+        class IXMLBase;
+
+        typedef IIrrXMLReader<char, IXMLBase> IrrXMLReader;
+    }
+}
+
 
 
 typedef std::map	<std::string, OTPseudonym *>	mapOfNyms;

@@ -144,6 +144,8 @@
 #include <OTSignedFile.hpp>
 #include <OTSymmetricKey.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
 //static
@@ -4715,7 +4717,7 @@ bool OTPseudonym::LoadFromString(const OTString & strNym,
     ClearAll();  // Since we are loading everything up... (credentials are NOT cleared here. See note in OTPseudonym::ClearAll.)
     // ------------------------------------
 	OTStringXML strNymXML(strNym); // todo optimize
-	irr::io::IrrXMLReader* xml = createIrrXMLReader(&strNymXML);
+	irr::io::IrrXMLReader* xml = irr::io::createIrrXMLReader(strNymXML);
 	OT_ASSERT(NULL != xml);
     OTCleanup<irr::io::IrrXMLReader> theCleanup(*xml);
 

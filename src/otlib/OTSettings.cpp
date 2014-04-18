@@ -142,9 +142,10 @@
 
 class OTSettings::OTSettingsPvt{
 public:
-    CSimpleIniA * iniSimple;
+    CSimpleIniA * const iniSimple;
 
     OTSettingsPvt() : iniSimple(new CSimpleIniA()) {}
+    ~OTSettingsPvt() { delete iniSimple; }
 };
 
 
@@ -237,7 +238,7 @@ void OTSettings::SetConfigFilePath(const OTString & strConfigFilePath)
 OTSettings::OTSettings() : pvt(new OTSettingsPvt()), b_Loaded(false) {}
 
 OTSettings::~OTSettings() {
-	if (NULL != this->pvt->iniSimple) { delete this->pvt->iniSimple; this->pvt->iniSimple = NULL; }
+    delete pvt;
 }
 
 bool	OTSettings::Load()
