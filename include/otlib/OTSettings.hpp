@@ -155,9 +155,7 @@ class OTSettings
 {
 private:
     class OTSettingsPvt;
-    OTSettingsPvt * pvt;
-
-    
+    OTSettingsPvt * const pvt;
 
     bool b_Loaded;
 

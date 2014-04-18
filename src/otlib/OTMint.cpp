@@ -147,6 +147,8 @@
 
 #include <time.h>
 
+#include "irrxml/irrXML.hpp"
+
 // -------------------------------------------------------------------------
 //static
 OTMint * OTMint::MintFactory()

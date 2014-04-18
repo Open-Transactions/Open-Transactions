@@ -157,6 +157,8 @@
 #include <OTMarket.hpp>
 #include <OTKeyring.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
 
@@ -1851,7 +1853,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
             return false;
         }
         // --------------------------------------------------------------------
-        irr::io::IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
+        irr::io::IrrXMLReader* xml = irr::io::createIrrXMLReader(xmlFileContents);
         OTCleanup<irr::io::IrrXMLReader> theXMLGuardian(xml); // So I don't have to clean it up later.
         // --------------------------------------------------------------------
         // parse the file until end reached

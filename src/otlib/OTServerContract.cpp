@@ -138,6 +138,8 @@
 #include <OTLog.hpp>
 #include <OTASCIIArmor.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
 
