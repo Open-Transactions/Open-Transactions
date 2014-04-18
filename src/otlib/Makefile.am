@@ -209,6 +209,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTScript.hpp		\
 				$(otlib_headers_dir)/OTServerContract.hpp	\
 				$(otlib_headers_dir)/OTSettings.hpp		\
+				$(otlib_headers_dir)/OTStoragePB.hpp		\
 				$(otlib_headers_dir)/OTSignature.hpp		\
 				$(otlib_headers_dir)/OTSignatureMetadata.hpp	\
 				$(otlib_headers_dir)/OTSignedFile.hpp		\

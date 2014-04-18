@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\include\otlib\OTStash.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStashItem.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStorage.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStoragePB.hpp" />
     <ClInclude Include="..\..\include\otlib\OTString.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStringXML.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSubcredential.hpp" />

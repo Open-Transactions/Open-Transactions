@@ -150,6 +150,8 @@
 
 #include "ot_me_switch.hpp"
 
+#include <iterator>
+
 #ifdef __APPLE__
 #include "TargetConditionals.h"
 #endif
