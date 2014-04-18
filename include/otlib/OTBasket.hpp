@@ -146,7 +146,7 @@ public:
 	OTIdentifier SUB_CONTRACT_ID;
 	OTIdentifier SUB_ACCOUNT_ID;
 
-	long	lMinimumTransferAmount;
+	int64_t	lMinimumTransferAmount;
 
     // lClosingTransactionNo:
     // Used when EXCHANGING a basket (NOT USED when first creating one.)
@@ -156,7 +156,7 @@ public:
     // an issued transaction number (an open transaction) on that Nym.
     // (One must be supplied for EACH asset account during an exchange.)
     //
-	long	lClosingTransactionNo;
+	int64_t	lClosingTransactionNo;
 
 	BasketItem();
 	~BasketItem() {}
@@ -172,10 +172,10 @@ private:  // Private prevents erroneous use by other classes.
     typedef OTContract ot_super;
 
 protected:
-	int		m_nSubCount;
-	long	m_lMinimumTransfer;			// used in the actual basket
+	int32_t		m_nSubCount;
+	int64_t	m_lMinimumTransfer;			// used in the actual basket
 	// -------------------------------------------------------------------------
-	int		m_nTransferMultiple;		// used in a request basket. If non-zero, that means this is a request basket.
+	int32_t		m_nTransferMultiple;		// used in a request basket. If non-zero, that means this is a request basket.
     // -------------------------------------------------------------------------
 	OTIdentifier m_RequestAccountID;	// used in a request basket so the server knows your acct ID.
     // -------------------------------------------------------------------------
@@ -186,13 +186,13 @@ protected:
 	// -------------------------------------------------------------------------
     bool    m_bExchangingIn;    // True if exchanging INTO the basket, False if exchanging OUT of the basket.
 	// -------------------------------------------------------------------------
-    long	m_lClosingTransactionNo;  // For the main (basket) account, in a request basket (for exchanges.)
+    int64_t	m_lClosingTransactionNo;  // For the main (basket) account, in a request basket (for exchanges.)
 	// -------------------------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 public:
 EXPORT	OTBasket();
-EXPORT	OTBasket(int nCount, long lMinimumTransferAmount);
+EXPORT	OTBasket(int32_t nCount, int64_t lMinimumTransferAmount);
 EXPORT	virtual ~OTBasket();
 
 	virtual void UpdateContents();
@@ -201,34 +201,34 @@ EXPORT	virtual ~OTBasket();
 
 EXPORT	virtual void CalculateContractID(OTIdentifier & newID);
 
-	inline long GetMinimumTransfer() const { return m_lMinimumTransfer; }
+	inline int64_t GetMinimumTransfer() const { return m_lMinimumTransfer; }
 
-	inline int	GetTransferMultiple() const { return m_nTransferMultiple; }
-	inline void SetTransferMultiple(const int nTransferMultiple) { m_nTransferMultiple = nTransferMultiple; }
+	inline int32_t	GetTransferMultiple() const { return m_nTransferMultiple; }
+	inline void SetTransferMultiple(const int32_t nTransferMultiple) { m_nTransferMultiple = nTransferMultiple; }
 
     inline bool IsExchanging() const { return (m_nTransferMultiple > 0); }
 
     inline bool GetExchangingIn() const { return m_bExchangingIn; }
     inline void SetExchangingIn(const bool bDirection) { m_bExchangingIn = bDirection; }
 
-EXPORT	int Count() const;
-EXPORT	BasketItem * At(unsigned int nIndex);
+EXPORT	int32_t Count() const;
+EXPORT	BasketItem * At(uint32_t nIndex);
 
-    long GetClosingTransactionNoAt(unsigned int nIndex);
+    int64_t GetClosingTransactionNoAt(uint32_t nIndex);
 
-    inline long GetClosingNum() const { return m_lClosingTransactionNo; }
-    inline void SetClosingNum(const long & lClosingNum) { m_lClosingTransactionNo = lClosingNum; }
+    inline int64_t GetClosingNum() const { return m_lClosingTransactionNo; }
+    inline void SetClosingNum(const int64_t & lClosingNum) { m_lClosingTransactionNo = lClosingNum; }
 
 	// For generating a real basket.  The user does this part, and the server creates Account ID later
 	// (That's why you don't see the account ID being passed in to the method.)
-EXPORT	void AddSubContract(const OTIdentifier & SUB_CONTRACT_ID, long lMinimumTransferAmount);
+EXPORT	void AddSubContract(const OTIdentifier & SUB_CONTRACT_ID, int64_t lMinimumTransferAmount);
 	inline void IncrementSubCount() { m_nSubCount++; } // Used to abstract away this detail in the API.
 
 	// For generating a user request to exchange in/out of a basket.
 	// Assumes that SetTransferMultiple has already been called.
 EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
                                    const OTIdentifier & SUB_ACCOUNT_ID,
-                                   const long & lClosingTransactionNo);
+                                   const int64_t & lClosingTransactionNo);
 
 	inline void SetRequestAccountID(const OTIdentifier & theAccountID) { m_RequestAccountID = theAccountID; }
 	inline const OTIdentifier & GetRequestAccountID() { return m_RequestAccountID; }

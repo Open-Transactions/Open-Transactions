@@ -148,7 +148,7 @@ bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 
 	if (! IsEmpty())			{ OTLog::vError("%s: Bad: %s is not Empty!\n", __FUNCTION__, "p_Settings"			); OT_FAIL; }
 
-	long lFilelength;
+	int64_t lFilelength;
 	if (!OTPaths::FileExists(strConfigurationFileExactPath,lFilelength))  // we don't have a config file, lets create a blank one first.
 	{
 		this->m_pIniSimple->Reset(); // clean the config.
@@ -188,7 +188,7 @@ bool	OTSettings::LogChange_str (const OTString & strSection,const OTString & str
 	return true;
 }
 
-bool	OTSettings::LogChange_long(const OTString & strSection,const OTString & strKey,const long	  & lValue	)
+bool	OTSettings::LogChange_long(const OTString & strSection,const OTString & strKey,const int64_t	  & lValue	)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
 	if (! strKey.Exists())				{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
@@ -282,7 +282,7 @@ bool	OTSettings::Check_str (const OTString & strSection, const OTString & strKey
 	return true;
 }
 
-bool	OTSettings::Check_long(const OTString & strSection, const OTString & strKey, long	  & out_lResult,	bool & out_bKeyExist) const
+bool	OTSettings::Check_long(const OTString & strSection, const OTString & strKey, int64_t	  & out_lResult,	bool & out_bKeyExist) const
 {
 	if (! strSection.Exists())		{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
 	if (strSection.Compare(""))		{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -394,7 +394,7 @@ bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, 
 	OT_FAIL;
 }
 
-bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, const long	  & lValue,   bool & out_bNewOrUpdate, const OTString & strComment)
+bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, const int64_t	  & lValue,   bool & out_bNewOrUpdate, const OTString & strComment)
 {
 	if (! strSection.Exists())		{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
 	if (strSection.Compare(""))		{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -402,7 +402,7 @@ bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, 
 	if (! strKey.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 	if (strKey.Compare(""))			{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	OTString strValue; strValue.Format("%ld",lValue);
+	OTString strValue; strValue.Format("%lld",lValue);
 
 	const char * const szComment = (strComment.Exists() && !strComment.Compare("")) ? strComment.Get() : NULL;
 	
@@ -461,7 +461,7 @@ bool	OTSettings::CheckSetSection(const OTString & strSection, const OTString & s
 
 	const char * const szComment = (strComment.Exists() && !strComment.Compare("")) ? strComment.Get() : NULL;
 
-	const long lSectionSize = this->m_pIniSimple->GetSectionSize(strSection.Get());
+	const int64_t lSectionSize = this->m_pIniSimple->GetSectionSize(strSection.Get());
 
 	if (1 > lSectionSize)
 	{
@@ -519,12 +519,12 @@ bool	OTSettings::CheckSet_str (const OTString & strSection, const OTString & str
 	OT_FAIL;
 }
 
-bool	OTSettings::CheckSet_long(const OTString & strSection, const OTString & strKey, const long	   & lDefault,	 long	  & out_lResult,   bool & out_bIsNew, const OTString & strComment)
+bool	OTSettings::CheckSet_long(const OTString & strSection, const OTString & strKey, const int64_t	   & lDefault,	 int64_t	  & out_lResult,   bool & out_bIsNew, const OTString & strComment)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
 	if (! strKey.Exists())				{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	long lTempResult;
+	int64_t lTempResult;
 	bool bKeyExist, bNewKeyCheck;
 	if (! Check_long(strSection,strKey,lTempResult,bKeyExist)) return false;
 

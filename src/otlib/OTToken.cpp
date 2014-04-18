@@ -160,9 +160,9 @@
 // Basically this number determines how many blinded prototokens must be sent to the
 // server in order for the server to accept the withdrawal request and sign one of them. 
 // (more prototokens == more resource cost, but more security.)
-const int OTToken__nMinimumPrototokenCount = 1;
+const int32_t OTToken__nMinimumPrototokenCount = 1;
 
-const int OTToken::GetMinimumPrototokenCount()
+const int32_t OTToken::GetMinimumPrototokenCount()
 {
 	return OTToken__nMinimumPrototokenCount;
 }
@@ -207,10 +207,10 @@ OTToken::OTToken()
 }
 
 
-//long				m_lDenomination;
-//int				m_nTokenCount;
-//int				m_nChosenIndex;
-//int				m_nSeries;
+//int64_t				m_lDenomination;
+//int32_t				m_nTokenCount;
+//int32_t				m_nChosenIndex;
+//int32_t				m_nSeries;
 //tokenState		m_State;
 //bool				m_bSavePrivateKeys; // Determines whether it serializes private keys 1 time (yes if true)
 
@@ -740,7 +740,7 @@ void OTToken::UpdateContents()
 	
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
 	
-	m_xmlUnsigned.Concatenate("<token\n version=\"%s\"\n state=\"%s\"\n denomination=\"%ld\"\n"
+	m_xmlUnsigned.Concatenate("<token\n version=\"%s\"\n state=\"%s\"\n denomination=\"%lld\"\n"
 							  " assetTypeID=\"%s\"\n"
 							  " serverID=\"%s\"\n"
 							  " series=\"%d\"\n"
@@ -805,12 +805,12 @@ void OTToken::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	static int nPublicTokenCount  = 0;
-	static int nPrivateTokenCount = 0;
+	static int32_t nPublicTokenCount  = 0;
+	static int32_t nPrivateTokenCount = 0;
 	
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
     const OTString strNodeName(xml->getNodeName());
 
@@ -869,7 +869,7 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 		OTLog::vOutput(4,
 				//	"\n===> Loading XML for token into memory structures..."
-				"\n\nToken State: %s\n Denomination: %ld\n"
+				"\n\nToken State: %s\n Denomination: %lld\n"
 				" AssetTypeID: %s\nServerID: %s\n", 
 				strState.Get(), GetDenomination(), strAssetTypeID.Get(), strServerID.Get());
 		
@@ -983,7 +983,7 @@ int OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
  */
 
-bool OTToken::GetPrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
+bool OTToken::GetPrototoken(OTASCIIArmor & ascPrototoken, int32_t nTokenIndex)
 {
 	// out of bounds. For a count 10 element array, index 10 is out of bounds.
 	// thus if attempted index is equal or larger to the count, out of bounds.
@@ -1009,7 +1009,7 @@ bool OTToken::GetPrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
 	return false;	
 }
 
-bool OTToken::GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex)
+bool OTToken::GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int32_t nTokenIndex)
 {
 	// out of bounds. For a count 10 element array, index 10 is out of bounds.
 	// thus if attempted index is equal or larger to the count, out of bounds.
@@ -1038,8 +1038,8 @@ bool OTToken::GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex
 OTToken * OTToken::InstantiateAndGenerateTokenRequest(const OTPurse & thePurse,
                                                       const OTPseudonym & theNym,
                                                       OTMint & theMint,
-                                                      long lDenomination,
-                                                      int nTokenCount/*=OTToken::GetMinimumPrototokenCount()*/)
+                                                      int64_t lDenomination,
+                                                      int32_t nTokenCount/*=OTToken::GetMinimumPrototokenCount()*/)
 {
     OTToken * pToken = OTToken::LowLevelInstantiate(thePurse); // already asserts.
     OT_ASSERT(NULL != pToken); // Just for good measure.
@@ -1061,7 +1061,7 @@ OTToken * OTToken::InstantiateAndGenerateTokenRequest(const OTPurse & thePurse,
 
 
 
-inline bool OTToken::ChooseIndex(const int nIndex) 
+inline bool OTToken::ChooseIndex(const int32_t nIndex) 
 { 
 	if (nIndex > (m_nTokenCount-1) || nIndex < 0) 
 		return false; 
@@ -1076,7 +1076,7 @@ inline bool OTToken::ChooseIndex(const int nIndex)
 
 // The Mint has signed the token, and is sending it back to the client. 
 // (we're near Lucre step 3 with this function)
-void OTToken::SetSignature(const OTASCIIArmor & theSignature, int nTokenIndex)
+void OTToken::SetSignature(const OTASCIIArmor & theSignature, int32_t nTokenIndex)
 {
 	// The server sets the signature, and then sends the token back to the
 	// client. We release all these prototokens before doing so, because there's
@@ -1217,8 +1217,8 @@ OTToken_Lucre::~OTToken_Lucre() { }
 // sets m_nTokenCount and populates the maps with prototokens (in ASCII-armored format.)
 bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
                                          OTMint & theMint,
-                                         long lDenomination,
-                                         int nTokenCount/*=OTToken::nMinimumPrototokenCount*/)
+                                         int64_t lDenomination,
+                                         int32_t nTokenCount/*=OTToken::nMinimumPrototokenCount*/)
 {		
 	//	OTLog::vError("%s <bank public info> <coin request private output file> <coin request public output file>\n", argv[0]);
     //
@@ -1268,12 +1268,12 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
     //
 	SetSeriesAndExpiration(theMint.GetSeries(), theMint.GetValidFrom(), theMint.GetValidTo());
     // -----------------------------------------------------------------
-	const int nFinalTokenCount = (nTokenCount < OTToken::GetMinimumPrototokenCount()) ? 
+	const int32_t nFinalTokenCount = (nTokenCount < OTToken::GetMinimumPrototokenCount()) ? 
 					OTToken::GetMinimumPrototokenCount() : nTokenCount; 
 	
 	// Token count is actually 1 (always) with Lucre, although this lib has potential to work with 
 	// multiple proto-tokens, you can see this loop as though it always executes just once.
-	for (int i = 0; i < nFinalTokenCount; i++)
+	for (int32_t i = 0; i < nFinalTokenCount; i++)
 	{
         OpenSSL_BIO bioCoin		    =	BIO_new(BIO_s_mem()); // These two are output. We must write these bios, after
         OpenSSL_BIO bioPublicCoin	=	BIO_new(BIO_s_mem()); // the operation, back into some form we can use
@@ -1288,8 +1288,8 @@ bool OTToken_Lucre::GenerateTokenRequest(const OTPseudonym & theNym,
 		
 		// Convert the two bios to our format
 		char privateCoinBuffer[4096], publicCoinBuffer[4096];   // todo stop hardcoding these string lengths
-		int privatecoinLen	= BIO_read(bioCoin, privateCoinBuffer, 4000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
-		int publiccoinLen	= BIO_read(bioPublicCoin, publicCoinBuffer, 4000); 
+		int32_t privatecoinLen	= BIO_read(bioCoin, privateCoinBuffer, 4000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
+		int32_t publiccoinLen	= BIO_read(bioPublicCoin, publicCoinBuffer, 4000); 
 		
 		if (privatecoinLen && publiccoinLen)
 		{
@@ -1407,7 +1407,7 @@ bool OTToken_Lucre::ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 		
 		// convert bioCoin to a C-style string...
 		char CoinBuffer[1024];   // todo stop hardcoding these string lengths
-		int coinLen	= BIO_read(bioCoin, CoinBuffer, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
+		int32_t coinLen	= BIO_read(bioCoin, CoinBuffer, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
 		
 		if (coinLen)
 		{

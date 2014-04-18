@@ -183,14 +183,14 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
     // *************************************************************************
     // The SUB-CURRENCIES first...
     //
-    const unsigned int nCount = static_cast<unsigned int>(this->Count());
+    const uint32_t nCount = static_cast<uint32_t>(this->Count());
     
-    for (unsigned int i = 0; i < nCount; i++)
+    for (uint32_t i = 0; i < nCount; i++)
     {
         BasketItem * pRequestItem = this->At(i);
         OT_ASSERT(NULL != pRequestItem);
         // --------------------------------
-        const long lClosingTransNo = pRequestItem->lClosingTransactionNo;
+        const int64_t lClosingTransNo = pRequestItem->lClosingTransactionNo;
         // --------------------------------
 
         // This function will only "add it back" if it was really there in the first place.
@@ -201,13 +201,13 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
         if (bClawedBack)
             bNeedToSave = true;
 //		else 
-//			OTLog::vError("OTBasket::HarvestClosingNumbers: Number (%ld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
+//			OTLog::vError("OTBasket::HarvestClosingNumbers: Number (%lld) failed as issued. (Thus didn't bother 'adding it back'.)\n",
 //						  lClosingTransNo);
     } // for
     // *************************************************************************
     // Then the BASKET currency itself...
     //
-    const long lClosingTransNo = this->GetClosingNum();
+    const int64_t lClosingTransNo = this->GetClosingNum();
     // --------------------------------
     
     // This function will only "add it back" if it was really there in the first place.
@@ -243,7 +243,7 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
 // Assumes that SetTransferMultiple has already been called.
 void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
                                      const OTIdentifier & SUB_ACCOUNT_ID,
-                                     const long & lClosingTransactionNo)
+                                     const int64_t & lClosingTransactionNo)
 {
 	BasketItem * pItem = new BasketItem;
 	
@@ -269,7 +269,7 @@ void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 
 // For generating a real basket
 void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
-                              long lMinimumTransferAmount)
+                              int64_t lMinimumTransferAmount)
 {
 	BasketItem * pItem = new BasketItem;
 	
@@ -287,7 +287,7 @@ void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 // is accepted for the exchange that occured, specific to the basket item at nIndex.
 // (Each asset account gets its own basketReceipt when an exchange happens.)
 //
-long OTBasket::GetClosingTransactionNoAt(unsigned int nIndex)
+int64_t OTBasket::GetClosingTransactionNoAt(uint32_t nIndex)
 {
     OT_ASSERT_MSG((nIndex < m_dequeItems.size()) && (nIndex >= 0), 
                   "OTBasket::GetClosingTransactionNoAt: index out of bounds.");
@@ -302,7 +302,7 @@ long OTBasket::GetClosingTransactionNoAt(unsigned int nIndex)
 
 
 
-BasketItem * OTBasket::At(unsigned int nIndex)
+BasketItem * OTBasket::At(uint32_t nIndex)
 {
 	if (nIndex < m_dequeItems.size())
 		return m_dequeItems.at(nIndex);
@@ -310,9 +310,9 @@ BasketItem * OTBasket::At(unsigned int nIndex)
 	return NULL;
 }
 
-int OTBasket::Count() const
+int32_t OTBasket::Count() const
 {
-	return static_cast<int> (m_dequeItems.size());
+	return static_cast<int32_t> (m_dequeItems.size());
 }
 
 
@@ -321,7 +321,7 @@ int OTBasket::Count() const
  {
  OTIdentifier SUB_CONTRACT_ID;
  OTIdentifier SUB_ACCOUNT_ID;
- long		lMinimumTransferAmount;
+ int64_t		lMinimumTransferAmount;
  
  BasketItem() { lMinimumTransferAmount = 0; }
  ~BasketItem();
@@ -331,7 +331,7 @@ int OTBasket::Count() const
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     const OTString strNodeName(xml->getNodeName());
 
@@ -366,7 +366,7 @@ int OTBasket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         if (strTemp.Exists())
             SetClosingNum(atol(	strTemp.Get()	));
 
-		OTLog::vOutput(2, "Basket Transfer multiple is %d. Direction is %s. Closing number is %ld. "
+		OTLog::vOutput(2, "Basket Transfer multiple is %d. Direction is %s. Closing number is %lld. "
                        "Target account is:\n%s\n", m_nTransferMultiple, strDirection.Get(),
                        m_lClosingTransactionNo, strRequestAccountID.Get());
 		
@@ -410,7 +410,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 	m_xmlUnsigned.Release();
 	
 	m_xmlUnsigned.Concatenate("<currencyBasket contractCount=\"%d\"\n" 
-							  " minimumTransfer=\"%ld\" >\n\n", 
+							  " minimumTransfer=\"%lld\" >\n\n", 
 							  m_nSubCount, m_lMinimumTransfer);
 	
     // Only uesd in Request Basket (requesting an exchange in/out.)
@@ -422,7 +422,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		m_xmlUnsigned.Concatenate("<requestExchange "
                                   "transferMultiple=\"%d\"\n "
                                   "transferAccountID=\"%s\"\n "
-                                  "closingTransactionNo=\"%ld\"\n "                               
+                                  "closingTransactionNo=\"%lld\"\n "                               
                                   "direction=\"%s\" />\n\n", 
 								  m_nTransferMultiple,
                                   strRequestAcctID.Get(),
@@ -430,7 +430,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
                                   m_bExchangingIn ? "in" : "out");
 	}
 	// ------------------------------------------------------------
-	for (int i = 0; i < Count(); i++)
+	for (int32_t i = 0; i < Count(); i++)
 	{
 		BasketItem * pItem = m_dequeItems[i];
 		
@@ -439,8 +439,8 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 		OTString strAcctID(pItem->SUB_ACCOUNT_ID), strContractID(pItem->SUB_CONTRACT_ID);
 		
         if (IsExchanging())
-            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
-                                  " closingTransactionNo=\"%ld\"\n"
+            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%lld\"\n"
+                                  " closingTransactionNo=\"%lld\"\n"
                                   " accountID=\"%s\"\n"
                                   " assetID=\"%s\" />\n\n", 
                                   pItem->lMinimumTransferAmount,
@@ -448,7 +448,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
                                   m_bHideAccountID ? "" : strAcctID.Get(),
                                   strContractID.Get());
 		else
-            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%ld\"\n"
+            m_xmlUnsigned.Concatenate("<basketItem minimumTransfer=\"%lld\"\n"
                                   " accountID=\"%s\"\n"
                                   " assetID=\"%s\" />\n\n", 
                                   pItem->lMinimumTransferAmount,
@@ -484,7 +484,7 @@ void OTBasket::CalculateContractID(OTIdentifier & newID)
 
 
 
-OTBasket::OTBasket(int nCount, long lMinimumTransferAmount) :  ot_super(),
+OTBasket::OTBasket(int32_t nCount, int64_t lMinimumTransferAmount) :  ot_super(),
     m_nSubCount(nCount),
     m_lMinimumTransfer(lMinimumTransferAmount),
     m_nTransferMultiple(0),

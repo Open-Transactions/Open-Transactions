@@ -228,10 +228,10 @@ bool OTInstrument::SaveContractWallet(std::ofstream & ofs)
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
 //    OTLog::Error("OTInstrument::ProcessXMLNode...\n");
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
     
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -257,7 +257,7 @@ int OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 //        
 //        if (strClosingNumber.Exists())
 //        {
-//            const long lClosingNumber = atol(strClosingNumber.Get());					
+//            const int64_t lClosingNumber = atol(strClosingNumber.Get());					
 //            
 //            this->AddClosingTransactionNo(lClosingNumber);
 //        }

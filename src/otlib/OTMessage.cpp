@@ -261,9 +261,9 @@ void OTMessage::SetAcknowledgments(OTPseudonym & theNym)
 		
 		if (!(pDeque->empty()) && (theServerID == theTempID) ) // only for the matching serverID.
 		{
-			for (unsigned i = 0; i < pDeque->size(); i++)
+			for (uint32_t i = 0; i < pDeque->size(); i++)
 			{
-				const long lAckRequestNumber = pDeque->at(i);
+				const int64_t lAckRequestNumber = pDeque->at(i);
 				
                 m_AcknowledgedReplies.Add(lAckRequestNumber);
 			}
@@ -288,10 +288,10 @@ void OTMessage::UpdateContents()
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
     
-    m_lTime = static_cast<long>(time(NULL));
+    m_lTime = static_cast<int64_t>(time(NULL));
     
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
-	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%ld\">\n\n",
+	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%lld\">\n\n",
                               m_strVersion.Get(), m_lTime);
     
 	// ------------------------------------------------------------------------
@@ -322,7 +322,7 @@ void OTMessage::UpdateContents()
 								  " success=\"%s\"\n"
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
-								  " depth=\"%ld\""
+								  " depth=\"%lld\""
 								  ">\n\n",
 								  m_strCommand.Get(),
 								  m_strRequestNum.Get(),
@@ -351,7 +351,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
 								  " marketID=\"%s\"\n" // stored in NymID2
-								  " depth=\"%ld\""
+								  " depth=\"%lld\""
 								  ">\n\n",
 								  m_strCommand.Get(),
 								  m_strRequestNum.Get(),
@@ -374,7 +374,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
 								  " marketID=\"%s\"\n" // stored in NymID2
-								  " depth=\"%ld\""
+								  " depth=\"%lld\""
 								  ">\n\n",
 								  m_strCommand.Get(),
 								  m_strRequestNum.Get(),
@@ -425,7 +425,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
 								  " marketID=\"%s\"\n" // stored in NymID2
-								  " depth=\"%ld\""
+								  " depth=\"%lld\""
 								  ">\n\n",
 								  m_strCommand.Get(),
 								  m_strRequestNum.Get(),
@@ -472,7 +472,7 @@ void OTMessage::UpdateContents()
 								  " success=\"%s\"\n"
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
-								  " depth=\"%ld\""
+								  " depth=\"%lld\""
 								  ">\n\n",
 								  m_strCommand.Get(),
 								  m_strRequestNum.Get(),
@@ -699,7 +699,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " nymID2=\"%s\"\n"
 								  " requestNum=\"%s\"\n"
-								  " adjustment=\"%ld\"\n"
+								  " adjustment=\"%lld\"\n"
 								  " serverID=\"%s\""
 								  ">\n\n",
 								  m_strCommand.Get(),
@@ -723,7 +723,7 @@ void OTMessage::UpdateContents()
 								  " success=\"%s\"\n"
 								  " nymID=\"%s\"\n"
 								  " nymID2=\"%s\"\n"
-								  " totalCredits=\"%ld\"\n"
+								  " totalCredits=\"%lld\"\n"
 								  " serverID=\"%s\""
 								  ">\n\n",
 								  m_strCommand.Get(),
@@ -895,7 +895,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " nymboxHash=\"%s\"\n"
 								  " serverID=\"%s\"\n"
-								  " newRequestNum=\"%ld\"\n"
+								  " newRequestNum=\"%lld\"\n"
 								  " requestNum=\"%s\""
 								  ">\n\n",
 								  m_strCommand.Get(),
@@ -1131,7 +1131,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\"\n"
 								  " requestNum=\"%s\"\n"
-								  " transactionNum=\"%ld\"\n"
+								  " transactionNum=\"%lld\"\n"
 								  " boxType=\"%s\"\n"
 								  " accountID=\"%s\""  // If retrieving box receipt for Nymbox, NymID will appear in this variable.
 								  ">\n\n",
@@ -1155,7 +1155,7 @@ void OTMessage::UpdateContents()
 								  " requestNum=\"%s\"\n"
 								  " success=\"%s\"\n"
 								  " accountID=\"%s\"\n"
-								  " transactionNum=\"%ld\"\n"
+								  " transactionNum=\"%lld\"\n"
 								  " boxType=\"%s\"\n"
 								  " nymID=\"%s\"\n"
 								  " serverID=\"%s\""
@@ -1885,7 +1885,7 @@ void OTMessage::UpdateContents()
 								  " nymID=\"%s\"\n"
 								  " nymboxHash=\"%s\"\n"
 								  " serverID=\"%s\"\n"
-								  " smartContractID=\"%ld\"\n"  // <===
+								  " smartContractID=\"%lld\"\n"  // <===
 								  " clauseName=\"%s\"\n"		// <===
 								  " hasParam=\"%s\"\n"		// <===
 								  " requestNum=\"%s\""
@@ -1994,9 +1994,9 @@ void OTMessage::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -2634,7 +2634,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         m_lNewRequestNum = strNewRequestNum.Exists() ? atol(strNewRequestNum.Get()) : 0;
         
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\n"
-                       "ServerID: %s\nRequest Number:    %s  New Number: %ld\n\n",
+                       "ServerID: %s\nRequest Number:    %s  New Number: %lld\n\n",
                        m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"), m_strNymID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_lNewRequestNum);
 		
@@ -2796,7 +2796,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		
 		// -----------------------------------------------------
 		
-		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\nAdjustment: %ld\n",
+		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nNymID2:    %s\nServerID: %s\nRequest #: %s\nAdjustment: %lld\n",
 					   m_strCommand.Get(), m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(), m_strRequestNum.Get(),
 					   m_lDepth);
 		
@@ -2826,7 +2826,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         
         
 		OTLog::vOutput(1, "\nCommand: %s   %s\nNymID:    %s\nNymID2:    %s\n"
-					   "ServerID: %s\nTotal Credits: %ld \n\n",
+					   "ServerID: %s\nTotal Credits: %lld \n\n",
 					   m_strCommand.Get(), (m_bSuccess ? "SUCCESS" : "FAILED"),
 					   m_strNymID.Get(), m_strNymID2.Get(), m_strServerID.Get(),
 					   m_lDepth);
@@ -3269,7 +3269,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// ----------------------------------------------------
 		
 		OTLog::vOutput(1, "\n Command: %s \n NymID:    %s\n AccountID:    %s\n"
-                       " ServerID: %s\n Request#: %s  Transaction#: %ld   boxType: %s\n\n",
+                       " ServerID: %s\n Request#: %s  Transaction#: %lld   boxType: %s\n\n",
                        m_strCommand.Get(), m_strNymID.Get(), m_strAcctID.Get(),
                        m_strServerID.Get(), m_strRequestNum.Get(), m_lTransactionNum,
 					   (m_lDepth == 0) ? "nymbox" : ((m_lDepth == 1) ? "inbox" : "outbox")); // outbox is 2.);
@@ -4208,7 +4208,7 @@ int OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			// -----------------------------------------------------
 		}
 		
-		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nClause TransNum and Name:  %ld  /  %s \n"
+		OTLog::vOutput(1, "\nCommand: %s\nNymID:    %s\nServerID: %s\nClause TransNum and Name:  %lld  /  %s \n"
 					   "Request #: %s\n", m_strCommand.Get(), m_strNymID.Get(), m_strServerID.Get(), m_lTransactionNum,
 					   m_strNymID2.Get(), m_strRequestNum.Get());
 		

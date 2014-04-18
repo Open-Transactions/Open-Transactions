@@ -216,7 +216,7 @@ typedef std::list   <std::string>                   listOfStrings;
 //
 char *str_dup1(const char *str);
 char *str_dup2(const char *str, uint32_t length);
-int   len_cmp(char *s1, char *s2);
+int32_t   len_cmp(char *s1, char *s2);
 
 
 template <class T>
@@ -385,13 +385,13 @@ EXPORT static std::string  ws2s(const std::wstring & s);
         {
             if (empties == split::no_empties)
             {
-                next = s.find_first_not_of(delimiters, static_cast<unsigned int>(next)+1);
+                next = s.find_first_not_of(delimiters, static_cast<uint32_t>(next)+1);
                 if (next == Container::value_type::npos) break;
                 next -= 1;
             }
             current = static_cast<size_t>(next + 1);
             next = s.find_first_of( delimiters, current );
-            result.push_back(s.substr(current, static_cast<unsigned int>(next) - current));
+            result.push_back(s.substr(current, static_cast<uint32_t>(next) - current));
         }
         while (next != Container::value_type::npos);
         return result;
@@ -476,7 +476,7 @@ EXPORT	void OTfgets(std::istream & ofs);
 	// ----------------------------------------------
 	// true  == there are more lines to read.
 	// false == this is the last line. Like EOF.
-	bool sgets(char * szBuffer, unsigned nBufSize);
+	bool sgets(char * szBuffer, uint32_t nBufSize);
 
     char sgetc(void);
     void sungetc(void);

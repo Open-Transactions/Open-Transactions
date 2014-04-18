@@ -45,7 +45,7 @@ protected:
 private:
     double startTimeInMicroSec;                 // starting time in micro-second
     double endTimeInMicroSec;                   // ending time in micro-second
-    int    stopped;                             // stop flag 
+    int32_t    stopped;                             // stop flag 
 #ifdef WIN32
     LARGE_INTEGER frequency;                    // ticks per second
     LARGE_INTEGER startCount;                   //

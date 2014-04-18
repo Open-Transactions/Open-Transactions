@@ -242,7 +242,7 @@ EXPORT  bool SetStringMap(const std::map<std::string, std::string> & the_map, bo
 EXPORT  bool SetAndPackStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);
 };
 
-typedef std::map <long, OTASCIIArmor *> mapOfArmor;
+typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 #endif // __OT_ASCII_ARMOR_HPP__

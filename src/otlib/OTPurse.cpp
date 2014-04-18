@@ -272,7 +272,7 @@ bool OTPurse::GenerateInternalKey()
     // ------------------------------------------------------------------------
     // thePassphrase and m_pCachedKey are BOTH output from the below function.
     //
-    m_pCachedKey = OTCachedKey::CreateMasterPassword(thePassphrase, strDisplay.Get()); //int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT)
+    m_pCachedKey = OTCachedKey::CreateMasterPassword(thePassphrase, strDisplay.Get()); //int32_t nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT)
     // ------------------------------------------------------------------------
     if ((!m_pCachedKey) ||
         !m_pCachedKey->IsGenerated()) // This one is unnecessary because CreateMasterPassword already checks it. todo optimize.
@@ -926,7 +926,7 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
 	m_xmlUnsigned.Release();
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
 	m_xmlUnsigned.Concatenate("<purse version=\"%s\"\n"
-							  " totalValue=\"%ld\"\n" // Total value of all the tokens within.
+							  " totalValue=\"%lld\"\n" // Total value of all the tokens within.
                               // --------------
 							  " validFrom=\"%" PRId64"\"\n" // Latest "valid from" date of all tokens contained.
 							  " validTo=\"%" PRId64"\"\n"   // Earliest "valid to" date of all tokens contained.
@@ -1003,7 +1003,7 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
         }
     }
     // ---------------------------------------
-	for (int i = 0; i < Count(); i++)
+	for (int32_t i = 0; i < Count(); i++)
 	{
 		m_xmlUnsigned.Concatenate("<token>\n%s</token>\n\n", m_dequeTokens[i]->Get());
 	}
@@ -1017,7 +1017,7 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
 
 
 
-int OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     const char *szFunc = "OTPurse::ProcessXMLNode";
     // -----------------------
@@ -1554,9 +1554,9 @@ bool OTPurse::Push(OTNym_or_SymmetricKey theOwner, const OTToken & theToken)
 
 
 
-int OTPurse::Count() const
+int32_t OTPurse::Count() const
 {
-	return static_cast<int> (m_dequeTokens.size());
+	return static_cast<int32_t> (m_dequeTokens.size());
 }
 
 

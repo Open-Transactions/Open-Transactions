@@ -162,7 +162,7 @@ extern "C"
 
 #define OT_CMD_HEADER_SIZE  9
 
-typedef unsigned char	BYTE;
+typedef uint8_t	BYTE;
 typedef unsigned short	USHORT;
 
 union u_header
@@ -218,9 +218,9 @@ public:
 EXPORT	bool Connect(OTPseudonym & theNym, OTServerContract & theServerContract,
 	OTString & strCA_FILE, OTString & strKEY_FILE, OTString & strKEY_PASSWORD) {return false;}
 
-	void OnServerResponseToGetRequestNumber(long lNewRequestNumber);
+	void OnServerResponseToGetRequestNumber(int64_t lNewRequestNumber);
 
-	void ProcessMessageOut(char *buf, int * pnExpectReply);
+	void ProcessMessageOut(char *buf, int32_t * pnExpectReply);
 	void ProcessMessageOut(OTMessage & theMessage);
 
 	EXPORT	bool ProcessInBuffer(OTMessage & theServerReply) {return false;}

@@ -184,23 +184,23 @@ private:
 
     bool            m_bHasTradeActivated;	// Has the offer yet been first added to a market?
 
-    long            m_lStopPrice;			// The price limit that activates the STOP order.
+    int64_t            m_lStopPrice;			// The price limit that activates the STOP order.
     char            m_cStopSign;			// Value is 0, or '<', or '>'.
     bool            m_bHasStopActivated;	// If the Stop Order has already activated, I need to know that.
 
-    int             m_nTradesAlreadyDone;	// How many trades have already processed through this order? We keep track.
+    int32_t             m_nTradesAlreadyDone;	// How many trades have already processed through this order? We keep track.
 
     OTString        m_strOffer;				// The market offer associated with this trade.
 
 protected:
-    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTransactionNumber,
+    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewTransactionNumber,
                                 OTPseudonym & theOriginator,
                                 OTPseudonym * pRemover);
     virtual void onRemovalFromCron();
 
 public:
 EXPORT	bool  VerifyOffer(OTOffer & theOffer);
-EXPORT	bool  IssueTrade(OTOffer & theOffer, char cStopSign=0, long lStopPrice=0);
+EXPORT	bool  IssueTrade(OTOffer & theOffer, char cStopSign=0, int64_t lStopPrice=0);
 
 	// The Trade always stores the original, signed version of its Offer.
 	// This method allows you to grab a copy of it.
@@ -209,7 +209,7 @@ EXPORT	bool  IssueTrade(OTOffer & theOffer, char cStopSign=0, long lStopPrice=0)
 
 	inline bool	IsStopOrder() const { if ((m_cStopSign == '<') || (m_cStopSign == '>')) return true; return false; }
 
-	inline const long & GetStopPrice() const { return m_lStopPrice; }
+	inline const int64_t & GetStopPrice() const { return m_lStopPrice; }
 
 	inline bool IsGreaterThan()	const { if ((m_cStopSign == '>')) return true; return false; }
 	inline bool IsLessThan()	const { if ((m_cStopSign == '<')) return true; return false; }
@@ -224,10 +224,10 @@ EXPORT	bool  IssueTrade(OTOffer & theOffer, char cStopSign=0, long lStopPrice=0)
 	inline void SetCurrencyAcctID(const OTIdentifier & CURRENCY_ACCT_ID) { m_CURRENCY_ACCT_ID = CURRENCY_ACCT_ID; }
 	// --------------------------------------------------------------------------
 	inline void IncrementTradesAlreadyDone() { m_nTradesAlreadyDone++;      }
-	inline int  GetCompletedCount()          { return m_nTradesAlreadyDone; }
+	inline int32_t  GetCompletedCount()          { return m_nTradesAlreadyDone; }
 	// --------------------------------------------------------------------------
-EXPORT    long GetAssetAcctClosingNum() const;
-EXPORT    long GetCurrencyAcctClosingNum() const;
+EXPORT    int64_t GetAssetAcctClosingNum() const;
+EXPORT    int64_t GetCurrencyAcctClosingNum() const;
 
 	// From OTCronItem (parent class of this)
 	/*
@@ -243,8 +243,8 @@ EXPORT    long GetCurrencyAcctClosingNum() const;
 	// --------------------------------------------------------------------------
 	// From OTTrackable (parent class of OTCronItem, parent class of this)
 	/*
-	 inline long GetTransactionNum() const { return m_lTransactionNum; }
-	 inline void SetTransactionNum(long lTransactionNum) { m_lTransactionNum = lTransactionNum; }
+	 inline int64_t GetTransactionNum() const { return m_lTransactionNum; }
+	 inline void SetTransactionNum(int64_t lTransactionNum) { m_lTransactionNum = lTransactionNum; }
 
 	 inline const OTIdentifier & GetSenderAcctID()	{ return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier & GetSenderUserID()	{ return m_SENDER_USER_ID; }
@@ -295,10 +295,10 @@ EXPORT	virtual ~OTTrade();
 	void Release_Trade();
 	virtual void Release();
 	// ------------------------------------------------------
-	virtual long GetClosingNumber(const OTIdentifier	& theAcctID) const;
+	virtual int64_t GetClosingNumber(const OTIdentifier	& theAcctID) const;
 	// ------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 

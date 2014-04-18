@@ -150,8 +150,8 @@ extern "C" {
 	
 #define OT_CMD_HEADER_SIZE  9
 	
-	typedef unsigned char	BYTE;
-	typedef unsigned short	USHORT;
+	typedef uint8_t	BYTE;
+	typedef uint16_t	USHORT;
 	
 	union u_header
 	{

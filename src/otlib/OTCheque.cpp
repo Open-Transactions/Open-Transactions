@@ -161,9 +161,9 @@ void OTCheque::UpdateContents()
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");		
 	
 	m_xmlUnsigned.Concatenate("<cheque\n version=\"%s\"\n"
-							  " amount=\"%ld\"\n"
+							  " amount=\"%lld\"\n"
 							  " assetTypeID=\"%s\"\n"
-							  " transactionNum=\"%ld\"\n"
+							  " transactionNum=\"%lld\"\n"
 							  " serverID=\"%s\"\n"
 							  " senderAcctID=\"%s\"\n"
 							  " senderUserID=\"%s\"\n"
@@ -201,9 +201,9 @@ void OTCheque::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
+int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 {	
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
@@ -271,7 +271,7 @@ int OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 		// ---------------------
 		
 		OTLog::vOutput(2,
-                       "\n\nCheque Amount: %ld.  Transaction Number: %ld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
+                       "\n\nCheque Amount: %lld.  Transaction Number: %lld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
                        " AssetTypeID: %s\n ServerID: %s\n"
                        " senderAcctID: %s\n senderUserID: %s\n "
                        " Has Recipient? %s. If yes, UserID of Recipient: %s\n"
@@ -327,7 +327,7 @@ void OTCheque::CancelCheque()
 // That's basically what this function does.
 // Make sure to sign it afterwards.
 bool OTCheque::IssueCheque(
-                const long & lAmount, const long & lTransactionNum,
+                const int64_t & lAmount, const int64_t & lTransactionNum,
 				const time_t & VALID_FROM, const time_t & VALID_TO,	// The expiration date (valid from/to dates) of the cheque
 				const OTIdentifier & SENDER_ACCT_ID,			// The asset account the cheque is drawn on.
 				const OTIdentifier & SENDER_USER_ID,			// This ID must match the user ID on the asset account, 

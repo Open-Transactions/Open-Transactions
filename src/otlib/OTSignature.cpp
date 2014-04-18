@@ -241,10 +241,10 @@ Algorithms are loaded with OpenSSL_add_all_algorithms(3).
 
 
 
-int EVP_DigestSignInit(EVP_MD_CTX *ctx, EVP_PKEY_CTX **pctx,
+int32_t EVP_DigestSignInit(EVP_MD_CTX *ctx, EVP_PKEY_CTX **pctx,
 					   const EVP_MD *type, ENGINE *e, EVP_PKEY *pkey);
-int EVP_DigestSignUpdate(EVP_MD_CTX *ctx, const void *d, unsigned int cnt);
-int EVP_DigestSignFinal(EVP_MD_CTX *ctx, unsigned char *sig, size_t *siglen);
+int32_t EVP_DigestSignUpdate(EVP_MD_CTX *ctx, const void *d, uint32_t cnt);
+int32_t EVP_DigestSignFinal(EVP_MD_CTX *ctx, uint8_t *sig, size_t *siglen);
 
 
 
@@ -258,17 +258,17 @@ Keys will be stored in OTASCIIArmor -> OTKey
 
 
 
-void do_cipher(char *pw, int operation,char * InBuf,int InLen,char * 
-			   OutBuf,int *OutBuflen)
+void do_cipher(char *pw, int32_t operation,char * InBuf,int32_t InLen,char * 
+			   OutBuf,int32_t *OutBuflen)
 {
 	//operation:    0:DECRYPT
 	//              1:ENCRYPT 
 	
 	
-    unsigned char iv[EVP_MAX_IV_LENGTH], key[EVP_MAX_KEY_LENGTH];
-	const unsigned char salt[] = "thesaltgoeshere1982w";
+    uint8_t iv[EVP_MAX_IV_LENGTH], key[EVP_MAX_KEY_LENGTH];
+	const uint8_t salt[] = "thesaltgoeshere1982w";
 	
-	// unsigned int ekeylen, net_ekeylen;
+	// uint32_t ekeylen, net_ekeylen;
 	EVP_CIPHER_CTX ectx;
 	
 	EVP_BytesToKey(EVP_idea_cbc(), EVP_md5(), salt, pw, strlen(pw), 1, key, iv);
@@ -283,7 +283,7 @@ void do_cipher(char *pw, int operation,char * InBuf,int InLen,char *
 void main(void)
 {
 	char InBuf[512],OutBuf[512+8],OutBuf2[512+8];
-	int i, OutLen;
+	int32_t i, OutLen;
 	
 	for ( i = 0 ; i < 8 ; i++ )
 		InBuf[i] = 30+i;
@@ -296,7 +296,7 @@ void main(void)
 memcpy(iv, "12345678", 8);
 EVP_BytesToKey(EVP_idea_cbc(), EVP_md5(), "salt", pw, strlen(pw), 1, key, iv);
 
-The salt value should be at least 8 bytes long - you're getting 3
+The salt value should be at least 8 bytes int64_t - you're getting 3
 random bytes here.
 
 You don't need to specify an iv value as this function creates it.
@@ -312,10 +312,10 @@ You don't need to specify an iv value as this function creates it.
 
 /* Deprecated code:
  SHA256_CTX context;
- unsigned char md[SHA256_DIGEST_LENGTH];
+ uint8_t md[SHA256_DIGEST_LENGTH];
  
  SHA256_Init(&context);
- SHA256_Update(&context, (unsigned char*)input, length);
+ SHA256_Update(&context, (uint8_t*)input, length);
  SHA256_Final(md, &context);
  
  Replaced with:
@@ -330,8 +330,8 @@ bool OTSignature::CalculateDigest(OTData & dataInput)
 	const EVP_MD *md;
 	const char * hashAlgorithm = "sha256";
 	
-	unsigned int md_len, i;
-	unsigned char md_value[EVP_MAX_MD_SIZE];	
+	uint32_t md_len, i;
+	uint8_t md_value[EVP_MAX_MD_SIZE];	
 	
 	if (s_bFirstTime)
 	{

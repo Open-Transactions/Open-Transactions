@@ -166,7 +166,7 @@
 
 
 
-void HandleCommandLineArguments(int argc, char* argv[], AnyOption * opt);
+void HandleCommandLineArguments(int32_t argc, char* argv[], AnyOption * opt);
 
 
 /*
@@ -283,7 +283,7 @@ bool SetupPointersForWalletMyNymAndServerContract(std::string & str_ServerID,
 
 
 
-void HandleCommandLineArguments( int argc, char* argv[], AnyOption * opt)
+void HandleCommandLineArguments( int32_t argc, char* argv[], AnyOption * opt)
 {
 	if (NULL == opt)
 		return;
@@ -347,20 +347,20 @@ void HandleCommandLineArguments( int argc, char* argv[], AnyOption * opt)
     //
     // COMMAND LINE *AND* RESOURCE FILE
 
-//  opt->setOption(  "server" );      /* an option (takes an argument), supporting only long form */
+//  opt->setOption(  "server" );      /* an option (takes an argument), supporting only int64_t form */
 
 	// -----------------------------------------------------
 	/* 4. SET THE OPTION STRINGS/CHARACTERS */
 	//
 	// COMMAND LINE *AND* RESOURCE FILE
 
-	//  opt->setOption(  "server" );      /* an option (takes an argument), supporting only long form */
+	//  opt->setOption(  "server" );      /* an option (takes an argument), supporting only int64_t form */
 
 	// -----------------------------------------------------
 
 	// COMMAND LINE ONLY
 	/* for options that will be checked only on the command and line not in option/resource file */
-	//    opt->setCommandFlag(  "zip" , 'z'); /* a flag (takes no argument), supporting long and short form */
+	//    opt->setCommandFlag(  "zip" , 'z'); /* a flag (takes no argument), supporting int64_t and short form */
 	opt->setCommandOption("withdraw" , 'w');   // withdraw from acct to purse, myacct, topurse
 	opt->setCommandOption("transfer" , 't');   // transfer acct-to-acct, myacct, toacct
 	opt->setCommandOption("cheque" ,   'c');   // write a cheque   myacct, tonym
@@ -410,14 +410,14 @@ void HandleCommandLineArguments( int argc, char* argv[], AnyOption * opt)
 
 	// RESOURCE FILE ONLY
 	/* for options that will be checked only from the option/resource file */
-	opt->setFileOption(  "defaultserver" ); /* an option (takes an argument), supporting only long form */
+	opt->setFileOption(  "defaultserver" ); /* an option (takes an argument), supporting only int64_t form */
 
-	opt->setFileOption(  "defaultmyacct" ); /* an option (takes an argument), supporting only long form */
-	opt->setFileOption(  "defaultmynym" ); /* an option (takes an argument), supporting only long form */
-	opt->setFileOption(  "defaultmypurse" ); /* an option (takes an argument), supporting only long form */
-	opt->setFileOption(  "defaulthisacct" ); /* an option (takes an argument), supporting only long form */
-	opt->setFileOption(  "defaulthisnym" ); /* an option (takes an argument), supporting only long form */
-	opt->setFileOption(  "defaulthispurse" ); /* an option (takes an argument), supporting only long form */
+	opt->setFileOption(  "defaultmyacct" ); /* an option (takes an argument), supporting only int64_t form */
+	opt->setFileOption(  "defaultmynym" ); /* an option (takes an argument), supporting only int64_t form */
+	opt->setFileOption(  "defaultmypurse" ); /* an option (takes an argument), supporting only int64_t form */
+	opt->setFileOption(  "defaulthisacct" ); /* an option (takes an argument), supporting only int64_t form */
+	opt->setFileOption(  "defaulthisnym" ); /* an option (takes an argument), supporting only int64_t form */
+	opt->setFileOption(  "defaulthispurse" ); /* an option (takes an argument), supporting only int64_t form */
 	/*
 	--defaultmyacct   (ACCT ID)
 	--defaultmynym    (NYM ID)
@@ -563,7 +563,7 @@ void CollectDefaultedCLValues(AnyOption *opt,
 // *************************************   MAIN FUNCTION   *************************************
 
 
-int main(int argc, char* argv[])
+int32_t main(int32_t argc, char* argv[])
 {
 	// --------------------------------------------
 	class __OTclient_RAII
@@ -778,7 +778,7 @@ int main(int argc, char* argv[])
             theServerID.GetString(strServerID);
         }
         // -----------------------------------------------------
-//      int       nServerPort = 0;
+//      int32_t       nServerPort = 0;
 //      OTString  strServerHostname;
         // ------------------------------------------------------------------------------
         // You can't just connect to any hostname and port.
@@ -999,7 +999,7 @@ int main(int argc, char* argv[])
         // -----------------------------------------------------
         /*  GET THE ACTUAL ARGUMENTS AFTER THE OPTIONS */
 //
-//      for( int i = 0 ; i < opt->getArgc() ; i++ )
+//      for( int32_t i = 0 ; i < opt->getArgc() ; i++ )
 //      {
 //         cerr << "arg = " <<  opt->getArgv( i ) << endl ;
 //      }
@@ -1340,7 +1340,7 @@ int main(int argc, char* argv[])
 		}
 		else if ( opt->getValue( 'w' ) != NULL  || opt->getValue( "withdraw" ) != NULL  )
 		{
-			const long lAmount = atol(opt->getValue( 'w' ));
+			const int64_t lAmount = atol(opt->getValue( 'w' ));
 
 			OTLog::Output(0, "(User has instructed to withdraw cash...)\n");
 
@@ -1359,7 +1359,7 @@ int main(int argc, char* argv[])
 		}
 		else if ( opt->getValue( 't' ) != NULL  || opt->getValue( "transfer" ) != NULL  )
 		{
-			const long lAmount = atol(opt->getValue( 't' ));
+			const int64_t lAmount = atol(opt->getValue( 't' ));
 
 			OTIdentifier HIS_ACCT_ID((str_HisAcct.size() > 0) ? str_HisAcct.c_str():"aaaaaaaa");
 
@@ -1383,7 +1383,7 @@ int main(int argc, char* argv[])
 		{
 			OTLog::Output(0, "(User has instructed to write a cheque...)\n");
 
-			const long lAmount = atol(opt->getValue( 'c' ));
+			const int64_t lAmount = atol(opt->getValue( 'c' ));
 
 			OTIdentifier HIS_NYM_ID ((str_HisNym.size() > 0)  ? str_HisNym.c_str():"aaaaaaaa"); // todo hardcoding
 
@@ -1396,7 +1396,7 @@ int main(int argc, char* argv[])
 		{
 			OTLog::Output(0, "(User has instructed to withdraw a voucher...)\n");
 
-			const long lAmount = atol(opt->getValue( 'v' ));
+			const int64_t lAmount = atol(opt->getValue( 'v' ));
 
 			OTIdentifier HIS_NYM_ID ((str_HisNym.size() > 0)  ? str_HisNym.c_str():"aaaaaaaa");
 
@@ -1439,7 +1439,7 @@ int main(int argc, char* argv[])
 //          OTAssetContract & theContract,
             OTServerContract & theServer,
             OTAccount * pAccount=NULL,
-            long lTransactionAmount = 0,
+            int64_t lTransactionAmount = 0,
             OTAssetContract * pMyAssetType=NULL,
             OTIdentifier * pHisAcctID=NULL,
             OTIdentifier * pHisNymID=NULL);
@@ -1570,12 +1570,12 @@ int main(int argc, char* argv[])
 		}
 		else if(opt->getFlag( 'b' ) || opt->getFlag( "balance" )   )
 		{
-			OTLog::vOutput(0, "\n ACCT BALANCE (server-side): %ld\n\n", pMyAccount->GetBalance());
+			OTLog::vOutput(0, "\n ACCT BALANCE (server-side): %lld\n\n", pMyAccount->GetBalance());
 
 			OTPurse * pPurse = OTAPI_Wrap::OTAPI()->LoadPurse(theServerID, thePurseAssetTypeID, MY_NYM_ID);
 			OTCleanup<OTPurse> thePurseAngel(pPurse);
 			if (NULL != pPurse)
-				OTLog::vOutput(0, " CASH PURSE (client-side): %ld\n", pPurse->GetTotalValue());
+				OTLog::vOutput(0, " CASH PURSE (client-side): %lld\n", pPurse->GetTotalValue());
 		}
 		else if( opt->getFlag( 'r' ) || opt->getFlag( "refresh" )   )
 		{
@@ -1719,7 +1719,7 @@ int main(int argc, char* argv[])
 
 	char buf[200] = "";
 
-	int nExpectResponse = 0;
+	int32_t nExpectResponse = 0;
 
 	OTLog::vOutput(4, "Starting client loop.\n", OT_CMD_HEADER_SIZE);
 
@@ -2052,7 +2052,7 @@ int main(int argc, char* argv[])
 		// Instead, you give me the Server Contract, and *I'll* look up all that stuff FOR you...
 		// (We verify this up here, but use it at the bottom of the function once the message is set up.)
 		//
-//		int			nServerPort = 0;
+//		int32_t			nServerPort = 0;
 //		OTString	strServerHostname;
 //
 //		if (false == pServerContract->GetConnectInfo(strServerHostname, nServerPort))
@@ -2707,7 +2707,7 @@ int main(int argc, char* argv[])
 			// This code is for testing and allows me to find and patch any problems without
 			// having to re-create my data each time -- speeds up debugging.
 			//
-			long lTransactionNumber = ((strlen(buf) > 2) ? atol(&(buf[2])) : 0);
+			int64_t lTransactionNumber = ((strlen(buf) > 2) ? atol(&(buf[2])) : 0);
 
 			if (lTransactionNumber > 0)
 			{
@@ -2725,7 +2725,7 @@ int main(int argc, char* argv[])
 
 				pMyNym->AddTransactionNum(*pMyNym, strTransNumServerID, lTransactionNumber, true); // bool bSave=true
 
-				OTLog::vOutput(0, "Transaction number %ld added to both lists (on client side.)\n",
+				OTLog::vOutput(0, "Transaction number %lld added to both lists (on client side.)\n",
 					lTransactionNumber);
 			}
 

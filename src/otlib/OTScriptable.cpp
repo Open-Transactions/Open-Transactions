@@ -310,13 +310,13 @@ void OTScriptable::RegisterOTNativeCallsWithScript(OTScript & theScript)
 
 
 //static
-std::string OTScriptable::GetTime() // Returns a string, containing seconds as int. (Time in seconds.)
+std::string OTScriptable::GetTime() // Returns a string, containing seconds as int32_t. (Time in seconds.)
 {
 	const	time_t	CURRENT_TIME	=	time(NULL);
-	const	long	lTime			=	static_cast<long> (CURRENT_TIME);
+	const	int64_t	lTime			=	static_cast<int64_t> (CURRENT_TIME);
 	// ----------------------------------
 	OTString strTime;
-	strTime.Format("%ld", lTime);
+	strTime.Format("%lld", lTime);
 	return	strTime.Get();
 }
 
@@ -652,8 +652,8 @@ bool OTScriptable::ExecuteCallback (OTClause & theCallbackClause, mapOfVariables
 bool OTScriptable::SendNoticeToAllParties(bool bSuccessMsg,
                                           OTPseudonym & theServerNym,
 										  const OTIdentifier & theServerID,
-										  const long & lNewTransactionNumber,
-//										  const long & lInReferenceTo,	// Each party has its own opening trans #.
+										  const int64_t & lNewTransactionNumber,
+//										  const int64_t & lInReferenceTo,	// Each party has its own opening trans #.
 										  const OTString & strReference,
 										  OTString * pstrNote/*=NULL*/,
 										  OTString * pstrAttachment/*=NULL*/,
@@ -755,9 +755,9 @@ void OTScriptable::SetAsClean()
 // Returns 0 if this agent is not the authorizing agent for a party, and is also not the
 // authorized agent for any party's accounts.
 //
-int	OTScriptable::GetCountTransNumsNeededForAgent(const std::string str_agent_name)
+int32_t	OTScriptable::GetCountTransNumsNeededForAgent(const std::string str_agent_name)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 
 	OTAgent * pAgent = this->GetAgent(str_agent_name);
 	if (NULL == pAgent)
@@ -1112,13 +1112,13 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 	//     just skip this step.
 	//
 
-	const long lOpeningNo = theParty.GetOpeningTransNo();
+	const int64_t lOpeningNo = theParty.GetOpeningTransNo();
 
 	if (lOpeningNo > 0) // If one exists, then verify it.
 	{
 		if (false == pAuthorizingAgent->VerifyIssuedNumber(lOpeningNo, strServerID))
 		{
-			OTLog::vError("%s: Opening trans number %ld doesn't "
+			OTLog::vError("%s: Opening trans number %lld doesn't "
 						  "verify for the nym listed as the authorizing agent for party %s.\n",
                           __FUNCTION__, lOpeningNo, theParty.GetPartyName().c_str());
 			if (bHadToLoadItMyself && bNeedToCleanup)
@@ -1132,7 +1132,7 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 		{
 			if (false == pAuthorizingAgent->VerifyTransactionNumber(lOpeningNo, strServerID))
 			{
-				OTLog::vError("%s: Opening trans number %ld doesn't "
+				OTLog::vError("%s: Opening trans number %lld doesn't "
 							  "verify as available for use, for the nym listed as the authorizing agent for party: %s.\n",
                               __FUNCTION__, lOpeningNo, theParty.GetPartyName().c_str());
 				if (bHadToLoadItMyself && bNeedToCleanup)
@@ -1152,7 +1152,7 @@ bool OTScriptable::VerifyPartyAuthorization(OTParty			& theParty,		// The party 
 	else if (bBurnTransNo)  // In this case, bBurnTransNo=true, then the caller EXPECTED to burn a transaction
 	{						// num. But the number was 0! Therefore, FAILURE!
 		OTLog::vOutput(0, "%s: FAILURE. On Party %s, expected to burn a legitimate opening transaction "
-					   "number, but got this instead: %ld\n", __FUNCTION__, theParty.GetPartyName().c_str(), lOpeningNo);
+					   "number, but got this instead: %lld\n", __FUNCTION__, theParty.GetPartyName().c_str(), lOpeningNo);
 		if (bHadToLoadItMyself && bNeedToCleanup)
 			pAuthorizingAgent->ClearTemporaryPointers(); // We loaded the Nym ourselves, which goes out of scope after this function.
 		return false;
@@ -1467,13 +1467,13 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
     //     Also: If bBurnTransNo is set to true, then it will force this issue, since the code then DEMANDS a number
     //     be available for use.
 
-	const long lClosingNo = thePartyAcct.GetClosingTransNo();
+	const int64_t lClosingNo = thePartyAcct.GetClosingTransNo();
 
 	if (lClosingNo > 0) // If one exists, then verify it.
 	{
 		if (false == pAuthorizedAgent->VerifyIssuedNumber(lClosingNo, strServerID))
 		{
-			OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %ld doesn't "
+			OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %lld doesn't "
 						   "verify for the nym listed as the authorized agent for account %s.\n", __FUNCTION__,
                            lClosingNo, thePartyAcct.GetName().Get());
 			return false;
@@ -1486,7 +1486,7 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
 		{
 			if (false == pAuthorizedAgent->VerifyTransactionNumber(lClosingNo, strServerID))
 			{
-				OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %ld doesn't "
+				OTLog::vOutput(0, "OTScriptable::%s: Closing trans number %lld doesn't "
 							   "verify as available for use, for the nym listed as the authorized agent for acct: %s.\n",
 							   __FUNCTION__, lClosingNo, thePartyAcct.GetName().Get());
 				return false;
@@ -1504,7 +1504,7 @@ bool OTScriptable::VerifyPartyAcctAuthorization(OTPartyAccount	& thePartyAcct,	/
 	else if (bBurnTransNo)  // In this case, bBurnTransNo=true, then the caller EXPECTED to burn a transaction
 	{						// num. But the number was 0! Therefore, FAILURE!
 		OTLog::vOutput(0, "OTScriptable::%s: FAILURE. On Acct %s, expected to burn a legitimate closing transaction "
-					   "number, but got this instead: %ld\n", __FUNCTION__, thePartyAcct.GetName().Get(), lClosingNo);
+					   "number, but got this instead: %lld\n", __FUNCTION__, thePartyAcct.GetName().Get(), lClosingNo);
 		return false;
 	}
 	// ----------------------------------------------
@@ -1798,7 +1798,7 @@ OTParty * OTScriptable::GetParty(const std::string str_party_name)
 
 
 
-OTParty * OTScriptable::GetPartyByIndex(int nIndex)
+OTParty * OTScriptable::GetPartyByIndex(int32_t nIndex)
 {
     if ((nIndex < 0) || (nIndex >= static_cast<int64_t>(m_mapParties.size())))
     {
@@ -1807,7 +1807,7 @@ OTParty * OTScriptable::GetPartyByIndex(int nIndex)
     else
     {
         // --------------------------
-        int nLoopIndex = -1; // will be 0 on first iteration.
+        int32_t nLoopIndex = -1; // will be 0 on first iteration.
 
         FOR_EACH(mapOfParties, m_mapParties)
         {
@@ -1824,7 +1824,7 @@ OTParty * OTScriptable::GetPartyByIndex(int nIndex)
     return NULL;
 }
 
-OTBylaw * OTScriptable::GetBylawByIndex(int nIndex)
+OTBylaw * OTScriptable::GetBylawByIndex(int32_t nIndex)
 {
     if ((nIndex < 0) || (nIndex >= static_cast<int64_t>(m_mapBylaws.size())))
     {
@@ -1833,7 +1833,7 @@ OTBylaw * OTScriptable::GetBylawByIndex(int nIndex)
     else
     {
         // --------------------------
-        int nLoopIndex = -1; // will be 0 on first iteration.
+        int32_t nLoopIndex = -1; // will be 0 on first iteration.
 
         FOR_EACH(mapOfBylaws, m_mapBylaws)
         {
@@ -2226,13 +2226,13 @@ void OTScriptable::UpdateContents() // Before transmission or serialization, thi
 }
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     const char * szFunc = "OTScriptable::ProcessXMLNode";
 
 
-	int nReturnVal = 0; // Unless/until I want to add OTContract::Compare(), then people would be able to surreptitiously insert keys and
-//	int nReturnVal = ot_super::ProcessXMLNode(xml); // conditions, and entities, that passed OTScriptable::Compare() with flying colors
+	int32_t nReturnVal = 0; // Unless/until I want to add OTContract::Compare(), then people would be able to surreptitiously insert keys and
+//	int32_t nReturnVal = ot_super::ProcessXMLNode(xml); // conditions, and entities, that passed OTScriptable::Compare() with flying colors
 //  even though they didn't really match. Therefore, here I explicitly disallow loading those things.
 
 	// Here we call the parent class first.
@@ -2276,7 +2276,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		//
 		// Load up the Parties.
 		//
-		int nPartyCount	= strNumParties.Exists() ? atoi(strNumParties.Get()) : 0;
+		int32_t nPartyCount	= strNumParties.Exists() ? atoi(strNumParties.Get()) : 0;
 		if (nPartyCount > 0)
 		{
 			while (nPartyCount-- > 0)
@@ -2313,7 +2313,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                         bIsCopyProvided = true;
 
                     // ---------------------------------------
-                    long lOpeningTransNo = 0;
+                    int64_t lOpeningTransNo = 0;
                     // -------
                     if (strOpeningTransNo.Exists())
                         lOpeningTransNo = atol(strOpeningTransNo.Get());
@@ -2333,7 +2333,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     //
                     // Load up the agents.
                     //
-                    int nAgentCount	= strNumAgents.Exists() ? atoi(strNumAgents.Get()) : 0;
+                    int32_t nAgentCount	= strNumAgents.Exists() ? atoi(strNumAgents.Get()) : 0;
                     if (nAgentCount > 0)
                     {
                         while (nAgentCount-- > 0)
@@ -2431,7 +2431,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     //
                     // LOAD PARTY ACCOUNTS.
                     //
-                    int nAcctCount	= strNumAccounts.Exists() ? atoi(strNumAccounts.Get()) : 0;
+                    int32_t nAcctCount	= strNumAccounts.Exists() ? atoi(strNumAccounts.Get()) : 0;
                     if (nAcctCount > 0)
                     {
                         while (nAcctCount-- > 0)
@@ -2452,7 +2452,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                 OTString strAgentName		= xml->getAttributeValue("agentName"); // Name of agent who controls this account.
                                 OTString strClosingTransNo	= xml->getAttributeValue("closingTransNo"); // the closing #s are on the asset accounts.
 
-                                long lClosingTransNo = 0;
+                                int64_t lClosingTransNo = 0;
                                 // -------
                                 if (strClosingTransNo.Exists())
                                     lClosingTransNo = atol(strClosingTransNo.Get());
@@ -2567,7 +2567,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		//
 		// Load up the Bylaws.
 		//
-		int nBylawCount	= strNumBylaws.Exists() ? atoi(strNumBylaws.Get()) : 0;
+		int32_t nBylawCount	= strNumBylaws.Exists() ? atoi(strNumBylaws.Get()) : 0;
 		if (nBylawCount > 0)
 		{
 			while (nBylawCount-- > 0)
@@ -2601,7 +2601,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                     //
                     // LOAD VARIABLES AND CONSTANTS.
                     //
-                    int nCount	= strNumVariable.Exists() ? atoi(strNumVariable.Get()) : 0;
+                    int32_t nCount	= strNumVariable.Exists() ? atoi(strNumVariable.Get()) : 0;
                     if (nCount > 0)
                     {
                         while (nCount-- > 0)
@@ -2618,7 +2618,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                             {
                                 OTString strVarName		= xml->getAttributeValue("name"); // Variable name (if needed in script code)
                                 OTString strVarValue	= xml->getAttributeValue("value"); // Value stored in variable (If this is "true" then a real value is expected in a text field below. Otherwise, it's assumed to be a BLANK STRING.)
-                                OTString strVarType		= xml->getAttributeValue("type"); // string or long
+                                OTString strVarType		= xml->getAttributeValue("type"); // string or int64_t
                                 OTString strVarAccess	= xml->getAttributeValue("access"); // constant, persistent, or important.
 
                                 // ----------------------------------
@@ -2694,7 +2694,7 @@ int OTScriptable::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
                                     case OTVariable::Var_Integer:
                                         if (strVarValue.Exists())
                                         {
-                                            const int nVarValue = atoi(strVarValue.Get());
+                                            const int32_t nVarValue = atoi(strVarValue.Get());
                                             bAddedVar = pBylaw->AddVariable(str_var_name, nVarValue, theVarAccess);
                                         }
                                         else

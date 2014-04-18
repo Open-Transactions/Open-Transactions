@@ -182,10 +182,8 @@
     <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OpenTransactions.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp" />
-    <ClInclude Include="..\..\include\otapi\OTAPI_Basic.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OTClient.hpp" />
-    <ClInclude Include="..\..\include\otapi\OTMadeEasy.hpp" />
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_command_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp" />
@@ -197,10 +195,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\otapi\OpenTransactions.cpp" />
     <ClCompile Include="..\..\src\otapi\OTAPI.cpp" />
-    <ClCompile Include="..\..\src\otapi\OTAPI_Basic.cpp" />
     <ClCompile Include="..\..\src\otapi\OTAPI_Exec.cpp" />
     <ClCompile Include="..\..\src\otapi\OTClient.cpp" />
-    <ClCompile Include="..\..\src\otapi\OTMadeEasy.cpp" />
     <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_commands_ot.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_made_easy_ot.cpp" />
@@ -209,24 +205,6 @@
     <ClCompile Include="..\..\src\otapi\ot_opentxs_ot.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_otapi_ot.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_utility_ot.cpp" />
-    <ClCompile Include="..\..\src\otapi\testclient.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\testread.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otapi\testwrite.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BC1D1DC1-6AF7-4C38-A270-7F79A2888054}</ProjectGuid>

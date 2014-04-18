@@ -300,7 +300,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTCachedKey & theSourceKey) // Note: par
     OTASCIIArmor ascCachedKey;
     if ((const_cast<OTCachedKey &>(theSourceKey)).SerializeTo(ascCachedKey)) //it's only not const due to the mutex inside
     {
-        _SharedPtr<OTCachedKey> pMaster(new OTCachedKey); //int nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT;
+        _SharedPtr<OTCachedKey> pMaster(new OTCachedKey); //int32_t nTimeoutSeconds=OT_MASTER_KEY_TIMEOUT;
         // ----------------------------------
         pMaster->SetCachedKey(ascCachedKey);
         // ----------------------------------
@@ -336,7 +336,7 @@ void OTCachedKey::Cleanup()
 }
 
 
-OTCachedKey::OTCachedKey(int nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/) :
+OTCachedKey::OTCachedKey(int32_t nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/) :
     m_pThread(NULL),
     m_nTimeoutSeconds(nTimeoutSeconds),
     m_pMasterPassword(NULL), // This is created in GetMasterPassword, and destroyed by a timer thread sometime soon after.
@@ -455,16 +455,16 @@ OTCachedKey::~OTCachedKey()
 }
 
 
-int OTCachedKey::GetTimeoutSeconds()
+int32_t OTCachedKey::GetTimeoutSeconds()
 {
     tthread::lock_guard<tthread::mutex> lock(m_Mutex); // Multiple threads can't get inside here at the same time.
 
-    const int nTimeout = m_nTimeoutSeconds;
+    const int32_t nTimeout = m_nTimeoutSeconds;
 
     return nTimeout;
 }
 
-void OTCachedKey::SetTimeoutSeconds(int nTimeoutSeconds) // So we can load from the config file.
+void OTCachedKey::SetTimeoutSeconds(int32_t nTimeoutSeconds) // So we can load from the config file.
 {
     tthread::lock_guard<tthread::mutex> lock(m_Mutex); // Multiple threads can't get inside here at the same time.
 
@@ -588,7 +588,7 @@ bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
 
  OT_OPENSSL_CALLBACK * OTAsymmetricKey::GetPasswordCallback()
 
- #define OPENSSL_CALLBACK_FUNC(name) extern "C" (name)(char *buf, int size, int rwflag, void *userdata)
+ #define OPENSSL_CALLBACK_FUNC(name) extern "C" (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
  */
 
@@ -603,7 +603,7 @@ bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
 //static
 _SharedPtr<OTCachedKey> OTCachedKey::CreateMasterPassword(OTPassword & theOutput,
                                                         const char * szDisplay/*=NULL*/,
-                                                        int nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/)
+                                                        int32_t nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/)
 {
     _SharedPtr<OTCachedKey> pMaster(new OTCachedKey(nTimeoutSeconds));
     // -------------------
@@ -689,7 +689,7 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 	// CALL the callback directly. (To retrieve a passphrase so I can use it in GenerateKey
 	// and GetRawKey.)
 	//
-	//int OT_OPENSSL_CALLBACK (char *buf, int size, int rwflag, void *userdata);
+	//int32_t OT_OPENSSL_CALLBACK (char *buf, int32_t size, int32_t rwflag, void *userdata);
 	//
 	// For us, it will set passUserInput to the password from the user, and return
 	// a simple 1 or 0 (instead of the length.) buf and size can be NULL / 0, and
@@ -809,7 +809,7 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 
 		std::string default_password(OT_DEFAULT_PASSWORD); // default password
 		OTPassword passwordDefault; passwordDefault.zeroMemory();
-        passwordDefault.setPassword(default_password.c_str(), static_cast<int>(default_password.length()));
+        passwordDefault.setPassword(default_password.c_str(), static_cast<int32_t>(default_password.length()));
 
 		OTPassword passUserInput;  passUserInput.zeroMemory(); // text mode.
 		OTPasswordData  thePWData(str_display.c_str(), &passUserInput, mySharedPtr); // these pointers are only passed in the case where it's for a master key.
@@ -832,12 +832,12 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 			}
 
 
-			// If the length of the user supplied password is less than 4 characters long, we are going to use the default password!
+			// If the length of the user supplied password is less than 4 characters int64_t, we are going to use the default password!
 			bool bUsingDefaultPassword = false;
 			{
 				if (4 > std::string(passUserInput.getPassword()).length())
 				{
-					OTLog::vOutput(0, "\n Password entered was less than 4 characters long! This is NOT secure!!\n"
+					OTLog::vOutput(0, "\n Password entered was less than 4 characters int64_t! This is NOT secure!!\n"
 						"... Assuming password is for testing only... setting to default password: %s \n",
 						OT_DEFAULT_PASSWORD);
 					bUsingDefaultPassword = true;
@@ -1051,7 +1051,7 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 	6. Even without those things,the master password is stored in an encrypted form after it times out.
 	7. While decrypted (while timer is going) it's still got the above security mechanisms,
 	plus options for standard protected-memory APIs are made available wherever possible.
-	8. The actual passphrase the user types is not stored in memory, except just long enough to
+	8. The actual passphrase the user types is not stored in memory, except just int64_t enough to
 	use it to derive another key, used to unlock the actual key (for a temporary period of time.)
 	9. Meanwhile the actual key is stored in encrypted form on disk, and the derived key isn't stored anywhere.
 	10. Ultimately external hardware, and smart cards, are the way to go. But OT should still do the best possible.
@@ -1077,7 +1077,7 @@ void OTCachedKey::ThreadTimeout(void * pArg)
     // --------------------------------------
 //    tthread::lock_guard<tthread::mutex> lock(*(pMyself->GetMutex())); // Multiple threads can't get inside here at the same time.
     // --------------------------------------
-    int nTimeoutSeconds = 0;
+    int32_t nTimeoutSeconds = 0;
 
     {
         tthread::lock_guard<tthread::mutex> lock(OTCachedKey::s_mutexThreadTimeout);

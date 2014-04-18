@@ -146,7 +146,7 @@ class OTPurse;
 class OTPseudonym;
 class OTNym_or_SymmetricKey;
 // ------------------------------------
-typedef std::map  <int, OTASCIIArmor *>	mapOfPrototokens;
+typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 
 
 /*
@@ -201,7 +201,7 @@ public:
 	// needs more security.  Another 1000.  These provide more security but they also cost more in terms of
 	// resources to process all those prototokens.
 
-    EXPORT	static const int GetMinimumPrototokenCount();
+    EXPORT	static const int32_t GetMinimumPrototokenCount();
 // ---------------------------------------------------------------------
 protected:
     bool                m_bPasswordProtected;  // this token might be encrypted to a passphrase, instead of a Nym.
@@ -211,7 +211,7 @@ protected:
 										// (But still in envelope form, encrypted and ascii-armored.)
 	OTASCIIArmor		m_Signature;	// This is the Mint's signature on the blinded prototoken.
 
-	long				m_lDenomination;// The actual value of the token is between issuer and trader.
+	int64_t				m_lDenomination;// The actual value of the token is between issuer and trader.
 										// The token must have a denomination so we know which Mint Key to verify it with.
 
 	// --------------- Prototoken stuff below here.....
@@ -219,8 +219,8 @@ protected:
 	mapOfPrototokens	m_mapPublic;	// in protoToken state, this object stores N prototokens in order to fulfill the protocol
 	mapOfPrototokens	m_mapPrivate;	// The elements are accessed [0..N]. mapPublic[2] corresponds to map_Private[2], etc.
 
-	int					m_nTokenCount;	// Official token count is stored here for serialization, etc. The maps' size should match.
-	int					m_nChosenIndex;	// When the client submits N prototokens, the server randomly chooses one to sign.
+	int32_t					m_nTokenCount;	// Official token count is stored here for serialization, etc. The maps' size should match.
+	int32_t					m_nChosenIndex;	// When the client submits N prototokens, the server randomly chooses one to sign.
 										// (The server opens the other (N-1) prototokens to verify the amount is correct and
 										// that the IDs are random enough.)
 	// -----------------------------------------------------------
@@ -237,13 +237,13 @@ protected:
 	//
 	// Tokens (and Mints) also have a SERIES:
 	//
-	int					m_nSeries;
+	int32_t					m_nSeries;
 	tokenState			m_State;
 	bool				m_bSavePrivateKeys; // Determines whether it serializes private keys 1 time (yes if true)
 	// ------------------------------------------------------------------------
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	void InitToken();
-	bool ChooseIndex(const int nIndex);
+	bool ChooseIndex(const int32_t nIndex);
     // ------------------------------------------------------------------------
     EXPORT	OTToken();
     EXPORT	OTToken & operator=(const OTToken & rhs);
@@ -301,21 +301,21 @@ protected:
 // ------------------------------------------------------------------------
 EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
                                           OTMint & theMint,
-                                          long lDenomination,
-                                          int nTokenCount=OTToken::GetMinimumPrototokenCount()
+                                          int64_t lDenomination,
+                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
                                           )=0;
 // ------------------------------------------------------------------------
 public:
 EXPORT static OTToken * InstantiateAndGenerateTokenRequest(const OTPurse & thePurse,
                                                            const OTPseudonym & theNym,
                                                            OTMint & theMint,
-                                                           long lDenomination,
-                                                           int nTokenCount=OTToken::GetMinimumPrototokenCount()
+                                                           int64_t lDenomination,
+                                                           int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
                                                            );
 	// Lucre Step 3: Mint signs token (in OTMint)
-	inline	int	GetSeries() const { return m_nSeries; }
+	inline	int32_t	GetSeries() const { return m_nSeries; }
 	inline	void SetSeriesAndExpiration  // (Called by the mint when signing.)
-		(int nSeries, time_t VALID_FROM, time_t VALID_TO)
+		(int32_t nSeries, time_t VALID_FROM, time_t VALID_TO)
 	{	m_nSeries = nSeries; 	m_VALID_FROM = VALID_FROM;	m_VALID_TO = VALID_TO; }
 
 	// Lucre step 4: client unblinds token -- now it's ready for use.
@@ -327,7 +327,7 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 	EXPORT	bool IsTokenAlreadySpent(OTString & theCleartextToken); // Spent Token Database
 	EXPORT	bool RecordTokenAsSpent(OTString & theCleartextToken);  // Spent Token Database
 	// ------------------------------------------------------------------------
-	EXPORT	void SetSignature(const OTASCIIArmor & theSignature, int nTokenIndex);
+	EXPORT	void SetSignature(const OTASCIIArmor & theSignature, int32_t nTokenIndex);
 	EXPORT	bool GetSignature(OTASCIIArmor & theSignature) const;
 	// ------------------------------------------------------------------------
 	// The actual denomination of the token is determined by whether or not it verifies
@@ -338,15 +338,15 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 	// So this value is only here to help you make sure to ask the Mint to use the right
 	// key when verifying the token. And this only works because we have a specific set of
 	// denominations for each digital asset, each with its own key pair in the Mint.
-	inline	long GetDenomination() const { return m_lDenomination; }
-	inline	void SetDenomination(long lVal) { m_lDenomination = lVal; }
+	inline	int64_t GetDenomination() const { return m_lDenomination; }
+	inline	void SetDenomination(int64_t lVal) { m_lDenomination = lVal; }
 
 	// These are not actually necessary for Lucre itself, which only needs
 	// to send a single blinded proto-token. Index is always 0, and Count is
 	// always 1. But this does mean OTToken supports digital cash schemes that
 	// involve multiple prototokens -- even though Lucre is not one of those.
-	EXPORT	bool GetPrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex);
-	EXPORT	bool GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int nTokenIndex);
+	EXPORT	bool GetPrototoken(OTASCIIArmor & ascPrototoken, int32_t nTokenIndex);
+	EXPORT	bool GetPrivatePrototoken(OTASCIIArmor & ascPrototoken, int32_t nTokenIndex);
 
 	virtual	bool SaveContractWallet(std::ofstream & ofs);
 };
@@ -387,8 +387,8 @@ EXPORT	OTToken_Lucre(const OTPurse & thePurse);
 // ------------------------------------------------------------------------
 EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
                                           OTMint & theMint,
-                                          long lDenomination,
-                                          int nTokenCount=OTToken::GetMinimumPrototokenCount()
+                                          int64_t lDenomination,
+                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
                                           );
 // ------------------------------------------------------------------------
 public:

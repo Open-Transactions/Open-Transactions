@@ -1955,7 +1955,7 @@ OT_UTILITY_OT bool Utility::insureHaveAllBoxReceipts(const string & serverID, co
         // which do NOT appear on the client list, are REMOVED From the server list. After all, the
         // client has clearly now removed them, so the server doesn't have to keep them around either.
         //
-        // These are useful for synchronization but also there's a long term benefit, if we include
+        // These are useful for synchronization but also there's a int64_t term benefit, if we include
         // them in the signed receipt (which they will be already, if the receipt contains the entire
         // message and not just the transaction.) That benefit is that we can prove receipt of notice.
         // At least, notice of server replies. But for other notice types, such as notice of upcoming
