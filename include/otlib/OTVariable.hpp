@@ -137,8 +137,6 @@
 #include <map>
 #include <string>
 
-#include "irrxml/irrXML.hpp"
-
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"

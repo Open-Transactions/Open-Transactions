@@ -144,6 +144,10 @@
 #include <OTTrade.hpp>
 #include <OTPaths.hpp>
 
+#include <time.h>
+
+#include "irrxml/irrXML.hpp"
+
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)

@@ -141,6 +141,7 @@
 #include <OTPassword.hpp>
 #include <OTPurse.hpp>
 
+#include "irrxml/irrXML.hpp"
 
 OTWallet::OTWallet() : m_strDataFolder(OTDataFolder::Get())
 {
@@ -1457,8 +1458,8 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
                           "Contents: \n%s\n", __FUNCTION__, szFilename, strFileContents.Get());
             return false;
         }
-        // --------------------------------------------------------------------        
-        irr::io::IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
+        // --------------------------------------------------------------------
+        irr::io::IrrXMLReader* xml = irr::io::createIrrXMLReader(xmlFileContents);
 
         // parse the file until end reached
         while(xml && xml->read())

@@ -136,8 +136,6 @@
 
 #include <set>
 
-#include "irrxml/irrXML.hpp"
-
 #include "OTCommon.hpp"
 
 #include "OTStringXML.hpp"

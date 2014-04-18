@@ -142,6 +142,9 @@
 
 #include <time.h>
 
+#include "irrxml/irrXML.hpp"
+
+
 bool OTPurse::GetNymID(OTIdentifier & theOutput) const
 {
     bool bSuccess = false;

@@ -140,6 +140,9 @@
 #include <OTAccount.hpp>
 #include <OTCron.hpp>
 
+#include "irrxml/irrXML.hpp"
+
+#include <time.h>
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 

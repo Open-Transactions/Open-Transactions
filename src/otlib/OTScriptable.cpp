@@ -140,6 +140,7 @@
 #include <OTScript.hpp>
 #include <OTPseudonym.hpp>
 
+#include "irrxml/irrXML.hpp"
 
 // ---------------------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI

@@ -143,6 +143,7 @@
 #include <OTMessage.hpp>
 #include <OTEnvelope.hpp>
 
+#include "irrxml/irrXML.hpp"
 
 char const * const __TypeStrings[] = 
 {

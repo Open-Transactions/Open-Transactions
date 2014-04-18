@@ -136,8 +136,6 @@
 
 #include <set>
 
-#include "irrxml/irrXML.hpp"
-
 #include "OTCommon.hpp"
 
 #include "OTStringXML.hpp"
@@ -148,7 +146,6 @@
 
 class OTAsymmetricKey;
 class OTPasswordData;
-
 
 class OTContract
 {

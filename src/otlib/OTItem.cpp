@@ -140,6 +140,7 @@
 #include <OTLedger.hpp>
 #include <OTCheque.hpp>
 
+#include "irrxml/irrXML.hpp"
 
 // Server-side.
 //
