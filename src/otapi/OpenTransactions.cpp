@@ -164,7 +164,7 @@
 #include <fstream>
 
 
-#include "simpleini/SimpleIni.hpp"
+
 #include "tinythread.hpp"
 
 #if defined (OPENTXS_HAVE_NETINET_IN_H)
