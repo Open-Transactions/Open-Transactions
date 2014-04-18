@@ -138,6 +138,15 @@
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 
+#include "simpleini/SimpleIni.hpp"
+
+class OTSettings::OTSettingsPvt{
+public:
+    CSimpleIniA * iniSimple;
+
+    OTSettingsPvt() : iniSimple(new CSimpleIniA()) {}
+};
+
 
 bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 {
@@ -151,15 +160,15 @@ bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 	int64_t lFilelength;
 	if (!OTPaths::FileExists(strConfigurationFileExactPath,lFilelength))  // we don't have a config file, lets create a blank one first.
 	{
-		this->m_pIniSimple->Reset(); // clean the config.
+        this->pvt->iniSimple->Reset(); // clean the config.
 
-		SI_Error rc = this->m_pIniSimple->SaveFile(strConfigurationFileExactPath.Get()); // save a new file.
+		SI_Error rc = this->pvt->iniSimple->SaveFile(strConfigurationFileExactPath.Get()); // save a new file.
 		if (0 > rc) return false; // error!
 
-		this->m_pIniSimple->Reset(); // clean the config (again).
+		this->pvt->iniSimple->Reset(); // clean the config (again).
 	}
 
-	SI_Error rc = this->m_pIniSimple->LoadFile(strConfigurationFileExactPath.Get());
+	SI_Error rc = this->pvt->iniSimple->LoadFile(strConfigurationFileExactPath.Get());
 	if (0 > rc) return false;
 	else return true;
 }
@@ -168,7 +177,7 @@ bool	OTSettings::Save(const OTString & strConfigurationFileExactPath)
 {
 	if (! strConfigurationFileExactPath.Exists()) { OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strConfigurationFileExactPath"); return false; }
 
-	SI_Error rc = this->m_pIniSimple->SaveFile(strConfigurationFileExactPath.Get());
+	SI_Error rc = this->pvt->iniSimple->SaveFile(strConfigurationFileExactPath.Get());
 	if (0 > rc) return false;
 	else return true;
 }
@@ -214,7 +223,7 @@ bool	OTSettings::LogChange_bool(const OTString & strSection,const OTString & str
 	return true;
 }
 
-OTSettings::OTSettings(const OTString & strConfigFilePath) : m_pIniSimple(new CSimpleIniA()), m_strConfigurationFileExactPath(strConfigFilePath), b_Loaded(false)
+OTSettings::OTSettings(const OTString & strConfigFilePath) : pvt(new OTSettingsPvt()), m_strConfigurationFileExactPath(strConfigFilePath), b_Loaded(false)
 {
 	if (! m_strConfigurationFileExactPath.Exists())	{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "m_strConfigurationFileExactPath"); OT_FAIL; }
 }
@@ -225,10 +234,10 @@ void OTSettings::SetConfigFilePath(const OTString & strConfigFilePath)
     m_strConfigurationFileExactPath.Set(strConfigFilePath.Get());
 }
 
-OTSettings::OTSettings() : m_pIniSimple(new CSimpleIniA()), b_Loaded(false) {}
+OTSettings::OTSettings() : pvt(new OTSettingsPvt()), b_Loaded(false) {}
 
 OTSettings::~OTSettings() {
-	if (NULL != this->m_pIniSimple) { delete this->m_pIniSimple; this->m_pIniSimple = NULL; }
+	if (NULL != this->pvt->iniSimple) { delete this->pvt->iniSimple; this->pvt->iniSimple = NULL; }
 }
 
 bool	OTSettings::Load()
@@ -256,13 +265,13 @@ const bool & OTSettings::IsLoaded() const
 bool	OTSettings::Reset()
 {
 	b_Loaded = false;
-	this->m_pIniSimple->Reset();
+	this->pvt->iniSimple->Reset();
 	return true;
 }
 
 bool	OTSettings::IsEmpty() const
 {
-	return this->m_pIniSimple->IsEmpty();
+	return this->pvt->iniSimple->IsEmpty();
 }
 
 bool	OTSettings::Check_str (const OTString & strSection, const OTString & strKey, OTString & out_strResult,	bool & out_bKeyExist) const
@@ -273,7 +282,7 @@ bool	OTSettings::Check_str (const OTString & strSection, const OTString & strKey
 	if (! strKey.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 	if (strKey.Compare(""))			{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	const char * szVar = this->m_pIniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
+	const char * szVar = this->pvt->iniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
 	OTString strVar(szVar);
 
 	if (strVar.Exists() && !strVar.Compare("")) {out_bKeyExist = true; out_strResult = strVar; }
@@ -290,13 +299,13 @@ bool	OTSettings::Check_long(const OTString & strSection, const OTString & strKey
 	if (! strKey.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 	if (strKey.Compare(""))			{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	const char * szVar = this->m_pIniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
+	const char * szVar = this->pvt->iniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
 	OTString strVar(szVar);
 
 	if (strVar.Exists() && !strVar.Compare(""))
 	{
 		out_bKeyExist = true;
-		out_lResult = this->m_pIniSimple->GetLongValue(strSection.Get(), strKey.Get(),0);
+		out_lResult = this->pvt->iniSimple->GetLongValue(strSection.Get(), strKey.Get(),0);
 	}
 	else
 	{
@@ -315,7 +324,7 @@ bool	OTSettings::Check_bool(const OTString & strSection, const OTString & strKey
 	if (! strKey.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 	if (strKey.Compare(""))			{ OTLog::vError("%s: Error: %s is Blank!\n", __FUNCTION__, "strKey"				); OT_FAIL; }
 
-	const char * szVar = this->m_pIniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
+	const char * szVar = this->pvt->iniSimple->GetValue(strSection.Get(), strKey.Get(),NULL);
 	OTString strVar(szVar);
 
 	if (strVar.Exists() && 
@@ -366,7 +375,7 @@ bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, 
 	
 
 	// Set New Value
-	SI_Error rc = this->m_pIniSimple->SetValue(strSection.Get(), strKey.Get(), szValue, szComment, true);
+	SI_Error rc = this->pvt->iniSimple->SetValue(strSection.Get(), strKey.Get(), szValue, szComment, true);
 	if (0 > rc) return false;
 
 	if (NULL == szValue)  // We set the key's value to null, thus removing it.
@@ -425,7 +434,7 @@ bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, 
 	if (! LogChange_str(strSection,strKey,strValue)) return false;
 
 	// Set New Value
-	SI_Error rc = this->m_pIniSimple->SetLongValue(strSection.Get(),strKey.Get(),lValue,szComment,false,true);
+	SI_Error rc = this->pvt->iniSimple->SetLongValue(strSection.Get(),strKey.Get(),lValue,szComment,false,true);
 	if (0 > rc) return false;
 
 	// Check if the new value is the same as intended.
@@ -461,12 +470,12 @@ bool	OTSettings::CheckSetSection(const OTString & strSection, const OTString & s
 
 	const char * const szComment = (strComment.Exists() && !strComment.Compare("")) ? strComment.Get() : NULL;
 
-	const int64_t lSectionSize = this->m_pIniSimple->GetSectionSize(strSection.Get());
+    const int64_t lSectionSize = this->pvt->iniSimple->GetSectionSize(strSection.Get());
 
 	if (1 > lSectionSize)
 	{
 		out_bIsNewSection = true;
-		SI_Error rc = this->m_pIniSimple->SetValue(strSection.Get(),NULL,NULL,szComment,false);
+		SI_Error rc = this->pvt->iniSimple->SetValue(strSection.Get(),NULL,NULL,szComment,false);
 		if (0 > rc) return false;
 	}
 	else
