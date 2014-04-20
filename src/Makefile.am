@@ -68,7 +68,7 @@ endif
 
 #### OPENTXS
 
-opentxs_sources         =   opentxs/main.cpp
+opentxs_sources         =   otx/main.cpp
 
 otapi_headers_dir       =   $(opentxs_include_dir)/otapi
 
