@@ -146,7 +146,7 @@
 #include <OTMessage.hpp>
 #include <OTPurse.hpp>
 #include <OTEnvelope.hpp>
-#include <OTAccount.hpp>/
+#include <OTAccount.hpp>
 
 #include "ot_me_switch.hpp"
 
