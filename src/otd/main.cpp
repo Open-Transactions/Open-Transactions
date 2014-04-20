@@ -132,6 +132,8 @@
 
 #include <stdafx.hpp>
 
+#include <anyoption.hpp>
+
 #include <OTAPI.hpp>
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>
@@ -144,10 +146,7 @@
 #include <OTMessage.hpp>
 #include <OTPurse.hpp>
 #include <OTEnvelope.hpp>
-
-#include <OTAccount.hpp>  //included in OTSmartContract.hpp
-
-#include <anyoption.hpp>
+#include <OTAccount.hpp>/
 
 #include "ot_me_switch.hpp"
 
@@ -561,6 +560,10 @@ void CollectDefaultedCLValues(AnyOption *opt,
 }
 
 // *************************************   MAIN FUNCTION   *************************************
+
+
+using std::cerr;
+using std::endl;
 
 
 int32_t main(int32_t argc, char* argv[])
@@ -1067,7 +1070,7 @@ int32_t main(int32_t argc, char* argv[])
 				strFilename = opt->getValue( "script" );
 			}
 
-			std::ifstream t(strFilename.c_str(), ios::in | ios::binary);
+			std::ifstream t(strFilename.c_str(), std::ios::in | std::ios::binary);
 			std::stringstream buffer;
 			buffer << t.rdbuf();
 			std::string results = buffer.str();
@@ -1316,7 +1319,7 @@ int32_t main(int32_t argc, char* argv[])
             if (strFilename.size() >= 8)
             {
                 // request to run opentxs command line script?
-                string endsWith = strFilename.substr(strFilename.size() - 8, 8);
+                std::string endsWith = strFilename.substr(strFilename.size() - 8, 8);
                 if (endsWith == "\\opentxs" || endsWith == "/opentxs")
                 {
                     return madeEasy.opentxs_main_loop();

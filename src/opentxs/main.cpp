@@ -132,25 +132,24 @@ kamH0Y/n11lCvo1oQxM+
 
 #include <stdafx.hpp>
 
-#include <algorithm> 
-#include <functional> 
+#include <algorithm>
 #include <cctype>
+#include <functional>
+#include <iostream>
 #include <locale>
+#include <map>
+#include <vector>
 
 #include <anyoption.hpp>
 
-#include <OTAPI.hpp>
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>
 #include <OTClient.hpp>
-
+//
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTWallet.hpp>
 #include <OTServerContract.hpp>
-#include <OTMessage.hpp>
-#include <OTPurse.hpp>
-#include <OTEnvelope.hpp>
 #include <OTAccount.hpp>
 
 #include "ot_otapi_ot.hpp"
@@ -549,9 +548,9 @@ int main(int argc, char* argv[])
 
     OTAPI_Wrap::OTAPI()->LoadWallet();
 
-    map<string, string> macros;
-    vector<int> errorLineNumbers;
-    vector<string> errorCommands;
+    std::map<string, string> macros;
+    std::vector<int> errorLineNumbers;
+    std::vector<string> errorCommands;
 
     OT_ME madeEasy;
 
@@ -574,7 +573,7 @@ int main(int argc, char* argv[])
         // get next command line from input stream
         if (!bNoPrompt)
         {
-            cout << "\nopentxs> ";
+            std::cout << "\nopentxs> ";
         }
         string cmd;
         getline(std::cin, cmd);
@@ -591,7 +590,7 @@ int main(int argc, char* argv[])
         cmd = trim(cmd);
         if (bEchoCommand)
         {
-            cout << cmd << endl;
+            std::cout << cmd << std::endl;
         }
 
         if (cmd == "quit" || cmd == "exit")
@@ -671,7 +670,7 @@ int main(int argc, char* argv[])
             
             // has this macro been defined?
             string macroName = cmd.substr(macro, macroEnd - macro);
-            map<string, string>::iterator found = macros.find(macroName);
+            std::map<string, string>::iterator found = macros.find(macroName);
             if (found == macros.end())
             {
                 OTLog::vOutput(0, "\n\n***ERROR***\n"
@@ -713,7 +712,7 @@ int main(int argc, char* argv[])
 
         if (bEchoExpand && cmd != originalCmd)
         {
-            cout << cmd << endl;
+            std::cout << cmd << std::endl;
         }
 
         // skip command when anything during macro expansion failed
