@@ -1317,7 +1317,7 @@ int32_t main(int32_t argc, char* argv[])
             {
                 // request to run opentxs command line script?
                 string endsWith = strFilename.substr(strFilename.size() - 8, 8);
-                if (endsWith.compare("\\opentxs") == 0 || endsWith.compare("/opentxs") == 0)
+                if (endsWith == "\\opentxs" || endsWith == "/opentxs")
                 {
                     return madeEasy.opentxs_main_loop();
                 }

@@ -205,7 +205,9 @@ void HandleCommandLineArguments(int argc, char* argv[], AnyOption & opt)
 
     opt.setCommandFlag("echocommand");
     opt.setCommandFlag("echoexpand");
+    opt.setCommandFlag("errorlist");
     opt.setCommandFlag("noprompt");
+    opt.setCommandFlag("test");
 
     opt.setCommandOption("args");
     opt.setCommandOption("myacct");
@@ -548,6 +550,8 @@ int main(int argc, char* argv[])
     OTAPI_Wrap::OTAPI()->LoadWallet();
 
     map<string, string> macros;
+    vector<int> errorLineNumbers;
+    vector<string> errorCommands;
 
     OT_ME madeEasy;
 
@@ -559,9 +563,10 @@ int main(int argc, char* argv[])
         return ProcessCommand(madeEasy, opt);
     }
 
-    bool bNoPrompt = opt.getFlag("noprompt");
-    bool bEchoCommand = opt.getFlag("echocommand");
-    bool bEchoExpand = opt.getFlag("echoexpand");
+    int lineNumber = 0;
+    bool bEchoCommand = opt.getFlag("echocommand") || opt.getFlag("test");
+    bool bEchoExpand = opt.getFlag("echoexpand") || opt.getFlag("test");
+    bool bNoPrompt = opt.getFlag("noprompt") || opt.getFlag("test");
     int processed = 0;
     int failed = 0;
     while (true)
@@ -579,6 +584,8 @@ int main(int argc, char* argv[])
         {
             break;
         }
+
+        lineNumber++;
 
         // quit/exit the command loop?
         cmd = trim(cmd);
@@ -819,15 +826,43 @@ int main(int argc, char* argv[])
         HandleCommandLineArguments(newArgc, newArgv, opt);
 
         bool bFailedCommand = 0 != ProcessCommand(madeEasy, opt);
-        if (bFailedCommand != bExpectFailure)
+        if (bExpectFailure)
         {
-            failed++;
-            OTLog::vOutput(0, "\n\n***ERROR***\nExpected a different return value.\nCommand was: %s", cmd.c_str());
+            if (!bFailedCommand)
+            {
+                failed++;
+                OTLog::vOutput(0, "\n\n***ERROR***\nExpected command to fail.\nSucceeding command was: %s", cmd.c_str());
+                errorLineNumbers.push_back(lineNumber);
+                errorCommands.push_back(originalCmd);
+            }
         }
+        else
+        {
+            if (bFailedCommand)
+            {
+                failed++;
+                OTLog::vOutput(0, "\n\n***ERROR***\nFailed command was: %s", cmd.c_str());
+                errorLineNumbers.push_back(lineNumber);
+                errorCommands.push_back(originalCmd);
+            }
+        }
+
+        delete [] newArgv;
+        delete [] pBuf;
+
         OTLog::Output(0, "\n\n");
         processed++;
     }
 
-    OTLog::vOutput(0, "\n\n%d commands were processed.\n%d commands failed.\n", processed, failed);
+    OTLog::vOutput(0, "\n\n%d commands were processed.\n%d commands failed.\n\n", processed, failed);
+
+    if (opt.getFlag("errorList") || opt.getFlag("test"))
+    {
+        for (size_t i = 0; i < errorLineNumbers.size(); i++)
+        {
+            OTLog::vOutput(0, "\nFailed line %d: %s.\n", errorLineNumbers[i], errorCommands[i].c_str());
+        }
+    }
+
     return 0;
 }

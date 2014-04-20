@@ -36,6 +36,9 @@ showassets
 # download a nym's public key based on his ID.
 checknym --mynym $FTNYM --hisnym $BOBNYM
 
+# fail to download a nym's public key based on his nonexistant ID.
+!checknym --mynym nonexistant --hisnym $BOBNYM
+
 # show the nyms in the wallet.
 shownyms
 

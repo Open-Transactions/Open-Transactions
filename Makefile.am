@@ -11,9 +11,7 @@ SUBDIRS                 =   src
 
 ## Open-Transactions Installs ##
 
-#### autogen.sh, opentxs script CLI utility
-
-dist_bin_SCRIPTS		=	scripts/opentxs
+#### autogen.sh
 
 dist_noinst_SCRIPTS		=	autogen.sh
 
