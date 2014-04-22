@@ -79,6 +79,9 @@ extern "C"
 #include <anyoption.hpp>
 
 
+using namespace std;
+
+
 AnyOption::AnyOption()
 {
 	init();
