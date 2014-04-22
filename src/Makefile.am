@@ -13,16 +13,7 @@ common_includes         =	$(AM_CXXFLAGS)			\
 
 ## Open Transactions Bin Build  ##
 
-bin_PROGRAMS            =   opentxs ot otserver createmint
-
-#### OPENTXS
-
-opentxs_SOURCES         =  $(opentxs_sources) $(otapi_headers)
-
-opentxs_CXXFLAGS        =  $(common_includes) -I$(otapi_headers_dir)
-
-opentxs_LDADD           =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
-opentxs_DEPENDENCIES    =  otapi/libotapi.la otlib/libot.la
+bin_PROGRAMS            =   ot opentxs otserver createmint
 
 #### OT
 
@@ -32,6 +23,15 @@ ot_CXXFLAGS             =  $(common_includes) -I$(otapi_headers_dir)
 
 ot_LDADD                =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
 ot_DEPENDENCIES         =  otapi/libotapi.la otlib/libot.la
+
+#### OPENTXS
+
+opentxs_SOURCES         =  $(opentxs_sources) $(otapi_headers)
+
+opentxs_CXXFLAGS        =  $(common_includes) -I$(otapi_headers_dir)
+
+opentxs_LDADD           =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
+opentxs_DEPENDENCIES    =  otapi/libotapi.la otlib/libot.la
 
 #### OT Server
 
@@ -66,25 +66,12 @@ createmint_CXXFLAGS    +=   -DOT_ZMQ_MODE
 endif
 
 
-#### OPENTXS
-
-opentxs_sources         =   otx/main.cpp
-
-otapi_headers_dir       =   $(opentxs_include_dir)/otapi
-
-otapi_headers           =   $(otapi_headers_dir)/main.hpp		\
-                            $(otapi_headers_dir)/OpenTransactions.hpp	\
-                            $(otapi_headers_dir)/OTAPI.hpp		\
-                            $(otapi_headers_dir)/OT_ME.hpp		\
-                            $(otapi_headers_dir)/OTClient.hpp		\
-                            $(otapi_headers_dir)/OTServerConnection.hpp		\
-                            $(otapi_headers_dir)/ot_otapi_ot.hpp
-                    
-
-#### OT
+#### OT and OPENTXS
 
 ot_sources              =   otd/main.cpp
 
+opentxs_sources         =   otc/main.cpp
+
 otapi_headers_dir       =   $(opentxs_include_dir)/otapi
 
 otapi_headers           =   $(otapi_headers_dir)/main.hpp		\
@@ -92,12 +79,12 @@ otapi_headers           =   $(otapi_headers_dir)/main.hpp		\
                             $(otapi_headers_dir)/OTAPI.hpp		\
                             $(otapi_headers_dir)/OT_ME.hpp		\
                             $(otapi_headers_dir)/OTClient.hpp		\
-                            $(otapi_headers_dir)/OTServerConnection.hpp
-                    
+                            $(otapi_headers_dir)/OTServerConnection.hpp	\
+                            $(otapi_headers_dir)/ot_otapi_ot.hpp
 
 #### OT Server
 
-otserver_sources        =   ots/OTClientConnection.cpp	\
+otserver_sources        =   ots/OTClientConnection.cpp			\
                             ots/OTServer.cpp
 
 otserver_headers_dir    =   $(opentxs_include_dir)/ots
