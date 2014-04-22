@@ -144,8 +144,6 @@
 
 #include "OTString.hpp"
 
-#include "simpleini/SimpleIni.hpp"
-
 
 #if __clang__
 #pragma clang diagnostic push
@@ -156,8 +154,8 @@
 class OTSettings
 {
 private:
-
-    CSimpleIniA * m_pIniSimple;
+    class OTSettingsPvt;
+    OTSettingsPvt * const pvt;
 
     bool b_Loaded;
 

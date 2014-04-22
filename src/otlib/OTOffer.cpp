@@ -136,6 +136,8 @@
 
 #include <OTLog.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <time.h>
 
 

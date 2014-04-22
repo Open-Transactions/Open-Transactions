@@ -134,8 +134,6 @@
 #include "OTIdentifier.hpp"
 #include "OTBylaw.hpp"
 
-#include "irrxml/irrXML.hpp"
-
 #include <set>
 
 class OTAsymmetricKey;

@@ -141,6 +141,8 @@
 #include <OTEnvelope.hpp>
 #include <OTPaths.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 bool OTPurse::GetNymID(OTIdentifier & theOutput) const
 {
     bool bSuccess = false;

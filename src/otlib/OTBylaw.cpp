@@ -143,6 +143,8 @@
 #include <OTAgreement.hpp>
 #include <OTScript.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 
 // Have the agent try to verify his own signature against any contract.
 //
