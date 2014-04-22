@@ -106,6 +106,7 @@ Section -Main SEC0000
     File ..\lib\Win32\Release\otmint.exe
     File ..\lib\Win32\Release\ot.exe
     File ..\lib\Win32\Release\otserver.exe
+    File ..\lib\Win32\Release\opentxs.exe
 
 # Moneychanger
 
