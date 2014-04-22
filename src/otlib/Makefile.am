@@ -10,10 +10,10 @@ opentxs_source_dir 	=	$(top_srcdir)/src
 
 ## COMMON FLAGS ###
 
-common_includes		=	$(AM_CXXFLAGS)			\
+common_includes		=	$(AM_CXXFLAGS)				\
 				-I$(top_builddir)/include/otlib 	\
 				-I$(opentxs_include_dir)		\
-				-I$(opentxs_include_dir)/otlib	\
+				-I$(opentxs_include_dir)/otlib		\
 				-I$(opentxs_include_dir)/containers	\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
@@ -27,11 +27,11 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 
 libot_la_CXXFLAGS	=	$(common_includes)
 
-libot_la_LIBADD		=	bigint/libbigint.la	\
-                                irrxml/libirrxml.la \
-                                lucre/liblucre.la \
+libot_la_LIBADD		=	bigint/libbigint.la		\
+                                irrxml/libirrxml.la		\
+                                lucre/liblucre.la		\
 				otprotob/libotprotob.la		\
-                                otext/libotext.la \
+                                otext/libotext.la		\
                                 $(DEPS_LIBS)
 
 libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
@@ -69,59 +69,59 @@ endif
 
 
 otlib_sources     =	OTAccount.cpp		\
-				OTAgreement.cpp		\
-				OTASCIIArmor.cpp		\
-				OTAssert.cpp		\
-				OTAssetContract.cpp		\
-				OTAsymmetricKey.cpp		\
-				OTBasket.cpp		\
-				OTBylaw.cpp		\
-				OTCachedKey.cpp		\
-				OTCheque.cpp		\
-				OTContract.cpp		\
-				OTCredential.cpp		\
-				OTCron.cpp		\
-				OTCronItem.cpp		\
-				OTCrypto.cpp		\
-				OTData.cpp		\
-				OTDataCheck.cpp		\
-				OTDigitalCash.cpp		\
-				OTEnvelope.cpp		\
-				OTIdentifier.cpp		\
-				OTInstrument.cpp		\
-				OTItem.cpp		\
-				OTKeyring.cpp		\
-				OTLedger.cpp		\
-				OTLog.cpp		\
-				OTMarket.cpp		\
-				OTMessage.cpp		\
-				OTMessageBuffer.cpp		\
-				OTMint.cpp		\
-				OTOffer.cpp		\
-				OTPassword.cpp		\
-				OTPaths.cpp		\
-				OTPayload.cpp		\
-				OTPayment.cpp		\
-				OTPaymentPlan.cpp		\
-				OTPseudonym.cpp		\
-				OTPurse.cpp		\
-				OTScript.cpp		\
-				OTScriptable.cpp		\
-				OTServerContract.cpp		\
-				OTSettings.cpp		\
-				OTSignature.cpp		\
-				OTSignedFile.cpp		\
-				OTSmartContract.cpp		\
-				OTStorage.cpp		\
-				OTString.cpp		\
-				OTStringXML.cpp		\
-				OTSymmetricKey.cpp		\
-				OTToken.cpp		\
-				OTTrackable.cpp		\
-				OTTrade.cpp		\
-				OTTransaction.cpp		\
-				OTTransactionType.cpp		\
-				OTWallet.cpp			
+			OTAgreement.cpp		\
+			OTASCIIArmor.cpp	\
+			OTAssert.cpp		\
+			OTAssetContract.cpp	\
+			OTAsymmetricKey.cpp	\
+			OTBasket.cpp		\
+			OTBylaw.cpp		\
+			OTCachedKey.cpp		\
+			OTCheque.cpp		\
+			OTContract.cpp		\
+			OTCredential.cpp	\
+			OTCron.cpp		\
+			OTCronItem.cpp		\
+			OTCrypto.cpp		\
+			OTData.cpp		\
+			OTDataCheck.cpp		\
+			OTDigitalCash.cpp	\
+			OTEnvelope.cpp		\
+			OTIdentifier.cpp	\
+			OTInstrument.cpp	\
+			OTItem.cpp		\
+			OTKeyring.cpp		\
+			OTLedger.cpp		\
+			OTLog.cpp		\
+			OTMarket.cpp		\
+			OTMessage.cpp		\
+			OTMessageBuffer.cpp	\
+			OTMint.cpp		\
+			OTOffer.cpp		\
+			OTPassword.cpp		\
+			OTPaths.cpp		\
+			OTPayload.cpp		\
+			OTPayment.cpp		\
+			OTPaymentPlan.cpp	\
+			OTPseudonym.cpp		\
+			OTPurse.cpp		\
+			OTScript.cpp		\
+			OTScriptable.cpp	\
+			OTServerContract.cpp	\
+			OTSettings.cpp		\
+			OTSignature.cpp		\
+			OTSignedFile.cpp	\
+			OTSmartContract.cpp	\
+			OTStorage.cpp		\
+			OTString.cpp		\
+			OTStringXML.cpp		\
+			OTSymmetricKey.cpp	\
+			OTToken.cpp		\
+			OTTrackable.cpp		\
+			OTTrade.cpp		\
+			OTTransaction.cpp	\
+			OTTransactionType.cpp	\
+			OTWallet.cpp
 
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
@@ -133,7 +133,7 @@ otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/Timer.hpp			\
 				$(otlib_headers_ext)
 
-otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h    \
+otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/ExportWrapper.h		\
 				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_dir)/TR1_Wrapper.hpp		\
@@ -243,7 +243,7 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 
 simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
 
-simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  				\
+simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  		\
 					$(simpleini_headers_dir)/SimpleIni.hpp
 
 pkginclude_simpleinidir		=	$(pkgincludedir)/simpleini

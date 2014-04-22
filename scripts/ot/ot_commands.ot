@@ -124,7 +124,7 @@ def details_show_basket()
                         
                         if (!VerifyIntVal(nMemberCount))
                         {
-                            OT_API_Output(0, "ERROR: expected int return value from OT_API_Basket_GetMemberCount(strAssetID)\n")
+                            OT_API_Output(0, "ERROR: expected int32_t return value from OT_API_Basket_GetMemberCount(strAssetID)\n")
                         }
                         else if (nMemberCount <= 0)
                         {
@@ -3463,7 +3463,7 @@ def details_send_transfer(strMyAcctID, strHisAcctID, strAmount, strNote)
     var strResponse = OT_ME_send_transfer(strMyServerID, strMyNymID, strMyAcctID, strHisAcctID, lAmount, strNote)
     var strAttempt  = "send_transfer"
     /*
-     int notarizeTransfer(   const std::string SERVER_ID,
+     int32_t notarizeTransfer(   const std::string SERVER_ID,
                              const std::string USER_ID,
                              const std::string ACCT_FROM,
                              const std::string ACCT_TO,
@@ -5813,7 +5813,7 @@ def accept_inbox_items(strMyAcctID, nItemType, strIndices)
     // if it is running low.
     // But in this case, we need the numbers available BEFORE sending the transaction
     // request, because the call to OT_API_Ledger_CreateResponse is where the number
-    // is first needed, and that call is made long before the server transaction request
+    // is first needed, and that call is made int64_t before the server transaction request
     // is actually sent.
     //
     if (!OT_ME_insure_enough_nums(10, strServerID, strMyNymID))
@@ -7088,7 +7088,7 @@ def details_withdraw_voucher(strOutput)
     var lAmount = OT_API_StringToAmount(strAssetTypeID, strAmount)
     var strResponse = OT_ME_withdraw_voucher(strServerID, strMyNymID, MyAcct, strHisNymID, strMemo, lAmount)
     var strAttempt  = "withdraw_voucher"
-//  static int withdrawVoucher(const std::string SERVER_ID,
+//  static int32_t withdrawVoucher(const std::string SERVER_ID,
 //                             const std::string USER_ID,
 //                             const std::string ACCT_ID,
 //                             const std::string RECIPIENT_USER_ID,
@@ -7165,7 +7165,7 @@ def details_withdraw_voucher(strOutput)
 
 
 
-//  static int withdrawVoucher(const std::string SERVER_ID,
+//  static int32_t withdrawVoucher(const std::string SERVER_ID,
 //                             const std::string USER_ID,
 //                             const std::string ACCT_ID,
 //                             const std::string RECIPIENT_USER_ID,
@@ -7385,8 +7385,8 @@ def main_show_market_list()
             
             for (var nIndex = 0; nIndex < nCount; ++nIndex)
             {
-                nTemp = nIndex // convert nIndex from int to size_t
-                var marketData := marketList.GetMarketData(nTemp) // can't pass an int here--it expects size_t. (It'll crash..)
+                nTemp = nIndex // convert nIndex from int32_t to size_t
+                var marketData := marketList.GetMarketData(nTemp) // can't pass an int32_t here--it expects size_t. (It'll crash..)
                 
                 if (!VerifyStorable(marketData, "OTDB_MarketData"))
                 {
@@ -7756,7 +7756,7 @@ def main_adjust_usage_credits()
                 print(strResponse) // stdout
                 
                 // IF THE_MESSAGE is of command type @usageCredits, and IF it was a SUCCESS,
-                // then this function returns the usage credits BALANCE (it's a long int, but
+                // then this function returns the usage credits BALANCE (it's a int64_t int32_t, but
                 // passed as a string). If you adjusted the balance using the usageCredits
                 // command (THE_MESSAGE being the server's reply to that) then you will see
                 // the balance AFTER the adjustment. (The current "Usage Credits" balance.)
@@ -8042,7 +8042,7 @@ def details_pay_dividend(strAmount, strMemo)
     var strResponse = OT_ME_pay_dividend(Server, strMyNymID, MyAcct, strHisPurse, strMemo, lAmount)
     var strAttempt  = "pay_dividend"
     
-//static int payDividend(const std::string SERVER_ID,
+//static int32_t payDividend(const std::string SERVER_ID,
 //                       const std::string ISSUER_USER_ID,
 //                       const std::string DIVIDEND_FROM_ACCT_ID,
 //                       const std::string SHARES_ASSET_TYPE_ID,
@@ -8071,7 +8071,7 @@ def details_pay_dividend(strAmount, strMemo)
 
 
 
-//static int payDividend(const std::string SERVER_ID,
+//static int32_t payDividend(const std::string SERVER_ID,
 //                       const std::string ISSUER_USER_ID,
 //                       const std::string DIVIDEND_FROM_ACCT_ID,
 //                       const std::string SHARES_ASSET_TYPE_ID,
@@ -9599,7 +9599,7 @@ def handle_payment_index(strMyAcctID, nIndex, strPaymentType, strInbox) // (If n
 {
     if (!VerifyStringVal(strMyAcctID) || !VerifyIntVal(nIndex))
     {
-        OT_API_Output(0, "Failure: Either strMyAcctID not a valid string, or nIndex not a valid int.\n")
+        OT_API_Output(0, "Failure: Either strMyAcctID not a valid string, or nIndex not a valid int32_t.\n")
         return (-1)
     }
     // --------------------------------------------------------------------
@@ -10037,7 +10037,7 @@ def main_payinvoice()
         // Should I bother moving the invoice from the payments inbox to the record box?
         //
         // Update: Okay for now, I'm using an API call here (RecordPayment) which moves the invoice.
-        // HOWEVER, in the long term, we don't want to do it here. Rather, we want to do it inside OT while
+        // HOWEVER, in the int64_t term, we don't want to do it here. Rather, we want to do it inside OT while
         // it's processesing the server reply for your cheque (invoice) deposit. For example what if there's
         // a network problem and we don't process that reply here now? There'll still be a copy of the reply
         // in the Nymbox and it will still get processed at a future time... and THAT's when we need to move
@@ -10046,7 +10046,7 @@ def main_payinvoice()
         // OT_API_RecordPayment(const OTIdentifier & SERVER_ID,
 //                              const OTIdentifier & USER_ID,
 //                              bool bIsInbox, // true == payments inbox. false == payments outbox.
-//                              int  nIndex)   // removes payment instrument (from payments in or out box) and moves to record box.
+//                              int32_t  nIndex)   // removes payment instrument (from payments in or out box) and moves to record box.
 //        if (!OT_API_RecordPayment(strServerID, strMyNymID, ))   { }
         //
         
@@ -10064,7 +10064,7 @@ def main_payinvoice()
          functionality, which is outside the scope of OT. The actual CALL to store in the record box, however
          should occur inside OT.)
          - For now, I'm using the below API call, so it's available inside the scripts. This is "good enough"
-         for now, just to get the payments inbox/outbox working for the scripts. But in the long term, I'll need
+         for now, just to get the payments inbox/outbox working for the scripts. But in the int64_t term, I'll need
          to add the hooks directly into OT as described just above. (It'll be necessary in order to get the record
          box working.)
          - Since I'm only worried about Payments Inbox for now, and since I'll be calling the below function

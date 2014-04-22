@@ -182,7 +182,7 @@ void OTMessageBuffer::Push(OTMessage & theMessage)
 // Therefore, we do NOT want to discard THOSE replies, but put them back if
 // necessary -- only discarding the ones where the IDs match.
 //
-OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strServerID, const OTString & strNymID)
+OTMessage * OTMessageBuffer::Pop(const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID)
 {
     OTMessage * pReturnValue = NULL;
 
@@ -214,7 +214,7 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
         // Below this point, we KNOW that pMsg has the CORRECT ServerID and NymID.
         // (And that all others, though popped, were pushed to temp_list in order.)
         // -------------------------------------------------        
-        const long lMsgRequest = atol(pMsg->m_strRequestNum.Get());
+        const int64_t lMsgRequest = atol(pMsg->m_strRequestNum.Get());
         // ----------------------------
         // Now we only need to see if the request number matches...
         //
@@ -225,8 +225,8 @@ OTMessage * OTMessageBuffer::Pop(const long & lRequestNum, const OTString & strS
         }
         else // Server/Nym IDs match, BUT -- Wrong request num! (Discard message and skip.)
         {
-            OTLog::vOutput(0, "OTMessageBuffer::Pop: Warning: While looking for server (%s) reply to request number %ld for Nym (%s), "
-                           "discovered (and discarded) an old server reply for request number %ld "
+            OTLog::vOutput(0, "OTMessageBuffer::Pop: Warning: While looking for server (%s) reply to request number %lld for Nym (%s), "
+                           "discovered (and discarded) an old server reply for request number %lld "
                            "(A %s command. The client should have flushed it by now anyway, so it was probably slow on the network "
                            "and then assumed to have been dropped. It's okay--the protocol is designed to handle these occurrences.)\n",
                            strServerID.Get(), lRequestNum, strNymID.Get(), lMsgRequest, pMsg->m_strCommand.Get());
@@ -298,7 +298,7 @@ OTMessageOutbuffer::OTMessageOutbuffer() : m_strDataFolder(OTDataFolder::Get())
 
 void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap allocated.
 {
-    long lRequestNum = 0;
+    int64_t lRequestNum = 0;
     
     if (theMessage.m_strRequestNum.Exists())
         lRequestNum = atol(theMessage.m_strRequestNum.Get()); // The map index is the request number on the message itself.
@@ -312,7 +312,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
     for (; it != m_mapMessages.end(); ++it)
     {
         // -----------------------------
-        const long  & lTempReqNum   = it->first;
+        const int64_t  & lTempReqNum   = it->first;
         // -----------------------
         if (lTempReqNum != lRequestNum)
         {
@@ -345,7 +345,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
     // Now that we KNOW there's nothing already there with that request number (for that
     // server ID and Nym ID), we go ahead and add the new message to the map. (And take ownership.)
     //
-    m_mapMessages.insert(std::pair<long, OTMessage *>(lRequestNum, &theMessage));
+    m_mapMessages.insert(std::pair<int64_t, OTMessage *>(lRequestNum, &theMessage));
     // ----------------------------------
     //
     // Save it to local storage, in case we don't see the reply until the next run.
@@ -395,7 +395,7 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
         while (it != m_mapMessages.end())
         {
             // -----------------------------
-            const long  & lTempReqNum   = it->first;
+            const int64_t  & lTempReqNum   = it->first;
             // -----------------------
             OTMessage   * pMsg          = it->second;
             OT_ASSERT(NULL != pMsg);
@@ -437,14 +437,14 @@ void OTMessageOutbuffer::AddSentMessage(OTMessage & theMessage) // must be heap 
 // that comes back from this function. The buffer maintains
 // ownership until you call RemoveSentMessage().
 
-OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const OTString & strServerID, const OTString & strNymID)
+OTMessage * OTMessageOutbuffer::GetSentMessage(const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID)
 {
     mapOfMessages::iterator it = m_mapMessages.begin();
     
     for ( ; it != m_mapMessages.end(); ++it)
     {
         // -----------------------------
-        const long  & lTempReqNum   = it->first;
+        const int64_t  & lTempReqNum   = it->first;
         // -----------------------
         if (lTempReqNum != lRequestNum)
         {
@@ -477,7 +477,7 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const O
                      strServerID.Get(),          OTLog::PathSeparator(),
                      "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                      strNymID.Get());
-    strFile.Format("%ld.msg", lRequestNum);
+    strFile.Format("%lld.msg", lRequestNum);
     // -----------------------------------
     // Check the existing list, if it exists.
     //
@@ -506,7 +506,7 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const long & lRequestNum, const O
                 // Since we had to load it from local storage, let's add it to
                 // the list in RAM.
                 //
-                m_mapMessages.insert(std::pair<long, OTMessage *>(lRequestNum, pMsg));
+                m_mapMessages.insert(std::pair<int64_t, OTMessage *>(lRequestNum, pMsg));
                 theMsgAngel.SetCleanupTargetPointer(NULL);
                 return pMsg;
             }
@@ -536,7 +536,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
     while (it != m_mapMessages.end())
     {
         // -----------------------------
-        const long  & lRequestNum   = it->first;
+        const int64_t  & lRequestNum   = it->first;
         OTMessage   * pThisMsg      = it->second;
         OT_ASSERT(NULL != pThisMsg);
         // -----------------------------
@@ -662,7 +662,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                                  pstrServerID->Get(),        OTLog::PathSeparator(),
                                  "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                                  pstrNymID->Get());
-                strFile.Format("%ld.msg", lRequestNum);
+                strFile.Format("%lld.msg", lRequestNum);
                 // ---------------------------------------------------------------------------
                 OTNumList theNumList;
                 std::string str_data_filename("sent.dat");  // todo hardcoding.
@@ -684,7 +684,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
                     while (it != m_mapMessages.end())
                     {
                         // -----------------------------
-                        const long  & lTempReqNum   = it->first;
+                        const int64_t  & lTempReqNum   = it->first;
                         // -----------------------
                         OTMessage   * pMsg          = it->second;
                         OT_ASSERT(NULL != pMsg);
@@ -746,7 +746,7 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
 
 // OTMessageOutbuffer deletes the OTMessage when you call this.
 //
-bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTString & strServerID, const OTString & strNymID)
+bool OTMessageOutbuffer::RemoveSentMessage(const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID)
 {
     OTString strFolder, strFile;
     strFolder.Format("%s%s%s%s%s%s%s",
@@ -754,7 +754,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
                      strServerID.Get(),          OTLog::PathSeparator(),
                      "sent", /*todo hardcoding*/ OTLog::PathSeparator(),
                      strNymID.Get());
-    strFile.Format("%ld.msg", lRequestNum);
+    strFile.Format("%lld.msg", lRequestNum);
     // ------------------------------------------------
     mapOfMessages::iterator it = m_mapMessages.begin();
     
@@ -763,7 +763,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
     while (it != m_mapMessages.end())
     {
         // -----------------------------
-        const long  & lTempReqNum   = it->first;
+        const int64_t  & lTempReqNum   = it->first;
         // -----------------------
         if (lTempReqNum != lRequestNum)
         {
@@ -819,7 +819,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
         while (it != m_mapMessages.end())
         {
             // -----------------------------
-            const long  & lTempReqNum   = it->first;
+            const int64_t  & lTempReqNum   = it->first;
             // -----------------------
             OTMessage   * pMsg          = it->second;
             OT_ASSERT(NULL != pMsg);
@@ -877,7 +877,7 @@ bool OTMessageOutbuffer::RemoveSentMessage(const long & lRequestNum, const OTStr
 
 OTMessage * OTMessageOutbuffer::GetSentMessage(const OTTransaction & theTransaction)
 {
-    const long &    lRequestNum = theTransaction.GetRequestNum();
+    const int64_t &    lRequestNum = theTransaction.GetRequestNum();
     const OTString  strServerID(theTransaction.GetPurportedServerID());
     const OTString  strNymID(theTransaction.GetUserID());
     // -------------------------------------
@@ -892,7 +892,7 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const OTTransaction & theTransact
 //
 bool OTMessageOutbuffer::RemoveSentMessage(const OTTransaction & theTransaction)
 {
-    const long &    lRequestNum = theTransaction.GetRequestNum();
+    const int64_t &    lRequestNum = theTransaction.GetRequestNum();
     const OTString  strServerID(theTransaction.GetPurportedServerID());
     const OTString  strNymID(theTransaction.GetUserID());
     // -------------------------------------

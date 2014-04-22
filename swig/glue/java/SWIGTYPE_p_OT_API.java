@@ -8,18 +8,18 @@
 
 package org.opentransactions.otapi;
 
-public class SWIGTYPE_p_uint32_t {
+public class SWIGTYPE_p_OT_API {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_uint32_t(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_OT_API(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_uint32_t() {
+  protected SWIGTYPE_p_OT_API() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_uint32_t obj) {
+  protected static long getCPtr(SWIGTYPE_p_OT_API obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

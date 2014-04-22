@@ -228,8 +228,8 @@ protected:
 	bool			m_bHasRecipient;    // For cheques mostly, and payment plans too.
 	bool			m_bHasRemitter;     // For vouchers (cashier's cheques), the Nym who bought the voucher is the remitter, whereas the "sender" is the server Nym whose account the voucher is drawn on.
 
-    long            m_lAmount;          // Contains 0 by default. This is set by SetPayment() along with other useful values.
-    long            m_lTransactionNum;  // Contains 0 by default. This is set by SetPayment() along with other useful values.
+    int64_t            m_lAmount;          // Contains 0 by default. This is set by SetPayment() along with other useful values.
+    int64_t            m_lTransactionNum;  // Contains 0 by default. This is set by SetPayment() along with other useful values.
 
     OTString        m_strMemo;          // Memo, Consideration, Subject, etc.
 
@@ -292,20 +292,20 @@ EXPORT    bool SetTempValuesFromPurse         (const OTPurse          & theInput
     // set, if available, and can be queried thereafter from *this.
     // Otherwise, these functions will return false.
     //
-EXPORT    bool GetAmount        (long & lOutput)              const;
-EXPORT    bool GetTransactionNum(long & lOutput)              const;
+EXPORT    bool GetAmount        (int64_t & lOutput)              const;
+EXPORT    bool GetTransactionNum(int64_t & lOutput)              const;
     // ----------------------------
 // Only works for payment plans and smart contracts. Gets the
 // opening transaction number for a given Nym, if applicable.
 // (Or closing number for a given asset account.)
-EXPORT    bool GetOpeningNum(      long         & lOutput,
+EXPORT    bool GetOpeningNum(      int64_t         & lOutput,
                              const OTIdentifier & theNymID)   const;
-EXPORT    bool GetClosingNum(      long         & lOutput,
+EXPORT    bool GetClosingNum(      int64_t         & lOutput,
                              const OTIdentifier & theAcctID)  const;
     // ----------------------------
 EXPORT    bool GetAllTransactionNumbers(OTNumList & numlistOutput) const;
     // ----------------------------
-EXPORT    bool HasTransactionNum(const long & lInput)         const;
+EXPORT    bool HasTransactionNum(const int64_t & lInput)         const;
 EXPORT    bool GetMemo(OTString & strOutput)                  const;
 EXPORT    bool GetAssetTypeID    (OTIdentifier & theOutput)   const;
 EXPORT    bool GetServerID       (OTIdentifier & theOutput)   const;
@@ -333,7 +333,7 @@ EXPORT  void InitPayment();
 EXPORT	virtual void Release();
 EXPORT	void Release_Payment();
 
-EXPORT	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+EXPORT	virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 EXPORT	virtual bool SaveContractWallet(std::ofstream & ofs);
     // ----------------------------
 EXPORT	static const char * _GetTypeString(paymentType theType);

@@ -181,10 +181,10 @@ OT_ME::~OT_ME()
 
 typedef std::map<std::string, std::string>  mapOfArguments;
 
-//int    OT_CLI_GetArgsCount     (const std::string str_Args);
+//int32_t    OT_CLI_GetArgsCount     (const std::string str_Args);
 //std::string OT_CLI_GetValueByKey    (const std::string str_Args, const std::string str_key);
-//std::string OT_CLI_GetValueByIndex  (const std::string str_Args, const int nIndex);
-//std::string OT_CLI_GetKeyByIndex    (const std::string str_Args, const int nIndex);
+//std::string OT_CLI_GetValueByIndex  (const std::string str_Args, const int32_t nIndex);
+//std::string OT_CLI_GetKeyByIndex    (const std::string str_Args, const int32_t nIndex);
 
 // If user-defined script arguments were passed,
 // using:  --Args "key value key value key value"
@@ -192,14 +192,14 @@ typedef std::map<std::string, std::string>  mapOfArguments;
 // pairs available. (In that example, the return
 // value would be 3.)
 //
-int OT_CLI_GetArgsCount(const std::string str_Args)
+int32_t OT_CLI_GetArgsCount(const std::string str_Args)
 {
     const OTString strArgs(str_Args);
-    int nRetVal = 0;
+    int32_t nRetVal = 0;
     mapOfArguments map_values;
     const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
     if (bTokenized)
-        nRetVal = static_cast<int> (map_values.size());
+        nRetVal = static_cast<int32_t> (map_values.size());
     return nRetVal;
 }
 
@@ -231,15 +231,15 @@ std::string OT_CLI_GetValueByKey(const std::string str_Args, const std::string s
 // using:  --Args "key value key value key value"
 // then this function can retrieve any value (by index.)
 //
-std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int nIndex)
+std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int32_t nIndex)
 {
     const OTString strArgs(str_Args);
     std::string str_retval = "";
     mapOfArguments map_values;
     const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-    if (bTokenized && (nIndex < static_cast<int>(map_values.size())))
+    if (bTokenized && (nIndex < static_cast<int32_t>(map_values.size())))
     {
-        int nMapIndex = (-1);
+        int32_t nMapIndex = (-1);
         FOR_EACH(mapOfArguments, map_values)
         {
             ++nMapIndex;
@@ -265,15 +265,15 @@ std::string OT_CLI_GetValueByIndex(const std::string str_Args, const int nIndex)
 // using:  --Args "key value key value key value"
 // then this function can retrieve any key (by index.)
 //
-std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const int nIndex)
+std::string OT_CLI_GetKeyByIndex(const std::string str_Args, const int32_t nIndex)
 {
     const OTString strArgs(str_Args);
     std::string str_retval = "";
     mapOfArguments map_values;
     const bool bTokenized = strArgs.TokenizeIntoKeyValuePairs(map_values);
-    if (bTokenized && (nIndex < static_cast<int>(map_values.size())))
+    if (bTokenized && (nIndex < static_cast<int32_t>(map_values.size())))
     {
-        int nMapIndex = (-1);
+        int32_t nMapIndex = (-1);
         FOR_EACH(mapOfArguments, map_values)
         {
             ++nMapIndex;
@@ -329,7 +329,7 @@ std::string OT_CLI_ReadUntilEOF()
     // std::istream_iterator<char> end;
     // std::string results(it, end);
 
-    // int onechar;
+    // int32_t onechar;
 
     std::string result("");
 
@@ -337,7 +337,7 @@ std::string OT_CLI_ReadUntilEOF()
     {
         std::string input_line("");
 
-//      int n;
+//      int32_t n;
 ////    std::string sn;
 //      std::stringstream ssn;
 //
@@ -1465,7 +1465,7 @@ int32_t OT_ME::VerifyMessageSuccess(const std::string & str_Message)
         break;
     default:
         OTLog::vOutput(0, "%s: Error. (This should never happen!) nStatus: %d, Input:\n%s\n",
-            __FUNCTION__, static_cast<int>(nStatus), str_Message.c_str());
+            __FUNCTION__, static_cast<int32_t>(nStatus), str_Message.c_str());
         nStatus = (-1);
         break;
     }
@@ -1503,7 +1503,7 @@ int32_t OT_ME::VerifyMsgBalanceAgrmntSuccess(const std::string & SERVER_ID,
         break;
     default:
         OTLog::vOutput(0, "%s: Error. (This should never happen!) nStatus: %d, Input:\n%s\n",
-            __FUNCTION__, static_cast<int>(nStatus), str_Message.c_str());
+            __FUNCTION__, static_cast<int32_t>(nStatus), str_Message.c_str());
         nStatus = (-1);
         break;
     }
@@ -1541,7 +1541,7 @@ int32_t OT_ME::VerifyMsgTrnxSuccess(const std::string & SERVER_ID,
         break;
     default:
         OTLog::vOutput(0, "%s: Error. (This should never happen!) nStatus: %d, Input:\n%s\n",
-            __FUNCTION__, static_cast<int>(nStatus), str_Message.c_str());
+            __FUNCTION__, static_cast<int32_t>(nStatus), str_Message.c_str());
         nStatus = (-1);
         break;
     }
@@ -1694,9 +1694,9 @@ bool OT_ME::ExecuteScript_ReturnBool(const std::string & str_Code, std::string s
     return bReturn;
 }
 
-int OT_ME::ExecuteScript_ReturnInt(const std::string & str_Code, std::string str_DisplayName/*="<BLANK>"*/)
+int32_t OT_ME::ExecuteScript_ReturnInt(const std::string & str_Code, std::string str_DisplayName/*="<BLANK>"*/)
 {
-    int nReturn = -1;
+    int32_t nReturn = -1;
     if (HaveWorkingScript())
     {
         OTVariable the_return_value("ret_val", nReturn);
@@ -2120,7 +2120,7 @@ bool OT_ME::Register_CLI_With_Script_Chai(OTScriptChai & theScript)
         theScript.chai->add(fun(&OT_CLI_ReadLine), "OT_CLI_ReadLine");   // String OT_CLI_ReadLine()  // Reads from cin until Newline.
         theScript.chai->add(fun(&OT_CLI_ReadUntilEOF), "OT_CLI_ReadUntilEOF"); // String OT_CLI_ReadUntilEOF() // Reads from cin until EOF or ~ on a line by itself.
         // For command-line option (for SCRIPTS):  ot --script <filename> [--args "key value key value ..."]
-        theScript.chai->add(fun(&OT_CLI_GetArgsCount), "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from a string. Returns int.
+        theScript.chai->add(fun(&OT_CLI_GetArgsCount), "OT_CLI_GetArgsCount");	// Get a count of key/value pairs from a string. Returns int32_t.
         theScript.chai->add(fun(&OT_CLI_GetValueByKey), "OT_CLI_GetValueByKey");	// Returns a VALUE as string, BY KEY, from a map of key/value pairs (stored in a string.)
         theScript.chai->add(fun(&OT_CLI_GetValueByIndex), "OT_CLI_GetValueByIndex");	// Returns a VALUE as string, BY INDEX, from a map of key/value pairs (stored in a string.)
         theScript.chai->add(fun(&OT_CLI_GetKeyByIndex), "OT_CLI_GetKeyByIndex");	// Returns a KEY as string, BY INDEX, from a map of key/value pairs (stored in a string.)
@@ -2543,7 +2543,7 @@ bool NewScriptExists(const OTString & strScriptFilename, bool bIsHeader, OTStrin
     // 1st priorty: $(data_dir)/scripts
     // 2nd priorty: $(prefix)/lib/opentxs/scripts
     //
-    long lFileLength(0);
+    int64_t lFileLength(0);
 
     OT_ASSERT_MSG(strScriptFilename.Exists(), "NewScriptHeaderExists: Error! Filename not Supplied!");
     if (3 > strScriptFilename.GetLength())

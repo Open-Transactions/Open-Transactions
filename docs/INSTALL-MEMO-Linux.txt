@@ -106,17 +106,17 @@ $ make install
 #
 #
 
-$ sudo apt-get debuild cdbs autotools-dev dh-autoreconf
+$ sudo apt-get install devscripts cdbs autotools-dev dh-autoreconf
 $ git clone https://github.com/randy-waterhouse/opentxs.git
 $ cd opentxs
 $ ./autogen.sh
 $ ./configure
 $ make distcheck
-$ mv opentxs-0.90.d.tar.gz opentxs_0.90.d.orig.tar.gz
-$ tar xf opentxs_0.90.d.orig.tar.gz
-$ cd opentxs-0.90.d
+$ mv opentxs-0.91.d.tar.gz opentxs_0.91.d.orig.tar.gz
+$ tar xf opentxs_0.91.d.orig.tar.gz
+$ cd opentxs-0.91.d
 $ cp -r ../debian .
 $ debuild -us -uc -d
 
 To install deb package:
-$ sudo dpkg -i opentxs_0.90.d_<arch>.deb
+$ sudo dpkg -i opentxs_0.91.d_<arch>.deb

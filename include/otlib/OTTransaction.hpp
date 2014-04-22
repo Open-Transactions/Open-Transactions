@@ -224,12 +224,12 @@ Ledger is derived from contract because you must be able to save / sign it and l
  And what does it save?
  transactionType		m_Type;		// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
  time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
- long					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
- long					m_lInReferenceToTransaction;
- long					m_lClosingTransactionNo; // used by finalReceipt
+ int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
+ int64_t					m_lInReferenceToTransaction;
+ int64_t					m_lClosingTransactionNo; // used by finalReceipt
  also:				AMOUNT.  // GetReceiptAmount()
- long				m_lAbbrevAmount; // Stored here after loading, but not saved from here in the first place (see GetReceiptAmount())
- long				m_lDisplayAmount; // Just like m_lAbbrevAmount, except it stores the display amount. For example, a transferReceipt for a 5000 clam transfer has an effective value of 0 (since the transfer is already done) but it has a display amount of 5000.
+ int64_t				m_lAbbrevAmount; // Stored here after loading, but not saved from here in the first place (see GetReceiptAmount())
+ int64_t				m_lDisplayAmount; // Just like m_lAbbrevAmount, except it stores the display amount. For example, a transferReceipt for a 5000 clam transfer has an effective value of 0 (since the transfer is already done) but it has a display amount of 5000.
  OTIdentifier		m_Hash;			 // Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
 
  DOES NOT SAVE:
@@ -465,7 +465,7 @@ protected:
 	// placed here, which makes it available for necessary calculations without being forced to load up
 	// all of the box receipts to do so.
 
-	long				m_lAbbrevAmount;
+	int64_t				m_lAbbrevAmount;
 
 	// Just like m_lAbbrevAmount, except it stores the display amount. For example, a transferReceipt for
 	// a 5000 clam transfer has an effective value of 0 (since the transfer is already done) but it has a
@@ -477,12 +477,12 @@ protected:
 	// numbers become pretty reliable and can be used in optimization, since the current process of loading
 	// transaction items from a string every time we need to check the amount, can be time-consuming, CPU-wise.)
 	//
-	long				m_lDisplayAmount;
+	int64_t				m_lDisplayAmount;
 
 	// The value of GetReferenceNumForDisplay() is saved when saving an abbreviated record of this transaction,
 	// and then loaded into THIS member variable when loading the abbreviated record.
 	//
-	long				m_lInRefDisplay;
+	int64_t				m_lInRefDisplay;
 
 	// ----------------------------------------------------------------
 
@@ -502,7 +502,7 @@ protected:
 	transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
 	listOfItems			m_listItems;	// the various items in this transaction.
 
-	long			m_lClosingTransactionNo;	// used by finalReceipt
+	int64_t			m_lClosingTransactionNo;	// used by finalReceipt
     OTASCIIArmor    m_ascCancellationRequest;	// used by finalReceipt
 
 	// ----------------------------------------------------------------
@@ -516,7 +516,7 @@ protected:
     // replyNotices in the Nymbox can directly finger the messages they
     // came from.
     //
-    long    m_lRequestNumber;     // Unused except by "replyNotice" in Nymbox.
+    int64_t    m_lRequestNumber;     // Unused except by "replyNotice" in Nymbox.
     bool    m_bReplyTransSuccess; // Used only by replyNotice
 	// ----------------------------------------------------------------
 	// Unused except for @notarizeTransactions, specifically for @paymentPlan
@@ -554,7 +554,7 @@ protected:
 //	bool VerifyContractID();
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int     ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t     ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void    UpdateContents(); // Before transmission or serialization, this is where the transaction saves its contents
 
     OTTransaction(); // only the factory gets to use this one.
@@ -571,49 +571,49 @@ EXPORT    void SetAsCancelled() { m_bCancelled = true; }
 EXPORT    bool AddNumbersToTransaction(const OTNumList & theAddition);
     // -------------------------------------------
 	static
-	int LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
-							  long	& lNumberOfOrigin,
-							  long	& lTransactionNum,
-							  long	& lInRefTo,
-							  long	& lInRefDisplay,
+	int32_t LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
+							  int64_t	& lNumberOfOrigin,
+							  int64_t	& lTransactionNum,
+							  int64_t	& lInRefTo,
+							  int64_t	& lInRefDisplay,
 							  time_t	& the_DATE_SIGNED,
 							  OTTransaction::transactionType & theType,
 							  OTString & strHash,
-							  long	& lAdjustment,
-							  long	& lDisplayValue,
-							  long	& lClosingNum,
-							  long	& lRequestNum,
+							  int64_t	& lAdjustment,
+							  int64_t	& lDisplayValue,
+							  int64_t	& lClosingNum,
+							  int64_t	& lRequestNum,
                               bool  & bReplyTransSuccess,
                               OTNumList * pNumList=NULL);
 
     bool IsAbbreviated() const { return m_bIsAbbreviated; }
 
-    long GetAbbrevAdjustment() const { return m_lAbbrevAmount; }
-    void SetAbbrevAdjustment(const long lAmount) { m_lAbbrevAmount = lAmount; }
+    int64_t GetAbbrevAdjustment() const { return m_lAbbrevAmount; }
+    void SetAbbrevAdjustment(const int64_t lAmount) { m_lAbbrevAmount = lAmount; }
 
-    long GetAbbrevDisplayAmount() const { return m_lDisplayAmount; }
-    void SetAbbrevDisplayAmount(const long lAmount) { m_lDisplayAmount = lAmount; }
+    int64_t GetAbbrevDisplayAmount() const { return m_lDisplayAmount; }
+    void SetAbbrevDisplayAmount(const int64_t lAmount) { m_lDisplayAmount = lAmount; }
 
-    long GetAbbrevInRefDisplay() const { return m_lInRefDisplay; }
-    void SetAbbrevInRefDisplay(const long lAmount) { m_lInRefDisplay = lAmount; }
+    int64_t GetAbbrevInRefDisplay() const { return m_lInRefDisplay; }
+    void SetAbbrevInRefDisplay(const int64_t lAmount) { m_lInRefDisplay = lAmount; }
     // -------------------------------------------
     // These are used exclusively by replyNotice (so you can tell
     // which reply message it's a notice of.)
     //
-    const long & GetRequestNum() const            { return m_lRequestNumber; }
-	void         SetRequestNum(const long & lNum) { m_lRequestNumber = lNum; }
+    const int64_t & GetRequestNum() const            { return m_lRequestNumber; }
+	void         SetRequestNum(const int64_t & lNum) { m_lRequestNumber = lNum; }
 
     bool         GetReplyTransSuccess()                { return m_bReplyTransSuccess; }
     void         SetReplyTransSuccess(const bool bVal) {  m_bReplyTransSuccess = bVal;  }
     // -------------------------------------------
     // These are used for finalReceipt and basketReceipt
-EXPORT  long GetClosingNum() const;
-EXPORT	void SetClosingNum(const long lClosingNum);
+EXPORT  int64_t GetClosingNum() const;
+EXPORT	void SetClosingNum(const int64_t lClosingNum);
     // -------------------------------------------
-EXPORT	virtual long GetNumberOfOrigin(); // Calculates if necessary.
+EXPORT	virtual int64_t GetNumberOfOrigin(); // Calculates if necessary.
 EXPORT  virtual void CalculateNumberOfOrigin();
     // -------------------------------------------
-EXPORT	long GetReferenceNumForDisplay(); /// For display purposes. The "ref #" you actually display (versus the one you use internally) might change based on transaction type. (Like with a cheque receipt you actually have to load up the original cheque.)
+EXPORT	int64_t GetReferenceNumForDisplay(); /// For display purposes. The "ref #" you actually display (versus the one you use internally) might change based on transaction type. (Like with a cheque receipt you actually have to load up the original cheque.)
 
 EXPORT	bool GetSenderUserIDForDisplay   (OTIdentifier & theReturnID);
 EXPORT	bool GetRecipientUserIDForDisplay(OTIdentifier & theReturnID);
@@ -626,11 +626,11 @@ EXPORT  bool GetMemo(OTString & strMemo);
         inline
         time_t  GetDateSigned()	const { return m_DATE_SIGNED; }
 EXPORT	bool    GetSuccess(); // Tries to determine, based on items within, whether it was a success or fail.
-EXPORT	long    GetReceiptAmount(); // Tries to determine IF there is an amount (depending on type) and return it.
+EXPORT	int64_t    GetReceiptAmount(); // Tries to determine IF there is an amount (depending on type) and return it.
 	// ----------------------------------------------------------------
         OTTransaction(const OTLedger & theOwner);
 EXPORT	OTTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID);
-        OTTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID, long lTransactionNum);
+        OTTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAccountID, const OTIdentifier & theServerID, int64_t lTransactionNum);
 
 	// THIS constructor only used when loading an abbreviated box receipt (inbox, nymbox, or outbox receipt).
 	// The full receipt is loaded only after the abbreviated ones are loaded, and verified against them.
@@ -638,30 +638,30 @@ EXPORT	OTTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAcc
 	OTTransaction(const OTIdentifier & theUserID,
 				  const OTIdentifier & theAccountID,
 				  const OTIdentifier & theServerID,
-				  const long & lNumberOfOrigin,
-				  const long & lTransactionNum,
-				  const long & lInRefTo,
-				  const long & lInRefDisplay,
+				  const int64_t & lNumberOfOrigin,
+				  const int64_t & lTransactionNum,
+				  const int64_t & lInRefTo,
+				  const int64_t & lInRefDisplay,
 				  const time_t the_DATE_SIGNED,
 				  const transactionType theType,
 				  const OTString & strHash,
-				  const long & lAdjustment,
-				  const long & lDisplayValue,
-				  const long & lClosingNum,
-				  const long & lRequestNum,
+				  const int64_t & lAdjustment,
+				  const int64_t & lDisplayValue,
+				  const int64_t & lClosingNum,
+				  const int64_t & lRequestNum,
                   bool         bReplyTransSuccess,
                   OTNumList * pNumList=NULL);
 
 EXPORT	virtual ~OTTransaction();
 	// ----------------------------------
-	bool GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, long lTransactionNum);
+	bool GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, int64_t lTransactionNum);
 
 EXPORT	static
     OTTransaction * GenerateTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAccountID,
                                         const OTIdentifier & theServerID, transactionType theType,
-                                        long lTransactionNum=0);
+                                        int64_t lTransactionNum=0);
 EXPORT	static
-    OTTransaction * GenerateTransaction(const OTLedger & theOwner, transactionType theType, long lTransactionNum=0);
+    OTTransaction * GenerateTransaction(const OTLedger & theOwner, transactionType theType, int64_t lTransactionNum=0);
 	// ----------------------------------
 	void InitTransaction();
 	void ReleaseItems();
@@ -676,7 +676,7 @@ EXPORT	static
     // This function assumes that theLedger is the owner of this transaction.
     // We pass the ledger in so we can determine the proper directory we're
     // reading from.
-EXPORT    bool SaveBoxReceipt     (const long lLedgerType);
+EXPORT    bool SaveBoxReceipt     (const int64_t lLedgerType);
 EXPORT    bool SaveBoxReceipt     (OTLedger & theLedger);
 EXPORT    bool DeleteBoxReceipt   (OTLedger & theLedger);
 	// --------------------------------------------------------------
@@ -684,7 +684,7 @@ EXPORT    bool DeleteBoxReceipt   (OTLedger & theLedger);
 	static
 	OTTransaction * LoadBoxReceipt(OTTransaction & theAbbrev, OTLedger & theLedger);
 EXPORT	static
-	OTTransaction * LoadBoxReceipt(OTTransaction & theAbbrev, const long lLedgerType);
+	OTTransaction * LoadBoxReceipt(OTTransaction & theAbbrev, const int64_t lLedgerType);
 
     // Call on abbreviated version, and pass in the purported full version.
     bool VerifyBoxReceipt(OTTransaction & theFullVersion);
@@ -692,11 +692,11 @@ EXPORT	static
 EXPORT static bool VerifyBoxReceiptExists(const OTIdentifier & SERVER_ID,
                                           const OTIdentifier & USER_ID,
                                           const OTIdentifier & ACCOUNT_ID,    // If for Nymbox (vs inbox/outbox) then pass USER_ID in this field also.
-                                          const int			nBoxType,		// 0/nymbox, 1/inbox, 2/outbox
-                                          const long		  &	lTransactionNum);
+                                          const int32_t			nBoxType,		// 0/nymbox, 1/inbox, 2/outbox
+                                          const int64_t		  &	lTransactionNum);
 	// --------------------------------------------------------------
     static
-    bool SetupBoxReceiptFilename(const long lLedgerType,
+    bool SetupBoxReceiptFilename(const int64_t lLedgerType,
                                  OTTransaction & theTransaction,
                                  const char * szCaller,
                                  OTString & strFolder1name,
@@ -714,10 +714,10 @@ EXPORT static bool VerifyBoxReceiptExists(const OTIdentifier & SERVER_ID,
                                  OTString & strFilename);
 	// --------------------------------------------------------------
     static
-    bool SetupBoxReceiptFilename(const long		  lLedgerType,
+    bool SetupBoxReceiptFilename(const int64_t		  lLedgerType,
                                  const OTString	& strUserOrAcctID,
                                  const OTString	& strServerID,
-                                 const long		& lTransactionNum,
+                                 const int64_t		& lTransactionNum,
                                  const char * szCaller,
                                  OTString & strFolder1name,
                                  OTString & strFolder2name,
@@ -757,12 +757,12 @@ EXPORT	bool VerifyItems(OTPseudonym & theNym);
 	// --------------------------------------------------------------
 
     inline
-    int	GetItemCount() const { return static_cast<int> (m_listItems.size()); }
-	int GetItemCountInRefTo(const long lReference); // Count the number of items that are IN REFERENCE TO some transaction#.
+    int32_t	GetItemCount() const { return static_cast<int32_t> (m_listItems.size()); }
+	int32_t GetItemCountInRefTo(const int64_t lReference); // Count the number of items that are IN REFERENCE TO some transaction#.
 
     // While processing a transaction, you may wish to query it for items of a certain type.
 EXPORT	OTItem * GetItem(const OTItem::itemType theType);
-EXPORT	OTItem * GetItemInRefTo(const long lReference);
+EXPORT	OTItem * GetItemInRefTo(const int64_t lReference);
 
 EXPORT	void    AddItem(OTItem & theItem);  // You have to allocate the item on the heap and then pass it in as a reference.
                                             // OTTransaction will take care of it from there and will delete it in destructor.

@@ -162,7 +162,7 @@ protected:
 	// Therefore it seems to me that, even with the files signed, there are still attacks possible when
 	// the attacker has write/erase access to the filesystem. I'd like to make it impervious even to that.
 
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 // ----------------------------------
 public:
         // These assume SetFilename() was already called,

@@ -340,12 +340,12 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
 // OTNumList (helper class.)
 //
 
-OTNumList::OTNumList(const std::set<long> & theNumbers)
+OTNumList::OTNumList(const std::set<int64_t> & theNumbers)
 {
     Add(theNumbers);
 }
 
-OTNumList::OTNumList(long lInput)
+OTNumList::OTNumList(int64_t lInput)
 {
     Add(lInput);
 }
@@ -409,7 +409,7 @@ bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers
     OT_ASSERT(NULL != szNumbers); // Should never happen.
 
     bool    bSuccess    = true;
-    long    lNum        = 0;
+    int64_t    lNum        = 0;
     const
     char *  pChar       = szNumbers;
 	std::locale loc;
@@ -427,7 +427,7 @@ bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers
         {
             bStartedANumber = true;
 
-            int nDigit = (*pChar - '0');
+            int32_t nDigit = (*pChar - '0');
 
             lNum *= 10;  // Move it up a decimal place.
             lNum += nDigit;
@@ -470,9 +470,9 @@ bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers
 }
 // -------------------
 
-bool OTNumList::Add(const long & theValue)    // if false, means the value was already there.
+bool OTNumList::Add(const int64_t & theValue)    // if false, means the value was already there.
 {
-    std::set<long>::iterator it = m_setData.find(theValue);
+    std::set<int64_t>::iterator it = m_setData.find(theValue);
 
     if (m_setData.end() == it) // it's not already there, so add it.
     {
@@ -483,9 +483,9 @@ bool OTNumList::Add(const long & theValue)    // if false, means the value was a
 }
 // -------------------
 
-bool OTNumList::Peek(long & lPeek) const
+bool OTNumList::Peek(int64_t & lPeek) const
 {
-    std::set<long>::iterator it = m_setData.begin();
+    std::set<int64_t>::iterator it = m_setData.begin();
 
     if (m_setData.end() != it) // it's there.
     {
@@ -498,7 +498,7 @@ bool OTNumList::Peek(long & lPeek) const
 
 bool OTNumList::Pop()
 {
-    std::set<long>::iterator it = m_setData.begin();
+    std::set<int64_t>::iterator it = m_setData.begin();
 
     if (m_setData.end() != it) // it's there.
     {
@@ -510,9 +510,9 @@ bool OTNumList::Pop()
 
 // -------------------
 
-bool OTNumList::Remove(const long & theValue) // if false, means the value was NOT already there.
+bool OTNumList::Remove(const int64_t & theValue) // if false, means the value was NOT already there.
 {
-    std::set<long>::iterator it = m_setData.find(theValue);
+    std::set<int64_t>::iterator it = m_setData.find(theValue);
 
     if (m_setData.end() != it) // it's there.
     {
@@ -523,9 +523,9 @@ bool OTNumList::Remove(const long & theValue) // if false, means the value was N
 }
 // -------------------
 
-bool OTNumList::Verify(const long & theValue) const // returns true/false (whether value is already there.)
+bool OTNumList::Verify(const int64_t & theValue) const // returns true/false (whether value is already there.)
 {
-    std::set<long>::iterator it = m_setData.find(theValue);
+    std::set<int64_t>::iterator it = m_setData.find(theValue);
 
     return (m_setData.end() == it) ? false : true;
 }
@@ -536,13 +536,13 @@ bool OTNumList::Verify(const long & theValue) const // returns true/false (wheth
 // (ALL theNumbersmust be present.)
 // So if *this contains "3,4,5,6" and rhs contains "4,5" then match is TRUE.
 //
-bool OTNumList::Verify(const std::set<long> & theNumbers) const
+bool OTNumList::Verify(const std::set<int64_t> & theNumbers) const
 {
     bool bSuccess = true;
 
-    FOR_EACH_CONST(std::set<long>, theNumbers)
+    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
 
         if (!this->Verify(lValue)) // It must have NOT already been there.
             bSuccess = false;
@@ -565,9 +565,9 @@ bool OTNumList::Verify(const OTNumList & rhs) const
 
     // Verify each value on *this is also found on rhs.
     //
-    FOR_EACH(std::set<long>, m_setData)
+    FOR_EACH(std::set<int64_t>, m_setData)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
         // ----------
         if (false == rhs.Verify(lValue))
             return false;
@@ -589,13 +589,13 @@ bool OTNumList::VerifyAny(const OTNumList & rhs) const
 
 /// Verify whether ANY of the numbers on *this are found in setData.
 ///
-bool OTNumList::VerifyAny(const std::set<long> & setData) const
+bool OTNumList::VerifyAny(const std::set<int64_t> & setData) const
 {
-    FOR_EACH_CONST(std::set<long>, m_setData)
+    FOR_EACH_CONST(std::set<int64_t>, m_setData)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
         // ----------
-        std::set<long>::const_iterator it_find = setData.find(lValue);
+        std::set<int64_t>::const_iterator it_find = setData.find(lValue);
 
         if (it_find != setData.end()) // found a match.
             return true;
@@ -608,20 +608,20 @@ bool OTNumList::VerifyAny(const std::set<long> & setData) const
 
 bool OTNumList::Add(const OTNumList & theNumList)    // if false, means the numbers were already there. (At least one of them.)
 {
-    std::set<long> theOutput;
+    std::set<int64_t> theOutput;
     theNumList.Output(theOutput); // returns false if the numlist was empty.
 
     return this->Add(theOutput);
 }
 // -------------------
 
-bool OTNumList::Add(const std::set<long> & theNumbers)    // if false, means the numbers were already there. (At least one of them.)
+bool OTNumList::Add(const std::set<int64_t> & theNumbers)    // if false, means the numbers were already there. (At least one of them.)
 {
     bool bSuccess = true;
 
-    FOR_EACH_CONST(std::set<long>, theNumbers)
+    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
 
         if (!this->Add(lValue)) // It must have already been there.
             bSuccess = false;
@@ -631,13 +631,13 @@ bool OTNumList::Add(const std::set<long> & theNumbers)    // if false, means the
 }
 // -------------------
 
-bool OTNumList::Remove(const std::set<long> & theNumbers) // if false, means the numbers were NOT already there. (At least one of them.)
+bool OTNumList::Remove(const std::set<int64_t> & theNumbers) // if false, means the numbers were NOT already there. (At least one of them.)
 {
     bool bSuccess = true;
 
-    FOR_EACH_CONST(std::set<long>, theNumbers)
+    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
 
         if (!this->Remove(lValue)) // It must have NOT already been there.
             bSuccess = false;
@@ -651,7 +651,7 @@ bool OTNumList::Remove(const std::set<long> & theNumbers) // if false, means the
 // Outputs the numlist as a set of numbers.
 // (To iterate OTNumList, call this, then iterate the output.)
 //
-bool OTNumList::Output(std::set<long> & theOutput) const // returns false if the numlist was empty.
+bool OTNumList::Output(std::set<int64_t> & theOutput) const // returns false if the numlist was empty.
 {
     theOutput = m_setData;
 
@@ -663,18 +663,18 @@ bool OTNumList::Output(std::set<long> & theOutput) const // returns false if the
 //
 bool OTNumList::Output(OTString & strOutput) const // returns false if the numlist was empty.
 {
-    int nIterationCount = 0;
+    int32_t nIterationCount = 0;
 
-    FOR_EACH(std::set<long>, m_setData)
+    FOR_EACH(std::set<int64_t>, m_setData)
     {
-        const long lValue = *it;
+        const int64_t lValue = *it;
         nIterationCount ++;
         // ----------
 
-        strOutput.Concatenate("%s%ld",
+        strOutput.Concatenate("%s%lld",
                               // If first iteration, prepend a blank string (instead of a comma.)
-                              // Like this:  "%ld"
-                              // But for all subsequent iterations, concatenate: ",%ld"
+                              // Like this:  "%lld"
+                              // But for all subsequent iterations, concatenate: ",%lld"
                               (1 == nIterationCount) ? "" : ",", lValue);
     }
 
@@ -685,9 +685,9 @@ bool OTNumList::Output(OTString & strOutput) const // returns false if the numli
 
 
 
-int OTNumList::Count() const
+int32_t OTNumList::Count() const
 {
-    return static_cast<int> (m_setData.size());
+    return static_cast<int32_t> (m_setData.size());
 }
 
 // -------------------
@@ -1439,7 +1439,7 @@ bool OTContract::VerifySigAuthent(const OTPseudonym & theNym,
     OTPasswordData       thePWData("OTContract::VerifySigAuthent 1");
     listOfAsymmetricKeys listOutput;
 
-    const int nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'A'); // 'A' for authentication key.
+    const int32_t nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'A'); // 'A' for authentication key.
 
     if (nCount > 0) // Found some (potentially) matching keys...
     {
@@ -1481,7 +1481,7 @@ bool OTContract::VerifySignature(const OTPseudonym & theNym,
     OTPasswordData       thePWData("OTContract::VerifySignature 1");
     listOfAsymmetricKeys listOutput;
 
-    const int nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'S'); // 'S' for signing key.
+    const int32_t nCount = theNym.GetPublicKeysBySignature(listOutput, theSignature, 'S'); // 'S' for signing key.
 
     if (nCount > 0) // Found some (potentially) matching keys...
     {
@@ -1682,7 +1682,7 @@ bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContra
     if ((3 > lLength) || !strFlatText.At(lLength - 1, cNewline))
     {
         OTLog::vError("%s: Invalid input: text is less than 3 bytes "
-                      "long, or unable to read a byte from the end where "
+                      "int64_t, or unable to read a byte from the end where "
                       "a newline is meant to be.\n", szFunc);
         return false;
     }
@@ -2158,7 +2158,7 @@ bool OTContract::ParseRawFile()
 					{
 						OTLog::Output(3, "Collecting signature metadata...\n");
 
-                        if (line.length() != 13) // "Meta:    knms" (It will always be exactly 13 characters long.) knms represents the first characters of the Key type, NymID, Master Cred ID, and Subcred ID. Key type is (A|E|S) and the others are base62.
+                        if (line.length() != 13) // "Meta:    knms" (It will always be exactly 13 characters int64_t.) knms represents the first characters of the Key type, NymID, Master Cred ID, and Subcred ID. Key type is (A|E|S) and the others are base62.
                         {
                             OTLog::vOutput(0, "Error in signature for contract %s: Unexpected length for \"Meta:\" comment.\n",
                                            m_strFilename.Get());
@@ -2258,7 +2258,7 @@ bool OTContract::ParseRawFile()
 // This function only processes that portion of the contract.
 bool OTContract::LoadContractXML()
 {
-	int retProcess = 0;
+	int32_t retProcess = 0;
 
 	if (!m_xmlUnsigned.Exists())
 	{
@@ -2675,7 +2675,7 @@ bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
     if ((3 > lLength) || !strContract.At(lLength - 1, cNewline))
     {
         OTLog::vError("%s: Invalid input: contract is less than 3 bytes "
-                      "long, or unable to read a byte from the end where a newline is meant to be.\n", __FUNCTION__);
+                      "int64_t, or unable to read a byte from the end where a newline is meant to be.\n", __FUNCTION__);
         return false;
     }
     // ----------------------
@@ -2967,7 +2967,7 @@ void OTContract::CreateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTContract::ProcessXMLNode(IrrXMLReader*& xml)
+int32_t OTContract::ProcessXMLNode(IrrXMLReader*& xml)
 {
     const OTString strNodeName(xml->getNodeName());
 

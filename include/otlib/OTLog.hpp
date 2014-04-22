@@ -131,7 +131,7 @@
  **************************************************************/
 
 
-// The long-awaited logging class.
+// The int64_t-awaited logging class.
 
 #ifndef __OTLOG_HPP__
 #define __OTLOG_HPP__
@@ -172,7 +172,7 @@ private:
 	OTString	m_strLogFileName;
 	OTString	m_strLogFilePath;
 
-	int			m_nLogLevel;
+	int32_t			m_nLogLevel;
 
 	bool		m_bInitialized;
 
@@ -186,7 +186,7 @@ public:
 	//EXPORT static OTLog & It();
 
 	// now the logger checks the global config file itself for the log-filename.
-	EXPORT static bool Init(const OTString & strThreadContext = "", const int & nLogLevel = 0);
+	EXPORT static bool Init(const OTString & strThreadContext = "", const int32_t & nLogLevel = 0);
 
 	EXPORT static bool IsInitialized();
 
@@ -213,8 +213,8 @@ public:
 	EXPORT static const char *	   LogFilePath();
 	EXPORT static const OTString & GetLogFilePath();
 
-	EXPORT static int 	   LogLevel();
-	EXPORT static bool	   SetLogLevel(const int & nLogLevel);
+	EXPORT static int32_t 	   LogLevel();
+	EXPORT static bool	   SetLogLevel(const int32_t & nLogLevel);
 
 	// --------------------------------------------------------
 	// OTLog Functions:
@@ -224,8 +224,8 @@ public:
 
 	// --------------------------------------------------
 	// We keep 1024 logs in memory, to make them available via the API.
-	EXPORT static int		GetMemlogSize(); 
-	EXPORT static const OTString	GetMemlogAtIndex(const int nIndex);
+	EXPORT static int32_t		GetMemlogSize(); 
+	EXPORT static const OTString	GetMemlogAtIndex(const int32_t nIndex);
 	EXPORT static const OTString	PeekMemlogFront();
 	EXPORT static const OTString	PeekMemlogBack(); 
 	EXPORT static bool		PopMemlogFront();
@@ -233,8 +233,8 @@ public:
 	EXPORT static bool		PushMemlogFront(const OTString & strLog);
 	EXPORT static bool		PushMemlogBack(const OTString & strLog);
 	// -------------------------------------------------
-	EXPORT static bool		SleepSeconds(const long lSeconds);
-	EXPORT static bool		SleepMilliseconds(const long lMilliseconds);
+	EXPORT static bool		SleepSeconds(const int64_t lSeconds);
+	EXPORT static bool		SleepMilliseconds(const int64_t lMilliseconds);
 
 	// Output() logs normal output, which carries a verbosity level.
 	//
@@ -250,17 +250,17 @@ public:
 	// set it up to 1. Set it up even higher for the really verbose stuff (e.g. only if you
 	// really want to see EVERYTHING.)
 
-	EXPORT static void Output(int nVerbosity, const char * szOutput); // stdout
-	EXPORT static void Output(int nVerbosity, OTString & strOutput); // stdout
-	EXPORT static void vOutput(int nVerbosity, const char *szOutput, ...);
+	EXPORT static void Output(int32_t nVerbosity, const char * szOutput); // stdout
+	EXPORT static void Output(int32_t nVerbosity, OTString & strOutput); // stdout
+	EXPORT static void vOutput(int32_t nVerbosity, const char *szOutput, ...);
 
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix);
-	EXPORT static void sOutput(int nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix);
+	EXPORT static void sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven);
 
 	// This logs an error condition, which usually means bad input from the user, or a file wouldn't open,
 	// or something like that. This contrasted with Assert() which should NEVER actually happen. The software
@@ -285,7 +285,7 @@ public:
 	EXPORT static void Errno(const char * szLocation=NULL); // stderr
 
 	// String Helpers
-	EXPORT static bool StringFill(OTString & out_strString, const char * szString, const int iLength, const char * szAppend = NULL);
+	EXPORT static bool StringFill(OTString & out_strString, const char * szString, const int32_t iLength, const char * szAppend = NULL);
 
 	// -------------------------------------------------
 	EXPORT static void SetupSignalHandler(); // OPTIONAL. Therefore I will call it in xmlrpcxx_client.cpp just above OT_Init.

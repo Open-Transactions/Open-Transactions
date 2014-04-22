@@ -5654,7 +5654,7 @@ OT_COMMANDS_OT int32_t OT_Command::accept_inbox_items(const string & strMyAcctID
     // if it is running low.
     // But in this case, we need the numbers available BEFORE sending the transaction
     // request, because the call to OTAPI_Wrap::Ledger_CreateResponse is where the number
-    // is first needed, and that call is made long before the server transaction request
+    // is first needed, and that call is made int64_t before the server transaction request
     // is actually sent.
     //
     if (!MadeEasy::insure_enough_nums(10, strServerID, strMyNymID))
@@ -7498,7 +7498,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_adjust_usage_credits()
                   print(strResponse); // stdout
 
                   // IF THE_MESSAGE is of command type @usageCredits, and IF it was a SUCCESS,
-                  // then this function returns the usage credits BALANCE (it's a long int, but
+                  // then this function returns the usage credits BALANCE (it's a int64_t int32_t, but
                   // passed as a string). If you adjusted the balance using the usageCredits
                   // command (THE_MESSAGE being the server's reply to that) then you will see
                   // the balance AFTER the adjustment. (The current "Usage Credits" balance.)
@@ -9293,7 +9293,7 @@ OT_COMMANDS_OT int32_t OT_Command::handle_payment_index(const string & strMyAcct
 {
     if (!VerifyStringVal(strMyAcctID) || !VerifyIntVal(nIndex))
     {
-        OTAPI_Wrap::Output(0, "Failure: Either strMyAcctID not a valid string, or nIndex not a valid int.\n");
+        OTAPI_Wrap::Output(0, "Failure: Either strMyAcctID not a valid string, or nIndex not a valid int32_t.\n");
         return -1;
     }
 
@@ -9726,7 +9726,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_payinvoice()
         // Should I bother moving the invoice from the payments inbox to the record box?
         //
         // Update: Okay for now, I'm using an API call here (RecordPayment) which moves the invoice.
-        // HOWEVER, in the long term, we don't want to do it here. Rather, we want to do it inside OT while
+        // HOWEVER, in the int64_t term, we don't want to do it here. Rather, we want to do it inside OT while
         // it's processesing the server reply for your cheque (invoice) deposit. For example what if there's
         // a network problem and we don't process that reply here now? There'll still be a copy of the reply
         // in the Nymbox and it will still get processed at a future time... and THAT's when we need to move
@@ -9753,7 +9753,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_payinvoice()
         functionality, which is outside the scope of OT. The actual CALL to store in the record box, however
         should occur inside OT.)
         - For now, I'm using the below API call, so it's available inside the scripts. This is "good enough"
-        for now, just to get the payments inbox/outbox working for the scripts. But in the long term, I'll need
+        for now, just to get the payments inbox/outbox working for the scripts. But in the int64_t term, I'll need
         to add the hooks directly into OT as described just above. (It'll be necessary in order to get the record
         box working.)
         - Since I'm only worried about Payments Inbox for now, and since I'll be calling the below function
@@ -9809,8 +9809,8 @@ OT_COMMANDS_OT int32_t OT_Command::main_payinvoice()
 
 vector<string> tokenize(const string & str, const string & delimiters, const bool trimEmpty)
 {
-    int pos = 0;
-    int lastPos = 0;
+    int32_t pos = 0;
+    int32_t lastPos = 0;
     vector<string> tokens;
 
     while (true)
@@ -9926,7 +9926,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_active()
             {
                 vector<string> vecIDs = tokenize(strIDs, ",", true);
 
-                for (int nIndex = 0; nIndex < vecIDs.size(); ++nIndex)
+                for (int32_t nIndex = 0; nIndex < vecIDs.size(); ++nIndex)
                 {
                     string strTransNum = vecIDs[nIndex];
                     // -----------------------------

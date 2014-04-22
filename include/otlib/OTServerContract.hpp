@@ -146,18 +146,18 @@ class OTServerContract : public OTContract
 {
 protected:
 	OTString	m_strHostname;
-	int			m_nPort;
+	int32_t			m_nPort;
 	OTString	m_strURL;
 	// ---------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 // -------------------------------------------------------------
 public:
 EXPORT	OTServerContract();
 EXPORT	OTServerContract(OTString & name, OTString & foldername, OTString & filename, OTString & strID);
 EXPORT	virtual ~OTServerContract();
 	// -------------------------------------------------------------
-EXPORT	bool GetConnectInfo(OTString & strHostname, int & nPort);
+EXPORT	bool GetConnectInfo(OTString & strHostname, int32_t & nPort);
 	// -------------------------------------------------------------
 EXPORT virtual void CreateContents(); // Only used when first generating an asset or server contract. Meant for contracts which never change after that point.  Otherwise does the same thing as UpdateContents. (But meant for a different purpose.)
     // -------------------------------------------------------------

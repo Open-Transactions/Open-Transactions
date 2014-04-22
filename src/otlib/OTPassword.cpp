@@ -557,7 +557,7 @@ OTPassword * OTPassword::CreateTextBuffer() // asserts already.
     // Caller MUST delete!
     // ---------------------------------------------------
     char  throwaway_text[OT_DEFAULT_BLOCKSIZE];
-    for (int tt = 0; tt < OT_DEFAULT_BLOCKSIZE; ++tt)
+    for (int32_t tt = 0; tt < OT_DEFAULT_BLOCKSIZE; ++tt)
     {
         throwaway_text[tt] = 'A'; // todo optimization...
     }
@@ -819,9 +819,9 @@ bool OTPassword::Compare(OTPassword & rhs) const
 // Returns size of password (in case truncation is necessary.)
 // Returns -1 in case of error.
 //
-int OTPassword::setPassword(const char * szInput, int nInputSize)
+int32_t OTPassword::setPassword(const char * szInput, int32_t nInputSize)
 {
-    return static_cast<int>(this->setPassword_uint8(
+    return static_cast<int32_t>(this->setPassword_uint8(
                 reinterpret_cast<const uint8_t *>(szInput),
                 static_cast<uint32_t>(nInputSize)));
 }
@@ -889,7 +889,7 @@ int32_t OTPassword::setPassword_uint8(const uint8_t * szInput, uint32_t nInputSi
 
 	// ---------------------------------
 	// force a null terminator in the 129th byte (at index 128.)
-	// (Or at the 6th byte (at index 5), if the size is 5 bytes long.)
+	// (Or at the 6th byte (at index 5), if the size is 5 bytes int64_t.)
 	//
 	m_szPassword[nInputSize] = '\0';
     m_nPasswordSize          = nInputSize;
@@ -1253,7 +1253,7 @@ const char * OTCaller::GetDisplay() const
 
 // A display string is set here before the Java dialog is shown, so that the string can be displayed on that dialog.
 //
-void OTCaller::SetDisplay(const char * szDisplay, int nLength)
+void OTCaller::SetDisplay(const char * szDisplay, int32_t nLength)
 {
 	// I'm using the OTPassword class to store the display string, in addition to
 	// storing the password itself. (For convenience.)
@@ -1417,8 +1417,8 @@ This compliant solution uses the volatile type qualifier to inform the compiler 
  documentation and the assembly output from the compiler.
 
 // memset_s.c
-void *memset_s(void *v, int c, size_t n) {
-	volatile unsigned char *p = v;
+void *memset_s(void *v, int32_t c, size_t n) {
+	volatile uint8_t *p = v;
 	while (n--)
 		*p++ = c;
 
@@ -1426,7 +1426,7 @@ void *memset_s(void *v, int c, size_t n) {
 }
 
 // getPassword.c
-extern void *memset_s(void *v, int c, size_t n);
+extern void *memset_s(void *v, int32_t c, size_t n);
 
 void getPassword(void) {
 	char pwd[64];

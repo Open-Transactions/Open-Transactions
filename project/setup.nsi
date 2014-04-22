@@ -49,7 +49,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion "0.91.3.0"
+VIProductVersion "0.92.1.0"
 VIAddVersionKey ProductName "${NAME}"
 VIAddVersionKey ProductVersion ${VERSION}
 VIAddVersionKey CompanyName "${COMPANY}"

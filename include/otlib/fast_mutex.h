@@ -154,7 +154,7 @@ class fast_mutex {
     inline bool try_lock()
     {
 #if defined(_FAST_MUTEX_ASM_)
-      int oldLock;
+      int32_t oldLock;
   #if defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
       asm volatile (
         "movl $1,%%eax\n\t"
@@ -165,7 +165,7 @@ class fast_mutex {
         : "%eax", "memory"
       );
   #elif defined(_MSC_VER) && (defined(_M_IX86) || defined(_M_X64))
-      int *ptrLock = &mLock;
+      int32_t *ptrLock = &mLock;
       __asm {
         mov eax,1
         mov ecx,ptrLock
@@ -173,7 +173,7 @@ class fast_mutex {
         mov oldLock,eax
       }
   #elif defined(__GNUC__) && (defined(__ppc__))
-      int newLock = 1;
+      int32_t newLock = 1;
       asm volatile (
         "\n1:\n\t"
         "lwarx  %0,0,%1\n\t"
@@ -213,7 +213,7 @@ class fast_mutex {
         : "%eax", "memory"
       );
   #elif defined(_MSC_VER) && (defined(_M_IX86) || defined(_M_X64))
-      int *ptrLock = &mLock;
+      int32_t *ptrLock = &mLock;
       __asm {
         mov eax,0
         mov ecx,ptrLock
@@ -237,7 +237,7 @@ class fast_mutex {
 
   private:
 #if defined(_FAST_MUTEX_ASM_)
-    int mLock;
+    int32_t mLock;
 #else
   #if defined(_TTHREAD_WIN32_)
     CRITICAL_SECTION mHandle;

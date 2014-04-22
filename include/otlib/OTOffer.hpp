@@ -192,49 +192,49 @@ protected:
 	// ---------------------------------------------------------
 	// If a bid, this is the most I will pay. If an ask, this is the least I will sell for. My limit.
 	// (Normally the price I get is whatever is the best one on the market right now.)
-	long	m_lPriceLimit;			// Denominated in CURRENCY TYPE, and priced per SCALE. 
+	int64_t	m_lPriceLimit;			// Denominated in CURRENCY TYPE, and priced per SCALE. 
 									// 1oz market price limit might be 1,300
 									// 100oz market price limit might be 130,000 (or 127,987 or whatever)
 	
-	long	m_lTransactionNum;		// Matches to an OTTrade stored in OTCron.
-	long	m_lTotalAssetsOffer;	// Total amount of ASSET TYPE trying to BUY or SELL, this trade. 
-	long	m_lFinishedSoFar;		// Number of ASSETs bought or sold already against the above total.
+	int64_t	m_lTransactionNum;		// Matches to an OTTrade stored in OTCron.
+	int64_t	m_lTotalAssetsOffer;	// Total amount of ASSET TYPE trying to BUY or SELL, this trade. 
+	int64_t	m_lFinishedSoFar;		// Number of ASSETs bought or sold already against the above total.
 	
-	long	m_lScale;				// 1oz market? 100oz market? 10,000oz market? This determines size and granularity.
-	long	m_lMinimumIncrement;	// Each sale or purchase against the above total must be in minimum increments.
+	int64_t	m_lScale;				// 1oz market? 100oz market? 10,000oz market? This determines size and granularity.
+	int64_t	m_lMinimumIncrement;	// Each sale or purchase against the above total must be in minimum increments.
 									// Minimum Increment must be evenly divisible by m_lScale. 
 	// (This effectively becomes a "FILL OR KILL" order if set to the same value as m_lTotalAssetsOffer. Also, MUST be 1
 	// or great. CANNOT be zero. Enforce this at class level. You cannot sell something in minimum increments of 0.)
     // ---------------------------------------------------------
-	inline void SetTransactionNum(const long & lTransactionNum) { m_lTransactionNum = lTransactionNum; }
-	inline void SetPriceLimit(const long & lPriceLimit) { m_lPriceLimit = lPriceLimit; }
-	inline void SetTotalAssetsOnOffer(const long & lTotalAssets) { m_lTotalAssetsOffer = lTotalAssets; }
-	inline void SetFinishedSoFar(const long & lFinishedSoFar) { m_lFinishedSoFar = lFinishedSoFar; }
-	inline void SetMinimumIncrement(const long & lMinIncrement) 
+	inline void SetTransactionNum(const int64_t & lTransactionNum) { m_lTransactionNum = lTransactionNum; }
+	inline void SetPriceLimit(const int64_t & lPriceLimit) { m_lPriceLimit = lPriceLimit; }
+	inline void SetTotalAssetsOnOffer(const int64_t & lTotalAssets) { m_lTotalAssetsOffer = lTotalAssets; }
+	inline void SetFinishedSoFar(const int64_t & lFinishedSoFar) { m_lFinishedSoFar = lFinishedSoFar; }
+	inline void SetMinimumIncrement(const int64_t & lMinIncrement) 
 	{ m_lMinimumIncrement = lMinIncrement; if (m_lMinimumIncrement < 1) m_lMinimumIncrement = 1; }
-	inline void SetScale(const long & lScale) 
+	inline void SetScale(const int64_t & lScale) 
 	{ m_lScale = lScale; if (m_lScale < 1) m_lScale = 1; }
 // ---------------------------------------------------------
 public:
 EXPORT bool MakeOffer(      bool   bBuyingOrSelling,    // True == SELLING, False == BUYING
-                      const long & lPriceLimit,         // Per Scale...
-                      const long & lTotalAssetsOffer,   // Total assets available for sale or purchase.
-                      const long & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
-                      const long & lTransactionNum,     // The transaction number authorizing this trade.
+                      const int64_t & lPriceLimit,         // Per Scale...
+                      const int64_t & lTotalAssetsOffer,   // Total assets available for sale or purchase.
+                      const int64_t & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
+                      const int64_t & lTransactionNum,     // The transaction number authorizing this trade.
                       const time_t & VALID_FROM	= 0,    // defaults to RIGHT NOW
                       const time_t & VALID_TO	= 0);   // defaults to 24 hours (a "Day Order")
 	// ---------------------------------------------------------
-	inline void IncrementFinishedSoFar(const long & lFinishedSoFar) { m_lFinishedSoFar += lFinishedSoFar; }
+	inline void IncrementFinishedSoFar(const int64_t & lFinishedSoFar) { m_lFinishedSoFar += lFinishedSoFar; }
 	
-	inline long			GetAmountAvailable()    const { return GetTotalAssetsOnOffer() - GetFinishedSoFar(); }
-	inline const long & GetTransactionNum()     const { return m_lTransactionNum; }
+	inline int64_t			GetAmountAvailable()    const { return GetTotalAssetsOnOffer() - GetFinishedSoFar(); }
+	inline const int64_t & GetTransactionNum()     const { return m_lTransactionNum; }
 
-	inline const long & GetPriceLimit()         const { return m_lPriceLimit; }
-	inline const long & GetTotalAssetsOnOffer() const { return m_lTotalAssetsOffer; }
-	inline const long & GetFinishedSoFar()      const { return m_lFinishedSoFar; }
-	inline const long & GetMinimumIncrement() 
+	inline const int64_t & GetPriceLimit()         const { return m_lPriceLimit; }
+	inline const int64_t & GetTotalAssetsOnOffer() const { return m_lTotalAssetsOffer; }
+	inline const int64_t & GetFinishedSoFar()      const { return m_lFinishedSoFar; }
+	inline const int64_t & GetMinimumIncrement() 
         { if (m_lMinimumIncrement < 1) m_lMinimumIncrement = 1; return m_lMinimumIncrement; }
-	inline const long & GetScale() 
+	inline const int64_t & GetScale() 
         { if (m_lScale < 1) m_lScale = 1; return m_lScale; }
 	
 	inline const OTIdentifier & GetCurrencyID() const { return m_CURRENCY_TYPE_ID; }
@@ -258,7 +258,7 @@ EXPORT    void   SetDateAddedToMarket(time_t tDate); // Used in OTCron when addi
 	// ----------------------------------------------------------
 EXPORT	OTOffer();		// The constructor contains the 3 variables needed to identify any market.
 EXPORT	OTOffer(const OTIdentifier & SERVER_ID,
-                const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const long & MARKET_SCALE);
+                const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const int64_t & MARKET_SCALE);
 EXPORT	virtual ~OTOffer();
 
 	// Overridden from OTContract.
@@ -270,7 +270,7 @@ EXPORT	virtual ~OTOffer();
 	void Release_Offer();
 
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents 
 

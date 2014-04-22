@@ -153,43 +153,43 @@ class OTPasswordData;
 //
 class OTNumList
 {
-    std::set<long>  m_setData;
+    std::set<int64_t>  m_setData;
 
     // private for security reasons, used internally only by a function that knows the string length already.
     bool Add(const char * szfNumbers);   // if false, means the numbers were already there. (At least one of them.)
 
 public:
-EXPORT    OTNumList(const std::set<long> & theNumbers);
+EXPORT    OTNumList(const std::set<int64_t> & theNumbers);
 //        OTNumList(const char * szNumbers); // removed for security reasons.
 EXPORT    OTNumList(const OTString    & strNumbers);
 EXPORT    OTNumList(const std::string & strNumbers);
-EXPORT    OTNumList(long lInput);
+EXPORT    OTNumList(int64_t lInput);
 EXPORT    OTNumList();
 EXPORT    ~OTNumList();
     // -------------------
 EXPORT    bool Add(const OTString    & strNumbers);  // if false, means the numbers were already there. (At least one of them.)
 EXPORT    bool Add(const std::string & strNumbers);  // if false, means the numbers were already there. (At least one of them.)
     // -------------------
-EXPORT    bool Add   (const long & theValue);       // if false, means the value was already there.
-EXPORT    bool Remove(const long & theValue);       // if false, means the value was NOT already there.
-EXPORT    bool Verify(const long & theValue) const; // returns true/false (whether value is already there.)
+EXPORT    bool Add   (const int64_t & theValue);       // if false, means the value was already there.
+EXPORT    bool Remove(const int64_t & theValue);       // if false, means the value was NOT already there.
+EXPORT    bool Verify(const int64_t & theValue) const; // returns true/false (whether value is already there.)
     // -------------------
 EXPORT    bool Add   (const OTNumList      & theNumList); // if false, means the numbers were already there. (At least one of them.)
-EXPORT    bool Add   (const std::set<long> & theNumbers); // if false, means the numbers were already there. (At least one of them.)
-EXPORT    bool Remove(const std::set<long> & theNumbers); // if false, means the numbers were NOT already there. (At least one of them.)
-EXPORT    bool Verify(const std::set<long> & theNumbers) const; // True/False, based on whether values are already there. (ALL theNumbers must be present.)
+EXPORT    bool Add   (const std::set<int64_t> & theNumbers); // if false, means the numbers were already there. (At least one of them.)
+EXPORT    bool Remove(const std::set<int64_t> & theNumbers); // if false, means the numbers were NOT already there. (At least one of them.)
+EXPORT    bool Verify(const std::set<int64_t> & theNumbers) const; // True/False, based on whether values are already there. (ALL theNumbers must be present.)
     // -------------------
 EXPORT    bool Verify   (const OTNumList & rhs) const; // True/False, based on whether OTNumLists MATCH in COUNT and CONTENT (NOT ORDER.)
 EXPORT    bool VerifyAny(const OTNumList & rhs) const; // True/False, based on whether ANY of rhs are found in *this.
-EXPORT    bool VerifyAny(const std::set<long> & setData) const; // Verify whether ANY of the numbers on *this are found in setData.
+EXPORT    bool VerifyAny(const std::set<int64_t> & setData) const; // Verify whether ANY of the numbers on *this are found in setData.
     // -------------------
-EXPORT    int  Count() const;
+EXPORT    int32_t  Count() const;
     // -------------------
-EXPORT    bool Peek(long & lPeek) const;
+EXPORT    bool Peek(int64_t & lPeek) const;
 EXPORT    bool Pop();
     // -------------------
     // Outputs the numlist as set of numbers. (To iterate OTNumList, call this, then iterate the output.)
-EXPORT    bool Output(std::set<long> & theOutput) const; // returns false if the numlist was empty.
+EXPORT    bool Output(std::set<int64_t> & theOutput) const; // returns false if the numlist was empty.
 
     // Outputs the numlist as a comma-separated string (for serialization, usually.)
 EXPORT    bool Output(OTString & strOutput) const; // returns false if the numlist was empty.
@@ -245,7 +245,7 @@ protected:
 	bool LoadContractXML(); // The XML file is in m_xmlUnsigned. Load it from there into members here.
 	// -------------------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	// -------------------------------------------------------------------
 //	virtual bool SignContract(const EVP_PKEY * pkey, OTSignature & theSignature,
 //							  const OTString & strHashType);
@@ -461,7 +461,7 @@ EXPORT  bool SignWithKey(const OTAsymmetricKey & theKey,
         // and encryption option also. Because if someone changes my account ID in the file,
         // I have no way of re-calculating it from the account file, which changes! So my
         // copies of the account file and wallet file are the only records of that account ID
-        // which is a giant long number.
+        // which is a giant int64_t number.
         virtual bool VerifyContractID();
 EXPORT	virtual void CalculateContractID(OTIdentifier & newID);
 

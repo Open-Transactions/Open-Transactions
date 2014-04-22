@@ -35,12 +35,13 @@ public class Blob extends Storable {
     super.delete();
   }
 // ------------------------
-  public void setM_memBuffer(SWIGTYPE_p_std__vectorT_unsigned_char_t value) {
-    otapiJNI.Blob_m_memBuffer_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_unsigned_char_t.getCPtr(value));
+  public void setM_memBuffer(VectorUnsignedChar value) {
+    otapiJNI.Blob_m_memBuffer_set(swigCPtr, this, VectorUnsignedChar.getCPtr(value), value);
   }
 
-  public SWIGTYPE_p_std__vectorT_unsigned_char_t getM_memBuffer() {
-    return new SWIGTYPE_p_std__vectorT_unsigned_char_t(otapiJNI.Blob_m_memBuffer_get(swigCPtr, this), true);
+  public VectorUnsignedChar getM_memBuffer() {
+    long cPtr = otapiJNI.Blob_m_memBuffer_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new VectorUnsignedChar(cPtr, false);
   }
 
   public static Blob ot_dynamic_cast(Storable pObject) {

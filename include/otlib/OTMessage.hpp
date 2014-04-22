@@ -149,7 +149,7 @@ protected:
 
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 //	virtual bool SaveContractWallet(FILE * fl);
-    virtual int ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 
 	virtual void UpdateContents();
 
@@ -212,17 +212,17 @@ EXPORT    void SetAcknowledgments(OTPseudonym & theNym);
     OTNumList   m_AcknowledgedReplies;  // Client request: list of server replies client has already seen.
                                         // Server reply:   list of client-acknowledged replies (so client knows that server knows.)
 
-    long        m_lNewRequestNum;   // If you are SENDING a message, you set m_strRequestNum. (For all msgs.)
+    int64_t        m_lNewRequestNum;   // If you are SENDING a message, you set m_strRequestNum. (For all msgs.)
                                     // Server Reply for all messages copies that same number into m_strRequestNum;
                                     // But if this is a SERVER REPLY to the "getRequestNumber" MESSAGE, the
                                     // "request number" expected in that reply is stored HERE in m_lNewRequestNum;
-	long		m_lDepth;			// For Market-related messages... (Plus for usage credits.) Also used by getBoxReceipt
-	long		m_lTransactionNum;	// For Market-related messages... Also used by getBoxReceipt
+	int64_t		m_lDepth;			// For Market-related messages... (Plus for usage credits.) Also used by getBoxReceipt
+	int64_t		m_lTransactionNum;	// For Market-related messages... Also used by getBoxReceipt
 
 	bool		m_bSuccess;			// When the server replies to the client, this may be true or false
 	bool		m_bBool;			// Some commands need to send a bool. This variable is for those.
     // ----------------------------------------------------------
-    long        m_lTime;            // Timestamp when the message was signed.
+    int64_t        m_lTime;            // Timestamp when the message was signed.
 };
 
 

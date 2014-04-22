@@ -8,18 +8,18 @@
 
 package org.opentransactions.otapi;
 
-public class SWIGTYPE_p_std__vectorT_unsigned_char_t {
+public class SWIGTYPE_p_OTVariable {
   private long swigCPtr;
 
-  protected SWIGTYPE_p_std__vectorT_unsigned_char_t(long cPtr, boolean futureUse) {
+  protected SWIGTYPE_p_OTVariable(long cPtr, boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_std__vectorT_unsigned_char_t() {
+  protected SWIGTYPE_p_OTVariable() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_std__vectorT_unsigned_char_t obj) {
+  protected static long getCPtr(SWIGTYPE_p_OTVariable obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

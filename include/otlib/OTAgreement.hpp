@@ -179,12 +179,12 @@ protected:
     // a copy of the merchant's signed agreement INSIDE our own. The server can do the hard work of comparing them, though
     // such will probably occur through a comparison function I'll have to add right here in this class.
 
-    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const long & lNewTransactionNumber,
+    virtual void onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewTransactionNumber,
                                 OTPseudonym & theOriginator,
                                 OTPseudonym * pRemover);
     virtual void onRemovalFromCron();
 
-    std::deque<long> m_dequeRecipientClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
+    std::deque<int64_t> m_dequeRecipientClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
 
 public:
 	// --------------------------------------------------------------------------
@@ -195,7 +195,7 @@ public:
 
     // SetAgreement replaced with the 2 functions below. See notes even lower.
     //
-//	bool	SetAgreement(const long & lTransactionNum,	const OTString & strConsideration,
+//	bool	SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
 //                       const time_t & VALID_FROM=0,	const time_t & VALID_TO=0);
 
 EXPORT    bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
@@ -226,11 +226,11 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
      // --------------------------------------------------------------------------------------------------------
      THEN, (OTPaymentPlan) adds TWO OPTIONS (additional and independent of each other):
 
-     bool		SetInitialPayment(const long & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+     bool		SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
      // --------------------------------------------------------------------------------------------------------
-     bool		SetPaymentPlan(const long & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
+     bool		SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
                                 time_t tBetweenPayments=LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
-                                time_t tPlanLength=0, int nMaxPayments=0);
+                                time_t tPlanLength=0, int32_t nMaxPayments=0);
 
      // ********************************************************************************
 
@@ -302,17 +302,17 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
 
     // The recipient must also provide an opening and closing transaction number(s).
     //
-EXPORT    long    GetRecipientClosingTransactionNoAt(unsigned int nIndex) const;
-EXPORT    int     GetRecipientCountClosingNumbers() const;
+EXPORT    int64_t    GetRecipientClosingTransactionNoAt(uint32_t nIndex) const;
+EXPORT    int32_t     GetRecipientCountClosingNumbers() const;
 
-    void    AddRecipientClosingTransactionNo(const long & lClosingTransactionNo);
+    void    AddRecipientClosingTransactionNo(const int64_t & lClosingTransactionNo);
     // ----------------------------------------------------------------------------
 
     // This is a higher-level than the above functions. It calls them.
     // Below is the abstraction, above is the implementation.
 
-EXPORT    long    GetRecipientOpeningNum() const;
-EXPORT    long    GetRecipientClosingNum() const;
+EXPORT    int64_t    GetRecipientOpeningNum() const;
+EXPORT    int64_t    GetRecipientClosingNum() const;
 
     // ----------------------------------------------------------------------------
 	// From OTCronItem (parent class of this)
@@ -324,14 +324,14 @@ EXPORT    long    GetRecipientClosingNum() const;
 
      // ------------------------------------------------------
      // These are for:
-     // std::deque<long> m_dequeClosingNumbers;
+     // std::deque<int64_t> m_dequeClosingNumbers;
      //
      // They are numbers used for CLOSING a transaction. (finalReceipt, someday more.)
 
-     long    GetClosingTransactionNoAt(int nIndex) const;
-     int     GetCountClosingNumbers() const;
+     int64_t    GetClosingTransactionNoAt(int32_t nIndex) const;
+     int32_t     GetCountClosingNumbers() const;
 
-     void    AddClosingTransactionNo(const long & lClosingTransactionNo);
+     void    AddClosingTransactionNo(const int64_t & lClosingTransactionNo);
 	 */
         virtual bool CanRemoveItemFromCron(OTPseudonym & theNym);
 
@@ -346,8 +346,8 @@ EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
 
 	// From OTTrackable (parent class of OTCronItem, parent class of this)
 	/*
-	 inline long GetTransactionNum() const { return m_lTransactionNum; }
-	 inline void SetTransactionNum(long lTransactionNum) { m_lTransactionNum = lTransactionNum; }
+	 inline int64_t GetTransactionNum() const { return m_lTransactionNum; }
+	 inline void SetTransactionNum(int64_t lTransactionNum) { m_lTransactionNum = lTransactionNum; }
 
 	 inline const OTIdentifier &	GetSenderAcctID()		{ return m_SENDER_ACCT_ID; }
 	 inline const OTIdentifier &	GetSenderUserID()		{ return m_SENDER_USER_ID; }
@@ -355,7 +355,7 @@ EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
 	 inline void			SetSenderUserID(const OTIdentifier & USER_ID)		{ m_SENDER_USER_ID = USER_ID; }
 	 */
 
-    virtual bool HasTransactionNum(const long & lInput) const;
+    virtual bool HasTransactionNum(const int64_t & lInput) const;
     virtual void GetAllTransactionNumbers(OTNumList & numlistOutput) const;
 
 	// --------------------------------------------------------------------------
@@ -399,8 +399,8 @@ EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
 EXPORT	bool SendNoticeToAllParties(bool bSuccessMsg,
                                     OTPseudonym & theServerNym,
                                     const OTIdentifier & theServerID,
-                                    const long & lNewTransactionNumber,
-//                                  const long & lInReferenceTo, // each party has its own opening trans #.
+                                    const int64_t & lNewTransactionNumber,
+//                                  const int64_t & lInReferenceTo, // each party has its own opening trans #.
                                     const OTString & strReference,
                                     OTString * pstrNote=NULL,
                                     OTString * pstrAttachment=NULL,
@@ -411,8 +411,8 @@ EXPORT static bool DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an
                                             OTPseudonym & theServerNym,
                                             const OTIdentifier & SERVER_ID,
                                             const OTIdentifier & USER_ID,
-                                            const long & lNewTransactionNumber,
-                                            const long & lInReferenceTo,
+                                            const int64_t & lNewTransactionNumber,
+                                            const int64_t & lInReferenceTo,
                                             const OTString & strReference,
                                             OTString * pstrNote=NULL,
                                             OTString * pstrAttachment=NULL,
@@ -430,13 +430,13 @@ EXPORT static bool DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an
 	virtual void Release();
 	void Release_Agreement();
     // ------------------------------------------------------
-	virtual bool IsValidOpeningNumber(const long & lOpeningNum) const;
+	virtual bool IsValidOpeningNumber(const int64_t & lOpeningNum) const;
     // ------------------------------------------------------
-EXPORT	virtual long GetOpeningNumber(const OTIdentifier & theNymID) const;
-    virtual long GetClosingNumber(const OTIdentifier & theAcctID) const;
+EXPORT	virtual int64_t GetOpeningNumber(const OTIdentifier & theNymID) const;
+    virtual int64_t GetClosingNumber(const OTIdentifier & theAcctID) const;
     // ------------------------------------------------------
 	// return -1 if error, 0 if nothing, and 1 if the node was processed.
-	virtual int  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+	virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };

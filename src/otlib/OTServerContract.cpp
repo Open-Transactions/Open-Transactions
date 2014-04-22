@@ -158,7 +158,7 @@ OTServerContract::~OTServerContract()
 
 }
 
-bool OTServerContract::GetConnectInfo(OTString & strHostname, int & nPort)
+bool OTServerContract::GetConnectInfo(OTString & strHostname, int32_t & nPort)
 {
 	if (m_strHostname.GetLength())
 	{
@@ -252,9 +252,9 @@ void OTServerContract::CreateContents()
 
 // This is the serialization code for READING FROM THE CONTRACT
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,

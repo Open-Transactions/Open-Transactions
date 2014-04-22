@@ -35,11 +35,11 @@ public class OfferListMarket extends Storable {
     super.delete();
   }
 // ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,112,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:swig\otapi\OTAPI.i,133,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefBidData(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,210,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefBidData(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -53,7 +53,7 @@ private long removeRefBidData(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -72,11 +72,11 @@ private long removeRefBidData(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefBidData(BidData element) {
+private Long getCPtrAddRefBidData(BidData element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 
@@ -98,8 +98,8 @@ private long getCPtrAddRefBidData(BidData element) {
 	return BidData.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,189,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
-private long removeRefAskData(long lIndex) {
+	/*@SWIG:swig\otapi\OTAPI.i,210,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+private Long removeRefAskData(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
 	// at lIndex. Once it is found, then loop through the reference list and remove
@@ -113,7 +113,7 @@ private long removeRefAskData(long lIndex) {
 	// Loop through the reference list and remove the corresponding reference
 	// for the specified element.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 		
@@ -132,11 +132,11 @@ private long removeRefAskData(long lIndex) {
 	return lIndex;
 }
 
-private long getCPtrAddRefAskData(AskData element) {
+private Long getCPtrAddRefAskData(AskData element) {
 	// Whenever adding a reference to the list, I remove it first (if already there.)
 	// That way we never store more than one reference per actual contained object.
 	//
-	for(int intIndex = 0; intIndex < elementList.size(); intIndex++)
+	for(Integer intIndex = 0; intIndex < elementList.size(); intIndex++)
 	{
 		Object theObject = elementList.get(intIndex);
 

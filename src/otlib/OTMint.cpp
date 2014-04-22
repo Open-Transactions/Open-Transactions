@@ -558,7 +558,7 @@ bool OTMint::VerifyContractID()
 
 // The mint has a different key pair for each denomination.
 // Pass in the actual denomination such as 5, 10, 20, 50, 100...
-bool OTMint::GetPrivate(OTASCIIArmor & theArmor, long lDenomination)
+bool OTMint::GetPrivate(OTASCIIArmor & theArmor, int64_t lDenomination)
 {
 	FOR_EACH(mapOfArmor, m_mapPrivate)
 	{
@@ -577,7 +577,7 @@ bool OTMint::GetPrivate(OTASCIIArmor & theArmor, long lDenomination)
 
 // The mint has a different key pair for each denomination.
 // Pass in the actual denomination such as 5, 10, 20, 50, 100...
-bool OTMint::GetPublic(OTASCIIArmor & theArmor, long lDenomination)
+bool OTMint::GetPublic(OTASCIIArmor & theArmor, int64_t lDenomination)
 {
 	FOR_EACH(mapOfArmor, m_mapPublic)
 	{
@@ -601,11 +601,11 @@ bool OTMint::GetPublic(OTASCIIArmor & theArmor, long lDenomination)
 // Then you can subtract the denomination from the amount and call this method
 // again, and again, until it reaches 0, in order to create all the necessary
 // tokens to reach the full withdrawal amount.
-long OTMint::GetLargestDenomination(long lAmount)
+int64_t OTMint::GetLargestDenomination(int64_t lAmount)
 {
-	for (int nIndex = GetDenominationCount()-1; nIndex >= 0; nIndex--)
+	for (int32_t nIndex = GetDenominationCount()-1; nIndex >= 0; nIndex--)
 	{
-		long lDenom = GetDenomination(nIndex);
+		int64_t lDenom = GetDenomination(nIndex);
 		
 		if (lDenom <= lAmount)
 			return lDenom;
@@ -618,7 +618,7 @@ long OTMint::GetLargestDenomination(long lAmount)
 // If you call GetDenominationCount, you can then use this method
 // to look up a denomination by index.
 // You could also iterate through them by index.
-long OTMint::GetDenomination(int nIndex)
+int64_t OTMint::GetDenomination(int32_t nIndex)
 {
 	// index out of bounds.
 	if (nIndex > (m_nDenominationCount-1))
@@ -626,7 +626,7 @@ long OTMint::GetDenomination(int nIndex)
 		return 0;
 	}
 	
-	int nIterateIndex	= 0;
+	int32_t nIterateIndex	= 0;
 	
 	for (mapOfArmor::iterator ii = m_mapPublic.begin(); 
 		 ii != m_mapPublic.end(); 
@@ -650,7 +650,7 @@ long OTMint::GetDenomination(int nIndex)
 
 // The mint has a different key pair for each denomination.
 // Pass the actual denomination such as 5, 10, 20, 50, 100...
-bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, int nPrimeLength/*=1024*/)
+bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, int64_t lDenomination, int32_t nPrimeLength/*=1024*/)
 {
     OT_ASSERT(NULL != m_pKeyPublic);
     
@@ -705,8 +705,8 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, 
 	
 	// Copy from BIO back to a normal OTString or Ascii-Armor  
 	char privateBankBuffer[4096], publicBankBuffer[4096];   // todo stop hardcoding these string lengths
-	int  privatebankLen	= BIO_read(bio, privateBankBuffer, 4000); // cutting it a little short on purpose, with the buffer.
-	int  publicbankLen	= BIO_read(bioPublic, publicBankBuffer, 4000); // Just makes me feel more comfortable for some reason.
+	int32_t  privatebankLen	= BIO_read(bio, privateBankBuffer, 4000); // cutting it a little short on purpose, with the buffer.
+	int32_t  publicbankLen	= BIO_read(bioPublic, publicBankBuffer, 4000); // Just makes me feel more comfortable for some reason.
 	
 	if (privatebankLen && publicbankLen)
 	{
@@ -746,7 +746,7 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, long lDenomination, 
         // ---------------------------		
 		// Success!
 		bReturnValue = true;
-		OTLog::vOutput(1, "Successfully added denomination: %ld\n", lDenomination);
+		OTLog::vOutput(1, "Successfully added denomination: %lld\n", lDenomination);
 	}
 	
 	return bReturnValue;
@@ -811,7 +811,7 @@ void OTMint::UpdateContents()
 				OTASCIIArmor * pArmor = (*it).second;
 				OT_ASSERT_MSG(NULL != pArmor, "NULL private mint pointer in OTMint::UpdateContents.\n");
 				
-				m_xmlUnsigned.Concatenate("<mintPrivateInfo denomination=\"%ld\">\n"
+				m_xmlUnsigned.Concatenate("<mintPrivateInfo denomination=\"%lld\">\n"
 										  "%s</mintPrivateInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 			}
@@ -821,7 +821,7 @@ void OTMint::UpdateContents()
 			OTASCIIArmor * pArmor = (*it).second;
 			OT_ASSERT_MSG(NULL != pArmor, "NULL public mint pointer in OTMint::UpdateContents.\n");
 			
-			m_xmlUnsigned.Concatenate("<mintPublicInfo denomination=\"%ld\">\n"
+			m_xmlUnsigned.Concatenate("<mintPublicInfo denomination=\"%lld\">\n"
 										  "%s</mintPublicInfo>\n\n", 
 										  (*it).first, pArmor->Get());
 		}
@@ -833,11 +833,11 @@ void OTMint::UpdateContents()
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
-int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
     OT_ASSERT(NULL != m_pKeyPublic);
 
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 	
     const OTString strNodeName(xml->getNodeName());
     
@@ -921,7 +921,7 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 	else if (strNodeName.Compare("mintPrivateInfo"))
 	{		
-		long lDenomination = atol(xml->getAttributeValue("denomination"));					
+		int64_t lDenomination = atol(xml->getAttributeValue("denomination"));					
 		
 		OTASCIIArmor * pArmor = new OTASCIIArmor;
 		
@@ -946,7 +946,7 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	
 	else if (strNodeName.Compare("mintPublicInfo"))
 	{		
-		long lDenomination = atol(xml->getAttributeValue("denomination"));					
+		int64_t lDenomination = atol(xml->getAttributeValue("denomination"));					
 		
 		OTASCIIArmor * pArmor = new OTASCIIArmor;
 		
@@ -1019,14 +1019,14 @@ int OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 // Lucre step 3: the mint signs the token
 // 
-bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int nTokenIndex)
+bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int32_t nTokenIndex)
 {
 	bool bReturnValue = false;
 	
 	//OTLog::Error("%s <bank file> <coin request> <coin signature> [<signature repeats>]\n",
     _OT_Lucre_Dumper setDumper;
 	
-//	OTLog::vError("OTMint::SignToken!!\nnTokenIndex: %d\n Denomination: %ld\n", nTokenIndex, theToken.GetDenomination());
+//	OTLog::vError("OTMint::SignToken!!\nnTokenIndex: %d\n Denomination: %lld\n", nTokenIndex, theToken.GetDenomination());
 	
     OpenSSL_BIO bioBank		= BIO_new(BIO_s_mem()); // input
     OpenSSL_BIO bioRequest		= BIO_new(BIO_s_mem()); // input
@@ -1095,7 +1095,7 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 			char sig_buf[1024];   // todo stop hardcoding these string lengths
 //			memset(sig_buf, 0, 1024); // zero it out. (I had this commented out, but the size was 2048, so maybe it's safe now at 1024.)
 			
-			int sig_len	= BIO_read(bioSignature, sig_buf, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
+			int32_t sig_len	= BIO_read(bioSignature, sig_buf, 1000); // cutting it a little short on purpose, with the buffer. Just makes me feel more comfortable for some reason.
 			
 			
 			// Add the null terminator by hand (just in case.)
@@ -1141,7 +1141,7 @@ bool OTMint_Lucre::SignToken(OTPseudonym & theNotary, OTToken & theToken, OTStri
 // Lucre step 5: mint verifies token when it is redeemed by merchant.
 // This function is called by OTToken::VerifyToken.
 // That's the one you should be calling, most likely, not this one.
-bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, long lDenomination)
+bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, int64_t lDenomination)
 {
 	bool bReturnValue = false;
 //	OTLog::Error("%s <bank info> <coin>\n", argv[0]);
@@ -1228,11 +1228,11 @@ bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextT
 // Lucre step 1: generate new mint
 // Make sure the issuer here has a private key
 // theMint.GenerateNewMint(nSeries, VALID_FROM, VALID_TO, ASSET_ID, m_nymServer, 1, 5, 10, 20, 50, 100, 500, 1000, 10000, 100000);
-void OTMint::GenerateNewMint(int nSeries, time_t VALID_FROM, time_t VALID_TO, time_t MINT_EXPIRATION,
+void OTMint::GenerateNewMint(int32_t nSeries, time_t VALID_FROM, time_t VALID_TO, time_t MINT_EXPIRATION,
 							 const OTIdentifier & theAssetID, const OTIdentifier & theServerID, 
 							 OTPseudonym & theNotary, 
-							 long nDenom1, long nDenom2, long nDenom3, long nDenom4, long nDenom5,
-							 long nDenom6, long nDenom7, long nDenom8, long nDenom9, long nDenom10)
+							 int64_t nDenom1, int64_t nDenom2, int64_t nDenom3, int64_t nDenom4, int64_t nDenom5,
+							 int64_t nDenom6, int64_t nDenom7, int64_t nDenom8, int64_t nDenom9, int64_t nDenom10)
 {
 	Release();
 	
@@ -1274,43 +1274,43 @@ void OTMint::GenerateNewMint(int nSeries, time_t VALID_FROM, time_t VALID_TO, ti
     // ----------------------------------------------------------------
 	if (nDenom1)
 	{
-		AddDenomination(theNotary, nDenom1); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom1); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom2)
 	{
-		AddDenomination(theNotary, nDenom2); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom2); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom3)
 	{
-		AddDenomination(theNotary, nDenom3); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom3); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom4)
 	{
-		AddDenomination(theNotary, nDenom4); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom4); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom5)
 	{
-		AddDenomination(theNotary, nDenom5); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom5); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom6)
 	{
-		AddDenomination(theNotary, nDenom6); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom6); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom7)
 	{
-		AddDenomination(theNotary, nDenom7); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom7); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom8)
 	{
-		AddDenomination(theNotary, nDenom8); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom8); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom9)
 	{
-		AddDenomination(theNotary, nDenom9); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom9); // int32_t nPrimeLength default = 1024
 	}
 	if (nDenom10)
 	{
-		AddDenomination(theNotary, nDenom10); // int nPrimeLength default = 1024
+		AddDenomination(theNotary, nDenom10); // int32_t nPrimeLength default = 1024
 	}
 }
 

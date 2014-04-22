@@ -151,7 +151,7 @@ extern "C"
 #endif
 }
 
-int allow_debug = 1;
+int32_t allow_debug = 1;
 
 /*
  union u_header
@@ -167,7 +167,7 @@ int allow_debug = 1;
  };
  */
 
-void SetupHeader( u_header & theCMD, int nTypeID, int nCmdID, OTPayload & thePayload)
+void SetupHeader( u_header & theCMD, int32_t nTypeID, int32_t nCmdID, OTPayload & thePayload)
 {
 	uint32_t lSize = thePayload.GetSize(); // outputting in normal byte order, but sent to network in network byte order.
 
@@ -179,16 +179,16 @@ void SetupHeader( u_header & theCMD, int nTypeID, int nCmdID, OTPayload & thePay
 
 
 	BYTE byChecksum	= (BYTE)theCMD.fields.checksum;
-	int nChecksum	= byChecksum;
+	int32_t nChecksum	= byChecksum;
 
 	OTLog::vOutput(4, "OT_CMD_HEADER_SIZE: %d -- CMD TYPE: %d -- CMD NUM: %d -- (followed by 2 bytes of filler)\n"
 			"PAYLOAD SIZE: %d -- CHECKSUM: %d\n", OT_CMD_HEADER_SIZE,
 			nTypeID, nCmdID, lSize, nChecksum);
 
 	OTLog::vOutput(5, "First 9 bytes are: %d %d %d %d %d %d %d %d %d\n",
-//			"sizeof(int) is %d, sizeof(long) is %d, sizeof(short) is %d, sizeof(uint32_t) is %d.\n",
+//			"sizeof(int32_t) is %d, sizeof(int64_t) is %d, sizeof(short) is %d, sizeof(uint32_t) is %d.\n",
 			theCMD.buf[0],theCMD.buf[1],theCMD.buf[2],theCMD.buf[3],theCMD.buf[4], theCMD.buf[5], theCMD.buf[6], theCMD.buf[7], theCMD.buf[8]
-//			sizeof(int), sizeof(long), sizeof(short), sizeof(uint32_t)
+//			sizeof(int32_t), sizeof(int64_t), sizeof(short), sizeof(uint32_t)
 			);
 }
 
@@ -263,7 +263,7 @@ bool OTServerConnection::SetFocus(OTPseudonym & theNym, OTServerContract & theSe
 //	//// You can't just pass in a hostname and port.
 //	//// Instead, you pass in the Nym and Contract, and *I'll* look up all that stuff.
 //	//OTString strHostname;
-//	//int nPort = 0;
+//	//int32_t nPort = 0;
 //	//
 //	//if (false == theServerContract.GetConnectInfo(strHostname, nPort))
 //	//{
@@ -309,11 +309,11 @@ bool OTServerConnection::SetFocus(OTPseudonym & theNym, OTServerContract & theSe
 // This function is meant to be called when that happens, so that we
 // can do just that.
 //
-void OTServerConnection::OnServerResponseToGetRequestNumber(long lNewRequestNumber)
+void OTServerConnection::OnServerResponseToGetRequestNumber(int64_t lNewRequestNumber)
 {
 	if (m_pNym && m_pServerContract)
 	{
-		OTLog::vOutput(0,  "Received new request number from the server: %ld. Updating Nym records...\n",
+		OTLog::vOutput(0,  "Received new request number from the server: %lld. Updating Nym records...\n",
 				lNewRequestNumber);
 
 		OTString strServerID;
@@ -382,7 +382,7 @@ OTServerConnection::OTServerConnection(OTWallet & theWallet, OTClient & theClien
 // TCP / SSL mode.
 //bool OTServerConnection::ProcessInBuffer(OTMessage & theServerReply)
 //{
-////	int  err;
+////	int32_t  err;
 ////	uint32_t nread;
 ////	u_header theCMD;
 ////
@@ -451,7 +451,7 @@ bool OTServerConnection::ProcessReply(u_header & theCMD, OTMessage & theServerRe
 	else
 	{
 		//gDebugLog.Write("Unknown command type");
-		int nCMDType = theCMD.fields.type_id;
+		int32_t nCMDType = theCMD.fields.type_id;
 		OTLog::vError("Unknown command type: %d\n", nCMDType);
 	}
 
@@ -461,7 +461,7 @@ bool OTServerConnection::ProcessReply(u_header & theCMD, OTMessage & theServerRe
 	// Should probably send an Error message back, as well.
 	if (bSuccess == false)
 	{
-		int  err = 0, nread = 0;
+		int32_t  err = 0, nread = 0;
 
 		for (;;)
 		{
@@ -492,7 +492,7 @@ bool OTServerConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theServe
 {
 	// At this point, the checksum has already validated.
 	// Might as well get the PAYLOAD next.
-	int  err = 0;
+	int32_t  err = 0;
 	uint32_t nread;
 
 //	OT_ASSERT(NULL != m_pSocket);
@@ -505,7 +505,7 @@ bool OTServerConnection::ProcessType1Cmd(u_header & theCMD, OTMessage & theServe
 
 	for (nread = 0;  nread < theCMD.fields.size;  nread += err)
 	{
-//		err = SFSocketRead(m_pSocket, (unsigned char *)thePayload.GetPayloadPointer() + nread, theCMD.fields.size - nread);
+//		err = SFSocketRead(m_pSocket, (uint8_t *)thePayload.GetPayloadPointer() + nread, theCMD.fields.size - nread);
 
 #ifdef _WIN32
 		if (0 == err || SOCKET_ERROR == 0) // 0 means disconnect. error means error. otherwise, err contains bytes read.
@@ -688,7 +688,7 @@ bool OTServerConnection::SignAndSend(OTMessage & theMessage)
 
 void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 {
-    int  err = 0;
+    int32_t  err = 0;
 	uint32_t nwritten;
 
 	u_header theCMD;
@@ -741,13 +741,13 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 		OT_ASSERT(NULL != m_pServerContract);
 
 		// Call the callback here.
-		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %ld\n",
+		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %lld\n",
                        theMessage.m_strCommand.Get(),
                        atol(theMessage.m_strRequestNum.Get()));
 
 		m_pCallback->operator()(*m_pServerContract, theEnvelope);
 
-		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %ld\n\n",
+		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %lld\n\n",
                        theMessage.m_strCommand.Get(),
                        atol(theMessage.m_strRequestNum.Get()));
 	}
@@ -755,7 +755,7 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 
 	else			// TCP / SSL mode... -----------
 	{
-		const unsigned int nHeaderSize = OT_CMD_HEADER_SIZE;
+		const uint32_t nHeaderSize = OT_CMD_HEADER_SIZE;
 
 		for (nwritten = 0;  nwritten < nHeaderSize;  nwritten += err)
 		{
@@ -776,7 +776,7 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 
 		for (nwritten = 0;  nwritten < nPayloadSize;  nwritten += err)
 		{
-//			err = SFSocketWrite(m_pSocket, (unsigned char *)thePayload.GetPayloadPointer() + nwritten, nPayloadSize - nwritten);
+//			err = SFSocketWrite(m_pSocket, (uint8_t *)thePayload.GetPayloadPointer() + nwritten, nPayloadSize - nwritten);
 
 #ifdef _WIN32
 			if (0 == err || SOCKET_ERROR == err) //  0 is disonnect. error is error. >0 is bytes written.
@@ -796,7 +796,7 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 // This function interprets test input (so should have been in test client?)
 // then it uses that to send a message to server.
 // The buf passed in is simply data collected by fgets from stdin.
-void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
+void OTServerConnection::ProcessMessageOut(char *buf, int32_t * pnExpectReply)
 {
 
 	OT_ASSERT(NULL != buf);
@@ -835,7 +835,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
 		theCMD.fields.size = 0;
 		theCMD.fields.checksum = CalcChecksum(theCMD.buf, OT_CMD_HEADER_SIZE-1);
 
-		int nChecksum = theCMD.fields.checksum;
+		int32_t nChecksum = theCMD.fields.checksum;
 
 		OTLog::vOutput(0, "(User has instructed to send a size %d, TYPE 1 COMMAND to the server...)\n CHECKSUM: %d\n",
 				OT_CMD_HEADER_SIZE, nChecksum);
@@ -1585,7 +1585,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
 			// This code is for testing and allows me to find and patch any problems without
 			// having to re-create my data each time -- speeds up debugging.
 			//
-			long lTransactionNumber = ((strlen(buf) > 2) ? atol(&(buf[2])) : 0);
+			int64_t lTransactionNumber = ((strlen(buf) > 2) ? atol(&(buf[2])) : 0);
 
 			if (lTransactionNumber > 0)
 			{
@@ -1594,7 +1594,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
 
 				m_pNym->AddTransactionNum(*m_pNym, strServerID, lTransactionNumber, true); // bool bSave=true
 
-				OTLog::vOutput(0, "Transaction number %ld added to both lists (on client side.)\n",
+				OTLog::vOutput(0, "Transaction number %lld added to both lists (on client side.)\n",
 							  lTransactionNumber);
 			}
 
@@ -1645,7 +1645,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
 
 //	else if (bSendCommand && IsConnected()) // I only write to a socket if I'm in socket mode...
 //	{
-//		unsigned int nHeaderSize = OT_CMD_HEADER_SIZE;
+//		uint32_t nHeaderSize = OT_CMD_HEADER_SIZE;
 //
 //		// TODO: REMOVE THIS. FOR TESTING ONLY (testing malformed headers, and headers without payloads...)
 //		if (buf[0] == '2') {
@@ -1664,7 +1664,7 @@ void OTServerConnection::ProcessMessageOut(char *buf, int * pnExpectReply)
 //			break;
 //		}
 //
-//		int n0 = theCMD.buf[0], n1 = theCMD.buf[1], n2 = theCMD.buf[2], n3 = theCMD.buf[3], n4 = theCMD.buf[4], n5 = theCMD.buf[5], n6 = theCMD.buf[6];
+//		int32_t n0 = theCMD.buf[0], n1 = theCMD.buf[1], n2 = theCMD.buf[2], n3 = theCMD.buf[3], n4 = theCMD.buf[4], n5 = theCMD.buf[5], n6 = theCMD.buf[6];
 //
 //		OTLog::vOutput(4, "Sent: %d %d %d %d %d %d %d\n", n0, n1, n2, n3, n4, n5, n6);
 //	}

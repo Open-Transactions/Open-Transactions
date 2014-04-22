@@ -226,7 +226,7 @@ bool OTSymmetricKey::GenerateKey(const
 
 	{
 		int32_t nRes = theActualKey.randomizeMemory(OTCryptoConfig::SymmetricKeySize()); if (0 > nRes) { OT_FAIL; }
-		uint32_t uRes = static_cast<uint32_t>(nRes); // we need an unsigned value.
+		uint32_t uRes = static_cast<uint32_t>(nRes); // we need an uint32_t value.
 
 		if (OTCryptoConfig::SymmetricKeySize() != uRes)
 		{
@@ -532,7 +532,7 @@ OTPassword * OTSymmetricKey::GetPassphraseFromUser(const OTString * pstrDisplay/
     OTPasswordData  thePWData((NULL == pstrDisplay) ? szDisplay : pstrDisplay->Get());
     thePWData.setUsingOldSystem(); // So the cached key doesn't interfere, since this is for a plain symmetric key.
     // -----------------------------------------------
-    const int nCallback = souped_up_pass_cb(pPassUserInput->getPasswordWritable_char(),
+    const int32_t nCallback = souped_up_pass_cb(pPassUserInput->getPasswordWritable_char(),
                                             pPassUserInput->getBlockSize(),
                                             bAskTwice ? 1 : 0,
                                             static_cast<void *>(&thePWData));
@@ -894,16 +894,16 @@ bool OTSymmetricKey::SerializeTo(OTPayload & theOutput) const
 
 	uint32_t   n_hash_check_size  = static_cast<uint32_t>(htonl(static_cast<uint32_t>(m_dataHashCheck.GetSize())));
     // -----------------------------------------------
-    OTLog::vOutput(5, "%s: is_generated: %d   key_size_bits: %d   iteration_count: %ld   \n  "
-                   "salt_size: %ld   iv_size: %ld   enc_key_size: %ld   \n",
+    OTLog::vOutput(5, "%s: is_generated: %d   key_size_bits: %d   iteration_count: %lld   \n  "
+                   "salt_size: %lld   iv_size: %lld   enc_key_size: %lld   \n",
                    __FUNCTION__,
-                   static_cast<int>(ntohs(n_is_generated)),
-                   static_cast<int>(ntohs(n_key_size_bits)),
+                   static_cast<int32_t>(ntohs(n_is_generated)),
+                   static_cast<int32_t>(ntohs(n_key_size_bits)),
 
-                   static_cast<long>(ntohl(n_iteration_count)),
-                   static_cast<long>(ntohl(n_salt_size)),
-                   static_cast<long>(ntohl(n_iv_size)),
-                   static_cast<long>(ntohl(n_enc_key_size))
+                   static_cast<int64_t>(ntohl(n_iteration_count)),
+                   static_cast<int64_t>(ntohl(n_salt_size)),
+                   static_cast<int64_t>(ntohl(n_iv_size)),
+                   static_cast<int64_t>(ntohl(n_enc_key_size))
                    );
     // -----------------------------------------------
     theOutput.Concatenate(reinterpret_cast<void *>(&n_is_generated),
@@ -985,14 +985,14 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
     else
     {
         OTLog::vError("%s: Error: host_is_generated, Bad value: %d. (Expected 0 or 1.)\n",
-                      szFunc, static_cast<int>(host_is_generated));
+                      szFunc, static_cast<int32_t>(host_is_generated));
         return false;
     }
     // ****************************************************************************
 
     OTLog::vOutput(5, "%s: is_generated: %d \n",
                    __FUNCTION__,
-                   static_cast<int>(host_is_generated)
+                   static_cast<int32_t>(host_is_generated)
                    );
 
     // ****************************************************************************
@@ -1014,7 +1014,7 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     OTLog::vOutput(5, "%s: key_size_bits: %d \n",
                    __FUNCTION__,
-                   static_cast<int>(m_nKeySize)
+                   static_cast<int32_t>(m_nKeySize)
                    );
 
 
@@ -1040,9 +1040,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     m_uIterationCount = static_cast<uint32_t>(ntohl(n_iteration_count));
 
-    OTLog::vOutput(5, "%s: iteration_count: %ld \n",
+    OTLog::vOutput(5, "%s: iteration_count: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(m_uIterationCount)
+                   static_cast<int64_t>(m_uIterationCount)
                    );
 
     // ****************************************************************************
@@ -1066,9 +1066,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lSaltSize = static_cast<uint32_t>(ntohl(static_cast<uint32_t>(n_salt_size)));
 
-    OTLog::vOutput(5, "%s: salt_size value: %ld \n",
+    OTLog::vOutput(5, "%s: salt_size value: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(lSaltSize)
+                   static_cast<int64_t>(lSaltSize)
                    );
 
 	// ----------------------------------------------------------------------------
@@ -1083,9 +1083,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         OTLog::vError("%s: Error reading salt for symmetric key.\n", szFunc);
         return false;
     }
-    OTLog::vOutput(5, "%s: salt length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: salt length actually read: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(nRead)
+                   static_cast<int64_t>(nRead)
                    );
     OT_ASSERT(nRead == static_cast<uint32_t>(lSaltSize));
     // ****************************************************************************
@@ -1111,9 +1111,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lIVSize = ntohl(n_iv_size);
 
-    OTLog::vOutput(5, "%s: iv_size value: %ld \n",
+    OTLog::vOutput(5, "%s: iv_size value: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(lIVSize)
+                   static_cast<int64_t>(lIVSize)
                    );
 
 	// ----------------------------------------------------------------------------
@@ -1129,9 +1129,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: iv length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: iv length actually read: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(nRead)
+                   static_cast<int64_t>(nRead)
                    );
 
     OT_ASSERT(nRead == static_cast<uint32_t>(lIVSize));
@@ -1157,9 +1157,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lEncKeySize = ntohl(n_enc_key_size);
 
-    OTLog::vOutput(5, "%s: enc_key_size value: %ld \n",
+    OTLog::vOutput(5, "%s: enc_key_size value: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(lEncKeySize)
+                   static_cast<int64_t>(lEncKeySize)
                    );
 
 	// ----------------------------------------------------------------------------
@@ -1175,9 +1175,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: encrypted key length actually read: %ld \n",
+    OTLog::vOutput(5, "%s: encrypted key length actually read: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(nRead)
+                   static_cast<int64_t>(nRead)
                    );
 
     OT_ASSERT(nRead == static_cast<uint32_t>(lEncKeySize));
@@ -1206,9 +1206,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
 
     const uint32_t lHashCheckSize = ntohl(n_hash_check_size);
 
-    OTLog::vOutput(5, "%s: hash_check_size value: %ld \n",
+    OTLog::vOutput(5, "%s: hash_check_size value: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(lHashCheckSize)
+                   static_cast<int64_t>(lHashCheckSize)
                    );
 
 	// ----------------------------------------------------------------------------
@@ -1224,9 +1224,9 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
         return false;
     }
 
-    OTLog::vOutput(5, "%s: hash check data actually read: %ld \n",
+    OTLog::vOutput(5, "%s: hash check data actually read: %lld \n",
                    __FUNCTION__,
-                   static_cast<long>(nRead)
+                   static_cast<int64_t>(nRead)
                    );
 
     OT_ASSERT(nRead == static_cast<uint32_t>(lHashCheckSize));

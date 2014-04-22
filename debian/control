@@ -1,10 +1,10 @@
 Source: opentxs
 Section: utils
 Priority: extra
-Maintainer: randy waterhouse <noone@yodasan>
+Maintainer: randy waterhouse <kiwigb@yahoo.com>
 Uploaders: randy-waterhouse
-Build-Depends: debhelper, cdbs, autotools-dev, dh-autoreconf, pkg-config, libboost-thread-dev (>= 1.25.0), libzmq-dev (>= 2.1.4), libmsgpack-dev, libprotobuf-dev (>= 2.4.1), libssl-dev (>= 1.0.0)
-Standards-Version: 3.9.3
+Build-Depends: debhelper, cdbs, autotools-dev, dh-autoreconf, pkg-config, protobuf-compiler, libboost-thread-dev (>= 1.25.0), libzmq-dev (>= 2.1.4), libmsgpack-dev, libprotobuf-dev (>= 2.4.1), libssl-dev (>= 1.0.0)
+Standards-Version: 3.9.4
 Homepage: http://opentransactions.org
 Vcs-Git: git://github.com/Open-Transactions/Open-Transactions.git
 Vcs-Browser: https://github.com/Open-Transactions/Open-Transactions.git

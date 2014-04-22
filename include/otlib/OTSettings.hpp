@@ -135,7 +135,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The long-awaited configuration class.
+// The int64_t-awaited configuration class.
 
 #ifndef __OTSETTINGS_HPP__
 #define __OTSETTINGS_HPP__
@@ -169,7 +169,7 @@ private:
 
     // Log (log to Output in a well-formated way).
     EXPORT bool LogChange_str (const OTString & strSection, const OTString & strKey, const OTString & strValue);
-    EXPORT bool LogChange_long(const OTString & strSection, const OTString & strKey, const long     & lValue );
+    EXPORT bool LogChange_long(const OTString & strSection, const OTString & strKey, const int64_t     & lValue );
     EXPORT bool LogChange_bool(const OTString & strSection, const OTString & strKey, const bool     & bValue );
 
 public:
@@ -199,12 +199,12 @@ public:
 
     // Check Only (get value of key from configuration, if the key exists, then out_bKeyExist will be true.)
     EXPORT bool Check_str      (const OTString & strSection, const OTString & strKey, OTString & out_strResult, bool & out_bKeyExist) const;
-    EXPORT bool Check_long     (const OTString & strSection, const OTString & strKey, long     & out_lResult,   bool & out_bKeyExist) const;
+    EXPORT bool Check_long     (const OTString & strSection, const OTString & strKey, int64_t     & out_lResult,   bool & out_bKeyExist) const;
     EXPORT bool Check_bool     (const OTString & strSection, const OTString & strKey, bool     & out_bResult,   bool & out_bKeyExist) const;
 
     // Set Only (set new or update value, out_bNewOrUpdate will be true if the value changes.)
     EXPORT bool Set_str        (const OTString & strSection, const OTString & strKey, const OTString & strValue, bool & out_bNewOrUpdate, const OTString & strComment = "");
-    EXPORT bool Set_long       (const OTString & strSection, const OTString & strKey, const long     & lValue,   bool & out_bNewOrUpdate, const OTString & strComment = "");
+    EXPORT bool Set_long       (const OTString & strSection, const OTString & strKey, const int64_t     & lValue,   bool & out_bNewOrUpdate, const OTString & strComment = "");
     EXPORT bool Set_bool       (const OTString & strSection, const OTString & strKey, const bool     & bValue,   bool & out_bNewOrUpdate, const OTString & strComment = "");
 
     // Check for a Section, if the section dosn't exist, it will be made and out_bIsNewSection will be true.)
@@ -212,7 +212,7 @@ public:
 
     // Check for Key, and returns if the key exists, otherwise will set the default key. If the default key is set, then out_bIsNew will be true.)
     EXPORT bool CheckSet_str   (const OTString & strSection, const OTString & strKey, const OTString & strDefault, OTString & out_strResult, bool & out_bIsNew, const OTString & strComment = "");
-    EXPORT bool CheckSet_long  (const OTString & strSection, const OTString & strKey, const long     & lDefault,   long     & out_lResult,   bool & out_bIsNew, const OTString & strComment = "");
+    EXPORT bool CheckSet_long  (const OTString & strSection, const OTString & strKey, const int64_t     & lDefault,   int64_t     & out_lResult,   bool & out_bIsNew, const OTString & strComment = "");
     EXPORT bool CheckSet_bool  (const OTString & strSection, const OTString & strKey, const bool     & bDefault,   bool     & out_bResult,   bool & out_bIsNew, const OTString & strComment = "");
 
     // Set Option helper function for setting bool's

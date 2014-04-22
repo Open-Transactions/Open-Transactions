@@ -37,13 +37,13 @@ public class StringMap : Storable {
     }
   }
 
-  public SWIGTYPE_p_std__mapT_std__string_std__string_t the_map {
+  public MapStringString the_map {
     set {
-      otapiPINVOKE.StringMap_the_map_set(swigCPtr, SWIGTYPE_p_std__mapT_std__string_std__string_t.getCPtr(value));
+      otapiPINVOKE.StringMap_the_map_set(swigCPtr, MapStringString.getCPtr(value));
     } 
     get {
       global::System.IntPtr cPtr = otapiPINVOKE.StringMap_the_map_get(swigCPtr);
-      SWIGTYPE_p_std__mapT_std__string_std__string_t ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_std__mapT_std__string_std__string_t(cPtr, false);
+      MapStringString ret = (cPtr == global::System.IntPtr.Zero) ? null : new MapStringString(cPtr, false);
       return ret;
     } 
   }

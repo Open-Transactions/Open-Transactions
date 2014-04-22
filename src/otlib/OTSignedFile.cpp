@@ -163,9 +163,9 @@ void OTSignedFile::UpdateContents()
 }
 
 
-int OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
+int32_t OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 {
-	int nReturnVal = 0;
+	int32_t nReturnVal = 0;
 
 	// Here we call the parent class first.
 	// If the node is found there, or there is some error,
