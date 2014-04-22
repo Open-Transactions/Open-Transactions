@@ -13,7 +13,16 @@ common_includes         =	$(AM_CXXFLAGS)			\
 
 ## Open Transactions Bin Build  ##
 
-bin_PROGRAMS            =   ot otserver createmint
+bin_PROGRAMS            =   opentxs ot otserver createmint
+
+#### OPENTXS
+
+opentxs_SOURCES         =  $(opentxs_sources) $(otapi_headers)
+
+opentxs_CXXFLAGS        =  $(common_includes) -I$(otapi_headers_dir)
+
+opentxs_LDADD           =  otapi/libotapi.la otlib/libot.la $(DEPS_LIBS)
+opentxs_DEPENDENCIES    =  otapi/libotapi.la otlib/libot.la
 
 #### OT
 
@@ -56,6 +65,21 @@ otserver_CXXFLAGS      +=   -DOT_ZMQ_MODE
 createmint_CXXFLAGS    +=   -DOT_ZMQ_MODE
 endif
 
+
+#### OPENTXS
+
+opentxs_sources         =   otx/main.cpp
+
+otapi_headers_dir       =   $(opentxs_include_dir)/otapi
+
+otapi_headers           =   $(otapi_headers_dir)/main.hpp		\
+                            $(otapi_headers_dir)/OpenTransactions.hpp	\
+                            $(otapi_headers_dir)/OTAPI.hpp		\
+                            $(otapi_headers_dir)/OT_ME.hpp		\
+                            $(otapi_headers_dir)/OTClient.hpp		\
+                            $(otapi_headers_dir)/OTServerConnection.hpp		\
+                            $(otapi_headers_dir)/ot_otapi_ot.hpp
+                    
 
 #### OT
 
