@@ -207,9 +207,9 @@ public: \
 
 #define FOR_EACH(ARG_OT_ONE, ARG_OT_TWO)	for(ARG_OT_ONE::iterator it = ARG_OT_TWO.begin(); it != ARG_OT_TWO.end(); ++ it)
 
-#define FOR_EACH_IT_CONST(ARG_OT_ONE, ARG_OT_TWO, ARG_OT_THREE)	for(ARG_OT_ONE::const_iterator ARG_OT_THREE = ARG_OT_TWO.begin(); ARG_OT_THREE != ARG_OT_TWO.end(); ++ ARG_OT_THREE)
+#define FOR_EACH_IT_CONST(ARG_OT_ONE, ARG_OT_TWO, ARG_OT_THREE)	for(ARG_OT_ONE::const_iterator ARG_OT_THREE = ARG_OT_TWO.cbegin(); ARG_OT_THREE != ARG_OT_TWO.cend(); ++ ARG_OT_THREE)
 
-#define FOR_EACH_CONST(ARG_OT_ONE, ARG_OT_TWO)	for(ARG_OT_ONE::const_iterator it = ARG_OT_TWO.begin(); it != ARG_OT_TWO.end(); ++ it)
+#define FOR_EACH_CONST(ARG_OT_ONE, ARG_OT_TWO)	for(ARG_OT_ONE::const_iterator it = ARG_OT_TWO.cbegin(); it != ARG_OT_TWO.cend(); ++ it)
 
 
 
