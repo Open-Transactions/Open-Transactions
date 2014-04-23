@@ -118,3 +118,10 @@ Bitcoin.cc
 Generics.cc
 Markets.cc
 Moneychanger.cc
+
+# Qt Creator .pro files
+project-Qt/
+build-OpenTransactions*
+
+# KDE Dolphin (file manager) noise
+.directory
