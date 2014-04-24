@@ -481,8 +481,7 @@ EXPORT  static OTPassword * CreateTextBuffer(); // asserts already.
     // need to use this function, so just pretend it doesn't exist.
 EXPORT  bool SetSize(uint32_t uSize);
     // ---------------------------------------
-EXPORT
-    OTPassword & operator=(const OTPassword & rhs);
+EXPORT  OTPassword & operator=(const OTPassword & rhs);
 EXPORT	OTPassword(BlockSize theBlockSize=DEFAULT_SIZE);
 EXPORT	OTPassword(const OTPassword & rhs);
 EXPORT	OTPassword(const char    * szInput, uint32_t nInputSize, BlockSize theBlockSize=DEFAULT_SIZE);  // text   / password stored.
@@ -525,7 +524,7 @@ protected:
 	OTCallback * _callback;
 
 public:
-	OTCaller() : _callback(NULL) { }
+         OTCaller() : _callback(NULL) { }
 EXPORT	~OTCaller();
 
 EXPORT	bool	GetPassword(OTPassword & theOutput) const;	// Grab the password when it is needed.

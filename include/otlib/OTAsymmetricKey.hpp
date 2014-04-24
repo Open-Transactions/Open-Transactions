@@ -252,8 +252,8 @@ class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
 {
 // ---------------------------------------------------------------
 public: // INSTANTIATION
-EXPORT  static OTAsymmetricKey * KeyFactory();        // Caller IS responsible to delete!
-    virtual    OTAsymmetricKey * ClonePubKey() const; // Caller IS responsible to delete!
+EXPORT  static  OTAsymmetricKey * KeyFactory();        // Caller IS responsible to delete!
+        virtual OTAsymmetricKey * ClonePubKey() const; // Caller IS responsible to delete!
 // ********************************************
 public: // PASSWORD CALLBACK
        static void SetPasswordCallback(OT_OPENSSL_CALLBACK * pCallback);

@@ -1033,6 +1033,150 @@ public class otapiJNI {
   public final static native boolean AddressBook_RemoveContact(long jarg1, AddressBook jarg1_, long jarg2);
   public final static native boolean AddressBook_AddContact(long jarg1, AddressBook jarg1_, long jarg2, Contact jarg2_);
   public final static native long AddressBook_ot_dynamic_cast(long jarg1, Storable jarg1_);
+  public final static native String OTRecord_GetTypeString(int jarg1);
+  public final static native int OTRecord_Mail_get();
+  public final static native int OTRecord_Transfer_get();
+  public final static native int OTRecord_Receipt_get();
+  public final static native int OTRecord_Instrument_get();
+  public final static native int OTRecord_ErrorState_get();
+  public final static native boolean OTRecord_IsPending(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsOutgoing(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsRecord(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsReceipt(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsMail(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsTransfer(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsCheque(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsInvoice(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsVoucher(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsContract(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsPaymentPlan(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsCash(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_HasContents(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_HasMemo(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsExpired(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsCanceled(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetExpired(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetCanceled(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetValidFrom(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetValidTo(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetDateRange(long jarg1, OTRecord jarg1_, long jarg2, long jarg3);
+  public final static native boolean OTRecord_CanDeleteRecord(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_CanAcceptIncoming(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_CanDiscardIncoming(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_CanCancelOutgoing(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_CanDiscardOutgoingCash(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_CancelOutgoing(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native boolean OTRecord_AcceptIncomingInstrument(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native boolean OTRecord_AcceptIncomingTransfer(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_AcceptIncomingReceipt(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_DiscardIncoming(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_DeleteRecord(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_DiscardOutgoingCash(long jarg1, OTRecord jarg1_);
+  public final static native int OTRecord_GetBoxIndex(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetBoxIndex(long jarg1, OTRecord jarg1_, int jarg2);
+  public final static native long OTRecord_GetTransactionNum(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetTransactionNum(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native long OTRecord_GetTransNumForDisplay(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetTransNumForDisplay(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native int OTRecord_GetRecordType(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetServerID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetAssetID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetCurrencyTLA(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetNymID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetAccountID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetOtherNymID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetOtherAccountID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetName(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetDate(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetAmount(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetInstrumentType(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetMemo(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetContents(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetOtherNymID(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native void OTRecord_SetOtherAccountID(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native void OTRecord_SetMemo(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native void OTRecord_SetContents(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native boolean OTRecord_HasInitialPayment(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_HasPaymentPlan(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetInitialPaymentDate(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetPaymentPlanStartDate(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetTimeBetweenPayments(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetInitialPaymentAmount(long jarg1, OTRecord jarg1_);
+  public final static native long OTRecord_GetPaymentPlanAmount(long jarg1, OTRecord jarg1_);
+  public final static native int OTRecord_GetMaximumNoPayments(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_FormatAmount(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native boolean OTRecord_FormatDescription(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native boolean OTRecord_FormatShortMailDescription(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native boolean OTRecord_FormatMailSubject(long jarg1, OTRecord jarg1_, long jarg2);
+  public final static native long new_OTRecord(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6, String jarg7, String jarg8, String jarg9, boolean jarg10, boolean jarg11, boolean jarg12, boolean jarg13, int jarg14);
+  public final static native void delete_OTRecord(long jarg1);
+  public final static native long new_OTNameLookup();
+  public final static native void delete_OTNameLookup(long jarg1);
+  public final static native String OTNameLookup_GetNymName__SWIG_0(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3);
+  public final static native String OTNameLookup_GetNymNameSwigExplicitOTNameLookup__SWIG_0(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3);
+  public final static native String OTNameLookup_GetNymName__SWIG_1(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native String OTNameLookup_GetNymNameSwigExplicitOTNameLookup__SWIG_1(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native String OTNameLookup_GetAcctName__SWIG_0(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3, long jarg4, long jarg5);
+  public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_0(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3, long jarg4, long jarg5);
+  public final static native String OTNameLookup_GetAcctName__SWIG_1(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3, long jarg4);
+  public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_1(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3, long jarg4);
+  public final static native String OTNameLookup_GetAcctName__SWIG_2(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3);
+  public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_2(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3);
+  public final static native String OTNameLookup_GetAcctName__SWIG_3(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_3(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native void OTNameLookup_director_connect(OTNameLookup obj, long cptr, boolean mem_own, boolean weak_global);
+  public final static native void OTNameLookup_change_ownership(OTNameLookup obj, long cptr, boolean take_or_release);
+  public final static native long new_OTLookupCaller();
+  public final static native void delete_OTLookupCaller(long jarg1);
+  public final static native void OTLookupCaller_delCallback(long jarg1, OTLookupCaller jarg1_);
+  public final static native void OTLookupCaller_setCallback(long jarg1, OTLookupCaller jarg1_, long jarg2, OTNameLookup jarg2_);
+  public final static native boolean OTLookupCaller_isCallbackSet(long jarg1, OTLookupCaller jarg1_);
+  public final static native String OTLookupCaller_GetNymName__SWIG_0(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3);
+  public final static native String OTLookupCaller_GetNymName__SWIG_1(long jarg1, OTLookupCaller jarg1_, String jarg2);
+  public final static native String OTLookupCaller_GetAcctName__SWIG_0(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3, long jarg4, long jarg5);
+  public final static native String OTLookupCaller_GetAcctName__SWIG_1(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3, long jarg4);
+  public final static native String OTLookupCaller_GetAcctName__SWIG_2(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3);
+  public final static native String OTLookupCaller_GetAcctName__SWIG_3(long jarg1, OTLookupCaller jarg1_, String jarg2);
+  public final static native boolean OT_API_Set_AddrBookCallback(long jarg1, OTLookupCaller jarg1_);
+  public final static native boolean OTRecordList_setAddrBookCaller(long jarg1, OTLookupCaller jarg1_);
+  public final static native long OTRecordList_getAddrBookCaller();
+  public final static native long new_OTRecordList(long jarg1, OTNameLookup jarg1_);
+  public final static native void delete_OTRecordList(long jarg1);
+  public final static native String OTRecordList_textTo();
+  public final static native String OTRecordList_textFrom();
+  public final static native void OTRecordList_setTextTo(String jarg1);
+  public final static native void OTRecordList_setTextFrom(String jarg1);
+  public final static native void OTRecordList_SetFastMode(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_SetServerID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_AddServerID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_ClearServers(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_SetAssetID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_AddAssetID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_ClearAssets(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_SetNymID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_AddNymID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_ClearNyms(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_SetAccountID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_AddAccountID(long jarg1, OTRecordList jarg1_, String jarg2);
+  public final static native void OTRecordList_ClearAccounts(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_AcceptChequesAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
+  public final static native void OTRecordList_AcceptChequesAutomatically__SWIG_1(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_AcceptReceiptsAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
+  public final static native void OTRecordList_AcceptReceiptsAutomatically__SWIG_1(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_AcceptTransfersAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
+  public final static native void OTRecordList_AcceptTransfersAutomatically__SWIG_1(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_AcceptCashAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
+  public final static native void OTRecordList_AcceptCashAutomatically__SWIG_1(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_DoesAcceptChequesAutomatically(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_DoesAcceptReceiptsAutomatically(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_DoesAcceptTransfersAutomatically(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_DoesAcceptCashAutomatically(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_PerformAutoAccept(long jarg1, OTRecordList jarg1_);
+  public final static native boolean OTRecordList_Populate(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_ClearContents(long jarg1, OTRecordList jarg1_);
+  public final static native int OTRecordList_size(long jarg1, OTRecordList jarg1_);
+  public final static native long OTRecordList_GetRecord(long jarg1, OTRecordList jarg1_, int jarg2);
+  public final static native boolean OTRecordList_RemoveRecord(long jarg1, OTRecordList jarg1_, int jarg2);
   public final static native boolean OT_API_Set_PasswordCallback(long jarg1, OTCaller jarg1_);
   public final static native long OTDBString_SWIGUpcast(long jarg1);
   public final static native long Blob_SWIGUpcast(long jarg1);
@@ -1068,6 +1212,24 @@ public class otapiJNI {
   }
   public static void SwigDirector_OTCallback_runTwo(OTCallback self, String szDisplay, long theOutput) {
     self.runTwo(szDisplay, new OTPassword(theOutput, false));
+  }
+  public static String SwigDirector_OTNameLookup_GetNymName__SWIG_0(OTNameLookup self, String str_id, long p_server_id) {
+    return self.GetNymName(str_id, (p_server_id == 0) ? null : new SWIGTYPE_p_std__string(p_server_id, false));
+  }
+  public static String SwigDirector_OTNameLookup_GetNymName__SWIG_1(OTNameLookup self, String str_id) {
+    return self.GetNymName(str_id);
+  }
+  public static String SwigDirector_OTNameLookup_GetAcctName__SWIG_0(OTNameLookup self, String str_id, long p_nym_id, long p_server_id, long p_asset_id) {
+    return self.GetAcctName(str_id, (p_nym_id == 0) ? null : new SWIGTYPE_p_std__string(p_nym_id, false), (p_server_id == 0) ? null : new SWIGTYPE_p_std__string(p_server_id, false), (p_asset_id == 0) ? null : new SWIGTYPE_p_std__string(p_asset_id, false));
+  }
+  public static String SwigDirector_OTNameLookup_GetAcctName__SWIG_1(OTNameLookup self, String str_id, long p_nym_id, long p_server_id) {
+    return self.GetAcctName(str_id, (p_nym_id == 0) ? null : new SWIGTYPE_p_std__string(p_nym_id, false), (p_server_id == 0) ? null : new SWIGTYPE_p_std__string(p_server_id, false));
+  }
+  public static String SwigDirector_OTNameLookup_GetAcctName__SWIG_2(OTNameLookup self, String str_id, long p_nym_id) {
+    return self.GetAcctName(str_id, (p_nym_id == 0) ? null : new SWIGTYPE_p_std__string(p_nym_id, false));
+  }
+  public static String SwigDirector_OTNameLookup_GetAcctName__SWIG_3(OTNameLookup self, String str_id) {
+    return self.GetAcctName(str_id);
   }
 
   private final static native void swig_module_init();

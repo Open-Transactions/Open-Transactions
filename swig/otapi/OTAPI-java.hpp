@@ -27,5 +27,21 @@ protected:
     bool swig_override[2];
 };
 
+class SwigDirector_OTNameLookup : public OTNameLookup, public Swig::Director {
+
+public:
+    void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
+    SwigDirector_OTNameLookup(JNIEnv *jenv);
+    virtual ~SwigDirector_OTNameLookup();
+    virtual std::string GetNymName(std::string const &str_id, std::string const *p_server_id = NULL) const;
+    virtual std::string GetAcctName(std::string const &str_id, std::string const *p_nym_id = NULL, std::string const *p_server_id = NULL, std::string const *p_asset_id = NULL) const;
+public:
+    bool swig_overrides(int n) {
+      return (n < 6 ? swig_override[n] : false);
+    }
+protected:
+    bool swig_override[6];
+};
+
 
 #endif
