@@ -48,7 +48,9 @@
 #include "../../include/otapi/OT_ME.hpp"
 #include "../../include/otlib/OTStorage.hpp"
 #include "../../include/otlib/OTAsymmetricKey.hpp"
-
+#include "../../include/otapi/OTRecord.hpp"
+#include "../../include/otapi/OTRecordList.hpp"
+    
 %}
 
 
@@ -543,7 +545,7 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
  //
  // SWIG people: PLEASE update your documentation a bit. I've had to figure out
  // this crap through trial-and-error. I thought SWIG was supposed to make things easier?
- // If newobject is support, then delobject should be supported to. Especially for JAVA,
+ // If newobject is supported, then delobject should be supported to. Especially for JAVA,
  // of all languages!! Also, if I have the custom code handlers for Java, Python, etc then
  // why have SWIG at all?
 
@@ -557,6 +559,7 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 %newobject CreateStorageContext(StorageType eStoreType, PackType ePackType=OTDB_DEFAULT_PACKER);
 
 
+%ignore OTRecord::operator<(const OTRecord & rhs);
 %ignore OTPassword::operator=(const OTPassword & rhs);
 %ignore OTPasswordData;
 %ignore clone;
@@ -574,6 +577,15 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 %ignore stlplus::simple_ptr_clone;
 
 
+%ignore weak_ptr_OTRecord;
+
+%ignore vec_OTRecordList;
+%ignore list_of_strings;
+%ignore map_of_strings;
+
+
+
+
 // The Callback definitions here, must appear BELOW the above SWIG directives that apply to them.
 // The actual HEADER these definitions come from (OTStorage.h) must be included ABOVE THAT so that
 // the SWIG directives will know what the hell we are talking about. Then those directives are actually
@@ -582,6 +594,7 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 // that THEY apply to.
 //
 %feature("director") OTCallback;
+%feature("director") OTNameLookup;
 
 // -----------------------------------------------------------
 // -----------------------------------------------------------
@@ -596,10 +609,12 @@ OT_IS_ELEMENT_TYPE(TradeListNym)
 %include "../../include/otapi/OTAPI.hpp"
 %include "../../include/otapi/OT_ME.hpp"
 %include "../../include/otlib/OTStorage.hpp"
+%include "../../include/otapi/OTRecord.hpp"
+%include "../../include/otapi/OTRecordList.hpp"
 
 
 bool OT_API_Set_PasswordCallback(OTCaller & theCaller);
-
+bool OT_API_Set_AddrBookCallback(OTLookupCaller & theCaller);
 
 // add the follwing to every .cxx file.
 %inline %{

@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 package otapi
 
@@ -6463,6 +6463,1270 @@ type AddressBook interface {
 	SwigGetStorable() Storable
 }
 
+func OTRecord_GetTypeString(int) string
+type SwigcptrOTRecord uintptr
+
+func (p SwigcptrOTRecord) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrOTRecord) SwigIsOTRecord() {
+}
+
+type OTRecordOTRecordType int
+func _swig_getOTRecord_Mail_OTRecord() OTRecordOTRecordType
+var OTRecordMail OTRecordOTRecordType = _swig_getOTRecord_Mail_OTRecord()
+func _swig_getOTRecord_Transfer_OTRecord() OTRecordOTRecordType
+var OTRecordTransfer OTRecordOTRecordType = _swig_getOTRecord_Transfer_OTRecord()
+func _swig_getOTRecord_Receipt_OTRecord() OTRecordOTRecordType
+var OTRecordReceipt OTRecordOTRecordType = _swig_getOTRecord_Receipt_OTRecord()
+func _swig_getOTRecord_Instrument_OTRecord() OTRecordOTRecordType
+var OTRecordInstrument OTRecordOTRecordType = _swig_getOTRecord_Instrument_OTRecord()
+func _swig_getOTRecord_ErrorState_OTRecord() OTRecordOTRecordType
+var OTRecordErrorState OTRecordOTRecordType = _swig_getOTRecord_ErrorState_OTRecord()
+func _swig_wrap_OTRecord_IsPending(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsPending() bool {
+	return _swig_wrap_OTRecord_IsPending(arg1)
+}
+
+func _swig_wrap_OTRecord_IsOutgoing(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsOutgoing() bool {
+	return _swig_wrap_OTRecord_IsOutgoing(arg1)
+}
+
+func _swig_wrap_OTRecord_IsRecord(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsRecord() bool {
+	return _swig_wrap_OTRecord_IsRecord(arg1)
+}
+
+func _swig_wrap_OTRecord_IsReceipt(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsReceipt() bool {
+	return _swig_wrap_OTRecord_IsReceipt(arg1)
+}
+
+func _swig_wrap_OTRecord_IsMail(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsMail() bool {
+	return _swig_wrap_OTRecord_IsMail(arg1)
+}
+
+func _swig_wrap_OTRecord_IsTransfer(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsTransfer() bool {
+	return _swig_wrap_OTRecord_IsTransfer(arg1)
+}
+
+func _swig_wrap_OTRecord_IsCheque(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsCheque() bool {
+	return _swig_wrap_OTRecord_IsCheque(arg1)
+}
+
+func _swig_wrap_OTRecord_IsInvoice(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsInvoice() bool {
+	return _swig_wrap_OTRecord_IsInvoice(arg1)
+}
+
+func _swig_wrap_OTRecord_IsVoucher(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsVoucher() bool {
+	return _swig_wrap_OTRecord_IsVoucher(arg1)
+}
+
+func _swig_wrap_OTRecord_IsContract(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsContract() bool {
+	return _swig_wrap_OTRecord_IsContract(arg1)
+}
+
+func _swig_wrap_OTRecord_IsPaymentPlan(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsPaymentPlan() bool {
+	return _swig_wrap_OTRecord_IsPaymentPlan(arg1)
+}
+
+func _swig_wrap_OTRecord_IsCash(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsCash() bool {
+	return _swig_wrap_OTRecord_IsCash(arg1)
+}
+
+func _swig_wrap_OTRecord_HasContents(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) HasContents() bool {
+	return _swig_wrap_OTRecord_HasContents(arg1)
+}
+
+func _swig_wrap_OTRecord_HasMemo(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) HasMemo() bool {
+	return _swig_wrap_OTRecord_HasMemo(arg1)
+}
+
+func _swig_wrap_OTRecord_IsExpired(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsExpired() bool {
+	return _swig_wrap_OTRecord_IsExpired(arg1)
+}
+
+func _swig_wrap_OTRecord_IsCanceled(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsCanceled() bool {
+	return _swig_wrap_OTRecord_IsCanceled(arg1)
+}
+
+func _swig_wrap_OTRecord_SetExpired(SwigcptrOTRecord)
+
+func (arg1 SwigcptrOTRecord) SetExpired() {
+	_swig_wrap_OTRecord_SetExpired(arg1)
+}
+
+func _swig_wrap_OTRecord_SetCanceled(SwigcptrOTRecord)
+
+func (arg1 SwigcptrOTRecord) SetCanceled() {
+	_swig_wrap_OTRecord_SetCanceled(arg1)
+}
+
+func _swig_wrap_OTRecord_GetValidFrom(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetValidFrom() int64 {
+	return _swig_wrap_OTRecord_GetValidFrom(arg1)
+}
+
+func _swig_wrap_OTRecord_GetValidTo(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetValidTo() int64 {
+	return _swig_wrap_OTRecord_GetValidTo(arg1)
+}
+
+func _swig_wrap_OTRecord_SetDateRange(SwigcptrOTRecord, int64, int64)
+
+func (arg1 SwigcptrOTRecord) SetDateRange(arg2 int64, arg3 int64) {
+	_swig_wrap_OTRecord_SetDateRange(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OTRecord_CanDeleteRecord(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) CanDeleteRecord() bool {
+	return _swig_wrap_OTRecord_CanDeleteRecord(arg1)
+}
+
+func _swig_wrap_OTRecord_CanAcceptIncoming(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) CanAcceptIncoming() bool {
+	return _swig_wrap_OTRecord_CanAcceptIncoming(arg1)
+}
+
+func _swig_wrap_OTRecord_CanDiscardIncoming(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) CanDiscardIncoming() bool {
+	return _swig_wrap_OTRecord_CanDiscardIncoming(arg1)
+}
+
+func _swig_wrap_OTRecord_CanCancelOutgoing(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) CanCancelOutgoing() bool {
+	return _swig_wrap_OTRecord_CanCancelOutgoing(arg1)
+}
+
+func _swig_wrap_OTRecord_CanDiscardOutgoingCash(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) CanDiscardOutgoingCash() bool {
+	return _swig_wrap_OTRecord_CanDiscardOutgoingCash(arg1)
+}
+
+func _swig_wrap_OTRecord_CancelOutgoing(SwigcptrOTRecord, string) bool
+
+func (arg1 SwigcptrOTRecord) CancelOutgoing(arg2 string) bool {
+	return _swig_wrap_OTRecord_CancelOutgoing(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_AcceptIncomingInstrument(SwigcptrOTRecord, string) bool
+
+func (arg1 SwigcptrOTRecord) AcceptIncomingInstrument(arg2 string) bool {
+	return _swig_wrap_OTRecord_AcceptIncomingInstrument(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_AcceptIncomingTransfer(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) AcceptIncomingTransfer() bool {
+	return _swig_wrap_OTRecord_AcceptIncomingTransfer(arg1)
+}
+
+func _swig_wrap_OTRecord_AcceptIncomingReceipt(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) AcceptIncomingReceipt() bool {
+	return _swig_wrap_OTRecord_AcceptIncomingReceipt(arg1)
+}
+
+func _swig_wrap_OTRecord_DiscardIncoming(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) DiscardIncoming() bool {
+	return _swig_wrap_OTRecord_DiscardIncoming(arg1)
+}
+
+func _swig_wrap_OTRecord_DeleteRecord(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) DeleteRecord() bool {
+	return _swig_wrap_OTRecord_DeleteRecord(arg1)
+}
+
+func _swig_wrap_OTRecord_DiscardOutgoingCash(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) DiscardOutgoingCash() bool {
+	return _swig_wrap_OTRecord_DiscardOutgoingCash(arg1)
+}
+
+func _swig_wrap_OTRecord_GetBoxIndex(SwigcptrOTRecord) int
+
+func (arg1 SwigcptrOTRecord) GetBoxIndex() int {
+	return _swig_wrap_OTRecord_GetBoxIndex(arg1)
+}
+
+func _swig_wrap_OTRecord_SetBoxIndex(SwigcptrOTRecord, int)
+
+func (arg1 SwigcptrOTRecord) SetBoxIndex(arg2 int) {
+	_swig_wrap_OTRecord_SetBoxIndex(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetTransactionNum(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetTransactionNum() int64 {
+	return _swig_wrap_OTRecord_GetTransactionNum(arg1)
+}
+
+func _swig_wrap_OTRecord_SetTransactionNum(SwigcptrOTRecord, int64)
+
+func (arg1 SwigcptrOTRecord) SetTransactionNum(arg2 int64) {
+	_swig_wrap_OTRecord_SetTransactionNum(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetTransNumForDisplay(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetTransNumForDisplay() int64 {
+	return _swig_wrap_OTRecord_GetTransNumForDisplay(arg1)
+}
+
+func _swig_wrap_OTRecord_SetTransNumForDisplay(SwigcptrOTRecord, int64)
+
+func (arg1 SwigcptrOTRecord) SetTransNumForDisplay(arg2 int64) {
+	_swig_wrap_OTRecord_SetTransNumForDisplay(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetRecordType(SwigcptrOTRecord) OTRecordOTRecordType
+
+func (arg1 SwigcptrOTRecord) GetRecordType() OTRecordOTRecordType {
+	return _swig_wrap_OTRecord_GetRecordType(arg1)
+}
+
+func _swig_wrap_OTRecord_GetServerID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetServerID() string {
+	return _swig_wrap_OTRecord_GetServerID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetAssetID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetAssetID() string {
+	return _swig_wrap_OTRecord_GetAssetID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetCurrencyTLA(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetCurrencyTLA() string {
+	return _swig_wrap_OTRecord_GetCurrencyTLA(arg1)
+}
+
+func _swig_wrap_OTRecord_GetNymID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetNymID() string {
+	return _swig_wrap_OTRecord_GetNymID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetAccountID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetAccountID() string {
+	return _swig_wrap_OTRecord_GetAccountID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetOtherNymID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetOtherNymID() string {
+	return _swig_wrap_OTRecord_GetOtherNymID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetOtherAccountID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetOtherAccountID() string {
+	return _swig_wrap_OTRecord_GetOtherAccountID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetName(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetName() string {
+	return _swig_wrap_OTRecord_GetName(arg1)
+}
+
+func _swig_wrap_OTRecord_GetDate(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetDate() string {
+	return _swig_wrap_OTRecord_GetDate(arg1)
+}
+
+func _swig_wrap_OTRecord_GetAmount(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetAmount() string {
+	return _swig_wrap_OTRecord_GetAmount(arg1)
+}
+
+func _swig_wrap_OTRecord_GetInstrumentType(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetInstrumentType() string {
+	return _swig_wrap_OTRecord_GetInstrumentType(arg1)
+}
+
+func _swig_wrap_OTRecord_GetMemo(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetMemo() string {
+	return _swig_wrap_OTRecord_GetMemo(arg1)
+}
+
+func _swig_wrap_OTRecord_GetContents(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetContents() string {
+	return _swig_wrap_OTRecord_GetContents(arg1)
+}
+
+func _swig_wrap_OTRecord_SetOtherNymID(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetOtherNymID(arg2 string) {
+	_swig_wrap_OTRecord_SetOtherNymID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetOtherAccountID(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetOtherAccountID(arg2 string) {
+	_swig_wrap_OTRecord_SetOtherAccountID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetMemo(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetMemo(arg2 string) {
+	_swig_wrap_OTRecord_SetMemo(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetContents(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetContents(arg2 string) {
+	_swig_wrap_OTRecord_SetContents(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_HasInitialPayment(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) HasInitialPayment() bool {
+	return _swig_wrap_OTRecord_HasInitialPayment(arg1)
+}
+
+func _swig_wrap_OTRecord_HasPaymentPlan(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) HasPaymentPlan() bool {
+	return _swig_wrap_OTRecord_HasPaymentPlan(arg1)
+}
+
+func _swig_wrap_OTRecord_GetInitialPaymentDate(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetInitialPaymentDate() int64 {
+	return _swig_wrap_OTRecord_GetInitialPaymentDate(arg1)
+}
+
+func _swig_wrap_OTRecord_GetPaymentPlanStartDate(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetPaymentPlanStartDate() int64 {
+	return _swig_wrap_OTRecord_GetPaymentPlanStartDate(arg1)
+}
+
+func _swig_wrap_OTRecord_GetTimeBetweenPayments(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetTimeBetweenPayments() int64 {
+	return _swig_wrap_OTRecord_GetTimeBetweenPayments(arg1)
+}
+
+func _swig_wrap_OTRecord_GetInitialPaymentAmount(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetInitialPaymentAmount() int64 {
+	return _swig_wrap_OTRecord_GetInitialPaymentAmount(arg1)
+}
+
+func _swig_wrap_OTRecord_GetPaymentPlanAmount(SwigcptrOTRecord) int64
+
+func (arg1 SwigcptrOTRecord) GetPaymentPlanAmount() int64 {
+	return _swig_wrap_OTRecord_GetPaymentPlanAmount(arg1)
+}
+
+func _swig_wrap_OTRecord_GetMaximumNoPayments(SwigcptrOTRecord) int
+
+func (arg1 SwigcptrOTRecord) GetMaximumNoPayments() int {
+	return _swig_wrap_OTRecord_GetMaximumNoPayments(arg1)
+}
+
+func _swig_wrap_OTRecord_FormatAmount(SwigcptrOTRecord, *string) bool
+
+func (arg1 SwigcptrOTRecord) FormatAmount(arg2 *string) bool {
+	return _swig_wrap_OTRecord_FormatAmount(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_FormatDescription(SwigcptrOTRecord, *string) bool
+
+func (arg1 SwigcptrOTRecord) FormatDescription(arg2 *string) bool {
+	return _swig_wrap_OTRecord_FormatDescription(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_FormatShortMailDescription(SwigcptrOTRecord, *string) bool
+
+func (arg1 SwigcptrOTRecord) FormatShortMailDescription(arg2 *string) bool {
+	return _swig_wrap_OTRecord_FormatShortMailDescription(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_FormatMailSubject(SwigcptrOTRecord, *string) bool
+
+func (arg1 SwigcptrOTRecord) FormatMailSubject(arg2 *string) bool {
+	return _swig_wrap_OTRecord_FormatMailSubject(arg1, arg2)
+}
+
+func _swig_wrap_new_OTRecord(string, string, string, string, string, string, string, string, string, bool, bool, bool, bool, OTRecordOTRecordType) SwigcptrOTRecord
+
+func NewOTRecord(arg1 string, arg2 string, arg3 string, arg4 string, arg5 string, arg6 string, arg7 string, arg8 string, arg9 string, arg10 bool, arg11 bool, arg12 bool, arg13 bool, arg14 OTRecordOTRecordType) OTRecord {
+	return _swig_wrap_new_OTRecord(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14)
+}
+
+func _swig_wrap_delete_OTRecord(uintptr)
+
+func DeleteOTRecord(arg1 OTRecord) {
+	_swig_wrap_delete_OTRecord(arg1.Swigcptr())
+}
+
+type OTRecord interface {
+	Swigcptr() uintptr
+	SwigIsOTRecord()
+	IsPending() bool
+	IsOutgoing() bool
+	IsRecord() bool
+	IsReceipt() bool
+	IsMail() bool
+	IsTransfer() bool
+	IsCheque() bool
+	IsInvoice() bool
+	IsVoucher() bool
+	IsContract() bool
+	IsPaymentPlan() bool
+	IsCash() bool
+	HasContents() bool
+	HasMemo() bool
+	IsExpired() bool
+	IsCanceled() bool
+	SetExpired()
+	SetCanceled()
+	GetValidFrom() int64
+	GetValidTo() int64
+	SetDateRange(arg2 int64, arg3 int64)
+	CanDeleteRecord() bool
+	CanAcceptIncoming() bool
+	CanDiscardIncoming() bool
+	CanCancelOutgoing() bool
+	CanDiscardOutgoingCash() bool
+	CancelOutgoing(arg2 string) bool
+	AcceptIncomingInstrument(arg2 string) bool
+	AcceptIncomingTransfer() bool
+	AcceptIncomingReceipt() bool
+	DiscardIncoming() bool
+	DeleteRecord() bool
+	DiscardOutgoingCash() bool
+	GetBoxIndex() int
+	SetBoxIndex(arg2 int)
+	GetTransactionNum() int64
+	SetTransactionNum(arg2 int64)
+	GetTransNumForDisplay() int64
+	SetTransNumForDisplay(arg2 int64)
+	GetRecordType() OTRecordOTRecordType
+	GetServerID() string
+	GetAssetID() string
+	GetCurrencyTLA() string
+	GetNymID() string
+	GetAccountID() string
+	GetOtherNymID() string
+	GetOtherAccountID() string
+	GetName() string
+	GetDate() string
+	GetAmount() string
+	GetInstrumentType() string
+	GetMemo() string
+	GetContents() string
+	SetOtherNymID(arg2 string)
+	SetOtherAccountID(arg2 string)
+	SetMemo(arg2 string)
+	SetContents(arg2 string)
+	HasInitialPayment() bool
+	HasPaymentPlan() bool
+	GetInitialPaymentDate() int64
+	GetPaymentPlanStartDate() int64
+	GetTimeBetweenPayments() int64
+	GetInitialPaymentAmount() int64
+	GetPaymentPlanAmount() int64
+	GetMaximumNoPayments() int
+	FormatAmount(arg2 *string) bool
+	FormatDescription(arg2 *string) bool
+	FormatShortMailDescription(arg2 *string) bool
+	FormatMailSubject(arg2 *string) bool
+}
+
+type _swig_DirectorOTNameLookup struct {
+	SwigcptrOTNameLookup
+	v interface{}
+}
+
+func (p *_swig_DirectorOTNameLookup) Swigcptr() uintptr {
+	return p.SwigcptrOTNameLookup.Swigcptr()
+}
+
+func (p *_swig_DirectorOTNameLookup) SwigIsOTNameLookup() {
+}
+
+func (p *_swig_DirectorOTNameLookup) DirectorInterface() interface{} {
+	return p.v
+}
+
+func _swig_NewDirectorOTNameLookupOTNameLookup(*_swig_DirectorOTNameLookup) SwigcptrOTNameLookup
+
+func NewDirectorOTNameLookup(v interface{}) OTNameLookup {
+	p := &_swig_DirectorOTNameLookup{0, v}
+	p.SwigcptrOTNameLookup = _swig_NewDirectorOTNameLookupOTNameLookup(p)
+	return p
+}
+
+func _swig_wrap_DeleteDirectorOTNameLookup(uintptr)
+
+func DeleteDirectorOTNameLookup(arg1 OTNameLookup) {
+	_swig_wrap_DeleteDirectorOTNameLookup(arg1.Swigcptr())
+}
+
+func Swiggo_DeleteDirector_OTNameLookup(p *_swig_DirectorOTNameLookup) {
+	p.SwigcptrOTNameLookup = 0
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetNymName__SWIG_0 interface {
+	GetNymName__SWIG_0(string, *string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_0(SwigcptrOTNameLookup, string, *string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetNymName__SWIG_0(str_id string, p_server_id *string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetNymName__SWIG_0); swig_ok {
+		return swig_g.GetNymName__SWIG_0(str_id, p_server_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_0(swig_p.SwigcptrOTNameLookup, str_id, p_server_id)
+}
+
+func DirectorOTNameLookupGetNymName__SWIG_0(p OTNameLookup, arg2 string, arg3 *string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_0(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2, arg3)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetNymName__SWIG_0(p *_swig_DirectorOTNameLookup, arg2 string, arg3 *string) (swig_result string) {
+	return p.GetNymName__SWIG_0(arg2, arg3)
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetNymName__SWIG_1 interface {
+	GetNymName__SWIG_1(string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_1(SwigcptrOTNameLookup, string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetNymName__SWIG_1(str_id string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetNymName__SWIG_1); swig_ok {
+		return swig_g.GetNymName__SWIG_1(str_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_1(swig_p.SwigcptrOTNameLookup, str_id)
+}
+
+func DirectorOTNameLookupGetNymName__SWIG_1(p OTNameLookup, arg2 string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetNymName__SWIG_1(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetNymName__SWIG_1(p *_swig_DirectorOTNameLookup, arg2 string) (swig_result string) {
+	return p.GetNymName__SWIG_1(arg2)
+}
+
+func (p _swig_DirectorOTNameLookup) GetNymName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetNymName__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetNymName__SWIG_0(a[0].(string), a[1].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func DirectorOTNameLookupGetNymName(p *_swig_DirectorOTNameLookup, a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return DirectorOTNameLookupGetNymName__SWIG_1(p, a[0].(string))
+	}
+	if argc == 2 {
+		return DirectorOTNameLookupGetNymName__SWIG_0(p, a[0].(string), a[1].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_0 interface {
+	GetAcctName__SWIG_0(string, *string, *string, *string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_0(SwigcptrOTNameLookup, string, *string, *string, *string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetAcctName__SWIG_0(str_id string, p_nym_id *string, p_server_id *string, p_asset_id *string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_0); swig_ok {
+		return swig_g.GetAcctName__SWIG_0(str_id, p_nym_id, p_server_id, p_asset_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_0(swig_p.SwigcptrOTNameLookup, str_id, p_nym_id, p_server_id, p_asset_id)
+}
+
+func DirectorOTNameLookupGetAcctName__SWIG_0(p OTNameLookup, arg2 string, arg3 *string, arg4 *string, arg5 *string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_0(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2, arg3, arg4, arg5)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetAcctName__SWIG_0(p *_swig_DirectorOTNameLookup, arg2 string, arg3 *string, arg4 *string, arg5 *string) (swig_result string) {
+	return p.GetAcctName__SWIG_0(arg2, arg3, arg4, arg5)
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_1 interface {
+	GetAcctName__SWIG_1(string, *string, *string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_1(SwigcptrOTNameLookup, string, *string, *string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetAcctName__SWIG_1(str_id string, p_nym_id *string, p_server_id *string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_1); swig_ok {
+		return swig_g.GetAcctName__SWIG_1(str_id, p_nym_id, p_server_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_1(swig_p.SwigcptrOTNameLookup, str_id, p_nym_id, p_server_id)
+}
+
+func DirectorOTNameLookupGetAcctName__SWIG_1(p OTNameLookup, arg2 string, arg3 *string, arg4 *string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_1(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2, arg3, arg4)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetAcctName__SWIG_1(p *_swig_DirectorOTNameLookup, arg2 string, arg3 *string, arg4 *string) (swig_result string) {
+	return p.GetAcctName__SWIG_1(arg2, arg3, arg4)
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_2 interface {
+	GetAcctName__SWIG_2(string, *string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_2(SwigcptrOTNameLookup, string, *string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetAcctName__SWIG_2(str_id string, p_nym_id *string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_2); swig_ok {
+		return swig_g.GetAcctName__SWIG_2(str_id, p_nym_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_2(swig_p.SwigcptrOTNameLookup, str_id, p_nym_id)
+}
+
+func DirectorOTNameLookupGetAcctName__SWIG_2(p OTNameLookup, arg2 string, arg3 *string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_2(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2, arg3)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetAcctName__SWIG_2(p *_swig_DirectorOTNameLookup, arg2 string, arg3 *string) (swig_result string) {
+	return p.GetAcctName__SWIG_2(arg2, arg3)
+}
+
+type _swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_3 interface {
+	GetAcctName__SWIG_3(string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_3(SwigcptrOTNameLookup, string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetAcctName__SWIG_3(str_id string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetAcctName__SWIG_3); swig_ok {
+		return swig_g.GetAcctName__SWIG_3(str_id)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_3(swig_p.SwigcptrOTNameLookup, str_id)
+}
+
+func DirectorOTNameLookupGetAcctName__SWIG_3(p OTNameLookup, arg2 string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_3(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetAcctName__SWIG_3(p *_swig_DirectorOTNameLookup, arg2 string) (swig_result string) {
+	return p.GetAcctName__SWIG_3(arg2)
+}
+
+func (p _swig_DirectorOTNameLookup) GetAcctName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetAcctName__SWIG_3(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetAcctName__SWIG_2(a[0].(string), a[1].(*string))
+	}
+	if argc == 3 {
+		return p.GetAcctName__SWIG_1(a[0].(string), a[1].(*string), a[2].(*string))
+	}
+	if argc == 4 {
+		return p.GetAcctName__SWIG_0(a[0].(string), a[1].(*string), a[2].(*string), a[3].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func DirectorOTNameLookupGetAcctName(p *_swig_DirectorOTNameLookup, a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return DirectorOTNameLookupGetAcctName__SWIG_3(p, a[0].(string))
+	}
+	if argc == 2 {
+		return DirectorOTNameLookupGetAcctName__SWIG_2(p, a[0].(string), a[1].(*string))
+	}
+	if argc == 3 {
+		return DirectorOTNameLookupGetAcctName__SWIG_1(p, a[0].(string), a[1].(*string), a[2].(*string))
+	}
+	if argc == 4 {
+		return DirectorOTNameLookupGetAcctName__SWIG_0(p, a[0].(string), a[1].(*string), a[2].(*string), a[3].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+type SwigcptrOTNameLookup uintptr
+
+func (p SwigcptrOTNameLookup) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrOTNameLookup) SwigIsOTNameLookup() {
+}
+
+func (p SwigcptrOTNameLookup) DirectorInterface() interface{} {
+	return nil
+}
+
+func _swig_wrap_new_OTNameLookup() SwigcptrOTNameLookup
+
+func NewOTNameLookup() OTNameLookup {
+	return _swig_wrap_new_OTNameLookup()
+}
+
+func _swig_wrap_delete_OTNameLookup(uintptr)
+
+func DeleteOTNameLookup(arg1 OTNameLookup) {
+	_swig_wrap_delete_OTNameLookup(arg1.Swigcptr())
+}
+
+func _swig_wrap_OTNameLookup_GetNymName__SWIG_0(SwigcptrOTNameLookup, string, *string) string
+
+func (arg1 SwigcptrOTNameLookup) GetNymName__SWIG_0(arg2 string, arg3 *string) string {
+	return _swig_wrap_OTNameLookup_GetNymName__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OTNameLookup_GetNymName__SWIG_1(SwigcptrOTNameLookup, string) string
+
+func (arg1 SwigcptrOTNameLookup) GetNymName__SWIG_1(arg2 string) string {
+	return _swig_wrap_OTNameLookup_GetNymName__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOTNameLookup) GetNymName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetNymName__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetNymName__SWIG_0(a[0].(string), a[1].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTNameLookup_GetAcctName__SWIG_0(SwigcptrOTNameLookup, string, *string, *string, *string) string
+
+func (arg1 SwigcptrOTNameLookup) GetAcctName__SWIG_0(arg2 string, arg3 *string, arg4 *string, arg5 *string) string {
+	return _swig_wrap_OTNameLookup_GetAcctName__SWIG_0(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_OTNameLookup_GetAcctName__SWIG_1(SwigcptrOTNameLookup, string, *string, *string) string
+
+func (arg1 SwigcptrOTNameLookup) GetAcctName__SWIG_1(arg2 string, arg3 *string, arg4 *string) string {
+	return _swig_wrap_OTNameLookup_GetAcctName__SWIG_1(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OTNameLookup_GetAcctName__SWIG_2(SwigcptrOTNameLookup, string, *string) string
+
+func (arg1 SwigcptrOTNameLookup) GetAcctName__SWIG_2(arg2 string, arg3 *string) string {
+	return _swig_wrap_OTNameLookup_GetAcctName__SWIG_2(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OTNameLookup_GetAcctName__SWIG_3(SwigcptrOTNameLookup, string) string
+
+func (arg1 SwigcptrOTNameLookup) GetAcctName__SWIG_3(arg2 string) string {
+	return _swig_wrap_OTNameLookup_GetAcctName__SWIG_3(arg1, arg2)
+}
+
+func (p SwigcptrOTNameLookup) GetAcctName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetAcctName__SWIG_3(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetAcctName__SWIG_2(a[0].(string), a[1].(*string))
+	}
+	if argc == 3 {
+		return p.GetAcctName__SWIG_1(a[0].(string), a[1].(*string), a[2].(*string))
+	}
+	if argc == 4 {
+		return p.GetAcctName__SWIG_0(a[0].(string), a[1].(*string), a[2].(*string), a[3].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+type OTNameLookup interface {
+	Swigcptr() uintptr
+	SwigIsOTNameLookup()
+	DirectorInterface() interface{}
+	GetNymName(a ...interface{}) string
+	GetAcctName(a ...interface{}) string
+}
+
+type SwigcptrOTLookupCaller uintptr
+
+func (p SwigcptrOTLookupCaller) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrOTLookupCaller) SwigIsOTLookupCaller() {
+}
+
+func _swig_wrap_new_OTLookupCaller() SwigcptrOTLookupCaller
+
+func NewOTLookupCaller() OTLookupCaller {
+	return _swig_wrap_new_OTLookupCaller()
+}
+
+func _swig_wrap_delete_OTLookupCaller(uintptr)
+
+func DeleteOTLookupCaller(arg1 OTLookupCaller) {
+	_swig_wrap_delete_OTLookupCaller(arg1.Swigcptr())
+}
+
+func _swig_wrap_OTLookupCaller_delCallback(SwigcptrOTLookupCaller)
+
+func (arg1 SwigcptrOTLookupCaller) DelCallback() {
+	_swig_wrap_OTLookupCaller_delCallback(arg1)
+}
+
+func _swig_wrap_OTLookupCaller_setCallback(SwigcptrOTLookupCaller, uintptr)
+
+func (arg1 SwigcptrOTLookupCaller) SetCallback(arg2 OTNameLookup) {
+	_swig_wrap_OTLookupCaller_setCallback(arg1, arg2.Swigcptr())
+}
+
+func _swig_wrap_OTLookupCaller_isCallbackSet(SwigcptrOTLookupCaller) bool
+
+func (arg1 SwigcptrOTLookupCaller) IsCallbackSet() bool {
+	return _swig_wrap_OTLookupCaller_isCallbackSet(arg1)
+}
+
+func _swig_wrap_OTLookupCaller_GetNymName__SWIG_0(SwigcptrOTLookupCaller, string, *string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetNymName__SWIG_0(arg2 string, arg3 *string) string {
+	return _swig_wrap_OTLookupCaller_GetNymName__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OTLookupCaller_GetNymName__SWIG_1(SwigcptrOTLookupCaller, string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetNymName__SWIG_1(arg2 string) string {
+	return _swig_wrap_OTLookupCaller_GetNymName__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOTLookupCaller) GetNymName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetNymName__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetNymName__SWIG_0(a[0].(string), a[1].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTLookupCaller_GetAcctName__SWIG_0(SwigcptrOTLookupCaller, string, *string, *string, *string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetAcctName__SWIG_0(arg2 string, arg3 *string, arg4 *string, arg5 *string) string {
+	return _swig_wrap_OTLookupCaller_GetAcctName__SWIG_0(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_OTLookupCaller_GetAcctName__SWIG_1(SwigcptrOTLookupCaller, string, *string, *string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetAcctName__SWIG_1(arg2 string, arg3 *string, arg4 *string) string {
+	return _swig_wrap_OTLookupCaller_GetAcctName__SWIG_1(arg1, arg2, arg3, arg4)
+}
+
+func _swig_wrap_OTLookupCaller_GetAcctName__SWIG_2(SwigcptrOTLookupCaller, string, *string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetAcctName__SWIG_2(arg2 string, arg3 *string) string {
+	return _swig_wrap_OTLookupCaller_GetAcctName__SWIG_2(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OTLookupCaller_GetAcctName__SWIG_3(SwigcptrOTLookupCaller, string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetAcctName__SWIG_3(arg2 string) string {
+	return _swig_wrap_OTLookupCaller_GetAcctName__SWIG_3(arg1, arg2)
+}
+
+func (p SwigcptrOTLookupCaller) GetAcctName(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.GetAcctName__SWIG_3(a[0].(string))
+	}
+	if argc == 2 {
+		return p.GetAcctName__SWIG_2(a[0].(string), a[1].(*string))
+	}
+	if argc == 3 {
+		return p.GetAcctName__SWIG_1(a[0].(string), a[1].(*string), a[2].(*string))
+	}
+	if argc == 4 {
+		return p.GetAcctName__SWIG_0(a[0].(string), a[1].(*string), a[2].(*string), a[3].(*string))
+	}
+	panic("No match for overloaded function call")
+}
+
+type OTLookupCaller interface {
+	Swigcptr() uintptr
+	SwigIsOTLookupCaller()
+	DelCallback()
+	SetCallback(arg2 OTNameLookup)
+	IsCallbackSet() bool
+	GetNymName(a ...interface{}) string
+	GetAcctName(a ...interface{}) string
+}
+
+func _swig_wrap_OT_API_Set_AddrBookCallback(uintptr) bool
+
+func OT_API_Set_AddrBookCallback(arg1 OTLookupCaller) bool {
+	return _swig_wrap_OT_API_Set_AddrBookCallback(arg1.Swigcptr())
+}
+
+type SwigcptrOTRecordList uintptr
+
+func (p SwigcptrOTRecordList) Swigcptr() uintptr {
+	return (uintptr)(p)
+}
+
+func (p SwigcptrOTRecordList) SwigIsOTRecordList() {
+}
+
+func _swig_wrap_OTRecordList_setAddrBookCaller(uintptr) bool
+
+func OTRecordListSetAddrBookCaller(arg1 OTLookupCaller) bool {
+	return _swig_wrap_OTRecordList_setAddrBookCaller(arg1.Swigcptr())
+}
+
+func _swig_wrap_OTRecordList_getAddrBookCaller() SwigcptrOTLookupCaller
+
+func OTRecordListGetAddrBookCaller() OTLookupCaller {
+	return _swig_wrap_OTRecordList_getAddrBookCaller()
+}
+
+func _swig_wrap_new_OTRecordList(uintptr) SwigcptrOTRecordList
+
+func NewOTRecordList(arg1 OTNameLookup) OTRecordList {
+	return _swig_wrap_new_OTRecordList(arg1.Swigcptr())
+}
+
+func _swig_wrap_delete_OTRecordList(uintptr)
+
+func DeleteOTRecordList(arg1 OTRecordList) {
+	_swig_wrap_delete_OTRecordList(arg1.Swigcptr())
+}
+
+func OTRecordListTextTo() string
+func OTRecordListTextFrom() string
+func _swig_wrap_OTRecordList_setTextTo(string)
+
+func OTRecordListSetTextTo(arg1 string) {
+	_swig_wrap_OTRecordList_setTextTo(arg1)
+}
+
+func _swig_wrap_OTRecordList_setTextFrom(string)
+
+func OTRecordListSetTextFrom(arg1 string) {
+	_swig_wrap_OTRecordList_setTextFrom(arg1)
+}
+
+func _swig_wrap_OTRecordList_SetFastMode(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) SetFastMode() {
+	_swig_wrap_OTRecordList_SetFastMode(arg1)
+}
+
+func _swig_wrap_OTRecordList_SetServerID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) SetServerID(arg2 string) {
+	_swig_wrap_OTRecordList_SetServerID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AddServerID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) AddServerID(arg2 string) {
+	_swig_wrap_OTRecordList_AddServerID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_ClearServers(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) ClearServers() {
+	_swig_wrap_OTRecordList_ClearServers(arg1)
+}
+
+func _swig_wrap_OTRecordList_SetAssetID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) SetAssetID(arg2 string) {
+	_swig_wrap_OTRecordList_SetAssetID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AddAssetID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) AddAssetID(arg2 string) {
+	_swig_wrap_OTRecordList_AddAssetID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_ClearAssets(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) ClearAssets() {
+	_swig_wrap_OTRecordList_ClearAssets(arg1)
+}
+
+func _swig_wrap_OTRecordList_SetNymID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) SetNymID(arg2 string) {
+	_swig_wrap_OTRecordList_SetNymID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AddNymID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) AddNymID(arg2 string) {
+	_swig_wrap_OTRecordList_AddNymID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_ClearNyms(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) ClearNyms() {
+	_swig_wrap_OTRecordList_ClearNyms(arg1)
+}
+
+func _swig_wrap_OTRecordList_SetAccountID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) SetAccountID(arg2 string) {
+	_swig_wrap_OTRecordList_SetAccountID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AddAccountID(SwigcptrOTRecordList, string)
+
+func (arg1 SwigcptrOTRecordList) AddAccountID(arg2 string) {
+	_swig_wrap_OTRecordList_AddAccountID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_ClearAccounts(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) ClearAccounts() {
+	_swig_wrap_OTRecordList_ClearAccounts(arg1)
+}
+
+func _swig_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(SwigcptrOTRecordList, bool)
+
+func (arg1 SwigcptrOTRecordList) AcceptChequesAutomatically__SWIG_0(arg2 bool) {
+	_swig_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_1(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) AcceptChequesAutomatically__SWIG_1() {
+	_swig_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_1(arg1)
+}
+
+func (p SwigcptrOTRecordList) AcceptChequesAutomatically(a ...interface{}) {
+	argc := len(a)
+	if argc == 0 {
+		p.AcceptChequesAutomatically__SWIG_1()
+		return
+	}
+	if argc == 1 {
+		p.AcceptChequesAutomatically__SWIG_0(a[0].(bool))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_0(SwigcptrOTRecordList, bool)
+
+func (arg1 SwigcptrOTRecordList) AcceptReceiptsAutomatically__SWIG_0(arg2 bool) {
+	_swig_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_0(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_1(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) AcceptReceiptsAutomatically__SWIG_1() {
+	_swig_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_1(arg1)
+}
+
+func (p SwigcptrOTRecordList) AcceptReceiptsAutomatically(a ...interface{}) {
+	argc := len(a)
+	if argc == 0 {
+		p.AcceptReceiptsAutomatically__SWIG_1()
+		return
+	}
+	if argc == 1 {
+		p.AcceptReceiptsAutomatically__SWIG_0(a[0].(bool))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_0(SwigcptrOTRecordList, bool)
+
+func (arg1 SwigcptrOTRecordList) AcceptTransfersAutomatically__SWIG_0(arg2 bool) {
+	_swig_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_0(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_1(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) AcceptTransfersAutomatically__SWIG_1() {
+	_swig_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_1(arg1)
+}
+
+func (p SwigcptrOTRecordList) AcceptTransfersAutomatically(a ...interface{}) {
+	argc := len(a)
+	if argc == 0 {
+		p.AcceptTransfersAutomatically__SWIG_1()
+		return
+	}
+	if argc == 1 {
+		p.AcceptTransfersAutomatically__SWIG_0(a[0].(bool))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTRecordList_AcceptCashAutomatically__SWIG_0(SwigcptrOTRecordList, bool)
+
+func (arg1 SwigcptrOTRecordList) AcceptCashAutomatically__SWIG_0(arg2 bool) {
+	_swig_wrap_OTRecordList_AcceptCashAutomatically__SWIG_0(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_AcceptCashAutomatically__SWIG_1(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) AcceptCashAutomatically__SWIG_1() {
+	_swig_wrap_OTRecordList_AcceptCashAutomatically__SWIG_1(arg1)
+}
+
+func (p SwigcptrOTRecordList) AcceptCashAutomatically(a ...interface{}) {
+	argc := len(a)
+	if argc == 0 {
+		p.AcceptCashAutomatically__SWIG_1()
+		return
+	}
+	if argc == 1 {
+		p.AcceptCashAutomatically__SWIG_0(a[0].(bool))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTRecordList_DoesAcceptChequesAutomatically(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) DoesAcceptChequesAutomatically() bool {
+	return _swig_wrap_OTRecordList_DoesAcceptChequesAutomatically(arg1)
+}
+
+func _swig_wrap_OTRecordList_DoesAcceptReceiptsAutomatically(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) DoesAcceptReceiptsAutomatically() bool {
+	return _swig_wrap_OTRecordList_DoesAcceptReceiptsAutomatically(arg1)
+}
+
+func _swig_wrap_OTRecordList_DoesAcceptTransfersAutomatically(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) DoesAcceptTransfersAutomatically() bool {
+	return _swig_wrap_OTRecordList_DoesAcceptTransfersAutomatically(arg1)
+}
+
+func _swig_wrap_OTRecordList_DoesAcceptCashAutomatically(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) DoesAcceptCashAutomatically() bool {
+	return _swig_wrap_OTRecordList_DoesAcceptCashAutomatically(arg1)
+}
+
+func _swig_wrap_OTRecordList_PerformAutoAccept(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) PerformAutoAccept() bool {
+	return _swig_wrap_OTRecordList_PerformAutoAccept(arg1)
+}
+
+func _swig_wrap_OTRecordList_Populate(SwigcptrOTRecordList) bool
+
+func (arg1 SwigcptrOTRecordList) Populate() bool {
+	return _swig_wrap_OTRecordList_Populate(arg1)
+}
+
+func _swig_wrap_OTRecordList_ClearContents(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) ClearContents() {
+	_swig_wrap_OTRecordList_ClearContents(arg1)
+}
+
+func _swig_wrap_OTRecordList_size(SwigcptrOTRecordList) int
+
+func (arg1 SwigcptrOTRecordList) Size() int {
+	return _swig_wrap_OTRecordList_size(arg1)
+}
+
+func _swig_wrap_OTRecordList_GetRecord(SwigcptrOTRecordList, int) SwigcptrX_SharedPtr_Sl_OTRecord_Sg_
+
+func (arg1 SwigcptrOTRecordList) GetRecord(arg2 int) X_SharedPtr_Sl_OTRecord_Sg_ {
+	return _swig_wrap_OTRecordList_GetRecord(arg1, arg2)
+}
+
+func _swig_wrap_OTRecordList_RemoveRecord(SwigcptrOTRecordList, int) bool
+
+func (arg1 SwigcptrOTRecordList) RemoveRecord(arg2 int) bool {
+	return _swig_wrap_OTRecordList_RemoveRecord(arg1, arg2)
+}
+
+type OTRecordList interface {
+	Swigcptr() uintptr
+	SwigIsOTRecordList()
+	SetFastMode()
+	SetServerID(arg2 string)
+	AddServerID(arg2 string)
+	ClearServers()
+	SetAssetID(arg2 string)
+	AddAssetID(arg2 string)
+	ClearAssets()
+	SetNymID(arg2 string)
+	AddNymID(arg2 string)
+	ClearNyms()
+	SetAccountID(arg2 string)
+	AddAccountID(arg2 string)
+	ClearAccounts()
+	AcceptChequesAutomatically(a ...interface{})
+	AcceptReceiptsAutomatically(a ...interface{})
+	AcceptTransfersAutomatically(a ...interface{})
+	AcceptCashAutomatically(a ...interface{})
+	DoesAcceptChequesAutomatically() bool
+	DoesAcceptReceiptsAutomatically() bool
+	DoesAcceptTransfersAutomatically() bool
+	DoesAcceptCashAutomatically() bool
+	PerformAutoAccept() bool
+	Populate() bool
+	ClearContents()
+	Size() int
+	GetRecord(arg2 int) X_SharedPtr_Sl_OTRecord_Sg_
+	RemoveRecord(arg2 int) bool
+}
+
 func _swig_wrap_OT_API_Set_PasswordCallback(uintptr) bool
 
 func OT_API_Set_PasswordCallback(arg1 OTCaller) bool {
@@ -6483,6 +7747,22 @@ type OT_API interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrOT_API) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
+type SwigcptrX_SharedPtr_Sl_OTRecord_Sg_ uintptr
+type X_SharedPtr_Sl_OTRecord_Sg_ interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrX_SharedPtr_Sl_OTRecord_Sg_) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
+type SwigcptrSwigDirector_OTNameLookup uintptr
+type SwigDirector_OTNameLookup interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrSwigDirector_OTNameLookup) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
