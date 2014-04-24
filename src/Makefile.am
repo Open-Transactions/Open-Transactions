@@ -53,18 +53,6 @@ createmint_LDADD        =   otlib/libot.la $(DEPS_LIBS)
 createmint_DEPENDENCIES =   otlib/libot.la
 
 
-#### Transport ZMQ 'option'
-
-if TRANSPORT_ZMQ
-
-ot_CXXFLAGS            +=   -DOT_ZMQ_MODE
-
-otserver_SOURCES       +=   ots/xmlrpcxx_server.cpp
-otserver_CXXFLAGS      +=   -DOT_ZMQ_MODE
-
-createmint_CXXFLAGS    +=   -DOT_ZMQ_MODE
-endif
-
 
 #### OT and OPENTXS
 
@@ -89,8 +77,7 @@ otserver_sources        =   ots/OTClientConnection.cpp			\
 
 otserver_headers_dir    =   $(opentxs_include_dir)/ots
 
-otserver_headers        =   $(otserver_headers_dir)/main.hpp			\
-                            $(otserver_headers_dir)/OTClientConnection.hpp	\
+otserver_headers        =   $(otserver_headers_dir)/OTClientConnection.hpp	\
                             $(otserver_headers_dir)/OTServer.hpp
                             
 if KEYRING_FLATFILE
@@ -98,7 +85,24 @@ if KEYRING_FLATFILE
 otserver_CXXFLAGS       += -DOT_KEYRING_FLATFILE
 
 endif
+
+
+#### Transport ZMQ 'option'
+
+if TRANSPORT_ZMQ
+
+ot_CXXFLAGS            +=   -DOT_ZMQ_MODE
+
+otserver_SOURCES       +=   ots/OTServerSocket.cpp			\
+                            ots/main.cpp
                             
+otserver_headers       +=   $(opentxs_include_dir)/ots/OTServerSocket.hpp
+                            
+otserver_CXXFLAGS      +=   -DOT_ZMQ_MODE
+
+createmint_CXXFLAGS    +=   -DOT_ZMQ_MODE
+endif
+
 
 #### OT Create Mint
 
