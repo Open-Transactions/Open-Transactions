@@ -34,18 +34,17 @@ dist_bashcompletion_SCRIPTS	=	scripts/bash_completion.d/opentxs-bash-completion.
 
 opentxsdocdir			=	$(docdir)
 
-dist_opentxsdoc_DATA    =   docs/INSTALL-Android.txt		\
-                            docs/INSTALL-Fedora.txt		\
-                            docs/INSTALL-Debian_Ubuntu.txt	\
-                            docs/INSTALL-OSX-Homebrew.txt	\
-                            docs/INSTALL-Windows.txt		\
-                            docs/SSL-NOTES.txt			\
-                            docs/WIPE-USERS-ACCOUNTS.txt	\
-                            docs/CLIENT-COMMANDS.txt		\
-                            docs/LICENSE-AND-CREDITS.txt	\
-                            PUBKEY-FellowTraveler.asc		\
-                            README.md				\
-                            VERSION
+dist_opentxsdoc_DATA	=	docs/INSTALL-Fedora.txt		\
+				docs/INSTALL-Debian_Ubuntu.txt	\
+				docs/INSTALL-OSX-Homebrew.txt	\
+				docs/INSTALL-Windows.txt	\
+				docs/SSL-NOTES.txt		\
+				docs/WIPE-USERS-ACCOUNTS.txt	\
+				docs/CLIENT-COMMANDS.txt	\
+				docs/LICENSE-AND-CREDITS.txt	\
+				PUBKEY-FellowTraveler.asc	\
+				README.md			\
+				VERSION
 
 opentxsdatadir          =	$(pkgdatadir)
 dist_opentxsdata_DATA	=	sample-data/command-line-ot.opt	\
