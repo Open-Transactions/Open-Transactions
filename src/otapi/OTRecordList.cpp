@@ -3227,6 +3227,26 @@ bool OTRecordList::Populate()
 
 // ------------------------------------------------
 
+// This one expects that s_pCaller is not NULL.
+//
+OTRecordList::OTRecordList() :
+    m_pLookup(NULL),
+    m_bRunFast(false),
+    m_bAutoAcceptCheques  (false),
+    m_bAutoAcceptReceipts (false),
+    m_bAutoAcceptTransfers(false),
+    m_bAutoAcceptCash     (false)
+{
+    OT_ASSERT_MSG( (NULL != s_pCaller), "Address Book Caller was NULL! "
+                  "On app startup, did you forget to call OT_API_Set_AddrBookCallback ?\n");
+    // -----------------------------------
+    OT_ASSERT_MSG( (s_pCaller->isCallbackSet()), "Address Book Callback was NULL! "
+                    "On app startup, did you forget to call OT_API_Set_AddrBookCallback ?\n");
+    // -----------------------------------
+    m_pLookup = s_pCaller->getCallback();  // <==========
+}
+
+
 OTRecordList::OTRecordList(OTNameLookup & theLookup) :
     m_pLookup(&theLookup),
     m_bRunFast(false),
@@ -3241,8 +3261,8 @@ OTRecordList::OTRecordList(OTNameLookup & theLookup) :
 
 OTRecordList::~OTRecordList()
 {
-    if (NULL != m_pLookup)
-//      delete m_pLookup;  // We assume whatever client app is using OTRecordList, will delete its own address book lookup class when it is good and ready.
+//  if (NULL != m_pLookup) // NO DELETE! We assume whatever client app is using OTRecordList, will
+//      delete m_pLookup;  // delete its own address book lookup class when it is good and ready.
 
     m_pLookup = NULL;
 }

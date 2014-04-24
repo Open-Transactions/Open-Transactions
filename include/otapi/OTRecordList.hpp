@@ -166,6 +166,18 @@ EXPORT virtual std::string GetAcctName(const std::string & str_id, // AcctID
                                        const std::string * p_asset_id=NULL) const;
 };
 
+/*
+ // OVERLOAD THE ABOVE CLASS; make a subclass that does an address book lookup
+ // however is appropriate for your client.
+ //
+ class OTNameLookupIPhone : public OTNameLookup
+ {
+ public:
+    virtual std::string GetNymName(const std::string & str_id) const;
+    virtual std::string GetAcctName(const std::string & str_id) const;
+ };
+ */
+
 // ------------------------------------------------
 
 // Client app makes an instance of its own subclass of OTNameLookup.
@@ -183,9 +195,10 @@ public:
 EXPORT   OTLookupCaller() : _callback(NULL) { }
 EXPORT	~OTLookupCaller();
 
-EXPORT	void delCallback();
-EXPORT	void setCallback(OTNameLookup *cb);
-EXPORT	bool isCallbackSet() const;
+EXPORT  OTNameLookup * getCallback() { return _callback; }
+EXPORT	void           delCallback();
+EXPORT	void           setCallback(OTNameLookup *cb);
+EXPORT	bool           isCallbackSet() const;
 
 EXPORT	std::string GetNymName(const std::string & str_id, // NymID
                                const std::string * p_server_id=NULL) const;
@@ -202,14 +215,6 @@ EXPORT	std::string GetAcctName(const std::string & str_id, // AcctID
 
 EXPORT bool OT_API_Set_AddrBookCallback(OTLookupCaller & theCaller); // OTLookupCaller must have OTNameLookup attached already.
 
-/*
- class OTNameLookupIPhone : public OTNameLookup
- {
- public:
-    virtual std::string GetNymName(const std::string & str_id) const;
-    virtual std::string GetAcctName(const std::string & str_id) const;
- };
- */
 
 typedef _WeakPtr<OTRecord>       weak_ptr_OTRecord;
 typedef _SharedPtr<OTRecord>     shared_ptr_OTRecord;
@@ -249,13 +254,14 @@ class OTRecordList
     // ********************************************
 public: // ADDRESS BOOK CALLBACK
     
-	   static bool setAddrBookCaller(OTLookupCaller & theCaller);
-	   static OTLookupCaller * getAddrBookCaller();
+    static bool setAddrBookCaller(OTLookupCaller & theCaller);
+    static OTLookupCaller * getAddrBookCaller();
 
-protected: // ADDRESS BOOK CALLBACK
-	   static OTLookupCaller * s_pCaller;
+protected: // ADDRESS BOOK CALLER
+    static OTLookupCaller * s_pCaller;
 // ********************************************
 public:
+EXPORT  OTRecordList(); // This one expects that s_pCaller is not NULL.
         OTRecordList(OTNameLookup & theLookup);
 EXPORT ~OTRecordList();
     // ------------------------------------------------
