@@ -145,6 +145,14 @@
 
 #include <stacktrace.h>
 
+// -------------------------------------------------------------------------------------------
+#if defined (OT_CRYPTO_USING_OPENSSL)
+
+#include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
+#include "OpenSSL_BIO.hpp"
+
+#endif
+// -------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------
 
@@ -190,6 +198,8 @@ OTLowLevelKeyData::~OTLowLevelKeyData()
 {
     if (m_bCleanup)
         Cleanup();
+    if(NULL != dp)
+        delete(dp);
 }
 
 
@@ -203,10 +213,17 @@ OTLowLevelKeyData::~OTLowLevelKeyData()
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
+class OTLowLevelKeyData::OTLowLevelKeyDataOpenSSLdp {
+public:
+    X509         *  m_pX509;
+    EVP_PKEY     *  m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)
+};
 
-OTLowLevelKeyData::OTLowLevelKeyData() : m_bCleanup(true), m_pX509(NULL), m_pKey(NULL)
+OTLowLevelKeyData::OTLowLevelKeyData() : m_bCleanup(true)
 {
-
+    dp = new OTLowLevelKeyDataOpenSSLdp();
+    dp->m_pX509 = NULL;
+    dp->m_pKey  = NULL;
 }
 
 // Don't force things by explicitly calling this function, unless you are SURE
@@ -215,12 +232,12 @@ OTLowLevelKeyData::OTLowLevelKeyData() : m_bCleanup(true), m_pX509(NULL), m_pKey
 //
 void OTLowLevelKeyData::Cleanup()
 {
-    if (NULL != m_pKey)
-        EVP_PKEY_free(m_pKey);
-    m_pKey  = NULL;
-    if (NULL != m_pX509)
-        X509_free(m_pX509);
-    m_pX509 = NULL;
+    if (NULL != dp->m_pKey)
+        EVP_PKEY_free(dp->m_pKey);
+    dp->m_pKey  = NULL;
+    if (NULL != dp->m_pX509)
+        X509_free(dp->m_pX509);
+    dp->m_pX509 = NULL;
 }
 
 
@@ -268,8 +285,8 @@ bool OTLowLevelKeyData::MakeNewKeypair(int32_t nBits/*=1024*/)
         Cleanup();
 
     m_bCleanup = true;
-    m_pKey     = pNewKey;
-    m_pX509    = x509;
+    dp->m_pKey     = pNewKey;
+    dp->m_pX509    = x509;
     
 	// --------COMMENT THIS OUT FOR PRODUCTION --------  TODO security
 	//                  (Debug only.)
@@ -293,8 +310,8 @@ bool OTLowLevelKeyData::MakeNewKeypair(int32_t nBits/*=1024*/)
 
 bool OTLowLevelKeyData::SetOntoKeypair(OTKeypair & theKeypair)
 {
-    OT_ASSERT(NULL != m_pKey);
-    OT_ASSERT(NULL != m_pX509);
+    OT_ASSERT(NULL != dp->m_pKey);
+    OT_ASSERT(NULL != dp->m_pX509);
     // ----------------------------------------------
     OT_ASSERT(NULL != theKeypair.m_pkeyPublic);
     OT_ASSERT(NULL != theKeypair.m_pkeyPrivate);
@@ -322,21 +339,21 @@ bool OTLowLevelKeyData::SetOntoKeypair(OTKeypair & theKeypair)
 //  EVP_PKEY * pEVP_PubKey = X509_get_pubkey(m_pX509);
 //  OT_ASSERT(NULL != pEVP_PubKey);
 //  pPublicKey-> SetKeyAsCopyOf(*pEVP_PubKey); // bool bIsPrivateKey=false by default.
-    pPublicKey-> SetKeyAsCopyOf(*m_pKey); // bool bIsPrivateKey=false by default.
+    pPublicKey->dp->SetKeyAsCopyOf(*dp->m_pKey); // bool bIsPrivateKey=false by default.
 //  EVP_PKEY_free(pEVP_PubKey);
 //  pEVP_PubKey = NULL;
 
-    pPublicKey-> SetX509(m_pX509); // m_pX509 is now owned by pPublicKey. (No need to free it in our own destructor anymore.)
-    m_pX509     = NULL; // pPublicKey took ownership, so we don't want to ALSO clean it up, since pPublicKey already will do so.
+    pPublicKey->dp->SetX509(dp->m_pX509); // m_pX509 is now owned by pPublicKey. (No need to free it in our own destructor anymore.)
+    dp->m_pX509     = NULL; // pPublicKey took ownership, so we don't want to ALSO clean it up, since pPublicKey already will do so.
 
     pPrivateKey->SetAsPrivate();
-    pPrivateKey->SetKeyAsCopyOf(*m_pKey, true); // bool bIsPrivateKey=true; (Default is false)
+    pPrivateKey->dp->SetKeyAsCopyOf(*dp->m_pKey, true); // bool bIsPrivateKey=true; (Default is false)
     // Since pPrivateKey only takes a COPY of m_pKey, we are still responsible to clean up m_pKey in our own destructor.
     // (Assuming m_bCleanup is set to true, which is the default.) That's why I'm NOT setting it to NULL, as I did above
     // with m_pX509.
 
-    EVP_PKEY_free(m_pKey);
-    m_pKey = NULL;
+    EVP_PKEY_free(dp->m_pKey);
+    dp->m_pKey = NULL;
 
     // Success! At this point, theKeypair's public and private keys have been set.
     // Keep in mind though, they still won't be "quite right" until saved and loaded
@@ -349,9 +366,12 @@ bool OTLowLevelKeyData::SetOntoKeypair(OTKeypair & theKeypair)
 
 // ----------------------------------------------
 
-OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSL() : OTAsymmetricKey(), m_pX509(NULL), m_pKey(NULL)
+OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSL() : OTAsymmetricKey(), dp(new OTAsymmetricKey_OpenSSLPrivdp())
 {
+    dp->backlink = this;
 
+    dp->m_pX509  = NULL;
+    dp->m_pKey   = NULL;
 }
 
 
@@ -361,9 +381,9 @@ OTAsymmetricKey_OpenSSL::~OTAsymmetricKey_OpenSSL()
     // -------------------------
     ReleaseKeyLowLevel_Hook();
     // -------------------------
-    if (NULL != m_pX509)  // Todo: figure out if I should put a copy of this into ReleaseKeyLowLevel_Hook as we are with m_pKey.
-        X509_free(m_pX509); // FYI: the reason it's not there already is because the original need was for wiping m_pKey when a private key timed out.
-    m_pX509 = NULL;         // ReleaseKeyLowLevel is used all over OTAsymmetricKey.cpp for the purpose of wiping that private key. The same need didn't exist with the x509 so it was never coded that way. As long as it's cleaned up here in the destructor, seems good enough?
+    if (NULL != dp->m_pX509)  // Todo: figure out if I should put a copy of this into ReleaseKeyLowLevel_Hook as we are with m_pKey.
+        X509_free(dp->m_pX509); // FYI: the reason it's not there already is because the original need was for wiping m_pKey when a private key timed out.
+    dp->m_pX509 = NULL;         // ReleaseKeyLowLevel is used all over OTAsymmetricKey.cpp for the purpose of wiping that private key. The same need didn't exist with the x509 so it was never coded that way. As long as it's cleaned up here in the destructor, seems good enough?
     //-------------------------
     // YOU MIGHT ASK... Why is m_pKey cleaned up here in the destructor, and ALSO in ReleaseKeyLowLevel_Hook ?
     // The answer is because if we call ReleaseKeyLowLevel_Hook from OTAsymmetricKey's destructor (down that chain)
@@ -394,9 +414,9 @@ void OTAsymmetricKey_OpenSSL::ReleaseKeyLowLevel_Hook()
 {
     // Release the instantiated OpenSSL key (unsafe to store in this form.)
     //
-    if (NULL != m_pKey)
-        EVP_PKEY_free (m_pKey);
-    m_pKey = NULL;
+    if (NULL != dp->m_pKey)
+        EVP_PKEY_free (dp->m_pKey);
+    dp->m_pKey = NULL;
 }
 
 
@@ -405,7 +425,7 @@ void OTAsymmetricKey_OpenSSL::ReleaseKeyLowLevel_Hook()
 
 
 // low level
-void OTAsymmetricKey_OpenSSL::SetX509(X509 * x509)
+void OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::SetX509(X509 * x509)
 {
     if (m_pX509 == x509)
         return;
@@ -423,9 +443,9 @@ void OTAsymmetricKey_OpenSSL::SetX509(X509 * x509)
 // -------------------------------------------------------------------------------------------
 
 
-void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey/*=false*/, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
-{ 
-	this->Release();
+void OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey/*=false*/, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
+{
+    backlink->Release();
     OTPasswordData thePWData(NULL == pImportPassword ?
                              "Enter your wallet's master passphrase. (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)" :
                              "Enter your exported Nym's passphrase.  (OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf)");
@@ -436,32 +456,32 @@ void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateK
     EVP_PKEY *  CopyPublicKey (EVP_PKEY & theKey);
     EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey);
     */
-    m_pKey			= bIsPrivateKey ? OTAsymmetricKey_OpenSSL::CopyPrivateKey(theKey, NULL == pPWData ? &thePWData : pPWData, pImportPassword)
-                                    : OTAsymmetricKey_OpenSSL::CopyPublicKey (theKey, NULL == pPWData ? &thePWData : pPWData, pImportPassword);
+    m_pKey			= bIsPrivateKey ? OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPrivateKey(theKey, NULL == pPWData ? &thePWData : pPWData, pImportPassword)
+                                    : OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPublicKey (theKey, NULL == pPWData ? &thePWData : pPWData, pImportPassword);
 	OT_ASSERT_MSG(NULL != m_pKey, "OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf: ASSERT: NULL != m_pKey \n");
     // ---------------------------
-	m_bIsPublicKey	= !bIsPrivateKey;
-	m_bIsPrivateKey	=  bIsPrivateKey;
+    backlink->m_bIsPublicKey	= !bIsPrivateKey;
+    backlink->m_bIsPrivateKey	=  bIsPrivateKey;
     // ---------------------------
-    if (NULL == m_p_ascKey)
+    if (NULL == backlink->m_p_ascKey)
     {
-        m_p_ascKey = new OTASCIIArmor;
-        OT_ASSERT(NULL != m_p_ascKey);
+        backlink->m_p_ascKey = new OTASCIIArmor;
+        OT_ASSERT(NULL != backlink->m_p_ascKey);
     }
     else
     {
-        m_p_ascKey->Release();
+        backlink->m_p_ascKey->Release();
     }
     // By this point, m_p_ascKey definitely exists, and it's empty.
     // ----------------------
-    if (m_bIsPrivateKey)
+    if (backlink->m_bIsPrivateKey)
 //        const bool bArmored = 
-            OTAsymmetricKey_OpenSSL::ArmorPrivateKey(*m_pKey, *m_p_ascKey, m_timer, NULL == pPWData ? &thePWData : pPWData, pImportPassword);
+            OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPrivateKey(*m_pKey, *backlink->m_p_ascKey, backlink->m_timer, NULL == pPWData ? &thePWData : pPWData, pImportPassword);
     // NOTE: Timer is already set INSIDE ArmorPrivateKey. No need to set twice.
 //      m_timer.start(); // Note: this isn't the ultimate timer solution. See notes in ReleaseKeyLowLevel.
-    else if (m_bIsPublicKey)
+    else if (backlink->m_bIsPublicKey)
 //        const bool bArmored = 
-            OTAsymmetricKey_OpenSSL::ArmorPublicKey(*m_pKey, *m_p_ascKey);
+            OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPublicKey(*m_pKey, *backlink->m_p_ascKey);
     else
         OTLog::vError("%s: Error: This key is NEITHER public NOR private!\n", __FUNCTION__);
 }
@@ -469,7 +489,7 @@ void OTAsymmetricKey_OpenSSL::SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateK
 
 
 
-EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKeyLowLevel()
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::GetKeyLowLevel()
 {
     return m_pKey;
 }
@@ -477,11 +497,11 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKeyLowLevel()
 // -------------------------------------------------------------------------------------------
 
 
-const EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKey(OTPasswordData * pPWData/*=NULL*/)
+const EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::GetKey(OTPasswordData * pPWData/*=NULL*/)
 {
-    OT_ASSERT_MSG(NULL != m_p_ascKey, "OTAsymmetricKey_OpenSSL::GetKey: NULL != m_p_ascKey\n");
+    OT_ASSERT_MSG(NULL != backlink->m_p_ascKey, "OTAsymmetricKey_OpenSSL::GetKey: NULL != m_p_ascKey\n");
     
-    if (NULL == m_p_ascKey)
+    if (NULL == backlink->m_p_ascKey)
     {
         OTLog::vError("%s: Unexpected NULL m_p_ascKey. Printing stack trace (and returning NULL):\n", __FUNCTION__);
         print_stacktrace();
@@ -489,8 +509,8 @@ const EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKey(OTPasswordData * pPWData/*=NULL
     }
     // ----------------------------------------
     
-    if (m_timer.getElapsedTimeInSec() > OT_KEY_TIMER)
-        ReleaseKeyLowLevel();   // This releases the actual loaded key, but not the ascii-armored, encrypted version of it.
+    if (backlink->m_timer.getElapsedTimeInSec() > OT_KEY_TIMER)
+        backlink->ReleaseKeyLowLevel();   // This releases the actual loaded key, but not the ascii-armored, encrypted version of it.
                                 // (Thus forcing a reload, and thus forcing the passphrase to be entered again.)
     // ----------------------------------------
     if (NULL == m_pKey)
@@ -504,12 +524,12 @@ const EVP_PKEY * OTAsymmetricKey_OpenSSL::GetKey(OTPasswordData * pPWData/*=NULL
 // -------------------------------------------------------------------------------------------
 
 // Low-level / private
-EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiateKey(OTPasswordData * pPWData/*=NULL*/)
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::InstantiateKey(OTPasswordData * pPWData/*=NULL*/)
 {
-    if (IsPublic())
+    if (backlink->IsPublic())
         return InstantiatePublicKey(pPWData);  // this is the ONLY place, currently, that this private method is called.
     
-    else if (IsPrivate())
+    else if (backlink->IsPrivate())
         return InstantiatePrivateKey(pPWData); // this is the ONLY place, currently, that this private method is called.
     
     else
@@ -626,7 +646,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPrivateKeyFromCertString(const OTString & strC
 		{
             // Note: no need to start m_timer here since SetKeyAsCopyOf already calls ArmorPrivateKey, which does that.
             //
-            this->SetKeyAsCopyOf(*pkey, true, &thePWData, pImportPassword); // bIsPrivateKey=false by default, but true here.
+            this->dp->SetKeyAsCopyOf(*pkey, true, &thePWData, pImportPassword); // bIsPrivateKey=false by default, but true here.
             EVP_PKEY_free(pkey);
             pkey = NULL;
 			OTLog::vOutput(3, "%s: Successfully loaded private key, FYI.\n", __FUNCTION__);
@@ -717,7 +737,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromCertString(const OTString   & str
 		}
 		else
 		{
-            this->SetKeyAsCopyOf(*pkey,      false, // bIsPrivateKey=false. PUBLIC KEY.
+            this->dp->SetKeyAsCopyOf(*pkey,      false, // bIsPrivateKey=false. PUBLIC KEY.
                                  &thePWData, pImportPassword); // pImportPassword is sometimes NULL here.
             
             EVP_PKEY_free(pkey);
@@ -737,14 +757,14 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromCertString(const OTString   & str
     //
     if (bReturnValue)
     {
-        SetX509(x509);
+        dp->SetX509(x509);
     }
     else
     {
         if (NULL != x509) 
             X509_free(x509);
         x509 = NULL;
-        SetX509(NULL);
+        dp->SetX509(NULL);
     }
 
 	return bReturnValue;
@@ -756,7 +776,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromCertString(const OTString   & str
 
 
 //static      // CALLER must EVP_pkey_free!
-EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPublicKey(EVP_PKEY & theKey, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 {
     // ----------------------------------------
 	// Create a new memory buffer on the OpenSSL side
@@ -858,7 +878,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPublicKey(EVP_PKEY & theKey, OTPasswordD
 // OTPassword can accommodate a bit larger size than what it does now.
 //
 //static      // CALLER must EVP_pkey_free!
-EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 {
     const EVP_CIPHER * pCipher = EVP_des_ede3_cbc(); // todo should this algorithm be hardcoded?
     // ----------------------------------------
@@ -961,7 +981,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::CopyPrivateKey(EVP_PKEY & theKey, OTPassword
 //
 //static
 //
-bool OTAsymmetricKey_OpenSSL::ArmorPublicKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey)
+bool OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPublicKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey)
 {
 	bool bReturnVal = false;
     
@@ -1036,11 +1056,11 @@ bool OTAsymmetricKey_OpenSSL::ArmorPublicKey(EVP_PKEY & theKey, OTASCIIArmor & a
 // (Internal) ASCII-Armored key ====> (Internal) Actual loaded OpenSSL key.
 //
 //
-EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePublicKey(OTPasswordData * pPWData/*=NULL*/)
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::InstantiatePublicKey(OTPasswordData * pPWData/*=NULL*/)
 {
     OT_ASSERT(m_pKey     == NULL);
-    OT_ASSERT(m_p_ascKey != NULL);
-    OT_ASSERT(IsPublic());
+    OT_ASSERT(backlink->m_p_ascKey != NULL);
+    OT_ASSERT(backlink->IsPublic());
     
     const char * szFunc = "OTAsymmetricKey_OpenSSL::InstantiatePublicKey";
     // ------------------------------
@@ -1050,7 +1070,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePublicKey(OTPasswordData * pPWDat
     // This base64 decodes the string m_p_ascKey into the
     // binary payload object "theData"
     //
-    m_p_ascKey->GetData(theData);
+    backlink->m_p_ascKey->GetData(theData);
     
     if (theData.GetSize() > 0)
     {
@@ -1073,19 +1093,19 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePublicKey(OTPasswordData * pPWDat
         // -------------------------------------------
 
         // -------------------------------------------
-        ReleaseKeyLowLevel(); // Release whatever loaded key I might have already had.
+        backlink->ReleaseKeyLowLevel(); // Release whatever loaded key I might have already had.
         
         if (NULL != pReturnKey)
         {
             m_pKey = pReturnKey;
             OTLog::vOutput(4, "%s: Success reading public key from ASCII-armored data:\n\n%s\n\n",
-                           szFunc, m_p_ascKey->Get());
+                           szFunc, backlink->m_p_ascKey->Get());
             return m_pKey;
         }
     }
     
     OTLog::vError("%s: Failed reading public key from ASCII-armored data:\n\n%s\n\n", 
-                  szFunc, m_p_ascKey->Get());
+                  szFunc, backlink->m_p_ascKey->Get());
     return NULL;
 }
 
@@ -1247,18 +1267,18 @@ bool OTAsymmetricKey_OpenSSL::ReEncryptPrivateKey(OTPassword & theExportPassword
 // then Release the key immediately before and after using it. But they should be
 // HIGH-LEVEL functions, which handle the timer stuff internally.
 //
-EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePrivateKey(OTPasswordData * pPWData/*=NULL*/)
+EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::InstantiatePrivateKey(OTPasswordData * pPWData/*=NULL*/)
 {
     OT_ASSERT(m_pKey     == NULL);
-    OT_ASSERT(m_p_ascKey != NULL);
-    OT_ASSERT(IsPrivate());    
+    OT_ASSERT(backlink->m_p_ascKey != NULL);
+    OT_ASSERT(backlink->IsPrivate());
     // ------------------------------
 	EVP_PKEY * pReturnKey = NULL;
 	OTPayload theData;  // after base64-decoding the ascii-armored string, the (encrypted) binary will be stored here.
 	// --------------------------------------	
 	// This line base64 decodes the ascii-armored string into binary object theData...
     //
-	m_p_ascKey->GetData(theData); // theData now contains binary data, the encrypted private key itself, no longer in text-armoring.
+    backlink->m_p_ascKey->GetData(theData); // theData now contains binary data, the encrypted private key itself, no longer in text-armoring.
     //
     // Note, for future optimization: the ASCII-ARMORING could be used for serialization, but the BIO (still encrypted)
     // could be used in RAM for this object. Otherwise you just have to do the extra step of ascii-decoding it first to get
@@ -1284,7 +1304,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePrivateKey(OTPasswordData * pPWDa
         pReturnKey = PEM_read_bio_PrivateKey( keyBio, NULL, OTAsymmetricKey::GetPasswordCallback(), pPWData );
         
         // Free the BIO and related buffers, filters, etc.
-        ReleaseKeyLowLevel();
+        backlink->ReleaseKeyLowLevel();
         // --------------------------------------
         if (NULL != pReturnKey)
         {
@@ -1296,7 +1316,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePrivateKey(OTPasswordData * pPWDa
             // seconds, but need to phase it down to 0 and then remove it entirely! Master key takes over now!
             //
 
-            m_timer.start();  // Note: this isn't the ultimate timer solution. See notes in ReleaseKeyLowLevel.
+            backlink->m_timer.start();  // Note: this isn't the ultimate timer solution. See notes in ReleaseKeyLowLevel.
             OTLog::vOutput(4, "%s: Success reading private key from ASCII-armored data.\n\n",
                            __FUNCTION__);
 //          OTLog::vOutput(4, "%s: Success reading private key from ASCII-armored data:\n\n%s\n\n",
@@ -1315,7 +1335,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::InstantiatePrivateKey(OTPasswordData * pPWDa
 // -------------------------------------------------------------------------------------------
 
 //static
-bool OTAsymmetricKey_OpenSSL::ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey, Timer & theTimer, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
+bool OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey, Timer & theTimer, OTPasswordData * pPWData/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 {
 	bool bReturnVal = false;
     
@@ -1402,7 +1422,7 @@ bool OTAsymmetricKey_OpenSSL::ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & 
 //virtual
 bool OTAsymmetricKey_OpenSSL::SaveCertToString(OTString & strOutput, const OTString * pstrReason/*=NULL*/, OTPassword * pImportPassword/*=NULL*/)
 {
-    X509 * x509 = this->GetX509();
+    X509 * x509 = dp->GetX509();
     
     if (NULL == x509)
     {
@@ -1432,7 +1452,7 @@ bool OTAsymmetricKey_OpenSSL::SaveCertToString(OTString & strOutput, const OTStr
         {
             OTPasswordData thePWData(NULL == pstrReason ? "OTAsymmetricKey_OpenSSL::SaveCertToString" : pstrReason->Get());
             
-			this->SetKeyAsCopyOf(*pPublicKey, false, &thePWData, pImportPassword); // bool bIsPrivateKey=false;
+            this->dp->SetKeyAsCopyOf(*pPublicKey, false, &thePWData, pImportPassword); // bool bIsPrivateKey=false;
             EVP_PKEY_free(pPublicKey);
             pPublicKey = NULL;
         }
@@ -1461,7 +1481,7 @@ bool OTAsymmetricKey_OpenSSL::SavePrivateKeyToString(OTString & strOutput, const
 		return false;
     }
     // ------------------------------
-	EVP_PKEY  * pPrivateKey = this->GetKeyLowLevel();
+    EVP_PKEY  * pPrivateKey = dp->GetKeyLowLevel();
     if (NULL == pPrivateKey)
     {
         OTLog::vError("%s: Error: Unexpected NULL pPrivateKey. (Returning false.)\n", __FUNCTION__);
@@ -1858,7 +1878,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKe
     //
     if (bReturnValue)
     {
-        this->SetKeyAsCopyOf(*pkey, false); // bIsPrivateKey=false. PUBLIC KEY.
+        dp->SetKeyAsCopyOf(*pkey, false); // bIsPrivateKey=false. PUBLIC KEY.
         EVP_PKEY_free(pkey); // We have our own copy already. It's set NULL just below...
     }
     else if (NULL != pkey) // we failed, but pkey is NOT null (need to free it.)
