@@ -138,6 +138,8 @@
 #include <OTPseudonym.hpp>
 #include <OTLog.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 BasketItem::BasketItem() :
     lMinimumTransferAmount(0), 
     lClosingTransactionNo(0)
