@@ -125,9 +125,6 @@
  **************************************************************/
 
 #include <stdafx.hpp>
-
-#include <main.hpp>
-
 #include <OTServer.hpp>
 
 #include <OTLog.hpp>

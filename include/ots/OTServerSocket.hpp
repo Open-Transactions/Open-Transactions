@@ -1,7 +1,6 @@
 /************************************************************************************
  *
- *  Main.h
- *
+ *  OTServerSocket.cpp  (Open Transactions server socket based on ZMQ.)
  */
 
 /************************************************************
@@ -130,15 +129,69 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __MAIN_HPP__
-#define __MAIN_HPP__
+#ifndef __OTSERVERSOCKET_HPP__
+#define __OTSERVERSOCKET_HPP__
 
-#include "OTCommon.hpp"
+#include <OTCommon.hpp>
+#include <OTSettings.hpp>
+#include <OTString.hpp>
+#include <tinythread.hpp>
 
-#include "OTClientConnection.hpp"
+#include "zmq/zmq.hpp"
 
 
-typedef std::list<OTClientConnection *>	listOfConnections;
+class OTServerSocket
+{
+    zmq::context_t	* m_pContext;
+    zmq::socket_t	* m_pSocket;
 
+    OTString		m_strBindingPath;
 
-#endif // __MAIN_HPP__
+    bool		m_bInitialized;
+    bool		m_HasContext;
+    bool		m_bIsListening;
+
+    int64_t		m_lLatencySendMs;
+    int32_t			m_nLatencySendNoTries;
+    int64_t		m_lLatencyReceiveMs;
+    int32_t			m_nLatencyReceiveNoTries;
+    int64_t     m_lLatencyDelayAfter;
+    bool		m_bIsBlocking;
+
+    bool HandlePollingError();
+    bool HandleSendingError();
+    bool HandleReceivingError();
+
+public:
+    OTServerSocket();
+    ~OTServerSocket();
+
+    tthread::mutex * m_pMutex;
+
+    bool Init();
+
+    bool Init(
+        const int64_t	   & lLatencySendMs,
+        const int32_t	   & nLatencySendNoTries,
+        const int64_t	   & lLatencyReceiveMs,
+        const int32_t	   & nLatencyReceiveNoTries,
+        const int64_t	   & lLatencyDelayAfter,
+        const bool	   & bIsBlocking
+        );
+
+    bool Init(OTSettings * pSettings);
+
+    bool NewContext();
+
+    bool Listen(const OTString & strBind=""); // sets m_strBindPath
+
+    bool Receive(std::string & str_Message);
+    bool Send(const std::string & str_Reply);
+
+    const bool &		IsInitialized()		 const { return m_bInitialized;	  }
+    const bool &		HasContext()		 const { return m_HasContext;	  }
+    const bool &		IsConnected()		 const { return m_bIsListening;	  }
+    const OTString & CurrentConnectPath() const    { return m_strBindingPath; }
+};
+
+#endif // __OTSERVERSOCKET_HPP__
