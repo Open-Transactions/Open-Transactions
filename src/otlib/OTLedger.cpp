@@ -144,7 +144,6 @@
 #include <OTEnvelope.hpp>
 
 
-
 char const * const __TypeStrings[] = 
 {
 	"nymbox",           // the nymbox is per user account (versus per asset account) and is used to receive new transaction numbers (and messages.)
@@ -2151,7 +2150,7 @@ int32_t OTLedger::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 					int64_t lInRefTo			= 0;
 					int64_t lInRefDisplay		= 0;
 					// -------------------------------------
-					time_t the_DATE_SIGNED	= 0;
+                    time64_t the_DATE_SIGNED = OT_TIME_ZERO;
 					OTTransaction::transactionType theType = OTTransaction::error_state; // default
 					OTString strHash;
 					// -------------------------------------
@@ -2493,37 +2492,3 @@ bool OTLedger::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

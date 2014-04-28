@@ -657,7 +657,7 @@ OT_MADE_EASY_OT string MadeEasy::create_market_offer(const string & ASSET_ACCT_I
     //
     if (VerifyStringVal(strLifespanInSeconds))
     {
-        theRequest.tData = to_long(strLifespanInSeconds);
+        theRequest.tData = OTTimeGetTimeFromSeconds(to_long(strLifespanInSeconds));
     }
 
     if (VerifyStringVal(strStopSign))

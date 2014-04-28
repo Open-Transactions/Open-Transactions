@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTMessageBuffer.h
+ *  OTMessageBuffer.hpp
  *
  */
 
@@ -131,15 +131,16 @@
  **************************************************************/
 
 
-#ifndef __OTMESSAGEBUFFER_HPP__
-#define __OTMESSAGEBUFFER_HPP__
+#ifndef __OT_MESSAGE_BUFFER_HPP__
+#define __OT_MESSAGE_BUFFER_HPP__
+
+#include <list>
+#include <map>
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
 
-#include <list>
-#include <map>
 
 class OTPseudonym;
 class OTMessage;
@@ -150,18 +151,14 @@ typedef std::list<OTMessage *>       listOfMessages; // Incoming server replies 
 typedef std::multimap <int64_t, OTMessage *> mapOfMessages;  // Your outgoing messages, mapped by request number.
 
 
-// ------------------------------------
-
-
 // INCOMING SERVER REPLIES.
-
+//
 // The purpose of this class is to cache server replies (internally to OT)
 // so that the developer using the OT API has access to them.
 //
 // This class is pretty generic and so may be used as an output buffer
 // as well. (If "stack" form is preferable.)
 //
-
 class OTMessageBuffer
 {
 	listOfMessages m_listMessages;
@@ -231,44 +228,4 @@ EXPORT	OTMessage * GetSentMessage      (const OTTransaction & theTransaction); /
 EXPORT	bool        RemoveSentMessage   (const OTTransaction & theTransaction); // true == it was removed. false == it wasn't found.
 };
 
-
-
-// ------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // __OTMESSAGEBUFFER_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_MESSAGE_BUFFER_HPP__

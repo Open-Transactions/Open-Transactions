@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *
- *  OTSignedFile.h
+ *  OTSignedFile.hpp
  *
  */
 
@@ -137,6 +137,7 @@
 
 #include "OTContract.hpp"
 
+
 class OTSignedFile : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.
@@ -190,24 +191,5 @@ EXPORT	virtual ~OTSignedFile();
         virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
+
 #endif // __OT_SIGNED_FILE_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

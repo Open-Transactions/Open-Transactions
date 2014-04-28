@@ -1,6 +1,6 @@
 /*************************************************************
  *    
- *  OTCheque.h
+ *  OTCheque.hpp
  *  
  */
 
@@ -176,7 +176,7 @@ public:
 	
 	// Calling this function is like writing a check...
 EXPORT	bool IssueCheque(const int64_t	  & lAmount,    const int64_t   & lTransactionNum,
-                         const time_t & VALID_FROM, const time_t & VALID_TO, // The expiration date (valid from/to dates.)
+                         const time64_t & VALID_FROM, const time64_t & VALID_TO, // The expiration date (valid from/to dates.)
                          const OTIdentifier & SENDER_ACCT_ID,                // The asset account the cheque is drawn on.
                          const OTIdentifier & SENDER_USER_ID,                // This ID must match the user ID on the asset account, 
                                                                              // AND must verify the cheque signature with that user's key.
@@ -201,8 +201,8 @@ EXPORT  void CancelCheque(); // You still need to re-sign the cheque after doing
 	 inline const OTIdentifier & GetAssetID()  const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID;    }
 	 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO;   }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO;   }
 	 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
@@ -221,25 +221,3 @@ EXPORT	virtual ~OTCheque();
 
 
 #endif // __OT_CHEQUE_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

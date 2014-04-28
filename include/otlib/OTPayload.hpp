@@ -1,6 +1,6 @@
 /*************************************************************
  *    
- *  OTPayload.h
+ *  OTPayload.hpp
  *  
  */
 
@@ -130,8 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTPAYLOAD_HPP__
-#define __OTPAYLOAD_HPP__
+#ifndef __OT_PAYLOAD_HPP__
+#define __OT_PAYLOAD_HPP__
 
 #include "OTCommon.hpp"
 
@@ -169,26 +169,5 @@ EXPORT	bool GetEnvelope(OTEnvelope & theEnvelope) const; // Envelope retrieved f
 EXPORT	bool SetEnvelope(const OTEnvelope & theEnvelope); // Envelope copied into payload to prepare for sending.
 };
 
-#endif // __OTPAYLOAD_HPP__ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_PAYLOAD_HPP__ 

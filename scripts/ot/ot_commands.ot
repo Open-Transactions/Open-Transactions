@@ -9857,7 +9857,7 @@ def accept_from_paymentbox(strMyAcctID, strIndices, strPaymentType)
     
     if (!VerifyStringVal(strInbox))
     {
-        OT_API_Output(1, "\n\n accept_from_paymentbox:  OT_API_LoadPaymentInbox Failed.\n\n")
+        OT_API_Output(0, "\n\n accept_from_paymentbox:  OT_API_LoadPaymentInbox Failed.\n\n")
         return (-1)
     }
     // ---------------------------------------------    

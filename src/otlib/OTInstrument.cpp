@@ -1,4 +1,4 @@
-/************************************************************
+/*****************************************************************
  *    
  *  OTInstrument.cpp
  *  
@@ -134,7 +134,6 @@
 
 #include <OTInstrument.hpp>
 
-#include <time.h>
 
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.
@@ -145,13 +144,13 @@
 //
 bool OTInstrument::IsExpired()
 {
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
 	
 	// If the current time is AFTER the valid-TO date,
 	// AND the valid_to is a nonzero number (0 means "doesn't expire")
 	// THEN return true (it's expired.)
 	//
-	if ((CURRENT_TIME >= m_VALID_TO) && (m_VALID_TO > 0))
+    if ((CURRENT_TIME >= m_VALID_TO) && (m_VALID_TO > OT_TIME_ZERO))
 		return true;
 	else
 		return false;
@@ -161,18 +160,13 @@ bool OTInstrument::IsExpired()
 // Verify whether the CURRENT date is WITHIN the VALID FROM / TO dates.
 bool OTInstrument::VerifyCurrentDate()
 {
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	
 	if ((CURRENT_TIME >= m_VALID_FROM) && 
-		((CURRENT_TIME <= m_VALID_TO) || (0 == m_VALID_TO)))
+        ((CURRENT_TIME <= m_VALID_TO) || (OT_TIME_ZERO == m_VALID_TO)))
 		return true;
 	else
 		return false;
-}
-
-time_t OTInstrument::GetCurrentTime() const
-{
-	return time(NULL);
 }
 
 void OTInstrument::InitInstrument()
@@ -181,13 +175,13 @@ void OTInstrument::InitInstrument()
 }
 
 OTInstrument::OTInstrument()
-: ot_super(), m_VALID_FROM(0), m_VALID_TO(0)
+: ot_super(), m_VALID_FROM(OT_TIME_ZERO), m_VALID_TO(OT_TIME_ZERO)
 {
 	InitInstrument();
 }
 
 OTInstrument::OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
-: ot_super(), m_ServerID(SERVER_ID), m_AssetTypeID(ASSET_ID), m_VALID_FROM(0), m_VALID_TO(0)
+: ot_super(), m_ServerID(SERVER_ID), m_AssetTypeID(ASSET_ID), m_VALID_FROM(OT_TIME_ZERO), m_VALID_TO(OT_TIME_ZERO)
 {
 	InitInstrument();
 //
@@ -199,8 +193,8 @@ OTInstrument::~OTInstrument()
 {
     Release_Instrument();
     
-	m_VALID_FROM	= 0;
-	m_VALID_TO		= 0;	
+	m_VALID_FROM	= OT_TIME_ZERO;
+	m_VALID_TO		= OT_TIME_ZERO;	
 }
 
 
@@ -272,24 +266,3 @@ int32_t OTInstrument::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
     
 	return nReturnVal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

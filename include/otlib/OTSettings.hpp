@@ -1,6 +1,6 @@
 /**************************************************************
 *
-*  OTSettings.h
+*  OTSettings.hpp
 *	This class has no static members;
 *	You must create a context.  Only one context, per
 *	 configuration file should exist at the same time,
@@ -137,8 +137,8 @@
 
 // The int64_t-awaited configuration class.
 
-#ifndef __OTSETTINGS_HPP__
-#define __OTSETTINGS_HPP__
+#ifndef __OT_SETTINGS_HPP__
+#define __OT_SETTINGS_HPP__
 
 #include "OTCommon.hpp"
 
@@ -225,4 +225,4 @@ public:
 #endif
 
 
-#endif // __OTSETTINGS_HPP__
+#endif // __OT_SETTINGS_HPP__

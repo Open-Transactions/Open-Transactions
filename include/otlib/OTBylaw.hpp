@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTBylaw.h
+ *  OTBylaw.hpp
  *
  */
 
@@ -1041,36 +1041,6 @@ public:
 	EXPORT	void Serialize(OTString & strAppend, bool bCalculatingID=false);
 };
 
-
-
-
 typedef std::map<std::string, OTBylaw *> mapOfBylaws;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif // __OT_BYLAW_HPP__
-
-
-
-

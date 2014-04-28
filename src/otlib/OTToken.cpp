@@ -739,8 +739,8 @@ void OTToken::UpdateContents()
 			break;
 	}
 
-	int64_t lFrom = static_cast<int64_t> (m_VALID_FROM),
-            lTo   = static_cast<int64_t> (m_VALID_TO);
+    int64_t lFrom = OTTimeGetSecondsFromTime(m_VALID_FROM);
+    int64_t lTo = OTTimeGetSecondsFromTime(m_VALID_TO);
 
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -847,8 +847,8 @@ int32_t OTToken::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         int64_t tFrom = str_from.ToLong();
         int64_t tTo   = str_to.ToLong();
         
-		m_VALID_FROM	= static_cast<time_t>(tFrom);
-		m_VALID_TO		= static_cast<time_t>(tTo);
+        m_VALID_FROM = OTTimeGetTimeFromSeconds(tFrom);
+        m_VALID_TO = OTTimeGetTimeFromSeconds(tTo);
 		
 		SetDenomination(atol(xml->getAttributeValue("denomination")));
 
@@ -1450,26 +1450,3 @@ bool OTToken_Lucre::ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 
 
 #endif // defined(OT_CASH_USING_LUCRE) && defined(OT_CRYPTO_USING_OPENSSL)
-// *******************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

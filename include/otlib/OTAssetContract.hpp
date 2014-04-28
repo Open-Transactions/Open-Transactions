@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *
- *  OTAssetContract.h
+ *  OTAssetContract.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTASSETCONTRACT_HPP__
-#define __OTASSETCONTRACT_HPP__
+#ifndef __OT_ASSET_CONTRACT_HPP__
+#define __OT_ASSET_CONTRACT_HPP__
 
 #include "OTCommon.hpp"
 
@@ -311,46 +311,4 @@ EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an
 
 // ----------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // __OTASSETCONTRACT_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_ASSET_CONTRACT_HPP__

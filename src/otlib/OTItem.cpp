@@ -2205,45 +2205,7 @@ void OTItem::UpdateContents() // Before transmission or serialization, this is w
 }
 
 
-
 bool OTItem::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

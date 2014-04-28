@@ -1,4 +1,4 @@
-/****************************************************************
+/************************************************************
  *
  *  OTScriptable.cpp
  *
@@ -312,12 +312,12 @@ void OTScriptable::RegisterOTNativeCallsWithScript(OTScript & theScript)
 //static
 std::string OTScriptable::GetTime() // Returns a string, containing seconds as int32_t. (Time in seconds.)
 {
-	const	time_t	CURRENT_TIME	=	time(NULL);
-	const	int64_t	lTime			=	static_cast<int64_t> (CURRENT_TIME);
-	// ----------------------------------
-	OTString strTime;
-	strTime.Format("%lld", lTime);
-	return	strTime.Get();
+    const time64_t  CURRENT_TIME = OTTimeGetCurrentTime();
+    const int64_t   lTime = OTTimeGetSecondsFromTime(CURRENT_TIME);
+    // ----------------------------------
+    OTString strTime;
+    strTime.Format("%lld", lTime);
+    return	strTime.Get();
 }
 
 
@@ -3200,20 +3200,3 @@ bool OTScriptable::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

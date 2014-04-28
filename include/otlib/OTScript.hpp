@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *
- *  OTScript.h
+ *  OTScript.hpp
  *
  */
 
@@ -150,12 +150,10 @@
 #endif
 
 
-
 #ifdef _MSC_VER
 #pragma warning( pop )
 #endif
 
-// ------------------------------------------------------------
 
 // A script should be "Dumb", meaning that you just stick it with its
 // parties and other resources, and it EXPECTS them to be the correct
@@ -170,7 +168,6 @@
 // done.  The programmatic user will interact with OTSmartContract, likely,
 // and not with OTScript itself.
 //
-
 class OTScript
 {
 protected:
@@ -224,9 +221,6 @@ EXPORT  void         RemoveVariable (OTVariable & theVar);
 };
 
 
-
-// -----------------------------------
-
 EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
 EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
                                           const std::string & script_contents);
@@ -270,11 +264,5 @@ public:
 #pragma clang diagnostic pop
 #endif
 
-// ------------------------------------------------------------------
 
 #endif // __OT_SCRIPT_HPP__
-
-
-
-
-

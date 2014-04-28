@@ -61,9 +61,8 @@ OT_OTAPI_OT void OTAPI_Func::InitCustom()
 {
     bBool = false;
     nData = 0;
-    lData = int64_t(0);
-    tData = OTAPI_Wrap::GetTime(); // So it gets created as a time_t
-    tData = 0; // initialize it to 0.;
+    lData = 0;
+    tData = OT_TIME_ZERO;
     nTransNumsNeeded = 0;
     nRequestNum = -1;
     funcType = NO_FUNC;

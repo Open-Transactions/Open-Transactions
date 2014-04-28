@@ -1,6 +1,6 @@
 /**************************************************************
  *    
- *  OTLog.h
+ *  OTLog.hpp
  *  
  */
 
@@ -133,17 +133,17 @@
 
 // The int64_t-awaited logging class.
 
-#ifndef __OTLOG_HPP__
-#define __OTLOG_HPP__
+#ifndef __OT_LOG_HPP__
+#define __OT_LOG_HPP__
+
+#include <deque>
+#include <cerrno>
+#include <cstdlib>
 
 #include "OTCommon.hpp"
 
 #include "OTAssert.hpp"
 #include "OTString.hpp"
-
-#include <deque>
-#include <cerrno>
-#include <cstdlib>
 
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)
 #define PREDEF_PLATFORM_UNIX 1
@@ -292,4 +292,4 @@ public:
 
 };
 
-#endif // __OTLOG_HPP__
+#endif // __OT_LOG_HPP__

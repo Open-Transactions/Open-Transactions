@@ -1,9 +1,8 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTPayment.cpp
  *  
  */
-
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -140,10 +139,6 @@
 #include <OTPaymentPlan.hpp>
 #include <OTSmartContract.hpp>
 #include <OTPurse.hpp>
-
-#include <time.h>
-
-
 
 
 char const * const __TypeStrings[] = 
@@ -890,9 +885,9 @@ bool OTPayment::GetTransactionNum(int64_t & lOutput) const
     return bSuccess;
 }
 
-bool OTPayment::GetValidFrom(time_t & tOutput) const
+bool OTPayment::GetValidFrom(time64_t & tOutput) const
 {
-    tOutput = 0;
+    tOutput = OT_TIME_ZERO;
     // ----------------------
     if (!m_bAreTempValuesSet)
         return false;
@@ -919,9 +914,9 @@ bool OTPayment::GetValidFrom(time_t & tOutput) const
     return bSuccess;
 }
 
-bool OTPayment::GetValidTo(time_t & tOutput) const
+bool OTPayment::GetValidTo(time64_t & tOutput) const
 {
-    tOutput = 0;
+    tOutput = OT_TIME_ZERO;
     // ----------------------
     if (!m_bAreTempValuesSet)
         return false;
@@ -961,13 +956,13 @@ bool OTPayment::IsExpired(bool & bExpired)
     if (!m_bAreTempValuesSet)
         return false;
     // ---------------------------------
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
     // ---------------------------------
 	// If the current time is AFTER the valid-TO date,
 	// AND the valid_to is a nonzero number (0 means "doesn't expire")
 	// THEN return true (it's expired.)
 	//
-	if ((CURRENT_TIME >= m_VALID_TO) && (m_VALID_TO > 0))
+    if ((CURRENT_TIME >= m_VALID_TO) && (m_VALID_TO > OT_TIME_ZERO))
 		bExpired = true;
 	else
 		bExpired = false;
@@ -982,10 +977,10 @@ bool OTPayment::VerifyCurrentDate(bool & bVerified)
     if (!m_bAreTempValuesSet)
         return false;
     // ---------------------------------
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
     // ---------------------------------
 	if ((CURRENT_TIME >= m_VALID_FROM) &&
-		((CURRENT_TIME <= m_VALID_TO) || (0 == m_VALID_TO)))
+        ((CURRENT_TIME <= m_VALID_TO) || (OT_TIME_ZERO == m_VALID_TO)))
 		bVerified = true;
 	else
 		bVerified = false;
@@ -1289,8 +1284,8 @@ OTPayment::OTPayment()
     m_bHasRemitter(false),
     m_lAmount(0),
     m_lTransactionNum(0),
-    m_VALID_FROM(0),
-    m_VALID_TO(0)
+    m_VALID_FROM(OT_TIME_ZERO),
+    m_VALID_TO(OT_TIME_ZERO)
 {
 	InitPayment();
 }
@@ -1304,8 +1299,8 @@ OTPayment::OTPayment(const OTString & strPayment)
     m_bHasRemitter(false),
     m_lAmount(0),
     m_lTransactionNum(0),
-    m_VALID_FROM(0),
-    m_VALID_TO(0)
+    m_VALID_FROM(OT_TIME_ZERO),
+    m_VALID_TO(OT_TIME_ZERO)
 {
 	InitPayment();
     
@@ -1571,8 +1566,8 @@ void OTPayment::InitPayment()
     m_Type              = OTPayment::ERROR_STATE;
     m_lAmount           = 0;
     m_lTransactionNum   = 0;
-    m_VALID_FROM        = 0;
-    m_VALID_TO          = 0;
+    m_VALID_FROM        = OT_TIME_ZERO;
+    m_VALID_TO          = OT_TIME_ZERO;
     m_bAreTempValuesSet = false;
     m_bHasRecipient     = false;
     m_bHasRemitter      = false;
@@ -1591,8 +1586,8 @@ void OTPayment::Release_Payment()
     m_Type              = OTPayment::ERROR_STATE;
 	m_lAmount           = 0;
     m_lTransactionNum   = 0;
-    m_VALID_FROM        = 0;
-    m_VALID_TO          = 0;
+    m_VALID_FROM        = OT_TIME_ZERO;
+    m_VALID_TO          = OT_TIME_ZERO;
     // --------------------------------
     m_strPayment.Release();
     // --------------------------------
@@ -1704,5 +1699,3 @@ bool OTPayment::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-

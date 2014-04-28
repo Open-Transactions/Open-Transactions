@@ -1,6 +1,6 @@
 /**************************************************************
  *
- *  OTMessage.h
+ *  OTMessage.hpp
  *
  */
 
@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTMESSAGE_HPP__
-#define __OTMESSAGE_HPP__
+#ifndef __OT_MESSAGE_HPP__
+#define __OT_MESSAGE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
 #include "OTASCIIArmor.hpp"
 
 class OTPseudonym;
@@ -226,8 +225,4 @@ EXPORT    void SetAcknowledgments(OTPseudonym & theNym);
 };
 
 
-#endif // __OTMESSAGE_HPP__
-
-
-
-
+#endif // __OT_MESSAGE_HPP__

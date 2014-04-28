@@ -1,6 +1,6 @@
-/**************************************************************
+/************************************************************
  *    
- *  OTServerContract.h
+ *  OTServerContract.hpp
  *  
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTSERVERCONTRACT_HPP__
-#define __OTSERVERCONTRACT_HPP__
+#ifndef __OT_SERVER_CONTRACT_HPP__
+#define __OT_SERVER_CONTRACT_HPP__
 
 #include "OTCommon.hpp"
 
@@ -140,7 +140,6 @@
 
 class OTString;
 
-// ---------------------------------------
 
 class OTServerContract : public OTContract
 {
@@ -168,13 +167,4 @@ EXPORT virtual void CreateContents(); // Only used when first generating an asse
 };
 
 
-
-#endif // __OTSERVERCONTRACT_HPP__
-
-
-
-
-
-
-
-
+#endif // __OT_SERVER_CONTRACT_HPP__

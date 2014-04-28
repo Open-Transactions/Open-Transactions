@@ -144,8 +144,6 @@
 #include <OTTrade.hpp>
 #include <OTPaths.hpp>
 
-#include <time.h>
-
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -195,7 +193,7 @@ int32_t OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
         const OTString strDateAdded(xml->getAttributeValue("dateAdded"));
         const int64_t    lDateAdded = strDateAdded.Exists() ? strDateAdded.ToLong() : 0;
-        const time_t     tDateAdded = static_cast<time_t>(lDateAdded);
+        const time64_t     tDateAdded = OTTimeGetTimeFromSeconds(lDateAdded);
         // ---------------------------------------------
 		OTString strData;
 		
@@ -271,7 +269,7 @@ void OTMarket::UpdateContents()
 		OTString strOffer(*pOffer);		// Extract the offer contract into string form.
 		OTASCIIArmor ascOffer(strOffer);// Base64-encode that for storage.
 		
-        int64_t lDateAddedToMarket = static_cast<int64_t>(pOffer->GetDateAddedToMarket());
+        int64_t lDateAddedToMarket = OTTimeGetSecondsFromTime(pOffer->GetDateAddedToMarket());
         
 		m_xmlUnsigned.Concatenate("<offer dateAdded=\"%" PRId64"\">\n%s</offer>\n\n",
                                   lDateAddedToMarket, ascOffer.Get());
@@ -286,7 +284,7 @@ void OTMarket::UpdateContents()
 		OTString strOffer(*pOffer);		// Extract the offer contract into string form.
 		OTASCIIArmor ascOffer(strOffer);// Base64-encode that for storage.
 		
-        int64_t lDateAddedToMarket = static_cast<int64_t>(pOffer->GetDateAddedToMarket());
+        int64_t lDateAddedToMarket = OTTimeGetSecondsFromTime(pOffer->GetDateAddedToMarket());
         
 		m_xmlUnsigned.Concatenate("<offer dateAdded=\"%" PRId64"\">\n%s</offer>\n\n",
                                   lDateAddedToMarket, ascOffer.Get());
@@ -349,10 +347,10 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 		const int64_t & lMinimumIncrement			= pOffer->GetMinimumIncrement();
 		const int64_t & lScale						= pOffer->GetScale();
 
-		const time_t tValidFrom					= pOffer->GetValidFrom();
-		const time_t tValidTo					= pOffer->GetValidTo();
+		const time64_t tValidFrom					= pOffer->GetValidFrom();
+		const time64_t tValidTo					= pOffer->GetValidTo();
 	
-        const time_t tDateAddedToMarket         = pOffer->GetDateAddedToMarket();
+        const time64_t tDateAddedToMarket         = pOffer->GetDateAddedToMarket();
 
 		const OTIdentifier & theServerID		= pOffer->GetServerID();		const OTString strServerID(theServerID);
 		const OTIdentifier & theAssetID			= pOffer->GetAssetID();			const OTString strAssetID(theAssetID);
@@ -383,10 +381,10 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
 		pOfferData->scale				= to_string<int64_t>(lScale);
 		
-		pOfferData->valid_from			= to_string<time_t>(tValidFrom);
-		pOfferData->valid_to			= to_string<time_t>(tValidTo);
+		pOfferData->valid_from			= to_string<time64_t>(tValidFrom);
+		pOfferData->valid_to			= to_string<time64_t>(tValidTo);
 
-        pOfferData->date                = to_string<time_t>(tDateAddedToMarket);
+        pOfferData->date                = to_string<time64_t>(tDateAddedToMarket);
 
 		pOfferData->server_id			= strServerID.Get();
 		pOfferData->asset_type_id		= strAssetID.Get();
@@ -525,13 +523,13 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & 
 		const int64_t & lTransactionNum	= pOffer->GetTransactionNum();
 		const int64_t	 lAvailableAssets	= pOffer->GetAmountAvailable();
 		const int64_t & lMinimumIncrement	= pOffer->GetMinimumIncrement();
-        const time_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
+        const time64_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
 		
 		pOfferData->transaction_id		= to_string<int64_t>(lTransactionNum);
 		pOfferData->price_per_scale		= to_string<int64_t>(lPriceLimit);
 		pOfferData->available_assets	= to_string<int64_t>(lAvailableAssets);
 		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
-        pOfferData->date                = to_string<time_t>(tDateAddedToMarket);
+        pOfferData->date                = to_string<time64_t>(tDateAddedToMarket);
 		// ------------------------------------------------------
 		// *pOfferData is CLONED at this time (I'm still responsible to delete.)
 		// That's also why I add it here, below: So the data is set right before the cloning occurs.
@@ -559,13 +557,13 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & 
 		const int64_t & lPriceLimit		= pOffer->GetPriceLimit();
 		const int64_t	 lAvailableAssets	= pOffer->GetAmountAvailable();
 		const int64_t & lMinimumIncrement	= pOffer->GetMinimumIncrement();
-        const time_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
+        const time64_t tDateAddedToMarket = pOffer->GetDateAddedToMarket();
 
 		pOfferData->transaction_id		= to_string<int64_t>(lTransactionNum);
 		pOfferData->price_per_scale		= to_string<int64_t>(lPriceLimit);
 		pOfferData->available_assets	= to_string<int64_t>(lAvailableAssets);
 		pOfferData->minimum_increment	= to_string<int64_t>(lMinimumIncrement);
-        pOfferData->date                = to_string<time_t>(tDateAddedToMarket);
+        pOfferData->date                = to_string<time64_t>(tDateAddedToMarket);
 		// ------------------------------------------------------
 		// *pOfferData is CLONED at this time (I'm still responsible to delete.)
 		// That's also why I add it here, below: So the data is set right before the cloning occurs.
@@ -751,7 +749,7 @@ bool OTMarket::RemoveOffer(const int64_t & lTransactionNum) // if false, offer w
 // 
 // If NOT successful adding, caller must clear up his own memory.
 //
-bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=true*/, time_t tDateAddedToMarket/*=0*/)
+bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=true*/, time64_t tDateAddedToMarket/*=0*/)
 {
 	const int64_t	lTransactionNum	= theOffer.GetTransactionNum(),
 				lPriceLimit		= theOffer.GetPriceLimit();
@@ -814,7 +812,7 @@ bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=t
             // Set this to the current date/time, since the offer is
             // being added for the first time.
             //
-            theOffer.SetDateAddedToMarket(time(NULL));
+            theOffer.SetDateAddedToMarket(OTTimeGetCurrentTime());
             
 			return SaveMarket();  // <====== SAVE since an offer was added to the Market.
         }
@@ -1694,12 +1692,12 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 					OTCleanup<OTDB::TradeDataMarket> theDataAngel(*pTradeData);
 					// --------------------------------------------
 					const int64_t & lTransactionNum = theOffer.GetTransactionNum();
-					const time_t theDate         = time(NULL);
+					const time64_t theDate         = OTTimeGetCurrentTime();
 					const int64_t & lPriceLimit     = theOtherOffer.GetPriceLimit(); // Priced per scale.
 					const int64_t & lAmountSold     = lOfferFinished;
                     // ----------------------------------------------------------------
 					pTradeData->transaction_id = to_string<int64_t>(lTransactionNum);
-					pTradeData->date           = to_string<time_t>(theDate);
+					pTradeData->date           = to_string<time64_t>(theDate);
 					pTradeData->price          = to_string<int64_t>(lPriceLimit);
 					pTradeData->amount_sold    = to_string<int64_t>(lAmountSold);
                     // ------------------------------------------------------
@@ -2490,10 +2488,7 @@ void OTMarket::Release()
 }
 
 
-
-
 bool OTMarket::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-

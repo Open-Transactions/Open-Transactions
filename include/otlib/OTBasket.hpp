@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTBasket.h
+ *  OTBasket.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTBASKET_HPP__
-#define __OTBASKET_HPP__
+#ifndef __OT_BASKET_HPP__
+#define __OT_BASKET_HPP__
 
 #include "OTCommon.hpp"
 
@@ -248,11 +248,7 @@ EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & theServerID, const bool bSave=true);
 };
 
-
-
-
-
-#endif // __OTBASKET_HPP__
+#endif // __OT_BASKET_HPP__
 
 /*
 

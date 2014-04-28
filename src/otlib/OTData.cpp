@@ -1,4 +1,3 @@
-
 /*************************************************************
  *    
  *  OTData.cpp
@@ -139,8 +138,6 @@
 #include <OTLog.hpp>
 #include <OTPassword.hpp>
 #include <OTASCIIArmor.hpp>
-
-
 
 
 bool OTData::operator==(const OTData &s2) const
@@ -432,16 +429,3 @@ void OTData::SetSize(uint32_t lNewSize)
 		m_lSize = lNewSize;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

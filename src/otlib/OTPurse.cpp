@@ -4,7 +4,6 @@
  *  
  */
 
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -654,8 +653,8 @@ OTPurse::OTPurse() : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_tLatestValidFrom(0),
-    m_tEarliestValidTo(0)
+    m_tLatestValidFrom(OT_TIME_ZERO),
+    m_tEarliestValidTo(OT_TIME_ZERO)
 {
 	InitPurse();
 }
@@ -668,8 +667,8 @@ OTPurse::OTPurse(const OTPurse & thePurse) : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_tLatestValidFrom(0),
-    m_tEarliestValidTo(0)
+    m_tLatestValidFrom(OT_TIME_ZERO),
+    m_tEarliestValidTo(OT_TIME_ZERO)
 {
 	InitPurse();
 }
@@ -684,8 +683,8 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID) : ot_super(),
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_tLatestValidFrom(0),
-    m_tEarliestValidTo(0)
+    m_tLatestValidFrom(OT_TIME_ZERO),
+    m_tEarliestValidTo(OT_TIME_ZERO)
 {
 	InitPurse();
 }
@@ -697,8 +696,8 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) 
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_tLatestValidFrom(0),
-    m_tEarliestValidTo(0)
+    m_tLatestValidFrom(OT_TIME_ZERO),
+    m_tEarliestValidTo(OT_TIME_ZERO)
 {
 	InitPurse();
 }
@@ -715,8 +714,8 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID,
     m_bPasswordProtected(false),
     m_bIsNymIDIncluded(false),
     m_pSymmetricKey(NULL),
-    m_tLatestValidFrom(0),
-    m_tEarliestValidTo(0)
+    m_tLatestValidFrom(OT_TIME_ZERO),
+    m_tEarliestValidTo(OT_TIME_ZERO)
 {
 	InitPurse();
 }
@@ -921,8 +920,8 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
 {
 	const OTString SERVER_ID(m_ServerID), USER_ID(m_UserID), ASSET_TYPE_ID(m_AssetID);
 	// ------------------------------------
-    int64_t lValidFrom = static_cast<int64_t>(m_tLatestValidFrom);
-    int64_t lValidTo   = static_cast<int64_t>(m_tEarliestValidTo);
+    int64_t lValidFrom = OTTimeGetSecondsFromTime(m_tLatestValidFrom);
+    int64_t lValidTo = OTTimeGetSecondsFromTime(m_tEarliestValidTo);
 	// ------------------------------------
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -1043,13 +1042,13 @@ int32_t OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         {
             int64_t lValidFrom = str_valid_from.ToLong();
 
-            m_tLatestValidFrom = static_cast<time_t>(lValidFrom);
+            m_tLatestValidFrom = OTTimeGetTimeFromSeconds(lValidFrom);
         }
         if (str_valid_to.Exists())
         {
             int64_t lValidTo = str_valid_to.ToLong();
 
-            m_tEarliestValidTo = static_cast<time_t>(lValidTo);
+            m_tEarliestValidTo = OTTimeGetTimeFromSeconds(lValidTo);
         }
         // ---------------------------------
         const OTString strPasswdProtected  = xml->getAttributeValue("isPasswordProtected");
@@ -1301,9 +1300,9 @@ bool OTPurse::SaveContractWallet(std::ofstream & ofs)
 
 
 // ----------------------------------------------
-time_t OTPurse::GetLatestValidFrom() const { return m_tLatestValidFrom; }
+time64_t OTPurse::GetLatestValidFrom() const { return m_tLatestValidFrom; }
 // ----------------------------------------------
-time_t OTPurse::GetEarliestValidTo() const { return m_tEarliestValidTo; }
+time64_t OTPurse::GetEarliestValidTo() const { return m_tEarliestValidTo; }
 // ----------------------------------------------
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.
@@ -1314,13 +1313,13 @@ time_t OTPurse::GetEarliestValidTo() const { return m_tEarliestValidTo; }
 //
 bool OTPurse::IsExpired()
 {
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
 	
 	// If the current time is AFTER the valid-TO date,
 	// AND the valid_to is a nonzero number (0 means "doesn't expire")
 	// THEN return true (it's expired.)
 	//
-	if ((CURRENT_TIME >= m_tEarliestValidTo) && (m_tEarliestValidTo > 0))
+    if ((CURRENT_TIME >= m_tEarliestValidTo) && (m_tEarliestValidTo > OT_TIME_ZERO))
 		return true;
 	else
 		return false;
@@ -1330,10 +1329,10 @@ bool OTPurse::IsExpired()
 //
 bool OTPurse::VerifyCurrentDate()
 {
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
 	
 	if ((CURRENT_TIME >= m_tLatestValidFrom) &&
-		((CURRENT_TIME <= m_tEarliestValidTo) || (0 == m_tEarliestValidTo)))
+        ((CURRENT_TIME <= m_tEarliestValidTo) || (OT_TIME_ZERO == m_tEarliestValidTo)))
 		return true;
 	else
 		return false;
@@ -1446,8 +1445,8 @@ OTToken * OTPurse::Pop(OTNym_or_SymmetricKey theOwner)
 
 void OTPurse::RecalculateExpirationDates(OTNym_or_SymmetricKey & theOwner)
 {
-    m_tLatestValidFrom = 0;
-    m_tEarliestValidTo = 0;
+    m_tLatestValidFrom = OT_TIME_ZERO;
+    m_tEarliestValidTo = OT_TIME_ZERO;
 
     FOR_EACH(dequeOfTokens, m_dequeTokens)
     {
@@ -1475,7 +1474,7 @@ void OTPurse::RecalculateExpirationDates(OTNym_or_SymmetricKey & theOwner)
                 m_tLatestValidFrom = pToken->GetValidFrom();
             }
             // -----------------------------------
-            if ((0 == m_tEarliestValidTo) ||
+            if ((OT_TIME_ZERO == m_tEarliestValidTo) ||
                 (m_tEarliestValidTo > pToken->GetValidTo()))
             {
                 m_tEarliestValidTo = pToken->GetValidTo();
@@ -1524,7 +1523,7 @@ bool OTPurse::Push(OTNym_or_SymmetricKey theOwner, const OTToken & theToken)
                 m_tLatestValidFrom = theToken.GetValidFrom();
             }
             // -----------------------------------
-            if ((0 == m_tEarliestValidTo) ||
+            if ((OT_TIME_ZERO == m_tEarliestValidTo) ||
                 (m_tEarliestValidTo > theToken.GetValidTo()))
             {
                 m_tEarliestValidTo = theToken.GetValidTo();
@@ -1581,4 +1580,3 @@ void OTPurse::ReleaseTokens()
 	
 	m_lTotalValue = 0;
 }
-

@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTEnvelope.h
+ *  OTEnvelope.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTENVELOPE_HPP__
-#define __OTENVELOPE_HPP__
+#ifndef __OT_ENVELOPE_HPP__
+#define __OT_ENVELOPE_HPP__
 
 #include "OTCommon.hpp"
 
@@ -270,30 +270,4 @@ EXPORT	bool SetFromBookendedString(const OTString     & strArmorWithBookends, bo
 };
 
 
-
-
-
-#endif // __OTENVELOPE_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_ENVELOPE_HPP__

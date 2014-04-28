@@ -1,3 +1,9 @@
+/*************************************************************
+*
+*  OTContract.hpp
+*
+*/
+
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -125,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTCONTRACT_HPP__
-#define __OTCONTRACT_HPP__
+#ifndef __OT_CONTRACT_HPP__
+#define __OT_CONTRACT_HPP__
 
 #include "OTCommon.hpp"
 
@@ -501,7 +507,4 @@ EXPORT  bool VerifyWithKey(const OTAsymmetricKey & theKey,
 EXPORT	const OTPseudonym	  * GetContractPublicNym();
 };
 
-#endif // __OTCONTRACT_HPP__
-
-
-
+#endif // __OT_CONTRACT_HPP__

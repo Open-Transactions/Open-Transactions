@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTCachedKey.h
+ *  OTCachedKey.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OT_MASTER_KEY_HPP__
-#define __OT_MASTER_KEY_HPP__
+#ifndef __OT_CACHED_KEY_HPP__
+#define __OT_CACHED_KEY_HPP__
 
 #include "OTCommon.hpp"
 
@@ -147,8 +147,6 @@ class OTSymmetricKey;
 class OTCachedKey;
 class OTPassword;
 class OTIdentifier;
-
-// ------------------------------------------------------------------------
 
 
 /// OTCachedKey
@@ -220,7 +218,6 @@ class OTIdentifier;
     master key and pass that back to OpenSSL via the callback function.
 
 
-
  -- OT might do several operations within a SINGLE USE CASE. For example, for a cash withdrawal, OT
     might sign the transaction item, sign the balance agreement item, sign the main transaction
     containing those items, AND sign the message containing that transaction. Perhaps OT has to
@@ -252,11 +249,9 @@ class OTIdentifier;
 //
 #define OT_MASTER_KEY_TIMEOUT  300
 
-// ------------------------------------------------------------------
 
 typedef std::map<std::string, _SharedPtr<OTCachedKey> > mapOfCachedKeys;
 
-// ------------------------------------------------------------------
 class OTCachedKey
 {
 private:
@@ -350,38 +345,4 @@ public:
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------
-
-
-
-
-
-
-
-
-#endif   // __OT_MASTER_KEY_HPP__
-
-
-
-
-
-
-
-
-
-
-
+#endif   // __OT_CACHED_KEY_HPP__

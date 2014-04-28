@@ -18,11 +18,6 @@
 #include "OTCommon.hpp"
 
 
-#ifdef _WIN32   // Windows system specific
-#else          // Unix based system specific
-#include <sys/time.h>
-#endif
-
 class Timer
 {
 public:

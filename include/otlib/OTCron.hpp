@@ -1,6 +1,6 @@
 /************************************************************************************
  *
- *  OTCron.h
+ *  OTCron.hpp
  *
  */
 
@@ -133,8 +133,8 @@
 
 // OTCron has a list of OTCronItems. (Really subclasses of that such as OTTrade and OTAgreement.)
 
-#ifndef __OTCRON_HPP__
-#define __OTCRON_HPP__
+#ifndef __OT_CRON_HPP__
+#define __OT_CRON_HPP__
 
 #include "OTCommon.hpp"
 
@@ -154,7 +154,7 @@ class OTMarket;
 // (Any given CronItem will be found on BOTH lists.)
 
 typedef std::map      <int64_t,   OTCronItem *> mapOfCronItems;
-typedef std::multimap <time_t, OTCronItem *> multimapOfCronItems;
+typedef std::multimap <time64_t, OTCronItem *> multimapOfCronItems;
 // ------------------------------------------------------------------
 // Mapped (uniquely) to market ID.
 typedef std::map  <std::string, OTMarket *>	mapOfMarkets;
@@ -206,7 +206,7 @@ public:
 EXPORT	bool  AddCronItem(OTCronItem  & theItem,
                           OTPseudonym * pActivator,
                           bool          bSaveReceipt,
-                          time_t        tDateAdded); // Date it was FIRST added to Cron.
+                          time64_t        tDateAdded); // Date it was FIRST added to Cron.
 EXPORT	bool  RemoveCronItem(int64_t lTransactionNum, OTPseudonym & theRemover); // if returns false, item wasn't found.
 	// ---------------------------------------
 EXPORT  OTCronItem * GetItemByOfficialNum    (int64_t lTransactionNum);
@@ -285,9 +285,4 @@ EXPORT	virtual ~OTCron();
 
 };
 
-
-
-
-
-#endif // __OTCRON_HPP__
-
+#endif // __OT_CRON_HPP__

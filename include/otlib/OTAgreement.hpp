@@ -1,6 +1,6 @@
 /************************************************************************************
  *
- *  OTAgreement.h
+ *  OTAgreement.hpp
  *
  */
 
@@ -133,14 +133,14 @@
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 
-#ifndef __OTAGREEMENT_HPP__
-#define __OTAGREEMENT_HPP__
+#ifndef __OT_AGREEMENT_HPP__
+#define __OT_AGREEMENT_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTCronItem.hpp"
 
-
+class OTPseudonym;
 
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.
 // Thus, we add the RECIPIENT (already have SENDER from OTTrackable.)
@@ -159,9 +159,6 @@
 // server and verify the agreements, and so that copies of the agreement, stamped
 // with the server's signature, can be made available to the parties and to 3rd parties.
 //
-
-class OTPseudonym;
-
 class OTAgreement : public OTCronItem
 {
 private:  // Private prevents erroneous use by other classes.
@@ -196,10 +193,10 @@ public:
     // SetAgreement replaced with the 2 functions below. See notes even lower.
     //
 //	bool	SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
-//                       const time_t & VALID_FROM=0,	const time_t & VALID_TO=0);
+//                       const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0);
 
 EXPORT    bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
-                              const time_t VALID_FROM=0,  const time_t VALID_TO=0);
+                              const time64_t VALID_FROM=0,  const time64_t VALID_TO=0);
 
 EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=NULL,
                           const OTIdentifier * p_id_MERCHANT_NYM=NULL);  // Merchant Nym is passed here so we can verify the signature before confirming.
@@ -226,11 +223,11 @@ EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=N
      // --------------------------------------------------------------------------------------------------------
      THEN, (OTPaymentPlan) adds TWO OPTIONS (additional and independent of each other):
 
-     bool		SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+     bool		SetInitialPayment(const int64_t & lAmount, time64_t tTimeUntilInitialPayment=0); // default: now.
      // --------------------------------------------------------------------------------------------------------
-     bool		SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
-                                time_t tBetweenPayments=LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
-                                time_t tPlanLength=0, int32_t nMaxPayments=0);
+     bool		SetPaymentPlan(const int64_t & lPaymentAmount, time64_t tTimeUntilPlanStart=OT_TIME_MONTH_IN_SECONDS,
+                                time64_t tBetweenPayments=OT_TIME_MONTH_IN_SECONDS, // Default: 30 days.
+                                time64_t tPlanLength=0, int32_t nMaxPayments=0);
 
      // ********************************************************************************
 
@@ -319,8 +316,8 @@ EXPORT    int64_t    GetRecipientClosingNum() const;
 	/*
 	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
-	 inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
-	 inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
+	 inline void SetCreationDate(const time64_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
+	 inline const time64_t & GetCreationDate() const { return m_CREATION_DATE; }
 
      // ------------------------------------------------------
      // These are for:
@@ -370,11 +367,11 @@ EXPORT  virtual void HarvestClosingNumbers(OTPseudonym & theNym);
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
@@ -442,4 +439,4 @@ EXPORT	virtual int64_t GetOpeningNumber(const OTIdentifier & theNymID) const;
 };
 
 
-#endif // __OTAGREEMENT_HPP__
+#endif // __OT_AGREEMENT_HPP__

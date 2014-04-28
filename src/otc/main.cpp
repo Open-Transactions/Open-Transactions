@@ -853,13 +853,13 @@ int main(int argc, char* argv[])
         processed++;
     }
 
-    OTLog::vOutput(0, "\n\n%d commands were processed.\n%d commands failed.\n\n", processed, failed);
+    std::cout << "\n\n" << processed << " commands were processed.\n" << failed << " commands failed.\n" << std::endl;
 
     if (opt.getFlag("errorList") || opt.getFlag("test"))
     {
         for (size_t i = 0; i < errorLineNumbers.size(); i++)
         {
-            OTLog::vOutput(0, "\nFailed line %d: %s.\n", errorLineNumbers[i], errorCommands[i].c_str());
+            std::cout << "\nFailed line " << errorLineNumbers[i] << ": " << errorCommands[i] << "." << std::endl;
         }
     }
 

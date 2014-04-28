@@ -177,7 +177,7 @@ public:
 	//MOCK_METHOD2(Output, void (const int32_t & nLogLevel, const std::string & strOutput));
 
 	// this one gets called way too much and inconsistently to mock for now
-	// MOCK_METHOD0(GetTime, time_t ());
+	// MOCK_METHOD0(GetTime, time64_t ());
 
 	// seriously, Sleep(50) in every SendRequest? Ignore it here. It should be removed
 	MOCK_METHOD1(Sleep, void(const int64_t & MILLISECONDS));
@@ -309,25 +309,25 @@ public:
 	MOCK_METHOD3(SetAccountWallet_Name, bool (const std::string & ACCT_ID, const std::string & SIGNER_NYM_ID, const std::string & ACCT_NEW_NAME));
 	MOCK_METHOD2(SetAssetType_Name, bool (const std::string & ASSET_ID, const std::string & STR_NEW_NAME));
 	MOCK_METHOD2(SetServer_Name, bool (const std::string & SERVER_ID, const std::string & STR_NEW_NAME));
-	MOCK_METHOD8(WriteCheque, std::string (const std::string & SERVER_ID, const int64_t & CHEQUE_AMOUNT, const time_t & VALID_FROM, const time_t & VALID_TO,
+	MOCK_METHOD8(WriteCheque, std::string (const std::string & SERVER_ID, const int64_t & CHEQUE_AMOUNT, const time64_t & VALID_FROM, const time64_t & VALID_TO,
 											const std::string & SENDER_ACCT_ID, const std::string & SENDER_USER_ID, const std::string & CHEQUE_MEMO, const std::string & RECIPIENT_USER_ID));
 	MOCK_METHOD4(DiscardCheque, bool (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCT_ID, const std::string & THE_CHEQUE));
 
 	// note: there is no MOCK_METHOD15, but ChaiScript cannot call this one anyway
 	virtual std::string ProposePaymentPlan(const std::string & SERVER_ID,
-											const time_t & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
-											const time_t & VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
+											const time64_t & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
+											const time64_t & VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
 											const std::string & SENDER_ACCT_ID,	// Mandatory parameters.
 											const std::string & SENDER_USER_ID,	// Both sender and recipient must sign before submitting.
 											const std::string & PLAN_CONSIDERATION,	// Like a memo.
 											const std::string & RECIPIENT_ACCT_ID,	// NOT optional.
 											const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
 											const int64_t & INITIAL_PAYMENT_AMOUNT,	// zero or NULL == no initial payment.
-											const time_t  & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
+											const time64_t  & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
 											const int64_t & PAYMENT_PLAN_AMOUNT,	// Zero or NULL == no regular payments.
-											const time_t  & PAYMENT_PLAN_DELAY,	    // No. of seconds from creation date. Default is zero or NULL. (Causing 30 days.)
-											const time_t  & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL. (Causing 30 days.)
-											const time_t  & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
+											const time64_t  & PAYMENT_PLAN_DELAY,	    // No. of seconds from creation date. Default is zero or NULL. (Causing 30 days.)
+											const time64_t  & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL. (Causing 30 days.)
+											const time64_t  & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
 											const int32_t & PAYMENT_PLAN_MAX_PAYMENTS)	// integer. Defaults to 0 or NULL (no maximum payments.)
 	{
 		return "";
@@ -353,7 +353,7 @@ public:
 											   const std::string & INITIAL_PAYMENT, const std::string & PAYMENT_PLAN, const std::string & PLAN_EXPIRY));
 
 	MOCK_METHOD5(ConfirmPaymentPlan, std::string (const std::string & SERVER_ID, const std::string & SENDER_USER_ID, const std::string & SENDER_ACCT_ID, const std::string & RECIPIENT_USER_ID, const std::string & PAYMENT_PLAN));
-	MOCK_METHOD3(Create_SmartContract, std::string (const std::string & SIGNER_NYM_ID, const time_t & VALID_FROM, const time_t & VALID_TO));
+	MOCK_METHOD3(Create_SmartContract, std::string (const std::string & SIGNER_NYM_ID, const time64_t & VALID_FROM, const time64_t & VALID_TO));
 	MOCK_METHOD3(SmartContract_AddBylaw, std::string (const std::string & THE_CONTRACT, const std::string & SIGNER_NYM_ID, const std::string & BYLAW_NAME));
 	MOCK_METHOD5(SmartContract_AddClause, std::string (const std::string & THE_CONTRACT, const std::string & SIGNER_NYM_ID, const std::string & BYLAW_NAME, const std::string & CLAUSE_NAME, const std::string & SOURCE_CODE));
 	MOCK_METHOD7(SmartContract_AddVariable, std::string (const std::string & THE_CONTRACT, const std::string & SIGNER_NYM_ID, const std::string & BYLAW_NAME, const std::string & VAR_NAME, const std::string & VAR_ACCESS, const std::string & VAR_TYPE, const std::string & VAR_VALUE));
@@ -442,7 +442,7 @@ public:
 	MOCK_METHOD4(Transaction_GetSuccess, int32_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
 	MOCK_METHOD4(Transaction_IsCanceled, int32_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
 	MOCK_METHOD4(Transaction_GetBalanceAgreementSuccess, int32_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
-	MOCK_METHOD4(Transaction_GetDateSigned, time_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
+	MOCK_METHOD4(Transaction_GetDateSigned, time64_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
 	MOCK_METHOD4(Transaction_GetAmount, int64_t (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
 	MOCK_METHOD4(Pending_GetNote, std::string (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
 	MOCK_METHOD4(Transaction_GetSenderUserID, std::string (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & ACCOUNT_ID, const std::string & THE_TRANSACTION));
@@ -466,14 +466,14 @@ public:
 	MOCK_METHOD3(Token_GetID, std::string (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
 	MOCK_METHOD3(Token_GetDenomination, int64_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
 	MOCK_METHOD3(Token_GetSeries, int32_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
-	MOCK_METHOD3(Token_GetValidFrom, time_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
-	MOCK_METHOD3(Token_GetValidTo, time_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
+	MOCK_METHOD3(Token_GetValidFrom, time64_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
+	MOCK_METHOD3(Token_GetValidTo, time64_t (const std::string & SERVER_ID, const std::string & ASSET_TYPE_ID, const std::string & THE_TOKEN));
 	MOCK_METHOD1(Token_GetAssetID, std::string (const std::string & THE_TOKEN));
 	MOCK_METHOD1(Token_GetServerID, std::string (const std::string & THE_TOKEN));
 	MOCK_METHOD1(Instrmnt_GetAmount, int64_t (const std::string & THE_INSTRUMENT));
 	MOCK_METHOD1(Instrmnt_GetTransNum, int64_t (const std::string & THE_INSTRUMENT));
-	MOCK_METHOD1(Instrmnt_GetValidFrom, time_t (const std::string & THE_INSTRUMENT));
-	MOCK_METHOD1(Instrmnt_GetValidTo, time_t (const std::string & THE_INSTRUMENT));
+	MOCK_METHOD1(Instrmnt_GetValidFrom, time64_t (const std::string & THE_INSTRUMENT));
+	MOCK_METHOD1(Instrmnt_GetValidTo, time64_t (const std::string & THE_INSTRUMENT));
 	MOCK_METHOD1(Instrmnt_GetMemo, std::string (const std::string & THE_INSTRUMENT));
 	MOCK_METHOD1(Instrmnt_GetType, std::string (const std::string & THE_INSTRUMENT));
 	MOCK_METHOD1(Instrmnt_GetServerID, std::string (const std::string & THE_INSTRUMENT));
@@ -534,7 +534,7 @@ public:
 									const int64_t     & TOTAL_ASSETS_ON_OFFER,   // Total assets available for sale or purchase. Will be multiplied by minimum increment.
 									const int64_t     & PRICE_LIMIT,			// Per Minimum Increment...
 									const bool        & bBuyingOrSelling,    // SELLING == true, BUYING == false.
-									const time_t      & LIFESPAN_IN_SECONDS, // Pass 0 for the default behavior: 86400 seconds aka 1 day.
+									const time64_t      & LIFESPAN_IN_SECONDS, // Pass 0 for the default behavior: 86400 seconds aka 1 day.
 									const std::string & STOP_SIGN,         // Must be "" (for market/limit orders) or "<" or ">"  (for stop orders.)
 									const int64_t     & ACTIVATION_PRICE) // Must be provided if STOP_SIGN is also set. Determines the price threshold for stop orders.
 	{

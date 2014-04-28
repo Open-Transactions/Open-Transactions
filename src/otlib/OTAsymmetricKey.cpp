@@ -3014,32 +3014,3 @@ bool OTAsymmetricKey::LoadPublicKeyFromCertFile(const OTString   & strFoldername
     
     return this->LoadPublicKeyFromCertString(strCert, false, pstrReason, pImportPassword); // bEscaped=false; "escaped" means pre-pended with "- " as in:   - -----BEGIN CER....
 }
-
-
-
-// -------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
