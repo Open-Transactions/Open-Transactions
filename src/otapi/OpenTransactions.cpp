@@ -163,6 +163,8 @@
 
 #include <fstream>
 
+#include <time.h>
+
 
 #include "simpleini/SimpleIni.hpp"
 #include "tinythread.hpp"

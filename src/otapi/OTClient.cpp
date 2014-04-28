@@ -151,6 +151,8 @@
 
 #include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
+#include <time.h>
+
 
 int32_t OTClient::CalcReturnVal(const int64_t & lRequestNumber)
 {

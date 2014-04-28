@@ -140,6 +140,8 @@
 #include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
 
+#include <time.h>
+
 #ifndef TRADE_PROCESS_INTERVAL
 
 #define TRADE_PROCESS_INTERVAL		10		// 10 seconds
