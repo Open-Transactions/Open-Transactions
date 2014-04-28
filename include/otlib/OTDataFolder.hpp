@@ -1,13 +1,16 @@
-/************************************************************
- *    
- *  OTSignature.hpp
- *  
- */
+/**************************************************************
+*
+* OTDataFolder.hpp
+* This Class Maintins where stuff should go;
+* You must create one and only one contex for
+* every instance of OT_API.
+*
+*/
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +113,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +134,56 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+// The int64_t-awaited paths class.
+
+#ifndef __OT_DATA_FOLDER_HPP__
+#define __OT_DATA_FOLDER_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTSettings.hpp"
+#include "OTAssert.hpp"
+#include "OTPaths.hpp"
 
 
-class OTSignature : public OTASCIIArmor
+// Thread local.
+//
+class OTDataFolder
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+private:
+
+#ifndef thread_local
+#define thread_local
+#endif
+	static OTDataFolder * pDataFolder;
+
+	bool		m_bInitialized;
+
+	OTString	m_strDataFolderPath;
+	OTString	m_strDataConifgFilePath;
+
+	static inline bool CheckDataFolder(OTDataFolder * pDataFolder)
+	{
+		if (NULL != pDataFolder)
+			if (pDataFolder->m_bInitialized) return true;
+
+		OT_FAIL;
+		return false;
+	}
+
+public:
+
+	EXPORT static bool Init(const OTString & strThreadContext);
+
+	EXPORT static bool IsInitialized();
+
+	EXPORT static bool Cleanup();
+
+	EXPORT static const OTString Get();
+	EXPORT static bool Get(OTString & strDataFolder);
+
+	EXPORT static bool GetConfigFilePath(OTString & strConfigFilePath);
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
 
-
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_DATA_FOLDER_HPP__

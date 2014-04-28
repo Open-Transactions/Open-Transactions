@@ -1,13 +1,13 @@
 /************************************************************
- *    
- *  OTSignature.hpp
- *  
+ *
+ *  OTTokenLucre.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,91 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_TOKEN_LUCRE_HPP__
+#define __OT_TOKEN_LUCRE_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
+#include "OTInstrument.hpp"
 #include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTToken.hpp"
+
+class OTString;
+class OTIdentifier;
+class OTMint;
+class OTPurse;
+class OTPseudonym;
+class OTNym_or_SymmetricKey;
 
 
-class OTSignature : public OTASCIIArmor
+typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
+
+
+/*
+
+ Here's a rough sketch of the protocol:
+
+ Client requests Mint for withdrawal of 100 ithica work hours.
+
+1) Client blinds and sends N tokens to the server, each worth 100 hours. Client retains the keys.
+2) Server responds with a single index, the one the server has chosen for signing.
+3) Client replies with 99 keys.
+4) Server unblinds 99 tokens (or some randomly-chosen % of those) and verifies them.
+   He signs the last one and returns it.
+5) Client receives signed token, unblinds it, stores it for later.
+6) When token is redeemed, it has already been unblinded. So Server simply verifies it.
+
+ LAST NAGGING QUESTION:  Should the server sign the other 99 tokens before unblinding them and verifying?
+						In fact, what is it verifying at all?? Certainly not the amount, which is not even in
+						the Lucre token. If all it does is verify its signature, then why sign it just to
+						verify it?  Why exactly am I sending 99 tokens? What is the server unblinding them
+						to look for??  Just to make sure all the IDs are random?  That they aren't spent
+						already?
+						I think that's it.  The client has assurance he chose his own random IDs, the server
+						verifies they are random and not spent already, and the ID portion is the only part
+						that has to be randomized.
+
+ UPDATE:
+ Ben Laurie has confirmed that the Chaumian 99 token requirement does not exist with Lucre. All I have to
+ do is send a single blinded token. The server signs it and sends it back, and the client unblinds it. Only the
+ ID itself is blinded -- the server can clearly see the amount and only the Mint key for that denomination will work.
+ */
+
+
+// SUBCLASSES OF OTTOKEN FOR EACH DIGITAL CASH ALGORITHM.
+//
+#if defined (OT_CASH_USING_MAGIC_MONEY)
+// Todo:  Someday...
+#endif // Magic Money
+
+
+#if defined (OT_CASH_USING_LUCRE)
+
+class OTToken_Lucre : public OTToken
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+private:  // Private prevents erroneous use by other classes.
+    typedef OTToken ot_super;
+    friend class OTToken; // for the factory.
+    // ------------------------------------------------------------------------------
+protected:
+EXPORT	OTToken_Lucre();
+EXPORT	OTToken_Lucre(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
+EXPORT	OTToken_Lucre(const OTPurse & thePurse);
+// ------------------------------------------------------------------------
+EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
+                                          OTMint & theMint,
+                                          int64_t lDenomination,
+                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
+                                          );
+// ------------------------------------------------------------------------
+public:
+EXPORT  virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, OTToken & theRequest);
+// ------------------------------------------------------------------------
+EXPORT	virtual ~OTToken_Lucre();
+    // ------------------------------------------------------------------------------
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+#endif // Lucre
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_TOKEN_LUCRE_HPP__

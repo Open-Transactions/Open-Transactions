@@ -181,10 +181,7 @@
  that would form a new asset type that can then be traded on markets. (The same as you can
  have the server manage the issuer account for a basket currency now, which is backed with
  reserve accounts managed by the server, and you can then trade the basket currency on markets.)
-
- ———————————————————————————————
  */
-
 class OTPaymentPlan : public OTAgreement
 {
 private:  // Private prevents erroneous use by other classes.

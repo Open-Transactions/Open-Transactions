@@ -1,13 +1,13 @@
 /************************************************************
- *    
- *  OTSignature.hpp
- *  
+ *
+ *  OTMintLucre.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,51 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_MINT_LUCRE_HPP__
+#define __OT_MINT_LUCRE_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
+#include "OTContract.hpp"
 #include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTMint.hpp"
+
+class OTToken;
+class OTAccount;
 
 
-class OTSignature : public OTASCIIArmor
+// SUBCLASSES OF OTMINT FOR EACH DIGITAL CASH ALGORITHM.
+
+#if defined (OT_CASH_USING_MAGIC_MONEY)
+// Todo:  Someday...
+#endif // Magic Money
+
+
+#if defined (OT_CASH_USING_LUCRE)
+
+
+class OTMint_Lucre : public OTMint
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+private:  // Private prevents erroneous use by other classes.
+    typedef OTMint ot_super;
+    friend class OTMint; // for the factory.
+// ------------------------------------------------------------------------------
+protected:
+        OTMint_Lucre();
+EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strAssetTypeID);
+EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strServerNymID, const OTString & strAssetTypeID);
+// ------------------------------------------------------------------------------
+public:
+virtual bool AddDenomination(OTPseudonym & theNotary, int64_t lDenomination, int32_t nPrimeLength=1024);
+
+EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int32_t nTokenIndex);
+EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, int64_t lDenomination);
+
+EXPORT	virtual ~OTMint_Lucre();
+// ------------------------------------------------------------------------------
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+#endif // Lucre
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_MINT_LUCRE_HPP__

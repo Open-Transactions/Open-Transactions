@@ -1,13 +1,13 @@
 /************************************************************
- *    
- *  OTSignature.hpp
- *  
+ *
+ *  OTScriptChai.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,68 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_SCRIPT_CHAI_HPP__
+#define __OT_SCRIPT_CHAI_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTBylaw.hpp"
+#include "OTScript.hpp"
+
+#if __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
+
+#ifdef _MSC_VER
+#pragma warning( push )
+#pragma warning( disable : 4702 )  // warning C4702: unreachable code
+#endif
 
 
-class OTSignature : public OTASCIIArmor
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
+
+
+#ifdef OT_USE_SCRIPT_CHAI
+
+
+// ********************************************************************
+//
+// SUBCLASS:  CHAI SCRIPT
+//
+// ********************************************************************
+
+
+namespace chaiscript{
+    class ChaiScript;
+}
+
+class OTScriptChai : public OTScript
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+public:
+
+	OTScriptChai();
+	OTScriptChai(const OTString & strValue);
+	OTScriptChai(const char * new_string);
+	OTScriptChai(const char * new_string, size_t sizeLength);
+	OTScriptChai(const std::string & new_string);
+
+	virtual ~OTScriptChai();
+
+    virtual bool ExecuteScript(OTVariable * pReturnVar=NULL);
+    // ------------------------
+    chaiscript::ChaiScript * const chai;
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+#endif // OT_USE_SCRIPT_CHAI
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+#if __clang__
+#pragma clang diagnostic pop
+#endif
+
+
+#endif // __OT_SCRIPT_CHAI_HPP__

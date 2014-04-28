@@ -1,13 +1,16 @@
-/************************************************************
- *    
- *  OTSignature.hpp
- *  
- */
+/**************************************************************
+*
+* OTFolders.hpp
+* This Class Maintins where stuff should go;
+* You must create one and only one contex for
+* every instance of OT_API.
+*
+*/
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +113,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +134,105 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+// The int64_t-awaited paths class.
+
+#ifndef __OT_FOLDERS_HPP__
+#define __OT_FOLDERS_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTSettings.hpp"
+#include "OTAssert.hpp"
+#include "OTPaths.hpp"
 
 
-class OTSignature : public OTASCIIArmor
+// This class is for storing the names of the folders.  A instance of it must be made.
+// This function will store the folder-names automaticaly in the config file.
+//
+class OTFolders
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
-};
+private:
 
-typedef std::list<OTSignature *>	listOfSignatures;
+    static bool GetSetAll();
+
+    static inline bool GetSetFolderName(OTSettings & config, const std::string strKeyName,
+                                              const std::string strDefaultName, OTString & ret_strName)
+    {
+        if (ret_strName.Exists()) return true;
+        else
+        {
+            if (strKeyName.empty()    || strDefaultName.empty())    return false;
+            if (3 > strKeyName.size() || 3 > strDefaultName.size()) return false;
+
+            OTString strResult("");
+            bool bIsNew(false);
+
+            config.CheckSet_str("folders",strKeyName,strDefaultName,strResult,bIsNew);
+
+            if (!bIsNew) ret_strName = strResult;
+            else         ret_strName = strDefaultName.c_str();
+
+            return true;
+        }
+    }
+
+    static inline const OTString & GetFolder(const OTString & strFolder)
+    {
+        if (!strFolder.Exists()) {
+            if (!GetSetAll()) { OT_FAIL; } }
+        return strFolder;
+    }
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+    static OTString s_strAccount;
+    static OTString s_strCert;
+    static OTString s_strContract;
+    static OTString s_strCredential;
+    static OTString s_strCron;
+    static OTString s_strInbox;
+    static OTString s_strMarket;
+    static OTString s_strMint;
+    static OTString s_strNym;
+    static OTString s_strNymbox;
+    static OTString s_strOutbox;
+    static OTString s_strPaymentInbox;
+    static OTString s_strPubcred;
+    static OTString s_strPubkey;
+    static OTString s_strPurse;
+    static OTString s_strReceipt;
+    static OTString s_strRecordBox;
+    static OTString s_strExpiredBox;
+    static OTString s_strScript;
+    static OTString s_strSmartContracts;
+    static OTString s_strSpent;
+    static OTString s_strUserAcct;
+
+public:
+
+    EXPORT static const OTString & Account();
+    EXPORT static const OTString & Cert();
+    EXPORT static const OTString & Contract();
+    EXPORT static const OTString & Credential();
+    EXPORT static const OTString & Cron();
+    EXPORT static const OTString & Inbox();
+    EXPORT static const OTString & Market();
+    EXPORT static const OTString & Mint();
+    EXPORT static const OTString & Nym();
+    EXPORT static const OTString & Nymbox();
+    EXPORT static const OTString & Outbox();
+    EXPORT static const OTString & PaymentInbox();
+    EXPORT static const OTString & Pubcred();
+    EXPORT static const OTString & Pubkey();
+    EXPORT static const OTString & Purse();
+    EXPORT static const OTString & Receipt();
+    EXPORT static const OTString & RecordBox();
+    EXPORT static const OTString & ExpiredBox();
+    EXPORT static const OTString & Script();
+    EXPORT static const OTString & SmartContracts();
+    EXPORT static const OTString & Spent();
+    EXPORT static const OTString & UserAcct();
+
+}; // class OTFolders
+
+
+#endif // __OT_FOLDERS_HPP__

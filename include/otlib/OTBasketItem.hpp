@@ -1,13 +1,13 @@
 /************************************************************
- *    
- *  OTSignature.hpp
- *  
+ *
+ *  OTBasketItem.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,71 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_BASKET_ITEM_HPP__
+#define __OT_BASKET_ITEM_HPP__
+
+#include <deque>
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTContract.hpp"
+#include "OTBasket.hpp"
 
-
-class OTSignature : public OTASCIIArmor
+class BasketItem
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+public:
+	OTIdentifier SUB_CONTRACT_ID;
+	OTIdentifier SUB_ACCOUNT_ID;
+
+	int64_t	lMinimumTransferAmount;
+
+    // lClosingTransactionNo:
+    // Used when EXCHANGING a basket (NOT USED when first creating one.)
+    // A basketReceipt must be dropped into each asset account during
+    // an exchange, to account for the change in balance. Until that
+    // receipt is accepted, lClosingTransactionNo will remain open as
+    // an issued transaction number (an open transaction) on that Nym.
+    // (One must be supplied for EACH asset account during an exchange.)
+    //
+	int64_t	lClosingTransactionNo;
+
+	BasketItem();
+	~BasketItem() {}
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+typedef std::deque <BasketItem *> dequeOfBasketItems;
 
+#endif // __OT_BASKET_ITEM_HPP__
 
-#endif // __OT_SIGNATURE_HPP__ 
+/*
+
+ I figured this one out, it's easy.
+
+ Someone creates a contract that contains 10 sub-contracts. It just delegates the issuence to the sub-issuers.
+
+ When he connects to the server he can upload the contract, but he has no control over it at that point,
+ since he is not one of the real issuers.
+
+ The contract will only work if the sub-issuers actually have issued currencies on that transaction server.
+
+ Then, the transaction server itself becomes the "issuer" of the basket currency.  It simply creates an issuer
+ account, and stores a list of sub-accounts to store the delegated cuts of "real" currencies.
+
+ For example, if I issue a currency that is 1 part dollar, 1 part gold, and 1 part silver, then the server
+ creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and
+ trade it like any other asset.  It doesn't even have to be a special account that the trader uses. It's just
+ a normal account, but the asset type ID links to the special basket issuer account maintained by the server.
+
+ Meanwhile, behind the scenes, the server's "goldbucks" issuer account is not OTAccount, but derived from it.
+ suppose derived from OTAccount, that contains a list of 3 sub-accounts, 1 denominated in the dollar asset
+ specified in the contract, 1 denominiated in the gold asset, and so on.
+
+ The OTAssetBasket contract (with sub-issuers) and the OTBasketAccount (issuer account) objects handle all the
+ details of converting between the sub-accounts and the main account.
+
+ If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account
+ (controlled by the transaction server) must have at least -9 on its balance due to me. And its hidden 3 sub-accounts
+ have at least +3 dollars, +3 gold, and +3 silver stored along with the rest that make up their total balances from
+ all the users of that basket currency.
+
+ */

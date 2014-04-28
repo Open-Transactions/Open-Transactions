@@ -1,6 +1,6 @@
-/************************************************************
+/*************************************************************
  *    
- *  OTSignature.hpp
+ *  OTMasterkey.hpp
  *  
  */
 
@@ -131,32 +131,97 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_MASTERKEY_HPP__
+#define __OT_MASTERKEY_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTContract.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTKeypair.hpp"
+#include "OTSubcredential.hpp"
+#include "OTKeyCredential.hpp"
+#include "OTSubkey.hpp"
+#include "OTCredential.hpp"
 
 
-class OTSignature : public OTASCIIArmor
+// A nym contains a list of master credentials, via OTCredential.
+// The whole purpose of a Nym is to be an identity, which can have
+// master credentials.
+//
+// Each credential is like a master key for the Nym's identity,
+// which can issue its own subkeys.
+//
+// Each subkey has 3 key pairs: encryption, signing, and authentication.
+// Not all subcredentials are a subkey. For example, you might have a
+// subcredential that uses Google Authenticator, and thus doesn't contain
+// any keys, because it uses alternate methods for its own authentication.
+//
+// Each OTCredential contains a "master" subkey, and a list of subcredentials
+// (some of them subkeys) signed by that master.
+//
+// The same class (subcredential/subkey) is used because there are master
+// credentials and subcredentials, so we're using inheritance for "subcredential"
+// and "subkey" to encapsulate the credentials, so we don't have to repeat code
+// across both.
+// We're using a "has-a" model here, since the OTCredential "has a" master
+// subkey, and also "has a" list of subcredentials, some of which are subkeys.
+//
+// Each subcredential must be signed by the subkey that is the master key.
+// Each subkey has 3 key pairs: encryption, signing, and authentication.
+//
+// Each key pair has 2 OTAsymmetricKeys (public and private.)
+//
+// I'm thinking that the Nym should also have a key pair (for whatever is
+// its current key pair, copied from its credentials.)
+//
+// the master should never be able to do any actions except for sign subkeys.
+// the subkeys, meanwhile should only be able to do actions, and not issue
+// any new keys.
+
+
+class OTPassword;
+class OTString;
+class OTIdentifier;
+class OTASCIIArmor;
+class OTPasswordData;
+class OTSignatureMetadata;
+class OTCredential;
+class OTPseudonym;
+
+
+class OTMasterkey : public OTKeyCredential
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+private:  // Private prevents erroneous use by other classes.
+    typedef OTKeyCredential ot_super;
+    friend class OTCredential;
+public:
+    // ------------------------------
+    virtual bool VerifyInternally();    // Verify that m_strNymID is the same as the hash of m_strSourceForNymID. Also verify that *this == m_pOwner->m_MasterKey (the master credential.) Then verify the (self-signed) signature on *this.
+    // ------------------------------
+    bool VerifyAgainstSource() const; // Should actually curl the URL, or lookup the blockchain value, or verify Cert against Cert Authority, etc. Due to the network slowdown of this step, we will eventually make a separate identity verification server.
+    // -------------------------------
+    bool VerifySource_HTTP      (const OTString strSource) const;
+    bool VerifySource_HTTPS     (const OTString strSource) const;  // It's deliberate that strSource isn't passed by reference here.
+    bool VerifySource_Bitcoin   (const OTString strSource) const;
+    bool VerifySource_Namecoin  (const OTString strSource) const;
+    bool VerifySource_Freenet   (const OTString strSource) const;
+    bool VerifySource_TOR       (const OTString strSource) const;
+    bool VerifySource_I2P       (const OTString strSource) const;
+    bool VerifySource_CA        (const OTString strSource) const;
+    bool VerifySource_Pubkey    (const OTString strSource) const;
+    // ------------------------------
+    OTMasterkey();
+    OTMasterkey(OTCredential & theOwner);
+    // ------------------------------
+    virtual ~OTMasterkey();
+    // ------------------------------
+    virtual void UpdateContents();
+    virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    // ------------------------------
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_MASTERKEY_HPP__

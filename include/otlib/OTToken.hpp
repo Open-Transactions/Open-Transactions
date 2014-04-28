@@ -354,63 +354,8 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 
 typedef std::deque <OTToken *> dequeOfTokenPtrs;
 
-// ------------------------------------
 
-
-
-
-
-
-
-// *******************************************************************************************
-// SUBCLASSES OF OTTOKEN FOR EACH DIGITAL CASH ALGORITHM.
-
-
-// -------------------------------------------------------------------------------------------
-#if defined (OT_CASH_USING_MAGIC_MONEY)
-// Todo:  Someday...
-#endif // Magic Money
-// *******************************************************************************************
-#if defined (OT_CASH_USING_LUCRE)
-
-class OTToken_Lucre : public OTToken
-{
-private:  // Private prevents erroneous use by other classes.
-    typedef OTToken ot_super;
-    friend class OTToken; // for the factory.
-    // ------------------------------------------------------------------------------
-protected:
-EXPORT	OTToken_Lucre();
-EXPORT	OTToken_Lucre(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
-EXPORT	OTToken_Lucre(const OTPurse & thePurse);
-// ------------------------------------------------------------------------
-EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
-                                          OTMint & theMint,
-                                          int64_t lDenomination,
-                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
-                                          );
-// ------------------------------------------------------------------------
-public:
-EXPORT  virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, OTToken & theRequest);
-// ------------------------------------------------------------------------
-EXPORT	virtual ~OTToken_Lucre();
-    // ------------------------------------------------------------------------------
-};
-
-#endif // Lucre
-// *******************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
+#include "OTTokenLucre.hpp"
 
 
 #endif // __OT_TOKEN_HPP__

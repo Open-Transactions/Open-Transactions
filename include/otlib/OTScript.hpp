@@ -226,38 +226,7 @@ EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
                                           const std::string & script_contents);
 
 
-#ifdef OT_USE_SCRIPT_CHAI
-
-
-// ********************************************************************
-//
-// SUBCLASS:  CHAI SCRIPT
-//
-// ********************************************************************
-
-
-namespace chaiscript{
-    class ChaiScript;
-}
-
-class OTScriptChai : public OTScript
-{
-public:
-
-	OTScriptChai();
-	OTScriptChai(const OTString & strValue);
-	OTScriptChai(const char * new_string);
-	OTScriptChai(const char * new_string, size_t sizeLength);
-	OTScriptChai(const std::string & new_string);
-
-	virtual ~OTScriptChai();
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar=NULL);
-    // ------------------------
-    chaiscript::ChaiScript * const chai;
-};
-
-#endif // OT_USE_SCRIPT_CHAI
+#include "OTScriptChai.hpp"
 
 
 #if __clang__

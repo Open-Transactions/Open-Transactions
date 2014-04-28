@@ -1,6 +1,6 @@
 /************************************************************
  *    
- *  OTSignature.hpp
+ *  OTSignatureMetadata.hpp
  *  
  */
 
@@ -131,32 +131,40 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_SIGNATURE_METADATA_HPP__
+#define __OT_SIGNATURE_METADATA_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTSignature.hpp"
 
 
-class OTSignature : public OTASCIIArmor
-{
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
+class OTSignatureMetadata
+{    
+private: // PRIVATE MEMBERS
+    bool m_bHasMetadata;        // Defaults to false. Is set true by calling SetMetadata.
+	char m_cMetaKeyType;        // Can be A, E, or S (authentication, encryption, or signing. Also, E would be unusual.)
+	char m_cMetaNymID;          // Can be any letter from base62 alphabet. Represents first letter of a Nym's ID.
+	char m_cMetaMasterCredID;   // Can be any letter from base62 alphabet. Represents first letter of a Master Credential ID (for that Nym.)
+	char m_cMetaSubCredID;      // Can be any letter from base62 alphabet. Represents first letter of a SubCredential ID (signed by that Master.)
+    
 public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
     // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+    bool SetMetadata(char cMetaKeyType, char cMetaNymID, char cMetaMasterCredID, char cMetaSubCredID);
+    // ---------------------------------------------------------------------------
+    inline bool HasMetadata()           const { return m_bHasMetadata;       }
+    inline char GetKeyType()            const { return m_cMetaKeyType;       }
+    inline char FirstCharNymID()        const { return m_cMetaNymID;         }
+    inline char FirstCharMasterCredID() const { return m_cMetaMasterCredID;  }
+    inline char FirstCharSubCredID()    const { return m_cMetaSubCredID;     }
+    // ---------------------------------------------------------------------------
+    // ...Sticking with the default destructor and operator=
+    OTSignatureMetadata();
+    bool operator==(const OTSignatureMetadata & rhs) const;
+    bool operator!=(const OTSignatureMetadata & rhs) const { return !(this->operator==(rhs)); }
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
 
-
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_SIGNATURE_METADATA_HPP__ 

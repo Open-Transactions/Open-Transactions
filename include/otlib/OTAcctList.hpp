@@ -1,6 +1,6 @@
 /************************************************************
  *    
- *  OTSignature.hpp
+ *  OTAcctList.hpp
  *  
  */
 
@@ -130,33 +130,57 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_ACCT_LIST_HPP__
+#define __OT_ACCT_LIST_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTTransactionType.hpp"
+#include "OTAccount.hpp"
+
+class OTPseudonym;
+class OTAccount;
+class OTMessage;
+class OTLedger;
 
 
-class OTSignature : public OTASCIIArmor
+// ----------------------------------------
+// The server needs to store a list of accounts, by asset type ID, to store the backing funds
+// for vouchers.  The below class is useful for that. It's also useful for the same purpose
+// for stashes, in smart contracts.
+// Eventually will add expiration dates, possibly, to this class. (To have series, just like cash
+// already does now.)
+//
+class OTAcctList
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+	OTAccount::AccountType	m_AcctType;
+		
+	mapOfStrings		m_mapAcctIDs; // AcctIDs as second mapped by ASSET TYPE ID as first. 
+	mapOfWeakAccounts	m_mapWeakAccts; // If someone calls GetOrCreateAccount(), we pass them a shared pointer. We 
+										// store the weak pointer here only to make sure accounts don't get loaded twice.
+public:	
+    
+EXPORT	OTAcctList();
+        OTAcctList(OTAccount::AccountType eAcctType);
+EXPORT	~OTAcctList();
+
+EXPORT  int32_t  GetCountAccountIDs() const { return static_cast<int32_t> (m_mapAcctIDs.size()); }
+	
+EXPORT  void Release();
+
+EXPORT  void Release_AcctList();
+	
+EXPORT	void Serialize(OTString & strAppend);
+EXPORT	int32_t  ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strAcctType, const OTString & strAcctCount);
+	
+        void SetType(OTAccount::AccountType eAcctType) { m_AcctType = eAcctType; }
+	
+EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym,
+                                               const OTIdentifier	& ACCOUNT_OWNER_ID, 
+                                               const OTIdentifier	& ASSET_TYPE_ID, 
+                                               const OTIdentifier	& SERVER_ID,
+                                               bool					& bWasAcctCreated, // this will be set to true if the acct is created here. Otherwise set to false;
+                                               const int64_t             lStashTransNum=0);
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
-
-
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_ACCT_LIST_HPP__

@@ -1,13 +1,13 @@
-/************************************************************
- *    
- *  OTSignature.hpp
- *  
- */
+/*************************************************************
+*
+*  OTCleanup.hpp
+*
+*/
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,46 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_CLEANUP_HPP__
+#define __OT_CLEANUP_HPP__
+
+#include <cstddef>
 
 #include "OTCommon.hpp"
+#include "OTData.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+class OTASCIIArmor;
 
 
-class OTSignature : public OTASCIIArmor
+// A simple class used for making sure that dynamically allocated objects
+// are deleted once the pointer goes out of scope.
+//
+// WARNING: This is ONE-USE ONLY! Don't try to re-use instances of this all over the place.
+// If you are dynamically allocating some new object you want cleaned up, then make a NEW
+// instance of OTCleanup for each one.
+//
+// For example, if you call SetCleanupTarget() on multiple objects, then only the LAST
+// one will get cleaned up, and the others will leak!
+//
+template <class T>
+class OTCleanup
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+protected:
+	T * m_pCharge;
+
+public:
+	inline bool SetCleanupTarget(const T & theTarget) // Use this as much as you can.
+	{ m_pCharge = &((T&)theTarget); return true; }
+
+	inline bool SetCleanupTargetPointer(const T * pTarget)	// Use this when you want it to work even if pTarget is NULL.
+	{ m_pCharge = (T*)pTarget; return true; }				// (Like, it will accept the NULL pointer, and just be smart
+															// enough NOT to delete it, since it's already NULL.)
+	OTCleanup()                     : m_pCharge(NULL) { }
+	OTCleanup(const T & theTarget)  : m_pCharge(NULL) { SetCleanupTarget(theTarget); }
+	OTCleanup(const T * pTarget)    : m_pCharge(NULL) { SetCleanupTargetPointer(pTarget); }
+
+	~OTCleanup() { if (m_pCharge) delete m_pCharge; m_pCharge = NULL; }
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
 
-
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_CLEANUP_HPP__

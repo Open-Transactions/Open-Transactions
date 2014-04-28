@@ -1,13 +1,13 @@
-/************************************************************
- *    
- *  OTSignature.hpp
- *  
+/*************************************************************
+ *
+ *  OTNymOrSymmetricKey.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,77 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_NYM_OR_SYMMETRIC_KEY_HPP__
+#define __OT_NYM_OR_SYMMETRIC_KEY_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTCrypto.hpp"
+#include "OTEnvelope.hpp"
+
+class OTPseudonym;
+class OTString;
+class OTASCIIArmor;
+class OTAsymmetricKey;
+class OTSymmetricKey;
+class OTPassword;
+class OTPasswordData;
 
 
-class OTSignature : public OTASCIIArmor
+// There are certain cases where we want the option to pass a Nym OR a
+// symmetric key, and the function should be able to handle either.
+// This class is used to make that possible.
+//
+class OTNym_or_SymmetricKey
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+private:
+    OTPseudonym     * m_pNym;
+    // ---------------------------------
+    OTSymmetricKey  * m_pKey;
+    OTPassword      * m_pPassword; // optional. Goes with m_pKey.
+    // ---------------------------------
+    bool              m_bCleanupPassword; // m_pPassword is usually not owned. But if we create it and keep it around to avoid (for example forcing the user to enter the PW 30 times in a row when exporting his purse...) then we want to set this to true (where it normally defaults to false) in order to make sure we cleanup on destruction.
+    // ---------------------------------
+    const OTString  * m_pstrDisplay;
+    // ---------------------------------
+    OTNym_or_SymmetricKey();
+    // ---------------------------------
+public:
+    // ---------------------------------
+	EXPORT	OTPseudonym    * GetNym()      const { return m_pNym;      }
+	EXPORT	OTSymmetricKey * GetKey()      const { return m_pKey;      }
+	EXPORT	OTPassword     * GetPassword() const { return m_pPassword; } // for symmetric key (optional)
+	// ---------------------------------
+	EXPORT	bool  IsNym()       const { return (NULL != m_pNym);      }
+	EXPORT	bool  IsKey()       const { return (NULL != m_pKey);      }
+	EXPORT	bool  HasPassword() const { return (NULL != m_pPassword); } // for symmetric key (optional)
+	// ------------------------------------------------------------------------
+	EXPORT	void GetIdentifier(OTIdentifier & theIdentifier) const;
+	EXPORT	void GetIdentifier(OTString     & strIdentifier) const;
+	// ---------------------------------
+	EXPORT	bool CompareID(const OTNym_or_SymmetricKey & rhs) const;
+	// ------------------------------------------------------------------------
+	// Seal / Open is for public / private key crypto. (With OTPseudonym and OTAsymmetricKey.)
+	// Whereas Encrypt/Decrypt is for symmetric key crypto (With OTSymmetricKey.)
+	//
+	EXPORT	bool Seal_or_Encrypt(      OTEnvelope & outputEnvelope, const OTString   strInput,  const OTString * pstrDisplay=NULL);
+	EXPORT	bool Open_or_Decrypt(const OTEnvelope & inputEnvelope,        OTString & strOutput, const OTString * pstrDisplay=NULL);
+	// ---------------------------------
+	EXPORT	~OTNym_or_SymmetricKey();
+	// ---------------------------------
+	EXPORT	OTNym_or_SymmetricKey(const OTNym_or_SymmetricKey & rhs);
+	// ---------------------------------
+	EXPORT	OTNym_or_SymmetricKey(const OTPseudonym     & theNym, const OTString  * pstrDisplay=NULL);
+	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTString  * pstrDisplay=NULL);
+	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTPassword & thePassword, const OTString * pstrDisplay=NULL);
+	// ---------------------------------
+	EXPORT	void swap(OTNym_or_SymmetricKey & other);
+
+	EXPORT	OTNym_or_SymmetricKey & operator = (OTNym_or_SymmetricKey other); // passed by value.
+	// ---------------------------------
+	EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
+	EXPORT	void Release_Nym_or_SymmetricKey(); // NOT called in the destructor, since this normally doesn't own its contents.
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
 
-
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_NYM_OR_SYMMETRIC_KEY_HPP__

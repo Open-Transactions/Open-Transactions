@@ -1,13 +1,13 @@
-/************************************************************
- *    
- *  OTSignature.hpp
- *  
+/*************************************************************
+ *
+ *  OTStashItem.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,64 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_STASH_ITEM_HPP__
+#define __OT_STASH_ITEM_HPP__
+
+#include <map>
+#include <string>
+
+#include "irrxml/irrXML.hpp"
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTAgent.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTParty.hpp"
+#include "OTVariable.hpp"
+#include "OTClause.hpp"
+#include "OTBylaw.hpp"
+
+class OTIdentifier;
+class OTNumList;
+class OTPseudonym;
+class OTAccount;
+class OTParty;
+class OTPartyAccount;
+class OTScriptable;
+class OTSmartContract;
+class OTScript;
+class OTAccount;
+class OTScriptable;
+class OTScript;
+class OTBylaw;
+
+typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
-class OTSignature : public OTASCIIArmor
+class OTStashItem
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+	OTString	m_strAssetTypeID;
+	int64_t		m_lAmount;
+public:
+	int64_t GetAmount() const { return m_lAmount; }
+	void SetAmount(const int64_t lAmount) { m_lAmount = lAmount; }
+	//------------------
+	bool CreditStash(const int64_t &lAmount);
+	bool DebitStash(const int64_t &lAmount);
+	//------------------
+	const OTString & GetAssetTypeID() { return m_strAssetTypeID; }
+	//------------------
+	OTStashItem();
+	OTStashItem(const OTString & strAssetTypeID, const int64_t lAmount=0);
+	OTStashItem(const OTIdentifier & theAssetTypeID, const int64_t lAmount=0);
+	virtual ~OTStashItem();
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+// Each item is mapped by AssetTypeID
+//
+typedef std::map<std::string, OTStashItem *> mapOfStashItems;
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+#endif // __OT_STASH_ITEM_HPP__

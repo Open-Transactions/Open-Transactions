@@ -1,6 +1,6 @@
 /**************************************************************
  *
- *  OTPassword.hpp
+ *  OTCallback.hpp
  *
  */
 
@@ -130,8 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OT_PASSWORD_HPP__
-#define __OT_PASSWORD_HPP__
+#ifndef __OT_CALLBACK_HPP__
+#define __OT_CALLBACK_HPP__
 
 #include <string>
 
@@ -139,6 +139,7 @@
 
 #include "OTCachedKey.hpp"
 #include "OTPasswordData.hpp"
+#include "OTPassword.hpp"
 
 class OTString;
 class OTPassword;
@@ -328,118 +329,6 @@ void main()
  */
 
 
-// Originally written for the safe storage of passwords.
-// Now used for symmetric keys as well.
-// Specifically: when the clear version of a password or key must be stored
-// usually for temporary reasons, it must be stored in memory locked from swapping
-// to disk, and in an object like OTPassword that zeros the memory as soon as we're done.
-//
-class OTPassword
-{
-public:
-	enum BlockSize
-		{
-            DEFAULT_SIZE = OT_DEFAULT_BLOCKSIZE,  // (128 bytes max length for a password.)
-            LARGER_SIZE  = OT_LARGE_BLOCKSIZE     // Update: now 32767 bytes if you use this size.
-        };
-
-private:
-	uint32_t m_nPasswordSize; // [ 0..128 ]  Update: [ 0..9000 ]
-	uint8_t	 m_szPassword[OT_DEFAULT_MEMSIZE]; // a 129-byte block of char. (128 + 1 for null terminator)
-//	uint8_t  m_szPassword[OT_LARGE_MEMSIZE];   // 32767 bytes. (32768 + 1 for null terminator) todo: in optimization phase, revisit this array size.
-
-    // OTPassword tries to store a piece of data more securely.
-    // During the time I have to take a password from the user and pass it to OpenSSL,
-    // I want it stored as securely as possible, and that's what this class was written for.
-    // Now I'm adding the ability to store binary data in here, not just a text-based password.
-    // That way, OTSymmetricKey can store its plain key in an OTPassword. Well, it actually stores
-    // its key in an encrypted format, but whenever, for what brief moments that key is decrypted and
-    // USED, the decrypted form of it will be stored in an OTPassword (in binary mode.)
-    // This is basically just to save me from duplicating work that's already done here in OTPassword.
-    //
-    bool    m_bIsText;          // storing a text passphrase?
-    bool    m_bIsBinary;        // storing binary memory?
-    bool    m_bIsPageLocked;    // is the page locked to prevent us from swapping this secret memory to disk?
-
-public:
-		const		BlockSize	m_theBlockSize;
-    // -----------------
-EXPORT	bool		isPassword() const;
-EXPORT	const		uint8_t *	getPassword_uint8() const; // asserts if m_bIsText is false.
-
-EXPORT	const		char *		getPassword()	const; // asserts if m_bIsText is false.
-EXPORT				uint8_t *	getPasswordWritable(); // asserts if m_bIsText is false.
-EXPORT				char *		getPasswordWritable_char(); // asserts if m_bIsText is false.
-
-EXPORT				int32_t			setPassword(const char * szInput, int32_t nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
-EXPORT				int32_t		setPassword_uint8(const uint8_t * szInput, uint32_t nInputSize); // (FYI, truncates if nInputSize larger than getBlockSize.)
-EXPORT				bool		addChar(uint8_t theChar);
-    // ---------------------
-EXPORT				int32_t		randomizePassword(uint32_t nNewSize=DEFAULT_SIZE);
-    // -----------------
-EXPORT	static	    bool		randomizePassword_uint8(uint8_t * szDestination, uint32_t nNewSize);
-EXPORT	static		bool		randomizePassword(char * szDestination, uint32_t nNewSize);
-    // -----------------
-EXPORT				bool		isMemory()	const;
-EXPORT	const		void *		getMemory() const; // asserts if m_bIsBinary is false.
-EXPORT	const		uint8_t *	getMemory_uint8() const; // asserts if m_bIsBinary is false.
-EXPORT				void *		getMemoryWritable(); // asserts if m_bIsBinary is false.
-EXPORT				int32_t		setMemory(const void * vInput,  uint32_t nInputSize);  // (FYI, truncates if nInputSize larger than getBlockSize.)
-EXPORT				int32_t		addMemory(const void * vAppend, uint32_t nAppendSize); // (FYI, truncates if nInputSize + getPasswordSize() is larger than getBlockSize.)
-    // ---------------------
-EXPORT				int32_t		randomizeMemory(uint32_t nNewSize=DEFAULT_SIZE);
-    // -----------------
-EXPORT	static		bool		randomizeMemory_uint8(uint8_t * szDestination, uint32_t nNewSize);
-    // -----------------
-EXPORT	static		bool		randomizeMemory(void * szDestination, uint32_t nNewSize);
-    // -----------------
-EXPORT				uint32_t	getBlockSize()    const;
-EXPORT				bool		Compare(OTPassword & rhs) const;
-    // ----------------------
-EXPORT				uint32_t	getPasswordSize() const; // asserts if m_bIsText is false.
-EXPORT				uint32_t	getMemorySize()   const; // asserts if m_bIsBinary is false.
-    // -----------------
-EXPORT				void		zeroMemory();
-    // -----------------
-EXPORT	static		void		zeroMemory(uint8_t * szMemory, uint32_t theSize);
-EXPORT	static		void		zeroMemory(void * vMemory,     uint32_t theSize);
-    // -----------------
-EXPORT	static		void *		safe_memcpy(void *			dest,
-											uint32_t		dest_size,
-											const void *	src,
-											uint32_t		src_length,
-											bool			bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
-    // ---------------------------------------
-    // OTPassword thePass; will create a text password.
-    // But use the below function if you want one that has
-    // a text buffer of size (versus a 0 size.) This is for
-    // cases where you need the buffer to pre-exist so that
-    // some other function can populate that buffer directly.
-    // (Such as the OpenSSL password callback...)
-    // CALLER IS RESPONSIBLE TO DELETE.
-    //
-EXPORT  static OTPassword * CreateTextBuffer(); // asserts already.
-
-    // There are certain weird cases, like in OTSymmetricKey::GetPassphraseFromUser,
-    // where we set the password using the getPassword_writable, and it's properly
-    // null-terminated, yet this instance still doesn't know its actual size (even though
-    // the size is known.) Therefore I added this call in order to set the size in
-    // those odd cases where it's necessary. That being said, YOU should normally NEVER
-    // need to use this function, so just pretend it doesn't exist.
-EXPORT  bool SetSize(uint32_t uSize);
-    // ---------------------------------------
-EXPORT
-    OTPassword & operator=(const OTPassword & rhs);
-EXPORT	OTPassword(BlockSize theBlockSize=DEFAULT_SIZE);
-EXPORT	OTPassword(const OTPassword & rhs);
-EXPORT	OTPassword(const char    * szInput, uint32_t nInputSize, BlockSize theBlockSize=DEFAULT_SIZE);  // text   / password stored.
-EXPORT	OTPassword(const uint8_t * szInput, uint32_t nInputSize, BlockSize theBlockSize=DEFAULT_SIZE);  // text   / password stored.
-EXPORT	OTPassword(const void    * vInput,  uint32_t nInputSize, BlockSize theBlockSize=DEFAULT_SIZE);  // binary / symmetric key stored.
-    // -----------------
-EXPORT	~OTPassword();
-};
-
-
 //#undef OTPASSWORD_BLOCKSIZE
 //#undef OTPASSWORD_MEMSIZE
 //
@@ -450,128 +339,16 @@ EXPORT	~OTPassword();
 //#undef OT_DEFAULT_MEMSIZE
 
 
-#include "OTCallback.hpp"
-
-
-#include "OTCaller.hpp"
-
-
-/*
- HOW TO PREVENT MEMORY FROM GOING INTO CORE DUMPS
-
-#include <sys/time.h>
-
-#include <sys/resource.h>
-
-#include <unistd.h>
-
-
-
-int32_t  main(int32_t argc, char **argv)
-
- {
-
-  struct rlimit rlim;
-
-
-
-  getrlimit(RLIMIT_CORE, &rlim);
-
-  rlim.rlim_max = rlim.rlim_cur = 0;
-
-  if(setrlimit(RLIMIT_CORE, &rlim)) {
-
-    exit(-1);
-
-  }
-
-  ...
-
-  return 0;
-
-}
-
-
-
- http://www.drdobbs.com/cpp/184401646
-
-
-
-
- MORE CODE FOR MEMLOCK:
-
- namespace Botan
- {
-
-    bool has_mlock();
-
-    bool lock_mem(void* addr, size_t length);
-
-    void unlock_mem(void* addr, size_t length);
- }
-
-
+// Used for the password callback...
 //
-// Memory Locking Functions
-// (C) 1999-2007 Jack Lloyd
-//
-// Distributed under the terms of the Botan license
-//
-
-#include <botan/internal/mlock.h>
-
-#if defined(BOTAN_TARGET_OS_HAS_POSIX_MLOCK)
-  #include <sys/types.h>
-  #include <sys/mman.h>
-#elif defined(BOTAN_TARGET_OS_HAS_WIN32_VIRTUAL_LOCK)
-#ifndef _WINDOWS_
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-#include <windows.h>
-#endif
-#endif
-
-namespace Botan {
-
-bool has_mlock()
-   {
-   byte buf[4096];
-   if(!lock_mem(&buf, sizeof(buf)))
-      return false;
-   unlock_mem(&buf, sizeof(buf));
-   return true;
-   }
-
-//
-// Lock an area of memory into RAM
-//
-bool lock_mem(void* ptr, size_t bytes)
-   {
-#if defined(BOTAN_TARGET_OS_HAS_POSIX_MLOCK)
-   return (::mlock(static_cast<char*>(ptr), bytes) == 0);
-#elif defined(BOTAN_TARGET_OS_HAS_WIN32_VIRTUAL_LOCK)
-   return (::VirtualLock(ptr, bytes) != 0);
-#else
-   return false;
-#endif
-   }
-
-//
-// Unlock a previously locked region of memory
-//
-void unlock_mem(void* ptr, size_t bytes)
-   {
-#if defined(BOTAN_TARGET_OS_HAS_POSIX_MLOCK)
-   ::munlock(static_cast<char*>(ptr), bytes);
-#elif defined(BOTAN_TARGET_OS_HAS_WIN32_VIRTUAL_LOCK)
-   ::VirtualUnlock(ptr, bytes);
-#endif
-   }
-
-}
-
- */
+class OTCallback
+{
+public:
+	OTCallback() {}
+EXPORT	virtual ~OTCallback();
+EXPORT	virtual void runOne(const char * szDisplay, OTPassword & theOutput); // Asks for password once. (For authentication when using nym.)
+EXPORT	virtual void runTwo(const char * szDisplay, OTPassword & theOutput); // Asks for password twice. (For confirmation when changing password or creating nym.)
+};
 
 
-#endif //__OT_PASSWORD_HPP__
+#endif //__OT_CALLBACK_HPP__

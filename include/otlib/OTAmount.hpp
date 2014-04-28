@@ -1,13 +1,13 @@
 /************************************************************
- *    
- *  OTSignature.hpp
- *  
+ *
+ *  OTAssetContract.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,32 +131,72 @@
  **************************************************************/
 
 
-#ifndef __OT_SIGNATURE_HPP__
-#define __OT_SIGNATURE_HPP__
+#ifndef __OT_AMOUNT_HPP__
+#define __OT_AMOUNT_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignatureMetadata.hpp"
+#include "OTContract.hpp"
+#include "OTAssetContract.hpp"
+
+class OTBasket;
+class OTPseudonym;
+class OTString;
+class OTIdentifier;
+class OTAccount;
+class OTAcctFunctor;
 
 
-class OTSignature : public OTASCIIArmor
+// ----------------------------------------------------------------------------
+
+class OTAmount
 {
-private: // BASE CLASS
-    typedef OTASCIIArmor ot_super;
-        
-public:  // PUBLIC INTERFACE
-    OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
-	OTSignature();
-	OTSignature(const char * szValue);
-	OTSignature(const OTString & strValue);
-	OTSignature(const OTASCIIArmor & strValue);
-	virtual ~OTSignature();
+    int64_t  m_lAmount;    // $5.45 has m_lAmount set to 545
+
+public:
+EXPORT    friend void swap(OTAmount& first, OTAmount& second) // nothrow
+    {
+        using std::swap; // enable ADL (good practice)
+        swap(first.m_lAmount,    second.m_lAmount);
+    }
+    // -----------------------------------------------------
+EXPORT    bool          IsPositive()   const { return (m_lAmount >  0);  }
+EXPORT    bool          IsNegative()   const { return (m_lAmount <  0);  }
+EXPORT    bool          IsZero()       const { return (m_lAmount == 0);  }
+    // -----------------------------------------------------
+EXPORT    int64_t       GetAmount()    const { return m_lAmount; }
+EXPORT    int64_t       GetAbsolute()  const { return (m_lAmount <  0) ? (m_lAmount*(-1)) : m_lAmount; }
+    // -----------------------------------------------------
+EXPORT    void          SetAmount(int64_t lAmount) { m_lAmount = lAmount; }
+    // -----------------------------------------------------
+EXPORT    OTAmount(int64_t lAmount=0);
+EXPORT    OTAmount(const OTAmount & other);
+
+EXPORT    OTAmount& operator=(OTAmount other);
+//  OTAmount(OTAmount&& other);  // C++11
+
+EXPORT    ~OTAmount() {}
 };
 
-typedef std::list<OTSignature *>	listOfSignatures;
+
+// ----------------------------------------------------------------------------
 
 
-#endif // __OT_SIGNATURE_HPP__ 
+// NOTE: Moved to OTServer.hpp and .cpp
+// Because the Trigger method needs to be able to call
+// OTServer-specific functions, and thus can't be in the otlib,
+// which doesn't know of the server.
+//
+//class OTAcctFunctor_PayDividend
+//{
+//public:
+//    OTAcctFunctor_PayDividend(const OTIdentifier & theServerID);
+//    virtual ~OTAcctFunctor_PayDividend();
+//
+//    virtual bool Trigger(OTAccount & theAccount);
+//};
+
+
+// ----------------------------------------------------------------------------
+
+#endif // __OT_AMOUNT_HPP__
