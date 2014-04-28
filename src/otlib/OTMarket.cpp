@@ -144,8 +144,7 @@
 #include <OTTrade.hpp>
 #include <OTPaths.hpp>
 
-
-
+#include <time.h>
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.

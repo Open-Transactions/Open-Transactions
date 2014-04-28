@@ -159,6 +159,7 @@
 
 #include <fstream>
 
+#include <time.h>
 
 #define SERVER_CONFIG_KEY "server"
 #define SERVER_DATA_DIR "server_data"

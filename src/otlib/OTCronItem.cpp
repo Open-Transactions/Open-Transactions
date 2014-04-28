@@ -144,6 +144,8 @@
 #include <OTPseudonym.hpp>
 #include <OTLedger.hpp>
 
+#include <time.h>
+
 #include "irrxml/irrXML.hpp"
 
 using namespace irr;
