@@ -1,13 +1,13 @@
-/*******************************************************************
- *    
- *  OTClientConnection.h
- *  
+/*************************************************************
+ *
+ *  OpenSSL_BIO.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,95 +131,34 @@
  **************************************************************/
 
 
-#ifndef __OT_CLIENT_CONNECTION_HPP__
-#define __OT_CLIENT_CONNECTION_HPP__
-
-#include "OTCommon.hpp"
-
-#include "OTData.hpp"
-#include "OTMessageBuffer.hpp"
+#ifndef __OPENSSL_BIO_HPP__
+#define __OPENSSL_BIO_HPP__
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
-#define TYPE_1_CMD_1	1
-#define TYPE_1_CMD_2	2
-#define TYPE_1_CMD_3	3
-#define TYPE_1_CMD_4	4
-	
-#define CMD_TYPE_1		1
-	
-#define OT_CMD_HEADER_SIZE  9
-	
-	typedef uint8_t	BYTE;
-	typedef unsigned short	USHORT;
-	
-	union u_header
-	{
-		BYTE buf[OT_CMD_HEADER_SIZE];
-		struct {
-			BYTE		type_id;	// 1 byte
-			BYTE		command_id;	// 1 byte
-			BYTE		filler[2];	// 2 extra bytes here so the size begins on a 4-byte boundary
-			uint32_t	size;		// 4 bytes to describe size of payload
-			BYTE		checksum;	// 1 byte
-		} fields;	// total of 9 bytes
-	};
-	
-#ifdef __cplusplus
-}
-#endif
-
-class OTAsymmetricKey;
-class OTMessage;
-class OTServer;
-class OTString;
-class OTEnvelope;
-
-class OTClientConnection
+extern "C"
 {
-	u_header		m_CMD;			// We'll load a header and put it here, then wait until the bytes received matches the count
-									// before processing.
-	OTData			m_Buffer;		// As we read data, we buffer it here and chunk it out into messages.
-	
-	bool			m_bHaveHeader;	// If we've loaded a header already, and we're waiting for the byte count, this is true.
-	OTMessageBuffer m_listIn;
-	OTMessageBuffer m_listOut;
-	OTServer	*	m_pServer;
-	
-	OTAsymmetricKey * m_pPublicKey;
-	
-	bool			m_bFocused;		// Defaults to false. If true, it means we're in XmlRpc mode, or some such, instead of TCP over SSL streaming.
-	
+#include <openssl/bio.h>
+}
+
+
+class OpenSSL_BIO {
+private:
+    BIO & m_refBIO;
+    bool bCleanup;
+    bool bFreeOnly;
+
+    EXPORT static BIO * assertBioNotNull(BIO * pBIO);
+
 public:
-//	SFSocket * m_pSocket;	// For TCP / SSL mode. 
-	
-	void ProcessBuffer();
-	void ReadBytesIntoBuffer();
 
-	void ProcessMessage(u_header & theCMD);
-	bool ProcessType1Cmd(u_header & theCMD, OTMessage & theMessage);
+    EXPORT	OpenSSL_BIO(BIO * pBIO);
 
-	void ProcessReply(OTMessage &theReply);
+    EXPORT  ~OpenSSL_BIO();
 
-//	OTClientConnection(SFSocket & theSocket, OTServer & theServer); // TCP		/ over SSL mode.
-	OTClientConnection(OTServer & theServer);						// XmlRpc	/ over HTTP mode.
-	~OTClientConnection();
-	
-	void AddToInputList(OTMessage & theMessage);
-	OTMessage * GetNextInputMessage();
+    EXPORT	operator BIO *() const;
 
-	void AddToOutputList(OTMessage & theMessage);
-	OTMessage * GetNextOutputMessage();
-
-	void SetPublicKey(const OTString & strPublicKey);
-	void SetPublicKey(const OTAsymmetricKey & thePublicKey);
-	
-	// This is for XmlRpc mode (i.e. there is not actually an open connection being maintained.)
-	bool SealMessageForRecipient(OTMessage & theMsg, OTEnvelope & theEnvelope);
+    EXPORT  void release();
+    EXPORT  void setFreeOnly();
 };
 
-
-#endif // __OT_CLIENT_CONNECTION_HPP__
+#endif // __OPENSSL_BIO_HPP__

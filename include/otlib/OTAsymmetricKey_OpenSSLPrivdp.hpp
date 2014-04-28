@@ -1,13 +1,13 @@
-/*******************************************************************
- *    
- *  OTClientConnection.h
- *  
+/*************************************************************
+ *
+ *  OTAsymmetricKey_OpenSSLPrivdp.hpp
+ *
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
- 
+
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
- 
+
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
- 
+
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,95 +131,67 @@
  **************************************************************/
 
 
-#ifndef __OT_CLIENT_CONNECTION_HPP__
-#define __OT_CLIENT_CONNECTION_HPP__
-
-#include "OTCommon.hpp"
-
-#include "OTData.hpp"
-#include "OTMessageBuffer.hpp"
+#ifndef __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
+#define __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
-#define TYPE_1_CMD_1	1
-#define TYPE_1_CMD_2	2
-#define TYPE_1_CMD_3	3
-#define TYPE_1_CMD_4	4
-	
-#define CMD_TYPE_1		1
-	
-#define OT_CMD_HEADER_SIZE  9
-	
-	typedef uint8_t	BYTE;
-	typedef unsigned short	USHORT;
-	
-	union u_header
-	{
-		BYTE buf[OT_CMD_HEADER_SIZE];
-		struct {
-			BYTE		type_id;	// 1 byte
-			BYTE		command_id;	// 1 byte
-			BYTE		filler[2];	// 2 extra bytes here so the size begins on a 4-byte boundary
-			uint32_t	size;		// 4 bytes to describe size of payload
-			BYTE		checksum;	// 1 byte
-		} fields;	// total of 9 bytes
-	};
-	
-#ifdef __cplusplus
-}
-#endif
-
-class OTAsymmetricKey;
-class OTMessage;
-class OTServer;
-class OTString;
-class OTEnvelope;
-
-class OTClientConnection
+extern "C"
 {
-	u_header		m_CMD;			// We'll load a header and put it here, then wait until the bytes received matches the count
-									// before processing.
-	OTData			m_Buffer;		// As we read data, we buffer it here and chunk it out into messages.
-	
-	bool			m_bHaveHeader;	// If we've loaded a header already, and we're waiting for the byte count, this is true.
-	OTMessageBuffer m_listIn;
-	OTMessageBuffer m_listOut;
-	OTServer	*	m_pServer;
-	
-	OTAsymmetricKey * m_pPublicKey;
-	
-	bool			m_bFocused;		// Defaults to false. If true, it means we're in XmlRpc mode, or some such, instead of TCP over SSL streaming.
-	
+#include <openssl/pem.h>
+#include <openssl/evp.h>
+#include <openssl/x509v3.h>
+
+int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
+}
+
+class OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp {
+private:
+    friend class OTAsymmetricKey;    // For the factory.
+    friend class OTLowLevelKeyData;  // For access to OpenSSL-specific calls that are otherwise private.
+    friend class OTCrypto_OpenSSL;   // For OpenSSL-specific crypto functions to access OpenSSL-specific methods.
+    friend class OTAsymmetricKey_OpenSSL;
+
 public:
-//	SFSocket * m_pSocket;	// For TCP / SSL mode. 
-	
-	void ProcessBuffer();
-	void ReadBytesIntoBuffer();
+    OTAsymmetricKey_OpenSSL * backlink;
+    explicit OTAsymmetricKey_OpenSSLPrivdp() : backlink( 0 ){}
 
-	void ProcessMessage(u_header & theCMD);
-	bool ProcessType1Cmd(u_header & theCMD, OTMessage & theMessage);
+    // -----------------------------------------------------
+    // STATIC METHODS
+    //
+    // Create base64-encoded version of an EVP_PKEY
+    // (Without bookends.)
+    //
+    static bool ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey, Timer & theTimer, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);
+    static bool ArmorPublicKey (EVP_PKEY & theKey, OTASCIIArmor & ascKey);
+    // -------------------------------------
+    static EVP_PKEY *  CopyPublicKey (EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
+    static EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
+// ***************************************************************
+private:
+    // INSTANCES...
+    // -----------------------------------------------------
+    // PRIVATE MEMBER DATA
+    X509         *  m_pX509;
+    EVP_PKEY     *  m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary, when we have to use it.)
+    // ***************************************************************
+    // PRIVATE METHODS
+    EVP_PKEY *  InstantiateKey       (OTPasswordData * pPWData=NULL);
+    EVP_PKEY *  InstantiatePublicKey (OTPasswordData * pPWData=NULL);
+    EVP_PKEY *  InstantiatePrivateKey(OTPasswordData * pPWData=NULL);
+    // ---------------------------------------------------------------
+    // HIGH LEVEL (internal) METHODS
+    //
+EXPORT const EVP_PKEY * GetKey(OTPasswordData * pPWData=NULL);
 
-	void ProcessReply(OTMessage &theReply);
+    void SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey=false, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);
+    // ---------------------------------------------------------------
+    // LOW LEVEL (internal) METHODS
+    //
+    EVP_PKEY *  GetKeyLowLevel();
 
-//	OTClientConnection(SFSocket & theSocket, OTServer & theServer); // TCP		/ over SSL mode.
-	OTClientConnection(OTServer & theServer);						// XmlRpc	/ over HTTP mode.
-	~OTClientConnection();
-	
-	void AddToInputList(OTMessage & theMessage);
-	OTMessage * GetNextInputMessage();
-
-	void AddToOutputList(OTMessage & theMessage);
-	OTMessage * GetNextOutputMessage();
-
-	void SetPublicKey(const OTString & strPublicKey);
-	void SetPublicKey(const OTAsymmetricKey & thePublicKey);
-	
-	// This is for XmlRpc mode (i.e. there is not actually an open connection being maintained.)
-	bool SealMessageForRecipient(OTMessage & theMsg, OTEnvelope & theEnvelope);
+    X509     *  GetX509() { return m_pX509; }
+    void        SetX509(X509 * x509);
+    // -----------------------------------------------------
 };
 
-
-#endif // __OT_CLIENT_CONNECTION_HPP__
+#endif // __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__

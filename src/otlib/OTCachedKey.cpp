@@ -151,6 +151,16 @@ using namespace tthread;
 
 #define OT_DEFAULT_PASSWORD "test"
 
+// ------------------------------------------------------------------------
+
+#if defined (OT_CRYPTO_USING_OPENSSL)
+
+extern "C"
+{
+#include <openssl/opensslconf.h>
+}
+
+#endif
 
 // ------------------------------------------------------------------------
 
