@@ -58,7 +58,11 @@ typedef int64_t time64_t;
 
 inline time64_t OTTimeGetCurrentTime() { return time(NULL); }
 inline time64_t OTTimeGetTimeFromSeconds(int64_t seconds) { return seconds; }
+#if defined(OT_USE_CXX11) && !defined(ANDROID)
 inline time64_t OTTimeGetTimeFromSeconds(const char * pSeconds) { return std::stol(pSeconds); }
+#else
+inline time64_t OTTimeGetTimeFromSeconds(const char * pSeconds) { return std::atol(pSeconds); }
+#endif
 inline int64_t  OTTimeGetSecondsFromTime(time64_t time) { return time; }
 inline int64_t  OTTimeGetTimeInterval(time64_t lhs, time64_t rhs) { return lhs - rhs; }
 inline time64_t OTTimeAddTimeInterval(time64_t lhs, int64_t rhs) { return lhs + rhs; }
