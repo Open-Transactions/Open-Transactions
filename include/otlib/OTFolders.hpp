@@ -1,8 +1,11 @@
-/************************************************************
- *
- *  OTScript.hpp
- *
- */
+/**************************************************************
+*
+* OTFolders.hpp
+* This Class Maintins where stuff should go;
+* You must create one and only one contex for
+* every instance of OT_API.
+*
+*/
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -131,107 +134,105 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+// The int64_t-awaited paths class.
+
+#ifndef __OT_FOLDERS_HPP__
+#define __OT_FOLDERS_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
-
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+#include "OTSettings.hpp"
+#include "OTAssert.hpp"
+#include "OTPaths.hpp"
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+// This class is for storing the names of the folders.  A instance of it must be made.
+// This function will store the folder-names automaticaly in the config file.
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+class OTFolders
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
+private:
 
-	// List
-	// Construction -- Destruction
+    static bool GetSetAll();
+
+    static inline bool GetSetFolderName(OTSettings & config, const std::string strKeyName,
+                                              const std::string strDefaultName, OTString & ret_strName)
+    {
+        if (ret_strName.Exists()) return true;
+        else
+        {
+            if (strKeyName.empty()    || strDefaultName.empty())    return false;
+            if (3 > strKeyName.size() || 3 > strDefaultName.size()) return false;
+
+            OTString strResult("");
+            bool bIsNew(false);
+
+            config.CheckSet_str("folders",strKeyName,strDefaultName,strResult,bIsNew);
+
+            if (!bIsNew) ret_strName = strResult;
+            else         ret_strName = strDefaultName.c_str();
+
+            return true;
+        }
+    }
+
+    static inline const OTString & GetFolder(const OTString & strFolder)
+    {
+        if (!strFolder.Exists()) {
+            if (!GetSetAll()) { OT_FAIL; } }
+        return strFolder;
+    }
+
+
+    static OTString s_strAccount;
+    static OTString s_strCert;
+    static OTString s_strContract;
+    static OTString s_strCredential;
+    static OTString s_strCron;
+    static OTString s_strInbox;
+    static OTString s_strMarket;
+    static OTString s_strMint;
+    static OTString s_strNym;
+    static OTString s_strNymbox;
+    static OTString s_strOutbox;
+    static OTString s_strPaymentInbox;
+    static OTString s_strPubcred;
+    static OTString s_strPubkey;
+    static OTString s_strPurse;
+    static OTString s_strReceipt;
+    static OTString s_strRecordBox;
+    static OTString s_strExpiredBox;
+    static OTString s_strScript;
+    static OTString s_strSmartContracts;
+    static OTString s_strSpent;
+    static OTString s_strUserAcct;
+
 public:
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
+    EXPORT static const OTString & Account();
+    EXPORT static const OTString & Cert();
+    EXPORT static const OTString & Contract();
+    EXPORT static const OTString & Credential();
+    EXPORT static const OTString & Cron();
+    EXPORT static const OTString & Inbox();
+    EXPORT static const OTString & Market();
+    EXPORT static const OTString & Mint();
+    EXPORT static const OTString & Nym();
+    EXPORT static const OTString & Nymbox();
+    EXPORT static const OTString & Outbox();
+    EXPORT static const OTString & PaymentInbox();
+    EXPORT static const OTString & Pubcred();
+    EXPORT static const OTString & Pubkey();
+    EXPORT static const OTString & Purse();
+    EXPORT static const OTString & Receipt();
+    EXPORT static const OTString & RecordBox();
+    EXPORT static const OTString & ExpiredBox();
+    EXPORT static const OTString & Script();
+    EXPORT static const OTString & SmartContracts();
+    EXPORT static const OTString & Spent();
+    EXPORT static const OTString & UserAcct();
 
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
-};
+}; // class OTFolders
 
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
-
-
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_FOLDERS_HPP__

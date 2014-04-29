@@ -18,6 +18,8 @@
 #include <sys/time.h>
 #endif
 
+#include <string>
+
 
 #define OT_TIME_YEAR_IN_SECONDS          OTTimeGetTimeFromSeconds(31536000)  // 60 * 60 * 24 * 365
 #define OT_TIME_SIX_MONTHS_IN_SECONDS    OTTimeGetTimeFromSeconds(15552000)  // 60 * 60 * 24 * 180
@@ -30,6 +32,7 @@
 #define OT_TIME_ZERO                     OTTimeGetTimeFromSeconds((int64_t)0)
 
 
+//#define FORCE_COMPILE_ERRORS_TO_FIND_USAGE  // uncomment this line to find non-localized time64_t usage
 #ifdef FORCE_COMPILE_ERRORS_TO_FIND_USAGE
 class time64_t
 {
@@ -43,16 +46,22 @@ public:
 
 };
 std::stringstream & operator << (const std::stringstream & str, const time64_t & t);
+
+EXPORT time64_t OTTimeGetCurrentTime(); // { return time(NULL); }
+EXPORT time64_t OTTimeGetTimeFromSeconds(int64_t seconds); // { return seconds; }
+EXPORT time64_t OTTimeGetTimeFromSeconds(const char * pSeconds); // { return std::stol(pSeconds); }
+EXPORT int64_t  OTTimeGetSecondsFromTime(time64_t time); // { return time; }
+EXPORT int64_t  OTTimeGetTimeInterval(time64_t lhs, time64_t rhs); // { return lhs - rhs; }
+EXPORT time64_t OTTimeAddTimeInterval(time64_t lhs, int64_t rhs); // { return lhs + rhs; }
 #else
 typedef int64_t time64_t;
-#endif
-
 
 inline time64_t OTTimeGetCurrentTime() { return time(NULL); }
 inline time64_t OTTimeGetTimeFromSeconds(int64_t seconds) { return seconds; }
-inline time64_t OTTimeGetTimeFromSeconds(const char * pSeconds) { return atol(pSeconds); }
+inline time64_t OTTimeGetTimeFromSeconds(const char * pSeconds) { return std::stol(pSeconds); }
 inline int64_t  OTTimeGetSecondsFromTime(time64_t time) { return time; }
 inline int64_t  OTTimeGetTimeInterval(time64_t lhs, time64_t rhs) { return lhs - rhs; }
 inline time64_t OTTimeAddTimeInterval(time64_t lhs, int64_t rhs) { return lhs + rhs; }
+#endif
 
 #endif //__OT_COMMON_HPP__

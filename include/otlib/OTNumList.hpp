@@ -1,8 +1,8 @@
-/************************************************************
- *
- *  OTScript.hpp
- *
- */
+/*************************************************************
+*
+*  OTNumList.hpp
+*
+*/
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -131,107 +131,81 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_NUM_LIST_HPP__
+#define __OT_NUM_LIST_HPP__
+
+#include <set>
+
+#include "irrxml/irrXML.hpp"
 
 #include "OTCommon.hpp"
 
+#include "OTStringXML.hpp"
+#include "OTIdentifier.hpp"
 #include "OTBylaw.hpp"
+#include "OTContract.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
+class OTAsymmetricKey;
+class OTPasswordData;
 
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
-
-
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+// --------------------------------------------------
+// Useful for storing a std::set of longs,
+// serializing to/from comma-separated string,
+// And easily being able to add/remove/verify the
+// individual transaction numbers that are there.
+// (Used by OTTransaction::blank and
+// OTTransaction::successNotice.)
+// Also used in OTMessage, for storing lists of acknowledged
+// request numbers.
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+class OTNumList
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
+    std::set<int64_t>  m_setData;
 
-	// List
-	// Construction -- Destruction
+    // private for security reasons, used internally only by a function that knows the string length already.
+    bool Add(const char * szfNumbers);   // if false, means the numbers were already there. (At least one of them.)
+
 public:
+EXPORT    OTNumList(const std::set<int64_t> & theNumbers);
+//        OTNumList(const char * szNumbers); // removed for security reasons.
+EXPORT    OTNumList(const OTString    & strNumbers);
+EXPORT    OTNumList(const std::string & strNumbers);
+EXPORT    OTNumList(int64_t lInput);
+EXPORT    OTNumList();
+EXPORT    ~OTNumList();
+    // -------------------
+EXPORT    bool Add(const OTString    & strNumbers);  // if false, means the numbers were already there. (At least one of them.)
+EXPORT    bool Add(const std::string & strNumbers);  // if false, means the numbers were already there. (At least one of them.)
+    // -------------------
+EXPORT    bool Add   (const int64_t & theValue);       // if false, means the value was already there.
+EXPORT    bool Remove(const int64_t & theValue);       // if false, means the value was NOT already there.
+EXPORT    bool Verify(const int64_t & theValue) const; // returns true/false (whether value is already there.)
+    // -------------------
+EXPORT    bool Add   (const OTNumList      & theNumList); // if false, means the numbers were already there. (At least one of them.)
+EXPORT    bool Add   (const std::set<int64_t> & theNumbers); // if false, means the numbers were already there. (At least one of them.)
+EXPORT    bool Remove(const std::set<int64_t> & theNumbers); // if false, means the numbers were NOT already there. (At least one of them.)
+EXPORT    bool Verify(const std::set<int64_t> & theNumbers) const; // True/False, based on whether values are already there. (ALL theNumbers must be present.)
+    // -------------------
+EXPORT    bool Verify   (const OTNumList & rhs) const; // True/False, based on whether OTNumLists MATCH in COUNT and CONTENT (NOT ORDER.)
+EXPORT    bool VerifyAny(const OTNumList & rhs) const; // True/False, based on whether ANY of rhs are found in *this.
+EXPORT    bool VerifyAny(const std::set<int64_t> & setData) const; // Verify whether ANY of the numbers on *this are found in setData.
+    // -------------------
+EXPORT    int32_t  Count() const;
+    // -------------------
+EXPORT    bool Peek(int64_t & lPeek) const;
+EXPORT    bool Pop();
+    // -------------------
+    // Outputs the numlist as set of numbers. (To iterate OTNumList, call this, then iterate the output.)
+EXPORT    bool Output(std::set<int64_t> & theOutput) const; // returns false if the numlist was empty.
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
-
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+    // Outputs the numlist as a comma-separated string (for serialization, usually.)
+EXPORT    bool Output(OTString & strOutput) const; // returns false if the numlist was empty.
+    // -------------------
+EXPORT    void Release();
 };
 
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
+#endif // __OT_NUM_LIST_HPP__
 
 
-#include "OTScriptChai.hpp"
 
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__

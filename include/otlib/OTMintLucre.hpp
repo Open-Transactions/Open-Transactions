@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTScript.hpp
+ *  OTMintLucre.hpp
  *
  */
 
@@ -131,107 +131,51 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_MINT_LUCRE_HPP__
+#define __OT_MINT_LUCRE_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
+#include "OTContract.hpp"
+#include "OTASCIIArmor.hpp"
+#include "OTMint.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+class OTToken;
+class OTAccount;
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
+// SUBCLASSES OF OTMINT FOR EACH DIGITAL CASH ALGORITHM.
+
+#if defined (OT_CASH_USING_MAGIC_MONEY)
+// Todo:  Someday...
+#endif // Magic Money
 
 
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
-//
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+#if defined (OT_CASH_USING_LUCRE)
+
+
+class OTMint_Lucre : public OTMint
 {
+private:  // Private prevents erroneous use by other classes.
+    typedef OTMint ot_super;
+    friend class OTMint; // for the factory.
+// ------------------------------------------------------------------------------
 protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
+        OTMint_Lucre();
+EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strAssetTypeID);
+EXPORT	OTMint_Lucre(const OTString & strServerID, const OTString & strServerNymID, const OTString & strAssetTypeID);
+// ------------------------------------------------------------------------------
 public:
+virtual bool AddDenomination(OTPseudonym & theNotary, int64_t lDenomination, int32_t nPrimeLength=1024);
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
+EXPORT	virtual bool SignToken(OTPseudonym & theNotary, OTToken & theToken, OTString & theOutput, int32_t nTokenIndex);
+EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartextToken, int64_t lDenomination);
 
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+EXPORT	virtual ~OTMint_Lucre();
+// ------------------------------------------------------------------------------
 };
 
-
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
+#endif // Lucre
 
 
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_MINT_LUCRE_HPP__

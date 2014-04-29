@@ -184,8 +184,10 @@
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp" />
     <ClInclude Include="..\..\include\otapi\OTAPI_Exec.hpp" />
     <ClInclude Include="..\..\include\otapi\OTClient.hpp" />
+    <ClInclude Include="..\..\include\otapi\OTRecord.hpp" />
+    <ClInclude Include="..\..\include\otapi\OTRecordList.hpp" />
     <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp" />
-    <ClInclude Include="..\..\include\otapi\ot_command_ot.hpp" />
+    <ClInclude Include="..\..\include\otapi\ot_commands_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp" />
     <ClInclude Include="..\..\include\otapi\OT_ME.hpp" />
     <ClInclude Include="..\..\include\otapi\ot_me_switch.hpp" />
@@ -197,6 +199,8 @@
     <ClCompile Include="..\..\src\otapi\OTAPI.cpp" />
     <ClCompile Include="..\..\src\otapi\OTAPI_Exec.cpp" />
     <ClCompile Include="..\..\src\otapi\OTClient.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTRecord.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTRecordList.cpp" />
     <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_commands_ot.cpp" />
     <ClCompile Include="..\..\src\otapi\ot_made_easy_ot.cpp" />

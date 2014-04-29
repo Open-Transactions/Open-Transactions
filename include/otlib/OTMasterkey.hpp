@@ -1,13 +1,13 @@
-/************************************************************
- *
- *  OTScript.hpp
- *
+/*************************************************************
+ *    
+ *  OTMasterkey.hpp
+ *  
  */
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
-
+ 
  *                 OPEN TRANSACTIONS
  *
  *       Financial Cryptography and Digital Cash
@@ -110,10 +110,10 @@
  *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  *   PURPOSE.  See the GNU Affero General Public License for
  *   more details.
-
+ 
  -----BEGIN PGP SIGNATURE-----
  Version: GnuPG v1.4.9 (Darwin)
-
+ 
  iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
  vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
  KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
@@ -131,107 +131,97 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_MASTERKEY_HPP__
+#define __OT_MASTERKEY_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
-
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+#include "OTContract.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTKeypair.hpp"
+#include "OTSubcredential.hpp"
+#include "OTKeyCredential.hpp"
+#include "OTSubkey.hpp"
+#include "OTCredential.hpp"
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+// A nym contains a list of master credentials, via OTCredential.
+// The whole purpose of a Nym is to be an identity, which can have
+// master credentials.
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
+// Each credential is like a master key for the Nym's identity,
+// which can issue its own subkeys.
 //
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
+// Each subkey has 3 key pairs: encryption, signing, and authentication.
+// Not all subcredentials are a subkey. For example, you might have a
+// subcredential that uses Google Authenticator, and thus doesn't contain
+// any keys, because it uses alternate methods for its own authentication.
 //
-class OTScript
+// Each OTCredential contains a "master" subkey, and a list of subcredentials
+// (some of them subkeys) signed by that master.
+//
+// The same class (subcredential/subkey) is used because there are master
+// credentials and subcredentials, so we're using inheritance for "subcredential"
+// and "subkey" to encapsulate the credentials, so we don't have to repeat code
+// across both.
+// We're using a "has-a" model here, since the OTCredential "has a" master
+// subkey, and also "has a" list of subcredentials, some of which are subkeys.
+//
+// Each subcredential must be signed by the subkey that is the master key.
+// Each subkey has 3 key pairs: encryption, signing, and authentication.
+//
+// Each key pair has 2 OTAsymmetricKeys (public and private.)
+//
+// I'm thinking that the Nym should also have a key pair (for whatever is
+// its current key pair, copied from its credentials.)
+//
+// the master should never be able to do any actions except for sign subkeys.
+// the subkeys, meanwhile should only be able to do actions, and not issue
+// any new keys.
+
+
+class OTPassword;
+class OTString;
+class OTIdentifier;
+class OTASCIIArmor;
+class OTPasswordData;
+class OTSignatureMetadata;
+class OTCredential;
+class OTPseudonym;
+
+
+class OTMasterkey : public OTKeyCredential
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
+private:  // Private prevents erroneous use by other classes.
+    typedef OTKeyCredential ot_super;
+    friend class OTCredential;
 public:
-
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
-
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+    // ------------------------------
+    virtual bool VerifyInternally();    // Verify that m_strNymID is the same as the hash of m_strSourceForNymID. Also verify that *this == m_pOwner->m_MasterKey (the master credential.) Then verify the (self-signed) signature on *this.
+    // ------------------------------
+    bool VerifyAgainstSource() const; // Should actually curl the URL, or lookup the blockchain value, or verify Cert against Cert Authority, etc. Due to the network slowdown of this step, we will eventually make a separate identity verification server.
+    // -------------------------------
+    bool VerifySource_HTTP      (const OTString strSource) const;
+    bool VerifySource_HTTPS     (const OTString strSource) const;  // It's deliberate that strSource isn't passed by reference here.
+    bool VerifySource_Bitcoin   (const OTString strSource) const;
+    bool VerifySource_Namecoin  (const OTString strSource) const;
+    bool VerifySource_Freenet   (const OTString strSource) const;
+    bool VerifySource_TOR       (const OTString strSource) const;
+    bool VerifySource_I2P       (const OTString strSource) const;
+    bool VerifySource_CA        (const OTString strSource) const;
+    bool VerifySource_Pubkey    (const OTString strSource) const;
+    // ------------------------------
+    OTMasterkey();
+    OTMasterkey(OTCredential & theOwner);
+    // ------------------------------
+    virtual ~OTMasterkey();
+    // ------------------------------
+    virtual void UpdateContents();
+    virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
+    // ------------------------------
 };
 
-
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
+typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 
 
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_MASTERKEY_HPP__

@@ -1,6 +1,6 @@
-/************************************************************
+/*************************************************************
  *
- *  OTScript.hpp
+ *  OTMessageOutBuffer.hpp
  *
  */
 
@@ -131,107 +131,68 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_MESSAGE_OUT_BUFFER_HPP__
+#define __OT_MESSAGE_OUT_BUFFER_HPP__
+
+#include <list>
+#include <map>
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
+#include "OTString.hpp"
+#include "OTMessageBuffer.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+class OTPseudonym;
+class OTMessage;
+class OTTransaction;
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
+typedef std::list<OTMessage *>       listOfMessages; // Incoming server replies to your messages.
+typedef std::multimap <int64_t, OTMessage *> mapOfMessages;  // Your outgoing messages, mapped by request number.
 
 
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+// OUTOING MESSAGES (from me--client--sent to server.)
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
+// The purpose of this class is to cache client requests (being sent to the server)
+// so that they can later be queried (using the request number) by the developer
+// using the OTAPI, so that if transaction numbers need to be clawed back from failed
+// messages, etc, they are available.
 //
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
+// The OT client side also can use this as a mechanism to help separate old-and-dealt-with
+// messages, by explicitly removing messages from this queue once they are dealt with.
+// This way the developer can automatically assume that any reply is old if it carries
+// a request number that cannot be found in this queue.
 //
-class OTScript
+// This class is pretty generic and so may be used in other ways, where "map"
+// functionality is required.
+//
+class OTMessageOutbuffer
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
+	mapOfMessages m_mapMessages;
+    // --------------------------------
+    // Just to keep you out of trouble.
+    OTMessageOutbuffer  (const OTMessageOutbuffer & rhs) {}
+    OTMessageOutbuffer & operator=(const OTMessageOutbuffer & rhs) { return *this; }
 
-	// List
-	// Construction -- Destruction
+	OTString m_strDataFolder;
+
 public:
+EXPORT	OTMessageOutbuffer();
+EXPORT	~OTMessageOutbuffer();
+    // Note: AddSentMessage, if it finds a message already on the map with the same request number,
+    // deletes the old one before adding the new one. In the future may contemplate using multimap
+    // here instead (if completeness becomes desired over uniqueness.)
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
+EXPORT    void        Clear(const OTString * pstrServerID=NULL, const OTString * pstrNymID=NULL, OTPseudonym * pNym=NULL,
+                      const bool     * pbHarvestingForRetry=NULL);
+EXPORT	void        AddSentMessage      (OTMessage & theMessage);   // Allocate theMsg on the heap (takes ownership.) Mapped by request num.
 
-	virtual ~OTScript();
+EXPORT    OTMessage * GetSentMessage      (const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID); // null == not found. caller NOT responsible to delete.
+EXPORT	bool        RemoveSentMessage   (const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID); // true == it was removed. false == it wasn't found.
 
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+EXPORT	OTMessage * GetSentMessage      (const OTTransaction & theTransaction); // null == not found. caller NOT responsible to delete.
+EXPORT	bool        RemoveSentMessage   (const OTTransaction & theTransaction); // true == it was removed. false == it wasn't found.
 };
 
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
-
-
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_MESSAGE_OUT_BUFFER_HPP__

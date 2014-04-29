@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTScript.hpp
+ *  OTTokenLucre.hpp
  *
  */
 
@@ -131,107 +131,91 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_TOKEN_LUCRE_HPP__
+#define __OT_TOKEN_LUCRE_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
+#include "OTInstrument.hpp"
+#include "OTASCIIArmor.hpp"
+#include "OTToken.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+class OTString;
+class OTIdentifier;
+class OTMint;
+class OTPurse;
+class OTPseudonym;
+class OTNym_or_SymmetricKey;
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
+typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 
 
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+/*
+
+ Here's a rough sketch of the protocol:
+
+ Client requests Mint for withdrawal of 100 ithica work hours.
+
+1) Client blinds and sends N tokens to the server, each worth 100 hours. Client retains the keys.
+2) Server responds with a single index, the one the server has chosen for signing.
+3) Client replies with 99 keys.
+4) Server unblinds 99 tokens (or some randomly-chosen % of those) and verifies them.
+   He signs the last one and returns it.
+5) Client receives signed token, unblinds it, stores it for later.
+6) When token is redeemed, it has already been unblinded. So Server simply verifies it.
+
+ LAST NAGGING QUESTION:  Should the server sign the other 99 tokens before unblinding them and verifying?
+						In fact, what is it verifying at all?? Certainly not the amount, which is not even in
+						the Lucre token. If all it does is verify its signature, then why sign it just to
+						verify it?  Why exactly am I sending 99 tokens? What is the server unblinding them
+						to look for??  Just to make sure all the IDs are random?  That they aren't spent
+						already?
+						I think that's it.  The client has assurance he chose his own random IDs, the server
+						verifies they are random and not spent already, and the ID portion is the only part
+						that has to be randomized.
+
+ UPDATE:
+ Ben Laurie has confirmed that the Chaumian 99 token requirement does not exist with Lucre. All I have to
+ do is send a single blinded token. The server signs it and sends it back, and the client unblinds it. Only the
+ ID itself is blinded -- the server can clearly see the amount and only the Mint key for that denomination will work.
+ */
+
+
+// SUBCLASSES OF OTTOKEN FOR EACH DIGITAL CASH ALGORITHM.
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+#if defined (OT_CASH_USING_MAGIC_MONEY)
+// Todo:  Someday...
+#endif // Magic Money
+
+
+#if defined (OT_CASH_USING_LUCRE)
+
+class OTToken_Lucre : public OTToken
 {
+private:  // Private prevents erroneous use by other classes.
+    typedef OTToken ot_super;
+    friend class OTToken; // for the factory.
+    // ------------------------------------------------------------------------------
 protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
+EXPORT	OTToken_Lucre();
+EXPORT	OTToken_Lucre(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
+EXPORT	OTToken_Lucre(const OTPurse & thePurse);
+// ------------------------------------------------------------------------
+EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
+                                          OTMint & theMint,
+                                          int64_t lDenomination,
+                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
+                                          );
+// ------------------------------------------------------------------------
 public:
-
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
-
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+EXPORT  virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, OTToken & theRequest);
+// ------------------------------------------------------------------------
+EXPORT	virtual ~OTToken_Lucre();
+    // ------------------------------------------------------------------------------
 };
 
-
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
+#endif // Lucre
 
 
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_TOKEN_LUCRE_HPP__

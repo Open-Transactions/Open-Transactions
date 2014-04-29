@@ -1,6 +1,6 @@
-/************************************************************
+/*************************************************************
  *
- *  OTScript.hpp
+ *  OTVariable.hpp
  *
  */
 
@@ -131,107 +131,124 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_VARIABLE_HPP__
+#define __OT_VARIABLE_HPP__
+
+#include <map>
+#include <string>
+
+#include "irrxml/irrXML.hpp"
 
 #include "OTCommon.hpp"
 
+#include "OTString.hpp"
+#include "OTAgent.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTParty.hpp"
 #include "OTBylaw.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
+class OTIdentifier;
+class OTNumList;
+class OTPseudonym;
+class OTAccount;
+class OTParty;
+class OTPartyAccount;
+class OTScriptable;
+class OTSmartContract;
+class OTScript;
+class OTAccount;
+class OTScriptable;
+class OTScript;
+class OTBylaw;
 
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
-//
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+class OTVariable
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
 public:
+	enum OTVariable_Type
+	{
+		Var_String,		// std::string
+		Var_Integer,	// Integer. (For int64_t int32_t: use strings.)
+		Var_Bool,		// Boolean. (True / False)
+		Var_Error_Type	// should never happen.
+	};
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
+	enum OTVariable_Access
+	{
+		Var_Constant,		// Constant   -- you cannot change this value.
+		Var_Persistent,		// Persistent -- changing value doesn't require notice to parties.
+		Var_Important,		// Important  -- changing value requires notice to parties.
+		Var_Error_Access	// should never happen.
+	};
+    // ------------------------------------------------------
+private:
+	OTString	m_strName;		// Name of this variable.
+	// ------------------------------------------------------
+	std::string m_str_Value;	// If a string, the value is stored here.
+	int32_t			m_nValue;		// If an integer, the value is stored here.
+	bool		m_bValue;		// If a bool, the value is stored here.
+	// ------------------------------------------------------
+	std::string m_str_ValueBackup;	// If a string, the value backup is stored here. (So we can see if it has changed since execution)
+	int32_t			m_nValueBackup;	// If an integer, the value backup is stored here.  (So we can see if it has changed since execution)
+	bool		m_bValueBackup;	// If a bool, the value backup is stored here. (So we can check for dirtiness later...)
+	// ------------------------------------------------------
+	OTBylaw	*	m_pBylaw;		// the Bylaw that this variable belongs to.
 
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+	OTVariable_Type		m_Type;  // Currently bool, int32_t, or string.
+	OTVariable_Access	m_Access;  // Determines how the variable is used inside the script.
+    // ------------------------------------------------------
+    OTScript *  m_pScript; // If the variable is set onto a script, this pointer gets set. When the variable destructs, it will remove itself from the script.
+public:
+    // ------------------------------------------------------
+EXPORT	void RegisterForExecution(OTScript& theScript); // We keep an internal script pointer here, so if we destruct, we can remove ourselves from the script.
+EXPORT  void UnregisterScript(); // If the script destructs before the variable does, it unregisters itself here, so the variable isn't stuck with a bad pointer.
+	// -------------------------------------
+	bool IsDirty() const;	// So you can tell if the variable has CHANGED since it was last set clean.
+	void SetAsClean();		// Sets the variable as clean, so you can check it later and see if it's been changed (if it's DIRTY again.)
+    // -------------------------------------
+	bool IsConstant()   const { return (Var_Constant    == m_Access); }
+	bool IsPersistent() const { return ((Var_Persistent == m_Access) || (Var_Important == m_Access)); } // important vars are persistent, too.
+	bool IsImportant()  const { return (Var_Important   == m_Access); }
+	// -------------------------------------
+	void SetBylaw(OTBylaw& theBylaw) { m_pBylaw = &theBylaw; }
+	// -------------------------------------
+	bool SetValue(const int32_t & nValue);
+	bool SetValue(const bool bValue);
+	bool SetValue(const std::string & str_Value);
+	// -------------------------------------
+EXPORT	const OTString & GetName() const { return m_strName; } // variable's name as used in a script.
+	// -------------------------------------
+	OTVariable_Type		GetType  () const { return m_Type;   }
+	OTVariable_Access	GetAccess() const { return m_Access; }
+    // -------------------------------------
+	bool	IsInteger() const   { return (Var_Integer	== m_Type); }
+	bool	IsBool   () const   { return (Var_Bool		== m_Type); }
+	bool	IsString () const   { return (Var_String	== m_Type); }
+    // -------------------------------------
+	int32_t         CopyValueInteger() const { return m_nValue;    }
+	bool        CopyValueBool   () const { return m_bValue;    }
+	std::string CopyValueString () const { return m_str_Value; }
+    // -------------------------------------
+	int32_t			& GetValueInteger() { return m_nValue;    }
+	bool		& GetValueBool   () { return m_bValue;    }
+	std::string	& GetValueString () { return m_str_Value; }
+	// -------------------
+	bool Compare(OTVariable & rhs);
+	// -------------------------------------
+EXPORT	OTVariable();
+EXPORT	OTVariable(const std::string str_Name, const int32_t         nValue,    const OTVariable_Access theAccess=Var_Persistent);
+EXPORT	OTVariable(const std::string str_Name, const bool        bValue,    const OTVariable_Access theAccess=Var_Persistent);
+EXPORT	OTVariable(const std::string str_Name, const std::string str_Value,	const OTVariable_Access theAccess=Var_Persistent);
+    // -------------------------------------
+EXPORT	virtual ~OTVariable();
+    // -------------------------------------
+	void Serialize(OTString & strAppend,
+				   bool bCalculatingID=false);
 };
 
+typedef std::map<std::string, OTVariable *> mapOfVariables;
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
-
-
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_VARIABLE_HPP__

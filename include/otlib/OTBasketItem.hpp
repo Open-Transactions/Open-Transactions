@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTScript.hpp
+ *  OTBasketItem.hpp
  *
  */
 
@@ -131,107 +131,71 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_BASKET_ITEM_HPP__
+#define __OT_BASKET_ITEM_HPP__
+
+#include <deque>
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
+#include "OTContract.hpp"
+#include "OTBasket.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
-
-
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
-//
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+class BasketItem
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
 public:
+	OTIdentifier SUB_CONTRACT_ID;
+	OTIdentifier SUB_ACCOUNT_ID;
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
+	int64_t	lMinimumTransferAmount;
 
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
+    // lClosingTransactionNo:
+    // Used when EXCHANGING a basket (NOT USED when first creating one.)
+    // A basketReceipt must be dropped into each asset account during
+    // an exchange, to account for the change in balance. Until that
+    // receipt is accepted, lClosingTransactionNo will remain open as
+    // an issued transaction number (an open transaction) on that Nym.
+    // (One must be supplied for EACH asset account during an exchange.)
     //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
+	int64_t	lClosingTransactionNo;
 
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+	BasketItem();
+	~BasketItem() {}
 };
 
+typedef std::deque <BasketItem *> dequeOfBasketItems;
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
+#endif // __OT_BASKET_ITEM_HPP__
 
+/*
 
-#include "OTScriptChai.hpp"
+ I figured this one out, it's easy.
 
+ Someone creates a contract that contains 10 sub-contracts. It just delegates the issuence to the sub-issuers.
 
-#if __clang__
-#pragma clang diagnostic pop
-#endif
+ When he connects to the server he can upload the contract, but he has no control over it at that point,
+ since he is not one of the real issuers.
 
+ The contract will only work if the sub-issuers actually have issued currencies on that transaction server.
 
-#endif // __OT_SCRIPT_HPP__
+ Then, the transaction server itself becomes the "issuer" of the basket currency.  It simply creates an issuer
+ account, and stores a list of sub-accounts to store the delegated cuts of "real" currencies.
+
+ For example, if I issue a currency that is 1 part dollar, 1 part gold, and 1 part silver, then the server
+ creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and
+ trade it like any other asset.  It doesn't even have to be a special account that the trader uses. It's just
+ a normal account, but the asset type ID links to the special basket issuer account maintained by the server.
+
+ Meanwhile, behind the scenes, the server's "goldbucks" issuer account is not OTAccount, but derived from it.
+ suppose derived from OTAccount, that contains a list of 3 sub-accounts, 1 denominated in the dollar asset
+ specified in the contract, 1 denominiated in the gold asset, and so on.
+
+ The OTAssetBasket contract (with sub-issuers) and the OTBasketAccount (issuer account) objects handle all the
+ details of converting between the sub-accounts and the main account.
+
+ If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account
+ (controlled by the transaction server) must have at least -9 on its balance due to me. And its hidden 3 sub-accounts
+ have at least +3 dollars, +3 gold, and +3 silver stored along with the rest that make up their total balances from
+ all the users of that basket currency.
+
+ */

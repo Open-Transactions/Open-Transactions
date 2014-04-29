@@ -1,6 +1,6 @@
-/************************************************************
+/*************************************************************
  *
- *  OTScript.hpp
+ *  OTNymOrSymmetricKey.hpp
  *
  */
 
@@ -131,107 +131,77 @@
  **************************************************************/
 
 
-#ifndef __OT_SCRIPT_HPP__
-#define __OT_SCRIPT_HPP__
+#ifndef __OT_NYM_OR_SYMMETRIC_KEY_HPP__
+#define __OT_NYM_OR_SYMMETRIC_KEY_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
+#include "OTCrypto.hpp"
+#include "OTEnvelope.hpp"
 
-#if __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
-#pragma clang diagnostic ignored "-Wunused-parameter"
-#endif
-
-#ifdef _MSC_VER
-#pragma warning( push )
-#pragma warning( disable : 4702 )  // warning C4702: unreachable code
-#endif
+class OTPseudonym;
+class OTString;
+class OTASCIIArmor;
+class OTAsymmetricKey;
+class OTSymmetricKey;
+class OTPassword;
+class OTPasswordData;
 
 
-#ifdef _MSC_VER
-#pragma warning( pop )
-#endif
-
-
-// A script should be "Dumb", meaning that you just stick it with its
-// parties and other resources, and it EXPECTS them to be the correct
-// ones.  It uses them low-level style.
+// There are certain cases where we want the option to pass a Nym OR a
+// symmetric key, and the function should be able to handle either.
+// This class is used to make that possible.
 //
-// Any verification should be done at a higher level, in OTSmartContract.
-// There, multiple parties might be loaded, as well as multiple scripts
-// (clauses) and that is where the proper resources, accounts, etc are
-// instantiated and validated before any use.
-//
-// Thus by the time you get down to OTScript, all that validation is already
-// done.  The programmatic user will interact with OTSmartContract, likely,
-// and not with OTScript itself.
-//
-class OTScript
+class OTNym_or_SymmetricKey
 {
-protected:
-    std::string         m_str_script;   // the script itself.
-    std::string         m_str_display_filename; // for error handling, there is option to set this string for display.
-    mapOfParties        m_mapParties; // no need to clean this up. Script doesn't own the parties, just references them.
-    mapOfPartyAccounts  m_mapAccounts; // no need to clean this up. Script doesn't own the accounts, just references them.
-    mapOfVariables      m_mapVariables; // no need to clean this up. Script doesn't own the variables, just references them.
-
-	// List
-	// Construction -- Destruction
+private:
+    OTPseudonym     * m_pNym;
+    // ---------------------------------
+    OTSymmetricKey  * m_pKey;
+    OTPassword      * m_pPassword; // optional. Goes with m_pKey.
+    // ---------------------------------
+    bool              m_bCleanupPassword; // m_pPassword is usually not owned. But if we create it and keep it around to avoid (for example forcing the user to enter the PW 30 times in a row when exporting his purse...) then we want to set this to true (where it normally defaults to false) in order to make sure we cleanup on destruction.
+    // ---------------------------------
+    const OTString  * m_pstrDisplay;
+    // ---------------------------------
+    OTNym_or_SymmetricKey();
+    // ---------------------------------
 public:
+    // ---------------------------------
+	EXPORT	OTPseudonym    * GetNym()      const { return m_pNym;      }
+	EXPORT	OTSymmetricKey * GetKey()      const { return m_pKey;      }
+	EXPORT	OTPassword     * GetPassword() const { return m_pPassword; } // for symmetric key (optional)
+	// ---------------------------------
+	EXPORT	bool  IsNym()       const { return (NULL != m_pNym);      }
+	EXPORT	bool  IsKey()       const { return (NULL != m_pKey);      }
+	EXPORT	bool  HasPassword() const { return (NULL != m_pPassword); } // for symmetric key (optional)
+	// ------------------------------------------------------------------------
+	EXPORT	void GetIdentifier(OTIdentifier & theIdentifier) const;
+	EXPORT	void GetIdentifier(OTString     & strIdentifier) const;
+	// ---------------------------------
+	EXPORT	bool CompareID(const OTNym_or_SymmetricKey & rhs) const;
+	// ------------------------------------------------------------------------
+	// Seal / Open is for public / private key crypto. (With OTPseudonym and OTAsymmetricKey.)
+	// Whereas Encrypt/Decrypt is for symmetric key crypto (With OTSymmetricKey.)
+	//
+	EXPORT	bool Seal_or_Encrypt(      OTEnvelope & outputEnvelope, const OTString   strInput,  const OTString * pstrDisplay=NULL);
+	EXPORT	bool Open_or_Decrypt(const OTEnvelope & inputEnvelope,        OTString & strOutput, const OTString * pstrDisplay=NULL);
+	// ---------------------------------
+	EXPORT	~OTNym_or_SymmetricKey();
+	// ---------------------------------
+	EXPORT	OTNym_or_SymmetricKey(const OTNym_or_SymmetricKey & rhs);
+	// ---------------------------------
+	EXPORT	OTNym_or_SymmetricKey(const OTPseudonym     & theNym, const OTString  * pstrDisplay=NULL);
+	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTString  * pstrDisplay=NULL);
+	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTPassword & thePassword, const OTString * pstrDisplay=NULL);
+	// ---------------------------------
+	EXPORT	void swap(OTNym_or_SymmetricKey & other);
 
-	OTScript();
-	OTScript(const OTString & strValue);
-	OTScript(const char * new_string);
-	OTScript(const char * new_string, size_t sizeLength);
-	OTScript(const std::string & new_string);
-
-	virtual ~OTScript();
-
-EXPORT	void SetScript(const OTString & strValue);
-EXPORT	void SetScript(const char * new_string);
-EXPORT	void SetScript(const char * new_string, size_t sizeLength);
-EXPORT	void SetScript(const std::string & new_string);
-
-    void SetDisplayFilename(const std::string str_display_filename)
-    { m_str_display_filename = str_display_filename;}
-	// ---------------------------------------------------
-
-    // The same OTSmartContract that loads all the clauses (scripts) will
-    // also load all the parties, so it will call this function whenever before it
-    // needs to actually run a script.
-    //
-    // NOTE: OTScript does NOT take ownership of the party, since there could be
-    // multiple scripts (with all scripts and parties being owned by a OTSmartContract.)
-    // Therefore it's ASSUMED that the owner OTSmartContract will handle all the work of
-    // cleaning up the mess!  theParty is passed as reference to insure it already exists.
-    //
-        void         AddParty       (const std::string str_party_name, OTParty & theParty);
-        void         AddAccount     (const std::string str_acct_name,  OTPartyAccount & theAcct);
-EXPORT  void         AddVariable    (const std::string str_var_name,   OTVariable & theVar);
-EXPORT  OTVariable * FindVariable   (const std::string str_var_name);
-EXPORT  void         RemoveVariable (OTVariable & theVar);
-
-    // Note: any relevant assets or asset accounts are listed by their owner / contributor
-    // parties. Therefore there's no need to separately input any accounts or assets to
-    // a script, since the necessary ones are already present inside their respective parties.
-
-    virtual bool ExecuteScript(OTVariable * pReturnVar = NULL);
+	EXPORT	OTNym_or_SymmetricKey & operator = (OTNym_or_SymmetricKey other); // passed by value.
+	// ---------------------------------
+	EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
+	EXPORT	void Release_Nym_or_SymmetricKey(); // NOT called in the destructor, since this normally doesn't own its contents.
 };
 
 
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type = "");
-EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
-                                          const std::string & script_contents);
-
-
-#include "OTScriptChai.hpp"
-
-
-#if __clang__
-#pragma clang diagnostic pop
-#endif
-
-
-#endif // __OT_SCRIPT_HPP__
+#endif // __OT_NYM_OR_SYMMETRIC_KEY_HPP__

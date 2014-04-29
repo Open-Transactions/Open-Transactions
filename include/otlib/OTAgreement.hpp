@@ -196,7 +196,7 @@ public:
 //                       const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0);
 
 EXPORT    bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
-                              const time64_t VALID_FROM=0,  const time64_t VALID_TO=0);
+                                const time64_t VALID_FROM = OT_TIME_ZERO, const time64_t VALID_TO = OT_TIME_ZERO);
 
 EXPORT    bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM=NULL,
                           const OTIdentifier * p_id_MERCHANT_NYM=NULL);  // Merchant Nym is passed here so we can verify the signature before confirming.

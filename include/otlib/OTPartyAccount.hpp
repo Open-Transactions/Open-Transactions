@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTBylaw.hpp
+ *  OTPartyAccount.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OT_BYLAW_HPP__
-#define __OT_BYLAW_HPP__
+#ifndef __OT_PARTY_ACCOUNT_HPP__
+#define __OT_PARTY_ACCOUNT_HPP__
 
 #include <map>
 #include <string>
@@ -143,12 +143,7 @@
 
 #include "OTString.hpp"
 #include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTParty.hpp"
-#include "OTVariable.hpp"
-#include "OTClause.hpp"
-#include "OTStashItem.hpp"
-#include "OTStash.hpp"
+#include "OTBylaw.hpp"
 
 class OTIdentifier;
 class OTNumList;
@@ -160,96 +155,110 @@ class OTScriptable;
 class OTSmartContract;
 class OTScript;
 class OTAccount;
-class OTScriptable;
-class OTScript;
-class OTBylaw;
 
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
 typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
-// First is the name of some standard OT hook, like OnActivate, and Second is name of clause.
-// It's a multimap because you might have 6 or 7 clauses that all trigger on the same hook.
-//
-typedef std::multimap	<std::string, std::string> mapOfHooks;
-typedef std::map		<std::string, std::string> mapOfCallbacks;
 
-
-// A section of law, including its own clauses (scripts). A bylaw is kind of
-// like an OT script "program", so it makes sense to be able to collect them,
-// and to have them as discrete "packages".
+// Each party has a list of accounts. Just as the agent, depending on context, MAY
+// have an unowned-but-useful pointer to its active Nym, similarly a partyaccount
+// MAY have an unowned-but-useful point to its actual Account.
 //
-class OTBylaw
+// (Normally, an OTPartyAccount is loaded with the party, as part of an OTScriptable-
+// derived object, and it doesn't actually load a copy of the actual Nyms and Accounts
+// at that time, it just stores their IDs. But times may also come when the actual pointer
+// is passed in for use by the Parties, who are not otherwise expected to do anything
+// with it, or to clean it up or rely on it for their normal data storage.)
+//
+// Represents an account (to a party.) This is because ACTUALLY loading the REAL account is a pain in the ass,
+// and we just want to store its ID, etc.  This way, the party can OWN this information about this list of
+// accounts, and store it, load it, destroy it, etc, often without involving the actual account file at all.
+//
+// (Even if a this isn't currently doing anything with any of the party's accounts, the contract still
+// has to have a LIST of them, so it knows what to do in those cases when it DOES need to do something.)
+//
+// For example, this is where we store the CLOSING TRANSACTION # for that account (for this agreement.)
+// That number can't be found in the account itself, but all smart contracts involving asset accounts must
+// provide a closing number for each asset account.
+//
+class OTPartyAccount
 {
-	OTString		m_strName;		// Name of this Bylaw.
-	OTString		m_strLanguage;	// Language that the scripts are written in, for this bylaw.
-
-	mapOfVariables	m_mapVariables; // constant, persistant, and important variables (strings and longs)
-	mapOfClauses	m_mapClauses;	// map of scripts associated with this bylaw.
-
-	mapOfHooks		m_mapHooks;		// multimap of server hooks associated with clauses. string / string
-	mapOfCallbacks	m_mapCallbacks;	// map of standard callbacks associated with script clauses. string / string
-
-	OTScriptable *	m_pOwnerAgreement; // This Bylaw is owned by an agreement (OTScriptable-derived.)
-public:
-	EXPORT	const OTString & GetName()     const { return m_strName; }
-	EXPORT  const char     * GetLanguage() const;
-	// ---------------------
-	EXPORT  bool AddVariable(OTVariable& theVariable);
-	EXPORT	bool AddVariable(const std::string str_Name, const std::string str_Value,
-                             const OTVariable::OTVariable_Access theAccess=OTVariable::Var_Persistent);
-	EXPORT	bool AddVariable(const std::string str_Name, const int32_t nValue,
-                             const OTVariable::OTVariable_Access theAccess=OTVariable::Var_Persistent);
-	EXPORT	bool AddVariable(const std::string str_Name, const bool bValue,
-                             const OTVariable::OTVariable_Access theAccess=OTVariable::Var_Persistent);
-	// ---------------------
-	EXPORT  bool AddClause(OTClause& theClause);
-	EXPORT	bool AddClause(const char * szName, const char * szCode);
-	// ---------------------
-	EXPORT	bool AddHook(const std::string str_HookName,
-		const std::string str_ClauseName); // name of hook such as cron_process or hook_activate, and name of clause, such as sectionA (corresponding to an actual script in the clauses map.)
-	// ---------------------
-	EXPORT	bool AddCallback(const std::string str_CallbackName,
-		const std::string str_ClauseName); // name of callback such as callback_party_may_execute_clause, and name of clause, such as custom_party_may_execute_clause (corresponding to an actual script in the clauses map.)
-	// ---------------------
-	EXPORT	OTVariable        * GetVariable(const std::string str_Name); // not a reference, so you can pass in char *. Maybe that's bad? todo: research that.
-	EXPORT	OTClause          * GetClause  (const std::string str_Name);
-	EXPORT	OTClause          * GetCallback(const std::string str_CallbackName);
-	// ---------------------
-	EXPORT	bool GetHooks(const std::string str_HookName, mapOfClauses & theResults); // Look up all clauses matching a specific hook.
-	// ---------------------
-	EXPORT int32_t GetVariableCount() const { return static_cast<int32_t> (m_mapVariables.size()); }
-	EXPORT int32_t GetClauseCount  () const { return static_cast<int32_t> (m_mapClauses.size());   }
-	EXPORT int32_t GetCallbackCount() const { return static_cast<int32_t> (m_mapCallbacks.size()); }
-	EXPORT int32_t GetHookCount    () const { return static_cast<int32_t> (m_mapHooks.size());     }
-	// ---------------------
-	EXPORT  OTVariable        * GetVariableByIndex    (int32_t nIndex);
-	EXPORT  OTClause          * GetClauseByIndex      (int32_t nIndex);
-	EXPORT  OTClause          * GetCallbackByIndex    (int32_t nIndex);
-	EXPORT  OTClause          * GetHookByIndex        (int32_t nIndex);
-	// ---------------------
-	EXPORT  const std::string GetCallbackNameByIndex(int32_t nIndex);
-	EXPORT  const std::string GetHookNameByIndex    (int32_t nIndex);
-	// ---------------------
-	EXPORT	void RegisterVariablesForExecution(OTScript& theScript);
-	// ---------------------
-	EXPORT	bool IsDirty() const;	// So you can tell if any of the persistent or important variables have CHANGED since it was last set clean.
-	EXPORT	bool IsDirtyImportant() const;	// So you can tell if ONLY the IMPORTANT variables have CHANGED since it was last set clean.
-	EXPORT	void SetAsClean();		// Sets the variables as clean, so you can check later and see if any have been changed (if it's DIRTY again.)
-	// ---------------------
-	// This pointer isn't owned -- just stored for convenience.
+	OTParty *	m_pForParty; // When being added to a party, this pointer will be set.
+	// -------------------------
+	// NOTE: each party needs to have a list of partyaccounts, AND each account on that list needs to have a CLOSING #!!! Ahh...
+	OTAccount * m_pAccount;
+	int64_t		m_lClosingTransNo; // Any account that is party to an agreement, must have a closing transaction # for finalReceipt.
+	// -------------------------
+	// account name (inside the script language, "gold_acct_A" could be used to reference this acct.)
 	//
-	EXPORT	OTScriptable * GetOwnerAgreement() { return m_pOwnerAgreement; }
-	EXPORT	void SetOwnerAgreement(OTScriptable& theOwner) { m_pOwnerAgreement = &theOwner; }
-	// ---------------------
-	EXPORT  OTBylaw();
-	EXPORT	OTBylaw(const char * szName, const char * szLanguage);
-	virtual ~OTBylaw();
+	OTString	m_strName;			// Name of the account (for use in scripts.)
+	OTString	m_strAcctID;		// The Account ID itself.
+	OTString	m_strAssetTypeID;	// The asset type ID for the account. Stored because parties agree on this even before the account ID is selected. Compare() uses this even when the account ID is blank, and when acct ID *is* added, its asset type must match this.
+	OTString	m_strAgentName;		// The name of the agent who has rights to this account.
+	// -------------------------
+	// Entity, role, and Nym information are not stored here.
+	// Entity is already known on the party who owns this account (and I should have a ptr to him.)
+	// Role is already known on the agent who is presumably on the party's list of agents.
+	// Nym is known on the party (for owner) and on the agent.
 
-	EXPORT	bool Compare(OTBylaw & rhs);
+	// "GetOwnerID()" for a partyaccount (if it were to store NymID, EntityID, and a bool to choose
+	// between them) should be logically the same as m_pOwnerParty->GetPartyID().
+	//
+public:
+EXPORT	void RegisterForExecution(OTScript& theScript);
 
-	EXPORT	void Serialize(OTString & strAppend, bool bCalculatingID=false);
+	OTParty * GetParty() { return m_pForParty; }
+	void SetParty(OTParty & theOwnerParty); // This happens when the partyaccount is added to the party. (so I have a ptr back)
+
+EXPORT	const OTString & GetName()			const	{ return m_strName; }			// account's name as used in a script.
+        const OTString & GetAgentName()		const	{ return m_strAgentName; }		// agent's name as used in a script.
+        const OTString & GetAcctID()		const	{ return m_strAcctID; }			// account's ID as used internal to OT.
+        const OTString & GetAssetTypeID()	const	{ return m_strAssetTypeID; }	// asset type ID for the account.
+
+	void SetAgentName(const OTString & strAgentName)	{ m_strAgentName	= strAgentName; }
+	void SetAcctID(const OTString & strAccountID)		{ m_strAcctID		= strAccountID; }
+    // ----------------------------
+EXPORT	OTAgent   * GetAuthorizedAgent();
+	// ----------------------------
+	OTAccount * LoadAccount(OTPseudonym & theSignerNym, const OTString & strServerID);
+	// ----------------------------
+	bool IsAccount(OTAccount & theAccount);
+	bool IsAccountByID(const OTIdentifier & theAcctID) const;
+	// ----------------------------
+	bool VerifyOwnership() const; // I have a ptr to my owner (party), as well as to the actual account. I will ask him to verify whether he actually owns it.
+	bool VerifyAgency(); // I can get a ptr to my agent, and I have one to the actual account. I will ask him to verify whether he actually has agency over it.
+	// -------------------
+	int64_t GetClosingTransNo() const { return m_lClosingTransNo; }
+	void SetClosingTransNo(const int64_t lTransNo) { m_lClosingTransNo = lTransNo; }
+	// -----------
+	bool Compare(const OTPartyAccount & rhs) const;
+	// -----------
+	bool DropFinalReceiptToInbox(mapOfNyms * pNymMap,
+								 const OTString & strServerID,
+								 OTPseudonym & theServerNym,
+								 OTSmartContract & theSmartContract,
+								 const int64_t & lNewTransactionNumber,
+								 const OTString & strOrigCronItem,
+								 OTString * pstrNote=NULL,
+								 OTString * pstrAttachment=NULL);
+	// ------------------------------------------------------------
+	OTPartyAccount();
+	OTPartyAccount(const std::string str_account_name, const OTString & strAgentName, OTAccount & theAccount, int64_t lClosingTransNo);
+	OTPartyAccount(const OTString & strName, const OTString & strAgentName, const OTString & strAcctID, const OTString & strAssetTypeID, int64_t lClosingTransNo);
+
+	virtual ~OTPartyAccount();
+
+	void Serialize(OTString & strAppend,
+				   bool bCalculatingID=false,
+				   bool bSpecifyAssetID=false);
+
+	// For pointers I don't own, but store for convenience.
+	// This clears them once we're done processing, so I don't
+	// end up stuck with bad pointers on the next go-around.
+	//
+	void ClearTemporaryPointers() { m_pAccount = NULL; }
 };
 
-typedef std::map<std::string, OTBylaw *> mapOfBylaws;
+typedef std::map<std::string, OTPartyAccount *> mapOfPartyAccounts;
 
-#endif // __OT_BYLAW_HPP__
+#endif // __OT_PARTY_ACCOUNT_HPP__

@@ -1181,12 +1181,12 @@ bool OTRecordList::Populate()
                 // ----------------------------------
                 // For the "date" on this record we're using the "valid from" date on the instrument.
                 std::string str_date = "0";
-                time_t      tFrom    =  0 ;
-                time_t      tTo      =  0 ;
+                time64_t tFrom = OT_TIME_ZERO;
+                time64_t tTo = OT_TIME_ZERO;
 
                 if (theOutPayment.GetValidFrom(tFrom))
                 {
-                    const uint64_t lFrom = static_cast<uint64_t>(tFrom);
+                    const uint64_t lFrom = OTTimeGetSecondsFromTime(tFrom);
                     OTString strFrom;
                     strFrom.Format("%" PRIu64 "", lFrom);
                     str_date = strFrom.Get();
@@ -1328,7 +1328,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetBoxIndex(static_cast<int>(nCurrentMail));
                 // -------------------------------------------------
-                sp_Record->SetDateRange(static_cast<time_t>(pMsg->m_lTime), static_cast<time_t>(pMsg->m_lTime));
+                sp_Record->SetDateRange(OTTimeGetTimeFromSeconds(pMsg->m_lTime), OTTimeGetTimeFromSeconds(pMsg->m_lTime));
                 // -------------------------------------------------
                 m_contents.push_back(sp_Record);
             }
@@ -1415,7 +1415,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetOtherNymID(str_mail_recipientID);
                 // -------------------------------------------------
-                sp_Record->SetDateRange(static_cast<time_t>(pMsg->m_lTime), static_cast<time_t>(pMsg->m_lTime));
+                sp_Record->SetDateRange(OTTimeGetTimeFromSeconds(pMsg->m_lTime), OTTimeGetTimeFromSeconds(pMsg->m_lTime));
                 // -------------------------------------------------
                 m_contents.push_back(sp_Record);
             }
@@ -1487,15 +1487,15 @@ bool OTRecordList::Populate()
                     }
                 }
                 // ------------------------------
-                time_t  tValidFrom = 0, tValidTo = 0;
+                time64_t  tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
                 // ----------------------------------
                 std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-                time_t      tDateSigned = pBoxTrans->GetDateSigned();
+                time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-                if (tDateSigned > 0)
+                if (tDateSigned > OT_TIME_ZERO)
                 {
                     tValidFrom = tDateSigned;
-                    const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                    const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                     OTString strDateSigned;
                     strDateSigned.Format("%" PRIu64 "", lDateSigned);
                     str_date = strDateSigned.Get();
@@ -1553,9 +1553,9 @@ bool OTRecordList::Populate()
                         pPayment->GetValidFrom(tValidFrom);
                         pPayment->GetValidTo  (tValidTo);
 
-                        if (tValidFrom > 0)
+                        if (tValidFrom > OT_TIME_ZERO)
                         {
-                            const uint64_t lFrom = static_cast<long>(tValidFrom);
+                            const uint64_t lFrom = OTTimeGetSecondsFromTime(tValidFrom);
                             OTString strFrom;
                             strFrom.Format("%" PRIu64 "", lFrom);
                             str_date = strFrom.Get();
@@ -1786,15 +1786,15 @@ bool OTRecordList::Populate()
                     }
                 } // if not abbreviated.
                 // ------------------------------
-                time_t tValidFrom = 0, tValidTo = 0;
+                time64_t tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
                 // ------------------------------
                 std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-                time_t      tDateSigned = pBoxTrans->GetDateSigned();
+                time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-                if (tDateSigned > 0)
+                if (tDateSigned > OT_TIME_ZERO)
                 {
                     tValidFrom = tDateSigned;
-                    const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                    const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                     OTString strDateSigned;
                     strDateSigned.Format("%" PRIu64 "", lDateSigned);
                     str_date = strDateSigned.Get();
@@ -1849,9 +1849,9 @@ bool OTRecordList::Populate()
                         pPayment->GetValidFrom(tValidFrom);
                         pPayment->GetValidTo  (tValidTo);
 
-                        if (tValidFrom > 0)
+                        if (tValidFrom > OT_TIME_ZERO)
                         {
-                            const uint64_t lFrom = static_cast<uint64_t>(tValidFrom);
+                            const uint64_t lFrom = OTTimeGetSecondsFromTime(tValidFrom);
                             OTString strFrom;
                             strFrom.Format("%" PRIu64 "", lFrom);
                             str_date = strFrom.Get();
@@ -2125,15 +2125,15 @@ bool OTRecordList::Populate()
                     }
                 } // if not abbreviated.
                 // ------------------------------
-                time_t tValidFrom = 0, tValidTo = 0;
+                time64_t tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
                 // ------------------------------
                 std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-                time_t      tDateSigned = pBoxTrans->GetDateSigned();
+                time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-                if (tDateSigned > 0)
+                if (tDateSigned > OT_TIME_ZERO)
                 {
                     tValidFrom = tDateSigned;
-                    const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                    const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                     OTString strDateSigned;
                     strDateSigned.Format("%" PRIu64 "", lDateSigned);
                     str_date = strDateSigned.Get();
@@ -2188,9 +2188,9 @@ bool OTRecordList::Populate()
                         pPayment->GetValidFrom(tValidFrom);
                         pPayment->GetValidTo  (tValidTo);
 
-                        if (tValidFrom > 0)
+                        if (tValidFrom > OT_TIME_ZERO)
                         {
-                            const uint64_t lFrom = static_cast<uint64_t>(tValidFrom);
+                            const uint64_t lFrom = OTTimeGetSecondsFromTime(tValidFrom);
                             OTString strFrom;
                             strFrom.Format("%" PRIu64 "", lFrom);
                             str_date = strFrom.Get();
@@ -2584,15 +2584,15 @@ bool OTRecordList::Populate()
             // ------------------------------
             bCanceled = pBoxTrans->IsCancelled();
             // ------------------------------
-            time_t tValidFrom = 0, tValidTo = 0;
+            time64_t tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
             // ------------------------------
             std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-            time_t      tDateSigned = pBoxTrans->GetDateSigned();
+            time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-            if (tDateSigned > 0)
+            if (tDateSigned > OT_TIME_ZERO)
             {
                 tValidFrom = tDateSigned;
-                const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                 OTString strDateSigned;
                 strDateSigned.Format("%" PRIu64 "", lDateSigned);
                 str_date = strDateSigned.Get();
@@ -2750,15 +2750,15 @@ bool OTRecordList::Populate()
                 }
             }
             // ------------------------------
-            time_t tValidFrom = 0, tValidTo = 0;
+            time64_t tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
             // ------------------------------
             std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-            time_t      tDateSigned = pBoxTrans->GetDateSigned();
+            time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-            if (tDateSigned > 0)
+            if (tDateSigned > OT_TIME_ZERO)
             {
                 tValidFrom = tDateSigned;
-                const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                 OTString strDateSigned;
                 strDateSigned.Format("%" PRIu64 "", lDateSigned);
                 str_date = strDateSigned.Get();
@@ -3106,15 +3106,15 @@ bool OTRecordList::Populate()
             // ------------------------------
             bCanceled = pBoxTrans->IsCancelled();
             // ------------------------------
-            time_t tValidFrom = 0, tValidTo = 0;
+            time64_t tValidFrom = OT_TIME_ZERO, tValidTo = OT_TIME_ZERO;
             // ------------------------------
             std::string str_date    = "0"; // the "date signed" on the transaction receipt.
-            time_t      tDateSigned = pBoxTrans->GetDateSigned();
+            time64_t      tDateSigned = pBoxTrans->GetDateSigned();
 
-            if (tDateSigned > 0)
+            if (tDateSigned > OT_TIME_ZERO)
             {
                 tValidFrom = tDateSigned;
-                const uint64_t lDateSigned = static_cast<uint64_t>(tDateSigned);
+                const uint64_t lDateSigned = OTTimeGetSecondsFromTime(tDateSigned);
                 OTString strDateSigned;
                 strDateSigned.Format("%" PRIu64 "", lDateSigned);
                 str_date = strDateSigned.Get();
