@@ -1,6 +1,6 @@
 /************************************************************************************
  *    
- *  OTOffer.h
+ *  OTOffer.hpp
  *  
  */
 
@@ -134,8 +134,8 @@
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
 
 
-#ifndef __OTOFFER_HPP__
-#define __OTOFFER_HPP__
+#ifndef __OT_OFFER_HPP__
+#define __OT_OFFER_HPP__
 
 #include "OTCommon.hpp"
 
@@ -167,11 +167,11 @@ private:  // Private prevents erroneous use by other classes.
 	// From OTInstrument (parent class of this)
 	/*
 public:
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 	 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 	 
 	 
 	 inline const OTIdentifier & GetAssetID() const { return m_AssetTypeID; }
@@ -182,7 +182,7 @@ public:
 	 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
-    time_t          m_tDateAddedToMarket;
+    time64_t          m_tDateAddedToMarket;
 // ---------------------------------------------------------
 protected:
 	OTTrade		*	m_pTrade;		// If this offer is actually connected to a trade, it will have a pointer.
@@ -221,8 +221,8 @@ EXPORT bool MakeOffer(      bool   bBuyingOrSelling,    // True == SELLING, Fals
                       const int64_t & lTotalAssetsOffer,   // Total assets available for sale or purchase.
                       const int64_t & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
                       const int64_t & lTransactionNum,     // The transaction number authorizing this trade.
-                      const time_t & VALID_FROM	= 0,    // defaults to RIGHT NOW
-                      const time_t & VALID_TO	= 0);   // defaults to 24 hours (a "Day Order")
+                      const time64_t & VALID_FROM = OT_TIME_ZERO,    // defaults to RIGHT NOW
+                      const time64_t & VALID_TO = OT_TIME_ZERO);   // defaults to 24 hours (a "Day Order")
 	// ---------------------------------------------------------
 	inline void IncrementFinishedSoFar(const int64_t & lFinishedSoFar) { m_lFinishedSoFar += lFinishedSoFar; }
 	
@@ -253,8 +253,8 @@ EXPORT bool MakeOffer(      bool   bBuyingOrSelling,    // True == SELLING, Fals
     // ---------------------------------------------------------
     // Note: m_tDateAddedToMarket is not saved in the Offer Contract, but OTMarket sets/saves/loads it.
     //
-EXPORT    time_t GetDateAddedToMarket() const;       // Used in OTMarket::GetOfferList and GetNymOfferList.
-EXPORT    void   SetDateAddedToMarket(time_t tDate); // Used in OTCron when adding/loading offers.
+EXPORT    time64_t GetDateAddedToMarket() const;       // Used in OTMarket::GetOfferList and GetNymOfferList.
+EXPORT    void   SetDateAddedToMarket(time64_t tDate); // Used in OTCron when adding/loading offers.
 	// ----------------------------------------------------------
 EXPORT	OTOffer();		// The constructor contains the 3 variables needed to identify any market.
 EXPORT	OTOffer(const OTIdentifier & SERVER_ID,
@@ -278,29 +278,4 @@ EXPORT	virtual ~OTOffer();
 };
 
 
-
-
-
-
-
-
-
-
-
-#endif // __OTOFFER_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_OFFER_HPP__

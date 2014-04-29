@@ -513,7 +513,7 @@ int32_t OTCron::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	{
         const OTString    str_date_added = xml->getAttributeValue("dateAdded");
         const int64_t     lDateAdded     = (!str_date_added.Exists() ? 0 : str_date_added.ToLong());
-        const time_t      tDateAdded     = static_cast<time_t>(lDateAdded);
+        const time64_t      tDateAdded = OTTimeGetTimeFromSeconds(lDateAdded);
         // ------------------------------------
 		OTString strData;
 		
@@ -652,8 +652,8 @@ void OTCron::UpdateContents()
 		OTCronItem * pItem = (*it).second;
 		OT_ASSERT(NULL != pItem);
 		// -------------------------------------
-        time_t  tDateAdded = (*it).first;
-        int64_t lDateAdded = static_cast<int64_t>(tDateAdded);
+        time64_t  tDateAdded = (*it).first;
+        int64_t lDateAdded = OTTimeGetSecondsFromTime(tDateAdded);
 		// -------------------------------------
 		OTString strItem(*pItem);		// Extract the cron item contract into string form.
 		OTASCIIArmor ascItem(strItem);	// Base64-encode that for storage.
@@ -816,7 +816,7 @@ void OTCron::ProcessCronItems()
 bool OTCron::AddCronItem(OTCronItem  & theItem,
                          OTPseudonym * pActivator,
                          bool          bSaveReceipt,
-                         time_t        tDateAdded)
+                         time64_t        tDateAdded)
 {
 	OT_ASSERT(NULL != GetServerNym());
 	
@@ -851,7 +851,7 @@ bool OTCron::AddCronItem(OTCronItem  & theItem,
         // Insert to the MULTIMAP (by Date)
         //
         m_multimapCronItems.insert (m_multimapCronItems.upper_bound(tDateAdded),
-                                    std::pair<time_t, OTCronItem *>(tDateAdded, &theItem) );
+                                    std::pair<time64_t, OTCronItem *>(tDateAdded, &theItem) );
 		// --------------------------------------------------------
 		theItem.SetCronPointer(*this); // This way every CronItem has a pointer to momma.
 		// --------------------------------------------------------
@@ -1332,12 +1332,3 @@ bool OTCron::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-

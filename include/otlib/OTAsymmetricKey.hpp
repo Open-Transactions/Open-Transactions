@@ -234,7 +234,6 @@ public:
 };
 
 
-
 // ***************************************************************
 
 class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
@@ -417,7 +416,7 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
 typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 
-// *******************************************************************************************
+// ***************************************************************
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
@@ -478,54 +477,4 @@ protected:
 #endif
 // ***************************************************************
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif // __OT_ASYMMETRIC_KEY_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

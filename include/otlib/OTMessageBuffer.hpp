@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTMessageBuffer.h
+ *  OTMessageBuffer.hpp
  *
  */
 
@@ -131,15 +131,16 @@
  **************************************************************/
 
 
-#ifndef __OTMESSAGEBUFFER_HPP__
-#define __OTMESSAGEBUFFER_HPP__
+#ifndef __OT_MESSAGE_BUFFER_HPP__
+#define __OT_MESSAGE_BUFFER_HPP__
+
+#include <list>
+#include <map>
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
 
-#include <list>
-#include <map>
 
 class OTPseudonym;
 class OTMessage;
@@ -150,18 +151,14 @@ typedef std::list<OTMessage *>       listOfMessages; // Incoming server replies 
 typedef std::multimap <int64_t, OTMessage *> mapOfMessages;  // Your outgoing messages, mapped by request number.
 
 
-// ------------------------------------
-
-
 // INCOMING SERVER REPLIES.
-
+//
 // The purpose of this class is to cache server replies (internally to OT)
 // so that the developer using the OT API has access to them.
 //
 // This class is pretty generic and so may be used as an output buffer
 // as well. (If "stack" form is preferable.)
 //
-
 class OTMessageBuffer
 {
 	listOfMessages m_listMessages;
@@ -182,93 +179,7 @@ EXPORT	OTMessage * Pop     (const int64_t & lRequestNum,    // Pop:  Caller IS r
 };
 
 
-// ------------------------------------
+#include "OTMessageOutBuffer.hpp"
 
 
-
-// OUTOING MESSAGES (from me--client--sent to server.)
-
-
-// The purpose of this class is to cache client requests (being sent to the server)
-// so that they can later be queried (using the request number) by the developer
-// using the OTAPI, so that if transaction numbers need to be clawed back from failed
-// messages, etc, they are available.
-//
-// The OT client side also can use this as a mechanism to help separate old-and-dealt-with
-// messages, by explicitly removing messages from this queue once they are dealt with.
-// This way the developer can automatically assume that any reply is old if it carries
-// a request number that cannot be found in this queue.
-//
-// This class is pretty generic and so may be used in other ways, where "map"
-// functionality is required.
-//
-
-class OTMessageOutbuffer
-{
-	mapOfMessages m_mapMessages;
-    // --------------------------------
-    // Just to keep you out of trouble.
-    OTMessageOutbuffer  (const OTMessageOutbuffer & rhs) {}
-    OTMessageOutbuffer & operator=(const OTMessageOutbuffer & rhs) { return *this; }
-
-	OTString m_strDataFolder;
-
-public:
-EXPORT	OTMessageOutbuffer();
-EXPORT	~OTMessageOutbuffer();
-    // Note: AddSentMessage, if it finds a message already on the map with the same request number,
-    // deletes the old one before adding the new one. In the future may contemplate using multimap
-    // here instead (if completeness becomes desired over uniqueness.)
-
-EXPORT    void        Clear(const OTString * pstrServerID=NULL, const OTString * pstrNymID=NULL, OTPseudonym * pNym=NULL,
-                      const bool     * pbHarvestingForRetry=NULL);
-EXPORT	void        AddSentMessage      (OTMessage & theMessage);   // Allocate theMsg on the heap (takes ownership.) Mapped by request num.
-
-EXPORT    OTMessage * GetSentMessage      (const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID); // null == not found. caller NOT responsible to delete.
-EXPORT	bool        RemoveSentMessage   (const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID); // true == it was removed. false == it wasn't found.
-
-EXPORT	OTMessage * GetSentMessage      (const OTTransaction & theTransaction); // null == not found. caller NOT responsible to delete.
-EXPORT	bool        RemoveSentMessage   (const OTTransaction & theTransaction); // true == it was removed. false == it wasn't found.
-};
-
-
-
-// ------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // __OTMESSAGEBUFFER_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_MESSAGE_BUFFER_HPP__

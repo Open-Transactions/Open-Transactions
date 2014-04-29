@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTPseudonym.h
+ *  OTPseudonym.hpp
  *
  */
 
@@ -131,16 +131,16 @@
  **************************************************************/
 
 
-#ifndef __OTPSEUDONYM_HPP__
-#define __OTPSEUDONYM_HPP__
+#ifndef __OT_PSEUDONYM_HPP__
+#define __OT_PSEUDONYM_HPP__
+
+#include <set>
 
 #include "OTCommon.hpp"
 
 #include "OTASCIIArmor.hpp"
 #include "OTAsymmetricKey.hpp"
 #include "OTIdentifier.hpp"
-
-#include <set>
 
 class OTCredential;
 class OTItem;
@@ -153,8 +153,6 @@ class OTSubcredential;
 class OTTransaction;
 
 
-// --------------------------------------------
-
 typedef std::deque<OTMessage *>                     dequeOfMail;
 typedef std::map<std::string, int64_t>                 mapOfRequestNums;
 typedef std::map<std::string, int64_t>                 mapOfHighestNums;
@@ -163,7 +161,7 @@ typedef std::map<std::string, dequeOfTransNums *>	mapOfTransNums;
 typedef std::map<std::string, OTIdentifier>         mapOfIdentifiers;
 typedef std::set<OTIdentifier>                      setOfIdentifiers;
 typedef std::map<std::string, OTCredential *>       mapOfCredentials;
-// --------------------------------------------
+
 
 class OTPseudonym
 {
@@ -698,45 +696,5 @@ EXPORT  int32_t         GetOutpaymentsIndexByTransNum(const int64_t lTransNum); 
 EXPORT	void DisplayStatistics(OTString & strOutput);
 };
 
-#endif // __OTPSEUDONYM_HPP__
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_PSEUDONYM_HPP__

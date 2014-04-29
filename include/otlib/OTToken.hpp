@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *
- *  OTToken.h
+ *  OTToken.hpp
  *
  */
 
@@ -145,7 +145,8 @@ class OTMint;
 class OTPurse;
 class OTPseudonym;
 class OTNym_or_SymmetricKey;
-// ------------------------------------
+
+
 typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 
 
@@ -232,8 +233,8 @@ protected:
 	//
 	// EXPIRATION DATES are in the parent:
 	//
-	// time_t			m_VALID_FROM;	// (In the parent)
-	// time_t			m_VALID_TO;		// (In the parent)
+	// time64_t			m_VALID_FROM;	// (In the parent)
+	// time64_t			m_VALID_TO;		// (In the parent)
 	//
 	// Tokens (and Mints) also have a SERIES:
 	//
@@ -315,7 +316,7 @@ EXPORT static OTToken * InstantiateAndGenerateTokenRequest(const OTPurse & thePu
 	// Lucre Step 3: Mint signs token (in OTMint)
 	inline	int32_t	GetSeries() const { return m_nSeries; }
 	inline	void SetSeriesAndExpiration  // (Called by the mint when signing.)
-		(int32_t nSeries, time_t VALID_FROM, time_t VALID_TO)
+		(int32_t nSeries, time64_t VALID_FROM, time64_t VALID_TO)
 	{	m_nSeries = nSeries; 	m_VALID_FROM = VALID_FROM;	m_VALID_TO = VALID_TO; }
 
 	// Lucre step 4: client unblinds token -- now it's ready for use.
@@ -351,104 +352,10 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 	virtual	bool SaveContractWallet(std::ofstream & ofs);
 };
 
-// ------------------------------------
-
 typedef std::deque <OTToken *> dequeOfTokenPtrs;
 
-// ------------------------------------
 
-
-
-
-
-
-
-// *******************************************************************************************
-// SUBCLASSES OF OTTOKEN FOR EACH DIGITAL CASH ALGORITHM.
-
-
-// -------------------------------------------------------------------------------------------
-#if defined (OT_CASH_USING_MAGIC_MONEY)
-// Todo:  Someday...
-#endif // Magic Money
-// *******************************************************************************************
-#if defined (OT_CASH_USING_LUCRE)
-
-class OTToken_Lucre : public OTToken
-{
-private:  // Private prevents erroneous use by other classes.
-    typedef OTToken ot_super;
-    friend class OTToken; // for the factory.
-    // ------------------------------------------------------------------------------
-protected:
-EXPORT	OTToken_Lucre();
-EXPORT	OTToken_Lucre(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
-EXPORT	OTToken_Lucre(const OTPurse & thePurse);
-// ------------------------------------------------------------------------
-EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
-                                          OTMint & theMint,
-                                          int64_t lDenomination,
-                                          int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
-                                          );
-// ------------------------------------------------------------------------
-public:
-EXPORT  virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, OTToken & theRequest);
-// ------------------------------------------------------------------------
-EXPORT	virtual ~OTToken_Lucre();
-    // ------------------------------------------------------------------------------
-};
-
-#endif // Lucre
-// *******************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
+#include "OTTokenLucre.hpp"
 
 
 #endif // __OT_TOKEN_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

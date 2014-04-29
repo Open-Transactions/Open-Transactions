@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTBasket.h
+ *  OTBasket.hpp
  *
  */
 
@@ -131,40 +131,15 @@
  **************************************************************/
 
 
-#ifndef __OTBASKET_HPP__
-#define __OTBASKET_HPP__
+#ifndef __OT_BASKET_HPP__
+#define __OT_BASKET_HPP__
+
+#include <deque>
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
-#include <deque>
-
-class BasketItem
-{
-public:
-	OTIdentifier SUB_CONTRACT_ID;
-	OTIdentifier SUB_ACCOUNT_ID;
-
-	int64_t	lMinimumTransferAmount;
-
-    // lClosingTransactionNo:
-    // Used when EXCHANGING a basket (NOT USED when first creating one.)
-    // A basketReceipt must be dropped into each asset account during
-    // an exchange, to account for the change in balance. Until that
-    // receipt is accepted, lClosingTransactionNo will remain open as
-    // an issued transaction number (an open transaction) on that Nym.
-    // (One must be supplied for EACH asset account during an exchange.)
-    //
-	int64_t	lClosingTransactionNo;
-
-	BasketItem();
-	~BasketItem() {}
-};
-
-
-
-typedef std::deque <BasketItem *> dequeOfBasketItems;
+#include "OTBasketItem.hpp"
 
 class OTBasket : public OTContract
 {
@@ -248,11 +223,7 @@ EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & theServerID, const bool bSave=true);
 };
 
-
-
-
-
-#endif // __OTBASKET_HPP__
+#endif // __OT_BASKET_HPP__
 
 /*
 
@@ -286,4 +257,3 @@ EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & the
  all the users of that basket currency.
 
  */
-

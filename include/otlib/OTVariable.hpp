@@ -1,0 +1,254 @@
+/*************************************************************
+ *
+ *  OTVariable.hpp
+ *
+ */
+
+/************************************************************
+ -----BEGIN PGP SIGNED MESSAGE-----
+ Hash: SHA1
+
+ *                 OPEN TRANSACTIONS
+ *
+ *       Financial Cryptography and Digital Cash
+ *       Library, Protocol, API, Server, CLI, GUI
+ *
+ *       -- Anonymous Numbered Accounts.
+ *       -- Untraceable Digital Cash.
+ *       -- Triple-Signed Receipts.
+ *       -- Cheques, Vouchers, Transfers, Inboxes.
+ *       -- Basket Currencies, Markets, Payment Plans.
+ *       -- Signed, XML, Ricardian-style Contracts.
+ *       -- Scripted smart contracts.
+ *
+ *  Copyright (C) 2010-2013 by "Fellow Traveler" (A pseudonym)
+ *
+ *  EMAIL:
+ *  FellowTraveler@rayservers.net
+ *
+ *  BITCOIN:  1NtTPVVjDsUfDWybS4BwvHpG2pdS9RnYyQ
+ *
+ *  KEY FINGERPRINT (PGP Key in license file):
+ *  9DD5 90EB 9292 4B48 0484  7910 0308 00ED F951 BB8E
+ *
+ *  OFFICIAL PROJECT WIKI(s):
+ *  https://github.com/FellowTraveler/Moneychanger
+ *  https://github.com/FellowTraveler/Open-Transactions/wiki
+ *
+ *  WEBSITE:
+ *  http://www.OpenTransactions.org/
+ *
+ *  Components and licensing:
+ *   -- Moneychanger..A Java client GUI.....LICENSE:.....GPLv3
+ *   -- otlib.........A class library.......LICENSE:...LAGPLv3
+ *   -- otapi.........A client API..........LICENSE:...LAGPLv3
+ *   -- opentxs/ot....Command-line client...LICENSE:...LAGPLv3
+ *   -- otserver......Server Application....LICENSE:....AGPLv3
+ *  Github.com/FellowTraveler/Open-Transactions/wiki/Components
+ *
+ *  All of the above OT components were designed and written by
+ *  Fellow Traveler, with the exception of Moneychanger, which
+ *  was contracted out to Vicky C (bitcointrader4@gmail.com).
+ *  The open-source community has since actively contributed.
+ *
+ *  -----------------------------------------------------
+ *
+ *   LICENSE:
+ *   This program is free software: you can redistribute it
+ *   and/or modify it under the terms of the GNU Affero
+ *   General Public License as published by the Free Software
+ *   Foundation, either version 3 of the License, or (at your
+ *   option) any later version.
+ *
+ *   ADDITIONAL PERMISSION under the GNU Affero GPL version 3
+ *   section 7: (This paragraph applies only to the LAGPLv3
+ *   components listed above.) If you modify this Program, or
+ *   any covered work, by linking or combining it with other
+ *   code, such other code is not for that reason alone subject
+ *   to any of the requirements of the GNU Affero GPL version 3.
+ *   (==> This means if you are only using the OT API, then you
+ *   don't have to open-source your code--only your changes to
+ *   Open-Transactions itself must be open source. Similar to
+ *   LGPLv3, except it applies to software-as-a-service, not
+ *   just to distributing binaries.)
+ *
+ *   Extra WAIVER for OpenSSL, Lucre, and all other libraries
+ *   used by Open Transactions: This program is released under
+ *   the AGPL with the additional exemption that compiling,
+ *   linking, and/or using OpenSSL is allowed. The same is true
+ *   for any other open source libraries included in this
+ *   project: complete waiver from the AGPL is hereby granted to
+ *   compile, link, and/or use them with Open-Transactions,
+ *   according to their own terms, as long as the rest of the
+ *   Open-Transactions terms remain respected, with regard to
+ *   the Open-Transactions code itself.
+ *
+ *   Lucre License:
+ *   This code is also "dual-license", meaning that Ben Lau-
+ *   rie's license must also be included and respected, since
+ *   the code for Lucre is also included with Open Transactions.
+ *   See Open-Transactions/src/otlib/lucre/LUCRE_LICENSE.txt
+ *   The Laurie requirements are light, but if there is any
+ *   problem with his license, simply remove the Lucre code.
+ *   Although there are no other blind token algorithms in Open
+ *   Transactions (yet. credlib is coming), the other functions
+ *   will continue to operate.
+ *   See Lucre on Github:  https://github.com/benlaurie/lucre
+ *   -----------------------------------------------------
+ *   You should have received a copy of the GNU Affero General
+ *   Public License along with this program.  If not, see:
+ *   http://www.gnu.org/licenses/
+ *
+ *   If you would like to use this software outside of the free
+ *   software license, please contact FellowTraveler.
+ *   (Unfortunately many will run anonymously and untraceably,
+ *   so who could really stop them?)
+ *
+ *   DISCLAIMER:
+ *   This program is distributed in the hope that it will be
+ *   useful, but WITHOUT ANY WARRANTY; without even the implied
+ *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ *   PURPOSE.  See the GNU Affero General Public License for
+ *   more details.
+
+ -----BEGIN PGP SIGNATURE-----
+ Version: GnuPG v1.4.9 (Darwin)
+
+ iQIcBAEBAgAGBQJRSsfJAAoJEAMIAO35UbuOQT8P/RJbka8etf7wbxdHQNAY+2cC
+ vDf8J3X8VI+pwMqv6wgTVy17venMZJa4I4ikXD/MRyWV1XbTG0mBXk/7AZk7Rexk
+ KTvL/U1kWiez6+8XXLye+k2JNM6v7eej8xMrqEcO0ZArh/DsLoIn1y8p8qjBI7+m
+ aE7lhstDiD0z8mwRRLKFLN2IH5rAFaZZUvj5ERJaoYUKdn4c+RcQVei2YOl4T0FU
+ LWND3YLoH8naqJXkaOKEN4UfJINCwxhe5Ke9wyfLWLUO7NamRkWD2T7CJ0xocnD1
+ sjAzlVGNgaFDRflfIF4QhBx1Ddl6wwhJfw+d08bjqblSq8aXDkmFA7HeunSFKkdn
+ oIEOEgyj+veuOMRJC5pnBJ9vV+7qRdDKQWaCKotynt4sWJDGQ9kWGWm74SsNaduN
+ TPMyr9kNmGsfR69Q2Zq/FLcLX/j8ESxU+HYUB4vaARw2xEOu2xwDDv6jt0j3Vqsg
+ x7rWv4S/Eh18FDNDkVRChiNoOIilLYLL6c38uMf1pnItBuxP3uhgY6COm59kVaRh
+ nyGTYCDYD2TK+fI9o89F1297uDCwEJ62U0Q7iTDp5QuXCoxkPfv8/kX6lS6T3y9G
+ M9mqIoLbIQ1EDntFv7/t6fUTS2+46uCrdZWbQ5RjYXdrzjij02nDmJAm2BngnZvd
+ kamH0Y/n11lCvo1oQxM+
+ =uSzz
+ -----END PGP SIGNATURE-----
+ **************************************************************/
+
+
+#ifndef __OT_VARIABLE_HPP__
+#define __OT_VARIABLE_HPP__
+
+#include <map>
+#include <string>
+
+#include "irrxml/irrXML.hpp"
+
+#include "OTCommon.hpp"
+
+#include "OTString.hpp"
+#include "OTAgent.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTParty.hpp"
+#include "OTBylaw.hpp"
+
+class OTIdentifier;
+class OTNumList;
+class OTPseudonym;
+class OTAccount;
+class OTParty;
+class OTPartyAccount;
+class OTScriptable;
+class OTSmartContract;
+class OTScript;
+class OTAccount;
+class OTScriptable;
+class OTScript;
+class OTBylaw;
+
+typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+
+
+class OTVariable
+{
+public:
+	enum OTVariable_Type
+	{
+		Var_String,		// std::string
+		Var_Integer,	// Integer. (For int64_t int32_t: use strings.)
+		Var_Bool,		// Boolean. (True / False)
+		Var_Error_Type	// should never happen.
+	};
+
+	enum OTVariable_Access
+	{
+		Var_Constant,		// Constant   -- you cannot change this value.
+		Var_Persistent,		// Persistent -- changing value doesn't require notice to parties.
+		Var_Important,		// Important  -- changing value requires notice to parties.
+		Var_Error_Access	// should never happen.
+	};
+    // ------------------------------------------------------
+private:
+	OTString	m_strName;		// Name of this variable.
+	// ------------------------------------------------------
+	std::string m_str_Value;	// If a string, the value is stored here.
+	int32_t			m_nValue;		// If an integer, the value is stored here.
+	bool		m_bValue;		// If a bool, the value is stored here.
+	// ------------------------------------------------------
+	std::string m_str_ValueBackup;	// If a string, the value backup is stored here. (So we can see if it has changed since execution)
+	int32_t			m_nValueBackup;	// If an integer, the value backup is stored here.  (So we can see if it has changed since execution)
+	bool		m_bValueBackup;	// If a bool, the value backup is stored here. (So we can check for dirtiness later...)
+	// ------------------------------------------------------
+	OTBylaw	*	m_pBylaw;		// the Bylaw that this variable belongs to.
+
+	OTVariable_Type		m_Type;  // Currently bool, int32_t, or string.
+	OTVariable_Access	m_Access;  // Determines how the variable is used inside the script.
+    // ------------------------------------------------------
+    OTScript *  m_pScript; // If the variable is set onto a script, this pointer gets set. When the variable destructs, it will remove itself from the script.
+public:
+    // ------------------------------------------------------
+EXPORT	void RegisterForExecution(OTScript& theScript); // We keep an internal script pointer here, so if we destruct, we can remove ourselves from the script.
+EXPORT  void UnregisterScript(); // If the script destructs before the variable does, it unregisters itself here, so the variable isn't stuck with a bad pointer.
+	// -------------------------------------
+	bool IsDirty() const;	// So you can tell if the variable has CHANGED since it was last set clean.
+	void SetAsClean();		// Sets the variable as clean, so you can check it later and see if it's been changed (if it's DIRTY again.)
+    // -------------------------------------
+	bool IsConstant()   const { return (Var_Constant    == m_Access); }
+	bool IsPersistent() const { return ((Var_Persistent == m_Access) || (Var_Important == m_Access)); } // important vars are persistent, too.
+	bool IsImportant()  const { return (Var_Important   == m_Access); }
+	// -------------------------------------
+	void SetBylaw(OTBylaw& theBylaw) { m_pBylaw = &theBylaw; }
+	// -------------------------------------
+	bool SetValue(const int32_t & nValue);
+	bool SetValue(const bool bValue);
+	bool SetValue(const std::string & str_Value);
+	// -------------------------------------
+EXPORT	const OTString & GetName() const { return m_strName; } // variable's name as used in a script.
+	// -------------------------------------
+	OTVariable_Type		GetType  () const { return m_Type;   }
+	OTVariable_Access	GetAccess() const { return m_Access; }
+    // -------------------------------------
+	bool	IsInteger() const   { return (Var_Integer	== m_Type); }
+	bool	IsBool   () const   { return (Var_Bool		== m_Type); }
+	bool	IsString () const   { return (Var_String	== m_Type); }
+    // -------------------------------------
+	int32_t         CopyValueInteger() const { return m_nValue;    }
+	bool        CopyValueBool   () const { return m_bValue;    }
+	std::string CopyValueString () const { return m_str_Value; }
+    // -------------------------------------
+	int32_t			& GetValueInteger() { return m_nValue;    }
+	bool		& GetValueBool   () { return m_bValue;    }
+	std::string	& GetValueString () { return m_str_Value; }
+	// -------------------
+	bool Compare(OTVariable & rhs);
+	// -------------------------------------
+EXPORT	OTVariable();
+EXPORT	OTVariable(const std::string str_Name, const int32_t         nValue,    const OTVariable_Access theAccess=Var_Persistent);
+EXPORT	OTVariable(const std::string str_Name, const bool        bValue,    const OTVariable_Access theAccess=Var_Persistent);
+EXPORT	OTVariable(const std::string str_Name, const std::string str_Value,	const OTVariable_Access theAccess=Var_Persistent);
+    // -------------------------------------
+EXPORT	virtual ~OTVariable();
+    // -------------------------------------
+	void Serialize(OTString & strAppend,
+				   bool bCalculatingID=false);
+};
+
+typedef std::map<std::string, OTVariable *> mapOfVariables;
+
+#endif // __OT_VARIABLE_HPP__

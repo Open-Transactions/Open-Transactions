@@ -334,7 +334,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
                 str_instrument_type = "final receipt (closed)";
             else if (0 == GetInstrumentType().compare("marketReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 // I *think* successful trades have a negative amount -- we'll find out!
                 //
@@ -347,7 +347,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
             }
             else if (0 == GetInstrumentType().compare("chequeReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 // I paid OUT when this chequeReceipt came through. It must be a normal cheque that I wrote.
                 if (lAmount <= 0) // Notice less than OR EQUAL TO 0 -- that's because a canceled cheque has a 0 value.
@@ -366,7 +366,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
             }
             else if (0 == GetInstrumentType().compare("paymentReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 if (!IsCanceled() && (lAmount > 0))
                     strKind.Set("received ");
@@ -401,7 +401,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
                 str_instrument_type = "final receipt";
             else if (0 == GetInstrumentType().compare("marketReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 // I *think* marketReceipts have negative value. We'll just test for non-zero.
                 if (lAmount == 0)
@@ -411,7 +411,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
             }
             else if (0 == GetInstrumentType().compare("chequeReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 // I paid OUT when this chequeReceipt came through. It must be a normal cheque that I wrote.
                 if (lAmount <= 0) // Notice less than OR EQUAL TO 0 -- that's because a canceled cheque has a 0 value.
@@ -438,7 +438,7 @@ bool OTRecord::FormatDescription(std::string & str_output)
             }
             else if (0 == GetInstrumentType().compare("paymentReceipt"))
             {
-                const long lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
+                const int64_t lAmount = OTAPI_Wrap::It()->StringToLong(m_str_amount);
 
                 if (!IsCanceled() && (lAmount > 0))
                     strKind.Set("received ");
@@ -485,10 +485,10 @@ bool OTRecord::HasPaymentPlan()
     return false;
 }
 
-int64_t OTRecord::GetInitialPaymentDate()
+time64_t OTRecord::GetInitialPaymentDate()
 {
     if (!IsPaymentPlan())
-        return 0;
+        return OT_TIME_ZERO;
 
     OTPaymentPlan  thePlan;
     const OTString strPlan(GetContents().c_str());
@@ -496,7 +496,7 @@ int64_t OTRecord::GetInitialPaymentDate()
     if (thePlan.LoadContractFromString(strPlan) &&
         thePlan.HasInitialPayment())
         return thePlan.GetInitialPaymentDate();
-    return 0;
+    return OT_TIME_ZERO;
 }
 
 int64_t OTRecord::GetInitialPaymentAmount()
@@ -514,10 +514,10 @@ int64_t OTRecord::GetInitialPaymentAmount()
 }
 
 
-int64_t OTRecord::GetPaymentPlanStartDate()
+time64_t OTRecord::GetPaymentPlanStartDate()
 {
     if (!IsPaymentPlan())
-        return 0;
+        return OT_TIME_ZERO;
 
     OTPaymentPlan  thePlan;
     const OTString strPlan(GetContents().c_str());
@@ -525,13 +525,13 @@ int64_t OTRecord::GetPaymentPlanStartDate()
     if (thePlan.LoadContractFromString(strPlan) &&
         thePlan.HasPaymentPlan())
         return thePlan.GetPaymentPlanStartDate();
-    return 0;
+    return OT_TIME_ZERO;
 }
 
-int64_t OTRecord::GetTimeBetweenPayments()
+time64_t OTRecord::GetTimeBetweenPayments()
 {
     if (!IsPaymentPlan())
-        return 0;
+        return OT_TIME_ZERO;
 
     OTPaymentPlan  thePlan;
     const OTString strPlan(GetContents().c_str());
@@ -539,7 +539,7 @@ int64_t OTRecord::GetTimeBetweenPayments()
     if (thePlan.LoadContractFromString(strPlan) &&
         thePlan.HasPaymentPlan())
         return thePlan.GetTimeBetweenPayments();
-    return 0;
+    return OT_TIME_ZERO;
 }
 
 int64_t OTRecord::GetPaymentPlanAmount()
@@ -1273,18 +1273,18 @@ void  OTRecord::SetContents      (const std::string & str_contents)
     }
 }
 // ---------------------------------------
-int64_t OTRecord::GetValidFrom() { return m_ValidFrom; }
+time64_t OTRecord::GetValidFrom() { return m_ValidFrom; }
 // ---------------------------------------
-int64_t OTRecord::GetValidTo()   { return m_ValidTo;   }
+time64_t OTRecord::GetValidTo()   { return m_ValidTo;   }
 // ---------------------------------------
-void OTRecord::SetDateRange(int64_t tValidFrom, int64_t tValidTo)
+void OTRecord::SetDateRange(time64_t tValidFrom, time64_t tValidTo)
 {
     m_ValidFrom = tValidFrom;
     m_ValidTo   = tValidTo;
     // ----------------------------------------------------------
-    time_t tCurrentTime = static_cast<time_t>(OTAPI_Wrap::GetTime());
+    time64_t tCurrentTime = OTAPI_Wrap::GetTime();
     // ----------------------------------------------------------
-    if ((tValidTo > 0) && (tCurrentTime > tValidTo) && !IsMail() && !IsRecord())
+    if ((tValidTo > OT_TIME_ZERO) && (tCurrentTime > tValidTo) && !IsMail() && !IsRecord())
         SetExpired();
 }
 // ---------------------------------------
@@ -1306,8 +1306,8 @@ OTRecord::OTRecord(const std::string & str_server_id,
                    bool  bIsReceipt,
                    OTRecordType eRecordType) :
 m_nBoxIndex(-1),
-m_ValidFrom(0),
-m_ValidTo(0),
+m_ValidFrom(OT_TIME_ZERO),
+m_ValidTo(OT_TIME_ZERO),
 m_str_server_id(str_server_id),
 m_str_asset_id(str_asset_id),
 m_str_currency_tla(str_currency_tla),

@@ -767,7 +767,7 @@ OT_COMMANDS_OT int32_t OT_Command::details_discard_incoming(const string & strSe
 
     if (!VerifyStringVal(strInbox))
     {
-        OTAPI_Wrap::Output(0, "\n\n details_discard_incoming:  OT_API_LoadPaymentInbox failed.\n\n");
+        OTAPI_Wrap::Output(0, "\n\n details_discard_incoming:  OT_API_LoadPaymentInbox Failed.\n\n");
         return -1;
     }
 
@@ -2974,9 +2974,9 @@ OT_COMMANDS_OT int32_t OT_Command::main_confirm() // smart contract and payment 
 
     // Is the instrument yet valid, or is it expired?
     // Handle both those cases here...
-    time_t tFrom = OTAPI_Wrap::Instrmnt_GetValidFrom(strInstrument);
-    time_t tTo = OTAPI_Wrap::Instrmnt_GetValidTo(strInstrument);
-    time_t tTime = OTAPI_Wrap::GetTime();
+    time64_t tFrom = OTAPI_Wrap::Instrmnt_GetValidFrom(strInstrument);
+    time64_t tTo = OTAPI_Wrap::Instrmnt_GetValidTo(strInstrument);
+    time64_t tTime = OTAPI_Wrap::GetTime();
 
     if (tTime < tFrom)
     {
@@ -2984,7 +2984,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_confirm() // smart contract and payment 
         else { OTAPI_Wrap::Output(0, "The instrument at index " + to_string(nIndex) + " is not yet within its valid date range. (Skipping.)\n"); }
         return 0;
     }
-    if ((tTo > 0) && (tTime > tTo))
+    if ((tTo > OT_TIME_ZERO) && (tTime > tTo))
     {
         if (-1 == nIndex)
         {
@@ -3984,11 +3984,11 @@ OT_COMMANDS_OT int32_t OT_Command::details_write_cheque(string & strCheque, cons
 
         string strDefaultAmount = "1"; // smallest possible amount.
         string strDefaultMemo = "(memo field)";
-        int32_t nDefaultLength = 2592000;   // 30 days
+        int64_t nDefaultLength = OTTimeGetSecondsFromTime(OT_TIME_MONTH_IN_SECONDS);   // 30 days
 
         string strAmount = "0";
         string strMemo = ""; // empty
-        int32_t nLength = 0;
+        int64_t nLength = OTTimeGetSecondsFromTime(OT_TIME_ZERO);
 
 
         string strAssetTypeID = OTAPI_Wrap::GetAccountWallet_AssetTypeID(MyAcct);
@@ -4068,9 +4068,9 @@ OT_COMMANDS_OT int32_t OT_Command::details_write_cheque(string & strCheque, cons
 
         string strLength = to_string(nLength);
 
-        time_t tFrom = OTAPI_Wrap::GetTime();
+        time64_t tFrom = OTAPI_Wrap::GetTime();
         int64_t tLength = to_long(strLength);
-        time_t tTo = tFrom + tLength;
+        time64_t tTo = OTTimeAddTimeInterval(tFrom, tLength);
 
         if (bIsInvoice)
         {
@@ -4601,8 +4601,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_create_offer(const string & strScale,
         // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
         //
         int32_t nCount = offerList.GetOfferDataNymCount(); // size_t
-        int32_t nTemp = nCount; // so it's created as size_t
-
         if (VerifyIntVal(nCount) && (nCount > 0))
         {
             MapOfMaps * map_of_maps = convert_offerlist_to_maps(offerList);
@@ -4645,7 +4643,7 @@ OT_COMMANDS_OT int32_t OT_Command::details_create_offer(const string & strScale,
                     OTAPI_Wrap::Output(0, strLocation + ": FYI, about to cancel at least one market offer, before placing the new one, due to price inconsistencies between the two...\n");
                 }
 
-                for (int32_t i = 0; i < extra_vals.the_vector.size(); i++)
+                for (size_t i = 0; i < extra_vals.the_vector.size(); i++)
                 {
                     OTAPI_Wrap::Output(0, strLocation + ": Canceling market offer with transaction number: " + extra_vals.the_vector[i] + "\n");
 
@@ -5675,7 +5673,6 @@ OT_COMMANDS_OT int32_t OT_Command::accept_inbox_items(const string & strMyAcctID
         //  print(strInbox)          // stdout
 
         int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, strMyAcctID, strInbox);
-
         if (VerifyIntVal(nCount) && (nCount > 0))
         {
             // NOTE!!! DO **NOT** create the response ledger until the FIRST iteration of the below loop that actually
@@ -7120,8 +7117,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_market_list()
         // LOOP THROUGH THE MARKETS AND PRINT THEM OUT.
 
         int32_t nCount = marketList.GetMarketDataCount();
-        int32_t nTemp = nCount;  // this way, nTemp is initialized as a size_t.
-
         if (!VerifyIntVal(nCount))
         {
             OTAPI_Wrap::Output(0, "Loaded the market list, but GetMarketDataCount returns an invalid result. (Failure.)\n");
@@ -7598,8 +7593,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_show_nym_offers(const string & strSer
     // the value for each key is a sub-map, with the key: transaction ID and value: the offer data itself.
     //
     int32_t nCount = offerList.GetOfferDataNymCount(); // size_t
-    int32_t nTemp = nCount; // so it's created as size_t
-
     if (VerifyIntVal(nCount) && (nCount > 0))
     {
         MapOfMaps & map_of_maps = *convert_offerlist_to_maps(offerList);
@@ -7907,7 +7900,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_purse()
 
             // Loop through purse contents and display tokens.
             int32_t nCount = OTAPI_Wrap::Purse_Count(Server, MyPurse, strPurse);
-
             if (!VerifyIntVal(nCount) || (nCount < 0))
             {
                 OTAPI_Wrap::Output(0, "\n OT_Command::main_show_purse: Error: Unexpected bad value returned from OT_API_Purse_Count.\n\n");
@@ -7948,9 +7940,9 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_purse()
 
                     int64_t lDenomination = OTAPI_Wrap::Token_GetDenomination(Server, MyPurse, strToken);
                     int32_t nSeries = OTAPI_Wrap::Token_GetSeries(Server, MyPurse, strToken);
-                    time_t tValidFrom = OTAPI_Wrap::Token_GetValidFrom(Server, MyPurse, strToken);
-                    time_t tValidTo = OTAPI_Wrap::Token_GetValidTo(Server, MyPurse, strToken);
-                    time_t lTime = OTAPI_Wrap::GetTime();
+                    time64_t tValidFrom = OTAPI_Wrap::Token_GetValidFrom(Server, MyPurse, strToken);
+                    time64_t tValidTo = OTAPI_Wrap::Token_GetValidTo(Server, MyPurse, strToken);
+                    time64_t lTime = OTAPI_Wrap::GetTime();
 
                     if (0 > lDenomination)
                     {
@@ -7962,17 +7954,17 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_purse()
                         OTAPI_Wrap::Output(0, "Error while showing purse: bad nSeries.\n");
                         return -1;
                     }
-                    if (!VerifyIntVal(tValidFrom))
+                    if (!VerifyTimeVal(tValidFrom))
                     {
                         OTAPI_Wrap::Output(0, "Error while showing purse: bad tValidFrom.\n");
                         return -1;
                     }
-                    if (!VerifyIntVal(tValidTo))
+                    if (!VerifyTimeVal(tValidTo))
                     {
                         OTAPI_Wrap::Output(0, "Error while showing purse: bad tValidTo.\n");
                         return -1;
                     }
-                    if (0 > lTime)
+                    if (OT_TIME_ZERO > lTime)
                     {
                         OTAPI_Wrap::Output(0, "Error while showing purse: bad strTime.\n");
                         return -1;
@@ -8146,7 +8138,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_deposit_purse(const string & strServe
         // Loop through purse contents...
         //
         int32_t nCount = OTAPI_Wrap::Purse_Count(strServerID, strAssetTypeID, strTHE_Instrument);
-
         if (!VerifyIntVal(nCount) || (nCount < 0))
         {
             OTAPI_Wrap::Output(0, "\n " + strLocation + ": Error: Unexpected bad value returned from OT_API_Purse_Count.\n\n");
@@ -8708,7 +8699,6 @@ OT_COMMANDS_OT string OT_Command::details_export_cash(const string & strServerID
         // Loop through purse contents...
         //
         int32_t nCount = OTAPI_Wrap::Purse_Count(strServerID, strAssetTypeID, strInstrument);
-
         if (!VerifyIntVal(nCount) || (nCount < 0))
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: Unexpected bad value returned from OT_API_Purse_Count.\n\n");
@@ -8922,7 +8912,6 @@ OT_COMMANDS_OT bool OT_Command::purse_get_indices_or_amount(const string & strSe
         // Loop through purse contents...
         //
         int32_t nCount = OTAPI_Wrap::Purse_Count(strServerID, strAssetTypeID, strLocalPurse);
-
         if (!VerifyIntVal(nCount) || (nCount < 0))
         {
             OTAPI_Wrap::Output(0, strLocation + ": Error: Unexpected bad value returned from OT_API_Purse_Count.\n\n");
@@ -8996,20 +8985,20 @@ OT_COMMANDS_OT bool OT_Command::purse_get_indices_or_amount(const string & strSe
                     OTAPI_Wrap::Output(0, "Error while showing purse: bad nSeries.\n");
                     return false;
                 }
-                time_t tValidFrom = OTAPI_Wrap::Token_GetValidFrom(strServerID, strAssetTypeID, strToken);
-                if (!VerifyIntVal(tValidFrom))
+                time64_t tValidFrom = OTAPI_Wrap::Token_GetValidFrom(strServerID, strAssetTypeID, strToken);
+                if (!VerifyTimeVal(tValidFrom))
                 {
                     OTAPI_Wrap::Output(0, "Error while showing purse: bad tValidFrom.\n");
                     return false;
                 }
-                time_t tValidTo = OTAPI_Wrap::Token_GetValidTo(strServerID, strAssetTypeID, strToken);
-                if (!VerifyIntVal(tValidTo))
+                time64_t tValidTo = OTAPI_Wrap::Token_GetValidTo(strServerID, strAssetTypeID, strToken);
+                if (!VerifyTimeVal(tValidTo))
                 {
                     OTAPI_Wrap::Output(0, "Error while showing purse: bad tValidTo.\n");
                     return false;
                 }
-                time_t lTime = OTAPI_Wrap::GetTime();
-                if (0 > lTime)
+                time64_t lTime = OTAPI_Wrap::GetTime();
+                if (OT_TIME_ZERO > lTime)
                 {
                     OTAPI_Wrap::Output(0, "Error while showing purse: bad lTime.\n");
                     return false;
@@ -9433,16 +9422,16 @@ OT_COMMANDS_OT int32_t OT_Command::handle_payment_index(const string & strMyAcct
         return -1;
     }
 
-    time_t tFrom = OTAPI_Wrap::Instrmnt_GetValidFrom(strInstrument);
-    time_t tTo = OTAPI_Wrap::Instrmnt_GetValidTo(strInstrument);
-    time_t tTime = OTAPI_Wrap::GetTime();
+    time64_t tFrom = OTAPI_Wrap::Instrmnt_GetValidFrom(strInstrument);
+    time64_t tTo = OTAPI_Wrap::Instrmnt_GetValidTo(strInstrument);
+    time64_t tTime = OTAPI_Wrap::GetTime();
 
     if (tTime < tFrom)
     {
         OTAPI_Wrap::Output(0, "The instrument at index " + to_string(nIndex) + " is not yet within its valid date range. (Skipping.)\n");
         return -1;
     }
-    if ((tTo > 0) && (tTime > tTo))
+    if ((tTo > OT_TIME_ZERO) && (tTime > tTo))
     {
         OTAPI_Wrap::Output(0, "The instrument at index " + to_string(nIndex) + " is expired. (Moving it to the record box.)\n");
 
@@ -9553,7 +9542,6 @@ OT_COMMANDS_OT int32_t OT_Command::accept_from_paymentbox(const string & strMyAc
     }
 
     int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, strMyNymID, strInbox);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Unable to retrieve size of payments inbox ledger. (Failure.)\n");
@@ -9926,7 +9914,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_active()
             {
                 vector<string> vecIDs = tokenize(strIDs, ",", true);
 
-                for (int32_t nIndex = 0; nIndex < vecIDs.size(); ++nIndex)
+                for (size_t nIndex = 0; nIndex < vecIDs.size(); ++nIndex)
                 {
                     string strTransNum = vecIDs[nIndex];
                     // -----------------------------
@@ -10032,7 +10020,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_payment()
             //          print(strInbox)          // stdout
 
             int32_t nCount = OTAPI_Wrap::Ledger_GetCount(Server, MyNym, MyNym, strInbox);
-
             if (VerifyIntVal(nCount))
             {
                 if (nIndex > (nCount - 1))
@@ -10244,7 +10231,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_payments_inbox()
             //          print(strInbox)          // stdout
 
             int32_t nCount = OTAPI_Wrap::Ledger_GetCount(Server, MyNym, MyNym, strInbox);
-
             if (VerifyIntVal(nCount))
             {
                 if (nCount > 0)
@@ -10398,7 +10384,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_show_records(const string & strServer
     //  print(strRecordBox)      // stdout
 
     int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, strMyAcctID, strRecordBox);
-
     if (VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "SHOW RECORDS: \n\n");
@@ -10738,7 +10723,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_show_expired_records(const string & s
     //  print(strExpiredBox)      // stdout
 
     int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, strMyNymID, strExpiredBox);
-
     if (VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "SHOW EXPIRED RECORDS: \n\n");
@@ -10829,7 +10813,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_inbox()
             //          print(strInbox)          // stdout
 
             int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, MyAcct, strInbox);
-
             if (VerifyIntVal(nCount))
             {
                 if (nCount > 0)
@@ -10946,7 +10929,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_outbox()
             //          print(strOutbox)         // stdout
 
             int32_t nCount = OTAPI_Wrap::Ledger_GetCount(strServerID, strMyNymID, MyAcct, strOutbox);
-
             if (VerifyIntVal(nCount))
             {
                 OTAPI_Wrap::Output(0, "===> SHOW OUTBOX: \n");
@@ -11062,7 +11044,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_del_mail(const string & strMyNymID, c
 {
 
     int32_t nCount = OTAPI_Wrap::GetNym_MailCount(strMyNymID);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Error: bad result from OT_API_GetNym_MailCount for Nym: " + strMyNymID + "\n");
@@ -11178,7 +11159,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_mail()
     }
 
     int32_t nCount = OTAPI_Wrap::GetNym_MailCount(MyNym);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Error: bad result from OT_API_GetNym_MailCount for Nym: " + MyNym + "\n");
@@ -11288,7 +11268,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_outmail()
     }
 
     int32_t nCount = OTAPI_Wrap::GetNym_OutmailCount(MyNym);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Error: bad result from OT_API_GetNym_OutmailCount for Nym: " + MyNym + "\n");
@@ -11346,7 +11325,6 @@ OT_COMMANDS_OT int32_t OT_Command::details_del_outmail(const string & strMyNymID
 {
 
     int32_t nCount = OTAPI_Wrap::GetNym_OutmailCount(strMyNymID);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Error: bad result from OT_API_GetNym_OutmailCount for Nym: " + strMyNymID + "\n");
@@ -11582,7 +11560,6 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_outpayment()
 
     //
     int32_t nCount = OTAPI_Wrap::GetNym_OutpaymentsCount(MyNym);
-
     if (!VerifyIntVal(nCount))
     {
         OTAPI_Wrap::Output(0, "Error: bad result from OT_API_GetNym_OutpaymentsCount for Nym: " + MyNym + "\n");

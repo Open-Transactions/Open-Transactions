@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTSignature.cpp
  *  
@@ -223,8 +223,6 @@ OTSignature::OTSignature(const char * szValue) : ot_super(szValue)
 }
 
 
-
-
 /*
 
 EVP_Seal... and EVP_Open... provide public key encryption and decryption to implement digital ``envelopes''.
@@ -306,10 +304,6 @@ You don't need to specify an iv value as this function creates it.
 */
 
 
-
-
-
-
 /* Deprecated code:
  SHA256_CTX context;
  uint8_t md[SHA256_DIGEST_LENGTH];
@@ -367,9 +361,3 @@ bool OTSignature::CalculateDigest(OTData & dataInput)
 }
 
 */
-
-
-
-
-
-

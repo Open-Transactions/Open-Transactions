@@ -169,9 +169,9 @@ public:
         ErrorState
     };
 private:
-    int        m_nBoxIndex;
-    time_t     m_ValidFrom;
-    time_t     m_ValidTo;
+    int          m_nBoxIndex;
+    time64_t     m_ValidFrom;
+    time64_t     m_ValidTo;
     // ---------------------------------------
     const std::string & m_str_server_id;
     const std::string & m_str_asset_id;
@@ -196,8 +196,8 @@ private:
     // or payment inbox, or record box. (If outpayment, contains
     // transaction number on outgoing instrument.)
     //
-    long          m_lTransactionNum;
-    long          m_lTransNumForDisplay;
+    int64_t       m_lTransactionNum;
+    int64_t       m_lTransNumForDisplay;
     // ---------------------------------------
     bool          m_bIsPending;
     bool          m_bIsOutgoing;
@@ -240,10 +240,10 @@ EXPORT    bool  IsCanceled()    const;
 EXPORT    void  SetExpired();
 EXPORT    void  SetCanceled();
     // ---------------------------------------
-EXPORT    int64_t GetValidFrom(); // Todo: convert to time64_t
-EXPORT    int64_t GetValidTo();   // Todo: convert to time64_t
+EXPORT    time64_t GetValidFrom();
+EXPORT    time64_t GetValidTo();
     // ---------------------------------------
-EXPORT    void  SetDateRange(int64_t tValidFrom, int64_t tValidTo); // Todo: convert to time64_t
+EXPORT    void  SetDateRange(time64_t tValidFrom, time64_t tValidTo); // Todo: convert to time64_t
     // ---------------------------------------
 EXPORT    bool  CanDeleteRecord()        const;  // For completed records (not pending.)
 EXPORT    bool  CanAcceptIncoming()      const;  // For incoming, pending (not-yet-accepted) instruments.
@@ -297,9 +297,9 @@ EXPORT    void  SetContents      (const std::string & str_contents);
 EXPORT    bool   HasInitialPayment();
 EXPORT    bool   HasPaymentPlan();
     
-EXPORT    int64_t GetInitialPaymentDate();      // Todo: convert to time64_t
-EXPORT    int64_t GetPaymentPlanStartDate();    // Todo: convert to time64_t
-EXPORT    int64_t GetTimeBetweenPayments();     // Todo: convert to time64_t
+EXPORT    time64_t GetInitialPaymentDate();
+EXPORT    time64_t GetPaymentPlanStartDate();
+EXPORT    time64_t GetTimeBetweenPayments();
     
 EXPORT    int64_t   GetInitialPaymentAmount();
 EXPORT    int64_t   GetPaymentPlanAmount();

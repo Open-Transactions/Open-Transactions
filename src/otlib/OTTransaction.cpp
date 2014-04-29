@@ -3423,7 +3423,7 @@ bool				m_bIsAbbreviated;
 int64_t				m_lAbbrevAmount;
 int64_t				m_lDisplayAmount;
 OTIdentifier		m_Hash;			// todo: make this const and force it to be set during construction.
-time_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
+time64_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
 transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
 */
 
@@ -3435,7 +3435,7 @@ transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, w
 OTTransaction::OTTransaction() : ot_super(),
 	m_pParent(NULL),
 	m_bIsAbbreviated(false), m_lAbbrevAmount(0), m_lDisplayAmount(0), m_lInRefDisplay(0),
-	m_DATE_SIGNED(0), m_Type(OTTransaction::error_state),
+    m_DATE_SIGNED(OT_TIME_ZERO), m_Type(OTTransaction::error_state),
     m_lClosingTransactionNo(0), m_lRequestNumber(0), 
     m_bReplyTransSuccess(false),
     m_bCancelled(false)
@@ -3456,7 +3456,7 @@ OTTransaction::OTTransaction(const OTLedger & theOwner)
 // --------
 	m_pParent(&theOwner),
 	m_bIsAbbreviated(false), m_lAbbrevAmount(0), m_lDisplayAmount(0), m_lInRefDisplay(0),
-    m_DATE_SIGNED(0), m_Type(OTTransaction::error_state),
+    m_DATE_SIGNED(OT_TIME_ZERO), m_Type(OTTransaction::error_state),
     m_lClosingTransactionNo(0), m_lRequestNumber(0), 
     m_bReplyTransSuccess(false),
     m_bCancelled(false)
@@ -3478,7 +3478,7 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID, const OTIdentifier 
 // --------------------------------------------
 	m_pParent(NULL),
 	m_bIsAbbreviated(false), m_lAbbrevAmount(0), m_lDisplayAmount(0), m_lInRefDisplay(0),
-	m_DATE_SIGNED(0), m_Type(OTTransaction::error_state),
+    m_DATE_SIGNED(OT_TIME_ZERO), m_Type(OTTransaction::error_state),
     m_lClosingTransactionNo(0), m_lRequestNumber(0), 
     m_bReplyTransSuccess(false),
     m_bCancelled(false)
@@ -3499,7 +3499,7 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID,
 // --------------------------------------------
 	m_pParent(NULL),
 	m_bIsAbbreviated(false), m_lAbbrevAmount(0), m_lDisplayAmount(0), m_lInRefDisplay(0),
-    m_DATE_SIGNED(0), m_Type(OTTransaction::error_state), m_lClosingTransactionNo(0), m_lRequestNumber(0),
+    m_DATE_SIGNED(OT_TIME_ZERO), m_Type(OTTransaction::error_state), m_lClosingTransactionNo(0), m_lRequestNumber(0),
     m_bReplyTransSuccess(false),
     m_bCancelled(false)
 {
@@ -3518,7 +3518,7 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID,
 void OTTransaction::InitTransaction()
 {
 	m_strContractType		= "TRANSACTION"; // CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM 
-	m_DATE_SIGNED			= 0; // Make sure to set this to the current time whenever contract is signed.
+    m_DATE_SIGNED           = OT_TIME_ZERO; // Make sure to set this to the current time whenever contract is signed.
 	m_Type					= OTTransaction::error_state;
 	m_lClosingTransactionNo = 0;
     m_lRequestNumber        = 0;
@@ -3539,7 +3539,7 @@ OTTransaction::OTTransaction(const OTIdentifier	& theUserID,
 							 const int64_t			& lTransactionNum,
 							 const int64_t			& lInRefTo,
 							 const int64_t			& lInRefDisplay, 
-							 const time_t		the_DATE_SIGNED, 
+							 const time64_t		the_DATE_SIGNED, 
 							 const transactionType theType,
 							 const OTString		& strHash,
 							 const int64_t			& lAdjustment,
@@ -4225,7 +4225,7 @@ int32_t OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
 										 int64_t	& lTransactionNum,
 										 int64_t	& lInRefTo,
 										 int64_t	& lInRefDisplay,
-										 time_t	& the_DATE_SIGNED,
+										 time64_t	& the_DATE_SIGNED,
 										 OTTransaction::transactionType & theType,
 										 OTString & strHash,
 										 int64_t	& lAdjustment,
@@ -4257,8 +4257,7 @@ int32_t OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
         lNumberOfOrigin = atol(strOrigin.Get());
 	// -------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned	= atol(strDateSigned.Get()); // (We already verified it Exists() just above.)
-	the_DATE_SIGNED			= static_cast<time_t>(lDateSigned);
+    the_DATE_SIGNED = OTTimeGetTimeFromSeconds(strDateSigned.Get()); // (We already verified it Exists() just above.)
 	// -------------------------------------
 	// Transaction TYPE for the abbreviated record...
 	theType                 = OTTransaction::error_state; // default
@@ -4372,7 +4371,7 @@ int32_t OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
  int64_t				m_lDisplayAmount; // a $50 receipt, is +50 adjustment in the outbox, and -50 adjustment in the inbox, but 50 in the display.
  int64_t				m_lInRefDisplay;  // The "In Ref For Display" value
  OTIdentifier		m_Hash;			// todo: make this const and force it to be set during construction.
- time_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
+ time64_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
  transactionType	m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, payDividend, etc.
  int64_t				m_lClosingTransactionNo;	// used by finalReceipt
  */
@@ -4401,7 +4400,7 @@ int32_t OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		int64_t lInRefTo			= 0;
 		int64_t lInRefDisplay		= 0;
 		// -------------------------------------
-		time_t the_DATE_SIGNED	= 0;
+		time64_t the_DATE_SIGNED	= OT_TIME_ZERO;
 		OTTransaction::transactionType theType = OTTransaction::error_state; // default
 		OTString strHash;
 		// -------------------------------------
@@ -4479,7 +4478,7 @@ int32_t OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		// -------------------------------------
 		OTString strDateSigned	= xml->getAttributeValue("dateSigned");
 		const int64_t lDateSigned	= strDateSigned.Exists() ? atol(strDateSigned.Get()) : 0;
-		m_DATE_SIGNED			= lDateSigned; // Todo casting ?
+		m_DATE_SIGNED			= OTTimeGetTimeFromSeconds(lDateSigned); // Todo casting ?
 		// -------------------------------------
 		const OTString strAcctID	= xml->getAttributeValue("accountID"); 
 		const OTString strServerID	= xml->getAttributeValue("serverID");
@@ -4749,8 +4748,8 @@ void OTTransaction::UpdateContents()
 					strServerID(GetPurportedServerID()),
 					strUserID(GetUserID());	
 	// -----------------------------------------------------
-	m_DATE_SIGNED = time(NULL); // We store the timestamp of when this transaction was signed.
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+	m_DATE_SIGNED = OTTimeGetCurrentTime(); // We store the timestamp of when this transaction was signed.
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// -----------------------------------------------------	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -4930,7 +4929,7 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -4953,7 +4952,7 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 	 NOTES...
 	 
 	 transactionType		m_Type;				// blank, pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
-	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
+	 time64_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
 	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
 	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
@@ -5034,7 +5033,7 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5057,7 +5056,7 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 	 NOTES...
 	 
 	 transactionType		m_Type;				// instrumentNotice
-	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
+	 time64_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
 	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
 	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
@@ -5314,7 +5313,7 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5337,7 +5336,7 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 	 NOTES...
 	 
 	 transactionType		m_Type;				// pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
-	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
+	 time64_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
 	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
 	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
@@ -5470,7 +5469,7 @@ void OTTransaction::SaveAbbreviatedNymboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5565,7 +5564,7 @@ void OTTransaction::SaveAbbreviatedOutboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5696,7 +5695,7 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 	strType.Set((NULL != pTypeStr) ? pTypeStr : "error_state");
 	// ----------------------------------------------
 	// DATE SIGNED
-	const int64_t lDateSigned = static_cast<int64_t> (m_DATE_SIGNED);
+    const int64_t lDateSigned = OTTimeGetSecondsFromTime(m_DATE_SIGNED);
 	// ----------------------------------------------
 	// HASH OF THE COMPLETE "BOX RECEIPT"
 	// Save abbreviated is only used for receipts in boxes such as inbox, outbox, and nymbox.
@@ -5719,7 +5718,7 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 	 NOTES...
 	 
 	 transactionType		m_Type;				// blank, pending, processInbox, transfer, deposit, withdrawal, payDividend, trade, etc.
-	 time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
+	 time64_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
 	 OTIdentifier			m_Hash;				// Created while saving abbreviated record, loaded back with it, then verified against actual hash when loading actual box receipt.
 	 int64_t					m_lAbbrevAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
 	 int64_t					m_lDisplayAmount;	// Saved abbreviated from actual calculation, and set upon loading in abbrev mode.
@@ -7286,7 +7285,3 @@ bool OTTransaction::GetMemo(OTString & strMemo)
 	
 	return bSuccess;
 }
-
-
-
-

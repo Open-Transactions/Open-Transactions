@@ -1,3 +1,9 @@
+/*************************************************************
+*
+*  OTData.hpp
+*
+*/
+
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -125,12 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTDATA_HPP__
-#define __OTDATA_HPP__
-
-#include "OTCommon.hpp"
+#ifndef __OT_DATA_HPP__
+#define __OT_DATA_HPP__
 
 #include <cstddef>
+
+#include "OTCommon.hpp"
 
 class OTASCIIArmor;
 
@@ -191,36 +197,7 @@ public:
 };
 
 
-
-// A simple class used for making sure that dynamically allocated objects
-// are deleted once the pointer goes out of scope.
-//
-// WARNING: This is ONE-USE ONLY! Don't try to re-use instances of this all over the place.
-// If you are dynamically allocating some new object you want cleaned up, then make a NEW
-// instance of OTCleanup for each one.
-//
-// For example, if you call SetCleanupTarget() on multiple objects, then only the LAST
-// one will get cleaned up, and the others will leak!
-//
-template <class T>
-class OTCleanup
-{
-protected:
-	T * m_pCharge;
-
-public:
-	inline bool SetCleanupTarget(const T & theTarget) // Use this as much as you can.
-	{ m_pCharge = &((T&)theTarget); return true; }
-
-	inline bool SetCleanupTargetPointer(const T * pTarget)	// Use this when you want it to work even if pTarget is NULL.
-	{ m_pCharge = (T*)pTarget; return true; }				// (Like, it will accept the NULL pointer, and just be smart
-															// enough NOT to delete it, since it's already NULL.)
-	OTCleanup()                     : m_pCharge(NULL) { }
-	OTCleanup(const T & theTarget)  : m_pCharge(NULL) { SetCleanupTarget(theTarget); }
-	OTCleanup(const T * pTarget)    : m_pCharge(NULL) { SetCleanupTargetPointer(pTarget); }
-
-	~OTCleanup() { if (m_pCharge) delete m_pCharge; m_pCharge = NULL; }
-};
+#include "OTCleanup.hpp"
 
 
-#endif // __OTDATA_H
+#endif // __OT_DATA_HPP__

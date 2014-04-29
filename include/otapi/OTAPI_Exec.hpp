@@ -329,7 +329,7 @@ public:
 	so the smart contracts can see what time it is.
 
 	*/
-	EXPORT virtual time_t GetTime();
+	EXPORT virtual time64_t GetTime();
 
 
 
@@ -1085,8 +1085,8 @@ public:
 	EXPORT virtual std::string WriteCheque(
 		const std::string & SERVER_ID,
 		const int64_t & CHEQUE_AMOUNT,
-		const time_t & VALID_FROM,
-		const time_t & VALID_TO,
+		const time64_t & VALID_FROM,
+		const time64_t & VALID_TO,
 		const std::string & SENDER_ACCT_ID,
 		const std::string & SENDER_USER_ID,
 		const std::string & CHEQUE_MEMO,
@@ -1161,11 +1161,11 @@ public:
 	From OTAgreement: (This must be called first, before the other two methods below can be called.)
 
 	bool	OTAgreement::SetProposal(	const OTPseudonym & MERCHANT_NYM,	const OTString & strConsideration,
-	const time_t & VALID_FROM=0, const time_t & VALID_TO=0);
+	const time64_t & VALID_FROM=0, const time64_t & VALID_TO=0);
 
 	----------------------------------------------------------------------------------------
 	(Optional initial payment):
-	bool	OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+	bool	OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time64_t tTimeUntilInitialPayment=0); // default: now.
 	----------------------------------------------------------------------------------------
 
 	These two (above and below) can be called independent of each other. You can
@@ -1174,16 +1174,16 @@ public:
 	----------------------------------------------------------------------------------------
 	(Optional regular payments):
 	bool	OTPaymentPlan::SetPaymentPlan(const int64_t & lPaymentAmount,
-	time_t tTimeUntilPlanStart  =LENGTH_OF_MONTH_IN_SECONDS, // Default: 1st payment in 30 days
-	time_t tBetweenPayments     =LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
-	time_t tPlanLength=0, int32_t nMaxPayments=0);
+	time64_t tTimeUntilPlanStart  =OT_TIME_MONTH_IN_SECONDS, // Default: 1st payment in 30 days
+	time64_t tBetweenPayments     =OT_TIME_MONTH_IN_SECONDS, // Default: 30 days.
+	time64_t tPlanLength=0, int32_t nMaxPayments=0);
 	----------------------------------------------------------------------------------------
 	*/
 	EXPORT virtual std::string ProposePaymentPlan(
 		const std::string & SERVER_ID,
 		// ----------------------------------------
-		const time_t & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
-		const time_t & VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
+		const time64_t & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
+		const time64_t & VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
 		// ----------------------------------------
 		const std::string & SENDER_ACCT_ID,	// Mandatory parameters.
 		const std::string & SENDER_USER_ID,	// Both sender and recipient must sign before submitting.
@@ -1194,13 +1194,13 @@ public:
 		const std::string & RECIPIENT_USER_ID,	// Both sender and recipient must sign before submitting.
 		// -------------------------------
 		const int64_t & INITIAL_PAYMENT_AMOUNT,	// zero or NULL == no initial payment.
-		const time_t  & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
+		const time64_t  & INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or NULL.
 		// ----------------------------------------
 		const int64_t & PAYMENT_PLAN_AMOUNT,	// Zero or NULL == no regular payments.
-		const time_t  & PAYMENT_PLAN_DELAY,	    // No. of seconds from creation date. Default is zero or NULL. (Causing 30 days.)
-		const time_t  & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL. (Causing 30 days.)
+		const time64_t  & PAYMENT_PLAN_DELAY,	    // No. of seconds from creation date. Default is zero or NULL. (Causing 30 days.)
+		const time64_t  & PAYMENT_PLAN_PERIOD,	// No. of seconds between payments. Default is zero or NULL. (Causing 30 days.)
 		// ---------------------------------------
-		const time_t  & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
+		const time64_t  & PAYMENT_PLAN_LENGTH,	// In seconds. Defaults to 0 or NULL (no maximum length.)
 		const int32_t & PAYMENT_PLAN_MAX_PAYMENTS	// integer. Defaults to 0 or NULL (no maximum payments.)
 		);
 
@@ -1256,8 +1256,8 @@ public:
 	EXPORT virtual std::string Create_SmartContract(
 		const std::string & SIGNER_NYM_ID,// Use any Nym you wish here. (The signing at this point is only to cause a save.)
 		// ----------------------------------------
-		const time_t & VALID_FROM,	// Default (0 or NULL) == NOW
-		const time_t & VALID_TO		// Default (0 or NULL) == no expiry / cancel anytime
+		const time64_t & VALID_FROM,	// Default (0 or NULL) == NOW
+		const time64_t & VALID_TO		// Default (0 or NULL) == no expiry / cancel anytime
 		);
 	// ----------------------------------------
 
@@ -2069,7 +2069,7 @@ public:
 	//
 	// Get Transaction Date Signed (internally uses OTTransaction::GetDateSigned().)
 	*/
-	EXPORT virtual time_t Transaction_GetDateSigned(
+	EXPORT virtual time64_t Transaction_GetDateSigned(
 		const std::string & SERVER_ID,
 		const std::string & USER_ID,
 		const std::string & ACCOUNT_ID,
@@ -2396,7 +2396,7 @@ public:
 
 	//! the date is seconds since Jan 1970.
 	//
-	EXPORT virtual time_t Token_GetValidFrom(
+	EXPORT virtual time64_t Token_GetValidFrom(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_TOKEN
@@ -2404,7 +2404,7 @@ public:
 
 	// the date is seconds since Jan 1970.
 	//
-	EXPORT virtual time_t Token_GetValidTo(
+	EXPORT virtual time64_t Token_GetValidTo(
 		const std::string & SERVER_ID,
 		const std::string & ASSET_TYPE_ID,
 		const std::string & THE_TOKEN
@@ -2433,8 +2433,8 @@ public:
 	*/
 	EXPORT virtual int64_t     Instrmnt_GetAmount(const std::string & THE_INSTRUMENT);
 	EXPORT virtual int64_t     Instrmnt_GetTransNum(const std::string & THE_INSTRUMENT);
-	EXPORT virtual time_t      Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT);
-	EXPORT virtual time_t      Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT);
+	EXPORT virtual time64_t      Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT);
+	EXPORT virtual time64_t      Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT);
 	EXPORT virtual std::string Instrmnt_GetMemo(const std::string & THE_INSTRUMENT);
 	EXPORT virtual std::string Instrmnt_GetType(const std::string & THE_INSTRUMENT);
 	EXPORT virtual std::string Instrmnt_GetServerID(const std::string & THE_INSTRUMENT);
@@ -3543,7 +3543,7 @@ public:
 		const int64_t     & TOTAL_ASSETS_ON_OFFER,   // Total assets available for sale or purchase. Will be multiplied by minimum increment.
 		const int64_t     & PRICE_LIMIT,			// Per Minimum Increment...
 		const bool        & bBuyingOrSelling,    // SELLING == true, BUYING == false.
-		const time_t      & LIFESPAN_IN_SECONDS, // Pass 0 for the default behavior: 86400 seconds aka 1 day.
+		const time64_t    & LIFESPAN_IN_SECONDS, // Pass 0 for the default behavior: 86400 seconds aka 1 day.
 		// -------------------------------------------
 		const std::string & STOP_SIGN,         // Must be "" (for market/limit orders) or "<" or ">"  (for stop orders.)
 		const int64_t     & ACTIVATION_PRICE); // Must be provided if STOP_SIGN is also set. Determines the price threshold for stop orders.

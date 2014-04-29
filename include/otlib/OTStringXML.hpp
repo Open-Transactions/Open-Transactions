@@ -1,4 +1,10 @@
 /************************************************************
+*
+*  OTStringXML.hpp
+*
+*/
+
+/************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
  
@@ -125,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTSTRING_XML_HPP__
-#define __OTSTRING_XML_HPP__
+#ifndef __OT_STRING_XML_HPP__
+#define __OT_STRING_XML_HPP__
 
 #include "OTCommon.hpp"
 
@@ -151,28 +157,5 @@ EXPORT	virtual ~OTStringXML();
 	int32_t getSize();
 };
 
-#endif // __OTSTRING_XML_HPP__
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_STRING_XML_HPP__

@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTTransaction.h
+ *  OTTransaction.hpp
  *
  */
 
@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTTRANSACTION_HPP__
-#define __OTTRANSACTION_HPP__
+#ifndef __OT_TRANSACTION_HPP__
+#define __OT_TRANSACTION_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTItem.hpp"
-
 
 
 /*
@@ -223,7 +222,7 @@ Ledger is derived from contract because you must be able to save / sign it and l
 
  And what does it save?
  transactionType		m_Type;		// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
- time_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
+ time64_t					m_DATE_SIGNED;		// The date, in seconds, when the instrument was last signed.
  int64_t					m_lTransactionNum;	// The server issues this and it must be sent with transaction request.
  int64_t					m_lInReferenceToTransaction;
  int64_t					m_lClosingTransactionNo; // used by finalReceipt
@@ -498,7 +497,7 @@ protected:
 	OTIdentifier		m_Hash;			// todo: make this const and force it to be set during construction.
 
 	// ----------------------------------------------------------------
-	time_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.
+	time64_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.
 	transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
 	listOfItems			m_listItems;	// the various items in this transaction.
 
@@ -576,7 +575,7 @@ EXPORT    bool AddNumbersToTransaction(const OTNumList & theAddition);
 							  int64_t	& lTransactionNum,
 							  int64_t	& lInRefTo,
 							  int64_t	& lInRefDisplay,
-							  time_t	& the_DATE_SIGNED,
+							  time64_t	& the_DATE_SIGNED,
 							  OTTransaction::transactionType & theType,
 							  OTString & strHash,
 							  int64_t	& lAdjustment,
@@ -624,7 +623,7 @@ EXPORT	bool GetRecipientAcctIDForDisplay(OTIdentifier & theReturnID);
 EXPORT  bool GetMemo(OTString & strMemo);
 	// ----------------------------------------------------------------
         inline
-        time_t  GetDateSigned()	const { return m_DATE_SIGNED; }
+        time64_t  GetDateSigned()	const { return m_DATE_SIGNED; }
 EXPORT	bool    GetSuccess(); // Tries to determine, based on items within, whether it was a success or fail.
 EXPORT	int64_t    GetReceiptAmount(); // Tries to determine IF there is an amount (depending on type) and return it.
 	// ----------------------------------------------------------------
@@ -642,7 +641,7 @@ EXPORT	OTTransaction(const OTIdentifier & theUserID, const OTIdentifier & theAcc
 				  const int64_t & lTransactionNum,
 				  const int64_t & lInRefTo,
 				  const int64_t & lInRefDisplay,
-				  const time_t the_DATE_SIGNED,
+				  const time64_t the_DATE_SIGNED,
 				  const transactionType theType,
 				  const OTString & strHash,
 				  const int64_t & lAdjustment,
@@ -825,35 +824,4 @@ EXPORT	static const char * _GetTypeString(transactionType theType);
 };
 
 
-
-#endif // __OTTRANSACTION_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_TRANSACTION_HPP__

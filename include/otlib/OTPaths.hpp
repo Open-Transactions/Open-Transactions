@@ -1,6 +1,6 @@
 /**************************************************************
 *
-* OTPaths.h
+* OTPaths.hpp
 * This Class Maintins where stuff should go;
 * You must create one and only one contex for
 * every instance of OT_API.
@@ -136,8 +136,8 @@
 
 // The int64_t-awaited paths class.
 
-#ifndef __OTPATHS_HPP__
-#define __OTPATHS_HPP__
+#ifndef __OT_PATHS_HPP__
+#define __OT_PATHS_HPP__
 
 #include "OTCommon.hpp"
 
@@ -145,9 +145,8 @@
 #include "OTAssert.hpp"
 
 
-
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
-
+//
 class OTPaths
 {
 private:
@@ -248,155 +247,13 @@ public:
 }; // class OTPaths
 
 
-#ifdef _WIN32
-
-class WindowsRegistryTools
-{
-public:
-
-LONG GetDWORDRegKey(HKEY hKey, const std::wstring &strValueName, DWORD &nValue, DWORD nDefaultValue);
-LONG GetBoolRegKey(HKEY hKey, const std::wstring &strValueName, bool &bValue, bool bDefaultValue);
-LONG GetStringRegKey(HKEY hKey, const std::wstring &strValueName, std::wstring &strValue, const std::wstring &strDefaultValue);
-
-};
-
-#endif
+#include "OTWindowsRegistryTools.hpp"
 
 
-// Thread local.
-
-class OTDataFolder
-{
-private:
-
-#ifndef thread_local
-#define thread_local
-#endif
-	static OTDataFolder * pDataFolder;
-
-	bool		m_bInitialized;
-
-	OTString	m_strDataFolderPath;
-	OTString	m_strDataConifgFilePath;
-
-	static inline bool CheckDataFolder(OTDataFolder * pDataFolder)
-	{
-		if (NULL != pDataFolder)
-			if (pDataFolder->m_bInitialized) return true;
-
-		OT_FAIL;
-		return false;
-	}
-
-public:
-
-	EXPORT static bool Init(const OTString & strThreadContext);
-
-	EXPORT static bool IsInitialized();
-
-	EXPORT static bool Cleanup();
-
-	EXPORT static const OTString Get();
-	EXPORT static bool Get(OTString & strDataFolder);
-
-	EXPORT static bool GetConfigFilePath(OTString & strConfigFilePath);
-};
+#include "OTDataFolder.hpp"
 
 
+#include "OTFolders.hpp"
 
 
-
-// This class is for storing the names of the folders.  A instance of it must be made.
-// This function will store the folder-names automaticaly in the config file.
-
-class OTFolders
-{
-private:
-
-    static bool GetSetAll();
-
-    static inline bool GetSetFolderName(OTSettings & config, const std::string strKeyName,
-                                              const std::string strDefaultName, OTString & ret_strName)
-    {
-        if (ret_strName.Exists()) return true;
-        else
-        {
-            if (strKeyName.empty()    || strDefaultName.empty())    return false;
-            if (3 > strKeyName.size() || 3 > strDefaultName.size()) return false;
-
-            OTString strResult("");
-            bool bIsNew(false);
-
-            config.CheckSet_str("folders",strKeyName,strDefaultName,strResult,bIsNew);
-
-            if (!bIsNew) ret_strName = strResult;
-            else         ret_strName = strDefaultName.c_str();
-
-            return true;
-        }
-    }
-
-    static inline const OTString & GetFolder(const OTString & strFolder)
-    {
-        if (!strFolder.Exists()) {
-            if (!GetSetAll()) { OT_FAIL; } }
-        return strFolder;
-    }
-
-
-    static OTString s_strAccount;
-    static OTString s_strCert;
-    static OTString s_strContract;
-    static OTString s_strCredential;
-    static OTString s_strCron;
-    static OTString s_strInbox;
-    static OTString s_strMarket;
-    static OTString s_strMint;
-    static OTString s_strNym;
-    static OTString s_strNymbox;
-    static OTString s_strOutbox;
-    static OTString s_strPaymentInbox;
-    static OTString s_strPubcred;
-    static OTString s_strPubkey;
-    static OTString s_strPurse;
-    static OTString s_strReceipt;
-    static OTString s_strRecordBox;
-    static OTString s_strExpiredBox;
-    static OTString s_strScript;
-    static OTString s_strSmartContracts;
-    static OTString s_strSpent;
-    static OTString s_strUserAcct;
-
-public:
-
-    EXPORT static const OTString & Account();
-    EXPORT static const OTString & Cert();
-    EXPORT static const OTString & Contract();
-    EXPORT static const OTString & Credential();
-    EXPORT static const OTString & Cron();
-    EXPORT static const OTString & Inbox();
-    EXPORT static const OTString & Market();
-    EXPORT static const OTString & Mint();
-    EXPORT static const OTString & Nym();
-    EXPORT static const OTString & Nymbox();
-    EXPORT static const OTString & Outbox();
-    EXPORT static const OTString & PaymentInbox();
-    EXPORT static const OTString & Pubcred();
-    EXPORT static const OTString & Pubkey();
-    EXPORT static const OTString & Purse();
-    EXPORT static const OTString & Receipt();
-    EXPORT static const OTString & RecordBox();
-    EXPORT static const OTString & ExpiredBox();
-    EXPORT static const OTString & Script();
-    EXPORT static const OTString & SmartContracts();
-    EXPORT static const OTString & Spent();
-    EXPORT static const OTString & UserAcct();
-
-}; // class OTFolders
-
-
-
-
-
-
-#endif // __OTPATHS_HPP__
+#endif // __OT_PATHS_HPP__

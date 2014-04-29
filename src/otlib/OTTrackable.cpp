@@ -135,8 +135,6 @@
 #include <OTTrackable.hpp>
 
 
-
-
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
 
 
@@ -266,38 +264,3 @@ bool OTTrackable::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

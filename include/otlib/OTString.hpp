@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTString.h
+ *  OTString.hpp
  *
  */
 
@@ -134,12 +134,12 @@
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
 
-#include "OTCommon.hpp"
-
 #include <list>
 #include <map>
 #include <sstream>
 #include <string.h>
+
+#include "OTCommon.hpp"
 
 #ifdef _WIN32
 #include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
@@ -153,8 +153,6 @@ class OTASCIIArmor;
 class OTSignature;
 class OTPseudonym;
 
-
-// ------------------------------------
 
 // All of the below PRI values are defined in inttypes.h
 // Therefore if it's NOT defined, then we must probably be
@@ -203,7 +201,6 @@ class OTPseudonym;
 //#define MAX_STRING_LENGTH   1262144
 //#endif // _WIN32
 // TODO: consider how MAX_SIZE affects the above hard-coded number...
-
 
 
 typedef std::map	<std::string, std::string>		mapOfStrings;
@@ -503,11 +500,4 @@ protected:
 //bool operator <=(const OTString &s1, const OTString& s2);
 
 
-
-
-#endif    // __OT_ STRING_HPP__
-
-
-
-
-
+#endif    // __OT_STRING_HPP__

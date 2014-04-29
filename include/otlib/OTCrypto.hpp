@@ -134,6 +134,8 @@
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
 
+#include <set>
+
 #include "OTCommon.hpp"
 
 #include "OTSettings.hpp"
@@ -141,8 +143,6 @@
 #include "OTAssert.hpp"
 
 #include "tinythread.hpp"
-
-#include <set>
 
 class OTData;
 class OTIdentifier;
@@ -153,7 +153,6 @@ class OTPassword;
 class OTPasswordData;
 class OTSignature;
 class OTPseudonym;
-
 
 
 // ------------------------------------------------------------------------
@@ -617,7 +616,5 @@ public:
     void *          key
 )
 */
-
-
 
 #endif // __OT_CRYPTO_HPP__

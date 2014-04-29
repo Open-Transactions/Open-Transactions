@@ -167,8 +167,6 @@ OTCleanup<OTDB::OTPacker> g_thePackerAngel; // Make sure the pointer below gets 
 OTDB::OTPacker * OTASCIIArmor::s_pPacker = NULL;
 
 
-
-
 OTDB::OTPacker * OTASCIIArmor::GetPacker() 
 {
 	if (NULL == s_pPacker)
@@ -181,7 +179,6 @@ OTDB::OTPacker * OTASCIIArmor::GetPacker()
 	
 	return s_pPacker;
 }
-
 
 
 // Let's say you don't know if the input string is raw base64, or if it has bookends
@@ -1136,48 +1133,3 @@ OTASCIIArmor::~OTASCIIArmor()
 {
 	// ~OTString called automatically, which calls Release().
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

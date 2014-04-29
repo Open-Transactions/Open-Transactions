@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTItem.h
+ *  OTItem.hpp
  *
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTITEM_HPP__
-#define __OTITEM_HPP__
+#ifndef __OT_ITEM_HPP__
+#define __OT_ITEM_HPP__
 
 #include "OTCommon.hpp"
 
@@ -432,10 +432,4 @@ EXPORT	static void GetStringFromType(OTItem::itemType theType, OTString & strTyp
 };
 
 
-
-
-#endif // __OTITEM_HPP__
-
-
-
-
+#endif // __OT_ITEM_HPP__
