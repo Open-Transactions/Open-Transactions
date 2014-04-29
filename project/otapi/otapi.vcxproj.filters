@@ -7,152 +7,12 @@
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{ad0079bd-3901-4ed7-be6b-404280b4e761}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\Sample">
-      <UniqueIdentifier>{849a259b-33ed-4afd-87f6-6dd5937d4793}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\swig\otapi\OTAPI.i" />
-    <None Include="..\..\scripts\ot\otapi.ot">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\..\scripts\ot\ot_commands.ot">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\..\scripts\ot\ot_made_easy.ot">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\..\scripts\ot\ot_utility.ot">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\accept_inbox.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\add_signature.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\args.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\cancel_offer.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\cancel_plan.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\check_user.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_asset_acct.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_asset_contract.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_nym.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_offer.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_server_contract.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\create_symmetric_key.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\decode.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\decrypt.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\dl_acct_files.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\dl_contract.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\encode.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\encrypt.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\input_multiline.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\input_oneline.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\issue_asset.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\password_decrypt.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\password_encrypt.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\register_nym.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\send_transfer.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\send_user_msg.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\show_acct.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\show_balance.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\show_inbox.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\show_mint.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\show_outbox.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\sign_contract.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\stat.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\time.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\verify_receipt.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\verify_signature.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-    <None Include="..\..\scripts\samples\write_cheque.ot">
-      <Filter>Scripts\Sample</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\scripts\samples\README.txt">
-      <Filter>Scripts\Sample</Filter>
-    </Text>
-    <Text Include="..\..\scripts\samples\TODO.txt">
-      <Filter>Scripts\Sample</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\otapi\otapi.rc">
@@ -163,7 +23,13 @@
     <ClInclude Include="..\..\include\otapi\main.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\otapi\OpenTransactions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\otapi\ot_commands_ot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\otapi\ot_made_easy_ot.hpp">
@@ -184,25 +50,19 @@
     <ClInclude Include="..\..\include\otapi\OTAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\otapi\OTClient.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\otapi\Mock_OTAPI_Exec.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\otapi\OTAPI_Exec.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\otapi\ot_commands_ot.hpp">
+    <ClInclude Include="..\..\include\otapi\OTClient.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\otapi\OTRecord.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\otapi\OTRecordList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\otapi\OTServerConnection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -240,13 +100,13 @@
     <ClCompile Include="..\..\src\otapi\OTClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\otapi\OTRecord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\otapi\OTRecordList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

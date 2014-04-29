@@ -7,20 +7,20 @@
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\dispatchkit">
-      <UniqueIdentifier>{2af42c37-264e-4fd9-91f5-86e9d9d25c62}</UniqueIdentifier>
+      <UniqueIdentifier>{422949b7-7a45-4c49-8c0e-159ae8a2217b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\language">
-      <UniqueIdentifier>{2f79d4fc-7c10-4a4f-a0e6-e96d2ca6da6b}</UniqueIdentifier>
+      <UniqueIdentifier>{c83caff8-a800-4aba-89b1-655192b9bca9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\utility">
-      <UniqueIdentifier>{80c34ba5-7c5f-4f9f-a847-420d13d124a8}</UniqueIdentifier>
+      <UniqueIdentifier>{842f338a-12de-418d-9e8b-0f7f841045c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,9 +123,6 @@
     <ClInclude Include="..\..\include\chai5\chaiscript\utility\utility.hpp">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\include\chai5\chaiscript\license.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\include\chai5\chaiscript\language\chaiscript_prelude.chai">
