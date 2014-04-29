@@ -194,15 +194,6 @@ OTAsymmetricKey * OTAsymmetricKey::ClonePubKey() const // Caller IS responsible 
 }
 
 
-OTLowLevelKeyData::~OTLowLevelKeyData()
-{
-    if (m_bCleanup)
-        Cleanup();
-    if(NULL != dp)
-        delete(dp);
-}
-
-
 // -------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------
@@ -3014,3 +3005,19 @@ bool OTAsymmetricKey::LoadPublicKeyFromCertFile(const OTString   & strFoldername
     
     return this->LoadPublicKeyFromCertString(strCert, false, pstrReason, pImportPassword); // bEscaped=false; "escaped" means pre-pended with "- " as in:   - -----BEGIN CER....
 }
+
+
+
+OTLowLevelKeyData::~OTLowLevelKeyData()
+{
+    if (m_bCleanup)
+        Cleanup();
+    if(NULL != dp)
+        delete(dp);
+}
+
+
+
+
+
+
