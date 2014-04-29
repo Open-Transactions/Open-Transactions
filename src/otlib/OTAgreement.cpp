@@ -140,7 +140,6 @@
 #include <OTAccount.hpp>
 #include <OTCron.hpp>
 
-#include <time.h>
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 
@@ -1095,7 +1094,7 @@ bool OTAgreement::CompareAgreement(const OTAgreement & rhs) const
 //
 // (lMerchantTransactionNumber, lMerchantClosingNumber are set internally in this call, from MERCHANT_NYM.)
 bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & strConsideration,
-                              const time_t VALID_FROM/*=0*/, const time_t VALID_TO/*=0*/) //VALID_TO is a length here. (i.e. it's ADDED to valid_from)
+                              const time64_t VALID_FROM/*=0*/, const time64_t VALID_TO/*=0*/) //VALID_TO is a length here. (i.e. it's ADDED to valid_from)
 {
     // ----------------------------------------------------------------------------
     OTIdentifier id_MERCHANT_NYM;
@@ -1122,7 +1121,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // ------------------------------------------- 
 	// Set the CREATION DATE
     //
-	const time_t CURRENT_TIME = time(NULL);
+	const time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1132,7 +1131,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // VALID_FROM
     //
 	// The default "valid from" time is NOW.
-	if (0 >= VALID_FROM) // if it's 0 or less, set to current time.
+    if (OT_TIME_ZERO >= VALID_FROM) // if it's 0 or less, set to current time.
 		SetValidFrom(CURRENT_TIME);
 	else // Otherwise use whatever was passed in.
 		SetValidFrom(VALID_FROM);
@@ -1140,17 +1139,17 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // VALID_TO
     //
 	// The default "valid to" time is 0 (which means no expiration date / cancel anytime.)
-	if (0 == VALID_TO) // VALID_TO is 0
+    if (OT_TIME_ZERO == VALID_TO) // VALID_TO is 0
 	{
 		SetValidTo(VALID_TO); // Keep it at zero then, so it won't expire.
 	}
-	else if (0 < VALID_TO) // VALID_TO is ABOVE zero...
+    else if (OT_TIME_ZERO < VALID_TO) // VALID_TO is ABOVE zero...
 	{
-		SetValidTo(GetValidFrom() + VALID_TO); // Set it to itself + valid_from.
+		SetValidTo(OTTimeAddTimeInterval(GetValidFrom(), OTTimeGetSecondsFromTime(VALID_TO))); // Set it to itself + valid_from.
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
+        int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
 		OTLog::vError("%s: Negative value for valid_to: %lld\n", __FUNCTION__, lValidTo);
         
 		return false;
@@ -1289,7 +1288,7 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
     // CREATION DATE was set in the Merchant's proposal, and it's RESET here in the Confirm.
     // This way, (since we still have the original proposal) we can see BOTH times.
     //
-	time_t CURRENT_TIME = time(NULL);
+	time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
 	// -------------------------------------------
@@ -1309,7 +1308,7 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
 //
 /*
 bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
-							   const time_t & VALID_FROM=0,	const time_t & VALID_TO=0)
+							   const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0)
 {
 	// Set the Transaction Number...
 	SetTransactionNum(lTransactionNum);
@@ -1319,7 +1318,7 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 
 	// ------------------------------------------- 
 	
-	time_t CURRENT_TIME = time(NULL);
+	time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1472,7 +1471,7 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         const OTString strCreation = xml->getAttributeValue("creationDate");
         int64_t tCreation = strCreation.ToLong();
         
-		SetCreationDate(static_cast<time_t>(tCreation));
+        SetCreationDate(OTTimeGetTimeFromSeconds(tCreation));
         // -------------------------------------------------------------------
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
@@ -1480,8 +1479,8 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         int64_t tValidFrom = str_valid_from.ToLong();
         int64_t tValidTo   = str_valid_to.ToLong();
         
-		SetValidFrom(static_cast<time_t>(tValidFrom));
-		SetValidTo  (static_cast<time_t>(tValidTo));
+        SetValidFrom(OTTimeGetTimeFromSeconds(tValidFrom));
+        SetValidTo(OTTimeGetTimeFromSeconds(tValidTo));
 		// ---------------------
 		const OTString	strServerID       (xml->getAttributeValue("serverID")),
                         strAssetTypeID    (xml->getAttributeValue("assetTypeID")),
@@ -1586,52 +1585,3 @@ bool OTAgreement::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

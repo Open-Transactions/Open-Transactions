@@ -35,6 +35,8 @@
 // Mock.  They are subject to change without notice, so please DO NOT
 // USE THEM IN USER CODE.
 
+#include <stdafx.h>
+
 #include "gmock/internal/gmock-internal-utils.h"
 
 #include <ctype.h>

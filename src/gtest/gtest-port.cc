@@ -29,6 +29,8 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+#include <stdafx.h>
+
 #include "gtest/internal/gtest-port.h"
 
 #include <limits.h>

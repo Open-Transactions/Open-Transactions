@@ -1,9 +1,8 @@
 /**************************************************************
  *
- *  OTMarket.h
+ *  OTMarket.hpp
  *
  */
-
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -135,8 +134,8 @@
 // A market has a list of OTOffers for all the bids, and another list of OTOffers for all the asks.
 // Presumably the server will have different markets for different asset types.
 
-#ifndef __OTMARKET_HPP__
-#define __OTMARKET_HPP__
+#ifndef __OT_MARKET_HPP__
+#define __OT_MARKET_HPP__
 
 #include "OTCommon.hpp"
 
@@ -145,7 +144,6 @@
 #include "OTStorage.hpp"
 
 class OTTrade;
-
 
 
 #define MAX_MARKET_QUERY_DEPTH	50  // todo add this to the ini file. (Now that we actually have one.)
@@ -199,7 +197,7 @@ public:
 	bool ValidateOfferForMarket(OTOffer & theOffer, OTString * pReason=NULL);
 
 	OTOffer *	GetOffer(const int64_t & lTransactionNum);
-	bool		AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile=true, time_t tDateAddedToMarket=0);
+    bool		AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile = true, time64_t tDateAddedToMarket = OT_TIME_ZERO);
 	bool		RemoveOffer(const int64_t & lTransactionNum);
 	// -----------------------------------------------------
 	// returns general information about offers on the market
@@ -276,19 +274,4 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCount);
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
 
-#endif // __OTMARKET_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_MARKET_HPP__

@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTPayment.h
+ *  OTPayment.hpp
  *
  * If you use sendUserInstrument to send an invoice / cheque /
  * voucher / payment plan / purse / smart contract to another
@@ -149,7 +149,7 @@ class OTCheque;
 class OTPaymentPlan;
 class OTSmartContract;
 
-// ----------------------
+
 /*
   The PAYMENT can be of types:
     - CHEQUE, INVOICE, VOUCHER (these are all forms of cheque)
@@ -185,6 +185,7 @@ class OTSmartContract;
   Currently OTSmartContract is the only actual server-side scripting on OT.
  // ----------------------
  */
+
 
 class OTPayment : public OTContract
 {
@@ -244,8 +245,8 @@ protected:
     OTIdentifier    m_RemitterUserID;   // A voucher (cashier's cheque) has the "bank" as the sender. Whereas the Nym who actually purchased the voucher is the remitter.
     OTIdentifier    m_RemitterAcctID;   // A voucher (cashier's cheque) has the "bank"s account as the sender acct. Whereas the account that was originally used to purchase the voucher is the remitter account.
 	// -----------------------------------------
-    time_t          m_VALID_FROM;       // Temporary values. Not always available.
-    time_t          m_VALID_TO;         // Temporary values. Not always available.
+    time64_t          m_VALID_FROM;       // Temporary values. Not always available.
+    time64_t          m_VALID_TO;         // Temporary values. Not always available.
 	// -----------------------------------------
 public:
 EXPORT    bool SetPayment(const OTString & strPayment);
@@ -320,8 +321,8 @@ EXPORT    bool GetRemitterAcctID (OTIdentifier & theOutput)   const;
 EXPORT    bool GetSenderUserIDForDisplay(OTIdentifier & theOutput)   const;
 EXPORT    bool GetSenderAcctIDForDisplay(OTIdentifier & theOutput)   const;
     // ----------------------------
-EXPORT    bool GetValidFrom(time_t & tOutput)                 const;
-EXPORT    bool GetValidTo  (time_t & tOutput)                 const;
+EXPORT    bool GetValidFrom(time64_t & tOutput)                 const;
+EXPORT    bool GetValidTo  (time64_t & tOutput)                 const;
 	// ------------------------------------------------------------------------
 EXPORT	bool VerifyCurrentDate(bool & bVerified); // Verify whether the CURRENT date is WITHIN the VALID FROM / TO dates.
 EXPORT  bool IsExpired        (bool & bExpired);  // Verify whether the CURRENT date is AFTER the the "VALID TO" date.
@@ -343,4 +344,3 @@ EXPORT	static paymentType GetTypeFromString(const OTString & strType);
 
 
 #endif // __OT_PAYMENT_HPP__
-

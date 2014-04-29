@@ -152,8 +152,8 @@ void OTCheque::UpdateContents()
              REMITTER_USER_ID(GetRemitterUserID()),
              REMITTER_ACCT_ID(GetRemitterAcctID());
 		
-	int64_t lFrom   = static_cast<int64_t> (GetValidFrom()),
-            lTo     = static_cast<int64_t> (GetValidTo());
+    int64_t lFrom = OTTimeGetSecondsFromTime(GetValidFrom());
+    int64_t lTo = OTTimeGetSecondsFromTime(GetValidTo());
 	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -232,8 +232,8 @@ int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
 
-		SetValidFrom(static_cast<time_t>(str_valid_from.ToLong()));
-		SetValidTo  (static_cast<time_t>(str_valid_to.ToLong()));
+        SetValidFrom(OTTimeGetTimeFromSeconds(str_valid_from.ToLong()));
+        SetValidTo(OTTimeGetTimeFromSeconds(str_valid_to.ToLong()));
         // ---------------------------------
 		OTString	strAssetTypeID     (xml->getAttributeValue("assetTypeID")),
 					strServerID        (xml->getAttributeValue("serverID")),
@@ -328,7 +328,7 @@ void OTCheque::CancelCheque()
 // Make sure to sign it afterwards.
 bool OTCheque::IssueCheque(
                 const int64_t & lAmount, const int64_t & lTransactionNum,
-				const time_t & VALID_FROM, const time_t & VALID_TO,	// The expiration date (valid from/to dates) of the cheque
+				const time64_t & VALID_FROM, const time64_t & VALID_TO,	// The expiration date (valid from/to dates) of the cheque
 				const OTIdentifier & SENDER_ACCT_ID,			// The asset account the cheque is drawn on.
 				const OTIdentifier & SENDER_USER_ID,			// This ID must match the user ID on the asset account, 
 														// AND must verify the cheque signature with that user's key.
@@ -423,29 +423,3 @@ bool OTCheque::SaveContractWallet(std::ofstream & ofs)
 	
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

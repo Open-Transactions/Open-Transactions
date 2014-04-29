@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTPaymentPlan.h
+ *  OTPaymentPlan.hpp
  *
  */
 
@@ -131,41 +131,16 @@
  **************************************************************/
 
 
-#ifndef __OT_PAYMENT_PLAN__
-#define __OT_PAYMENT_PLAN__
+#ifndef __OT_PAYMENT_PLAN_HPP__
+#define __OT_PAYMENT_PLAN_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTAgreement.hpp"
 
 
-
-#ifndef LENGTH_OF_DAY_IN_SECONDS
-
-// NOTE: a "year" is length of day * 365.
-// NOTE: "six months" is length of day * 180
-// NOTE: a "month" is length of day * 30
-// NOTE: "three months" is length of month * 3
-//
-// (Just pointing out, those are not exact, but estimated.)
-
-#define LENGTH_OF_YEAR_IN_SECONDS	31536000
-#define LENGTH_OF_SIX_MONTHS_IN_SECONDS	15552000
-#define LENGTH_OF_THREE_MONTHS_IN_SECONDS	7776000
-#define LENGTH_OF_MONTH_IN_SECONDS	2592000
-#define LENGTH_OF_DAY_IN_SECONDS	86400
-#define LENGTH_OF_HOUR_IN_SECONDS	3600
-#define LENGTH_OF_MINUTE_IN_SECONDS	60
-
-#define TEST_LENGTH_IN_SECONDS		10
-
-//#define PLAN_PROCESS_INTERVAL		LENGTH_OF_HOUR_IN_SECONDS // todo put this back.
-#define PLAN_PROCESS_INTERVAL		TEST_LENGTH_IN_SECONDS
-
-#endif
-
-
-
+//#define PLAN_PROCESS_INTERVAL		OT_TIME_HOUR_IN_SECONDS // todo put this back.
+#define PLAN_PROCESS_INTERVAL		OTTimeGetTimeFromSeconds(10)
 
 
 
@@ -221,18 +196,18 @@ public:
 	// From parent:  (This must be called first, before the other two methods below can be called.)
 	//
 	//	bool		SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
-	//							 const time_t & VALID_FROM=0,	const time_t & VALID_TO=0);
+	//							 const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0);
 
 	// Then call one (or both) of these:
 
-EXPORT	bool		SetInitialPayment(const int64_t & lAmount, time_t tTimeUntilInitialPayment=0); // default: now.
+EXPORT	bool		SetInitialPayment(const int64_t & lAmount, time64_t tTimeUntilInitialPayment=OT_TIME_ZERO); // default: now.
 
 	// These two can be called independent of each other. You can
 	// have an initial payment, AND/OR a payment plan.
 
-EXPORT	bool		SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPlanStart=LENGTH_OF_MONTH_IN_SECONDS,
-							   time_t tBetweenPayments=LENGTH_OF_MONTH_IN_SECONDS, // Default: 30 days.
-							   time_t tPlanLength=0, int32_t nMaxPayments=0);
+EXPORT	bool		SetPaymentPlan(const int64_t & lPaymentAmount, time64_t tTimeUntilPlanStart=OT_TIME_MONTH_IN_SECONDS,
+							   time64_t tBetweenPayments = OT_TIME_MONTH_IN_SECONDS, // Default: 30 days.
+							   time64_t tPlanLength=OT_TIME_ZERO, int32_t nMaxPayments=0);
 
 	// VerifyAgreement()
     // This function verifies both Nyms and both signatures.
@@ -254,21 +229,21 @@ EXPORT	bool		SetPaymentPlan(const int64_t & lPaymentAmount, time_t tTimeUntilPla
 	// ********************* "INITIAL PAYMENT" public GET METHODS	*********************
 public:
 	inline bool				HasInitialPayment()		const	{ return m_bInitialPayment; }
-	inline const time_t &	GetInitialPaymentDate()	const	{ return m_tInitialPaymentDate; }
+	inline const time64_t &	GetInitialPaymentDate()	const	{ return m_tInitialPaymentDate; }
 	inline const int64_t &		GetInitialPaymentAmount()const	{ return m_lInitialPaymentAmount; }
 	inline bool				IsInitialPaymentDone()	const	{ return m_bInitialPaymentDone; }
 
-	inline const time_t &	GetInitialPaymentCompletedDate() const	{ return m_tInitialPaymentCompletedDate; }
-	inline const time_t &	GetLastFailedInitialPaymentDate() const	{ return m_tFailedInitialPaymentDate; }
+	inline const time64_t &	GetInitialPaymentCompletedDate() const	{ return m_tInitialPaymentCompletedDate; }
+	inline const time64_t &	GetLastFailedInitialPaymentDate() const	{ return m_tFailedInitialPaymentDate; }
 	inline int32_t				GetNoInitialFailures()	 const	{ return m_nNumberInitialFailures; }
 
 
 	// "INITIAL PAYMENT" private MEMBERS
 private:
 	bool	m_bInitialPayment;				// Will there be an initial payment?
-	time_t	m_tInitialPaymentDate;			// Date of the initial payment, measured seconds after creation.
-	time_t	m_tInitialPaymentCompletedDate;	// Date the initial payment was finally transacted.
-	time_t	m_tFailedInitialPaymentDate;	// Date of the last failed payment, measured seconds after creation.
+	time64_t	m_tInitialPaymentDate;			// Date of the initial payment, measured seconds after creation.
+	time64_t	m_tInitialPaymentCompletedDate;	// Date the initial payment was finally transacted.
+	time64_t	m_tFailedInitialPaymentDate;	// Date of the last failed payment, measured seconds after creation.
 	int64_t	m_lInitialPaymentAmount;		// Amount of the initial payment.
 	bool	m_bInitialPaymentDone;			// Has the initial payment been made?
 	int32_t		m_nNumberInitialFailures;		// If we've tried to process this multiple times, we'll know.
@@ -276,15 +251,15 @@ private:
 	// --------------------------------------------------------------------------
 	// "INITIAL PAYMENT" protected SET METHODS
 protected:
-	inline void SetInitialPaymentDate(const time_t & tInitialPaymentDate) { m_tInitialPaymentDate = tInitialPaymentDate; }
+	inline void SetInitialPaymentDate(const time64_t & tInitialPaymentDate) { m_tInitialPaymentDate = tInitialPaymentDate; }
 	inline void SetInitialPaymentAmount(const int64_t & lAmount)	{ m_lInitialPaymentAmount = lAmount; }
 
 	// Sets the bool that officially the initial payment has been done. (Checks first to make sure not already done.)
 	bool SetInitialPaymentDone();
 
-	inline void SetInitialPaymentCompletedDate(const time_t & tInitialPaymentDate)
+	inline void SetInitialPaymentCompletedDate(const time64_t & tInitialPaymentDate)
 	{ m_tInitialPaymentCompletedDate = tInitialPaymentDate; }
-	inline void SetLastFailedInitialPaymentDate(const time_t & tFailedInitialPaymentDate)
+	inline void SetLastFailedInitialPaymentDate(const time64_t & tFailedInitialPaymentDate)
 	{ m_tFailedInitialPaymentDate = tFailedInitialPaymentDate; }
 
 	inline void	SetNoInitialFailures(const int32_t & nNoFailures)	{ m_nNumberInitialFailures = nNoFailures; }
@@ -299,13 +274,13 @@ protected:
 public:
 	inline bool				HasPaymentPlan()		 const	{ return m_bPaymentPlan; }
 	inline const int64_t &		GetPaymentPlanAmount()	 const	{ return m_lPaymentPlanAmount; }
-	inline const time_t &	GetTimeBetweenPayments() const	{ return m_tTimeBetweenPayments; }
-	inline const time_t &	GetPaymentPlanStartDate()const	{ return m_tPaymentPlanStartDate; }
-	inline const time_t &	GetPaymentPlanLength()	 const	{ return m_tPaymentPlanLength; }
+	inline const time64_t &	GetTimeBetweenPayments() const	{ return m_tTimeBetweenPayments; }
+	inline const time64_t &	GetPaymentPlanStartDate()const	{ return m_tPaymentPlanStartDate; }
+	inline const time64_t &	GetPaymentPlanLength()	 const	{ return m_tPaymentPlanLength; }
 	inline int32_t				GetMaximumNoPayments()	 const	{ return m_nMaximumNoPayments; }
 
-	inline const time_t &	GetDateOfLastPayment()	 const	{ return m_tDateOfLastPayment; }
-	inline const time_t &	GetDateOfLastFailedPayment() const { return m_tDateOfLastFailedPayment; }
+	inline const time64_t &	GetDateOfLastPayment()	 const	{ return m_tDateOfLastPayment; }
+	inline const time64_t &	GetDateOfLastFailedPayment() const { return m_tDateOfLastFailedPayment; }
 
 	inline int32_t				GetNoPaymentsDone()		 const	{ return m_nNoPaymentsDone; }
 	inline int32_t				GetNoFailedPayments()	 const	{ return m_nNoFailedPayments; }
@@ -315,13 +290,13 @@ public:
 private:
 	bool	m_bPaymentPlan;			// Will there be a payment plan?
 	int64_t	m_lPaymentPlanAmount;	// Amount of each payment.
-	time_t	m_tTimeBetweenPayments;	// How int64_t between each payment?
-	time_t	m_tPaymentPlanStartDate;// Date for the first payment plan payment.
-	time_t	m_tPaymentPlanLength;	// Optional. Plan length measured in seconds since plan start.
+	time64_t	m_tTimeBetweenPayments;	// How much time between each payment?
+	time64_t	m_tPaymentPlanStartDate;// Date for the first payment plan payment.
+	time64_t	m_tPaymentPlanLength;	// Optional. Plan length measured in seconds since plan start.
 	int32_t		m_nMaximumNoPayments;	// Optional. The most number of payments that are authorized.
 
-	time_t	m_tDateOfLastPayment;	// Recording of date of the last payment.
-	time_t	m_tDateOfLastFailedPayment;	// Recording of date of the last failed payment.
+	time64_t	m_tDateOfLastPayment;	// Recording of date of the last payment.
+	time64_t	m_tDateOfLastFailedPayment;	// Recording of date of the last failed payment.
 	int32_t		m_nNoPaymentsDone;		// Recording of the number of payments already processed.
 	int32_t		m_nNoFailedPayments;	// Every time a payment fails, we record that here.
 
@@ -329,13 +304,13 @@ private:
 	// "PAYMENT PLAN" protected SET METHODS
 protected:
 	inline void SetPaymentPlanAmount(const		 int64_t &	lAmount)		{ m_lPaymentPlanAmount		= lAmount; }
-	inline void SetTimeBetweenPayments(const	 time_t&tTimeBetween)	{ m_tTimeBetweenPayments	= tTimeBetween; }
-	inline void SetPaymentPlanStartDate(const	 time_t&tPlanStartDate)	{ m_tPaymentPlanStartDate	= tPlanStartDate; }
-	inline void SetPaymentPlanLength(const		 time_t&tPlanLength)	{ m_tPaymentPlanLength		= tPlanLength; }
+	inline void SetTimeBetweenPayments(const	 time64_t & tTimeBetween)	{ m_tTimeBetweenPayments	= tTimeBetween; }
+	inline void SetPaymentPlanStartDate(const	 time64_t & tPlanStartDate)	{ m_tPaymentPlanStartDate	= tPlanStartDate; }
+	inline void SetPaymentPlanLength(const		 time64_t & tPlanLength)	{ m_tPaymentPlanLength		= tPlanLength; }
 	inline void SetMaximumNoPayments(			 int32_t	nMaxNoPayments)	{ m_nMaximumNoPayments		= nMaxNoPayments; }
 
-	inline void SetDateOfLastPayment(const		 time_t&tDateOfLast)	{ m_tDateOfLastPayment		= tDateOfLast; }
-	inline void SetDateOfLastFailedPayment(const time_t&tDateOfLast)	{ m_tDateOfLastFailedPayment= tDateOfLast; }
+	inline void SetDateOfLastPayment(const		 time64_t&tDateOfLast)	{ m_tDateOfLastPayment		= tDateOfLast; }
+	inline void SetDateOfLastFailedPayment(const time64_t&tDateOfLast)	{ m_tDateOfLastFailedPayment= tDateOfLast; }
 
 	inline void SetNoPaymentsDone(				 int32_t	nNoPaymentsDone){ m_nNoPaymentsDone			= nNoPaymentsDone; }
 	inline void SetNoFailedPayments(			 int32_t	nNoFailed)		{ m_nNoFailedPayments		= nNoFailed; }
@@ -372,8 +347,8 @@ public:
 	/*
 	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
-	 inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
-	 inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
+	 inline void SetCreationDate(const time64_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
+	 inline const time64_t & GetCreationDate() const { return m_CREATION_DATE; }
 	 */
 
 	// --------------------------------------------------------------------------
@@ -401,11 +376,11 @@ public:
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 bool IsExpired()
@@ -439,10 +414,4 @@ EXPORT	virtual ~OTPaymentPlan();
 };
 
 
-
-
-
-
-
-
-#endif // __OT_PAYMENT_PLAN__
+#endif // __OT_PAYMENT_PLAN_HPP__

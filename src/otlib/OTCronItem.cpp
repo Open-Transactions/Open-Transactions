@@ -1355,15 +1355,12 @@ bool OTCronItem::MoveFunds(const mapOfNyms	  & map_NymsAlreadyLoaded,
 }
 
 
-
-
-
-bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID_TO/*=0*/)
+bool OTCronItem::SetDateRange(const time64_t VALID_FROM/*=0*/,  const time64_t VALID_TO/*=0*/)
 {
 	// ***************************************************
 	// Set the CREATION DATE
     //
-	const time_t CURRENT_TIME = time(NULL);
+	const time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1372,7 +1369,7 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
     // VALID_FROM
     //
 	// The default "valid from" time is NOW.
-	if (0 >= VALID_FROM) // if it's 0 or less, set to current time.
+    if (OT_TIME_ZERO >= VALID_FROM) // if it's 0 or less, set to current time.
 		SetValidFrom(CURRENT_TIME);
 	else // Otherwise use whatever was passed in.
 		SetValidFrom(VALID_FROM);
@@ -1380,16 +1377,16 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
     // VALID_TO
     //
 	// The default "valid to" time is 0 (which means no expiration date / cancel anytime.)
-	if (0 == VALID_TO) // VALID_TO is 0
+    if (OT_TIME_ZERO == VALID_TO) // VALID_TO is 0
 	{
 		SetValidTo(VALID_TO); // Keep it at zero then, so it won't expire.
 	}
-	else if (0 < VALID_TO) // VALID_TO is ABOVE zero...
+    else if (OT_TIME_ZERO < VALID_TO) // VALID_TO is ABOVE zero...
 	{
 		if (VALID_TO < VALID_FROM) // If Valid-To date is EARLIER than Valid-From date...
 		{
-			int64_t lValidTo   = static_cast<int64_t> (VALID_TO),
-                    lValidFrom = static_cast<int64_t> (VALID_FROM);
+            int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
+            int64_t lValidFrom = OTTimeGetSecondsFromTime(VALID_FROM);
 			OTLog::vError("OTCronItem::%s: VALID_TO (%" PRId64") is earlier than VALID_FROM (%" PRId64")\n",
                           __FUNCTION__, lValidTo, lValidFrom);
 			return false;
@@ -1399,7 +1396,7 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
+        int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
 		OTLog::vError("OTCronItem::%s: Negative value for valid_to: %" PRId64"\n",
                       __FUNCTION__, lValidTo);
 
@@ -2375,7 +2372,8 @@ void OTCronItem::HarvestClosingNumbers(OTPseudonym & theNym)
 
 
 
-OTCronItem::OTCronItem() : ot_super(), m_pCron(NULL), m_CREATION_DATE(0), m_LAST_PROCESS_DATE(0),
+OTCronItem::OTCronItem()
+:   ot_super(), m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO), m_LAST_PROCESS_DATE(OT_TIME_ZERO),
     m_PROCESS_INTERVAL(1),  // Default for any cron item is to execute once per second.
     m_pCancelerNymID(new OTIdentifier),
     m_bCanceled(false),
@@ -2385,10 +2383,10 @@ OTCronItem::OTCronItem() : ot_super(), m_pCron(NULL), m_CREATION_DATE(0), m_LAST
 }
 
 
-OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
-    ot_super(SERVER_ID, ASSET_ID),
-    m_pCron(NULL), m_CREATION_DATE(0),
-    m_LAST_PROCESS_DATE(0), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
+OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
+:   ot_super(SERVER_ID, ASSET_ID),
+    m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO),
+    m_LAST_PROCESS_DATE(OT_TIME_ZERO), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
     m_pCancelerNymID(new OTIdentifier),
     m_bCanceled(false),
     m_bRemovalFlag(false)
@@ -2399,8 +2397,8 @@ OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSE
 OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID,
 					   const OTIdentifier & ACCT_ID,   const OTIdentifier & USER_ID) :
     ot_super(SERVER_ID, ASSET_ID, ACCT_ID, USER_ID),
-        m_pCron(NULL), m_CREATION_DATE(0),
-        m_LAST_PROCESS_DATE(0), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
+    m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO),
+    m_LAST_PROCESS_DATE(OT_TIME_ZERO), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
         m_pCancelerNymID(new OTIdentifier),
         m_bCanceled(false),
         m_bRemovalFlag(false)
@@ -2471,9 +2469,9 @@ OTCronItem::~OTCronItem()
 
 void OTCronItem::Release_CronItem()
 {
-    m_CREATION_DATE = 0;
-    m_LAST_PROCESS_DATE = 0;
-	m_PROCESS_INTERVAL = 1;
+    m_CREATION_DATE     = OT_TIME_ZERO;
+    m_LAST_PROCESS_DATE = OT_TIME_ZERO;
+	m_PROCESS_INTERVAL  = 1;
 
     ClearClosingNumbers();
 

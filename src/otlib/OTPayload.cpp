@@ -325,4 +325,3 @@ const void * OTPayload::GetPayloadPointer() const
 {
 	return GetPointer();
 }
-

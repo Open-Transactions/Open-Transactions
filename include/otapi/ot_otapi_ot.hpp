@@ -140,7 +140,7 @@ public:
     bool bBool;
     int32_t nData;
     int64_t lData;
-    time_t tData;
+    time64_t tData;
     int32_t nTransNumsNeeded;
     int32_t nRequestNum;
 

@@ -1,3 +1,9 @@
+/*************************************************************
+*
+*  OTData.hpp
+*
+*/
+
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -125,12 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTDATA_HPP__
-#define __OTDATA_HPP__
-
-#include "OTCommon.hpp"
+#ifndef __OT_DATA_HPP__
+#define __OT_DATA_HPP__
 
 #include <cstddef>
+
+#include "OTCommon.hpp"
 
 class OTASCIIArmor;
 
@@ -223,4 +229,4 @@ public:
 };
 
 
-#endif // __OTDATA_H
+#endif // __OT_DATA_HPP__

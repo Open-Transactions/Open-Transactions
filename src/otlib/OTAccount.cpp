@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTAccount.cpp
  *
@@ -148,7 +148,6 @@
 #include <fstream>
 
 #ifdef _WIN32
-#include <time.h>
 #include <Mmsystem.h>
 #else
 #include <unistd.h>
@@ -390,7 +389,7 @@ bool OTAccount::Debit(const int64_t & lAmount)
 	{										// AS LONG AS the result is a HIGHER BALANCE  :-)
 		m_BalanceAmount.Format("%lld", lNewBalance);
 
-		const time_t tDate = time(NULL); // Today, now.
+		const time64_t tDate = OTTimeGetCurrentTime(); // Today, now.
 		m_BalanceDate.Format("%d", tDate);
 
 		return true;
@@ -427,7 +426,7 @@ bool OTAccount::Credit(const int64_t & lAmount)
 	{										// AS LONG AS the result is a HIGHER BALANCE  :-)
 		m_BalanceAmount.Format("%lld", lNewBalance);
 
-		const time_t tDate = time(NULL); // Today, now.
+		const time64_t tDate = OTTimeGetCurrentTime(); // Today, now.
 		m_BalanceDate.Format("%d", tDate);
 
 		return true;
@@ -532,16 +531,11 @@ char* myGetTimeOfDay(char* buffer, int32_t bufferLength)
             tv.tv_sec = t / 1000;
             tv.tv_usec = t % 1000;
         }
-#else
-        gettimeofday( &tv, NULL );
-#endif
-
-
-#ifdef _WIN32
-        time_t temp_Time = tv.tv_sec;
+        int64_t temp_Time = tv.tv_sec;
         strftime(buffer, 20,
             "%Y/%m/%d %H:%M:%S", localtime(&temp_Time));
 #else
+        gettimeofday( &tv, NULL );
         strftime( buffer, 20,
             "%Y/%m/%d %H:%M:%S", localtime(&tv.tv_sec) );
 #endif
@@ -729,7 +723,7 @@ bool OTAccount::GenerateNewAccount(const OTPseudonym & theServer, const OTMessag
 	SetRealServerID(SERVER_ID);			// todo this assumes the serverID on the message is correct. It's vetted, but still...
 	SetPurportedServerID(SERVER_ID);
 
-	const time_t tDate = time(NULL); // Today, now.
+	const time64_t tDate = OTTimeGetCurrentTime(); // Today, now.
 	m_BalanceDate.Format("%d", tDate);
 
 	m_BalanceAmount.Set("0");
@@ -1554,48 +1548,4 @@ _SharedPtr<OTAccount> OTAcctList::GetOrCreateAccount(OTPseudonym			& theServerNy
 	}
 
 	return pRetVal;
-} // --------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

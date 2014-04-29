@@ -1,6 +1,6 @@
 /**************************************************************
  *
- *  OTSmartContract.h
+ *  OTSmartContract.hpp
  *
  * OTSmartContract is derived from OTCronItem.
  * It handles re-occuring, (scriptable) smart contracts.
@@ -198,7 +198,7 @@ private:
 	OTString	m_strLastRecipientAcct;	// the sender (or recipient) will be blank, signifying that the source or destination was a stash.
 
 	// If onProcess() is on a timer (say, to wake up in a week) then this will contain the
-	time_t		m_tNextProcessDate;		// date that it WILL be, in a week. (Or zero.)
+	time64_t		m_tNextProcessDate;		// date that it WILL be, in a week. (Or zero.)
 
 protected:
 	// --------------------------------------------------------------------------
@@ -216,8 +216,8 @@ protected:
 	void ReleaseLastSenderRecipientIDs();
 	// --------------------------------------------------------------------------
 	// (These two are lower level, and used by SetNextProcessTime).
-	void SetNextProcessDate(const time_t & tNEXT_DATE) { m_tNextProcessDate = tNEXT_DATE; }
-	const time_t & GetNextProcessDate() const { return m_tNextProcessDate; }
+	void SetNextProcessDate(const time64_t & tNEXT_DATE) { m_tNextProcessDate = tNEXT_DATE; }
+	const time64_t & GetNextProcessDate() const { return m_tNextProcessDate; }
 
 public:
     virtual void SetDisplayLabel(const std::string * pstrLabel=NULL);
@@ -238,7 +238,7 @@ public:
 	// --------------------------------------------------------------------------
 	// FROM PAYMENT PLAN:
 //  bool    SetProposal(OTPseudonym & MERCHANT_NYM, const OTString & strConsideration,
-//                      const time_t & VALID_FROM=0,	const time_t & VALID_TO=0);
+//                      const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0);
 //  bool    Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*=NULL*/, OTIdentifier * p_id_MERCHANT_NYM/*=NULL*/);  // Merchant Nym is passed here so we can verify the signature before confirming.
     // -----------------------------------------
     // These notes are from OTAgreement/OTPaymentPlan but they are still relevant:
@@ -261,8 +261,8 @@ public:
 	/*
 	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
-	 inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
-	 inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
+	 inline void SetCreationDate(const time64_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
+	 inline const time64_t & GetCreationDate() const { return m_CREATION_DATE; }
 	 */
     virtual bool CanRemoveItemFromCron(OTPseudonym & theNym);
 
@@ -302,11 +302,11 @@ public:
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */

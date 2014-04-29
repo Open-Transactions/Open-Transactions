@@ -34,6 +34,8 @@
 // This file implements the spec builder syntax (ON_CALL and
 // EXPECT_CALL).
 
+#include <stdafx.h>
+
 #include "gmock/gmock-spec-builders.h"
 
 #include <stdlib.h>

@@ -34,6 +34,8 @@
 // This file implements Matcher<const string&>, Matcher<string>, and
 // utilities for defining matchers.
 
+#include <stdafx.h>
+
 #include "gmock/gmock-matchers.h"
 #include "gmock/gmock-generated-matchers.h"
 

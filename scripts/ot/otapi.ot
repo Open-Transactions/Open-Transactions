@@ -120,8 +120,7 @@
 		this.bBool						= false
 		this.nData						= 0
 		this.lData						= int64_t(0)
-		this.tData						= OT_API_GetTime() // So it gets created as a time_t
-		this.tData						= 0 // initialize it to 0.
+		this.tData						= int64_t(0) // So it gets created as a time64_t
 		this.nTransNumsNeeded			= 0
 		this.nRequestNum			    = (-1)
 	// ---------------------------------------

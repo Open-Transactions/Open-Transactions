@@ -1,4 +1,3 @@
-
 /*************************************************************
  *    
  *  OTDataCheck.cpp
@@ -222,12 +221,3 @@ OT_BOOL IsChecksumValid( OT_BYTE* buffer, uint32_t size )
 		return false;
 	}
 }
-
-
-
-
-
-
-
-
-

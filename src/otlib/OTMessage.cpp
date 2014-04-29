@@ -143,12 +143,10 @@
 #include <time.h>
 
 
-
 // PROTOCOL DOCUMENT -------------------------------------------
 
 // --- This is the file that implements the entire message protocol.
 // (Transactions are in a different file.)
-
 
 
 // true  == success (even if nothing harvested.)
@@ -290,7 +288,7 @@ void OTMessage::UpdateContents()
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
     
-    m_lTime = static_cast<int64_t>(time(NULL));
+    m_lTime = OTTimeGetSecondsFromTime(OTTimeGetCurrentTime());
     
 	m_xmlUnsigned.Concatenate("<?xml version=\"%s\"?>\n\n", "1.0");
 	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%lld\">\n\n",
@@ -4582,52 +4580,3 @@ bool OTMessage::SaveContractWallet(std::ofstream & ofs)
 		return false;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

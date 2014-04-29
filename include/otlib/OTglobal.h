@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __GLOBAL_H__
-#define __GLOBAL_H__
+#ifndef __OT_GLOBAL_H__
+#define __OT_GLOBAL_H__
 
 #include "OTCommon.hpp"
 
@@ -170,6 +170,4 @@ extern "C" {
 #endif
 
 
-
-		
-#endif // __GLOBAL_H__
+#endif // __OT_GLOBAL_H__

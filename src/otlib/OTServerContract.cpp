@@ -4,7 +4,6 @@
  *  
  */
 
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -292,50 +291,3 @@ int32_t OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	
 	return nReturnVal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

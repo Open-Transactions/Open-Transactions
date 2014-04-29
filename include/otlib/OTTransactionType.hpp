@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTTransactionType.h
+ *  OTTransactionType.hpp
  *
  */
 
@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTTRANSACTION_TYPE_HPP__
-#define __OTTRANSACTION_TYPE_HPP__
+#ifndef __OT_TRANSACTION_TYPE_HPP__
+#define __OT_TRANSACTION_TYPE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
 #include "OTASCIIArmor.hpp"
 
 class OTString;
@@ -639,12 +638,4 @@ EXPORT	void SetReferenceString(const OTString & theStr);
 };
 
 
-
-
-
-#endif // __OTTRANSACTION_TYPE_HPP__
-
-
-
-
-
+#endif // __OT_TRANSACTION_TYPE_HPP__

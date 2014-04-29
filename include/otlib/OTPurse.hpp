@@ -1,6 +1,6 @@
 /*************************************************************
  *
- *  OTPurse.h
+ *  OTPurse.hpp
  *
  */
 
@@ -131,13 +131,12 @@
  **************************************************************/
 
 
-#ifndef __OTPURSE_HPP__
-#define __OTPURSE_HPP__
+#ifndef __OT_PURSE_HPP__
+#define __OT_PURSE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
 #include "OTASCIIArmor.hpp"
 #include "OTToken.hpp"
 #include "OTCachedKey.hpp"
@@ -156,7 +155,7 @@ class OTNym_or_SymmetricKey;
 // The recipient will already know to use his own private key to open the purse, and then he will immediately
 // open it, redeem the coins, and store the replacements again encrypted to his own key, until he spends them
 // again to someone else, when he will also know to encrypt the purse to THEIR public key, and so on.
-
+//
 // The interface of this class is that of a simple stack.
 // Imagine a stack of poker chips.
 
@@ -197,8 +196,8 @@ protected:
 	OTSymmetricKey        * m_pSymmetricKey;    // If this purse contains its own symmetric key (instead of using an owner Nym)...
 	_SharedPtr<OTCachedKey>   m_pCachedKey;       // ...then it will have a master key as well, for unlocking that symmetric key, and managing timeouts, etc.
 	// ----------------------------------------------
-    time_t  m_tLatestValidFrom;  // The tokens in the purse may become valid on different dates. This stores the latest one.
-    time_t  m_tEarliestValidTo;  // The tokens in the purse may have different expirations. This stores the earliest one.
+    time64_t  m_tLatestValidFrom;  // The tokens in the purse may become valid on different dates. This stores the latest one.
+    time64_t  m_tEarliestValidTo;  // The tokens in the purse may have different expirations. This stores the earliest one.
 	// ----------------------------------------------
     void    RecalculateExpirationDates(OTNym_or_SymmetricKey & theOwner);
 	// ----------------------------------------------
@@ -245,8 +244,8 @@ public:
 	// ----------------------------------------------
 	inline int64_t	GetTotalValue() const { return m_lTotalValue; }
 	// ----------------------------------------------
-    EXPORT  time_t GetLatestValidFrom() const;
-    EXPORT  time_t GetEarliestValidTo() const;
+    EXPORT  time64_t GetLatestValidFrom() const;
+    EXPORT  time64_t GetEarliestValidTo() const;
 	// ----------------------------------------------
     // NOTE: Keep in mind that a purse's expiration dates are based on ALL the tokens within.
     // Therefore this will never be as accurate as individually examining those tokens...
@@ -284,5 +283,4 @@ public:
 };
 
 
-#endif // __OTPURSE_HPP__
-
+#endif // __OT_PURSE_HPP__

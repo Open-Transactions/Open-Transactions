@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *    
- *  OTAccount.h
+ *  OTAccount.hpp
  *  
  */
 
@@ -130,8 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTACCOUNT_HPP__
-#define __OTACCOUNT_HPP__
+#ifndef __OT_ACCOUNT_HPP__
+#define __OT_ACCOUNT_HPP__
 
 #include "OTCommon.hpp"
 
@@ -314,54 +314,4 @@ EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym,
                                                const int64_t             lStashTransNum=0);
 };
 
-
-
-
-
-
-
-
-
-
-#endif // __OTACCOUNT_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_ACCOUNT_HPP__

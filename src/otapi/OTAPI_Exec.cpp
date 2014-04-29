@@ -3266,7 +3266,7 @@ int64_t OTAPI_Exec::Instrmnt_GetTransNum(const std::string & THE_INSTRUMENT)
 
 
 
-time_t OTAPI_Exec::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
+time64_t OTAPI_Exec::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
 {
 	if (THE_INSTRUMENT.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_INSTRUMENT" ); OT_FAIL; }
 	// ------------------------------------
@@ -3278,7 +3278,7 @@ time_t OTAPI_Exec::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
 	{
 		OTLog::vOutput(0, "%s: Unable to parse instrument:\n\n%s\n\n",
 			__FUNCTION__, strInstrument.Get());
-		return -1;
+        return OTTimeGetTimeFromSeconds(-1);
 	}
 	// ---------------------------------------
 	const bool & bSetValues = thePayment.SetTempValues();
@@ -3287,24 +3287,24 @@ time_t OTAPI_Exec::Instrmnt_GetValidFrom(const std::string & THE_INSTRUMENT)
 	{
 		OTLog::vOutput(0, "%s: Unable to load instrument:\n\n%s\n\n",
 			__FUNCTION__, strInstrument.Get());
-		return -1;
+        return OTTimeGetTimeFromSeconds(-1);
 	}
 	// ---------------------------------------
 
 	// BY THIS POINT, we have definitely loaded up all the values of the instrument
 	// into the OTPayment object. (Meaning we can now return the requested data...)
 
-	OTString      strOutput;
-	time_t        tOutput = 0;
+	OTString strOutput;
+    time64_t tOutput = OT_TIME_ZERO;
 	const bool &  bGotData = thePayment.GetValidFrom(tOutput); // <========
 
-	return bGotData ? tOutput : -1;
+    return bGotData ? tOutput : OTTimeGetTimeFromSeconds(-1);
 }
 
 
 
 
-time_t OTAPI_Exec::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
+time64_t OTAPI_Exec::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
 {
 	if (THE_INSTRUMENT.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "THE_INSTRUMENT" ); OT_FAIL; }
 	// ------------------------------------
@@ -3316,7 +3316,7 @@ time_t OTAPI_Exec::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
 	{
 		OTLog::vOutput(0, "%s: Unable to parse instrument:\n\n%s\n\n",
 			__FUNCTION__, strInstrument.Get());
-		return -1;
+        return OTTimeGetTimeFromSeconds(-1);
 	}
 	// ---------------------------------------
 	const bool & bSetValues = thePayment.SetTempValues();
@@ -3325,7 +3325,7 @@ time_t OTAPI_Exec::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
 	{
 		OTLog::vOutput(0, "%s: Unable to load instrument:\n\n%s\n\n",
 			__FUNCTION__, strInstrument.Get());
-		return -1;
+        return OTTimeGetTimeFromSeconds(-1);
 	}
 	// ---------------------------------------
 
@@ -3333,10 +3333,10 @@ time_t OTAPI_Exec::Instrmnt_GetValidTo(const std::string & THE_INSTRUMENT)
 	// into the OTPayment object. (Meaning we can now return the requested data...)
 
 	OTString    strOutput;
-	time_t      tOutput = 0;
+    time64_t      tOutput = OT_TIME_ZERO;
 	const bool &  bGotData = thePayment.GetValidTo(tOutput); // <========
 
-	return bGotData ? tOutput : -1;
+    return bGotData ? tOutput : OTTimeGetTimeFromSeconds(-1);
 }
 
 
@@ -4105,11 +4105,9 @@ Todo:  consider making this available on the server side as well,
 so the smart contracts can see what time it is.
 
 */
-time_t OTAPI_Exec::GetTime(void)
+time64_t OTAPI_Exec::GetTime(void)
 {
-	int64_t lTime = OTAPI()->GetTime();
-
-	return lTime;
+    return OTAPI()->GetTime();
 }
 
 
@@ -4728,8 +4726,8 @@ RECIPIENT_USER_ID); // Recipient User ID is optional. (You can use an
 */
 std::string OTAPI_Exec::WriteCheque(const std::string & SERVER_ID,
                                     const int64_t & CHEQUE_AMOUNT,
-                                    const time_t & VALID_FROM,
-                                    const time_t & VALID_TO,
+                                    const time64_t & VALID_FROM,
+                                    const time64_t & VALID_TO,
                                     const std::string & SENDER_ACCT_ID,
                                     const std::string & SENDER_USER_ID,
                                     const std::string & CHEQUE_MEMO,
@@ -4737,15 +4735,15 @@ std::string OTAPI_Exec::WriteCheque(const std::string & SERVER_ID,
 {
 	if (SERVER_ID.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SERVER_ID"			); OT_FAIL; }
 	if (0 == CHEQUE_AMOUNT)         { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "CHEQUE_AMOUNT"		); OT_FAIL; }
-	if (0 > VALID_FROM)             { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "VALID_FROM"			); OT_FAIL; }
-	if (0 > VALID_TO)               { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "VALID_TO"			); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_FROM)  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "VALID_FROM"); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_TO)    { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "VALID_TO"); OT_FAIL; }
 	if (SENDER_ACCT_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SENDER_ACCT_ID"		); OT_FAIL; }
 	if (SENDER_USER_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SENDER_USER_ID"		); OT_FAIL; }
 //	if (CHEQUE_MEMO.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "CHEQUE_MEMO"		); OT_FAIL; } // optional
 //	if (RECIPIENT_USER_ID.empty())	{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "RECIPIENT_USER_ID"	); OT_FAIL; } // optional
 
 	const int64_t lAmount = CHEQUE_AMOUNT;
-	const time_t  time_From = static_cast<time_t>(VALID_FROM), time_To = static_cast<time_t>(VALID_TO);
+	const time64_t  time_From = static_cast<time64_t>(VALID_FROM), time_To = static_cast<time64_t>(VALID_TO);
 
 	const OTIdentifier theServerID(SERVER_ID);
 	const OTIdentifier theSenderAcctID(SENDER_ACCT_ID);
@@ -4830,8 +4828,8 @@ bool OTAPI_Exec::DiscardCheque(const std::string & SERVER_ID,
 std::string OTAPI_Exec::ProposePaymentPlan(
 	const std::string	& SERVER_ID,
 	// ----------------------------------------
-    const time_t        & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
-    const time_t        & VALID_TO,     // Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
+    const time64_t        & VALID_FROM,	// Default (0 or NULL) == current time measured in seconds since Jan 1970.
+    const time64_t        & VALID_TO,     // Default (0 or NULL) == no expiry / cancel anytime. Otherwise this is ADDED to VALID_FROM (it's a length.)
     // ----------------------------------------
 	const std::string	& SENDER_ACCT_ID,			// Mandatory parameters.
 	const std::string	& SENDER_USER_ID,			// Both sender and recipient must sign before submitting.
@@ -4842,30 +4840,30 @@ std::string OTAPI_Exec::ProposePaymentPlan(
 	const std::string	& RECIPIENT_USER_ID,		// Both sender and recipient must sign before submitting.
 	// -------------------------------
 	const int64_t		& INITIAL_PAYMENT_AMOUNT,	// zero or "" is no initial payment.
-	const time_t		& INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or "".
+	const time64_t		& INITIAL_PAYMENT_DELAY,	// seconds from creation date. Default is zero or "".
 	// ----------------------------------------
 	const int64_t		& PAYMENT_PLAN_AMOUNT,		// Zero or "" is no regular payments.
-	const time_t		& PAYMENT_PLAN_DELAY,		// No. of seconds from creation date. Default is zero or "".
-	const time_t		& PAYMENT_PLAN_PERIOD,		// No. of seconds between payments. Default is zero or "".
+	const time64_t		& PAYMENT_PLAN_DELAY,		// No. of seconds from creation date. Default is zero or "".
+	const time64_t		& PAYMENT_PLAN_PERIOD,		// No. of seconds between payments. Default is zero or "".
 	// ---------------------------------------
-	const time_t		& PAYMENT_PLAN_LENGTH,		// In seconds. Defaults to 0 or "" (no maximum length.)
+	const time64_t		& PAYMENT_PLAN_LENGTH,		// In seconds. Defaults to 0 or "" (no maximum length.)
 	const int32_t		& PAYMENT_PLAN_MAX_PAYMENTS	// Integer. Defaults to 0 or "" (no maximum payments.)
 	)
 {
 	if (SERVER_ID.empty())				{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "SERVER_ID"                 ); OT_FAIL; }
-	if (0 > VALID_FROM)					{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_FROM"                ); OT_FAIL; }
-	if (0 > VALID_TO)					{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_TO"                  ); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_FROM)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_FROM"); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_TO)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_TO"); OT_FAIL; }
 	if (SENDER_ACCT_ID.empty())			{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "SENDER_ACCT_ID"            ); OT_FAIL; }
 	if (SENDER_USER_ID.empty())			{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "SENDER_USER_ID"            ); OT_FAIL; }
 	if (PLAN_CONSIDERATION.empty())		{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "PLAN_CONSIDERATION"        ); OT_FAIL; }
 	if (RECIPIENT_ACCT_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "RECIPIENT_ACCT_ID"         ); OT_FAIL; }
 	if (RECIPIENT_USER_ID.empty())		{ OTLog::vError("%s: Null: %s passed in!\n",     __FUNCTION__, "RECIPIENT_USER_ID"         ); OT_FAIL; }
 	if (0 > INITIAL_PAYMENT_AMOUNT)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "INITIAL_PAYMENT_AMOUNT"    ); OT_FAIL; }
-	if (0 > INITIAL_PAYMENT_DELAY)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "INITIAL_PAYMENT_DELAY"     ); OT_FAIL; }
+    if (OT_TIME_ZERO > INITIAL_PAYMENT_DELAY)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "INITIAL_PAYMENT_DELAY"); OT_FAIL; }
 	if (0 > PAYMENT_PLAN_AMOUNT)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_AMOUNT"       ); OT_FAIL; }
-	if (0 > PAYMENT_PLAN_DELAY)			{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_DELAY"        ); OT_FAIL; }
-	if (0 > PAYMENT_PLAN_PERIOD)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_PERIOD"       ); OT_FAIL; }
-	if (0 > PAYMENT_PLAN_LENGTH)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_LENGTH"       ); OT_FAIL; }
+    if (OT_TIME_ZERO > PAYMENT_PLAN_DELAY)			{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_DELAY"); OT_FAIL; }
+    if (OT_TIME_ZERO > PAYMENT_PLAN_PERIOD)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_PERIOD"); OT_FAIL; }
+    if (OT_TIME_ZERO > PAYMENT_PLAN_LENGTH)		{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_LENGTH"); OT_FAIL; }
 	if (0 > PAYMENT_PLAN_MAX_PAYMENTS)	{ OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "PAYMENT_PLAN_MAX_PAYMENTS" ); OT_FAIL; }
     // ---------------------------------------
 	OTPaymentPlan * pPlan(OTAPI()->ProposePaymentPlan(
@@ -4953,18 +4951,18 @@ std::string OTAPI_Exec::EasyProposePlan(
 	if (RECIPIENT_ACCT_ID.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "RECIPIENT_ACCT_ID"  ); OT_FAIL; }
 	if (RECIPIENT_USER_ID.empty())  { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "RECIPIENT_USER_ID"  ); OT_FAIL; }
     // ----------------------------------------
-    time_t  VALID_FROM                = 0;
-    time_t  VALID_TO                  = 0;
+    time64_t  VALID_FROM                = OT_TIME_ZERO;
+    time64_t  VALID_TO                  = OT_TIME_ZERO;
     // ----------------------------------------
-    int64_t INITIAL_PAYMENT_AMOUNT    = 0;
-    time_t  INITIAL_PAYMENT_DELAY     = 0;
+    int64_t INITIAL_PAYMENT_AMOUNT      = 0;
+    time64_t  INITIAL_PAYMENT_DELAY     = OT_TIME_ZERO;
     // ----------------------------------------
-    int64_t PAYMENT_PLAN_AMOUNT       = 0;
-    time_t  PAYMENT_PLAN_DELAY        = 0;
-    time_t  PAYMENT_PLAN_PERIOD       = 0;
+    int64_t PAYMENT_PLAN_AMOUNT         = 0;
+    time64_t  PAYMENT_PLAN_DELAY        = OT_TIME_ZERO;
+    time64_t  PAYMENT_PLAN_PERIOD       = OT_TIME_ZERO;
     // ---------------------------------------
-    time_t  PAYMENT_PLAN_LENGTH       = 0;
-    int32_t PAYMENT_PLAN_MAX_PAYMENTS = 0;
+    time64_t  PAYMENT_PLAN_LENGTH       = OT_TIME_ZERO;
+    int32_t PAYMENT_PLAN_MAX_PAYMENTS   = 0;
     // ---------------------------------------
     if (!DATE_RANGE.empty())
     {
@@ -4978,7 +4976,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                VALID_FROM = static_cast<time_t>(lVal);
+                VALID_FROM = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
         // ----------------------
@@ -4987,7 +4985,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                VALID_TO = static_cast<time_t>(lVal);
+                VALID_TO = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
     }
@@ -5013,7 +5011,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                INITIAL_PAYMENT_DELAY = static_cast<time_t>(lVal);
+                INITIAL_PAYMENT_DELAY = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
     }
@@ -5039,7 +5037,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                PAYMENT_PLAN_DELAY = static_cast<time_t>(lVal);
+                PAYMENT_PLAN_DELAY = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
         // ----------------------
@@ -5048,7 +5046,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                PAYMENT_PLAN_PERIOD = static_cast<time_t>(lVal);
+                PAYMENT_PLAN_PERIOD = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
     }
@@ -5065,7 +5063,7 @@ std::string OTAPI_Exec::EasyProposePlan(
         {
             int64_t lVal = 0;
             if (theList.Peek(lVal))
-                PAYMENT_PLAN_LENGTH = static_cast<time_t>(lVal);
+                PAYMENT_PLAN_LENGTH = OTTimeGetTimeFromSeconds(lVal);
             theList.Pop();
         }
         // ----------------------
@@ -5147,17 +5145,17 @@ std::string OTAPI_Exec::ConfirmPaymentPlan(const std::string & SERVER_ID,
 //
 std::string OTAPI_Exec::Create_SmartContract(const std::string & SIGNER_NYM_ID, // Use any Nym you wish here. (The signing at this point32_t is only to cause a save.)
                                              // ----------------------------------------
-                                             const time_t & VALID_FROM,	// Default (0 or "") == NOW
-                                             const time_t & VALID_TO)	// Default (0 or "") == no expiry / cancel anytime
+                                             const time64_t & VALID_FROM,	// Default (0 or "") == NOW
+                                             const time64_t & VALID_TO)	// Default (0 or "") == no expiry / cancel anytime
 {
-	if (SIGNER_NYM_ID.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"  ); OT_FAIL; }
-	if (0 > VALID_FROM)        { OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_FROM" ); OT_FAIL; }
-	if (0 > VALID_TO)          { OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_TO"   ); OT_FAIL; }
+	if (SIGNER_NYM_ID.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SIGNER_NYM_ID"  ); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_FROM) { OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_FROM"); OT_FAIL; }
+    if (OT_TIME_ZERO > VALID_TO)   { OTLog::vError("%s: Negative: %s passed in!\n", __FUNCTION__, "VALID_TO"); OT_FAIL; }
 	// -----------------------------------------------------
 	const OTIdentifier theSignerNymID(SIGNER_NYM_ID);
 	// -----------------------------------------------------
-	time_t tValidFrom = VALID_FROM;
-	time_t tValidTo   = VALID_TO;
+	time64_t tValidFrom = VALID_FROM;
+	time64_t tValidTo   = VALID_TO;
 	// --------------------------------------
 	OTString strOutput;
 
@@ -10592,7 +10590,7 @@ int64_t OTAPI_Exec::ReplyNotice_GetRequestNum(const std::string & SERVER_ID,
 //
 // Get Transaction Date Signed  (internally uses OTTransaction::GetDateSigned().)
 //
-time_t OTAPI_Exec::Transaction_GetDateSigned(const std::string & SERVER_ID,
+time64_t OTAPI_Exec::Transaction_GetDateSigned(const std::string & SERVER_ID,
 											 const std::string & USER_ID,
 											 const std::string & ACCOUNT_ID,
 											 const std::string & THE_TRANSACTION)
@@ -10608,7 +10606,7 @@ time_t OTAPI_Exec::Transaction_GetDateSigned(const std::string & SERVER_ID,
 
 	// -----------------------------------------------------
 	OTPseudonym * pNym = OTAPI()->GetOrLoadPrivateNym(theUserID, false, __FUNCTION__); // These copiously log, and ASSERT.
-	if (NULL == pNym) return -1;
+    if (NULL == pNym) return OTTimeGetTimeFromSeconds(-1);
 	// -----------------------------------------------------
 
 	OTTransaction theTransaction(theUserID, theAccountID, theServerID);
@@ -10617,15 +10615,13 @@ time_t OTAPI_Exec::Transaction_GetDateSigned(const std::string & SERVER_ID,
 	{
 		OTString strAcctID(theAccountID);
 		OTLog::vError("%s: Error loading transaction from string. Acct ID: %s\n", __FUNCTION__, strAcctID.Get());
-		return -1;
+        return OTTimeGetTimeFromSeconds(-1);
 	}
 	// NO need to load abbreviated version here, since it already stores the date.
 	// -----------------------------------------------------
 
 	OTString strOutput;
-	const int64_t lDateSigned = static_cast<int64_t> (theTransaction.GetDateSigned());
-
-	return lDateSigned;
+	return theTransaction.GetDateSigned();
 }
 
 
@@ -11878,7 +11874,7 @@ int32_t OTAPI_Exec::Token_GetSeries(const std::string & SERVER_ID,
 
 // the date is seconds since Jan 1970, but returned as a string.
 //
-time_t OTAPI_Exec::Token_GetValidFrom(const std::string & SERVER_ID,
+time64_t OTAPI_Exec::Token_GetValidFrom(const std::string & SERVER_ID,
 									  const std::string & ASSET_TYPE_ID,
 									  const std::string & THE_TOKEN)
 {
@@ -11898,13 +11894,13 @@ time_t OTAPI_Exec::Token_GetValidFrom(const std::string & SERVER_ID,
 	{
 		return pToken->GetValidFrom();
 	}
-	else return -1;
+    return OTTimeGetTimeFromSeconds(-1);
 }
 
 
 // the date is seconds since Jan 1970, but returned as a string.
 //
-time_t OTAPI_Exec::Token_GetValidTo(const std::string & SERVER_ID,
+time64_t OTAPI_Exec::Token_GetValidTo(const std::string & SERVER_ID,
 									const std::string & ASSET_TYPE_ID,
 									const std::string & THE_TOKEN)
 {
@@ -11924,7 +11920,7 @@ time_t OTAPI_Exec::Token_GetValidTo(const std::string & SERVER_ID,
 	{
 		return pToken->GetValidTo();
 	}
-	else return -1;
+    return OTTimeGetTimeFromSeconds(-1);
 }
 
 // ---------
@@ -13302,7 +13298,7 @@ int32_t OTAPI_Exec::issueMarketOffer(const std::string & ASSET_ACCT_ID,     // P
                                      const int64_t     & TOTAL_ASSETS_ON_OFFER,	// Total assets available for sale or purchase. Will be multiplied by minimum increment.
                                      const int64_t     & PRICE_LIMIT,			// Per Minimum Increment...
                                      const bool        & bBuyingOrSelling,      // SELLING == true, BUYING == false.
-                                     const time_t      & LIFESPAN_IN_SECONDS,   // Pass 0 for the default behavior: 86400 seconds aka 1 day.
+                                     const time64_t      & LIFESPAN_IN_SECONDS,   // Pass 0 for the default behavior: 86400 seconds aka 1 day.
                                      // -------------------------------------------
                                      const std::string & STOP_SIGN,             // Must be "" (for market/limit orders) or "<" or ">"  (for stop orders.)
                                      const int64_t     & ACTIVATION_PRICE)      // Must be provided if STOP_SIGN is also set. Determines the price threshold for stop orders.
@@ -14444,7 +14440,3 @@ bool OTAPI_Exec::ProcessSockets(void)
 
 	return false;
 }
-
-
-
-

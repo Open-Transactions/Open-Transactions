@@ -1,5 +1,4 @@
-
-/************************************************************************************
+/************************************************************
  *    
  *  OTIdentifier.cpp
  *  
@@ -454,33 +453,3 @@ void OTIdentifier::GetString(OTString & theStr) const
 {
     OTCrypto::It()->SetBase62StringFromID(*this, theStr); // *this input, theStr output.
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

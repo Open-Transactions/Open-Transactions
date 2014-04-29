@@ -1,4 +1,4 @@
-/*******************************************************************
+/************************************************************
 *    
 *  OTSettings.cpp
 *  
@@ -587,4 +587,3 @@ bool	OTSettings::SetOption_bool(const OTString & strSection, const OTString & st
 	bool bNewOrUpdate;
 	return CheckSet_bool(strSection,strKey,bVariableName,bVariableName,bNewOrUpdate);
 }
-

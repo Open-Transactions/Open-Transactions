@@ -29,6 +29,8 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
+#include <stdafx.h>
+
 #include "gmock/gmock.h"
 #include "gmock/internal/gmock-port.h"
 

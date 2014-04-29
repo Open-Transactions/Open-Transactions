@@ -1,6 +1,6 @@
 /**************************************************************
 *
-* OTPaths.h
+* OTPaths.hpp
 * This Class Maintins where stuff should go;
 * You must create one and only one contex for
 * every instance of OT_API.
@@ -136,8 +136,8 @@
 
 // The int64_t-awaited paths class.
 
-#ifndef __OTPATHS_HPP__
-#define __OTPATHS_HPP__
+#ifndef __OT_PATHS_HPP__
+#define __OT_PATHS_HPP__
 
 #include "OTCommon.hpp"
 
@@ -145,9 +145,8 @@
 #include "OTAssert.hpp"
 
 
-
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
-
+//
 class OTPaths
 {
 private:
@@ -399,4 +398,4 @@ public:
 
 
 
-#endif // __OTPATHS_HPP__
+#endif // __OT_PATHS_HPP__

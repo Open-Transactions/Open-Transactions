@@ -1,6 +1,6 @@
 /************************************************************
  *    
- *  OTSignature.h
+ *  OTSignature.hpp
  *  
  */
 
@@ -131,8 +131,8 @@
  **************************************************************/
 
 
-#ifndef __OTSIGNATURE_HPP__
-#define __OTSIGNATURE_HPP__
+#ifndef __OT_SIGNATURE_HPP__
+#define __OT_SIGNATURE_HPP__
 
 #include "OTCommon.hpp"
 
@@ -183,54 +183,7 @@ public:  // PUBLIC INTERFACE
 	virtual ~OTSignature();
 };
 
-// ---------------------------------------------------------------------------
+typedef std::list<OTSignature *>	listOfSignatures;
 
 
-
-
-
-
-
-
-
-
-#endif // __OTSIGNATURE_HPP__ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_SIGNATURE_HPP__ 

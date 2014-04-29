@@ -1,6 +1,6 @@
 /*************************************************************
  *    
- *  OTLibPriv.h
+ *  OTLibPriv.hpp
  *  
  */
 
@@ -130,6 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
+#ifndef __OT_LIB_PRIV_HPP__
+#define __OT_LIB_PRIV_HPP__
 
 
 /* The classes below are not exported */
@@ -142,3 +144,5 @@ class OTLibPriv
 };
 
 #pragma GCC visibility pop
+
+#endif // __OT_LIB_PRIV_HPP__

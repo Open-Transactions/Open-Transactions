@@ -145,7 +145,6 @@
 #include <OTDigitalCash.hpp>
 #include <OTEnvelope.hpp>
 
-#include <time.h>
 
 // -------------------------------------------------------------------------------------------
 #if defined (OT_CASH_USING_LUCRE)
@@ -241,7 +240,7 @@ OTMint_Lucre::~OTMint_Lucre() { }
 // (As opposed to tokens, which are verified against the valid from/to dates.)
 bool OTMint::Expired() const
 {
-	const time_t CURRENT_TIME =	time(NULL);
+	const time64_t CURRENT_TIME =	OTTimeGetCurrentTime();
 	
 	if ((CURRENT_TIME >= m_VALID_FROM) && (CURRENT_TIME <= m_EXPIRATION))
 		return false;
@@ -322,9 +321,9 @@ void OTMint::InitMint()
 	// All tokens have the same series, and validity dates,
 	// of the mint that created them.
 	m_nSeries		= 0;
-	m_VALID_FROM	= 0;
-	m_VALID_TO		= 0;	
-	m_EXPIRATION	= 0;
+	m_VALID_FROM	= OT_TIME_ZERO;
+	m_VALID_TO		= OT_TIME_ZERO;	
+	m_EXPIRATION	= OT_TIME_ZERO;
 
 	m_pReserveAcct	= NULL;
 }
@@ -340,9 +339,9 @@ OTMint::OTMint(const OTString & strServerID, const OTString & strServerNymID, co
     m_nDenominationCount(0),
     m_bSavePrivateKeys(false),
     m_nSeries(0),
-    m_VALID_FROM(0),
-    m_VALID_TO(0),
-    m_EXPIRATION(0),
+    m_VALID_FROM(OT_TIME_ZERO),
+    m_VALID_TO(OT_TIME_ZERO),
+    m_EXPIRATION(OT_TIME_ZERO),
     m_pReserveAcct(NULL)
 {
 	m_strFoldername.Set(OTFolders::Mint().Get());
@@ -360,9 +359,9 @@ OTMint::OTMint(const OTString & strServerID, const OTString & strAssetTypeID)
     m_nDenominationCount(0),
     m_bSavePrivateKeys(false),
     m_nSeries(0),
-    m_VALID_FROM(0),
-    m_VALID_TO(0),
-    m_EXPIRATION(0),
+    m_VALID_FROM(OT_TIME_ZERO),
+    m_VALID_TO(OT_TIME_ZERO),
+    m_EXPIRATION(OT_TIME_ZERO),
     m_pReserveAcct(NULL)
 {
 	m_strFoldername.Set(OTFolders::Mint().Get());
@@ -377,9 +376,9 @@ OTMint::OTMint() : ot_super(),
     m_nDenominationCount(0),
     m_bSavePrivateKeys(false),
     m_nSeries(0),
-    m_VALID_FROM(0),
-    m_VALID_TO(0),
-    m_EXPIRATION(0),
+    m_VALID_FROM(OT_TIME_ZERO),
+    m_VALID_TO(OT_TIME_ZERO),
+    m_EXPIRATION(OT_TIME_ZERO),
     m_pReserveAcct(NULL)
 {
 	InitMint();
@@ -777,9 +776,9 @@ void OTMint::UpdateContents()
 	OTString SERVER_ID(m_ServerID), SERVER_NYM_ID(m_ServerNymID),
              ASSET_ID(m_AssetID),   CASH_ACCOUNT_ID(m_CashAccountID);
 	
-	int64_t lFrom       = static_cast<int64_t> (m_VALID_FROM),
-            lTo         = static_cast<int64_t> (m_VALID_TO),
-            lExpiration = static_cast<int64_t> (m_EXPIRATION);
+    int64_t lFrom = OTTimeGetSecondsFromTime(m_VALID_FROM);
+    int64_t lTo = OTTimeGetSecondsFromTime(m_VALID_TO);
+    int64_t lExpiration = OTTimeGetSecondsFromTime(m_EXPIRATION);
 	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -871,13 +870,13 @@ int32_t OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		strCashAcctID	= xml->getAttributeValue("cashAcctID");
 		
 		m_nSeries		= atoi(xml->getAttributeValue("series"));
-		m_EXPIRATION	= atol(xml->getAttributeValue("expiration"));
+		m_EXPIRATION	= OTTimeGetTimeFromSeconds(xml->getAttributeValue("expiration"));
         
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
         
-		m_VALID_FROM = static_cast<time_t>(str_valid_from.ToLong());
-		m_VALID_TO   = static_cast<time_t>(str_valid_to.ToLong());
+        m_VALID_FROM = OTTimeGetTimeFromSeconds(str_valid_from.ToLong());
+        m_VALID_TO = OTTimeGetTimeFromSeconds(str_valid_to.ToLong());
 		
 		m_ServerID.SetString(strServerID);
 		m_ServerNymID.SetString(strServerNymID);
@@ -894,9 +893,9 @@ int32_t OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 		if (strCashAcctID.Exists())
 			m_pReserveAcct = OTAccount::LoadExistingAccount(m_CashAccountID, m_ServerID);
 
-		int64_t nValidFrom  = static_cast<int64_t> (m_VALID_FROM),
-                nValidTo    = static_cast<int64_t> (m_VALID_TO),
-                nExpiration = static_cast<int64_t> (m_EXPIRATION);
+        int64_t nValidFrom = OTTimeGetSecondsFromTime(m_VALID_FROM);
+        int64_t nValidTo = OTTimeGetSecondsFromTime(m_VALID_TO);
+        int64_t nExpiration = OTTimeGetSecondsFromTime(m_EXPIRATION);
 		
 		OTLog::vOutput(1,  
 				//	"\n===> Loading XML for mint into memory structures..."
@@ -1236,7 +1235,7 @@ bool OTMint_Lucre::VerifyToken(OTPseudonym & theNotary, OTString & theCleartextT
 // Lucre step 1: generate new mint
 // Make sure the issuer here has a private key
 // theMint.GenerateNewMint(nSeries, VALID_FROM, VALID_TO, ASSET_ID, m_nymServer, 1, 5, 10, 20, 50, 100, 500, 1000, 10000, 100000);
-void OTMint::GenerateNewMint(int32_t nSeries, time_t VALID_FROM, time_t VALID_TO, time_t MINT_EXPIRATION,
+void OTMint::GenerateNewMint(int32_t nSeries, time64_t VALID_FROM, time64_t VALID_TO, time64_t MINT_EXPIRATION,
 							 const OTIdentifier & theAssetID, const OTIdentifier & theServerID, 
 							 OTPseudonym & theNotary, 
 							 int64_t nDenom1, int64_t nDenom2, int64_t nDenom3, int64_t nDenom4, int64_t nDenom5,
@@ -1328,4 +1327,3 @@ bool OTMint::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-

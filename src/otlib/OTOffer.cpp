@@ -136,8 +136,6 @@
 
 #include <OTLog.hpp>
 
-#include <time.h>
-
 
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
 
@@ -351,8 +349,8 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 			return (-1);
 		}
         // ----------------------------------------------------------------
-		SetValidFrom(static_cast<time_t>(tValidFrom));
-		SetValidTo  (static_cast<time_t>(tValidTo));
+        SetValidFrom(OTTimeGetTimeFromSeconds(tValidFrom));
+        SetValidTo(OTTimeGetTimeFromSeconds(tValidTo));
 		// ----------------------------------------------------------------
 		OTLog::vOutput(4,
 					   "\n\nOffer. Transaction Number: %lld\n Valid From: %" PRId64"\n Valid To: %" PRId64"\n"
@@ -379,14 +377,14 @@ void OTOffer::UpdateContents()
 	const OTString	SERVER_ID(GetServerID()), ASSET_TYPE_ID(GetAssetID()), 
 					CURRENCY_TYPE_ID(GetCurrencyID());
 	
-    const int64_t lFrom                 = static_cast<int64_t> (GetValidFrom()),
-                  lTo                   = static_cast<int64_t> (GetValidTo());
-	const int64_t    lPriceLimit           = GetPriceLimit(),
-                  lTotalAssetsOnOffer   = GetTotalAssetsOnOffer(),
-                  lFinishedSoFar        = GetFinishedSoFar(),
-                  lScale                = GetScale(),
-                  lMinimumIncrement     = GetMinimumIncrement(),
-                  lTransactionNum       = GetTransactionNum();
+    const int64_t lFrom = OTTimeGetSecondsFromTime(GetValidFrom());
+    const int64_t lTo = OTTimeGetSecondsFromTime(GetValidTo());
+    const int64_t lPriceLimit = GetPriceLimit();
+    const int64_t lTotalAssetsOnOffer = GetTotalAssetsOnOffer();
+    const int64_t lFinishedSoFar = GetFinishedSoFar();
+    const int64_t lScale = GetScale();
+    const int64_t lMinimumIncrement = GetMinimumIncrement();
+    const int64_t lTransactionNum = GetTransactionNum();
 	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -431,8 +429,8 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 				  const int64_t & lTotalAssetsOffer,   // Total assets available for sale or purchase.
 				  const int64_t & lMinimumIncrement,   // The minimum increment that must be bought or sold for each transaction
 				  const int64_t & lTransactionNum,     // The transaction number authorizing this trade.
-				  const time_t & VALID_FROM/*=0*/,  // defaults to RIGHT NOW
-				  const time_t & VALID_TO/*=0*/)    // defaults to 24 hours (a "Day Order")
+				  const time64_t & VALID_FROM/*=0*/,  // defaults to RIGHT NOW
+				  const time64_t & VALID_TO/*=0*/)    // defaults to 24 hours (a "Day Order")
 {
 	m_bSelling				= bBuyingOrSelling;		// Bid or Ask?
 	SetTransactionNum		(lTransactionNum);
@@ -451,18 +449,18 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 	SetPriceLimit			(lPriceLimit);			// Won't sell for any less than $10 per increment. (Always get best market price.)
 	SetFinishedSoFar		(0);					// So far have already sold 350 bushels. Actual amount available is (total - finished).
 	
-	time_t REAL_VALID_FROM	= VALID_FROM;
-	time_t REAL_VALID_TO	= VALID_TO;
+	time64_t REAL_VALID_FROM	= VALID_FROM;
+	time64_t REAL_VALID_TO	= VALID_TO;
 	
-	if (0 >= VALID_FROM)
+    if (OT_TIME_ZERO >= VALID_FROM)
 	{
-		REAL_VALID_FROM	= time(NULL); // This time is set to TODAY NOW
+		REAL_VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
 	}
 	
-	if (0 >= VALID_TO)
+    if (OT_TIME_ZERO >= VALID_TO)
 	{
 		// (All offers default to a "DAY ORDER" if valid dates not specified.)
-		REAL_VALID_TO	= REAL_VALID_FROM + 86400; // 1 day. 
+        REAL_VALID_TO = OTTimeAddTimeInterval(REAL_VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_DAY_IN_SECONDS)); // 1 day. 
 	}
 	
 	SetValidFrom(REAL_VALID_FROM);
@@ -474,19 +472,19 @@ bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False ==
 
 // Note: m_tDateAddedToMarket is not saved in the Offer Contract, but OTMarket sets/saves/loads it.
 //
-time_t OTOffer::GetDateAddedToMarket() const      // Used in OTMarket::GetOfferList and GetNymOfferList.
+time64_t OTOffer::GetDateAddedToMarket() const      // Used in OTMarket::GetOfferList and GetNymOfferList.
 {
     return m_tDateAddedToMarket;
 }
 
-void OTOffer::SetDateAddedToMarket(time_t tDate) // Used in OTCron when adding/loading offers.
+void OTOffer::SetDateAddedToMarket(time64_t tDate) // Used in OTCron when adding/loading offers.
 {
     m_tDateAddedToMarket = tDate;
 }
 
 
 OTOffer::OTOffer()
-: ot_super(), m_tDateAddedToMarket(0), m_pTrade(NULL),    // No need to free m_pTrade, not responsible. Only here for convenience.
+: ot_super(), m_tDateAddedToMarket(OT_TIME_ZERO), m_pTrade(NULL),    // No need to free m_pTrade, not responsible. Only here for convenience.
     m_bSelling			(false),
     m_lPriceLimit		(0),
     m_lTransactionNum	(0),
@@ -501,7 +499,7 @@ OTOffer::OTOffer()
 
 
 OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const int64_t & lScale) 
-: ot_super(SERVER_ID, ASSET_ID), m_tDateAddedToMarket(0), m_pTrade(NULL), // No need to free m_pTrade, not responsible. Only here for convenience.
+: ot_super(SERVER_ID, ASSET_ID), m_tDateAddedToMarket(OT_TIME_ZERO), m_pTrade(NULL), // No need to free m_pTrade, not responsible. Only here for convenience.
     m_bSelling			(false),
     m_lPriceLimit		(0),
     m_lTransactionNum	(0),
@@ -570,6 +568,3 @@ bool OTOffer::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
- 

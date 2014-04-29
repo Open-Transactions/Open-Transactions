@@ -31,6 +31,8 @@
 //
 // The Google C++ Testing Framework (Google Test)
 
+#include <stdafx.h>
+
 #include "gtest/gtest-test-part.h"
 
 // Indicates that this translation unit is part of Google Test's

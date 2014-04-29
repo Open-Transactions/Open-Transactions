@@ -1,41 +1,8 @@
 /*************************************************************
  *    
- *  OTCredential.h
+ *  OTCredential.hpp
  *  
  */
-// A nym contains a list of master credentials, via OTCredential.
-// The whole purpose of a Nym is to be an identity, which can have
-// master credentials.
-
-// Each credential is like a master key for the Nym's identity,
-// which can issue its own subkeys.
-
-// Each subkey has 3 key pairs: encryption, signing, and authentication.
-// Not all subcredentials are a subkey. For example, you might have a
-// subcredential that uses Google Authenticator, and thus doesn't contain
-// any keys, because it uses alternate methods for its own authentication.
-
-// Each OTCredential contains a "master" subkey, and a list of subcredentials
-// (some of them subkeys) signed by that master.
-
-// The same class (subcredential/subkey) is used because there are master
-// credentials and subcredentials, so we're using inheritance for "subcredential"
-// and "subkey" to encapsulate the credentials, so we don't have to repeat code
-// across both.
-// We're using a "has-a" model here, since the OTCredential "has a" master
-// subkey, and also "has a" list of subcredentials, some of which are subkeys.
-
-// Each subcredential must be signed by the subkey that is the master key.
-// Each subkey has 3 key pairs: encryption, signing, and authentication.
-
-// Each key pair has 2 OTAsymmetricKeys (public and private.)
-
-// I'm thinking that the Nym should also have a key pair (for whatever is
-// its current key pair, copied from its credentials.)
-
-// the master should never be able to do any actions except for sign subkeys.
-// the subkeys, meanwhile should only be able to do actions, and not issue
-// any new keys.
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -170,45 +137,43 @@
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
 #include "OTAsymmetricKey.hpp"
 
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
 // master credentials.
-
+//
 // Each credential is like a master key for the Nym's identity,
 // which can issue its own subkeys.
-
+//
 // Each subkey has 3 key pairs: encryption, signing, and authentication.
 // Not all subcredentials are a subkey. For example, you might have a
 // subcredential that uses Google Authenticator, and thus doesn't contain
 // any keys, because it uses alternate methods for its own authentication.
-
+//
 // Each OTCredential contains a "master" subkey, and a list of subcredentials
 // (some of them subkeys) signed by that master.
-
+//
 // The same class (subcredential/subkey) is used because there are master
 // credentials and subcredentials, so we're using inheritance for "subcredential"
 // and "subkey" to encapsulate the credentials, so we don't have to repeat code
 // across both.
 // We're using a "has-a" model here, since the OTCredential "has a" master
 // subkey, and also "has a" list of subcredentials, some of which are subkeys.
-
+//
 // Each subcredential must be signed by the subkey that is the master key.
 // Each subkey has 3 key pairs: encryption, signing, and authentication.
-
+//
 // Each key pair has 2 OTAsymmetricKeys (public and private.)
-
+//
 // I'm thinking that the Nym should also have a key pair (for whatever is
 // its current key pair, copied from its credentials.)
-
+//
 // the master should never be able to do any actions except for sign subkeys.
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
-// ------------------------------------------------
 
 class OTPassword;
 class OTString;
@@ -739,221 +704,4 @@ public:
 };
 
 
-// ***************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif // __OT_CREDENTIAL_HPP__
-
-
-
-
-
-
-/*
- 
- http://stackoverflow.com/questions/9749560/how-to-calculate-x-509-certificates-sha-1-fingerprint-in-c-c-objective-c
- 
- 
- 
- Question:
- 
- How do you calculate the SHA1 hash/fingerprint of an X509 cert stored within
- a PEM file using C/C++/Objective-C?
- 
- 
- Answer:
- 
- Here is a solution I found using the OpenSSL libraries.
- I am posting the question and answer on stack overflow
- in the hopes that it will save others the trouble and
- time of figuring it out themselves.
-
-#include <stdio.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <openssl/x509.h>
-#include <openssl/bio.h>
-
-
-int32_t main(int32_t argc, char * argv[])
-{
-   struct stat           sb;
-   uint8_t       * buff;
-   int32_t                   fd;
-   ssize_t               len;
-   BIO                 * bio;
-   X509                * x;
-   uint32_t              err;
-   int32_t                   pos;
-   char                  errmsg[1024];
-   const EVP_MD        * digest;
-   uint8_t         md[EVP_MAX_MD_SIZE];
-   uint32_t          n;
-
-   // checks arguments
-   if (argc != 2)
-   {
-      fprintf(stderr, "Usage: peminfo <pemfile>\n");
-      return(1);
-   };
-
-   // checks file
-   if ((stat(argv[1], &sb)) == -1)
-   {
-      perror("peminfo: stat()");
-      return(1);
-   };
-   len = (sb.st_size * 2);
-
-   // allocates memory
-   if (!(buff = malloc(len)))
-   {
-      fprintf(stderr, "peminfo: out of virtual memory\n");
-      return(1);
-   };
-
-   // opens file for reading
-   if ((fd = open(argv[1], O_RDONLY)) == -1)
-   {
-      perror("peminfo: open()");
-      free(buff);
-      return(1);
-   };
-
-   // reads file
-   if ((len = read(fd, buff, len)) == -1)
-   {
-      perror("peminfo: read()");
-      free(buff);
-      return(1);
-   };
-
-   // closes file
-   close(fd);
-
-   // initialize OpenSSL
-   SSL_load_error_strings();
-   SSL_library_init();
-
-   // creates BIO buffer
-   bio = BIO_new_mem_buf(buff, len);
-
-   // decodes buffer
-   if (!(x = PEM_read_bio_X509(bio, NULL, 0L, NULL)))
-   {
-      while((err = ERR_get_error()))
-      {
-         errmsg[1023] = '\0';
-         ERR_error_string_n(err, errmsg, 1023);
-         fprintf(stderr, "peminfo: %s\n", errmsg);
-      };
-      BIO_free(bio);
-      free(buff);
-      return(1);
-   };
-
-   // prints x509 info
-   printf("name:      %s\n",    x->name);
-   printf("serial:    ");
-   printf("%02X", x->cert_info->serialNumber->data[0]);
-   for(pos = 1; pos < x->cert_info->serialNumber->length; pos++)
-      printf(":%02X", x->cert_info->serialNumber->data[pos]);
-   printf("\n");
-
-   // calculate & print fingerprint
-   digest = EVP_get_digestbyname("sha1");
-   X509_digest(x, digest, md, &n);
-   printf("Fingerprint: ");
-   for(pos = 0; pos < 19; pos++)
-      printf("%02x:", md[pos]);
-   printf("%02x\n", md[19]);
-
-   // frees memory
-   BIO_free(bio);
-   free(buff);
-
-   return(0);
-}
- 
- 
- ---------------------------------------------
-
-Here is the compiling and output of the above program:
-
-$ cc -pedantic -W -Wall -Werror -O2  -Wno-deprecated -o peminfo  peminfo.c \
-> -lcrypto -lssl
-$ ./peminfo /usr/local/etc/openldap/keys/ca-certs.pem 
- 
-serial:      98:61:EB:C4:F2:C9:59:72
-Fingerprint: 1d:59:d3:d4:4f:c9:e3:dc:f3:d7:66:b0:b8:7e:87:0b:01:73:c2:7e
- 
- ---------------------------------------------
- 
-Here is the output from the openssl utility:
-
-$ openssl x509 -noout -in /usr/local/etc/openldap/keys/ca-certs.pem \
-> -fingerprint -serial
- 
-SHA1 Fingerprint=1D:59:D3:D4:4F:C9:E3:DC:F3:D7:66:B0:B8:7E:87:0B:01:73:C2:7E
-serial=9861EBC4F2C95972
- 
- ---------------------------------------------
-
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

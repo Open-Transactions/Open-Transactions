@@ -1,6 +1,6 @@
 /**************************************************************
  *
- *  OTPassword.h
+ *  OTPassword.hpp
  *
  */
 
@@ -133,12 +133,14 @@
 #ifndef __OT_PASSWORD_HPP__
 #define __OT_PASSWORD_HPP__
 
+#include <string>
+
 #include "OTCommon.hpp"
 
 #include "OTCachedKey.hpp"
 
-#include <string>
-
+class OTString;
+class OTPassword;
 
 
 /*
@@ -180,10 +182,9 @@
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
 
-// -------------------------------------------
-
 
 // https://github.com/lorf/keepassx/blob/master/src/lib/SecString.cpp
+
 
 // Done:  Although we have good memory ZEROING code (for destruction)
 // we don't have code yet that will keep the contents SECURE while they
@@ -671,64 +672,4 @@ void unlock_mem(void* ptr, size_t bytes)
  */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// _____________________________________________________________
-
 #endif //__OT_PASSWORD_HPP__
-
-
-
-
-
-
-
