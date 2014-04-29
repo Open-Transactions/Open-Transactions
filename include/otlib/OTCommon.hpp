@@ -19,6 +19,7 @@
 #endif
 
 #include <string>
+#include <cstdlib>
 
 
 #define OT_TIME_YEAR_IN_SECONDS          OTTimeGetTimeFromSeconds(31536000)  // 60 * 60 * 24 * 365
