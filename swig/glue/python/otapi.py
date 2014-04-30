@@ -325,72 +325,6 @@ def OTPassword_CreateTextBuffer():
   return _otapi.OTPassword_CreateTextBuffer()
 OTPassword_CreateTextBuffer = _otapi.OTPassword_CreateTextBuffer
 
-class OTCallback(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, OTCallback, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, OTCallback, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        if self.__class__ == OTCallback:
-            _self = None
-        else:
-            _self = self
-        this = _otapi.new_OTCallback(_self, )
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _otapi.delete_OTCallback
-    __del__ = lambda self : None;
-    def runOne(self, *args): return _otapi.OTCallback_runOne(self, *args)
-    def runTwo(self, *args): return _otapi.OTCallback_runTwo(self, *args)
-    def __disown__(self):
-        self.this.disown()
-        _otapi.disown_OTCallback(self)
-        return weakref_proxy(self)
-OTCallback_swigregister = _otapi.OTCallback_swigregister
-OTCallback_swigregister(OTCallback)
-
-class OTCaller(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, OTCaller, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, OTCaller, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        this = _otapi.new_OTCaller()
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _otapi.delete_OTCaller
-    __del__ = lambda self : None;
-    def GetPassword(self, *args): return _otapi.OTCaller_GetPassword(self, *args)
-    def ZeroOutPassword(self): return _otapi.OTCaller_ZeroOutPassword(self)
-    def GetDisplay(self): return _otapi.OTCaller_GetDisplay(self)
-    def SetDisplay(self, *args): return _otapi.OTCaller_SetDisplay(self, *args)
-    def delCallback(self): return _otapi.OTCaller_delCallback(self)
-    def setCallback(self, *args): return _otapi.OTCaller_setCallback(self, *args)
-    def isCallbackSet(self): return _otapi.OTCaller_isCallbackSet(self)
-    def callOne(self): return _otapi.OTCaller_callOne(self)
-    def callTwo(self): return _otapi.OTCaller_callTwo(self)
-OTCaller_swigregister = _otapi.OTCaller_swigregister
-OTCaller_swigregister(OTCaller)
-
-class WrapTimeT(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, WrapTimeT, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, WrapTimeT, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        this = _otapi.new_WrapTimeT()
-        try: self.this.append(this)
-        except: self.this = this
-    def getTime(self): return _otapi.WrapTimeT_getTime(self)
-    def setTime(self, *args): return _otapi.WrapTimeT_setTime(self, *args)
-    __swig_destroy__ = _otapi.delete_WrapTimeT
-    __del__ = lambda self : None;
-WrapTimeT_swigregister = _otapi.WrapTimeT_swigregister
-WrapTimeT_swigregister(WrapTimeT)
-
 class OTAPI_Wrap(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, OTAPI_Wrap, name, value)
@@ -3837,6 +3771,7 @@ class OTLookupCaller(_object):
         except: self.this = this
     __swig_destroy__ = _otapi.delete_OTLookupCaller
     __del__ = lambda self : None;
+    def getCallback(self): return _otapi.OTLookupCaller_getCallback(self)
     def delCallback(self): return _otapi.OTLookupCaller_delCallback(self)
     def setCallback(self, *args): return _otapi.OTLookupCaller_setCallback(self, *args)
     def isCallbackSet(self): return _otapi.OTLookupCaller_isCallbackSet(self)

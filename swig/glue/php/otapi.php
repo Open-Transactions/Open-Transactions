@@ -609,147 +609,6 @@ class OTPassword {
 	}
 }
 
-class OTCallback {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTCallback') {
-			$this->_cPtr=$res;
-			return;
-		}
-		if (get_class($this) === 'OTCallback') {
-			$_this = null;
-		} else {
-			$_this = $this;
-		}
-		$this->_cPtr=new_OTCallback($_this);
-	}
-
-	function runOne($szDisplay,$theOutput) {
-		OTCallback_runOne($this->_cPtr,$szDisplay,$theOutput);
-	}
-
-	function runTwo($szDisplay,$theOutput) {
-		OTCallback_runTwo($this->_cPtr,$szDisplay,$theOutput);
-	}
-}
-
-class OTCaller {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTCaller') {
-			$this->_cPtr=$res;
-			return;
-		}
-		$this->_cPtr=new_OTCaller();
-	}
-
-	function GetPassword($theOutput) {
-		return OTCaller_GetPassword($this->_cPtr,$theOutput);
-	}
-
-	function ZeroOutPassword() {
-		OTCaller_ZeroOutPassword($this->_cPtr);
-	}
-
-	function GetDisplay() {
-		return OTCaller_GetDisplay($this->_cPtr);
-	}
-
-	function SetDisplay($szDisplay,$nLength) {
-		OTCaller_SetDisplay($this->_cPtr,$szDisplay,$nLength);
-	}
-
-	function delCallback() {
-		OTCaller_delCallback($this->_cPtr);
-	}
-
-	function setCallback($cb) {
-		OTCaller_setCallback($this->_cPtr,$cb);
-	}
-
-	function isCallbackSet() {
-		return OTCaller_isCallbackSet($this->_cPtr);
-	}
-
-	function callOne() {
-		OTCaller_callOne($this->_cPtr);
-	}
-
-	function callTwo() {
-		OTCaller_callTwo($this->_cPtr);
-	}
-}
-
-class WrapTimeT {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_WrapTimeT') {
-			$this->_cPtr=$res;
-			return;
-		}
-		$this->_cPtr=new_WrapTimeT();
-	}
-
-	function getTime() {
-		return WrapTimeT_getTime($this->_cPtr);
-	}
-
-	function setTime($_time) {
-		WrapTimeT_setTime($this->_cPtr,$_time);
-	}
-}
-
 class OTAPI_Wrap {
 	public $_cPtr=null;
 	protected $_pData=array();
@@ -841,13 +700,7 @@ class OTAPI_Wrap {
 	}
 
 	static function GetTime() {
-		$r=OTAPI_Wrap_GetTime();
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_GetTime();
 	}
 
 	static function NumList_Add($strNumList,$strNumbers) {
@@ -1687,13 +1540,7 @@ class OTAPI_Wrap {
 	}
 
 	static function Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		$r=OTAPI_Wrap_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
 	}
 
 	static function Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
@@ -1789,23 +1636,11 @@ class OTAPI_Wrap {
 	}
 
 	static function Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		$r=OTAPI_Wrap_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
 	}
 
 	static function Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		$r=OTAPI_Wrap_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
 	}
 
 	static function Token_GetAssetID($THE_TOKEN) {
@@ -1825,23 +1660,11 @@ class OTAPI_Wrap {
 	}
 
 	static function Instrmnt_GetValidFrom($THE_INSTRUMENT) {
-		$r=OTAPI_Wrap_Instrmnt_GetValidFrom($THE_INSTRUMENT);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Instrmnt_GetValidFrom($THE_INSTRUMENT);
 	}
 
 	static function Instrmnt_GetValidTo($THE_INSTRUMENT) {
-		$r=OTAPI_Wrap_Instrmnt_GetValidTo($THE_INSTRUMENT);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Instrmnt_GetValidTo($THE_INSTRUMENT);
 	}
 
 	static function Instrmnt_GetMemo($THE_INSTRUMENT) {
@@ -4375,6 +4198,16 @@ class OTLookupCaller {
 		$this->_cPtr=new_OTLookupCaller();
 	}
 
+	function getCallback() {
+		$r=OTLookupCaller_getCallback($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new OTNameLookup($r);
+		}
+		return $r;
+	}
+
 	function delCallback() {
 		OTLookupCaller_delCallback($this->_cPtr);
 	}
@@ -4429,12 +4262,15 @@ class OTRecordList {
 		return $r;
 	}
 
-	function __construct($theLookup) {
+	function __construct($theLookup=null) {
 		if (is_resource($theLookup) && get_resource_type($theLookup) === '_p_OTRecordList') {
 			$this->_cPtr=$theLookup;
 			return;
 		}
-		$this->_cPtr=new_OTRecordList($theLookup);
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_OTRecordList(); break;
+		default: $this->_cPtr=new_OTRecordList($theLookup);
+		}
 	}
 
 	static function textTo() {

@@ -3380,80 +3380,79 @@ namespace Swig {
 
 #define SWIGTYPE_p_OTAPI_Exec swig_types[0]
 #define SWIGTYPE_p_OTAPI_Wrap swig_types[1]
-#define SWIGTYPE_p_OTCallback swig_types[2]
-#define SWIGTYPE_p_OTCaller swig_types[3]
-#define SWIGTYPE_p_OTDB__Acct swig_types[4]
-#define SWIGTYPE_p_OTDB__AddressBook swig_types[5]
-#define SWIGTYPE_p_OTDB__AskData swig_types[6]
-#define SWIGTYPE_p_OTDB__BidData swig_types[7]
-#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[8]
-#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[9]
-#define SWIGTYPE_p_OTDB__Blob swig_types[10]
-#define SWIGTYPE_p_OTDB__Contact swig_types[11]
-#define SWIGTYPE_p_OTDB__ContactAcct swig_types[12]
-#define SWIGTYPE_p_OTDB__ContactNym swig_types[13]
-#define SWIGTYPE_p_OTDB__Displayable swig_types[14]
-#define SWIGTYPE_p_OTDB__LoomServer swig_types[15]
-#define SWIGTYPE_p_OTDB__MarketData swig_types[16]
-#define SWIGTYPE_p_OTDB__MarketList swig_types[17]
-#define SWIGTYPE_p_OTDB__OTDBString swig_types[18]
-#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[19]
-#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[20]
-#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[21]
-#define SWIGTYPE_p_OTDB__OfferListNym swig_types[22]
-#define SWIGTYPE_p_OTDB__RippleServer swig_types[23]
-#define SWIGTYPE_p_OTDB__Server swig_types[24]
-#define SWIGTYPE_p_OTDB__ServerInfo swig_types[25]
-#define SWIGTYPE_p_OTDB__Storable swig_types[26]
-#define SWIGTYPE_p_OTDB__Storage swig_types[27]
-#define SWIGTYPE_p_OTDB__StringMap swig_types[28]
-#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[29]
-#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[30]
-#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[31]
-#define SWIGTYPE_p_OTDB__TradeListNym swig_types[32]
-#define SWIGTYPE_p_OTDB__WalletData swig_types[33]
-#define SWIGTYPE_p_OTLookupCaller swig_types[34]
-#define SWIGTYPE_p_OTNameLookup swig_types[35]
-#define SWIGTYPE_p_OTPacker swig_types[36]
-#define SWIGTYPE_p_OTPassword swig_types[37]
-#define SWIGTYPE_p_OTRecord swig_types[38]
-#define SWIGTYPE_p_OTRecordList swig_types[39]
-#define SWIGTYPE_p_OTVariable swig_types[40]
-#define SWIGTYPE_p_OT_API swig_types[41]
-#define SWIGTYPE_p_OT_ME swig_types[42]
-#define SWIGTYPE_p_WrapTimeT swig_types[43]
-#define SWIGTYPE_p__SharedPtrT_OTRecord_t swig_types[44]
-#define SWIGTYPE_p_allocator_type swig_types[45]
-#define SWIGTYPE_p_char swig_types[46]
-#define SWIGTYPE_p_difference_type swig_types[47]
-#define SWIGTYPE_p_imaxdiv_t swig_types[48]
-#define SWIGTYPE_p_int swig_types[49]
-#define SWIGTYPE_p_key_type swig_types[50]
-#define SWIGTYPE_p_long_long swig_types[51]
-#define SWIGTYPE_p_mapped_type swig_types[52]
-#define SWIGTYPE_p_p_PyObject swig_types[53]
-#define SWIGTYPE_p_p_wchar_t swig_types[54]
-#define SWIGTYPE_p_short swig_types[55]
-#define SWIGTYPE_p_signed_char swig_types[56]
-#define SWIGTYPE_p_size_type swig_types[57]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_std__string_t_t swig_types[58]
-#define SWIGTYPE_p_std__allocatorT_unsigned_char_t swig_types[59]
-#define SWIGTYPE_p_std__invalid_argument swig_types[60]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[61]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[62]
-#define SWIGTYPE_p_std__string swig_types[63]
-#define SWIGTYPE_p_std__vectorT__Tp__Alloc_t swig_types[64]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t swig_types[65]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[66]
-#define SWIGTYPE_p_unsigned_char swig_types[67]
-#define SWIGTYPE_p_unsigned_int swig_types[68]
-#define SWIGTYPE_p_unsigned_long_long swig_types[69]
-#define SWIGTYPE_p_unsigned_short swig_types[70]
-#define SWIGTYPE_p_value_type swig_types[71]
-#define SWIGTYPE_p_void swig_types[72]
-#define SWIGTYPE_p_wchar_t swig_types[73]
-static swig_type_info *swig_types[75];
-static swig_module_info swig_module = {swig_types, 74, 0, 0, 0, 0};
+#define SWIGTYPE_p_OTCaller swig_types[2]
+#define SWIGTYPE_p_OTDB__Acct swig_types[3]
+#define SWIGTYPE_p_OTDB__AddressBook swig_types[4]
+#define SWIGTYPE_p_OTDB__AskData swig_types[5]
+#define SWIGTYPE_p_OTDB__BidData swig_types[6]
+#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[7]
+#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[8]
+#define SWIGTYPE_p_OTDB__Blob swig_types[9]
+#define SWIGTYPE_p_OTDB__Contact swig_types[10]
+#define SWIGTYPE_p_OTDB__ContactAcct swig_types[11]
+#define SWIGTYPE_p_OTDB__ContactNym swig_types[12]
+#define SWIGTYPE_p_OTDB__Displayable swig_types[13]
+#define SWIGTYPE_p_OTDB__LoomServer swig_types[14]
+#define SWIGTYPE_p_OTDB__MarketData swig_types[15]
+#define SWIGTYPE_p_OTDB__MarketList swig_types[16]
+#define SWIGTYPE_p_OTDB__OTDBString swig_types[17]
+#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[18]
+#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[19]
+#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[20]
+#define SWIGTYPE_p_OTDB__OfferListNym swig_types[21]
+#define SWIGTYPE_p_OTDB__RippleServer swig_types[22]
+#define SWIGTYPE_p_OTDB__Server swig_types[23]
+#define SWIGTYPE_p_OTDB__ServerInfo swig_types[24]
+#define SWIGTYPE_p_OTDB__Storable swig_types[25]
+#define SWIGTYPE_p_OTDB__Storage swig_types[26]
+#define SWIGTYPE_p_OTDB__StringMap swig_types[27]
+#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[28]
+#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[29]
+#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[30]
+#define SWIGTYPE_p_OTDB__TradeListNym swig_types[31]
+#define SWIGTYPE_p_OTDB__WalletData swig_types[32]
+#define SWIGTYPE_p_OTLookupCaller swig_types[33]
+#define SWIGTYPE_p_OTNameLookup swig_types[34]
+#define SWIGTYPE_p_OTPacker swig_types[35]
+#define SWIGTYPE_p_OTPassword swig_types[36]
+#define SWIGTYPE_p_OTRecord swig_types[37]
+#define SWIGTYPE_p_OTRecordList swig_types[38]
+#define SWIGTYPE_p_OTVariable swig_types[39]
+#define SWIGTYPE_p_OT_API swig_types[40]
+#define SWIGTYPE_p_OT_ME swig_types[41]
+#define SWIGTYPE_p__SharedPtrT_OTRecord_t swig_types[42]
+#define SWIGTYPE_p_allocator_type swig_types[43]
+#define SWIGTYPE_p_char swig_types[44]
+#define SWIGTYPE_p_difference_type swig_types[45]
+#define SWIGTYPE_p_imaxdiv_t swig_types[46]
+#define SWIGTYPE_p_int swig_types[47]
+#define SWIGTYPE_p_key_type swig_types[48]
+#define SWIGTYPE_p_long_long swig_types[49]
+#define SWIGTYPE_p_mapped_type swig_types[50]
+#define SWIGTYPE_p_p_PyObject swig_types[51]
+#define SWIGTYPE_p_p_wchar_t swig_types[52]
+#define SWIGTYPE_p_short swig_types[53]
+#define SWIGTYPE_p_signed_char swig_types[54]
+#define SWIGTYPE_p_size_type swig_types[55]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_std__string_t_t swig_types[56]
+#define SWIGTYPE_p_std__allocatorT_unsigned_char_t swig_types[57]
+#define SWIGTYPE_p_std__invalid_argument swig_types[58]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[59]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[60]
+#define SWIGTYPE_p_std__string swig_types[61]
+#define SWIGTYPE_p_std__vectorT__Tp__Alloc_t swig_types[62]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t swig_types[63]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[64]
+#define SWIGTYPE_p_time64_t swig_types[65]
+#define SWIGTYPE_p_unsigned_char swig_types[66]
+#define SWIGTYPE_p_unsigned_int swig_types[67]
+#define SWIGTYPE_p_unsigned_long_long swig_types[68]
+#define SWIGTYPE_p_unsigned_short swig_types[69]
+#define SWIGTYPE_p_value_type swig_types[70]
+#define SWIGTYPE_p_void swig_types[71]
+#define SWIGTYPE_p_wchar_t swig_types[72]
+static swig_type_info *swig_types[74];
+static swig_module_info swig_module = {swig_types, 73, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -6007,66 +6006,6 @@ SWIG_AsVal_unsigned_SS_long_SS_long (PyObject *obj, unsigned long long *val)
  * --------------------------------------------------- */
 
 #include "OTAPI-python.hpp"
-
-SwigDirector_OTCallback::SwigDirector_OTCallback(PyObject *self): OTCallback(), Swig::Director(self) {
-  SWIG_DIRECTOR_RGTR((OTCallback *)this, this); 
-}
-
-
-
-
-SwigDirector_OTCallback::~SwigDirector_OTCallback() {
-}
-
-void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutput) {
-  swig::SwigVar_PyObject obj0;
-  obj0 = SWIG_FromCharPtr((const char *)szDisplay);
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(&theOutput), SWIGTYPE_p_OTPassword,  0 );
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call OTCallback.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 0;
-  const char * const swig_method_name = "runOne";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"runOne", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#endif
-  if (!result) {
-    PyObject *error = PyErr_Occurred();
-    if (error) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'OTCallback.runOne'");
-    }
-  }
-}
-
-
-void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutput) {
-  swig::SwigVar_PyObject obj0;
-  obj0 = SWIG_FromCharPtr((const char *)szDisplay);
-  swig::SwigVar_PyObject obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(&theOutput), SWIGTYPE_p_OTPassword,  0 );
-  if (!swig_get_self()) {
-    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call OTCallback.__init__.");
-  }
-#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
-  const size_t swig_method_index = 1;
-  const char * const swig_method_name = "runTwo";
-  PyObject* method = swig_get_method(swig_method_index, swig_method_name);
-  swig::SwigVar_PyObject result = PyObject_CallFunction(method, (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#else
-  swig::SwigVar_PyObject result = PyObject_CallMethod(swig_get_self(), (char *)"runTwo", (char *)"(OO)" ,(PyObject *)obj0,(PyObject *)obj1);
-#endif
-  if (!result) {
-    PyObject *error = PyErr_Occurred();
-    if (error) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'OTCallback.runTwo'");
-    }
-  }
-}
-
 
 SwigDirector_OTNameLookup::SwigDirector_OTNameLookup(PyObject *self): OTNameLookup(), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((OTNameLookup *)this, this); 
@@ -12075,565 +12014,6 @@ SWIGINTERN PyObject *OTPassword_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_OTCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  PyObject *arg1 = (PyObject *) 0 ;
-  PyObject * obj0 = 0 ;
-  OTCallback *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:new_OTCallback",&obj0)) SWIG_fail;
-  arg1 = obj0;
-  if ( arg1 != Py_None ) {
-    /* subclassed */
-    result = (OTCallback *)new SwigDirector_OTCallback(arg1); 
-  } else {
-    result = (OTCallback *)new OTCallback(); 
-  }
-  
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTCallback, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_OTCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_OTCallback",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCallback, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OTCallback" "', argument " "1"" of type '" "OTCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCallback * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCallback_runOne(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:OTCallback_runOne",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCallback_runOne" "', argument " "1"" of type '" "OTCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCallback * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCallback_runOne" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_OTPassword,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTCallback_runOne" "', argument " "3"" of type '" "OTPassword &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCallback_runOne" "', argument " "3"" of type '" "OTPassword &""'"); 
-  }
-  arg3 = reinterpret_cast< OTPassword * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==obj0));
-  try {
-    if (upcall) {
-      (arg1)->OTCallback::runOne((char const *)arg2,*arg3);
-    } else {
-      (arg1)->runOne((char const *)arg2,*arg3);
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCallback_runTwo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:OTCallback_runTwo",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCallback_runTwo" "', argument " "1"" of type '" "OTCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCallback * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCallback_runTwo" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_OTPassword,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTCallback_runTwo" "', argument " "3"" of type '" "OTPassword &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCallback_runTwo" "', argument " "3"" of type '" "OTPassword &""'"); 
-  }
-  arg3 = reinterpret_cast< OTPassword * >(argp3);
-  director = SWIG_DIRECTOR_CAST(arg1);
-  upcall = (director && (director->swig_get_self()==obj0));
-  try {
-    if (upcall) {
-      (arg1)->OTCallback::runTwo((char const *)arg2,*arg3);
-    } else {
-      (arg1)->runTwo((char const *)arg2,*arg3);
-    }
-  } catch (Swig::DirectorException&) {
-    SWIG_fail;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_disown_OTCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:disown_OTCallback",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_OTCallback" "', argument " "1"" of type '" "OTCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCallback * >(argp1);
-  {
-    Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
-    if (director) director->swig_disown();
-  }
-  
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *OTCallback_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_OTCallback, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_OTCaller(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_OTCaller")) SWIG_fail;
-  result = (OTCaller *)new OTCaller();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTCaller, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_OTCaller(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_OTCaller",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OTCaller" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_GetPassword(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTPassword *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:OTCaller_GetPassword",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_GetPassword" "', argument " "1"" of type '" "OTCaller const *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_OTPassword,  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_GetPassword" "', argument " "2"" of type '" "OTPassword &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCaller_GetPassword" "', argument " "2"" of type '" "OTPassword &""'"); 
-  }
-  arg2 = reinterpret_cast< OTPassword * >(argp2);
-  result = (bool)((OTCaller const *)arg1)->GetPassword(*arg2);
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_ZeroOutPassword(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_ZeroOutPassword",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_ZeroOutPassword" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  (arg1)->ZeroOutPassword();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_GetDisplay(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  char *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_GetDisplay",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_GetDisplay" "', argument " "1"" of type '" "OTCaller const *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  result = (char *)((OTCaller const *)arg1)->GetDisplay();
-  resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_SetDisplay(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int32_t arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOO:OTCaller_SetDisplay",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_SetDisplay" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(obj1, &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_SetDisplay" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTCaller_SetDisplay" "', argument " "3"" of type '" "int32_t""'");
-  } 
-  arg3 = static_cast< int32_t >(val3);
-  (arg1)->SetDisplay((char const *)arg2,arg3);
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_delCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_delCallback",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_delCallback" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  (arg1)->delCallback();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_setCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTCallback *arg2 = (OTCallback *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:OTCaller_setCallback",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_setCallback" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_OTCallback, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_setCallback" "', argument " "2"" of type '" "OTCallback *""'"); 
-  }
-  arg2 = reinterpret_cast< OTCallback * >(argp2);
-  (arg1)->setCallback(arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_isCallbackSet(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  bool result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_isCallbackSet",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_isCallbackSet" "', argument " "1"" of type '" "OTCaller const *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  result = (bool)((OTCaller const *)arg1)->isCallbackSet();
-  resultobj = SWIG_From_bool(static_cast< bool >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_callOne(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_callOne",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_callOne" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  (arg1)->callOne();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_OTCaller_callTwo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:OTCaller_callTwo",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_callTwo" "', argument " "1"" of type '" "OTCaller *""'"); 
-  }
-  arg1 = reinterpret_cast< OTCaller * >(argp1);
-  (arg1)->callTwo();
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *OTCaller_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_OTCaller, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_WrapTimeT(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  WrapTimeT *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_WrapTimeT")) SWIG_fail;
-  result = (WrapTimeT *)new WrapTimeT();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_WrapTimeT_getTime(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  int64_t result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:WrapTimeT_getTime",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_WrapTimeT, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WrapTimeT_getTime" "', argument " "1"" of type '" "WrapTimeT const *""'"); 
-  }
-  arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_WrapTimeT_setTime(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int64_t temp2 ;
-  long long val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:WrapTimeT_setTime",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_WrapTimeT, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WrapTimeT_setTime" "', argument " "1"" of type '" "WrapTimeT *""'"); 
-  }
-  arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-  ecode2 = SWIG_AsVal_long_SS_long(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WrapTimeT_setTime" "', argument " "2"" of type '" "int64_t""'");
-  } 
-  temp2 = static_cast< int64_t >(val2);
-  arg2 = &temp2;
-  (arg1)->setTime((int64_t const &)*arg2);
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_WrapTimeT(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_WrapTimeT",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_WrapTimeT, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WrapTimeT" "', argument " "1"" of type '" "WrapTimeT *""'"); 
-  }
-  arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *WrapTimeT_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_WrapTimeT, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
 SWIGINTERN PyObject *_wrap_OTAPI_Wrap_SetExecutor(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
@@ -12992,11 +12372,11 @@ fail:
 
 SWIGINTERN PyObject *_wrap_OTAPI_Wrap_GetTime(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)":OTAPI_Wrap_GetTime")) SWIG_fail;
   result = OTAPI_Wrap::GetTime();
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -17091,8 +16471,8 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_WriteCheque(PyObject *SWIGUNUSEDPARM(self)
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
   int64_t *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
-  WrapTimeT *arg4 = 0 ;
+  time64_t *arg3 = 0 ;
+  time64_t *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
@@ -17137,22 +16517,22 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_WriteCheque(PyObject *SWIGUNUSEDPARM(self)
   } 
   temp2 = static_cast< int64_t >(val2);
   arg2 = &temp2;
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
-  arg3 = reinterpret_cast< WrapTimeT * >(argp3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  arg3 = reinterpret_cast< time64_t * >(argp3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "time64_t const &""'"); 
   }
   if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "time64_t const &""'"); 
   }
-  arg4 = reinterpret_cast< WrapTimeT * >(argp4);
+  arg4 = reinterpret_cast< time64_t * >(argp4);
   {
     std::string *ptr = (std::string *)0;
     res5 = SWIG_AsPtr_std_string(obj4, &ptr);
@@ -17197,7 +16577,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_WriteCheque(PyObject *SWIGUNUSEDPARM(self)
     }
     arg8 = ptr;
   }
-  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(time64_t const &)*arg3,(time64_t const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
   resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res5)) delete arg5;
@@ -17295,19 +16675,19 @@ fail:
 SWIGINTERN PyObject *_wrap_OTAPI_Wrap_ProposePaymentPlan(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
   int64_t *arg9 = 0 ;
-  WrapTimeT *arg10 = 0 ;
+  time64_t *arg10 = 0 ;
   int64_t *arg11 = 0 ;
-  WrapTimeT *arg12 = 0 ;
-  WrapTimeT *arg13 = 0 ;
-  WrapTimeT *arg14 = 0 ;
+  time64_t *arg12 = 0 ;
+  time64_t *arg13 = 0 ;
+  time64_t *arg14 = 0 ;
   int32_t *arg15 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   void *argp2 = 0 ;
@@ -17365,22 +16745,22 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_ProposePaymentPlan(PyObject *SWIGUNUSEDPAR
     }
     arg1 = ptr;
   }
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "time64_t const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "time64_t const &""'"); 
   }
-  arg2 = reinterpret_cast< WrapTimeT * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  arg2 = reinterpret_cast< time64_t * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
-  arg3 = reinterpret_cast< WrapTimeT * >(argp3);
+  arg3 = reinterpret_cast< time64_t * >(argp3);
   {
     std::string *ptr = (std::string *)0;
     res4 = SWIG_AsPtr_std_string(obj3, &ptr);
@@ -17442,51 +16822,51 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_ProposePaymentPlan(PyObject *SWIGUNUSEDPAR
   } 
   temp9 = static_cast< int64_t >(val9);
   arg9 = &temp9;
-  res10 = SWIG_ConvertPtr(obj9, &argp10, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res10 = SWIG_ConvertPtr(obj9, &argp10, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res10)) {
-    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "time64_t const &""'"); 
   }
   if (!argp10) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "time64_t const &""'"); 
   }
-  arg10 = reinterpret_cast< WrapTimeT * >(argp10);
+  arg10 = reinterpret_cast< time64_t * >(argp10);
   ecode11 = SWIG_AsVal_long_SS_long(obj10, &val11);
   if (!SWIG_IsOK(ecode11)) {
     SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "11"" of type '" "int64_t""'");
   } 
   temp11 = static_cast< int64_t >(val11);
   arg11 = &temp11;
-  res12 = SWIG_ConvertPtr(obj11, &argp12, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res12 = SWIG_ConvertPtr(obj11, &argp12, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res12)) {
-    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "time64_t const &""'"); 
   }
   if (!argp12) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "time64_t const &""'"); 
   }
-  arg12 = reinterpret_cast< WrapTimeT * >(argp12);
-  res13 = SWIG_ConvertPtr(obj12, &argp13, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  arg12 = reinterpret_cast< time64_t * >(argp12);
+  res13 = SWIG_ConvertPtr(obj12, &argp13, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res13)) {
-    SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "time64_t const &""'"); 
   }
   if (!argp13) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "time64_t const &""'"); 
   }
-  arg13 = reinterpret_cast< WrapTimeT * >(argp13);
-  res14 = SWIG_ConvertPtr(obj13, &argp14, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  arg13 = reinterpret_cast< time64_t * >(argp13);
+  res14 = SWIG_ConvertPtr(obj13, &argp14, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res14)) {
-    SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "time64_t const &""'"); 
   }
   if (!argp14) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "time64_t const &""'"); 
   }
-  arg14 = reinterpret_cast< WrapTimeT * >(argp14);
+  arg14 = reinterpret_cast< time64_t * >(argp14);
   ecode15 = SWIG_AsVal_int(obj14, &val15);
   if (!SWIG_IsOK(ecode15)) {
     SWIG_exception_fail(SWIG_ArgError(ecode15), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "15"" of type '" "int32_t""'");
   } 
   temp15 = static_cast< int32_t >(val15);
   arg15 = &temp15;
-  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(time64_t const &)*arg10,(long long const &)*arg11,(time64_t const &)*arg12,(time64_t const &)*arg13,(time64_t const &)*arg14,(int const &)*arg15);
   resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res4)) delete arg4;
@@ -17775,8 +17155,8 @@ fail:
 SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Create_SmartContract(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   void *argp2 = 0 ;
   int res2 = 0 ;
@@ -17799,23 +17179,23 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Create_SmartContract(PyObject *SWIGUNUSEDP
     }
     arg1 = ptr;
   }
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "time64_t const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "time64_t const &""'"); 
   }
-  arg2 = reinterpret_cast< WrapTimeT * >(argp2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  arg2 = reinterpret_cast< time64_t * >(argp2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "time64_t const &""'"); 
   }
-  arg3 = reinterpret_cast< WrapTimeT * >(argp3);
-  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  arg3 = reinterpret_cast< time64_t * >(argp3);
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3);
   resultobj = SWIG_From_std_string(static_cast< std::string >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
@@ -23110,7 +22490,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Transaction_GetDateSigned(PyObject *SWIGUN
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOOO:OTAPI_Wrap_Transaction_GetDateSigned",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
   {
@@ -23158,7 +22538,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Transaction_GetDateSigned(PyObject *SWIGUN
     arg4 = ptr;
   }
   result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
@@ -24891,7 +24271,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Token_GetValidFrom(PyObject *SWIGUNUSEDPAR
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:OTAPI_Wrap_Token_GetValidFrom",&obj0,&obj1,&obj2)) SWIG_fail;
   {
@@ -24928,7 +24308,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Token_GetValidFrom(PyObject *SWIGUNUSEDPAR
     arg3 = ptr;
   }
   result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
@@ -24952,7 +24332,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Token_GetValidTo(PyObject *SWIGUNUSEDPARM(
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"OOO:OTAPI_Wrap_Token_GetValidTo",&obj0,&obj1,&obj2)) SWIG_fail;
   {
@@ -24989,7 +24369,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Token_GetValidTo(PyObject *SWIGUNUSEDPARM(
     arg3 = ptr;
   }
   result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
@@ -25123,7 +24503,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(PyObject *SWIGUNUSED
   std::string *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   PyObject * obj0 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTAPI_Wrap_Instrmnt_GetValidFrom",&obj0)) SWIG_fail;
   {
@@ -25138,7 +24518,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(PyObject *SWIGUNUSED
     arg1 = ptr;
   }
   result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
@@ -25152,7 +24532,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(PyObject *SWIGUNUSEDPA
   std::string *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   PyObject * obj0 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTAPI_Wrap_Instrmnt_GetValidTo",&obj0)) SWIG_fail;
   {
@@ -25167,7 +24547,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(PyObject *SWIGUNUSEDPA
     arg1 = ptr;
   }
   result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
-  resultobj = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
@@ -28189,7 +27569,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_issueMarketOffer(PyObject *SWIGUNUSEDPARM(
   int64_t *arg5 = 0 ;
   int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  WrapTimeT *arg8 = 0 ;
+  time64_t *arg8 = 0 ;
   std::string *arg9 = 0 ;
   int64_t *arg10 = 0 ;
   int res1 = SWIG_OLDOBJ ;
@@ -28280,14 +27660,14 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_issueMarketOffer(PyObject *SWIGUNUSEDPARM(
   } 
   temp7 = static_cast< bool >(val7);
   arg7 = &temp7;
-  res8 = SWIG_ConvertPtr(obj7, &argp8, SWIGTYPE_p_WrapTimeT,  0  | 0);
+  res8 = SWIG_ConvertPtr(obj7, &argp8, SWIGTYPE_p_time64_t,  0  | 0);
   if (!SWIG_IsOK(res8)) {
-    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "time64_t const &""'"); 
   }
   if (!argp8) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "WrapTimeT const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "time64_t const &""'"); 
   }
-  arg8 = reinterpret_cast< WrapTimeT * >(argp8);
+  arg8 = reinterpret_cast< time64_t * >(argp8);
   {
     std::string *ptr = (std::string *)0;
     res9 = SWIG_AsPtr_std_string(obj8, &ptr);
@@ -28305,7 +27685,7 @@ SWIGINTERN PyObject *_wrap_OTAPI_Wrap_issueMarketOffer(PyObject *SWIGUNUSEDPARM(
   } 
   temp10 = static_cast< int64_t >(val10);
   arg10 = &temp10;
-  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(time64_t const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   resultobj = SWIG_From_int(static_cast< int >(result));
   if (SWIG_IsNewObj(res1)) delete arg1;
   if (SWIG_IsNewObj(res2)) delete arg2;
@@ -53059,7 +52439,7 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetValidFrom(PyObject *SWIGUNUSEDPARM(self),
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int64_t result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTRecord_GetValidFrom",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
@@ -53067,8 +52447,8 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetValidFrom(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetValidFrom" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  result = (int64_t)(arg1)->GetValidFrom();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  result = (arg1)->GetValidFrom();
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -53081,7 +52461,7 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetValidTo(PyObject *SWIGUNUSEDPARM(self), P
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int64_t result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTRecord_GetValidTo",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
@@ -53089,8 +52469,8 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetValidTo(PyObject *SWIGUNUSEDPARM(self), P
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetValidTo" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  result = (int64_t)(arg1)->GetValidTo();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  result = (arg1)->GetValidTo();
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -53100,14 +52480,14 @@ fail:
 SWIGINTERN PyObject *_wrap_OTRecord_SetDateRange(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t arg2 ;
-  int64_t arg3 ;
+  time64_t arg2 ;
+  time64_t arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  long long val2 ;
-  int ecode2 = 0 ;
-  long long val3 ;
-  int ecode3 = 0 ;
+  void *argp2 ;
+  int res2 = 0 ;
+  void *argp3 ;
+  int res3 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -53118,16 +52498,32 @@ SWIGINTERN PyObject *_wrap_OTRecord_SetDateRange(PyObject *SWIGUNUSEDPARM(self),
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetDateRange" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  ecode2 = SWIG_AsVal_long_SS_long(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "int64_t""'");
-  } 
-  arg2 = static_cast< int64_t >(val2);
-  ecode3 = SWIG_AsVal_long_SS_long(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "int64_t""'");
-  } 
-  arg3 = static_cast< int64_t >(val3);
+  {
+    res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_time64_t,  0  | 0);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "time64_t""'"); 
+    }  
+    if (!argp2) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "time64_t""'");
+    } else {
+      time64_t * temp = reinterpret_cast< time64_t * >(argp2);
+      arg2 = *temp;
+      if (SWIG_IsNewObj(res2)) delete temp;
+    }
+  }
+  {
+    res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_time64_t,  0  | 0);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "time64_t""'"); 
+    }  
+    if (!argp3) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "time64_t""'");
+    } else {
+      time64_t * temp = reinterpret_cast< time64_t * >(argp3);
+      arg3 = *temp;
+      if (SWIG_IsNewObj(res3)) delete temp;
+    }
+  }
   (arg1)->SetDateRange(arg2,arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -54089,7 +53485,7 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetInitialPaymentDate(PyObject *SWIGUNUSEDPA
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int64_t result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTRecord_GetInitialPaymentDate",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
@@ -54097,8 +53493,8 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetInitialPaymentDate(PyObject *SWIGUNUSEDPA
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetInitialPaymentDate" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  result = (int64_t)(arg1)->GetInitialPaymentDate();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  result = (arg1)->GetInitialPaymentDate();
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -54111,7 +53507,7 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetPaymentPlanStartDate(PyObject *SWIGUNUSED
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int64_t result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTRecord_GetPaymentPlanStartDate",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
@@ -54119,8 +53515,8 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetPaymentPlanStartDate(PyObject *SWIGUNUSED
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetPaymentPlanStartDate" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  result = (int64_t)(arg1)->GetPaymentPlanStartDate();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  result = (arg1)->GetPaymentPlanStartDate();
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -54133,7 +53529,7 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetTimeBetweenPayments(PyObject *SWIGUNUSEDP
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  int64_t result;
+  time64_t result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:OTRecord_GetTimeBetweenPayments",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
@@ -54141,8 +53537,8 @@ SWIGINTERN PyObject *_wrap_OTRecord_GetTimeBetweenPayments(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetTimeBetweenPayments" "', argument " "1"" of type '" "OTRecord *""'"); 
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
-  result = (int64_t)(arg1)->GetTimeBetweenPayments();
-  resultobj = SWIG_From_long_SS_long(static_cast< long long >(result));
+  result = (arg1)->GetTimeBetweenPayments();
+  resultobj = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -55201,6 +54597,35 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_OTLookupCaller_getCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Swig::Director *director = 0;
+  OTNameLookup *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:OTLookupCaller_getCallback",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OTLookupCaller, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTLookupCaller_getCallback" "', argument " "1"" of type '" "OTLookupCaller *""'"); 
+  }
+  arg1 = reinterpret_cast< OTLookupCaller * >(argp1);
+  result = (OTNameLookup *)(arg1)->getCallback();
+  director = SWIG_DIRECTOR_CAST(result);
+  if (director) {
+    resultobj = director->swig_get_self();
+    Py_INCREF(resultobj);
+  } else {
+    resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTNameLookup, 0 |  0 );
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_OTLookupCaller_delCallback(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
@@ -55783,7 +55208,20 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_OTRecordList(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_OTRecordList__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  OTRecordList *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_OTRecordList")) SWIG_fail;
+  result = (OTRecordList *)new OTRecordList();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTRecordList, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_OTRecordList__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   OTNameLookup *arg1 = 0 ;
   void *argp1 = 0 ;
@@ -55805,6 +55243,38 @@ SWIGINTERN PyObject *_wrap_new_OTRecordList(PyObject *SWIGUNUSEDPARM(self), PyOb
   return resultobj;
 fail:
   return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_OTRecordList(PyObject *self, PyObject *args) {
+  int argc;
+  PyObject *argv[2];
+  int ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? (int)PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 1) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 0) {
+    return _wrap_new_OTRecordList__SWIG_0(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTNameLookup, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_OTRecordList__SWIG_1(self, args);
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_OTRecordList'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OTRecordList::OTRecordList()\n"
+    "    OTRecordList::OTRecordList(OTNameLookup &)\n");
+  return 0;
 }
 
 
@@ -57038,29 +56508,6 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_OTPassword", _wrap_new_OTPassword, METH_VARARGS, NULL},
 	 { (char *)"delete_OTPassword", _wrap_delete_OTPassword, METH_VARARGS, NULL},
 	 { (char *)"OTPassword_swigregister", OTPassword_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_OTCallback", _wrap_new_OTCallback, METH_VARARGS, NULL},
-	 { (char *)"delete_OTCallback", _wrap_delete_OTCallback, METH_VARARGS, NULL},
-	 { (char *)"OTCallback_runOne", _wrap_OTCallback_runOne, METH_VARARGS, NULL},
-	 { (char *)"OTCallback_runTwo", _wrap_OTCallback_runTwo, METH_VARARGS, NULL},
-	 { (char *)"disown_OTCallback", _wrap_disown_OTCallback, METH_VARARGS, NULL},
-	 { (char *)"OTCallback_swigregister", OTCallback_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_OTCaller", _wrap_new_OTCaller, METH_VARARGS, NULL},
-	 { (char *)"delete_OTCaller", _wrap_delete_OTCaller, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_GetPassword", _wrap_OTCaller_GetPassword, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_ZeroOutPassword", _wrap_OTCaller_ZeroOutPassword, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_GetDisplay", _wrap_OTCaller_GetDisplay, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_SetDisplay", _wrap_OTCaller_SetDisplay, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_delCallback", _wrap_OTCaller_delCallback, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_setCallback", _wrap_OTCaller_setCallback, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_isCallbackSet", _wrap_OTCaller_isCallbackSet, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_callOne", _wrap_OTCaller_callOne, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_callTwo", _wrap_OTCaller_callTwo, METH_VARARGS, NULL},
-	 { (char *)"OTCaller_swigregister", OTCaller_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_WrapTimeT", _wrap_new_WrapTimeT, METH_VARARGS, NULL},
-	 { (char *)"WrapTimeT_getTime", _wrap_WrapTimeT_getTime, METH_VARARGS, NULL},
-	 { (char *)"WrapTimeT_setTime", _wrap_WrapTimeT_setTime, METH_VARARGS, NULL},
-	 { (char *)"delete_WrapTimeT", _wrap_delete_WrapTimeT, METH_VARARGS, NULL},
-	 { (char *)"WrapTimeT_swigregister", WrapTimeT_swigregister, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Wrap_SetExecutor", _wrap_OTAPI_Wrap_SetExecutor, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Wrap_Exec", _wrap_OTAPI_Wrap_Exec, METH_VARARGS, NULL},
 	 { (char *)"OTAPI_Wrap_It", _wrap_OTAPI_Wrap_It, METH_VARARGS, NULL},
@@ -57999,6 +57446,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"OTNameLookup_swigregister", OTNameLookup_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_OTLookupCaller", _wrap_new_OTLookupCaller, METH_VARARGS, NULL},
 	 { (char *)"delete_OTLookupCaller", _wrap_delete_OTLookupCaller, METH_VARARGS, NULL},
+	 { (char *)"OTLookupCaller_getCallback", _wrap_OTLookupCaller_getCallback, METH_VARARGS, NULL},
 	 { (char *)"OTLookupCaller_delCallback", _wrap_OTLookupCaller_delCallback, METH_VARARGS, NULL},
 	 { (char *)"OTLookupCaller_setCallback", _wrap_OTLookupCaller_setCallback, METH_VARARGS, NULL},
 	 { (char *)"OTLookupCaller_isCallbackSet", _wrap_OTLookupCaller_isCallbackSet, METH_VARARGS, NULL},
@@ -58216,7 +57664,6 @@ static void *_p_OTDB__BidDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSED
 }
 static swig_type_info _swigt__p_OTAPI_Exec = {"_p_OTAPI_Exec", "OTAPI_Exec *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTAPI_Wrap = {"_p_OTAPI_Wrap", "OTAPI_Wrap *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_OTCallback = {"_p_OTCallback", "OTCallback *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTCaller = {"_p_OTCaller", "OTCaller *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__Acct = {"_p_OTDB__Acct", "OTDB::Acct *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__AddressBook = {"_p_OTDB__AddressBook", "OTDB::AddressBook *", 0, 0, (void*)0, 0};
@@ -58257,7 +57704,6 @@ static swig_type_info _swigt__p_OTRecordList = {"_p_OTRecordList", "OTRecordList
 static swig_type_info _swigt__p_OTVariable = {"_p_OTVariable", "OTVariable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_API = {"_p_OT_API", "OT_API *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_ME = {"_p_OT_ME", "OT_ME *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_WrapTimeT = {"_p_WrapTimeT", "WrapTimeT *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p__SharedPtrT_OTRecord_t = {"_p__SharedPtrT_OTRecord_t", "shared_ptr_OTRecord *|_SharedPtr< OTRecord > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_allocator_type = {"_p_allocator_type", "allocator_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
@@ -58281,6 +57727,7 @@ static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *"
 static swig_type_info _swigt__p_std__vectorT__Tp__Alloc_t = {"_p_std__vectorT__Tp__Alloc_t", "std::vector< _Tp,_Alloc > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t = {"_p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t", "std::vector< uint8_t,std::allocator< uint8_t > > *|std::vector< unsigned char > *|std::vector< unsigned char,std::allocator< unsigned char > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__SwigPyIterator = {"_p_swig__SwigPyIterator", "swig::SwigPyIterator *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_time64_t = {"_p_time64_t", "time64_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|uint_least8_t *|uint_fast8_t *|uint8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|uint_least32_t *|uint_fast32_t *|uint32_t *|unsigned int *|uint_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "uint_least64_t *|uint_fast64_t *|uint64_t *|unsigned long long *|uintmax_t *", 0, 0, (void*)0, 0};
@@ -58292,7 +57739,6 @@ static swig_type_info _swigt__p_wchar_t = {"_p_wchar_t", "wchar_t *", 0, 0, (voi
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTAPI_Exec,
   &_swigt__p_OTAPI_Wrap,
-  &_swigt__p_OTCallback,
   &_swigt__p_OTCaller,
   &_swigt__p_OTDB__Acct,
   &_swigt__p_OTDB__AddressBook,
@@ -58333,7 +57779,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTVariable,
   &_swigt__p_OT_API,
   &_swigt__p_OT_ME,
-  &_swigt__p_WrapTimeT,
   &_swigt__p__SharedPtrT_OTRecord_t,
   &_swigt__p_allocator_type,
   &_swigt__p_char,
@@ -58357,6 +57802,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__vectorT__Tp__Alloc_t,
   &_swigt__p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t,
   &_swigt__p_swig__SwigPyIterator,
+  &_swigt__p_time64_t,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long_long,
@@ -58368,7 +57814,6 @@ static swig_type_info *swig_type_initial[] = {
 
 static swig_cast_info _swigc__p_OTAPI_Exec[] = {  {&_swigt__p_OTAPI_Exec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTAPI_Wrap[] = {  {&_swigt__p_OTAPI_Wrap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OTCallback[] = {  {&_swigt__p_OTCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTCaller[] = {  {&_swigt__p_OTCaller, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__Acct[] = {  {&_swigt__p_OTDB__BitcoinAcct, _p_OTDB__BitcoinAcctTo_p_OTDB__Acct, 0, 0},  {&_swigt__p_OTDB__Acct, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__AddressBook[] = {  {&_swigt__p_OTDB__AddressBook, 0, 0, 0},{0, 0, 0, 0}};
@@ -58409,7 +57854,6 @@ static swig_cast_info _swigc__p_OTRecordList[] = {  {&_swigt__p_OTRecordList, 0,
 static swig_cast_info _swigc__p_OTVariable[] = {  {&_swigt__p_OTVariable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_API[] = {  {&_swigt__p_OT_API, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_ME[] = {  {&_swigt__p_OT_ME, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_WrapTimeT[] = {  {&_swigt__p_WrapTimeT, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__SharedPtrT_OTRecord_t[] = {  {&_swigt__p__SharedPtrT_OTRecord_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_allocator_type[] = {  {&_swigt__p_allocator_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
@@ -58433,6 +57877,7 @@ static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0
 static swig_cast_info _swigc__p_std__vectorT__Tp__Alloc_t[] = {  {&_swigt__p_std__vectorT__Tp__Alloc_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t[] = {  {&_swigt__p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__SwigPyIterator[] = {  {&_swigt__p_swig__SwigPyIterator, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_time64_t[] = {  {&_swigt__p_time64_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_long_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -58444,7 +57889,6 @@ static swig_cast_info _swigc__p_wchar_t[] = {  {&_swigt__p_wchar_t, 0, 0, 0},{0,
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTAPI_Exec,
   _swigc__p_OTAPI_Wrap,
-  _swigc__p_OTCallback,
   _swigc__p_OTCaller,
   _swigc__p_OTDB__Acct,
   _swigc__p_OTDB__AddressBook,
@@ -58485,7 +57929,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTVariable,
   _swigc__p_OT_API,
   _swigc__p_OT_ME,
-  _swigc__p_WrapTimeT,
   _swigc__p__SharedPtrT_OTRecord_t,
   _swigc__p_allocator_type,
   _swigc__p_char,
@@ -58509,6 +57952,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__vectorT__Tp__Alloc_t,
   _swigc__p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t,
   _swigc__p_swig__SwigPyIterator,
+  _swigc__p_time64_t,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long_long,

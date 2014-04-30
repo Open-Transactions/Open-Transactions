@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: otapi/OTAPI.i
+// source: swig\otapi\OTAPI.i
 
 package otapi
 
@@ -667,256 +667,6 @@ type OTPassword interface {
 	SetSize(arg2 uint) bool
 }
 
-type _swig_DirectorOTCallback struct {
-	SwigcptrOTCallback
-	v interface{}
-}
-
-func (p *_swig_DirectorOTCallback) Swigcptr() uintptr {
-	return p.SwigcptrOTCallback.Swigcptr()
-}
-
-func (p *_swig_DirectorOTCallback) SwigIsOTCallback() {
-}
-
-func (p *_swig_DirectorOTCallback) DirectorInterface() interface{} {
-	return p.v
-}
-
-func _swig_NewDirectorOTCallbackOTCallback(*_swig_DirectorOTCallback) SwigcptrOTCallback
-
-func NewDirectorOTCallback(v interface{}) OTCallback {
-	p := &_swig_DirectorOTCallback{0, v}
-	p.SwigcptrOTCallback = _swig_NewDirectorOTCallbackOTCallback(p)
-	return p
-}
-
-func _swig_wrap_DeleteDirectorOTCallback(uintptr)
-
-func DeleteDirectorOTCallback(arg1 OTCallback) {
-	_swig_wrap_DeleteDirectorOTCallback(arg1.Swigcptr())
-}
-
-func Swiggo_DeleteDirector_OTCallback(p *_swig_DirectorOTCallback) {
-	p.SwigcptrOTCallback = 0
-}
-
-type _swig_DirectorInterfaceOTCallbackRunOne interface {
-	RunOne(string, OTPassword)
-}
-
-func _swig_wrap__swig_DirectorOTCallback_upcall_RunOne(SwigcptrOTCallback, string, uintptr)
-func (swig_p *_swig_DirectorOTCallback) RunOne(szDisplay string, theOutput OTPassword) {
-	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTCallbackRunOne); swig_ok {
-		swig_g.RunOne(szDisplay, theOutput)
-		return
-	}
-	_swig_wrap__swig_DirectorOTCallback_upcall_RunOne(swig_p.SwigcptrOTCallback, szDisplay, theOutput.Swigcptr())
-}
-
-func DirectorOTCallbackRunOne(p OTCallback, arg2 string, arg3 OTPassword) {
-	_swig_wrap__swig_DirectorOTCallback_upcall_RunOne(p.(*_swig_DirectorOTCallback).SwigcptrOTCallback, arg2, arg3.Swigcptr())
-}
-
-func Swig_DirectorOTCallback_callback_runOne(p *_swig_DirectorOTCallback, arg2 string, arg3 uintptr) {
-	p.RunOne(arg2, SwigcptrOTPassword(arg3))
-}
-
-type _swig_DirectorInterfaceOTCallbackRunTwo interface {
-	RunTwo(string, OTPassword)
-}
-
-func _swig_wrap__swig_DirectorOTCallback_upcall_RunTwo(SwigcptrOTCallback, string, uintptr)
-func (swig_p *_swig_DirectorOTCallback) RunTwo(szDisplay string, theOutput OTPassword) {
-	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTCallbackRunTwo); swig_ok {
-		swig_g.RunTwo(szDisplay, theOutput)
-		return
-	}
-	_swig_wrap__swig_DirectorOTCallback_upcall_RunTwo(swig_p.SwigcptrOTCallback, szDisplay, theOutput.Swigcptr())
-}
-
-func DirectorOTCallbackRunTwo(p OTCallback, arg2 string, arg3 OTPassword) {
-	_swig_wrap__swig_DirectorOTCallback_upcall_RunTwo(p.(*_swig_DirectorOTCallback).SwigcptrOTCallback, arg2, arg3.Swigcptr())
-}
-
-func Swig_DirectorOTCallback_callback_runTwo(p *_swig_DirectorOTCallback, arg2 string, arg3 uintptr) {
-	p.RunTwo(arg2, SwigcptrOTPassword(arg3))
-}
-
-type SwigcptrOTCallback uintptr
-
-func (p SwigcptrOTCallback) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrOTCallback) SwigIsOTCallback() {
-}
-
-func (p SwigcptrOTCallback) DirectorInterface() interface{} {
-	return nil
-}
-
-func _swig_wrap_new_OTCallback() SwigcptrOTCallback
-
-func NewOTCallback() OTCallback {
-	return _swig_wrap_new_OTCallback()
-}
-
-func _swig_wrap_delete_OTCallback(uintptr)
-
-func DeleteOTCallback(arg1 OTCallback) {
-	_swig_wrap_delete_OTCallback(arg1.Swigcptr())
-}
-
-func _swig_wrap_OTCallback_runOne(SwigcptrOTCallback, string, uintptr)
-
-func (arg1 SwigcptrOTCallback) RunOne(arg2 string, arg3 OTPassword) {
-	_swig_wrap_OTCallback_runOne(arg1, arg2, arg3.Swigcptr())
-}
-
-func _swig_wrap_OTCallback_runTwo(SwigcptrOTCallback, string, uintptr)
-
-func (arg1 SwigcptrOTCallback) RunTwo(arg2 string, arg3 OTPassword) {
-	_swig_wrap_OTCallback_runTwo(arg1, arg2, arg3.Swigcptr())
-}
-
-type OTCallback interface {
-	Swigcptr() uintptr
-	SwigIsOTCallback()
-	DirectorInterface() interface{}
-	RunOne(arg2 string, arg3 OTPassword)
-	RunTwo(arg2 string, arg3 OTPassword)
-}
-
-type SwigcptrOTCaller uintptr
-
-func (p SwigcptrOTCaller) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrOTCaller) SwigIsOTCaller() {
-}
-
-func _swig_wrap_new_OTCaller() SwigcptrOTCaller
-
-func NewOTCaller() OTCaller {
-	return _swig_wrap_new_OTCaller()
-}
-
-func _swig_wrap_delete_OTCaller(uintptr)
-
-func DeleteOTCaller(arg1 OTCaller) {
-	_swig_wrap_delete_OTCaller(arg1.Swigcptr())
-}
-
-func _swig_wrap_OTCaller_GetPassword(SwigcptrOTCaller, uintptr) bool
-
-func (arg1 SwigcptrOTCaller) GetPassword(arg2 OTPassword) bool {
-	return _swig_wrap_OTCaller_GetPassword(arg1, arg2.Swigcptr())
-}
-
-func _swig_wrap_OTCaller_ZeroOutPassword(SwigcptrOTCaller)
-
-func (arg1 SwigcptrOTCaller) ZeroOutPassword() {
-	_swig_wrap_OTCaller_ZeroOutPassword(arg1)
-}
-
-func _swig_wrap_OTCaller_GetDisplay(SwigcptrOTCaller) string
-
-func (arg1 SwigcptrOTCaller) GetDisplay() string {
-	return _swig_wrap_OTCaller_GetDisplay(arg1)
-}
-
-func _swig_wrap_OTCaller_SetDisplay(SwigcptrOTCaller, string, int)
-
-func (arg1 SwigcptrOTCaller) SetDisplay(arg2 string, arg3 int) {
-	_swig_wrap_OTCaller_SetDisplay(arg1, arg2, arg3)
-}
-
-func _swig_wrap_OTCaller_delCallback(SwigcptrOTCaller)
-
-func (arg1 SwigcptrOTCaller) DelCallback() {
-	_swig_wrap_OTCaller_delCallback(arg1)
-}
-
-func _swig_wrap_OTCaller_setCallback(SwigcptrOTCaller, uintptr)
-
-func (arg1 SwigcptrOTCaller) SetCallback(arg2 OTCallback) {
-	_swig_wrap_OTCaller_setCallback(arg1, arg2.Swigcptr())
-}
-
-func _swig_wrap_OTCaller_isCallbackSet(SwigcptrOTCaller) bool
-
-func (arg1 SwigcptrOTCaller) IsCallbackSet() bool {
-	return _swig_wrap_OTCaller_isCallbackSet(arg1)
-}
-
-func _swig_wrap_OTCaller_callOne(SwigcptrOTCaller)
-
-func (arg1 SwigcptrOTCaller) CallOne() {
-	_swig_wrap_OTCaller_callOne(arg1)
-}
-
-func _swig_wrap_OTCaller_callTwo(SwigcptrOTCaller)
-
-func (arg1 SwigcptrOTCaller) CallTwo() {
-	_swig_wrap_OTCaller_callTwo(arg1)
-}
-
-type OTCaller interface {
-	Swigcptr() uintptr
-	SwigIsOTCaller()
-	GetPassword(arg2 OTPassword) bool
-	ZeroOutPassword()
-	GetDisplay() string
-	SetDisplay(arg2 string, arg3 int)
-	DelCallback()
-	SetCallback(arg2 OTCallback)
-	IsCallbackSet() bool
-	CallOne()
-	CallTwo()
-}
-
-type SwigcptrWrapTimeT uintptr
-
-func (p SwigcptrWrapTimeT) Swigcptr() uintptr {
-	return (uintptr)(p)
-}
-
-func (p SwigcptrWrapTimeT) SwigIsWrapTimeT() {
-}
-
-func _swig_wrap_new_WrapTimeT() SwigcptrWrapTimeT
-
-func NewWrapTimeT() WrapTimeT {
-	return _swig_wrap_new_WrapTimeT()
-}
-
-func _swig_wrap_WrapTimeT_getTime(SwigcptrWrapTimeT) int64
-
-func (arg1 SwigcptrWrapTimeT) GetTime() int64 {
-	return _swig_wrap_WrapTimeT_getTime(arg1)
-}
-
-func _swig_wrap_WrapTimeT_setTime(SwigcptrWrapTimeT, int64)
-
-func (arg1 SwigcptrWrapTimeT) SetTime(arg2 int64) {
-	_swig_wrap_WrapTimeT_setTime(arg1, arg2)
-}
-
-func _swig_wrap_delete_WrapTimeT(uintptr)
-
-func DeleteWrapTimeT(arg1 WrapTimeT) {
-	_swig_wrap_delete_WrapTimeT(arg1.Swigcptr())
-}
-
-type WrapTimeT interface {
-	Swigcptr() uintptr
-	SwigIsWrapTimeT()
-	GetTime() int64
-	SetTime(arg2 int64)
-}
-
 type SwigcptrOTAPI_Wrap uintptr
 
 func (p SwigcptrOTAPI_Wrap) Swigcptr() uintptr {
@@ -978,9 +728,9 @@ func OTAPI_WrapOutput(arg1 int, arg2 string) {
 	_swig_wrap_OTAPI_Wrap_Output(arg1, arg2)
 }
 
-func _swig_wrap_OTAPI_Wrap_GetTime() SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_GetTime() SwigcptrTime64_t
 
-func OTAPI_WrapGetTime() WrapTimeT {
+func OTAPI_WrapGetTime() Time64_t {
 	return _swig_wrap_OTAPI_Wrap_GetTime()
 }
 
@@ -1101,14 +851,14 @@ func OTAPI_WrapSetAssetType_Name(string, string) bool
 func OTAPI_WrapSetServer_Name(string, string) bool
 func _swig_wrap_OTAPI_Wrap_WriteCheque(string, int64, uintptr, uintptr, string, string, string, string) string
 
-func OTAPI_WrapWriteCheque(arg1 string, arg2 int64, arg3 WrapTimeT, arg4 WrapTimeT, arg5 string, arg6 string, arg7 string, arg8 string) string {
+func OTAPI_WrapWriteCheque(arg1 string, arg2 int64, arg3 Time64_t, arg4 Time64_t, arg5 string, arg6 string, arg7 string, arg8 string) string {
 	return _swig_wrap_OTAPI_Wrap_WriteCheque(arg1, arg2, arg3.Swigcptr(), arg4.Swigcptr(), arg5, arg6, arg7, arg8)
 }
 
 func OTAPI_WrapDiscardCheque(string, string, string, string) bool
 func _swig_wrap_OTAPI_Wrap_ProposePaymentPlan(string, uintptr, uintptr, string, string, string, string, string, int64, uintptr, int64, uintptr, uintptr, uintptr, int) string
 
-func OTAPI_WrapProposePaymentPlan(arg1 string, arg2 WrapTimeT, arg3 WrapTimeT, arg4 string, arg5 string, arg6 string, arg7 string, arg8 string, arg9 int64, arg10 WrapTimeT, arg11 int64, arg12 WrapTimeT, arg13 WrapTimeT, arg14 WrapTimeT, arg15 int) string {
+func OTAPI_WrapProposePaymentPlan(arg1 string, arg2 Time64_t, arg3 Time64_t, arg4 string, arg5 string, arg6 string, arg7 string, arg8 string, arg9 int64, arg10 Time64_t, arg11 int64, arg12 Time64_t, arg13 Time64_t, arg14 Time64_t, arg15 int) string {
 	return _swig_wrap_OTAPI_Wrap_ProposePaymentPlan(arg1, arg2.Swigcptr(), arg3.Swigcptr(), arg4, arg5, arg6, arg7, arg8, arg9, arg10.Swigcptr(), arg11, arg12.Swigcptr(), arg13.Swigcptr(), arg14.Swigcptr(), arg15)
 }
 
@@ -1116,7 +866,7 @@ func OTAPI_WrapEasyProposePlan(string, string, string, string, string, string, s
 func OTAPI_WrapConfirmPaymentPlan(string, string, string, string, string) string
 func _swig_wrap_OTAPI_Wrap_Create_SmartContract(string, uintptr, uintptr) string
 
-func OTAPI_WrapCreate_SmartContract(arg1 string, arg2 WrapTimeT, arg3 WrapTimeT) string {
+func OTAPI_WrapCreate_SmartContract(arg1 string, arg2 Time64_t, arg3 Time64_t) string {
 	return _swig_wrap_OTAPI_Wrap_Create_SmartContract(arg1, arg2.Swigcptr(), arg3.Swigcptr())
 }
 
@@ -1208,9 +958,9 @@ func OTAPI_WrapTransaction_GetVoucher(string, string, string, string) string
 func OTAPI_WrapTransaction_GetSuccess(string, string, string, string) int
 func OTAPI_WrapTransaction_IsCanceled(string, string, string, string) int
 func OTAPI_WrapTransaction_GetBalanceAgreementSuccess(string, string, string, string) int
-func _swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(string, string, string, string) SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(string, string, string, string) SwigcptrTime64_t
 
-func OTAPI_WrapTransaction_GetDateSigned(arg1 string, arg2 string, arg3 string, arg4 string) WrapTimeT {
+func OTAPI_WrapTransaction_GetDateSigned(arg1 string, arg2 string, arg3 string, arg4 string) Time64_t {
 	return _swig_wrap_OTAPI_Wrap_Transaction_GetDateSigned(arg1, arg2, arg3, arg4)
 }
 
@@ -1237,15 +987,15 @@ func OTAPI_WrapToken_ChangeOwner(string, string, string, string, string, string)
 func OTAPI_WrapToken_GetID(string, string, string) string
 func OTAPI_WrapToken_GetDenomination(string, string, string) int64
 func OTAPI_WrapToken_GetSeries(string, string, string) int
-func _swig_wrap_OTAPI_Wrap_Token_GetValidFrom(string, string, string) SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_Token_GetValidFrom(string, string, string) SwigcptrTime64_t
 
-func OTAPI_WrapToken_GetValidFrom(arg1 string, arg2 string, arg3 string) WrapTimeT {
+func OTAPI_WrapToken_GetValidFrom(arg1 string, arg2 string, arg3 string) Time64_t {
 	return _swig_wrap_OTAPI_Wrap_Token_GetValidFrom(arg1, arg2, arg3)
 }
 
-func _swig_wrap_OTAPI_Wrap_Token_GetValidTo(string, string, string) SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_Token_GetValidTo(string, string, string) SwigcptrTime64_t
 
-func OTAPI_WrapToken_GetValidTo(arg1 string, arg2 string, arg3 string) WrapTimeT {
+func OTAPI_WrapToken_GetValidTo(arg1 string, arg2 string, arg3 string) Time64_t {
 	return _swig_wrap_OTAPI_Wrap_Token_GetValidTo(arg1, arg2, arg3)
 }
 
@@ -1253,15 +1003,15 @@ func OTAPI_WrapToken_GetAssetID(string) string
 func OTAPI_WrapToken_GetServerID(string) string
 func OTAPI_WrapInstrmnt_GetAmount(string) int64
 func OTAPI_WrapInstrmnt_GetTransNum(string) int64
-func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(string) SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(string) SwigcptrTime64_t
 
-func OTAPI_WrapInstrmnt_GetValidFrom(arg1 string) WrapTimeT {
+func OTAPI_WrapInstrmnt_GetValidFrom(arg1 string) Time64_t {
 	return _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(arg1)
 }
 
-func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(string) SwigcptrWrapTimeT
+func _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(string) SwigcptrTime64_t
 
-func OTAPI_WrapInstrmnt_GetValidTo(arg1 string) WrapTimeT {
+func OTAPI_WrapInstrmnt_GetValidTo(arg1 string) Time64_t {
 	return _swig_wrap_OTAPI_Wrap_Instrmnt_GetValidTo(arg1)
 }
 
@@ -1318,7 +1068,7 @@ func OTAPI_WrapDepositCheque(string, string, string, string) int
 func OTAPI_WrapDepositPaymentPlan(string, string, string) int
 func _swig_wrap_OTAPI_Wrap_issueMarketOffer(string, string, int64, int64, int64, int64, bool, uintptr, string, int64) int
 
-func OTAPI_WrapIssueMarketOffer(arg1 string, arg2 string, arg3 int64, arg4 int64, arg5 int64, arg6 int64, arg7 bool, arg8 WrapTimeT, arg9 string, arg10 int64) int {
+func OTAPI_WrapIssueMarketOffer(arg1 string, arg2 string, arg3 int64, arg4 int64, arg5 int64, arg6 int64, arg7 bool, arg8 Time64_t, arg9 string, arg10 int64) int {
 	return _swig_wrap_OTAPI_Wrap_issueMarketOffer(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8.Swigcptr(), arg9, arg10)
 }
 
@@ -6592,22 +6342,22 @@ func (arg1 SwigcptrOTRecord) SetCanceled() {
 	_swig_wrap_OTRecord_SetCanceled(arg1)
 }
 
-func _swig_wrap_OTRecord_GetValidFrom(SwigcptrOTRecord) int64
+func _swig_wrap_OTRecord_GetValidFrom(SwigcptrOTRecord) SwigcptrTime64_t
 
-func (arg1 SwigcptrOTRecord) GetValidFrom() int64 {
+func (arg1 SwigcptrOTRecord) GetValidFrom() Time64_t {
 	return _swig_wrap_OTRecord_GetValidFrom(arg1)
 }
 
-func _swig_wrap_OTRecord_GetValidTo(SwigcptrOTRecord) int64
+func _swig_wrap_OTRecord_GetValidTo(SwigcptrOTRecord) SwigcptrTime64_t
 
-func (arg1 SwigcptrOTRecord) GetValidTo() int64 {
+func (arg1 SwigcptrOTRecord) GetValidTo() Time64_t {
 	return _swig_wrap_OTRecord_GetValidTo(arg1)
 }
 
-func _swig_wrap_OTRecord_SetDateRange(SwigcptrOTRecord, int64, int64)
+func _swig_wrap_OTRecord_SetDateRange(SwigcptrOTRecord, uintptr, uintptr)
 
-func (arg1 SwigcptrOTRecord) SetDateRange(arg2 int64, arg3 int64) {
-	_swig_wrap_OTRecord_SetDateRange(arg1, arg2, arg3)
+func (arg1 SwigcptrOTRecord) SetDateRange(arg2 Time64_t, arg3 Time64_t) {
+	_swig_wrap_OTRecord_SetDateRange(arg1, arg2.Swigcptr(), arg3.Swigcptr())
 }
 
 func _swig_wrap_OTRecord_CanDeleteRecord(SwigcptrOTRecord) bool
@@ -6838,21 +6588,21 @@ func (arg1 SwigcptrOTRecord) HasPaymentPlan() bool {
 	return _swig_wrap_OTRecord_HasPaymentPlan(arg1)
 }
 
-func _swig_wrap_OTRecord_GetInitialPaymentDate(SwigcptrOTRecord) int64
+func _swig_wrap_OTRecord_GetInitialPaymentDate(SwigcptrOTRecord) SwigcptrTime64_t
 
-func (arg1 SwigcptrOTRecord) GetInitialPaymentDate() int64 {
+func (arg1 SwigcptrOTRecord) GetInitialPaymentDate() Time64_t {
 	return _swig_wrap_OTRecord_GetInitialPaymentDate(arg1)
 }
 
-func _swig_wrap_OTRecord_GetPaymentPlanStartDate(SwigcptrOTRecord) int64
+func _swig_wrap_OTRecord_GetPaymentPlanStartDate(SwigcptrOTRecord) SwigcptrTime64_t
 
-func (arg1 SwigcptrOTRecord) GetPaymentPlanStartDate() int64 {
+func (arg1 SwigcptrOTRecord) GetPaymentPlanStartDate() Time64_t {
 	return _swig_wrap_OTRecord_GetPaymentPlanStartDate(arg1)
 }
 
-func _swig_wrap_OTRecord_GetTimeBetweenPayments(SwigcptrOTRecord) int64
+func _swig_wrap_OTRecord_GetTimeBetweenPayments(SwigcptrOTRecord) SwigcptrTime64_t
 
-func (arg1 SwigcptrOTRecord) GetTimeBetweenPayments() int64 {
+func (arg1 SwigcptrOTRecord) GetTimeBetweenPayments() Time64_t {
 	return _swig_wrap_OTRecord_GetTimeBetweenPayments(arg1)
 }
 
@@ -6931,9 +6681,9 @@ type OTRecord interface {
 	IsCanceled() bool
 	SetExpired()
 	SetCanceled()
-	GetValidFrom() int64
-	GetValidTo() int64
-	SetDateRange(arg2 int64, arg3 int64)
+	GetValidFrom() Time64_t
+	GetValidTo() Time64_t
+	SetDateRange(arg2 Time64_t, arg3 Time64_t)
 	CanDeleteRecord() bool
 	CanAcceptIncoming() bool
 	CanDiscardIncoming() bool
@@ -6972,9 +6722,9 @@ type OTRecord interface {
 	SetContents(arg2 string)
 	HasInitialPayment() bool
 	HasPaymentPlan() bool
-	GetInitialPaymentDate() int64
-	GetPaymentPlanStartDate() int64
-	GetTimeBetweenPayments() int64
+	GetInitialPaymentDate() Time64_t
+	GetPaymentPlanStartDate() Time64_t
+	GetTimeBetweenPayments() Time64_t
 	GetInitialPaymentAmount() int64
 	GetPaymentPlanAmount() int64
 	GetMaximumNoPayments() int
@@ -7312,6 +7062,12 @@ func DeleteOTLookupCaller(arg1 OTLookupCaller) {
 	_swig_wrap_delete_OTLookupCaller(arg1.Swigcptr())
 }
 
+func _swig_wrap_OTLookupCaller_getCallback(SwigcptrOTLookupCaller) SwigcptrOTNameLookup
+
+func (arg1 SwigcptrOTLookupCaller) GetCallback() OTNameLookup {
+	return _swig_wrap_OTLookupCaller_getCallback(arg1)
+}
+
 func _swig_wrap_OTLookupCaller_delCallback(SwigcptrOTLookupCaller)
 
 func (arg1 SwigcptrOTLookupCaller) DelCallback() {
@@ -7397,6 +7153,7 @@ func (p SwigcptrOTLookupCaller) GetAcctName(a ...interface{}) string {
 type OTLookupCaller interface {
 	Swigcptr() uintptr
 	SwigIsOTLookupCaller()
+	GetCallback() OTNameLookup
 	DelCallback()
 	SetCallback(arg2 OTNameLookup)
 	IsCallbackSet() bool
@@ -7431,10 +7188,27 @@ func OTRecordListGetAddrBookCaller() OTLookupCaller {
 	return _swig_wrap_OTRecordList_getAddrBookCaller()
 }
 
-func _swig_wrap_new_OTRecordList(uintptr) SwigcptrOTRecordList
+func _swig_wrap_new_OTRecordList__SWIG_0() SwigcptrOTRecordList
 
-func NewOTRecordList(arg1 OTNameLookup) OTRecordList {
-	return _swig_wrap_new_OTRecordList(arg1.Swigcptr())
+func NewOTRecordList__SWIG_0() OTRecordList {
+	return _swig_wrap_new_OTRecordList__SWIG_0()
+}
+
+func _swig_wrap_new_OTRecordList__SWIG_1(uintptr) SwigcptrOTRecordList
+
+func NewOTRecordList__SWIG_1(arg1 OTNameLookup) OTRecordList {
+	return _swig_wrap_new_OTRecordList__SWIG_1(arg1.Swigcptr())
+}
+
+func NewOTRecordList(a ...interface{}) OTRecordList {
+	argc := len(a)
+	if argc == 0 {
+		return NewOTRecordList__SWIG_0()
+	}
+	if argc == 1 {
+		return NewOTRecordList__SWIG_1(a[0].(OTNameLookup))
+	}
+	panic("No match for overloaded function call")
 }
 
 func _swig_wrap_delete_OTRecordList(uintptr)
@@ -7742,6 +7516,14 @@ func (p SwigcptrOTVariable) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
+type SwigcptrTime64_t uintptr
+type Time64_t interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrTime64_t) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
 type SwigcptrOT_API uintptr
 type OT_API interface {
 	Swigcptr() uintptr;
@@ -7782,11 +7564,11 @@ func (p SwigcptrOTAPI_Exec) Swigcptr() uintptr {
 	return uintptr(p)
 }
 
-type SwigcptrSwigDirector_OTCallback uintptr
-type SwigDirector_OTCallback interface {
+type SwigcptrOTCaller uintptr
+type OTCaller interface {
 	Swigcptr() uintptr;
 }
-func (p SwigcptrSwigDirector_OTCallback) Swigcptr() uintptr {
+func (p SwigcptrOTCaller) Swigcptr() uintptr {
 	return uintptr(p)
 }
 

@@ -91,29 +91,6 @@ public class otapiJNI {
   public final static native long new_OTPassword__SWIG_7(long jarg1, long jarg2, int jarg3);
   public final static native long new_OTPassword__SWIG_8(long jarg1, long jarg2);
   public final static native void delete_OTPassword(long jarg1);
-  public final static native long new_OTCallback();
-  public final static native void delete_OTCallback(long jarg1);
-  public final static native void OTCallback_runOne(long jarg1, OTCallback jarg1_, String jarg2, long jarg3, OTPassword jarg3_);
-  public final static native void OTCallback_runOneSwigExplicitOTCallback(long jarg1, OTCallback jarg1_, String jarg2, long jarg3, OTPassword jarg3_);
-  public final static native void OTCallback_runTwo(long jarg1, OTCallback jarg1_, String jarg2, long jarg3, OTPassword jarg3_);
-  public final static native void OTCallback_runTwoSwigExplicitOTCallback(long jarg1, OTCallback jarg1_, String jarg2, long jarg3, OTPassword jarg3_);
-  public final static native void OTCallback_director_connect(OTCallback obj, long cptr, boolean mem_own, boolean weak_global);
-  public final static native void OTCallback_change_ownership(OTCallback obj, long cptr, boolean take_or_release);
-  public final static native long new_OTCaller();
-  public final static native void delete_OTCaller(long jarg1);
-  public final static native boolean OTCaller_GetPassword(long jarg1, OTCaller jarg1_, long jarg2, OTPassword jarg2_);
-  public final static native void OTCaller_ZeroOutPassword(long jarg1, OTCaller jarg1_);
-  public final static native String OTCaller_GetDisplay(long jarg1, OTCaller jarg1_);
-  public final static native void OTCaller_SetDisplay(long jarg1, OTCaller jarg1_, String jarg2, int jarg3);
-  public final static native void OTCaller_delCallback(long jarg1, OTCaller jarg1_);
-  public final static native void OTCaller_setCallback(long jarg1, OTCaller jarg1_, long jarg2, OTCallback jarg2_);
-  public final static native boolean OTCaller_isCallbackSet(long jarg1, OTCaller jarg1_);
-  public final static native void OTCaller_callOne(long jarg1, OTCaller jarg1_);
-  public final static native void OTCaller_callTwo(long jarg1, OTCaller jarg1_);
-  public final static native long new_WrapTimeT();
-  public final static native long WrapTimeT_getTime(long jarg1, WrapTimeT jarg1_);
-  public final static native void WrapTimeT_setTime(long jarg1, WrapTimeT jarg1_, long jarg2);
-  public final static native void delete_WrapTimeT(long jarg1);
   public final static native long OTAPI_Wrap_SetExecutor(long jarg1);
   public final static native long OTAPI_Wrap_Exec();
   public final static native long OTAPI_Wrap_It();
@@ -247,12 +224,12 @@ public class otapiJNI {
   public final static native boolean OTAPI_Wrap_SetAccountWallet_Name(String jarg1, String jarg2, String jarg3);
   public final static native boolean OTAPI_Wrap_SetAssetType_Name(String jarg1, String jarg2);
   public final static native boolean OTAPI_Wrap_SetServer_Name(String jarg1, String jarg2);
-  public final static native String OTAPI_Wrap_WriteCheque(String jarg1, long jarg2, long jarg3, WrapTimeT jarg3_, long jarg4, WrapTimeT jarg4_, String jarg5, String jarg6, String jarg7, String jarg8);
+  public final static native String OTAPI_Wrap_WriteCheque(String jarg1, long jarg2, long jarg3, long jarg4, String jarg5, String jarg6, String jarg7, String jarg8);
   public final static native boolean OTAPI_Wrap_DiscardCheque(String jarg1, String jarg2, String jarg3, String jarg4);
-  public final static native String OTAPI_Wrap_ProposePaymentPlan(String jarg1, long jarg2, WrapTimeT jarg2_, long jarg3, WrapTimeT jarg3_, String jarg4, String jarg5, String jarg6, String jarg7, String jarg8, long jarg9, long jarg10, WrapTimeT jarg10_, long jarg11, long jarg12, WrapTimeT jarg12_, long jarg13, WrapTimeT jarg13_, long jarg14, WrapTimeT jarg14_, int jarg15);
+  public final static native String OTAPI_Wrap_ProposePaymentPlan(String jarg1, long jarg2, long jarg3, String jarg4, String jarg5, String jarg6, String jarg7, String jarg8, long jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, int jarg15);
   public final static native String OTAPI_Wrap_EasyProposePlan(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6, String jarg7, String jarg8, String jarg9, String jarg10);
   public final static native String OTAPI_Wrap_ConfirmPaymentPlan(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5);
-  public final static native String OTAPI_Wrap_Create_SmartContract(String jarg1, long jarg2, WrapTimeT jarg2_, long jarg3, WrapTimeT jarg3_);
+  public final static native String OTAPI_Wrap_Create_SmartContract(String jarg1, long jarg2, long jarg3);
   public final static native String OTAPI_Wrap_SmartContract_AddBylaw(String jarg1, String jarg2, String jarg3);
   public final static native String OTAPI_Wrap_SmartContract_AddClause(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5);
   public final static native String OTAPI_Wrap_SmartContract_AddVariable(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6, String jarg7);
@@ -424,7 +401,7 @@ public class otapiJNI {
   public final static native int OTAPI_Wrap_payDividend(String jarg1, String jarg2, String jarg3, String jarg4, String jarg5, long jarg6);
   public final static native int OTAPI_Wrap_depositCheque(String jarg1, String jarg2, String jarg3, String jarg4);
   public final static native int OTAPI_Wrap_depositPaymentPlan(String jarg1, String jarg2, String jarg3);
-  public final static native int OTAPI_Wrap_issueMarketOffer(String jarg1, String jarg2, long jarg3, long jarg4, long jarg5, long jarg6, boolean jarg7, long jarg8, WrapTimeT jarg8_, String jarg9, long jarg10);
+  public final static native int OTAPI_Wrap_issueMarketOffer(String jarg1, String jarg2, long jarg3, long jarg4, long jarg5, long jarg6, boolean jarg7, long jarg8, String jarg9, long jarg10);
   public final static native int OTAPI_Wrap_getMarketList(String jarg1, String jarg2);
   public final static native int OTAPI_Wrap_getMarketOffers(String jarg1, String jarg2, String jarg3, long jarg4);
   public final static native int OTAPI_Wrap_getMarketRecentTrades(String jarg1, String jarg2, String jarg3);
@@ -1128,6 +1105,7 @@ public class otapiJNI {
   public final static native void OTNameLookup_change_ownership(OTNameLookup obj, long cptr, boolean take_or_release);
   public final static native long new_OTLookupCaller();
   public final static native void delete_OTLookupCaller(long jarg1);
+  public final static native long OTLookupCaller_getCallback(long jarg1, OTLookupCaller jarg1_);
   public final static native void OTLookupCaller_delCallback(long jarg1, OTLookupCaller jarg1_);
   public final static native void OTLookupCaller_setCallback(long jarg1, OTLookupCaller jarg1_, long jarg2, OTNameLookup jarg2_);
   public final static native boolean OTLookupCaller_isCallbackSet(long jarg1, OTLookupCaller jarg1_);
@@ -1140,7 +1118,8 @@ public class otapiJNI {
   public final static native boolean OT_API_Set_AddrBookCallback(long jarg1, OTLookupCaller jarg1_);
   public final static native boolean OTRecordList_setAddrBookCaller(long jarg1, OTLookupCaller jarg1_);
   public final static native long OTRecordList_getAddrBookCaller();
-  public final static native long new_OTRecordList(long jarg1, OTNameLookup jarg1_);
+  public final static native long new_OTRecordList__SWIG_0();
+  public final static native long new_OTRecordList__SWIG_1(long jarg1, OTNameLookup jarg1_);
   public final static native void delete_OTRecordList(long jarg1);
   public final static native String OTRecordList_textTo();
   public final static native String OTRecordList_textFrom();
@@ -1177,7 +1156,7 @@ public class otapiJNI {
   public final static native int OTRecordList_size(long jarg1, OTRecordList jarg1_);
   public final static native long OTRecordList_GetRecord(long jarg1, OTRecordList jarg1_, int jarg2);
   public final static native boolean OTRecordList_RemoveRecord(long jarg1, OTRecordList jarg1_, int jarg2);
-  public final static native boolean OT_API_Set_PasswordCallback(long jarg1, OTCaller jarg1_);
+  public final static native boolean OT_API_Set_PasswordCallback(long jarg1);
   public final static native long OTDBString_SWIGUpcast(long jarg1);
   public final static native long Blob_SWIGUpcast(long jarg1);
   public final static native long StringMap_SWIGUpcast(long jarg1);
@@ -1207,12 +1186,6 @@ public class otapiJNI {
   public final static native long Contact_SWIGUpcast(long jarg1);
   public final static native long AddressBook_SWIGUpcast(long jarg1);
 
-  public static void SwigDirector_OTCallback_runOne(OTCallback self, String szDisplay, long theOutput) {
-    self.runOne(szDisplay, new OTPassword(theOutput, false));
-  }
-  public static void SwigDirector_OTCallback_runTwo(OTCallback self, String szDisplay, long theOutput) {
-    self.runTwo(szDisplay, new OTPassword(theOutput, false));
-  }
   public static String SwigDirector_OTNameLookup_GetNymName__SWIG_0(OTNameLookup self, String str_id, long p_server_id) {
     return self.GetNymName(str_id, (p_server_id == 0) ? null : new SWIGTYPE_p_std__string(p_server_id, false));
   }

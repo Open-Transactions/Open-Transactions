@@ -50,7 +50,10 @@ public class OTRecordList : global::System.IDisposable {
     return ret;
   }
 
-  public OTRecordList(OTNameLookup theLookup) : this(otapiPINVOKE.new_OTRecordList(OTNameLookup.getCPtr(theLookup)), true) {
+  public OTRecordList() : this(otapiPINVOKE.new_OTRecordList__SWIG_0(), true) {
+  }
+
+  public OTRecordList(OTNameLookup theLookup) : this(otapiPINVOKE.new_OTRecordList__SWIG_1(OTNameLookup.getCPtr(theLookup)), true) {
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 

@@ -44,8 +44,12 @@ public class OTRecordList {
     return (cPtr == 0) ? null : new OTLookupCaller(cPtr, false);
   }
 
+  public OTRecordList() {
+    this(otapiJNI.new_OTRecordList__SWIG_0(), true);
+  }
+
   public OTRecordList(OTNameLookup theLookup) {
-    this(otapiJNI.new_OTRecordList(OTNameLookup.getCPtr(theLookup), theLookup), true);
+    this(otapiJNI.new_OTRecordList__SWIG_1(OTNameLookup.getCPtr(theLookup), theLookup), true);
   }
 
   public static String textTo() {

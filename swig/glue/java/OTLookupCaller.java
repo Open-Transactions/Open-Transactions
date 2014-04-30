@@ -39,6 +39,11 @@ public class OTLookupCaller {
     this(otapiJNI.new_OTLookupCaller(), true);
   }
 
+  public OTNameLookup getCallback() {
+    long cPtr = otapiJNI.OTLookupCaller_getCallback(swigCPtr, this);
+    return (cPtr == 0) ? null : new OTNameLookup(cPtr, false);
+  }
+
   public void delCallback() {
     otapiJNI.OTLookupCaller_delCallback(swigCPtr, this);
   }

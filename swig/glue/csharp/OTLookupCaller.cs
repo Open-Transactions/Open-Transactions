@@ -41,6 +41,12 @@ public class OTLookupCaller : global::System.IDisposable {
   public OTLookupCaller() : this(otapiPINVOKE.new_OTLookupCaller(), true) {
   }
 
+  public OTNameLookup getCallback() {
+    global::System.IntPtr cPtr = otapiPINVOKE.OTLookupCaller_getCallback(swigCPtr);
+    OTNameLookup ret = (cPtr == global::System.IntPtr.Zero) ? null : new OTNameLookup(cPtr, false);
+    return ret;
+  }
+
   public void delCallback() {
     otapiPINVOKE.OTLookupCaller_delCallback(swigCPtr);
   }

@@ -126,18 +126,19 @@ public class OTRecord : global::System.IDisposable {
     otapiPINVOKE.OTRecord_SetCanceled(swigCPtr);
   }
 
-  public long GetValidFrom() {
-    long ret = otapiPINVOKE.OTRecord_GetValidFrom(swigCPtr);
+  public SWIGTYPE_p_time64_t GetValidFrom() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTRecord_GetValidFrom(swigCPtr), true);
     return ret;
   }
 
-  public long GetValidTo() {
-    long ret = otapiPINVOKE.OTRecord_GetValidTo(swigCPtr);
+  public SWIGTYPE_p_time64_t GetValidTo() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTRecord_GetValidTo(swigCPtr), true);
     return ret;
   }
 
-  public void SetDateRange(long tValidFrom, long tValidTo) {
-    otapiPINVOKE.OTRecord_SetDateRange(swigCPtr, tValidFrom, tValidTo);
+  public void SetDateRange(SWIGTYPE_p_time64_t tValidFrom, SWIGTYPE_p_time64_t tValidTo) {
+    otapiPINVOKE.OTRecord_SetDateRange(swigCPtr, SWIGTYPE_p_time64_t.getCPtr(tValidFrom), SWIGTYPE_p_time64_t.getCPtr(tValidTo));
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool CanDeleteRecord() {
@@ -329,18 +330,18 @@ public class OTRecord : global::System.IDisposable {
     return ret;
   }
 
-  public long GetInitialPaymentDate() {
-    long ret = otapiPINVOKE.OTRecord_GetInitialPaymentDate(swigCPtr);
+  public SWIGTYPE_p_time64_t GetInitialPaymentDate() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTRecord_GetInitialPaymentDate(swigCPtr), true);
     return ret;
   }
 
-  public long GetPaymentPlanStartDate() {
-    long ret = otapiPINVOKE.OTRecord_GetPaymentPlanStartDate(swigCPtr);
+  public SWIGTYPE_p_time64_t GetPaymentPlanStartDate() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTRecord_GetPaymentPlanStartDate(swigCPtr), true);
     return ret;
   }
 
-  public long GetTimeBetweenPayments() {
-    long ret = otapiPINVOKE.OTRecord_GetTimeBetweenPayments(swigCPtr);
+  public SWIGTYPE_p_time64_t GetTimeBetweenPayments() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTRecord_GetTimeBetweenPayments(swigCPtr), true);
     return ret;
   }
 
