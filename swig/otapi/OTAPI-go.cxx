@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: otapi/OTAPI.i
+// source: swig\otapi\OTAPI.i
 
 #define SWIGMODULE otapi
 #define SWIG_DIRECTORS
@@ -299,49 +299,6 @@ SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__has_key(std::map< std::s
 
 // C++ director class methods.
 #include "OTAPI-go.hpp"
-
-SwigDirector_OTCallback::SwigDirector_OTCallback(void *swig_p)
-    : OTCallback(),
-      go_val(swig_p)
-{ }
-
-extern "C" void _swiggo_wrap_DeleteDirector_OTCallback(void*, int);
-SwigDirector_OTCallback::~SwigDirector_OTCallback()
-{
-  struct { void *p; } a;
-  a.p = go_val;
-  crosscall2(_swiggo_wrap_DeleteDirector_OTCallback, &a, (int) sizeof a);
-}
-
-extern "C" void _wrap_Swig_DirectorOTCallback_callback_runOne(void*, int);
-void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutput) {
-  struct {
-    void *go_val;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } swig_a;
-  swig_a.go_val = go_val;
-  
-  swig_a.arg2 = _swig_makegostring((char*)szDisplay, szDisplay ? strlen((char*)szDisplay) : 0);
-  
-  swig_a.arg3 = (OTPassword *)&theOutput; 
-  crosscall2(_wrap_Swig_DirectorOTCallback_callback_runOne, &swig_a, (int) sizeof swig_a);
-}
-
-extern "C" void _wrap_Swig_DirectorOTCallback_callback_runTwo(void*, int);
-void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutput) {
-  struct {
-    void *go_val;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } swig_a;
-  swig_a.go_val = go_val;
-  
-  swig_a.arg2 = _swig_makegostring((char*)szDisplay, szDisplay ? strlen((char*)szDisplay) : 0);
-  
-  swig_a.arg3 = (OTPassword *)&theOutput; 
-  crosscall2(_wrap_Swig_DirectorOTCallback_callback_runTwo, &swig_a, (int) sizeof swig_a);
-}
 
 SwigDirector_OTNameLookup::SwigDirector_OTNameLookup(void *swig_p)
     : OTNameLookup(),
@@ -2018,428 +1975,6 @@ _wrap_delete_OTPassword(void *swig_v)
 
 
 void
-_wrap__swig_NewDirectorOTCallbackOTCallback(void *swig_v)
-{
-  void *arg1 = (void *) 0 ;
-  OTCallback *result = 0 ;
-  
-  struct swigargs {
-    void *arg1;
-    long : 0;
-    OTCallback *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(void **)&swig_a->arg1; 
-  
-  result = new SwigDirector_OTCallback(arg1);
-  *(OTCallback **)&swig_a->result = result; 
-}
-
-
-void
-_wrap_DeleteDirectorOTCallback(void *swig_v)
-{
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  
-  struct swigargs {
-    OTCallback *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCallback **)&swig_a->arg1; 
-  
-  delete arg1;
-  
-}
-
-
-void
-_wrap__swig_DirectorOTCallback_upcall_RunOne(void *swig_v)
-{
-  SwigDirector_OTCallback *arg1 = (SwigDirector_OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  struct swigargs {
-    SwigDirector_OTCallback *arg1;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(SwigDirector_OTCallback **)&swig_a->arg1; 
-  arg2 = (char *)swig_a->arg2.p; 
-  arg3 = *(OTPassword **)&swig_a->arg3; 
-  
-  arg1->_swig_upcall_runOne(arg2, *arg3);
-  
-}
-
-
-void
-_wrap__swig_DirectorOTCallback_upcall_RunTwo(void *swig_v)
-{
-  SwigDirector_OTCallback *arg1 = (SwigDirector_OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  struct swigargs {
-    SwigDirector_OTCallback *arg1;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(SwigDirector_OTCallback **)&swig_a->arg1; 
-  arg2 = (char *)swig_a->arg2.p; 
-  arg3 = *(OTPassword **)&swig_a->arg3; 
-  
-  arg1->_swig_upcall_runTwo(arg2, *arg3);
-  
-}
-
-
-void
-_wrap_new_OTCallback(void *swig_v)
-{
-  OTCallback *result = 0 ;
-  
-  struct swigargs {
-    long : 0;
-    OTCallback *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  result = (OTCallback *)new OTCallback();
-  *(OTCallback **)&swig_a->result = result; 
-}
-
-
-void
-_wrap_delete_OTCallback(void *swig_v)
-{
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  
-  struct swigargs {
-    OTCallback *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCallback **)&swig_a->arg1; 
-  
-  delete arg1;
-  
-}
-
-
-void
-_wrap_OTCallback_runOne(void *swig_v)
-{
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  struct swigargs {
-    OTCallback *arg1;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCallback **)&swig_a->arg1; 
-  arg2 = (char *)swig_a->arg2.p; 
-  arg3 = *(OTPassword **)&swig_a->arg3; 
-  
-  (arg1)->runOne((char const *)arg2,*arg3);
-  
-}
-
-
-void
-_wrap_OTCallback_runTwo(void *swig_v)
-{
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  struct swigargs {
-    OTCallback *arg1;
-    _gostring_ arg2;
-    OTPassword *arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCallback **)&swig_a->arg1; 
-  arg2 = (char *)swig_a->arg2.p; 
-  arg3 = *(OTPassword **)&swig_a->arg3; 
-  
-  (arg1)->runTwo((char const *)arg2,*arg3);
-  
-}
-
-
-void
-_wrap_new_OTCaller(void *swig_v)
-{
-  OTCaller *result = 0 ;
-  
-  struct swigargs {
-    long : 0;
-    OTCaller *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  result = (OTCaller *)new OTCaller();
-  *(OTCaller **)&swig_a->result = result; 
-}
-
-
-void
-_wrap_delete_OTCaller(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  delete arg1;
-  
-}
-
-
-void
-_wrap_OTCaller_GetPassword(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTPassword *arg2 = 0 ;
-  bool result;
-  
-  struct swigargs {
-    OTCaller *arg1;
-    OTPassword *arg2;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  arg2 = *(OTPassword **)&swig_a->arg2; 
-  
-  result = (bool)((OTCaller const *)arg1)->GetPassword(*arg2);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OTCaller_ZeroOutPassword(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  (arg1)->ZeroOutPassword();
-  
-}
-
-
-void
-_wrap_OTCaller_GetDisplay(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *result = 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-    long : 0;
-    _gostring_ result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  result = (char *)((OTCaller const *)arg1)->GetDisplay();
-  swig_a->result = _swig_makegostring((char*)result, result ? strlen((char*)result) : 0); 
-}
-
-
-void
-_wrap_OTCaller_SetDisplay(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int32_t arg3 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-    _gostring_ arg2;
-    intgo arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  arg2 = (char *)swig_a->arg2.p; 
-  arg3 = (int32_t)swig_a->arg3; 
-  
-  (arg1)->SetDisplay((char const *)arg2,arg3);
-  
-}
-
-
-void
-_wrap_OTCaller_delCallback(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  (arg1)->delCallback();
-  
-}
-
-
-void
-_wrap_OTCaller_setCallback(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTCallback *arg2 = (OTCallback *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-    OTCallback *arg2;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  arg2 = *(OTCallback **)&swig_a->arg2; 
-  
-  (arg1)->setCallback(arg2);
-  
-}
-
-
-void
-_wrap_OTCaller_isCallbackSet(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  bool result;
-  
-  struct swigargs {
-    OTCaller *arg1;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  result = (bool)((OTCaller const *)arg1)->isCallbackSet();
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OTCaller_callOne(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  (arg1)->callOne();
-  
-}
-
-
-void
-_wrap_OTCaller_callTwo(void *swig_v)
-{
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  struct swigargs {
-    OTCaller *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OTCaller **)&swig_a->arg1; 
-  
-  (arg1)->callTwo();
-  
-}
-
-
-void
-_wrap_new_WrapTimeT(void *swig_v)
-{
-  WrapTimeT *result = 0 ;
-  
-  struct swigargs {
-    long : 0;
-    WrapTimeT *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  result = (WrapTimeT *)new WrapTimeT();
-  *(WrapTimeT **)&swig_a->result = result; 
-}
-
-
-void
-_wrap_WrapTimeT_getTime(void *swig_v)
-{
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t result;
-  
-  struct swigargs {
-    WrapTimeT *arg1;
-    long : 0;
-    long long result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(WrapTimeT **)&swig_a->arg1; 
-  
-  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_WrapTimeT_setTime(void *swig_v)
-{
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t *arg2 = 0 ;
-  
-  struct swigargs {
-    WrapTimeT *arg1;
-    long long arg2;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(WrapTimeT **)&swig_a->arg1; 
-  arg2 = (int64_t *)&swig_a->arg2; 
-  
-  (arg1)->setTime((int64_t const &)*arg2);
-  
-}
-
-
-void
-_wrap_delete_WrapTimeT(void *swig_v)
-{
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  
-  struct swigargs {
-    WrapTimeT *arg1;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(WrapTimeT **)&swig_a->arg1; 
-  
-  delete arg1;
-  
-}
-
-
-void
 _wrap_OTAPI_Wrap_SetExecutor(void *swig_v)
 {
   OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
@@ -2753,16 +2288,16 @@ _wrap_OTAPI_Wrap_Output(void *swig_v)
 void
 _wrap_OTAPI_Wrap_GetTime(void *swig_v)
 {
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
   result = OTAPI_Wrap::GetTime();
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -5550,8 +5085,8 @@ _wrap_OTAPI_Wrap_WriteCheque(void *swig_v)
 {
   std::string *arg1 = 0 ;
   int64_t *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
-  WrapTimeT *arg4 = 0 ;
+  time64_t *arg3 = 0 ;
+  time64_t *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
@@ -5561,8 +5096,8 @@ _wrap_OTAPI_Wrap_WriteCheque(void *swig_v)
   struct swigargs {
     _gostring_ arg1;
     long long arg2;
-    WrapTimeT *arg3;
-    WrapTimeT *arg4;
+    time64_t *arg3;
+    time64_t *arg4;
     _gostring_ arg5;
     _gostring_ arg6;
     _gostring_ arg7;
@@ -5576,8 +5111,8 @@ _wrap_OTAPI_Wrap_WriteCheque(void *swig_v)
   arg1 = &arg1_str;
   
   arg2 = (int64_t *)&swig_a->arg2; 
-  arg3 = *(WrapTimeT **)&swig_a->arg3; 
-  arg4 = *(WrapTimeT **)&swig_a->arg4; 
+  arg3 = *(time64_t **)&swig_a->arg3; 
+  arg4 = *(time64_t **)&swig_a->arg4; 
   
   std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
   arg5 = &arg5_str;
@@ -5595,7 +5130,7 @@ _wrap_OTAPI_Wrap_WriteCheque(void *swig_v)
   arg8 = &arg8_str;
   
   
-  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(time64_t const &)*arg3,(time64_t const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -5644,37 +5179,37 @@ void
 _wrap_OTAPI_Wrap_ProposePaymentPlan(void *swig_v)
 {
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
   int64_t *arg9 = 0 ;
-  WrapTimeT *arg10 = 0 ;
+  time64_t *arg10 = 0 ;
   int64_t *arg11 = 0 ;
-  WrapTimeT *arg12 = 0 ;
-  WrapTimeT *arg13 = 0 ;
-  WrapTimeT *arg14 = 0 ;
+  time64_t *arg12 = 0 ;
+  time64_t *arg13 = 0 ;
+  time64_t *arg14 = 0 ;
   int32_t *arg15 = 0 ;
   std::string result;
   
   struct swigargs {
     _gostring_ arg1;
-    WrapTimeT *arg2;
-    WrapTimeT *arg3;
+    time64_t *arg2;
+    time64_t *arg3;
     _gostring_ arg4;
     _gostring_ arg5;
     _gostring_ arg6;
     _gostring_ arg7;
     _gostring_ arg8;
     long long arg9;
-    WrapTimeT *arg10;
+    time64_t *arg10;
     long long arg11;
-    WrapTimeT *arg12;
-    WrapTimeT *arg13;
-    WrapTimeT *arg14;
+    time64_t *arg12;
+    time64_t *arg13;
+    time64_t *arg14;
     intgo arg15;
     long : 0;
     _gostring_ result;
@@ -5684,8 +5219,8 @@ _wrap_OTAPI_Wrap_ProposePaymentPlan(void *swig_v)
   std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
   arg1 = &arg1_str;
   
-  arg2 = *(WrapTimeT **)&swig_a->arg2; 
-  arg3 = *(WrapTimeT **)&swig_a->arg3; 
+  arg2 = *(time64_t **)&swig_a->arg2; 
+  arg3 = *(time64_t **)&swig_a->arg3; 
   
   std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
   arg4 = &arg4_str;
@@ -5707,14 +5242,14 @@ _wrap_OTAPI_Wrap_ProposePaymentPlan(void *swig_v)
   arg8 = &arg8_str;
   
   arg9 = (int64_t *)&swig_a->arg9; 
-  arg10 = *(WrapTimeT **)&swig_a->arg10; 
+  arg10 = *(time64_t **)&swig_a->arg10; 
   arg11 = (int64_t *)&swig_a->arg11; 
-  arg12 = *(WrapTimeT **)&swig_a->arg12; 
-  arg13 = *(WrapTimeT **)&swig_a->arg13; 
-  arg14 = *(WrapTimeT **)&swig_a->arg14; 
+  arg12 = *(time64_t **)&swig_a->arg12; 
+  arg13 = *(time64_t **)&swig_a->arg13; 
+  arg14 = *(time64_t **)&swig_a->arg14; 
   arg15 = (int32_t *)&swig_a->arg15; 
   
-  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(time64_t const &)*arg10,(long long const &)*arg11,(time64_t const &)*arg12,(time64_t const &)*arg13,(time64_t const &)*arg14,(int const &)*arg15);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -5845,14 +5380,14 @@ void
 _wrap_OTAPI_Wrap_Create_SmartContract(void *swig_v)
 {
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string result;
   
   struct swigargs {
     _gostring_ arg1;
-    WrapTimeT *arg2;
-    WrapTimeT *arg3;
+    time64_t *arg2;
+    time64_t *arg3;
     long : 0;
     _gostring_ result;
   } *swig_a = (struct swigargs *) swig_v;
@@ -5861,10 +5396,10 @@ _wrap_OTAPI_Wrap_Create_SmartContract(void *swig_v)
   std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
   arg1 = &arg1_str;
   
-  arg2 = *(WrapTimeT **)&swig_a->arg2; 
-  arg3 = *(WrapTimeT **)&swig_a->arg3; 
+  arg2 = *(time64_t **)&swig_a->arg2; 
+  arg3 = *(time64_t **)&swig_a->arg3; 
   
-  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -8799,7 +8334,7 @@ _wrap_OTAPI_Wrap_Transaction_GetDateSigned(void *swig_v)
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     _gostring_ arg1;
@@ -8807,7 +8342,7 @@ _wrap_OTAPI_Wrap_Transaction_GetDateSigned(void *swig_v)
     _gostring_ arg3;
     _gostring_ arg4;
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
@@ -8828,7 +8363,7 @@ _wrap_OTAPI_Wrap_Transaction_GetDateSigned(void *swig_v)
   
   
   result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -9734,14 +9269,14 @@ _wrap_OTAPI_Wrap_Token_GetValidFrom(void *swig_v)
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     _gostring_ arg1;
     _gostring_ arg2;
     _gostring_ arg3;
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
@@ -9758,7 +9293,7 @@ _wrap_OTAPI_Wrap_Token_GetValidFrom(void *swig_v)
   
   
   result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -9768,14 +9303,14 @@ _wrap_OTAPI_Wrap_Token_GetValidTo(void *swig_v)
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     _gostring_ arg1;
     _gostring_ arg2;
     _gostring_ arg3;
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
@@ -9792,7 +9327,7 @@ _wrap_OTAPI_Wrap_Token_GetValidTo(void *swig_v)
   
   
   result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -9888,12 +9423,12 @@ void
 _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(void *swig_v)
 {
   std::string *arg1 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     _gostring_ arg1;
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
@@ -9902,7 +9437,7 @@ _wrap_OTAPI_Wrap_Instrmnt_GetValidFrom(void *swig_v)
   
   
   result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -9910,12 +9445,12 @@ void
 _wrap_OTAPI_Wrap_Instrmnt_GetValidTo(void *swig_v)
 {
   std::string *arg1 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   struct swigargs {
     _gostring_ arg1;
     long : 0;
-    WrapTimeT *result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   
@@ -9924,7 +9459,7 @@ _wrap_OTAPI_Wrap_Instrmnt_GetValidTo(void *swig_v)
   
   
   result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
-  *(WrapTimeT **)&swig_a->result = new WrapTimeT(result); 
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -11615,7 +11150,7 @@ _wrap_OTAPI_Wrap_issueMarketOffer(void *swig_v)
   int64_t *arg5 = 0 ;
   int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  WrapTimeT *arg8 = 0 ;
+  time64_t *arg8 = 0 ;
   std::string *arg9 = 0 ;
   int64_t *arg10 = 0 ;
   int32_t result;
@@ -11628,7 +11163,7 @@ _wrap_OTAPI_Wrap_issueMarketOffer(void *swig_v)
     long long arg5;
     long long arg6;
     bool arg7;
-    WrapTimeT *arg8;
+    time64_t *arg8;
     _gostring_ arg9;
     long long arg10;
     long : 0;
@@ -11648,14 +11183,14 @@ _wrap_OTAPI_Wrap_issueMarketOffer(void *swig_v)
   arg5 = (int64_t *)&swig_a->arg5; 
   arg6 = (int64_t *)&swig_a->arg6; 
   arg7 = (bool *)&swig_a->arg7; 
-  arg8 = *(WrapTimeT **)&swig_a->arg8; 
+  arg8 = *(time64_t **)&swig_a->arg8; 
   
   std::string arg9_str(swig_a->arg9.p, swig_a->arg9.n);
   arg9 = &arg9_str;
   
   arg10 = (int64_t *)&swig_a->arg10; 
   
-  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(time64_t const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   swig_a->result = result; 
 }
 
@@ -26849,18 +26384,18 @@ void
 _wrap_OTRecord_GetValidFrom(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   struct swigargs {
     OTRecord *arg1;
     long : 0;
-    long long result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
-  result = (int64_t)(arg1)->GetValidFrom();
-  swig_a->result = result; 
+  result = (arg1)->GetValidFrom();
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -26868,18 +26403,18 @@ void
 _wrap_OTRecord_GetValidTo(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   struct swigargs {
     OTRecord *arg1;
     long : 0;
-    long long result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
-  result = (int64_t)(arg1)->GetValidTo();
-  swig_a->result = result; 
+  result = (arg1)->GetValidTo();
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -26887,18 +26422,32 @@ void
 _wrap_OTRecord_SetDateRange(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t arg2 ;
-  int64_t arg3 ;
+  time64_t arg2 ;
+  time64_t arg3 ;
+  time64_t *argp2 ;
+  time64_t *argp3 ;
   
   struct swigargs {
     OTRecord *arg1;
-    long long arg2;
-    long long arg3;
+    time64_t *arg2;
+    time64_t *arg3;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
-  arg2 = (int64_t)swig_a->arg2; 
-  arg3 = (int64_t)swig_a->arg3; 
+  
+  argp2 = (time64_t *)swig_a->arg2;
+  if (argp2 == NULL) {
+    _swig_gopanic("Attempt to dereference null time64_t");
+  }
+  arg2 = (time64_t)*argp2;
+  
+  
+  argp3 = (time64_t *)swig_a->arg3;
+  if (argp3 == NULL) {
+    _swig_gopanic("Attempt to dereference null time64_t");
+  }
+  arg3 = (time64_t)*argp3;
+  
   
   (arg1)->SetDateRange(arg2,arg3);
   
@@ -27652,18 +27201,18 @@ void
 _wrap_OTRecord_GetInitialPaymentDate(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   struct swigargs {
     OTRecord *arg1;
     long : 0;
-    long long result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
-  result = (int64_t)(arg1)->GetInitialPaymentDate();
-  swig_a->result = result; 
+  result = (arg1)->GetInitialPaymentDate();
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -27671,18 +27220,18 @@ void
 _wrap_OTRecord_GetPaymentPlanStartDate(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   struct swigargs {
     OTRecord *arg1;
     long : 0;
-    long long result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
-  result = (int64_t)(arg1)->GetPaymentPlanStartDate();
-  swig_a->result = result; 
+  result = (arg1)->GetPaymentPlanStartDate();
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -27690,18 +27239,18 @@ void
 _wrap_OTRecord_GetTimeBetweenPayments(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   struct swigargs {
     OTRecord *arg1;
     long : 0;
-    long long result;
+    time64_t *result;
   } *swig_a = (struct swigargs *) swig_v;
   
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
-  result = (int64_t)(arg1)->GetTimeBetweenPayments();
-  swig_a->result = result; 
+  result = (arg1)->GetTimeBetweenPayments();
+  *(time64_t **)&swig_a->result = new time64_t(result); 
 }
 
 
@@ -28393,6 +27942,25 @@ _wrap_delete_OTLookupCaller(void *swig_v)
 
 
 void
+_wrap_OTLookupCaller_getCallback(void *swig_v)
+{
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  OTNameLookup *result = 0 ;
+  
+  struct swigargs {
+    OTLookupCaller *arg1;
+    long : 0;
+    OTNameLookup *result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTLookupCaller **)&swig_a->arg1; 
+  
+  result = (OTNameLookup *)(arg1)->getCallback();
+  *(OTNameLookup **)&swig_a->result = result; 
+}
+
+
+void
 _wrap_OTLookupCaller_delCallback(void *swig_v)
 {
   OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
@@ -28672,7 +28240,23 @@ _wrap_OTRecordList_getAddrBookCaller(void *swig_v)
 
 
 void
-_wrap_new_OTRecordList(void *swig_v)
+_wrap_new_OTRecordList__SWIG_0(void *swig_v)
+{
+  OTRecordList *result = 0 ;
+  
+  struct swigargs {
+    long : 0;
+    OTRecordList *result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  
+  result = (OTRecordList *)new OTRecordList();
+  *(OTRecordList **)&swig_a->result = result; 
+}
+
+
+void
+_wrap_new_OTRecordList__SWIG_1(void *swig_v)
 {
   OTNameLookup *arg1 = 0 ;
   OTRecordList *result = 0 ;

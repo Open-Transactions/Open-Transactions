@@ -103,8 +103,8 @@ public class OTAPI_Wrap {
     otapiJNI.OTAPI_Wrap_Output(nLogLevel, strOutput);
   }
 
-  public static WrapTimeT GetTime() {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_GetTime(), true);
+  public static SWIGTYPE_p_time64_t GetTime() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_GetTime(), true);
   }
 
   public static String NumList_Add(String strNumList, String strNumbers) {
@@ -567,16 +567,16 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_SetServer_Name(SERVER_ID, STR_NEW_NAME);
   }
 
-  public static String WriteCheque(String SERVER_ID, long CHEQUE_AMOUNT, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, String SENDER_ACCT_ID, String SENDER_USER_ID, String CHEQUE_MEMO, String RECIPIENT_USER_ID) {
-    return otapiJNI.OTAPI_Wrap_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, WrapTimeT.getCPtr(VALID_FROM), VALID_FROM, WrapTimeT.getCPtr(VALID_TO), VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
+  public static String WriteCheque(String SERVER_ID, long CHEQUE_AMOUNT, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO, String SENDER_ACCT_ID, String SENDER_USER_ID, String CHEQUE_MEMO, String RECIPIENT_USER_ID) {
+    return otapiJNI.OTAPI_Wrap_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
   }
 
   public static boolean DiscardCheque(String SERVER_ID, String USER_ID, String ACCT_ID, String THE_CHEQUE) {
     return otapiJNI.OTAPI_Wrap_DiscardCheque(SERVER_ID, USER_ID, ACCT_ID, THE_CHEQUE);
   }
 
-  public static String ProposePaymentPlan(String SERVER_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, String SENDER_ACCT_ID, String SENDER_USER_ID, String PLAN_CONSIDERATION, String RECIPIENT_ACCT_ID, String RECIPIENT_USER_ID, long INITIAL_PAYMENT_AMOUNT, WrapTimeT INITIAL_PAYMENT_DELAY, long PAYMENT_PLAN_AMOUNT, WrapTimeT PAYMENT_PLAN_DELAY, WrapTimeT PAYMENT_PLAN_PERIOD, WrapTimeT PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
-    return otapiJNI.OTAPI_Wrap_ProposePaymentPlan(SERVER_ID, WrapTimeT.getCPtr(VALID_FROM), VALID_FROM, WrapTimeT.getCPtr(VALID_TO), VALID_TO, SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, WrapTimeT.getCPtr(INITIAL_PAYMENT_DELAY), INITIAL_PAYMENT_DELAY, PAYMENT_PLAN_AMOUNT, WrapTimeT.getCPtr(PAYMENT_PLAN_DELAY), PAYMENT_PLAN_DELAY, WrapTimeT.getCPtr(PAYMENT_PLAN_PERIOD), PAYMENT_PLAN_PERIOD, WrapTimeT.getCPtr(PAYMENT_PLAN_LENGTH), PAYMENT_PLAN_LENGTH, PAYMENT_PLAN_MAX_PAYMENTS);
+  public static String ProposePaymentPlan(String SERVER_ID, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO, String SENDER_ACCT_ID, String SENDER_USER_ID, String PLAN_CONSIDERATION, String RECIPIENT_ACCT_ID, String RECIPIENT_USER_ID, long INITIAL_PAYMENT_AMOUNT, SWIGTYPE_p_time64_t INITIAL_PAYMENT_DELAY, long PAYMENT_PLAN_AMOUNT, SWIGTYPE_p_time64_t PAYMENT_PLAN_DELAY, SWIGTYPE_p_time64_t PAYMENT_PLAN_PERIOD, SWIGTYPE_p_time64_t PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
+    return otapiJNI.OTAPI_Wrap_ProposePaymentPlan(SERVER_ID, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(INITIAL_PAYMENT_DELAY), PAYMENT_PLAN_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_DELAY), SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_PERIOD), SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_LENGTH), PAYMENT_PLAN_MAX_PAYMENTS);
   }
 
   public static String EasyProposePlan(String SERVER_ID, String DATE_RANGE, String SENDER_ACCT_ID, String SENDER_USER_ID, String PLAN_CONSIDERATION, String RECIPIENT_ACCT_ID, String RECIPIENT_USER_ID, String INITIAL_PAYMENT, String PAYMENT_PLAN, String PLAN_EXPIRY) {
@@ -587,8 +587,8 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_ConfirmPaymentPlan(SERVER_ID, SENDER_USER_ID, SENDER_ACCT_ID, RECIPIENT_USER_ID, PAYMENT_PLAN);
   }
 
-  public static String Create_SmartContract(String SIGNER_NYM_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO) {
-    return otapiJNI.OTAPI_Wrap_Create_SmartContract(SIGNER_NYM_ID, WrapTimeT.getCPtr(VALID_FROM), VALID_FROM, WrapTimeT.getCPtr(VALID_TO), VALID_TO);
+  public static String Create_SmartContract(String SIGNER_NYM_ID, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO) {
+    return otapiJNI.OTAPI_Wrap_Create_SmartContract(SIGNER_NYM_ID, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO));
   }
 
   public static String SmartContract_AddBylaw(String THE_CONTRACT, String SIGNER_NYM_ID, String BYLAW_NAME) {
@@ -943,8 +943,8 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_Transaction_GetBalanceAgreementSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION);
   }
 
-  public static WrapTimeT Transaction_GetDateSigned(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String THE_TRANSACTION) {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION), true);
+  public static SWIGTYPE_p_time64_t Transaction_GetDateSigned(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String THE_TRANSACTION) {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION), true);
   }
 
   public static long Transaction_GetAmount(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String THE_TRANSACTION) {
@@ -1039,12 +1039,12 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_Token_GetSeries(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN);
   }
 
-  public static WrapTimeT Token_GetValidFrom(String SERVER_ID, String ASSET_TYPE_ID, String THE_TOKEN) {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
+  public static SWIGTYPE_p_time64_t Token_GetValidFrom(String SERVER_ID, String ASSET_TYPE_ID, String THE_TOKEN) {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
   }
 
-  public static WrapTimeT Token_GetValidTo(String SERVER_ID, String ASSET_TYPE_ID, String THE_TOKEN) {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
+  public static SWIGTYPE_p_time64_t Token_GetValidTo(String SERVER_ID, String ASSET_TYPE_ID, String THE_TOKEN) {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
   }
 
   public static String Token_GetAssetID(String THE_TOKEN) {
@@ -1063,12 +1063,12 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_Instrmnt_GetTransNum(THE_INSTRUMENT);
   }
 
-  public static WrapTimeT Instrmnt_GetValidFrom(String THE_INSTRUMENT) {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_Instrmnt_GetValidFrom(THE_INSTRUMENT), true);
+  public static SWIGTYPE_p_time64_t Instrmnt_GetValidFrom(String THE_INSTRUMENT) {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_Instrmnt_GetValidFrom(THE_INSTRUMENT), true);
   }
 
-  public static WrapTimeT Instrmnt_GetValidTo(String THE_INSTRUMENT) {
-    return new WrapTimeT(otapiJNI.OTAPI_Wrap_Instrmnt_GetValidTo(THE_INSTRUMENT), true);
+  public static SWIGTYPE_p_time64_t Instrmnt_GetValidTo(String THE_INSTRUMENT) {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTAPI_Wrap_Instrmnt_GetValidTo(THE_INSTRUMENT), true);
   }
 
   public static String Instrmnt_GetMemo(String THE_INSTRUMENT) {
@@ -1275,8 +1275,8 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_depositPaymentPlan(SERVER_ID, USER_ID, THE_PAYMENT_PLAN);
   }
 
-  public static int issueMarketOffer(String ASSET_ACCT_ID, String CURRENCY_ACCT_ID, long MARKET_SCALE, long MINIMUM_INCREMENT, long TOTAL_ASSETS_ON_OFFER, long PRICE_LIMIT, boolean bBuyingOrSelling, WrapTimeT LIFESPAN_IN_SECONDS, String STOP_SIGN, long ACTIVATION_PRICE) {
-    return otapiJNI.OTAPI_Wrap_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, WrapTimeT.getCPtr(LIFESPAN_IN_SECONDS), LIFESPAN_IN_SECONDS, STOP_SIGN, ACTIVATION_PRICE);
+  public static int issueMarketOffer(String ASSET_ACCT_ID, String CURRENCY_ACCT_ID, long MARKET_SCALE, long MINIMUM_INCREMENT, long TOTAL_ASSETS_ON_OFFER, long PRICE_LIMIT, boolean bBuyingOrSelling, SWIGTYPE_p_time64_t LIFESPAN_IN_SECONDS, String STOP_SIGN, long ACTIVATION_PRICE) {
+    return otapiJNI.OTAPI_Wrap_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, SWIGTYPE_p_time64_t.getCPtr(LIFESPAN_IN_SECONDS), STOP_SIGN, ACTIVATION_PRICE);
   }
 
   public static int getMarketList(String SERVER_ID, String USER_ID) {

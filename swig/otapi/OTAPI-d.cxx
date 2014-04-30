@@ -373,53 +373,6 @@ SWIGINTERN bool std_map_Sl_std_string_Sc_std_string_Sg__has_key(std::map< std::s
 
 #include "OTAPI-d.hpp"
 
-SwigDirector_OTCallback::SwigDirector_OTCallback() : OTCallback(), Swig::Director() {
-  swig_init_callbacks();
-}
-
-SwigDirector_OTCallback::~SwigDirector_OTCallback() {
-  
-}
-
-
-void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutput) {
-  char * jszDisplay = 0 ;
-  void * jtheOutput = 0 ;
-  
-  if (!swig_callback_runOne) {
-    OTCallback::runOne(szDisplay,theOutput);
-    return;
-  } else {
-    jszDisplay = SWIG_d_string_callback((const char *)szDisplay); 
-    jtheOutput = (OTPassword *) &theOutput;
-    swig_callback_runOne(d_object, jszDisplay, jtheOutput);
-  }
-}
-
-void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutput) {
-  char * jszDisplay = 0 ;
-  void * jtheOutput = 0 ;
-  
-  if (!swig_callback_runTwo) {
-    OTCallback::runTwo(szDisplay,theOutput);
-    return;
-  } else {
-    jszDisplay = SWIG_d_string_callback((const char *)szDisplay); 
-    jtheOutput = (OTPassword *) &theOutput;
-    swig_callback_runTwo(d_object, jszDisplay, jtheOutput);
-  }
-}
-
-void SwigDirector_OTCallback::swig_connect_director(void* dobj, SWIG_Callback0_t callback_runOne, SWIG_Callback1_t callback_runTwo) {
-  d_object = dobj;swig_callback_runOne = callback_runOne;
-  swig_callback_runTwo = callback_runTwo;
-}
-
-void SwigDirector_OTCallback::swig_init_callbacks() {
-  swig_callback_runOne = 0;
-  swig_callback_runTwo = 0;
-}
-
 SwigDirector_OTNameLookup::SwigDirector_OTNameLookup() : OTNameLookup(), Swig::Director() {
   swig_init_callbacks();
 }
@@ -1605,253 +1558,6 @@ SWIGEXPORT void D_delete_OTPassword(void * jarg1) {
 }
 
 
-SWIGEXPORT void * D_new_OTCallback() {
-  void * jresult ;
-  OTCallback *result = 0 ;
-  
-  result = (OTCallback *)new SwigDirector_OTCallback();
-  jresult = (void *)result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_delete_OTCallback(void * jarg1) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  
-  arg1 = (OTCallback *)jarg1;
-  delete arg1;
-}
-
-
-SWIGEXPORT void D_OTCallback_runOne(void * jarg1, char * jarg2, void * jarg3) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  arg1 = (OTCallback *)jarg1;
-  arg2 = (char *)jarg2; 
-  arg3 = (OTPassword *)jarg3;
-  if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTPassword & type is null");
-    return ;
-  } 
-  (arg1)->runOne((char const *)arg2,*arg3);
-}
-
-
-SWIGEXPORT void D_OTCallback_runOneSwigExplicitOTCallback(void * jarg1, char * jarg2, void * jarg3) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  arg1 = (OTCallback *)jarg1;
-  arg2 = (char *)jarg2; 
-  arg3 = (OTPassword *)jarg3;
-  if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTPassword & type is null");
-    return ;
-  } 
-  (arg1)->OTCallback::runOne((char const *)arg2,*arg3);
-}
-
-
-SWIGEXPORT void D_OTCallback_runTwo(void * jarg1, char * jarg2, void * jarg3) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  arg1 = (OTCallback *)jarg1;
-  arg2 = (char *)jarg2; 
-  arg3 = (OTPassword *)jarg3;
-  if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTPassword & type is null");
-    return ;
-  } 
-  (arg1)->runTwo((char const *)arg2,*arg3);
-}
-
-
-SWIGEXPORT void D_OTCallback_runTwoSwigExplicitOTCallback(void * jarg1, char * jarg2, void * jarg3) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  
-  arg1 = (OTCallback *)jarg1;
-  arg2 = (char *)jarg2; 
-  arg3 = (OTPassword *)jarg3;
-  if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTPassword & type is null");
-    return ;
-  } 
-  (arg1)->OTCallback::runTwo((char const *)arg2,*arg3);
-}
-
-
-SWIGEXPORT void D_OTCallback_director_connect(void *objarg, void *dobj, SwigDirector_OTCallback::SWIG_Callback0_t callback0, SwigDirector_OTCallback::SWIG_Callback1_t callback1) {
-  OTCallback *obj = (OTCallback *)objarg;
-  SwigDirector_OTCallback *director = dynamic_cast<SwigDirector_OTCallback *>(obj);
-  if (director) {
-    director->swig_connect_director(dobj, callback0, callback1);
-  }
-}
-
-
-SWIGEXPORT void * D_new_OTCaller() {
-  void * jresult ;
-  OTCaller *result = 0 ;
-  
-  result = (OTCaller *)new OTCaller();
-  jresult = (void *)result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_delete_OTCaller(void * jarg1) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  delete arg1;
-}
-
-
-SWIGEXPORT unsigned int D_OTCaller_GetPassword(void * jarg1, void * jarg2) {
-  unsigned int jresult ;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTPassword *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (OTCaller *)jarg1;
-  arg2 = (OTPassword *)jarg2;
-  if (!arg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTPassword & type is null");
-    return 0;
-  } 
-  result = (bool)((OTCaller const *)arg1)->GetPassword(*arg2);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_OTCaller_ZeroOutPassword(void * jarg1) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  (arg1)->ZeroOutPassword();
-}
-
-
-SWIGEXPORT char * D_OTCaller_GetDisplay(void * jarg1) {
-  char * jresult ;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *result = 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  result = (char *)((OTCaller const *)arg1)->GetDisplay();
-  jresult = SWIG_d_string_callback((const char *)result); 
-  return jresult;
-}
-
-
-SWIGEXPORT void D_OTCaller_SetDisplay(void * jarg1, char * jarg2, int jarg3) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int32_t arg3 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  arg2 = (char *)jarg2; 
-  arg3 = (int32_t)jarg3;
-  (arg1)->SetDisplay((char const *)arg2,arg3);
-}
-
-
-SWIGEXPORT void D_OTCaller_delCallback(void * jarg1) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  (arg1)->delCallback();
-}
-
-
-SWIGEXPORT void D_OTCaller_setCallback(void * jarg1, void * jarg2) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTCallback *arg2 = (OTCallback *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  arg2 = (OTCallback *)jarg2;
-  (arg1)->setCallback(arg2);
-}
-
-
-SWIGEXPORT unsigned int D_OTCaller_isCallbackSet(void * jarg1) {
-  unsigned int jresult ;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  bool result;
-  
-  arg1 = (OTCaller *)jarg1;
-  result = (bool)((OTCaller const *)arg1)->isCallbackSet();
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_OTCaller_callOne(void * jarg1) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  (arg1)->callOne();
-}
-
-
-SWIGEXPORT void D_OTCaller_callTwo(void * jarg1) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  arg1 = (OTCaller *)jarg1;
-  (arg1)->callTwo();
-}
-
-
-SWIGEXPORT void * D_new_WrapTimeT() {
-  void * jresult ;
-  WrapTimeT *result = 0 ;
-  
-  result = (WrapTimeT *)new WrapTimeT();
-  jresult = (void *)result;
-  return jresult;
-}
-
-
-SWIGEXPORT long long D_WrapTimeT_getTime(void * jarg1) {
-  long long jresult ;
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t result;
-  
-  arg1 = (WrapTimeT *)jarg1;
-  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_WrapTimeT_setTime(void * jarg1, long long jarg2) {
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t *arg2 = 0 ;
-  int64_t temp2 ;
-  
-  arg1 = (WrapTimeT *)jarg1;
-  temp2 = (int64_t)jarg2;
-  arg2 = &temp2; 
-  (arg1)->setTime((int64_t const &)*arg2);
-}
-
-
-SWIGEXPORT void D_delete_WrapTimeT(void * jarg1) {
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  
-  arg1 = (WrapTimeT *)jarg1;
-  delete arg1;
-}
-
-
 SWIGEXPORT void * D_OTAPI_Wrap_SetExecutor(void * jarg1) {
   void * jresult ;
   OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
@@ -2068,10 +1774,10 @@ SWIGEXPORT void D_OTAPI_Wrap_Output(int jarg1, char * jarg2) {
 
 SWIGEXPORT void * D_OTAPI_Wrap_GetTime() {
   void * jresult ;
-  WrapTimeT result;
+  time64_t result;
   
   result = OTAPI_Wrap::GetTime();
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -4338,8 +4044,8 @@ SWIGEXPORT char * D_OTAPI_Wrap_WriteCheque(char * jarg1, long long jarg2, void *
   char * jresult ;
   std::string *arg1 = 0 ;
   int64_t *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
-  WrapTimeT *arg4 = 0 ;
+  time64_t *arg3 = 0 ;
+  time64_t *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
@@ -4355,14 +4061,14 @@ SWIGEXPORT char * D_OTAPI_Wrap_WriteCheque(char * jarg1, long long jarg2, void *
   arg1 = &arg1_str; 
   temp2 = (int64_t)jarg2;
   arg2 = &temp2; 
-  arg3 = (WrapTimeT *)jarg3;
+  arg3 = (time64_t *)jarg3;
   if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  arg4 = (WrapTimeT *)jarg4;
+  arg4 = (time64_t *)jarg4;
   if (!arg4) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
   if (!jarg5) {
@@ -4389,7 +4095,7 @@ SWIGEXPORT char * D_OTAPI_Wrap_WriteCheque(char * jarg1, long long jarg2, void *
   }
   std::string arg8_str(jarg8);
   arg8 = &arg8_str; 
-  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(time64_t const &)*arg3,(time64_t const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -4436,19 +4142,19 @@ SWIGEXPORT unsigned int D_OTAPI_Wrap_DiscardCheque(char * jarg1, char * jarg2, c
 SWIGEXPORT char * D_OTAPI_Wrap_ProposePaymentPlan(char * jarg1, void * jarg2, void * jarg3, char * jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, long long jarg9, void * jarg10, long long jarg11, void * jarg12, void * jarg13, void * jarg14, int jarg15) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
   int64_t *arg9 = 0 ;
-  WrapTimeT *arg10 = 0 ;
+  time64_t *arg10 = 0 ;
   int64_t *arg11 = 0 ;
-  WrapTimeT *arg12 = 0 ;
-  WrapTimeT *arg13 = 0 ;
-  WrapTimeT *arg14 = 0 ;
+  time64_t *arg12 = 0 ;
+  time64_t *arg13 = 0 ;
+  time64_t *arg14 = 0 ;
   int32_t *arg15 = 0 ;
   int64_t temp9 ;
   int64_t temp11 ;
@@ -4461,14 +4167,14 @@ SWIGEXPORT char * D_OTAPI_Wrap_ProposePaymentPlan(char * jarg1, void * jarg2, vo
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  arg2 = (WrapTimeT *)jarg2;
+  arg2 = (time64_t *)jarg2;
   if (!arg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  arg3 = (WrapTimeT *)jarg3;
+  arg3 = (time64_t *)jarg3;
   if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
   if (!jarg4) {
@@ -4503,31 +4209,31 @@ SWIGEXPORT char * D_OTAPI_Wrap_ProposePaymentPlan(char * jarg1, void * jarg2, vo
   arg8 = &arg8_str; 
   temp9 = (int64_t)jarg9;
   arg9 = &temp9; 
-  arg10 = (WrapTimeT *)jarg10;
+  arg10 = (time64_t *)jarg10;
   if (!arg10) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
   temp11 = (int64_t)jarg11;
   arg11 = &temp11; 
-  arg12 = (WrapTimeT *)jarg12;
+  arg12 = (time64_t *)jarg12;
   if (!arg12) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  arg13 = (WrapTimeT *)jarg13;
+  arg13 = (time64_t *)jarg13;
   if (!arg13) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  arg14 = (WrapTimeT *)jarg14;
+  arg14 = (time64_t *)jarg14;
   if (!arg14) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
   temp15 = (int32_t)jarg15;
   arg15 = &temp15; 
-  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(time64_t const &)*arg10,(long long const &)*arg11,(time64_t const &)*arg12,(time64_t const &)*arg13,(time64_t const &)*arg14,(int const &)*arg15);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -4661,8 +4367,8 @@ SWIGEXPORT char * D_OTAPI_Wrap_ConfirmPaymentPlan(char * jarg1, char * jarg2, ch
 SWIGEXPORT char * D_OTAPI_Wrap_Create_SmartContract(char * jarg1, void * jarg2, void * jarg3) {
   char * jresult ;
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string result;
   
   if (!jarg1) {
@@ -4671,17 +4377,17 @@ SWIGEXPORT char * D_OTAPI_Wrap_Create_SmartContract(char * jarg1, void * jarg2, 
   }
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
-  arg2 = (WrapTimeT *)jarg2;
+  arg2 = (time64_t *)jarg2;
   if (!arg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  arg3 = (WrapTimeT *)jarg3;
+  arg3 = (time64_t *)jarg3;
   if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
-  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -7355,7 +7061,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Transaction_GetDateSigned(char * jarg1, char * ja
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!jarg1) {
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
@@ -7382,7 +7088,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Transaction_GetDateSigned(char * jarg1, char * ja
   std::string arg4_str(jarg4);
   arg4 = &arg4_str; 
   result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -8238,7 +7944,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Token_GetValidFrom(char * jarg1, char * jarg2, ch
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!jarg1) {
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
@@ -8259,7 +7965,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Token_GetValidFrom(char * jarg1, char * jarg2, ch
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
   result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -8269,7 +7975,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Token_GetValidTo(char * jarg1, char * jarg2, char
   std::string *arg1 = 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!jarg1) {
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
@@ -8290,7 +7996,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Token_GetValidTo(char * jarg1, char * jarg2, char
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
   result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -8366,7 +8072,7 @@ SWIGEXPORT long long D_OTAPI_Wrap_Instrmnt_GetTransNum(char * jarg1) {
 SWIGEXPORT void * D_OTAPI_Wrap_Instrmnt_GetValidFrom(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!jarg1) {
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
@@ -8375,7 +8081,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Instrmnt_GetValidFrom(char * jarg1) {
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -8383,7 +8089,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Instrmnt_GetValidFrom(char * jarg1) {
 SWIGEXPORT void * D_OTAPI_Wrap_Instrmnt_GetValidTo(char * jarg1) {
   void * jresult ;
   std::string *arg1 = 0 ;
-  WrapTimeT result;
+  time64_t result;
   
   if (!jarg1) {
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
@@ -8392,7 +8098,7 @@ SWIGEXPORT void * D_OTAPI_Wrap_Instrmnt_GetValidTo(char * jarg1) {
   std::string arg1_str(jarg1);
   arg1 = &arg1_str; 
   result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
-  jresult = new WrapTimeT((const WrapTimeT &)result); 
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -9928,7 +9634,7 @@ SWIGEXPORT int D_OTAPI_Wrap_issueMarketOffer(char * jarg1, char * jarg2, long lo
   int64_t *arg5 = 0 ;
   int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  WrapTimeT *arg8 = 0 ;
+  time64_t *arg8 = 0 ;
   std::string *arg9 = 0 ;
   int64_t *arg10 = 0 ;
   int64_t temp3 ;
@@ -9961,9 +9667,9 @@ SWIGEXPORT int D_OTAPI_Wrap_issueMarketOffer(char * jarg1, char * jarg2, long lo
   arg6 = &temp6; 
   temp7 = jarg7 ? true : false;
   arg7 = &temp7; 
-  arg8 = (WrapTimeT *)jarg8;
+  arg8 = (time64_t *)jarg8;
   if (!arg8) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "WrapTimeT const & type is null");
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "time64_t const & type is null");
     return 0;
   } 
   if (!jarg9) {
@@ -9974,7 +9680,7 @@ SWIGEXPORT int D_OTAPI_Wrap_issueMarketOffer(char * jarg1, char * jarg2, long lo
   arg9 = &arg9_str; 
   temp10 = (int64_t)jarg10;
   arg10 = &temp10; 
-  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(time64_t const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   jresult = result;
   return jresult;
 }
@@ -20754,38 +20460,50 @@ SWIGEXPORT void D_OTRecord_SetCanceled(void * jarg1) {
 }
 
 
-SWIGEXPORT long long D_OTRecord_GetValidFrom(void * jarg1) {
-  long long jresult ;
+SWIGEXPORT void * D_OTRecord_GetValidFrom(void * jarg1) {
+  void * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   arg1 = (OTRecord *)jarg1;
-  result = (int64_t)(arg1)->GetValidFrom();
-  jresult = result;
+  result = (arg1)->GetValidFrom();
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT long long D_OTRecord_GetValidTo(void * jarg1) {
-  long long jresult ;
+SWIGEXPORT void * D_OTRecord_GetValidTo(void * jarg1) {
+  void * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   arg1 = (OTRecord *)jarg1;
-  result = (int64_t)(arg1)->GetValidTo();
-  jresult = result;
+  result = (arg1)->GetValidTo();
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT void D_OTRecord_SetDateRange(void * jarg1, long long jarg2, long long jarg3) {
+SWIGEXPORT void D_OTRecord_SetDateRange(void * jarg1, void * jarg2, void * jarg3) {
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t arg2 ;
-  int64_t arg3 ;
+  time64_t arg2 ;
+  time64_t arg3 ;
+  time64_t *argp2 ;
+  time64_t *argp3 ;
   
   arg1 = (OTRecord *)jarg1;
-  arg2 = (int64_t)jarg2;
-  arg3 = (int64_t)jarg3;
+  argp2 = (time64_t *)jarg2;
+  if (!argp2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "Attempt to dereference null time64_t");
+    return ;
+  }
+  arg2 = *argp2; 
+  argp3 = (time64_t *)jarg3;
+  if (!argp3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "Attempt to dereference null time64_t");
+    return ;
+  }
+  arg3 = *argp3; 
   (arg1)->SetDateRange(arg2,arg3);
 }
 
@@ -21265,38 +20983,38 @@ SWIGEXPORT unsigned int D_OTRecord_HasPaymentPlan(void * jarg1) {
 }
 
 
-SWIGEXPORT long long D_OTRecord_GetInitialPaymentDate(void * jarg1) {
-  long long jresult ;
+SWIGEXPORT void * D_OTRecord_GetInitialPaymentDate(void * jarg1) {
+  void * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   arg1 = (OTRecord *)jarg1;
-  result = (int64_t)(arg1)->GetInitialPaymentDate();
-  jresult = result;
+  result = (arg1)->GetInitialPaymentDate();
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT long long D_OTRecord_GetPaymentPlanStartDate(void * jarg1) {
-  long long jresult ;
+SWIGEXPORT void * D_OTRecord_GetPaymentPlanStartDate(void * jarg1) {
+  void * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   arg1 = (OTRecord *)jarg1;
-  result = (int64_t)(arg1)->GetPaymentPlanStartDate();
-  jresult = result;
+  result = (arg1)->GetPaymentPlanStartDate();
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT long long D_OTRecord_GetTimeBetweenPayments(void * jarg1) {
-  long long jresult ;
+SWIGEXPORT void * D_OTRecord_GetTimeBetweenPayments(void * jarg1) {
+  void * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
-  int64_t result;
+  time64_t result;
   
   arg1 = (OTRecord *)jarg1;
-  result = (int64_t)(arg1)->GetTimeBetweenPayments();
-  jresult = result;
+  result = (arg1)->GetTimeBetweenPayments();
+  jresult = new time64_t((const time64_t &)result); 
   return jresult;
 }
 
@@ -21801,6 +21519,18 @@ SWIGEXPORT void D_delete_OTLookupCaller(void * jarg1) {
 }
 
 
+SWIGEXPORT void * D_OTLookupCaller_getCallback(void * jarg1) {
+  void * jresult ;
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  OTNameLookup *result = 0 ;
+  
+  arg1 = (OTLookupCaller *)jarg1;
+  result = (OTNameLookup *)(arg1)->getCallback();
+  jresult = (void *)result;
+  return jresult;
+}
+
+
 SWIGEXPORT void D_OTLookupCaller_delCallback(void * jarg1) {
   OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
   
@@ -22001,7 +21731,17 @@ SWIGEXPORT void * D_OTRecordList_getAddrBookCaller() {
 }
 
 
-SWIGEXPORT void * D_new_OTRecordList(void * jarg1) {
+SWIGEXPORT void * D_new_OTRecordList__SWIG_0() {
+  void * jresult ;
+  OTRecordList *result = 0 ;
+  
+  result = (OTRecordList *)new OTRecordList();
+  jresult = (void *)result;
+  return jresult;
+}
+
+
+SWIGEXPORT void * D_new_OTRecordList__SWIG_1(void * jarg1) {
   void * jresult ;
   OTNameLookup *arg1 = 0 ;
   OTRecordList *result = 0 ;

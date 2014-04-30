@@ -338,8 +338,8 @@ public class otapi {
     return ret;
   }
 
-  public static bool OT_API_Set_PasswordCallback(OTCaller theCaller) {
-    bool ret = otapiPINVOKE.OT_API_Set_PasswordCallback(OTCaller.getCPtr(theCaller));
+  public static bool OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller theCaller) {
+    bool ret = otapiPINVOKE.OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller.getCPtr(theCaller));
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

@@ -126,8 +126,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static WrapTimeT GetTime() {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_GetTime(), true);
+  public static SWIGTYPE_p_time64_t GetTime() {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_GetTime(), true);
     return ret;
   }
 
@@ -805,8 +805,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static string WriteCheque(string SERVER_ID, long CHEQUE_AMOUNT, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string CHEQUE_MEMO, string RECIPIENT_USER_ID) {
-    string ret = otapiPINVOKE.OTAPI_Wrap_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
+  public static string WriteCheque(string SERVER_ID, long CHEQUE_AMOUNT, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string CHEQUE_MEMO, string RECIPIENT_USER_ID) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_WriteCheque(SERVER_ID, CHEQUE_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, CHEQUE_MEMO, RECIPIENT_USER_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -817,8 +817,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static string ProposePaymentPlan(string SERVER_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string PLAN_CONSIDERATION, string RECIPIENT_ACCT_ID, string RECIPIENT_USER_ID, long INITIAL_PAYMENT_AMOUNT, WrapTimeT INITIAL_PAYMENT_DELAY, long PAYMENT_PLAN_AMOUNT, WrapTimeT PAYMENT_PLAN_DELAY, WrapTimeT PAYMENT_PLAN_PERIOD, WrapTimeT PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
-    string ret = otapiPINVOKE.OTAPI_Wrap_ProposePaymentPlan(SERVER_ID, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, WrapTimeT.getCPtr(INITIAL_PAYMENT_DELAY), PAYMENT_PLAN_AMOUNT, WrapTimeT.getCPtr(PAYMENT_PLAN_DELAY), WrapTimeT.getCPtr(PAYMENT_PLAN_PERIOD), WrapTimeT.getCPtr(PAYMENT_PLAN_LENGTH), PAYMENT_PLAN_MAX_PAYMENTS);
+  public static string ProposePaymentPlan(string SERVER_ID, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO, string SENDER_ACCT_ID, string SENDER_USER_ID, string PLAN_CONSIDERATION, string RECIPIENT_ACCT_ID, string RECIPIENT_USER_ID, long INITIAL_PAYMENT_AMOUNT, SWIGTYPE_p_time64_t INITIAL_PAYMENT_DELAY, long PAYMENT_PLAN_AMOUNT, SWIGTYPE_p_time64_t PAYMENT_PLAN_DELAY, SWIGTYPE_p_time64_t PAYMENT_PLAN_PERIOD, SWIGTYPE_p_time64_t PAYMENT_PLAN_LENGTH, int PAYMENT_PLAN_MAX_PAYMENTS) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_ProposePaymentPlan(SERVER_ID, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO), SENDER_ACCT_ID, SENDER_USER_ID, PLAN_CONSIDERATION, RECIPIENT_ACCT_ID, RECIPIENT_USER_ID, INITIAL_PAYMENT_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(INITIAL_PAYMENT_DELAY), PAYMENT_PLAN_AMOUNT, SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_DELAY), SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_PERIOD), SWIGTYPE_p_time64_t.getCPtr(PAYMENT_PLAN_LENGTH), PAYMENT_PLAN_MAX_PAYMENTS);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -835,8 +835,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static string Create_SmartContract(string SIGNER_NYM_ID, WrapTimeT VALID_FROM, WrapTimeT VALID_TO) {
-    string ret = otapiPINVOKE.OTAPI_Wrap_Create_SmartContract(SIGNER_NYM_ID, WrapTimeT.getCPtr(VALID_FROM), WrapTimeT.getCPtr(VALID_TO));
+  public static string Create_SmartContract(string SIGNER_NYM_ID, SWIGTYPE_p_time64_t VALID_FROM, SWIGTYPE_p_time64_t VALID_TO) {
+    string ret = otapiPINVOKE.OTAPI_Wrap_Create_SmartContract(SIGNER_NYM_ID, SWIGTYPE_p_time64_t.getCPtr(VALID_FROM), SWIGTYPE_p_time64_t.getCPtr(VALID_TO));
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1369,8 +1369,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static WrapTimeT Transaction_GetDateSigned(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION), true);
+  public static SWIGTYPE_p_time64_t Transaction_GetDateSigned(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string THE_TRANSACTION) {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_Transaction_GetDateSigned(SERVER_ID, USER_ID, ACCOUNT_ID, THE_TRANSACTION), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1513,14 +1513,14 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static WrapTimeT Token_GetValidFrom(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
+  public static SWIGTYPE_p_time64_t Token_GetValidFrom(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_Token_GetValidFrom(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static WrapTimeT Token_GetValidTo(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
+  public static SWIGTYPE_p_time64_t Token_GetValidTo(string SERVER_ID, string ASSET_TYPE_ID, string THE_TOKEN) {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_Token_GetValidTo(SERVER_ID, ASSET_TYPE_ID, THE_TOKEN), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1549,14 +1549,14 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static WrapTimeT Instrmnt_GetValidFrom(string THE_INSTRUMENT) {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidFrom(THE_INSTRUMENT), true);
+  public static SWIGTYPE_p_time64_t Instrmnt_GetValidFrom(string THE_INSTRUMENT) {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidFrom(THE_INSTRUMENT), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public static WrapTimeT Instrmnt_GetValidTo(string THE_INSTRUMENT) {
-    WrapTimeT ret = new WrapTimeT(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidTo(THE_INSTRUMENT), true);
+  public static SWIGTYPE_p_time64_t Instrmnt_GetValidTo(string THE_INSTRUMENT) {
+    SWIGTYPE_p_time64_t ret = new SWIGTYPE_p_time64_t(otapiPINVOKE.OTAPI_Wrap_Instrmnt_GetValidTo(THE_INSTRUMENT), true);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -1867,8 +1867,8 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static int issueMarketOffer(string ASSET_ACCT_ID, string CURRENCY_ACCT_ID, long MARKET_SCALE, long MINIMUM_INCREMENT, long TOTAL_ASSETS_ON_OFFER, long PRICE_LIMIT, bool bBuyingOrSelling, WrapTimeT LIFESPAN_IN_SECONDS, string STOP_SIGN, long ACTIVATION_PRICE) {
-    int ret = otapiPINVOKE.OTAPI_Wrap_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, WrapTimeT.getCPtr(LIFESPAN_IN_SECONDS), STOP_SIGN, ACTIVATION_PRICE);
+  public static int issueMarketOffer(string ASSET_ACCT_ID, string CURRENCY_ACCT_ID, long MARKET_SCALE, long MINIMUM_INCREMENT, long TOTAL_ASSETS_ON_OFFER, long PRICE_LIMIT, bool bBuyingOrSelling, SWIGTYPE_p_time64_t LIFESPAN_IN_SECONDS, string STOP_SIGN, long ACTIVATION_PRICE) {
+    int ret = otapiPINVOKE.OTAPI_Wrap_issueMarketOffer(ASSET_ACCT_ID, CURRENCY_ACCT_ID, MARKET_SCALE, MINIMUM_INCREMENT, TOTAL_ASSETS_ON_OFFER, PRICE_LIMIT, bBuyingOrSelling, SWIGTYPE_p_time64_t.getCPtr(LIFESPAN_IN_SECONDS), STOP_SIGN, ACTIVATION_PRICE);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

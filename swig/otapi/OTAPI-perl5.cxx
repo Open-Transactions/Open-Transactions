@@ -1829,71 +1829,70 @@ namespace Swig {
 
 #define SWIGTYPE_p_OTAPI_Exec swig_types[0]
 #define SWIGTYPE_p_OTAPI_Wrap swig_types[1]
-#define SWIGTYPE_p_OTCallback swig_types[2]
-#define SWIGTYPE_p_OTCaller swig_types[3]
-#define SWIGTYPE_p_OTDB__Acct swig_types[4]
-#define SWIGTYPE_p_OTDB__AddressBook swig_types[5]
-#define SWIGTYPE_p_OTDB__AskData swig_types[6]
-#define SWIGTYPE_p_OTDB__BidData swig_types[7]
-#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[8]
-#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[9]
-#define SWIGTYPE_p_OTDB__Blob swig_types[10]
-#define SWIGTYPE_p_OTDB__Contact swig_types[11]
-#define SWIGTYPE_p_OTDB__ContactAcct swig_types[12]
-#define SWIGTYPE_p_OTDB__ContactNym swig_types[13]
-#define SWIGTYPE_p_OTDB__Displayable swig_types[14]
-#define SWIGTYPE_p_OTDB__LoomServer swig_types[15]
-#define SWIGTYPE_p_OTDB__MarketData swig_types[16]
-#define SWIGTYPE_p_OTDB__MarketList swig_types[17]
-#define SWIGTYPE_p_OTDB__OTDBString swig_types[18]
-#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[19]
-#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[20]
-#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[21]
-#define SWIGTYPE_p_OTDB__OfferListNym swig_types[22]
-#define SWIGTYPE_p_OTDB__RippleServer swig_types[23]
-#define SWIGTYPE_p_OTDB__Server swig_types[24]
-#define SWIGTYPE_p_OTDB__ServerInfo swig_types[25]
-#define SWIGTYPE_p_OTDB__Storable swig_types[26]
-#define SWIGTYPE_p_OTDB__Storage swig_types[27]
-#define SWIGTYPE_p_OTDB__StringMap swig_types[28]
-#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[29]
-#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[30]
-#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[31]
-#define SWIGTYPE_p_OTDB__TradeListNym swig_types[32]
-#define SWIGTYPE_p_OTDB__WalletData swig_types[33]
-#define SWIGTYPE_p_OTLookupCaller swig_types[34]
-#define SWIGTYPE_p_OTNameLookup swig_types[35]
-#define SWIGTYPE_p_OTPacker swig_types[36]
-#define SWIGTYPE_p_OTPassword swig_types[37]
-#define SWIGTYPE_p_OTRecord swig_types[38]
-#define SWIGTYPE_p_OTRecordList swig_types[39]
-#define SWIGTYPE_p_OTVariable swig_types[40]
-#define SWIGTYPE_p_OT_API swig_types[41]
-#define SWIGTYPE_p_OT_ME swig_types[42]
-#define SWIGTYPE_p_WrapTimeT swig_types[43]
-#define SWIGTYPE_p__SharedPtrT_OTRecord_t swig_types[44]
-#define SWIGTYPE_p_char swig_types[45]
-#define SWIGTYPE_p_difference_type swig_types[46]
-#define SWIGTYPE_p_imaxdiv_t swig_types[47]
-#define SWIGTYPE_p_int swig_types[48]
-#define SWIGTYPE_p_key_type swig_types[49]
-#define SWIGTYPE_p_long_long swig_types[50]
-#define SWIGTYPE_p_mapped_type swig_types[51]
-#define SWIGTYPE_p_short swig_types[52]
-#define SWIGTYPE_p_signed_char swig_types[53]
-#define SWIGTYPE_p_size_type swig_types[54]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[55]
-#define SWIGTYPE_p_std__out_of_range swig_types[56]
-#define SWIGTYPE_p_std__string swig_types[57]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[58]
-#define SWIGTYPE_p_unsigned_char swig_types[59]
-#define SWIGTYPE_p_unsigned_int swig_types[60]
-#define SWIGTYPE_p_unsigned_long_long swig_types[61]
-#define SWIGTYPE_p_unsigned_short swig_types[62]
-#define SWIGTYPE_p_value_type swig_types[63]
-#define SWIGTYPE_p_void swig_types[64]
-static swig_type_info *swig_types[66];
-static swig_module_info swig_module = {swig_types, 65, 0, 0, 0, 0};
+#define SWIGTYPE_p_OTCaller swig_types[2]
+#define SWIGTYPE_p_OTDB__Acct swig_types[3]
+#define SWIGTYPE_p_OTDB__AddressBook swig_types[4]
+#define SWIGTYPE_p_OTDB__AskData swig_types[5]
+#define SWIGTYPE_p_OTDB__BidData swig_types[6]
+#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[7]
+#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[8]
+#define SWIGTYPE_p_OTDB__Blob swig_types[9]
+#define SWIGTYPE_p_OTDB__Contact swig_types[10]
+#define SWIGTYPE_p_OTDB__ContactAcct swig_types[11]
+#define SWIGTYPE_p_OTDB__ContactNym swig_types[12]
+#define SWIGTYPE_p_OTDB__Displayable swig_types[13]
+#define SWIGTYPE_p_OTDB__LoomServer swig_types[14]
+#define SWIGTYPE_p_OTDB__MarketData swig_types[15]
+#define SWIGTYPE_p_OTDB__MarketList swig_types[16]
+#define SWIGTYPE_p_OTDB__OTDBString swig_types[17]
+#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[18]
+#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[19]
+#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[20]
+#define SWIGTYPE_p_OTDB__OfferListNym swig_types[21]
+#define SWIGTYPE_p_OTDB__RippleServer swig_types[22]
+#define SWIGTYPE_p_OTDB__Server swig_types[23]
+#define SWIGTYPE_p_OTDB__ServerInfo swig_types[24]
+#define SWIGTYPE_p_OTDB__Storable swig_types[25]
+#define SWIGTYPE_p_OTDB__Storage swig_types[26]
+#define SWIGTYPE_p_OTDB__StringMap swig_types[27]
+#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[28]
+#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[29]
+#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[30]
+#define SWIGTYPE_p_OTDB__TradeListNym swig_types[31]
+#define SWIGTYPE_p_OTDB__WalletData swig_types[32]
+#define SWIGTYPE_p_OTLookupCaller swig_types[33]
+#define SWIGTYPE_p_OTNameLookup swig_types[34]
+#define SWIGTYPE_p_OTPacker swig_types[35]
+#define SWIGTYPE_p_OTPassword swig_types[36]
+#define SWIGTYPE_p_OTRecord swig_types[37]
+#define SWIGTYPE_p_OTRecordList swig_types[38]
+#define SWIGTYPE_p_OTVariable swig_types[39]
+#define SWIGTYPE_p_OT_API swig_types[40]
+#define SWIGTYPE_p_OT_ME swig_types[41]
+#define SWIGTYPE_p__SharedPtrT_OTRecord_t swig_types[42]
+#define SWIGTYPE_p_char swig_types[43]
+#define SWIGTYPE_p_difference_type swig_types[44]
+#define SWIGTYPE_p_imaxdiv_t swig_types[45]
+#define SWIGTYPE_p_int swig_types[46]
+#define SWIGTYPE_p_key_type swig_types[47]
+#define SWIGTYPE_p_long_long swig_types[48]
+#define SWIGTYPE_p_mapped_type swig_types[49]
+#define SWIGTYPE_p_short swig_types[50]
+#define SWIGTYPE_p_signed_char swig_types[51]
+#define SWIGTYPE_p_size_type swig_types[52]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[53]
+#define SWIGTYPE_p_std__out_of_range swig_types[54]
+#define SWIGTYPE_p_std__string swig_types[55]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[56]
+#define SWIGTYPE_p_time64_t swig_types[57]
+#define SWIGTYPE_p_unsigned_char swig_types[58]
+#define SWIGTYPE_p_unsigned_int swig_types[59]
+#define SWIGTYPE_p_unsigned_long_long swig_types[60]
+#define SWIGTYPE_p_unsigned_short swig_types[61]
+#define SWIGTYPE_p_value_type swig_types[62]
+#define SWIGTYPE_p_void swig_types[63]
+static swig_type_info *swig_types[65];
+static swig_module_info swig_module = {swig_types, 64, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2640,89 +2639,6 @@ SWIGCLASS_STATIC int swig_magic_readonly(pTHX_ SV *SWIGUNUSEDPARM(sv), MAGIC *SW
 /* ---------------------------------------------------
  * C++ director class methods
  * --------------------------------------------------- */
-
-SwigDirector_OTCallback::SwigDirector_OTCallback(SV *self): OTCallback(), Swig::Director(self) {
-  SWIG_DIRECTOR_RGTR((OTCallback *)this, this); 
-}
-
-
-
-
-SwigDirector_OTCallback::~SwigDirector_OTCallback() {
-    dSP;
-    SV *self = SWIG_NewPointerObj(SWIG_as_voidptr(this), SWIGTYPE_p_OTCallback, SWIG_SHADOW);
-    
-    sv_bless(self, gv_stashpv(swig_get_class(), 0));
-    ENTER;
-    SAVETMPS;
-    PUSHMARK(SP);
-    XPUSHs(self);
-    XPUSHs(&PL_sv_yes);
-    PUTBACK;
-    call_method("DESTROY", G_EVAL | G_VOID);
-    FREETMPS;
-    LEAVE;
-}
-
-void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutput) {
-  dSP;
-  SV *self;
-  
-  self = SWIG_NewPointerObj(SWIG_as_voidptr(this), SWIGTYPE_p_OTCallback, SWIG_SHADOW);
-  sv_bless(self, gv_stashpv(swig_get_class(), 0));
-  SV *obj0;
-  obj0 = SWIG_FromCharPtr((const char *)szDisplay);
-  SV *obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(&theOutput), SWIGTYPE_p_OTPassword, 0);
-  ENTER;
-  SAVETMPS;
-  PUSHMARK(SP);
-  XPUSHs(self);
-  XPUSHs(obj0);
-  XPUSHs(obj1);
-  PUTBACK;
-  call_method("runOne", G_EVAL | G_SCALAR);
-  if (SvTRUE(ERRSV)) {
-    PUTBACK;
-    FREETMPS;
-    LEAVE;
-    Swig::DirectorMethodException::raise(ERRSV);
-  }
-  PUTBACK;
-  FREETMPS;
-  LEAVE;
-}
-
-
-void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutput) {
-  dSP;
-  SV *self;
-  
-  self = SWIG_NewPointerObj(SWIG_as_voidptr(this), SWIGTYPE_p_OTCallback, SWIG_SHADOW);
-  sv_bless(self, gv_stashpv(swig_get_class(), 0));
-  SV *obj0;
-  obj0 = SWIG_FromCharPtr((const char *)szDisplay);
-  SV *obj1;
-  obj1 = SWIG_NewPointerObj(SWIG_as_voidptr(&theOutput), SWIGTYPE_p_OTPassword, 0);
-  ENTER;
-  SAVETMPS;
-  PUSHMARK(SP);
-  XPUSHs(self);
-  XPUSHs(obj0);
-  XPUSHs(obj1);
-  PUTBACK;
-  call_method("runTwo", G_EVAL | G_SCALAR);
-  if (SvTRUE(ERRSV)) {
-    PUTBACK;
-    FREETMPS;
-    LEAVE;
-    Swig::DirectorMethodException::raise(ERRSV);
-  }
-  PUTBACK;
-  FREETMPS;
-  LEAVE;
-}
-
 
 SwigDirector_OTNameLookup::SwigDirector_OTNameLookup(SV *self): OTNameLookup(), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((OTNameLookup *)this, this); 
@@ -6366,700 +6282,6 @@ XS(_wrap_delete_OTPassword) {
 }
 
 
-XS(_wrap_new_OTCallback) {
-  {
-    SV *arg1 = (SV *) 0 ;
-    int argvi = 0;
-    OTCallback *result = 0 ;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: new_OTCallback(self);");
-    }
-    arg1 = ST(0);
-    if ( strcmp(SvPV_nolen(ST(0)), "otapi::OTCallback") != 0 ) {
-      /* subclassed */
-      result = (OTCallback *)new SwigDirector_OTCallback(arg1); 
-    } else {
-      result = (OTCallback *)new OTCallback(); 
-    }
-    
-    ST(argvi) = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTCallback, SWIG_OWNER | SWIG_SHADOW); argvi++ ;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_delete_OTCallback) {
-  {
-    OTCallback *arg1 = (OTCallback *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: delete_OTCallback(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCallback, SWIG_POINTER_DISOWN |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OTCallback" "', argument " "1"" of type '" "OTCallback *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCallback * >(argp1);
-    delete arg1;
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCallback_runOne) {
-  {
-    OTCallback *arg1 = (OTCallback *) 0 ;
-    char *arg2 = (char *) 0 ;
-    OTPassword *arg3 = 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int res2 ;
-    char *buf2 = 0 ;
-    int alloc2 = 0 ;
-    void *argp3 = 0 ;
-    int res3 = 0 ;
-    int argvi = 0;
-    Swig::Director *director = 0;
-    bool upcall = false;
-    dXSARGS;
-    
-    if ((items < 3) || (items > 3)) {
-      SWIG_croak("Usage: OTCallback_runOne(self,szDisplay,theOutput);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCallback_runOne" "', argument " "1"" of type '" "OTCallback *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCallback * >(argp1);
-    res2 = SWIG_AsCharPtrAndSize(ST(1), &buf2, NULL, &alloc2);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCallback_runOne" "', argument " "2"" of type '" "char const *""'");
-    }
-    arg2 = reinterpret_cast< char * >(buf2);
-    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_OTPassword,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTCallback_runOne" "', argument " "3"" of type '" "OTPassword &""'"); 
-    }
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCallback_runOne" "', argument " "3"" of type '" "OTPassword &""'"); 
-    }
-    arg3 = reinterpret_cast< OTPassword * >(argp3);
-    director = SWIG_DIRECTOR_CAST(arg1);
-    upcall = director && SvSTASH(SvRV(ST(0))) == gv_stashpv(director->swig_get_class(), 0);
-    try {
-      if (upcall) {
-        (arg1)->OTCallback::runOne((char const *)arg2,*arg3);
-      } else {
-        (arg1)->runOne((char const *)arg2,*arg3);
-      }
-    } catch (Swig::DirectorException& swig_err) {
-      sv_setsv(ERRSV, swig_err.getNative());
-      SWIG_fail;
-    }
-    ST(argvi) = sv_newmortal();
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCallback_runTwo) {
-  {
-    OTCallback *arg1 = (OTCallback *) 0 ;
-    char *arg2 = (char *) 0 ;
-    OTPassword *arg3 = 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int res2 ;
-    char *buf2 = 0 ;
-    int alloc2 = 0 ;
-    void *argp3 = 0 ;
-    int res3 = 0 ;
-    int argvi = 0;
-    Swig::Director *director = 0;
-    bool upcall = false;
-    dXSARGS;
-    
-    if ((items < 3) || (items > 3)) {
-      SWIG_croak("Usage: OTCallback_runTwo(self,szDisplay,theOutput);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCallback_runTwo" "', argument " "1"" of type '" "OTCallback *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCallback * >(argp1);
-    res2 = SWIG_AsCharPtrAndSize(ST(1), &buf2, NULL, &alloc2);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCallback_runTwo" "', argument " "2"" of type '" "char const *""'");
-    }
-    arg2 = reinterpret_cast< char * >(buf2);
-    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_OTPassword,  0 );
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTCallback_runTwo" "', argument " "3"" of type '" "OTPassword &""'"); 
-    }
-    if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCallback_runTwo" "', argument " "3"" of type '" "OTPassword &""'"); 
-    }
-    arg3 = reinterpret_cast< OTPassword * >(argp3);
-    director = SWIG_DIRECTOR_CAST(arg1);
-    upcall = director && SvSTASH(SvRV(ST(0))) == gv_stashpv(director->swig_get_class(), 0);
-    try {
-      if (upcall) {
-        (arg1)->OTCallback::runTwo((char const *)arg2,*arg3);
-      } else {
-        (arg1)->runTwo((char const *)arg2,*arg3);
-      }
-    } catch (Swig::DirectorException& swig_err) {
-      sv_setsv(ERRSV, swig_err.getNative());
-      SWIG_fail;
-    }
-    ST(argvi) = sv_newmortal();
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_disown_OTCallback) {
-  {
-    OTCallback *arg1 = (OTCallback *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: disown_OTCallback(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_OTCallback" "', argument " "1"" of type '" "OTCallback *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCallback * >(argp1);
-    {
-      Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
-      if (director) director->swig_disown();
-    }
-    
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_swig_get_attr_OTCallback) {
-  {
-    OTCallback *arg1 = (OTCallback *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    SV *result = 0 ;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: swig_get_attr_OTCallback(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCallback, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "swig_get_attr_OTCallback" "', argument " "1"" of type '" "OTCallback *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCallback * >(argp1);
-    {
-      Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
-      result = sv_newmortal();
-      if (director) sv_setsv(result, director->swig_get_self());
-    }
-    
-    ST(argvi) = result; argvi++ ;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_new_OTCaller) {
-  {
-    int argvi = 0;
-    OTCaller *result = 0 ;
-    dXSARGS;
-    
-    if ((items < 0) || (items > 0)) {
-      SWIG_croak("Usage: new_OTCaller();");
-    }
-    result = (OTCaller *)new OTCaller();
-    ST(argvi) = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTCaller, SWIG_OWNER | SWIG_SHADOW); argvi++ ;
-    XSRETURN(argvi);
-  fail:
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_delete_OTCaller) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: delete_OTCaller(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, SWIG_POINTER_DISOWN |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_OTCaller" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    delete arg1;
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_GetPassword) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    OTPassword *arg2 = 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    void *argp2 = 0 ;
-    int res2 = 0 ;
-    int argvi = 0;
-    bool result;
-    dXSARGS;
-    
-    if ((items < 2) || (items > 2)) {
-      SWIG_croak("Usage: OTCaller_GetPassword(self,theOutput);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_GetPassword" "', argument " "1"" of type '" "OTCaller const *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_OTPassword,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_GetPassword" "', argument " "2"" of type '" "OTPassword &""'"); 
-    }
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTCaller_GetPassword" "', argument " "2"" of type '" "OTPassword &""'"); 
-    }
-    arg2 = reinterpret_cast< OTPassword * >(argp2);
-    result = (bool)((OTCaller const *)arg1)->GetPassword(*arg2);
-    ST(argvi) = SWIG_From_bool  SWIG_PERL_CALL_ARGS_1(static_cast< bool >(result)); argvi++ ;
-    
-    
-    XSRETURN(argvi);
-  fail:
-    
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_ZeroOutPassword) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_ZeroOutPassword(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_ZeroOutPassword" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    (arg1)->ZeroOutPassword();
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_GetDisplay) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    char *result = 0 ;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_GetDisplay(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_GetDisplay" "', argument " "1"" of type '" "OTCaller const *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    result = (char *)((OTCaller const *)arg1)->GetDisplay();
-    ST(argvi) = SWIG_FromCharPtr((const char *)result); argvi++ ;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_SetDisplay) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    char *arg2 = (char *) 0 ;
-    int32_t arg3 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int res2 ;
-    char *buf2 = 0 ;
-    int alloc2 = 0 ;
-    int val3 ;
-    int ecode3 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 3) || (items > 3)) {
-      SWIG_croak("Usage: OTCaller_SetDisplay(self,szDisplay,nLength);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_SetDisplay" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    res2 = SWIG_AsCharPtrAndSize(ST(1), &buf2, NULL, &alloc2);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_SetDisplay" "', argument " "2"" of type '" "char const *""'");
-    }
-    arg2 = reinterpret_cast< char * >(buf2);
-    ecode3 = SWIG_AsVal_int SWIG_PERL_CALL_ARGS_2(ST(2), &val3);
-    if (!SWIG_IsOK(ecode3)) {
-      SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTCaller_SetDisplay" "', argument " "3"" of type '" "int32_t""'");
-    } 
-    arg3 = static_cast< int32_t >(val3);
-    (arg1)->SetDisplay((char const *)arg2,arg3);
-    ST(argvi) = sv_newmortal();
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_delCallback) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_delCallback(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_delCallback" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    (arg1)->delCallback();
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_setCallback) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    OTCallback *arg2 = (OTCallback *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    void *argp2 = 0 ;
-    int res2 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 2) || (items > 2)) {
-      SWIG_croak("Usage: OTCaller_setCallback(self,cb);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_setCallback" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    res2 = SWIG_ConvertPtr(ST(1), &argp2,SWIGTYPE_p_OTCallback, 0 |  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTCaller_setCallback" "', argument " "2"" of type '" "OTCallback *""'"); 
-    }
-    arg2 = reinterpret_cast< OTCallback * >(argp2);
-    (arg1)->setCallback(arg2);
-    ST(argvi) = sv_newmortal();
-    
-    
-    XSRETURN(argvi);
-  fail:
-    
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_isCallbackSet) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    bool result;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_isCallbackSet(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_isCallbackSet" "', argument " "1"" of type '" "OTCaller const *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    result = (bool)((OTCaller const *)arg1)->isCallbackSet();
-    ST(argvi) = SWIG_From_bool  SWIG_PERL_CALL_ARGS_1(static_cast< bool >(result)); argvi++ ;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_callOne) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_callOne(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_callOne" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    (arg1)->callOne();
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_OTCaller_callTwo) {
-  {
-    OTCaller *arg1 = (OTCaller *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: OTCaller_callTwo(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTCaller, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTCaller_callTwo" "', argument " "1"" of type '" "OTCaller *""'"); 
-    }
-    arg1 = reinterpret_cast< OTCaller * >(argp1);
-    (arg1)->callTwo();
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_new_WrapTimeT) {
-  {
-    int argvi = 0;
-    WrapTimeT *result = 0 ;
-    dXSARGS;
-    
-    if ((items < 0) || (items > 0)) {
-      SWIG_croak("Usage: new_WrapTimeT();");
-    }
-    result = (WrapTimeT *)new WrapTimeT();
-    ST(argvi) = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_WrapTimeT, SWIG_OWNER | SWIG_SHADOW); argvi++ ;
-    XSRETURN(argvi);
-  fail:
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_WrapTimeT_getTime) {
-  {
-    WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    int64_t result;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: WrapTimeT_getTime(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_WrapTimeT, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WrapTimeT_getTime" "', argument " "1"" of type '" "WrapTimeT const *""'"); 
-    }
-    arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-    result = (int64_t)((WrapTimeT const *)arg1)->getTime();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_WrapTimeT_setTime) {
-  {
-    WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-    int64_t *arg2 = 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int64_t temp2 ;
-    long long val2 ;
-    int ecode2 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 2) || (items > 2)) {
-      SWIG_croak("Usage: WrapTimeT_setTime(self,_time);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_WrapTimeT, 0 |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "WrapTimeT_setTime" "', argument " "1"" of type '" "WrapTimeT *""'"); 
-    }
-    arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-    ecode2 = SWIG_AsVal_long_SS_long SWIG_PERL_CALL_ARGS_2(ST(1), &val2);
-    if (!SWIG_IsOK(ecode2)) {
-      SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "WrapTimeT_setTime" "', argument " "2"" of type '" "int64_t""'");
-    } 
-    temp2 = static_cast< int64_t >(val2);
-    arg2 = &temp2;
-    (arg1)->setTime((int64_t const &)*arg2);
-    ST(argvi) = sv_newmortal();
-    
-    
-    XSRETURN(argvi);
-  fail:
-    
-    
-    SWIG_croak_null();
-  }
-}
-
-
-XS(_wrap_delete_WrapTimeT) {
-  {
-    WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-    void *argp1 = 0 ;
-    int res1 = 0 ;
-    int argvi = 0;
-    dXSARGS;
-    
-    if ((items < 1) || (items > 1)) {
-      SWIG_croak("Usage: delete_WrapTimeT(self);");
-    }
-    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_WrapTimeT, SWIG_POINTER_DISOWN |  0 );
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_WrapTimeT" "', argument " "1"" of type '" "WrapTimeT *""'"); 
-    }
-    arg1 = reinterpret_cast< WrapTimeT * >(argp1);
-    delete arg1;
-    ST(argvi) = sv_newmortal();
-    
-    XSRETURN(argvi);
-  fail:
-    
-    SWIG_croak_null();
-  }
-}
-
-
 XS(_wrap_OTAPI_Wrap_SetExecutor) {
   {
     OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
@@ -7502,14 +6724,14 @@ XS(_wrap_OTAPI_Wrap_Output) {
 XS(_wrap_OTAPI_Wrap_GetTime) {
   {
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 0) || (items > 0)) {
       SWIG_croak("Usage: OTAPI_Wrap_GetTime();");
     }
     result = OTAPI_Wrap::GetTime();
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     XSRETURN(argvi);
   fail:
     SWIG_croak_null();
@@ -12067,8 +11289,8 @@ XS(_wrap_OTAPI_Wrap_WriteCheque) {
   {
     std::string *arg1 = 0 ;
     int64_t *arg2 = 0 ;
-    WrapTimeT *arg3 = 0 ;
-    WrapTimeT *arg4 = 0 ;
+    time64_t *arg3 = 0 ;
+    time64_t *arg4 = 0 ;
     std::string *arg5 = 0 ;
     std::string *arg6 = 0 ;
     std::string *arg7 = 0 ;
@@ -12109,22 +11331,22 @@ XS(_wrap_OTAPI_Wrap_WriteCheque) {
     } 
     temp2 = static_cast< int64_t >(val2);
     arg2 = &temp2;
-    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_WrapTimeT,  0 );
+    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
     if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
-    arg3 = reinterpret_cast< WrapTimeT * >(argp3);
-    res4 = SWIG_ConvertPtr(ST(3), &argp4, SWIGTYPE_p_WrapTimeT,  0 );
+    arg3 = reinterpret_cast< time64_t * >(argp3);
+    res4 = SWIG_ConvertPtr(ST(3), &argp4, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "time64_t const &""'"); 
     }
     if (!argp4) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_WriteCheque" "', argument " "4"" of type '" "time64_t const &""'"); 
     }
-    arg4 = reinterpret_cast< WrapTimeT * >(argp4);
+    arg4 = reinterpret_cast< time64_t * >(argp4);
     {
       std::string *ptr = (std::string *)0;
       res5 = SWIG_AsPtr_std_string SWIG_PERL_CALL_ARGS_2(ST(4), &ptr);
@@ -12169,7 +11391,7 @@ XS(_wrap_OTAPI_Wrap_WriteCheque) {
       }
       arg8 = ptr;
     }
-    result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+    result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(time64_t const &)*arg3,(time64_t const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
     ST(argvi) = SWIG_From_std_string  SWIG_PERL_CALL_ARGS_1(static_cast< std::string >(result)); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     
@@ -12275,19 +11497,19 @@ XS(_wrap_OTAPI_Wrap_DiscardCheque) {
 XS(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   {
     std::string *arg1 = 0 ;
-    WrapTimeT *arg2 = 0 ;
-    WrapTimeT *arg3 = 0 ;
+    time64_t *arg2 = 0 ;
+    time64_t *arg3 = 0 ;
     std::string *arg4 = 0 ;
     std::string *arg5 = 0 ;
     std::string *arg6 = 0 ;
     std::string *arg7 = 0 ;
     std::string *arg8 = 0 ;
     int64_t *arg9 = 0 ;
-    WrapTimeT *arg10 = 0 ;
+    time64_t *arg10 = 0 ;
     int64_t *arg11 = 0 ;
-    WrapTimeT *arg12 = 0 ;
-    WrapTimeT *arg13 = 0 ;
-    WrapTimeT *arg14 = 0 ;
+    time64_t *arg12 = 0 ;
+    time64_t *arg13 = 0 ;
+    time64_t *arg14 = 0 ;
     int32_t *arg15 = 0 ;
     int res1 = SWIG_OLDOBJ ;
     void *argp2 ;
@@ -12334,22 +11556,22 @@ XS(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
       }
       arg1 = ptr;
     }
-    res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_WrapTimeT,  0 );
+    res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "time64_t const &""'"); 
     }
     if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "2"" of type '" "time64_t const &""'"); 
     }
-    arg2 = reinterpret_cast< WrapTimeT * >(argp2);
-    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_WrapTimeT,  0 );
+    arg2 = reinterpret_cast< time64_t * >(argp2);
+    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
     if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
-    arg3 = reinterpret_cast< WrapTimeT * >(argp3);
+    arg3 = reinterpret_cast< time64_t * >(argp3);
     {
       std::string *ptr = (std::string *)0;
       res4 = SWIG_AsPtr_std_string SWIG_PERL_CALL_ARGS_2(ST(3), &ptr);
@@ -12411,51 +11633,51 @@ XS(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
     } 
     temp9 = static_cast< int64_t >(val9);
     arg9 = &temp9;
-    res10 = SWIG_ConvertPtr(ST(9), &argp10, SWIGTYPE_p_WrapTimeT,  0 );
+    res10 = SWIG_ConvertPtr(ST(9), &argp10, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res10)) {
-      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "time64_t const &""'"); 
     }
     if (!argp10) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "10"" of type '" "time64_t const &""'"); 
     }
-    arg10 = reinterpret_cast< WrapTimeT * >(argp10);
+    arg10 = reinterpret_cast< time64_t * >(argp10);
     ecode11 = SWIG_AsVal_long_SS_long SWIG_PERL_CALL_ARGS_2(ST(10), &val11);
     if (!SWIG_IsOK(ecode11)) {
       SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "11"" of type '" "int64_t""'");
     } 
     temp11 = static_cast< int64_t >(val11);
     arg11 = &temp11;
-    res12 = SWIG_ConvertPtr(ST(11), &argp12, SWIGTYPE_p_WrapTimeT,  0 );
+    res12 = SWIG_ConvertPtr(ST(11), &argp12, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res12)) {
-      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "time64_t const &""'"); 
     }
     if (!argp12) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "12"" of type '" "time64_t const &""'"); 
     }
-    arg12 = reinterpret_cast< WrapTimeT * >(argp12);
-    res13 = SWIG_ConvertPtr(ST(12), &argp13, SWIGTYPE_p_WrapTimeT,  0 );
+    arg12 = reinterpret_cast< time64_t * >(argp12);
+    res13 = SWIG_ConvertPtr(ST(12), &argp13, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res13)) {
-      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "time64_t const &""'"); 
     }
     if (!argp13) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "13"" of type '" "time64_t const &""'"); 
     }
-    arg13 = reinterpret_cast< WrapTimeT * >(argp13);
-    res14 = SWIG_ConvertPtr(ST(13), &argp14, SWIGTYPE_p_WrapTimeT,  0 );
+    arg13 = reinterpret_cast< time64_t * >(argp13);
+    res14 = SWIG_ConvertPtr(ST(13), &argp14, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res14)) {
-      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "time64_t const &""'"); 
     }
     if (!argp14) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "14"" of type '" "time64_t const &""'"); 
     }
-    arg14 = reinterpret_cast< WrapTimeT * >(argp14);
+    arg14 = reinterpret_cast< time64_t * >(argp14);
     ecode15 = SWIG_AsVal_int SWIG_PERL_CALL_ARGS_2(ST(14), &val15);
     if (!SWIG_IsOK(ecode15)) {
       SWIG_exception_fail(SWIG_ArgError(ecode15), "in method '" "OTAPI_Wrap_ProposePaymentPlan" "', argument " "15"" of type '" "int32_t""'");
     } 
     temp15 = static_cast< int32_t >(val15);
     arg15 = &temp15;
-    result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
+    result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(time64_t const &)*arg10,(long long const &)*arg11,(time64_t const &)*arg12,(time64_t const &)*arg13,(time64_t const &)*arg14,(int const &)*arg15);
     ST(argvi) = SWIG_From_std_string  SWIG_PERL_CALL_ARGS_1(static_cast< std::string >(result)); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     
@@ -12758,8 +11980,8 @@ XS(_wrap_OTAPI_Wrap_ConfirmPaymentPlan) {
 XS(_wrap_OTAPI_Wrap_Create_SmartContract) {
   {
     std::string *arg1 = 0 ;
-    WrapTimeT *arg2 = 0 ;
-    WrapTimeT *arg3 = 0 ;
+    time64_t *arg2 = 0 ;
+    time64_t *arg3 = 0 ;
     int res1 = SWIG_OLDOBJ ;
     void *argp2 ;
     int res2 = 0 ;
@@ -12783,23 +12005,23 @@ XS(_wrap_OTAPI_Wrap_Create_SmartContract) {
       }
       arg1 = ptr;
     }
-    res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_WrapTimeT,  0 );
+    res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "time64_t const &""'"); 
     }
     if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "2"" of type '" "time64_t const &""'"); 
     }
-    arg2 = reinterpret_cast< WrapTimeT * >(argp2);
-    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_WrapTimeT,  0 );
+    arg2 = reinterpret_cast< time64_t * >(argp2);
+    res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
     if (!argp3) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_Create_SmartContract" "', argument " "3"" of type '" "time64_t const &""'"); 
     }
-    arg3 = reinterpret_cast< WrapTimeT * >(argp3);
-    result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+    arg3 = reinterpret_cast< time64_t * >(argp3);
+    result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3);
     ST(argvi) = SWIG_From_std_string  SWIG_PERL_CALL_ARGS_1(static_cast< std::string >(result)); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     
@@ -18327,7 +17549,7 @@ XS(_wrap_OTAPI_Wrap_Transaction_GetDateSigned) {
     int res3 = SWIG_OLDOBJ ;
     int res4 = SWIG_OLDOBJ ;
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 4) || (items > 4)) {
@@ -18378,7 +17600,7 @@ XS(_wrap_OTAPI_Wrap_Transaction_GetDateSigned) {
       arg4 = ptr;
     }
     result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     if (SWIG_IsNewObj(res2)) delete arg2;
     if (SWIG_IsNewObj(res3)) delete arg3;
@@ -20137,7 +19359,7 @@ XS(_wrap_OTAPI_Wrap_Token_GetValidFrom) {
     int res2 = SWIG_OLDOBJ ;
     int res3 = SWIG_OLDOBJ ;
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 3) || (items > 3)) {
@@ -20177,7 +19399,7 @@ XS(_wrap_OTAPI_Wrap_Token_GetValidFrom) {
       arg3 = ptr;
     }
     result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     if (SWIG_IsNewObj(res2)) delete arg2;
     if (SWIG_IsNewObj(res3)) delete arg3;
@@ -20200,7 +19422,7 @@ XS(_wrap_OTAPI_Wrap_Token_GetValidTo) {
     int res2 = SWIG_OLDOBJ ;
     int res3 = SWIG_OLDOBJ ;
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 3) || (items > 3)) {
@@ -20240,7 +19462,7 @@ XS(_wrap_OTAPI_Wrap_Token_GetValidTo) {
       arg3 = ptr;
     }
     result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     if (SWIG_IsNewObj(res2)) delete arg2;
     if (SWIG_IsNewObj(res3)) delete arg3;
@@ -20391,7 +19613,7 @@ XS(_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom) {
     std::string *arg1 = 0 ;
     int res1 = SWIG_OLDOBJ ;
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -20409,7 +19631,7 @@ XS(_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom) {
       arg1 = ptr;
     }
     result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     XSRETURN(argvi);
   fail:
@@ -20424,7 +19646,7 @@ XS(_wrap_OTAPI_Wrap_Instrmnt_GetValidTo) {
     std::string *arg1 = 0 ;
     int res1 = SWIG_OLDOBJ ;
     int argvi = 0;
-    WrapTimeT result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -20442,7 +19664,7 @@ XS(_wrap_OTAPI_Wrap_Instrmnt_GetValidTo) {
       arg1 = ptr;
     }
     result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
-    ST(argvi) = SWIG_NewPointerObj((new WrapTimeT(static_cast< const WrapTimeT& >(result))), SWIGTYPE_p_WrapTimeT, SWIG_POINTER_OWN | SWIG_SHADOW); argvi++ ;
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     XSRETURN(argvi);
   fail:
@@ -23599,7 +22821,7 @@ XS(_wrap_OTAPI_Wrap_issueMarketOffer) {
     int64_t *arg5 = 0 ;
     int64_t *arg6 = 0 ;
     bool *arg7 = 0 ;
-    WrapTimeT *arg8 = 0 ;
+    time64_t *arg8 = 0 ;
     std::string *arg9 = 0 ;
     int64_t *arg10 = 0 ;
     int res1 = SWIG_OLDOBJ ;
@@ -23684,14 +22906,14 @@ XS(_wrap_OTAPI_Wrap_issueMarketOffer) {
     } 
     temp7 = static_cast< bool >(val7);
     arg7 = &temp7;
-    res8 = SWIG_ConvertPtr(ST(7), &argp8, SWIGTYPE_p_WrapTimeT,  0 );
+    res8 = SWIG_ConvertPtr(ST(7), &argp8, SWIGTYPE_p_time64_t,  0 );
     if (!SWIG_IsOK(res8)) {
-      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "time64_t const &""'"); 
     }
     if (!argp8) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "WrapTimeT const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTAPI_Wrap_issueMarketOffer" "', argument " "8"" of type '" "time64_t const &""'"); 
     }
-    arg8 = reinterpret_cast< WrapTimeT * >(argp8);
+    arg8 = reinterpret_cast< time64_t * >(argp8);
     {
       std::string *ptr = (std::string *)0;
       res9 = SWIG_AsPtr_std_string SWIG_PERL_CALL_ARGS_2(ST(8), &ptr);
@@ -23709,7 +22931,7 @@ XS(_wrap_OTAPI_Wrap_issueMarketOffer) {
     } 
     temp10 = static_cast< int64_t >(val10);
     arg10 = &temp10;
-    result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
+    result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(time64_t const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
     ST(argvi) = SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(result)); argvi++ ;
     if (SWIG_IsNewObj(res1)) delete arg1;
     if (SWIG_IsNewObj(res2)) delete arg2;
@@ -53734,7 +52956,7 @@ XS(_wrap_OTRecord_GetValidFrom) {
     void *argp1 = 0 ;
     int res1 = 0 ;
     int argvi = 0;
-    int64_t result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -53745,8 +52967,8 @@ XS(_wrap_OTRecord_GetValidFrom) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetValidFrom" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    result = (int64_t)(arg1)->GetValidFrom();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
+    result = (arg1)->GetValidFrom();
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     
     XSRETURN(argvi);
   fail:
@@ -53762,7 +52984,7 @@ XS(_wrap_OTRecord_GetValidTo) {
     void *argp1 = 0 ;
     int res1 = 0 ;
     int argvi = 0;
-    int64_t result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -53773,8 +52995,8 @@ XS(_wrap_OTRecord_GetValidTo) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetValidTo" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    result = (int64_t)(arg1)->GetValidTo();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
+    result = (arg1)->GetValidTo();
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     
     XSRETURN(argvi);
   fail:
@@ -53787,14 +53009,14 @@ XS(_wrap_OTRecord_GetValidTo) {
 XS(_wrap_OTRecord_SetDateRange) {
   {
     OTRecord *arg1 = (OTRecord *) 0 ;
-    int64_t arg2 ;
-    int64_t arg3 ;
+    time64_t arg2 ;
+    time64_t arg3 ;
     void *argp1 = 0 ;
     int res1 = 0 ;
-    long long val2 ;
-    int ecode2 = 0 ;
-    long long val3 ;
-    int ecode3 = 0 ;
+    void *argp2 ;
+    int res2 = 0 ;
+    void *argp3 ;
+    int res3 = 0 ;
     int argvi = 0;
     dXSARGS;
     
@@ -53806,25 +53028,33 @@ XS(_wrap_OTRecord_SetDateRange) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetDateRange" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    ecode2 = SWIG_AsVal_long_SS_long SWIG_PERL_CALL_ARGS_2(ST(1), &val2);
-    if (!SWIG_IsOK(ecode2)) {
-      SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "int64_t""'");
-    } 
-    arg2 = static_cast< int64_t >(val2);
-    ecode3 = SWIG_AsVal_long_SS_long SWIG_PERL_CALL_ARGS_2(ST(2), &val3);
-    if (!SWIG_IsOK(ecode3)) {
-      SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "int64_t""'");
-    } 
-    arg3 = static_cast< int64_t >(val3);
+    {
+      res2 = SWIG_ConvertPtr(ST(1), &argp2, SWIGTYPE_p_time64_t,  0 );
+      if (!SWIG_IsOK(res2)) {
+        SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "time64_t""'"); 
+      }  
+      if (!argp2) {
+        SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetDateRange" "', argument " "2"" of type '" "time64_t""'");
+      } else {
+        arg2 = *(reinterpret_cast< time64_t * >(argp2));
+      }
+    }
+    {
+      res3 = SWIG_ConvertPtr(ST(2), &argp3, SWIGTYPE_p_time64_t,  0 );
+      if (!SWIG_IsOK(res3)) {
+        SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "time64_t""'"); 
+      }  
+      if (!argp3) {
+        SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetDateRange" "', argument " "3"" of type '" "time64_t""'");
+      } else {
+        arg3 = *(reinterpret_cast< time64_t * >(argp3));
+      }
+    }
     (arg1)->SetDateRange(arg2,arg3);
     ST(argvi) = sv_newmortal();
     
-    
-    
     XSRETURN(argvi);
   fail:
-    
-    
     
     SWIG_croak_null();
   }
@@ -55011,7 +54241,7 @@ XS(_wrap_OTRecord_GetInitialPaymentDate) {
     void *argp1 = 0 ;
     int res1 = 0 ;
     int argvi = 0;
-    int64_t result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -55022,8 +54252,8 @@ XS(_wrap_OTRecord_GetInitialPaymentDate) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetInitialPaymentDate" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    result = (int64_t)(arg1)->GetInitialPaymentDate();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
+    result = (arg1)->GetInitialPaymentDate();
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     
     XSRETURN(argvi);
   fail:
@@ -55039,7 +54269,7 @@ XS(_wrap_OTRecord_GetPaymentPlanStartDate) {
     void *argp1 = 0 ;
     int res1 = 0 ;
     int argvi = 0;
-    int64_t result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -55050,8 +54280,8 @@ XS(_wrap_OTRecord_GetPaymentPlanStartDate) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetPaymentPlanStartDate" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    result = (int64_t)(arg1)->GetPaymentPlanStartDate();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
+    result = (arg1)->GetPaymentPlanStartDate();
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     
     XSRETURN(argvi);
   fail:
@@ -55067,7 +54297,7 @@ XS(_wrap_OTRecord_GetTimeBetweenPayments) {
     void *argp1 = 0 ;
     int res1 = 0 ;
     int argvi = 0;
-    int64_t result;
+    time64_t result;
     dXSARGS;
     
     if ((items < 1) || (items > 1)) {
@@ -55078,8 +54308,8 @@ XS(_wrap_OTRecord_GetTimeBetweenPayments) {
       SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetTimeBetweenPayments" "', argument " "1"" of type '" "OTRecord *""'"); 
     }
     arg1 = reinterpret_cast< OTRecord * >(argp1);
-    result = (int64_t)(arg1)->GetTimeBetweenPayments();
-    ST(argvi) = SWIG_From_long_SS_long  SWIG_PERL_CALL_ARGS_1(static_cast< long long >(result)); argvi++ ;
+    result = (arg1)->GetTimeBetweenPayments();
+    ST(argvi) = SWIG_NewPointerObj((new time64_t(static_cast< const time64_t& >(result))), SWIGTYPE_p_time64_t, SWIG_POINTER_OWN | 0); argvi++ ;
     
     XSRETURN(argvi);
   fail:
@@ -56411,6 +55641,34 @@ XS(_wrap_delete_OTLookupCaller) {
 }
 
 
+XS(_wrap_OTLookupCaller_getCallback) {
+  {
+    OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+    void *argp1 = 0 ;
+    int res1 = 0 ;
+    int argvi = 0;
+    OTNameLookup *result = 0 ;
+    dXSARGS;
+    
+    if ((items < 1) || (items > 1)) {
+      SWIG_croak("Usage: OTLookupCaller_getCallback(self);");
+    }
+    res1 = SWIG_ConvertPtr(ST(0), &argp1,SWIGTYPE_p_OTLookupCaller, 0 |  0 );
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTLookupCaller_getCallback" "', argument " "1"" of type '" "OTLookupCaller *""'"); 
+    }
+    arg1 = reinterpret_cast< OTLookupCaller * >(argp1);
+    result = (OTNameLookup *)(arg1)->getCallback();
+    ST(argvi) = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTNameLookup, 0 | SWIG_SHADOW); argvi++ ;
+    
+    XSRETURN(argvi);
+  fail:
+    
+    SWIG_croak_null();
+  }
+}
+
+
 XS(_wrap_OTLookupCaller_delCallback) {
   {
     OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
@@ -57185,7 +56443,25 @@ XS(_wrap_OTRecordList_getAddrBookCaller) {
 }
 
 
-XS(_wrap_new_OTRecordList) {
+XS(_wrap_new_OTRecordList__SWIG_0) {
+  {
+    int argvi = 0;
+    OTRecordList *result = 0 ;
+    dXSARGS;
+    
+    if ((items < 0) || (items > 0)) {
+      SWIG_croak("Usage: new_OTRecordList();");
+    }
+    result = (OTRecordList *)new OTRecordList();
+    ST(argvi) = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTRecordList, SWIG_OWNER | SWIG_SHADOW); argvi++ ;
+    XSRETURN(argvi);
+  fail:
+    SWIG_croak_null();
+  }
+}
+
+
+XS(_wrap_new_OTRecordList__SWIG_1) {
   {
     OTNameLookup *arg1 = 0 ;
     void *argp1 = 0 ;
@@ -57213,6 +56489,55 @@ XS(_wrap_new_OTRecordList) {
     
     SWIG_croak_null();
   }
+}
+
+
+XS(_wrap_new_OTRecordList) {
+  dXSARGS;
+  
+  {
+    unsigned long _index = 0;
+    SWIG_TypeRank _rank = 0; 
+    if (items == 0) {
+      SWIG_TypeRank _ranki = 0;
+      SWIG_TypeRank _rankm = 0;
+      if (!_index || (_ranki < _rank)) {
+        _rank = _ranki; _index = 1;
+        if (_rank == _rankm) goto dispatch;
+      }
+    }
+    if (items == 1) {
+      SWIG_TypeRank _ranki = 0;
+      SWIG_TypeRank _rankm = 0;
+      SWIG_TypeRank _pi = 1;
+      int _v = 0;
+      {
+        void *vptr = 0;
+        int res = SWIG_ConvertPtr(ST(0), &vptr, SWIGTYPE_p_OTNameLookup, 0);
+        _v = SWIG_CheckState(res);
+      }
+      if (!_v) goto check_2;
+      _ranki += _v*_pi;
+      _rankm += _pi;
+      _pi *= SWIG_MAXCASTRANK;
+      if (!_index || (_ranki < _rank)) {
+        _rank = _ranki; _index = 2;
+        if (_rank == _rankm) goto dispatch;
+      }
+    }
+  check_2:
+    
+  dispatch:
+    switch(_index) {
+    case 1:
+      PUSHMARK(MARK); SWIG_CALLXS(_wrap_new_OTRecordList__SWIG_0); return;
+    case 2:
+      PUSHMARK(MARK); SWIG_CALLXS(_wrap_new_OTRecordList__SWIG_1); return;
+    }
+  }
+  
+  croak("No matching function for overloaded 'new_OTRecordList'");
+  XSRETURN(0);
 }
 
 
@@ -58828,8 +58153,7 @@ static void *_p_OTDB__BidDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSED
 }
 static swig_type_info _swigt__p_OTAPI_Exec = {"_p_OTAPI_Exec", "OTAPI_Exec *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTAPI_Wrap = {"_p_OTAPI_Wrap", "OTAPI_Wrap *", 0, 0, (void*)"otapi::OTAPI_Wrap", 0};
-static swig_type_info _swigt__p_OTCallback = {"_p_OTCallback", "OTCallback *", 0, 0, (void*)"otapi::OTCallback", 0};
-static swig_type_info _swigt__p_OTCaller = {"_p_OTCaller", "OTCaller *", 0, 0, (void*)"otapi::OTCaller", 0};
+static swig_type_info _swigt__p_OTCaller = {"_p_OTCaller", "OTCaller *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__Acct = {"_p_OTDB__Acct", "OTDB::Acct *", 0, 0, (void*)"otapi::Acct", 0};
 static swig_type_info _swigt__p_OTDB__AddressBook = {"_p_OTDB__AddressBook", "OTDB::AddressBook *", 0, 0, (void*)"otapi::AddressBook", 0};
 static swig_type_info _swigt__p_OTDB__AskData = {"_p_OTDB__AskData", "OTDB::AskData *", 0, 0, (void*)"otapi::AskData", 0};
@@ -58869,7 +58193,6 @@ static swig_type_info _swigt__p_OTRecordList = {"_p_OTRecordList", "OTRecordList
 static swig_type_info _swigt__p_OTVariable = {"_p_OTVariable", "OTVariable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_API = {"_p_OT_API", "OT_API *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_ME = {"_p_OT_ME", "OT_ME *", 0, 0, (void*)"otapi::OT_ME", 0};
-static swig_type_info _swigt__p_WrapTimeT = {"_p_WrapTimeT", "WrapTimeT *", 0, 0, (void*)"otapi::WrapTimeT", 0};
 static swig_type_info _swigt__p__SharedPtrT_OTRecord_t = {"_p__SharedPtrT_OTRecord_t", "shared_ptr_OTRecord *|_SharedPtr< OTRecord > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
@@ -58885,6 +58208,7 @@ static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__
 static swig_type_info _swigt__p_std__out_of_range = {"_p_std__out_of_range", "std::out_of_range *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_unsigned_char_t = {"_p_std__vectorT_unsigned_char_t", "std::vector< unsigned char > *|std::vector< uint8_t > *", 0, 0, (void*)"otapi::VectorUnsignedChar", 0};
+static swig_type_info _swigt__p_time64_t = {"_p_time64_t", "time64_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|uint_least8_t *|uint_fast8_t *|uint8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|uint_least32_t *|uint_fast32_t *|uint32_t *|unsigned int *|uint_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "uint_least64_t *|uint_fast64_t *|uint64_t *|unsigned long long *|uintmax_t *", 0, 0, (void*)0, 0};
@@ -58895,7 +58219,6 @@ static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTAPI_Exec,
   &_swigt__p_OTAPI_Wrap,
-  &_swigt__p_OTCallback,
   &_swigt__p_OTCaller,
   &_swigt__p_OTDB__Acct,
   &_swigt__p_OTDB__AddressBook,
@@ -58936,7 +58259,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTVariable,
   &_swigt__p_OT_API,
   &_swigt__p_OT_ME,
-  &_swigt__p_WrapTimeT,
   &_swigt__p__SharedPtrT_OTRecord_t,
   &_swigt__p_char,
   &_swigt__p_difference_type,
@@ -58952,6 +58274,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__out_of_range,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorT_unsigned_char_t,
+  &_swigt__p_time64_t,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long_long,
@@ -58962,7 +58285,6 @@ static swig_type_info *swig_type_initial[] = {
 
 static swig_cast_info _swigc__p_OTAPI_Exec[] = {  {&_swigt__p_OTAPI_Exec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTAPI_Wrap[] = {  {&_swigt__p_OTAPI_Wrap, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OTCallback[] = {  {&_swigt__p_OTCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTCaller[] = {  {&_swigt__p_OTCaller, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__Acct[] = {  {&_swigt__p_OTDB__BitcoinAcct, _p_OTDB__BitcoinAcctTo_p_OTDB__Acct, 0, 0},  {&_swigt__p_OTDB__Acct, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__AddressBook[] = {  {&_swigt__p_OTDB__AddressBook, 0, 0, 0},{0, 0, 0, 0}};
@@ -59003,7 +58325,6 @@ static swig_cast_info _swigc__p_OTRecordList[] = {  {&_swigt__p_OTRecordList, 0,
 static swig_cast_info _swigc__p_OTVariable[] = {  {&_swigt__p_OTVariable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_API[] = {  {&_swigt__p_OT_API, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_ME[] = {  {&_swigt__p_OT_ME, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_WrapTimeT[] = {  {&_swigt__p_WrapTimeT, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p__SharedPtrT_OTRecord_t[] = {  {&_swigt__p__SharedPtrT_OTRecord_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
@@ -59019,6 +58340,7 @@ static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_sw
 static swig_cast_info _swigc__p_std__out_of_range[] = {  {&_swigt__p_std__out_of_range, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_unsigned_char_t[] = {  {&_swigt__p_std__vectorT_unsigned_char_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_time64_t[] = {  {&_swigt__p_time64_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_long_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -59029,7 +58351,6 @@ static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0,
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTAPI_Exec,
   _swigc__p_OTAPI_Wrap,
-  _swigc__p_OTCallback,
   _swigc__p_OTCaller,
   _swigc__p_OTDB__Acct,
   _swigc__p_OTDB__AddressBook,
@@ -59070,7 +58391,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTVariable,
   _swigc__p_OT_API,
   _swigc__p_OT_ME,
-  _swigc__p_WrapTimeT,
   _swigc__p__SharedPtrT_OTRecord_t,
   _swigc__p_char,
   _swigc__p_difference_type,
@@ -59086,6 +58406,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__out_of_range,
   _swigc__p_std__string,
   _swigc__p_std__vectorT_unsigned_char_t,
+  _swigc__p_time64_t,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long_long,
@@ -59162,27 +58483,6 @@ static swig_command_info swig_commands[] = {
 {"otapic::OTPassword_SetSize", _wrap_OTPassword_SetSize},
 {"otapic::new_OTPassword", _wrap_new_OTPassword},
 {"otapic::delete_OTPassword", _wrap_delete_OTPassword},
-{"otapic::new_OTCallback", _wrap_new_OTCallback},
-{"otapic::delete_OTCallback", _wrap_delete_OTCallback},
-{"otapic::OTCallback_runOne", _wrap_OTCallback_runOne},
-{"otapic::OTCallback_runTwo", _wrap_OTCallback_runTwo},
-{"otapic::disown_OTCallback", _wrap_disown_OTCallback},
-{"otapic::swig_get_attr_OTCallback", _wrap_swig_get_attr_OTCallback},
-{"otapic::new_OTCaller", _wrap_new_OTCaller},
-{"otapic::delete_OTCaller", _wrap_delete_OTCaller},
-{"otapic::OTCaller_GetPassword", _wrap_OTCaller_GetPassword},
-{"otapic::OTCaller_ZeroOutPassword", _wrap_OTCaller_ZeroOutPassword},
-{"otapic::OTCaller_GetDisplay", _wrap_OTCaller_GetDisplay},
-{"otapic::OTCaller_SetDisplay", _wrap_OTCaller_SetDisplay},
-{"otapic::OTCaller_delCallback", _wrap_OTCaller_delCallback},
-{"otapic::OTCaller_setCallback", _wrap_OTCaller_setCallback},
-{"otapic::OTCaller_isCallbackSet", _wrap_OTCaller_isCallbackSet},
-{"otapic::OTCaller_callOne", _wrap_OTCaller_callOne},
-{"otapic::OTCaller_callTwo", _wrap_OTCaller_callTwo},
-{"otapic::new_WrapTimeT", _wrap_new_WrapTimeT},
-{"otapic::WrapTimeT_getTime", _wrap_WrapTimeT_getTime},
-{"otapic::WrapTimeT_setTime", _wrap_WrapTimeT_setTime},
-{"otapic::delete_WrapTimeT", _wrap_delete_WrapTimeT},
 {"otapic::OTAPI_Wrap_SetExecutor", _wrap_OTAPI_Wrap_SetExecutor},
 {"otapic::OTAPI_Wrap_Exec", _wrap_OTAPI_Wrap_Exec},
 {"otapic::OTAPI_Wrap_It", _wrap_OTAPI_Wrap_It},
@@ -60088,6 +59388,7 @@ static swig_command_info swig_commands[] = {
 {"otapic::swig_get_attr_OTNameLookup", _wrap_swig_get_attr_OTNameLookup},
 {"otapic::new_OTLookupCaller", _wrap_new_OTLookupCaller},
 {"otapic::delete_OTLookupCaller", _wrap_delete_OTLookupCaller},
+{"otapic::OTLookupCaller_getCallback", _wrap_OTLookupCaller_getCallback},
 {"otapic::OTLookupCaller_delCallback", _wrap_OTLookupCaller_delCallback},
 {"otapic::OTLookupCaller_setCallback", _wrap_OTLookupCaller_setCallback},
 {"otapic::OTLookupCaller_isCallbackSet", _wrap_OTLookupCaller_isCallbackSet},
@@ -60430,203 +59731,200 @@ XS(SWIG_init) {
   SWIG_TypeClientData(SWIGTYPE_p_imaxdiv_t, (void*) "otapi::imaxdiv_t");
   SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_unsigned_char_t, (void*) "otapi::VectorUnsignedChar");
   SWIG_TypeClientData(SWIGTYPE_p_std__mapT_std__string_std__string_t, (void*) "otapi::MapStringString");
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OT_PW_DISPLAY", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_FromCharPtr("Enter master passphrase for wallet."));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTPASSWORD_BLOCKSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(128)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTPASSWORD_MEMSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(129)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OT_LARGE_BLOCKSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(32767)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OT_LARGE_MEMSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(32768)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OT_DEFAULT_BLOCKSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(128)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OT_DEFAULT_MEMSIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(129)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTPassword_DEFAULT_SIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTPassword::DEFAULT_SIZE)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTPassword_LARGER_SIZE", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTPassword::LARGER_SIZE)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
   SWIG_TypeClientData(SWIGTYPE_p_OTPassword, (void*) "otapi::OTPassword");
-  SWIG_TypeClientData(SWIGTYPE_p_OTCallback, (void*) "otapi::OTCallback");
-  SWIG_TypeClientData(SWIGTYPE_p_OTCaller, (void*) "otapi::OTCaller");
-  SWIG_TypeClientData(SWIGTYPE_p_WrapTimeT, (void*) "otapi::WrapTimeT");
   SWIG_TypeClientData(SWIGTYPE_p_OTAPI_Wrap, (void*) "otapi::OTAPI_Wrap");
   SWIG_TypeClientData(SWIGTYPE_p_OT_ME, (void*) "otapi::OT_ME");
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "PACK_MESSAGE_PACK", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::PACK_MESSAGE_PACK)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "PACK_PROTOCOL_BUFFERS", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::PACK_PROTOCOL_BUFFERS)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "PACK_TYPE_ERROR", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::PACK_TYPE_ERROR)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORE_FILESYSTEM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORE_FILESYSTEM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORE_TYPE_SUBCLASS", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORE_TYPE_SUBCLASS)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_STRING", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_STRING)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_BLOB", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_BLOB)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_STRING_MAP", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_STRING_MAP)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_WALLET_DATA", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_WALLET_DATA)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_BITCOIN_ACCT", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_BITCOIN_ACCT)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_BITCOIN_SERVER", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_BITCOIN_SERVER)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_RIPPLE_SERVER", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_RIPPLE_SERVER)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_LOOM_SERVER", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_LOOM_SERVER)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_SERVER_INFO", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_SERVER_INFO)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_CONTACT_NYM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_CONTACT_NYM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_CONTACT_ACCT", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_CONTACT_ACCT)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_CONTACT", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_CONTACT)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_ADDRESS_BOOK", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_ADDRESS_BOOK)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_MARKET_DATA", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_MARKET_DATA)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_MARKET_LIST", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_MARKET_LIST)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_BID_DATA", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_BID_DATA)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_ASK_DATA", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_ASK_DATA)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_OFFER_LIST_MARKET", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_OFFER_LIST_MARKET)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_TRADE_DATA_MARKET", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_TRADE_DATA_MARKET)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_TRADE_LIST_MARKET", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_TRADE_LIST_MARKET)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_OFFER_DATA_NYM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_OFFER_DATA_NYM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_OFFER_LIST_NYM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_OFFER_LIST_NYM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_TRADE_DATA_NYM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_TRADE_DATA_NYM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_TRADE_LIST_NYM", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_TRADE_LIST_NYM)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "STORED_OBJ_ERROR", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTDB::STORED_OBJ_ERROR)));
     SvREADONLY_on(sv);
@@ -60661,27 +59959,27 @@ XS(SWIG_init) {
   SWIG_TypeClientData(SWIGTYPE_p_OTDB__ContactAcct, (void*) "otapi::ContactAcct");
   SWIG_TypeClientData(SWIGTYPE_p_OTDB__Contact, (void*) "otapi::Contact");
   SWIG_TypeClientData(SWIGTYPE_p_OTDB__AddressBook, (void*) "otapi::AddressBook");
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTRecord_Mail", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTRecord::Mail)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTRecord_Transfer", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTRecord::Transfer)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTRecord_Receipt", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTRecord::Receipt)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTRecord_Instrument", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTRecord::Instrument)));
     SvREADONLY_on(sv);
   } while(0) /*@SWIG@*/;
-  /*@SWIG:/usr/local/share/swig/3.0.0/perl5/perltypemaps.swg,65,%set_constant@*/ do {
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\perl5\perltypemaps.swg,65,%set_constant@*/ do {
     SV *sv = get_sv((char*) SWIG_prefix "OTRecord_ErrorState", TRUE | 0x2 | GV_ADDMULTI);
     sv_setsv(sv, SWIG_From_int  SWIG_PERL_CALL_ARGS_1(static_cast< int >(OTRecord::ErrorState)));
     SvREADONLY_on(sv);

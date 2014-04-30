@@ -8,27 +8,10 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: otapi/OTAPI.i
+// source: swig\otapi\OTAPI.i
 
 #ifndef SWIG_otapi_WRAP_H_
 #define SWIG_otapi_WRAP_H_
-
-class SwigDirector_OTCallback : public OTCallback
-{
- public:
-  SwigDirector_OTCallback(void *swig_p);
-  virtual ~SwigDirector_OTCallback();
-  void _swig_upcall_runOne(char const *szDisplay, OTPassword &theOutput) {
-    OTCallback::runOne(szDisplay,theOutput);
-  }
-  virtual void runOne(char const *szDisplay, OTPassword &theOutput);
-  void _swig_upcall_runTwo(char const *szDisplay, OTPassword &theOutput) {
-    OTCallback::runTwo(szDisplay,theOutput);
-  }
-  virtual void runTwo(char const *szDisplay, OTPassword &theOutput);
- private:
-  void *go_val;
-};
 
 class SwigDirector_OTNameLookup : public OTNameLookup
 {

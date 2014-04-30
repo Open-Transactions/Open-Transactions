@@ -107,16 +107,16 @@ public class OTRecord {
     otapiJNI.OTRecord_SetCanceled(swigCPtr, this);
   }
 
-  public long GetValidFrom() {
-    return otapiJNI.OTRecord_GetValidFrom(swigCPtr, this);
+  public SWIGTYPE_p_time64_t GetValidFrom() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTRecord_GetValidFrom(swigCPtr, this), true);
   }
 
-  public long GetValidTo() {
-    return otapiJNI.OTRecord_GetValidTo(swigCPtr, this);
+  public SWIGTYPE_p_time64_t GetValidTo() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTRecord_GetValidTo(swigCPtr, this), true);
   }
 
-  public void SetDateRange(long tValidFrom, long tValidTo) {
-    otapiJNI.OTRecord_SetDateRange(swigCPtr, this, tValidFrom, tValidTo);
+  public void SetDateRange(SWIGTYPE_p_time64_t tValidFrom, SWIGTYPE_p_time64_t tValidTo) {
+    otapiJNI.OTRecord_SetDateRange(swigCPtr, this, SWIGTYPE_p_time64_t.getCPtr(tValidFrom), SWIGTYPE_p_time64_t.getCPtr(tValidTo));
   }
 
   public boolean CanDeleteRecord() {
@@ -271,16 +271,16 @@ public class OTRecord {
     return otapiJNI.OTRecord_HasPaymentPlan(swigCPtr, this);
   }
 
-  public long GetInitialPaymentDate() {
-    return otapiJNI.OTRecord_GetInitialPaymentDate(swigCPtr, this);
+  public SWIGTYPE_p_time64_t GetInitialPaymentDate() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTRecord_GetInitialPaymentDate(swigCPtr, this), true);
   }
 
-  public long GetPaymentPlanStartDate() {
-    return otapiJNI.OTRecord_GetPaymentPlanStartDate(swigCPtr, this);
+  public SWIGTYPE_p_time64_t GetPaymentPlanStartDate() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTRecord_GetPaymentPlanStartDate(swigCPtr, this), true);
   }
 
-  public long GetTimeBetweenPayments() {
-    return otapiJNI.OTRecord_GetTimeBetweenPayments(swigCPtr, this);
+  public SWIGTYPE_p_time64_t GetTimeBetweenPayments() {
+    return new SWIGTYPE_p_time64_t(otapiJNI.OTRecord_GetTimeBetweenPayments(swigCPtr, this), true);
   }
 
   public long GetInitialPaymentAmount() {
