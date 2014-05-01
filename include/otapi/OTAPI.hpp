@@ -137,21 +137,6 @@ class OTAPI_Exec;
 class OTServerContract;
 class OTEnvelope;
 
-//struct WrapTimeT {
-//#ifndef SWIG
-//    time64_t time;
-//
-//    WrapTimeT(const time64_t & _time){ this->time = _time; }
-//    operator time64_t() const { return this->time;  }
-//    time64_t operator()(const time64_t & _time) { this->time = _time;  return this->time; }
-//#endif
-//
-//    WrapTimeT(){ this->time = OT_TIME_ZERO; }
-//
-//    time64_t getTime() const { return time; }
-//    void setTime(const int64_t & _time){ this->time = _time; }
-//};
-
 
 class OTAPI_Wrap
 {
