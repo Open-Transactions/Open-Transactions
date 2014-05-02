@@ -154,6 +154,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTCachedKey.hpp		\
 				$(otlib_headers_dir)/OTCheque.hpp		\
 				$(otlib_headers_dir)/OTClause.hpp		\
+				$(otlib_headers_dir)/OTCleanup.hpp		\
 				$(otlib_headers_dir)/OTCommon.hpp		\
 				$(otlib_headers_dir)/OTContract.hpp		\
 				$(otlib_headers_dir)/OTCredential.hpp		\
@@ -179,6 +180,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTMessage.hpp		\
 				$(otlib_headers_dir)/OTMessageBuffer.hpp	\
 				$(otlib_headers_dir)/OTMint.hpp			\
+				$(otlib_headers_dir)/OTNumList.hpp			\
 				$(otlib_headers_dir)/OTOffer.hpp		\
 				$(otlib_headers_dir)/OTParty.hpp		\
 				$(otlib_headers_dir)/OTPartyAccount.hpp		\
@@ -196,6 +198,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTServerContract.hpp	\
 				$(otlib_headers_dir)/OTSettings.hpp		\
 				$(otlib_headers_dir)/OTSignature.hpp		\
+				$(otlib_headers_dir)/OTSignatureMetadata.hpp		\
 				$(otlib_headers_dir)/OTSignedFile.hpp		\
 				$(otlib_headers_dir)/OTSmartContract.hpp	\
 				$(otlib_headers_dir)/OTStash.hpp		\
