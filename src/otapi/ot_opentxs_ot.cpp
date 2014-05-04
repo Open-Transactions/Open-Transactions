@@ -2,6 +2,9 @@
 
 #include <string>
 
+#include "OT_ME.hpp"
+#include "OTVariable.hpp"
+
 #include "ot_utility_ot.hpp"
 #include "ot_otapi_ot.hpp"
 #include "ot_commands_ot.hpp"
