@@ -130,7 +130,6 @@
 
 #include "OTCommon.hpp"
 
-#include "OTMeCpp.hpp"
 #include "OTScript.hpp"
 
 
@@ -142,12 +141,13 @@ EXPORT std::string OT_CLI_ReadLine();
 EXPORT std::string OT_CLI_ReadUntilEOF();
 
 
+class OTMeCpp;
 class OTScript;
 class OTScriptChai;
 class OTVariable;
 
 
-class OT_ME : public OTMeCpp
+class OT_ME
 {
 private:
     static OT_ME * s_pMe;
@@ -220,7 +220,7 @@ public:
     EXPORT static OTVariable *  FindVariable2(const std::string & str_var_name);
 
 
-    // OTMeBase implementation
+    // OTMeCpp implementation
 
     EXPORT bool make_sure_enough_trans_nums(const int32_t nNumberNeeded,
         const std::string & SERVER_ID,
@@ -313,7 +313,7 @@ public:
 
     EXPORT bool cancel_outgoing_payments(
         const std::string & NYM_ID,
-        const std::string & ACCOUNT_ID, // can be blank if a cheque. But if a voucher, smart contract or payment plan, you need to provide this. And it better match for the chosen indices. For example for a voucher, must have the same asset type.
+        const std::string & ACCOUNT_ID,
         const std::string & INDICES);
 
     EXPORT int32_t accept_from_paymentbox(
@@ -420,9 +420,9 @@ public:
         const int64_t quantity,
         const int64_t price,
         const bool bSelling,
-        const int64_t lLifespanInSeconds,  // 0 does default of 86400 == 1 day.
-        const std::string & STOP_SIGN, // If a stop order, must be "<" or ">"
-        const int64_t ACTIVATION_PRICE); // If a stop order, must be non-zero.
+        const int64_t lLifespanInSeconds,
+        const std::string & STOP_SIGN,
+        const int64_t ACTIVATION_PRICE);
 
     EXPORT std::string kill_market_offer(
         const std::string & SERVER_ID,
@@ -506,7 +506,7 @@ public:
         const std::string & SERVER_ID,
         const std::string & NYM_ID,
         const std::string & ACCT_ID,
-        const std::string & STR_INDICES); // "all" for all indices
+        const std::string & STR_INDICES);
 
     EXPORT std::string get_market_list(
         const std::string & SERVER_ID,

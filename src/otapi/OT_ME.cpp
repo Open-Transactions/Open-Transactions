@@ -138,9 +138,9 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 
 #include <ot_me_switch.hpp>
 
-
 #include <OT_ME.hpp>
 
+#include "OTMeCpp.hpp"
 #include <OTAPI.hpp>
 
 #include <OTLog.hpp>
@@ -149,7 +149,6 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 
 
 #ifdef OT_USE_SCRIPT_CHAI
-#include "OTMeChai.hpp"
 
 #include <chaiscript/chaiscript.hpp>
 
