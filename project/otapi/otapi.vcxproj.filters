@@ -252,10 +252,10 @@
     <ClCompile Include="..\..\src\otapi\OTRecordList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OtMeChai.cpp">
+    <ClCompile Include="..\..\src\otapi\OTMeChai.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\otapi\OtMeCpp.cpp">
+    <ClCompile Include="..\..\src\otapi\OTMeCpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
