@@ -201,8 +201,8 @@
     <ClCompile Include="..\..\src\otapi\OTAPI.cpp" />
     <ClCompile Include="..\..\src\otapi\OTAPI_Exec.cpp" />
     <ClCompile Include="..\..\src\otapi\OTClient.cpp" />
-    <ClCompile Include="..\..\src\otapi\OtMeChai.cpp" />
-    <ClCompile Include="..\..\src\otapi\OtMeCpp.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTMeChai.cpp" />
+    <ClCompile Include="..\..\src\otapi\OTMeCpp.cpp" />
     <ClCompile Include="..\..\src\otapi\OTRecord.cpp" />
     <ClCompile Include="..\..\src\otapi\OTRecordList.cpp" />
     <ClCompile Include="..\..\src\otapi\OTServerConnection.cpp" />
