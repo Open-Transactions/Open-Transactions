@@ -147,12 +147,6 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 #include <OTStorage.hpp>
 #include <OTPaths.hpp>
 
-#include <ot_commands_ot.hpp>
-#include <ot_made_easy_ot.hpp>
-#include <ot_otapi_ot.hpp>
-#include <ot_utility_ot.hpp>
-
-#include "OTMeCpp.hpp"
 
 #ifdef OT_USE_SCRIPT_CHAI
 #include "OTMeChai.hpp"

@@ -137,7 +137,6 @@
 #endif
 
 #include <OT_ME.hpp>
-#include <OTAPI.hpp>
 
 
 OTMeChai::OTMeChai(OT_ME * pMe)
