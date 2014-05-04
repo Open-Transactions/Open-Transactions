@@ -168,7 +168,7 @@ OT_ME::OT_ME() : r_pPrev(NULL)
     s_pMe = this;
 
 #if USE_OLD_CHAISCRIPT == 1
-    m_pImplementation = new OTMeChai;
+    m_pImplementation = new OTMeChai(this);
 #else
     m_pImplementation = new OTMeCpp;
 #endif
