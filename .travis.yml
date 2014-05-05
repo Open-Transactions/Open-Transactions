@@ -1,0 +1,17 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+install:
+  - sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev
+script: ./autogen.sh && ./configure && make
+branches:
+  only:
+    - master
+    - develop
+notifications:
+  recipients:
+    - tommy@monetas.net
+  email:
+    on_success: change
+    on_failure: always
