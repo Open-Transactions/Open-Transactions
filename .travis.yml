@@ -4,6 +4,8 @@ compiler:
   - clang
 install:
   - sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev
+  - git clone git@github.com:zeromq/cppzmq.git
+  - sudo cp cppzmq/zmq.hpp /usr/local/include/
 script: ./autogen.sh && ./configure && make
 branches:
   only:
