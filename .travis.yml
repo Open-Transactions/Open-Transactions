@@ -1,0 +1,28 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+install:
+  - sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev libboost-all-dev
+  - git clone https://github.com/zeromq/cppzmq.git
+  - sudo cp cppzmq/zmq.hpp /usr/local/include/
+script: ./autogen.sh && ./configure && make
+branches:
+  only:
+    - master
+    - develop
+notifications:
+  recipients:
+    - tommy@monetas.net
+  email:
+    on_success: change
+    on_failure: always
+#  irc:
+#    on_success: change
+#    on_failure: always
+#    channels:
+#      - "chat.freenode.net#opentransactions"
+#    template:
+#      - "%{branch} (%{commit} - %{author}): %{message}"
+#      - "Change view: %{compare_url}"
+#      - "Build: %{build_url}"
