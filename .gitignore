@@ -1,6 +1,8 @@
 #see http://shanesbrain.net/2008/7/9/using-xcode-with-git
 # xcode noise
 build/*
+*.log
+*.trs
 *.xcconfig
 *.xcclassmodel/*
 *.o
@@ -36,6 +38,7 @@ profile
 # autoreconf noise
 Makefile.in
 aclocal.m4
+build-aux/test-driver
 build-aux/compile
 build-aux/config.guess
 build-aux/config.sub
@@ -107,13 +110,14 @@ src/otlib/protobOT/.deps/
 # linux build noise
 *.lo
 *.la
-src/.libs
-src/otapi/.libs
-src/otlib/.libs
+.dirstamp
+.libs
 *.pb.cc
+src/opentxs
 src/createmint
 src/ot
 src/otserver
+unittests_*
 Bitcoin.cc
 Generics.cc
 Markets.cc
