@@ -20,6 +20,7 @@ build/*
 *.opensdf
 xcuserdata/
 *.deps/
+*.dirstamp
 
 *.jar
 
@@ -113,6 +114,7 @@ src/otlib/.libs
 *.pb.cc
 src/createmint
 src/ot
+src/opentxs
 src/otserver
 Bitcoin.cc
 Generics.cc
