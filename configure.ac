@@ -550,6 +550,7 @@ AC_SUBST([DEPS_LIBS],	["$PROTOBUF_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LD
 AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_CFLAGS"])
 
 AC_CONFIG_FILES([Makefile
+			src/gtest/Makefile
 			src/otlib/otprotob/Makefile
 			src/otlib/bigint/Makefile
 			src/otlib/irrxml/Makefile
@@ -557,6 +558,8 @@ AC_CONFIG_FILES([Makefile
 			src/otlib/otext/Makefile
 			src/otlib/Makefile
 			src/otapi/Makefile
+			tests/otlib/Makefile
+			tests/Makefile
 			src/Makefile
 			src/opentxs.pc])
 

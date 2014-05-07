@@ -7,7 +7,7 @@ ACLOCAL_AMFLAGS 	=	-I build-aux/m4
 
 ## Call to automake subdirs     ##
 
-SUBDIRS                 =   src
+SUBDIRS                 =   src tests
 
 ## Open-Transactions Installs ##
 
