@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTPayload.hpp
  *  
@@ -140,6 +140,7 @@
 class OTMessage;
 class OTEnvelope;
 class OTASCIIArmor;
+
 
 class OTPayload : public OTData 
 {

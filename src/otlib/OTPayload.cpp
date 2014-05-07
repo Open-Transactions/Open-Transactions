@@ -145,10 +145,12 @@ OTPayload::OTPayload() : OTData()
 
 }
 
+
 OTPayload::OTPayload(const void * pNewData, uint32_t nNewSize) : OTData(pNewData, nNewSize)
 {
 
 }
+
 
 OTPayload::OTPayload(const OTPayload & rhs) : OTData(rhs)
 {
@@ -216,7 +218,6 @@ bool OTPayload::SetEnvelope(const OTEnvelope & theEnvelope)
 }
 
 
-
 bool OTPayload::SetMessagePayload(const OTMessage & theMessage)
 {
 	uint32_t lSize = theMessage.m_strRawFile.GetLength()+1; //+1 for the null terminater
@@ -232,7 +233,6 @@ bool OTPayload::SetMessagePayload(const OTMessage & theMessage)
 	}
 	return false;
 }
-
 
 
 // Envelope retrieved from payload.
@@ -279,6 +279,7 @@ bool OTPayload::GetEnvelope(OTEnvelope & theEnvelope) const
 	}
 }
 
+
 // Message retrieved from Payload
 bool OTPayload::GetMessagePayload(OTMessage & theMessage) const
 {
@@ -315,11 +316,11 @@ bool OTPayload::GetMessagePayload(OTMessage & theMessage) const
 }
 
 
-
 void OTPayload::SetPayloadSize(uint32_t lNewSize)
 {
 	SetSize(lNewSize);
 }
+
 
 const void * OTPayload::GetPayloadPointer() const
 {

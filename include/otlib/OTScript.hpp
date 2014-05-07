@@ -130,13 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SCRIPT_HPP__
 #define __OT_SCRIPT_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTBylaw.hpp"
+
 
 #if __clang__
 #pragma clang diagnostic push
@@ -148,7 +148,6 @@
 #pragma warning( push )
 #pragma warning( disable : 4702 )  // warning C4702: unreachable code
 #endif
-
 
 #ifdef _MSC_VER
 #pragma warning( pop )

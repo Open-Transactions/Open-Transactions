@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTAsymmetricKey_OpenSSLPrivdp.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
 #define __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
 
@@ -193,5 +192,6 @@ EXPORT const EVP_PKEY * GetKey(OTPasswordData * pPWData=NULL);
     void        SetX509(X509 * x509);
     // -----------------------------------------------------
 };
+
 
 #endif // __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__

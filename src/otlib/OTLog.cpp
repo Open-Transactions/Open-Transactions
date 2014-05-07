@@ -1,4 +1,4 @@
-/*******************************************************************
+/************************************************************
 *
 *  OTLog.cpp
 *
@@ -134,18 +134,19 @@
 
 #include <OTLog.hpp>
 
+#include <iostream>
+#include <fstream>
+#include <exception>
+
 #include <OTSettings.hpp>
 #include <OTPaths.hpp>
 #include <OTAssert.hpp>
 
 #include "tinythread.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <exception>
-
 #include <constants.h>
 #include <stacktrace.h>
+
 
 #ifdef _WIN32
 #include <Shlobj.h>
@@ -166,7 +167,6 @@
 
 #define LOG_DEQUE_SIZE 1024
 
-// ----------------------------------------
 
 extern "C"
 {
@@ -176,13 +176,12 @@ extern "C"
 #include <sys/timeb.h>
 
 	// For signal handling in Windows.
-	//
 	LONG  Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo);
 	void  LogStackFrames(void *FaultAdress, char *);
 
 #else // else if NOT _WIN32
 
-	// ----------------------------------------
+
 	// These added for the signal handling:
 	//
 #ifndef _GNU_SOURCE
@@ -205,7 +204,7 @@ extern "C"
 	};
 #endif // defined __APPLE__
 
-// ----------------------------------------
+
 #if defined (ANDROID)
 
 #ifndef ucontext_h_seen
@@ -223,28 +222,25 @@ extern "C"
     } ucontext_t;
 
 #endif // ucontext_h_seen
-// -------------------
+
+
 #else // Not ANDROID
 #include <signal.h>
 #include <ucontext.h>
 #include <wordexp.h>
 #include <execinfo.h>
 #endif
-// ----------------------------------------
+
 
 #include <sys/resource.h>
 
 	//#endif
-	// ----------------------------------------
+	
 
 #endif // not _WIN32
 
 #include <sys/stat.h>
 } // extern C
-// ---------------------------
-
-
-
 
 
 #ifdef ANDROID
@@ -263,12 +259,7 @@ extern "C"
 #define GLOBAL_LOGFILE "init.log"
 
 
-
-
-// *********************************************************************************
-//
 //  OTLog Static Variables and Constants.
-//
 
 
 #ifndef thread_local
@@ -276,21 +267,15 @@ extern "C"
 #endif
 OTLog * OTLog::pLogger = NULL;
 
+
 const OTString OTLog::m_strVersion		 = OT_VERSION;
 const OTString OTLog::m_strPathSeparator = "/";
+
 
 // Global, thread local.
 //static thread_local OTLog * OTLog::pLogger;
 
-
-// *********************************************************************************
-//
 //  OTLog Init, must run this befor useing any OTLog function.
-//
-
-
-
-
 
 //static
 bool OTLog::Init(const OTString & strThreadContext, const int32_t & nLogLevel)
@@ -354,6 +339,7 @@ bool OTLog::Init(const OTString & strThreadContext, const int32_t & nLogLevel)
 
 }
 
+
 //static
 bool OTLog::IsInitialized()
 {
@@ -361,6 +347,7 @@ bool OTLog::IsInitialized()
 		return false;
 	else return pLogger->m_bInitialized;
 }
+
 
 //static
 bool OTLog::Cleanup()
@@ -374,6 +361,7 @@ bool OTLog::Cleanup()
 	else return false;
 }
 
+
 //static
 bool OTLog::CheckLogger(OTLog * pLogger)
 {
@@ -384,11 +372,7 @@ bool OTLog::CheckLogger(OTLog * pLogger)
 }
 
 
-
-
-	// ------------------------------------------------------------
 	// OTLog Constants.
-	//
 
 	// Compiled into OTLog:
 
@@ -405,8 +389,10 @@ const OTString &	OTLog::GetThreadContext()   { return pLogger->m_strThreadContex
 const char *		OTLog::LogFilePath()   { return OTLog::GetLogFilePath().Get(); }
 const OTString &	OTLog::GetLogFilePath() { return pLogger->m_strLogFilePath; }
 
+
 //static
-int32_t                 OTLog::LogLevel()  { if (NULL != pLogger) return pLogger->m_nLogLevel; else return 0; }
+int32_t             OTLog::LogLevel()  { if (NULL != pLogger) return pLogger->m_nLogLevel; else return 0; }
+
 
 //static
 bool			    OTLog::SetLogLevel(const int32_t & nLogLevel)
@@ -416,12 +402,7 @@ bool			    OTLog::SetLogLevel(const int32_t & nLogLevel)
 }
 
 
-// *********************************************************************************
-//
-//
 //  OTLog Functions
-//
-//
 
 // If there's no logfile, then send it to stderr.
 // (So we can still see it on the screen, but it doesn't interfere with any
@@ -470,9 +451,6 @@ bool OTLog::LogToFile(const OTString & strOutput)
 }
 
 
-
-// *********************************************************************************
-
 const OTString OTLog::GetMemlogAtIndex(const int32_t nIndex)
 {
 	// lets check if we are Initialized in this context
@@ -496,7 +474,6 @@ const OTString OTLog::GetMemlogAtIndex(const int32_t nIndex)
 }
 
 
-// --------------------------------------------------
 // We keep 1024 logs in memory, to make them available via the API.
 
 int32_t OTLog::GetMemlogSize()
@@ -543,6 +520,7 @@ const OTString OTLog::PeekMemlogBack()
 	else return "";
 }
 
+
 //static
 bool OTLog::PopMemlogFront()
 {
@@ -560,6 +538,7 @@ bool OTLog::PopMemlogFront()
 
 	return true;
 }
+
 
 //static
 bool OTLog::PopMemlogBack()
@@ -579,6 +558,7 @@ bool OTLog::PopMemlogBack()
 	return true;
 }
 
+
 //static
 bool OTLog::PushMemlogFront(const OTString & strLog)
 {
@@ -597,6 +577,7 @@ bool OTLog::PushMemlogFront(const OTString & strLog)
 	return true;
 }
 
+
 //static
 bool OTLog::PushMemlogBack(const OTString & strLog)
 {
@@ -610,7 +591,6 @@ bool OTLog::PushMemlogBack(const OTString & strLog)
 	return true;
 }
 
-// -------------------------------------------------------
 
 //static
 bool OTLog::SleepSeconds(int64_t lSeconds)
@@ -623,6 +603,7 @@ bool OTLog::SleepSeconds(int64_t lSeconds)
 	return true;
 }
 
+
 //static
 bool OTLog::SleepMilliseconds(int64_t lMilliseconds)
 {
@@ -634,7 +615,6 @@ bool OTLog::SleepMilliseconds(int64_t lMilliseconds)
 	return true;
 }
 
-// -------------------------------------------------------
 
 // This function is for things that should NEVER happen.
 // In fact you should never even call it -- use the OT_ASSERT() macro instead.
@@ -680,7 +660,6 @@ size_t OTLog::logAssert(const char * szFilename, size_t nLinenumber, const char 
         return 1; // normal
 }
 
-// -------------------------------------------------------
 
 // For normal output. The higher the verbosity, the less important the message.
 // (Verbose level 0 ALWAYS logs.) Currently goes to stdout.
@@ -745,8 +724,6 @@ void OTLog::Output(int32_t nVerbosity, const char *szOutput)
 }
 
 
-// -----------------------------------------------------------------
-
 void OTLog::Output(int32_t nVerbosity, OTString & strOutput)
 {
 	bool bHaveLogger(false);
@@ -760,7 +737,7 @@ void OTLog::Output(int32_t nVerbosity, OTString & strOutput)
 	if (strOutput.Exists())
 		OTLog::Output(nVerbosity, strOutput.Get());
 }
-// -----------------------------------------------------------------
+
 
 // the vOutput is to avoid name conflicts.
 void OTLog::vOutput(int32_t nVerbosity, const char *szOutput, ...)
@@ -796,9 +773,6 @@ void OTLog::vOutput(int32_t nVerbosity, const char *szOutput, ...)
 }
 
 
-
-// -----------------------------------------------------------------
-
 // the vError name is to avoid name conflicts
 void OTLog::vError(const char *szError, ...)
 {
@@ -830,9 +804,6 @@ void OTLog::vError(const char *szError, ...)
 }
 
 
-// -----------------------------------------------------------------
-
-
 // An error has occurred, that somehow doesn't match the Assert or Output functions.
 // So use this one instead.  This ALWAYS logs and currently it all goes to stderr.
 
@@ -860,7 +831,7 @@ void OTLog::Error(const char *szError)
 	__android_log_write(ANDROID_LOG_ERROR,"OT Error", szError);
 #endif
 }
-// -----------------------------------------------------------------
+
 
 void OTLog::Error(OTString & strError)
 {
@@ -868,15 +839,13 @@ void OTLog::Error(OTString & strError)
 		OTLog::Error(strError.Get());
 }
 
-// -----------------------------------------------------------------
-
 
 // NOTE: if you have problems compiling on certain platforms, due to the use
 // of errno, then just use preprocessor directives to carve those portions out
 // of this function, replacing with a message about the unavailability of errno.
 //
 //static
-void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
+void OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
 {
 	bool bHaveLogger(false);
 	if (NULL != pLogger)
@@ -915,74 +884,93 @@ void  OTLog::Errno(const char * szLocation/*=NULL*/) // stderr
 		szFunc, sz_location,
 		errnum);
 }
-// -----------------------------------------------------------------
+
 
 void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get());
 	}
+
+
 void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get());
 	}
+
+
 void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get());
 	}
+
+
 void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get());
 	}
+
+
 void OTLog::sOutput(int32_t nVerbosity,const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get());
 	}
-void	OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix)
+
+
+void OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSix.Get());
 	}
-void	OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven)
+
+
+void OTLog::sOutput(int32_t nVerbosity, const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven)
 	{
 		OTLog::vOutput(nVerbosity,strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSix.Get(),strSeven.Get());
 	}
+
 
 void OTLog::sError(const OTString & strOne)
 	{
 		OTLog::vError(strOne.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTString & strThree)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get(),strThree.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSix.Get());
 	}
+
+
 void OTLog::sError(const OTString & strOne, const OTString & strTwo, const OTString & strThree, const OTString & strFour, const OTString & strFive, const OTString & strSix, const OTString & strSeven)
 	{
 		OTLog::vError(strOne.Get(),strTwo.Get(),strThree.Get(),strFour.Get(),strFive.Get(),strSeven.Get());
 	}
 
 
-
-
-// *********************************************************************************
-//
 // String Helpers
-//
-//
 
 bool OTLog::StringFill(OTString & out_strString, const char * szString, const int32_t iLength, const char * szAppend)
 {
@@ -1000,23 +988,17 @@ bool OTLog::StringFill(OTString & out_strString, const char * szString, const in
 }
 
 
-
-// *********************************************************************************
-
 // SIGNALS
 //
 // To get the most mileage out of this signal handler,
 // compile it with the options:  -g -rdynamic
 //
-// *********************************************************************************
-//
-//
 //  Signal Handler
 //
 //
 
-
 void ot_terminate(void);
+
 
 namespace {
 
@@ -1033,6 +1015,7 @@ namespace {
 #endif
 
 }
+
 
 // This is our custom std::terminate handler for SIGABRT (and any std::terminate() call)
 //
@@ -1136,8 +1119,8 @@ void ot_terminate()
 }
 
 
-
 #ifdef _WIN32   // Windows SIGNALS
+
 
 // The windows version is from Stefan Wörthmüller, who wrote an excellent article
 // at Dr. Dobbs Journal here:
@@ -1155,6 +1138,7 @@ void OTLog::SetupSignalHandler()
 		SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)Win32FaultHandler);
 	}
 }
+
 
 LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 {
@@ -1244,7 +1228,6 @@ LONG Win32FaultHandler(struct _EXCEPTION_POINTERS *  ExInfo)
 /////////////////////////////////////////////////////////////////////////////
 // Unwind the stack and save its return addresses to the logfile
 /////////////////////////////////////////////////////////////////////////////
-
 
 
 void   LogStackFrames(void *FaultAdress, char *eNextBP)
@@ -1353,12 +1336,7 @@ void   LogStackFrames(void *FaultAdress, char *eNextBP)
 }
 
 
-// *********************************************************************************
-
 #else  // if _WIN32, else:      UNIX -- SIGNALS
-
-
-
 
 
 // CREDIT: the Linux / GNU portion of the signal handler comes from StackOverflow,

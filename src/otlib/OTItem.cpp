@@ -1,4 +1,4 @@
-/********************************************************************
+/************************************************************
  *    
  *  OTItem.cpp
  *  
@@ -288,9 +288,6 @@ bool OTItem::VerifyTransactionStatement(OTPseudonym & THE_NYM,  OTTransaction & 
 	
 	return bSuccess;
 }
-
-
-
 
 
 // Server-side.
@@ -912,8 +909,6 @@ bool OTItem::VerifyBalanceStatement(const int64_t lActualAdjustment,
 }
 
 
-
-
 // You have to allocate the item on the heap and then pass it in as a reference. 
 // OTTransaction will take care of it from there and will delete it in destructor.
 void OTItem::AddItem(OTItem & theItem) 
@@ -957,6 +952,7 @@ OTItem * OTItem::GetItemByTransactionNum(const int64_t lTransactionNumber)
 	return NULL;	
 }
 
+
 // Count the number of items that are IN REFERENCE TO some transaction#.
 //
 // Might want to change this so that it only counts ACCEPTED receipts.
@@ -978,7 +974,6 @@ int32_t	OTItem::GetItemCountInRefTo(const int64_t lReference)
 }
 
 
-
 // The final receipt item MAY be present, and co-relates to others that share 
 // its "in reference to" value. (Others such as marketReceipts and paymentReceipts.)
 //
@@ -998,9 +993,6 @@ OTItem * OTItem::GetFinalReceiptItemByReferenceNum(const int64_t lReferenceNumbe
 	
 	return NULL;	
 }
-
-
-
 
 
 // For "OTItem::acceptTransaction"
@@ -1220,11 +1212,11 @@ void OTItem::CalculateNumberOfOrigin()
 }
 
 
-
 void OTItem::GetAttachment(OTString & theStr) const
 {
 	m_ascAttachment.GetString(theStr);
 }
+
 
 void OTItem::SetAttachment(const OTString & theStr)
 {
@@ -1232,10 +1224,10 @@ void OTItem::SetAttachment(const OTString & theStr)
 }
 
 
-
 #define MINIMUM_CLEARTEXT_SIZE_OTASCIIARMOR	100
 
 #define OTASSCIIARMOR_PADDING_TEXT  " IGNORE -- NOTE PADDING -- IGNORE -- NOTE PADDING \nIGNORE -- NOTE PADDING -- IGNORE -- NOTE PADDING \n"
+
 
 void OTItem::SetNote(const OTString & theStr)
 {
@@ -1258,6 +1250,7 @@ void OTItem::SetNote(const OTString & theStr)
 
 }
 
+
 void OTItem::GetNote(OTString & theStr) const
 {
 	if (m_ascNote.GetLength() > 2)
@@ -1274,7 +1267,6 @@ void OTItem::GetNote(OTString & theStr) const
 
 }
 		
-
 
 // Let's say you have created a transaction, and you are creating an item to put into it.
 // Well in that case, you don't care to verify that the real IDs match the purported IDs, since
@@ -1353,8 +1345,6 @@ void OTItem::InitItem()
 }
 
 
-
-
 // this one is private (I hope to keep it that way.)
 // probvably not actually. If I end up back here, it's because
 // sometimes I dont' WANT to assign the stuff, but leave it blank
@@ -1383,6 +1373,7 @@ OTItem::OTItem(const OTIdentifier & theUserID, const OTTransaction & theOwner)
 	
 }
 
+
 // From owner we can get acct ID, server ID, and transaction Num
 OTItem::OTItem(const OTIdentifier & theUserID, const OTItem & theOwner) 
 : OTTransactionType(theUserID, theOwner.GetRealAccountID(), theOwner.GetRealServerID(), theOwner.GetTransactionNum()),
@@ -1395,6 +1386,7 @@ OTItem::OTItem(const OTIdentifier & theUserID, const OTItem & theOwner)
 	InitItem();
 	
 }
+
 
 OTItem::OTItem(const OTIdentifier & theUserID, const OTTransaction & theOwner, OTItem::itemType theType, OTIdentifier * pDestinationAcctID/*=NULL*/)
 		: OTTransactionType(theUserID, theOwner.GetRealAccountID(), theOwner.GetRealServerID(), theOwner.GetTransactionNum()),
@@ -1423,8 +1415,6 @@ OTItem::~OTItem()
 {
 	Release_Item();
 }
-
-
 
 
 void OTItem::Release()
@@ -1458,9 +1448,6 @@ void OTItem::ReleaseItems()
 		pItem = NULL;
 	}
 }
-
-
-
 
 
 OTItem::itemType GetItemTypeFromString(const OTString & strType)
@@ -1628,7 +1615,6 @@ OTItem::itemType GetItemTypeFromString(const OTString & strType)
 	
 	return theType;
 }
-
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -1827,10 +1813,7 @@ int32_t OTItem::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
 // Used in balance agreement, part of the inbox report.
-// -------------------------------------------------
 int64_t OTItem::GetClosingNum() const
 {
 	return m_lClosingTransactionNo; 
@@ -1841,7 +1824,6 @@ void OTItem::SetClosingNum(const int64_t lClosingNum)
 {
 	m_lClosingTransactionNo = lClosingNum;
 }
-// -------------------------------------------------
 
 
 void OTItem::GetStringFromType(OTItem::itemType theType, OTString & strType)
@@ -2063,7 +2045,6 @@ void OTItem::GetStringFromType(OTItem::itemType theType, OTString & strType)
 	}
 	
 }
-
 
 
 void OTItem::UpdateContents() // Before transmission or serialization, this is where the ledger saves its contents 

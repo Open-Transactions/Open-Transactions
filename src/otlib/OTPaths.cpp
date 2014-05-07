@@ -134,12 +134,13 @@
 
 #include <OTPaths.hpp>
 
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
-
 #include <vector>
 
 #include <sys/stat.h>
+
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+
 
 #ifdef _WIN32
 #include <direct.h>
@@ -160,7 +161,6 @@
 #include <limits.h>
 #endif
 
-
 #ifndef S_ISDIR
 #define S_ISDIR(mode)  (((mode) & S_IFMT) == S_IFDIR)
 #endif
@@ -168,7 +168,6 @@
 #ifndef S_ISREG
 #define S_ISREG(mode)  (((mode) & S_IFMT) == S_IFREG)
 #endif
-
 
 #ifdef _WIN32
 #define OT_APPDATA_DIR "OpenTransactions"
@@ -225,24 +224,24 @@ OTString OTPaths::s_strScriptsFolder("");
 
 OTPaths::~OTPaths() { }
 
-// --------------------------------------------------------------------
 
 const OTString & OTPaths::AppBinaryFolder()
 {
     return OTPaths::s_strAppBinaryFolder;
 }
 
+
 void OTPaths::SetAppBinaryFolder(OTString strLocation)
 {
     OTPaths::s_strAppBinaryFolder = strLocation;
 }
 
-// --------------------------------------------------------------------
 
 const OTString & OTPaths::HomeFolder()
 {
     return OTPaths::s_strHomeFolder;
 }
+
 
 void OTPaths::SetHomeFolder(OTString strLocation)
 {
@@ -253,7 +252,6 @@ void OTPaths::SetHomeFolder(OTString strLocation)
 #endif
 }
 
-// --------------------------------------------------------------------
 
 const OTString & OTPaths::AppDataFolder()
 {
@@ -280,6 +278,7 @@ const OTString & OTPaths::AppDataFolder()
 
     return s_strAppDataFolder;
 }
+
 
 const OTString & OTPaths::GlobalConfigFile()
 {
@@ -308,6 +307,7 @@ const OTString & OTPaths::PrefixFolder()
         OT_FAIL;
     }
 }
+
 
 const OTString & OTPaths::ScriptsFolder()
 {
@@ -455,6 +455,7 @@ bool OTPaths::LoadSetPrefixFolder    // eg. /usr/local/
     }
     return true;
 }
+
 
 //static
 bool OTPaths::LoadSetScriptsFolder  // ie. PrefixFolder() + [ if (NOT Android) "lib/opentxs/" ]
@@ -625,6 +626,7 @@ bool OTPaths::Get(
     OT_FAIL;
 }
 
+
 //static
 bool OTPaths::Set(
     OTSettings & config,
@@ -718,6 +720,7 @@ bool OTPaths::FixPath(const OTString & strPath, OTString & out_strFixedPath, con
     }
 }
 
+
 //static
 bool OTPaths::PathExists(const OTString & strPath)
 {
@@ -752,6 +755,7 @@ bool OTPaths::PathExists(const OTString & strPath)
     }
     return false;
 }
+
 
 //static
 bool OTPaths::FileExists(const OTString & strFilePath, int64_t & nFileLength)
@@ -800,6 +804,7 @@ bool OTPaths::FileExists(const OTString & strFilePath, int64_t & nFileLength)
     }
     return false;
 }
+
 
 //static
 bool OTPaths::FolderExists(const OTString & strFolderPath)
@@ -997,6 +1002,7 @@ bool OTPaths::ToReal(const OTString & strExactPath, OTString & out_strCanonicalP
 #endif
 }
 
+
 const bool GetExecutable(OTString & strExecutablePath)
 {
 #ifdef TARGET_OS_MAC
@@ -1040,6 +1046,7 @@ const bool GetExecutable(OTString & strExecutablePath)
     return true;
 }
 
+
 const bool GetCurrentWorking(OTString & strCurrentWorkingPath)
 {
 
@@ -1078,6 +1085,7 @@ const bool GetCurrentWorking(OTString & strCurrentWorkingPath)
     return true;
 }
 
+
 //static
 bool OTPaths::GetHomeFromSystem(OTString & out_strHomeFolder)
 {
@@ -1101,6 +1109,7 @@ bool OTPaths::GetHomeFromSystem(OTString & out_strHomeFolder)
 #endif
     return true;
 }
+
 
 #ifdef _WIN32
 
@@ -1156,6 +1165,7 @@ bool OTPaths::AppendFolder(OTString & out_strPath, const OTString & strBasePath,
     return true;
 }
 
+
 //static
 bool OTPaths::AppendFile(OTString & out_strPath, const OTString & strBasePath, const OTString & strFileName)
 {
@@ -1176,6 +1186,7 @@ bool OTPaths::AppendFile(OTString & out_strPath, const OTString & strBasePath, c
     out_strPath = l_strPath;
     return true;
 }
+
 
 // this function dosn't change the "strRelativePath" so.  It will only fix the strBasePath.
 //static
@@ -1202,6 +1213,7 @@ bool OTPaths::RelativeToCanonical(OTString & out_strCanonicalPath, const OTStrin
 
     return true;
 }
+
 
 //static
 bool OTPaths::BuildFolderPath(const OTString & strFolderPath, bool & out_bFolderCreated)
@@ -1294,362 +1306,3 @@ bool OTPaths::BuildFilePath(const OTString & strFolderPath, bool & out_bFolderCr
     }
     return true;
 }
-
-
-#ifdef _WIN32
-
-LONG WindowsRegistryTools::GetDWORDRegKey(HKEY hKey, const std::wstring &strValueName, DWORD &nValue, DWORD nDefaultValue)
-{
-    nValue = nDefaultValue;
-    DWORD dwBufferSize(sizeof(DWORD));
-    DWORD nResult(0);
-    LONG nError = ::RegQueryValueExW(hKey,
-        strValueName.c_str(),
-        0,
-        NULL,
-        reinterpret_cast<LPBYTE>(&nResult),
-        &dwBufferSize);
-    if (ERROR_SUCCESS == nError)
-    {
-        nValue = nResult;
-    }
-    return nError;
-}
-
-
-LONG WindowsRegistryTools::GetBoolRegKey(HKEY hKey, const std::wstring &strValueName, bool &bValue, bool bDefaultValue)
-{
-    DWORD nDefValue((bDefaultValue) ? 1 : 0);
-    DWORD nResult(nDefValue);
-    LONG nError = GetDWORDRegKey(hKey, strValueName.c_str(), nResult, nDefValue);
-    if (ERROR_SUCCESS == nError)
-    {
-        bValue = (nResult != 0) ? true : false;
-    }
-    return nError;
-}
-
-
-LONG WindowsRegistryTools::GetStringRegKey(HKEY hKey, const std::wstring &strValueName, std::wstring &strValue, const std::wstring &strDefaultValue)
-{
-    strValue = strDefaultValue;
-    WCHAR szBuffer[512];
-    DWORD dwBufferSize = sizeof(szBuffer);
-    ULONG nError;
-    nError = RegQueryValueExW(hKey, strValueName.c_str(), 0, NULL, (LPBYTE)szBuffer, &dwBufferSize);
-    if (ERROR_SUCCESS == nError)
-    {
-        strValue = szBuffer;
-    }
-    return nError;
-}
-
-#endif
-
-
-
-
-
-
-
-#ifndef thread_local
-#define thread_local
-#endif
-OTDataFolder * OTDataFolder::pDataFolder;
-
-
-// static
-bool OTDataFolder::Init(const OTString & strThreadContext)
-{
-    if (NULL != pDataFolder) return true; // we already have a data dir setup.
-
-    if (!strThreadContext.Exists())       { OTLog::sError("%s: Null: %s passed in!\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
-    if (3 > strThreadContext.GetLength())       { OTLog::sError("%s: Too Short: %s !\n", __FUNCTION__, "strThreadContext"    ); OT_FAIL; }
-
-    pDataFolder = new OTDataFolder;  // make the new instance
-
-    pDataFolder->m_bInitialized = false;
-
-
-    // setup the config instance.
-    OTSettings * pSettings(new OTSettings(OTPaths::GlobalConfigFile()));
-    pSettings->Reset();
-    if (!pSettings->Load()) return false;
-
-    // setup the RelativeKey
-    OTString l_strRelativeKey("");
-    l_strRelativeKey.Format("%s%s",strThreadContext.Get(),OT_CONFIG_ISRELATIVE);
-
-    bool l_IsRelative(false), l_Exist(false);
-    OTString l_strFolderName(""), l_strDataConifgFilename("");
-
-    // check the config for an existing configuration.
-    if(!pSettings->Check_bool("data_path",l_strRelativeKey,l_IsRelative,l_Exist)) { return false; }            // is data folder relative
-
-    if (l_Exist)
-    {
-        if(!pSettings->Check_str("data_path",strThreadContext,l_strFolderName,l_Exist)) { return false; }    // what is the data folder
-
-        if (l_Exist)
-        {
-            if(!pSettings->Check_str("data_config",strThreadContext,l_strDataConifgFilename,l_Exist)) { return false; }    // what is config file name
-
-            if (l_Exist)
-            {
-                if (l_IsRelative) // data folder path
-                {
-                    if(!OTPaths::AppendFolder(pDataFolder->m_strDataFolderPath, OTPaths::AppDataFolder(), l_strFolderName)) { return false; }
-                }
-                else
-                {
-                    pDataFolder->m_strDataFolderPath = l_strFolderName;
-                }
-
-                // data config file path.
-                if(!OTPaths::AppendFile(pDataFolder->m_strDataConifgFilePath, OTPaths::AppDataFolder(), l_strDataConifgFilename)) { return false; }
-
-                pDataFolder->m_bInitialized = true;
-                return true;
-            }
-        }
-    }
-
-    // if we get here we do not have a valid config, lets set one.
-
-    // setup the default conifg file-name;
-    l_strFolderName.Format("%s%s",strThreadContext.Get(), DATA_FOLDER_EXT);
-    l_strDataConifgFilename.Format("%s%s",strThreadContext.Get(), CONFIG_FILE_EXT);
-
-    if(!pSettings->Set_bool("data_path", l_strRelativeKey, true, l_Exist)) { return false; }
-    if(!pSettings->Set_str("data_path", strThreadContext, l_strFolderName,l_Exist)) { return false; }
-    if(!pSettings->Set_str("data_config", strThreadContext, l_strDataConifgFilename, l_Exist)) { return false; }
-
-    if(!OTPaths::AppendFolder(pDataFolder->m_strDataFolderPath,OTPaths::AppDataFolder(),l_strFolderName)) { return false; }
-    if(!OTPaths::AppendFile(pDataFolder->m_strDataConifgFilePath, OTPaths::AppDataFolder(), l_strDataConifgFilename)) { return false; }
-
-    // save config
-    if (!pSettings->Save()) return false;
-    pSettings->Reset();
-
-    if (NULL != pSettings) delete pSettings;
-    pSettings = NULL;
-
-    // have set the default dir, now returning true;
-
-    pDataFolder->m_bInitialized = true;
-    return true;
-}
-
-// static
-bool OTDataFolder::IsInitialized()
-{
-    if (NULL == pDataFolder) return false; // we already have a data dir setup.
-
-    return pDataFolder->m_bInitialized;
-}
-
-// static
-bool OTDataFolder::Cleanup()
-{
-    if (NULL != pDataFolder)
-    {
-        delete pDataFolder;
-        pDataFolder = NULL;
-        return true;
-    }
-    else
-    {
-        pDataFolder = NULL;
-        return false;
-    }
-}
-
-
-// static
-const OTString OTDataFolder::Get()
-{
-    if (!OTDataFolder::IsInitialized()) { OT_FAIL; }
-
-    OTString strDataFolder = "";
-    if (OTDataFolder::Get(strDataFolder))
-    {
-        return strDataFolder;
-    }
-    else
-    {
-        strDataFolder = "";
-        return strDataFolder;
-    }
-}
-
-
-// static
-bool OTDataFolder::Get(OTString & strDataFolder)
-{
-    if (NULL != pDataFolder)
-    {
-        if (true == pDataFolder->m_bInitialized)
-        {
-            if (pDataFolder->m_strDataFolderPath.Exists())
-            {
-                strDataFolder = pDataFolder->m_strDataFolderPath;
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-// static
-bool OTDataFolder::GetConfigFilePath(OTString & strConfigFilePath)
-{
-    if (NULL != pDataFolder)
-    {
-        if (true == pDataFolder->m_bInitialized)
-        {
-            if (pDataFolder->m_strDataConifgFilePath.Exists())
-            {
-                strConfigFilePath = pDataFolder->m_strDataConifgFilePath;
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-
-#define    DEFAULT_ACCOUNT         "accounts"
-#define    DEFAULT_CERT            "certs"
-#define    DEFAULT_CONTRACT        "contracts"
-#define    DEFAULT_CREDENTIAL      "credentials"
-#define    DEFAULT_CRON            "cron"
-#define    DEFAULT_INBOX           "inbox"
-#define    DEFAULT_MARKET          "markets"
-#define    DEFAULT_MINT            "mints"
-#define    DEFAULT_NYM             "nyms"
-#define    DEFAULT_NYMBOX          "nymbox"
-#define    DEFAULT_OUTBOX          "outbox"
-#define    DEFAULT_PAYMENTINBOX    "paymentInbox"
-#define    DEFAULT_PUBCRED         "pubcred"
-#define    DEFAULT_PUBKEY          "pubkeys"
-#define    DEFAULT_PURSE           "purse"
-#define    DEFAULT_RECEIPT         "receipts"
-#define    DEFAULT_RECORDBOX       "recordBox"
-#define    DEFAULT_EXPIREDBOX      "expiredBox"
-#define    DEFAULT_SCRIPT          "scripts"
-#define    DEFAULT_SMARTCONTRACTS  "smartcontracts"
-#define    DEFAULT_SPENT           "spent"
-#define    DEFAULT_USERACCT        "useraccounts"
-
-#define    KEY_ACCOUNT             "account"
-#define    KEY_CERT                "cert"
-#define    KEY_CONTRACT            "contract"
-#define    KEY_CREDENTIAL          "credential"
-#define    KEY_CRON                "cron"
-#define    KEY_INBOX               "inbox"
-#define    KEY_MARKET              "market"
-#define    KEY_MINT                "mint"
-#define    KEY_NYM                 "nym"
-#define    KEY_NYMBOX              "nymbox"
-#define    KEY_OUTBOX              "outbox"
-#define    KEY_PAYMENTINBOX        "paymentinbox"
-#define    KEY_PUBCRED             "pubcred"
-#define    KEY_PUBKEY              "pubkey"
-#define    KEY_PURSE               "purse"
-#define    KEY_RECEIPT             "receipt"
-#define    KEY_RECORDBOX           "recordbox"
-#define    KEY_EXPIREDBOX          "expiredbox"
-#define    KEY_SCRIPT              "script"
-#define    KEY_SMARTCONTRACTS      "smartcontracts"
-#define    KEY_SPENT               "spent"
-#define    KEY_USERACCT            "useracct"
-
-
-
-OTString OTFolders::s_strAccount("");
-OTString OTFolders::s_strCert("");
-OTString OTFolders::s_strContract("");
-OTString OTFolders::s_strCredential("");
-OTString OTFolders::s_strCron("");
-OTString OTFolders::s_strInbox("");
-OTString OTFolders::s_strMarket("");
-OTString OTFolders::s_strMint("");
-OTString OTFolders::s_strNym("");
-OTString OTFolders::s_strNymbox("");
-OTString OTFolders::s_strOutbox("");
-OTString OTFolders::s_strPaymentInbox("");
-OTString OTFolders::s_strPubcred("");
-OTString OTFolders::s_strPubkey("");
-OTString OTFolders::s_strPurse("");
-OTString OTFolders::s_strReceipt("");
-OTString OTFolders::s_strRecordBox("");
-OTString OTFolders::s_strExpiredBox("");
-OTString OTFolders::s_strScript("");
-OTString OTFolders::s_strSmartContracts("");
-OTString OTFolders::s_strSpent("");
-OTString OTFolders::s_strUserAcct("");
-
-
-
-bool OTFolders::GetSetAll()
-{
-    OTSettings config = OTSettings(OTPaths::GlobalConfigFile());
-
-    config.Reset();
-
-    if(!config.Load()) return false;
-
-    if(!GetSetFolderName(config,KEY_ACCOUNT,         DEFAULT_ACCOUNT,         s_strAccount         )) return false;
-    if(!GetSetFolderName(config,KEY_CERT,            DEFAULT_CERT,            s_strCert            )) return false;
-    if(!GetSetFolderName(config,KEY_CONTRACT,        DEFAULT_CONTRACT,        s_strContract        )) return false;
-    if(!GetSetFolderName(config,KEY_CREDENTIAL,      DEFAULT_CREDENTIAL,      s_strCredential      )) return false;
-    if(!GetSetFolderName(config,KEY_CRON,            DEFAULT_CRON,            s_strCron            )) return false;
-    if(!GetSetFolderName(config,KEY_INBOX,           DEFAULT_INBOX,           s_strInbox           )) return false;
-    if(!GetSetFolderName(config,KEY_MARKET,          DEFAULT_MARKET,          s_strMarket          )) return false;
-    if(!GetSetFolderName(config,KEY_MINT,            DEFAULT_MINT,            s_strMint            )) return false;
-    if(!GetSetFolderName(config,KEY_NYM,             DEFAULT_NYM,             s_strNym             )) return false;
-    if(!GetSetFolderName(config,KEY_NYMBOX,          DEFAULT_NYMBOX,          s_strNymbox          )) return false;
-    if(!GetSetFolderName(config,KEY_OUTBOX,          DEFAULT_OUTBOX,          s_strOutbox          )) return false;
-    if(!GetSetFolderName(config,KEY_PAYMENTINBOX,    DEFAULT_PAYMENTINBOX,    s_strPaymentInbox    )) return false;
-    if(!GetSetFolderName(config,KEY_PUBCRED,         DEFAULT_PUBCRED,         s_strPubcred         )) return false;
-    if(!GetSetFolderName(config,KEY_PUBKEY,          DEFAULT_PUBKEY,          s_strPubkey          )) return false;
-    if(!GetSetFolderName(config,KEY_PURSE,           DEFAULT_PURSE,           s_strPurse           )) return false;
-    if(!GetSetFolderName(config,KEY_RECEIPT,         DEFAULT_RECEIPT,         s_strReceipt         )) return false;
-    if(!GetSetFolderName(config,KEY_RECORDBOX,       DEFAULT_RECORDBOX,       s_strRecordBox       )) return false;
-    if(!GetSetFolderName(config,KEY_EXPIREDBOX,      DEFAULT_EXPIREDBOX,      s_strExpiredBox      )) return false;
-    if(!GetSetFolderName(config,KEY_SCRIPT,          DEFAULT_SCRIPT,          s_strScript          )) return false;
-    if(!GetSetFolderName(config,KEY_SMARTCONTRACTS,  DEFAULT_SMARTCONTRACTS,  s_strSmartContracts  )) return false;
-    if(!GetSetFolderName(config,KEY_SPENT,           DEFAULT_SPENT,           s_strSpent           )) return false;
-    if(!GetSetFolderName(config,KEY_USERACCT,        DEFAULT_USERACCT,        s_strUserAcct        )) return false;
-
-    if(!config.Save()) return false;
-
-    config.Reset();
-
-    return true;
-}
-
-const OTString & OTFolders::Account()         { return GetFolder(s_strAccount         ); }
-const OTString & OTFolders::Cert()            { return GetFolder(s_strCert            ); }
-const OTString & OTFolders::Contract()        { return GetFolder(s_strContract        ); }
-const OTString & OTFolders::Credential()      { return GetFolder(s_strCredential      ); }
-const OTString & OTFolders::Cron()            { return GetFolder(s_strCron            ); }
-const OTString & OTFolders::Inbox()           { return GetFolder(s_strInbox           ); }
-const OTString & OTFolders::Market()          { return GetFolder(s_strMarket          ); }
-const OTString & OTFolders::Mint()            { return GetFolder(s_strMint            ); }
-const OTString & OTFolders::Nym()             { return GetFolder(s_strNym             ); }
-const OTString & OTFolders::Nymbox()          { return GetFolder(s_strNymbox          ); }
-const OTString & OTFolders::Outbox()          { return GetFolder(s_strOutbox          ); }
-const OTString & OTFolders::PaymentInbox()    { return GetFolder(s_strPaymentInbox    ); }
-const OTString & OTFolders::Pubcred()         { return GetFolder(s_strPubcred         ); }
-const OTString & OTFolders::Pubkey()          { return GetFolder(s_strPubkey          ); }
-const OTString & OTFolders::Purse()           { return GetFolder(s_strPurse           ); }
-const OTString & OTFolders::Receipt()         { return GetFolder(s_strReceipt         ); }
-const OTString & OTFolders::RecordBox()       { return GetFolder(s_strRecordBox       ); }
-const OTString & OTFolders::ExpiredBox()      { return GetFolder(s_strExpiredBox      ); }
-const OTString & OTFolders::Script()          { return GetFolder(s_strScript          ); }
-const OTString & OTFolders::SmartContracts()  { return GetFolder(s_strSmartContracts  ); }
-const OTString & OTFolders::Spent()           { return GetFolder(s_strSpent           ); }
-const OTString & OTFolders::UserAcct()        { return GetFolder(s_strUserAcct        ); }

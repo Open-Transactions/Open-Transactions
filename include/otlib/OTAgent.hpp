@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTAgent.hpp
  *
@@ -129,7 +129,6 @@
  =uSzz
  -----END PGP SIGNATURE-----
  **************************************************************/
-
 
 #ifndef __OT_AGENT_HPP__
 #define __OT_AGENT_HPP__
@@ -394,5 +393,6 @@ EXPORT	const OTString & GetName() { return m_strName; } // agent's name as used 
 };
 
 typedef std::map<std::string, OTAgent *> mapOfAgents;
+
 
 #endif // __OT_AGENT_HPP__

@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *
  *  OTCron.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // OTCron has a list of OTCronItems. (Really subclasses of that such as OTTrade and OTAgreement.)
 
 #ifndef __OT_CRON_HPP__
@@ -139,7 +138,6 @@
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
-
 #include "OTAssert.hpp"
 
 class OTCronItem;
@@ -147,7 +145,6 @@ class OTPseudonym;
 class OTMarket;
 
 
-// ------------------------------------------------------------------
 // mapOfCronItems:      Mapped (uniquely) to transaction number.
 // multimapOfCronItems: Mapped to date the item was added to Cron.
 //
@@ -155,14 +152,14 @@ class OTMarket;
 
 typedef std::map      <int64_t,   OTCronItem *> mapOfCronItems;
 typedef std::multimap <time64_t, OTCronItem *> multimapOfCronItems;
-// ------------------------------------------------------------------
+
 // Mapped (uniquely) to market ID.
 typedef std::map  <std::string, OTMarket *>	mapOfMarkets;
-// ------------------------------------------------------------------
+
 // Cron stores a bunch of these on this list,
 // which the server refreshes from time to time.
 typedef std::list<int64_t> listOfLongNumbers;
-// ------------------------------------------------------------------
+
 
 class OTCron : public OTContract
 {
@@ -284,5 +281,6 @@ EXPORT	virtual ~OTCron();
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 
 };
+
 
 #endif // __OT_CRON_HPP__

@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SCRIPT_CHAI_HPP__
 #define __OT_SCRIPT_CHAI_HPP__
 
@@ -138,6 +137,7 @@
 
 #include "OTBylaw.hpp"
 #include "OTScript.hpp"
+
 
 #if __clang__
 #pragma clang diagnostic push
@@ -150,20 +150,14 @@
 #pragma warning( disable : 4702 )  // warning C4702: unreachable code
 #endif
 
-
 #ifdef _MSC_VER
 #pragma warning( pop )
 #endif
 
-
 #ifdef OT_USE_SCRIPT_CHAI
 
 
-// ********************************************************************
-//
 // SUBCLASS:  CHAI SCRIPT
-//
-// ********************************************************************
 
 
 namespace chaiscript{

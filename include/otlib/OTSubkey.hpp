@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTSubkey.hpp
  *  
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SUBKEY_HPP__
 #define __OT_SUBKEY_HPP__
 
@@ -142,7 +141,6 @@
 #include "OTSubcredential.hpp"
 #include "OTKeyCredential.hpp"
 #include "OTCredential.hpp"
-
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -177,7 +175,6 @@
 // the master should never be able to do any actions except for sign subkeys.
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
-
 
 class OTPassword;
 class OTString;

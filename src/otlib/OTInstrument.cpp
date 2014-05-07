@@ -1,4 +1,4 @@
-/*****************************************************************
+/************************************************************
  *    
  *  OTInstrument.cpp
  *  
@@ -169,16 +169,19 @@ bool OTInstrument::VerifyCurrentDate()
 		return false;
 }
 
+
 void OTInstrument::InitInstrument()
 {	
 	m_strContractType.Set("INSTRUMENT");
 }
+
 
 OTInstrument::OTInstrument()
 : ot_super(), m_VALID_FROM(OT_TIME_ZERO), m_VALID_TO(OT_TIME_ZERO)
 {
 	InitInstrument();
 }
+
 
 OTInstrument::OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
 : ot_super(), m_ServerID(SERVER_ID), m_AssetTypeID(ASSET_ID), m_VALID_FROM(OT_TIME_ZERO), m_VALID_TO(OT_TIME_ZERO)
@@ -188,6 +191,7 @@ OTInstrument::OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & 
 //	m_ServerID		= SERVER_ID;
 //	m_AssetTypeID	= ASSET_ID;
 }
+
 
 OTInstrument::~OTInstrument()
 {
@@ -202,6 +206,7 @@ void OTInstrument::Release_Instrument()
 {
 	// Release any dynamically allocated instrument members here.    
 }
+
 
 void OTInstrument::Release()
 {		

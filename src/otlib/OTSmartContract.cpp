@@ -133,7 +133,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // OTSmartContract is derived from OTCronItem.
 //
 // WHAT DOES IT DO?
@@ -192,10 +191,6 @@
  - Script Functions can be called by all parties, unless CanTriggerClause(name, party) returns false.
  - Hooks should be stored as a list on the Bylaws. If hook "OnActivate" is triggered, then I ask each Bylaw to
    run any relevant scripts for that hook.
-
-
-
- ------------------------------------------------------------------------
 
 
  VARIABLES  (These are changed values you can store inside your smart contract, which stay persistent between runs.)
@@ -458,6 +453,16 @@
 
 #include <OTSmartContract.hpp>
 
+#ifdef OT_USE_SCRIPT_CHAI
+#include <chaiscript/chaiscript.hpp>
+
+#ifdef OT_USE_CHAI_STDLIB
+#include <chaiscript/chaiscript_stdlib.hpp>
+
+#endif
+
+#endif
+
 #include <OTLog.hpp>
 #include <OTScript.hpp>
 #include <OTCron.hpp>
@@ -466,26 +471,9 @@
 #include <OTPaths.hpp>
 
 
-#include "irrxml/irrXML.hpp"
-
-// -----------------------------------------------------------------
-#ifdef OT_USE_SCRIPT_CHAI
-
-#include <chaiscript/chaiscript.hpp>
-
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-#endif
-
-#endif
-// -----------------------------------------------------------------
-
-
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL
 #define SMART_CONTRACT_PROCESS_INTERVAL		30		// 30 seconds, for testing. Should be: based on fees. Otherwise once per day should be enough... right?
 #endif
-
-// -----------------------------------------------------------------
 
 
 // CALLBACK:  Party may cancel contract?
@@ -497,13 +485,12 @@
 #define SMARTCONTRACT_CALLBACK_PARTY_MAY_CANCEL	"callback_party_may_cancel_contract"
 #endif
 
+
 // FYI:
 //#ifndef SCRIPTABLE_CALLBACK_PARTY_MAY_EXECUTE
 //#define SCRIPTABLE_CALLBACK_PARTY_MAY_EXECUTE		"callback_party_may_execute_clause"
 //#endif
 
-
-// -----------------------------------------------------------------
 // HOOKS
 //
 // The server will call these hooks, from time to time, and give you the
@@ -520,6 +507,7 @@
 #define SMARTCONTRACT_HOOK_ON_PROCESS		"cron_process"
 #endif
 
+
 // This is called when the contract is
 // first activated. Todo.
 //
@@ -528,8 +516,6 @@
 #endif
 
 
-
-// --------------------------------------------------------------
 // Deprecated:
 //
 // (These hooks exist in the OT class library, and you CAN subclass
@@ -547,6 +533,7 @@
 #ifndef SMARTCONTRACT_HOOK_ON_REMOVE
 #define SMARTCONTRACT_HOOK_ON_REMOVE		"cron_remove"
 #endif
+
 
 // When it expires due to date range.
 //
@@ -568,24 +555,16 @@
 #define SMARTCONTRACT_HOOK_ON_DEACTIVATE	"cron_deactivate"
 #endif
 
-// -----------------------------------------------------------------
-
-
 
 // TODO: Finish up Smart Contracts (this file.)
 
-
 // DONE: Client test code, plus server message: for activating smart contracts.
-//
 
 // DONE: OT API calls for smart contracts.
-
 
 // DONE: Build escrow script.
 
 // TODO: Entities and roles.  (AFTER smart contracts are working.)
-//
-
 
 // TODO:  Finish move_funds, which should be super easy now. The script-callable version
 // HAS to be in OTSmartContract. Why? Because it can't be in OTScriptable, since those shouldn't
@@ -622,7 +601,6 @@
 //
 
 /*
-// ---------------------------------------------------------
 CALLBACKS
 
 DONE party_may_cancel_contract(party_name)				(See if a party is allowed to cancel the contract from processing.)
@@ -661,7 +639,6 @@ DONE cron_activate		(Triggers when the smart contract is first activated.)
 //OTSmartContract::MoveAcctFunds: error: from_acct (sSBcoTlTkYY8pPv6vh2KD6mIVrRdIwodgsWDoJzIfpV) not found on any party.  // debug this in move_funds
 //OTSmartContract::ExecuteClauses: Success executing script clause: process_clause.
 
-
 // Global version. (int64_t parameter)
 //typedef bool (*OT_SM_RetBool_TwoStr_OneL)(OTSmartContract * pContract,
 //											const std::string from_acct_name,
@@ -672,11 +649,12 @@ DONE cron_activate		(Triggers when the smart contract is first activated.)
 //OTScriptChai::ExecuteScript: Caught chaiscript::exception::bad_boxed_cast : Cannot perform boxed_cast.
 //OTSmartContract::ExecuteClauses: Error while running script: process_clause
 
-
 // Class member, with string parameter.
 typedef bool (OTSmartContract::*OT_SM_RetBool_ThrStr)(const std::string from_acct_name,
                                                       const std::string to_acct_name,
                                                       const std::string str_Amount);
+
+
 // TEST RESULT: WORKS calling Chaiscript
 //Cron: Processing smart contract clauses for hook: cron_process
 //OTSmartContract::MoveAcctFunds: error: from_acct (sSBcoTlTkYY8pPv6vh2KD6mIVrRdIwodgsWDoJzIfpV) not found on any party.
@@ -686,8 +664,6 @@ typedef bool (OTSmartContract::*OT_SM_RetBool_ThrStr)(const std::string from_acc
 //typedef bool (OTSmartContract::*OT_SM_RetBool_TwoStr_OneL)(const std::string from_acct_name,
 //															 const std::string to_acct_name,
 //															 int64_t lAmount);
-
-
 
 void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 {
@@ -771,8 +747,6 @@ void OTSmartContract::RegisterOTNativeCallsWithScript(OTScript & theScript)
 } // void function
 
 
-
-
 // Done.  Can be called from inside script.
 // pScript->chai->add(fun(&(OTSmartContract::DeactivateSmartContract),	(*this)), "deactivate_smart_contract");	// void DeactivateSmartContract();
 //
@@ -790,7 +764,6 @@ void OTSmartContract::DeactivateSmartContract() // Called from within script.
 	this->FlagForRemoval(); // Remove it from future Cron processing, please.
 }
 
-// ---------------------------------------------------
 
 // These are from OTScriptable (super-grandparent-class to *this):
 /* ----------------------------------------------------
@@ -810,8 +783,6 @@ OTAgent			* GetAgent(const std::string str_agent_name);
 OTPartyAccount	* GetPartyAccount(const std::string str_acct_name);
 OTPartyAccount	* GetPartyAccountByID(const OTIdentifier & theAcctID);
 */
-// -----------------------------------------------------------------
-
 
 // Returns true if it was empty (and thus successfully set.)
 // Otherwise, if it wasn't empty (it had been already set) then
@@ -901,7 +872,6 @@ int64_t OTSmartContract::GetClosingNumber(const OTIdentifier & theAcctID) const
 
 	return 0;
 }
-
 
 
 /*
@@ -1205,8 +1175,6 @@ std::string OTSmartContract::GetAcctBalance(const std::string from_acct_name)
 }
 
 
-
-
 std::string OTSmartContract::GetAssetTypeIDofAcct(const std::string from_acct_name)
 {
 	OTCron * pCron  = GetCron();
@@ -1413,7 +1381,6 @@ std::string OTSmartContract::GetAssetTypeIDofAcct(const std::string from_acct_na
 }
 
 
-
 // done
 //
 //pScript->chai->add(fun(&(OTSmartContract::GetStashBalance),	(*this)), "get_stash_balance");	// int64_t GetStashBalance(const std::string stash_name);
@@ -1467,8 +1434,6 @@ std::string OTSmartContract::GetStashBalance(const std::string from_stash_name, 
 }
 
 
-
-
 // done
 // pScript->chai->add(fun(&(OTSmartContract::SendANoticeToAllParties),	(*this)), "send_notice_to_parties");	// bool SendANoticeToAllParties();
 //
@@ -1512,8 +1477,6 @@ bool OTSmartContract::SendANoticeToAllParties()
 
 	return bDroppedNotice;
 }
-
-
 
 
 // Done:
@@ -1619,10 +1582,6 @@ bool OTSmartContract::SendNoticeToParty(const std::string party_name)
 }
 
 
-
-
-
-// *****************************************************************************
 // Higher-level. Can be called from inside scripts.
 //
 // Returns success if funds were moved.
@@ -1861,10 +1820,6 @@ bool OTSmartContract::StashAcctFunds(const std::string from_acct_name, const std
 }
 
 
-
-
-
-// *****************************************************************************
 // Higher-level. Can be called from inside scripts.
 //
 // Returns success if funds were moved.
@@ -2095,9 +2050,6 @@ bool OTSmartContract::UnstashAcctFunds(const std::string to_acct_name, const std
 }
 
 
-
-// *****************************************************************************
-//
 // OTSmartContract::StashFunds is lower-level; it's used inside StashAcctFunds()
 // and UnstashAcctFunds(). (Similarly to how OTCronItem::MoveFunds() is used in-
 // side OTSmartContract::MoveAcctFunds().
@@ -2795,8 +2747,6 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 }
 
 
-
-// *****************************************************************************
 // Higher level. Can be executed from inside scripts.
 //
 // Returns success if funds were moved.
@@ -2805,9 +2755,6 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 // appropriate authorizing agent for that account (or use him, if he's already loaded on
 // this smart contract.)
 //
-
-
-
 
 //global (debugging)
 //bool g_MoveAcctFundsL(OTSmartContract * pContract,
@@ -2840,7 +2787,6 @@ bool OTSmartContract::StashFunds(const mapOfNyms	&	map_NymsAlreadyLoaded,
 //
 //	return pContract->MoveAcctFundsL(from_acct_name, to_acct_name, lAmount);
 //}
-
 
 bool OTSmartContract::MoveAcctFundsStr(const std::string from_acct_name, const std::string to_acct_name, const std::string str_Amount)
 //bool OTSmartContract::MoveAcctFundsL(const std::string from_acct_name, const std::string to_acct_name, const int64_t lAmount) // int64_t was the problem. Switching to string.
@@ -3110,9 +3056,6 @@ bool OTSmartContract::MoveAcctFundsStr(const std::string from_acct_name, const s
 }
 
 
-
-// *****************************************************************************
-//
 // This is called by OTCronItem::HookRemovalFromCron
 //
 // (After calling this method, HookRemovalFromCron then calls onRemovalFromCron.)
@@ -3364,10 +3307,6 @@ void OTSmartContract::onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t
 }
 
 
-
-
-
-
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Return True if I should stay on the Cron list for more processing.
 // Return False if I should be removed and deleted.
@@ -3468,7 +3407,6 @@ bool OTSmartContract::ProcessCron()
 
 	return true;
 }
-
 
 
 //virtual
@@ -3643,21 +3581,6 @@ void OTSmartContract::ExecuteClauses (mapOfClauses & theClauses, OTString * pPar
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // The server calls this when it wants to know if a certain party is allowed to cancel
 // the entire contract (remove it from Cron).
 // This function tries to answer that question by checking for a callback script called:
@@ -3789,10 +3712,6 @@ bool OTSmartContract::CanCancelContract(const std::string str_party_name)
 }
 
 
-
-
-
-
 /// See if theNym has rights to remove this item from Cron.
 ///
 bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
@@ -3884,45 +3803,8 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 }
 
 
-// ------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // TODO:
 
-
-
-
-
-//
 // OTContract::VerifySignature(OTPseudonym & theNym)    <=====  already exists.
 //
 // Next:
@@ -3955,10 +3837,6 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 //	return false;
 //}
 
-
-
-
-
 // Server side. Make sure that ALL parties have valid opening transaction #s.
 //
 //bool OTSmartContract::VerifyAllPartiesOpeningTransNos()
@@ -3989,8 +3867,6 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 //	return false;
 //}
 //
-
-
 
 // Server side. Make sure that ALL parties have valid closing transaction #s for each of their asset accounts.
 //
@@ -4027,14 +3903,6 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 //	return false;
 //}
 
-
-
-
-
-
-
-
-
 // Server-side, need to verify ALL parties upon activation.
 // Client-side, need to verify CURRENT list of parties before "the next party" signs on.
 // May not be able to tell the difference, in code. I can verify that the present ones are good,
@@ -4068,8 +3936,6 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 	//
 	// May not even need this function. Could be the new ones above are enough to cover it all.
 	//
-
-
 
 	// ABOVE Makes sure that all parties' signed copies are equivalent to my own (*this)
 	//
@@ -4128,15 +3994,6 @@ bool OTSmartContract::CanRemoveItemFromCron(OTPseudonym & theNym)
 // over for all future meetings/decisions.
 // But someone must sign at first.  This can be a "registered agent" if you want, with limited
 // authority, only allowed to activate.
-
-
-
-
-
-
-
-
-
 
 // theNym is trying to activate the smart contract, and has
 // supplied transaction numbers and a user/acct ID. ==> theNym definitely IS the owner of the account... that is
@@ -4549,8 +4406,6 @@ bool OTSmartContract::VerifySmartContract(OTPseudonym & theNym, OTAccount & theA
 }
 
 
-
-
 // Used for closing-out the opening transaction numbers (RemoveIssuedNum(lNymOpeningNumber)), for
 // all the Nyms, after the smart contract, for whatever reason, has failed to activate. ASSUMES
 // the Nyms are already loaded, since this is used in a place where they are already still loaded.
@@ -4580,9 +4435,6 @@ void OTSmartContract::CloseoutOpeningNumbers(OTPseudonym * pSignerNym/*=NULL*/)
                                           pSignerNym);
 	} // FOR_EACH ---------------------------------------------
 }
-
-
-// ------------------------------------------------------------------
 
 
 // Used for adding the closing transaction numbers BACK to all the Nyms, after the smart contract,
@@ -4635,9 +4487,6 @@ void OTSmartContract::HarvestClosingNumbers(OTPseudonym * pSignerNym/*=NULL*/,
 }
 
 
-// ------------------------------------------------------------------
-
-
 // Used for adding transaction numbers back to a Nym, after deciding not to use this
 // smart contract, or failing in trying to use it.
 // Client side.
@@ -4670,8 +4519,6 @@ void OTSmartContract::HarvestClosingNumbers(OTPseudonym & theNym)
 	if (nTransNumCount != theNym.GetTransactionNumCount(GetServerID()))
 		theNym.SaveSignedNymfile(theNym);
 }
-
-
 
 
 // You usually wouldn't want to use this, since if the transaction failed, the opening number
@@ -4710,7 +4557,6 @@ void OTSmartContract::HarvestOpeningNumber(OTPseudonym & theNym)
 }
 
 
-
 //static
 void OTSmartContract::CleanupNyms(mapOfNyms & theMap)
 {
@@ -4726,6 +4572,7 @@ void OTSmartContract::CleanupNyms(mapOfNyms & theMap)
 	}
 	// -------------------------------------
 }
+
 
 //static
 void OTSmartContract::CleanupAccts(mapOfAccounts & theMap)
@@ -4744,8 +4591,6 @@ void OTSmartContract::CleanupAccts(mapOfAccounts & theMap)
 }
 
 
-
-//
 // AddParty()
 // For adding a theoretical party to a smart contract, as part of the contract's design, so the
 // contract can be circulated BLANK and many different instances of it might be used.
@@ -4774,7 +4619,6 @@ bool OTSmartContract::AddParty(OTParty & theParty)
 
 	return true;
 }
-
 
 
 // Done:
@@ -4863,7 +4707,6 @@ bool OTSmartContract::ConfirmParty(OTParty & theParty)
 }
 
 
-
 // ALWAYS succeeds. (It will OT_ASSERT() otherwise.)
 //
 OTStash * OTSmartContract::GetStash(const std::string str_stash_name)
@@ -4884,8 +4727,6 @@ OTStash * OTSmartContract::GetStash(const std::string str_stash_name)
 
 	return pStash;
 }
-
-// -------------------------------------------
 
 
 OTSmartContract::OTSmartContract() : ot_super(), m_StashAccts(OTAccount::stash), m_tNextProcessDate(OT_TIME_ZERO)
@@ -4914,6 +4755,7 @@ m_StashAccts(OTAccount::stash), m_tNextProcessDate(OT_TIME_ZERO)
 
 }
 
+
 OTSmartContract::~OTSmartContract()
 {
 	Release_SmartContract();
@@ -4926,7 +4768,6 @@ void OTSmartContract::InitSmartContract()
 
 	SetProcessInterval(SMART_CONTRACT_PROCESS_INTERVAL); // Smart contracts current default is 30 seconds. Actual default will probably be configurable in config file, and most contracts will also probably override this.
 }
-
 
 
 void OTSmartContract::ReleaseStashes()
@@ -4948,7 +4789,6 @@ void OTSmartContract::ReleaseStashes()
 }
 
 
-
 void OTSmartContract::Release_SmartContract()
 {
 	// -------------------------------------
@@ -4957,8 +4797,6 @@ void OTSmartContract::Release_SmartContract()
 
 	// -------------------------------------
 }
-
-
 
 
 void OTSmartContract::Release()
@@ -4972,10 +4810,6 @@ void OTSmartContract::Release()
 }
 
 
-
-
-
-
 int32_t OTSmartContract::GetCountStashes() const
 {
 	return static_cast<int32_t> (m_mapStashes.size());
@@ -4986,7 +4820,6 @@ int32_t OTSmartContract::GetCountStashAccts() const
 {
 	return m_StashAccts.GetCountAccountIDs();
 }
-
 
 
 // Done.
@@ -5161,13 +4994,11 @@ void OTSmartContract::UpdateContents()
 }
 
 
-
 // Add "send Instrument" function for sending instruments instead of messages.
 
 // Then add API functions for loading/save editable and template smart contracts to/from local storage.
 
 // Then add API functions for issuing and downloading the smart contracts to/from server.
-
 
 // Then add API functions for downloading and loading up the list of INSTANCES (contracts activated on server.)
 
@@ -5224,7 +5055,6 @@ bool OTSmartContract::LoadEditable(const OTString & strName)
 
 	return false;
 }
-
 
 
 bool OTSmartContract::SaveEditable(const OTString & strName)
@@ -5351,9 +5181,6 @@ bool OTSmartContract::SaveEditable(const OTString & strName)
  */
 
 
-
-
-
 // Once a smart contract is issued onto a server, then it's available there as a template.
 // Users can download a list of templates, and create an instance of a smart contract. From
 // there they can confirm and activate it along with the other parties.
@@ -5474,6 +5301,7 @@ void OTSmartContract::ReleaseLastSenderRecipientIDs()
 	m_strLastRecipientAcct.Release();	// This is the last Acct ID of a party who RECEIVED money.
 }
 
+
 // We call this just before activation (in OT_API::activateSmartContract) in order
 // to make sure that certain IDs and transaction #s are set, so the smart contract
 // will interoperate with the old Cron Item system of doing things.
@@ -5501,6 +5329,7 @@ void OTSmartContract::PrepareToActivate(const int64_t & lOpeningTransNo,	const i
 	//
 	ReleaseStashes();
 }
+
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTSmartContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -5667,7 +5496,6 @@ int32_t OTSmartContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 	return nReturnVal;
 }
-
 
 
 bool OTSmartContract::SaveContractWallet(std::ofstream & ofs)

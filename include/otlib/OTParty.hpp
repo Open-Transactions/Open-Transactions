@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTParty.hpp
  *
@@ -129,7 +129,6 @@
  =uSzz
  -----END PGP SIGNATURE-----
  **************************************************************/
-
 
 #ifndef __OT_PARTY_HPP__
 #define __OT_PARTY_HPP__
@@ -413,5 +412,6 @@ EXPORT	bool CopyAcctsToConfirmingParty(OTParty & theParty) const; // When confir
 };
 
 typedef std::map<std::string, OTParty *> mapOfParties;
+
 
 #endif // __OT_PARTY_HPP__

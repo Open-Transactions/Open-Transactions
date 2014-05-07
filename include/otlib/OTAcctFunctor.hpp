@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ACCT_FUNCTOR_HPP__
 #define __OT_ACCT_FUNCTOR_HPP__
 
@@ -168,10 +167,8 @@ EXPORT    mapOfAccounts * GetLoadedAccts() { return m_pLoadedAccounts; }
 EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an implementation, however.
 };
 
+
 // todo: Make an "OTAcctFunctor_Audit" subclass of this.
-
-// ----------------------------------------------------------------------------
-
 
 // NOTE: Moved to OTServer.hpp and .cpp
 // Because the Trigger method needs to be able to call
@@ -187,7 +184,5 @@ EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an
 //    virtual bool Trigger(OTAccount & theAccount);
 //};
 
-
-// ----------------------------------------------------------------------------
 
 #endif // __OT_ACCT_FUNCTOR_HPP__

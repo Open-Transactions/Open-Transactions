@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTAssetContract.hpp
+ *  OTAmount.hpp
  *
  */
 
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_AMOUNT_HPP__
 #define __OT_AMOUNT_HPP__
 
@@ -146,8 +145,6 @@ class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
 
-
-// ----------------------------------------------------------------------------
 
 class OTAmount
 {
@@ -179,9 +176,6 @@ EXPORT    ~OTAmount() {}
 };
 
 
-// ----------------------------------------------------------------------------
-
-
 // NOTE: Moved to OTServer.hpp and .cpp
 // Because the Trigger method needs to be able to call
 // OTServer-specific functions, and thus can't be in the otlib,
@@ -196,7 +190,5 @@ EXPORT    ~OTAmount() {}
 //    virtual bool Trigger(OTAccount & theAccount);
 //};
 
-
-// ----------------------------------------------------------------------------
 
 #endif // __OT_AMOUNT_HPP__

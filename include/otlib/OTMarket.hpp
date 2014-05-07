@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTMarket.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // A market has a list of OTOffers for all the bids, and another list of OTOffers for all the asks.
 // Presumably the server will have different markets for different asset types.
 
@@ -155,6 +154,7 @@ typedef std::multimap<int64_t, OTOffer *>	mapOfOffers;
 
 // The same offers are also mapped (uniquely) to transaction number.
 typedef std::map  <int64_t, OTOffer *>	mapOfOffersTrnsNum;
+
 
 class OTMarket : public OTContract
 {
@@ -273,5 +273,6 @@ EXPORT	bool GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCount);
 
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
+
 
 #endif // __OT_MARKET_HPP__

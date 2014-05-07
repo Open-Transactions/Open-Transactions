@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_TRANSACTION_TYPE_HPP__
 #define __OT_TRANSACTION_TYPE_HPP__
 

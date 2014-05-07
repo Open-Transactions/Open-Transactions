@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *
  *  OTAgreement.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 
 #ifndef __OT_AGREEMENT_HPP__
@@ -142,9 +141,10 @@
 
 class OTPseudonym;
 
+
 // An Agreement occurs between TWO PEOPLE, and is for a CONSIDERATION.
 // Thus, we add the RECIPIENT (already have SENDER from OTTrackable.)
-
+//
 // While other instruments are derived from OTTrackable (like OTCheque) in order
 // to gain a transaction number and sender user/acct, Agreements are derived from
 // a further subclass of trackable: OTCronItem.

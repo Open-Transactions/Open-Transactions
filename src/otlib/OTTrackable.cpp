@@ -137,7 +137,6 @@
 
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
 
-
 OTTrackable::OTTrackable() : 
 			ot_super(), m_lTransactionNum(0)
 {
@@ -151,6 +150,7 @@ OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & AS
 	InitTrackable();
 }
 
+
 OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID,
 						 const OTIdentifier & ACCT_ID, const OTIdentifier & USER_ID) : 
 			ot_super(SERVER_ID, ASSET_ID), m_lTransactionNum(0)
@@ -161,10 +161,12 @@ OTTrackable::OTTrackable(const OTIdentifier & SERVER_ID, const OTIdentifier & AS
 	SetSenderUserID(USER_ID);
 }
 
+
 OTTrackable::~OTTrackable()
 {
     Release_Trackable();
 }
+
 
 void OTTrackable::InitTrackable()
 {
@@ -179,11 +181,13 @@ bool OTTrackable::HasTransactionNum(const int64_t & lInput) const
     return (lInput == m_lTransactionNum);
 }
 
+
 void OTTrackable::GetAllTransactionNumbers(OTNumList & numlistOutput) const
 {
     if (m_lTransactionNum > 0)
         numlistOutput.Add(m_lTransactionNum);
 }
+
 
 void OTTrackable::Release_Trackable()
 {
@@ -191,6 +195,7 @@ void OTTrackable::Release_Trackable()
 	m_SENDER_ACCT_ID.Release();	
 	m_SENDER_USER_ID.Release();
 }
+
 
 void OTTrackable::Release()
 {
@@ -201,7 +206,6 @@ void OTTrackable::Release()
 	// Then I call this to re-initialize everything for myself.
 	InitTrackable(); 	
 }
-
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.

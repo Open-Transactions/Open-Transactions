@@ -131,7 +131,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SCRIPTABLE_HPP__
 #define __OT_SCRIPTABLE_HPP__
 

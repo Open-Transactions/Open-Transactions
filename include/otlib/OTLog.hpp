@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *    
  *  OTLog.hpp
  *  
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // The int64_t-awaited logging class.
 
 #ifndef __OT_LOG_HPP__
@@ -145,6 +144,7 @@
 #include "OTAssert.hpp"
 #include "OTString.hpp"
 
+
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)
 #define PREDEF_PLATFORM_UNIX 1
 #endif
@@ -154,6 +154,7 @@
 #endif
 
 EXPORT typedef std::deque <OTString *> dequeOfStrings;
+
 
 class OTLog
 {
@@ -291,5 +292,6 @@ public:
 	EXPORT static void SetupSignalHandler(); // OPTIONAL. Therefore I will call it in xmlrpcxx_client.cpp just above OT_Init.
 
 };
+
 
 #endif // __OT_LOG_HPP__

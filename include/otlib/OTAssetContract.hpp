@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASSET_CONTRACT_HPP__
 #define __OT_ASSET_CONTRACT_HPP__
 
@@ -140,6 +139,7 @@
 #include "OTAmount.hpp"
 #include "OTAcctFunctor.hpp"
 
+class OTAmount;
 class OTBasket;
 class OTPseudonym;
 class OTString;
@@ -147,8 +147,6 @@ class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
 
-
-// ----------------------------------------------------------------------------
 
 class OTAssetContract : public OTContract
 {
@@ -227,7 +225,6 @@ EXPORT    const OTString & GetCurrencyTLA      () const { return m_strCurrencyTL
 	virtual bool DisplayStatistics(OTString & strContents) const;
 };
 
-
 typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 
 
@@ -245,7 +242,5 @@ typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 //    virtual bool Trigger(OTAccount & theAccount);
 //};
 
-
-// ----------------------------------------------------------------------------
 
 #endif // __OT_ASSET_CONTRACT_HPP__

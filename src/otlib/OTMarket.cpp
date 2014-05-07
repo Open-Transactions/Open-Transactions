@@ -1,4 +1,4 @@
-/************************************************************************
+/************************************************************
  *    
  *  OTMarket.cpp
  *  
@@ -234,8 +234,6 @@ int32_t OTMarket::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
 void OTMarket::UpdateContents()
 {
 	// I release this because I'm about to repopulate it.
@@ -298,7 +296,6 @@ void OTMarket::UpdateContents()
 }
 
 
-
 int64_t OTMarket::GetTotalAvailableAssets()
 {
 	int64_t lTotal = 0;
@@ -315,7 +312,6 @@ int64_t OTMarket::GetTotalAvailableAssets()
 }
 
 
-// ******************************************************
 // Get list of offers for a particular Nym, to send that Nym
 //
 bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym & theOutputList, int32_t & nNymOfferCount)
@@ -411,7 +407,6 @@ bool OTMarket::GetNym_OfferList(const OTIdentifier & NYM_ID, OTDB::OfferListNym 
 }
 
 
-
 bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCount)
 {
     nTradeCount = 0;    // Output the count of trades in the list being returned. (If success..)
@@ -482,8 +477,6 @@ bool OTMarket::GetRecentTradeList(OTASCIIArmor & ascOutput, int32_t & nTradeCoun
  
 	return false;	
 }
-
-
 
 
 // OTDB::OfferListMarket
@@ -624,12 +617,6 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & 
 }
 
 
-// -------------------------------------------------------------------
-
-
-
-
-
 // To insure that offers of a specific price are always inserted at the upper bound,
 // use this:  my_mmap.insert(my_mmap.upper_bound(key), my_mmap::value_type(key, val));
 // This way I can read them from the lower bound later, and always get them in the 
@@ -638,8 +625,6 @@ bool OTMarket::GetOfferList(OTASCIIArmor & ascOutput, int64_t lDepth, int32_t & 
 //typedef std::multimap<int64_t, OTOffer *>	mapOfOffers;
 //mapOfOffers	m_mapBids; // The buyers, ordered  
 //mapOfOffers	m_mapAsks; // The sellers, ordered
-
-
 
 OTOffer * OTMarket::GetOffer(const int64_t & lTransactionNum)
 {
@@ -747,7 +732,6 @@ bool OTMarket::RemoveOffer(const int64_t & lTransactionNum) // if false, offer w
 }
 
 
-
 // This method demands an Offer reference in order to verify that it really exists.
 // HOWEVER, it MUST be heap-allocated, since the Market takes ownership and will delete it.
 // 
@@ -835,8 +819,6 @@ bool OTMarket::AddOffer(OTTrade * pTrade, OTOffer & theOffer, bool bSaveFile/*=t
 }
 
 
-
-
 bool OTMarket::LoadMarket()
 {
 	OT_ASSERT(NULL != GetCron());
@@ -877,7 +859,6 @@ bool OTMarket::LoadMarket()
 
 	return bSuccess;
 }
-
 
 
 bool OTMarket::SaveMarket()
@@ -927,8 +908,7 @@ bool OTMarket::SaveMarket()
 	return true;	
 }
 
-								   
-
+								  
 // A Market's ID is based on the asset type, the currency type, and the scale.
 //
 void OTMarket::GetIdentifier(OTIdentifier & theIdentifier)
@@ -948,10 +928,6 @@ void OTMarket::GetIdentifier(OTIdentifier & theIdentifier)
 }
 
 
-
-
-// -----------------------------------------------------------------------------
-
 // returns 0 if there are no bids. Otherwise returns the value of the highest bid on the market.
 int64_t OTMarket::GetHighestBidPrice()
 {
@@ -966,6 +942,7 @@ int64_t OTMarket::GetHighestBidPrice()
 	
 	return lPrice;
 }
+
 
 // returns 0 if there are no asks. Otherwise returns the value of the lowest ask on the market.
 int64_t OTMarket::GetLowestAskPrice()
@@ -997,11 +974,6 @@ int64_t OTMarket::GetLowestAskPrice()
 	
 	return lPrice;
 }
-
-
-
-
-
 
 
 // This utility function is used directly below (only).
@@ -1038,7 +1010,6 @@ void rollback_four_accounts(OTAccount & p1, bool b1, const int64_t & a1, OTAccou
 	if (b4)
 		p4.Debit(a4);
 }
-
 
 
 // By the time this is called, we have already verified most things:
@@ -2121,8 +2092,6 @@ void OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer, OTOffer & th
 // I haven't thought that through yet (it's an idea suggested by Andrew Muck.)
 
 
-
-
 // Return True if Trade should stay on the Cron list for more processing.
 // Return False if it should be removed and deleted.
 bool OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer)
@@ -2319,7 +2288,6 @@ bool OTMarket::ProcessTrade(OTTrade & theTrade, OTOffer & theOffer)
 }
 
 
-
 // Make sure the offer is for the right asset type, the right currency, etc.
 bool OTMarket::ValidateOfferForMarket(OTOffer & theOffer, OTString * pReason/*=NULL*/)
 {
@@ -2396,8 +2364,6 @@ bool OTMarket::ValidateOfferForMarket(OTOffer & theOffer, OTString * pReason/*=N
 }
 
 
-
-
 OTMarket::OTMarket(const char * szFilename) : OTContract(), m_pCron(NULL), m_pTradeList(NULL), m_lScale(1), m_lLastSalePrice(0)
 {
 	OT_ASSERT(NULL != szFilename);
@@ -2410,13 +2376,11 @@ OTMarket::OTMarket(const char * szFilename) : OTContract(), m_pCron(NULL), m_pTr
 }
 
 
-
 OTMarket::OTMarket() : OTContract(), m_pCron(NULL), m_pTradeList(NULL), m_lScale(1), m_lLastSalePrice(0)
 {
 	m_pCron = NULL; // just for convenience, not responsible to delete.
 	InitMarket();
 }
-
 
 
 OTMarket::OTMarket(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_TYPE_ID,
@@ -2434,7 +2398,6 @@ OTMarket::OTMarket(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_TY
 	SetScale(lScale);
 }
 
-// -----------------------------------------
 
 OTMarket::~OTMarket()
 {
@@ -2480,6 +2443,7 @@ void OTMarket::Release_Market()
 		pOffer = NULL;
 	}
 }
+
 
 void OTMarket::Release()
 {
