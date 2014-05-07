@@ -152,6 +152,13 @@
 #include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
 #include "OpenSSL_BIO.hpp"
 
+
+class OTLowLevelKeyData::OTLowLevelKeyDataOpenSSLdp {
+public:
+    X509         *  m_pX509;
+    EVP_PKEY     *  m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)
+};
+
 #endif
 
 
@@ -164,16 +171,7 @@ OTLowLevelKeyData::~OTLowLevelKeyData()
 }
 
 
-// OTAsymmetricKey_OpenSSL
-
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
-
-class OTLowLevelKeyData::OTLowLevelKeyDataOpenSSLdp {
-public:
-    X509         *  m_pX509;
-    EVP_PKEY     *  m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)
-};
 
 
 OTLowLevelKeyData::OTLowLevelKeyData() : m_bCleanup(true)
