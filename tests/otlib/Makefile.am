@@ -1,6 +1,6 @@
 noinst_PROGRAMS = unittests_otlib
 
-AM_CXXFLAGS = -I$(top_builddir)/include
+AM_CXXFLAGS += -I$(top_builddir)/include
 
 unittests_otlib_SOURCES = main.cpp Test_OTData.cpp
 unittests_otlib_LDFLAGS = -L$(top_builddir)/src/otlib -L$(top_builddir)/src/gtest
