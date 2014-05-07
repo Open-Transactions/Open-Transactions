@@ -173,26 +173,6 @@
 //
 //#include "OTLog.h"
 
-// For everything but Windows:
-//
-#ifndef _WIN32
-extern "C" void *ot_secure_memset(void *v, uint8_t c, uint32_t n);
-
-// This function securely overwrites the contents of a memory buffer
-// (which can otherwise be optimized out by an overzealous compiler...)
-//
-void *ot_secure_memset(void *v, uint8_t c, uint32_t n)
-{
-    OT_ASSERT((NULL != v) && (n > 0));
-
-	volatile uint8_t * p = static_cast<volatile uint8_t *>(v);
-	while (n--)
-		*p++ = c;
-
-	return v;
-}
-#endif // _WIN32
-
 
 // Instantiate one of these whenever you do an action that may
 // require a passphrase. When you call the OpenSSL private key
