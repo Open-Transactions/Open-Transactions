@@ -69,15 +69,23 @@ endif
 
 
 otlib_sources     =	OTAccount.cpp		\
+			OTAcctFunctor.cpp		\
+			OTAcctList.cpp		\
+			OTAgent.cpp		\
 			OTAgreement.cpp		\
+			OTAmount.cpp		\
 			OTASCIIArmor.cpp	\
 			OTAssert.cpp		\
 			OTAssetContract.cpp	\
 			OTAsymmetricKey.cpp	\
 			OTBasket.cpp		\
+			OTBasketItem.cpp		\
 			OTBylaw.cpp		\
 			OTCachedKey.cpp		\
+			OTCallback.cpp		\
+			OTCaller.cpp		\
 			OTCheque.cpp		\
+			OTClause.cpp		\
 			OTContract.cpp		\
 			OTCredential.cpp	\
 			OTCron.cpp		\
@@ -85,20 +93,32 @@ otlib_sources     =	OTAccount.cpp		\
 			OTCrypto.cpp		\
 			OTData.cpp		\
 			OTDataCheck.cpp		\
+			OTDataFolder.cpp		\
 			OTDigitalCash.cpp	\
 			OTEnvelope.cpp		\
+			OTFolders.cpp		\
 			OTIdentifier.cpp	\
 			OTInstrument.cpp	\
 			OTItem.cpp		\
+			OTKeyCredential.cpp		\
+			OTKeypair.cpp		\
 			OTKeyring.cpp		\
 			OTLedger.cpp		\
 			OTLog.cpp		\
+			OTLowLevelKeyData.cpp		\
 			OTMarket.cpp		\
+			OTMasterkey.cpp		\
 			OTMessage.cpp		\
 			OTMessageBuffer.cpp	\
 			OTMint.cpp		\
+			OTMintLucre.cpp		\
+			OTNumList.cpp		\
+			OTNymOrSymmetricKey.cpp		\
 			OTOffer.cpp		\
+			OTParty.cpp		\
+			OTPartyAccount.cpp		\
 			OTPassword.cpp		\
+			OTPasswordData.cpp		\
 			OTPaths.cpp		\
 			OTPayload.cpp		\
 			OTPayment.cpp		\
@@ -107,21 +127,29 @@ otlib_sources     =	OTAccount.cpp		\
 			OTPurse.cpp		\
 			OTScript.cpp		\
 			OTScriptable.cpp	\
+			OTScriptChai.cpp		\
 			OTServerContract.cpp	\
 			OTSettings.cpp		\
 			OTSignature.cpp		\
 			OTSignedFile.cpp	\
 			OTSmartContract.cpp	\
+			OTStash.cpp		\
+			OTStashItem.cpp		\
 			OTStorage.cpp		\
 			OTString.cpp		\
 			OTStringXML.cpp		\
+			OTSubcredential.cpp		\
+			OTSubkey.cpp		\
 			OTSymmetricKey.cpp	\
 			OTToken.cpp		\
+			OTTokenLucre.cpp		\
 			OTTrackable.cpp		\
 			OTTrade.cpp		\
 			OTTransaction.cpp	\
 			OTTransactionType.cpp	\
-			OTWallet.cpp
+			OTVariable.cpp	\
+			OTWallet.cpp	\
+			OTWindowsRegistryTools.cpp
 
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
@@ -153,7 +181,9 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTAssetContract.hpp	\
 				$(otlib_headers_dir)/OTAsymmetricKey.hpp	\
 				$(otlib_headers_dir)/OTAsymmetricKey_OpenSSLPrivdp.hpp	\
+				$(otlib_headers_dir)/OTAsymmetricKeyOpenSSL.hpp	\
 				$(otlib_headers_dir)/OTBasket.hpp		\
+				$(otlib_headers_dir)/OTBasketItem.hpp		\
 				$(otlib_headers_dir)/OTBylaw.hpp		\
 				$(otlib_headers_dir)/OTCachedKey.hpp		\
 				$(otlib_headers_dir)/OTCallback.hpp		\
@@ -184,6 +214,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTLib.hpp			\
 				$(otlib_headers_dir)/OTLibPriv.hpp		\
 				$(otlib_headers_dir)/OTLog.hpp			\
+				$(otlib_headers_dir)/OTLowLevelKeyData.hpp			\
 				$(otlib_headers_dir)/OTMarket.hpp		\
 				$(otlib_headers_dir)/OTMasterkey.hpp		\
 				$(otlib_headers_dir)/OTMessageBuffer.hpp	\
