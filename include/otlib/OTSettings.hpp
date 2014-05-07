@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
 *
 *  OTSettings.hpp
 *	This class has no static members;
@@ -140,11 +140,11 @@
 #ifndef __OT_SETTINGS_HPP__
 #define __OT_SETTINGS_HPP__
 
+#include "simpleini/SimpleIni.hpp"
+
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-
-#include "simpleini/SimpleIni.hpp"
 
 
 #if __clang__
@@ -152,6 +152,7 @@
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
+
 
 class OTSettings
 {

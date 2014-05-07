@@ -1,4 +1,4 @@
-/************************************************************************
+/************************************************************
  *
  *  OTLedger.cpp
  *
@@ -156,12 +156,13 @@ char const * const __TypeStrings[] =
 	"error_state"
 };
 
+
 char const * OTLedger::_GetTypeString(ledgerType theType) {
 	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
-// ------------------------------------
+
 // This calls OTTransactionType::VerifyAccount(), which calls
 // VerifyContractID() as well as VerifySignature().
 //
@@ -230,7 +231,6 @@ bool OTLedger::VerifyAccount(OTPseudonym & theNym)
 */
 
 
-
 // This makes sure that ALL transactions inside the ledger are saved as box receipts
 // in their full (not abbreviated) form (as separate files.)
 //
@@ -259,12 +259,10 @@ bool OTLedger::SaveBoxReceipts()	// For ALL full transactions, save the actual b
     return bRetVal;
 }
 
-// --------------------------------------------------------
-
 
 bool OTLedger::SaveBoxReceipt(const int64_t & lTransactionNum)
 {
-    // --------------------------------------------------------
+
     // First, see if the transaction itself exists on this ledger.
     // Get a pointer to it.
     OTTransaction * pTransaction  = this->GetTransaction(lTransactionNum);
@@ -278,12 +276,11 @@ bool OTLedger::SaveBoxReceipt(const int64_t & lTransactionNum)
 
     return  pTransaction->SaveBoxReceipt(*this);
 }
-// --------------------------------------------------------
 
 
 bool OTLedger::DeleteBoxReceipt(const int64_t & lTransactionNum)
 {
-    // --------------------------------------------------------
+
     // First, see if the transaction itself exists on this ledger.
     // Get a pointer to it.
     OTTransaction * pTransaction  = this->GetTransaction(lTransactionNum);
@@ -297,8 +294,6 @@ bool OTLedger::DeleteBoxReceipt(const int64_t & lTransactionNum)
 
     return  pTransaction->DeleteBoxReceipt(*this);
 }
-// --------------------------------------------------------
-
 
 
 // This makes sure that ALL transactions inside the ledger are loaded in their
@@ -371,7 +366,6 @@ bool OTLedger::LoadBoxReceipts(std::set<int64_t> * psetUnloaded/*=NULL*/) // if 
 }
 
 
-
 /*
  While the box itself is stored at (for example) "nymbox/SERVER_ID/USER_ID"
  the box receipts for that box may be stored at: "nymbox/SERVER_ID/USER_ID.r"
@@ -435,8 +429,6 @@ bool OTLedger::LoadBoxReceipt(const int64_t & lTransactionNum)
 }
 
 
-
-
 // the below four functions (load/save in/outbox) assume that the ID is already set
 // properly.
 // Then it uses the ID to form the path for the file that is opened. Easy, right?
@@ -450,6 +442,7 @@ bool OTLedger::LoadInbox()
 	return bRetVal;
 }
 
+
 //TODO really should verify the ServerID after loading the ledger.
 // Perhaps just call "VerifyContract" and we'll make sure, for ledgers
 // VerifyContract is overriden and explicitly checks the serverID.
@@ -460,11 +453,11 @@ bool OTLedger::LoadOutbox()
 	return LoadGeneric(OTLedger::outbox);
 }
 
+
 bool OTLedger::LoadNymbox()
 {
 	return LoadGeneric(OTLedger::nymbox);
 }
-// ---------------------------------------
 
 
 bool OTLedger::LoadInboxFromString(const OTString & strBox)
@@ -472,10 +465,12 @@ bool OTLedger::LoadInboxFromString(const OTString & strBox)
 	return LoadGeneric(OTLedger::inbox, &strBox);
 }
 
+
 bool OTLedger::LoadOutboxFromString(const OTString & strBox)
 {
 	return LoadGeneric(OTLedger::outbox, &strBox);
 }
+
 
 bool OTLedger::LoadNymboxFromString(const OTString & strBox)
 {
@@ -483,23 +478,22 @@ bool OTLedger::LoadNymboxFromString(const OTString & strBox)
 }
 
 
-// ---------------------------------------
-
 bool OTLedger::LoadPaymentInbox()
 {
 	return LoadGeneric(OTLedger::paymentInbox);
 }
+
 
 bool OTLedger::LoadRecordBox()
 {
 	return LoadGeneric(OTLedger::recordBox);
 }
 
+
 bool OTLedger::LoadExpiredBox()
 {
 	return LoadGeneric(OTLedger::expiredBox);
 }
-// ---------------------------------------
 
 
 bool OTLedger::LoadPaymentInboxFromString(const OTString & strBox)
@@ -507,16 +501,17 @@ bool OTLedger::LoadPaymentInboxFromString(const OTString & strBox)
 	return LoadGeneric(OTLedger::paymentInbox, &strBox);
 }
 
+
 bool OTLedger::LoadRecordBoxFromString(const OTString & strBox)
 {
 	return LoadGeneric(OTLedger::recordBox, &strBox);
 }
 
+
 bool OTLedger::LoadExpiredBoxFromString(const OTString & strBox)
 {
 	return LoadGeneric(OTLedger::expiredBox, &strBox);
 }
-// ---------------------------------------
 
 
 /**
@@ -624,8 +619,6 @@ bool OTLedger::LoadGeneric(OTLedger::ledgerType theType, const OTString * pStrin
 }
 
 
-
-
 bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 {
 	m_Type = theType;
@@ -704,8 +697,6 @@ bool OTLedger::SaveGeneric(OTLedger::ledgerType theType)
 }
 
 
-
-
 // If you know you have an inbox, outbox, or nymbox, then call CalculateInboxHash,
 // CalculateOutboxHash, or CalculateNymboxHash. Otherwise, if in doubt, call this.
 // It's more generic but warning: performs less verification.
@@ -725,6 +716,7 @@ bool OTLedger::CalculateHash(OTIdentifier & theOutput)
     return bCalcDigest;
 }
 
+
 bool OTLedger::CalculateInboxHash(OTIdentifier & theOutput)
 {
 	if (m_Type != OTLedger::inbox)
@@ -735,6 +727,7 @@ bool OTLedger::CalculateInboxHash(OTIdentifier & theOutput)
     // ----------------------------
     return this->CalculateHash(theOutput);
 }
+
 
 bool OTLedger::CalculateOutboxHash(OTIdentifier & theOutput)
 {
@@ -747,6 +740,7 @@ bool OTLedger::CalculateOutboxHash(OTIdentifier & theOutput)
     return this->CalculateHash(theOutput);
 }
 
+
 bool OTLedger::CalculateNymboxHash(OTIdentifier & theOutput)
 {
 	if (m_Type != OTLedger::nymbox)
@@ -757,8 +751,6 @@ bool OTLedger::CalculateNymboxHash(OTIdentifier & theOutput)
     // ----------------------------
     return this->CalculateHash(theOutput);
 }
-
-
 
 
 // If you're going to save this, make sure you sign it first.
@@ -864,10 +856,7 @@ bool OTLedger::SaveOutbox(OTIdentifier * pOutboxHash/*=NULL*/) // If you pass th
 }
 
 
-// ------------------------------------------------
-
 // If you're going to save this, make sure you sign it first.
-//
 bool OTLedger::SavePaymentInbox()
 {
 	if (m_Type != OTLedger::paymentInbox)
@@ -892,6 +881,7 @@ bool OTLedger::SaveRecordBox()
 	return SaveGeneric(m_Type);
 }
 
+
 // If you're going to save this, make sure you sign it first.
 bool OTLedger::SaveExpiredBox()
 {
@@ -903,8 +893,6 @@ bool OTLedger::SaveExpiredBox()
 
 	return SaveGeneric(m_Type);
 }
-
-// --------------------------------------------
 
 
 //static
@@ -922,7 +910,6 @@ OTLedger * OTLedger::GenerateLedger(const OTIdentifier & theUserID,
 
 	return pLedger;
 }
-
 
 
 bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
@@ -1049,9 +1036,6 @@ bool OTLedger::GenerateLedger(const OTIdentifier & theAcctID,
 }
 
 
-
-
-
 void OTLedger::InitLedger()
 {
 	m_strContractType	= "LEDGER"; // CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM
@@ -1074,6 +1058,7 @@ OTLedger::OTLedger(const OTIdentifier & theUserID, const OTIdentifier & theAccou
 	InitLedger();
 }
 
+
 // ONLY call this if you need to load a ledger where you don't already know the person's UserID
 // For example, if you need to load someone ELSE's inbox in order to send them a transfer, then
 // you only know their account number, not their user ID. So you call this function to get it
@@ -1087,19 +1072,19 @@ OTLedger::OTLedger(const OTIdentifier & theAccountID, const OTIdentifier & theSe
 	SetRealServerID(theServerID);
 }
 
+
 // This is private now and hopefully will stay that way.
 OTLedger::OTLedger() : OTTransactionType(), m_Type(OTLedger::message), m_bLoadedLegacyData(false)
 {
 	InitLedger();
 }
-// -------------------------------------------------------
-
 
 
 mapOfTransactions & OTLedger::GetTransactionMap()
 {
 	return m_mapTransactions;
 }
+
 
 /// If transaction #87, in reference to #74, is in the inbox, you can remove it
 /// by calling this function and passing in 87. Deletes.
@@ -1158,9 +1143,6 @@ bool OTLedger::AddTransaction(OTTransaction & theTransaction)
 }
 
 
-
-
-
 OTTransaction * OTLedger::GetTransaction(const OTTransaction::transactionType theType)
 {
 	// loop through the items that make up this transaction
@@ -1176,7 +1158,6 @@ OTTransaction * OTLedger::GetTransaction(const OTTransaction::transactionType th
 
 	return NULL;
 }
-
 
 
 // if not found, returns -1
@@ -1223,7 +1204,6 @@ OTTransaction * OTLedger::GetTransaction(int64_t lTransactionNum)
 }
 
 
-
 // Return a count of all the transactions in this ledger that are IN REFERENCE TO a specific trans#.
 //
 // Might want to change this so that it only counts ACCEPTED receipts.
@@ -1243,8 +1223,6 @@ int32_t OTLedger::GetTransactionCountInRefTo(const int64_t lReferenceNum)
 
 	return nCount;
 }
-
-
 
 
 // Look up a transaction by transaction number and see if it is in the ledger.
@@ -1270,7 +1248,6 @@ OTTransaction * OTLedger::GetTransactionByIndex(int32_t nIndex)
 
 	return NULL; // Should never reach this point, since bounds are checked at the top.
 }
-
 
 
 // Nymbox-only.
@@ -1521,7 +1498,6 @@ OTTransaction * OTLedger::GetPaymentReceipt(int64_t lReferenceNum, // pass in th
 }
 
 
-
 /// Only if it is an inbox, a ledger will loop through the transactions
 /// and produce the XML output for the report that's necessary during
 /// a balance agreement. (Any balance agreement for an account must
@@ -1660,8 +1636,6 @@ OTItem * OTLedger::GenerateBalanceStatement(const int64_t lAdjustment, const OTT
 }
 
 
-
-
 // for inbox only, allows you to lookup the total value of pending transfers within the inbox.
 // (And it really loads the items to check the amount, but does all this ONLY for pending transfers.)
 //
@@ -1686,7 +1660,6 @@ int64_t OTLedger::GetTotalPendingValue()
 
 	return lTotalPendingValue;
 }
-
 
 
 // Called by the above function.
@@ -1714,8 +1687,6 @@ void OTLedger::ProduceOutboxReport(OTItem & theBalanceItem)
 	}
 }
 
-
-// ---------------------------------------------------------
 
 // For payments inbox and possibly recordbox / expired box. (Starting to write it now...)
 //
@@ -1861,9 +1832,6 @@ OTPayment * OTLedger::GetInstrument(      OTPseudonym  & theNym,
 }
 
 
-// ---------------------------------------------------------
-
-
 // Auto-detects ledger type. (message/nymbox/inbox/outbox)
 // Use this instead of LoadContractFromString (for ledgers,
 // for when you don't know their type already.)
@@ -1895,7 +1863,6 @@ bool OTLedger::LoadLedgerFromString(const OTString & theStr)
 	}
 	return bLoaded;
 }
-
 
 
 // SignContract will call this function at the right time.
@@ -2014,8 +1981,6 @@ void OTLedger::UpdateContents() // Before transmission or serialization, this is
 	m_xmlUnsigned.Concatenate("%s", strLedgerContents.Get());
 	m_xmlUnsigned.Concatenate("</accountLedger>\n");
 }
-
-
 
 
 // LoadContract will call this function at the right time.
@@ -2475,10 +2440,12 @@ void OTLedger::ReleaseTransactions()
 	}
 }
 
+
 void OTLedger::Release_Ledger()
 {
 	ReleaseTransactions();
 }
+
 
 void OTLedger::Release()
 {

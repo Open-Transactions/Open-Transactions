@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTCrypto.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
 
@@ -154,8 +153,6 @@ class OTPasswordData;
 class OTSignature;
 class OTPseudonym;
 
-
-// ------------------------------------------------------------------------
 
 class OTCryptoConfig
 {
@@ -219,10 +216,6 @@ public:
 };
 
 
-
-
-
-
 // Sometimes I want to decrypt into an OTPassword (for encrypted symmetric
 // keys being decrypted) and sometimes I want to decrypt into an OTPayload
 // (For most other types of data.) This class allows me to do it either way
@@ -254,18 +247,15 @@ EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
 EXPORT	void Release_Envelope_Decrypt_Output();
 };
 
-// ------------------------------------------------------------------------
 
 typedef std::set<OTPseudonym *>                         setOfNyms;
 typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 
-// ------------------------------------------------------------------------
-//
+
 // OT CRYPTO -- ABSTRACT INTERFACE
 //
 // We are now officially at the point where we can easily swap crypto libs!
 // Just make a subclass of OTCrypto (copy an existing subclass such as OTCrypto_OpenSSL)
-
 class OTCrypto
 {
 private:
@@ -416,9 +406,6 @@ EXPORT    void Cleanup();
 };
 
 
-
-// ------------------------------------------------------------------------
-
 // OTCrypto (above) is the abstract base class which is used as an
 // interface by the rest of OT.
 //
@@ -426,13 +413,14 @@ EXPORT    void Cleanup();
 // the OpenSSL library. Theoretically, a new implementation could someday be
 // "swapped in" -- for example, using GPG or NaCl or Crypto++, etc.
 
-// ------------------------------------------------------------------------
+
 #if defined (OT_CRYPTO_USING_GPG)
 
 // Someday    }:-)        OTCrypto_GPG
 
-// ------------------------------------------------------------------------
+
 #elif defined (OT_CRYPTO_USING_OPENSSL)
+
 
 class OTCrypto_OpenSSL : public OTCrypto
 {
@@ -547,7 +535,7 @@ public:
     virtual ~OTCrypto_OpenSSL();
 };
 
-// ------------------------------------------------------------------------
+
 #else // Apparently NO crypto engine is defined!
 
 
@@ -555,9 +543,6 @@ public:
 
 
 #endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
-// ------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------
 
 
 /*
@@ -599,8 +584,6 @@ public:
  a moderately high rate.
 
  */
-// ------------------------------------------------------------------------
-
 
 /*
  int32_t PKCS5_PBKDF2_HMAC_SHA1	(
@@ -616,5 +599,6 @@ public:
     void *          key
 )
 */
+
 
 #endif // __OT_CRYPTO_HPP__

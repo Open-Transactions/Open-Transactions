@@ -1,4 +1,4 @@
-/***************************************************************
+/************************************************************
  *    
  *  OTCheque.cpp
  *  
@@ -134,11 +134,11 @@
 
 #include <OTCheque.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <OTString.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTLog.hpp>
-
-#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
@@ -197,7 +197,6 @@ void OTCheque::UpdateContents()
 	
 	m_xmlUnsigned.Concatenate("</cheque>\n");			
 }
-
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -302,6 +301,7 @@ int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 	return nReturnVal;
 }
 
+
 // You still need to re-sign the cheque after doing this.
 void OTCheque::CancelCheque()
 {
@@ -322,6 +322,7 @@ void OTCheque::CancelCheque()
     // Since this is really just about marking off transaction numbers, not
     // changing any balances, we set the cheque amount to 0 and re-sign it.
 }
+
 
 // Imagine that you are actually writing a cheque.
 // That's basically what this function does.
@@ -381,6 +382,7 @@ OTCheque::OTCheque() : ot_super(), m_lAmount(0), m_bHasRecipient(false), m_bHasR
 	InitCheque();
 }
 
+
 OTCheque::OTCheque(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : 
 			ot_super(SERVER_ID, ASSET_ID), m_lAmount(0), m_bHasRecipient(false), m_bHasRemitter(false)
 {
@@ -405,6 +407,7 @@ void OTCheque::Release_Cheque()
 	// Then I call this to re-initialize everything
 	InitCheque(); 
 }
+
 
 void OTCheque::Release()
 {

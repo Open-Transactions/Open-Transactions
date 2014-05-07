@@ -159,6 +159,7 @@ char const * const __TypeStrings[] =
     "ERROR_STATE"
 };
 
+
 //static
 const char * OTPayment::_GetTypeString(paymentType theType) {
 	int32_t nType = static_cast<int32_t> (theType);
@@ -177,7 +178,7 @@ OTPayment::paymentType OTPayment::GetTypeFromString(const OTString & strType)
 #undef OT_NUM_ELEM
     return OTPayment::ERROR_STATE;
 }
-// ***********************************************************
+
 
 // Since the temp values are not available until at least ONE instantiating has occured,
 // this function forces that very scenario (cleanly) so you don't have to instantiate-and-
@@ -268,8 +269,6 @@ bool OTPayment::SetTempValues() // this version for OTTrackable (all types EXCEP
     return false; // Should never actually reach this point.
 }
 
-// -----------------------------------------
-
 
 bool OTPayment::SetTempValuesFromCheque(const OTCheque & theInput)
 {
@@ -339,7 +338,6 @@ bool OTPayment::SetTempValuesFromCheque(const OTCheque & theInput)
 }
 
 
-
 bool OTPayment::SetTempValuesFromPaymentPlan(const OTPaymentPlan & theInput)
 {
     if (OTPayment::PAYMENT_PLAN == m_Type)
@@ -380,6 +378,7 @@ bool OTPayment::SetTempValuesFromPaymentPlan(const OTPaymentPlan & theInput)
 
     return false;    
 }
+
 
 bool OTPayment::SetTempValuesFromSmartContract(const OTSmartContract & theInput)
 {
@@ -461,9 +460,6 @@ bool OTPayment::SetTempValuesFromPurse(const OTPurse & theInput)
     
     return false;    
 }
-// -------------------------------------------------------------------
-
-
 
 
 bool OTPayment::GetMemo(OTString & strOutput) const
@@ -504,8 +500,6 @@ bool OTPayment::GetMemo(OTString & strOutput) const
 }
 
 
-
-
 bool OTPayment::GetAmount(int64_t & lOutput) const
 {
     lOutput = 0;
@@ -538,7 +532,6 @@ bool OTPayment::GetAmount(int64_t & lOutput) const
     
     return bSuccess;
 }
-
 
 
 bool OTPayment::GetAllTransactionNumbers(OTNumList & numlistOutput) const
@@ -678,7 +671,6 @@ bool OTPayment::HasTransactionNum(const int64_t & lInput) const
     
     return bSuccess;
 }
-
 
 
 bool OTPayment::GetClosingNum(      int64_t         & lOutput,
@@ -885,6 +877,7 @@ bool OTPayment::GetTransactionNum(int64_t & lOutput) const
     return bSuccess;
 }
 
+
 bool OTPayment::GetValidFrom(time64_t & tOutput) const
 {
     tOutput = OT_TIME_ZERO;
@@ -913,6 +906,7 @@ bool OTPayment::GetValidFrom(time64_t & tOutput) const
     
     return bSuccess;
 }
+
 
 bool OTPayment::GetValidTo(time64_t & tOutput) const
 {
@@ -943,7 +937,7 @@ bool OTPayment::GetValidTo(time64_t & tOutput) const
     return bSuccess;
 }
 
-// -----------------------------------------------------------------
+
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.
 // You have to use VerifyCurrentDate() to make sure you're within the
@@ -969,7 +963,8 @@ bool OTPayment::IsExpired(bool & bExpired)
     // ---------------------------------
     return true;
 }
-// -----------------------------------------------------------------
+
+
 // Verify whether the CURRENT date is WITHIN the VALID FROM / TO dates.
 //
 bool OTPayment::VerifyCurrentDate(bool & bVerified)
@@ -987,7 +982,7 @@ bool OTPayment::VerifyCurrentDate(bool & bVerified)
     // ---------------------------------
     return true;
 }
-// -----------------------------------------------------------------
+
 
 bool OTPayment::GetAssetTypeID(OTIdentifier & theOutput) const
 {
@@ -1020,6 +1015,7 @@ bool OTPayment::GetAssetTypeID(OTIdentifier & theOutput) const
     
     return bSuccess;
 }
+
 
 bool OTPayment::GetServerID(OTIdentifier & theOutput) const
 {
@@ -1078,6 +1074,7 @@ bool OTPayment::GetRemitterUserID(OTIdentifier & theOutput) const
     return bSuccess;
 }
 
+
 // With a voucher (cashier's cheque) the "bank"s account is the "sender" acct,
 // whereas the actual account originally used to purchase it is the "remitter" acct.
 //
@@ -1105,6 +1102,7 @@ bool OTPayment::GetRemitterAcctID(OTIdentifier & theOutput) const
     return bSuccess;
 }
 
+
 bool OTPayment::GetSenderUserIDForDisplay(OTIdentifier & theOutput) const
 {
     if (IsVoucher())
@@ -1113,6 +1111,7 @@ bool OTPayment::GetSenderUserIDForDisplay(OTIdentifier & theOutput) const
     return GetSenderUserID(theOutput);
 }
 
+
 bool OTPayment::GetSenderAcctIDForDisplay(OTIdentifier & theOutput) const
 {
     if (IsVoucher())
@@ -1120,6 +1119,7 @@ bool OTPayment::GetSenderAcctIDForDisplay(OTIdentifier & theOutput) const
     
     return GetSenderAcctID(theOutput);
 }
+
 
 bool OTPayment::GetSenderUserID(OTIdentifier & theOutput) const
 {
@@ -1153,6 +1153,7 @@ bool OTPayment::GetSenderUserID(OTIdentifier & theOutput) const
     return bSuccess;
 }
 
+
 bool OTPayment::GetSenderAcctID(OTIdentifier & theOutput) const
 {
     theOutput.Release();
@@ -1184,8 +1185,6 @@ bool OTPayment::GetSenderAcctID(OTIdentifier & theOutput) const
     
     return bSuccess;
 }
-
-
 
 
 bool OTPayment::GetRecipientUserID(OTIdentifier & theOutput) const
@@ -1270,11 +1269,6 @@ bool OTPayment::GetRecipientAcctID(OTIdentifier & theOutput) const
     return bSuccess;
 }
 
-// -----------------------------------------
-
-
-
-
 
 OTPayment::OTPayment()
 :   ot_super(),
@@ -1306,7 +1300,7 @@ OTPayment::OTPayment(const OTString & strPayment)
     
     SetPayment(strPayment);
 }
-// -----------------------------------------------------
+
 
 // CALLER is responsible to delete.
 //
@@ -1406,7 +1400,6 @@ OTTrackable * OTPayment::Instantiate(const OTString & strPayment)
     return NULL;
 }
 
-// -------------------------------------------
 
 // You need the server ID to instantiate a purse, unlike all the
 // other payment types. UPDATE: Not anymore.
@@ -1425,6 +1418,7 @@ OTPurse * OTPayment::InstantiatePurse() const
     
     return NULL;
 }
+
 
 /*
 OTPurse * OTPayment::InstantiatePurse(const OTIdentifier & SERVER_ID) const
@@ -1454,9 +1448,6 @@ OTPurse * OTPayment::InstantiatePurse(const OTIdentifier & SERVER_ID, const OTId
 }
 */
 
-// -------------------------------------------
-
-
 OTPurse * OTPayment::InstantiatePurse(const OTString & strPayment)
 {
     if (false == this->SetPayment(strPayment))
@@ -1471,7 +1462,6 @@ OTPurse * OTPayment::InstantiatePurse(const OTString & strPayment)
     return NULL;
 }
 
-// -------------------------------------------
 
 /*
 OTPurse * OTPayment::InstantiatePurse(const OTIdentifier & SERVER_ID, const OTString & strPayment)
@@ -1504,8 +1494,6 @@ OTPurse * OTPayment::InstantiatePurse(const OTIdentifier & SERVER_ID, const OTId
     return NULL;
 }
 */
-// -------------------------------------------
-
 
 bool OTPayment::SetPayment(const OTString & strPayment)
 {
@@ -1558,7 +1546,6 @@ bool OTPayment::SetPayment(const OTString & strPayment)
     
     return true;
 }
-// -------------------------------------------
 
 
 void OTPayment::InitPayment()
@@ -1575,11 +1562,11 @@ void OTPayment::InitPayment()
 }
 
 
-
 OTPayment::~OTPayment()
 {
     Release_Payment();
 }
+
 
 void OTPayment::Release_Payment()
 {
@@ -1621,8 +1608,6 @@ void OTPayment::Release()
 }
 
 
-
-
 void OTPayment::UpdateContents() // Before transmission or serialization, this is where the Purse saves its contents 
 {	
 	// I release this because I'm about to repopulate it.
@@ -1645,7 +1630,6 @@ void OTPayment::UpdateContents() // Before transmission or serialization, this i
     
 	m_xmlUnsigned.Concatenate("</payment>\n");			
 }
-
 
 
 int32_t OTPayment::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -1692,7 +1676,6 @@ int32_t OTPayment::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 	return 0;
 }
-
 
 
 bool OTPayment::SaveContractWallet(std::ofstream & ofs)	

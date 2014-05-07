@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTPasswordData.hpp
  *
@@ -177,9 +177,7 @@ class OTPassword;
 #define OT_LARGE_BLOCKSIZE	32767		// (32767 bytes max length for a password.)
 #define OT_LARGE_MEMSIZE	32768		// +1 for null terminator.
 
-
 // Default is the smaller size.
-
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
 
@@ -195,6 +193,7 @@ class OTPassword;
 //
 // NOTE: For Windows, use VirtualLock instead of mlock.
 //
+
 /*
  #include <sys/mman.h>
 
@@ -374,4 +373,4 @@ EXPORT    ~OTPasswordData();
 };
 
 
-#endif //__OT_PASSWORD_DATA_HPP__
+#endif // __OT_PASSWORD_DATA_HPP__

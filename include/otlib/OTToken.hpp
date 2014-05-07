@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_TOKEN_HPP__
 #define __OT_TOKEN_HPP__
 
@@ -145,7 +144,6 @@ class OTMint;
 class OTPurse;
 class OTPseudonym;
 class OTNym_or_SymmetricKey;
-
 
 typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 

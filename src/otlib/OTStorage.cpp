@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
 *
 *  OTStorage.cpp
 *
@@ -134,13 +134,13 @@
 
 #include <OTStorage.hpp>
 
+#include <typeinfo>
+#include <fstream>
+
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTPayload.hpp>
-
-#include <typeinfo>
-#include <fstream>
 
 /*
 
@@ -284,9 +284,12 @@
  // --------------------------------------------------------------
  */
 
+
 OTDB::Storage * OTDB::details::s_pStorage= NULL;
 
+
 OTDB::mapOfFunctions * OTDB::details::pFunctionMap=NULL; // This is a pointer so I can control what order it is created in, on startup.
+
 
 const char * OTDB::StoredObjectTypeStrings[] =
 {
@@ -318,13 +321,8 @@ const char * OTDB::StoredObjectTypeStrings[] =
 };
 
 
-
 namespace OTDB
 {
-
-
-	// ********************************************************************
-
 	// NAMESPACE CONSTRUCTOR / DESTRUCTOR
 
 	// s_pStorage is "private" to the namespace.
@@ -469,7 +467,6 @@ namespace OTDB
 	}
 
 
-
 	// %newobject Factory::createObj();
 	Storable * CreateObject(StoredObjectType eType)
 	{
@@ -490,7 +487,6 @@ namespace OTDB
 
 	// BELOW FUNCTIONS use the DEFAULT Storage context.
 
-	// -----------------------------------------
 	// Check that if oneStr is "", then twoStr and threeStr are "" also... and so on...
 	bool CheckStringsExistInOrder(std::string & strFolder, std::string & oneStr,
                                   std::string & twoStr,    std::string & threeStr, const char * szFuncName)
@@ -531,7 +527,6 @@ namespace OTDB
 	}
 
 
-	// -----------------------------------------
 	// See if the file is there.
 	bool Exists(std::string strFolder,      std::string oneStr/*=""*/,
                 std::string twoStr/*=""*/,  std::string threeStr/*=""*/)
@@ -562,6 +557,7 @@ namespace OTDB
 
 		return pStorage->Exists(strFolder, oneStr, twoStr, threeStr);
 	}
+
 
     int64_t FormPathString(std::string & strOutput,
                         std::string   strFolder,     std::string oneStr/*=""*/,
@@ -594,7 +590,7 @@ namespace OTDB
 		return pStorage->FormPathString(strOutput, strFolder, oneStr, twoStr, threeStr);
     }
 
-	// -----------------------------------------
+
 	// Store/Retrieve a string.
 
 	bool StoreString(std::string strContents,
@@ -623,6 +619,7 @@ namespace OTDB
 		return pStorage->StoreString(strContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	std::string QueryString(std::string strFolder,      std::string oneStr/*=""*/,
 		std::string twoStr/*=""*/,  std::string threeStr/*=""*/)
 	{
@@ -646,7 +643,7 @@ namespace OTDB
 		return pStorage->QueryString(strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve a plain string.
 
 	bool StorePlainString(std::string strContents,
@@ -677,6 +674,7 @@ namespace OTDB
 		return pStorage->StorePlainString(strContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	std::string QueryPlainString(std::string strFolder,     std::string oneStr/*=""*/,
                                  std::string twoStr/*=""*/, std::string threeStr/*=""*/)
 	{
@@ -705,7 +703,7 @@ namespace OTDB
 		return pStorage->QueryPlainString(strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve an object. (Storable.)
 
 	bool StoreObject(Storable & theContents, std::string strFolder, std::string oneStr/*=""*/,
@@ -734,6 +732,7 @@ namespace OTDB
 		return pStorage->StoreObject(theContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	// Use %newobject Storage::Query();
 	Storable * QueryObject(StoredObjectType theObjectType,
 						   std::string strFolder, std::string oneStr/*=""*/,  std::string twoStr/*=""*/,
@@ -761,7 +760,7 @@ namespace OTDB
 		return pStorage->QueryObject(theObjectType, strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve a Storable object to/from an OTASCIIArmor object.
 
 	std::string EncodeObject(Storable & theContents)
@@ -776,6 +775,7 @@ namespace OTDB
 		return pStorage->EncodeObject(theContents);
 	}
 
+
 	// Use %newobject Storage::DecodeObject();
 	Storable * DecodeObject(StoredObjectType theObjectType, std::string strInput)
 	{
@@ -789,7 +789,7 @@ namespace OTDB
 		return pStorage->DecodeObject(theObjectType, strInput);
 	}
 
-    // -----------------------------------------
+
 	// Erase a value by location.
 
 	bool EraseValueByKey(std::string strFolder,     std::string oneStr/*=""*/,
@@ -806,15 +806,6 @@ namespace OTDB
 		return pStorage->EraseValueByKey(strFolder, oneStr, twoStr, threeStr);
 	}
 
-    // ********************************************************************
-
-
-
-
-
-
-
-	// ********************************************************************
 
 	// Used internally. Creates the right subclass for any stored object type,
 	// based on which packer is needed.
@@ -847,10 +838,6 @@ namespace OTDB
 		return pStorable; // May return NULL...
 	}
 
-
-
-
-	// ********************************************************************
 
 	// static. OTPacker Factory.
 	//
@@ -988,14 +975,6 @@ namespace OTDB
 		return true;
 	}
 
-	// ********************************************************************
-
-
-
-
-
-
-	// ---------------------------------------------
 
 	// NOTICE!!! that when you add something to the list, it is CLONED. (Caller is still responsible to delete the argument.)
 	//

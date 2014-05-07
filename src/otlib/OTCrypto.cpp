@@ -1,4 +1,4 @@
-/*****************************************************************
+/************************************************************
  *
  *  OTCrypto.cpp
  *
@@ -167,7 +167,6 @@ extern "C"
 #endif
 }
 
-// -------------------------------------------------------------------------------------------
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
@@ -198,24 +197,23 @@ extern "C"
 #include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
 #include "OpenSSL_BIO.hpp"
 
-// -------------------------------------------------------------------------------------------
+
 #elif defined (OT_CRYPTO_USING_GPG)
 
-// -------------------------------------------------------------------------------------------
+
 #else
 
 #endif
-// -------------------------------------------------------------------------------------------
 
-// ********************************************************************************
+
 // OpenSSL / Crypto-lib d-pointer
 
-// ------------------------------------------------------------------------
+
 #if defined (OT_CRYPTO_USING_GPG)
 
 // Someday    }:-)        OTCrypto_GPG
 
-// ------------------------------------------------------------------------
+
 #elif defined (OT_CRYPTO_USING_OPENSSL)
 
 class OTCrypto_OpenSSL::OTCrypto_OpenSSLdp {
@@ -249,7 +247,7 @@ public:
     static const EVP_MD * GetOpenSSLDigestByName(const OTString & theName);
 };
 
-// ------------------------------------------------------------------------
+
 #else // Apparently NO crypto engine is defined!
 
 
@@ -257,10 +255,6 @@ public:
 
 
 #endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
-// ------------------------------------------------------------------------
-
-
-// ********************************************************************************
 
 
 // class OTCrypto
@@ -271,7 +265,6 @@ public:
 //
 
 
-//
 // todo optimzation maybe this should be 10000 instead of 65535
 //
 #define OT_DEFAULT_ITERATION_COUNT         65535  // in bytes
@@ -346,22 +339,20 @@ uint32_t OTCryptoConfig::Digest1Size()          { return GetValue(sp_nDigest1Siz
 uint32_t OTCryptoConfig::Digest2Size()          { return GetValue(sp_nDigest2Size); }
 
 
-
 //static
 int32_t OTCrypto::s_nCount = 0;   // Instance count, should never exceed 1. (At this point, anyway.)
 
 
-// -------------------------------------------------------------------------------------------
 OTCrypto::OTCrypto()   { }
 OTCrypto::~OTCrypto()  { }
-// -------------------------------------------------------------------------------------------
+
 
 bool OTCrypto::IsBase62(const std::string &str) const
 {
     return str.find_first_not_of("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") == std::string::npos;
 }
 
-// --------------------------------------------------------
+
 /*
 extern "C"
 {
@@ -393,6 +384,7 @@ void SetStdinEcho(int32_t enable)
 }
 */
 
+
 /*
 int32_t _getch( void ); // windows only  #include <conio.h>
 
@@ -413,7 +405,6 @@ int32_t main()
 }
 */
 
-// -------------------------------------------------------------------------------------------
 
 #include <iostream>
 
@@ -502,11 +493,6 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 }
 
 
-
-
-// -------------------------------------------------------------------------------------------
-
-
 		// get pass phrase, length 'len' into 'tmp'
 		/*
 		int32_t len=0;
@@ -524,9 +510,6 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 		memcpy(buf, tmp, len);
 		return len;
 		 */
-
-// -------------------------------------------------------------------------------------------
-
 
 
 bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=false*/) const
@@ -578,7 +561,6 @@ bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=fal
     return false;
 }
 
-// -------------------------------------------------------------------------------------------
 
 //static
 OTCrypto * OTCrypto::It()
@@ -595,7 +577,6 @@ static
     return &s_theSingleton;
 }
 
-// -----------------------------
 
 // Currently called by OTLog::OT_Init();
 
@@ -629,7 +610,7 @@ void OTCrypto::Init()
     else
         OTLog::Error("OTCrypto::Init: ERROR: Somehow this erroneously got called more than once! (Doing nothing.)\n");
 }
-// -----------------------------
+
 
 // Currently called by OTLog::OT_Cleanup();
 
@@ -653,7 +634,6 @@ void OTCrypto::Cleanup()
         OTLog::Error("OTCrypto::Cleanup: ERROR: Somehow this erroneously got called more than once! (Doing nothing.)\n");
 }
 
-// -----------------------------
 
 //virtual (Should never get called.)
 void OTCrypto::Init_Override()
@@ -661,15 +641,12 @@ void OTCrypto::Init_Override()
     OTLog::Error("OTCrypto::Init_Override: ERROR: This function should NEVER be called (you should be overriding it...)\n");
 }
 
-// -----------------------------
 
 //virtual (Should never get called.)
 void OTCrypto::Cleanup_Override()
 {
     OTLog::Error("OTCrypto::Cleanup_Override: ERROR: This function should NEVER be called (you should be overriding it...)\n");
 }
-
-// -----------------------------
 
 
 bool OTCrypto::Base64Encode(const OTData & theInput, OTString & strOutput, bool bLineBreaks/*=true*/) const
@@ -725,16 +702,8 @@ bool OTCrypto::Base64Decode(const OTString & strInput, OTData & theOutput, bool 
 }
 
 
-// ********************************************************************************
-
-
-
-
-
-
-
-
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output() : m_pPassword(NULL), m_pPayload(NULL) {}
+
 
 OTCrypto_Decrypt_Output::~OTCrypto_Decrypt_Output()
 {
@@ -760,17 +729,20 @@ OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(const OTCrypto_Decrypt_Output &
     m_pPayload  = rhs.m_pPayload;
 }
 
+
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(OTPassword & thePassword)
 : m_pPassword(&thePassword), m_pPayload(NULL)
 {
 
 }
 
+
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(OTPayload  & thePayload)
 : m_pPassword(NULL), m_pPayload(&thePayload)
 {
 
 }
+
 
 void OTCrypto_Decrypt_Output::swap(OTCrypto_Decrypt_Output & other) // the swap member function (should never fail!)
 {
@@ -781,6 +753,7 @@ void OTCrypto_Decrypt_Output::swap(OTCrypto_Decrypt_Output & other) // the swap 
     }
 }
 
+
 OTCrypto_Decrypt_Output & OTCrypto_Decrypt_Output::operator=(OTCrypto_Decrypt_Output other) // note: argument passed by value!
 {
     // swap this with other
@@ -790,8 +763,8 @@ OTCrypto_Decrypt_Output & OTCrypto_Decrypt_Output::operator=(OTCrypto_Decrypt_Ou
     return *this;
 }
 
+
 // This is just a wrapper class.
-//
 void OTCrypto_Decrypt_Output::Release()
 {
     OT_ASSERT((m_pPassword != NULL) || (m_pPayload != NULL));
@@ -803,7 +776,6 @@ void OTCrypto_Decrypt_Output::Release()
 
 
 // This is just a wrapper class.
-//
 void OTCrypto_Decrypt_Output::Release_Envelope_Decrypt_Output()
 {
     if (NULL != m_pPassword)
@@ -836,20 +808,12 @@ bool OTCrypto_Decrypt_Output::Concatenate(const void * pAppendData, uint32_t lAp
 }
 
 
-
-
-
-
-// ********************************************************************************
-
-
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
 
 
 extern "C"
 {
-    // -----------------------
+
 #include <openssl/crypto.h>
 #include <openssl/asn1.h>
 #include <openssl/evp.h>
@@ -862,7 +826,7 @@ extern "C"
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
 
-    // -----------------------
+
 //#ifndef ANDROID // Android thus far only supports OpenSSL 0.9.8k
 #include <openssl/whrlpool.h>
 
@@ -904,13 +868,12 @@ extern "C"
 #include <openssl/opensslv.h>
 }
 
-// -----------------------------
 
 OTCrypto_OpenSSL::OTCrypto_OpenSSL() : OTCrypto()  { }
 
+
 OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
 
-// -----------------------------
 
 /*
  #include <openssl/ssl.h>
@@ -944,9 +907,6 @@ OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
  //void CONF_modules_finish(void);
  //void CONF_modules_unload(int32_t all);
  */
-
-// *********************************************************************************
-
 
 /*
 #include <openssl/crypto.h>
@@ -1001,7 +961,6 @@ int32_t CRYPTO_num_locks(void);
  facility.
  */
 
-
 /*
 
 // struct CRYPTO_dynlock_value needs to be defined by the user
@@ -1034,11 +993,8 @@ void CRYPTO_lock(int32_t mode, int32_t n, const char *file, int32_t line);
 
  */
 
-
 tthread::mutex * OTCrypto_OpenSSL::s_arrayMutex = NULL;
 
-
-// *********************************************************************************
 
 extern "C"
 {
@@ -1048,7 +1004,7 @@ extern "C"
 #else
     void  ot_openssl_thread_id(CRYPTO_THREADID *);
 #endif
-    // ---------------------------------
+
     void  ot_openssl_locking_callback( int32_t mode, int32_t type, char *file, int32_t line);
 }
 
@@ -1064,8 +1020,6 @@ extern "C"
  error number facility.
 
  */
-
-// *********************************************************************************
 
 #if OPENSSL_VERSION_NUMBER-0 < 0x10000000L
 uint64_t ot_openssl_thread_id()
@@ -1093,8 +1047,6 @@ void ot_openssl_thread_id(CRYPTO_THREADID * id)
 }
 #endif
 
-// *********************************************************************************
-
 
 /*
  locking_function(int32_t mode, int32_t n, const char *file, int32_t line) is needed to perform locking on
@@ -1121,7 +1073,7 @@ void ot_openssl_locking_callback(int32_t mode, int32_t type, const char *file, i
     }
 }
 
-// *********************************************************************************
+
 /*
  --- More code for Base64 Decoding using OpenSSL:
 
@@ -1159,7 +1111,6 @@ char *unbase64(uint8_t *input, int32_t length)
     return buffer;
 }
 */
-// --------------------------------------------------------------------------------------------
 
 /*
 // This function will base64 DECODE the string contents
@@ -1288,21 +1239,19 @@ extern "C"
 } // extern "C"
 
 
-// --------------------------------------------------------------------------------------------
 // Caller responsible to delete.
-//
 char * OTCrypto_OpenSSL::Base64Encode(const uint8_t * input, int32_t in_len, bool bLineBreaks) const
 {
     return ot_openssl_base64_encode(input, in_len, (bLineBreaks ? 1 : 0));
 }
-// ----------------------------------
+
+
 // Caller responsible to delete.
-//
 uint8_t * OTCrypto_OpenSSL::Base64Decode(const char * input, size_t * out_len, bool bLineBreaks) const
 {
     return ot_openssl_base64_decode(input, out_len, (bLineBreaks ? 1 : 0));
 }
-// --------------------------------------------------------------------------------------------
+
 
 // SET (binary id) FROM BASE62-ENCODED STRING
 //
@@ -1325,7 +1274,7 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	const std::string strINPUT = strInput.Get();
     if (false == this->IsBase62(strINPUT))
 		return;
-    // ---------------------------------------
+
 	// Todo there are try/catches in here, so need to handle those at some point.
 	BigInteger bigIntFromBase62 = stringToBigIntegerBase62(strINPUT);
 
@@ -1369,7 +1318,6 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	BN_free(pBigNum);
 }
 
-// --------------------------------------------------------------------------------------------
 
 // GET (binary id) AS BASE62-ENCODED STRING
 //
@@ -1410,7 +1358,6 @@ void OTCrypto_OpenSSL::SetBase62StringFromID(const OTIdentifier & theInput, OTSt
 	// -----------------------------------------
 	strOutput.Set(strBigInt.c_str());
 }
-// --------------------------------------------------------------------------------------------
 
 
 bool OTCrypto_OpenSSL::RandomizeMemory(uint8_t * szDestination, uint32_t nNewSize) const
@@ -1443,7 +1390,6 @@ bool OTCrypto_OpenSSL::RandomizeMemory(uint8_t * szDestination, uint32_t nNewSiz
 }
 
 
-// --------------------------------------------------------------------------------------------
 // DeriveKey derives a 128-bit symmetric key from a passphrase.
 //
 // The OTPassword* returned is the actual derived key. (The result.)
@@ -1473,6 +1419,7 @@ OTPassword * OTCrypto_OpenSSL::DeriveKey(const OTPassword &   userPassword,
 	OTPayload tempPayload = dataCheckHash;
 	return OTCrypto_OpenSSL::DeriveNewKey(userPassword,dataSalt,uIterations,tempPayload);
 }
+
 
 OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
                                             const OTPayload  &   dataSalt,
@@ -1557,8 +1504,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 	return pDerivedKey;
 }
 
-// -------------------------------------------------------------------------------
-
 
 /*
  openssl dgst -sha1 \
@@ -1570,7 +1515,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
  -verify clientcert.pem \
  -signature cheesy2.sig \
  cheesy2.xml
-
 
 
 openssl x509 -in clientcert.pem -pubkey -noout > clientpub.pem
@@ -1586,8 +1530,6 @@ openssl dgst -sha1 -verify clientpub.pem -signature cheesy2.sig  cheesy2.xml
 
  */
 
-
-// -------------------------------------------------------------------------------------------------
 
 //static
 const EVP_MD * OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(const OTString & theName)
@@ -1609,7 +1551,6 @@ const EVP_MD * OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(cons
 	return NULL;
 }
 
-// -------------------------------------------------------------------------------------------------
 
 bool OTCrypto_OpenSSL::CalculateDigest(const OTString & strInput, const OTString & strHashAlgorithm, OTIdentifier & theOutput) const
 {
@@ -1697,7 +1638,6 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 }
 
 
-// --------------------
 /*
  SHA256_CTX context;
  uint8_t md[SHA256_DIGEST_LENGTH];
@@ -1706,10 +1646,7 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
  SHA256_Update(&context, (uint8_t*)input, length);
  SHA256_Final(md, &context);
  */
-// ----------------------
 
-
-// -------------------------------------------------------------------------------------------------
 // (To instantiate a text secret, just do this:  OTPassword thePassword;)
 
 // Caller MUST delete!
@@ -1724,7 +1661,6 @@ OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
     return pNewKey;
 }
 
-// -------------------------------------------------------------------------------------------------
 
 // done
 
@@ -1756,7 +1692,6 @@ void OTCrypto_OpenSSL::thread_setup()
 	CRYPTO_set_locking_callback (ot_openssl_locking_callback);
 
 }
-// *********************************************************************************
 
 // done
 
@@ -1771,9 +1706,6 @@ void OTCrypto_OpenSSL::thread_cleanup()
 
     OTCrypto_OpenSSL::s_arrayMutex = NULL;
 }
-
-
-// *********************************************************************************
 
 
 void OTCrypto_OpenSSL::Init_Override()
@@ -2034,16 +1966,7 @@ void OTCrypto_OpenSSL::Init_Override()
 }
 
 
-
-
-//
-// *********************************************************************************
-
-
-
-
 // RAND_status() and RAND_event() return 1 if the PRNG has been seeded with enough data, 0 otherwise.
-
 
 /*
  13. I think I've detected a memory leak, is this a bug?
@@ -2068,11 +1991,6 @@ void OTCrypto_OpenSSL::Init_Override()
  ERR_free_strings(), EVP_cleanup() and CRYPTO_cleanup_all_ex_data().
  */
 
-//
-// *********************************************************************************
-
-
-
 
 void OTCrypto_OpenSSL::Cleanup_Override()
 {
@@ -2086,7 +2004,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 //#endif
 //
 
-// -------------------------------------------------
+
 #if defined(OPENSSL_THREADS)
     // thread support enabled
 
@@ -2097,7 +2015,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 
 
 #endif
-// -------------------------------------------------
+
     /*
      CONF_modules_free()
 
@@ -2146,18 +2064,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 }
 
 
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------
-//
-
 // #define OTCryptoConfig::SymmetricBufferSize()   default: 4096
-
 
 bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The symmetric key, in clear form.
                                // -------------------------------
@@ -2279,10 +2186,6 @@ bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The sym
     // -----------------------------------------------
     return true;
 }
-
-
-
-// ------------------------------------------------------------------------
 
 
 bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The symmetric key, in clear form.
@@ -2416,12 +2319,6 @@ bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The sym
 }
 
 
-
-
-
-
-
-// --------------------------------------------------------------------------
 // Seal up as envelope (Asymmetric, using public key and then AES key.)
 
 bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString & theInput, OTData & dataOutput) const
@@ -2845,11 +2742,6 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
 }
 
 
-
-
-
-
-
 /*
 #include <openssl/evp.h>
 int32_t EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,uint8_t *ek,
@@ -2888,10 +2780,6 @@ EVP_OpenUpdate() returns 1 for success or 0 for failure.
 
 EVP_OpenFinal() returns 0 if the decrypt failed or 1 for success.
 */
-
-
-
-
 
 // RSA / AES
 
@@ -3423,7 +3311,6 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 }
 
 
-
 // If length is 10,
 // Then indices are 0..9
 // Therefore '9' is the 10th byte, starting from 0.
@@ -3433,12 +3320,6 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 // Normally you wouldn't expect a string to include the null terminator as part of its length.
 // But for OTData, you WOULD expect the null 0 to be at the end.
 //
-
-
-
-
-
-
 
 
 /*
@@ -3548,10 +3429,6 @@ prog_end:
 	return 0;
 }
 */
-
-
-
-
 
 // The default hashing algorithm in this software should be one that XOR combines two other,
 // established and respected algorithms. In this case, we use the "SAMY" hash which is actually
@@ -3790,12 +3667,6 @@ bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::SignContractDefaultHash(const OTStrin
 	// ---------------------------------------------------------
 	return bReturnValue;
 }
-
-
-
-// ---------------------------------------------------------
-
-
 
 
 // Verify a contract that has been signed with our own default algorithm (aka SAMY hash)
@@ -4343,12 +4214,7 @@ bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::VerifyContractDefaultHash(const OTStr
 }
 
 
-// -------------------------------------------------------------------------------
-
-
-
 // All the other various versions eventually call this one, where the actual work is done.
-//
 bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::SignContract(const OTString    & strContractUnsigned,
                                                         const EVP_PKEY    * pkey,
                                                         OTSignature       & theSignature,
@@ -4477,9 +4343,6 @@ bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::SignContract(const OTString    & strC
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 bool OTCrypto_OpenSSL::SignContract(const OTString        & strContractUnsigned,
                                     const OTAsymmetricKey & theKey,
                                     OTSignature           & theSignature, // output
@@ -4509,7 +4372,6 @@ bool OTCrypto_OpenSSL::SignContract(const OTString        & strContractUnsigned,
     return true;
 }
 
-// -------------------------------------------------------------------------------
 
 bool OTCrypto_OpenSSL::VerifySignature(const OTString        & strContractToVerify,
                                        const OTAsymmetricKey & theKey,
@@ -4540,10 +4402,8 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString        & strContractToVeri
     return true;
 }
 
-// -------------------------------------------------------------------------------
 
 // All the other various versions eventually call this one, where the actual work is done.
-//
 bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::VerifySignature(const OTString    & strContractToVerify,
                                        const EVP_PKEY    * pkey,
                                        const OTSignature & theSignature,
@@ -4630,15 +4490,6 @@ bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::VerifySignature(const OTString    & s
 }
 
 
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
 // Sign the Contract using a private key from a file.
 // theSignature will contain the output.
 bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
@@ -4686,11 +4537,6 @@ bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
     // --------------------------------------------------------------------
     return bSigned;
 }
-
-
-
-// -------------------------------------------------------------------------------
-
 
 
 // Presumably the Signature passed in here was just loaded as part of this contract and is
@@ -4748,10 +4594,7 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
 }
 
 
-// *********************************************************
-
 // OpenSSL_BIO
-
 
 //static
 BIO * OpenSSL_BIO::assertBioNotNull(BIO * pBIO)
@@ -4760,9 +4603,11 @@ BIO * OpenSSL_BIO::assertBioNotNull(BIO * pBIO)
     return pBIO;
 }
 
+
 OpenSSL_BIO::OpenSSL_BIO(BIO * pBIO) : m_refBIO(*assertBioNotNull(pBIO)), bCleanup(true), bFreeOnly(false)
 {
 }
+
 
 OpenSSL_BIO::~OpenSSL_BIO()
 {
@@ -4780,15 +4625,18 @@ OpenSSL_BIO::~OpenSSL_BIO()
     }
 }
 
+
 OpenSSL_BIO::operator BIO *() const
 {
     return (&m_refBIO);
 }
 
+
 void OpenSSL_BIO::release()
 {
     bCleanup = false;
 }
+
 
 void OpenSSL_BIO::setFreeOnly()
 {
@@ -4796,23 +4644,10 @@ void OpenSSL_BIO::setFreeOnly()
 }
 
 
-
-
-
-// *********************************************************************************
-
-
 #elif defined (OT_CRYPTO_USING_GPG)
 
 
-
 // Someday    }:-)
-
-
-
-
-
-// *********************************************************************************
 
 
 #else // Apparently NO crypto engine is defined!
@@ -4822,26 +4657,6 @@ void OpenSSL_BIO::setFreeOnly()
 
 
 #endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
-
-
-
-// *********************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -4956,10 +4771,6 @@ int32_t PKCS5_PBKDF2_HMAC_SHA1	(
     int32_t keylen,  uint8_t *out);
 
  */
-
-
-
-
 
 /*
 int32_t do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)

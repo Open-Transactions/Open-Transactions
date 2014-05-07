@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTPseudonym.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_PSEUDONYM_HPP__
 #define __OT_PSEUDONYM_HPP__
 
@@ -151,7 +150,6 @@ class OTPassword;
 class OTPasswordData;
 class OTSubcredential;
 class OTTransaction;
-
 
 typedef std::deque<OTMessage *>                     dequeOfMail;
 typedef std::map<std::string, int64_t>                 mapOfRequestNums;

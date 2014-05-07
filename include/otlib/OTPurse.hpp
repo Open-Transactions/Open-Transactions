@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTPurse.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_PURSE_HPP__
 #define __OT_PURSE_HPP__
 
@@ -159,9 +158,9 @@ class OTNym_or_SymmetricKey;
 // The interface of this class is that of a simple stack.
 // Imagine a stack of poker chips.
 
-
 typedef std::deque  <OTASCIIArmor *>            dequeOfTokens;
 typedef std::map    <std::string, OTToken *>    mapOfTokenPointers;
+
 
 class OTPurse : public OTContract
 {

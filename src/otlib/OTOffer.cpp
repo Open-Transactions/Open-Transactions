@@ -159,6 +159,7 @@ bool isPowerOfTen( const int64_t & x )
 	return false;
 }
 
+
 /*
  Let's say you wanted to add an Offer to a Market. But you don't know
  which market.  There are different markets for different combinations
@@ -218,11 +219,11 @@ void OTOffer::GetIdentifier(OTIdentifier & theIdentifier)
 }
 
 
-
 bool OTOffer::IsMarketOrder() const
 {
     return (0 == GetPriceLimit());
 }
+
 
 bool OTOffer::IsLimitOrder () const
 {
@@ -370,8 +371,6 @@ int32_t OTOffer::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
 void OTOffer::UpdateContents()
 {	
 	const OTString	SERVER_ID(GetServerID()), ASSET_TYPE_ID(GetAssetID()), 
@@ -420,8 +419,6 @@ void OTOffer::UpdateContents()
 	
 //	m_xmlUnsigned.Concatenate("</marketOffer>\n");	// ^^^ Tag already ended above.
 }
-
-
 
 
 bool OTOffer::MakeOffer(bool   bBuyingOrSelling,    // True == SELLING, False == BUYING
@@ -477,6 +474,7 @@ time64_t OTOffer::GetDateAddedToMarket() const      // Used in OTMarket::GetOffe
     return m_tDateAddedToMarket;
 }
 
+
 void OTOffer::SetDateAddedToMarket(time64_t tDate) // Used in OTCron when adding/loading offers.
 {
     m_tDateAddedToMarket = tDate;
@@ -495,7 +493,6 @@ OTOffer::OTOffer()
 {
 	InitOffer();
 }
-
 
 
 OTOffer::OTOffer(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID, const OTIdentifier & CURRENCY_ID, const int64_t & lScale) 
@@ -560,8 +557,6 @@ void OTOffer::InitOffer()
 	m_lMinimumIncrement	= 1; // This must be 1 or greater. CANNOT be zero. Enforced.
 	m_lScale			= 1; // This must be 1 or greater. CANNOT be zero. Enforced.
 }
-
-
 
 
 bool OTOffer::SaveContractWallet(std::ofstream & ofs)

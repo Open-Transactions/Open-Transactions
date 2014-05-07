@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTClause.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_CLAUSE_HPP__
 #define __OT_CLAUSE_HPP__
 
@@ -192,5 +191,6 @@ EXPORT	const char * GetCode() const;
 };
 
 typedef std::map<std::string, OTClause *> mapOfClauses;
+
 
 #endif // __OT_CLAUSE_HPP__

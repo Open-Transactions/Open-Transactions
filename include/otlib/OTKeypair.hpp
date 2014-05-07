@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTKeypair.hpp
  *  
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_KEYPAIR_HPP__
 #define __OT_KEYPAIR_HPP__
 
@@ -175,13 +174,13 @@
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
-
 class OTPassword;
 class OTString;
 class OTIdentifier;
 class OTASCIIArmor;
 class OTPasswordData;
 class OTSignatureMetadata;
+
 
 // Encapsulates public/private key (though often there may only be
 // a public key present, unless the nym belongs to you.)

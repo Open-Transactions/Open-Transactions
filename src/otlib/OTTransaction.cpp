@@ -145,8 +145,6 @@
 #include <OTBasket.hpp>
 #include <OTMessage.hpp>
 
-#include <time.h>
-
 
 char const * const __TypeStrings[] = 
 {
@@ -207,14 +205,13 @@ char const * const __TypeStrings[] =
 	"error_state"	
 };
 
+
 const char * OTTransaction::_GetTypeString(transactionType theType) {
 	int32_t nType = static_cast<int32_t> (theType);
 	return __TypeStrings[nType];
 }
 
 
-
-// ---------------------------------------------------------
 // Used in balance agreement, part of the inbox report.
 int64_t OTTransaction::GetClosingNum() const
 {
@@ -226,9 +223,6 @@ void OTTransaction::SetClosingNum(const int64_t lClosingNum)
 {
 	m_lClosingTransactionNo = lClosingNum;
 }
-// ---------------------------------------------------------
-
-
 
 
 // Make sure this contract checks out. Very high level. 
@@ -346,8 +340,6 @@ bool OTTransaction::VerifyAccount(OTPseudonym & theNym)
 
  */
 
-// -----------------------------------------------------------------------------
-//    
 // Only do this if the message itself failed, meaning this transaction never even
 // attempted, and thus this transaction NEVER EVEN HAD A *CHANCE* TO FAIL, and thus
 // the opening number never got burned (Normally no point in harvesting a burned
@@ -779,9 +771,6 @@ bool OTTransaction::HarvestOpeningNumber(OTPseudonym & theNym,
 }
 
 
-
-
-
 // Normally do this if your transaction ran--and failed--so you can get most of
 // your transaction numbers back. (The opening number is usually already gone,
 // but any others are still salvageable.)
@@ -1136,12 +1125,6 @@ bool OTTransaction::HarvestClosingNumbers(OTPseudonym & theNym,
 }
 
 
-
-
-
-
-
-
 // Client-side.
 //
 // This transaction actually was saved as a transaction receipt (filename: nymID.success)
@@ -1282,8 +1265,6 @@ bool OTTransaction::VerifyTransactionReceipt(OTPseudonym & SERVER_NYM, // For ve
 }
 
 
-
-
 // static
 bool OTTransaction::VerifyTransactionReceipt(OTPseudonym & SERVER_NYM,
 											 OTPseudonym & THE_NYM,
@@ -1382,7 +1363,6 @@ bool OTTransaction::VerifyTransactionReceipt(OTPseudonym & SERVER_NYM,
 }
 
 
-
 // static
 bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM,
 										 OTPseudonym & THE_NYM,
@@ -1475,7 +1455,6 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM,
 	
 	return pTransaction->VerifyBalanceReceipt(SERVER_NYM, THE_NYM);
 }
-
 
 
 // Client-side
@@ -2842,12 +2821,6 @@ bool OTTransaction::VerifyBalanceReceipt(OTPseudonym & SERVER_NYM, // For verify
 }
 
 
-
-// ************************************************************
-
-
-
-
 //static
 bool OTTransaction::SetupBoxReceiptFilename(const int64_t		 lLedgerType,
 											const OTString	& strUserOrAcctID,
@@ -2890,7 +2863,6 @@ bool OTTransaction::SetupBoxReceiptFilename(const int64_t		 lLedgerType,
 }
 
 
-
 // Just used locally here to prevent some code duplication.
 //
 //static
@@ -2912,7 +2884,6 @@ bool OTTransaction::SetupBoxReceiptFilename(const int64_t lLedgerType,
 												  strFolder1name, strFolder2name, strFolder3name,
 												  strFilename);
 }
-
 
 
 // Just used locally here to prevent some code duplication.
@@ -2947,6 +2918,7 @@ bool OTTransaction::SetupBoxReceiptFilename(OTLedger & theLedger,
 												  strFolder1name, strFolder2name, strFolder3name,
 												  strFilename);
 }
+
 
 // This doesn't actually delete the box receipt, per se.
 // Instead, it adds the string "MARKED_FOR_DELETION" to the bottom
@@ -3026,7 +2998,6 @@ bool OTTransaction::DeleteBoxReceipt(OTLedger & theLedger)
 }
 
 
-
 bool OTTransaction::SaveBoxReceipt(const int64_t lLedgerType)
 {
 	// ---------------------------------
@@ -3085,8 +3056,6 @@ bool OTTransaction::SaveBoxReceipt(const int64_t lLedgerType)
 	// --------------------------------------------------------------------
 	return bSaved;	
 }
-
-
 
 
 // Caller IS responsible to delete.
@@ -3247,8 +3216,6 @@ OTTransaction * OTTransaction::LoadBoxReceipt(OTTransaction & theAbbrev, const i
 }
 
 
-
-
 // This function assumes that theLedger is the owner of this transaction.
 // We pass the ledger in so we can determine the proper directory we're 
 // reading from.
@@ -3311,7 +3278,6 @@ bool OTTransaction::VerifyBoxReceiptExists(const OTIdentifier & SERVER_ID,
 	
 	return bExists;
 }
-// --------------------------------------------------------------------	
 
 
 bool OTTransaction::VerifyBoxReceipt(OTTransaction & theFullVersion)
@@ -3369,9 +3335,6 @@ bool OTTransaction::VerifyBoxReceipt(OTTransaction & theFullVersion)
 }
 
 
-
-
-
 // When the items are first loaded up, VerifyContractID() is called on them.
 // Therefore, the serverID and account ID have already been verified.
 // Now I want to go deeper, before actually processing a transaction, and 
@@ -3417,7 +3380,6 @@ bool OTTransaction::VerifyItems(OTPseudonym & theNym)
 }
 
 
-
 /*
 bool				m_bIsAbbreviated;	
 int64_t				m_lAbbrevAmount;
@@ -3426,9 +3388,6 @@ OTIdentifier		m_Hash;			// todo: make this const and force it to be set during c
 time64_t				m_DATE_SIGNED;	// The date, in seconds, when the instrument was last signed.	
 transactionType		m_Type;			// blank, pending, processInbox, transfer, deposit, withdrawal, trade, etc.
 */
-
-// -------------------------------------------
-
 
 // private and hopefully not needed
 //
@@ -3442,8 +3401,6 @@ OTTransaction::OTTransaction() : ot_super(),
 {
 	InitTransaction();
 }
-
-// -------------------------------------------
 
 
 // Let's say you never knew their UserID, you just loaded the inbox based on AccountID.
@@ -3465,7 +3422,6 @@ OTTransaction::OTTransaction(const OTLedger & theOwner)
 
 }
 
-// -------------------------------------------
 
 // By calling this function, I'm saying "I know the real account ID and Server ID, and here
 // they are, and feel free to compare them with whatever YOU load up, which we'll leave
@@ -3489,7 +3445,6 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID, const OTIdentifier 
 //	m_ServerID	= theServerID;	// There are only here in ghostly form as a WARNING to you!
 }
 
-// -------------------------------------------
 
 OTTransaction::OTTransaction(const OTIdentifier & theUserID,
 							 const OTIdentifier & theAccountID,
@@ -3510,8 +3465,6 @@ OTTransaction::OTTransaction(const OTIdentifier & theUserID,
 //	m_ServerID	= theServerID;				// There are only here in ghostly form as a WARNING to you!
 }
 
-// -------------------------------------------
-
 
 // all common OTTransaction stuff goes here.
 // (I don't like constructor loops, prefer to use a separate function they all call.)
@@ -3526,7 +3479,6 @@ void OTTransaction::InitTransaction()
 }
 
 
-// -------------------------------------------
 // This CONSTRUCTOR is used for instantiating "abbreviated" transactions,
 // each of which separately load their full contents from a separate datafile
 // not during loading but during the subsequent verification process.
@@ -3614,12 +3566,8 @@ OTTransaction::OTTransaction(const OTIdentifier	& theUserID,
     if (NULL != pNumList)
         m_Numlist = *pNumList;
 }
-// ---------------------------------------------------------------------------------
 
 
-
-
-// ----------------------------------
 //bool GenerateTransaction(const OTIdentifier & theAccountID, const OTIdentifier & theServerID, int64_t lTransactionNum);
 //
 //static
@@ -3628,7 +3576,6 @@ OTTransaction::OTTransaction(const OTIdentifier	& theUserID,
 //									int64_t lTransactionNum=0);
 //static
 //OTTransaction * GenerateTransaction(const OTLedger & theOwner, transactionType theType, int64_t lTransactionNum=0);
-// ----------------------------------
 
 
 //static
@@ -3666,7 +3613,6 @@ OTTransaction * OTTransaction::GenerateTransaction(const OTIdentifier & theUserI
 }
 
 
-
 // the constructors set the real IDs (account and server) but they do not set the
 // IDs that are internal to this object, m_AcctID and m_AcctServerID. These, it is assumed,
 // will match the real IDs, but they must be checked when they are loaded.
@@ -3690,14 +3636,10 @@ bool OTTransaction::GenerateTransaction(const OTIdentifier & theAccountID, const
 }
 
 
-
-
 bool OTTransaction::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
 
 
 OTTransaction::~OTTransaction()
@@ -3720,7 +3662,6 @@ void OTTransaction::ReleaseItems()
 }
 
 
-
 void OTTransaction::Release()
 {
 	Release_Transaction();
@@ -3729,14 +3670,12 @@ void OTTransaction::Release()
 }
 
 
-
 void OTTransaction::Release_Transaction()
 {
     // (Any other dynamically allocated memory is freed here.)
     
 	ReleaseItems();
 }
-
 
 
 // You have to allocate the item on the heap and then pass it in as a reference. 
@@ -3785,6 +3724,7 @@ OTItem * OTTransaction::GetItemInRefTo(const int64_t lReference)
 	return NULL;
 }
 
+
 // Count the number of items that are IN REFERENCE TO some transaction#.
 //
 // Might want to change this so that it only counts ACCEPTED receipts.
@@ -3804,6 +3744,7 @@ int32_t	OTTransaction::GetItemCountInRefTo(const int64_t lReference)
 	
 	return nCount;	
 }
+
 
 /*
  a processNymbox transaction has a list of items--each one accepting a nymbox
@@ -3876,7 +3817,7 @@ bool OTTransaction::GetSuccess()
             
             switch (pItem->GetType()) 
             {
-                // **************************************************************************
+
                     
                     // BALANCE AGREEMENT  /  TRANSACTION STATEMENT
                     
@@ -4118,8 +4059,6 @@ bool OTTransaction::GetSuccess()
 }
 
 
-
-
 // Todo: eliminate this function since there is already a list of strings at the top
 // of this file, and a list of enums at the top of the header file.
 //
@@ -4214,8 +4153,6 @@ OTTransaction::transactionType OTTransaction::GetTypeFromString(const OTString &
 	
 	return theType;
 }
-
-
 
 
 // Returns 1 if success, -1 if error.
@@ -4361,8 +4298,6 @@ int32_t OTTransaction::LoadAbbreviatedRecord(irr::io::IrrXMLReader*& xml,
     
 	return 1;
 }
-
-
 
 
 /*
@@ -4689,8 +4624,6 @@ int32_t OTTransaction::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
 // For "OTTransaction::blank" and "OTTransaction::successNotice"
 // which periodically have more numbers added to them.
 //
@@ -4698,9 +4631,6 @@ bool OTTransaction::AddNumbersToTransaction(const OTNumList & theAddition)
 {
     return m_Numlist.Add(theAddition);
 }
-
-
-
 
 
 // This is called automatically by SignContract to make sure what's being signed is the most up-to-date
@@ -4842,7 +4772,6 @@ void OTTransaction::UpdateContents()
 }
 
 
-
 /*
  Question note to self:  Which of the above transaction types can be found inside:
  paymentInbox ledger, paymentOutbox ledger, and recordBox ledger?
@@ -4885,8 +4814,6 @@ void OTTransaction::UpdateContents()
 	"instrumentRejection",	// When someone rejects your invoice from his paymentInbox, you get one of these in YOUR paymentInbox.
  
  */
-// -------------------------------------------------------------
-
 
 /*
   --- paymentInbox ledger:
@@ -4981,7 +4908,6 @@ void OTTransaction::SaveAbbrevPaymentInboxRecord(OTString & strOutput)
 							  GetReferenceNumForDisplay(),
 							  GetReferenceToNum());
 }
-
 
 
 void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
@@ -5084,14 +5010,11 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
                           GetReferenceNumForDisplay(),
                           GetReferenceToNum());
 }
-// -------------------------------------------------------------
 
 
 //case OTLedger::paymentInbox:	this->SaveAbbrevPaymentInboxRecord(m_xmlUnsigned);	break;
 //case OTLedger::paymentOutbox:	this->SaveAbbrevPaymentOutboxRecord(m_xmlUnsigned);	break;
 //case OTLedger::recordBox:		this->SaveAbbrevRecordBoxRecord(m_xmlUnsigned);		break;
-
-// -------------------------------------------------------------
 
 /*
  --- paymentOutbox ledger:
@@ -5163,8 +5086,6 @@ void OTTransaction::SaveAbbrevExpiredBoxRecord(OTString & strOutput)
 //						  GetReferenceNumForDisplay(),
 //						  GetReferenceToNum());
 //}
-
-// -------------------------------------------------------------
 
 /*
  --- recordBox ledger:
@@ -5393,8 +5314,6 @@ void OTTransaction::SaveAbbrevRecordBoxRecord(OTString & strOutput)
 							  GetReferenceNumForDisplay(),
 							  GetReferenceToNum());
 }
-// -------------------------------------------------------------
-
 
 
 // All of the actual receipts cannot fit inside the inbox file,
@@ -5521,10 +5440,6 @@ void OTTransaction::SaveAbbreviatedNymboxRecord(OTString & strOutput)
 							  GetReferenceNumForDisplay(),
 							  GetReferenceToNum());
 }
-
-// ----------------------------------------------
-
-
 
 
 void OTTransaction::SaveAbbreviatedOutboxRecord(OTString & strOutput)
@@ -5777,12 +5692,6 @@ void OTTransaction::SaveAbbreviatedInboxRecord(OTString & strOutput)
 }
 
 
-
-
-// ******************************************************************************************
-
-
-
 // The ONE case where an Item has SUB-ITEMS is in the case of Balance Agreement.
 // For example, you might have a Withdrawal Transaction (request) that contains
 // 2 items: the withdrawal item itself, and the balance agreement item for that
@@ -5982,9 +5891,6 @@ void OTTransaction::ProduceOutboxReportItem(OTItem & theBalanceItem)
 		// is signed and saved, which the caller does, then we're fine.)
 	}
 }
-
-
-// -----------------------------------------------------------------------------
 
 
 // A Transaction normally doesn't have an amount. (Only a transaction item does.)
@@ -6356,10 +6262,6 @@ int64_t OTTransaction::GetReferenceNumForDisplay()
 }
 
 
-// -----------------------------------------------------------------------------------
-
-
-//
 // Decoding and understanding the various subtleties of the marketReceipt transaction!!!
 //
 // For a marketReceipt transaction, the transaction itself carries a NEW TRANSACTION ID for EACH RECEIPT.
@@ -6389,7 +6291,6 @@ int64_t OTTransaction::GetReferenceNumForDisplay()
 // 3.       pItem1->SetNote(strTrade);
 // 4.       pItem1->SetAttachment(strOffer);
 //
-
 
 /*
  
@@ -6676,7 +6577,6 @@ bool OTTransaction::GetSenderUserIDForDisplay(OTIdentifier & theReturnID)
 }
 
 
-
 bool OTTransaction::GetRecipientUserIDForDisplay(OTIdentifier & theReturnID)
 {
 	if (IsAbbreviated())
@@ -6866,8 +6766,6 @@ bool OTTransaction::GetRecipientUserIDForDisplay(OTIdentifier & theReturnID)
 }
 
 
-
-
 bool OTTransaction::GetSenderAcctIDForDisplay(OTIdentifier & theReturnID)
 {
 	if (IsAbbreviated())
@@ -7005,8 +6903,6 @@ bool OTTransaction::GetSenderAcctIDForDisplay(OTIdentifier & theReturnID)
 }
 
 
-
-
 bool OTTransaction::GetRecipientAcctIDForDisplay(OTIdentifier & theReturnID)
 {
 	if (IsAbbreviated())
@@ -7137,8 +7033,6 @@ bool OTTransaction::GetRecipientAcctIDForDisplay(OTIdentifier & theReturnID)
 	
 	return bSuccess;
 }
-
- 
 
 
 bool OTTransaction::GetMemo(OTString & strMemo)

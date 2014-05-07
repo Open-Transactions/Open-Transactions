@@ -164,6 +164,7 @@ bool	OTSettings::Load(const OTString & strConfigurationFileExactPath)
 	else return true;
 }
 
+
 bool	OTSettings::Save(const OTString & strConfigurationFileExactPath)
 {
 	if (! strConfigurationFileExactPath.Exists()) { OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strConfigurationFileExactPath"); return false; }
@@ -172,6 +173,7 @@ bool	OTSettings::Save(const OTString & strConfigurationFileExactPath)
 	if (0 > rc) return false;
 	else return true;
 }
+
 
 bool	OTSettings::LogChange_str (const OTString & strSection,const OTString & strKey,const OTString & strValue)
 {
@@ -188,6 +190,7 @@ bool	OTSettings::LogChange_str (const OTString & strSection,const OTString & str
 	return true;
 }
 
+
 bool	OTSettings::LogChange_long(const OTString & strSection,const OTString & strKey,const int64_t	  & lValue	)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -200,6 +203,7 @@ bool	OTSettings::LogChange_long(const OTString & strSection,const OTString & str
 	OTLog::vOutput(1, "Setting %s %s %d \n",strCategory.Get(),strOption.Get(),lValue);
 	return true;
 }
+
 
 bool	OTSettings::LogChange_bool(const OTString & strSection,const OTString & strKey,const bool	  & bValue	)
 {
@@ -214,6 +218,7 @@ bool	OTSettings::LogChange_bool(const OTString & strSection,const OTString & str
 	return true;
 }
 
+
 OTSettings::OTSettings(const OTString & strConfigFilePath) : m_pIniSimple(new CSimpleIniA()), m_strConfigurationFileExactPath(strConfigFilePath), b_Loaded(false)
 {
 	if (! m_strConfigurationFileExactPath.Exists())	{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "m_strConfigurationFileExactPath"); OT_FAIL; }
@@ -225,11 +230,14 @@ void OTSettings::SetConfigFilePath(const OTString & strConfigFilePath)
     m_strConfigurationFileExactPath.Set(strConfigFilePath.Get());
 }
 
+
 OTSettings::OTSettings() : m_pIniSimple(new CSimpleIniA()), b_Loaded(false) {}
+
 
 OTSettings::~OTSettings() {
 	if (NULL != this->m_pIniSimple) { delete this->m_pIniSimple; this->m_pIniSimple = NULL; }
 }
+
 
 bool	OTSettings::Load()
 {
@@ -243,15 +251,18 @@ bool	OTSettings::Load()
 	else return false;
 }
 
+
 bool	OTSettings::Save()
 {
 	return Save(m_strConfigurationFileExactPath);
 }
 
+
 const bool & OTSettings::IsLoaded() const
 {
 	return b_Loaded;
 }
+
 
 bool	OTSettings::Reset()
 {
@@ -260,10 +271,12 @@ bool	OTSettings::Reset()
 	return true;
 }
 
+
 bool	OTSettings::IsEmpty() const
 {
 	return this->m_pIniSimple->IsEmpty();
 }
+
 
 bool	OTSettings::Check_str (const OTString & strSection, const OTString & strKey, OTString & out_strResult,	bool & out_bKeyExist) const
 {
@@ -281,6 +294,7 @@ bool	OTSettings::Check_str (const OTString & strSection, const OTString & strKey
 
 	return true;
 }
+
 
 bool	OTSettings::Check_long(const OTString & strSection, const OTString & strKey, int64_t	  & out_lResult,	bool & out_bKeyExist) const
 {
@@ -307,6 +321,7 @@ bool	OTSettings::Check_long(const OTString & strSection, const OTString & strKey
 	return true;
 }
 
+
 bool	OTSettings::Check_bool(const OTString & strSection, const OTString & strKey, bool     &	out_bResult,	bool & out_bKeyExist) const
 {
 	if (! strSection.Exists())		{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -331,6 +346,7 @@ bool	OTSettings::Check_bool(const OTString & strSection, const OTString & strKey
 
 	return true;
 }
+
 
 bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, const OTString & strValue, bool & out_bNewOrUpdate, const OTString & strComment)
 {
@@ -394,6 +410,7 @@ bool	OTSettings::Set_str (const OTString & strSection, const OTString & strKey, 
 	OT_FAIL;
 }
 
+
 bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, const int64_t	  & lValue,   bool & out_bNewOrUpdate, const OTString & strComment)
 {
 	if (! strSection.Exists())		{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -445,6 +462,7 @@ bool	OTSettings::Set_long(const OTString & strSection, const OTString & strKey, 
 	OT_FAIL;
 }
 
+
 bool	OTSettings::Set_bool(const OTString & strSection, const OTString & strKey, const bool	  & bValue,   bool & out_bNewOrUpdate, const OTString & strComment)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -453,6 +471,7 @@ bool	OTSettings::Set_bool(const OTString & strSection, const OTString & strKey, 
 
 	return Set_str(strSection,strKey,strValue,out_bNewOrUpdate,strComment);
 }
+
 
 bool	OTSettings::CheckSetSection(const OTString & strSection, const OTString & strComment, bool & out_bIsNewSection)
 {
@@ -475,6 +494,7 @@ bool	OTSettings::CheckSetSection(const OTString & strSection, const OTString & s
 	}
 	return true;
 }
+
 
 bool	OTSettings::CheckSet_str (const OTString & strSection, const OTString & strKey, const OTString & strDefault, OTString & out_strResult, bool & out_bIsNew, const OTString & strComment)
 {
@@ -519,6 +539,7 @@ bool	OTSettings::CheckSet_str (const OTString & strSection, const OTString & str
 	OT_FAIL;
 }
 
+
 bool	OTSettings::CheckSet_long(const OTString & strSection, const OTString & strKey, const int64_t	   & lDefault,	 int64_t	  & out_lResult,   bool & out_bIsNew, const OTString & strComment)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -551,6 +572,7 @@ bool	OTSettings::CheckSet_long(const OTString & strSection, const OTString & str
 	OT_FAIL;
 }
 
+
 bool	OTSettings::CheckSet_bool(const OTString & strSection, const OTString & strKey, const bool	   & bDefault,	 bool	  & out_bResult,   bool & out_bIsNew, const OTString & strComment)
 {
 	if (! strSection.Exists())			{ OTLog::vError("%s: Error: %s is Empty!\n", __FUNCTION__, "strSection"			); OT_FAIL; }
@@ -581,6 +603,7 @@ bool	OTSettings::CheckSet_bool(const OTString & strSection, const OTString & str
 	// If we get here, error!
 	OT_FAIL;
 }
+
 
 bool	OTSettings::SetOption_bool(const OTString & strSection, const OTString & strKey, bool & bVariableName)
 {
