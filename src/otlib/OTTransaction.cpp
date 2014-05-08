@@ -145,6 +145,8 @@
 #include <OTBasket.hpp>
 #include <OTMessage.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 
 char const * const __TypeStrings[] = 
 {

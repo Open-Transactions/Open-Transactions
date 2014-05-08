@@ -144,6 +144,8 @@
 #include <OTDigitalCash.hpp>
 #include <OTEnvelope.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 
 #if defined (OT_CASH_USING_LUCRE)
 

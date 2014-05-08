@@ -146,6 +146,8 @@
 #include <OTSignedFile.hpp>
 #include <OTSymmetricKey.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 
 //static
 OTPseudonym * OTPseudonym::LoadPublicNym(const OTIdentifier & NYM_ID,

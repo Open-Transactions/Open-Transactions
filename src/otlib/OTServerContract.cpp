@@ -140,6 +140,9 @@
 #include <OTASCIIArmor.hpp>
 
 
+#include "irrxml/irrXML.hpp"
+
+
 OTServerContract::OTServerContract() : OTContract()
 {
 	m_nPort = 0;

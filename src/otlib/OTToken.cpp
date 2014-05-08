@@ -142,6 +142,9 @@
 #include <OTDigitalCash.hpp>
 
 
+#include "irrxml/irrXML.hpp"
+
+
 #if defined (OT_CASH_USING_LUCRE)
 
 #include "OpenSSL_BIO.hpp"
