@@ -17,12 +17,12 @@ notifications:
   email:
     on_success: change
     on_failure: always
-#  irc:
-#    on_success: change
-#    on_failure: always
-#    channels:
-#      - "chat.freenode.net#opentransactions"
-#    template:
-#      - "%{branch} (%{commit} - %{author}): %{message}"
-#      - "Change view: %{compare_url}"
-#      - "Build: %{build_url}"
+  irc:
+    on_success: change
+    on_failure: always
+    channels:
+      - "chat.freenode.net#opentransactions"
+    template:
+      - "%{branch} (%{commit} - %{author}): %{message}"
+      - "Change view: %{compare_url}"
+      - "Build: %{build_url}"
