@@ -148,10 +148,12 @@ OTWallet::OTWallet() : m_strDataFolder(OTDataFolder::Get())
 	m_pWithdrawalPurse = NULL;
 }
 
+
 OTWallet::~OTWallet()
 {	
 	Release_Wallet();
 }
+
 
 void OTWallet::Release()
 {   
@@ -159,6 +161,7 @@ void OTWallet::Release()
     
     // no call to ot_super here since there are no child classes.
 }
+
 
 void OTWallet::Release_Wallet()
 {	
@@ -242,7 +245,6 @@ void OTWallet::RemovePendingWithdrawal()
 }
 
 
-
 bool OTWallet::SignContractWithFirstNymOnList(OTContract & theContract)
 {
     if (this->GetNymCount() > 0)
@@ -267,7 +269,6 @@ bool OTWallet::SignContractWithFirstNymOnList(OTContract & theContract)
 }
 
 
-
 // The wallet presumably has multiple Nyms listed within.
 // I should be able to pass in a Nym ID and, if the Nym is there,
 // the wallet returns a pointer to that nym.
@@ -287,6 +288,7 @@ OTPseudonym * OTWallet::GetNymByID(const OTIdentifier & NYM_ID)
 	
 	return NULL;
 }
+
 
 OTPseudonym * OTWallet::GetNymByIDPartialMatch(const std::string PARTIAL_ID) // works with name as well.
 {
@@ -329,15 +331,18 @@ int32_t OTWallet::GetNymCount()
 	return static_cast<int32_t> (m_mapNyms.size());
 }
 
+
 int32_t OTWallet::GetServerCount()
 {
 	return static_cast<int32_t> (m_mapServers.size());
 }
 
+
 int32_t OTWallet::GetAssetTypeCount()
 {
 	return static_cast<int32_t> (m_mapContracts.size());
 }
+
 
 int32_t OTWallet::GetAccountCount()
 {
@@ -400,6 +405,7 @@ bool OTWallet::GetServer(const int32_t iIndex, OTIdentifier & THE_ID, OTString &
 	return false;
 }
 
+
 // used by high-level wrapper.
 bool OTWallet::GetAssetType(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
 {
@@ -426,6 +432,7 @@ bool OTWallet::GetAssetType(const int32_t iIndex, OTIdentifier & THE_ID, OTStrin
 	
 	return false;
 }
+
 
 // used by high-level wrapper.
 bool OTWallet::GetAccount(const int32_t iIndex, OTIdentifier & THE_ID, OTString & THE_NAME)
@@ -515,7 +522,6 @@ void OTWallet::DisplayStatistics(OTString & strOutput)
 }
 
 
-
 // Wallet takes ownership and will delete.
 // theNym is passed as reference only to prove that it's real.
 //
@@ -560,7 +566,6 @@ void OTWallet::AddNym(const OTPseudonym & theNym)
     if (strName.Exists())
         (const_cast<OTPseudonym &>(theNym)).SetNymName(strName);
 }
-
 
 
 void OTWallet::AddAccount(const OTAccount & theAcct)
@@ -695,8 +700,6 @@ OTServerContract * OTWallet::GetServerContract(const OTIdentifier & SERVER_ID)
 }
 
 
-
-
 OTServerContract * OTWallet::GetServerContractPartialMatch(const std::string PARTIAL_ID)
 {
 	FOR_EACH(mapOfServers, m_mapServers)
@@ -733,7 +736,6 @@ OTServerContract * OTWallet::GetServerContractPartialMatch(const std::string PAR
 }
 
 
-
 // The wallet "owns" theContract and will handle cleaning it up.
 // So make SURE you allocate it on the heap.
 void OTWallet::AddServerContract(const OTServerContract & theContract)
@@ -761,7 +763,6 @@ void OTWallet::AddServerContract(const OTServerContract & theContract)
 }
 
 
-
 // The wallet "owns" theContract and will handle cleaning it up.
 // So make SURE you allocate it on the heap.
 void OTWallet::AddAssetContract(const OTAssetContract & theContract)
@@ -787,8 +788,6 @@ void OTWallet::AddAssetContract(const OTAssetContract & theContract)
 		SaveWallet();
 	}
 }
-
-
 
 
 bool OTWallet::VerifyAssetAccount(OTPseudonym & theNym, 
@@ -830,7 +829,6 @@ bool OTWallet::VerifyAssetAccount(OTPseudonym & theNym,
 }
 
 
-// --------------------------------------------
 // No need to cleanup the account returned, it's owned by the wallet.
 //
 OTAccount * OTWallet::GetOrLoadAccount(			OTPseudonym		& theNym, 
@@ -864,7 +862,6 @@ OTAccount * OTWallet::GetOrLoadAccount(			OTPseudonym		& theNym,
 }
 
 
-// -----------------------------------------------------------------------
 // No need to cleanup the account returned, it's owned by the wallet.
 //
 // We don't care if this asset account is already loaded in the wallet.
@@ -910,8 +907,6 @@ OTAccount * OTWallet::LoadAccount(			OTPseudonym		& theNym,
 	// ---------------------------
 	return pAccount;
 }
-
-// -----------------------------------------------------------------------
 
 
 // This function only tries to load as a public Nym.
@@ -1049,7 +1044,6 @@ OTPseudonym * OTWallet::GetOrLoadPrivateNym(const OTIdentifier & NYM_ID,
 }
 
 
-
 // This function tries to load as public Nym first, then if it fails,
 // it tries the private one next. (So as to avoid unnecessarily asking
 // users for their passphrase.) Be sure to use GetOrLoadPublicNym() or
@@ -1078,8 +1072,6 @@ OTPseudonym * OTWallet::GetOrLoadNym(const OTIdentifier & NYM_ID,
 	return pNym;
 }
 
-
-// --------------------------------------------
 
 // These functions are low-level. They don't check for dependent data before deleting,
 // and they don't save the wallet after they do.
@@ -1144,6 +1136,7 @@ bool OTWallet::RemoveAssetContract(const OTIdentifier & theTargetID)
 	return false;	
 }
 
+
 bool OTWallet::RemoveServerContract(const OTIdentifier & theTargetID)
 {
 	FOR_EACH(mapOfServers, m_mapServers)
@@ -1167,6 +1160,7 @@ bool OTWallet::RemoveServerContract(const OTIdentifier & theTargetID)
 	
 	return false;	
 }
+
 
 // higher level version of this will require a server message, in addition to removing from wallet.
 bool OTWallet::RemoveAccount(const OTIdentifier & theTargetID)
@@ -1195,9 +1189,6 @@ bool OTWallet::RemoveAccount(const OTIdentifier & theTargetID)
 }
 
 
-
-// --------------------------------------------
-
 OTAssetContract * OTWallet::GetAssetContract(const OTIdentifier & theContractID)
 {
 	FOR_EACH(mapOfContracts, m_mapContracts)
@@ -1214,7 +1205,6 @@ OTAssetContract * OTWallet::GetAssetContract(const OTIdentifier & theContractID)
 	
 	return NULL;	
 }
-
 
 
 OTAssetContract * OTWallet::GetAssetContractPartialMatch(const std::string PARTIAL_ID) // works with name, too.
@@ -1336,10 +1326,6 @@ bool OTWallet::SaveContract(OTString & strContract)
 	
 	return true;		
 }
-
-
-
-
 
 
 // Pass in the name only, NOT the full path.
@@ -1758,8 +1744,6 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
 }
 
 
-
-
 bool OTWallet::ConvertNymToCachedKey(OTPseudonym & theNym)
 {
     // If he's not ALREADY on the master key...
@@ -1835,7 +1819,6 @@ bool OTWallet::ConvertNymToCachedKey(OTPseudonym & theNym)
     
     return false;
 }
-
 
 
 //     setOfIdentifiers m_setNymsOnCachedKey;  // All the Nyms that use the Master key are listed here (makes it easy to see which ones are converted already.)

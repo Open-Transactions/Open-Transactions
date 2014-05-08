@@ -1,4 +1,4 @@
-/***************************************************************
+/************************************************************
  *    
  *  OTDigitalCash.hpp
  *  
@@ -148,7 +148,7 @@
 #include ...  // someday
 #endif
 
-// *******************************************************************************************
+
 // WHICH DIGITAL CASH LIBRARY?
 //
 // Many algorithms may come available. We are currently using Lucre, by Ben Laurie,

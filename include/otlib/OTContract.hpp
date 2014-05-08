@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
 *
 *  OTContract.hpp
 *
@@ -129,7 +129,6 @@
  =uSzz
  -----END PGP SIGNATURE-----
  **************************************************************/
-
 
 #ifndef __OT_CONTRACT_HPP__
 #define __OT_CONTRACT_HPP__
@@ -444,5 +443,6 @@ EXPORT  bool VerifyWithKey(const OTAsymmetricKey & theKey,
         const OTAsymmetricKey * GetContractPublicKey();
 EXPORT	const OTPseudonym	  * GetContractPublicNym();
 };
+
 
 #endif // __OT_CONTRACT_HPP__

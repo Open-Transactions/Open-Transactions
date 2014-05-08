@@ -192,6 +192,7 @@ OTStringXML& OTStringXML::operator=(const OTString & rhs)
 	return *this;
 }
 
+
 OTStringXML& OTStringXML::operator=(const OTStringXML & rhs)
 {
 	if ((&rhs) != this)
@@ -202,9 +203,10 @@ OTStringXML& OTStringXML::operator=(const OTStringXML & rhs)
 	return *this;
 }
 
+
 OTStringXML::~OTStringXML()
 {
-    	// Base class destructor is called automatically.
+	// Base class destructor is called automatically.
 	// (And that calls Release_String().)
     delete pvt;
 }
@@ -232,6 +234,7 @@ int32_t OTStringXML::read(void* buffer, uint32_t sizeToRead)
 		return 0;
 	}
 }
+
 
 int32_t OTStringXML::getSize()
 {

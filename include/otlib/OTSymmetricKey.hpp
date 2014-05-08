@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTSymmetricKey.hpp
  *
@@ -129,7 +129,6 @@
  =uSzz
  -----END PGP SIGNATURE-----
  **************************************************************/
-
 
 #ifndef __OT_SYMMETRIC_KEY_HPP__
 #define __OT_SYMMETRIC_KEY_HPP__
@@ -299,4 +298,4 @@ public:
 };
 
 
-#endif   // __OT_SYMMETRIC_KEY_HPP__
+#endif // __OT_SYMMETRIC_KEY_HPP__

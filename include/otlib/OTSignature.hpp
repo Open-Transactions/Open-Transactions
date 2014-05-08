@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SIGNATURE_HPP__
 #define __OT_SIGNATURE_HPP__
 

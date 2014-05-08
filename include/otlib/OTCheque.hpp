@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTCheque.hpp
  *  
@@ -130,13 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_CHEQUE_HPP__
 #define __OT_CHEQUE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
+
 
 class OTCheque : public OTTrackable
 {

@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTAssetContract.cpp
  *  
@@ -134,6 +134,11 @@
 
 #include <OTAssetContract.hpp>
 
+#include <sstream>
+#include <fstream>
+
+#include "irrxml/irrXML.hpp"
+
 #include <OTAssert.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTLog.hpp>
@@ -141,49 +146,10 @@
 #include <OTAccount.hpp>
 #include <OTBasket.hpp>
 
-#include <sstream>
-#include <fstream>
-
-#include "irrxml/irrXML.hpp"
-
 using namespace irr;
 using namespace io;
 
 
-
-// ----------------------------------------------------------------------------
-
-
-OTAmount::OTAmount(int64_t lAmount/*=0*/) :
-    m_lAmount(lAmount)
-{
-    
-}
-
-
-OTAmount::OTAmount(const OTAmount & other) : m_lAmount(other.GetAmount())
-{
-    
-}
-
-
-OTAmount& OTAmount::operator=(OTAmount other)
-{
-    swap(*this, other);
-    return *this;
-}
-
-
-
-// C++11  (move constructor)
-//OTAmount::OTAmount(OTAmount&& other)
-//: OTAmount() // initialize via default constructor, C++11 only
-//{
-//    swap(*this, other);
-//}
-
-
-// ----------------------------------------------------------------------------
 // static
 bool OTAssetContract::ParseFormatted(int64_t & lResult,
                                      const std::string & str_input,
@@ -421,7 +387,6 @@ std::string OTAssetContract::formatLongAmount(int64_t & lOriginalValue, int32_t 
     return sss.str();
 }
 
-// ----------------------------------------------------------------------------
 
 // Convert 912545 to "$9,125.45"
 //
@@ -478,7 +443,6 @@ bool OTAssetContract::FormatAmount(const OTAmount & theInput, std::string & str_
     return true;
 }
 
-// ----------------------------------------------------------------------------
 
 // Convert "$9,125.45" to 912545.
 //
@@ -533,7 +497,6 @@ bool OTAssetContract::StringToAmount(OTAmount & theOutput, const std::string & s
     return bSuccess;
 }
 
-// ----------------------------------------------------------------------------
 
 // NOTE: the use of "dollars" and "cents" here is only metaphoric.
 // For example, if the currency type was Bitcoin, then "dollars" are actually BTC,
@@ -546,7 +509,6 @@ int64_t OTAssetContract::GetDollarsOnly(const OTAmount & theInput) const
     return 0; // TODO
 }
 
-// ----------------------------------------------------------------------------
 
 // Given input of 545, GetCentsOnly returns 45.
 
@@ -556,14 +518,11 @@ int64_t OTAssetContract::CentsOnly(const OTAmount & theInput) const
 }
 
 
-// ----------------------------------------------------------------------------
-
-
-
 OTAssetContract::OTAssetContract() : OTContract(), m_bIsCurrency(true), m_bIsShares(false)
 {
 	
 }
+
 
 OTAssetContract::OTAssetContract(OTString & name, OTString & foldername, OTString & filename, OTString & strID) 
 : OTContract(name, foldername, filename, strID), m_bIsCurrency(true), m_bIsShares(false)
@@ -577,7 +536,6 @@ OTAssetContract::~OTAssetContract()
 	// OTContract::~OTContract is called here automatically, and it calls Release.
 	// So I don't need to call it here again when it's already called by the parent.
 }
-
 
 
 bool OTAssetContract::DisplayStatistics(OTString & strContents) const
@@ -627,8 +585,6 @@ bool OTAssetContract::SaveContractWallet(std::ofstream & ofs)
 	return false;
 }
 
-
-
 /*
 bool OTAssetContract::SaveContractWallet(FILE * fl)
 {
@@ -641,30 +597,6 @@ bool OTAssetContract::SaveContractWallet(FILE * fl)
 }
 */
 
-// ----------------------------------------------------------------
-
-OTAcctFunctor::OTAcctFunctor(const OTIdentifier & theServerID, mapOfAccounts * pLoadedAccounts/*=NULL*/)
- : m_pServerID(new OTIdentifier(theServerID)), // owned
-   m_pLoadedAccounts(pLoadedAccounts) // not owned
-{
-        
-}
-
-OTAcctFunctor::~OTAcctFunctor()
-{
-    if (NULL != m_pServerID)
-        delete m_pServerID;
-    m_pServerID = NULL;
-    
-    m_pLoadedAccounts = NULL; // not owned
-}
-
-bool OTAcctFunctor::Trigger(OTAccount & theAccount)
-{
-    OT_FAIL_MSG("OTAcctFunctor::Trigger: You need to override the Trigger method in your subclass. (It's missing.)");
-}
-
-// ----------------------------------------------------------------
 
 // ----------------------------------------------------------------
 // currently only "simple" accounts (normal user asset accounts) are added to this list
@@ -777,8 +709,6 @@ bool OTAssetContract::ForEachAccountRecord(OTAcctFunctor & theAction)  // Loops 
     }
 }
 
-// ----------------------------------------------------------------
-
 
 bool OTAssetContract::AddAccountRecord(const OTAccount & theAccount) // adds the account to the list. (When account is created.)
 {
@@ -868,7 +798,6 @@ bool OTAssetContract::AddAccountRecord(const OTAccount & theAccount) // adds the
     return true;
 }
 
-// ----------------------------------------------------------------
 
 bool OTAssetContract::EraseAccountRecord(const OTIdentifier & theAcctID)  // removes the account from the list. (When account is deleted.)
 {
@@ -934,9 +863,6 @@ bool OTAssetContract::EraseAccountRecord(const OTIdentifier & theAcctID)  // rem
     //
     return true;
 }
-
-
-// ----------------------------------------------------------------
 
 
 // Normally, Asset Contracts do NOT update / rewrite their contents, since their
@@ -1028,7 +954,6 @@ void OTAssetContract::CreateContents()
     // --------------------------------------------   
 }
 
-// ----------------------------------------------------------------
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
@@ -1145,49 +1070,3 @@ int32_t OTAssetContract::ProcessXMLNode(IrrXMLReader*& xml)
 	
 	return nReturnVal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

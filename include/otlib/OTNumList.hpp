@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
 *
 *  OTNumList.hpp
 *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_NUM_LIST_HPP__
 #define __OT_NUM_LIST_HPP__
 
@@ -146,7 +145,7 @@
 class OTAsymmetricKey;
 class OTPasswordData;
 
-// --------------------------------------------------
+
 // Useful for storing a std::set of longs,
 // serializing to/from comma-separated string,
 // And easily being able to add/remove/verify the
@@ -204,6 +203,3 @@ EXPORT    void Release();
 
 
 #endif // __OT_NUM_LIST_HPP__
-
-
-

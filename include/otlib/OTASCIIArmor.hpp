@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTASCIIArmor.hpp
  *
@@ -130,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-
 #include "OTStorage.hpp"
 
 class OTData;

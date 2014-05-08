@@ -130,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_TRANSACTION_HPP__
 #define __OT_TRANSACTION_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTItem.hpp"
-
 
 /*
 WHEN THE server receives a transaction request, it receives a MESSAGE containing an ascii-armored LEDGER.
@@ -193,7 +191,6 @@ Ledger is derived from contract because you must be able to save / sign it and l
 
  The whole enchilada is wrapped up in ascii-armor and attached to a message and sent over the pipe.
 */
-
 
 /*
 
@@ -346,6 +343,7 @@ Ledger is derived from contract because you must be able to save / sign it and l
  */
 
 class OTLedger;
+
 
 class OTTransaction : public OTTransactionType
 {

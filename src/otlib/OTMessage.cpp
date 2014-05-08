@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *
  *  OTMessage.cpp
  *
@@ -134,22 +134,17 @@
 
 #include <OTMessage.hpp>
 
+#include <fstream>
+
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTPseudonym.hpp>
 
-#include "irrxml/irrXML.hpp"
 
-#include <fstream>
-
-#include <time.h>
-
-
-// PROTOCOL DOCUMENT -------------------------------------------
+// PROTOCOL DOCUMENT
 
 // --- This is the file that implements the entire message protocol.
 // (Transactions are in a different file.)
-
 
 // true  == success (even if nothing harvested.)
 // false == error.
@@ -236,8 +231,6 @@ bool OTMessage::HarvestTransactionNumbers(      OTPseudonym &  theNym,
 }
 
 
-
-
 // So the message can get the list of numbers from the Nym, before sending,
 // that should be listed as acknowledged that the server reply has already been
 // seen for those request numbers.
@@ -276,8 +269,6 @@ void OTMessage::SetAcknowledgments(OTPseudonym & theNym)
 }
 
 
-
-
 // The framework (OTContract) will call this function at the appropriate time.
 // OTMessage is special because it actually does something here, when most contracts
 // are read-only and thus never update their contents.
@@ -296,7 +287,7 @@ void OTMessage::UpdateContents()
 	m_xmlUnsigned.Concatenate("<OTmessage\n version=\"%s\"\n dateSigned=\"%lld\">\n\n",
                               m_strVersion.Get(), m_lTime);
     
-	// ------------------------------------------------------------------------
+
 	if (m_strCommand.Compare("getMarketList"))
 	{
         bFoundMessage = true;
@@ -1988,12 +1979,7 @@ void OTMessage::UpdateContents()
 }
 
 
-
-
-
 // Todo: consider leaving the request # inside all the server REPLIES, so they are easier to match up to the requests. (Duh.)
-
-
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTMessage::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -4517,7 +4503,6 @@ bool OTMessage::SignContract(const OTPseudonym & theNym,
 }
 
 
-
 //virtual (OTContract)
 bool OTMessage::VerifySignature(const OTPseudonym & theNym,
                                 OTPasswordData    * pPWData/*=NULL*/)
@@ -4561,8 +4546,6 @@ OTMessage::~OTMessage()
 {
 	
 }
-
-
 
 
 // This actually saves to any file you want to pass it to.

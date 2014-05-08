@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_BASKET_HPP__
 #define __OT_BASKET_HPP__
 
@@ -141,6 +140,38 @@
 #include "OTContract.hpp"
 #include "OTBasketItem.hpp"
 
+/*
+
+ I figured this one out, it's easy.
+
+ Someone creates a contract that contains 10 sub-contracts. It just delegates the issuence to the sub-issuers.
+
+ When he connects to the server he can upload the contract, but he has no control over it at that point,
+ since he is not one of the real issuers.
+
+ The contract will only work if the sub-issuers actually have issued currencies on that transaction server.
+
+ Then, the transaction server itself becomes the "issuer" of the basket currency.  It simply creates an issuer
+ account, and stores a list of sub-accounts to store the delegated cuts of "real" currencies.
+
+ For example, if I issue a currency that is 1 part dollar, 1 part gold, and 1 part silver, then the server
+ creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and
+ trade it like any other asset.  It doesn't even have to be a special account that the trader uses. It's just
+ a normal account, but the asset type ID links to the special basket issuer account maintained by the server.
+
+ Meanwhile, behind the scenes, the server's "goldbucks" issuer account is not OTAccount, but derived from it.
+ suppose derived from OTAccount, that contains a list of 3 sub-accounts, 1 denominated in the dollar asset
+ specified in the contract, 1 denominiated in the gold asset, and so on.
+
+ The OTAssetBasket contract (with sub-issuers) and the OTBasketAccount (issuer account) objects handle all the
+ details of converting between the sub-accounts and the main account.
+
+ If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account
+ (controlled by the transaction server) must have at least -9 on its balance due to me. And its hidden 3 sub-accounts
+ have at least +3 dollars, +3 gold, and +3 silver stored along with the rest that make up their total balances from
+ all the users of that basket currency.
+
+ */
 class OTBasket : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.
@@ -223,37 +254,5 @@ EXPORT	void AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 EXPORT void HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & theServerID, const bool bSave=true);
 };
 
+
 #endif // __OT_BASKET_HPP__
-
-/*
-
- I figured this one out, it's easy.
-
- Someone creates a contract that contains 10 sub-contracts. It just delegates the issuence to the sub-issuers.
-
- When he connects to the server he can upload the contract, but he has no control over it at that point,
- since he is not one of the real issuers.
-
- The contract will only work if the sub-issuers actually have issued currencies on that transaction server.
-
- Then, the transaction server itself becomes the "issuer" of the basket currency.  It simply creates an issuer
- account, and stores a list of sub-accounts to store the delegated cuts of "real" currencies.
-
- For example, if I issue a currency that is 1 part dollar, 1 part gold, and 1 part silver, then the server
- creates an issuer account in "goldbucks" and then ANY other user can create a "goldbucks" asset account and
- trade it like any other asset.  It doesn't even have to be a special account that the trader uses. It's just
- a normal account, but the asset type ID links to the special basket issuer account maintained by the server.
-
- Meanwhile, behind the scenes, the server's "goldbucks" issuer account is not OTAccount, but derived from it.
- suppose derived from OTAccount, that contains a list of 3 sub-accounts, 1 denominated in the dollar asset
- specified in the contract, 1 denominiated in the gold asset, and so on.
-
- The OTAssetBasket contract (with sub-issuers) and the OTBasketAccount (issuer account) objects handle all the
- details of converting between the sub-accounts and the main account.
-
- If I am trading in goldbucks, and I have 9 goldbucks in my goldbucks account, then the goldbucks issuer account
- (controlled by the transaction server) must have at least -9 on its balance due to me. And its hidden 3 sub-accounts
- have at least +3 dollars, +3 gold, and +3 silver stored along with the rest that make up their total balances from
- all the users of that basket currency.
-
- */

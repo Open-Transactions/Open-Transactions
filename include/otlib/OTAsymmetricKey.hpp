@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTAsymmetricKey.hpp
  *
@@ -130,16 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
+
+#include <list>
+#include <cstddef>
 
 #include "OTCommon.hpp"
 
 #include "Timer.hpp"
-
-#include <list>
-#include <cstddef>
 
 class OTCaller;
 class OTKeypair;
@@ -150,7 +149,6 @@ class OTASCIIArmor;
 class OTSignatureMetadata;
 class OTPasswordData;
 
-// --------------------------------------------------------
 
 // Todo:
 // 1. Add this value to the config file so it becomes merely a default value here.
@@ -177,7 +175,7 @@ class OTPasswordData;
 
 // FYI: 1800 seconds is 30 minutes, 300 seconds is 5 mins.
 #endif // OT_KEY_TIMER
-// --------------------------------------------------------
+
 
 // This is the only part of the API that actually accepts objects as parameters,
 // since the above objects have SWIG C++ wrappers.
@@ -185,7 +183,6 @@ class OTPasswordData;
 EXPORT bool OT_API_Set_PasswordCallback(OTCaller & theCaller); // Caller must have Callback attached already.
 
 
-// ------------------------------------------------
 // For getting the password from the user, for using his private key.
 //
 extern "C"
@@ -195,46 +192,13 @@ typedef int32_t OT_OPENSSL_CALLBACK(char *buf, int32_t size, int32_t rwflag, voi
 EXPORT	OT_OPENSSL_CALLBACK default_pass_cb;
 EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 }
-// ------------------------------------------------
 // Used for the actual function definition (in the .cpp file).
 //
 #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
-// ------------------------------------------------
 
+#include "OTLowLevelKeyData.hpp"
 
-/// OTLowLevelKeyData
-/// Used for passing x509's and EVP_PKEYs around, so a replacement
-/// crypto engine will not require changes to any function parameters
-/// throughout the rest of OT.
-//
-class OTLowLevelKeyData
-{
-public:
-    bool m_bCleanup; // By default, OTLowLevelKeyData cleans up the members. But if you set this to false, it will NOT cleanup.
-    // ---------------------
-    bool MakeNewKeypair(int32_t nBits=1024);
-    void Cleanup();
-    bool SetOntoKeypair(OTKeypair & theKeypair);
-
-    OTLowLevelKeyData();
-    ~OTLowLevelKeyData();
-
-// ***************************************************************
-#if defined (OT_CRYPTO_USING_OPENSSL)
-    class OTLowLevelKeyDataOpenSSLdp;
-    OTLowLevelKeyDataOpenSSLdp *dp;
-// ***************************************************************
-#elif defined (OT_CRYPTO_USING_GPG)
-
-// ***************************************************************
-#else
-
-#endif  // Crypto engine.
-};
-
-
-// ***************************************************************
 
 class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
 {
@@ -412,69 +376,10 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
     // ***************************************************************************************
 };
 
-
 typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 
-// ***************************************************************
+#include "OTAsymmetricKeyOpenSSL.hpp"
 
-#if defined (OT_CRYPTO_USING_OPENSSL)
-
-class OTAsymmetricKey_OpenSSL : public OTAsymmetricKey
-{
-private:  // Private prevents erroneous use by other classes.
-    typedef OTAsymmetricKey ot_super;
-    // -----------------------------------------------------
-    friend class OTAsymmetricKey;    // For the factory.
-    friend class OTLowLevelKeyData;  // For access to OpenSSL-specific calls that are otherwise private.
-    friend class OTCrypto_OpenSSL;   // For OpenSSL-specific crypto functions to access OpenSSL-specific methods.
-public:
-    // ***************************************************************
-    // Load Private Key From Cert String
-    //
-    // "escaped" means pre-pended with "- " as in:   - -----BEGIN CERTIFICATE....
-    //
-    virtual bool LoadPrivateKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                              const OTString   * pstrReason=NULL,
-                                                    OTPassword * pImportPassword=NULL);
-    // ***************************************************************
-    // Load Public Key from Cert String
-    //
-	virtual bool LoadPublicKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                             const OTString   * pstrReason=NULL,
-                                                   OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
-    // ---------------------------------------------------------------
-    virtual bool SaveCertToString      (OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
-    virtual bool SavePrivateKeyToString(OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
-    // -------------------------------------
-	virtual bool LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKey); // does NOT handle bookends.
-// -----------------------------------------------------
-    virtual bool ReEncryptPrivateKey(OTPassword & theExportPassword, bool bImporting);
-
-    class OTAsymmetricKey_OpenSSLPrivdp;
-    OTAsymmetricKey_OpenSSLPrivdp *dp;
-
-protected: // CONSTRUCTOR
-    OTAsymmetricKey_OpenSSL();
-
-    // -----------------------------------------------------
-public: // DERSTRUCTION
-    virtual ~OTAsymmetricKey_OpenSSL();
-    virtual void Release();
-    void Release_AsymmetricKey_OpenSSL();
-
-protected:
-    virtual void ReleaseKeyLowLevel_Hook();
-};
-
-// ***************************************************************
-#elif defined (OT_CRYPTO_USING_GPG)
-
-
-// ***************************************************************
-#else // NO CRYPTO ENGINE DEFINED?
-
-#endif
-// ***************************************************************
 
 #endif // __OT_ASYMMETRIC_KEY_HPP__

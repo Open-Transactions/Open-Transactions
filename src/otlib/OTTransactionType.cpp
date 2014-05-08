@@ -138,6 +138,7 @@
 #include <OTLedger.hpp>
 #include <OTAccount.hpp>
 
+
 // static -- class factory.
 //
 OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
@@ -205,11 +206,6 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
 }
 
 
-
-
-
-// ----------------------------------------------------------------------------------------
-
 void OTTransactionType::GetNumList(OTNumList & theOutput)
 {
     theOutput.Release();
@@ -223,12 +219,12 @@ bool OTTransactionType::Contains(const OTString & strContains)
 	return m_strRawFile.Contains(strContains);
 }
 
+
 // Allows you to string-search the raw contract.
 bool OTTransactionType::Contains(const char * szContains)
 {
 	return m_strRawFile.Contains(szContains);
 }
-
 
 
 // keeping constructor private in order to force people to use the other constructors and
@@ -255,6 +251,7 @@ OTTransactionType::OTTransactionType(const OTIdentifier & theUserID, const OTIde
 
 	// do NOT set m_AcctID and m_AcctServerID here.  Let the child classes LOAD them or GENERATE them.
 }
+
 
 OTTransactionType::OTTransactionType(const OTIdentifier & theUserID,
                                      const OTIdentifier & theAccountID,
@@ -283,11 +280,11 @@ void OTTransactionType::InitTransactionType()
 	m_lNumberOfOrigin           = 0;
 }
 
+
 OTTransactionType::~OTTransactionType()
 {
 	Release_TransactionType();
 }
-
 
 
 // We'll see if any new bugs pop up after adding this...
@@ -329,9 +326,6 @@ void OTTransactionType::Release()
 }
 
 
-
-
-// -------------------------------------------
 // OTAccount, OTTransaction, OTItem, and OTLedger are all derived from
 // this class (OTTransactionType). Therefore they can all quickly identify
 // whether one of the other components belongs to the same account, using
@@ -349,11 +343,11 @@ bool OTTransactionType::IsSameAccount(const OTTransactionType & rhs) const
 }
 
 
-
 void OTTransactionType::GetReferenceString(OTString & theStr) const
 {
 	m_ascInReferenceTo.GetString(theStr);
 }
+
 
 void OTTransactionType::SetReferenceString(const OTString & theStr)
 {
@@ -395,7 +389,6 @@ bool OTTransactionType::VerifyAccount(OTPseudonym & theNym)
 }
 
 
-
 bool OTTransactionType::VerifyContractID()
 {
 	//m_AcctID contains the number we read from the xml file
@@ -433,9 +426,6 @@ bool OTTransactionType::VerifyContractID()
 }
 
 
-
-// -----------------------------------------------------------------------------
-
 // Need to know the transaction number of this transaction? Call this.
 int64_t OTTransactionType::GetTransactionNum() const
 {
@@ -448,13 +438,13 @@ void OTTransactionType::SetTransactionNum(const int64_t lTransactionNum)
 	m_lTransactionNum = lTransactionNum;
 }
 
-// -----------------------------------------------------------------------------
 
 //virtual
 void OTTransactionType::CalculateNumberOfOrigin()
 {
 	m_lNumberOfOrigin = m_lTransactionNum;
 }
+
 
 // Need to know the transaction number of the ORIGINAL transaction? Call this.
 // virtual
@@ -466,23 +456,25 @@ int64_t OTTransactionType::GetNumberOfOrigin()
     return m_lNumberOfOrigin;
 }
 
+
 // Gets WITHOUT calculating.
 int64_t OTTransactionType::GetRawNumberOfOrigin() const
 {
     return m_lNumberOfOrigin;
 }
 
-// -----------------------------------------------------------------------------
 
 void OTTransactionType::SetNumberOfOrigin(const int64_t lTransactionNum)
 {
 	m_lNumberOfOrigin = lTransactionNum;
 }
 
+
 void OTTransactionType::SetNumberOfOrigin(OTTransactionType & setFrom)
 {
 	m_lNumberOfOrigin = setFrom.GetNumberOfOrigin();
 }
+
 
 // Allows you to compare any OTTransaction or OTItem to any other OTTransaction or OTItem,
 // and see if they share the same origin number.
@@ -502,8 +494,6 @@ bool OTTransactionType::VerifyNumberOfOrigin(OTTransactionType & compareTo)
     //
     return (this->GetNumberOfOrigin() == compareTo.GetNumberOfOrigin());
 }
-
-// -----------------------------------------------------------------------------
 
 
 // Need to know the transaction number that this is in reference to? Call this.

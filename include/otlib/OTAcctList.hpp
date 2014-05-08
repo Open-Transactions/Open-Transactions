@@ -144,7 +144,6 @@ class OTMessage;
 class OTLedger;
 
 
-// ----------------------------------------
 // The server needs to store a list of accounts, by asset type ID, to store the backing funds
 // for vouchers.  The below class is useful for that. It's also useful for the same purpose
 // for stashes, in smart contracts.
@@ -182,5 +181,6 @@ EXPORT	_SharedPtr<OTAccount> GetOrCreateAccount(OTPseudonym			& theServerNym,
                                                bool					& bWasAcctCreated, // this will be set to true if the acct is created here. Otherwise set to false;
                                                const int64_t             lStashTransNum=0);
 };
+
 
 #endif // __OT_ACCT_LIST_HPP__

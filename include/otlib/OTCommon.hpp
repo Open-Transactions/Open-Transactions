@@ -69,4 +69,5 @@ inline int64_t  OTTimeGetTimeInterval(time64_t lhs, time64_t rhs) { return lhs -
 inline time64_t OTTimeAddTimeInterval(time64_t lhs, int64_t rhs) { return lhs + rhs; }
 #endif
 
+
 #endif //__OT_COMMON_HPP__

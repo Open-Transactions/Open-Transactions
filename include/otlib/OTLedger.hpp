@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTLedger.hpp
  *
@@ -129,7 +129,6 @@
  =uSzz
  -----END PGP SIGNATURE-----
  **************************************************************/
-
 
 #ifndef __OT_LEDGER_HPP__
 #define __OT_LEDGER_HPP__
@@ -329,4 +328,4 @@ EXPORT          char const * GetTypeString() { return OTLedger::_GetTypeString(m
 };
 
 
-#endif //  __OT_LEDGER_HPP__
+#endif // __OT_LEDGER_HPP__

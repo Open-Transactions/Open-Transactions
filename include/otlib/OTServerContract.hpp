@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SERVER_CONTRACT_HPP__
 #define __OT_SERVER_CONTRACT_HPP__
 

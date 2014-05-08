@@ -134,6 +134,8 @@
 
 #include <OTCron.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <OTPaths.hpp>
 #include <OTLog.hpp>
 #include <OTStorage.hpp>
@@ -143,10 +145,9 @@
 
 #include <Timer.hpp>
 
-#include "irrxml/irrXML.hpp"
-
 using namespace irr;
 using namespace io;
+
 
 // Note: these are only code defaults -- the values are actually loaded from ~/.ot/server.cfg.
 
@@ -154,8 +155,6 @@ int32_t OTCron::__trans_refill_amount		= 500;		// The number of transaction numb
 int32_t OTCron::__cron_ms_between_process	= 10000;	// The number of milliseconds (ideally) between each "Cron Process" event.
 
 int32_t OTCron::__cron_max_items_per_nym    = 10; // The maximum number of cron items any given Nym can have active at the same time.
-
-
 
 
 // Make sure Server Nym is set on this cron object before loading or saving, since it's
@@ -166,8 +165,7 @@ bool OTCron::LoadCron()
 	const char * szFilename		= "OT-CRON.crn"; // todo stop hardcoding filenames.
 	
 	OT_ASSERT(NULL != GetServerNym());
-		
-	// --------------------------------------------------------------------
+
 	
 	bool bSuccess = false;
 
@@ -187,7 +185,6 @@ bool OTCron::SaveCron()
 	
 	OT_ASSERT(NULL != GetServerNym());
 	
-	// ------------------------------------------------------------------------
 	
 	ReleaseSignatures();
 
@@ -202,7 +199,6 @@ bool OTCron::SaveCron()
 		return true;	
 }
 
-// ------------------------------------------------------
 
 // Loops through ALL markets, and calls pMarket->GetNym_OfferList(NYM_ID, *pOfferList) for each.
 // Returns a list of all the offers that a specific Nym has on all the markets.
@@ -211,12 +207,10 @@ bool OTCron::GetNym_OfferList(OTASCIIArmor & ascOutput, const OTIdentifier & NYM
 {
     nOfferCount = 0; // Outputs the number of offers on this nym.
     
-    // ---------------------------
     
 	OTDB::OfferListNym * pOfferList  = dynamic_cast<OTDB::OfferListNym*>(OTDB::CreateObject(OTDB::STORED_OBJ_OFFER_LIST_NYM));
 	OTCleanup<OTDB::OfferListNym> theListAngel(*pOfferList);
 	
-	// -----------------------------------------------------------
 	
 	FOR_EACH(mapOfMarkets, m_mapMarkets)
 	{
@@ -233,7 +227,6 @@ bool OTCron::GetNym_OfferList(OTASCIIArmor & ascOutput, const OTIdentifier & NYM
             nOfferCount += nNymOfferCount;
 	}		
 	
-	// -------------------------------------------------------------
 	
 	// Now pack the list into strOutput...
     if (nOfferCount == 0)
@@ -246,7 +239,6 @@ bool OTCron::GetNym_OfferList(OTASCIIArmor & ascOutput, const OTIdentifier & NYM
         
         OTDB::OTPacker * pPacker = pStorage->GetPacker(); // No need to check for failure, since this already ASSERTS. No need to cleanup either.
         
-        // -----------------------------
         
         OTDB::PackedBuffer * pBuffer = pPacker->Pack(*pOfferList); // Now we PACK our nym's offer list.
         
@@ -258,7 +250,6 @@ bool OTCron::GetNym_OfferList(OTASCIIArmor & ascOutput, const OTIdentifier & NYM
         
         OTCleanup<OTDB::PackedBuffer> theBufferAngel(*pBuffer); // make sure memory is cleaned up.
         
-        // --------------------------------------------------------	
         
         // Now we need to translate pBuffer into strOutput.
         
@@ -286,18 +277,16 @@ bool OTCron::GetNym_OfferList(OTASCIIArmor & ascOutput, const OTIdentifier & NYM
 }
 
 
-
 bool OTCron::GetMarketList (OTASCIIArmor & ascOutput, int32_t & nMarketCount)
 {
     nMarketCount        = 0; // This parameter is set to zero here, and incremented in the loop below.
     
-    // ------------------------
+
 	OTMarket * pMarket  = NULL;
 
 	OTDB::MarketList * pMarketList  = dynamic_cast<OTDB::MarketList*>(OTDB::CreateObject(OTDB::STORED_OBJ_MARKET_LIST));
 	OTCleanup<OTDB::MarketList> theListAngel(*pMarketList);
 
-	// -----------------------------------------------------------
 	    
 	FOR_EACH(mapOfMarkets, m_mapMarkets)
 	{		
@@ -307,7 +296,7 @@ bool OTCron::GetMarketList (OTASCIIArmor & ascOutput, int32_t & nMarketCount)
 		OTDB::MarketData * pMarketData  = dynamic_cast<OTDB::MarketData *>(OTDB::CreateObject(OTDB::STORED_OBJ_MARKET_DATA));
 		OTCleanup<OTDB::MarketData> theDataAngel(*pMarketData);
 		
-		// --------------------------------------------
+
 		const OTIdentifier	MARKET_ID(*pMarket);
 		const OTString		str_MARKET_ID(MARKET_ID);
 		const OTString		str_ServerID(pMarket->GetServerID());
@@ -425,13 +414,6 @@ bool OTCron::GetMarketList (OTASCIIArmor & ascOutput, int32_t & nMarketCount)
 }
 
 
-
-
-
-// --------------------------------------------------
-
-
-
 int32_t OTCron::GetTransactionCount() const
 {
 	if (m_listTransactionNumbers.empty())
@@ -440,11 +422,11 @@ int32_t OTCron::GetTransactionCount() const
 	return static_cast<int32_t> (m_listTransactionNumbers.size());
 }
 
+
 void OTCron::AddTransactionNumber(const int64_t & lTransactionNum)
 {
 	m_listTransactionNumbers.push_back(lTransactionNum);
 }
-
 
 
 // Once this starts returning 0, OTCron can no longer process trades and
@@ -460,9 +442,6 @@ int64_t OTCron::GetNextTransactionNumber()
 	
 	return lTransactionNum;
 }
-
-
-
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -678,9 +657,6 @@ void OTCron::UpdateContents()
 }
 
 
-
-
-
 // Make sure to call this regularly so the CronItems get a chance to process and expire.
 void OTCron::ProcessCronItems()
 {
@@ -808,8 +784,6 @@ void OTCron::ProcessCronItems()
 }
 
 
-
-
 // OTCron IS responsible for cleaning up theItem, and takes ownership.
 // So make SURE it is allocated on the HEAP before you pass it in here, and
 // also make sure to delete it again if this call fails!
@@ -899,8 +873,6 @@ bool OTCron::AddCronItem(OTCronItem  & theItem,
 	return false;
 }
 
-// ---------------------------------------------------------------------
-
 
 bool OTCron::RemoveCronItem(int64_t lTransactionNum, OTPseudonym & theRemover) // if returns false, item wasn't found.
 {
@@ -937,9 +909,6 @@ bool OTCron::RemoveCronItem(int64_t lTransactionNum, OTPseudonym & theRemover) /
     // ---------------------------------------
     return false;
 }
-
-
-// ---------------------------------------------------------------------
 
 
 // Look up a transaction by transaction number and see if it is in the map.
@@ -1070,10 +1039,6 @@ OTCronItem * OTCron::GetItemByValidOpeningNum(int64_t lOpeningNum)
 	
 	return NULL;
 }
-
-
-
-// ----------------------------------------------------------
 
 
 // OTCron IS responsible for cleaning up theMarket, and takes ownership.
@@ -1240,14 +1205,12 @@ OTMarket * OTCron::GetMarket(const OTIdentifier & MARKET_ID)
 }
 
 
-// ------------------------------------------------------------
-
-
 OTCron::OTCron() : ot_super(), m_bIsActivated(false), m_pServerNym(NULL) // just here for convenience, not responsible to cleanup this pointer.
 {
 	InitCron();
 	OTLog::Output(3, "OTCron::OTCron: Finished calling InitCron 0.\n");
 }
+
 
 OTCron::OTCron(const OTIdentifier & SERVER_ID) : ot_super(), m_bIsActivated(false), m_pServerNym(NULL) // just here for convenience, not responsible to cleanup this pointer.
 {
@@ -1255,6 +1218,7 @@ OTCron::OTCron(const OTIdentifier & SERVER_ID) : ot_super(), m_bIsActivated(fals
 	SetServerID(SERVER_ID);
 	OTLog::Output(3, "OTCron::OTCron: Finished calling InitCron 1.\n");
 }
+
 
 OTCron::OTCron(const char * szFilename) : ot_super(), m_bIsActivated(false), m_pServerNym(NULL) // just here for convenience, not responsible to cleanup this pointer.
 {
@@ -1265,7 +1229,6 @@ OTCron::OTCron(const char * szFilename) : ot_super(), m_bIsActivated(false), m_p
 	m_strFilename.Set(szFilename);
 	OTLog::Output(3, "OTCron::OTCron: Finished calling InitCron 2.\n");
 }
-
 
 
 OTCron::~OTCron()
@@ -1280,6 +1243,7 @@ void OTCron::InitCron()
 {
 	m_strContractType = "CRON";
 }
+
 
 void OTCron::Release()
 {
@@ -1324,8 +1288,6 @@ void OTCron::Release_Cron()
 		pMarket = NULL;		
 	}
 }
-
-
 
 
 bool OTCron::SaveContractWallet(std::ofstream & ofs)

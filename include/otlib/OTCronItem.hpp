@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTCronItem.hpp
  *
@@ -130,23 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // Base class for OTTrade and OTAgreement.
 // OTCron contains lists of these for regular processing.
 
 #ifndef __OT_CRON_ITEM_HPP__
 #define __OT_CRON_ITEM_HPP__
 
+#include <deque>
+
 #include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
-
-#include <deque>
 
 class OTIdentifier;
 class OTCron;
 class OTString;
 class OTPseudonym;
+
 
 class OTCronItem : public OTTrackable
 {

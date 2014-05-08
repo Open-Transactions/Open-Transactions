@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTMessageOutBuffer.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_MESSAGE_OUT_BUFFER_HPP__
 #define __OT_MESSAGE_OUT_BUFFER_HPP__
 
@@ -145,7 +144,6 @@
 class OTPseudonym;
 class OTMessage;
 class OTTransaction;
-
 
 typedef std::list<OTMessage *>       listOfMessages; // Incoming server replies to your messages.
 typedef std::multimap <int64_t, OTMessage *> mapOfMessages;  // Your outgoing messages, mapped by request number.

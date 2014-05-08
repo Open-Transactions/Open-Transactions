@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTVariable.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_VARIABLE_HPP__
 #define __OT_VARIABLE_HPP__
 
@@ -248,5 +247,6 @@ EXPORT	virtual ~OTVariable();
 };
 
 typedef std::map<std::string, OTVariable *> mapOfVariables;
+
 
 #endif // __OT_VARIABLE_HPP__

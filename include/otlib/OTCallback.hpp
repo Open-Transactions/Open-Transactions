@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTCallback.hpp
  *
@@ -177,16 +177,13 @@ class OTPassword;
 //
 #define OT_LARGE_BLOCKSIZE	32767		// (32767 bytes max length for a password.)
 #define OT_LARGE_MEMSIZE	32768		// +1 for null terminator.
-// -------------------------------------------------------
 
 // Default is the smaller size.
-
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
 
 
 // https://github.com/lorf/keepassx/blob/master/src/lib/SecString.cpp
-
 
 // Done:  Although we have good memory ZEROING code (for destruction)
 // we don't have code yet that will keep the contents SECURE while they
@@ -197,6 +194,7 @@ class OTPassword;
 //
 // NOTE: For Windows, use VirtualLock instead of mlock.
 //
+
 /*
  #include <sys/mman.h>
 
@@ -328,7 +326,6 @@ void main()
 
  */
 
-
 //#undef OTPASSWORD_BLOCKSIZE
 //#undef OTPASSWORD_MEMSIZE
 //
@@ -337,7 +334,6 @@ void main()
 //
 //#undef OT_DEFAULT_BLOCKSIZE
 //#undef OT_DEFAULT_MEMSIZE
-
 
 // Used for the password callback...
 //
@@ -351,4 +347,4 @@ EXPORT	virtual void runTwo(const char * szDisplay, OTPassword & theOutput); // A
 };
 
 
-#endif //__OT_CALLBACK_HPP__
+#endif // __OT_CALLBACK_HPP__

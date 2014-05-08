@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTDataCheck.cpp
  *  
@@ -176,6 +176,7 @@ OT_BYTE CalcChecksum( OT_BYTE* buffer, uint32_t size )
 	return (255 - total);
 }
 
+
 OT_BYTE CalcChecksum( const OT_BYTE * const buffer, const uint32_t size )
 {
 	uint32_t i;
@@ -194,6 +195,7 @@ OT_BYTE CalcChecksum( const OT_BYTE * const buffer, const uint32_t size )
 	
 	return (255 - total);
 }
+
 
 OT_BOOL IsChecksumValid( OT_BYTE* buffer, uint32_t size )
 {
