@@ -155,6 +155,9 @@
 
 #include "irrxml/irrXML.hpp"
 
+#include <algorithm>
+
+
 // DONE: Add OTKeypair member for m_pMetadata.
 // Add method to set the Metadata. Or instead of a member,
 // just have the method set the public and private keys.

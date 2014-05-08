@@ -147,6 +147,7 @@
 #include "irrxml/irrXML.hpp"
 
 #include <fstream>
+#include <algorithm>
 
 //static
 OTPseudonym * OTPseudonym::LoadPublicNym(const OTIdentifier & NYM_ID,
