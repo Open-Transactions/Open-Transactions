@@ -1,7 +1,9 @@
 
 AUTOMAKE_OPTIONS	=	subdir-objects
 
-SUBDIRS                 =	gtest otlib otapi
+SUBDIRS                 =	otlib otapi
+
+## gtest (commented out until packaging resolved)
 
 opentxs_include_dir     =	$(top_srcdir)/include
 opentxs_source_dir      =	$(top_srcdir)/src

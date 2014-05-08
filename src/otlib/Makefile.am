@@ -69,7 +69,7 @@ endif
 
 
 otlib_sources     =	OTAccount.cpp		\
-			OTAcctFunctor.cpp		\
+			OTAcctFunctor.cpp	\
 			OTAcctList.cpp		\
 			OTAgent.cpp		\
 			OTAgreement.cpp		\
@@ -79,7 +79,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTAssetContract.cpp	\
 			OTAsymmetricKey.cpp	\
 			OTBasket.cpp		\
-			OTBasketItem.cpp		\
+			OTBasketItem.cpp	\
 			OTBylaw.cpp		\
 			OTCachedKey.cpp		\
 			OTCallback.cpp		\
@@ -93,19 +93,19 @@ otlib_sources     =	OTAccount.cpp		\
 			OTCrypto.cpp		\
 			OTData.cpp		\
 			OTDataCheck.cpp		\
-			OTDataFolder.cpp		\
+			OTDataFolder.cpp	\
 			OTDigitalCash.cpp	\
 			OTEnvelope.cpp		\
 			OTFolders.cpp		\
 			OTIdentifier.cpp	\
 			OTInstrument.cpp	\
 			OTItem.cpp		\
-			OTKeyCredential.cpp		\
+			OTKeyCredential.cpp	\
 			OTKeypair.cpp		\
 			OTKeyring.cpp		\
 			OTLedger.cpp		\
 			OTLog.cpp		\
-			OTLowLevelKeyData.cpp		\
+			OTLowLevelKeyData.cpp	\
 			OTMarket.cpp		\
 			OTMasterkey.cpp		\
 			OTMessage.cpp		\
@@ -113,12 +113,12 @@ otlib_sources     =	OTAccount.cpp		\
 			OTMint.cpp		\
 			OTMintLucre.cpp		\
 			OTNumList.cpp		\
-			OTNymOrSymmetricKey.cpp		\
+			OTNymOrSymmetricKey.cpp	\
 			OTOffer.cpp		\
 			OTParty.cpp		\
-			OTPartyAccount.cpp		\
+			OTPartyAccount.cpp	\
 			OTPassword.cpp		\
-			OTPasswordData.cpp		\
+			OTPasswordData.cpp	\
 			OTPaths.cpp		\
 			OTPayload.cpp		\
 			OTPayment.cpp		\
@@ -127,7 +127,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTPurse.cpp		\
 			OTScript.cpp		\
 			OTScriptable.cpp	\
-			OTScriptChai.cpp		\
+			OTScriptChai.cpp	\
 			OTServerContract.cpp	\
 			OTSettings.cpp		\
 			OTSignature.cpp		\
@@ -138,17 +138,17 @@ otlib_sources     =	OTAccount.cpp		\
 			OTStorage.cpp		\
 			OTString.cpp		\
 			OTStringXML.cpp		\
-			OTSubcredential.cpp		\
+			OTSubcredential.cpp	\
 			OTSubkey.cpp		\
 			OTSymmetricKey.cpp	\
 			OTToken.cpp		\
-			OTTokenLucre.cpp		\
+			OTTokenLucre.cpp	\
 			OTTrackable.cpp		\
 			OTTrade.cpp		\
 			OTTransaction.cpp	\
 			OTTransactionType.cpp	\
-			OTVariable.cpp	\
-			OTWallet.cpp	\
+			OTVariable.cpp		\
+			OTWallet.cpp		\
 			OTWindowsRegistryTools.cpp
 
 
@@ -214,7 +214,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTLib.hpp			\
 				$(otlib_headers_dir)/OTLibPriv.hpp		\
 				$(otlib_headers_dir)/OTLog.hpp			\
-				$(otlib_headers_dir)/OTLowLevelKeyData.hpp			\
+				$(otlib_headers_dir)/OTLowLevelKeyData.hpp	\
 				$(otlib_headers_dir)/OTMarket.hpp		\
 				$(otlib_headers_dir)/OTMasterkey.hpp		\
 				$(otlib_headers_dir)/OTMessageBuffer.hpp	\
