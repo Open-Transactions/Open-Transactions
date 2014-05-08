@@ -262,7 +262,7 @@ protected: // ADDRESS BOOK CALLER
 // ********************************************
 public:
 EXPORT  OTRecordList(); // This one expects that s_pCaller is not NULL.
-        OTRecordList(OTNameLookup & theLookup);
+EXPORT  OTRecordList(OTNameLookup & theLookup);
 EXPORT ~OTRecordList();
     // ------------------------------------------------
 EXPORT static const char * textTo  ()  { return s_strTextTo  .c_str(); }
