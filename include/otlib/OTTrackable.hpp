@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_TRACKABLE_HPP__
 #define __OT_TRACKABLE_HPP__
 

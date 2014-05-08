@@ -242,10 +242,6 @@ int32_t OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
-
-
 void OTPaymentPlan::UpdateContents()
 {
 	// I release this because I'm about to repopulate it.
@@ -414,15 +410,7 @@ void OTPaymentPlan::UpdateContents()
 }
 
 
-
-
-
-
-
-
-// --------------------------------------------------------------------------
 // *** Set Initial Payment ***  / Make sure to call SetAgreement() first.
-
 
 bool OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time64_t tTimeUntilInitialPayment/*=0*/)
 {
@@ -439,7 +427,6 @@ bool OTPaymentPlan::SetInitialPayment(const int64_t & lAmount, time64_t tTimeUnt
 	
 	return true;
 }
-
 
 
 bool OTPaymentPlan::CompareAgreement(const OTAgreement & rhs) const
@@ -546,12 +533,6 @@ bool OTPaymentPlan::VerifyAgreement(OTPseudonym & RECIPIENT_NYM, OTPseudonym & S
 }
 
 
-
-
-
-
-
-// --------------------------------------------------------------------------
 // *** Set Payment Plan *** / Make sure to call SetAgreement() first.
 																// default: 1st payment in 30 days
 bool OTPaymentPlan::SetPaymentPlan(const int64_t & lPaymentAmount, time64_t tTimeUntilPlanStart/*=2592000*/, 
@@ -613,8 +594,6 @@ bool OTPaymentPlan::SetPaymentPlan(const int64_t & lPaymentAmount, time64_t tTim
 }
 
 
-
-
 OTPaymentPlan::OTPaymentPlan() : ot_super(), m_bProcessingInitialPayment(false), m_bProcessingPaymentPlan(false)
 {
 	InitPaymentPlan();
@@ -651,12 +630,7 @@ bool OTPaymentPlan::SetInitialPaymentDone()
 }
 
 
-
 // TODO: Run a scanner on the code for memory leaks and buffer overflows.
-
-
-
-
 
 // This can be called by either the initial payment code, or by the payment plan code.
 // true == success, false == failure.
@@ -1250,7 +1224,6 @@ bool OTPaymentPlan::ProcessPayment(const int64_t & lAmount)
 }
 
 
-
 // Assumes we're due for this payment. Execution oriented.
 // NOTE: there used to be more to this function, but it ended up like this. Que sera sera.
 void OTPaymentPlan::ProcessInitialPayment()
@@ -1291,7 +1264,6 @@ void OTPaymentPlan::ProcessInitialPayment()
 }
 
 
-
 /*
 // This is called by OTCronItem::HookRemovalFromCron
 // (After calling this method, HookRemovalFromCron then calls onRemovalFromCron.)
@@ -1329,11 +1301,6 @@ void OTPaymentPlan::onRemovalFromCron()
 }
 */
 
-
-
-
-
-
 // Assumes we're due for a payment. Execution oriented.
 // NOTE: There used to be more to this function, but it ended up like this. Que sera sera.
 void OTPaymentPlan::ProcessPaymentPlan()
@@ -1360,7 +1327,6 @@ void OTPaymentPlan::ProcessPaymentPlan()
 	
 	// -----------------------------------------------------
 }
-
 
 
 // OTCron calls this regularly, which is my chance to expire, etc.
@@ -1538,7 +1504,6 @@ bool OTPaymentPlan::ProcessCron()
 }
 
 
-
 void OTPaymentPlan::InitPaymentPlan()
 {
 	m_strContractType = "PAYMENT PLAN";
@@ -1572,13 +1537,10 @@ void OTPaymentPlan::InitPaymentPlan()
 }
 
 
-
-
 OTPaymentPlan::~OTPaymentPlan()
 {
 	Release_PaymentPlan();
 }
-
 
 
 void OTPaymentPlan::Release_PaymentPlan()
@@ -1597,8 +1559,6 @@ void OTPaymentPlan::Release()
 	// Then I call this to re-initialize everything
 	InitPaymentPlan();
 }
-
-
 
 
 bool OTPaymentPlan::SaveContractWallet(std::ofstream & ofs)

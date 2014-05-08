@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTPartyAccount.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_PARTY_ACCOUNT_HPP__
 #define __OT_PARTY_ACCOUNT_HPP__
 
@@ -260,5 +259,6 @@ EXPORT	OTAgent   * GetAuthorizedAgent();
 };
 
 typedef std::map<std::string, OTPartyAccount *> mapOfPartyAccounts;
+
 
 #endif // __OT_PARTY_ACCOUNT_HPP__

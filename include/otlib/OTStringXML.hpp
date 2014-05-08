@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_STRING_XML_HPP__
 #define __OT_STRING_XML_HPP__
 
@@ -139,6 +138,7 @@
 #include "OTString.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 {

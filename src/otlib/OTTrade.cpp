@@ -140,7 +140,6 @@
 #include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
 
-#include <time.h>
 
 #ifndef TRADE_PROCESS_INTERVAL
 
@@ -156,8 +155,6 @@
 // Trades are like cron items, they can expire, they can have rules.
 //
 // An OTTrade is derived from OTCronItem. OTCron has a list of those items.
-
-
 
 // Used to be I could just call pTrade->VerifySignature(theNym), which is what
 // I still call here, inside this function. But that's a special case -- an override
@@ -178,11 +175,6 @@ bool OTTrade::VerifyNymAsAgentForAccount(OTPseudonym & theNym, OTAccount & theAc
 	return theAccount.VerifyOwner(theNym);
 }
 
-
-
-
-
-// -------------------------------------------------------------
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -398,7 +390,6 @@ void OTTrade::UpdateContents()
 	// -------------------------------------------------------------
 	m_xmlUnsigned.Concatenate("</trade>\n");
 }
-
 
 
 // The trade stores a copy of the Offer in string form.
@@ -807,13 +798,12 @@ int64_t OTTrade::GetClosingNumber(const OTIdentifier & theAcctID) const
 	return 0;
 }
 
-// ---------------------------------------------------
-
 
 int64_t OTTrade::GetAssetAcctClosingNum() const
 {
     return (GetCountClosingNumbers() > 0) ? GetClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
+
 
 int64_t OTTrade::GetCurrencyAcctClosingNum() const
 {
@@ -881,8 +871,6 @@ bool OTTrade::CanRemoveItemFromCron(OTPseudonym & theNym)
     // P.S. If you override this function, MAKE SURE to call the parent (OTCronItem::CanRemoveItem) first,
     // for the VerifyIssuedNum call above. Only if that fails, do you need to dig deeper...
 }
-
-
 
 
 // This is called by OTCronItem::HookRemovalFromCron
@@ -1094,7 +1082,6 @@ void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewT
 }
 
 
-
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Return True if I should stay on the Cron list for more processing.
 // Return False if I should be removed and deleted.
@@ -1277,6 +1264,7 @@ OTTrade::OTTrade() : ot_super(), m_pOffer(NULL),
 	InitTrade();
 }
 
+
 OTTrade::OTTrade(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
 			ot_super(SERVER_ID, ASSET_ID), m_pOffer(NULL),
     m_bHasTradeActivated(false),
@@ -1314,6 +1302,7 @@ OTTrade::OTTrade(const OTIdentifier & SERVER_ID,
 	SetCurrencyAcctID(CURRENCY_ACCT_ID);
 }
 
+
 OTTrade::~OTTrade()
 {
 	Release_Trade();
@@ -1330,6 +1319,7 @@ void OTTrade::Release_Trade()
 	m_strOffer.Release();
 }
 
+
 // the framework will call this at the right time.
 void OTTrade::Release()
 {
@@ -1341,7 +1331,6 @@ void OTTrade::Release()
 	// (Only cause it's convenient...)
 	InitTrade();
 }
-
 
 
 // This CAN have values that are reset
@@ -1361,8 +1350,6 @@ void OTTrade::InitTrade()
 								// I'll put a "HasOrderOnMarket()" bool method that answers this for u.
 	m_bHasTradeActivated = false;// I want to keep track of general activations as well, not just stop orders.
 }
-
-
 
 
 bool OTTrade::SaveContractWallet(std::ofstream & ofs)

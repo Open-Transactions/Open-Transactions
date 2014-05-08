@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
 *
 *  OTStorage.hpp
 *
@@ -170,14 +170,12 @@
 //#define OTDB_JSON_PACKING 1 // coming soon.
 
 
-
 //#define OTDB_DEFAULT_PACKER	OTDB::PACK_MESSAGE_PACK
 #define OTDB_DEFAULT_PACKER		OTDB::PACK_PROTOCOL_BUFFERS
 
 #define OTDB_DEFAULT_STORAGE	OTDB::STORE_FILESYSTEM
 
 
-// ----------------------------------------------------
 // JAVA-STYLE INTERFACES.
 //
 // I'm doing some crazy stuff in this file.
@@ -205,7 +203,7 @@ public: \
 #define EndInterface };
 
 #define implements public
-// ----------------------------------------------------
+
 
 // Foreach with std containers.
 
@@ -218,10 +216,8 @@ public: \
 #define FOR_EACH_CONST(ARG_OT_ONE, ARG_OT_TWO)	for(ARG_OT_ONE::const_iterator it = ARG_OT_TWO.begin(); it != ARG_OT_TWO.end(); ++ it)
 
 
-
-
 #endif // (not) SWIG
-// ----------------------------------------------------
+
 
 namespace OTDB
 {
@@ -286,7 +282,7 @@ namespace OTDB
 	};
 
 #ifndef SWIG
-	// ********************************************************************
+
 
 	// ABSTRACT BASE CLASSES
 	//
@@ -294,8 +290,6 @@ namespace OTDB
 	class OTPacker;		// A packer (Could be MsgPack, or Google Protocol Buffers, or a json lib...)
 	class Storage;		// A storage context (database, filesystem, cloud, etc. Swappable.)
 	class PackedBuffer;	// A buffer for containing a PACKED STORABLE. (On its way to/from storage.)
-
-
 
 
 	// OTDB NAMESPACE "CONSTRUCTOR"
@@ -1502,21 +1496,15 @@ public: \
 	};
 } // Namespace OTDB
 
-// ********************************************************************
-
-
 
 #ifndef SWIG
 
-// *******************************************************************************************
-//
+
 // StorageFS -- FILE-SYSTEM Storage Context
 //
 //
 namespace OTDB
 {
-	// --------------------------------------------------------------------------
-	//
 	// StorageFS means "Storage on Filesystem."
 	//
 	// This is the first subclass of OTDB::Storage -- but it won't be the last!
@@ -1644,11 +1632,6 @@ namespace OTDB
 	// Also, coders using the API should be able to subclass Storage in their own language via SWIG.
 
 } // namespace OTDB
-// *******************************************************************************************
-
-
-
-
 
 
 // IStorable-derived types...
@@ -1666,27 +1649,13 @@ namespace OTDB
 	using IStorable::hookAfterUnpack
 
 
-
-
-
-
-
-// *******************************************************************************************
-
 // JSON will be the next packer that I add
 
 #if defined (OTDB_JSON_PACKING)
 //#include "JSON - LIBRARY . h"   // coming soon.
 #endif // defined (OTDB_JSON_PACKING)
-// *******************************************************************************************
 
 
-
-
-
-
-
-// *******************************************************************************************
 #if defined (OTDB_MESSAGE_PACK)
 #include <msgpack.hpp>
 //
@@ -1717,7 +1686,6 @@ OT_MSGPACK_END;
 //
 
 
-// ----------------------------------------------
 #define OT_MSGPACK_BEGIN(theType, theBaseType, theObjectType) \
 class theType : public theBaseType, implements IStorableMsgpack \
 {		\
@@ -1803,10 +1771,6 @@ std::swap(theMember, rhs.theMember)
 
 // Finishing with this, and semicolon after.
 //#define OT_MSGPACK_END  } }
-
-
-
-// ----------------------------------------------
 
 
 namespace OTDB
@@ -2087,10 +2051,7 @@ namespace OTDB
 } // namespace OTDB
 
 #endif // defined (OTDB_MESSAGE_PACK)
-// *******************************************************************************************
 
-
-// *******************************************************************************************
 
 #if defined(OTDB_PROTOCOL_BUFFERS)
 
@@ -2116,7 +2077,6 @@ namespace OTDB
 #include "Bitcoin.pb.h"
 #include "Moneychanger.pb.h"
 #endif
-// -----------------------------------------------
 
 
 #ifdef _WIN32
@@ -2169,8 +2129,6 @@ virtual bool ReadFromIStream(std::istream &inStream, int64_t lFilesize); \
 virtual bool WriteToOStream(std::ostream &outStream); \
 }
 */
-
-
 
 
 namespace OTDB
@@ -2305,11 +2263,9 @@ namespace OTDB
 	*/
 
 
-
 } // namespace OTDB
 
 #endif // defined(OTDB_PROTOCOL_BUFFERS)
-// *******************************************************************************************
 
 
 #endif // (not) SWIG

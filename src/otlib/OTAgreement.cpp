@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *    
  *  OTAgreement.cpp
  *  
@@ -437,7 +437,6 @@ bool OTAgreement::DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an 
 }
 
 
-
 // Overrides from OTTrackable.
 bool OTAgreement::HasTransactionNum(const int64_t & lInput) const
 {
@@ -489,7 +488,6 @@ void OTAgreement::GetAllTransactionNumbers(OTNumList & numlistOutput) const
     }
     // --------------------------------------------------
 }
-
 
 
 // Used to be I could just call pAgreement->VerifySignature(theNym), which is what
@@ -782,15 +780,10 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
 }
 
 
-
-
-
-// ---------------------------------------------------
 /*
  inline const OTIdentifier &	GetRecipientAcctID() const { return m_RECIPIENT_ACCT_ID; }
  inline const OTIdentifier &	GetRecipientUserID() const { return m_RECIPIENT_USER_ID; }
  */
-
 
 bool OTAgreement::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 {
@@ -801,7 +794,6 @@ bool OTAgreement::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 }
 
 
-
 void OTAgreement::onRemovalFromCron()
 {
     // Not much needed here.
@@ -810,10 +802,6 @@ void OTAgreement::onRemovalFromCron()
     //
     
 }
-
-
-// ---------------------------------------------------
-
 
 
 // You usually wouldn't want to use this, since if the transaction failed, the opening number
@@ -856,7 +844,6 @@ void OTAgreement::HarvestOpeningNumber(OTPseudonym & theNym)
 }
 
 
-
 // Used for adding transaction numbers back to a Nym, after deciding not to use this agreement
 // or failing in trying to use it. Client side.
 //
@@ -897,6 +884,7 @@ void OTAgreement::HarvestClosingNumbers(OTPseudonym & theNym)
     }
 }
 
+
 int64_t OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 {
 	const OTIdentifier & theRecipientNymID = this->GetRecipientUserID();
@@ -908,8 +896,6 @@ int64_t OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 }
 
 
-// ------------------------------------------------------
-
 int64_t OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 {
 	const OTIdentifier & theRecipientAcctID = this->GetRecipientAcctID();
@@ -920,12 +906,12 @@ int64_t OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 	return ot_super::GetClosingNumber(theAcctID);
 }
 
-// ---------------------------------------------------
 
 int64_t OTAgreement::GetRecipientOpeningNum() const
 {
     return (GetRecipientCountClosingNumbers() > 0) ? GetRecipientClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
+
 
 int64_t OTAgreement::GetRecipientClosingNum() const
 {
@@ -959,8 +945,6 @@ void OTAgreement::AddRecipientClosingTransactionNo(const int64_t & lClosingTrans
     m_dequeRecipientClosingNumbers.push_back(lClosingTransactionNo);
 }
 
-// ---------------------------------------------------
-
 
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Child classes will override this, AND call it (to verify valid date range.)
@@ -988,11 +972,6 @@ bool OTAgreement::ProcessCron()
 	
 	return true;
 }
-
-
-
-
-
 
 
 /// See if theNym has rights to remove this item from Cron.
@@ -1058,10 +1037,6 @@ bool OTAgreement::CanRemoveItemFromCron(OTPseudonym & theNym)
 }
 
 
-
-// ------------------------------------------------------------
-
-
 bool OTAgreement::CompareAgreement(const OTAgreement & rhs) const
 {
     // Compare OTAgreement specific info here.
@@ -1085,9 +1060,6 @@ bool OTAgreement::CompareAgreement(const OTAgreement & rhs) const
     
     return false;
 }
-
-
-
 
 
 // THIS FUNCTION IS CALLED BY THE MERCHANT
@@ -1298,11 +1270,6 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
 }
 
 
-
-
-
-
-
 // (Make sure to set Creation date here.)
 // THIS FUNCTION IS DEPRECATED
 //
@@ -1365,16 +1332,11 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 */
 
 
-
-
-
-
-
-
 OTAgreement::OTAgreement() : ot_super()
 {
 	InitAgreement();
 }
+
 
 OTAgreement::OTAgreement(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
 			ot_super(SERVER_ID, ASSET_ID)
@@ -1394,6 +1356,7 @@ OTAgreement::OTAgreement(const OTIdentifier & SERVER_ID,			const OTIdentifier & 
 	SetRecipientUserID(RECIPIENT_USER_ID);
 }
 
+
 OTAgreement::~OTAgreement()
 {
 	Release_Agreement();
@@ -1405,6 +1368,7 @@ void OTAgreement::InitAgreement()
 	m_strContractType = "AGREEMENT";
 	
 }
+
 
 void OTAgreement::Release_Agreement()
 {
@@ -1435,8 +1399,6 @@ void OTAgreement::Release()
 	// Then I call this to re-initialize everything
 	InitAgreement();
 }
-
-
 
 
 void OTAgreement::UpdateContents()
@@ -1578,7 +1540,6 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 	return nReturnVal;
 }
-
 
 
 bool OTAgreement::SaveContractWallet(std::ofstream & ofs)

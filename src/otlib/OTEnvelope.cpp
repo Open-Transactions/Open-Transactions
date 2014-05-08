@@ -1,4 +1,4 @@
-/*****************************************************************
+/************************************************************
  *    
  *  OTEnvelope.cpp
  *  
@@ -149,7 +149,6 @@ extern "C"
 #endif
 }
 
-// ------------------------------------------------------------------------
 
 // Presumably this Envelope contains encrypted data (in binary form.)
 // If you would like an ASCII-armored version of that data, just call this
@@ -161,6 +160,7 @@ bool OTEnvelope::GetAsciiArmoredData(OTASCIIArmor & theArmoredText,
 {
 	return theArmoredText.SetData(m_dataContents, bLineBreaks);
 }
+
 
 // Should be called "Set This Envelope's binary ciphertext data, from an ascii-armored input string."
 //
@@ -176,7 +176,6 @@ bool OTEnvelope::SetAsciiArmoredData(const OTASCIIArmor & theArmoredText,
 	return theArmoredText.GetData(m_dataContents, bLineBreaks);
 }
 
-// ------------------------------------------------------------------------
 
 bool OTEnvelope::GetAsBookendedString(OTString & strArmorWithBookends, // output (if successful.)
                                       bool       bEscaped/*=false*/) const
@@ -203,7 +202,6 @@ bool OTEnvelope::GetAsBookendedString(OTString & strArmorWithBookends, // output
     return false;
 }
 
-// ------------------------------------------------------------------------
 
 bool OTEnvelope::SetFromBookendedString(const OTString & strArmorWithBookends, // input
                                               bool       bEscaped/*=false*/)
@@ -229,10 +227,6 @@ bool OTEnvelope::SetFromBookendedString(const OTString & strArmorWithBookends, /
     // -----------------------------
     return false;
 }
-
-
-
-// ------------------------------------------------------------------------
 
 
 // Encrypt theInput as envelope using symmetric crypto, using a random AES key that's 
@@ -357,9 +351,6 @@ bool OTEnvelope::Encrypt(const OTString & theInput, OTSymmetricKey & theKey, con
 }
 
 
-
-
-//
 bool OTEnvelope::Decrypt(OTString & theOutput, const OTSymmetricKey & theKey, const OTPassword & thePassword)
 {
     const char * szFunc = "OTEnvelope::Decrypt";
@@ -507,361 +498,8 @@ bool OTEnvelope::Decrypt(OTString & theOutput, const OTSymmetricKey & theKey, co
     return bDecrypted;
 }
 
-// ------------------------------------------------------------------------
-
-
-
-
-
-//
-// There are certain cases where we want the option to pass a Nym OR a
-// symmetric key, and the function should be able to handle either.
-// This class is used to make that possible.
-//
-
-/// (This constructor is private.)
-// ---------------------------------
-OTNym_or_SymmetricKey::OTNym_or_SymmetricKey()
-: m_pNym(NULL), m_pKey(NULL), m_pPassword(NULL), m_bCleanupPassword(false), m_pstrDisplay(NULL)  {}
-// ---------------------------------
-
-
-OTNym_or_SymmetricKey::~OTNym_or_SymmetricKey()
-{
-    // We don't own these objects.
-    // Rather, we own a pointer to ONE of them, since we are a wrapper
-    // for this one or that.
-    //
-    m_pNym       = NULL;
-    // -------------
-    m_pKey       = NULL;
-    // -------------
-    if (m_bCleanupPassword && (NULL != m_pPassword))
-        delete m_pPassword;
-    m_pPassword  = NULL; // optional
-    // -------------
-    
-    m_pstrDisplay = NULL;
-    
-    // Since this is merely a wrapper class, we don't even Release() these things.
-    // However, we DO have a release function, since the programmatic USER of this class
-    // MAY wish to Release() whatever it is wrapping. That's his choice. But we don't call
-    // it here in the destructor, because we aren't the owner.
-    //
-//  Release_Nym_or_SymmetricKey(); 
-}
-
-// ---------------------------------
-
-OTNym_or_SymmetricKey::OTNym_or_SymmetricKey(const OTNym_or_SymmetricKey & rhs) // same type
-: m_pNym(NULL), m_pKey(NULL), m_pPassword(NULL), m_bCleanupPassword(false), m_pstrDisplay(rhs.m_pstrDisplay)
-{
-    // This class doesn't do any cleanup, it's just a temporary wrapper.
-    // So we won't have anything get deleted twice, because this class won't
-    // even delete it once.
-    //
-    m_pNym       = rhs.m_pNym;
-    // -----------------
-    m_pKey       = rhs.m_pKey;
-    m_pPassword  = rhs.m_pPassword; // optional
-
-    //m_bCleanupPassword  = rhs.m_bCleanupPassword; // optional
-    //
-    // This is commented out because this object keeps a POINTER to the password,
-    // which is usually owned by the caller. (So we normally wouldn't delete it.)
-    // But sometimes, we have to CREATE the password, in which case we store it until
-    // we destruct, and then destroy it in our destructor. (Having it available in the
-    // meantime to use, without having to load again.)
-    // m_bCleanupPassword thus normally tells us whether the password was passed in
-    // by its owner for reference purposes only, or whether we created it internally and
-    // thus need to clean it up ourselves.
-    // THEREFORE, here in the COPY CONSTRUCTOR, we need to keep a pointer to the password
-    // from the rhs object, in case we need that password, but we cannot DESTROY that password,
-    // if rhs is also destroying it! Therefore we copy the password, but we leave m_bCleanupPassword
-    // as false (its default) since THIS INSTANCE definitely does not own m_pPassword.
-    //
-}
-
-OTNym_or_SymmetricKey::OTNym_or_SymmetricKey(const OTPseudonym & theNym, const OTString * pstrDisplay/*=NULL*/)  // construct with nym
-: m_pNym(const_cast<OTPseudonym *>(&theNym)), m_pKey(NULL), m_pPassword(NULL), m_bCleanupPassword(false), m_pstrDisplay(pstrDisplay)
-{
-    
-}
-
-OTNym_or_SymmetricKey::OTNym_or_SymmetricKey(const OTSymmetricKey & theKey, const OTString * pstrDisplay/*=NULL*/) // construct with key
-: m_pNym(NULL), m_pKey(const_cast<OTSymmetricKey *>(&theKey)), m_pPassword(NULL), m_bCleanupPassword(false), m_pstrDisplay(pstrDisplay)
-{
-    
-}
-
-OTNym_or_SymmetricKey::OTNym_or_SymmetricKey(const OTSymmetricKey & theKey, const OTPassword & thePassword, // construct with key and password.
-                                             const OTString * pstrDisplay/*=NULL*/) 
-: m_pNym(NULL), m_pKey(const_cast<OTSymmetricKey *>(&theKey)),
-  m_pPassword(const_cast<OTPassword *>(&thePassword)), m_bCleanupPassword(false), m_pstrDisplay(pstrDisplay)
-{
-    
-}
-
-// ---------------------------------
-
-void OTNym_or_SymmetricKey::swap(OTNym_or_SymmetricKey & other)
-{
-    if (&other != this)
-    {
-        std::swap(m_pNym,               other.m_pNym);
-        std::swap(m_pKey,               other.m_pKey);
-        std::swap(m_pPassword,          other.m_pPassword);
-        std::swap(m_bCleanupPassword,   other.m_bCleanupPassword);
-        std::swap(m_pstrDisplay,        other.m_pstrDisplay);
-    }
-}
-
-OTNym_or_SymmetricKey & OTNym_or_SymmetricKey::operator = (OTNym_or_SymmetricKey other) // passed by value.
-{
-    // swap this with other
-    this->swap(other);
-    
-    // by convention, always return *this
-    return *this;    
-}
-
-// ---------------------------------
-// This is just a wrapper class.
-//
-void OTNym_or_SymmetricKey::Release() // Someday make this virtual, if we ever subclass it.
-{
-    OT_ASSERT((m_pNym != NULL) || (m_pKey != NULL)); // m_pPassword is optional
-    
-    Release_Nym_or_SymmetricKey();
-    
-    // no need to call ot_super::Release here, since this class has no superclass.
-}
-
-// This is just a wrapper class. (Destructor doesn't call this because we aren't the owner.)
-//
-void OTNym_or_SymmetricKey::Release_Nym_or_SymmetricKey()
-{
-    if (NULL != m_pNym)
-    {
-//      m_pNym->Release(); // no such call on OTPseudonym. (Otherwise it wouldn't be commented out.)
-    }
-
-    if (NULL != m_pKey)
-        m_pKey->Release();
-
-    if (NULL != m_pPassword)
-    {
-        m_pPassword->zeroMemory();
-        // -------------
-        if (m_bCleanupPassword) // Only in cases where *this is the actual owner of m_pPassword.
-        {
-            delete m_pPassword;
-            m_pPassword = NULL;
-        }
-    }
-}
-
-// ------------------------------------------------------------------------
-
-bool OTNym_or_SymmetricKey::CompareID(const OTNym_or_SymmetricKey & rhs) const
-{
-    OTIdentifier idTHIS, idRHS;
-    // --------------------------
-    this->GetIdentifier(idTHIS);
-    rhs.  GetIdentifier(idRHS );
-    // --------------------------
-    return (idTHIS == idRHS);
-}
-
-// ------------------------------------------------------------------------
-
-void OTNym_or_SymmetricKey::GetIdentifier(OTIdentifier & theIdentifier) const
-{
-    if (this->IsNym())
-    {
-        m_pNym->GetIdentifier(theIdentifier);
-    }
-    else if (this->IsKey())
-    {
-        m_pKey->GetIdentifier(theIdentifier);
-    }
-    else
-    {
-        OT_FAIL; // should never happen
-    }
-}
-
-// ------------------------------------------------------------------------
-
-void OTNym_or_SymmetricKey::GetIdentifier(OTString & strIdentifier) const
-{
-    if (this->IsNym())
-    {
-        m_pNym->GetIdentifier(strIdentifier);
-    }
-    else if (this->IsKey())
-    {
-        m_pKey->GetIdentifier(strIdentifier);
-    }
-    else
-    {
-        OT_FAIL; // should never happen
-    }   
-}
-
-// ------------------------------------------------------------------------
-// From OTEnvelope:
-//	bool GetAsBookendedString  (      OTString     & strArmorWithBookends, bool bEscaped    = false ) const;
-//	bool SetFromBookendedString(const OTString     & strArmorWithBookends, bool bEscaped    = false );
-
-bool OTNym_or_SymmetricKey::Open_or_Decrypt(const OTEnvelope & inputEnvelope,
-                                                  OTString   & strOutput,
-                                            const OTString   * pstrDisplay/*=NULL*/)
-{
-    const char * szFunc = "OTNym_or_SymmetricKey::Open_or_Decrypt";
-    // --------------------------
-    bool bSuccess                  = false;
-    bool bHadToInstantiatePassword = false;
-    // ---------------
-	// Decrypt/Open inputEnvelope into strOutput
-    //    
-    if (this->IsNym()) // *this is a Nym.
-    {
-        bSuccess = (const_cast<OTEnvelope &>(inputEnvelope)).Open(*(this->GetNym()), strOutput);
-    }
-    else if (this->IsKey()) // *this is a symmetric key, possibly with a password already as well.
-    {
-        OTPassword * pPassword = NULL;
-        
-        if (this->HasPassword()) // Password is already available. Let's use it.
-            pPassword = this->GetPassword();
-        else // NO PASSWORD already? let's collect it from the user...
-        {
-            const OTString strDisplay((NULL == pstrDisplay) ? szFunc : pstrDisplay->Get());
-            // NOTE: m_pstrDisplay overrides this below.
-            // -------------------------------------------
-            // returns a text OTPassword, or NULL.
-            //
-            pPassword = OTSymmetricKey::GetPassphraseFromUser((NULL == m_pstrDisplay) ? &strDisplay : m_pstrDisplay);//bool bAskTwice=false
-            
-            if (NULL == pPassword) // Unable to retrieve passphrase from user.
-            {
-                OTLog::vOutput(0, "%s: Failed trying to retrieve passphrase for key. "
-                               "Returning false.\n", szFunc);
-                return false;
-            }
-            else // OTNym_or_SymmetricKey stores this, if it creates it.
-                 // (And cleans it up on destruction, IF it created it.)
-                 //
-                bHadToInstantiatePassword = true;
-        }
-        // -------------------------------------------
-        //
-        bSuccess = (const_cast<OTEnvelope &>(inputEnvelope)).Decrypt(strOutput, *(this->GetKey()), *pPassword);
-        
-        // We only set this, presuming we have to at all, if it was a success.
-        if (bHadToInstantiatePassword)
-        {
-            if (bSuccess)
-            {
-                m_bCleanupPassword = true;
-                m_pPassword        = pPassword; // Not bothering to cleanup whatever was here before, since we only end up here if m_pPassword was set to NULL (according to above logic...)
-            }
-            else // We instantiated the password, but the decrypt failed. (Need to cleanup the password then.)
-            {
-                delete pPassword;
-                pPassword = NULL;
-            }
-        }
-    }
-    // else ? should never happen.
-    // -------------------------------------------
-    return bSuccess;
-}
-
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-bool OTNym_or_SymmetricKey::Seal_or_Encrypt(      OTEnvelope & outputEnvelope,
-                                            const OTString     strInput,
-                                            const OTString   * pstrDisplay/*=NULL*/)
-{
-    const char * szFunc = "OTNym_or_SymmetricKey::Seal_or_Encrypt";
-    // --------------------------
-    bool bSuccess                  = false;
-    bool bHadToInstantiatePassword = false;
-    // ---------------
-	// Encrypt/Seal strInput into outputEnvelope
-    //
-    if (this->IsNym())
-    {
-        bSuccess = outputEnvelope.Seal(*(this->GetNym()), strInput);
-    }
-    // -------------------------------------------
-    else if (this->IsKey())
-    {
-        OTPassword * pPassword = NULL;
-        
-        if (this->HasPassword()) // Password is already available. Let's use it.
-            pPassword = this->GetPassword();
-        else // no password? let's collect it from the user...
-        {
-            const OTString strDisplay((NULL == pstrDisplay) ? szFunc : pstrDisplay->Get());
-            // NOTE: m_pstrDisplay overrides this below.
-            // -------------------------------------------
-            // returns a text OTPassword, or NULL.
-            //
-            pPassword = OTSymmetricKey::GetPassphraseFromUser((NULL == m_pstrDisplay) ? &strDisplay : m_pstrDisplay);//bool bAskTwice=false
-            
-            if (NULL == pPassword) // Unable to retrieve passphrase from user.
-            {
-                OTLog::vOutput(0, "%s: Failed trying to retrieve passphrase for key. "
-                               "Returning false.\n", szFunc);
-                return false;
-            }
-            else // OTNym_or_SymmetricKey stores this, if it creates it.
-                 // (And cleans it up on destruction, IF it created it.)
-                 //
-                bHadToInstantiatePassword = true;
-        }
-        // -------------------------------------------
-        //
-        bSuccess = outputEnvelope.Encrypt(strInput, *(this->GetKey()), *pPassword);
-        
-        // We only set this, presuming we have to at all, if it was a success.
-        if (bHadToInstantiatePassword)
-        {
-            if (bSuccess)
-            {
-                m_bCleanupPassword = true;
-                m_pPassword        = pPassword; // Not bothering to cleanup whatever was here before, since we only end up here if m_pPassword was set to NULL (according to above logic...)
-            }
-            else // We instantiated the password, but the encrypt failed. (Need to cleanup the password then.)
-            {
-                delete pPassword;
-                pPassword = NULL;
-            }
-        }
-    }
-    // else ? should never happen.
-    // -----------------------------------
-	return bSuccess;
-}
-
-
-
-
-
-// -----------------------------------------------------------------------------------
-
-
 
 // RSA / AES
-//
 
 bool OTEnvelope::Seal(const OTPseudonym & theRecipient, const OTString & theInput)
 {
@@ -873,7 +511,6 @@ bool OTEnvelope::Seal(const OTPseudonym & theRecipient, const OTString & theInpu
     // -----------------------------
     return this->Seal(theKeys, theInput);
 }
-// ------------------------------------------------------------------------
 
 
 bool OTEnvelope::Seal(setOfNyms & theRecipients, const OTString & theInput)
@@ -900,9 +537,6 @@ bool OTEnvelope::Seal(setOfNyms & theRecipients, const OTString & theInput)
 }
 
 
-// ------------------------------------------------------------------------
-
-
 bool OTEnvelope::Seal(const OTAsymmetricKey & RecipPubKey, const OTString & theInput)
 {
     mapOfAsymmetricKeys   theKeys;
@@ -912,9 +546,6 @@ bool OTEnvelope::Seal(const OTAsymmetricKey & RecipPubKey, const OTString & theI
     // -----------------------------
     return this->Seal(theKeys, theInput);
 }
-
-// ------------------------------------------------------------------------
-
 
 
 // Seal up as envelope (Asymmetric, using public key and then AES key.)
@@ -926,9 +557,8 @@ bool OTEnvelope::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString & theIn
     
     return OTCrypto::It()->Seal(RecipPubKeys, theInput, m_dataContents);
 }
-// ------------------------------------------------------------------------
 
-    
+
 // RSA / AES
 
 bool OTEnvelope::Open(const OTPseudonym & theRecipient, OTString & theOutput, OTPasswordData * pPWData/*=NULL*/)
@@ -937,22 +567,16 @@ bool OTEnvelope::Open(const OTPseudonym & theRecipient, OTString & theOutput, OT
 }
 
 
-// ------------------------------------------------------------------------
-
-
-
 // DONE: Fix OTEnvelope so we can seal to multiple recipients simultaneously.
 // DONE: Fix OTEnvelope so it supports symmetric crypto as well as asymmetric.
 
 // DONE: Remove the Nym stored inside the purse, and replace with a
 // session key, just as envelopes will support a session key.
 
-
 // TODO: Make sure OTEnvelope / OTCrypto_OpenSSL is safe with zeroing memory wherever needed.
 
 // Todo: Once envelopes support multiple recipient Nyms, then make a habit of encrypting
 // to the user's key AND server's key, when sending.
-
 
 // Hmm this might be better than a session key, since we don't have to worry about keeping track
 // of the session key for LATER, since envelopes generate a session key already.
@@ -965,10 +589,6 @@ bool OTEnvelope::Open(const OTPseudonym & theRecipient, OTString & theOutput, OT
 // during each session. This means we'll have the same protocol as before but just faster (in a way.)
 // 
 
-
-
-
-
 // We just read some encrypted (and armored) data, and we want to put it in
 // an envelope so that it can be opened. So we can just directly set the
 // armored string here, and it will be decoded into the original binary,
@@ -980,16 +600,14 @@ OTEnvelope::OTEnvelope(const OTASCIIArmor & theArmoredText)
 	SetAsciiArmoredData(theArmoredText);
 }
 
+
 OTEnvelope::OTEnvelope()
 {
 	
 }
 
+
 OTEnvelope::~OTEnvelope()
 {
 	
 }
-
-
-
-

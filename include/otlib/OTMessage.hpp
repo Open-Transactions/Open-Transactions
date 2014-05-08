@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTMessage.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_MESSAGE_HPP__
 #define __OT_MESSAGE_HPP__
 
@@ -141,6 +140,7 @@
 
 class OTPseudonym;
 class OTPasswordData;
+
 
 class OTMessage : public OTContract
 {

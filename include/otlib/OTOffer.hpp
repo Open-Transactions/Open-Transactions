@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTOffer.hpp
  *  
@@ -130,9 +130,7 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
-
 
 #ifndef __OT_OFFER_HPP__
 #define __OT_OFFER_HPP__
@@ -142,6 +140,7 @@
 #include "OTInstrument.hpp"
 
 class OTTrade;
+
 
 /*
  OTOffer
@@ -158,7 +157,6 @@ class OTTrade;
  X 5) Number of assets already traded, against the above total.
  X 6) Minimum increment for sale or purchase (if matches “total number of assets for sale”, effectively becomes a FILL OR KILL order. MUST be 1 or greater. CANNOT be zero.)
 */
-
 class OTOffer : public OTInstrument
 {
 private:  // Private prevents erroneous use by other classes.

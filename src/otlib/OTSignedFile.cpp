@@ -205,9 +205,6 @@ int32_t OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
-
-
 // We just loaded a certain subdirectory/filename
 // This file also contains that information within it.
 // This function allows me to compare the two and make sure
@@ -233,13 +230,13 @@ bool OTSignedFile::VerifyFile()
 }
 
 
-
 OTSignedFile::OTSignedFile(const OTString & LOCAL_SUBDIR, const OTString & FILE_NAME) : ot_super()
 {
 	m_strContractType.Set("FILE");
 
 	SetFilename(LOCAL_SUBDIR, FILE_NAME);
 }
+
 
 OTSignedFile::OTSignedFile(const char * LOCAL_SUBDIR, const OTString & FILE_NAME) : ot_super()
 {
@@ -249,6 +246,7 @@ OTSignedFile::OTSignedFile(const char * LOCAL_SUBDIR, const OTString & FILE_NAME
 
 	SetFilename(strLocalSubdir, FILE_NAME);
 }
+
 
 OTSignedFile::OTSignedFile(const char * LOCAL_SUBDIR, const char * FILE_NAME) : ot_super()
 {
@@ -277,6 +275,7 @@ bool OTSignedFile::SaveFile()
 	return SaveContract(strTheFolderName.Get(), strTheFileName.Get());
 }
 
+
 // Assumes SetFilename() has already been set.
 bool OTSignedFile::LoadFile()
 {
@@ -287,6 +286,7 @@ bool OTSignedFile::LoadFile()
 
 	return false;
 }
+
 
 void OTSignedFile::SetFilename(const OTString & LOCAL_SUBDIR, const OTString & FILE_NAME)
 {
@@ -310,6 +310,7 @@ void OTSignedFile::SetFilename(const OTString & LOCAL_SUBDIR, const OTString & F
 	//
 	// Finished Product:    "transaction/nyms/5bf9a88c.nym"
 }
+
 
 OTSignedFile::OTSignedFile() : ot_super()
 {
@@ -338,6 +339,7 @@ void OTSignedFile::Release_SignedFile()
 	m_strPurportedFilename.Release();
 }
 
+
 void OTSignedFile::Release()
 {
     Release_SignedFile();
@@ -346,7 +348,6 @@ void OTSignedFile::Release()
 
 	m_strContractType.Set("FILE");
 }
-
 
 
 bool OTSignedFile::SaveContractWallet(std::ofstream & ofs)

@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
 
@@ -162,12 +161,12 @@ class OTPseudonym;
 #if !defined( PRId8 )
 #define PRId8 "d"
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId16 )
 #define PRId16 "d"
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId32 )
 #if defined( WINAPI )
@@ -178,7 +177,7 @@ class OTPseudonym;
 
 #endif
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId64 )
 #if defined( WINAPI )
@@ -225,7 +224,6 @@ inline std::string to_string (const T& t)
 }
 
 
-// =======================================================================
 /*
  * strlcpy and strlcat
  *
@@ -312,7 +310,7 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
     return(dlen + (s - src)); /* count does not include NUL */
 }
 // (End of the Todd Miller code.)
-// =======================================================================
+
 
 class OTString
 {
@@ -494,10 +492,11 @@ protected:
     // ----------------------------------------------
 };
 
+
 //bool operator >(const OTString& s1, const OTString& s2);
 //bool operator <(const OTString& s1, const OTString& s2);
 //bool operator >=(const OTString &s1, const OTString& s2);
 //bool operator <=(const OTString &s1, const OTString& s2);
 
 
-#endif    // __OT_STRING_HPP__
+#endif // __OT_STRING_HPP__

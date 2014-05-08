@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTMessageBuffer.cpp
  *  
@@ -147,13 +147,10 @@
 // The purpose of this class is to cache server replies (internally to OT)
 // so that the developer using the OT API has access to them.
 
-
 void OTMessageBuffer::Push(OTMessage & theMessage)
 {
 	m_listMessages.push_back(&theMessage);
 }
-
-// -------------------------------
 
 
 // OTMessageBuffer::Pop
@@ -247,14 +244,12 @@ OTMessage * OTMessageBuffer::Pop(const int64_t & lRequestNum, const OTString & s
 	return pReturnValue;
 }
 
-// -------------------------------
 
 OTMessageBuffer::~OTMessageBuffer()
 {
 	Clear();
 }
 
-// -------------------------------
 
 void OTMessageBuffer::Clear()
 {
@@ -269,12 +264,8 @@ void OTMessageBuffer::Clear()
     }
 }
 
-// --------------------------------------------------------------------------------
-
-
 
 // OUTOING MESSAGES
-
 
 // The purpose of this class is to cache client requests (being sent to the server)
 // so that they can later be queried (using the request number) by the developer
@@ -285,7 +276,6 @@ void OTMessageBuffer::Clear()
 // messages, by explicitly removing messages from this queue once they are dealt with.
 // This way the developer can automatically assume that any reply is old if it carries
 // a request number that cannot be found in this queue.
-
 
 OTMessageOutbuffer::OTMessageOutbuffer() : m_strDataFolder(OTDataFolder::Get())
 {
@@ -517,8 +507,6 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const int64_t & lRequestNum, cons
 }
 
 
-// ----------------------------------
-
 // WARNING: ONLY call this (with arguments) directly after a successful @getNymbox has been received!
 // See comments below for more details.
 //
@@ -738,9 +726,6 @@ void OTMessageOutbuffer::Clear(const OTString * pstrServerID/*=NULL*/, const OTS
 }
 
 
-// ----------------------------------
-
-
 // OTMessageOutbuffer deletes the OTMessage when you call this.
 //
 bool OTMessageOutbuffer::RemoveSentMessage(const int64_t & lRequestNum, const OTString & strServerID, const OTString & strNymID)
@@ -870,7 +855,6 @@ bool OTMessageOutbuffer::RemoveSentMessage(const int64_t & lRequestNum, const OT
 	return bReturnValue;
 }
 
-// ----------------------------------
 
 OTMessage * OTMessageOutbuffer::GetSentMessage(const OTTransaction & theTransaction)
 {
@@ -880,9 +864,6 @@ OTMessage * OTMessageOutbuffer::GetSentMessage(const OTTransaction & theTransact
     // -------------------------------------
     return GetSentMessage(lRequestNum, strServerID, strNymID);
 }
-
-
-// ----------------------------------
 
 
 // OTMessageOutbuffer deletes the OTMessage when you call this.
@@ -895,8 +876,6 @@ bool OTMessageOutbuffer::RemoveSentMessage(const OTTransaction & theTransaction)
     // -------------------------------------
     return RemoveSentMessage(lRequestNum, strServerID, strNymID);
 }
-
-// ----------------------------------
 
 
 OTMessageOutbuffer::~OTMessageOutbuffer()

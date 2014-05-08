@@ -150,9 +150,9 @@ class OTPurse;
 class OTServerContract;
 class OTString;
 
-
 //typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
 typedef std::map<std::string, OTServerContract *>	mapOfServers;
+
 
 class OTWallet
 {

@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *    
  *  OTCredential.hpp
  *  
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_CREDENTIAL_HPP__
 #define __OT_CREDENTIAL_HPP__
 
@@ -190,7 +189,6 @@ class OTCredential;
 class OTPseudonym;
 
 
-// ***************************************************************************************
 // THE MASTER CREDENTIAL (below -- OTCredential)
 //
 // Contains a "master" subkey,

@@ -140,7 +140,6 @@
 #include <OTEnvelope.hpp>
 #include <OTPaths.hpp>
 
-#include <time.h>
 
 bool OTPurse::GetNymID(OTIdentifier & theOutput) const
 {
@@ -226,8 +225,6 @@ _SharedPtr<OTCachedKey> OTPurse::GetInternalMaster()  // stores the passphrase f
 }
 
 
-
-// ----------------------------------------------------
 // INTERNAL KEY: For adding a PASSPHRASE to a PURSE.
 //
 // What if you DON'T want to encrypt the purse to your Nym??
@@ -306,9 +303,6 @@ bool OTPurse::GenerateInternalKey()
     // -----------------
 	return true;
 }
-
-
-
 
 
 // Take all the tokens from a purse and add them to this purse.
@@ -489,10 +483,6 @@ bool OTPurse::Merge(const OTPseudonym     & theSigner,
 }
 
 
-
-
-
-
 // static -- class factory.
 //
 OTPurse * OTPurse::LowLevelInstantiate(const OTString     & strFirstLine,
@@ -505,6 +495,7 @@ OTPurse * OTPurse::LowLevelInstantiate(const OTString     & strFirstLine,
     return pPurse;
 }
 
+
 OTPurse * OTPurse::LowLevelInstantiate(const OTString     & strFirstLine,
                                        const OTIdentifier & SERVER_ID)
 {
@@ -514,6 +505,7 @@ OTPurse * OTPurse::LowLevelInstantiate(const OTString     & strFirstLine,
     return pPurse;
 }
 
+
 OTPurse * OTPurse::LowLevelInstantiate(const OTString & strFirstLine)
 {
     OTPurse * pPurse = NULL;
@@ -522,7 +514,6 @@ OTPurse * OTPurse::LowLevelInstantiate(const OTString & strFirstLine)
     return pPurse;
 }
 
-// --------------------------------------------------------------------
 
 // static -- class factory.
 //
@@ -574,7 +565,6 @@ OTPurse * OTPurse::PurseFactory(      OTString       strInput,
 	return NULL;
 }
 
-// --------------------------------------------------------------------
 
 // Checks the serverID, so you don't have to.
 //
@@ -616,7 +606,6 @@ OTPurse * OTPurse::PurseFactory(      OTString       strInput,
 	return NULL;
 }
 
-// --------------------------------------------------------------------
 
 OTPurse * OTPurse::PurseFactory(OTString strInput)
 {
@@ -643,7 +632,6 @@ OTPurse * OTPurse::PurseFactory(OTString strInput)
 	return NULL;
 }
 
-// --------------------------------------------------------------------
 
 //private, used by factory.
 OTPurse::OTPurse() : ot_super(),
@@ -689,6 +677,7 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID) : ot_super(),
 	InitPurse();
 }
 
+
 OTPurse::OTPurse(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : ot_super(),
 	m_ServerID(SERVER_ID),
 	m_AssetID(ASSET_ID),
@@ -701,7 +690,6 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) 
 {
 	InitPurse();
 }
-
 
 
 OTPurse::OTPurse(const OTIdentifier & SERVER_ID, 
@@ -720,6 +708,7 @@ OTPurse::OTPurse(const OTIdentifier & SERVER_ID,
 	InitPurse();
 }
 
+
 void OTPurse::InitPurse()
 {
 	m_strContractType.Set("PURSE");
@@ -735,7 +724,6 @@ OTPurse::~OTPurse()
 {
     Release_Purse();
 }
-
 
 
 void OTPurse::Release_Purse()
@@ -845,7 +833,6 @@ bool OTPurse::LoadPurse(const char * szServerID/*=NULL*/, const char * szUserID/
 	
 	return LoadContractFromString(strRawFile);
 }
-
 
 
 bool OTPurse::SavePurse(const char * szServerID/*=NULL*/, const char * szUserID/*=NULL*/, const char * szAssetTypeID/*=NULL*/)
@@ -1011,11 +998,6 @@ void OTPurse::UpdateContents() // Before transmission or serialization, this is 
 	// ----------------------------------------------
 	m_xmlUnsigned.Concatenate("</purse>\n");
 }
-
-    
-    
-// ----------------------------------------------
-
 
 
 int32_t OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -1292,18 +1274,18 @@ int32_t OTPurse::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
 bool OTPurse::SaveContractWallet(std::ofstream & ofs)	
 {
 	return true;
 }
 
 
-// ----------------------------------------------
 time64_t OTPurse::GetLatestValidFrom() const { return m_tLatestValidFrom; }
-// ----------------------------------------------
+
+
 time64_t OTPurse::GetEarliestValidTo() const { return m_tEarliestValidTo; }
-// ----------------------------------------------
+
+
 // Verify whether the CURRENT date is AFTER the the VALID TO date.
 // Notice, this will return false, if the instrument is NOT YET VALID.
 // You have to use VerifyCurrentDate() to make sure you're within the
@@ -1324,7 +1306,8 @@ bool OTPurse::IsExpired()
 	else
 		return false;
 }
-// ----------------------------------------------
+
+
 // Verify whether the CURRENT date is WITHIN the VALID FROM / TO dates.
 //
 bool OTPurse::VerifyCurrentDate()
@@ -1337,7 +1320,6 @@ bool OTPurse::VerifyCurrentDate()
 	else
 		return false;
 }
-// ----------------------------------------------
 
 
 // Caller IS responsible to delete. (Peek returns an instance of the
@@ -1554,7 +1536,6 @@ bool OTPurse::Push(OTNym_or_SymmetricKey theOwner, const OTToken & theToken)
 }
 
 
-
 int32_t OTPurse::Count() const
 {
 	return static_cast<int32_t> (m_dequeTokens.size());
@@ -1565,7 +1546,6 @@ bool OTPurse::IsEmpty() const
 {
 	return m_dequeTokens.empty();
 }
-
 
 
 void OTPurse::ReleaseTokens()

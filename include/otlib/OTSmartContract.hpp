@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *
  *  OTSmartContract.hpp
  *
@@ -133,7 +133,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_SMART_CONTRACT_HPP__
 #define __OT_SMART_CONTRACT_HPP__
 
@@ -159,6 +158,7 @@ class OTSmartContract;
 //					 const std::string from_acct_name,
 //					 const std::string to_acct_name,
 //					 const std::string str_Amount);
+
 
 class OTSmartContract : public OTCronItem
 {

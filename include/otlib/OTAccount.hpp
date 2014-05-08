@@ -142,6 +142,7 @@ class OTAccount;
 class OTMessage;
 class OTLedger;
 
+
 class OTAccount : public OTTransactionType 
 {
 private:  // Private prevents erroneous use by other classes.
@@ -261,11 +262,12 @@ EXPORT	static char const * _GetTypeString(AccountType theType);
 EXPORT	char const * GetTypeString() { return OTAccount::_GetTypeString(m_AcctType); }
 };
 
-
 typedef std::list<OTAccount *> listOfAccounts;
 typedef std::auto_ptr<OTAccount> OTAccount_AutoPtr;
 typedef std::map<std::string, _WeakPtr<OTAccount> >	mapOfWeakAccounts; // mapped by ACCT ID
 
+
 #include "OTAcctList.hpp"
+
 
 #endif // __OT_ACCOUNT_HPP__

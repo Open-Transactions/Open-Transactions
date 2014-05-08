@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTPaymentPlan.hpp
  *
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_PAYMENT_PLAN_HPP__
 #define __OT_PAYMENT_PLAN_HPP__
 
@@ -141,7 +140,6 @@
 
 //#define PLAN_PROCESS_INTERVAL		OT_TIME_HOUR_IN_SECONDS // todo put this back.
 #define PLAN_PROCESS_INTERVAL		OTTimeGetTimeFromSeconds(10)
-
 
 
 /*

@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTKeyring.cpp
  *
@@ -140,15 +140,15 @@
 
 #include <OTKeyring.hpp>
 
+#include <fstream>
+
 #include <OTLog.hpp>
 #include <OTCachedKey.hpp>
 #include <OTPassword.hpp>
 #include <OTPayload.hpp>
 #include <OTASCIIArmor.hpp>
 
-#include <fstream>
 
-// ***************************************************************
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)
 //
 // Windows DPAPI
@@ -232,7 +232,7 @@ extern "C"
 
 #endif
 
-// ***************************************************************
+
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)
 
 //
@@ -1390,8 +1390,6 @@ bool OTKeyring::FlatFile_DeleteSecret(const OTString    & strUser,
 
 
 #endif
-// ***************************************************************
-
 
 
 //static
@@ -1421,6 +1419,7 @@ bool OTKeyring::StoreSecret(const OTString    & strUser,
     return false;
 }
 
+
 //static
 bool OTKeyring::RetrieveSecret(const OTString    & strUser,
                                      OTPassword  & thePassword,
@@ -1447,6 +1446,7 @@ bool OTKeyring::RetrieveSecret(const OTString    & strUser,
     }
     return false;
 }
+
 
 //static
 bool OTKeyring::DeleteSecret(const OTString    & strUser,

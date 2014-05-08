@@ -182,7 +182,6 @@ OTSignatureMetadata::OTSignatureMetadata() :
 	
 }
 
-// -----------------------------------------------------
 
 bool OTSignatureMetadata::operator==(const OTSignatureMetadata & rhs) const
 {
@@ -193,23 +192,24 @@ bool OTSignatureMetadata::operator==(const OTSignatureMetadata & rhs) const
             (this->FirstCharSubCredID()    == rhs.FirstCharSubCredID()));
 }
 
-// -----------------------------------------------------
-
 
 OTSignature::OTSignature() : ot_super()
 {
 	
 }
 
+
 OTSignature::~OTSignature()
 {
 	
 }
 
+
 OTSignature::OTSignature(const OTString & strValue) : ot_super(strValue)
 {
 	
 }
+
 
 OTSignature::OTSignature(const OTASCIIArmor & strValue) : ot_super(strValue)
 {
@@ -303,7 +303,6 @@ You don't need to specify an iv value as this function creates it.
 
 */
 
-
 /* Deprecated code:
  SHA256_CTX context;
  uint8_t md[SHA256_DIGEST_LENGTH];
@@ -314,7 +313,9 @@ You don't need to specify an iv value as this function creates it.
  
  Replaced with:
  */
+
 //TODO: stop hardcoding the digest algorithm
+
 /*
 bool OTSignature::CalculateDigest(OTData & dataInput)
 {
