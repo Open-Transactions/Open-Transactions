@@ -134,12 +134,12 @@ otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/win32_utf8conv_inl.hpp	\
 				$(otlib_headers_dir)/OpenSSL_BIO.hpp		\
 				$(otlib_headers_dir)/Timer.hpp			\
-				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_ext)
 
 otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/ExportWrapper.h		\
 				$(otlib_headers_dir)/TR1_Wrapper.hpp		\
+				$(otlib_headers_dir)/WinsockWrapper.h		\
 				$(otlib_headers_dir)/stdafx.h			\
 				$(otlib_headers_dir)/stdafx.hpp			\
 				$(otlib_headers_dir)/OTAccount.hpp		\
