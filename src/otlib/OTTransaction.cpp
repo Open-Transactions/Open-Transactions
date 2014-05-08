@@ -147,6 +147,9 @@
 
 #include <time.h>
 
+#include "irrxml/irrXML.hpp"
+
+
 
 char const * const __TypeStrings[] = 
 {

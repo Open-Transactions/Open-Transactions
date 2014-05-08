@@ -136,6 +136,9 @@
 
 #include <OTLog.hpp>
 
+#include "irrxml/irrXML.hpp"
+
+#include <time.h>
 
 // Each instance of OTOffer represents a Bid or Ask. (A Market has a list of bid offers and a list of ask offers.)
 

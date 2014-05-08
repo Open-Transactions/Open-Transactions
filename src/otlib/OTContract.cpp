@@ -2267,7 +2267,7 @@ bool OTContract::LoadContractXML()
 
     m_xmlUnsigned.reset();
 
-	IrrXMLReader* xml = createIrrXMLReader(&m_xmlUnsigned);
+	IrrXMLReader* xml = irr::io::createIrrXMLReader(m_xmlUnsigned);
 	OT_ASSERT_MSG(NULL != xml, "Memory allocation issue with xml reader in OTContract::LoadContractXML()\n");
     OTCleanup<IrrXMLReader> xmlAngel(*xml);
 

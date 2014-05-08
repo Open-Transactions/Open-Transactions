@@ -140,6 +140,10 @@
 #include <OTSmartContract.hpp>
 #include <OTPurse.hpp>
 
+#include "irrxml/irrXML.hpp"
+
+#include <time.h>
+
 
 char const * const __TypeStrings[] = 
 {

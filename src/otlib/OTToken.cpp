@@ -142,6 +142,8 @@
 #include <OTMint.hpp>
 #include <OTDigitalCash.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 // -------------------------------------------------------------------------------------------
 #if defined (OT_CASH_USING_LUCRE)
 
@@ -149,6 +151,7 @@
 
 #endif
 // -------------------------------------------------------------------------------------------
+
 
 // The current implementation for withdrawals (using Lucre) requires only a single proto-token
 // to be sent, signed, and returned. Only the ID of the token is blinded.

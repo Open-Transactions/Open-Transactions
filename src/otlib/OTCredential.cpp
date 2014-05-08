@@ -153,7 +153,7 @@
 #include <OTPaths.hpp>
 #include <OTPassword.hpp>
 
-
+#include "irrxml/irrXML.hpp"
 
 // DONE: Add OTKeypair member for m_pMetadata.
 // Add method to set the Metadata. Or instead of a member,

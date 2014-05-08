@@ -138,6 +138,8 @@
 #include <OTLog.hpp>
 #include <OTPseudonym.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
 #include <time.h>

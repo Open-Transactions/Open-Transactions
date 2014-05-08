@@ -142,6 +142,10 @@
 
 #include <time.h>
 
+#include "irrxml/irrXML.hpp"
+
+
+
 #ifndef TRADE_PROCESS_INTERVAL
 
 #define TRADE_PROCESS_INTERVAL		10		// 10 seconds

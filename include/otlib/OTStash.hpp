@@ -137,8 +137,6 @@
 #include <map>
 #include <string>
 
-#include "irrxml/irrXML.hpp"
-
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
@@ -149,6 +147,7 @@
 #include "OTClause.hpp"
 #include "OTStashItem.hpp"
 #include "OTBylaw.hpp"
+
 
 class OTIdentifier;
 class OTNumList;
@@ -163,6 +162,18 @@ class OTAccount;
 class OTScriptable;
 class OTScript;
 class OTBylaw;
+
+// forward decleration.  (need to match what is in the irr source code). Cam.
+namespace irr{
+    namespace io{
+        template<class char_type, class super_class>
+        class IIrrXMLReader;
+
+        class IXMLBase;
+
+        typedef IIrrXMLReader<char, IXMLBase> IrrXMLReader;
+    }
+}
 
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
 typedef std::map<std::string, OTAccount *>		mapOfAccounts;

@@ -141,6 +141,7 @@
 
 class OTAccount;
 
+
 class OTScriptable : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.

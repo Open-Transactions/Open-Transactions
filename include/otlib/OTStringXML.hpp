@@ -138,15 +138,26 @@
 
 #include "OTString.hpp"
 
-#include "irrxml/irrXML.hpp"
+namespace irr{
+    namespace io{
+        class IFileReadCallBack;
+    }
+}
 
-class OTStringXML : public OTString, public irr::io::IFileReadCallBack
+//class OTStringXML : public OTString, public irr::io::IFileReadCallBack
+class OTStringXML : public OTString
 {
+private:
+    class OTStringXMLPvt;
+    OTStringXMLPvt * const pvt;
+
 public:
 	OTStringXML();
 EXPORT	OTStringXML(const OTString & strValue);
 	OTStringXML(const OTStringXML & strValue);
-EXPORT	virtual ~OTStringXML();
+EXPORT	~OTStringXML();
+
+EXPORT operator irr::io::IFileReadCallBack *();
 	
 	OTStringXML& operator=(const OTString & rhs);
 	OTStringXML& operator=(const OTStringXML & rhs);

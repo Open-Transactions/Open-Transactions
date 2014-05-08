@@ -137,8 +137,6 @@
 #include <map>
 #include <string>
 
-#include "irrxml/irrXML.hpp"
-
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
@@ -163,6 +161,7 @@ class OTAccount;
 class OTScriptable;
 class OTScript;
 class OTBylaw;
+
 
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
 typedef std::map<std::string, OTAccount *>		mapOfAccounts;
