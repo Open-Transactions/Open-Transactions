@@ -138,6 +138,8 @@
 #include <OTPseudonym.hpp>
 #include <OTLog.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 // This is a good implementation. Dots all the i's, so to speak.
 // client-side.
 // The basket ONLY stores closing numbers, so this means "harvest 'em all."

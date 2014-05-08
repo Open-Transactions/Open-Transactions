@@ -145,6 +145,9 @@
 #include <OTAgreement.hpp>
 #include <OTScript.hpp>
 
+#include "irrxml/irrXML.hpp"
+
+
 void OTStash::Serialize(OTString & strAppend)
 {
 	strAppend.Concatenate("<stash name=\"%s\" count=\"%d\" >\n\n",

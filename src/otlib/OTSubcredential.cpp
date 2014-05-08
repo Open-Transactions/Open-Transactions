@@ -157,6 +157,9 @@
 #include <OTPassword.hpp>
 
 
+#include "irrxml/irrXML.hpp"
+
+
 // Contains 3 key pairs: signing, authentication, and encryption.
 // This is stored as an OTContract, and it must be signed by the
 // master key. (which is also an OTSubcredential.)

@@ -471,6 +471,9 @@
 #include <OTPaths.hpp>
 
 
+#include "irrxml/irrXML.hpp"
+
+
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL
 #define SMART_CONTRACT_PROCESS_INTERVAL		30		// 30 seconds, for testing. Should be: based on fees. Otherwise once per day should be enough... right?
 #endif

@@ -140,6 +140,7 @@
 #include <OTLog.hpp>
 #include <OTPseudonym.hpp>
 
+#include "irrxml/irrXML.hpp"
 
 // PROTOCOL DOCUMENT
 
