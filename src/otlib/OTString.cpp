@@ -134,7 +134,6 @@
 
 #include <OTString.hpp>
 
-#include <sstream>
 
 #include <OTAssert.hpp>
 #include <OTPassword.hpp>
@@ -149,6 +148,9 @@
 #include <wordexp.h>
 #endif
 
+#include <sstream>
+#include <cstdio>
+#include <cstdarg>
 
 /*
  int32_t vsnprintf(char *str, size_t size, const char *format, va_list ap);
