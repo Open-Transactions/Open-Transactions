@@ -140,6 +140,11 @@
 #include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
 
+
+#include "irrxml/irrXML.hpp"
+
+
+
 #ifndef TRADE_PROCESS_INTERVAL
 
 #define TRADE_PROCESS_INTERVAL		10		// 10 seconds
@@ -154,8 +159,6 @@
 // Trades are like cron items, they can expire, they can have rules.
 //
 // An OTTrade is derived from OTCronItem. OTCron has a list of those items.
-
-
 
 // Used to be I could just call pTrade->VerifySignature(theNym), which is what
 // I still call here, inside this function. But that's a special case -- an override
@@ -176,11 +179,6 @@ bool OTTrade::VerifyNymAsAgentForAccount(OTPseudonym & theNym, OTAccount & theAc
 	return theAccount.VerifyOwner(theNym);
 }
 
-
-
-
-
-// -------------------------------------------------------------
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
@@ -215,9 +213,9 @@ int32_t OTTrade::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         int64_t tValidFrom = str_valid_from.ToLong();
         int64_t tValidTo   = str_valid_to.ToLong();
 
-		SetCreationDate(static_cast<time_t>(tCreation));
-		SetValidFrom   (static_cast<time_t>(tValidFrom));
-		SetValidTo     (static_cast<time_t>(tValidTo));
+        SetCreationDate(OTTimeGetTimeFromSeconds(tCreation));
+        SetValidFrom(OTTimeGetTimeFromSeconds(tValidFrom));
+        SetValidTo(OTTimeGetTimeFromSeconds(tValidTo));
 		// ---------------------------------------------------------------
 		OTString strActivated(xml->getAttributeValue("hasActivated"));
 
@@ -358,9 +356,9 @@ void OTTrade::UpdateContents()
 							  USER_ID.Get(),
 							  m_nTradesAlreadyDone,
 							  m_lTransactionNum,
-							  static_cast<int64_t>(GetCreationDate()),
-							  static_cast<int64_t>(GetValidFrom()),
-                              static_cast<int64_t>(GetValidTo()) );
+                              OTTimeGetSecondsFromTime(GetCreationDate()),
+                              OTTimeGetSecondsFromTime(GetValidFrom()),
+                              OTTimeGetSecondsFromTime(GetValidTo()));
 	// -------------------------------------------------------------
     // There are "closing" transaction numbers, used to CLOSE a transaction.
     // Often where Cron items are involved such as this payment plan, or in baskets,
@@ -396,7 +394,6 @@ void OTTrade::UpdateContents()
 	// -------------------------------------------------------------
 	m_xmlUnsigned.Concatenate("</trade>\n");
 }
-
 
 
 // The trade stores a copy of the Offer in string form.
@@ -805,13 +802,12 @@ int64_t OTTrade::GetClosingNumber(const OTIdentifier & theAcctID) const
 	return 0;
 }
 
-// ---------------------------------------------------
-
 
 int64_t OTTrade::GetAssetAcctClosingNum() const
 {
     return (GetCountClosingNumbers() > 0) ? GetClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
+
 
 int64_t OTTrade::GetCurrencyAcctClosingNum() const
 {
@@ -879,8 +875,6 @@ bool OTTrade::CanRemoveItemFromCron(OTPseudonym & theNym)
     // P.S. If you override this function, MAKE SURE to call the parent (OTCronItem::CanRemoveItem) first,
     // for the VerifyIssuedNum call above. Only if that fails, do you need to dig deeper...
 }
-
-
 
 
 // This is called by OTCronItem::HookRemovalFromCron
@@ -1092,7 +1086,6 @@ void OTTrade::onFinalReceipt(OTCronItem & theOrigCronItem, const int64_t & lNewT
 }
 
 
-
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Return True if I should stay on the Cron list for more processing.
 // Return False if I should be removed and deleted.
@@ -1101,18 +1094,18 @@ bool OTTrade::ProcessCron()
 	// -----------------------------------------------------------------
 	// Right now Cron is called 10 times per second.
 	// I'm going to slow down all trades so they are once every GetProcessInterval()
-	if (GetLastProcessDate() > 0)
+    if (GetLastProcessDate() > OT_TIME_ZERO)
 	{
 		// (Default ProcessInterval is 1 second, but Trades will use 10 seconds,
 		// and Payment Plans will use an hour or day.)
-		if ((GetCurrentTime() - GetLastProcessDate()) <= GetProcessInterval())
+        if (OTTimeGetTimeInterval(OTTimeGetCurrentTime(), GetLastProcessDate()) <= GetProcessInterval())
 			return true;
 	}
     // ----------------------------------------------------------------
 	// Keep a record of the last time this was processed.
 	// (NOT saved to storage, only used while the software is running.)
 	// (Thus no need to release signatures, sign contract, save contract, etc.)
-	SetLastProcessDate(GetCurrentTime());
+	SetLastProcessDate(OTTimeGetCurrentTime());
 	// -----------------------------------------------------------------
 	// PAST END DATE?
 	// First call the parent's version (which this overrides) so it has
@@ -1194,7 +1187,7 @@ X OTIdentifier	m_CURRENCY_ACCT_ID;	// My Dollar account, used for paying for my 
 X int64_t			m_lStopPrice;		// The price limit that activates the STOP order.
 X char			m_cStopSign;		// Value is 0, or '<', or '>'.
 
-X time_t		m_CREATION_DATE;	// The date, in seconds, when the trade was authorized.
+X time64_t		m_CREATION_DATE;	// The date, in seconds, when the trade was authorized.
 X int32_t			m_nTradesAlreadyDone;	// How many trades have already processed through this order? We keep track.
 */
 
@@ -1228,7 +1221,7 @@ bool OTTrade::IssueTrade(OTOffer & theOffer, char cStopSign/*=0*/, int64_t lStop
 
 	m_nTradesAlreadyDone	= 0;
 
-	SetCreationDate(time(NULL)); // This time is set to TODAY NOW  (OTCronItem)
+	SetCreationDate(OTTimeGetCurrentTime()); // This time is set to TODAY NOW  (OTCronItem)
 
 	// ------------------------------------------------------------------------
 
@@ -1237,7 +1230,7 @@ bool OTTrade::IssueTrade(OTOffer & theOffer, char cStopSign/*=0*/, int64_t lStop
 		(GetCurrencyID()		!= theOffer.GetCurrencyID())	||
 		(GetAssetID()			!= theOffer.GetAssetID())		||
 
-		(theOffer.GetValidFrom() <	0)							||
+        (theOffer.GetValidFrom() <	OT_TIME_ZERO) ||
 		(theOffer.GetValidTo()	 < theOffer.GetValidFrom())	)
 	{
 		return false;
@@ -1274,6 +1267,7 @@ OTTrade::OTTrade() : ot_super(), m_pOffer(NULL),
 
 	InitTrade();
 }
+
 
 OTTrade::OTTrade(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
 			ot_super(SERVER_ID, ASSET_ID), m_pOffer(NULL),
@@ -1312,6 +1306,7 @@ OTTrade::OTTrade(const OTIdentifier & SERVER_ID,
 	SetCurrencyAcctID(CURRENCY_ACCT_ID);
 }
 
+
 OTTrade::~OTTrade()
 {
 	Release_Trade();
@@ -1328,6 +1323,7 @@ void OTTrade::Release_Trade()
 	m_strOffer.Release();
 }
 
+
 // the framework will call this at the right time.
 void OTTrade::Release()
 {
@@ -1339,7 +1335,6 @@ void OTTrade::Release()
 	// (Only cause it's convenient...)
 	InitTrade();
 }
-
 
 
 // This CAN have values that are reset
@@ -1361,10 +1356,7 @@ void OTTrade::InitTrade()
 }
 
 
-
-
 bool OTTrade::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-

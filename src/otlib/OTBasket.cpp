@@ -1,4 +1,4 @@
-/****************************************************************
+/************************************************************
  *    
  *  OTBasket.cpp
  *  
@@ -138,15 +138,7 @@
 #include <OTPseudonym.hpp>
 #include <OTLog.hpp>
 
-BasketItem::BasketItem() :
-    lMinimumTransferAmount(0), 
-    lClosingTransactionNo(0)
-{ 
-
-}
-
-// ------------------------------------------------------------
-
+#include "irrxml/irrXML.hpp"
 
 // This is a good implementation. Dots all the i's, so to speak.
 // client-side.
@@ -180,7 +172,7 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
     const OTString strServerID(theServerID);
     bool bNeedToSave = false;
     
-    // *************************************************************************
+
     // The SUB-CURRENCIES first...
     //
     const uint32_t nCount = static_cast<uint32_t>(this->Count());
@@ -230,15 +222,6 @@ void OTBasket::HarvestClosingNumbers(OTPseudonym & theNym, const OTIdentifier & 
 }
 
 
-
-
-// ------------------------------------------------------------
-
-
-
-
-
-
 // For generating a user request to EXCHANGE in/out of a basket.
 // Assumes that SetTransferMultiple has already been called.
 void OTBasket::AddRequestSubContract(const OTIdentifier & SUB_CONTRACT_ID, 
@@ -283,6 +266,7 @@ void OTBasket::AddSubContract(const OTIdentifier & SUB_CONTRACT_ID,
 	m_dequeItems.push_back(pItem);
 }
 
+
 // The closing transaction number is the one that gets closed when the basketReceipt
 // is accepted for the exchange that occured, specific to the basket item at nIndex.
 // (Each asset account gets its own basketReceipt when an exchange happens.)
@@ -301,7 +285,6 @@ int64_t OTBasket::GetClosingTransactionNoAt(uint32_t nIndex)
 }
 
 
-
 BasketItem * OTBasket::At(uint32_t nIndex)
 {
 	if (nIndex < m_dequeItems.size())
@@ -309,6 +292,7 @@ BasketItem * OTBasket::At(uint32_t nIndex)
 	
 	return NULL;
 }
+
 
 int32_t OTBasket::Count() const
 {
@@ -459,6 +443,7 @@ void OTBasket::UpdateContents() // Before transmission or serialization, this is
 	m_xmlUnsigned.Concatenate("</currencyBasket>\n");					
 }
 
+
 // Most contracts calculate their ID by hashing the Raw File (signatures and all).
 // The Basket only hashes the unsigned contents, and only with the account IDs removed.
 // This way, the basket will produce a consistent ID across multiple different servers.
@@ -481,9 +466,6 @@ void OTBasket::CalculateContractID(OTIdentifier & newID)
 }
 
 
-
-
-
 OTBasket::OTBasket(int32_t nCount, int64_t lMinimumTransferAmount) :  ot_super(),
     m_nSubCount(nCount),
     m_lMinimumTransfer(lMinimumTransferAmount),
@@ -494,6 +476,7 @@ OTBasket::OTBasket(int32_t nCount, int64_t lMinimumTransferAmount) :  ot_super()
 {
 
 }
+
 
 OTBasket::OTBasket() :  ot_super(),
     m_nSubCount(0),
@@ -506,10 +489,12 @@ OTBasket::OTBasket() :  ot_super(),
 
 }
 
+
 OTBasket::~OTBasket()
 {
 	Release_Basket();
 }
+
 
 void OTBasket::Release_Basket()
 {
@@ -532,6 +517,7 @@ void OTBasket::Release_Basket()
     m_lClosingTransactionNo = 0;
 }
 
+
 void OTBasket::Release()
 {
     Release_Basket();
@@ -540,45 +526,7 @@ void OTBasket::Release()
 }
 
 
-
 bool OTBasket::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

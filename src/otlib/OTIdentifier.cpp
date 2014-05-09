@@ -1,5 +1,4 @@
-
-/************************************************************************************
+/************************************************************
  *    
  *  OTIdentifier.cpp
  *  
@@ -146,7 +145,9 @@
 
 OTIdentifier::OTIdentifier() : OTData()  { }
 
+
 OTIdentifier::OTIdentifier(const OTIdentifier & theID) : OTData(theID) { }
+
 
 OTIdentifier::OTIdentifier(const char * szStr) : OTData()
 {
@@ -154,41 +155,49 @@ OTIdentifier::OTIdentifier(const char * szStr) : OTData()
 	SetString(szStr);
 }
 
+
 OTIdentifier::OTIdentifier(const std::string & theStr) : OTData()
 {
 	OT_ASSERT(!theStr.empty());
 	SetString(theStr.c_str());
 }
 
+
 OTIdentifier::OTIdentifier(const OTString & theStr) : OTData()
 {
 	SetString(theStr);
 }
+
 
 OTIdentifier::OTIdentifier(const OTContract &theContract)  : OTData() // Get the contract's ID into this identifier.
 {
 	(const_cast<OTContract &>(theContract)).GetIdentifier(*this);
 }
 
+
 OTIdentifier::OTIdentifier(const OTPseudonym &theNym)  : OTData() // Get the Nym's ID into this identifier.
 {
 	(const_cast<OTPseudonym &>(theNym)).GetIdentifier(*this);
 }
+
 
 OTIdentifier::OTIdentifier(const OTOffer &theOffer)  : OTData() // Get the Offer's Market ID into this identifier.
 {
 	(const_cast<OTOffer &>(theOffer)).GetIdentifier(*this);
 }
 
+
 OTIdentifier::OTIdentifier(const OTMarket &theMarket)  : OTData() // Get the Market ID into this identifier.
 {
 	(const_cast<OTMarket &>(theMarket)).GetIdentifier(*this);
 }
 
+
 OTIdentifier::OTIdentifier(const OTSymmetricKey &theKey)  : OTData() // Get the Symmetric Key's ID into *this. (It's a hash of the encrypted form of the symmetric key.)
 {
 	(const_cast<OTSymmetricKey &>(theKey)).GetIdentifier(*this);
 }
+
 
 OTIdentifier::OTIdentifier(const OTCachedKey &theKey)  : OTData() // Cached Key stores a symmetric key inside, so this actually captures the ID for that symmetrickey.
 {
@@ -197,6 +206,7 @@ OTIdentifier::OTIdentifier(const OTCachedKey &theKey)  : OTData() // Cached Key 
     OT_ASSERT(bSuccess); // should never fail. If it does, then we are calling this function at a time we shouldn't, when we aren't sure the master key has even been generated yet. (If this asserts, need to examine the line of code that tried to do this, and figure out where its logic went wrong, since it should have made sure this would not happen, before constructing like this.)
 }
 
+
 void OTIdentifier::SetString(const char * szString)
 {
 	OT_ASSERT(NULL != szString);
@@ -204,11 +214,13 @@ void OTIdentifier::SetString(const char * szString)
 	SetString(theStr);
 }
 
+
 bool OTIdentifier::operator==(const OTIdentifier &s2) const
 {
 	const OTString ots1(*this), ots2(s2);
 	return ots1.Compare(ots2);	
 }
+
 
 bool OTIdentifier::operator!=(const OTIdentifier &s2) const
 {
@@ -216,11 +228,13 @@ bool OTIdentifier::operator!=(const OTIdentifier &s2) const
 	return !(ots1.Compare(ots2));	
 }
 
+
 bool OTIdentifier::operator >(const OTIdentifier &s2) const 
 {
     const OTString ots1(*this), ots2(s2);
 	return ots1.operator>(ots2);
 }
+
 
 bool OTIdentifier::operator <(const OTIdentifier &s2)  const 
 {
@@ -228,11 +242,13 @@ bool OTIdentifier::operator <(const OTIdentifier &s2)  const
 	return ots1.operator<(ots2);
 }
 
+
 bool OTIdentifier::operator <=(const OTIdentifier &s2)  const
 {
     const OTString ots1(*this), ots2(s2);
 	return ots1.operator<=(ots2);
 }
+
 
 bool OTIdentifier::operator >=(const OTIdentifier &s2)  const
 {
@@ -240,7 +256,9 @@ bool OTIdentifier::operator >=(const OTIdentifier &s2)  const
 	return ots1.operator>=(ots2);
 }
 
+
 OTIdentifier::~OTIdentifier() { }
+
 
 void OTIdentifier::CopyTo(uint8_t * szNewLocation) const
 {
@@ -249,6 +267,7 @@ void OTIdentifier::CopyTo(uint8_t * szNewLocation) const
 		memcpy((void*)GetPointer(), szNewLocation, GetSize()); // todo cast
 	}
 }
+
 
 // On the advice of SAMY, our default hash algorithm will be an XOR
 // of two reputable algorithms. This way, if one of them gets broken,
@@ -376,7 +395,6 @@ bool OTIdentifier::CalculateDigest(const OTData & dataInput, const OTString & st
 }
 
 
-
 // So we can implement the SAMY hash, which is currently an XOR of SHA-256 with WHRLPOOL
 //
 // Originally, it was SHA512 and WHRLPOOL, which both have a 512-bit output-size.
@@ -444,6 +462,7 @@ void OTIdentifier::SetString(const OTString & theStr)
     OTCrypto::It()->SetIDFromBase62String(theStr, *this); // theStr input, *this output.
 }
 
+
 // GET (binary id) AS BASE62-ENCODED STRING
 //
 // This Identifier is stored in binary form.
@@ -454,33 +473,3 @@ void OTIdentifier::GetString(OTString & theStr) const
 {
     OTCrypto::It()->SetBase62StringFromID(*this, theStr); // *this input, theStr output.
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

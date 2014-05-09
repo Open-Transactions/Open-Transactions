@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTDataCheck.h
+ *  OTDataCheck.hpp
  *
  */
 
@@ -130,12 +130,10 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef _DATA_CHECK_H_
-#define _DATA_CHECK_H_
+#ifndef __DATA_CHECK_HPP__
+#define __DATA_CHECK_HPP__
 
 #include "OTCommon.hpp"
-
 
 
 typedef uint8_t OT_BYTE;
@@ -150,4 +148,5 @@ OT_BYTE CalcChecksum( const OT_BYTE * const buffer, const uint32_t size );
 
 EXPORT OT_BOOL IsChecksumValid( OT_BYTE* buffer, uint32_t size );
 
-#endif
+
+#endif // __OT_DATA_CHECK_HPP__

@@ -11,21 +11,29 @@
 #ifndef SWIG_otapi_WRAP_H_
 #define SWIG_otapi_WRAP_H_
 
-class SwigDirector_OTCallback : public OTCallback, public Swig::Director {
+class SwigDirector_OTNameLookup : public OTNameLookup, public Swig::Director {
 
 public:
-    SwigDirector_OTCallback();
-    virtual ~SwigDirector_OTCallback();
-    virtual void runOne(char const *szDisplay, OTPassword &theOutput);
-    virtual void runTwo(char const *szDisplay, OTPassword &theOutput);
+    SwigDirector_OTNameLookup();
+    virtual ~SwigDirector_OTNameLookup();
+    virtual std::string GetNymName(std::string const &str_id, std::string const *p_server_id = NULL) const;
+    virtual std::string GetAcctName(std::string const &str_id, std::string const *p_nym_id = NULL, std::string const *p_server_id = NULL, std::string const *p_asset_id = NULL) const;
 
-    typedef void (SWIGSTDCALL* SWIG_Callback0_t)(char *, void *);
-    typedef void (SWIGSTDCALL* SWIG_Callback1_t)(char *, void *);
-    void swig_connect_director(SWIG_Callback0_t callbackrunOne, SWIG_Callback1_t callbackrunTwo);
+    typedef char * (SWIGSTDCALL* SWIG_Callback0_t)(char *, void *);
+    typedef char * (SWIGSTDCALL* SWIG_Callback1_t)(char *);
+    typedef char * (SWIGSTDCALL* SWIG_Callback2_t)(char *, void *, void *, void *);
+    typedef char * (SWIGSTDCALL* SWIG_Callback3_t)(char *, void *, void *);
+    typedef char * (SWIGSTDCALL* SWIG_Callback4_t)(char *, void *);
+    typedef char * (SWIGSTDCALL* SWIG_Callback5_t)(char *);
+    void swig_connect_director(SWIG_Callback0_t callbackGetNymName__SWIG_0, SWIG_Callback1_t callbackGetNymName__SWIG_1, SWIG_Callback2_t callbackGetAcctName__SWIG_0, SWIG_Callback3_t callbackGetAcctName__SWIG_1, SWIG_Callback4_t callbackGetAcctName__SWIG_2, SWIG_Callback5_t callbackGetAcctName__SWIG_3);
 
 private:
-    SWIG_Callback0_t swig_callbackrunOne;
-    SWIG_Callback1_t swig_callbackrunTwo;
+    SWIG_Callback0_t swig_callbackGetNymName__SWIG_0;
+    SWIG_Callback1_t swig_callbackGetNymName__SWIG_1;
+    SWIG_Callback2_t swig_callbackGetAcctName__SWIG_0;
+    SWIG_Callback3_t swig_callbackGetAcctName__SWIG_1;
+    SWIG_Callback4_t swig_callbackGetAcctName__SWIG_2;
+    SWIG_Callback5_t swig_callbackGetAcctName__SWIG_3;
     void swig_init_callbacks();
 };
 

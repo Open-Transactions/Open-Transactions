@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTCachedKey.h
+ *  OTCachedKey.hpp
  *
  */
 
@@ -130,9 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OT_MASTER_KEY_HPP__
-#define __OT_MASTER_KEY_HPP__
+#ifndef __OT_CACHED_KEY_HPP__
+#define __OT_CACHED_KEY_HPP__
 
 #include "OTCommon.hpp"
 
@@ -148,8 +147,6 @@ class OTCachedKey;
 class OTPassword;
 class OTIdentifier;
 
-// ------------------------------------------------------------------------
-
 
 /// OTCachedKey
 /// This class handles the functionality of caching the master key for X seconds
@@ -157,7 +154,6 @@ class OTIdentifier;
 /// in an OTSymmetricKey, which can be unlocked to an OTPassword again for X more
 /// seconds (by entering the passphrase...)
 /**
-
  How does OTCachedKey work, in a nutshell?
 
  -- It's a singleton. There's only one "master key" for the application and it's
@@ -220,7 +216,6 @@ class OTIdentifier;
     master key and pass that back to OpenSSL via the callback function.
 
 
-
  -- OT might do several operations within a SINGLE USE CASE. For example, for a cash withdrawal, OT
     might sign the transaction item, sign the balance agreement item, sign the main transaction
     containing those items, AND sign the message containing that transaction. Perhaps OT has to
@@ -245,18 +240,15 @@ class OTIdentifier;
     locations, zeroing memory after use, using protected memory APIs, using session keys, using outsourced
     authentication systems such as ssh-agent instead of handling it internally, stack smashing techniques
     such as canaries, etc etc. This is always a moving target.
-
  */
 
 // This is only the hard-coded default; it's also configurable in the opt file.
 //
 #define OT_MASTER_KEY_TIMEOUT  300
 
-// ------------------------------------------------------------------
-
 typedef std::map<std::string, _SharedPtr<OTCachedKey> > mapOfCachedKeys;
 
-// ------------------------------------------------------------------
+
 class OTCachedKey
 {
 private:
@@ -350,38 +342,4 @@ public:
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------
-
-
-
-
-
-
-
-
-#endif   // __OT_MASTER_KEY_HPP__
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_CACHED_KEY_HPP__

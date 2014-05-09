@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTSymmetricKey.cpp
  *
@@ -149,13 +149,8 @@ extern "C"
 }
 
 
-// ------------------------------------------------------------------------
-
 // This class stores the iteration count, the salt, and the encrypted key.
 // These are all generated or set when you call GenerateKey.
-
-
-// ------------------------------------------------------------------------
 
 // Note: this calculates its ID based only on m_dataEncryptedKey,
 // and does NOT include salt, IV, iteration count, etc when
@@ -167,6 +162,7 @@ void OTSymmetricKey::GetIdentifier(OTIdentifier & theIdentifier) const
         theIdentifier.CalculateDigest(m_dataEncryptedKey);
 }
 
+
 void OTSymmetricKey::GetIdentifier(OTString & strIdentifier) const
 {
     OTIdentifier theIdentifier;
@@ -177,19 +173,12 @@ void OTSymmetricKey::GetIdentifier(OTString & strIdentifier) const
 }
 
 
-
-
-
-// ------------------------------------------------------------------------
-
 // Generates this OTSymmetricKey based on an OTPassword. The generated key is
 // stored in encrypted form, based on a derived key from that password.
 //
 
-
 // Done:  Change pDerivedKey to ppDerivedKey, since you CANNOT derive a key BEFORE calling
 // GenerateKey, since the salt and iteration count are both part of the derivation process!!
-
 
 // ppDerivedKey: CALLER RESPONSIBLE TO DELETE.  (optional arg.)
 //
@@ -317,6 +306,7 @@ bool OTSymmetricKey::GenerateHashCheck(const OTPassword & thePassphrase)
     return true;
 }
 
+
 bool OTSymmetricKey::ReGenerateHashCheck(const OTPassword & thePassphrase)
 {
 	if (!this->HasHashCheck())
@@ -335,7 +325,6 @@ bool OTSymmetricKey::ReGenerateHashCheck(const OTPassword & thePassphrase)
 }
 
 
-// ------------------------------------------------------------------------
 /*
  To generate a symmetric key:
 
@@ -357,8 +346,6 @@ bool OTSymmetricKey::ReGenerateHashCheck(const OTPassword & thePassphrase)
 // OTSymmetricKey object, then decrypts the encrypted symmetric key (using derived key) and returns clear symmetric
 // key back as another OTPassword object.
 
-
-
 // Assumes key is already generated. Tries to get the raw clear key from its encrypted form, via
 // its passphrase being used to derive a key for that purpose.
 //
@@ -366,8 +353,6 @@ bool OTSymmetricKey::ReGenerateHashCheck(const OTPassword & thePassphrase)
 // Otherwise returns false if failure.
 //
 
-
-// ------------------------------------------------------------------------
 // The derived key is used for decrypting the actual symmetric key.
 // It's called the derived key because it is derived from the passphrase.
 //
@@ -405,6 +390,7 @@ OTPassword * OTSymmetricKey::CalculateDerivedKeyFromPassphrase(const OTPassword 
     return pDerivedKey; // can be null
 }
 
+
 OTPassword * OTSymmetricKey::CalculateNewDerivedKeyFromPassphrase(const OTPassword & thePassphrase)
 {
 //  OT_ASSERT(m_bIsGenerated);
@@ -430,8 +416,6 @@ OTPassword * OTSymmetricKey::CalculateNewDerivedKeyFromPassphrase(const OTPasswo
     return pDerivedKey;
 }
 
-
-// ------------------------------------------------------------------------
 
 // Assumes key is already generated. Tries to get the raw clear key from its
 // encrypted form, via its passphrase being used to derive a key for that purpose.
@@ -507,16 +491,8 @@ bool OTSymmetricKey::GetRawKeyFromDerivedKey(const OTPassword & theDerivedKey, O
 }
 
 
-// ------------------------------------------------------------------------
-
-
-
-// ------------------------------------------------------------------------
-
 // The highest-level possible interface (used by the API)
 //
-
-
 //static  NOTE: this version circumvents the master key.
 OTPassword * OTSymmetricKey::GetPassphraseFromUser(const OTString * pstrDisplay/*=NULL*/,
                                                    const bool       bAskTwice  /*=false*/) // returns a text OTPassword, or NULL.
@@ -553,7 +529,6 @@ OTPassword * OTSymmetricKey::GetPassphraseFromUser(const OTString * pstrDisplay/
     return NULL;
 }
 
-// ------------------------------------------------------------------------
 
 //static
 bool OTSymmetricKey::CreateNewKey(      OTString   & strOutput,
@@ -595,11 +570,6 @@ bool OTSymmetricKey::CreateNewKey(      OTString   & strOutput,
 }
 
 
-
-// ------------------------------------------------------------------------
-
-
-
 //static
 bool OTSymmetricKey::Encrypt(const OTString   & strKey,
                              const OTString   & strPlaintext,
@@ -630,10 +600,6 @@ bool OTSymmetricKey::Encrypt(const OTString   & strKey,
                                    strOutput,
                                    pstrDisplay, bBookends, pAlreadyHavePW);
 }
-
-
-// ------------------------------------------------------------------------
-
 
 
 //static
@@ -710,10 +676,6 @@ bool OTSymmetricKey::Encrypt(const OTSymmetricKey & theKey,
 }
 
 
-// ------------------------------------------------------------------------
-
-
-
 //static
 bool OTSymmetricKey::Decrypt(const OTString   & strKey,
                                    OTString   & strCiphertext,
@@ -744,9 +706,6 @@ bool OTSymmetricKey::Decrypt(const OTString   & strKey,
                                    strOutput,
                                    pstrDisplay, pAlreadyHavePW);
 }
-
-
-// ------------------------------------------------------------------------
 
 
 //static
@@ -813,14 +772,6 @@ bool OTSymmetricKey::Decrypt(const OTSymmetricKey & theKey,
 }
 
 
-
-
-// ------------------------------------------------------------------------
-
-
-// ------------------------------------------------------------------------
-
-
 bool OTSymmetricKey::SerializeTo(OTString & strOutput, bool bEscaped/*=false*/) const
 {
     OTASCIIArmor ascOutput;
@@ -847,9 +798,6 @@ bool OTSymmetricKey::SerializeFrom(const OTString & strInput, bool bEscaped/*=fa
 }
 
 
-// ------------------------------------------------------------------------
-
-
 bool OTSymmetricKey::SerializeTo(OTASCIIArmor & ascOutput) const
 {
     OTPayload theOutput;
@@ -874,9 +822,6 @@ bool OTSymmetricKey::SerializeFrom(const OTASCIIArmor & ascInput)
     }
     return false;
 }
-
-
-// ------------------------------------------------------------------------
 
 
 bool OTSymmetricKey::SerializeTo(OTPayload & theOutput) const
@@ -945,8 +890,6 @@ bool OTSymmetricKey::SerializeTo(OTPayload & theOutput) const
     // -----------------------------------------------
     return true;
 }
-
-// ------------------------------------------------------------------------
 
 
 // Notice I don't theInput.reset(), because what if this
@@ -1242,20 +1185,6 @@ bool OTSymmetricKey::SerializeFrom(OTPayload & theInput)
     return true;
 }
 
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------
 
 OTSymmetricKey::OTSymmetricKey()
 :   m_bIsGenerated(false),
@@ -1266,7 +1195,6 @@ OTSymmetricKey::OTSymmetricKey()
 
 }
 
-// ------------------------------------------------------------------------
 
 OTSymmetricKey::OTSymmetricKey(const OTPassword & thePassword)
 :   m_bIsGenerated(false),
@@ -1279,13 +1207,11 @@ OTSymmetricKey::OTSymmetricKey(const OTPassword & thePassword)
 }
 
 
-// ------------------------------------------------------------------------
-
 OTSymmetricKey::~OTSymmetricKey()
 {
     Release_SymmetricKey();
 }
-// ------------------------------------------------------------------------
+
 
 void OTSymmetricKey::Release_SymmetricKey()
 {
@@ -1298,53 +1224,10 @@ void OTSymmetricKey::Release_SymmetricKey()
     m_dataEncryptedKey.Release();
 }
 
+
 void OTSymmetricKey::Release()
 {
     Release_SymmetricKey();
 
     // no call to ot_super::Release() here, since this is a base class (currently with no children...)
 }
-
-
-
-
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

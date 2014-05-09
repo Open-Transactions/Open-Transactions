@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *    
- *  OTWallet.h
+ *  OTWallet.hpp
  *  
  */
 
@@ -130,8 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTWALLET_HPP__
-#define __OTWALLET_HPP__
+#ifndef __OT_WALLET_HPP__
+#define __OT_WALLET_HPP__
 
 #include "OTCommon.hpp"
 
@@ -150,9 +150,9 @@ class OTPurse;
 class OTServerContract;
 class OTString;
 
-
 //typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
 typedef std::map<std::string, OTServerContract *>	mapOfServers;
+
 
 class OTWallet
 {
@@ -275,6 +275,5 @@ EXPORT	bool RemoveNym    (const OTIdentifier & theTargetID);
 
 };
 
-#endif // __OTWALLET_HPP__
 
-
+#endif // __OT_WALLET_HPP__

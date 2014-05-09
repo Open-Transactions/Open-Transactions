@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTItem.h
+ *  OTItem.hpp
  *
  */
 
@@ -130,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OTITEM_HPP__
-#define __OTITEM_HPP__
+#ifndef __OT_ITEM_HPP__
+#define __OT_ITEM_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTTransactionType.hpp"
-
 #include "OTASCIIArmor.hpp"
 
 class OTAccount;
@@ -146,7 +144,6 @@ class OTMessage;
 class OTTransaction;
 class OTItem;
 class OTPseudonym;
-
 
 typedef std::list  <OTItem *>	listOfItems;
 
@@ -432,10 +429,4 @@ EXPORT	static void GetStringFromType(OTItem::itemType theType, OTString & strTyp
 };
 
 
-
-
-#endif // __OTITEM_HPP__
-
-
-
-
+#endif // __OT_ITEM_HPP__

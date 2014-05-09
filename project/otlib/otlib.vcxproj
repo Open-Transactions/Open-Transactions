@@ -28,15 +28,26 @@
     <ClInclude Include="..\..\include\otlib\Markets.pb.h" />
     <ClInclude Include="..\..\include\otlib\Moneychanger.pb.h" />
     <ClInclude Include="..\..\include\otlib\OTAccount.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAcctFunctor.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAcctList.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAgent.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAgreement.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAmount.hpp" />
     <ClInclude Include="..\..\include\otlib\OTASCIIArmor.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAssert.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAssetContract.hpp" />
     <ClInclude Include="..\..\include\otlib\OTAsymmetricKey.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAsymmetricKeyOpenSSL.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTAsymmetricKey_OpenSSLPrivdp.hpp" />
     <ClInclude Include="..\..\include\otlib\OTBasket.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTBasketItem.hpp" />
     <ClInclude Include="..\..\include\otlib\OTBylaw.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCachedKey.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCallback.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCaller.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCheque.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTClause.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTCleanup.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCommon.hpp" />
     <ClInclude Include="..\..\include\otlib\OTContract.hpp" />
     <ClInclude Include="..\..\include\otlib\OTCredential.hpp" />
@@ -45,23 +56,36 @@
     <ClInclude Include="..\..\include\otlib\OTCrypto.hpp" />
     <ClInclude Include="..\..\include\otlib\OTData.hpp" />
     <ClInclude Include="..\..\include\otlib\OTDataCheck.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTDataFolder.hpp" />
     <ClInclude Include="..\..\include\otlib\OTDigitalCash.hpp" />
     <ClInclude Include="..\..\include\otlib\OTEnvelope.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTFolders.hpp" />
     <ClInclude Include="..\..\include\otlib\OTglobal.h" />
     <ClInclude Include="..\..\include\otlib\OTIdentifier.hpp" />
     <ClInclude Include="..\..\include\otlib\OTInstrument.hpp" />
     <ClInclude Include="..\..\include\otlib\OTItem.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTKeyCredential.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTKeypair.hpp" />
     <ClInclude Include="..\..\include\otlib\OTKeyring.hpp" />
     <ClInclude Include="..\..\include\otlib\OTLedger.hpp" />
     <ClInclude Include="..\..\include\otlib\OTLib.hpp" />
     <ClInclude Include="..\..\include\otlib\OTLibPriv.hpp" />
     <ClInclude Include="..\..\include\otlib\OTLog.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTLowLevelKeyData.hpp" />
     <ClInclude Include="..\..\include\otlib\OTMarket.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMasterkey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTMessage.hpp" />
     <ClInclude Include="..\..\include\otlib\OTMessageBuffer.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMessageOutBuffer.hpp" />
     <ClInclude Include="..\..\include\otlib\OTMint.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTMintLucre.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTNumList.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTNymOrSymmetricKey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTOffer.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTParty.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPartyAccount.hpp" />
     <ClInclude Include="..\..\include\otlib\OTPassword.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTPasswordData.hpp" />
     <ClInclude Include="..\..\include\otlib\OTPaths.hpp" />
     <ClInclude Include="..\..\include\otlib\OTPayload.hpp" />
     <ClInclude Include="..\..\include\otlib\OTPayment.hpp" />
@@ -70,21 +94,31 @@
     <ClInclude Include="..\..\include\otlib\OTPurse.hpp" />
     <ClInclude Include="..\..\include\otlib\OTScript.hpp" />
     <ClInclude Include="..\..\include\otlib\OTScriptable.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTScriptChai.hpp" />
     <ClInclude Include="..\..\include\otlib\OTServerContract.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSettings.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSignature.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSignatureMetadata.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSignedFile.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSmartContract.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStash.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStashItem.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStorage.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTStoragePB.hpp" />
     <ClInclude Include="..\..\include\otlib\OTString.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStringXML.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSubcredential.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTSubkey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSymmetricKey.hpp" />
     <ClInclude Include="..\..\include\otlib\OTToken.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTTokenLucre.hpp" />
     <ClInclude Include="..\..\include\otlib\OTTrackable.hpp" />
     <ClInclude Include="..\..\include\otlib\OTTrade.hpp" />
     <ClInclude Include="..\..\include\otlib\OTTransaction.hpp" />
     <ClInclude Include="..\..\include\otlib\OTTransactionType.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTVariable.hpp" />
     <ClInclude Include="..\..\include\otlib\OTWallet.hpp" />
+    <ClInclude Include="..\..\include\otlib\OTWindowsRegistryTools.hpp" />
     <ClInclude Include="..\..\include\otlib\stacktrace.h" />
     <ClInclude Include="..\..\include\otlib\stdafx.h" />
     <ClInclude Include="..\..\include\otlib\stdafx.hpp" />
@@ -142,12 +176,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAcctFunctor.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTAcctList.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTAgent.cpp" />
     <ClCompile Include="..\..\src\otlib\OTAgreement.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAmount.cpp" />
     <ClCompile Include="..\..\src\otlib\OTASCIIArmor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -173,6 +211,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTBasketItem.cpp" />
     <ClCompile Include="..\..\src\otlib\OTBylaw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -185,12 +224,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTCallback.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTCaller.cpp" />
     <ClCompile Include="..\..\src\otlib\OTCheque.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTClause.cpp" />
     <ClCompile Include="..\..\src\otlib\OTContract.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -233,6 +275,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTDataFolder.cpp" />
     <ClCompile Include="..\..\src\otlib\OTDigitalCash.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -268,6 +311,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTFolders.cpp" />
     <ClCompile Include="..\..\src\otlib\OTIdentifier.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -286,6 +330,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTKeyCredential.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTKeypair.cpp" />
     <ClCompile Include="..\..\src\otlib\OTKeyring.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -304,12 +350,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTLowLevelKeyData.cpp" />
     <ClCompile Include="..\..\src\otlib\OTMarket.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTMasterkey.cpp" />
     <ClCompile Include="..\..\src\otlib\OTMessage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -328,18 +376,24 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTMintLucre.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTNumList.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTNymOrSymmetricKey.cpp" />
     <ClCompile Include="..\..\src\otlib\OTOffer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTParty.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTPartyAccount.cpp" />
     <ClCompile Include="..\..\src\otlib\OTPassword.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTPasswordData.cpp" />
     <ClCompile Include="..\..\src\otlib\OTPaths.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -388,6 +442,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTScriptChai.cpp" />
     <ClCompile Include="..\..\src\otlib\OTServerContract.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -418,6 +473,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTStash.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTStashItem.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStorage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -436,6 +493,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTSubcredential.cpp" />
+    <ClCompile Include="..\..\src\otlib\OTSubkey.cpp" />
     <ClCompile Include="..\..\src\otlib\OTSymmetricKey.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -448,6 +507,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTTokenLucre.cpp" />
     <ClCompile Include="..\..\src\otlib\OTTrackable.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -472,12 +532,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTVariable.cpp" />
     <ClCompile Include="..\..\src\otlib\OTWallet.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTWindowsRegistryTools.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

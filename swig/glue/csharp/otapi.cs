@@ -327,8 +327,19 @@ public class otapi {
     return ret;
   }
 
-  public static bool OT_API_Set_PasswordCallback(OTCaller theCaller) {
-    bool ret = otapiPINVOKE.OT_API_Set_PasswordCallback(OTCaller.getCPtr(theCaller));
+  public static string OTRecord_GetTypeString(int theType) {
+    string ret = otapiPINVOKE.OTRecord_GetTypeString(theType);
+    return ret;
+  }
+
+  public static bool OT_API_Set_AddrBookCallback(OTLookupCaller theCaller) {
+    bool ret = otapiPINVOKE.OT_API_Set_AddrBookCallback(OTLookupCaller.getCPtr(theCaller));
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static bool OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller theCaller) {
+    bool ret = otapiPINVOKE.OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller.getCPtr(theCaller));
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

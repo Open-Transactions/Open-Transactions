@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTCachedKey.cpp
  *
@@ -147,12 +147,17 @@
 #include "tinythread.hpp"   // These are in the header already.
 using namespace tthread;
 
-
-
 #define OT_DEFAULT_PASSWORD "test"
 
+#if defined (OT_CRYPTO_USING_OPENSSL)
 
-// ------------------------------------------------------------------------
+extern "C"
+{
+#include <openssl/opensslconf.h>
+}
+
+#endif
+
 
 //static
 
@@ -161,12 +166,6 @@ tthread::mutex  OTCachedKey::s_mutexThreadTimeout;
 tthread::mutex  OTCachedKey::s_mutexCachedKeys;
 mapOfCachedKeys OTCachedKey::s_mapCachedKeys;
 
-// ------------------------------------------------------------------------
-
-
-
-
-// ------------------------------------------------------------------------
 
 bool OTCachedKey::IsGenerated()
 {
@@ -242,6 +241,7 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTIdentifier * pIdentifier/*=NULL*/)
     return _SharedPtr<OTCachedKey>();
 }
 
+
 // if you pass in a master key, it will look it up on an existing cached map of master keys,
 // based on the ID of the master key passed in. (Where it stores its own cached copy of the same
 // master key.)
@@ -316,8 +316,6 @@ _SharedPtr<OTCachedKey> OTCachedKey::It(OTCachedKey & theSourceKey) // Note: par
 }
 
 
-
-
 //static
 void OTCachedKey::Cleanup()
 {
@@ -346,7 +344,6 @@ OTCachedKey::OTCachedKey(int32_t nTimeoutSeconds/*=OT_MASTER_KEY_TIMEOUT*/) :
 {
 
 }
-
 
 
 OTCachedKey::OTCachedKey(const OTASCIIArmor & ascCachedKey) :
@@ -391,6 +388,7 @@ bool OTCachedKey::Pause()
     }
     return false;
 }
+
 
 bool OTCachedKey::Unpause()
 {
@@ -464,6 +462,7 @@ int32_t OTCachedKey::GetTimeoutSeconds()
     return nTimeout;
 }
 
+
 void OTCachedKey::SetTimeoutSeconds(int32_t nTimeoutSeconds) // So we can load from the config file.
 {
     tthread::lock_guard<tthread::mutex> lock(m_Mutex); // Multiple threads can't get inside here at the same time.
@@ -472,13 +471,6 @@ void OTCachedKey::SetTimeoutSeconds(int32_t nTimeoutSeconds) // So we can load f
 
     m_nTimeoutSeconds = nTimeoutSeconds;
 }
-
-
-
-// ------------------------------------------------------------------------
-
-
-
 
 
 // Called by OTServer or OTWallet, or whatever instantiates those.
@@ -508,13 +500,13 @@ void OTCachedKey::SetCachedKey(const OTASCIIArmor & ascCachedKey)
     m_pSymmetricKey->SerializeFrom(ascCachedKey);
 }
 
+
 // Above version deletes the internal symmetric key if it already exists,
 // and then below that, creates it again if it does not exist. Then serializes
 // it up from storage via ascCachedKey (input.)
 // Whereas below version, if internal symmetric key doesn't exist, simply
 // returns false.  Therefore if it's "not generated" and you want to load it
 // up from some input, call the above function, SetCachedKey().
-// ------------------------------------------------------------------------
 
 // Apparently SerializeFrom (as of this writing) is only used in OTEnvelope.cpp
 // whereas SetCachedKey (above) is used in OTWallet and OTServer.
@@ -530,7 +522,6 @@ bool OTCachedKey::SerializeFrom(const OTASCIIArmor & ascInput)
 }
 
 
-
 bool OTCachedKey::SerializeTo(OTASCIIArmor & ascOutput)
 {
     tthread::lock_guard<tthread::mutex> lock(m_Mutex);
@@ -540,9 +531,6 @@ bool OTCachedKey::SerializeTo(OTASCIIArmor & ascOutput)
 
     return m_pSymmetricKey->SerializeTo(ascOutput);
 }
-
-
-
 
 
 // Note: this calculates its ID based only on m_dataEncryptedKey,
@@ -560,6 +548,7 @@ bool OTCachedKey::GetIdentifier(OTIdentifier & theIdentifier) const
     return true;
 }
 
+
 bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
 {
     tthread::lock_guard<tthread::mutex> lock((const_cast<OTCachedKey *>(this))->m_Mutex);
@@ -572,15 +561,6 @@ bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
 }
 
 
-
-
-
-
-// ------------------------------------------------------------------------
-
-
-
-
 /*
  // TOdo: make this so you can pass in a password, or you can pass NULL
  // and then it will use the GetPasswordCallback() method to collect one
@@ -591,13 +571,6 @@ bool OTCachedKey::GetIdentifier(OTString & strIdentifier) const
  #define OPENSSL_CALLBACK_FUNC(name) extern "C" (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
  */
-
-
-
-
-// ------------------------------------------------------------------------
-
-
 
 // Caller must delete!
 //static
@@ -1160,8 +1133,6 @@ void OTCachedKey::DestroyMasterPassword()
 }
 
 
-// ------------------------------------------------------------------------
-
 // If you actually want to create a new key, and a new passphrase, then use this to destroy every last vestige of the old one. (Which will cause a new one to be automatically generated the next time OT requests the master key.) NOTE: Make SURE you have all your Nyms loaded up and unlocked before you call this. Then save them all again so they will be properly stored with the new master key.
 
 void OTCachedKey::ResetMasterPassword()
@@ -1215,28 +1186,3 @@ void OTCachedKey::ResetMasterPassword()
         // -----------------------------------------------------
     }
 }
-
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,7 +1,6 @@
-
-/***************************************************************
+/************************************************************
  *    
- *  OTDigitalCash.h
+ *  OTDigitalCash.hpp
  *  
  *  This header is for info shared between OTMint and OTToken.
  */
@@ -137,9 +136,9 @@
 #ifndef __OT_DIGITAL_CASH_HPP__
 #define __OT_DIGITAL_CASH_HPP__
 
-#include "OTCommon.hpp"
-
 #include <string>
+
+#include "OTCommon.hpp"
 
 #ifdef OT_CASH_USING_LUCRE
 #include "lucre/bank.hpp"  // Lucre
@@ -149,7 +148,7 @@
 #include ...  // someday
 #endif
 
-// *******************************************************************************************
+
 // WHICH DIGITAL CASH LIBRARY?
 //
 // Many algorithms may come available. We are currently using Lucre, by Ben Laurie,
@@ -159,7 +158,6 @@
 //
 // Implementations for Chaum and Brands are circulating online. They could all
 // be easily added here as options for Open-Transactions.
-
 
 
 #ifdef OT_CASH_USING_LUCRE
@@ -182,44 +180,4 @@ public:
 #endif
 
 
-
-
-
 #endif // __OT_DIGITAL_CASH_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

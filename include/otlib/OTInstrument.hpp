@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTInstrument.h
+ *  OTInstrument.hpp
  *
  */
 
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_INSTRUMENT_HPP__
 #define __OT_INSTRUMENT_HPP__
 
@@ -148,20 +147,20 @@ protected:
 	OTIdentifier  m_ServerID;    // ...As well as a Server ID...
 	// ------------------------------------------------------------------------
 	// Expiration Date (valid from/to date)
-	time_t  m_VALID_FROM;	// The date, in seconds, when the instrument is valid FROM.
-	time_t  m_VALID_TO;		// The date, in seconds, when the instrument expires.
+	time64_t  m_VALID_FROM;	// The date, in seconds, when the instrument is valid FROM.
+	time64_t  m_VALID_TO;		// The date, in seconds, when the instrument expires.
 	// ------------------------------------------------------------------------
 	virtual int32_t ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------------------------------------------------
-	inline void SetValidFrom(time_t TIME_FROM) { m_VALID_FROM = TIME_FROM; }
-	inline void SetValidTo  (time_t TIME_TO)   { m_VALID_TO   = TIME_TO;   }
+	inline void SetValidFrom(time64_t TIME_FROM) { m_VALID_FROM = TIME_FROM; }
+	inline void SetValidTo  (time64_t TIME_TO)   { m_VALID_TO   = TIME_TO;   }
     // ------------------------------------------------------------------------
 	inline void SetAssetID (const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID;  }
 	inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
 	// ------------------------------------------------------------------------
 public:
-	inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	inline time_t GetValidTo()		const { return m_VALID_TO;   }
+	inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	inline time64_t GetValidTo()		const { return m_VALID_TO;   }
 
 	inline const OTIdentifier & GetAssetID()  const { return m_AssetTypeID; }
 	inline const OTIdentifier & GetServerID() const { return m_ServerID;    }
@@ -174,8 +173,6 @@ public:
 
 	virtual void Release();
 	void Release_Instrument();
-    // ------------------------------------------------------------------------
-	time_t GetCurrentTime() const;
 	// ------------------------------------------------------------------------
 EXPORT	bool VerifyCurrentDate();	// Verify whether the CURRENT date is WITHIN the VALID FROM / TO dates.
 EXPORT  bool IsExpired();			// Verify whether the CURRENT date is AFTER the the "VALID TO" date.
@@ -185,7 +182,6 @@ EXPORT  bool IsExpired();			// Verify whether the CURRENT date is AFTER the the 
 	// ------------------------------------------------------------------------
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
-
 
 
 #endif // __OT_INSTRUMENT_HPP__

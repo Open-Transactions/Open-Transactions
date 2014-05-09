@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTTrade.h
+ *  OTTrade.hpp
  *
  */
 
@@ -130,20 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // An OTTrade is derived from OTCronItem. OTCron has a list of items,
 // which may be trades or agreements or who knows what next.
 //
 
-#ifndef __OTTRADE_HPP__
-#define __OTTRADE_HPP__
+#ifndef __OT_TRADE_HPP__
+#define __OT_TRADE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTCronItem.hpp"
 
 class OTIdentifier;
-
+class OTPseudonym;
 
 
 /*
@@ -167,8 +166,6 @@ class OTIdentifier;
 
  ———————————————————————————————
  */
-
-class OTPseudonym;
 
 class OTTrade : public OTCronItem
 {
@@ -233,8 +230,8 @@ EXPORT    int64_t GetCurrencyAcctClosingNum() const;
 	/*
 	 inline void SetCronPointer(OTCron & theCron) { m_pCron = &theCron; }
 
-	 inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
-	 inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
+	 inline void SetCreationDate(const time64_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
+	 inline const time64_t & GetCreationDate() const { return m_CREATION_DATE; }
 	 */
 	// Return True if should stay on OTCron's list for more processing.
 	// Return False if expired or otherwise should be removed.
@@ -262,11 +259,11 @@ EXPORT    int64_t GetCurrencyAcctClosingNum() const;
 	 inline void					SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void					SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
 
-	 inline time_t					GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t					GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t					GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t					GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void					SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void					SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void					SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void					SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 bool VerifyCurrentDate(); // Verify the current date against the VALID FROM / TO dates.
 	 */
@@ -306,4 +303,4 @@ EXPORT	virtual ~OTTrade();
 };
 
 
-#endif // __OTTRADE_HPP__
+#endif // __OT_TRADE_HPP__

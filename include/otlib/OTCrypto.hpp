@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTCrypto.h
+ *  OTCrypto.hpp
  *
  */
 
@@ -130,9 +130,10 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
+
+#include <set>
 
 #include "OTCommon.hpp"
 
@@ -141,8 +142,6 @@
 #include "OTAssert.hpp"
 
 #include "tinythread.hpp"
-
-#include <set>
 
 class OTData;
 class OTIdentifier;
@@ -154,50 +153,6 @@ class OTPasswordData;
 class OTSignature;
 class OTPseudonym;
 
-
-
-// -------------------------------------------------------------------------------------------
-
-#if defined (OT_CRYPTO_USING_OPENSSL)
-
-extern "C"
-{
-#include <openssl/bio.h>
-#include <openssl/buffer.h>
-#include <openssl/evp.h>
-#include <openssl/pem.h>
-#include <openssl/rsa.h>
-#include <openssl/dsa.h>
-#include <openssl/err.h>
-#include <openssl/ui.h>
-#include <openssl/rand.h>
-#include <openssl/crypto.h>
-#include <openssl/asn1.h>
-#include <openssl/objects.h>
-#include <openssl/ssl.h>
-#include <openssl/sha.h>
-#include <openssl/conf.h>
-#include <openssl/x509v3.h>
-
-#ifndef OPENSSL_NO_ENGINE
-#include <openssl/engine.h>
-#endif
-
-	int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
-	int32_t add_ext(X509 *cert, int32_t nid, char *value);
-}
-
-// -------------------------------------------------------------------------------------------
-#elif defined (OT_CRYPTO_USING_GPG)
-
-// -------------------------------------------------------------------------------------------
-#else
-
-#endif
-// -------------------------------------------------------------------------------------------
-
-
-// ------------------------------------------------------------------------
 
 class OTCryptoConfig
 {
@@ -261,10 +216,6 @@ public:
 };
 
 
-
-
-
-
 // Sometimes I want to decrypt into an OTPassword (for encrypted symmetric
 // keys being decrypted) and sometimes I want to decrypt into an OTPayload
 // (For most other types of data.) This class allows me to do it either way
@@ -296,18 +247,15 @@ EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
 EXPORT	void Release_Envelope_Decrypt_Output();
 };
 
-// ------------------------------------------------------------------------
 
 typedef std::set<OTPseudonym *>                         setOfNyms;
 typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 
-// ------------------------------------------------------------------------
-//
+
 // OT CRYPTO -- ABSTRACT INTERFACE
 //
 // We are now officially at the point where we can easily swap crypto libs!
 // Just make a subclass of OTCrypto (copy an existing subclass such as OTCrypto_OpenSSL)
-
 class OTCrypto
 {
 private:
@@ -458,35 +406,21 @@ EXPORT    void Cleanup();
 };
 
 
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-// ------------------------------------------------------------------------
-
-// OTCrypto (above) is the abstract base class which is used as an interface by the
-// rest of OT.
+// OTCrypto (above) is the abstract base class which is used as an
+// interface by the rest of OT.
 //
 // Whereas OTCrypto_OpenSSL (below) is the actual implementation, written using
 // the OpenSSL library. Theoretically, a new implementation could someday be
 // "swapped in" -- for example, using GPG or NaCl or Crypto++, etc.
 
-// ------------------------------------------------------------------------
+
 #if defined (OT_CRYPTO_USING_GPG)
 
 // Someday    }:-)        OTCrypto_GPG
 
-// ------------------------------------------------------------------------
+
 #elif defined (OT_CRYPTO_USING_OPENSSL)
 
-
-extern "C"
-{
-#include <openssl/evp.h>
-}
 
 class OTCrypto_OpenSSL : public OTCrypto
 {
@@ -498,33 +432,9 @@ protected:
     virtual void Init_Override();
     virtual void Cleanup_Override();
     // ----------------------------------
-    // These are protected because they contain OpenSSL-specific parameters.
-    //
-    bool SignContractDefaultHash(const OTString    & strContractUnsigned,
-                                 const EVP_PKEY    * pkey,
-                                 OTSignature       & theSignature, // output
-                                 OTPasswordData    * pPWData=NULL) const;
 
-    bool VerifyContractDefaultHash(const OTString    & strContractToVerify,
-                                   const EVP_PKEY    * pkey,
-                                   const OTSignature & theSignature,
-                                   OTPasswordData    * pPWData=NULL) const;
-    // ----------------------------------
-    // Sign or verify using the actual OpenSSL EVP_PKEY
-    //
-    bool SignContract(const OTString    & strContractUnsigned,
-                      const EVP_PKEY    * pkey,
-                      OTSignature       & theSignature, // output
-                      const OTString    & strHashType,
-                      OTPasswordData    * pPWData=NULL) const;
-
-    bool VerifySignature(const OTString    & strContractToVerify,
-                         const EVP_PKEY    * pkey,
-                         const OTSignature & theSignature,
-                         const OTString    & strHashType,
-                         OTPasswordData    * pPWData=NULL) const;
-    // --------------------------------------------------------------
-    static const EVP_MD * GetOpenSSLDigestByName(const OTString & theName);
+    class OTCrypto_OpenSSLdp;
+    OTCrypto_OpenSSLdp *dp;
 
 public:
     static tthread::mutex * s_arrayMutex;
@@ -559,9 +469,9 @@ public:
     virtual OTPassword * DeriveKey(const OTPassword &   userPassword,
                                    const OTPayload  &   dataSalt,
                                    const uint32_t       uIterations,
-								   const OTPayload  &   dataCheckHash = OTPayload()) const;
+                                   const OTPayload  &   dataCheckHash = OTPayload()) const;
 
-	virtual OTPassword * DeriveNewKey(const OTPassword &   userPassword,
+    virtual OTPassword * DeriveNewKey(const OTPassword &   userPassword,
                                       const OTPayload  &   dataSalt,
                                       const uint32_t       uIterations,
                                             OTPayload  &   dataCheckHash) const;
@@ -625,29 +535,7 @@ public:
     virtual ~OTCrypto_OpenSSL();
 };
 
-// is immutable
-class OpenSSL_BIO {
-private:
-    BIO & m_refBIO;
-    bool bCleanup;
-    bool bFreeOnly;
 
-    EXPORT static BIO * assertBioNotNull(BIO * pBIO);
-
-public:
-
-    EXPORT	OpenSSL_BIO(BIO * pBIO);
-
-    EXPORT  ~OpenSSL_BIO();
-
-    EXPORT	operator BIO *() const;
-
-    EXPORT  void release();
-    EXPORT  void setFreeOnly();
-};
-
-
-// ------------------------------------------------------------------------
 #else // Apparently NO crypto engine is defined!
 
 
@@ -655,10 +543,6 @@ public:
 
 
 #endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
-// ------------------------------------------------------------------------
-
-
-
 
 
 /*
@@ -700,8 +584,6 @@ public:
  a moderately high rate.
 
  */
-// ------------------------------------------------------------------------
-
 
 /*
  int32_t PKCS5_PBKDF2_HMAC_SHA1	(
@@ -719,62 +601,4 @@ public:
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
-
 #endif // __OT_CRYPTO_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

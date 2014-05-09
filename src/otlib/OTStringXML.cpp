@@ -1,4 +1,4 @@
-/************************************************************************************
+/************************************************************
  *    
  *  OTStringXML.cpp
  *  
@@ -134,20 +134,39 @@
 
 #include <OTStringXML.hpp>
 
-//#include "OTString.h"
-//#include "OTStringXML.h"
+#include "irrxml/irrXML.hpp"
 
-OTStringXML::OTStringXML() : OTString(), irr::io::IFileReadCallBack()
+
+
+class OTStringXML::OTStringXMLPvt : public irr::io::IFileReadCallBack {
+
+public:
+    OTStringXMLPvt(OTStringXML * ptr) : super(ptr){}
+
+    OTStringXML * super;
+
+    int read(void* buffer, unsigned sizeToRead) {
+        return this->super->read(buffer, sizeToRead);
+    };
+
+    int getSize() {
+        return this->super->getSize();
+    };
+
+};
+
+
+OTStringXML::OTStringXML() : pvt(new OTStringXMLPvt(this)), OTString()
 {
 	
 }
 
-OTStringXML::OTStringXML(const OTString & strValue) : OTString(strValue), irr::io::IFileReadCallBack()
+OTStringXML::OTStringXML(const OTString & strValue) : pvt(new OTStringXMLPvt(this)), OTString(strValue)
 {
 	
 }
 
-OTStringXML::OTStringXML(const OTStringXML & strValue) : OTString(strValue), irr::io::IFileReadCallBack(strValue)
+OTStringXML::OTStringXML(const OTStringXML & strValue) : pvt(new OTStringXMLPvt(this)), OTString(strValue)
 {
 	
 }
@@ -173,20 +192,28 @@ OTStringXML& OTStringXML::operator=(const OTString & rhs)
 	return *this;
 }
 
+
 OTStringXML& OTStringXML::operator=(const OTStringXML & rhs)
 {
 	if ((&rhs) != this)
 	{
 		this->OTString::operator=(dynamic_cast<const OTString&>(rhs));
-		irr::io::IFileReadCallBack::operator=(rhs);
+		//irr::io::IFileReadCallBack::operator=(rhs);
 	}
 	return *this;
 }
+
 
 OTStringXML::~OTStringXML()
 {
 	// Base class destructor is called automatically.
 	// (And that calls Release_String().)
+    delete pvt;
+}
+
+
+OTStringXML::operator irr::io::IFileReadCallBack *(){
+    return this->pvt;
 }
 
 int32_t OTStringXML::read(void* buffer, uint32_t sizeToRead)
@@ -206,25 +233,10 @@ int32_t OTStringXML::read(void* buffer, uint32_t sizeToRead)
 	{
 		return 0;
 	}
-
 }
+
 
 int32_t OTStringXML::getSize()
 {
 	return GetLength();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

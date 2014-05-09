@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *    
  *  OTASCIIArmor.cpp
  *  
@@ -134,18 +134,16 @@
 
 #include <OTASCIIArmor.hpp>
 
-#include <OTPayload.hpp>
-#include <OTEnvelope.hpp>
-#include <OTLog.hpp>
-
 #include <iostream>
 #include <sstream>
 #include <fstream>
 
 #include <zlib.h>
 
+#include <OTPayload.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
 
-// ----------------------------------------------------------------------
 
 const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
 const char * OT_END_ARMORED     =   "-----END OT ARMORED";
@@ -153,20 +151,15 @@ const char * OT_END_ARMORED     =   "-----END OT ARMORED";
 const char * OT_BEGIN_ARMORED_escaped   = "- -----BEGIN OT ARMORED";
 const char * OT_END_ARMORED_escaped     =   "- -----END OT ARMORED";
 
-// ----------------------------------------------------------------------
 
 const char * OT_BEGIN_SIGNED          = "-----BEGIN SIGNED";
 const char * OT_BEGIN_SIGNED_escaped  = "- -----BEGIN SIGNED";
 
-// ----------------------------------------------------------------------
-
-
 
 OTCleanup<OTDB::OTPacker> g_thePackerAngel; // Make sure the pointer below gets cleaned up properly at shutdown.
 
+
 OTDB::OTPacker * OTASCIIArmor::s_pPacker = NULL;
-
-
 
 
 OTDB::OTPacker * OTASCIIArmor::GetPacker() 
@@ -181,7 +174,6 @@ OTDB::OTPacker * OTASCIIArmor::GetPacker()
 	
 	return s_pPacker;
 }
-
 
 
 // Let's say you don't know if the input string is raw base64, or if it has bookends
@@ -220,12 +212,9 @@ bool OTASCIIArmor::LoadFromString(OTASCIIArmor & ascArmor, const OTString & strI
 }
 
 
-
-// -----------------------------------------------------
-
-
 // initializes blank.
 OTASCIIArmor::OTASCIIArmor() : OTString() { }
+
 
 // encodes
 OTASCIIArmor::OTASCIIArmor(const OTString & strValue) : OTString(/*Don't pass here, since we're encoding.*/)
@@ -233,11 +222,13 @@ OTASCIIArmor::OTASCIIArmor(const OTString & strValue) : OTString(/*Don't pass he
 	this->SetString(strValue);
 }
 
+
 // encodes
 OTASCIIArmor::OTASCIIArmor(const OTPayload & theValue) : OTString()
 {
 	this->SetData(theValue);
 }
+
 
 // encodes
 OTASCIIArmor::OTASCIIArmor(const OTData & theValue) : OTString()
@@ -245,8 +236,10 @@ OTASCIIArmor::OTASCIIArmor(const OTData & theValue) : OTString()
 	this->SetData(theValue);
 }
 
+
 // Copies (already encoded)
 OTASCIIArmor::OTASCIIArmor(const OTASCIIArmor & strValue) : OTString(dynamic_cast<const OTString&>(strValue)) { }
+
 
 // assumes envelope contains encrypted data; 
 // grabs that data in base64-form onto *this.
@@ -261,7 +254,7 @@ OTASCIIArmor::OTASCIIArmor(const char * szValue) : OTString(szValue)
 {
 
 }
-// -------------------------------------------------------------
+
 
 // copies, assumes already encoded.
 OTASCIIArmor & OTASCIIArmor::operator=(const char * szValue)
@@ -269,6 +262,7 @@ OTASCIIArmor & OTASCIIArmor::operator=(const char * szValue)
 	this->Set(szValue);
 	return *this;
 }
+
 
 // encodes
 OTASCIIArmor & OTASCIIArmor::operator=(const OTString & strValue)
@@ -280,12 +274,14 @@ OTASCIIArmor & OTASCIIArmor::operator=(const OTString & strValue)
 	return *this;	
 }
 
+
 // encodes
 OTASCIIArmor & OTASCIIArmor::operator=(const OTData & theValue)
 {
 	this->SetData(theValue);
 	return *this;	
 }
+
 
 // assumes is already encoded and just copies the encoded text
 OTASCIIArmor & OTASCIIArmor::operator=(const OTASCIIArmor & strValue)
@@ -296,13 +292,6 @@ OTASCIIArmor & OTASCIIArmor::operator=(const OTASCIIArmor & strValue)
 	}
 	return *this;
 }
-
-
-
-
-
-
-
 
 
 // Source for these two functions:  http://panthema.net/2007/0328-ZLibString.html
@@ -350,6 +339,7 @@ std::string compress_string(const std::string& str,
     return outstring;
 }
 
+
 /** Decompress an STL string using zlib and return the original data. */
 std::string decompress_string(const std::string& str)
 {
@@ -391,7 +381,6 @@ std::string decompress_string(const std::string& str)
     
     return outstring;
 }
-
 
 
 /// if we pack, compress, encode on the way in, that means, therefore, we
@@ -463,7 +452,6 @@ bool OTASCIIArmor::GetAndUnpackString(OTString & strData, bool bLineBreaks) cons
 }
 
 
-
 // If adding packing STILL didn't make us binary compatible, then I need to try this next:
 // Do the compression, THEN PACK...
 // On the other way, UNPACK, THEN Uncompress.
@@ -477,7 +465,6 @@ bool OTASCIIArmor::GetString(OTString & strData, bool bLineBreaks) const //bLine
 {	
 	return GetAndUnpackString(strData, bLineBreaks);
 }
-
 
 
 bool OTASCIIArmor::GetStringMap(std::map<std::string, std::string> & the_map, bool bLineBreaks/*=true*/) const
@@ -537,11 +524,11 @@ bool OTASCIIArmor::GetAndUnpackStringMap(std::map<std::string, std::string> & th
 }
 
 
-
 bool OTASCIIArmor::SetStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks/*=true*/)
 {
 	return SetAndPackStringMap(the_map, bLineBreaks);
 }
+
 
 bool OTASCIIArmor::SetAndPackStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks/*=true*/)
 {
@@ -601,14 +588,12 @@ bool OTASCIIArmor::SetAndPackStringMap(const std::map<std::string, std::string> 
 }
 
 
-
 // This function will base64 DECODE the string contents
 // and return them as binary in theData
 bool OTASCIIArmor::GetData(OTData & theData, bool bLineBreaks) const //linebreaks=true
 {	
 	return GetAndUnpackData(theData, bLineBreaks);
 }
-
 
 
 // This function will base64 DECODE the string contents
@@ -672,6 +657,7 @@ bool OTASCIIArmor::SetData(const OTData & theData, bool bLineBreaks/*=true*/)
 	return SetAndPackData(theData, bLineBreaks);
 }
 
+
 // This function will base64 ENCODE theData,
 // and then Set() that as the string contents.
 // Additionally it will pack and compress the data!
@@ -733,9 +719,6 @@ bool OTASCIIArmor::SetAndPackData(const OTData & theData, bool bLineBreaks/*=tru
 		return false;
 	}
 }
-
-
-
 
 
 /// This function first Packs the incoming string, using whatever is the default packer. (MsgPack or Protobuf).
@@ -809,8 +792,6 @@ bool OTASCIIArmor::SetAndPackString(const OTString & strData, bool bLineBreaks) 
 	return false;	
 }
  
-// -------------------------------------------------------------------
-
 
 // This version is fully functional, and performs compression in addition to base64-encoding.
 //
@@ -819,9 +800,6 @@ bool OTASCIIArmor::SetString(const OTString & strData, bool bLineBreaks) //=true
 	
 	return SetAndPackString(strData, bLineBreaks);
 }
-
-
-// ---------------------------------------------------------------
 
 
 // This code reads up the file, discards the bookends, and saves only the gibberish itself.
@@ -920,7 +898,6 @@ bool OTASCIIArmor::SaveTo_ofstream(std::ofstream & fout)
 }
 
 
-
 //const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
 //const char * OT_END_ARMORED     =   "-----END OT ARMORED";
 
@@ -958,7 +935,6 @@ bool OTASCIIArmor::WriteArmoredFile(const OTString & foldername, const OTString 
 }
 
 
-
 //const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
 //const char * OT_END_ARMORED     =   "-----END OT ARMORED";
 
@@ -989,7 +965,6 @@ bool OTASCIIArmor::WriteArmoredString(OTString & strOutput,
     // -----------------------
     return true;
 }
-
 
 
 // This code reads up the string, discards the bookends, and saves only the gibberish itself.
@@ -1136,48 +1111,3 @@ OTASCIIArmor::~OTASCIIArmor()
 {
 	// ~OTString called automatically, which calls Release().
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

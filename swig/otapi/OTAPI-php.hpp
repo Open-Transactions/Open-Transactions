@@ -11,13 +11,13 @@
 #ifndef SWIG_OTAPI_WRAP_H_
 #define SWIG_OTAPI_WRAP_H_
 
-class SwigDirector_OTCallback : public OTCallback, public Swig::Director {
+class SwigDirector_OTNameLookup : public OTNameLookup, public Swig::Director {
 
 public:
-    SwigDirector_OTCallback(zval *self TSRMLS_DC);
-    virtual ~SwigDirector_OTCallback();
-    virtual void runOne(char const *szDisplay, OTPassword &theOutput);
-    virtual void runTwo(char const *szDisplay, OTPassword &theOutput);
+    SwigDirector_OTNameLookup(zval *self TSRMLS_DC);
+    virtual ~SwigDirector_OTNameLookup();
+    virtual std::string GetNymName(std::string const &str_id, std::string const *p_server_id = NULL) const;
+    virtual std::string GetAcctName(std::string const &str_id, std::string const *p_nym_id = NULL, std::string const *p_server_id = NULL, std::string const *p_asset_id = NULL) const;
 };
 
 #endif

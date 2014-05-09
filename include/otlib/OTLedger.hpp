@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTLedger.h
+ *  OTLedger.hpp
  *
  */
 
@@ -130,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OTLEDGER_HPP__
-#define __OTLEDGER_HPP__
+#ifndef __OT_LEDGER_HPP__
+#define __OT_LEDGER_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTTransactionType.hpp"
-
 #include "OTTransaction.hpp"
 
 class OTItem;
@@ -330,20 +328,4 @@ EXPORT          char const * GetTypeString() { return OTLedger::_GetTypeString(m
 };
 
 
-
-
-#endif //  __OTLEDGER_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_LEDGER_HPP__

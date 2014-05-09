@@ -49,7 +49,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion "0.92.1.0"
+VIProductVersion "0.92.2.0"
 VIAddVersionKey ProductName "${NAME}"
 VIAddVersionKey ProductVersion ${VERSION}
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -106,6 +106,7 @@ Section -Main SEC0000
     File ..\lib\Win32\Release\otmint.exe
     File ..\lib\Win32\Release\ot.exe
     File ..\lib\Win32\Release\otserver.exe
+    File ..\lib\Win32\Release\opentxs.exe
 
 # Moneychanger
 

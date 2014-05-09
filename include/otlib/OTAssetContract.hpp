@@ -1,6 +1,6 @@
-/************************************************************************************
+/************************************************************
  *
- *  OTAssetContract.h
+ *  OTAssetContract.hpp
  *
  */
 
@@ -130,57 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OTASSETCONTRACT_HPP__
-#define __OTASSETCONTRACT_HPP__
+#ifndef __OT_ASSET_CONTRACT_HPP__
+#define __OT_ASSET_CONTRACT_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
+#include "OTAmount.hpp"
+#include "OTAcctFunctor.hpp"
 
+class OTAmount;
 class OTBasket;
 class OTPseudonym;
 class OTString;
 class OTIdentifier;
 class OTAccount;
+class OTAcctFunctor;
 
-class OTAcctFunctor; // defined below.
-
-
-
-// ----------------------------------------------------------------------------
-
-class OTAmount
-{
-    int64_t  m_lAmount;    // $5.45 has m_lAmount set to 545
-
-public:
-EXPORT    friend void swap(OTAmount& first, OTAmount& second) // nothrow
-    {
-        using std::swap; // enable ADL (good practice)
-        swap(first.m_lAmount,    second.m_lAmount);
-    }
-    // -----------------------------------------------------
-EXPORT    bool          IsPositive()   const { return (m_lAmount >  0);  }
-EXPORT    bool          IsNegative()   const { return (m_lAmount <  0);  }
-EXPORT    bool          IsZero()       const { return (m_lAmount == 0);  }
-    // -----------------------------------------------------
-EXPORT    int64_t       GetAmount()    const { return m_lAmount; }
-EXPORT    int64_t       GetAbsolute()  const { return (m_lAmount <  0) ? (m_lAmount*(-1)) : m_lAmount; }
-    // -----------------------------------------------------
-EXPORT    void          SetAmount(int64_t lAmount) { m_lAmount = lAmount; }
-    // -----------------------------------------------------
-EXPORT    OTAmount(int64_t lAmount=0);
-EXPORT    OTAmount(const OTAmount & other);
-
-EXPORT    OTAmount& operator=(OTAmount other);
-//  OTAmount(OTAmount&& other);  // C++11
-
-EXPORT    ~OTAmount() {}
-};
-
-
-// ----------------------------------------------------------------------------
 
 class OTAssetContract : public OTContract
 {
@@ -259,39 +225,7 @@ EXPORT    const OTString & GetCurrencyTLA      () const { return m_strCurrencyTL
 	virtual bool DisplayStatistics(OTString & strContents) const;
 };
 
-// ----------------------------------------------------------------------------
-
-
-typedef std::map<std::string, OTAssetContract *>	mapOfContracts;
-
-
-
-// ----------------------------------------------------------------------------
-
-// This class is used by ForEachAccountRecord (above) which loops through
-// all the "simple" accounts of a specific asset type, and calls this functor
-// for each one.
-//
-class OTAcctFunctor
-{
-protected:
-    OTIdentifier  * m_pServerID; // owned.
-    mapOfAccounts * m_pLoadedAccounts; // not owned.
-
-public:
-EXPORT    OTAcctFunctor(const OTIdentifier & theServerID, mapOfAccounts * pLoadedAccounts=NULL);
-EXPORT    virtual ~OTAcctFunctor();
-
-EXPORT    OTIdentifier  * GetServerID()    { return m_pServerID; }
-EXPORT    mapOfAccounts * GetLoadedAccts() { return m_pLoadedAccounts; }
-
-EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an implementation, however.
-};
-
-// todo: Make an "OTAcctFunctor_Audit" subclass of this.
-
-// ----------------------------------------------------------------------------
-
+typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 
 
 // NOTE: Moved to OTServer.h and .cpp
@@ -309,48 +243,4 @@ EXPORT    virtual bool Trigger(OTAccount & theAccount)=0; // We still provide an
 //};
 
 
-// ----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // __OTASSETCONTRACT_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_ASSET_CONTRACT_HPP__

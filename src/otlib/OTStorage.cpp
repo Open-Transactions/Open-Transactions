@@ -1,4 +1,10 @@
 /************************************************************
+*
+*  OTStorage.cpp
+*
+*/
+
+/************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
 
@@ -127,14 +133,15 @@
 #include <stdafx.hpp>
 
 #include <OTStorage.hpp>
+#include <OTStoragePB.hpp>
+
+#include <typeinfo>
+#include <fstream>
 
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTPayload.hpp>
-
-#include <typeinfo>
-#include <fstream>
 
 /*
 
@@ -278,9 +285,12 @@
  // --------------------------------------------------------------
  */
 
+
 OTDB::Storage * OTDB::details::s_pStorage= NULL;
 
+
 OTDB::mapOfFunctions * OTDB::details::pFunctionMap=NULL; // This is a pointer so I can control what order it is created in, on startup.
+
 
 const char * OTDB::StoredObjectTypeStrings[] =
 {
@@ -312,13 +322,8 @@ const char * OTDB::StoredObjectTypeStrings[] =
 };
 
 
-
 namespace OTDB
 {
-
-
-	// ********************************************************************
-
 	// NAMESPACE CONSTRUCTOR / DESTRUCTOR
 
 	// s_pStorage is "private" to the namespace.
@@ -463,7 +468,6 @@ namespace OTDB
 	}
 
 
-
 	// %newobject Factory::createObj();
 	Storable * CreateObject(StoredObjectType eType)
 	{
@@ -484,7 +488,6 @@ namespace OTDB
 
 	// BELOW FUNCTIONS use the DEFAULT Storage context.
 
-	// -----------------------------------------
 	// Check that if oneStr is "", then twoStr and threeStr are "" also... and so on...
 	bool CheckStringsExistInOrder(std::string & strFolder, std::string & oneStr,
                                   std::string & twoStr,    std::string & threeStr, const char * szFuncName)
@@ -525,7 +528,6 @@ namespace OTDB
 	}
 
 
-	// -----------------------------------------
 	// See if the file is there.
 	bool Exists(std::string strFolder,      std::string oneStr/*=""*/,
                 std::string twoStr/*=""*/,  std::string threeStr/*=""*/)
@@ -556,6 +558,7 @@ namespace OTDB
 
 		return pStorage->Exists(strFolder, oneStr, twoStr, threeStr);
 	}
+
 
     int64_t FormPathString(std::string & strOutput,
                         std::string   strFolder,     std::string oneStr/*=""*/,
@@ -588,7 +591,7 @@ namespace OTDB
 		return pStorage->FormPathString(strOutput, strFolder, oneStr, twoStr, threeStr);
     }
 
-	// -----------------------------------------
+
 	// Store/Retrieve a string.
 
 	bool StoreString(std::string strContents,
@@ -617,6 +620,7 @@ namespace OTDB
 		return pStorage->StoreString(strContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	std::string QueryString(std::string strFolder,      std::string oneStr/*=""*/,
 		std::string twoStr/*=""*/,  std::string threeStr/*=""*/)
 	{
@@ -640,7 +644,7 @@ namespace OTDB
 		return pStorage->QueryString(strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve a plain string.
 
 	bool StorePlainString(std::string strContents,
@@ -671,6 +675,7 @@ namespace OTDB
 		return pStorage->StorePlainString(strContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	std::string QueryPlainString(std::string strFolder,     std::string oneStr/*=""*/,
                                  std::string twoStr/*=""*/, std::string threeStr/*=""*/)
 	{
@@ -699,7 +704,7 @@ namespace OTDB
 		return pStorage->QueryPlainString(strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve an object. (Storable.)
 
 	bool StoreObject(Storable & theContents, std::string strFolder, std::string oneStr/*=""*/,
@@ -728,6 +733,7 @@ namespace OTDB
 		return pStorage->StoreObject(theContents, strFolder, oneStr, twoStr, threeStr);
 	}
 
+
 	// Use %newobject Storage::Query();
 	Storable * QueryObject(StoredObjectType theObjectType,
 						   std::string strFolder, std::string oneStr/*=""*/,  std::string twoStr/*=""*/,
@@ -755,7 +761,7 @@ namespace OTDB
 		return pStorage->QueryObject(theObjectType, strFolder, oneStr, twoStr, threeStr);
 	}
 
-	// -----------------------------------------
+
 	// Store/Retrieve a Storable object to/from an OTASCIIArmor object.
 
 	std::string EncodeObject(Storable & theContents)
@@ -770,6 +776,7 @@ namespace OTDB
 		return pStorage->EncodeObject(theContents);
 	}
 
+
 	// Use %newobject Storage::DecodeObject();
 	Storable * DecodeObject(StoredObjectType theObjectType, std::string strInput)
 	{
@@ -783,7 +790,7 @@ namespace OTDB
 		return pStorage->DecodeObject(theObjectType, strInput);
 	}
 
-    // -----------------------------------------
+
 	// Erase a value by location.
 
 	bool EraseValueByKey(std::string strFolder,     std::string oneStr/*=""*/,
@@ -800,15 +807,6 @@ namespace OTDB
 		return pStorage->EraseValueByKey(strFolder, oneStr, twoStr, threeStr);
 	}
 
-    // ********************************************************************
-
-
-
-
-
-
-
-	// ********************************************************************
 
 	// Used internally. Creates the right subclass for any stored object type,
 	// based on which packer is needed.
@@ -841,10 +839,6 @@ namespace OTDB
 		return pStorable; // May return NULL...
 	}
 
-
-
-
-	// ********************************************************************
 
 	// static. OTPacker Factory.
 	//
@@ -982,14 +976,6 @@ namespace OTDB
 		return true;
 	}
 
-	// ********************************************************************
-
-
-
-
-
-
-	// ---------------------------------------------
 
 	// NOTICE!!! that when you add something to the list, it is CLONED. (Caller is still responsible to delete the argument.)
 	//
@@ -1103,325 +1089,7 @@ namespace OTDB
 	// Msgpack packer.
 #if defined (OTDB_MESSAGE_PACK)
 
-	bool IStorableMsgpack::onPack(PackedBuffer& theBuffer, Storable& inObj)  // buffer is OUTPUT, Storable is INPUT.
-	{
-		// check here to make sure theBuffer is the right TYPE.
-		BufferMsgpack * pBuffer = dynamic_cast<BufferMsgpack *> (&theBuffer);
-
-		if (NULL == pBuffer) // Buffer is wrong type!!
-		{
-			OTLog::Error("Buffer is wrong type in IStorableMsgpack::onPack()\n");
-			return false;
-		}
-		/*
-		 TEST(pack, BitcoinAcct)
-		 {
-             msgpack::sbuffer sbuf;
-             myclass m(1, "msgpack");
-             msgpack::pack(sbuf, m);
-		 }
-		 */
-		bool bSuccess = PerformPack(*pBuffer);
-
-	//	msgpack::pack(pBuffer->m_buffer, *this);
-	//	msgpack::pack(pBuffer->m_buffer, inObj);
-
-		return bSuccess;
-	}
-
-	bool IStorableMsgpack::onUnpack(PackedBuffer& theBuffer, Storable& outObj) // buffer is INPUT, Storable is OUTPUT.
-	{
-		// check here to make sure theBuffer is the right TYPE.
-		BufferMsgpack * pBuffer = dynamic_cast<BufferMsgpack *> (&theBuffer);
-
-		if (NULL == pBuffer) // Buffer is wrong type!!
-		{
-			OTLog::Error("Buffer is wrong type in IStorableMsgpack::onUnpack()\n");
-			return false;
-		}
-		// --------------------
-		/*
-		 TEST(unpack, BitcoinAcct)
-		 {
-             msgpack::sbuffer sbuf;
-             myclass m1(1, "phraser");
-             msgpack::pack(sbuf, m1);
-
-             msgpack::zone z;
-             msgpack::object obj;
-
-             msgpack::unpack_return ret =
-             msgpack::unpack(sbuf.data(), sbuf.size(), NULL, &z, &obj);
-
-             EXPECT_EQ(ret, msgpack::UNPACK_SUCCESS);
-
-             myclass m2 = obj.as<myclass>();
-             EXPECT_EQ(m1.num, m2.num);
-             EXPECT_EQ(m1.str, m2.str);
-		 }
-		 */
-
-        bool bSuccess = PerformUnpack(*pBuffer);
-
-		/*
-         msgpack::zone z;
-         msgpack::object obj;
-
-         msgpack::unpack_return ret = msgpack::unpack(pBuffer->m_buffer.data(),
-         pBuffer->m_buffer.size(), NULL, &z, &obj);
-
-         if (msgpack::UNPACK_SUCCESS == ret)
-         {
-            obj.convert(this);
-//          obj.convert(&outObj);
-            return true;
-         }
-		 */
-
-		return bSuccess;
-	}
-
-	// ----------------------------------------------------------
-
-	const uint8_t * BufferMsgpack::GetData()
-	{
-		return reinterpret_cast<const uint8_t *>(m_buffer.data());
-	}
-
-	size_t BufferMsgpack::GetSize()
-	{
-		return m_buffer.size();
-	}
-
-	void BufferMsgpack::SetData(const uint8_t * pData, size_t theSize)
-	{
-		uint32_t nSize = theSize;
-		m_buffer.write(reinterpret_cast<const char*>(pData), nSize);
-	}
-
-
-	bool BufferMsgpack::PackString(std::string& theString)
-	{
-		StringMsgpack theWrapper(theString);
-
-		msgpack::pack(m_buffer, theWrapper);
-
-		return true;
-	}
-
-	bool BufferMsgpack::UnpackString(std::string& theString)
-	{
-		msgpack::zone z;
-		msgpack::object obj;
-
-		msgpack::unpack_return ret =
-		msgpack::unpack(m_buffer.data(), m_buffer.size(), NULL, &z, &obj);
-
-		if (msgpack::UNPACK_SUCCESS == ret)
-		{
-			StringMsgpack theWrapper;
-
-			obj.convert(&theWrapper);
-
-			theString = theWrapper.m_string;
-
-			return true;
-		}
-
-		return false;
-	}
-
-	bool BufferMsgpack::ReadFromIStream(std::istream &inStream, int64_t lFilesize)
-	{
-		char * buf = new char[lFilesize];
-		OT_ASSERT(NULL != buf);
-
-		inStream.read(buf, lFilesize);
-
-		if (inStream.good())
-		{
-			m_buffer.clear();
-			m_buffer.write(buf, lFilesize);
-
-			delete [] buf;
-			return true;
-		}
-
-		delete [] buf;
-
-		return false;
-	}
-
-	bool BufferMsgpack::WriteToOStream(std::ostream &outStream)
-	{
-		//	std::string strTemp;
-		//	strTemp.insert(0, m_buffer.data(), m_buffer.size());
-		//
-		//	outStream << strTemp << std::flush;
-
-		if (m_buffer.size() < 1)
-		{
-			OTLog::Error("Buffer had zero (or less) length in BufferPB::WriteToOStream\n");
-			return false;
-		}
-
-		outStream.write(m_buffer.data(), m_buffer.size());
-
-		bool bSuccess = outStream.good() ? true : false;
-
-		return bSuccess;
-	}
-
-	// ****************************************************************************
-
-
-// You might ask why I do this with the macros instead of using templates.
-// Usually different reasons everytime.... Depends on the situation.
-// One good reason is because template errors are unreadable :P
-// The real solution isn't to use C++ templates, but to switch
-// to the D language, and use D templates and mixins }:-)
-//
-#define OT_IMPLEMENT_MSGPACK_LIST_PACK(element_type, member_name) \
-\
-	member_name.clear(); \
-\
-	for (std::deque<PointerTo##element_type>::iterator ii = list_##element_type##s.begin(); ii != list_##element_type##s.end(); ++ii) \
-	{ \
-		PointerTo##element_type thePtr = (*ii); \
-\
-		element_type##Msgpack * pObject = dynamic_cast<element_type##Msgpack *>(thePtr.pointer()); \
-\
-		OT_ASSERT (NULL != pObject); \
-\
-		member_name.push_back(*pObject); \
-	}
-	// The deque acquires its own copy in the push_back (above), due to the copy constructor.
-	// ---------------------------------------------------------------------------------------------------
-#define OT_IMPLEMENT_MSGPACK_LIST_UNPACK(element_type, member_name) \
-	while (Get##element_type##Count() > 0) \
-		Remove##element_type(0); \
-\
-	for (std::deque<element_type##Msgpack>::iterator ii = member_name.begin(); ii != member_name.end(); ++ii) \
-	{	\
-		element_type##Msgpack * pNewWrapper = dynamic_cast<element_type##Msgpack *>(ii->clone()); \
-		OT_ASSERT(NULL != pNewWrapper); \
-\
-		PointerTo##element_type thePtr(dynamic_cast<element_type *>(pNewWrapper)); \
-\
-		list_##element_type##s.push_back(thePtr); \
-	}
-	// ****************************************************************************
-
-	void ContactNymMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(ServerInfo, deque_ServerInfos)
-	}
-
-	// ----------------------------------------------------
-
-	void ContactNymMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(ServerInfo, deque_ServerInfos)
-	}
-	// ----------------------------------------------
-
-	void ContactMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(ContactNym, deque_Nyms)
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(ContactAcct, deque_Accounts)
-	}
-
-
-	void ContactMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(ContactNym, deque_Nyms)
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(ContactAcct, deque_Accounts)
-	}
-
-	// ----------------------------------------------
-
-
-	void AddressBookMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(Contact, deque_Contacts)
-	}
-
-	void AddressBookMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(Contact, deque_Contacts)
-	}
-
-
-	void WalletDataMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(BitcoinServer, deque_BitcoinServers)
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(BitcoinAcct, deque_BitcoinAccts)
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(RippleServer, deque_RippleServers)
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(LoomServer, deque_LoomServers)
-	}
-
-
-	void WalletDataMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(BitcoinServer, deque_BitcoinServers)
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(BitcoinAcct, deque_BitcoinAccts)
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(RippleServer, deque_RippleServers)
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(LoomServer, deque_LoomServers)
-	}
-
-
-	void MarketListMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(MarketData, deque_Markets)
-	}
-
-	void MarketListMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(MarketData, deque_Markets)
-	}
-
-	void OfferListMarketMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(BidData, deque_Bids)
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(AskData, deque_Asks)
-	}
-
-	void OfferListMarketMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(BidData, deque_Bids)
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(AskData, deque_Asks)
-	}
-
-	void TradeListMarketMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(TradeDataMarket, deque_Trades)
-	}
-
-	void TradeListMarketMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(TradeDataMarket, deque_Trades)
-	}
-
-	void OfferListNymMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(OfferDataNym, deque_Offers)
-	}
-
-	void OfferListNymMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(OfferDataNym, deque_Offers)
-	}
-
-	void TradeListNymMsgpack::hookBeforePack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_PACK(TradeDataNym, deque_Trades)
-	}
-
-	void TradeListNymMsgpack::hookAfterUnpack()
-	{
-		OT_IMPLEMENT_MSGPACK_LIST_UNPACK(TradeDataNym, deque_Trades)
-	}
-
+    // look into git history for old (dead) code.
 
 
 #endif  // defined (OTDB_MESSAGE_PACK)
@@ -3305,11 +2973,3 @@ namespace OTDB
 
 
 } // namespace OTDB
-
-
-
-
-
-
-
-

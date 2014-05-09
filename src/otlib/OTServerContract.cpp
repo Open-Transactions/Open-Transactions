@@ -4,7 +4,6 @@
  *  
  */
 
-
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
@@ -135,16 +134,20 @@
 
 #include <OTServerContract.hpp>
 
+#include <fstream>
+
 #include <OTLog.hpp>
 #include <OTASCIIArmor.hpp>
 
-#include <fstream>
+
+#include "irrxml/irrXML.hpp"
 
 
 OTServerContract::OTServerContract() : OTContract()
 {
 	m_nPort = 0;
 }
+
 
 OTServerContract::OTServerContract(OTString & name, OTString & foldername, OTString & filename, OTString & strID) 
 : OTContract(name, foldername, filename, strID)
@@ -157,6 +160,7 @@ OTServerContract::~OTServerContract()
 {
 
 }
+
 
 bool OTServerContract::GetConnectInfo(OTString & strHostname, int32_t & nPort)
 {
@@ -216,6 +220,7 @@ bool OTServerContract::SaveContractWallet(std::ofstream & ofs)
 	return false;
 }
 
+
 void OTServerContract::CreateContents()
 {
     // ----------------------------------
@@ -249,6 +254,7 @@ void OTServerContract::CreateContents()
 	m_xmlUnsigned.Concatenate("</%s>\n", "notaryProviderContract");
     // --------------------------------------------
 }
+
 
 // This is the serialization code for READING FROM THE CONTRACT
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -292,50 +298,3 @@ int32_t OTServerContract::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 	
 	return nReturnVal;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

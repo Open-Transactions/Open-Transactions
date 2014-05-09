@@ -1,6 +1,6 @@
-/**************************************************************
+/************************************************************
  *
- *  OTPassword.h
+ *  OTPassword.hpp
  *
  */
 
@@ -133,12 +133,15 @@
 #ifndef __OT_PASSWORD_HPP__
 #define __OT_PASSWORD_HPP__
 
+#include <string>
+
 #include "OTCommon.hpp"
 
 #include "OTCachedKey.hpp"
+#include "OTPasswordData.hpp"
 
-#include <string>
-
+class OTString;
+class OTPassword;
 
 
 /*
@@ -173,14 +176,10 @@
 //
 #define OT_LARGE_BLOCKSIZE	32767		// (32767 bytes max length for a password.)
 #define OT_LARGE_MEMSIZE	32768		// +1 for null terminator.
-// -------------------------------------------------------
 
 // Default is the smaller size.
-
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
-
-// -------------------------------------------
 
 
 // https://github.com/lorf/keepassx/blob/master/src/lib/SecString.cpp
@@ -194,6 +193,7 @@
 //
 // NOTE: For Windows, use VirtualLock instead of mlock.
 //
+
 /*
  #include <sys/mman.h>
 
@@ -325,68 +325,12 @@ void main()
 
  */
 
-class OTString;
-
-
-/*
- OTPasswordData
- This class is used for passing user data to the password callback.
- Whenever actually doing some OpenSSL call that involves a private key,
- just instantiate one of these and pass its address as the userdata for
- the OpenSSL call.  Then when the OT password callback is activated by
- OpenSSL, that pointer will be passed into the callback, so the user string
- can be displayed on the password dialog. (And also so the callback knows
- whether it was activated for a normal key or for a master key.) If it was
- activated for a normal key, then it will use the cached master key, or
- if that's timed out then it will try to decrypt a copy of it using the
- master Nym. Whereas if it WAS activated for the Master Nym, then it will
- just pop up the passphrase dialog and get his passphrase, and use that to
- decrypt the master key.
-
- NOTE: For internationalization later, we can add an OTPasswordData constructor
- that takes a STRING CODE instead of an actual string. We can use an enum for
- this. Then we just pass the code there, instead of the string itself, and
- the class will do the work of looking up the actual string based on that code.
- */
-
-class OTPassword;
-
-class OTPasswordData
-{
-private:
-    OTPassword *        m_pMasterPW; // Used only when isForCachedKey is true, for output. Points to output value from original caller (not owned.)
-    const std::string   m_strDisplay;
-    bool                m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
-
-    _SharedPtr<OTCachedKey> m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
-public:
-    // --------------------------------
-EXPORT    bool            isForNormalNym()   const;
-EXPORT    bool            isForCachedKey()   const;
-    // --------------------------------
-EXPORT    const char *    GetDisplayString() const;
-    // --------------------------------
-EXPORT    bool            isUsingOldSystem() const;
-EXPORT    void            setUsingOldSystem(bool bUsing=true);
-    // --------------------------------
-    OTPassword          * GetMasterPW () { return m_pMasterPW;  }
-    _SharedPtr<OTCachedKey> GetCachedKey() { return m_pCachedKey; }
-    // --------------------------------
-EXPORT    OTPasswordData(const char        *   szDisplay, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
-EXPORT    OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
-EXPORT    OTPasswordData(const OTString    &  strDisplay, OTPassword * pMasterPW=NULL, _SharedPtr<OTCachedKey> pCachedKey=_SharedPtr<OTCachedKey>());
-EXPORT    ~OTPasswordData();
-};
-
-
-
 // Originally written for the safe storage of passwords.
 // Now used for symmetric keys as well.
 // Specifically: when the clear version of a password or key must be stored
 // usually for temporary reasons, it must be stored in memory locked from swapping
 // to disk, and in an object like OTPassword that zeros the memory as soon as we're done.
 //
-
 class OTPassword
 {
 public:
@@ -492,6 +436,7 @@ EXPORT	OTPassword(const void    * vInput,  uint32_t nInputSize, BlockSize theBlo
 EXPORT	~OTPassword();
 };
 
+
 //#undef OTPASSWORD_BLOCKSIZE
 //#undef OTPASSWORD_MEMSIZE
 //
@@ -502,59 +447,13 @@ EXPORT	~OTPassword();
 //#undef OT_DEFAULT_MEMSIZE
 
 
-// ---------------------------------------------------------
-// Used for the password callback...
-
-class OTCallback
-{
-public:
-	OTCallback() {}
-EXPORT	virtual ~OTCallback();
-EXPORT	virtual void runOne(const char * szDisplay, OTPassword & theOutput); // Asks for password once. (For authentication when using nym.)
-EXPORT	virtual void runTwo(const char * szDisplay, OTPassword & theOutput); // Asks for password twice. (For confirmation when changing password or creating nym.)
-};
-
-// ------------------------------------------------
-
-class OTCaller
-{
-protected:
-	OTPassword	m_Password;	// The password will be stored here by the Java dialog, so that the C callback can retrieve it and pass it to OpenSSL
-	OTPassword	m_Display;	// A display string is set here before the Java dialog is shown. (OTPassword used here only for convenience.)
-
-	OTCallback * _callback;
-
-public:
-	OTCaller() : _callback(NULL) { }
-EXPORT	~OTCaller();
-
-EXPORT	bool	GetPassword(OTPassword & theOutput) const;	// Grab the password when it is needed.
-EXPORT	void	ZeroOutPassword();	// Then ZERO IT OUT so copies aren't floating around...
-
-EXPORT	const char * GetDisplay() const;
-EXPORT	void SetDisplay(const char * szDisplay, int32_t nLength);
-
-EXPORT	void delCallback();
-EXPORT	void setCallback(OTCallback *cb);
-EXPORT	bool isCallbackSet() const;
-
-EXPORT	void callOne(); // Asks for password once. (For authentication when using the Nym's private key.)
-EXPORT	void callTwo(); // Asks for password twice. (For confirmation during nym creation and password change.)
-};
+#include "OTCallback.hpp"
 
 
-
-// ------------------------------------------------
-
-
-
-
-
+#include "OTCaller.hpp"
 
 
 /*
-
-
  HOW TO PREVENT MEMORY FROM GOING INTO CORE DUMPS
 
 #include <sys/time.h>
@@ -672,64 +571,4 @@ void unlock_mem(void* ptr, size_t bytes)
  */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// _____________________________________________________________
-
-#endif //__OT_PASSWORD_HPP__
-
-
-
-
-
-
-
+#endif // __OT_PASSWORD_HPP__

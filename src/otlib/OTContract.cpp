@@ -1,4 +1,4 @@
-/*************************************************************
+/************************************************************
  *
  *  OTContract.cpp
  *
@@ -135,6 +135,11 @@
 
 #include <OTContract.hpp>
 
+#include <locale>
+#include <fstream>
+
+#include "irrxml/irrXML.hpp"
+
 #include <OTAssert.hpp>
 #include <OTAssetContract.hpp>
 #include <OTAsymmetricKey.hpp>
@@ -156,14 +161,8 @@
 #include <OTToken.hpp>
 #include <OTTrade.hpp>
 
-#include "irrxml/irrXML.hpp"
-
 using namespace irr;
 using namespace io;
-
-#include <locale>
-#include <fstream>
-
 
 
 //static
@@ -330,383 +329,10 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
 }
 
 
-
-
-
-
-
-// --------------------------------------------------------------------
-//
-// OTNumList (helper class.)
-//
-
-OTNumList::OTNumList(const std::set<int64_t> & theNumbers)
-{
-    Add(theNumbers);
-}
-
-OTNumList::OTNumList(int64_t lInput)
-{
-    Add(lInput);
-}
-
-// -------------------
-
-// removed, security reasons.
-//OTNumList::OTNumList(const char * szNumbers)
-//{
-//    Add(szNumbers);
-//}
-// -------------------
-
-
-OTNumList::OTNumList(const OTString & strNumbers)
-{
-    Add(strNumbers);
-}
-
-// -------------------
-
-OTNumList::OTNumList(const std::string & strNumbers)
-{
-    Add(strNumbers);
-}
-
-// -------------------
-
-OTNumList::OTNumList()
-{
-
-}
-
-// -------------------
-OTNumList::~OTNumList()
-{
-
-}
-
-// -------------------
-
-bool OTNumList::Add(const OTString & strNumbers)  // if false, means the numbers were already there. (At least one of them.)
-{
-    return Add(strNumbers.Get());
-}
-
-// -------------------
-
-bool OTNumList::Add(const std::string & strNumbers)  // if false, means the numbers were already there. (At least one of them.)
-{
-    return Add(strNumbers.c_str());
-}
-
-// -------------------
-// This function is private, so you can't use it without passing an OTString.
-// (For security reasons.) It takes a comma-separated list of numbers, and adds
-// them to *this.
-//
-bool OTNumList::Add(const char * szNumbers)       // if false, means the numbers were already there. (At least one of them.)
-{
-    OT_ASSERT(NULL != szNumbers); // Should never happen.
-
-    bool    bSuccess    = true;
-    int64_t    lNum        = 0;
-    const
-    char *  pChar       = szNumbers;
-	std::locale loc;
-
-    // Skip any whitespace.
-	while (std::isspace(*pChar, loc))
-        pChar++;
-
-    // -------------------------------------
-    bool bStartedANumber = false; // During the loop, set this to true when processing a digit, and set to false when anything else. That way when we go to add the number to the list, and it's "0", we'll know it's a real number we're supposed to add, and not just a default value.
-
-    for (;;) // We already know it's not null, due to the assert. (So at least one iteration will happen.)
-    {
-		if (std::isdigit(*pChar, loc))
-        {
-            bStartedANumber = true;
-
-            int32_t nDigit = (*pChar - '0');
-
-            lNum *= 10;  // Move it up a decimal place.
-            lNum += nDigit;
-        }
-        // if separator, or end of string, either way, add lNum to *this.
-		else if ((',' == *pChar) || ('\0' == *pChar) || std::isspace(*pChar, loc)) // first sign of a space, and we are done with current number. (On to the next.)
-        {
-            if ((lNum > 0) || (bStartedANumber && (0 == lNum)))
-            {
-                if (false == this->Add(lNum)) // <=========
-                {
-                    bSuccess = false; // We still go ahead and try to add them all, and then return this sort of status when it's all done.
-                }
-            }
-            // ------------------
-            lNum = 0;   // reset for the next transaction number (in the comma-separated list.)
-            bStartedANumber = false; // reset
-        }
-        else
-        {
-            OTLog::vError("OTNumList::Add: Error: Unexpected character found in erstwhile comma-separated list of longs: %c\n",
-                          *pChar);
-            bSuccess = false;
-            break;
-        }
-        // ---------------------------------
-        // End of the road.
-        if ('\0' == *pChar)
-            break;
-        // -----------
-        pChar++;
-        // -----------
-        // Skip any whitespace.
-		while (std::isspace(*pChar, loc))
-            pChar++;
-        // -------------------------------------
-    } // while
-
-    return bSuccess;
-}
-// -------------------
-
-bool OTNumList::Add(const int64_t & theValue)    // if false, means the value was already there.
-{
-    std::set<int64_t>::iterator it = m_setData.find(theValue);
-
-    if (m_setData.end() == it) // it's not already there, so add it.
-    {
-        m_setData.insert(theValue);
-        return true;
-    }
-    return false; // it was already there.
-}
-// -------------------
-
-bool OTNumList::Peek(int64_t & lPeek) const
-{
-    std::set<int64_t>::iterator it = m_setData.begin();
-
-    if (m_setData.end() != it) // it's there.
-    {
-        lPeek = *it;
-        return true;
-    }
-    return false;
-}
-// -------------------
-
-bool OTNumList::Pop()
-{
-    std::set<int64_t>::iterator it = m_setData.begin();
-
-    if (m_setData.end() != it) // it's there.
-    {
-        m_setData.erase(it);
-        return true;
-    }
-    return false;
-}
-
-// -------------------
-
-bool OTNumList::Remove(const int64_t & theValue) // if false, means the value was NOT already there.
-{
-    std::set<int64_t>::iterator it = m_setData.find(theValue);
-
-    if (m_setData.end() != it) // it's there.
-    {
-        m_setData.erase(it);
-        return true;
-    }
-    return false; // it wasn't there (so how could you remove it then?)
-}
-// -------------------
-
-bool OTNumList::Verify(const int64_t & theValue) const // returns true/false (whether value is already there.)
-{
-    std::set<int64_t>::iterator it = m_setData.find(theValue);
-
-    return (m_setData.end() == it) ? false : true;
-}
-
-// -------------------
-
-// True/False, based on whether values are already there.
-// (ALL theNumbersmust be present.)
-// So if *this contains "3,4,5,6" and rhs contains "4,5" then match is TRUE.
-//
-bool OTNumList::Verify(const std::set<int64_t> & theNumbers) const
-{
-    bool bSuccess = true;
-
-    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
-    {
-        const int64_t lValue = *it;
-
-        if (!this->Verify(lValue)) // It must have NOT already been there.
-            bSuccess = false;
-    }
-
-    return bSuccess;
-}
-
-// -------------------
-
-/// True/False, based on whether OTNumLists MATCH in COUNT and CONTENT (NOT ORDER.)
-///
-bool OTNumList::Verify(const OTNumList & rhs) const
-{
-    // Verify they have the same number of elements.
-    //
-    if (this->Count() != rhs.Count())
-        return false;
-    // -------------------
-
-    // Verify each value on *this is also found on rhs.
-    //
-    FOR_EACH(std::set<int64_t>, m_setData)
-    {
-        const int64_t lValue = *it;
-        // ----------
-        if (false == rhs.Verify(lValue))
-            return false;
-    }
-
-    return true;
-}
-
-// -------------------------------------------------------------------------------
-
-/// True/False, based on whether ANY of the numbers in rhs are found in *this.
-///
-bool OTNumList::VerifyAny(const OTNumList & rhs) const
-{
-    return rhs.VerifyAny(m_setData);
-}
-
-// --------------------
-
-/// Verify whether ANY of the numbers on *this are found in setData.
-///
-bool OTNumList::VerifyAny(const std::set<int64_t> & setData) const
-{
-    FOR_EACH_CONST(std::set<int64_t>, m_setData)
-    {
-        const int64_t lValue = *it;
-        // ----------
-        std::set<int64_t>::const_iterator it_find = setData.find(lValue);
-
-        if (it_find != setData.end()) // found a match.
-            return true;
-    }
-    // -----------
-    return false;
-}
-
-// -------------------------------------------------------------------------------
-
-bool OTNumList::Add(const OTNumList & theNumList)    // if false, means the numbers were already there. (At least one of them.)
-{
-    std::set<int64_t> theOutput;
-    theNumList.Output(theOutput); // returns false if the numlist was empty.
-
-    return this->Add(theOutput);
-}
-// -------------------
-
-bool OTNumList::Add(const std::set<int64_t> & theNumbers)    // if false, means the numbers were already there. (At least one of them.)
-{
-    bool bSuccess = true;
-
-    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
-    {
-        const int64_t lValue = *it;
-
-        if (!this->Add(lValue)) // It must have already been there.
-            bSuccess = false;
-    }
-
-    return bSuccess;
-}
-// -------------------
-
-bool OTNumList::Remove(const std::set<int64_t> & theNumbers) // if false, means the numbers were NOT already there. (At least one of them.)
-{
-    bool bSuccess = true;
-
-    FOR_EACH_CONST(std::set<int64_t>, theNumbers)
-    {
-        const int64_t lValue = *it;
-
-        if (!this->Remove(lValue)) // It must have NOT already been there.
-            bSuccess = false;
-    }
-
-    return bSuccess;
-}
-// -------------------
-
-
-// Outputs the numlist as a set of numbers.
-// (To iterate OTNumList, call this, then iterate the output.)
-//
-bool OTNumList::Output(std::set<int64_t> & theOutput) const // returns false if the numlist was empty.
-{
-    theOutput = m_setData;
-
-    return (m_setData.size() > 0) ? true : false;
-}
-// -------------------
-
-// Outputs the numlist as a comma-separated string (for serialization, usually.)
-//
-bool OTNumList::Output(OTString & strOutput) const // returns false if the numlist was empty.
-{
-    int32_t nIterationCount = 0;
-
-    FOR_EACH(std::set<int64_t>, m_setData)
-    {
-        const int64_t lValue = *it;
-        nIterationCount ++;
-        // ----------
-
-        strOutput.Concatenate("%s%lld",
-                              // If first iteration, prepend a blank string (instead of a comma.)
-                              // Like this:  "%lld"
-                              // But for all subsequent iterations, concatenate: ",%lld"
-                              (1 == nIterationCount) ? "" : ",", lValue);
-    }
-
-    return (m_setData.size() > 0) ? true : false;
-}
-
-// -------------------
-
-
-
-int32_t OTNumList::Count() const
-{
-    return static_cast<int32_t> (m_setData.size());
-}
-
-// -------------------
-
-void OTNumList::Release()
-{
-    m_setData.clear();
-}
-
-// -----------------------------------------------------------------------------
-
-
 OTContract::OTContract()
 {
 	Initialize();
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 OTContract::OTContract(const OTString & name, const OTString & foldername, const OTString & filename, const OTString & strID)
@@ -721,18 +347,12 @@ OTContract::OTContract(const OTString & name, const OTString & foldername, const
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 OTContract::OTContract(const OTString & strID)
 {
 	Initialize();
 
 	m_ID.SetString(strID);
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 OTContract::OTContract(const OTIdentifier & theID)
@@ -743,9 +363,6 @@ OTContract::OTContract(const OTIdentifier & theID)
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 void OTContract::Initialize()
 {
 	m_strContractType	= "CONTRACT";	// CONTRACT, MESSAGE, TRANSACTION, LEDGER, TRANSACTION ITEM
@@ -754,9 +371,6 @@ void OTContract::Initialize()
 	m_strSigHashType	= OTIdentifier::DefaultHashAlgorithm;
 	m_strVersion		= "2.0"; // since new credentials system.
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 // The name, filename, version, and ID loaded by the wallet
@@ -792,9 +406,6 @@ void OTContract::Release_Contract()
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 void OTContract::Release()
 {
 	Release_Contract();
@@ -804,19 +415,11 @@ void OTContract::Release()
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 OTContract::~OTContract()
 {
 
 	Release_Contract();
 }
-
-
-
-// -------------------------------------------------------------------------------
-
 
 
 bool OTContract::SaveToContractFolder()
@@ -836,18 +439,10 @@ bool OTContract::SaveToContractFolder()
 }
 
 
-
-// -------------------------------------------------------------------------------
-
-
-
 void OTContract::GetFilename(OTString & strFilename)
 {
 	strFilename = m_strFilename;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 void OTContract::GetIdentifier(OTIdentifier & theIdentifier)
@@ -856,17 +451,10 @@ void OTContract::GetIdentifier(OTIdentifier & theIdentifier)
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 void OTContract::GetIdentifier(OTString & theIdentifier)
 {
 	m_ID.GetString(theIdentifier);
 }
-
-
-// -------------------------------------------------------------------------------
-
 
 
 // Make sure this contract checks out. Very high level.
@@ -908,9 +496,6 @@ bool OTContract::VerifyContract()
 	return true;
 }
 
-// -------------------------------------------------------------------------------
-
-
 
 void OTContract::CalculateContractID(OTIdentifier & newID)
 {
@@ -923,9 +508,6 @@ void OTContract::CalculateContractID(OTIdentifier & newID)
 	if (!newID.CalculateDigest(strTemp))
 		OTLog::vError("%s: Error calculating Contract digest.\n", __FUNCTION__);
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 bool OTContract::VerifyContractID()
@@ -964,9 +546,6 @@ bool OTContract::VerifyContractID()
 	}
 }
 
-// -------------------------------------------------------------------------------
-
-
 
 const OTPseudonym * OTContract::GetContractPublicNym()
 {
@@ -991,9 +570,6 @@ const OTPseudonym * OTContract::GetContractPublicNym()
 
 	return NULL;
 }
-
-// -------------------------------------------------------------------------------
-
 
 
 // If there is a public key I can find for this contract, then
@@ -1025,8 +601,6 @@ const OTAsymmetricKey * OTContract::GetContractPublicKey()
 }
 
 
-// -------------------------------------------------------------------------------
-
 // This is the one that you will most likely want to call.
 // It actually attaches the resulting signature to this contract.
 // If you want the signature to remain on the contract and be handled
@@ -1052,7 +626,7 @@ bool OTContract::SignContract(const OTPseudonym & theNym,
 	return bSigned;
 }
 
-// -------------------------------------------------------------------------------
+
 // Signs using authentication key instead of signing key.
 //
 bool OTContract::SignContractAuthent(const OTPseudonym & theNym,
@@ -1075,7 +649,6 @@ bool OTContract::SignContractAuthent(const OTPseudonym & theNym,
 	return bSigned;
 }
 
-// -------------------------------------------------------------------------------
 
 // The output signature will be in theSignature.
 // It is NOT attached to the contract.  This is just a utility function.
@@ -1086,7 +659,7 @@ bool OTContract::SignContract(const OTPseudonym & theNym,
 	return this->SignContract(theNym.GetPrivateSignKey(), theSignature, m_strSigHashType, pPWData);
 }
 
-// -------------------------------------------------------------------------------
+
 // Uses authentication key instead of signing key.
 bool OTContract::SignContractAuthent(const OTPseudonym & theNym,
                                      OTSignature       & theSignature,
@@ -1095,7 +668,6 @@ bool OTContract::SignContractAuthent(const OTPseudonym & theNym,
 	return this->SignContract(theNym.GetPrivateAuthKey(), theSignature, m_strSigHashType, pPWData);
 }
 
-// -------------------------------------------------------------------------------
 
 // Normally you'd use OTContract::SignContract(const OTPseudonym & theNym)...
 // Normally you WOULDN'T use this function SignWithKey.
@@ -1160,10 +732,6 @@ bool OTContract::SignWithKey(const OTAsymmetricKey & theKey,
 // theKey.HasMetadata and if so, just copy it directly over to theSignature's Metadata.
 //
 
-
-
-
-
 // The output signature will be in theSignature.
 // It is NOT attached to the contract.  This is just a utility function.
 //
@@ -1205,7 +773,6 @@ bool OTContract::SignContract(const OTAsymmetricKey & theKey,
     return true;
 }
 
-// -------------------------------------------------------------------------------
 
 // Todo: make this private so we can see if anyone is calling it.
 // Might want to ditch it if possible, since the metadata isn't
@@ -1267,11 +834,6 @@ bool OTContract::SignContract(const char     * szFoldername,
 }
 
 
-
-// -------------------------------------------------------------------------------
-
-
-
 // Presumably the Signature passed in here was just loaded as part of this contract and is
 // somewhere in m_listSignatures. Now it is being verified.
 //
@@ -1322,11 +884,6 @@ bool OTContract::VerifySignature(const char        * szFoldername,
     return true;
 }
 
-// -------------------------------------------------------------------------------
-
-
-// -------------------------------------------------------------------------------
-
 
 bool OTContract::VerifySigAuthent(const OTPseudonym & theNym,
                                   OTPasswordData    * pPWData/*=NULL*/)
@@ -1359,8 +916,6 @@ bool OTContract::VerifySigAuthent(const OTPseudonym & theNym,
     // -----------------------------------------
 	return false;
 }
-
-// -------------------------------------------------------------------------------
 
 
 bool OTContract::VerifySignature(const OTPseudonym & theNym,
@@ -1395,7 +950,6 @@ bool OTContract::VerifySignature(const OTPseudonym & theNym,
 	return false;
 }
 
-// -------------------------------------------------------------------------------
 
 bool OTContract::VerifyWithKey(const OTAsymmetricKey & theKey,
                                      OTPasswordData  * pPWData/*=NULL*/)
@@ -1426,7 +980,7 @@ bool OTContract::VerifyWithKey(const OTAsymmetricKey & theKey,
 	return false;
 }
 
-// -------------------------------------------------------------------------------
+
 // Like VerifySignature, except it uses the authentication key instead of the signing key.
 // (Like for sent messages or stored files, where you want a signature but you don't want
 // a legally binding signature, just a technically secure signature.)
@@ -1468,7 +1022,6 @@ bool OTContract::VerifySigAuthent(const OTPseudonym & theNym,
 }
 
 
-// -------------------------------------------------------------------------------
 // The only different between calling this with a Nym and calling it with an Asymmetric Key is that
 // the key gives you the choice of hash algorithm, whereas the nym version uses m_strHashType to decide
 // for you.  Choose the function you prefer, you can do it either way.
@@ -1510,9 +1063,6 @@ bool OTContract::VerifySignature(const OTPseudonym & theNym,
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 bool OTContract::VerifySignature(const OTAsymmetricKey & theKey,
                                  const OTSignature     & theSignature,
                                  const OTString        & strHashType,
@@ -1546,13 +1096,6 @@ bool OTContract::VerifySignature(const OTAsymmetricKey & theKey,
 }
 
 
-
-
-// -------------------------------------------------------------------------------
-
-
-
-
 void OTContract::ReleaseSignatures()
 {
 	OTSignature * pSig = NULL;
@@ -1566,11 +1109,6 @@ void OTContract::ReleaseSignatures()
 }
 
 
-
-
-// -------------------------------------------------------------------------------
-
-
 bool OTContract::DisplayStatistics(OTString & strContents) const
 {
 	// Subclasses may override this.
@@ -1578,9 +1116,6 @@ bool OTContract::DisplayStatistics(OTString & strContents) const
 
 	return false;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 bool OTContract::SaveContractWallet(OTString & strContents) const
@@ -1591,17 +1126,12 @@ bool OTContract::SaveContractWallet(OTString & strContents) const
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 bool OTContract::SaveContents(std::ofstream & ofs) const
 {
 	ofs << m_xmlUnsigned.Get();
 
 	return true;
 }
-
-// -------------------------------------------------------------------------------
 
 
 // Saves the unsigned XML contents to a string
@@ -1611,9 +1141,6 @@ bool OTContract::SaveContents(OTString & strContents) const
 
 	return true;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 // Save the contract member variables into the m_strRawFile variable
@@ -1637,7 +1164,6 @@ bool OTContract::SaveContract()
 	return bSuccess;
 }
 
-// -------------------------------------------------------------------------------
 
 void OTContract::UpdateContents()
 {
@@ -1654,9 +1180,6 @@ void OTContract::UpdateContents()
     // and be re-signed. (You cannot change something without signing it.)
     // (So most child classes override this method.)
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 // CreateContract is great if you already know what kind of contract to instantiate
@@ -1728,11 +1251,6 @@ bool OTContract::SignFlatText(OTString & strFlatText, const OTString & strContra
 }
 
 
-
-// -------------------------------------------------------------------------------
-
-
-
 // Saves the raw (pre-existing) contract text to any string you want to pass in.
 bool OTContract::SaveContractRaw(OTString & strOutput) const
 {
@@ -1740,10 +1258,6 @@ bool OTContract::SaveContractRaw(OTString & strOutput) const
 
 	return true;
 }
-
-
-
-// -------------------------------------------------------------------------------
 
 
 //static
@@ -1789,9 +1303,6 @@ bool OTContract::AddBookendsAroundContent(      OTString         & strOutput,
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 // Takes the pre-existing XML contents (WITHOUT signatures) and re-writes
 // into strOutput the appearance of m_strRawData, adding the pre-existing
 // signatures along with new signature bookends.. (The caller actually passes
@@ -1808,7 +1319,6 @@ bool OTContract::RewriteContract(OTString & strOutput) const
                                                 m_listSignatures);
 }
 
-// -------------------------------------------------------------------------------
 
 bool OTContract::SaveContract(const char * szFoldername, const char * szFilename)
 {
@@ -1855,13 +1365,6 @@ bool OTContract::SaveContract(const char * szFoldername, const char * szFilename
 }
 
 
-
-
-// -------------------------------------------------------------------------------
-
-
-
-
 // assumes m_strFilename is already set.
 // Then it reads that file into a string.
 // Then it parses that string into the object.
@@ -1872,9 +1375,6 @@ bool OTContract::LoadContract()
 
 	return ParseRawFile(); // Parses m_strRawFile into the various member variables.
 }
-
-// -------------------------------------------------------------------------------
-
 
 
 // The entire Raw File, signatures and all, is used to calculate the hash
@@ -1923,9 +1423,6 @@ bool OTContract::LoadContractRawFile()
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 bool OTContract::LoadContract(const char * szFoldername, const char * szFilename)
 {
 	Release();
@@ -1943,9 +1440,6 @@ bool OTContract::LoadContract(const char * szFoldername, const char * szFilename
 	}
 	return false;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 // Just like it says. If you have a contract in string form, pass it in
@@ -1990,7 +1484,6 @@ bool OTContract::LoadContractFromString(const OTString & theStr)
 	return bSuccess;
 }
 
-// -------------------------------------------------------------------------------
 
 bool OTContract::ParseRawFile()
 {
@@ -2250,10 +1743,6 @@ bool OTContract::ParseRawFile()
 }
 
 
-// -------------------------------------------------------------------------------
-
-
-
 // This function assumes that m_xmlUnsigned is ready to be processed.
 // This function only processes that portion of the contract.
 bool OTContract::LoadContractXML()
@@ -2267,7 +1756,7 @@ bool OTContract::LoadContractXML()
 
     m_xmlUnsigned.reset();
 
-	IrrXMLReader* xml = createIrrXMLReader(&m_xmlUnsigned);
+	IrrXMLReader* xml = irr::io::createIrrXMLReader(m_xmlUnsigned);
 	OT_ASSERT_MSG(NULL != xml, "Memory allocation issue with xml reader in OTContract::LoadContractXML()\n");
     OTCleanup<IrrXMLReader> xmlAngel(*xml);
 
@@ -2331,9 +1820,6 @@ bool OTContract::LoadContractXML()
 }
 
 
-
-// -------------------------------------------------------------------------------
-
 //static
 bool OTContract::SkipToElement(IrrXMLReader*& xml)
 {
@@ -2367,8 +1853,6 @@ bool OTContract::SkipToElement(IrrXMLReader*& xml)
 }
 
 
-// -------------------------------------------------------------------------------
-
 //static
 bool OTContract::SkipToTextField(IrrXMLReader*& xml)
 {
@@ -2399,8 +1883,6 @@ bool OTContract::SkipToTextField(IrrXMLReader*& xml)
 	return true;
 }
 
-
-// -------------------------------------------------------------------------------
 
 // AFTER you read an element or text field, there is some whitespace, and you
 // just want to bring your cursor back to wherever it should be for the next guy.
@@ -2444,9 +1926,6 @@ bool OTContract::SkipAfterLoadingField(IrrXMLReader*& xml)
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 // Loads it up and also decodes it to a string.
 //
 //static
@@ -2461,9 +1940,6 @@ bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTString & strOutput)
 
 	return false;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 //static
@@ -2531,10 +2007,6 @@ bool OTContract::LoadEncodedTextField(IrrXMLReader*& xml, OTASCIIArmor & ascOutp
 }
 
 
-// -------------------------------------------------------------------------------
-
-
-
 // Loads it up and also decodes it to a string.
 //static
 bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTString & strOutput,
@@ -2551,9 +2023,6 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTString & strOu
 
 	return false;
 }
-
-
-// -------------------------------------------------------------------------------
 
 
 // Loads it up and keeps it encoded in an ascii-armored object.
@@ -2646,8 +2115,6 @@ bool OTContract::LoadEncodedTextFieldByName(IrrXMLReader*& xml, OTASCIIArmor & a
 	}
 }
 
-
-// -------------------------------------------------------------------------------
 
 // Make sure you escape any lines that begin with dashes using "- "
 // So "---BEGIN " at the beginning of a line would change to: "- ---BEGIN"
@@ -2799,8 +2266,6 @@ bool OTContract::CreateContract(OTString & strContract, OTPseudonym & theSigner)
 }
 
 
-// ---------------------------------------------------------------------
-
 // Overrides of CreateContents call this in order to add some common internals.
 //
 void OTContract::CreateInnerContents()
@@ -2950,7 +2415,6 @@ void OTContract::CreateInnerContents()
     } // if (m_mapNyms.size() > 0)
 }
 
-// ---------------------------------------------------------------------
 
 // Only used when first generating an asset or server contract.
 // Meant for contracts which never change after that point.
@@ -2962,8 +2426,6 @@ void OTContract::CreateContents()
 {
     OT_FAIL_MSG("ASSERT: OTContract::CreateContents should never be called, but should be overrided. (In this case, it wasn't.)");
 }
-
-// -------------------------------------------------------------------------------
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -3228,7 +2690,6 @@ int32_t OTContract::ProcessXMLNode(IrrXMLReader*& xml)
 	return 0;
 }
 
-// -------------------------------------------------------------------------------
 
 // If you have a Public Key or Cert that you would like to add as one of the keys on this contract,
 // just call this function. Usually you'd never want to do that because you would never want to actually
@@ -3268,36 +2729,3 @@ bool OTContract::InsertNym(const OTString & strKeyName, const OTString & strKeyV
 
 	return bResult;
 }
-
-
-
-// -------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,10 @@
 /************************************************************
+ *
+ *  OTASCIIArmor.hpp
+ *
+ */
+
+/************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
 
@@ -124,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-
 #include "OTStorage.hpp"
 
 class OTData;
@@ -139,14 +143,11 @@ class OTPayload;
 class OTEnvelope;
 
 
-
 extern const char * OT_BEGIN_ARMORED;
 extern const char * OT_END_ARMORED;
 
 extern const char * OT_BEGIN_ARMORED_escaped;
 extern const char * OT_END_ARMORED_escaped;
-
-// ----------------
 
 extern const char * OT_BEGIN_SIGNED;
 extern const char * OT_BEGIN_SIGNED_escaped;
@@ -246,19 +247,3 @@ typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 #endif // __OT_ASCII_ARMOR_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
-/**************************************************************
+/************************************************************
 *
-*  OTSettings.h
+*  OTSettings.hpp
 *	This class has no static members;
 *	You must create a context.  Only one context, per
 *	 configuration file should exist at the same time,
@@ -137,14 +137,14 @@
 
 // The int64_t-awaited configuration class.
 
-#ifndef __OTSETTINGS_HPP__
-#define __OTSETTINGS_HPP__
+#ifndef __OT_SETTINGS_HPP__
+#define __OT_SETTINGS_HPP__
+
+#include "simpleini/SimpleIni.hpp"
 
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-
-#include "simpleini/SimpleIni.hpp"
 
 
 #if __clang__
@@ -153,11 +153,14 @@
 #pragma clang diagnostic ignored "-Wunused-parameter"
 #endif
 
+
 class OTSettings
 {
 private:
+    class OTSettingsPvt;
+    OTSettingsPvt * pvt;
 
-    CSimpleIniA * m_pIniSimple;
+    
 
     bool b_Loaded;
 
@@ -225,4 +228,4 @@ public:
 #endif
 
 
-#endif // __OTSETTINGS_HPP__
+#endif // __OT_SETTINGS_HPP__

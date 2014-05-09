@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTLib.h
+ *  OTLib.hpp
  *
  */
 
@@ -130,9 +130,8 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef OTLib_
-#define OTLib_
+#ifndef __OT_LIB_HPP__
+#define __OT_LIB_HPP__
 
 #include "OTCommon.hpp"
 
@@ -147,4 +146,6 @@ class OTLib
 };
 
 #pragma GCC visibility pop
-#endif
+
+
+#endif // __OT_LIB_HPP__

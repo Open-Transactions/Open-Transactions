@@ -1,4 +1,4 @@
-/**************************************************************
+/************************************************************
  *    
  *  OTAgreement.cpp
  *  
@@ -139,6 +139,8 @@
 #include <OTLedger.hpp>
 #include <OTAccount.hpp>
 #include <OTCron.hpp>
+
+#include "irrxml/irrXML.hpp"
 
 #include <time.h>
 
@@ -438,7 +440,6 @@ bool OTAgreement::DropServerNoticeToNymbox(bool bSuccessMsg, // Nym receives an 
 }
 
 
-
 // Overrides from OTTrackable.
 bool OTAgreement::HasTransactionNum(const int64_t & lInput) const
 {
@@ -490,7 +491,6 @@ void OTAgreement::GetAllTransactionNumbers(OTNumList & numlistOutput) const
     }
     // --------------------------------------------------
 }
-
 
 
 // Used to be I could just call pAgreement->VerifySignature(theNym), which is what
@@ -783,15 +783,10 @@ void OTAgreement::onFinalReceipt(OTCronItem  & theOrigCronItem,
 }
 
 
-
-
-
-// ---------------------------------------------------
 /*
  inline const OTIdentifier &	GetRecipientAcctID() const { return m_RECIPIENT_ACCT_ID; }
  inline const OTIdentifier &	GetRecipientUserID() const { return m_RECIPIENT_USER_ID; }
  */
-
 
 bool OTAgreement::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 {
@@ -802,7 +797,6 @@ bool OTAgreement::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 }
 
 
-
 void OTAgreement::onRemovalFromCron()
 {
     // Not much needed here.
@@ -811,10 +805,6 @@ void OTAgreement::onRemovalFromCron()
     //
     
 }
-
-
-// ---------------------------------------------------
-
 
 
 // You usually wouldn't want to use this, since if the transaction failed, the opening number
@@ -857,7 +847,6 @@ void OTAgreement::HarvestOpeningNumber(OTPseudonym & theNym)
 }
 
 
-
 // Used for adding transaction numbers back to a Nym, after deciding not to use this agreement
 // or failing in trying to use it. Client side.
 //
@@ -898,6 +887,7 @@ void OTAgreement::HarvestClosingNumbers(OTPseudonym & theNym)
     }
 }
 
+
 int64_t OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 {
 	const OTIdentifier & theRecipientNymID = this->GetRecipientUserID();
@@ -909,8 +899,6 @@ int64_t OTAgreement::GetOpeningNumber(const OTIdentifier & theNymID) const
 }
 
 
-// ------------------------------------------------------
-
 int64_t OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 {
 	const OTIdentifier & theRecipientAcctID = this->GetRecipientAcctID();
@@ -921,12 +909,12 @@ int64_t OTAgreement::GetClosingNumber(const OTIdentifier & theAcctID) const
 	return ot_super::GetClosingNumber(theAcctID);
 }
 
-// ---------------------------------------------------
 
 int64_t OTAgreement::GetRecipientOpeningNum() const
 {
     return (GetRecipientCountClosingNumbers() > 0) ? GetRecipientClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
+
 
 int64_t OTAgreement::GetRecipientClosingNum() const
 {
@@ -960,8 +948,6 @@ void OTAgreement::AddRecipientClosingTransactionNo(const int64_t & lClosingTrans
     m_dequeRecipientClosingNumbers.push_back(lClosingTransactionNo);
 }
 
-// ---------------------------------------------------
-
 
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Child classes will override this, AND call it (to verify valid date range.)
@@ -989,11 +975,6 @@ bool OTAgreement::ProcessCron()
 	
 	return true;
 }
-
-
-
-
-
 
 
 /// See if theNym has rights to remove this item from Cron.
@@ -1059,10 +1040,6 @@ bool OTAgreement::CanRemoveItemFromCron(OTPseudonym & theNym)
 }
 
 
-
-// ------------------------------------------------------------
-
-
 bool OTAgreement::CompareAgreement(const OTAgreement & rhs) const
 {
     // Compare OTAgreement specific info here.
@@ -1088,14 +1065,11 @@ bool OTAgreement::CompareAgreement(const OTAgreement & rhs) const
 }
 
 
-
-
-
 // THIS FUNCTION IS CALLED BY THE MERCHANT
 //
 // (lMerchantTransactionNumber, lMerchantClosingNumber are set internally in this call, from MERCHANT_NYM.)
 bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & strConsideration,
-                              const time_t VALID_FROM/*=0*/, const time_t VALID_TO/*=0*/) //VALID_TO is a length here. (i.e. it's ADDED to valid_from)
+                              const time64_t VALID_FROM/*=0*/, const time64_t VALID_TO/*=0*/) //VALID_TO is a length here. (i.e. it's ADDED to valid_from)
 {
     // ----------------------------------------------------------------------------
     OTIdentifier id_MERCHANT_NYM;
@@ -1122,7 +1096,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // ------------------------------------------- 
 	// Set the CREATION DATE
     //
-	const time_t CURRENT_TIME = time(NULL);
+	const time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1132,7 +1106,7 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // VALID_FROM
     //
 	// The default "valid from" time is NOW.
-	if (0 >= VALID_FROM) // if it's 0 or less, set to current time.
+    if (OT_TIME_ZERO >= VALID_FROM) // if it's 0 or less, set to current time.
 		SetValidFrom(CURRENT_TIME);
 	else // Otherwise use whatever was passed in.
 		SetValidFrom(VALID_FROM);
@@ -1140,17 +1114,17 @@ bool OTAgreement::SetProposal(OTPseudonym & MERCHANT_NYM,    const OTString & st
     // VALID_TO
     //
 	// The default "valid to" time is 0 (which means no expiration date / cancel anytime.)
-	if (0 == VALID_TO) // VALID_TO is 0
+    if (OT_TIME_ZERO == VALID_TO) // VALID_TO is 0
 	{
 		SetValidTo(VALID_TO); // Keep it at zero then, so it won't expire.
 	}
-	else if (0 < VALID_TO) // VALID_TO is ABOVE zero...
+    else if (OT_TIME_ZERO < VALID_TO) // VALID_TO is ABOVE zero...
 	{
-		SetValidTo(GetValidFrom() + VALID_TO); // Set it to itself + valid_from.
+		SetValidTo(OTTimeAddTimeInterval(GetValidFrom(), OTTimeGetSecondsFromTime(VALID_TO))); // Set it to itself + valid_from.
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
+        int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
 		OTLog::vError("%s: Negative value for valid_to: %lld\n", __FUNCTION__, lValidTo);
         
 		return false;
@@ -1289,7 +1263,7 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
     // CREATION DATE was set in the Merchant's proposal, and it's RESET here in the Confirm.
     // This way, (since we still have the original proposal) we can see BOTH times.
     //
-	time_t CURRENT_TIME = time(NULL);
+	time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
 	// -------------------------------------------
@@ -1299,17 +1273,12 @@ bool OTAgreement::Confirm(OTPseudonym & PAYER_NYM, OTPseudonym * pMERCHANT_NYM/*
 }
 
 
-
-
-
-
-
 // (Make sure to set Creation date here.)
 // THIS FUNCTION IS DEPRECATED
 //
 /*
 bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString & strConsideration,
-							   const time_t & VALID_FROM=0,	const time_t & VALID_TO=0)
+							   const time64_t & VALID_FROM=0,	const time64_t & VALID_TO=0)
 {
 	// Set the Transaction Number...
 	SetTransactionNum(lTransactionNum);
@@ -1319,7 +1288,7 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 
 	// ------------------------------------------- 
 	
-	time_t CURRENT_TIME = time(NULL);
+	time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 	
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1366,16 +1335,11 @@ bool OTAgreement::SetAgreement(const int64_t & lTransactionNum,	const OTString &
 */
 
 
-
-
-
-
-
-
 OTAgreement::OTAgreement() : ot_super()
 {
 	InitAgreement();
 }
+
 
 OTAgreement::OTAgreement(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
 			ot_super(SERVER_ID, ASSET_ID)
@@ -1395,6 +1359,7 @@ OTAgreement::OTAgreement(const OTIdentifier & SERVER_ID,			const OTIdentifier & 
 	SetRecipientUserID(RECIPIENT_USER_ID);
 }
 
+
 OTAgreement::~OTAgreement()
 {
 	Release_Agreement();
@@ -1406,6 +1371,7 @@ void OTAgreement::InitAgreement()
 	m_strContractType = "AGREEMENT";
 	
 }
+
 
 void OTAgreement::Release_Agreement()
 {
@@ -1436,8 +1402,6 @@ void OTAgreement::Release()
 	// Then I call this to re-initialize everything
 	InitAgreement();
 }
-
-
 
 
 void OTAgreement::UpdateContents()
@@ -1472,7 +1436,7 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         const OTString strCreation = xml->getAttributeValue("creationDate");
         int64_t tCreation = strCreation.ToLong();
         
-		SetCreationDate(static_cast<time_t>(tCreation));
+        SetCreationDate(OTTimeGetTimeFromSeconds(tCreation));
         // -------------------------------------------------------------------
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
@@ -1480,8 +1444,8 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
         int64_t tValidFrom = str_valid_from.ToLong();
         int64_t tValidTo   = str_valid_to.ToLong();
         
-		SetValidFrom(static_cast<time_t>(tValidFrom));
-		SetValidTo  (static_cast<time_t>(tValidTo));
+        SetValidFrom(OTTimeGetTimeFromSeconds(tValidFrom));
+        SetValidTo(OTTimeGetTimeFromSeconds(tValidTo));
 		// ---------------------
 		const OTString	strServerID       (xml->getAttributeValue("serverID")),
                         strAssetTypeID    (xml->getAttributeValue("assetTypeID")),
@@ -1581,57 +1545,7 @@ int32_t OTAgreement::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 }
 
 
-
 bool OTAgreement::SaveContractWallet(std::ofstream & ofs)
 {
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

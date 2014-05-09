@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTString.h
+ *  OTString.hpp
  *
  */
 
@@ -130,16 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
-
-#include "OTCommon.hpp"
 
 #include <list>
 #include <map>
 #include <sstream>
 #include <string.h>
+
+#include "OTCommon.hpp"
 
 #ifdef _WIN32
 #include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
@@ -154,8 +153,6 @@ class OTSignature;
 class OTPseudonym;
 
 
-// ------------------------------------
-
 // All of the below PRI values are defined in inttypes.h
 // Therefore if it's NOT defined, then we must probably be
 // on Windows, since Windows doesn't have inttypes.h yet,
@@ -164,12 +161,12 @@ class OTPseudonym;
 #if !defined( PRId8 )
 #define PRId8 "d"
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId16 )
 #define PRId16 "d"
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId32 )
 #if defined( WINAPI )
@@ -180,7 +177,7 @@ class OTPseudonym;
 
 #endif
 #endif
-// ------------------------------------
+
 
 #if !defined( PRId64 )
 #if defined( WINAPI )
@@ -205,7 +202,6 @@ class OTPseudonym;
 // TODO: consider how MAX_SIZE affects the above hard-coded number...
 
 
-
 typedef std::map	<std::string, std::string>		mapOfStrings;
 typedef std::list   <std::string>                   listOfStrings;
 
@@ -228,7 +224,6 @@ inline std::string to_string (const T& t)
 }
 
 
-// =======================================================================
 /*
  * strlcpy and strlcat
  *
@@ -315,7 +310,7 @@ inline size_t strlcat(char *dst, const char *src, size_t siz)
     return(dlen + (s - src)); /* count does not include NUL */
 }
 // (End of the Todd Miller code.)
-// =======================================================================
+
 
 class OTString
 {
@@ -497,17 +492,11 @@ protected:
     // ----------------------------------------------
 };
 
+
 //bool operator >(const OTString& s1, const OTString& s2);
 //bool operator <(const OTString& s1, const OTString& s2);
 //bool operator >=(const OTString &s1, const OTString& s2);
 //bool operator <=(const OTString &s1, const OTString& s2);
 
 
-
-
-#endif    // __OT_ STRING_HPP__
-
-
-
-
-
+#endif // __OT_STRING_HPP__

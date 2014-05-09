@@ -151,6 +151,8 @@
 
 #include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
+#include <time.h>
+
 
 int32_t OTClient::CalcReturnVal(const int64_t & lRequestNumber)
 {
@@ -4015,8 +4017,8 @@ bool OTClient::ProcessServerReply(OTMessage & theReply, OTLedger * pNymbox/*=NUL
                                                     pData->currency_paid    = to_string<int64_t>(lCurrencyThisTrade);
                                                 }
                                                 // --------------------------------------------------
-                                                const time_t & tProcessDate = theTrade.GetLastProcessDate();
-                                                pData->date = to_string<time_t>(tProcessDate);
+                                                const time64_t & tProcessDate = theTrade.GetLastProcessDate();
+                                                pData->date = to_string<time64_t>(tProcessDate);
                                                 // --------------------------------------------------
                                                 // The original offer price. (Might be 0, if it's a market order.)
                                                 //
@@ -9078,8 +9080,8 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 strChequeMemo.OTfgets(std::cin);
                 // -----------------------------------------------------------------------
                 // Expiration (ignored by server -- it sets its own for its vouchers.)
-                const	time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
-                const	time_t	VALID_TO	= VALID_FROM + 15552000; // 6 months.
+                const	time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
+                const	time64_t	VALID_TO = OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS)); // 6 months.
                 // -----------------------------------------------------------------------
                 // The server only uses the memo, amount, and recipient from this cheque when it
                 // constructs the actual voucher.
@@ -10003,7 +10005,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 "6 months	== 15552000 Seconds\n\n"
                 );
 
-            int64_t lExpirationInSeconds = 3600;
+            int64_t lExpirationInSeconds = OTTimeGetSecondsFromTime(OT_TIME_HOUR_IN_SECONDS);
             OTLog::vOutput(0, "How many seconds before cheque expires? (defaults to 1 hour: %lld): ", lExpirationInSeconds);
             OTString strTemp;
             strTemp.OTfgets(std::cin);
@@ -10014,17 +10016,17 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // -----------------------------------------------------------------------
 
-            time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
+            time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
 
             OTLog::vOutput(0, "Cheque may be cashed STARTING date (defaults to now, in seconds) [%lld]: ", VALID_FROM);
             strTemp.Release();
             strTemp.OTfgets(std::cin);
 
             if (strTemp.GetLength() > 2)
-                VALID_FROM = atol(strTemp.Get());
+                VALID_FROM = OTTimeGetTimeFromSeconds(strTemp.Get());
 
 
-            const time_t VALID_TO = VALID_FROM + lExpirationInSeconds; // now + 3600
+            const time64_t VALID_TO = OTTimeAddTimeInterval(VALID_FROM, lExpirationInSeconds); // now + 3600
 
             // -----------------------------------------------------------------------
 
@@ -10212,7 +10214,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 "6 months		== 15552000 Seconds\n\n"
                 );
 
-            int64_t lExpirationInSeconds = 86400;
+            int64_t lExpirationInSeconds = OTTimeGetSecondsFromTime(OT_TIME_DAY_IN_SECONDS);
             OTLog::vOutput(0, "How many seconds before payment plan expires? (defaults to 1 day: %lld): ", 
                 lExpirationInSeconds);
             strTemp.Release();
@@ -10224,7 +10226,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             // -----------------------------------------------------------------------
 
-            time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
+            time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
 
             OTLog::vOutput(0, "Payment plan becomes valid for processing STARTING date\n"
                 "(defaults to now, in seconds) [%lld]: ", VALID_FROM);
@@ -10232,9 +10234,9 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
             strTemp.OTfgets(std::cin);
 
             if (strTemp.GetLength() > 2)
-                VALID_FROM = atol(strTemp.Get());
+                VALID_FROM = OTTimeGetTimeFromSeconds(strTemp.Get());
 
-            const time_t VALID_TO = VALID_FROM + lExpirationInSeconds; // now + 86400
+            const time64_t VALID_TO = OTTimeAddTimeInterval(VALID_FROM, lExpirationInSeconds); // now + 86400
 
             // ************************************************************************
             // This pulls two transaction numbers off of pMerchantNym.
@@ -10259,7 +10261,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
 
             if (lInitialPayment > 0)
             {
-                time_t	PAYMENT_DELAY = 60; // 60 seconds.
+                time64_t	PAYMENT_DELAY = OT_TIME_MINUTE_IN_SECONDS; // 60 seconds.
 
                 OTLog::vOutput(0, "From the Start Date forward, how int64_t until the Initial Payment should charge?\n"
                     "(defaults to one minute, in seconds) [%d]: ", PAYMENT_DELAY);
@@ -10267,7 +10269,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 strTemp.OTfgets(std::cin);
 
                 if ((strTemp.GetLength() > 1) && atol(strTemp.Get())>0)
-                    PAYMENT_DELAY = atol(strTemp.Get());
+                    PAYMENT_DELAY = OTTimeGetTimeFromSeconds(strTemp.Get());
 
                 // -----------------------------------------------------------------------
 
@@ -10294,7 +10296,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
             {
                 // -----------------------------------------------------------------------
 
-                time_t	PAYMENT_DELAY = 120; // 120 seconds.
+                time64_t	PAYMENT_DELAY = OTTimeGetTimeFromSeconds(120); // 120 seconds.
 
                 OTLog::vOutput(0, "From the Start Date forward, how int64_t until the Regular Payments start?\n"
                     "(defaults to two minutes, in seconds) [%d]: ", PAYMENT_DELAY);
@@ -10302,11 +10304,11 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 strTemp.OTfgets(std::cin);
 
                 if ((strTemp.GetLength() > 1) && atol(strTemp.Get())>0)
-                    PAYMENT_DELAY = atol(strTemp.Get());
+                    PAYMENT_DELAY = OTTimeGetTimeFromSeconds(strTemp.Get());
 
                 // -----------------------------------------------------------------------
 
-                time_t	PAYMENT_PERIOD = 30; // 30 seconds.
+                time64_t	PAYMENT_PERIOD = OTTimeGetTimeFromSeconds(30); // 30 seconds.
 
                 OTLog::vOutput(0, "Once payments begin, how much time should elapse between each payment?\n"
                     "(defaults to thirty seconds) [%d]: ", PAYMENT_PERIOD);
@@ -10314,11 +10316,11 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 strTemp.OTfgets(std::cin);
 
                 if ((strTemp.GetLength() > 1) && atol(strTemp.Get())>0)
-                    PAYMENT_PERIOD = atol(strTemp.Get());
+                    PAYMENT_PERIOD = OTTimeGetTimeFromSeconds(strTemp.Get());
 
                 // -----------------------------------------------------------------------
 
-                time_t	PLAN_LENGTH = 0; // 0 seconds (for no max length).
+                time64_t PLAN_LENGTH = OT_TIME_ZERO; // 0 seconds (for no max length).
 
                 OTLog::vOutput(0, "From start date, do you want the plan to expire after a certain maximum time?\n"
                     "(defaults to 0 for no) [%d]: ", PLAN_LENGTH);
@@ -10326,7 +10328,7 @@ int32_t OTClient::ProcessUserCommand(OTClient::OT_CLIENT_CMD_TYPE requestedComma
                 strTemp.OTfgets(std::cin);
 
                 if (strTemp.GetLength() > 1)
-                    PLAN_LENGTH = atol(strTemp.Get());
+                    PLAN_LENGTH = OTTimeGetTimeFromSeconds(strTemp.Get());
 
                 // -----------------------------------------------------------------------
 
@@ -10731,30 +10733,3 @@ OTClient::~OTClient()
 
     // (FYI, Moved openssl cleanup to OT_Cleanup.)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -230,8 +230,16 @@ public class otapi implements otapiConstants {
     return otapiJNI.EraseValueByKey__SWIG_3(strFolder);
   }
 
-  public static boolean OT_API_Set_PasswordCallback(OTCaller theCaller) {
-    return otapiJNI.OT_API_Set_PasswordCallback(OTCaller.getCPtr(theCaller), theCaller);
+  public static String OTRecord_GetTypeString(int theType) {
+    return otapiJNI.OTRecord_GetTypeString(theType);
+  }
+
+  public static boolean OT_API_Set_AddrBookCallback(OTLookupCaller theCaller) {
+    return otapiJNI.OT_API_Set_AddrBookCallback(OTLookupCaller.getCPtr(theCaller), theCaller);
+  }
+
+  public static boolean OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller theCaller) {
+    return otapiJNI.OT_API_Set_PasswordCallback(SWIGTYPE_p_OTCaller.getCPtr(theCaller));
   }
 
 }

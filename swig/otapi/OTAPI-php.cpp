@@ -1016,66 +1016,70 @@ static void SWIG_Php_SetModule(swig_module_info *pointer) {
 
 #define SWIGTYPE_int swig_types[0]
 #define SWIGTYPE_p_OTAPI_Exec swig_types[1]
-#define SWIGTYPE_p_OTCallback swig_types[2]
-#define SWIGTYPE_p_OTCaller swig_types[3]
-#define SWIGTYPE_p_OTDB__Acct swig_types[4]
-#define SWIGTYPE_p_OTDB__AddressBook swig_types[5]
-#define SWIGTYPE_p_OTDB__AskData swig_types[6]
-#define SWIGTYPE_p_OTDB__BidData swig_types[7]
-#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[8]
-#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[9]
-#define SWIGTYPE_p_OTDB__Blob swig_types[10]
-#define SWIGTYPE_p_OTDB__Contact swig_types[11]
-#define SWIGTYPE_p_OTDB__ContactAcct swig_types[12]
-#define SWIGTYPE_p_OTDB__ContactNym swig_types[13]
-#define SWIGTYPE_p_OTDB__Displayable swig_types[14]
-#define SWIGTYPE_p_OTDB__LoomServer swig_types[15]
-#define SWIGTYPE_p_OTDB__MarketData swig_types[16]
-#define SWIGTYPE_p_OTDB__MarketList swig_types[17]
-#define SWIGTYPE_p_OTDB__OTDBString swig_types[18]
-#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[19]
-#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[20]
-#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[21]
-#define SWIGTYPE_p_OTDB__OfferListNym swig_types[22]
-#define SWIGTYPE_p_OTDB__RippleServer swig_types[23]
-#define SWIGTYPE_p_OTDB__Server swig_types[24]
-#define SWIGTYPE_p_OTDB__ServerInfo swig_types[25]
-#define SWIGTYPE_p_OTDB__Storable swig_types[26]
-#define SWIGTYPE_p_OTDB__Storage swig_types[27]
-#define SWIGTYPE_p_OTDB__StringMap swig_types[28]
-#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[29]
-#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[30]
-#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[31]
-#define SWIGTYPE_p_OTDB__TradeListNym swig_types[32]
-#define SWIGTYPE_p_OTDB__WalletData swig_types[33]
-#define SWIGTYPE_p_OTPacker swig_types[34]
-#define SWIGTYPE_p_OTPassword swig_types[35]
-#define SWIGTYPE_p_OTVariable swig_types[36]
-#define SWIGTYPE_p_OT_API swig_types[37]
-#define SWIGTYPE_p_OT_ME swig_types[38]
-#define SWIGTYPE_p_WrapTimeT swig_types[39]
-#define SWIGTYPE_p_char swig_types[40]
-#define SWIGTYPE_p_difference_type swig_types[41]
-#define SWIGTYPE_p_imaxdiv_t swig_types[42]
-#define SWIGTYPE_p_int swig_types[43]
-#define SWIGTYPE_p_key_type swig_types[44]
-#define SWIGTYPE_p_long_long swig_types[45]
-#define SWIGTYPE_p_mapped_type swig_types[46]
-#define SWIGTYPE_p_p_void swig_types[47]
-#define SWIGTYPE_p_short swig_types[48]
-#define SWIGTYPE_p_signed_char swig_types[49]
-#define SWIGTYPE_p_size_type swig_types[50]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[51]
-#define SWIGTYPE_p_std__string swig_types[52]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[53]
-#define SWIGTYPE_p_unsigned_char swig_types[54]
-#define SWIGTYPE_p_unsigned_int swig_types[55]
-#define SWIGTYPE_p_unsigned_long_long swig_types[56]
-#define SWIGTYPE_p_unsigned_short swig_types[57]
-#define SWIGTYPE_p_value_type swig_types[58]
-#define SWIGTYPE_p_void swig_types[59]
-static swig_type_info *swig_types[61];
-static swig_module_info swig_module = {swig_types, 60, 0, 0, 0, 0};
+#define SWIGTYPE_p_OTCaller swig_types[2]
+#define SWIGTYPE_p_OTDB__Acct swig_types[3]
+#define SWIGTYPE_p_OTDB__AddressBook swig_types[4]
+#define SWIGTYPE_p_OTDB__AskData swig_types[5]
+#define SWIGTYPE_p_OTDB__BidData swig_types[6]
+#define SWIGTYPE_p_OTDB__BitcoinAcct swig_types[7]
+#define SWIGTYPE_p_OTDB__BitcoinServer swig_types[8]
+#define SWIGTYPE_p_OTDB__Blob swig_types[9]
+#define SWIGTYPE_p_OTDB__Contact swig_types[10]
+#define SWIGTYPE_p_OTDB__ContactAcct swig_types[11]
+#define SWIGTYPE_p_OTDB__ContactNym swig_types[12]
+#define SWIGTYPE_p_OTDB__Displayable swig_types[13]
+#define SWIGTYPE_p_OTDB__LoomServer swig_types[14]
+#define SWIGTYPE_p_OTDB__MarketData swig_types[15]
+#define SWIGTYPE_p_OTDB__MarketList swig_types[16]
+#define SWIGTYPE_p_OTDB__OTDBString swig_types[17]
+#define SWIGTYPE_p_OTDB__OfferDataMarket swig_types[18]
+#define SWIGTYPE_p_OTDB__OfferDataNym swig_types[19]
+#define SWIGTYPE_p_OTDB__OfferListMarket swig_types[20]
+#define SWIGTYPE_p_OTDB__OfferListNym swig_types[21]
+#define SWIGTYPE_p_OTDB__RippleServer swig_types[22]
+#define SWIGTYPE_p_OTDB__Server swig_types[23]
+#define SWIGTYPE_p_OTDB__ServerInfo swig_types[24]
+#define SWIGTYPE_p_OTDB__Storable swig_types[25]
+#define SWIGTYPE_p_OTDB__Storage swig_types[26]
+#define SWIGTYPE_p_OTDB__StringMap swig_types[27]
+#define SWIGTYPE_p_OTDB__TradeDataMarket swig_types[28]
+#define SWIGTYPE_p_OTDB__TradeDataNym swig_types[29]
+#define SWIGTYPE_p_OTDB__TradeListMarket swig_types[30]
+#define SWIGTYPE_p_OTDB__TradeListNym swig_types[31]
+#define SWIGTYPE_p_OTDB__WalletData swig_types[32]
+#define SWIGTYPE_p_OTLookupCaller swig_types[33]
+#define SWIGTYPE_p_OTNameLookup swig_types[34]
+#define SWIGTYPE_p_OTPacker swig_types[35]
+#define SWIGTYPE_p_OTPassword swig_types[36]
+#define SWIGTYPE_p_OTRecord swig_types[37]
+#define SWIGTYPE_p_OTRecordList swig_types[38]
+#define SWIGTYPE_p_OTVariable swig_types[39]
+#define SWIGTYPE_p_OT_API swig_types[40]
+#define SWIGTYPE_p_OT_ME swig_types[41]
+#define SWIGTYPE_p__SharedPtrT_OTRecord_t swig_types[42]
+#define SWIGTYPE_p_char swig_types[43]
+#define SWIGTYPE_p_difference_type swig_types[44]
+#define SWIGTYPE_p_imaxdiv_t swig_types[45]
+#define SWIGTYPE_p_int swig_types[46]
+#define SWIGTYPE_p_key_type swig_types[47]
+#define SWIGTYPE_p_long_long swig_types[48]
+#define SWIGTYPE_p_mapped_type swig_types[49]
+#define SWIGTYPE_p_p_void swig_types[50]
+#define SWIGTYPE_p_short swig_types[51]
+#define SWIGTYPE_p_signed_char swig_types[52]
+#define SWIGTYPE_p_size_type swig_types[53]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[54]
+#define SWIGTYPE_p_std__string swig_types[55]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[56]
+#define SWIGTYPE_p_time64_t swig_types[57]
+#define SWIGTYPE_p_unsigned_char swig_types[58]
+#define SWIGTYPE_p_unsigned_int swig_types[59]
+#define SWIGTYPE_p_unsigned_long_long swig_types[60]
+#define SWIGTYPE_p_unsigned_short swig_types[61]
+#define SWIGTYPE_p_value_type swig_types[62]
+#define SWIGTYPE_p_void swig_types[63]
+static swig_type_info *swig_types[65];
+static swig_module_info swig_module = {swig_types, 64, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1382,7 +1386,9 @@ namespace Swig {
 #include "../../include/otapi/OT_ME.hpp"
 #include "../../include/otlib/OTStorage.hpp"
 #include "../../include/otlib/OTAsymmetricKey.hpp"
-
+#include "../../include/otapi/OTRecord.hpp"
+#include "../../include/otapi/OTRecordList.hpp"
+    
 
 SWIGINTERN bool std_vector_Sl_unsigned_SS_char_Sg__is_empty(std::vector< unsigned char > const *self){
         return self->empty();
@@ -1605,7 +1611,6 @@ static void *_p_OTDB__BidDataTo_p_OTDB__OfferDataMarket(void *x, int *SWIGUNUSED
 }
 static swig_type_info _swigt__int = {"_int", "int", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTAPI_Exec = {"_p_OTAPI_Exec", "OTAPI_Exec *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_OTCallback = {"_p_OTCallback", "OTCallback *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTCaller = {"_p_OTCaller", "OTCaller *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__Acct = {"_p_OTDB__Acct", "OTDB::Acct *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__AddressBook = {"_p_OTDB__AddressBook", "OTDB::AddressBook *", 0, 0, (void*)0, 0};
@@ -1637,12 +1642,16 @@ static swig_type_info _swigt__p_OTDB__TradeDataNym = {"_p_OTDB__TradeDataNym", "
 static swig_type_info _swigt__p_OTDB__TradeListMarket = {"_p_OTDB__TradeListMarket", "OTDB::TradeListMarket *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__TradeListNym = {"_p_OTDB__TradeListNym", "OTDB::TradeListNym *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTDB__WalletData = {"_p_OTDB__WalletData", "OTDB::WalletData *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTLookupCaller = {"_p_OTLookupCaller", "OTLookupCaller *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTNameLookup = {"_p_OTNameLookup", "OTNameLookup *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTPacker = {"_p_OTPacker", "OTPacker *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTPassword = {"_p_OTPassword", "OTPassword *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTRecord = {"_p_OTRecord", "OTRecord *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_OTRecordList = {"_p_OTRecordList", "OTRecordList *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OTVariable = {"_p_OTVariable", "OTVariable *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_API = {"_p_OT_API", "OT_API *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_OT_ME = {"_p_OT_ME", "OT_ME *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_WrapTimeT = {"_p_WrapTimeT", "WrapTimeT *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__SharedPtrT_OTRecord_t = {"_p__SharedPtrT_OTRecord_t", "shared_ptr_OTRecord *|_SharedPtr< OTRecord > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_imaxdiv_t = {"_p_imaxdiv_t", "imaxdiv_t *", 0, 0, (void*)0, 0};
@@ -1657,6 +1666,7 @@ static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_unsigned_char_t = {"_p_std__vectorT_unsigned_char_t", "std::vector< unsigned char > *|std::vector< uint8_t > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_time64_t = {"_p_time64_t", "time64_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_char = {"_p_unsigned_char", "unsigned char *|uint_least8_t *|uint_fast8_t *|uint8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_int = {"_p_unsigned_int", "uintptr_t *|uint_least32_t *|uint_fast32_t *|uint32_t *|unsigned int *|uint_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_unsigned_long_long = {"_p_unsigned_long_long", "uint_least64_t *|uint_fast64_t *|uint64_t *|unsigned long long *|uintmax_t *", 0, 0, (void*)0, 0};
@@ -1667,7 +1677,6 @@ static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 static swig_type_info *swig_type_initial[] = {
   &_swigt__int,
   &_swigt__p_OTAPI_Exec,
-  &_swigt__p_OTCallback,
   &_swigt__p_OTCaller,
   &_swigt__p_OTDB__Acct,
   &_swigt__p_OTDB__AddressBook,
@@ -1699,12 +1708,16 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_OTDB__TradeListMarket,
   &_swigt__p_OTDB__TradeListNym,
   &_swigt__p_OTDB__WalletData,
+  &_swigt__p_OTLookupCaller,
+  &_swigt__p_OTNameLookup,
   &_swigt__p_OTPacker,
   &_swigt__p_OTPassword,
+  &_swigt__p_OTRecord,
+  &_swigt__p_OTRecordList,
   &_swigt__p_OTVariable,
   &_swigt__p_OT_API,
   &_swigt__p_OT_ME,
-  &_swigt__p_WrapTimeT,
+  &_swigt__p__SharedPtrT_OTRecord_t,
   &_swigt__p_char,
   &_swigt__p_difference_type,
   &_swigt__p_imaxdiv_t,
@@ -1719,6 +1732,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorT_unsigned_char_t,
+  &_swigt__p_time64_t,
   &_swigt__p_unsigned_char,
   &_swigt__p_unsigned_int,
   &_swigt__p_unsigned_long_long,
@@ -1729,7 +1743,6 @@ static swig_type_info *swig_type_initial[] = {
 
 static swig_cast_info _swigc__int[] = {  {&_swigt__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTAPI_Exec[] = {  {&_swigt__p_OTAPI_Exec, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_OTCallback[] = {  {&_swigt__p_OTCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTCaller[] = {  {&_swigt__p_OTCaller, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__Acct[] = {  {&_swigt__p_OTDB__BitcoinAcct, _p_OTDB__BitcoinAcctTo_p_OTDB__Acct, 0, 0},  {&_swigt__p_OTDB__Acct, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__AddressBook[] = {  {&_swigt__p_OTDB__AddressBook, 0, 0, 0},{0, 0, 0, 0}};
@@ -1761,12 +1774,16 @@ static swig_cast_info _swigc__p_OTDB__TradeDataNym[] = {  {&_swigt__p_OTDB__Trad
 static swig_cast_info _swigc__p_OTDB__TradeListMarket[] = {  {&_swigt__p_OTDB__TradeListMarket, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__TradeListNym[] = {  {&_swigt__p_OTDB__TradeListNym, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTDB__WalletData[] = {  {&_swigt__p_OTDB__WalletData, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTLookupCaller[] = {  {&_swigt__p_OTLookupCaller, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTNameLookup[] = {  {&_swigt__p_OTNameLookup, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTPacker[] = {  {&_swigt__p_OTPacker, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTPassword[] = {  {&_swigt__p_OTPassword, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTRecord[] = {  {&_swigt__p_OTRecord, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_OTRecordList[] = {  {&_swigt__p_OTRecordList, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OTVariable[] = {  {&_swigt__p_OTVariable, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_API[] = {  {&_swigt__p_OT_API, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_OT_ME[] = {  {&_swigt__p_OT_ME, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_WrapTimeT[] = {  {&_swigt__p_WrapTimeT, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p__SharedPtrT_OTRecord_t[] = {  {&_swigt__p__SharedPtrT_OTRecord_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_imaxdiv_t[] = {  {&_swigt__p_imaxdiv_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -1781,6 +1798,7 @@ static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0}
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_unsigned_char_t[] = {  {&_swigt__p_std__vectorT_unsigned_char_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_time64_t[] = {  {&_swigt__p_time64_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_char[] = {  {&_swigt__p_unsigned_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_int[] = {  {&_swigt__p_unsigned_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_unsigned_long_long[] = {  {&_swigt__p_unsigned_long_long, 0, 0, 0},{0, 0, 0, 0}};
@@ -1791,7 +1809,6 @@ static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0,
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__int,
   _swigc__p_OTAPI_Exec,
-  _swigc__p_OTCallback,
   _swigc__p_OTCaller,
   _swigc__p_OTDB__Acct,
   _swigc__p_OTDB__AddressBook,
@@ -1823,12 +1840,16 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_OTDB__TradeListMarket,
   _swigc__p_OTDB__TradeListNym,
   _swigc__p_OTDB__WalletData,
+  _swigc__p_OTLookupCaller,
+  _swigc__p_OTNameLookup,
   _swigc__p_OTPacker,
   _swigc__p_OTPassword,
+  _swigc__p_OTRecord,
+  _swigc__p_OTRecordList,
   _swigc__p_OTVariable,
   _swigc__p_OT_API,
   _swigc__p_OT_ME,
-  _swigc__p_WrapTimeT,
+  _swigc__p__SharedPtrT_OTRecord_t,
   _swigc__p_char,
   _swigc__p_difference_type,
   _swigc__p_imaxdiv_t,
@@ -1843,6 +1864,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__string,
   _swigc__p_std__vectorT_unsigned_char_t,
+  _swigc__p_time64_t,
   _swigc__p_unsigned_char,
   _swigc__p_unsigned_int,
   _swigc__p_unsigned_long_long,
@@ -1858,21 +1880,22 @@ static swig_cast_info *swig_cast_initial[] = {
 
 #include "OTAPI-php.hpp"
 
-SwigDirector_OTCallback::SwigDirector_OTCallback(zval *self TSRMLS_DC): OTCallback(), Swig::Director(self TSRMLS_CC) {
+SwigDirector_OTNameLookup::SwigDirector_OTNameLookup(zval *self TSRMLS_DC): OTNameLookup(), Swig::Director(self TSRMLS_CC) {
   
 }
 
 
 
-SwigDirector_OTCallback::~SwigDirector_OTCallback() {
+SwigDirector_OTNameLookup::~SwigDirector_OTNameLookup() {
 }
 
-void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutput) {
+std::string SwigDirector_OTNameLookup::GetNymName(std::string const &str_id, std::string const *p_server_id) const {
   TSRMLS_FETCH_FROM_CTX(swig_zts_ctx);
+  std::string c_result;
   zval *args[2];
   zval *result, funcname;
   MAKE_STD_ZVAL(result);
-  ZVAL_STRINGL(&funcname, (char *)"runOne", 6, 0);
+  ZVAL_STRINGL(&funcname, (char *)"GetNymName", 10, 0);
   if (!swig_self) {
     SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   }
@@ -1880,33 +1903,34 @@ void SwigDirector_OTCallback::runOne(char const *szDisplay, OTPassword &theOutpu
   zval obj0;
   args[0] = &obj0;
   INIT_ZVAL(obj0);
-  {
-    if(!szDisplay) {
-      ZVAL_NULL(&obj0);
-    } else {
-      ZVAL_STRING(&obj0, (char *)szDisplay, 1);
-    }
-  }
+  
+  ZVAL_STRINGL(&obj0, const_cast<char*>((&str_id)->data()), (&str_id)->size(), 1);
+  
   zval obj1;
   args[1] = &obj1;
   INIT_ZVAL(obj1);
   
-  SWIG_SetPointerZval(&obj1, (void *)&theOutput, SWIGTYPE_p_OTPassword, (0)|2);
+  SWIG_SetPointerZval(&obj1, (void *)&p_server_id, SWIGTYPE_p_std__string, (0)|2);
   
   call_user_function(EG(function_table), (zval**)&swig_self, &funcname, result, 2, args TSRMLS_CC);
+  
+  convert_to_string_ex(&result);
+  c_result.assign(Z_STRVAL_P(result), Z_STRLEN_P(result));
+  
   FREE_ZVAL(result);
-  return;
+  return (std::string) c_result;
 fail:
   SWIG_FAIL();
 }
 
 
-void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutput) {
+std::string SwigDirector_OTNameLookup::GetAcctName(std::string const &str_id, std::string const *p_nym_id, std::string const *p_server_id, std::string const *p_asset_id) const {
   TSRMLS_FETCH_FROM_CTX(swig_zts_ctx);
-  zval *args[2];
+  std::string c_result;
+  zval *args[4];
   zval *result, funcname;
   MAKE_STD_ZVAL(result);
-  ZVAL_STRINGL(&funcname, (char *)"runTwo", 6, 0);
+  ZVAL_STRINGL(&funcname, (char *)"GetAcctName", 11, 0);
   if (!swig_self) {
     SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   }
@@ -1914,22 +1938,34 @@ void SwigDirector_OTCallback::runTwo(char const *szDisplay, OTPassword &theOutpu
   zval obj0;
   args[0] = &obj0;
   INIT_ZVAL(obj0);
-  {
-    if(!szDisplay) {
-      ZVAL_NULL(&obj0);
-    } else {
-      ZVAL_STRING(&obj0, (char *)szDisplay, 1);
-    }
-  }
+  
+  ZVAL_STRINGL(&obj0, const_cast<char*>((&str_id)->data()), (&str_id)->size(), 1);
+  
   zval obj1;
   args[1] = &obj1;
   INIT_ZVAL(obj1);
   
-  SWIG_SetPointerZval(&obj1, (void *)&theOutput, SWIGTYPE_p_OTPassword, (0)|2);
+  SWIG_SetPointerZval(&obj1, (void *)&p_nym_id, SWIGTYPE_p_std__string, (0)|2);
   
-  call_user_function(EG(function_table), (zval**)&swig_self, &funcname, result, 2, args TSRMLS_CC);
+  zval obj2;
+  args[2] = &obj2;
+  INIT_ZVAL(obj2);
+  
+  SWIG_SetPointerZval(&obj2, (void *)&p_server_id, SWIGTYPE_p_std__string, (0)|2);
+  
+  zval obj3;
+  args[3] = &obj3;
+  INIT_ZVAL(obj3);
+  
+  SWIG_SetPointerZval(&obj3, (void *)&p_asset_id, SWIGTYPE_p_std__string, (0)|2);
+  
+  call_user_function(EG(function_table), (zval**)&swig_self, &funcname, result, 4, args TSRMLS_CC);
+  
+  convert_to_string_ex(&result);
+  c_result.assign(Z_STRVAL_P(result), Z_STRLEN_P(result));
+  
   FREE_ZVAL(result);
-  return;
+  return (std::string) c_result;
 fail:
   SWIG_FAIL();
 }
@@ -1937,11 +1973,11 @@ fail:
 
 /* vdecl subsection */
 static int le_swig__p_std__vectorT_unsigned_char_t=0; /* handle for VectorUnsignedChar */
-static int le_swig__p_OTVariable=0; /* handle for _p_OTVariable */
 static int le_swig__p_OTDB__Storage=0; /* handle for Storage */
+static int le_swig__p_OTVariable=0; /* handle for _p_OTVariable */
 static int le_swig__p_OTDB__BitcoinAcct=0; /* handle for BitcoinAcct */
 static int le_swig__p_OT_ME=0; /* handle for OT_ME */
-static int le_swig__p_WrapTimeT=0; /* handle for WrapTimeT */
+static int le_swig__p_time64_t=0; /* handle for _p_time64_t */
 static int le_swig__p_OTPassword=0; /* handle for OTPassword */
 static int le_swig__p_OTDB__BidData=0; /* handle for BidData */
 static int le_swig__p_OTDB__Blob=0; /* handle for Blob */
@@ -1957,7 +1993,9 @@ static int le_swig__p_p_void=0; /* handle for _p_p_void */
 static int le_swig__p_void=0; /* handle for _p_void */
 static int le_swig__p_OTDB__StringMap=0; /* handle for StringMap */
 static int le_swig__int=0; /* handle for _int */
+static int le_swig__p_OTNameLookup=0; /* handle for OTNameLookup */
 static int le_swig__p_mapped_type=0; /* handle for _p_mapped_type */
+static int le_swig__p__SharedPtrT_OTRecord_t=0; /* handle for _p__SharedPtrT_OTRecord_t */
 static int le_swig__p_OTDB__BitcoinServer=0; /* handle for BitcoinServer */
 static int le_swig__p_OTDB__Displayable=0; /* handle for Displayable */
 static int le_swig__p_OTPacker=0; /* handle for _p_OTPacker */
@@ -1974,18 +2012,20 @@ static int le_swig__p_OTDB__ContactNym=0; /* handle for ContactNym */
 static int le_swig__p_OTDB__ServerInfo=0; /* handle for ServerInfo */
 static int le_swig__p_OTAPI_Exec=0; /* handle for _p_OTAPI_Exec */
 static int le_swig__p_OTDB__Contact=0; /* handle for Contact */
-static int le_swig__p_OTCaller=0; /* handle for OTCaller */
+static int le_swig__p_OTRecord=0; /* handle for OTRecord */
 static int le_swig__p_signed_char=0; /* handle for _p_signed_char */
 static int le_swig__p_unsigned_char=0; /* handle for _p_unsigned_char */
 static int le_swig__p_OTDB__Server=0; /* handle for Server */
 static int le_swig__p_OTDB__RippleServer=0; /* handle for RippleServer */
 static int le_swig__p_OTDB__LoomServer=0; /* handle for LoomServer */
+static int le_swig__p_OTLookupCaller=0; /* handle for OTLookupCaller */
+static int le_swig__p_OTCaller=0; /* handle for _p_OTCaller */
 static int le_swig__p_short=0; /* handle for _p_short */
 static int le_swig__p_unsigned_short=0; /* handle for _p_unsigned_short */
 static int le_swig__p_key_type=0; /* handle for _p_key_type */
+static int le_swig__p_OTRecordList=0; /* handle for OTRecordList */
 static int le_swig__p_OTDB__Storable=0; /* handle for Storable */
 static int le_swig__p_OTDB__AddressBook=0; /* handle for AddressBook */
-static int le_swig__p_OTCallback=0; /* handle for OTCallback */
 static int le_swig__p_long_long=0; /* handle for _p_long_long */
 static int le_swig__p_unsigned_long_long=0; /* handle for _p_unsigned_long_long */
 static int le_swig__p_difference_type=0; /* handle for _p_difference_type */
@@ -4697,551 +4737,6 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_new_OTCallback) {
-  zval *arg0;
-  zval **args[1];
-  OTCallback *result = 0 ;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  arg0 = *args[0];
-  
-  if ( arg0->type == IS_NULL ) {
-    /* not subclassed */
-    result = (OTCallback *)new OTCallback();
-  } else {
-    result = (OTCallback *)new SwigDirector_OTCallback(arg0 TSRMLS_CC);
-  }
-  
-  
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTCallback, 1);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-/* This function is designed to be called by the zend list destructors */
-/* to typecast and do the actual destruction */
-static void __wrap_delete_OTCallback(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
-  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
-  void *ptr=value->ptr ;
-  int newobject=value->newobject ;
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  
-  efree(value);
-  if (! newobject) return; /* can't delete it! */
-  arg1 = (OTCallback *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTCallback TSRMLS_CC);
-  if (! arg1) zend_error(E_ERROR, "OTCallback resource already free'd");
-  delete arg1;
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCallback_runOne) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  zval **args[3];
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  director = dynamic_cast<Swig::Director*>(arg1);
-  upcall = !director->swig_is_overridden_method((char *)"OTCallback", (char *)"runOne");
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCallback, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCallback_runOne. Expected SWIGTYPE_p_OTCallback");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
-  if ((*args[1])->type==IS_NULL) {
-    arg2 = (char *) 0;
-  } else {
-    convert_to_string_ex(args[1]);
-    arg2 = (char *) Z_STRVAL_PP(args[1]);
-  }
-  /*@SWIG@*/;
-  
-  {
-    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_OTPassword, 0) < 0 || arg3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTCallback_runOne. Expected SWIGTYPE_p_OTPassword");
-    }
-  }
-  if (upcall) {
-    (arg1)->OTCallback::runOne((char const *)arg2,*arg3);
-  } else {
-    (arg1)->runOne((char const *)arg2,*arg3);
-  }
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCallback_runTwo) {
-  OTCallback *arg1 = (OTCallback *) 0 ;
-  char *arg2 = (char *) 0 ;
-  OTPassword *arg3 = 0 ;
-  zval **args[3];
-  Swig::Director *director = 0;
-  bool upcall = false;
-  
-  director = dynamic_cast<Swig::Director*>(arg1);
-  upcall = !director->swig_is_overridden_method((char *)"OTCallback", (char *)"runTwo");
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCallback, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCallback_runTwo. Expected SWIGTYPE_p_OTCallback");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
-  if ((*args[1])->type==IS_NULL) {
-    arg2 = (char *) 0;
-  } else {
-    convert_to_string_ex(args[1]);
-    arg2 = (char *) Z_STRVAL_PP(args[1]);
-  }
-  /*@SWIG@*/;
-  
-  {
-    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_OTPassword, 0) < 0 || arg3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTCallback_runTwo. Expected SWIGTYPE_p_OTPassword");
-    }
-  }
-  if (upcall) {
-    (arg1)->OTCallback::runTwo((char const *)arg2,*arg3);
-  } else {
-    (arg1)->runTwo((char const *)arg2,*arg3);
-  }
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_new_OTCaller) {
-  OTCaller *result = 0 ;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (OTCaller *)new OTCaller();
-  
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTCaller, 1);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-/* This function is designed to be called by the zend list destructors */
-/* to typecast and do the actual destruction */
-static void __wrap_delete_OTCaller(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
-  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
-  void *ptr=value->ptr ;
-  int newobject=value->newobject ;
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  
-  efree(value);
-  if (! newobject) return; /* can't delete it! */
-  arg1 = (OTCaller *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTCaller TSRMLS_CC);
-  if (! arg1) zend_error(E_ERROR, "OTCaller resource already free'd");
-  delete arg1;
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_GetPassword) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTPassword *arg2 = 0 ;
-  zval **args[2];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_GetPassword. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_OTPassword, 0) < 0 || arg2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTCaller_GetPassword. Expected SWIGTYPE_p_OTPassword");
-    }
-  }
-  result = (bool)((OTCaller const *)arg1)->GetPassword(*arg2);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_ZeroOutPassword) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_ZeroOutPassword. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  (arg1)->ZeroOutPassword();
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_GetDisplay) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  char *result = 0 ;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_GetDisplay. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (char *)((OTCaller const *)arg1)->GetDisplay();
-  {
-    if(!result) {
-      ZVAL_NULL(return_value);
-    } else {
-      ZVAL_STRING(return_value, (char *)result, 1);
-    }
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_SetDisplay) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  char *arg2 = (char *) 0 ;
-  int32_t arg3 ;
-  zval **args[3];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_SetDisplay. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
-  if ((*args[1])->type==IS_NULL) {
-    arg2 = (char *) 0;
-  } else {
-    convert_to_string_ex(args[1]);
-    arg2 = (char *) Z_STRVAL_PP(args[1]);
-  }
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[2]);
-  arg3 = (int32_t) Z_LVAL_PP(args[2]);
-  /*@SWIG@*/;
-  
-  (arg1)->SetDisplay((char const *)arg2,arg3);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_delCallback) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_delCallback. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  (arg1)->delCallback();
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_setCallback) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  OTCallback *arg2 = (OTCallback *) 0 ;
-  zval **args[2];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_setCallback. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_OTCallback, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTCaller_setCallback. Expected SWIGTYPE_p_OTCallback");
-    }
-  }
-  (arg1)->setCallback(arg2);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_isCallbackSet) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_isCallbackSet. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (bool)((OTCaller const *)arg1)->isCallbackSet();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_callOne) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_callOne. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  (arg1)->callOne();
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTCaller_callTwo) {
-  OTCaller *arg1 = (OTCaller *) 0 ;
-  zval **args[1];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTCaller, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTCaller_callTwo. Expected SWIGTYPE_p_OTCaller");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  (arg1)->callTwo();
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_new_WrapTimeT) {
-  WrapTimeT *result = 0 ;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (WrapTimeT *)new WrapTimeT();
-  
-  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_WrapTimeT, 1);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_WrapTimeT_getTime) {
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  zval **args[1];
-  int64_t result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_WrapTimeT, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of WrapTimeT_getTime. Expected SWIGTYPE_p_WrapTimeT");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  result = (int64_t)((WrapTimeT const *)arg1)->getTime();
-  
-  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
-    return_value->value.lval = (long)(result);
-    return_value->type = IS_LONG;
-  } else {
-    char temp[256];
-    sprintf(temp, "%lld", (long long)result);
-    ZVAL_STRING(return_value, temp, 1);
-  }
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_WrapTimeT_setTime) {
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  int64_t *arg2 = 0 ;
-  int64_t temp2 ;
-  zval **args[2];
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_WrapTimeT, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of WrapTimeT_setTime. Expected SWIGTYPE_p_WrapTimeT");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[1]))->type) {
-  case IS_DOUBLE:
-    temp2 = (int64_t) (*(args[1]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      temp2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[1]);
-    temp2 = (int64_t) (*(args[1]))->value.lval;
-  }
-  /*@SWIG@*/;
-  arg2 = &temp2;
-  
-  (arg1)->setTime((int64_t const &)*arg2);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-/* This function is designed to be called by the zend list destructors */
-/* to typecast and do the actual destruction */
-static void __wrap_delete_WrapTimeT(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
-  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
-  void *ptr=value->ptr ;
-  int newobject=value->newobject ;
-  WrapTimeT *arg1 = (WrapTimeT *) 0 ;
-  
-  efree(value);
-  if (! newobject) return; /* can't delete it! */
-  arg1 = (WrapTimeT *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_WrapTimeT TSRMLS_CC);
-  if (! arg1) zend_error(E_ERROR, "WrapTimeT resource already free'd");
-  delete arg1;
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_SetExecutor) {
   OTAPI_Exec *arg1 = (OTAPI_Exec *) 0 ;
   zval **args[1];
@@ -5670,7 +5165,7 @@ fail:
 
 
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetTime) {
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 0) {
@@ -5679,8 +5174,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetTime) {
   
   result = OTAPI_Wrap::GetTime();
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   return;
 fail:
@@ -9300,8 +8795,8 @@ fail:
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WriteCheque) {
   std::string *arg1 = 0 ;
   int64_t *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
-  WrapTimeT *arg4 = 0 ;
+  time64_t *arg3 = 0 ;
+  time64_t *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
@@ -9346,13 +8841,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WriteCheque) {
   arg2 = &temp2;
   
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_time64_t, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_time64_t");
     }
   }
   {
-    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg4 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_time64_t, 0) < 0 || arg4 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTAPI_Wrap_WriteCheque. Expected SWIGTYPE_p_time64_t");
     }
   }
   
@@ -9375,7 +8870,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WriteCheque) {
   temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
   arg8 = &temp8;
   
-  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(WrapTimeT const &)*arg3,(WrapTimeT const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
+  result = OTAPI_Wrap::WriteCheque((std::string const &)*arg1,(long long const &)*arg2,(time64_t const &)*arg3,(time64_t const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9443,19 +8938,19 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string *arg4 = 0 ;
   std::string *arg5 = 0 ;
   std::string *arg6 = 0 ;
   std::string *arg7 = 0 ;
   std::string *arg8 = 0 ;
   int64_t *arg9 = 0 ;
-  WrapTimeT *arg10 = 0 ;
+  time64_t *arg10 = 0 ;
   int64_t *arg11 = 0 ;
-  WrapTimeT *arg12 = 0 ;
-  WrapTimeT *arg13 = 0 ;
-  WrapTimeT *arg14 = 0 ;
+  time64_t *arg12 = 0 ;
+  time64_t *arg13 = 0 ;
+  time64_t *arg14 = 0 ;
   int32_t *arg15 = 0 ;
   std::string temp1 ;
   std::string temp4 ;
@@ -9480,13 +8975,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   arg1 = &temp1;
   
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_time64_t, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_time64_t, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   
@@ -9535,8 +9030,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   arg9 = &temp9;
   
   {
-    if(SWIG_ConvertPtr(*args[9], (void **) &arg10, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg10 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 10 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[9], (void **) &arg10, SWIGTYPE_p_time64_t, 0) < 0 || arg10 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 10 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   
@@ -9560,18 +9055,18 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   arg11 = &temp11;
   
   {
-    if(SWIG_ConvertPtr(*args[11], (void **) &arg12, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg12 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 12 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[11], (void **) &arg12, SWIGTYPE_p_time64_t, 0) < 0 || arg12 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 12 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   {
-    if(SWIG_ConvertPtr(*args[12], (void **) &arg13, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg13 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 13 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[12], (void **) &arg13, SWIGTYPE_p_time64_t, 0) < 0 || arg13 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 13 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   {
-    if(SWIG_ConvertPtr(*args[13], (void **) &arg14, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg14 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 14 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[13], (void **) &arg14, SWIGTYPE_p_time64_t, 0) < 0 || arg14 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 14 of OTAPI_Wrap_ProposePaymentPlan. Expected SWIGTYPE_p_time64_t");
     }
   }
   
@@ -9581,7 +9076,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   /*@SWIG@*/;
   arg15 = &temp15;
   
-  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(WrapTimeT const &)*arg10,(long long const &)*arg11,(WrapTimeT const &)*arg12,(WrapTimeT const &)*arg13,(WrapTimeT const &)*arg14,(int const &)*arg15);
+  result = OTAPI_Wrap::ProposePaymentPlan((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(long long const &)*arg9,(time64_t const &)*arg10,(long long const &)*arg11,(time64_t const &)*arg12,(time64_t const &)*arg13,(time64_t const &)*arg14,(int const &)*arg15);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -9757,8 +9252,8 @@ fail:
 
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Create_SmartContract) {
   std::string *arg1 = 0 ;
-  WrapTimeT *arg2 = 0 ;
-  WrapTimeT *arg3 = 0 ;
+  time64_t *arg2 = 0 ;
+  time64_t *arg3 = 0 ;
   std::string temp1 ;
   zval **args[3];
   std::string result;
@@ -9774,16 +9269,16 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Create_SmartContract) {
   arg1 = &temp1;
   
   {
-    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg2 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_time64_t, 0) < 0 || arg2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_time64_t");
     }
   }
   {
-    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg3 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_time64_t, 0) < 0 || arg3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTAPI_Wrap_Create_SmartContract. Expected SWIGTYPE_p_time64_t");
     }
   }
-  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(WrapTimeT const &)*arg2,(WrapTimeT const &)*arg3);
+  result = OTAPI_Wrap::Create_SmartContract((std::string const &)*arg1,(time64_t const &)*arg2,(time64_t const &)*arg3);
   
   ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
   
@@ -13695,7 +13190,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetDateSigned) {
   std::string temp3 ;
   std::string temp4 ;
   zval **args[4];
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
@@ -13724,8 +13219,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_GetDateSigned) {
   
   result = OTAPI_Wrap::Transaction_GetDateSigned((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   
   
@@ -14914,7 +14409,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidFrom) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14938,8 +14433,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidFrom) {
   
   result = OTAPI_Wrap::Token_GetValidFrom((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   
   
@@ -14958,7 +14453,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidTo) {
   std::string temp2 ;
   std::string temp3 ;
   zval **args[3];
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
@@ -14982,8 +14477,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Token_GetValidTo) {
   
   result = OTAPI_Wrap::Token_GetValidTo((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3);
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   
   
@@ -15120,7 +14615,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -15134,8 +14629,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidFrom) {
   
   result = OTAPI_Wrap::Instrmnt_GetValidFrom((std::string const &)*arg1);
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   
   return;
@@ -15148,7 +14643,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidTo) {
   std::string *arg1 = 0 ;
   std::string temp1 ;
   zval **args[1];
-  WrapTimeT result;
+  time64_t result;
   
   SWIG_ResetError();
   if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
@@ -15162,8 +14657,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Instrmnt_GetValidTo) {
   
   result = OTAPI_Wrap::Instrmnt_GetValidTo((std::string const &)*arg1);
   {
-    WrapTimeT * resultobj = new WrapTimeT((const WrapTimeT &) result);
-    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_WrapTimeT, 1);
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
   }
   
   return;
@@ -17522,7 +17017,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   int64_t *arg5 = 0 ;
   int64_t *arg6 = 0 ;
   bool *arg7 = 0 ;
-  WrapTimeT *arg8 = 0 ;
+  time64_t *arg8 = 0 ;
   std::string *arg9 = 0 ;
   int64_t *arg10 = 0 ;
   std::string temp1 ;
@@ -17640,8 +17135,8 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg7 = &temp7;
   
   {
-    if(SWIG_ConvertPtr(*args[7], (void **) &arg8, SWIGTYPE_p_WrapTimeT, 0) < 0 || arg8 == NULL) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 8 of OTAPI_Wrap_issueMarketOffer. Expected SWIGTYPE_p_WrapTimeT");
+    if(SWIG_ConvertPtr(*args[7], (void **) &arg8, SWIGTYPE_p_time64_t, 0) < 0 || arg8 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 8 of OTAPI_Wrap_issueMarketOffer. Expected SWIGTYPE_p_time64_t");
     }
   }
   
@@ -17669,7 +17164,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   /*@SWIG@*/;
   arg10 = &temp10;
   
-  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(WrapTimeT const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
+  result = (int32_t)OTAPI_Wrap::issueMarketOffer((std::string const &)*arg1,(std::string const &)*arg2,(long long const &)*arg3,(long long const &)*arg4,(long long const &)*arg5,(long long const &)*arg6,(bool const &)*arg7,(time64_t const &)*arg8,(std::string const &)*arg9,(long long const &)*arg10);
   {
     ZVAL_LONG(return_value,result);
   }
@@ -39164,6 +38659,4363 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTypeString) {
+  int arg1 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[0]);
+  arg1 = (int) Z_LVAL_PP(args[0]);
+  /*@SWIG@*/;
+  
+  result = (std::string *) &OTRecord_GetTypeString(arg1);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsPending) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsPending. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsPending();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsOutgoing) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsOutgoing. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsOutgoing();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsRecord) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsRecord. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsRecord();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsReceipt) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsReceipt. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsReceipt();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsMail) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsMail. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsMail();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsTransfer) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsTransfer. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsTransfer();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsCheque) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsCheque. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsCheque();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsInvoice) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsInvoice. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsInvoice();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsVoucher) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsVoucher. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsVoucher();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsContract) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsContract. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsContract();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsPaymentPlan) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsPaymentPlan. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsPaymentPlan();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsCash) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsCash. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsCash();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_HasContents) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_HasContents. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->HasContents();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_HasMemo) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_HasMemo. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->HasMemo();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsExpired) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsExpired. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsExpired();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsCanceled) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsCanceled. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsCanceled();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetExpired) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetExpired. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->SetExpired();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetCanceled) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetCanceled. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->SetCanceled();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetValidFrom) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  time64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetValidFrom. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (arg1)->GetValidFrom();
+  {
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetValidTo) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  time64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetValidTo. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (arg1)->GetValidTo();
+  {
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetDateRange) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  time64_t arg2 ;
+  time64_t arg3 ;
+  time64_t *tmp2 ;
+  time64_t *tmp3 ;
+  zval **args[3];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetDateRange. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &tmp2, SWIGTYPE_p_time64_t, 0) < 0 || tmp2 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTRecord_SetDateRange. Expected SWIGTYPE_p_time64_t");
+    }
+    arg2 = *tmp2;
+  }
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &tmp3, SWIGTYPE_p_time64_t, 0) < 0 || tmp3 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTRecord_SetDateRange. Expected SWIGTYPE_p_time64_t");
+    }
+    arg3 = *tmp3;
+  }
+  (arg1)->SetDateRange(arg2,arg3);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CanDeleteRecord) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CanDeleteRecord. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->CanDeleteRecord();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CanAcceptIncoming) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CanAcceptIncoming. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->CanAcceptIncoming();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CanDiscardIncoming) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CanDiscardIncoming. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->CanDiscardIncoming();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CanCancelOutgoing) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CanCancelOutgoing. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->CanCancelOutgoing();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CanDiscardOutgoingCash) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CanDiscardOutgoingCash. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->CanDiscardOutgoingCash();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_CancelOutgoing) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_CancelOutgoing. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  result = (bool)(arg1)->CancelOutgoing(arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_AcceptIncomingInstrument) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_AcceptIncomingInstrument. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->AcceptIncomingInstrument((std::string const &)*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_AcceptIncomingTransfer) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_AcceptIncomingTransfer. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->AcceptIncomingTransfer();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_AcceptIncomingReceipt) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_AcceptIncomingReceipt. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->AcceptIncomingReceipt();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_DiscardIncoming) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_DiscardIncoming. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DiscardIncoming();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_DeleteRecord) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_DeleteRecord. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DeleteRecord();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_DiscardOutgoingCash) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_DiscardOutgoingCash. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DiscardOutgoingCash();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetBoxIndex) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetBoxIndex. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t)((OTRecord const *)arg1)->GetBoxIndex();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetBoxIndex) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetBoxIndex. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->SetBoxIndex(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTransactionNum) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetTransactionNum. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int64_t)((OTRecord const *)arg1)->GetTransactionNum();
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetTransactionNum) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int64_t arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetTransactionNum. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  (arg1)->SetTransactionNum(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTransNumForDisplay) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetTransNumForDisplay. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int64_t)((OTRecord const *)arg1)->GetTransNumForDisplay();
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetTransNumForDisplay) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int64_t arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetTransNumForDisplay. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[1]))->type) {
+  case IS_DOUBLE:
+    arg2 = (int64_t) (*(args[1]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg2 = (int64_t) strtoll((*(args[1]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[1]);
+    arg2 = (int64_t) (*(args[1]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  (arg1)->SetTransNumForDisplay(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetRecordType) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  OTRecord::OTRecordType result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetRecordType. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (OTRecord::OTRecordType)((OTRecord const *)arg1)->GetRecordType();
+  {
+    ZVAL_LONG(return_value, (long)result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetServerID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetServerID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetServerID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetAssetID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetAssetID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetAssetID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetCurrencyTLA) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetCurrencyTLA. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetCurrencyTLA();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetNymID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetNymID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetNymID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetAccountID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetAccountID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetAccountID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetOtherNymID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetOtherNymID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherNymID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetOtherAccountID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetOtherAccountID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetName) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetName. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetName();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetDate) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetDate. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetDate();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetAmount) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetAmount. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetAmount();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetInstrumentType) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetInstrumentType. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetInstrumentType();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMemo) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMemo. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetMemo();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetContents) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetContents. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetContents();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetOtherNymID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetOtherNymID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetOtherNymID((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetOtherAccountID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetOtherAccountID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetOtherAccountID((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetMemo) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetMemo. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetMemo((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetContents) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetContents. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetContents((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_HasInitialPayment) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_HasInitialPayment. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->HasInitialPayment();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_HasPaymentPlan) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_HasPaymentPlan. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->HasPaymentPlan();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetInitialPaymentDate) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  time64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetInitialPaymentDate. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (arg1)->GetInitialPaymentDate();
+  {
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetPaymentPlanStartDate) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  time64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetPaymentPlanStartDate. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (arg1)->GetPaymentPlanStartDate();
+  {
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTimeBetweenPayments) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  time64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetTimeBetweenPayments. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (arg1)->GetTimeBetweenPayments();
+  {
+    time64_t * resultobj = new time64_t((const time64_t &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p_time64_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetInitialPaymentAmount) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetInitialPaymentAmount. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int64_t)(arg1)->GetInitialPaymentAmount();
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetPaymentPlanAmount) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int64_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetPaymentPlanAmount. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int64_t)(arg1)->GetPaymentPlanAmount();
+  
+  if ((long long)LONG_MIN <= result && result <= (long long)LONG_MAX) {
+    return_value->value.lval = (long)(result);
+    return_value->type = IS_LONG;
+  } else {
+    char temp[256];
+    sprintf(temp, "%lld", (long long)result);
+    ZVAL_STRING(return_value, temp, 1);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMaximumNoPayments) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMaximumNoPayments. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t)(arg1)->GetMaximumNoPayments();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_FormatAmount) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_FormatAmount. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->FormatAmount(*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_FormatDescription) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_FormatDescription. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->FormatDescription(*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_FormatShortMailDescription) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_FormatShortMailDescription. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->FormatShortMailDescription(*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_FormatMailSubject) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_FormatMailSubject. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (bool)(arg1)->FormatMailSubject(*arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  ZVAL_STRINGL(*(args[1]), const_cast<char*>(arg2->data()), arg2->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTRecord) {
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  bool arg10 ;
+  bool arg11 ;
+  bool arg12 ;
+  bool arg13 ;
+  OTRecord::OTRecordType arg14 ;
+  std::string temp1 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp7 ;
+  std::string temp8 ;
+  std::string temp9 ;
+  zval **args[14];
+  OTRecord *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 14 || zend_get_parameters_array_ex(14, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  arg1 = &temp1;
+  
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  
+  convert_to_string_ex(args[7]);
+  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
+  arg8 = &temp8;
+  
+  
+  convert_to_string_ex(args[8]);
+  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
+  arg9 = &temp9;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[9]);
+  arg10 = (bool) Z_LVAL_PP(args[9]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[10]);
+  arg11 = (bool) Z_LVAL_PP(args[10]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[11]);
+  arg12 = (bool) Z_LVAL_PP(args[11]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[12]);
+  arg13 = (bool) Z_LVAL_PP(args[12]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[13]);
+  arg14 = (OTRecord::OTRecordType) Z_LVAL_PP(args[13]);
+  /*@SWIG@*/;
+  
+  result = (OTRecord *)new OTRecord((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11,arg12,arg13,arg14);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTRecord, 1);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_OTRecord(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (OTRecord *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTRecord TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "OTRecord resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTNameLookup) {
+  zval *arg0;
+  zval **args[1];
+  OTNameLookup *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  arg0 = *args[0];
+  
+  if ( arg0->type == IS_NULL ) {
+    /* not subclassed */
+    result = (OTNameLookup *)new OTNameLookup();
+  } else {
+    result = (OTNameLookup *)new SwigDirector_OTNameLookup(arg0 TSRMLS_CC);
+  }
+  
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTNameLookup, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_OTNameLookup(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (OTNameLookup *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTNameLookup TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "OTNameLookup resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetNymName__SWIG_0) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[3];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetNymName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetNymName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTNameLookup_GetNymName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetNymName((std::string const &)*arg2,(std::string const *)arg3);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetNymName((std::string const &)*arg2,(std::string const *)arg3);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetNymName__SWIG_1) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetNymName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetNymName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetNymName((std::string const &)*arg2);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetNymName((std::string const &)*arg2);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetNymName) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OTNameLookup_GetNymName__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          _wrap_OTNameLookup_GetNymName__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTNameLookup_GetNymName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName__SWIG_0) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string *arg4 = (std::string *) 0 ;
+  std::string *arg5 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[5];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetAcctName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[4], (void **) &arg5, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 5 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4,(std::string const *)arg5);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4,(std::string const *)arg5);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName__SWIG_1) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string *arg4 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[4];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetAcctName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName__SWIG_2) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[3];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetAcctName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAcctName((std::string const &)*arg2,(std::string const *)arg3);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName__SWIG_3) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetAcctName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetAcctName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAcctName((std::string const &)*arg2);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetAcctName((std::string const &)*arg2);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName) {
+  int argc;
+  zval **argv[5];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OTNameLookup_GetAcctName__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          _wrap_OTNameLookup_GetAcctName__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          {
+            void *tmp;
+            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+          }
+          if (_v) {
+            _wrap_OTNameLookup_GetAcctName__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          {
+            void *tmp;
+            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+          }
+          if (_v) {
+            {
+              void *tmp;
+              _v = (SWIG_ConvertPtr(*argv[4], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+            }
+            if (_v) {
+              _wrap_OTNameLookup_GetAcctName__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTNameLookup_GetAcctName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTLookupCaller) {
+  OTLookupCaller *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OTLookupCaller *)new OTLookupCaller();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTLookupCaller, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_OTLookupCaller(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (OTLookupCaller *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTLookupCaller TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "OTLookupCaller resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_getCallback) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  zval **args[1];
+  OTNameLookup *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_getCallback. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (OTNameLookup *)(arg1)->getCallback();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTNameLookup, 0);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_delCallback) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_delCallback. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->delCallback();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_setCallback) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  OTNameLookup *arg2 = (OTNameLookup *) 0 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_setCallback. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  {
+    if(SWIG_ConvertPtr(*args[1], (void **) &arg2, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 2 of OTLookupCaller_setCallback. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  (arg1)->setCallback(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_isCallbackSet) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_isCallbackSet. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTLookupCaller const *)arg1)->isCallbackSet();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetNymName__SWIG_0) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetNymName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTLookupCaller_GetNymName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = ((OTLookupCaller const *)arg1)->GetNymName((std::string const &)*arg2,(std::string const *)arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetNymName__SWIG_1) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetNymName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = ((OTLookupCaller const *)arg1)->GetNymName((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetNymName) {
+  int argc;
+  zval **argv[3];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OTLookupCaller_GetNymName__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          _wrap_OTLookupCaller_GetNymName__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTLookupCaller_GetNymName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName__SWIG_0) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string *arg4 = (std::string *) 0 ;
+  std::string *arg5 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[4], (void **) &arg5, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 5 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4,(std::string const *)arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName__SWIG_1) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string *arg4 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  {
+    if(SWIG_ConvertPtr(*args[3], (void **) &arg4, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 4 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3,(std::string const *)arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName__SWIG_2) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = (std::string *) 0 ;
+  std::string temp2 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  {
+    if(SWIG_ConvertPtr(*args[2], (void **) &arg3, SWIGTYPE_p_std__string, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 3 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_std__string");
+    }
+  }
+  result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2,(std::string const *)arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName__SWIG_3) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetAcctName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName) {
+  int argc;
+  zval **argv[5];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _wrap_OTLookupCaller_GetAcctName__SWIG_3(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          _wrap_OTLookupCaller_GetAcctName__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          {
+            void *tmp;
+            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+          }
+          if (_v) {
+            _wrap_OTLookupCaller_GetAcctName__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTLookupCaller, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        {
+          void *tmp;
+          _v = (SWIG_ConvertPtr(*argv[2], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+        }
+        if (_v) {
+          {
+            void *tmp;
+            _v = (SWIG_ConvertPtr(*argv[3], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+          }
+          if (_v) {
+            {
+              void *tmp;
+              _v = (SWIG_ConvertPtr(*argv[4], (void**)&tmp, SWIGTYPE_p_std__string, 0) >= 0);
+            }
+            if (_v) {
+              _wrap_OTLookupCaller_GetAcctName__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTLookupCaller_GetAcctName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_API_Set_AddrBookCallback) {
+  OTLookupCaller *arg1 = 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0 || arg1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_API_Set_AddrBookCallback. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  result = (bool)OT_API_Set_AddrBookCallback(*arg1);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_setAddrBookCaller) {
+  OTLookupCaller *arg1 = 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0 || arg1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_setAddrBookCaller. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  result = (bool)OTRecordList::setAddrBookCaller(*arg1);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_getAddrBookCaller) {
+  OTLookupCaller *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OTLookupCaller *)OTRecordList::getAddrBookCaller();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTLookupCaller, 0);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTRecordList__SWIG_0) {
+  OTRecordList *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (OTRecordList *)new OTRecordList();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTRecordList, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTRecordList__SWIG_1) {
+  OTNameLookup *arg1 = 0 ;
+  zval **args[1];
+  OTRecordList *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0 || arg1 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of new_OTRecordList. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  result = (OTRecordList *)new OTRecordList(*arg1);
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_OTRecordList, 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_new_OTRecordList) {
+  int argc;
+  zval **argv[1];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 0) {
+    _wrap_new_OTRecordList__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+  }
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTNameLookup, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_new_OTRecordList__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'new_OTRecordList'";
+  SWIG_FAIL();
+}
+
+
+/* This function is designed to be called by the zend list destructors */
+/* to typecast and do the actual destruction */
+static void __wrap_delete_OTRecordList(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
+  swig_object_wrapper *value=(swig_object_wrapper *) rsrc->ptr ;
+  void *ptr=value->ptr ;
+  int newobject=value->newobject ;
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  
+  efree(value);
+  if (! newobject) return; /* can't delete it! */
+  arg1 = (OTRecordList *)SWIG_ZTS_ConvertResourceData(ptr,type_name,SWIGTYPE_p_OTRecordList TSRMLS_CC);
+  if (! arg1) zend_error(E_ERROR, "OTRecordList resource already free'd");
+  delete arg1;
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_textTo) {
+  char *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (char *)OTRecordList::textTo();
+  {
+    if(!result) {
+      ZVAL_NULL(return_value);
+    } else {
+      ZVAL_STRING(return_value, (char *)result, 1);
+    }
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_textFrom) {
+  char *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 0) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  result = (char *)OTRecordList::textFrom();
+  {
+    if(!result) {
+      ZVAL_NULL(return_value);
+    } else {
+      ZVAL_STRING(return_value, (char *)result, 1);
+    }
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_setTextTo) {
+  std::string arg1 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  OTRecordList::setTextTo(arg1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_setTextFrom) {
+  std::string arg1 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  
+  convert_to_string_ex(args[0]);
+  (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
+  
+  OTRecordList::setTextFrom(arg1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SetFastMode) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SetFastMode. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->SetFastMode();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SetServerID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SetServerID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->SetServerID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddServerID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddServerID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->AddServerID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_ClearServers) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_ClearServers. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->ClearServers();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SetAssetID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SetAssetID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->SetAssetID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddAssetID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddAssetID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->AddAssetID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_ClearAssets) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_ClearAssets. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->ClearAssets();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SetNymID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SetNymID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->SetNymID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddNymID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddNymID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->AddNymID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_ClearNyms) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_ClearNyms. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->ClearNyms();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SetAccountID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SetAccountID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->SetAccountID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddAccountID) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddAccountID. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  (&arg2)->assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  
+  (arg1)->AddAccountID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_ClearAccounts) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_ClearAccounts. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->ClearAccounts();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptChequesAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->AcceptChequesAutomatically(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptChequesAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->AcceptChequesAutomatically();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptChequesAutomatically) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_OTRecordList_AcceptChequesAutomatically__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_BOOL); 
+      if (_v) {
+        _wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecordList_AcceptChequesAutomatically'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_0) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptReceiptsAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->AcceptReceiptsAutomatically(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptReceiptsAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->AcceptReceiptsAutomatically();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptReceiptsAutomatically) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_BOOL); 
+      if (_v) {
+        _wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecordList_AcceptReceiptsAutomatically'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_0) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptTransfersAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->AcceptTransfersAutomatically(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptTransfersAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->AcceptTransfersAutomatically();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptTransfersAutomatically) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_BOOL); 
+      if (_v) {
+        _wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecordList_AcceptTransfersAutomatically'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptCashAutomatically__SWIG_0) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptCashAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->AcceptCashAutomatically(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptCashAutomatically__SWIG_1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AcceptCashAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->AcceptCashAutomatically();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptCashAutomatically) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_OTRecordList_AcceptCashAutomatically__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_BOOL); 
+      if (_v) {
+        _wrap_OTRecordList_AcceptCashAutomatically__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecordList_AcceptCashAutomatically'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_DoesAcceptChequesAutomatically) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_DoesAcceptChequesAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DoesAcceptChequesAutomatically();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_DoesAcceptReceiptsAutomatically) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_DoesAcceptReceiptsAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DoesAcceptReceiptsAutomatically();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_DoesAcceptTransfersAutomatically) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_DoesAcceptTransfersAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DoesAcceptTransfersAutomatically();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_DoesAcceptCashAutomatically) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_DoesAcceptCashAutomatically. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->DoesAcceptCashAutomatically();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_PerformAutoAccept) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_PerformAutoAccept. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->PerformAutoAccept();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_Populate) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_Populate. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)(arg1)->Populate();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_ClearContents) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_ClearContents. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->ClearContents();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_size) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_size. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t)(arg1)->size();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_GetRecord) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  int32_t arg2 ;
+  zval **args[2];
+  SwigValueWrapper< _SharedPtr< OTRecord > > result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_GetRecord. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = (arg1)->GetRecord(arg2);
+  {
+    _SharedPtr< OTRecord > * resultobj = new _SharedPtr< OTRecord >((const _SharedPtr< OTRecord > &) result);
+    SWIG_SetPointerZval(return_value, (void *)resultobj, SWIGTYPE_p__SharedPtrT_OTRecord_t, 1);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_RemoveRecord) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  int32_t arg2 ;
+  zval **args[2];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_RemoveRecord. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  result = (bool)(arg1)->RemoveRecord(arg2);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_OT_API_Set_PasswordCallback) {
   OTCaller *arg1 = 0 ;
   zval **args[1];
@@ -39192,12 +43044,12 @@ fail:
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__vectorT_unsigned_char_t) {
   __wrap_delete_VectorUnsignedChar(rsrc, SWIGTYPE_p_std__vectorT_unsigned_char_t->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storage) {
+  __wrap_delete_Storage(rsrc, SWIGTYPE_p_OTDB__Storage->name TSRMLS_CC);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTVariable) {
   /* No destructor for simple type _p_OTVariable */
   efree(rsrc->ptr);
-}
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storage) {
-  __wrap_delete_Storage(rsrc, SWIGTYPE_p_OTDB__Storage->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BitcoinAcct) {
   __wrap_delete_BitcoinAcct(rsrc, SWIGTYPE_p_OTDB__BitcoinAcct->name TSRMLS_CC);
@@ -39205,8 +43057,9 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BitcoinAcct) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OT_ME) {
   __wrap_delete_OT_ME(rsrc, SWIGTYPE_p_OT_ME->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_WrapTimeT) {
-  __wrap_delete_WrapTimeT(rsrc, SWIGTYPE_p_WrapTimeT->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_time64_t) {
+  /* No destructor for simple type _p_time64_t */
+  efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTPassword) {
   __wrap_delete_OTPassword(rsrc, SWIGTYPE_p_OTPassword->name TSRMLS_CC);
@@ -39258,8 +43111,15 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_int) {
   /* No destructor for simple type _int */
   efree(rsrc->ptr);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTNameLookup) {
+  __wrap_delete_OTNameLookup(rsrc, SWIGTYPE_p_OTNameLookup->name TSRMLS_CC);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_mapped_type) {
   /* No destructor for simple type _p_mapped_type */
+  efree(rsrc->ptr);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p__SharedPtrT_OTRecord_t) {
+  /* No destructor for simple type _p__SharedPtrT_OTRecord_t */
   efree(rsrc->ptr);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__BitcoinServer) {
@@ -39315,8 +43175,8 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTAPI_Exec) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Contact) {
   __wrap_delete_Contact(rsrc, SWIGTYPE_p_OTDB__Contact->name TSRMLS_CC);
 }
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTCaller) {
-  __wrap_delete_OTCaller(rsrc, SWIGTYPE_p_OTCaller->name TSRMLS_CC);
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTRecord) {
+  __wrap_delete_OTRecord(rsrc, SWIGTYPE_p_OTRecord->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_signed_char) {
   /* No destructor for simple type _p_signed_char */
@@ -39335,6 +43195,13 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__RippleServer) {
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__LoomServer) {
   __wrap_delete_LoomServer(rsrc, SWIGTYPE_p_OTDB__LoomServer->name TSRMLS_CC);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTLookupCaller) {
+  __wrap_delete_OTLookupCaller(rsrc, SWIGTYPE_p_OTLookupCaller->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTCaller) {
+  /* No destructor for simple type _p_OTCaller */
+  efree(rsrc->ptr);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_short) {
   /* No destructor for simple type _p_short */
   efree(rsrc->ptr);
@@ -39347,14 +43214,14 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_key_type) {
   /* No destructor for simple type _p_key_type */
   efree(rsrc->ptr);
 }
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTRecordList) {
+  __wrap_delete_OTRecordList(rsrc, SWIGTYPE_p_OTRecordList->name TSRMLS_CC);
+}
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__Storable) {
   __wrap_delete_Storable(rsrc, SWIGTYPE_p_OTDB__Storable->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__AddressBook) {
   __wrap_delete_AddressBook(rsrc, SWIGTYPE_p_OTDB__AddressBook->name TSRMLS_CC);
-}
-static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTCallback) {
-  __wrap_delete_OTCallback(rsrc, SWIGTYPE_p_OTCallback->name TSRMLS_CC);
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_long_long) {
   /* No destructor for simple type _p_long_long */
@@ -39583,60 +43450,6 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otpassword_setsize, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otpassword, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otcallback, 0, 0, 0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcallback_runone, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcallback_runtwo, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otcaller, 0, 0, 0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_getpassword, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_zerooutpassword, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_getdisplay, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_setdisplay, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_delcallback, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_setcallback, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_iscallbackset, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_callone, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otcaller_calltwo, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_wraptimet, 0, 0, 0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_wraptimet_gettime, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_wraptimet_settime, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -42936,6 +46749,392 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_addressbook_ot_dynamic_cast, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettypestring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_ispending, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isoutgoing, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isrecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isreceipt, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_ismail, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_istransfer, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_ischeque, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isinvoice, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isvoucher, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_iscontract, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_ispaymentplan, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_iscash, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_hascontents, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_hasmemo, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isexpired, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_iscanceled, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setexpired, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setcanceled, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getvalidfrom, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getvalidto, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setdaterange, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_candeleterecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_canacceptincoming, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_candiscardincoming, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_cancanceloutgoing, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_candiscardoutgoingcash, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_canceloutgoing, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_acceptincominginstrument, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_acceptincomingtransfer, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_acceptincomingreceipt, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_discardincoming, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_deleterecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_discardoutgoingcash, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getboxindex, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setboxindex, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettransactionnum, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_settransactionnum, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettransnumfordisplay, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_settransnumfordisplay, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getrecordtype, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getserverid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getassetid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getcurrencytla, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getnymid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getaccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getothernymid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getotheraccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getdate, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getamount, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getinstrumenttype, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmemo, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getcontents, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setothernymid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setotheraccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setmemo, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setcontents, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_hasinitialpayment, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_haspaymentplan, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getinitialpaymentdate, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getpaymentplanstartdate, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettimebetweenpayments, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getinitialpaymentamount, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getpaymentplanamount, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmaximumnopayments, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_formatamount, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_formatdescription, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_formatshortmaildescription, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_formatmailsubject, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otrecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otnamelookup, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otnamelookup_getnymname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otnamelookup_getacctname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otlookupcaller, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getcallback, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_delcallback, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_setcallback, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_iscallbackset, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getnymname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getacctname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_api_set_addrbookcallback, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setaddrbookcaller, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_getaddrbookcaller, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otrecordlist, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_textto, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_textfrom, 0, 0, 0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_settextto, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_settextfrom, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setfastmode, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setserverid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_addserverid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearservers, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setassetid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_addassetid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearassets, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setnymid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_addnymid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearnyms, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_setaccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_addaccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearaccounts, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_acceptchequesautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_acceptreceiptsautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_accepttransfersautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_acceptcashautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_doesacceptchequesautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_doesacceptreceiptsautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_doesaccepttransfersautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_doesacceptcashautomatically, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_performautoaccept, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_populate, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearcontents, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_size, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_getrecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_removerecord, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_api_set_passwordcallback, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -42997,22 +47196,6 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otpassword_createtextbuffer,_wrap_OTPassword_CreateTextBuffer,swig_arginfo_otpassword_createtextbuffer)
  SWIG_ZEND_NAMED_FE(otpassword_setsize,_wrap_OTPassword_SetSize,swig_arginfo_otpassword_setsize)
  SWIG_ZEND_NAMED_FE(new_otpassword,_wrap_new_OTPassword,swig_arginfo_new_otpassword)
- SWIG_ZEND_NAMED_FE(new_otcallback,_wrap_new_OTCallback,swig_arginfo_new_otcallback)
- SWIG_ZEND_NAMED_FE(otcallback_runone,_wrap_OTCallback_runOne,swig_arginfo_otcallback_runone)
- SWIG_ZEND_NAMED_FE(otcallback_runtwo,_wrap_OTCallback_runTwo,swig_arginfo_otcallback_runtwo)
- SWIG_ZEND_NAMED_FE(new_otcaller,_wrap_new_OTCaller,swig_arginfo_new_otcaller)
- SWIG_ZEND_NAMED_FE(otcaller_getpassword,_wrap_OTCaller_GetPassword,swig_arginfo_otcaller_getpassword)
- SWIG_ZEND_NAMED_FE(otcaller_zerooutpassword,_wrap_OTCaller_ZeroOutPassword,swig_arginfo_otcaller_zerooutpassword)
- SWIG_ZEND_NAMED_FE(otcaller_getdisplay,_wrap_OTCaller_GetDisplay,swig_arginfo_otcaller_getdisplay)
- SWIG_ZEND_NAMED_FE(otcaller_setdisplay,_wrap_OTCaller_SetDisplay,swig_arginfo_otcaller_setdisplay)
- SWIG_ZEND_NAMED_FE(otcaller_delcallback,_wrap_OTCaller_delCallback,swig_arginfo_otcaller_delcallback)
- SWIG_ZEND_NAMED_FE(otcaller_setcallback,_wrap_OTCaller_setCallback,swig_arginfo_otcaller_setcallback)
- SWIG_ZEND_NAMED_FE(otcaller_iscallbackset,_wrap_OTCaller_isCallbackSet,swig_arginfo_otcaller_iscallbackset)
- SWIG_ZEND_NAMED_FE(otcaller_callone,_wrap_OTCaller_callOne,swig_arginfo_otcaller_callone)
- SWIG_ZEND_NAMED_FE(otcaller_calltwo,_wrap_OTCaller_callTwo,swig_arginfo_otcaller_calltwo)
- SWIG_ZEND_NAMED_FE(new_wraptimet,_wrap_new_WrapTimeT,swig_arginfo_new_wraptimet)
- SWIG_ZEND_NAMED_FE(wraptimet_gettime,_wrap_WrapTimeT_getTime,swig_arginfo_wraptimet_gettime)
- SWIG_ZEND_NAMED_FE(wraptimet_settime,_wrap_WrapTimeT_setTime,swig_arginfo_wraptimet_settime)
  SWIG_ZEND_NAMED_FE(otapi_wrap_setexecutor,_wrap_OTAPI_Wrap_SetExecutor,swig_arginfo_otapi_wrap_setexecutor)
  SWIG_ZEND_NAMED_FE(otapi_wrap_exec,_wrap_OTAPI_Wrap_Exec,swig_arginfo_otapi_wrap_exec)
  SWIG_ZEND_NAMED_FE(otapi_wrap_it,_wrap_OTAPI_Wrap_It,swig_arginfo_otapi_wrap_it)
@@ -43807,6 +47990,122 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(addressbook_removecontact,_wrap_AddressBook_RemoveContact,swig_arginfo_addressbook_removecontact)
  SWIG_ZEND_NAMED_FE(addressbook_addcontact,_wrap_AddressBook_AddContact,swig_arginfo_addressbook_addcontact)
  SWIG_ZEND_NAMED_FE(addressbook_ot_dynamic_cast,_wrap_AddressBook_ot_dynamic_cast,swig_arginfo_addressbook_ot_dynamic_cast)
+ SWIG_ZEND_NAMED_FE(otrecord_gettypestring,_wrap_OTRecord_GetTypeString,swig_arginfo_otrecord_gettypestring)
+ SWIG_ZEND_NAMED_FE(otrecord_ispending,_wrap_OTRecord_IsPending,swig_arginfo_otrecord_ispending)
+ SWIG_ZEND_NAMED_FE(otrecord_isoutgoing,_wrap_OTRecord_IsOutgoing,swig_arginfo_otrecord_isoutgoing)
+ SWIG_ZEND_NAMED_FE(otrecord_isrecord,_wrap_OTRecord_IsRecord,swig_arginfo_otrecord_isrecord)
+ SWIG_ZEND_NAMED_FE(otrecord_isreceipt,_wrap_OTRecord_IsReceipt,swig_arginfo_otrecord_isreceipt)
+ SWIG_ZEND_NAMED_FE(otrecord_ismail,_wrap_OTRecord_IsMail,swig_arginfo_otrecord_ismail)
+ SWIG_ZEND_NAMED_FE(otrecord_istransfer,_wrap_OTRecord_IsTransfer,swig_arginfo_otrecord_istransfer)
+ SWIG_ZEND_NAMED_FE(otrecord_ischeque,_wrap_OTRecord_IsCheque,swig_arginfo_otrecord_ischeque)
+ SWIG_ZEND_NAMED_FE(otrecord_isinvoice,_wrap_OTRecord_IsInvoice,swig_arginfo_otrecord_isinvoice)
+ SWIG_ZEND_NAMED_FE(otrecord_isvoucher,_wrap_OTRecord_IsVoucher,swig_arginfo_otrecord_isvoucher)
+ SWIG_ZEND_NAMED_FE(otrecord_iscontract,_wrap_OTRecord_IsContract,swig_arginfo_otrecord_iscontract)
+ SWIG_ZEND_NAMED_FE(otrecord_ispaymentplan,_wrap_OTRecord_IsPaymentPlan,swig_arginfo_otrecord_ispaymentplan)
+ SWIG_ZEND_NAMED_FE(otrecord_iscash,_wrap_OTRecord_IsCash,swig_arginfo_otrecord_iscash)
+ SWIG_ZEND_NAMED_FE(otrecord_hascontents,_wrap_OTRecord_HasContents,swig_arginfo_otrecord_hascontents)
+ SWIG_ZEND_NAMED_FE(otrecord_hasmemo,_wrap_OTRecord_HasMemo,swig_arginfo_otrecord_hasmemo)
+ SWIG_ZEND_NAMED_FE(otrecord_isexpired,_wrap_OTRecord_IsExpired,swig_arginfo_otrecord_isexpired)
+ SWIG_ZEND_NAMED_FE(otrecord_iscanceled,_wrap_OTRecord_IsCanceled,swig_arginfo_otrecord_iscanceled)
+ SWIG_ZEND_NAMED_FE(otrecord_setexpired,_wrap_OTRecord_SetExpired,swig_arginfo_otrecord_setexpired)
+ SWIG_ZEND_NAMED_FE(otrecord_setcanceled,_wrap_OTRecord_SetCanceled,swig_arginfo_otrecord_setcanceled)
+ SWIG_ZEND_NAMED_FE(otrecord_getvalidfrom,_wrap_OTRecord_GetValidFrom,swig_arginfo_otrecord_getvalidfrom)
+ SWIG_ZEND_NAMED_FE(otrecord_getvalidto,_wrap_OTRecord_GetValidTo,swig_arginfo_otrecord_getvalidto)
+ SWIG_ZEND_NAMED_FE(otrecord_setdaterange,_wrap_OTRecord_SetDateRange,swig_arginfo_otrecord_setdaterange)
+ SWIG_ZEND_NAMED_FE(otrecord_candeleterecord,_wrap_OTRecord_CanDeleteRecord,swig_arginfo_otrecord_candeleterecord)
+ SWIG_ZEND_NAMED_FE(otrecord_canacceptincoming,_wrap_OTRecord_CanAcceptIncoming,swig_arginfo_otrecord_canacceptincoming)
+ SWIG_ZEND_NAMED_FE(otrecord_candiscardincoming,_wrap_OTRecord_CanDiscardIncoming,swig_arginfo_otrecord_candiscardincoming)
+ SWIG_ZEND_NAMED_FE(otrecord_cancanceloutgoing,_wrap_OTRecord_CanCancelOutgoing,swig_arginfo_otrecord_cancanceloutgoing)
+ SWIG_ZEND_NAMED_FE(otrecord_candiscardoutgoingcash,_wrap_OTRecord_CanDiscardOutgoingCash,swig_arginfo_otrecord_candiscardoutgoingcash)
+ SWIG_ZEND_NAMED_FE(otrecord_canceloutgoing,_wrap_OTRecord_CancelOutgoing,swig_arginfo_otrecord_canceloutgoing)
+ SWIG_ZEND_NAMED_FE(otrecord_acceptincominginstrument,_wrap_OTRecord_AcceptIncomingInstrument,swig_arginfo_otrecord_acceptincominginstrument)
+ SWIG_ZEND_NAMED_FE(otrecord_acceptincomingtransfer,_wrap_OTRecord_AcceptIncomingTransfer,swig_arginfo_otrecord_acceptincomingtransfer)
+ SWIG_ZEND_NAMED_FE(otrecord_acceptincomingreceipt,_wrap_OTRecord_AcceptIncomingReceipt,swig_arginfo_otrecord_acceptincomingreceipt)
+ SWIG_ZEND_NAMED_FE(otrecord_discardincoming,_wrap_OTRecord_DiscardIncoming,swig_arginfo_otrecord_discardincoming)
+ SWIG_ZEND_NAMED_FE(otrecord_deleterecord,_wrap_OTRecord_DeleteRecord,swig_arginfo_otrecord_deleterecord)
+ SWIG_ZEND_NAMED_FE(otrecord_discardoutgoingcash,_wrap_OTRecord_DiscardOutgoingCash,swig_arginfo_otrecord_discardoutgoingcash)
+ SWIG_ZEND_NAMED_FE(otrecord_getboxindex,_wrap_OTRecord_GetBoxIndex,swig_arginfo_otrecord_getboxindex)
+ SWIG_ZEND_NAMED_FE(otrecord_setboxindex,_wrap_OTRecord_SetBoxIndex,swig_arginfo_otrecord_setboxindex)
+ SWIG_ZEND_NAMED_FE(otrecord_gettransactionnum,_wrap_OTRecord_GetTransactionNum,swig_arginfo_otrecord_gettransactionnum)
+ SWIG_ZEND_NAMED_FE(otrecord_settransactionnum,_wrap_OTRecord_SetTransactionNum,swig_arginfo_otrecord_settransactionnum)
+ SWIG_ZEND_NAMED_FE(otrecord_gettransnumfordisplay,_wrap_OTRecord_GetTransNumForDisplay,swig_arginfo_otrecord_gettransnumfordisplay)
+ SWIG_ZEND_NAMED_FE(otrecord_settransnumfordisplay,_wrap_OTRecord_SetTransNumForDisplay,swig_arginfo_otrecord_settransnumfordisplay)
+ SWIG_ZEND_NAMED_FE(otrecord_getrecordtype,_wrap_OTRecord_GetRecordType,swig_arginfo_otrecord_getrecordtype)
+ SWIG_ZEND_NAMED_FE(otrecord_getserverid,_wrap_OTRecord_GetServerID,swig_arginfo_otrecord_getserverid)
+ SWIG_ZEND_NAMED_FE(otrecord_getassetid,_wrap_OTRecord_GetAssetID,swig_arginfo_otrecord_getassetid)
+ SWIG_ZEND_NAMED_FE(otrecord_getcurrencytla,_wrap_OTRecord_GetCurrencyTLA,swig_arginfo_otrecord_getcurrencytla)
+ SWIG_ZEND_NAMED_FE(otrecord_getnymid,_wrap_OTRecord_GetNymID,swig_arginfo_otrecord_getnymid)
+ SWIG_ZEND_NAMED_FE(otrecord_getaccountid,_wrap_OTRecord_GetAccountID,swig_arginfo_otrecord_getaccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_getothernymid,_wrap_OTRecord_GetOtherNymID,swig_arginfo_otrecord_getothernymid)
+ SWIG_ZEND_NAMED_FE(otrecord_getotheraccountid,_wrap_OTRecord_GetOtherAccountID,swig_arginfo_otrecord_getotheraccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_getname,_wrap_OTRecord_GetName,swig_arginfo_otrecord_getname)
+ SWIG_ZEND_NAMED_FE(otrecord_getdate,_wrap_OTRecord_GetDate,swig_arginfo_otrecord_getdate)
+ SWIG_ZEND_NAMED_FE(otrecord_getamount,_wrap_OTRecord_GetAmount,swig_arginfo_otrecord_getamount)
+ SWIG_ZEND_NAMED_FE(otrecord_getinstrumenttype,_wrap_OTRecord_GetInstrumentType,swig_arginfo_otrecord_getinstrumenttype)
+ SWIG_ZEND_NAMED_FE(otrecord_getmemo,_wrap_OTRecord_GetMemo,swig_arginfo_otrecord_getmemo)
+ SWIG_ZEND_NAMED_FE(otrecord_getcontents,_wrap_OTRecord_GetContents,swig_arginfo_otrecord_getcontents)
+ SWIG_ZEND_NAMED_FE(otrecord_setothernymid,_wrap_OTRecord_SetOtherNymID,swig_arginfo_otrecord_setothernymid)
+ SWIG_ZEND_NAMED_FE(otrecord_setotheraccountid,_wrap_OTRecord_SetOtherAccountID,swig_arginfo_otrecord_setotheraccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_setmemo,_wrap_OTRecord_SetMemo,swig_arginfo_otrecord_setmemo)
+ SWIG_ZEND_NAMED_FE(otrecord_setcontents,_wrap_OTRecord_SetContents,swig_arginfo_otrecord_setcontents)
+ SWIG_ZEND_NAMED_FE(otrecord_hasinitialpayment,_wrap_OTRecord_HasInitialPayment,swig_arginfo_otrecord_hasinitialpayment)
+ SWIG_ZEND_NAMED_FE(otrecord_haspaymentplan,_wrap_OTRecord_HasPaymentPlan,swig_arginfo_otrecord_haspaymentplan)
+ SWIG_ZEND_NAMED_FE(otrecord_getinitialpaymentdate,_wrap_OTRecord_GetInitialPaymentDate,swig_arginfo_otrecord_getinitialpaymentdate)
+ SWIG_ZEND_NAMED_FE(otrecord_getpaymentplanstartdate,_wrap_OTRecord_GetPaymentPlanStartDate,swig_arginfo_otrecord_getpaymentplanstartdate)
+ SWIG_ZEND_NAMED_FE(otrecord_gettimebetweenpayments,_wrap_OTRecord_GetTimeBetweenPayments,swig_arginfo_otrecord_gettimebetweenpayments)
+ SWIG_ZEND_NAMED_FE(otrecord_getinitialpaymentamount,_wrap_OTRecord_GetInitialPaymentAmount,swig_arginfo_otrecord_getinitialpaymentamount)
+ SWIG_ZEND_NAMED_FE(otrecord_getpaymentplanamount,_wrap_OTRecord_GetPaymentPlanAmount,swig_arginfo_otrecord_getpaymentplanamount)
+ SWIG_ZEND_NAMED_FE(otrecord_getmaximumnopayments,_wrap_OTRecord_GetMaximumNoPayments,swig_arginfo_otrecord_getmaximumnopayments)
+ SWIG_ZEND_NAMED_FE(otrecord_formatamount,_wrap_OTRecord_FormatAmount,swig_arginfo_otrecord_formatamount)
+ SWIG_ZEND_NAMED_FE(otrecord_formatdescription,_wrap_OTRecord_FormatDescription,swig_arginfo_otrecord_formatdescription)
+ SWIG_ZEND_NAMED_FE(otrecord_formatshortmaildescription,_wrap_OTRecord_FormatShortMailDescription,swig_arginfo_otrecord_formatshortmaildescription)
+ SWIG_ZEND_NAMED_FE(otrecord_formatmailsubject,_wrap_OTRecord_FormatMailSubject,swig_arginfo_otrecord_formatmailsubject)
+ SWIG_ZEND_NAMED_FE(new_otrecord,_wrap_new_OTRecord,swig_arginfo_new_otrecord)
+ SWIG_ZEND_NAMED_FE(new_otnamelookup,_wrap_new_OTNameLookup,swig_arginfo_new_otnamelookup)
+ SWIG_ZEND_NAMED_FE(otnamelookup_getnymname,_wrap_OTNameLookup_GetNymName,swig_arginfo_otnamelookup_getnymname)
+ SWIG_ZEND_NAMED_FE(otnamelookup_getacctname,_wrap_OTNameLookup_GetAcctName,swig_arginfo_otnamelookup_getacctname)
+ SWIG_ZEND_NAMED_FE(new_otlookupcaller,_wrap_new_OTLookupCaller,swig_arginfo_new_otlookupcaller)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_getcallback,_wrap_OTLookupCaller_getCallback,swig_arginfo_otlookupcaller_getcallback)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_delcallback,_wrap_OTLookupCaller_delCallback,swig_arginfo_otlookupcaller_delcallback)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_setcallback,_wrap_OTLookupCaller_setCallback,swig_arginfo_otlookupcaller_setcallback)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_iscallbackset,_wrap_OTLookupCaller_isCallbackSet,swig_arginfo_otlookupcaller_iscallbackset)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_getnymname,_wrap_OTLookupCaller_GetNymName,swig_arginfo_otlookupcaller_getnymname)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_getacctname,_wrap_OTLookupCaller_GetAcctName,swig_arginfo_otlookupcaller_getacctname)
+ SWIG_ZEND_NAMED_FE(ot_api_set_addrbookcallback,_wrap_OT_API_Set_AddrBookCallback,swig_arginfo_ot_api_set_addrbookcallback)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setaddrbookcaller,_wrap_OTRecordList_setAddrBookCaller,swig_arginfo_otrecordlist_setaddrbookcaller)
+ SWIG_ZEND_NAMED_FE(otrecordlist_getaddrbookcaller,_wrap_OTRecordList_getAddrBookCaller,swig_arginfo_otrecordlist_getaddrbookcaller)
+ SWIG_ZEND_NAMED_FE(new_otrecordlist,_wrap_new_OTRecordList,swig_arginfo_new_otrecordlist)
+ SWIG_ZEND_NAMED_FE(otrecordlist_textto,_wrap_OTRecordList_textTo,swig_arginfo_otrecordlist_textto)
+ SWIG_ZEND_NAMED_FE(otrecordlist_textfrom,_wrap_OTRecordList_textFrom,swig_arginfo_otrecordlist_textfrom)
+ SWIG_ZEND_NAMED_FE(otrecordlist_settextto,_wrap_OTRecordList_setTextTo,swig_arginfo_otrecordlist_settextto)
+ SWIG_ZEND_NAMED_FE(otrecordlist_settextfrom,_wrap_OTRecordList_setTextFrom,swig_arginfo_otrecordlist_settextfrom)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setfastmode,_wrap_OTRecordList_SetFastMode,swig_arginfo_otrecordlist_setfastmode)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setserverid,_wrap_OTRecordList_SetServerID,swig_arginfo_otrecordlist_setserverid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_addserverid,_wrap_OTRecordList_AddServerID,swig_arginfo_otrecordlist_addserverid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_clearservers,_wrap_OTRecordList_ClearServers,swig_arginfo_otrecordlist_clearservers)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setassetid,_wrap_OTRecordList_SetAssetID,swig_arginfo_otrecordlist_setassetid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_addassetid,_wrap_OTRecordList_AddAssetID,swig_arginfo_otrecordlist_addassetid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_clearassets,_wrap_OTRecordList_ClearAssets,swig_arginfo_otrecordlist_clearassets)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setnymid,_wrap_OTRecordList_SetNymID,swig_arginfo_otrecordlist_setnymid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_addnymid,_wrap_OTRecordList_AddNymID,swig_arginfo_otrecordlist_addnymid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_clearnyms,_wrap_OTRecordList_ClearNyms,swig_arginfo_otrecordlist_clearnyms)
+ SWIG_ZEND_NAMED_FE(otrecordlist_setaccountid,_wrap_OTRecordList_SetAccountID,swig_arginfo_otrecordlist_setaccountid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_addaccountid,_wrap_OTRecordList_AddAccountID,swig_arginfo_otrecordlist_addaccountid)
+ SWIG_ZEND_NAMED_FE(otrecordlist_clearaccounts,_wrap_OTRecordList_ClearAccounts,swig_arginfo_otrecordlist_clearaccounts)
+ SWIG_ZEND_NAMED_FE(otrecordlist_acceptchequesautomatically,_wrap_OTRecordList_AcceptChequesAutomatically,swig_arginfo_otrecordlist_acceptchequesautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_acceptreceiptsautomatically,_wrap_OTRecordList_AcceptReceiptsAutomatically,swig_arginfo_otrecordlist_acceptreceiptsautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_accepttransfersautomatically,_wrap_OTRecordList_AcceptTransfersAutomatically,swig_arginfo_otrecordlist_accepttransfersautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_acceptcashautomatically,_wrap_OTRecordList_AcceptCashAutomatically,swig_arginfo_otrecordlist_acceptcashautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_doesacceptchequesautomatically,_wrap_OTRecordList_DoesAcceptChequesAutomatically,swig_arginfo_otrecordlist_doesacceptchequesautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_doesacceptreceiptsautomatically,_wrap_OTRecordList_DoesAcceptReceiptsAutomatically,swig_arginfo_otrecordlist_doesacceptreceiptsautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_doesaccepttransfersautomatically,_wrap_OTRecordList_DoesAcceptTransfersAutomatically,swig_arginfo_otrecordlist_doesaccepttransfersautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_doesacceptcashautomatically,_wrap_OTRecordList_DoesAcceptCashAutomatically,swig_arginfo_otrecordlist_doesacceptcashautomatically)
+ SWIG_ZEND_NAMED_FE(otrecordlist_performautoaccept,_wrap_OTRecordList_PerformAutoAccept,swig_arginfo_otrecordlist_performautoaccept)
+ SWIG_ZEND_NAMED_FE(otrecordlist_populate,_wrap_OTRecordList_Populate,swig_arginfo_otrecordlist_populate)
+ SWIG_ZEND_NAMED_FE(otrecordlist_clearcontents,_wrap_OTRecordList_ClearContents,swig_arginfo_otrecordlist_clearcontents)
+ SWIG_ZEND_NAMED_FE(otrecordlist_size,_wrap_OTRecordList_size,swig_arginfo_otrecordlist_size)
+ SWIG_ZEND_NAMED_FE(otrecordlist_getrecord,_wrap_OTRecordList_GetRecord,swig_arginfo_otrecordlist_getrecord)
+ SWIG_ZEND_NAMED_FE(otrecordlist_removerecord,_wrap_OTRecordList_RemoveRecord,swig_arginfo_otrecordlist_removerecord)
  SWIG_ZEND_NAMED_FE(ot_api_set_passwordcallback,_wrap_OT_API_Set_PasswordCallback,swig_arginfo_ot_api_set_passwordcallback)
  SWIG_ZEND_NAMED_FE(swig_otapi_alter_newobject,_wrap_swig_otapi_alter_newobject,NULL)
  SWIG_ZEND_NAMED_FE(swig_otapi_get_newobject,_wrap_swig_otapi_get_newobject,NULL)
@@ -44086,16 +48385,16 @@ ZEND_INIT_MODULE_GLOBALS(otapi, otapi_init_globals, otapi_destroy_globals);
 /* Register resource destructors for pointer types */
 le_swig__p_std__vectorT_unsigned_char_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__vectorT_unsigned_char_t,NULL,(char *)(SWIGTYPE_p_std__vectorT_unsigned_char_t->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_std__vectorT_unsigned_char_t,&le_swig__p_std__vectorT_unsigned_char_t);
-le_swig__p_OTVariable=zend_register_list_destructors_ex(_wrap_destroy_p_OTVariable,NULL,(char *)(SWIGTYPE_p_OTVariable->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTVariable,&le_swig__p_OTVariable);
 le_swig__p_OTDB__Storage=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Storage,NULL,(char *)(SWIGTYPE_p_OTDB__Storage->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Storage,&le_swig__p_OTDB__Storage);
+le_swig__p_OTVariable=zend_register_list_destructors_ex(_wrap_destroy_p_OTVariable,NULL,(char *)(SWIGTYPE_p_OTVariable->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTVariable,&le_swig__p_OTVariable);
 le_swig__p_OTDB__BitcoinAcct=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BitcoinAcct,NULL,(char *)(SWIGTYPE_p_OTDB__BitcoinAcct->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__BitcoinAcct,&le_swig__p_OTDB__BitcoinAcct);
 le_swig__p_OT_ME=zend_register_list_destructors_ex(_wrap_destroy_p_OT_ME,NULL,(char *)(SWIGTYPE_p_OT_ME->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OT_ME,&le_swig__p_OT_ME);
-le_swig__p_WrapTimeT=zend_register_list_destructors_ex(_wrap_destroy_p_WrapTimeT,NULL,(char *)(SWIGTYPE_p_WrapTimeT->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_WrapTimeT,&le_swig__p_WrapTimeT);
+le_swig__p_time64_t=zend_register_list_destructors_ex(_wrap_destroy_p_time64_t,NULL,(char *)(SWIGTYPE_p_time64_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_time64_t,&le_swig__p_time64_t);
 le_swig__p_OTPassword=zend_register_list_destructors_ex(_wrap_destroy_p_OTPassword,NULL,(char *)(SWIGTYPE_p_OTPassword->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTPassword,&le_swig__p_OTPassword);
 le_swig__p_OTDB__BidData=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BidData,NULL,(char *)(SWIGTYPE_p_OTDB__BidData->name),module_number);
@@ -44126,8 +48425,12 @@ le_swig__p_OTDB__StringMap=zend_register_list_destructors_ex(_wrap_destroy_p_OTD
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__StringMap,&le_swig__p_OTDB__StringMap);
 le_swig__int=zend_register_list_destructors_ex(_wrap_destroy_int,NULL,(char *)(SWIGTYPE_int->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_int,&le_swig__int);
+le_swig__p_OTNameLookup=zend_register_list_destructors_ex(_wrap_destroy_p_OTNameLookup,NULL,(char *)(SWIGTYPE_p_OTNameLookup->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTNameLookup,&le_swig__p_OTNameLookup);
 le_swig__p_mapped_type=zend_register_list_destructors_ex(_wrap_destroy_p_mapped_type,NULL,(char *)(SWIGTYPE_p_mapped_type->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_mapped_type,&le_swig__p_mapped_type);
+le_swig__p__SharedPtrT_OTRecord_t=zend_register_list_destructors_ex(_wrap_destroy_p__SharedPtrT_OTRecord_t,NULL,(char *)(SWIGTYPE_p__SharedPtrT_OTRecord_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p__SharedPtrT_OTRecord_t,&le_swig__p__SharedPtrT_OTRecord_t);
 le_swig__p_OTDB__BitcoinServer=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__BitcoinServer,NULL,(char *)(SWIGTYPE_p_OTDB__BitcoinServer->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__BitcoinServer,&le_swig__p_OTDB__BitcoinServer);
 le_swig__p_OTDB__Displayable=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Displayable,NULL,(char *)(SWIGTYPE_p_OTDB__Displayable->name),module_number);
@@ -44160,8 +48463,8 @@ le_swig__p_OTAPI_Exec=zend_register_list_destructors_ex(_wrap_destroy_p_OTAPI_Ex
 SWIG_TypeClientData(SWIGTYPE_p_OTAPI_Exec,&le_swig__p_OTAPI_Exec);
 le_swig__p_OTDB__Contact=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Contact,NULL,(char *)(SWIGTYPE_p_OTDB__Contact->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Contact,&le_swig__p_OTDB__Contact);
-le_swig__p_OTCaller=zend_register_list_destructors_ex(_wrap_destroy_p_OTCaller,NULL,(char *)(SWIGTYPE_p_OTCaller->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTCaller,&le_swig__p_OTCaller);
+le_swig__p_OTRecord=zend_register_list_destructors_ex(_wrap_destroy_p_OTRecord,NULL,(char *)(SWIGTYPE_p_OTRecord->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTRecord,&le_swig__p_OTRecord);
 le_swig__p_signed_char=zend_register_list_destructors_ex(_wrap_destroy_p_signed_char,NULL,(char *)(SWIGTYPE_p_signed_char->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_signed_char,&le_swig__p_signed_char);
 le_swig__p_unsigned_char=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_char,NULL,(char *)(SWIGTYPE_p_unsigned_char->name),module_number);
@@ -44172,18 +48475,22 @@ le_swig__p_OTDB__RippleServer=zend_register_list_destructors_ex(_wrap_destroy_p_
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__RippleServer,&le_swig__p_OTDB__RippleServer);
 le_swig__p_OTDB__LoomServer=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__LoomServer,NULL,(char *)(SWIGTYPE_p_OTDB__LoomServer->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__LoomServer,&le_swig__p_OTDB__LoomServer);
+le_swig__p_OTLookupCaller=zend_register_list_destructors_ex(_wrap_destroy_p_OTLookupCaller,NULL,(char *)(SWIGTYPE_p_OTLookupCaller->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTLookupCaller,&le_swig__p_OTLookupCaller);
+le_swig__p_OTCaller=zend_register_list_destructors_ex(_wrap_destroy_p_OTCaller,NULL,(char *)(SWIGTYPE_p_OTCaller->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTCaller,&le_swig__p_OTCaller);
 le_swig__p_short=zend_register_list_destructors_ex(_wrap_destroy_p_short,NULL,(char *)(SWIGTYPE_p_short->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_short,&le_swig__p_short);
 le_swig__p_unsigned_short=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_short,NULL,(char *)(SWIGTYPE_p_unsigned_short->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_unsigned_short,&le_swig__p_unsigned_short);
 le_swig__p_key_type=zend_register_list_destructors_ex(_wrap_destroy_p_key_type,NULL,(char *)(SWIGTYPE_p_key_type->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_key_type,&le_swig__p_key_type);
+le_swig__p_OTRecordList=zend_register_list_destructors_ex(_wrap_destroy_p_OTRecordList,NULL,(char *)(SWIGTYPE_p_OTRecordList->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_OTRecordList,&le_swig__p_OTRecordList);
 le_swig__p_OTDB__Storable=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__Storable,NULL,(char *)(SWIGTYPE_p_OTDB__Storable->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__Storable,&le_swig__p_OTDB__Storable);
 le_swig__p_OTDB__AddressBook=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__AddressBook,NULL,(char *)(SWIGTYPE_p_OTDB__AddressBook->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__AddressBook,&le_swig__p_OTDB__AddressBook);
-le_swig__p_OTCallback=zend_register_list_destructors_ex(_wrap_destroy_p_OTCallback,NULL,(char *)(SWIGTYPE_p_OTCallback->name),module_number);
-SWIG_TypeClientData(SWIGTYPE_p_OTCallback,&le_swig__p_OTCallback);
 le_swig__p_long_long=zend_register_list_destructors_ex(_wrap_destroy_p_long_long,NULL,(char *)(SWIGTYPE_p_long_long->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_long_long,&le_swig__p_long_long);
 le_swig__p_unsigned_long_long=zend_register_list_destructors_ex(_wrap_destroy_p_unsigned_long_long,NULL,(char *)(SWIGTYPE_p_unsigned_long_long->name),module_number);
@@ -44247,6 +48554,11 @@ SWIG_LONG_CONSTANT(STORED_OBJ_OFFER_LIST_NYM, OTDB::STORED_OBJ_OFFER_LIST_NYM);
 SWIG_LONG_CONSTANT(STORED_OBJ_TRADE_DATA_NYM, OTDB::STORED_OBJ_TRADE_DATA_NYM);
 SWIG_LONG_CONSTANT(STORED_OBJ_TRADE_LIST_NYM, OTDB::STORED_OBJ_TRADE_LIST_NYM);
 SWIG_LONG_CONSTANT(STORED_OBJ_ERROR, OTDB::STORED_OBJ_ERROR);
+SWIG_LONG_CONSTANT(OTRecord_Mail, OTRecord::Mail);
+SWIG_LONG_CONSTANT(OTRecord_Transfer, OTRecord::Transfer);
+SWIG_LONG_CONSTANT(OTRecord_Receipt, OTRecord::Receipt);
+SWIG_LONG_CONSTANT(OTRecord_Instrument, OTRecord::Instrument);
+SWIG_LONG_CONSTANT(OTRecord_ErrorState, OTRecord::ErrorState);
 /* end cinit subsection */
 
     return SUCCESS;

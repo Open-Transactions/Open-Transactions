@@ -277,6 +277,14 @@ abstract class otapi {
 		return $r;
 	}
 
+	static function OTRecord_GetTypeString($theType) {
+		return OTRecord_GetTypeString($theType);
+	}
+
+	static function OT_API_Set_AddrBookCallback($theCaller) {
+		return OT_API_Set_AddrBookCallback($theCaller);
+	}
+
 	static function OT_API_Set_PasswordCallback($theCaller) {
 		return OT_API_Set_PasswordCallback($theCaller);
 	}
@@ -601,147 +609,6 @@ class OTPassword {
 	}
 }
 
-class OTCallback {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTCallback') {
-			$this->_cPtr=$res;
-			return;
-		}
-		if (get_class($this) === 'OTCallback') {
-			$_this = null;
-		} else {
-			$_this = $this;
-		}
-		$this->_cPtr=new_OTCallback($_this);
-	}
-
-	function runOne($szDisplay,$theOutput) {
-		OTCallback_runOne($this->_cPtr,$szDisplay,$theOutput);
-	}
-
-	function runTwo($szDisplay,$theOutput) {
-		OTCallback_runTwo($this->_cPtr,$szDisplay,$theOutput);
-	}
-}
-
-class OTCaller {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_OTCaller') {
-			$this->_cPtr=$res;
-			return;
-		}
-		$this->_cPtr=new_OTCaller();
-	}
-
-	function GetPassword($theOutput) {
-		return OTCaller_GetPassword($this->_cPtr,$theOutput);
-	}
-
-	function ZeroOutPassword() {
-		OTCaller_ZeroOutPassword($this->_cPtr);
-	}
-
-	function GetDisplay() {
-		return OTCaller_GetDisplay($this->_cPtr);
-	}
-
-	function SetDisplay($szDisplay,$nLength) {
-		OTCaller_SetDisplay($this->_cPtr,$szDisplay,$nLength);
-	}
-
-	function delCallback() {
-		OTCaller_delCallback($this->_cPtr);
-	}
-
-	function setCallback($cb) {
-		OTCaller_setCallback($this->_cPtr,$cb);
-	}
-
-	function isCallbackSet() {
-		return OTCaller_isCallbackSet($this->_cPtr);
-	}
-
-	function callOne() {
-		OTCaller_callOne($this->_cPtr);
-	}
-
-	function callTwo() {
-		OTCaller_callTwo($this->_cPtr);
-	}
-}
-
-class WrapTimeT {
-	public $_cPtr=null;
-	protected $_pData=array();
-
-	function __set($var,$value) {
-		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
-		$this->_pData[$var] = $value;
-	}
-
-	function __isset($var) {
-		if ($var === 'thisown') return true;
-		return array_key_exists($var, $this->_pData);
-	}
-
-	function __get($var) {
-		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
-		return $this->_pData[$var];
-	}
-
-	function __construct($res=null) {
-		if (is_resource($res) && get_resource_type($res) === '_p_WrapTimeT') {
-			$this->_cPtr=$res;
-			return;
-		}
-		$this->_cPtr=new_WrapTimeT();
-	}
-
-	function getTime() {
-		return WrapTimeT_getTime($this->_cPtr);
-	}
-
-	function setTime($_time) {
-		WrapTimeT_setTime($this->_cPtr,$_time);
-	}
-}
-
 class OTAPI_Wrap {
 	public $_cPtr=null;
 	protected $_pData=array();
@@ -833,13 +700,7 @@ class OTAPI_Wrap {
 	}
 
 	static function GetTime() {
-		$r=OTAPI_Wrap_GetTime();
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_GetTime();
 	}
 
 	static function NumList_Add($strNumList,$strNumbers) {
@@ -1679,13 +1540,7 @@ class OTAPI_Wrap {
 	}
 
 	static function Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
-		$r=OTAPI_Wrap_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Transaction_GetDateSigned($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION);
 	}
 
 	static function Transaction_GetAmount($SERVER_ID,$USER_ID,$ACCOUNT_ID,$THE_TRANSACTION) {
@@ -1781,23 +1636,11 @@ class OTAPI_Wrap {
 	}
 
 	static function Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		$r=OTAPI_Wrap_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Token_GetValidFrom($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
 	}
 
 	static function Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN) {
-		$r=OTAPI_Wrap_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Token_GetValidTo($SERVER_ID,$ASSET_TYPE_ID,$THE_TOKEN);
 	}
 
 	static function Token_GetAssetID($THE_TOKEN) {
@@ -1817,23 +1660,11 @@ class OTAPI_Wrap {
 	}
 
 	static function Instrmnt_GetValidFrom($THE_INSTRUMENT) {
-		$r=OTAPI_Wrap_Instrmnt_GetValidFrom($THE_INSTRUMENT);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Instrmnt_GetValidFrom($THE_INSTRUMENT);
 	}
 
 	static function Instrmnt_GetValidTo($THE_INSTRUMENT) {
-		$r=OTAPI_Wrap_Instrmnt_GetValidTo($THE_INSTRUMENT);
-		if (is_resource($r)) {
-			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
-			if (class_exists($c)) return new $c($r);
-			return new WrapTimeT($r);
-		}
-		return $r;
+		return OTAPI_Wrap_Instrmnt_GetValidTo($THE_INSTRUMENT);
 	}
 
 	static function Instrmnt_GetMemo($THE_INSTRUMENT) {
@@ -3982,6 +3813,588 @@ class AddressBook extends Storable {
 			return new AddressBook($r);
 		}
 		return $r;
+	}
+}
+
+class OTRecord {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	const Mail = 0;
+
+	const Transfer = OTRecord_Transfer;
+
+	const Receipt = OTRecord_Receipt;
+
+	const Instrument = OTRecord_Instrument;
+
+	const ErrorState = OTRecord_ErrorState;
+
+	function IsPending() {
+		return OTRecord_IsPending($this->_cPtr);
+	}
+
+	function IsOutgoing() {
+		return OTRecord_IsOutgoing($this->_cPtr);
+	}
+
+	function IsRecord() {
+		return OTRecord_IsRecord($this->_cPtr);
+	}
+
+	function IsReceipt() {
+		return OTRecord_IsReceipt($this->_cPtr);
+	}
+
+	function IsMail() {
+		return OTRecord_IsMail($this->_cPtr);
+	}
+
+	function IsTransfer() {
+		return OTRecord_IsTransfer($this->_cPtr);
+	}
+
+	function IsCheque() {
+		return OTRecord_IsCheque($this->_cPtr);
+	}
+
+	function IsInvoice() {
+		return OTRecord_IsInvoice($this->_cPtr);
+	}
+
+	function IsVoucher() {
+		return OTRecord_IsVoucher($this->_cPtr);
+	}
+
+	function IsContract() {
+		return OTRecord_IsContract($this->_cPtr);
+	}
+
+	function IsPaymentPlan() {
+		return OTRecord_IsPaymentPlan($this->_cPtr);
+	}
+
+	function IsCash() {
+		return OTRecord_IsCash($this->_cPtr);
+	}
+
+	function HasContents() {
+		return OTRecord_HasContents($this->_cPtr);
+	}
+
+	function HasMemo() {
+		return OTRecord_HasMemo($this->_cPtr);
+	}
+
+	function IsExpired() {
+		return OTRecord_IsExpired($this->_cPtr);
+	}
+
+	function IsCanceled() {
+		return OTRecord_IsCanceled($this->_cPtr);
+	}
+
+	function SetExpired() {
+		OTRecord_SetExpired($this->_cPtr);
+	}
+
+	function SetCanceled() {
+		OTRecord_SetCanceled($this->_cPtr);
+	}
+
+	function GetValidFrom() {
+		return OTRecord_GetValidFrom($this->_cPtr);
+	}
+
+	function GetValidTo() {
+		return OTRecord_GetValidTo($this->_cPtr);
+	}
+
+	function SetDateRange($tValidFrom,$tValidTo) {
+		OTRecord_SetDateRange($this->_cPtr,$tValidFrom,$tValidTo);
+	}
+
+	function CanDeleteRecord() {
+		return OTRecord_CanDeleteRecord($this->_cPtr);
+	}
+
+	function CanAcceptIncoming() {
+		return OTRecord_CanAcceptIncoming($this->_cPtr);
+	}
+
+	function CanDiscardIncoming() {
+		return OTRecord_CanDiscardIncoming($this->_cPtr);
+	}
+
+	function CanCancelOutgoing() {
+		return OTRecord_CanCancelOutgoing($this->_cPtr);
+	}
+
+	function CanDiscardOutgoingCash() {
+		return OTRecord_CanDiscardOutgoingCash($this->_cPtr);
+	}
+
+	function CancelOutgoing($str_via_acct) {
+		return OTRecord_CancelOutgoing($this->_cPtr,$str_via_acct);
+	}
+
+	function AcceptIncomingInstrument($str_into_acct) {
+		return OTRecord_AcceptIncomingInstrument($this->_cPtr,$str_into_acct);
+	}
+
+	function AcceptIncomingTransfer() {
+		return OTRecord_AcceptIncomingTransfer($this->_cPtr);
+	}
+
+	function AcceptIncomingReceipt() {
+		return OTRecord_AcceptIncomingReceipt($this->_cPtr);
+	}
+
+	function DiscardIncoming() {
+		return OTRecord_DiscardIncoming($this->_cPtr);
+	}
+
+	function DeleteRecord() {
+		return OTRecord_DeleteRecord($this->_cPtr);
+	}
+
+	function DiscardOutgoingCash() {
+		return OTRecord_DiscardOutgoingCash($this->_cPtr);
+	}
+
+	function GetBoxIndex() {
+		return OTRecord_GetBoxIndex($this->_cPtr);
+	}
+
+	function SetBoxIndex($nBoxIndex) {
+		OTRecord_SetBoxIndex($this->_cPtr,$nBoxIndex);
+	}
+
+	function GetTransactionNum() {
+		return OTRecord_GetTransactionNum($this->_cPtr);
+	}
+
+	function SetTransactionNum($lTransNum) {
+		OTRecord_SetTransactionNum($this->_cPtr,$lTransNum);
+	}
+
+	function GetTransNumForDisplay() {
+		return OTRecord_GetTransNumForDisplay($this->_cPtr);
+	}
+
+	function SetTransNumForDisplay($lTransNum) {
+		OTRecord_SetTransNumForDisplay($this->_cPtr,$lTransNum);
+	}
+
+	function GetRecordType() {
+		return OTRecord_GetRecordType($this->_cPtr);
+	}
+
+	function GetServerID() {
+		return OTRecord_GetServerID($this->_cPtr);
+	}
+
+	function GetAssetID() {
+		return OTRecord_GetAssetID($this->_cPtr);
+	}
+
+	function GetCurrencyTLA() {
+		return OTRecord_GetCurrencyTLA($this->_cPtr);
+	}
+
+	function GetNymID() {
+		return OTRecord_GetNymID($this->_cPtr);
+	}
+
+	function GetAccountID() {
+		return OTRecord_GetAccountID($this->_cPtr);
+	}
+
+	function GetOtherNymID() {
+		return OTRecord_GetOtherNymID($this->_cPtr);
+	}
+
+	function GetOtherAccountID() {
+		return OTRecord_GetOtherAccountID($this->_cPtr);
+	}
+
+	function GetName() {
+		return OTRecord_GetName($this->_cPtr);
+	}
+
+	function GetDate() {
+		return OTRecord_GetDate($this->_cPtr);
+	}
+
+	function GetAmount() {
+		return OTRecord_GetAmount($this->_cPtr);
+	}
+
+	function GetInstrumentType() {
+		return OTRecord_GetInstrumentType($this->_cPtr);
+	}
+
+	function GetMemo() {
+		return OTRecord_GetMemo($this->_cPtr);
+	}
+
+	function GetContents() {
+		return OTRecord_GetContents($this->_cPtr);
+	}
+
+	function SetOtherNymID($str_ID) {
+		OTRecord_SetOtherNymID($this->_cPtr,$str_ID);
+	}
+
+	function SetOtherAccountID($str_ID) {
+		OTRecord_SetOtherAccountID($this->_cPtr,$str_ID);
+	}
+
+	function SetMemo($str_memo) {
+		OTRecord_SetMemo($this->_cPtr,$str_memo);
+	}
+
+	function SetContents($str_contents) {
+		OTRecord_SetContents($this->_cPtr,$str_contents);
+	}
+
+	function HasInitialPayment() {
+		return OTRecord_HasInitialPayment($this->_cPtr);
+	}
+
+	function HasPaymentPlan() {
+		return OTRecord_HasPaymentPlan($this->_cPtr);
+	}
+
+	function GetInitialPaymentDate() {
+		return OTRecord_GetInitialPaymentDate($this->_cPtr);
+	}
+
+	function GetPaymentPlanStartDate() {
+		return OTRecord_GetPaymentPlanStartDate($this->_cPtr);
+	}
+
+	function GetTimeBetweenPayments() {
+		return OTRecord_GetTimeBetweenPayments($this->_cPtr);
+	}
+
+	function GetInitialPaymentAmount() {
+		return OTRecord_GetInitialPaymentAmount($this->_cPtr);
+	}
+
+	function GetPaymentPlanAmount() {
+		return OTRecord_GetPaymentPlanAmount($this->_cPtr);
+	}
+
+	function GetMaximumNoPayments() {
+		return OTRecord_GetMaximumNoPayments($this->_cPtr);
+	}
+
+	function FormatAmount($str_output) {
+		return OTRecord_FormatAmount($this->_cPtr,$str_output);
+	}
+
+	function FormatDescription($str_output) {
+		return OTRecord_FormatDescription($this->_cPtr,$str_output);
+	}
+
+	function FormatShortMailDescription($str_output) {
+		return OTRecord_FormatShortMailDescription($this->_cPtr,$str_output);
+	}
+
+	function FormatMailSubject($str_output) {
+		return OTRecord_FormatMailSubject($this->_cPtr,$str_output);
+	}
+
+	function __construct($str_server_id,$str_asset_id,$str_currency_tla,$str_nym_id,$str_account_id,$str_name,$str_date,$str_amount,$str_type,$bIsPending,$bIsOutgoing,$bIsRecord,$bIsReceipt,$eRecordType) {
+		if (is_resource($str_server_id) && get_resource_type($str_server_id) === '_p_OTRecord') {
+			$this->_cPtr=$str_server_id;
+			return;
+		}
+		$this->_cPtr=new_OTRecord($str_server_id,$str_asset_id,$str_currency_tla,$str_nym_id,$str_account_id,$str_name,$str_date,$str_amount,$str_type,$bIsPending,$bIsOutgoing,$bIsRecord,$bIsReceipt,$eRecordType);
+	}
+}
+
+class OTNameLookup {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_OTNameLookup') {
+			$this->_cPtr=$res;
+			return;
+		}
+		if (get_class($this) === 'OTNameLookup') {
+			$_this = null;
+		} else {
+			$_this = $this;
+		}
+		$this->_cPtr=new_OTNameLookup($_this);
+	}
+
+	function GetNymName($str_id,$p_server_id=null) {
+		return OTNameLookup_GetNymName($this->_cPtr,$str_id,$p_server_id);
+	}
+
+	function GetAcctName($str_id,$p_nym_id=null,$p_server_id=null,$p_asset_id=null) {
+		return OTNameLookup_GetAcctName($this->_cPtr,$str_id,$p_nym_id,$p_server_id,$p_asset_id);
+	}
+}
+
+class OTLookupCaller {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	function __construct($res=null) {
+		if (is_resource($res) && get_resource_type($res) === '_p_OTLookupCaller') {
+			$this->_cPtr=$res;
+			return;
+		}
+		$this->_cPtr=new_OTLookupCaller();
+	}
+
+	function getCallback() {
+		$r=OTLookupCaller_getCallback($this->_cPtr);
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new OTNameLookup($r);
+		}
+		return $r;
+	}
+
+	function delCallback() {
+		OTLookupCaller_delCallback($this->_cPtr);
+	}
+
+	function setCallback($cb) {
+		OTLookupCaller_setCallback($this->_cPtr,$cb);
+	}
+
+	function isCallbackSet() {
+		return OTLookupCaller_isCallbackSet($this->_cPtr);
+	}
+
+	function GetNymName($str_id,$p_server_id=null) {
+		return OTLookupCaller_GetNymName($this->_cPtr,$str_id,$p_server_id);
+	}
+
+	function GetAcctName($str_id,$p_nym_id=null,$p_server_id=null,$p_asset_id=null) {
+		return OTLookupCaller_GetAcctName($this->_cPtr,$str_id,$p_nym_id,$p_server_id,$p_asset_id);
+	}
+}
+
+class OTRecordList {
+	public $_cPtr=null;
+	protected $_pData=array();
+
+	function __set($var,$value) {
+		if ($var === 'thisown') return swig_otapi_alter_newobject($this->_cPtr,$value);
+		$this->_pData[$var] = $value;
+	}
+
+	function __isset($var) {
+		if ($var === 'thisown') return true;
+		return array_key_exists($var, $this->_pData);
+	}
+
+	function __get($var) {
+		if ($var === 'thisown') return swig_otapi_get_newobject($this->_cPtr);
+		return $this->_pData[$var];
+	}
+
+	static function setAddrBookCaller($theCaller) {
+		return OTRecordList_setAddrBookCaller($theCaller);
+	}
+
+	static function getAddrBookCaller() {
+		$r=OTRecordList_getAddrBookCaller();
+		if (is_resource($r)) {
+			$c=substr(get_resource_type($r), (strpos(get_resource_type($r), '__') ? strpos(get_resource_type($r), '__') + 2 : 3));
+			if (class_exists($c)) return new $c($r);
+			return new OTLookupCaller($r);
+		}
+		return $r;
+	}
+
+	function __construct($theLookup=null) {
+		if (is_resource($theLookup) && get_resource_type($theLookup) === '_p_OTRecordList') {
+			$this->_cPtr=$theLookup;
+			return;
+		}
+		switch (func_num_args()) {
+		case 0: $this->_cPtr=new_OTRecordList(); break;
+		default: $this->_cPtr=new_OTRecordList($theLookup);
+		}
+	}
+
+	static function textTo() {
+		return OTRecordList_textTo();
+	}
+
+	static function textFrom() {
+		return OTRecordList_textFrom();
+	}
+
+	static function setTextTo($text) {
+		OTRecordList_setTextTo($text);
+	}
+
+	static function setTextFrom($text) {
+		OTRecordList_setTextFrom($text);
+	}
+
+	function SetFastMode() {
+		OTRecordList_SetFastMode($this->_cPtr);
+	}
+
+	function SetServerID($str_id) {
+		OTRecordList_SetServerID($this->_cPtr,$str_id);
+	}
+
+	function AddServerID($str_id) {
+		OTRecordList_AddServerID($this->_cPtr,$str_id);
+	}
+
+	function ClearServers() {
+		OTRecordList_ClearServers($this->_cPtr);
+	}
+
+	function SetAssetID($str_id) {
+		OTRecordList_SetAssetID($this->_cPtr,$str_id);
+	}
+
+	function AddAssetID($str_id) {
+		OTRecordList_AddAssetID($this->_cPtr,$str_id);
+	}
+
+	function ClearAssets() {
+		OTRecordList_ClearAssets($this->_cPtr);
+	}
+
+	function SetNymID($str_id) {
+		OTRecordList_SetNymID($this->_cPtr,$str_id);
+	}
+
+	function AddNymID($str_id) {
+		OTRecordList_AddNymID($this->_cPtr,$str_id);
+	}
+
+	function ClearNyms() {
+		OTRecordList_ClearNyms($this->_cPtr);
+	}
+
+	function SetAccountID($str_id) {
+		OTRecordList_SetAccountID($this->_cPtr,$str_id);
+	}
+
+	function AddAccountID($str_id) {
+		OTRecordList_AddAccountID($this->_cPtr,$str_id);
+	}
+
+	function ClearAccounts() {
+		OTRecordList_ClearAccounts($this->_cPtr);
+	}
+
+	function AcceptChequesAutomatically($bVal=true) {
+		OTRecordList_AcceptChequesAutomatically($this->_cPtr,$bVal);
+	}
+
+	function AcceptReceiptsAutomatically($bVal=true) {
+		OTRecordList_AcceptReceiptsAutomatically($this->_cPtr,$bVal);
+	}
+
+	function AcceptTransfersAutomatically($bVal=true) {
+		OTRecordList_AcceptTransfersAutomatically($this->_cPtr,$bVal);
+	}
+
+	function AcceptCashAutomatically($bVal=true) {
+		OTRecordList_AcceptCashAutomatically($this->_cPtr,$bVal);
+	}
+
+	function DoesAcceptChequesAutomatically() {
+		return OTRecordList_DoesAcceptChequesAutomatically($this->_cPtr);
+	}
+
+	function DoesAcceptReceiptsAutomatically() {
+		return OTRecordList_DoesAcceptReceiptsAutomatically($this->_cPtr);
+	}
+
+	function DoesAcceptTransfersAutomatically() {
+		return OTRecordList_DoesAcceptTransfersAutomatically($this->_cPtr);
+	}
+
+	function DoesAcceptCashAutomatically() {
+		return OTRecordList_DoesAcceptCashAutomatically($this->_cPtr);
+	}
+
+	function PerformAutoAccept() {
+		return OTRecordList_PerformAutoAccept($this->_cPtr);
+	}
+
+	function Populate() {
+		return OTRecordList_Populate($this->_cPtr);
+	}
+
+	function ClearContents() {
+		OTRecordList_ClearContents($this->_cPtr);
+	}
+
+	function size() {
+		return OTRecordList_size($this->_cPtr);
+	}
+
+	function GetRecord($nIndex) {
+		return OTRecordList_GetRecord($this->_cPtr,$nIndex);
+	}
+
+	function RemoveRecord($nIndex) {
+		return OTRecordList_RemoveRecord($this->_cPtr,$nIndex);
 	}
 }
 

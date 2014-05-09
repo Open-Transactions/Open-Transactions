@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTTrackable.h
+ *  OTTrackable.hpp
  *
  */
 
@@ -130,7 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_TRACKABLE_HPP__
 #define __OT_TRACKABLE_HPP__
 
@@ -139,11 +138,10 @@
 #include "OTInstrument.hpp"
 
 
-
 // OTTrackable is very similar to OTInstrument.
 // The difference is, it may have identifying info on it:
 // TRANSACTION NUMBER, SENDER USER ID (NYM ID), AND SENDER ACCOUNT ID.
-
+//
 class OTTrackable : public OTInstrument
 {
 private:  // Private prevents erroneous use by other classes.
@@ -173,11 +171,11 @@ public:
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 inline void SetAssetID(const OTIdentifier & ASSET_ID)  { m_AssetTypeID	= ASSET_ID; }
 	 inline void SetServerID(const OTIdentifier & SERVER_ID) { m_ServerID	= SERVER_ID; }
@@ -203,7 +201,6 @@ public:
 	virtual void UpdateContents(); // Before transmission or serialization, this is where the ledger saves its contents
 	virtual bool SaveContractWallet(std::ofstream & ofs);
  };
-
 
 
 #endif // __OT_TRACKABLE_HPP__

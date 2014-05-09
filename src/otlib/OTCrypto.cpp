@@ -1,4 +1,4 @@
-/*****************************************************************
+/************************************************************
  *
  *  OTCrypto.cpp
  *
@@ -163,13 +163,98 @@ extern "C"
 #include <arpa/inet.h>          // For htonl()
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/time.h>           //
 #include <sys/resource.h>
 #endif
 }
 
 
-// ********************************************************************************
+#if defined (OT_CRYPTO_USING_OPENSSL)
+
+extern "C"
+{
+#include <openssl/bio.h>
+#include <openssl/buffer.h>
+#include <openssl/evp.h>
+#include <openssl/pem.h>
+#include <openssl/rsa.h>
+#include <openssl/dsa.h>
+#include <openssl/err.h>
+#include <openssl/ui.h>
+#include <openssl/rand.h>
+#include <openssl/crypto.h>
+#include <openssl/asn1.h>
+#include <openssl/objects.h>
+#include <openssl/ssl.h>
+#include <openssl/sha.h>
+#include <openssl/conf.h>
+#include <openssl/x509v3.h>
+
+#ifndef OPENSSL_NO_ENGINE
+#include <openssl/engine.h>
+#endif
+}
+
+#include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
+#include "OpenSSL_BIO.hpp"
+
+
+#elif defined (OT_CRYPTO_USING_GPG)
+
+
+#else
+
+#endif
+
+
+// OpenSSL / Crypto-lib d-pointer
+
+
+#if defined (OT_CRYPTO_USING_GPG)
+
+// Someday    }:-)        OTCrypto_GPG
+
+
+#elif defined (OT_CRYPTO_USING_OPENSSL)
+
+class OTCrypto_OpenSSL::OTCrypto_OpenSSLdp {
+public:
+// These are protected because they contain OpenSSL-specific parameters.
+
+    bool SignContractDefaultHash(const OTString    & strContractUnsigned,
+                                 const EVP_PKEY    * pkey,
+                                 OTSignature       & theSignature, // output
+                                 OTPasswordData    * pPWData=NULL) const;
+
+    bool VerifyContractDefaultHash(const OTString    & strContractToVerify,
+                                   const EVP_PKEY    * pkey,
+                                   const OTSignature & theSignature,
+                                   OTPasswordData    * pPWData=NULL) const;
+    // ----------------------------------
+    // Sign or verify using the actual OpenSSL EVP_PKEY
+    //
+    bool SignContract(const OTString    & strContractUnsigned,
+                      const EVP_PKEY    * pkey,
+                      OTSignature       & theSignature, // output
+                      const OTString    & strHashType,
+                      OTPasswordData    * pPWData=NULL) const;
+
+    bool VerifySignature(const OTString    & strContractToVerify,
+                         const EVP_PKEY    * pkey,
+                         const OTSignature & theSignature,
+                         const OTString    & strHashType,
+                         OTPasswordData    * pPWData=NULL) const;
+    // --------------------------------------------------------------
+    static const EVP_MD * GetOpenSSLDigestByName(const OTString & theName);
+};
+
+
+#else // Apparently NO crypto engine is defined!
+
+
+// Perhaps error out here...
+
+
+#endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
 
 
 // class OTCrypto
@@ -180,7 +265,6 @@ extern "C"
 //
 
 
-//
 // todo optimzation maybe this should be 10000 instead of 65535
 //
 #define OT_DEFAULT_ITERATION_COUNT         65535  // in bytes
@@ -255,22 +339,20 @@ uint32_t OTCryptoConfig::Digest1Size()          { return GetValue(sp_nDigest1Siz
 uint32_t OTCryptoConfig::Digest2Size()          { return GetValue(sp_nDigest2Size); }
 
 
-
 //static
 int32_t OTCrypto::s_nCount = 0;   // Instance count, should never exceed 1. (At this point, anyway.)
 
 
-// -------------------------------------------------------------------------------------------
 OTCrypto::OTCrypto()   { }
 OTCrypto::~OTCrypto()  { }
-// -------------------------------------------------------------------------------------------
+
 
 bool OTCrypto::IsBase62(const std::string &str) const
 {
     return str.find_first_not_of("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") == std::string::npos;
 }
 
-// --------------------------------------------------------
+
 /*
 extern "C"
 {
@@ -302,6 +384,7 @@ void SetStdinEcho(int32_t enable)
 }
 */
 
+
 /*
 int32_t _getch( void ); // windows only  #include <conio.h>
 
@@ -322,7 +405,6 @@ int32_t main()
 }
 */
 
-// -------------------------------------------------------------------------------------------
 
 #include <iostream>
 
@@ -411,11 +493,6 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 }
 
 
-
-
-// -------------------------------------------------------------------------------------------
-
-
 		// get pass phrase, length 'len' into 'tmp'
 		/*
 		int32_t len=0;
@@ -433,9 +510,6 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 		memcpy(buf, tmp, len);
 		return len;
 		 */
-
-// -------------------------------------------------------------------------------------------
-
 
 
 bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=false*/) const
@@ -487,7 +561,6 @@ bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=fal
     return false;
 }
 
-// -------------------------------------------------------------------------------------------
 
 //static
 OTCrypto * OTCrypto::It()
@@ -504,7 +577,6 @@ static
     return &s_theSingleton;
 }
 
-// -----------------------------
 
 // Currently called by OTLog::OT_Init();
 
@@ -538,7 +610,7 @@ void OTCrypto::Init()
     else
         OTLog::Error("OTCrypto::Init: ERROR: Somehow this erroneously got called more than once! (Doing nothing.)\n");
 }
-// -----------------------------
+
 
 // Currently called by OTLog::OT_Cleanup();
 
@@ -562,7 +634,6 @@ void OTCrypto::Cleanup()
         OTLog::Error("OTCrypto::Cleanup: ERROR: Somehow this erroneously got called more than once! (Doing nothing.)\n");
 }
 
-// -----------------------------
 
 //virtual (Should never get called.)
 void OTCrypto::Init_Override()
@@ -570,15 +641,12 @@ void OTCrypto::Init_Override()
     OTLog::Error("OTCrypto::Init_Override: ERROR: This function should NEVER be called (you should be overriding it...)\n");
 }
 
-// -----------------------------
 
 //virtual (Should never get called.)
 void OTCrypto::Cleanup_Override()
 {
     OTLog::Error("OTCrypto::Cleanup_Override: ERROR: This function should NEVER be called (you should be overriding it...)\n");
 }
-
-// -----------------------------
 
 
 bool OTCrypto::Base64Encode(const OTData & theInput, OTString & strOutput, bool bLineBreaks/*=true*/) const
@@ -634,16 +702,8 @@ bool OTCrypto::Base64Decode(const OTString & strInput, OTData & theOutput, bool 
 }
 
 
-// ********************************************************************************
-
-
-
-
-
-
-
-
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output() : m_pPassword(NULL), m_pPayload(NULL) {}
+
 
 OTCrypto_Decrypt_Output::~OTCrypto_Decrypt_Output()
 {
@@ -669,17 +729,20 @@ OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(const OTCrypto_Decrypt_Output &
     m_pPayload  = rhs.m_pPayload;
 }
 
+
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(OTPassword & thePassword)
 : m_pPassword(&thePassword), m_pPayload(NULL)
 {
 
 }
 
+
 OTCrypto_Decrypt_Output::OTCrypto_Decrypt_Output(OTPayload  & thePayload)
 : m_pPassword(NULL), m_pPayload(&thePayload)
 {
 
 }
+
 
 void OTCrypto_Decrypt_Output::swap(OTCrypto_Decrypt_Output & other) // the swap member function (should never fail!)
 {
@@ -690,6 +753,7 @@ void OTCrypto_Decrypt_Output::swap(OTCrypto_Decrypt_Output & other) // the swap 
     }
 }
 
+
 OTCrypto_Decrypt_Output & OTCrypto_Decrypt_Output::operator=(OTCrypto_Decrypt_Output other) // note: argument passed by value!
 {
     // swap this with other
@@ -699,8 +763,8 @@ OTCrypto_Decrypt_Output & OTCrypto_Decrypt_Output::operator=(OTCrypto_Decrypt_Ou
     return *this;
 }
 
+
 // This is just a wrapper class.
-//
 void OTCrypto_Decrypt_Output::Release()
 {
     OT_ASSERT((m_pPassword != NULL) || (m_pPayload != NULL));
@@ -712,7 +776,6 @@ void OTCrypto_Decrypt_Output::Release()
 
 
 // This is just a wrapper class.
-//
 void OTCrypto_Decrypt_Output::Release_Envelope_Decrypt_Output()
 {
     if (NULL != m_pPassword)
@@ -745,20 +808,12 @@ bool OTCrypto_Decrypt_Output::Concatenate(const void * pAppendData, uint32_t lAp
 }
 
 
-
-
-
-
-// ********************************************************************************
-
-
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
 
 
 extern "C"
 {
-    // -----------------------
+
 #include <openssl/crypto.h>
 #include <openssl/asn1.h>
 #include <openssl/evp.h>
@@ -771,7 +826,7 @@ extern "C"
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
 
-    // -----------------------
+
 //#ifndef ANDROID // Android thus far only supports OpenSSL 0.9.8k
 #include <openssl/whrlpool.h>
 
@@ -813,13 +868,12 @@ extern "C"
 #include <openssl/opensslv.h>
 }
 
-// -----------------------------
 
 OTCrypto_OpenSSL::OTCrypto_OpenSSL() : OTCrypto()  { }
 
+
 OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
 
-// -----------------------------
 
 /*
  #include <openssl/ssl.h>
@@ -853,9 +907,6 @@ OTCrypto_OpenSSL::~OTCrypto_OpenSSL() { }
  //void CONF_modules_finish(void);
  //void CONF_modules_unload(int32_t all);
  */
-
-// *********************************************************************************
-
 
 /*
 #include <openssl/crypto.h>
@@ -910,7 +961,6 @@ int32_t CRYPTO_num_locks(void);
  facility.
  */
 
-
 /*
 
 // struct CRYPTO_dynlock_value needs to be defined by the user
@@ -943,11 +993,8 @@ void CRYPTO_lock(int32_t mode, int32_t n, const char *file, int32_t line);
 
  */
 
-
 tthread::mutex * OTCrypto_OpenSSL::s_arrayMutex = NULL;
 
-
-// *********************************************************************************
 
 extern "C"
 {
@@ -957,7 +1004,7 @@ extern "C"
 #else
     void  ot_openssl_thread_id(CRYPTO_THREADID *);
 #endif
-    // ---------------------------------
+
     void  ot_openssl_locking_callback( int32_t mode, int32_t type, char *file, int32_t line);
 }
 
@@ -973,8 +1020,6 @@ extern "C"
  error number facility.
 
  */
-
-// *********************************************************************************
 
 #if OPENSSL_VERSION_NUMBER-0 < 0x10000000L
 uint64_t ot_openssl_thread_id()
@@ -1002,8 +1047,6 @@ void ot_openssl_thread_id(CRYPTO_THREADID * id)
 }
 #endif
 
-// *********************************************************************************
-
 
 /*
  locking_function(int32_t mode, int32_t n, const char *file, int32_t line) is needed to perform locking on
@@ -1030,7 +1073,7 @@ void ot_openssl_locking_callback(int32_t mode, int32_t type, const char *file, i
     }
 }
 
-// *********************************************************************************
+
 /*
  --- More code for Base64 Decoding using OpenSSL:
 
@@ -1068,7 +1111,6 @@ char *unbase64(uint8_t *input, int32_t length)
     return buffer;
 }
 */
-// --------------------------------------------------------------------------------------------
 
 /*
 // This function will base64 DECODE the string contents
@@ -1197,21 +1239,19 @@ extern "C"
 } // extern "C"
 
 
-// --------------------------------------------------------------------------------------------
 // Caller responsible to delete.
-//
 char * OTCrypto_OpenSSL::Base64Encode(const uint8_t * input, int32_t in_len, bool bLineBreaks) const
 {
     return ot_openssl_base64_encode(input, in_len, (bLineBreaks ? 1 : 0));
 }
-// ----------------------------------
+
+
 // Caller responsible to delete.
-//
 uint8_t * OTCrypto_OpenSSL::Base64Decode(const char * input, size_t * out_len, bool bLineBreaks) const
 {
     return ot_openssl_base64_decode(input, out_len, (bLineBreaks ? 1 : 0));
 }
-// --------------------------------------------------------------------------------------------
+
 
 // SET (binary id) FROM BASE62-ENCODED STRING
 //
@@ -1234,7 +1274,7 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	const std::string strINPUT = strInput.Get();
     if (false == this->IsBase62(strINPUT))
 		return;
-    // ---------------------------------------
+
 	// Todo there are try/catches in here, so need to handle those at some point.
 	BigInteger bigIntFromBase62 = stringToBigIntegerBase62(strINPUT);
 
@@ -1278,7 +1318,6 @@ void OTCrypto_OpenSSL::SetIDFromBase62String(const OTString & strInput, OTIdenti
 	BN_free(pBigNum);
 }
 
-// --------------------------------------------------------------------------------------------
 
 // GET (binary id) AS BASE62-ENCODED STRING
 //
@@ -1319,7 +1358,6 @@ void OTCrypto_OpenSSL::SetBase62StringFromID(const OTIdentifier & theInput, OTSt
 	// -----------------------------------------
 	strOutput.Set(strBigInt.c_str());
 }
-// --------------------------------------------------------------------------------------------
 
 
 bool OTCrypto_OpenSSL::RandomizeMemory(uint8_t * szDestination, uint32_t nNewSize) const
@@ -1352,7 +1390,6 @@ bool OTCrypto_OpenSSL::RandomizeMemory(uint8_t * szDestination, uint32_t nNewSiz
 }
 
 
-// --------------------------------------------------------------------------------------------
 // DeriveKey derives a 128-bit symmetric key from a passphrase.
 //
 // The OTPassword* returned is the actual derived key. (The result.)
@@ -1382,6 +1419,7 @@ OTPassword * OTCrypto_OpenSSL::DeriveKey(const OTPassword &   userPassword,
 	OTPayload tempPayload = dataCheckHash;
 	return OTCrypto_OpenSSL::DeriveNewKey(userPassword,dataSalt,uIterations,tempPayload);
 }
+
 
 OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
                                             const OTPayload  &   dataSalt,
@@ -1466,8 +1504,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 	return pDerivedKey;
 }
 
-// -------------------------------------------------------------------------------
-
 
 /*
  openssl dgst -sha1 \
@@ -1479,7 +1515,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
  -verify clientcert.pem \
  -signature cheesy2.sig \
  cheesy2.xml
-
 
 
 openssl x509 -in clientcert.pem -pubkey -noout > clientpub.pem
@@ -1496,10 +1531,8 @@ openssl dgst -sha1 -verify clientpub.pem -signature cheesy2.sig  cheesy2.xml
  */
 
 
-// -------------------------------------------------------------------------------------------------
-
 //static
-const EVP_MD * OTCrypto_OpenSSL::GetOpenSSLDigestByName(const OTString & theName)
+const EVP_MD * OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(const OTString & theName)
 {
 	if (theName.Compare("SHA1"))
 		return EVP_sha1();
@@ -1518,7 +1551,6 @@ const EVP_MD * OTCrypto_OpenSSL::GetOpenSSLDigestByName(const OTString & theName
 	return NULL;
 }
 
-// -------------------------------------------------------------------------------------------------
 
 bool OTCrypto_OpenSSL::CalculateDigest(const OTString & strInput, const OTString & strHashAlgorithm, OTIdentifier & theOutput) const
 {
@@ -1542,7 +1574,7 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTString & strInput, const OTString
 	// ----------------------------------------------
 	// Okay, it wasn't any internal hash algorithm, so then which one was it?
     //
-	md = OTCrypto_OpenSSL::GetOpenSSLDigestByName(strHashAlgorithm); // todo cleanup?
+    md = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(strHashAlgorithm); // todo cleanup?
 
 	if (!md)
 	{
@@ -1585,7 +1617,7 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
     // ----------------------------------------------
 	// Okay, it wasn't any internal hash algorithm, so then which one was it?
     //
-	md = OTCrypto_OpenSSL::GetOpenSSLDigestByName(strHashAlgorithm); // todo cleanup ?
+    md = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(strHashAlgorithm); // todo cleanup ?
 
 	if (!md)
 	{
@@ -1606,7 +1638,6 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 }
 
 
-// --------------------
 /*
  SHA256_CTX context;
  uint8_t md[SHA256_DIGEST_LENGTH];
@@ -1615,10 +1646,7 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
  SHA256_Update(&context, (uint8_t*)input, length);
  SHA256_Final(md, &context);
  */
-// ----------------------
 
-
-// -------------------------------------------------------------------------------------------------
 // (To instantiate a text secret, just do this:  OTPassword thePassword;)
 
 // Caller MUST delete!
@@ -1633,7 +1661,6 @@ OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
     return pNewKey;
 }
 
-// -------------------------------------------------------------------------------------------------
 
 // done
 
@@ -1665,7 +1692,6 @@ void OTCrypto_OpenSSL::thread_setup()
 	CRYPTO_set_locking_callback (ot_openssl_locking_callback);
 
 }
-// *********************************************************************************
 
 // done
 
@@ -1680,9 +1706,6 @@ void OTCrypto_OpenSSL::thread_cleanup()
 
     OTCrypto_OpenSSL::s_arrayMutex = NULL;
 }
-
-
-// *********************************************************************************
 
 
 void OTCrypto_OpenSSL::Init_Override()
@@ -1943,16 +1966,7 @@ void OTCrypto_OpenSSL::Init_Override()
 }
 
 
-
-
-//
-// *********************************************************************************
-
-
-
-
 // RAND_status() and RAND_event() return 1 if the PRNG has been seeded with enough data, 0 otherwise.
-
 
 /*
  13. I think I've detected a memory leak, is this a bug?
@@ -1977,11 +1991,6 @@ void OTCrypto_OpenSSL::Init_Override()
  ERR_free_strings(), EVP_cleanup() and CRYPTO_cleanup_all_ex_data().
  */
 
-//
-// *********************************************************************************
-
-
-
 
 void OTCrypto_OpenSSL::Cleanup_Override()
 {
@@ -1995,7 +2004,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 //#endif
 //
 
-// -------------------------------------------------
+
 #if defined(OPENSSL_THREADS)
     // thread support enabled
 
@@ -2006,7 +2015,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 
 
 #endif
-// -------------------------------------------------
+
     /*
      CONF_modules_free()
 
@@ -2055,18 +2064,7 @@ void OTCrypto_OpenSSL::Cleanup_Override()
 }
 
 
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------
-//
-
 // #define OTCryptoConfig::SymmetricBufferSize()   default: 4096
-
 
 bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The symmetric key, in clear form.
                                // -------------------------------
@@ -2188,10 +2186,6 @@ bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The sym
     // -----------------------------------------------
     return true;
 }
-
-
-
-// ------------------------------------------------------------------------
 
 
 bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The symmetric key, in clear form.
@@ -2325,12 +2319,6 @@ bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The sym
 }
 
 
-
-
-
-
-
-// --------------------------------------------------------------------------
 // Seal up as envelope (Asymmetric, using public key and then AES key.)
 
 bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString & theInput, OTData & dataOutput) const
@@ -2459,7 +2447,7 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
                 OTAsymmetricKey_OpenSSL * pPublicKey = dynamic_cast<OTAsymmetricKey_OpenSSL*>(pTempPublicKey);
                 OT_ASSERT(NULL != pPublicKey);
                 // -------------------
-                EVP_PKEY * public_key	= const_cast<EVP_PKEY *>(pPublicKey->GetKey());
+                EVP_PKEY * public_key	= const_cast<EVP_PKEY *>(pPublicKey->dp->GetKey());
                 OT_ASSERT(NULL != public_key);
                 // -------------------
                 // Copy the public key pointer to an array of public key pointers...
@@ -2754,11 +2742,6 @@ bool OTCrypto_OpenSSL::Seal(mapOfAsymmetricKeys & RecipPubKeys, const OTString &
 }
 
 
-
-
-
-
-
 /*
 #include <openssl/evp.h>
 int32_t EVP_OpenInit(EVP_CIPHER_CTX *ctx,EVP_CIPHER *type,uint8_t *ek,
@@ -2798,10 +2781,6 @@ EVP_OpenUpdate() returns 1 for success or 0 for failure.
 EVP_OpenFinal() returns 0 if the decrypt failed or 1 for success.
 */
 
-
-
-
-
 // RSA / AES
 
 bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient, OTString & theOutput, OTPasswordData * pPWData/*=NULL*/) const
@@ -2836,7 +2815,7 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     OTAsymmetricKey_OpenSSL * pPrivateKey       = dynamic_cast<OTAsymmetricKey_OpenSSL *>(&theTempPrivateKey);
     OT_ASSERT(NULL != pPrivateKey);
     // -------------------
-	EVP_PKEY                * private_key       = const_cast<EVP_PKEY *>(pPrivateKey->GetKey(pPWData));
+    EVP_PKEY                * private_key       = const_cast<EVP_PKEY *>(pPrivateKey->dp->GetKey(pPWData));
 
 	if (NULL == private_key)
 	{
@@ -3332,7 +3311,6 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 }
 
 
-
 // If length is 10,
 // Then indices are 0..9
 // Therefore '9' is the 10th byte, starting from 0.
@@ -3342,12 +3320,6 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
 // Normally you wouldn't expect a string to include the null terminator as part of its length.
 // But for OTData, you WOULD expect the null 0 to be at the end.
 //
-
-
-
-
-
-
 
 
 /*
@@ -3458,10 +3430,6 @@ prog_end:
 }
 */
 
-
-
-
-
 // The default hashing algorithm in this software should be one that XOR combines two other,
 // established and respected algorithms. In this case, we use the "SAMY" hash which is actually
 // SHA512 XOR'd with WHIRLPOOL (also 512 in output). Credit to SAMY for the idea.
@@ -3483,10 +3451,10 @@ prog_end:
  and I also have a smaller message digest now: 256 bits.
 
  */
-bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUnsigned,
-                                               const EVP_PKEY    * pkey,
-                                               OTSignature       & theSignature,
-                                               OTPasswordData    * pPWData/*=NULL*/) const
+bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::SignContractDefaultHash(const OTString    & strContractUnsigned,
+                                                                   const EVP_PKEY    * pkey,
+                                                                   OTSignature       & theSignature,
+                                                                   OTPasswordData    * pPWData/*=NULL*/) const
 {
     const char * szFunc = "OTCrypto_OpenSSL::SignContractDefaultHash";
     // -------------------------------
@@ -3532,7 +3500,7 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	// let's look them up and see what they are.
 	// addendum: unless we're on Android... then there's only 1 hash algorithm.
 	//
-	const EVP_MD * digest1 = OTCrypto_OpenSSL::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm1); // SHA-256
+    const EVP_MD * digest1 = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm1); // SHA-256
 
 	if (NULL == digest1)
 	{
@@ -3556,7 +3524,7 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 	 of digests to be specified.
 	 */
 //#ifndef ANDROID
-	const EVP_MD * digest2 = OTCrypto_OpenSSL::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm2); // WHIRLPOOL (512)
+    const EVP_MD * digest2 = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm2); // WHIRLPOOL (512)
 
 	if (NULL == digest2)
 	{
@@ -3701,21 +3669,15 @@ bool OTCrypto_OpenSSL::SignContractDefaultHash(const OTString    & strContractUn
 }
 
 
-
-// ---------------------------------------------------------
-
-
-
-
 // Verify a contract that has been signed with our own default algorithm (aka SAMY hash)
 // Basically we had to customize for that algorithm since, by default, it XORs two different
 // algorithms together (SHA256 and WHIRLPOOL) in anticipation of the day that one of them is
 // broken.
 
-bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContractToVerify,
-                                                 const EVP_PKEY    * pkey,
-                                                 const OTSignature & theSignature,
-                                                 OTPasswordData    * pPWData/*=NULL*/) const
+bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::VerifyContractDefaultHash(const OTString    & strContractToVerify,
+                                                                     const EVP_PKEY    * pkey,
+                                                                     const OTSignature & theSignature,
+                                                                     OTPasswordData    * pPWData/*=NULL*/) const
 {
     const char * szFunc = "OTCrypto_OpenSSL::VerifyContractDefaultHash";
     // ----------------------------
@@ -3750,7 +3712,7 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	// --------------------------
 	// Since the idea of this special code is that we're using 2 hash algorithms,
 	// let's look them up and see what they are.
-	const EVP_MD * digest1 = OTCrypto_OpenSSL::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm1); // SHA-256
+    const EVP_MD * digest1 = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm1); // SHA-256
 	if (NULL == digest1)
 	{
 		OTLog::vError("%s: Failure to load message digest algorithm.\n", szFunc);
@@ -3766,7 +3728,7 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 	EVP_MD_CTX_cleanup(&mdHash1_ctx); // cleanup
     // ----------------------------
 //#ifndef ANDROID   // NOT Android.
-	const EVP_MD * digest2 = OTCrypto_OpenSSL::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm2); // WHIRLPOOL
+    const EVP_MD * digest2 = OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(OTIdentifier::HashAlgorithm2); // WHIRLPOOL
 	if (NULL == digest2)
 	{
 		OTLog::vError("%s: Failure to load message digest algorithm.\n", szFunc);
@@ -4252,17 +4214,12 @@ bool OTCrypto_OpenSSL::VerifyContractDefaultHash(const OTString    & strContract
 }
 
 
-// -------------------------------------------------------------------------------
-
-
-
 // All the other various versions eventually call this one, where the actual work is done.
-//
-bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
-                                    const EVP_PKEY    * pkey,
-                                    OTSignature       & theSignature,
-                                    const OTString    & strHashType,
-                                    OTPasswordData    * pPWData/*=NULL*/) const
+bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::SignContract(const OTString    & strContractUnsigned,
+                                                        const EVP_PKEY    * pkey,
+                                                        OTSignature       & theSignature,
+                                                        const OTString    & strHashType,
+                                                        OTPasswordData    * pPWData/*=NULL*/) const
 {
     OT_ASSERT_MSG(NULL != pkey, "Null private key sent to OTCrypto_OpenSSL::SignContract.\n");
     // ---------------------------------------------------
@@ -4319,7 +4276,7 @@ bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
     // ---------------------------------------------------
 //	else
 	{
-		md = (EVP_MD *)OTCrypto_OpenSSL::GetOpenSSLDigestByName(strHashType); // todo cast
+        md = (EVP_MD *)OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(strHashType); // todo cast
 	}
     // ---------------------------------------------------
 
@@ -4386,9 +4343,6 @@ bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
 }
 
 
-// -------------------------------------------------------------------------------
-
-
 bool OTCrypto_OpenSSL::SignContract(const OTString        & strContractUnsigned,
                                     const OTAsymmetricKey & theKey,
                                     OTSignature           & theSignature, // output
@@ -4401,10 +4355,10 @@ bool OTCrypto_OpenSSL::SignContract(const OTString        & strContractUnsigned,
     OTAsymmetricKey_OpenSSL * pTempOpenSSLKey = dynamic_cast<OTAsymmetricKey_OpenSSL *>(&theTempKey);
     OT_ASSERT(NULL != pTempOpenSSLKey);
     // -------------------------------------------------
-    const EVP_PKEY * pkey = pTempOpenSSLKey->GetKey(pPWData);
+    const EVP_PKEY * pkey = pTempOpenSSLKey->dp->GetKey(pPWData);
     OT_ASSERT(NULL != pkey);
     // -------------------------------------------------
-    if (false == this->SignContract(strContractUnsigned,
+    if (false == this->dp->SignContract(strContractUnsigned,
                                     pkey,
                                     theSignature,
                                     strHashType,
@@ -4418,7 +4372,6 @@ bool OTCrypto_OpenSSL::SignContract(const OTString        & strContractUnsigned,
     return true;
 }
 
-// -------------------------------------------------------------------------------
 
 bool OTCrypto_OpenSSL::VerifySignature(const OTString        & strContractToVerify,
                                        const OTAsymmetricKey & theKey,
@@ -4432,10 +4385,10 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString        & strContractToVeri
     OTAsymmetricKey_OpenSSL * pTempOpenSSLKey = dynamic_cast<OTAsymmetricKey_OpenSSL *>(&theTempKey);
     OT_ASSERT(NULL != pTempOpenSSLKey);
     // -------------------------------------------------
-    const EVP_PKEY * pkey = pTempOpenSSLKey->GetKey(pPWData);
+    const EVP_PKEY * pkey = pTempOpenSSLKey->dp->GetKey(pPWData);
     OT_ASSERT(NULL != pkey);
     // -------------------------------------------------
-    if (false == this->VerifySignature(strContractToVerify,
+    if (false == this->dp->VerifySignature(strContractToVerify,
                                        pkey,
                                        theSignature,
                                        strHashType,
@@ -4449,11 +4402,9 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString        & strContractToVeri
     return true;
 }
 
-// -------------------------------------------------------------------------------
 
 // All the other various versions eventually call this one, where the actual work is done.
-//
-bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
+bool OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::VerifySignature(const OTString    & strContractToVerify,
                                        const EVP_PKEY    * pkey,
                                        const OTSignature & theSignature,
                                        const OTString    & strHashType,
@@ -4485,7 +4436,7 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
     // --------------------------
 //	else
 	{
-		md = (EVP_MD *)OTCrypto_OpenSSL::GetOpenSSLDigestByName(strHashType); // todo cast
+        md = (EVP_MD *)OTCrypto_OpenSSL::OTCrypto_OpenSSLdp::GetOpenSSLDigestByName(strHashType); // todo cast
 	}
 	// --------------------------
 	if (!md)
@@ -4539,15 +4490,6 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
 }
 
 
-
-
-// ------------------------------------------------------------------------
-
-
-
-
-
-
 // Sign the Contract using a private key from a file.
 // theSignature will contain the output.
 bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
@@ -4588,18 +4530,13 @@ bool OTCrypto_OpenSSL::SignContract(const OTString    & strContractUnsigned,
     }
     else
     {
-        bSigned = this->SignContract(strContractUnsigned, pkey, theSignature, strSigHashType, pPWData);
+        bSigned = this->dp->SignContract(strContractUnsigned, pkey, theSignature, strSigHashType, pPWData);
 
         EVP_PKEY_free (pkey);  pkey = NULL;
     }
     // --------------------------------------------------------------------
     return bSigned;
 }
-
-
-
-// -------------------------------------------------------------------------------
-
 
 
 // Presumably the Signature passed in here was just loaded as part of this contract and is
@@ -4644,7 +4581,7 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
 	}
 	else
 	{
-		bVerifySig = this->VerifySignature(strContractToVerify, pkey, theSignature, strSigHashType, pPWData);
+        bVerifySig = this->dp->VerifySignature(strContractToVerify, pkey, theSignature, strSigHashType, pPWData);
 
         EVP_PKEY_free(pkey); pkey = NULL;
 	}
@@ -4657,10 +4594,7 @@ bool OTCrypto_OpenSSL::VerifySignature(const OTString    & strContractToVerify,
 }
 
 
-// *********************************************************
-
 // OpenSSL_BIO
-
 
 //static
 BIO * OpenSSL_BIO::assertBioNotNull(BIO * pBIO)
@@ -4669,9 +4603,11 @@ BIO * OpenSSL_BIO::assertBioNotNull(BIO * pBIO)
     return pBIO;
 }
 
+
 OpenSSL_BIO::OpenSSL_BIO(BIO * pBIO) : m_refBIO(*assertBioNotNull(pBIO)), bCleanup(true), bFreeOnly(false)
 {
 }
+
 
 OpenSSL_BIO::~OpenSSL_BIO()
 {
@@ -4689,15 +4625,18 @@ OpenSSL_BIO::~OpenSSL_BIO()
     }
 }
 
+
 OpenSSL_BIO::operator BIO *() const
 {
     return (&m_refBIO);
 }
 
+
 void OpenSSL_BIO::release()
 {
     bCleanup = false;
 }
+
 
 void OpenSSL_BIO::setFreeOnly()
 {
@@ -4705,23 +4644,10 @@ void OpenSSL_BIO::setFreeOnly()
 }
 
 
-
-
-
-// *********************************************************************************
-
-
 #elif defined (OT_CRYPTO_USING_GPG)
 
 
-
 // Someday    }:-)
-
-
-
-
-
-// *********************************************************************************
 
 
 #else // Apparently NO crypto engine is defined!
@@ -4731,26 +4657,6 @@ void OpenSSL_BIO::setFreeOnly()
 
 
 #endif // if defined (OT_CRYPTO_USING_OPENSSL), elif defined (OT_CRYPTO_USING_GPG), else, endif.
-
-
-
-// *********************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -4865,10 +4771,6 @@ int32_t PKCS5_PBKDF2_HMAC_SHA1	(
     int32_t keylen,  uint8_t *out);
 
  */
-
-
-
-
 
 /*
 int32_t do_evp_seal(FILE *rsa_pkey_file, FILE *in_file, FILE *out_file)
@@ -5009,26 +4911,3 @@ int32_t main(int32_t argc, char *argv[])
     return rv;
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -325,72 +325,6 @@ def OTPassword_CreateTextBuffer():
   return _otapi.OTPassword_CreateTextBuffer()
 OTPassword_CreateTextBuffer = _otapi.OTPassword_CreateTextBuffer
 
-class OTCallback(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, OTCallback, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, OTCallback, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        if self.__class__ == OTCallback:
-            _self = None
-        else:
-            _self = self
-        this = _otapi.new_OTCallback(_self, )
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _otapi.delete_OTCallback
-    __del__ = lambda self : None;
-    def runOne(self, *args): return _otapi.OTCallback_runOne(self, *args)
-    def runTwo(self, *args): return _otapi.OTCallback_runTwo(self, *args)
-    def __disown__(self):
-        self.this.disown()
-        _otapi.disown_OTCallback(self)
-        return weakref_proxy(self)
-OTCallback_swigregister = _otapi.OTCallback_swigregister
-OTCallback_swigregister(OTCallback)
-
-class OTCaller(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, OTCaller, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, OTCaller, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        this = _otapi.new_OTCaller()
-        try: self.this.append(this)
-        except: self.this = this
-    __swig_destroy__ = _otapi.delete_OTCaller
-    __del__ = lambda self : None;
-    def GetPassword(self, *args): return _otapi.OTCaller_GetPassword(self, *args)
-    def ZeroOutPassword(self): return _otapi.OTCaller_ZeroOutPassword(self)
-    def GetDisplay(self): return _otapi.OTCaller_GetDisplay(self)
-    def SetDisplay(self, *args): return _otapi.OTCaller_SetDisplay(self, *args)
-    def delCallback(self): return _otapi.OTCaller_delCallback(self)
-    def setCallback(self, *args): return _otapi.OTCaller_setCallback(self, *args)
-    def isCallbackSet(self): return _otapi.OTCaller_isCallbackSet(self)
-    def callOne(self): return _otapi.OTCaller_callOne(self)
-    def callTwo(self): return _otapi.OTCaller_callTwo(self)
-OTCaller_swigregister = _otapi.OTCaller_swigregister
-OTCaller_swigregister(OTCaller)
-
-class WrapTimeT(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, WrapTimeT, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, WrapTimeT, name)
-    __repr__ = _swig_repr
-    def __init__(self): 
-        this = _otapi.new_WrapTimeT()
-        try: self.this.append(this)
-        except: self.this = this
-    def getTime(self): return _otapi.WrapTimeT_getTime(self)
-    def setTime(self, *args): return _otapi.WrapTimeT_setTime(self, *args)
-    __swig_destroy__ = _otapi.delete_WrapTimeT
-    __del__ = lambda self : None;
-WrapTimeT_swigregister = _otapi.WrapTimeT_swigregister
-WrapTimeT_swigregister(WrapTimeT)
-
 class OTAPI_Wrap(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, OTAPI_Wrap, name, value)
@@ -3706,6 +3640,227 @@ AddressBook_swigregister(AddressBook)
 def AddressBook_ot_dynamic_cast(*args):
   return _otapi.AddressBook_ot_dynamic_cast(*args)
 AddressBook_ot_dynamic_cast = _otapi.AddressBook_ot_dynamic_cast
+
+
+def OTRecord_GetTypeString(*args):
+  return _otapi.OTRecord_GetTypeString(*args)
+OTRecord_GetTypeString = _otapi.OTRecord_GetTypeString
+class OTRecord(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, OTRecord, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, OTRecord, name)
+    __repr__ = _swig_repr
+    Mail = _otapi.OTRecord_Mail
+    Transfer = _otapi.OTRecord_Transfer
+    Receipt = _otapi.OTRecord_Receipt
+    Instrument = _otapi.OTRecord_Instrument
+    ErrorState = _otapi.OTRecord_ErrorState
+    def IsPending(self): return _otapi.OTRecord_IsPending(self)
+    def IsOutgoing(self): return _otapi.OTRecord_IsOutgoing(self)
+    def IsRecord(self): return _otapi.OTRecord_IsRecord(self)
+    def IsReceipt(self): return _otapi.OTRecord_IsReceipt(self)
+    def IsMail(self): return _otapi.OTRecord_IsMail(self)
+    def IsTransfer(self): return _otapi.OTRecord_IsTransfer(self)
+    def IsCheque(self): return _otapi.OTRecord_IsCheque(self)
+    def IsInvoice(self): return _otapi.OTRecord_IsInvoice(self)
+    def IsVoucher(self): return _otapi.OTRecord_IsVoucher(self)
+    def IsContract(self): return _otapi.OTRecord_IsContract(self)
+    def IsPaymentPlan(self): return _otapi.OTRecord_IsPaymentPlan(self)
+    def IsCash(self): return _otapi.OTRecord_IsCash(self)
+    def HasContents(self): return _otapi.OTRecord_HasContents(self)
+    def HasMemo(self): return _otapi.OTRecord_HasMemo(self)
+    def IsExpired(self): return _otapi.OTRecord_IsExpired(self)
+    def IsCanceled(self): return _otapi.OTRecord_IsCanceled(self)
+    def SetExpired(self): return _otapi.OTRecord_SetExpired(self)
+    def SetCanceled(self): return _otapi.OTRecord_SetCanceled(self)
+    def GetValidFrom(self): return _otapi.OTRecord_GetValidFrom(self)
+    def GetValidTo(self): return _otapi.OTRecord_GetValidTo(self)
+    def SetDateRange(self, *args): return _otapi.OTRecord_SetDateRange(self, *args)
+    def CanDeleteRecord(self): return _otapi.OTRecord_CanDeleteRecord(self)
+    def CanAcceptIncoming(self): return _otapi.OTRecord_CanAcceptIncoming(self)
+    def CanDiscardIncoming(self): return _otapi.OTRecord_CanDiscardIncoming(self)
+    def CanCancelOutgoing(self): return _otapi.OTRecord_CanCancelOutgoing(self)
+    def CanDiscardOutgoingCash(self): return _otapi.OTRecord_CanDiscardOutgoingCash(self)
+    def CancelOutgoing(self, *args): return _otapi.OTRecord_CancelOutgoing(self, *args)
+    def AcceptIncomingInstrument(self, *args): return _otapi.OTRecord_AcceptIncomingInstrument(self, *args)
+    def AcceptIncomingTransfer(self): return _otapi.OTRecord_AcceptIncomingTransfer(self)
+    def AcceptIncomingReceipt(self): return _otapi.OTRecord_AcceptIncomingReceipt(self)
+    def DiscardIncoming(self): return _otapi.OTRecord_DiscardIncoming(self)
+    def DeleteRecord(self): return _otapi.OTRecord_DeleteRecord(self)
+    def DiscardOutgoingCash(self): return _otapi.OTRecord_DiscardOutgoingCash(self)
+    def GetBoxIndex(self): return _otapi.OTRecord_GetBoxIndex(self)
+    def SetBoxIndex(self, *args): return _otapi.OTRecord_SetBoxIndex(self, *args)
+    def GetTransactionNum(self): return _otapi.OTRecord_GetTransactionNum(self)
+    def SetTransactionNum(self, *args): return _otapi.OTRecord_SetTransactionNum(self, *args)
+    def GetTransNumForDisplay(self): return _otapi.OTRecord_GetTransNumForDisplay(self)
+    def SetTransNumForDisplay(self, *args): return _otapi.OTRecord_SetTransNumForDisplay(self, *args)
+    def GetRecordType(self): return _otapi.OTRecord_GetRecordType(self)
+    def GetServerID(self): return _otapi.OTRecord_GetServerID(self)
+    def GetAssetID(self): return _otapi.OTRecord_GetAssetID(self)
+    def GetCurrencyTLA(self): return _otapi.OTRecord_GetCurrencyTLA(self)
+    def GetNymID(self): return _otapi.OTRecord_GetNymID(self)
+    def GetAccountID(self): return _otapi.OTRecord_GetAccountID(self)
+    def GetOtherNymID(self): return _otapi.OTRecord_GetOtherNymID(self)
+    def GetOtherAccountID(self): return _otapi.OTRecord_GetOtherAccountID(self)
+    def GetName(self): return _otapi.OTRecord_GetName(self)
+    def GetDate(self): return _otapi.OTRecord_GetDate(self)
+    def GetAmount(self): return _otapi.OTRecord_GetAmount(self)
+    def GetInstrumentType(self): return _otapi.OTRecord_GetInstrumentType(self)
+    def GetMemo(self): return _otapi.OTRecord_GetMemo(self)
+    def GetContents(self): return _otapi.OTRecord_GetContents(self)
+    def SetOtherNymID(self, *args): return _otapi.OTRecord_SetOtherNymID(self, *args)
+    def SetOtherAccountID(self, *args): return _otapi.OTRecord_SetOtherAccountID(self, *args)
+    def SetMemo(self, *args): return _otapi.OTRecord_SetMemo(self, *args)
+    def SetContents(self, *args): return _otapi.OTRecord_SetContents(self, *args)
+    def HasInitialPayment(self): return _otapi.OTRecord_HasInitialPayment(self)
+    def HasPaymentPlan(self): return _otapi.OTRecord_HasPaymentPlan(self)
+    def GetInitialPaymentDate(self): return _otapi.OTRecord_GetInitialPaymentDate(self)
+    def GetPaymentPlanStartDate(self): return _otapi.OTRecord_GetPaymentPlanStartDate(self)
+    def GetTimeBetweenPayments(self): return _otapi.OTRecord_GetTimeBetweenPayments(self)
+    def GetInitialPaymentAmount(self): return _otapi.OTRecord_GetInitialPaymentAmount(self)
+    def GetPaymentPlanAmount(self): return _otapi.OTRecord_GetPaymentPlanAmount(self)
+    def GetMaximumNoPayments(self): return _otapi.OTRecord_GetMaximumNoPayments(self)
+    def FormatAmount(self, *args): return _otapi.OTRecord_FormatAmount(self, *args)
+    def FormatDescription(self, *args): return _otapi.OTRecord_FormatDescription(self, *args)
+    def FormatShortMailDescription(self, *args): return _otapi.OTRecord_FormatShortMailDescription(self, *args)
+    def FormatMailSubject(self, *args): return _otapi.OTRecord_FormatMailSubject(self, *args)
+    def __init__(self, *args): 
+        this = _otapi.new_OTRecord(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _otapi.delete_OTRecord
+    __del__ = lambda self : None;
+OTRecord_swigregister = _otapi.OTRecord_swigregister
+OTRecord_swigregister(OTRecord)
+
+class OTNameLookup(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, OTNameLookup, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, OTNameLookup, name)
+    __repr__ = _swig_repr
+    def __init__(self): 
+        if self.__class__ == OTNameLookup:
+            _self = None
+        else:
+            _self = self
+        this = _otapi.new_OTNameLookup(_self, )
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _otapi.delete_OTNameLookup
+    __del__ = lambda self : None;
+    def GetNymName(self, *args): return _otapi.OTNameLookup_GetNymName(self, *args)
+    def GetAcctName(self, *args): return _otapi.OTNameLookup_GetAcctName(self, *args)
+    def __disown__(self):
+        self.this.disown()
+        _otapi.disown_OTNameLookup(self)
+        return weakref_proxy(self)
+OTNameLookup_swigregister = _otapi.OTNameLookup_swigregister
+OTNameLookup_swigregister(OTNameLookup)
+
+class OTLookupCaller(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, OTLookupCaller, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, OTLookupCaller, name)
+    __repr__ = _swig_repr
+    def __init__(self): 
+        this = _otapi.new_OTLookupCaller()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _otapi.delete_OTLookupCaller
+    __del__ = lambda self : None;
+    def getCallback(self): return _otapi.OTLookupCaller_getCallback(self)
+    def delCallback(self): return _otapi.OTLookupCaller_delCallback(self)
+    def setCallback(self, *args): return _otapi.OTLookupCaller_setCallback(self, *args)
+    def isCallbackSet(self): return _otapi.OTLookupCaller_isCallbackSet(self)
+    def GetNymName(self, *args): return _otapi.OTLookupCaller_GetNymName(self, *args)
+    def GetAcctName(self, *args): return _otapi.OTLookupCaller_GetAcctName(self, *args)
+OTLookupCaller_swigregister = _otapi.OTLookupCaller_swigregister
+OTLookupCaller_swigregister(OTLookupCaller)
+
+
+def OT_API_Set_AddrBookCallback(*args):
+  return _otapi.OT_API_Set_AddrBookCallback(*args)
+OT_API_Set_AddrBookCallback = _otapi.OT_API_Set_AddrBookCallback
+class OTRecordList(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, OTRecordList, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, OTRecordList, name)
+    __repr__ = _swig_repr
+    __swig_getmethods__["setAddrBookCaller"] = lambda x: _otapi.OTRecordList_setAddrBookCaller
+    if _newclass:setAddrBookCaller = staticmethod(_otapi.OTRecordList_setAddrBookCaller)
+    __swig_getmethods__["getAddrBookCaller"] = lambda x: _otapi.OTRecordList_getAddrBookCaller
+    if _newclass:getAddrBookCaller = staticmethod(_otapi.OTRecordList_getAddrBookCaller)
+    def __init__(self, *args): 
+        this = _otapi.new_OTRecordList(*args)
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _otapi.delete_OTRecordList
+    __del__ = lambda self : None;
+    __swig_getmethods__["textTo"] = lambda x: _otapi.OTRecordList_textTo
+    if _newclass:textTo = staticmethod(_otapi.OTRecordList_textTo)
+    __swig_getmethods__["textFrom"] = lambda x: _otapi.OTRecordList_textFrom
+    if _newclass:textFrom = staticmethod(_otapi.OTRecordList_textFrom)
+    __swig_getmethods__["setTextTo"] = lambda x: _otapi.OTRecordList_setTextTo
+    if _newclass:setTextTo = staticmethod(_otapi.OTRecordList_setTextTo)
+    __swig_getmethods__["setTextFrom"] = lambda x: _otapi.OTRecordList_setTextFrom
+    if _newclass:setTextFrom = staticmethod(_otapi.OTRecordList_setTextFrom)
+    def SetFastMode(self): return _otapi.OTRecordList_SetFastMode(self)
+    def SetServerID(self, *args): return _otapi.OTRecordList_SetServerID(self, *args)
+    def AddServerID(self, *args): return _otapi.OTRecordList_AddServerID(self, *args)
+    def ClearServers(self): return _otapi.OTRecordList_ClearServers(self)
+    def SetAssetID(self, *args): return _otapi.OTRecordList_SetAssetID(self, *args)
+    def AddAssetID(self, *args): return _otapi.OTRecordList_AddAssetID(self, *args)
+    def ClearAssets(self): return _otapi.OTRecordList_ClearAssets(self)
+    def SetNymID(self, *args): return _otapi.OTRecordList_SetNymID(self, *args)
+    def AddNymID(self, *args): return _otapi.OTRecordList_AddNymID(self, *args)
+    def ClearNyms(self): return _otapi.OTRecordList_ClearNyms(self)
+    def SetAccountID(self, *args): return _otapi.OTRecordList_SetAccountID(self, *args)
+    def AddAccountID(self, *args): return _otapi.OTRecordList_AddAccountID(self, *args)
+    def ClearAccounts(self): return _otapi.OTRecordList_ClearAccounts(self)
+    def AcceptChequesAutomatically(self, bVal=True): return _otapi.OTRecordList_AcceptChequesAutomatically(self, bVal)
+    def AcceptReceiptsAutomatically(self, bVal=True): return _otapi.OTRecordList_AcceptReceiptsAutomatically(self, bVal)
+    def AcceptTransfersAutomatically(self, bVal=True): return _otapi.OTRecordList_AcceptTransfersAutomatically(self, bVal)
+    def AcceptCashAutomatically(self, bVal=True): return _otapi.OTRecordList_AcceptCashAutomatically(self, bVal)
+    def DoesAcceptChequesAutomatically(self): return _otapi.OTRecordList_DoesAcceptChequesAutomatically(self)
+    def DoesAcceptReceiptsAutomatically(self): return _otapi.OTRecordList_DoesAcceptReceiptsAutomatically(self)
+    def DoesAcceptTransfersAutomatically(self): return _otapi.OTRecordList_DoesAcceptTransfersAutomatically(self)
+    def DoesAcceptCashAutomatically(self): return _otapi.OTRecordList_DoesAcceptCashAutomatically(self)
+    def PerformAutoAccept(self): return _otapi.OTRecordList_PerformAutoAccept(self)
+    def Populate(self): return _otapi.OTRecordList_Populate(self)
+    def ClearContents(self): return _otapi.OTRecordList_ClearContents(self)
+    def size(self): return _otapi.OTRecordList_size(self)
+    def GetRecord(self, *args): return _otapi.OTRecordList_GetRecord(self, *args)
+    def RemoveRecord(self, *args): return _otapi.OTRecordList_RemoveRecord(self, *args)
+OTRecordList_swigregister = _otapi.OTRecordList_swigregister
+OTRecordList_swigregister(OTRecordList)
+
+def OTRecordList_setAddrBookCaller(*args):
+  return _otapi.OTRecordList_setAddrBookCaller(*args)
+OTRecordList_setAddrBookCaller = _otapi.OTRecordList_setAddrBookCaller
+
+def OTRecordList_getAddrBookCaller():
+  return _otapi.OTRecordList_getAddrBookCaller()
+OTRecordList_getAddrBookCaller = _otapi.OTRecordList_getAddrBookCaller
+
+def OTRecordList_textTo():
+  return _otapi.OTRecordList_textTo()
+OTRecordList_textTo = _otapi.OTRecordList_textTo
+
+def OTRecordList_textFrom():
+  return _otapi.OTRecordList_textFrom()
+OTRecordList_textFrom = _otapi.OTRecordList_textFrom
+
+def OTRecordList_setTextTo(*args):
+  return _otapi.OTRecordList_setTextTo(*args)
+OTRecordList_setTextTo = _otapi.OTRecordList_setTextTo
+
+def OTRecordList_setTextFrom(*args):
+  return _otapi.OTRecordList_setTextFrom(*args)
+OTRecordList_setTextFrom = _otapi.OTRecordList_setTextFrom
 
 
 def OT_API_Set_PasswordCallback(*args):

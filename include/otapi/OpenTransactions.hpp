@@ -360,7 +360,7 @@ public:
                                OTString & strKEY_PASSWORD);
 	EXPORT	bool ProcessSockets();
 	// --------------------------------------------------
-	EXPORT	time_t  GetTime();
+	EXPORT	time64_t  GetTime();
 	// --------------------------------------------------
 	EXPORT  bool  NumList_Add        (OTNumList & theList, const OTNumList & theNewNumbers);
 	EXPORT  bool  NumList_Remove     (OTNumList & theList, const OTNumList & theOldNumbers);
@@ -599,8 +599,8 @@ public:
 	// (Caller responsible to delete.)
 	EXPORT	OTCheque * WriteCheque(const OTIdentifier & SERVER_ID,
                                    const int64_t &			CHEQUE_AMOUNT,
-                                   const time_t &		VALID_FROM,
-                                   const time_t &		VALID_TO,
+                                   const time64_t &		VALID_FROM,
+                                   const time64_t &		VALID_TO,
                                    const OTIdentifier & SENDER_ACCT_ID,
                                    const OTIdentifier & SENDER_USER_ID,
                                    const OTString &		CHEQUE_MEMO,
@@ -627,8 +627,8 @@ public:
 	//
     EXPORT	OTPaymentPlan * ProposePaymentPlan(const OTIdentifier & SERVER_ID,
                                                // ----------------------------------------
-                                               const time_t		& VALID_FROM, // 0 defaults to the current time in seconds since Jan 1970.
-                                               const time_t		& VALID_TO,   // 0 defaults to "no expiry." Otherwise this value is ADDED to VALID_FROM. (It's a length.)
+                                               const time64_t		& VALID_FROM, // 0 defaults to the current time in seconds since Jan 1970.
+                                               const time64_t		& VALID_TO,   // 0 defaults to "no expiry." Otherwise this value is ADDED to VALID_FROM. (It's a length.)
                                                // ----------------------------------------
                                                const OTIdentifier & SENDER_ACCT_ID,
                                                const OTIdentifier & SENDER_USER_ID,
@@ -639,13 +639,13 @@ public:
                                                const OTIdentifier & RECIPIENT_USER_ID,
                                                // ----------------------------------------  // If it's above zero, the initial
                                                const int64_t		& INITIAL_PAYMENT_AMOUNT,   // amount will be processed after
-                                               const time_t		& INITIAL_PAYMENT_DELAY,    // delay (seconds from now.)
+                                               const time64_t		& INITIAL_PAYMENT_DELAY,    // delay (seconds from now.)
                                                // ----------------------------------------  // AND SEPARATELY FROM THIS...
                                                const int64_t		& PAYMENT_PLAN_AMOUNT,      // The regular amount charged,
-                                               const time_t		& PAYMENT_PLAN_DELAY,       // which begins occuring after delay
-                                               const time_t		& PAYMENT_PLAN_PERIOD,      // (seconds from now) and happens
+                                               const time64_t		& PAYMENT_PLAN_DELAY,       // which begins occuring after delay
+                                               const time64_t		& PAYMENT_PLAN_PERIOD,      // (seconds from now) and happens
                                                // ----------------------------------------  // every period, ad infinitum, until
-                                               time_t PAYMENT_PLAN_LENGTH       = 0,        // after the length (in seconds)
+                                               time64_t PAYMENT_PLAN_LENGTH = OT_TIME_ZERO,        // after the length (in seconds)
                                                int32_t    PAYMENT_PLAN_MAX_PAYMENTS = 0         // expires, or after the maximum
                                                );                                           // number of payments. These last
 	// ----------------------------------------------------                                 // two arguments are optional.
@@ -1029,8 +1029,8 @@ EXPORT	OTServerContract * LoadServerContract(const OTIdentifier & SERVER_ID);
 
 	EXPORT	bool Create_SmartContract(const OTIdentifier & SIGNER_NYM_ID,// Use any Nym you wish here. (The signing at this point is only to cause a save.)
                                       // ----------------------------------------
-                                      time_t     VALID_FROM,	// Default (0 or NULL) == NOW
-                                      time_t     VALID_TO,      // Default (0 or NULL) == no expiry / cancel anytime
+                                      time64_t     VALID_FROM,	// Default (0 or NULL) == NOW
+                                      time64_t     VALID_TO,      // Default (0 or NULL) == no expiry / cancel anytime
                                       OTString & strOutput);
 
 	EXPORT	bool SmartContract_AddBylaw(const	OTString		& THE_CONTRACT,	// The contract, about to have the bylaw added to it.
@@ -1149,7 +1149,7 @@ EXPORT	OTServerContract * LoadServerContract(const OTIdentifier & SERVER_ID);
                                 const int64_t			& PRICE_LIMIT,               // Per Minimum Increment...
                                 const bool			  bBuyingOrSelling,          // BUYING == false, SELLING == true.
                                 // -------------------------------------------
-                                const time_t          tLifespanInSeconds=86400,  // 86400 seconds == 1 day.
+                                const time64_t          tLifespanInSeconds = OT_TIME_DAY_IN_SECONDS,  // 86400 seconds == 1 day.
                                 // -------------------------------------------
                                 const char            STOP_SIGN=0,               // For stop orders, set to '<' or '>'
                                 const int64_t            ACTIVATION_PRICE=0);       // For stop orders, set the threshold price here.

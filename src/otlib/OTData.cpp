@@ -1,5 +1,4 @@
-
-/*************************************************************
+/************************************************************
  *    
  *  OTData.cpp
  *  
@@ -141,8 +140,6 @@
 #include <OTASCIIArmor.hpp>
 
 
-
-
 bool OTData::operator==(const OTData &s2) const
 {
 	if (m_lSize != s2.m_lSize) 
@@ -163,6 +160,7 @@ bool OTData::operator==(const OTData &s2) const
 	return false;
 }
 
+
 bool OTData::operator!=(const OTData &s2) const
 {
 	if (m_lSize == s2.m_lSize) 
@@ -182,6 +180,7 @@ bool OTData::operator!=(const OTData &s2) const
 	
 	return true;
 }
+
 
 // First use reset() to set the internal position to 0.
 // Then you pass in the buffer where the results go.
@@ -217,16 +216,17 @@ uint32_t OTData::OTfread(uint8_t * buf, uint32_t buflen)
 }
 
 
-
 OTData::OTData() : m_pData(NULL), m_lPosition(0), m_lSize(0)
 {
 
 }
 
+
 OTData::OTData(const OTData &theSource) : m_pData(NULL), m_lPosition(0), m_lSize(0)
 {	
 	Assign(theSource);  // ***********
 }
+
 
 OTData::OTData(const OTASCIIArmor &theSource) : m_pData(NULL), m_lPosition(0), m_lSize(0)
 {	
@@ -234,15 +234,18 @@ OTData::OTData(const OTASCIIArmor &theSource) : m_pData(NULL), m_lPosition(0), m
 		theSource.GetData(*this); // ***********
 }
 
+
 OTData::OTData(const void * pNewData, uint32_t lNewSize) : m_pData(NULL), m_lPosition(0), m_lSize(0)
 {	
 	Assign(pNewData, lNewSize);
 }
 
+
 OTData::~OTData()
 { 
     Release_Data(); 
 }
+
 
 void OTData::zeroMemory()
 {
@@ -251,6 +254,7 @@ void OTData::zeroMemory()
         OTPassword::zeroMemory(m_pData, m_lSize);
     }
 }
+
 
 void OTData::Release_Data()
 {
@@ -271,6 +275,7 @@ void OTData::Release_Data()
    }
 }
 
+
 void OTData::Release()
 {
     Release_Data();
@@ -285,12 +290,14 @@ OTData & OTData::operator=(OTData rhs)
 	return *this;
 }
 
+
 void OTData::swap(OTData & rhs) 
 {
 	std::swap(m_pData,		rhs.m_pData);
 	std::swap(m_lPosition,	rhs.m_lPosition);
 	std::swap(m_lSize,		rhs.m_lSize);
 }
+
 
 void OTData::Assign(const OTData &theSource)
 {
@@ -304,6 +311,7 @@ void OTData::Assign(const OTData &theSource)
 	else
 		Release(); // Otherwise if it's empty, then empty this also.
 }
+
 
 bool OTData::IsEmpty() const
 {
@@ -326,7 +334,6 @@ void OTData::Assign(const void * pNewData, uint32_t lNewSize)
 	}
 	// else error condition.  Could just ASSERT() this.
 }
-
 
 
 bool OTData::Randomize(uint32_t lNewSize)
@@ -352,7 +359,6 @@ bool OTData::Randomize(uint32_t lNewSize)
 	// else error condition.  Could just ASSERT() this.
     return false;
 }
-
 
 
 void OTData::Concatenate(const void * pAppendData, uint32_t lAppendSize)
@@ -407,7 +413,6 @@ void OTData::Concatenate(const void * pAppendData, uint32_t lAppendSize)
 }
 
 
-
 OTData & OTData::operator+=(const OTData & rhs)
 {
     if (rhs.GetSize() > 0)
@@ -415,7 +420,6 @@ OTData & OTData::operator+=(const OTData & rhs)
 
 	return *this;
 }
-
 
 
 void OTData::SetSize(uint32_t lNewSize)
@@ -432,16 +436,3 @@ void OTData::SetSize(uint32_t lNewSize)
 		m_lSize = lNewSize;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

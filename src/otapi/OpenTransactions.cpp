@@ -163,8 +163,10 @@
 
 #include <fstream>
 
+#include <time.h>
 
-#include "simpleini/SimpleIni.hpp"
+
+
 #include "tinythread.hpp"
 
 #if defined (OPENTXS_HAVE_NETINET_IN_H)
@@ -537,7 +539,7 @@ bool OTSocket::Send(OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
 	}
 	else // not blocking
 	{
-		int32_t		nSendTries	= m_nLatencySendNoTries;
+		int32_t	nSendTries	= m_nLatencySendNoTries;
         int64_t	lDoubling = lLatencySendMicroSec;
 		bool	bKeepTrying = true;
 
@@ -3391,9 +3393,9 @@ int32_t OT_API::NumList_Count(OTNumList & theList)
  Todo:  consider making this available on the server side as well,
  so the smart contracts can see what time it is.
  */
-time_t OT_API::GetTime()
+time64_t OT_API::GetTime()
 {
-	return time(NULL);
+	return OTTimeGetCurrentTime();
 }
 
 
@@ -3865,8 +3867,8 @@ bool OT_API::VerifyAccountReceipt(const OTIdentifier & SERVER_ID,
 
 bool OT_API::Create_SmartContract(const OTIdentifier & SIGNER_NYM_ID,// Use any Nym you wish here. (The signing at this point is only to cause a save.)
 								  // ----------------------------------------
-								  time_t		VALID_FROM,	// Default (0 or NULL) == NOW
-								  time_t		VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime
+								  time64_t		VALID_FROM,	// Default (0 or NULL) == NOW
+								  time64_t		VALID_TO,	// Default (0 or NULL) == no expiry / cancel anytime
 								  OTString & strOutput)
 {
 	// -----------------------------------------------------
@@ -5131,8 +5133,8 @@ OTAccount * OT_API::GetOrLoadAccount(const	OTIdentifier	& NYM_ID,
 //
 OTCheque * OT_API::WriteCheque(const OTIdentifier & SERVER_ID,
 							   const int64_t         & CHEQUE_AMOUNT,
-							   const time_t       & VALID_FROM,
-							   const time_t       & VALID_TO,
+							   const time64_t       & VALID_FROM,
+							   const time64_t       & VALID_TO,
 							   const OTIdentifier & SENDER_ACCT_ID,
 							   const OTIdentifier & SENDER_USER_ID,
 							   const OTString     & CHEQUE_MEMO,
@@ -5260,8 +5262,8 @@ OTCheque * OT_API::WriteCheque(const OTIdentifier & SERVER_ID,
 //
 OTPaymentPlan * OT_API::ProposePaymentPlan(const OTIdentifier & SERVER_ID,
 										 // ----------------------------------------
-										 const time_t		& VALID_FROM,	// Default (0) == NOW (It will set it to the current time in seconds since Jan 1970)
-										 const time_t		& VALID_TO,		// Default (0) == no expiry / cancel anytime. Otherwise this is a LENGTH and is ADDED to VALID_FROM
+										 const time64_t		& VALID_FROM,	// Default (0) == NOW (It will set it to the current time in seconds since Jan 1970)
+										 const time64_t		& VALID_TO,		// Default (0) == no expiry / cancel anytime. Otherwise this is a LENGTH and is ADDED to VALID_FROM
 										 // ----------------------------------------
 										 const OTIdentifier & SENDER_ACCT_ID,
 										 const OTIdentifier & SENDER_USER_ID,
@@ -5272,13 +5274,13 @@ OTPaymentPlan * OT_API::ProposePaymentPlan(const OTIdentifier & SERVER_ID,
 										 const OTIdentifier & RECIPIENT_USER_ID,
 										 // ----------------------------------------  // If it's above zero, the initial
 										 const int64_t			& INITIAL_PAYMENT_AMOUNT, // amount will be processed after
-										 const time_t		& INITIAL_PAYMENT_DELAY,  // delay (seconds from now.)
+										 const time64_t		& INITIAL_PAYMENT_DELAY,  // delay (seconds from now.)
 										 // ----------------------------------------  // AND SEPARATELY FROM THIS...
 										 const int64_t			& PAYMENT_PLAN_AMOUNT,	// The regular amount charged,
-										 const time_t		& PAYMENT_PLAN_DELAY,	// which begins occuring after delay
-										 const time_t		& PAYMENT_PLAN_PERIOD,	// (seconds from now) and happens
+										 const time64_t		& PAYMENT_PLAN_DELAY,	// which begins occuring after delay
+										 const time64_t		& PAYMENT_PLAN_PERIOD,	// (seconds from now) and happens
 										 // ----------------------------------------// every period, ad infinitum, until
-										 time_t	  PAYMENT_PLAN_LENGTH /*=0*/,		// after the length (in seconds)
+										 time64_t	  PAYMENT_PLAN_LENGTH /*=0*/,		// after the length (in seconds)
                                          int32_t	  PAYMENT_PLAN_MAX_PAYMENTS /*=0*/	// expires, or after the maximum
 										 )											// number of payments. These last
 {																					// two arguments are optional.
@@ -5323,7 +5325,7 @@ OTPaymentPlan * OT_API::ProposePaymentPlan(const OTIdentifier & SERVER_ID,
 	bool bSuccessSetInitialPayment	= true; // the default, in case user chooses not to even have this payment.
 	bool bSuccessSetPaymentPlan		= true; // the default, in case user chooses not to have a payment plan
 	// -----------------------------------------------------------------------
-	if ((INITIAL_PAYMENT_AMOUNT > 0) && (INITIAL_PAYMENT_DELAY >= 0))
+    if ((INITIAL_PAYMENT_AMOUNT > 0) && (INITIAL_PAYMENT_DELAY >= OT_TIME_ZERO))
 	{
 		// The Initial payment delay is measured in seconds, starting from the "Creation Date".
 		bSuccessSetInitialPayment = pPlan->SetInitialPayment(INITIAL_PAYMENT_AMOUNT, INITIAL_PAYMENT_DELAY);
@@ -5350,19 +5352,19 @@ OTPaymentPlan * OT_API::ProposePaymentPlan(const OTIdentifier & SERVER_ID,
 	{
 		// -----------------------------------------------------------------------
 		// The payment plan delay is measured in seconds, starting from the "Creation Date".
-		time_t	PAYMENT_DELAY = LENGTH_OF_MONTH_IN_SECONDS; // Defaults to 30 days, measured in seconds (if you pass 0.)
+		time64_t	PAYMENT_DELAY = OT_TIME_MONTH_IN_SECONDS; // Defaults to 30 days, measured in seconds (if you pass 0.)
 
-		if (PAYMENT_PLAN_DELAY > 0)
+        if (PAYMENT_PLAN_DELAY > OT_TIME_ZERO)
 			PAYMENT_DELAY = PAYMENT_PLAN_DELAY;
 		// -----------------------------------------------------------------------
-		time_t	PAYMENT_PERIOD = LENGTH_OF_MONTH_IN_SECONDS; // Defaults to 30 days, measured in seconds (if you pass 0.)
+		time64_t	PAYMENT_PERIOD = OT_TIME_MONTH_IN_SECONDS; // Defaults to 30 days, measured in seconds (if you pass 0.)
 
-		if (PAYMENT_PLAN_PERIOD > 0)
+        if (PAYMENT_PLAN_PERIOD > OT_TIME_ZERO)
 			PAYMENT_PERIOD = PAYMENT_PLAN_PERIOD;
 		// -----------------------------------------------------------------------
-		time_t	PLAN_LENGTH = 0; // Defaults to 0 seconds (for no max length).
+        time64_t	PLAN_LENGTH = OT_TIME_ZERO; // Defaults to 0 seconds (for no max length).
 
-		if (PAYMENT_PLAN_LENGTH > 0)
+        if (PAYMENT_PLAN_LENGTH > OT_TIME_ZERO)
 			PLAN_LENGTH = PAYMENT_PLAN_LENGTH;
 		// -----------------------------------------------------------------------
 		int32_t nMaxPayments = 0; // Defaults to 0 maximum payments (for no maximum).
@@ -7920,11 +7922,11 @@ bool OT_API::RecordPayment(const OTIdentifier & SERVER_ID,
                 // recover it, at any time prior to that point...) But we still must consider that people sent
                 // cash and they just want it erased, so...
                 //
-                time_t tValidTo = 0;
+                time64_t tValidTo = OT_TIME_ZERO;
 
                 if (thePayment.GetValidTo(tValidTo))
                 {
-                    lPaymentTransNum = static_cast<int64_t>(tValidTo) + 1000000000; // todo hardcoded. (But should be harmless since this is record box.)
+                    lPaymentTransNum = OTTimeGetSecondsFromTime(tValidTo) + 1000000000; // todo hardcoded. (But should be harmless since this is record box.)
 
                     // Since we're using a made-up transaction number here, let's
                     // make sure it's not already being used. If it is, we'll
@@ -9933,8 +9935,8 @@ int32_t OT_API::payDividend(OTIdentifier	& SERVER_ID,
 	{
 		// -----------------------------------------------------------------------
 		// Expiration (ignored by server -- it sets its own for its vouchers.)
-		const	time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
-		const	time_t	VALID_TO	= VALID_FROM + 15552000; // 6 months.
+		const	time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
+        const	time64_t	VALID_TO = OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS)); // 6 months.
 		// -----------------------------------------------------------------------
 		// The server only uses the amount and asset type from this cheque when it
 		// constructs the actual voucher (to the dividend payee.) And remember there
@@ -10150,8 +10152,8 @@ int32_t OT_API::withdrawVoucher(OTIdentifier	& SERVER_ID,
     const OTString strRecipientUserID(RECIPIENT_USER_ID);
     // -----------------------------------------------------------------------
     // Expiration (ignored by server -- it sets its own for its vouchers.)
-    const	time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
-    const	time_t	VALID_TO	= VALID_FROM + 15552000; // 6 months.
+    const	time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
+    const	time64_t	VALID_TO = OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS)); // 6 months.
     // -----------------------------------------------------------------------
     // The server only uses the memo, amount, and recipient from this cheque when it
     // constructs the actual voucher.
@@ -11372,7 +11374,7 @@ int32_t OT_API::issueMarketOffer( const OTIdentifier	& SERVER_ID,
 							  const int64_t			& PRICE_LIMIT,    // Per Minimum Increment...
 							  const bool			  bBuyingOrSelling, //  BUYING == false, SELLING == true.
                               // -------------------------------------------
-                              const time_t            tLifespanInSeconds/*=86400*/, // 86400 == 1 day.
+                              const time64_t            tLifespanInSeconds/*=86400*/, // 86400 == 1 day.
                               // -------------------------------------------
                               const char              STOP_SIGN/*=0*/,               // For stop orders, set to '<' or '>'
                               const int64_t              ACTIVATION_PRICE/*=0*/)        // For stop orders, this is threshhold price.
@@ -11438,9 +11440,9 @@ int32_t OT_API::issueMarketOffer( const OTIdentifier	& SERVER_ID,
     // -------------------------------------------------------------------
 	else
 	{
-        const time_t VALID_FROM = this->GetTime();      // defaults to RIGHT NOW aka OT_API_GetTime() if set to 0 anyway.
-        const time_t VALID_TO   = VALID_FROM +          // defaults to 24 hours (a "Day Order") aka OT_API_GetTime() + 86,400
-                                  (0 == tLifespanInSeconds ? LENGTH_OF_DAY_IN_SECONDS : tLifespanInSeconds);
+        const time64_t VALID_FROM = this->GetTime();      // defaults to RIGHT NOW aka OT_API_GetTime() if set to 0 anyway.
+        const time64_t VALID_TO   = OTTimeAddTimeInterval(VALID_FROM,          // defaults to 24 hours (a "Day Order") aka OT_API_GetTime() + 86,400
+                                                            OTTimeGetSecondsFromTime(OT_TIME_ZERO == tLifespanInSeconds ? OT_TIME_DAY_IN_SECONDS : tLifespanInSeconds));
         // ------------------------------------
 		int64_t	lTotalAssetsOnOffer = 1,
 				lMinimumIncrement   = 1,
@@ -11498,7 +11500,8 @@ int32_t OT_API::issueMarketOffer( const OTIdentifier	& SERVER_ID,
                        lTotalAssetsOnOffer,
                        lMinimumIncrement,
                        lMarketScale,
-                       static_cast<int64_t>(VALID_FROM), static_cast<int64_t>(VALID_TO)
+                       OTTimeGetSecondsFromTime(VALID_FROM),
+                       OTTimeGetSecondsFromTime(VALID_TO)
                        );
 
 		// -------------------------------------------------------------------

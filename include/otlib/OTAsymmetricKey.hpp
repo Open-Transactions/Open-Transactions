@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTAsymmetricKey.h
+ *  OTAsymmetricKey.hpp
  *
  */
 
@@ -130,16 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
+
+#include <list>
+#include <cstddef>
 
 #include "OTCommon.hpp"
 
 #include "Timer.hpp"
-
-#include <list>
-#include <cstddef>
 
 class OTCaller;
 class OTKeypair;
@@ -150,19 +149,6 @@ class OTASCIIArmor;
 class OTSignatureMetadata;
 class OTPasswordData;
 
-
-#ifdef OT_CRYPTO_USING_OPENSSL
-
-extern "C"
-{
-#include <openssl/pem.h>
-#include <openssl/evp.h>
-#include <openssl/x509v3.h>
-}
-
-#endif
-
-// --------------------------------------------------------
 
 // Todo:
 // 1. Add this value to the config file so it becomes merely a default value here.
@@ -189,7 +175,7 @@ extern "C"
 
 // FYI: 1800 seconds is 30 minutes, 300 seconds is 5 mins.
 #endif // OT_KEY_TIMER
-// --------------------------------------------------------
+
 
 // This is the only part of the API that actually accepts objects as parameters,
 // since the above objects have SWIG C++ wrappers.
@@ -197,7 +183,6 @@ extern "C"
 EXPORT bool OT_API_Set_PasswordCallback(OTCaller & theCaller); // Caller must have Callback attached already.
 
 
-// ------------------------------------------------
 // For getting the password from the user, for using his private key.
 //
 extern "C"
@@ -207,53 +192,20 @@ typedef int32_t OT_OPENSSL_CALLBACK(char *buf, int32_t size, int32_t rwflag, voi
 EXPORT	OT_OPENSSL_CALLBACK default_pass_cb;
 EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 }
-// ------------------------------------------------
 // Used for the actual function definition (in the .cpp file).
 //
 #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
-// ------------------------------------------------
 
+#include "OTLowLevelKeyData.hpp"
 
-/// OTLowLevelKeyData
-/// Used for passing x509's and EVP_PKEYs around, so a replacement
-/// crypto engine will not require changes to any function parameters
-/// throughout the rest of OT.
-//
-class OTLowLevelKeyData
-{
-public:
-    bool m_bCleanup; // By default, OTLowLevelKeyData cleans up the members. But if you set this to false, it will NOT cleanup.
-    // ---------------------
-    bool MakeNewKeypair(int32_t nBits=1024);
-    void Cleanup();
-    bool SetOntoKeypair(OTKeypair & theKeypair);
-
-    OTLowLevelKeyData();
-    ~OTLowLevelKeyData();
-// ***************************************************************
-#if defined (OT_CRYPTO_USING_OPENSSL)
-    X509         *  m_pX509;
-	EVP_PKEY     *	m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary.)
-// ***************************************************************
-#elif defined (OT_CRYPTO_USING_GPG)
-
-// ***************************************************************
-#else
-
-#endif  // Crypto engine.
-};
-
-
-
-// ***************************************************************
 
 class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
 {
 // ---------------------------------------------------------------
 public: // INSTANTIATION
-EXPORT  static OTAsymmetricKey * KeyFactory();        // Caller IS responsible to delete!
-    virtual    OTAsymmetricKey * ClonePubKey() const; // Caller IS responsible to delete!
+EXPORT  static  OTAsymmetricKey * KeyFactory();        // Caller IS responsible to delete!
+        virtual OTAsymmetricKey * ClonePubKey() const; // Caller IS responsible to delete!
 // ********************************************
 public: // PASSWORD CALLBACK
        static void SetPasswordCallback(OT_OPENSSL_CALLBACK * pCallback);
@@ -424,155 +376,10 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
     // ***************************************************************************************
 };
 
-
 typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 
-// *******************************************************************************************
-
-#if defined (OT_CRYPTO_USING_OPENSSL)
-
-class OTAsymmetricKey_OpenSSL : public OTAsymmetricKey
-{
-private:  // Private prevents erroneous use by other classes.
-    typedef OTAsymmetricKey ot_super;
-    // -----------------------------------------------------
-    friend class OTAsymmetricKey;    // For the factory.
-    friend class OTLowLevelKeyData;  // For access to OpenSSL-specific calls that are otherwise private.
-    friend class OTCrypto_OpenSSL;   // For OpenSSL-specific crypto functions to access OpenSSL-specific methods.
-public:
-    // ***************************************************************
-    // Load Private Key From Cert String
-    //
-    // "escaped" means pre-pended with "- " as in:   - -----BEGIN CERTIFICATE....
-    //
-    virtual bool LoadPrivateKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                              const OTString   * pstrReason=NULL,
-                                                    OTPassword * pImportPassword=NULL);
-    // ***************************************************************
-    // Load Public Key from Cert String
-    //
-	virtual bool LoadPublicKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
-                                             const OTString   * pstrReason=NULL,
-                                                   OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
-    // ---------------------------------------------------------------
-    virtual bool SaveCertToString      (OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
-    virtual bool SavePrivateKeyToString(OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
-    // -------------------------------------
-	virtual bool LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKey); // does NOT handle bookends.
-// -----------------------------------------------------
-    virtual bool ReEncryptPrivateKey(OTPassword & theExportPassword, bool bImporting);
-private:
-    // -----------------------------------------------------
-    // STATIC METHODS
-    //
-    // Create base64-encoded version of an EVP_PKEY
-    // (Without bookends.)
-    //
-    static bool ArmorPrivateKey(EVP_PKEY & theKey, OTASCIIArmor & ascKey, Timer & theTimer, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);
-    static bool ArmorPublicKey (EVP_PKEY & theKey, OTASCIIArmor & ascKey);
-    // -------------------------------------
-    static EVP_PKEY *  CopyPublicKey (EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
-    static EVP_PKEY *  CopyPrivateKey(EVP_PKEY & theKey, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);  // CALLER must EVP_pkey_free!
-// ***************************************************************
-
-    // INSTANCES...
-
-private:
-    // -----------------------------------------------------
-    // PRIVATE MEMBER DATA
-    X509         *  m_pX509;
-	EVP_PKEY     *	m_pKey;    // Instantiated form of key. (For private keys especially, we don't want it instantiated for any longer than absolutely necessary, when we have to use it.)
-    // ***************************************************************
-    // PRIVATE METHODS
-    EVP_PKEY *  InstantiateKey       (OTPasswordData * pPWData=NULL);
-    EVP_PKEY *  InstantiatePublicKey (OTPasswordData * pPWData=NULL);
-    EVP_PKEY *  InstantiatePrivateKey(OTPasswordData * pPWData=NULL);
-    // ---------------------------------------------------------------
-    // HIGH LEVEL (internal) METHODS
-    //
-EXPORT const EVP_PKEY * GetKey(OTPasswordData * pPWData=NULL);
-
-	void SetKeyAsCopyOf(EVP_PKEY & theKey, bool bIsPrivateKey=false, OTPasswordData * pPWData=NULL, OTPassword * pImportPassword=NULL);
-    // ---------------------------------------------------------------
-    // LOW LEVEL (internal) METHODS
-    //
-    EVP_PKEY *  GetKeyLowLevel();
-
-    X509     *  GetX509() { return m_pX509; }
-    void        SetX509(X509 * x509);
-    // -----------------------------------------------------
-protected: // CONSTRUCTOR
-    OTAsymmetricKey_OpenSSL();
-
-    // -----------------------------------------------------
-public: // DERSTRUCTION
-    virtual ~OTAsymmetricKey_OpenSSL();
-    virtual void Release();
-    void Release_AsymmetricKey_OpenSSL();
-
-protected:
-    virtual void ReleaseKeyLowLevel_Hook();
-};
-
-// ***************************************************************
-#elif defined (OT_CRYPTO_USING_GPG)
-
-
-// ***************************************************************
-#else // NO CRYPTO ENGINE DEFINED?
-
-#endif
-// ***************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#include "OTAsymmetricKeyOpenSSL.hpp"
 
 
 #endif // __OT_ASYMMETRIC_KEY_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

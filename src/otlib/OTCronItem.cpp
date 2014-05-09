@@ -134,6 +134,8 @@
 
 #include <OTCronItem.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <OTAssert.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
@@ -144,16 +146,12 @@
 #include <OTPseudonym.hpp>
 #include <OTLedger.hpp>
 
-#include "irrxml/irrXML.hpp"
-
 using namespace irr;
 using namespace io;
 
 
 // Base class for OTTrade and OTAgreement and OTPaymentPlan.
 // OTCron contains lists of these for regular processing.
-
-
 
 // static -- class factory.
 //
@@ -231,8 +229,6 @@ OTCronItem * OTCronItem::NewCronItem(const OTString & strCronItem)
 
 	return NULL;
 }
-
-
 
 
 OTCronItem * OTCronItem::LoadCronReceipt(const int64_t & lTransactionNum)
@@ -551,7 +547,6 @@ bool OTCronItem::SaveActiveCronReceipt(const OTIdentifier & theNymID) // Client-
 }
 
 
-
 // When first adding anything to Cron, a copy needs to be saved in a folder somewhere.
 // (Just for our records.) For example, before I start updating the status on any Trade,
 // I have already saved the user's original Trade object (from his request) to a folder.
@@ -596,15 +591,6 @@ bool OTCronItem::SaveCronReceipt()
 	// --------------------------------------------------------------------
 	return bSaved;
 }
-
-
-
-
-
-
-
-
-
 
 
 // DONE: Make a GENERIC VERSION of the BELOW function, that script coders can call
@@ -1353,15 +1339,11 @@ bool OTCronItem::MoveFunds(const mapOfNyms	  & map_NymsAlreadyLoaded,
 }
 
 
-
-
-
-bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID_TO/*=0*/)
+bool OTCronItem::SetDateRange(const time64_t VALID_FROM/*=0*/,  const time64_t VALID_TO/*=0*/)
 {
-	// ***************************************************
 	// Set the CREATION DATE
     //
-	const time_t CURRENT_TIME = time(NULL);
+	const time64_t CURRENT_TIME = OTTimeGetCurrentTime();
 
 	// Set the Creation Date.
 	SetCreationDate(CURRENT_TIME);
@@ -1370,7 +1352,7 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
     // VALID_FROM
     //
 	// The default "valid from" time is NOW.
-	if (0 >= VALID_FROM) // if it's 0 or less, set to current time.
+    if (OT_TIME_ZERO >= VALID_FROM) // if it's 0 or less, set to current time.
 		SetValidFrom(CURRENT_TIME);
 	else // Otherwise use whatever was passed in.
 		SetValidFrom(VALID_FROM);
@@ -1378,16 +1360,16 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
     // VALID_TO
     //
 	// The default "valid to" time is 0 (which means no expiration date / cancel anytime.)
-	if (0 == VALID_TO) // VALID_TO is 0
+    if (OT_TIME_ZERO == VALID_TO) // VALID_TO is 0
 	{
 		SetValidTo(VALID_TO); // Keep it at zero then, so it won't expire.
 	}
-	else if (0 < VALID_TO) // VALID_TO is ABOVE zero...
+    else if (OT_TIME_ZERO < VALID_TO) // VALID_TO is ABOVE zero...
 	{
 		if (VALID_TO < VALID_FROM) // If Valid-To date is EARLIER than Valid-From date...
 		{
-			int64_t lValidTo   = static_cast<int64_t> (VALID_TO),
-                    lValidFrom = static_cast<int64_t> (VALID_FROM);
+            int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
+            int64_t lValidFrom = OTTimeGetSecondsFromTime(VALID_FROM);
 			OTLog::vError("OTCronItem::%s: VALID_TO (%" PRId64") is earlier than VALID_FROM (%" PRId64")\n",
                           __FUNCTION__, lValidTo, lValidFrom);
 			return false;
@@ -1397,7 +1379,7 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
 	}
 	else // VALID_TO is a NEGATIVE number... Error.
 	{
-		int64_t lValidTo = static_cast<int64_t> (VALID_TO);
+        int64_t lValidTo = OTTimeGetSecondsFromTime(VALID_TO);
 		OTLog::vError("OTCronItem::%s: Negative value for valid_to: %" PRId64"\n",
                       __FUNCTION__, lValidTo);
 
@@ -1409,10 +1391,6 @@ bool OTCronItem::SetDateRange(const time_t VALID_FROM/*=0*/,  const time_t VALID
 }
 
 
-
-
-
-// ------------------------------------------------------------
 // These are for finalReceipt
 // The Cron Item stores a list of these closing transaction numbers,
 // used for closing a transaction.
@@ -1422,6 +1400,7 @@ int32_t OTCronItem::GetCountClosingNumbers() const
 	return static_cast<int32_t> (m_dequeClosingNumbers.size());
 }
 
+
 int64_t OTCronItem::GetClosingTransactionNoAt(uint32_t nIndex) const
 {
 	if (m_dequeClosingNumbers.size() <= nIndex)	{ OTLog::vError("%s: %s is equal or larger than m_dequeClosingNumbers.size()!\n", __FUNCTION__, "nIndex"	); OT_FAIL; }
@@ -1429,11 +1408,12 @@ int64_t OTCronItem::GetClosingTransactionNoAt(uint32_t nIndex) const
     return m_dequeClosingNumbers.at(nIndex);
 }
 
+
 void OTCronItem::AddClosingTransactionNo(const int64_t & lClosingTransactionNo)
 {
     m_dequeClosingNumbers.push_back(lClosingTransactionNo);
 }
-// ------------------------------------------------------------
+
 
 /// See if theNym has rights to remove this item from Cron.
 ///
@@ -1487,8 +1467,6 @@ bool OTCronItem::CanRemoveItemFromCron(OTPseudonym & theNym)
 }
 
 
-
-
 // OTCron calls this regularly, which is my chance to expire, etc.
 // Child classes will override this, AND call it (to verify valid date range.)
 //
@@ -1516,8 +1494,6 @@ bool OTCronItem::ProcessCron()
 	// As far as this code is concerned, the item can stay on cron for now. Return true.
 	return true;
 }
-
-
 
 
 // OTCron calls this when a cron item is added.
@@ -1549,9 +1525,6 @@ void OTCronItem::HookActivationOnCron(OTPseudonym * pActivator, // sometimes NUL
 	// OTSmartContract overrides this, so it can allow the SCRIPT
 	// a chance to hook onActivate() as well.
 }
-
-
-
 
 
 // OTCron calls this when a cron item is removed
@@ -1698,7 +1671,6 @@ void OTCronItem::HookRemovalFromCron(OTPseudonym * pRemover) // sometimes NULL.
     //
     onRemovalFromCron();
 }
-
 
 
 // This function is overridden in OTTrade, OTAgreement, and OTSmartContract.
@@ -1848,12 +1820,6 @@ void OTCronItem::onFinalReceipt(OTCronItem & theOrigCronItem,
     // in the first place.
     // -----------------------------------------------------------------
 }
-
-
-
-
-
-
 
 
 // This is the "DROPS FINAL RECEIPT" function.
@@ -2040,13 +2006,8 @@ bool OTCronItem::DropFinalReceiptToInbox(const OTIdentifier & USER_ID,
 }
 
 
-
-
-
-
 // Done: IF ACTUAL NYM is NOT passed below, then need to LOAD HIM UP (so we can
 // update his NymboxHash after we update the Nymbox.)
-
 
 // The final receipt doesn't have a closing number in the Nymbox, only in the Inbox.
 // That's because in the Nymbox, it's just a notice, and it's not there to enforce anything.
@@ -2262,21 +2223,16 @@ bool OTCronItem::DropFinalReceiptToNymbox(const OTIdentifier & USER_ID,
 }
 
 
-
-// ****************************************************************
-
-
 int64_t OTCronItem::GetOpeningNum() const
 {
     return GetTransactionNum();
 }
 
+
 int64_t OTCronItem::GetClosingNum() const
 {
     return (GetCountClosingNumbers() > 0) ? GetClosingTransactionNoAt(0) : 0; // todo stop hardcoding.
 }
-
-// -------------------------------------
 
 
 bool OTCronItem::IsValidOpeningNumber(const int64_t & lOpeningNum) const
@@ -2286,6 +2242,7 @@ bool OTCronItem::IsValidOpeningNumber(const int64_t & lOpeningNum) const
 
 	return false;
 }
+
 
 int64_t OTCronItem::GetOpeningNumber(const OTIdentifier & theNymID) const
 {
@@ -2307,6 +2264,7 @@ int64_t OTCronItem::GetClosingNumber(const OTIdentifier & theAcctID) const
 
 	return 0;
 }
+
 
 // You usually wouldn't want to use this, since if the transaction failed, the opening number
 // is already burned and gone. But there might be cases where it's not, and you want to retrieve it.
@@ -2337,8 +2295,6 @@ void OTCronItem::HarvestOpeningNumber(OTPseudonym & theNym)
     // we MUST rely on the CALLER to know this, and to avoid calling this function in the first place,
     // if he's sitting on a sender with a failed transaction.
 }
-
-
 
 
 // This is a good default implementation.
@@ -2372,8 +2328,8 @@ void OTCronItem::HarvestClosingNumbers(OTPseudonym & theNym)
 }
 
 
-
-OTCronItem::OTCronItem() : ot_super(), m_pCron(NULL), m_CREATION_DATE(0), m_LAST_PROCESS_DATE(0),
+OTCronItem::OTCronItem()
+:   ot_super(), m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO), m_LAST_PROCESS_DATE(OT_TIME_ZERO),
     m_PROCESS_INTERVAL(1),  // Default for any cron item is to execute once per second.
     m_pCancelerNymID(new OTIdentifier),
     m_bCanceled(false),
@@ -2383,10 +2339,10 @@ OTCronItem::OTCronItem() : ot_super(), m_pCron(NULL), m_CREATION_DATE(0), m_LAST
 }
 
 
-OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) :
-    ot_super(SERVER_ID, ASSET_ID),
-    m_pCron(NULL), m_CREATION_DATE(0),
-    m_LAST_PROCESS_DATE(0), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
+OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID)
+:   ot_super(SERVER_ID, ASSET_ID),
+    m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO),
+    m_LAST_PROCESS_DATE(OT_TIME_ZERO), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
     m_pCancelerNymID(new OTIdentifier),
     m_bCanceled(false),
     m_bRemovalFlag(false)
@@ -2394,11 +2350,12 @@ OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSE
 	InitCronItem();
 }
 
+
 OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID,
 					   const OTIdentifier & ACCT_ID,   const OTIdentifier & USER_ID) :
     ot_super(SERVER_ID, ASSET_ID, ACCT_ID, USER_ID),
-        m_pCron(NULL), m_CREATION_DATE(0),
-        m_LAST_PROCESS_DATE(0), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
+    m_pCron(NULL), m_CREATION_DATE(OT_TIME_ZERO),
+    m_LAST_PROCESS_DATE(OT_TIME_ZERO), m_PROCESS_INTERVAL(1), // Default for any cron item is to execute once per second.
         m_pCancelerNymID(new OTIdentifier),
         m_bCanceled(false),
         m_bRemovalFlag(false)
@@ -2407,7 +2364,7 @@ OTCronItem::OTCronItem(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSE
 	InitCronItem();
 }
 
-// ------------------------------------------------------
+
 bool OTCronItem::GetCancelerID(OTIdentifier & theOutput) const
 {
     if (!IsCanceled())
@@ -2419,7 +2376,7 @@ bool OTCronItem::GetCancelerID(OTIdentifier & theOutput) const
     theOutput = *m_pCancelerNymID;
     return true;
 }
-// ------------------------------------------------------
+
 
 // When canceling a cron item before it has been activated, use this.
 //
@@ -2439,8 +2396,6 @@ bool OTCronItem::CancelBeforeActivation(OTPseudonym & theCancelerNym)
 
     return true;
 }
-
-// ------------------------------------------------------
 
 
 void OTCronItem::InitCronItem()
@@ -2469,9 +2424,9 @@ OTCronItem::~OTCronItem()
 
 void OTCronItem::Release_CronItem()
 {
-    m_CREATION_DATE = 0;
-    m_LAST_PROCESS_DATE = 0;
-	m_PROCESS_INTERVAL = 1;
+    m_CREATION_DATE     = OT_TIME_ZERO;
+    m_LAST_PROCESS_DATE = OT_TIME_ZERO;
+	m_PROCESS_INTERVAL  = 1;
 
     ClearClosingNumbers();
 
@@ -2480,15 +2435,14 @@ void OTCronItem::Release_CronItem()
     m_pCancelerNymID->Release();
 }
 
+
 void OTCronItem::Release()
 {
 	Release_CronItem();
 
-    // ----------------------------------
 
 	ot_super::Release(); // since I've overridden the base class, I call it now...
 }
-
 
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
@@ -2535,7 +2489,6 @@ int32_t OTCronItem::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 	return nReturnVal;
 }
-
 
 
 /*

@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTScriptable.h
+ *  OTScriptable.hpp
  *
  *  This is just like OTContract, except it also has "Bylaws" and "Parties".
  */
@@ -131,15 +131,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
-#ifndef __OTSCRIPTABLE_HPP__
-#define __OTSCRIPTABLE_HPP__
+#ifndef __OT_SCRIPTABLE_HPP__
+#define __OT_SCRIPTABLE_HPP__
 
 #include "OTCommon.hpp"
 
 #include "OTContract.hpp"
 
 class OTAccount;
+
 
 class OTScriptable : public OTContract
 {
@@ -349,23 +349,4 @@ EXPORT	static OTScriptable * InstantiateScriptable(const OTString & strInput);
 };
 
 
-
-
-
-
-
-
-
-
-#endif // __OTSCRIPTABLE_HPP__
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_SCRIPTABLE_HPP__

@@ -157,8 +157,11 @@
 #include <OTMarket.hpp>
 #include <OTKeyring.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
+#include <time.h>
 
 #define SERVER_CONFIG_KEY "server"
 #define SERVER_DATA_DIR "server_data"
@@ -1851,7 +1854,7 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
             return false;
         }
         // --------------------------------------------------------------------
-        irr::io::IrrXMLReader* xml = createIrrXMLReader(&xmlFileContents);
+        irr::io::IrrXMLReader* xml = irr::io::createIrrXMLReader(xmlFileContents);
         OTCleanup<irr::io::IrrXMLReader> theXMLGuardian(xml); // So I don't have to clean it up later.
         // --------------------------------------------------------------------
         // parse the file until end reached
@@ -4527,8 +4530,8 @@ void OTServer::NotarizeWithdrawal(OTPseudonym & theNym, OTAccount & theAccount,
 				// 3 months ==  7776000 Seconds
 				// 6 months == 15552000 Seconds
 
-				const time_t	VALID_FROM	= time(NULL); // This time is set to TODAY NOW
-				const time_t	VALID_TO	= VALID_FROM + LENGTH_OF_SIX_MONTHS_IN_SECONDS;
+				const time64_t	VALID_FROM	= OTTimeGetCurrentTime(); // This time is set to TODAY NOW
+				const time64_t	VALID_TO	= OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS));
 
                 // UPDATE: We now use a transaction number owned by the remitter, instead of the transaction server.
                 //
@@ -5038,10 +5041,10 @@ bool OTAcctFunctor_PayDividend::Trigger(OTAccount & theSharesAccount) // theShar
     // 3 months ==  7776000 Seconds
     // 6 months == 15552000 Seconds
 
-    const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
-    const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
+    const time64_t VALID_FROM = OTTimeGetCurrentTime();			 // This time is set to TODAY NOW
+    const time64_t VALID_TO = OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS)); // This time occurs in 180 days (6 months).  Todo hardcoding.
 
-    int64_t        lNewTransactionNumber = 0;
+    int64_t lNewTransactionNumber = 0;
 
     const bool  bGotNextTransNum =
     theServer.IssueNextTransactionNumber(theServerNym, lNewTransactionNumber);    // bStoreTheNumber defaults to true. We save the transaction
@@ -5634,8 +5637,8 @@ void OTServer::NotarizePayDividend(OTPseudonym   & theNym, OTAccount     & theSo
                                     // 3 months ==  7776000 Seconds
                                     // 6 months == 15552000 Seconds
 
-                                    const time_t	VALID_FROM	= time(NULL);			 // This time is set to TODAY NOW
-                                    const time_t	VALID_TO	= VALID_FROM + 15552000; // This time occurs in 180 days (6 months).  Todo hardcoding.
+                                    const time64_t	VALID_FROM	= OTTimeGetCurrentTime();			 // This time is set to TODAY NOW
+                                    const time64_t	VALID_TO = OTTimeAddTimeInterval(VALID_FROM, OTTimeGetSecondsFromTime(OT_TIME_SIX_MONTHS_IN_SECONDS)); // This time occurs in 180 days (6 months).  Todo hardcoding.
 
                                     int64_t        lNewTransactionNumber = 0;
                                     const bool  bGotNextTransNum =
@@ -7462,7 +7465,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                 // signed by the server--and changes over time as cron processes. (The original receipt
                                 // can always be loaded when necessary.)
                                 //
-                                if (!bCancelling && m_Cron.AddCronItem(*pPlan, &theNym, true, time(NULL))) // bSaveReceipt=true
+                                if (!bCancelling && m_Cron.AddCronItem(*pPlan, &theNym, true, OTTimeGetCurrentTime())) // bSaveReceipt=true
                                 {
                                     //todo need to be able to "roll back" if anything inside this block fails.
 
@@ -7530,7 +7533,7 @@ void OTServer::NotarizePaymentPlan(OTPseudonym & theNym, OTAccount & theDeposito
                                                        __FUNCTION__, pPlan->GetOpeningNum());
                                     }
                                     // --------------------------------------
-                                } // if (m_Cron.AddCronItem(*pPlan, &theNym, true, time(NULL))) // bSaveReceipt=true
+                                } // if (m_Cron.AddCronItem(*pPlan, &theNym, true, OTTimeGetCurrentTime())) // bSaveReceipt=true
                                 else
                                 {
                                     if (bCancelling)
@@ -8042,7 +8045,7 @@ void OTServer::NotarizeSmartContract(OTPseudonym & theNym, OTAccount & theActiva
                     }
                     // -----------------------------------------------------
                     // Add it to Cron...
-                    else if (m_Cron.AddCronItem(*pContract, &theNym, true, time(NULL))) // bSaveReceipt=true
+                    else if (m_Cron.AddCronItem(*pContract, &theNym, true, OTTimeGetCurrentTime())) // bSaveReceipt=true
                     {
                         // We add the smart contract to the server's Cron object, which does regular processing.
                         // That object will take care of processing the smart contract according to its terms.
@@ -9456,7 +9459,7 @@ void OTServer::NotarizeMarketOffer(OTPseudonym & theNym, OTAccount & theAssetAcc
 				// signed by the server--and changes over time as cron processes. (The original receipt
 				// can always be loaded when necessary.)
                 //
-				if (m_Cron.AddCronItem(*pTrade, &theNym, true, time(NULL))) // bSaveReceipt=true
+				if (m_Cron.AddCronItem(*pTrade, &theNym, true, OTTimeGetCurrentTime())) // bSaveReceipt=true
 				{
                     //todo need to be able to "roll back" if anything inside this block fails.
 

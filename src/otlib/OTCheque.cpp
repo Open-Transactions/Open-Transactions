@@ -1,4 +1,4 @@
-/***************************************************************
+/************************************************************
  *    
  *  OTCheque.cpp
  *  
@@ -134,11 +134,11 @@
 
 #include <OTCheque.hpp>
 
+#include "irrxml/irrXML.hpp"
+
 #include <OTString.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTLog.hpp>
-
-#include "irrxml/irrXML.hpp"
 
 using namespace irr;
 using namespace io;
@@ -152,8 +152,8 @@ void OTCheque::UpdateContents()
              REMITTER_USER_ID(GetRemitterUserID()),
              REMITTER_ACCT_ID(GetRemitterAcctID());
 		
-	int64_t lFrom   = static_cast<int64_t> (GetValidFrom()),
-            lTo     = static_cast<int64_t> (GetValidTo());
+    int64_t lFrom = OTTimeGetSecondsFromTime(GetValidFrom());
+    int64_t lTo = OTTimeGetSecondsFromTime(GetValidTo());
 	
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
@@ -199,7 +199,6 @@ void OTCheque::UpdateContents()
 }
 
 
-
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 {	
@@ -232,8 +231,8 @@ int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
         const OTString str_valid_from = xml->getAttributeValue("validFrom");
         const OTString str_valid_to   = xml->getAttributeValue("validTo");
 
-		SetValidFrom(static_cast<time_t>(str_valid_from.ToLong()));
-		SetValidTo  (static_cast<time_t>(str_valid_to.ToLong()));
+        SetValidFrom(OTTimeGetTimeFromSeconds(str_valid_from.ToLong()));
+        SetValidTo(OTTimeGetTimeFromSeconds(str_valid_to.ToLong()));
         // ---------------------------------
 		OTString	strAssetTypeID     (xml->getAttributeValue("assetTypeID")),
 					strServerID        (xml->getAttributeValue("serverID")),
@@ -302,6 +301,7 @@ int32_t OTCheque::ProcessXMLNode(IrrXMLReader*& xml)
 	return nReturnVal;
 }
 
+
 // You still need to re-sign the cheque after doing this.
 void OTCheque::CancelCheque()
 {
@@ -323,12 +323,13 @@ void OTCheque::CancelCheque()
     // changing any balances, we set the cheque amount to 0 and re-sign it.
 }
 
+
 // Imagine that you are actually writing a cheque.
 // That's basically what this function does.
 // Make sure to sign it afterwards.
 bool OTCheque::IssueCheque(
                 const int64_t & lAmount, const int64_t & lTransactionNum,
-				const time_t & VALID_FROM, const time_t & VALID_TO,	// The expiration date (valid from/to dates) of the cheque
+				const time64_t & VALID_FROM, const time64_t & VALID_TO,	// The expiration date (valid from/to dates) of the cheque
 				const OTIdentifier & SENDER_ACCT_ID,			// The asset account the cheque is drawn on.
 				const OTIdentifier & SENDER_USER_ID,			// This ID must match the user ID on the asset account, 
 														// AND must verify the cheque signature with that user's key.
@@ -381,6 +382,7 @@ OTCheque::OTCheque() : ot_super(), m_lAmount(0), m_bHasRecipient(false), m_bHasR
 	InitCheque();
 }
 
+
 OTCheque::OTCheque(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : 
 			ot_super(SERVER_ID, ASSET_ID), m_lAmount(0), m_bHasRecipient(false), m_bHasRemitter(false)
 {
@@ -406,6 +408,7 @@ void OTCheque::Release_Cheque()
 	InitCheque(); 
 }
 
+
 void OTCheque::Release()
 {
     Release_Cheque();    
@@ -423,29 +426,3 @@ bool OTCheque::SaveContractWallet(std::ofstream & ofs)
 	
 	return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

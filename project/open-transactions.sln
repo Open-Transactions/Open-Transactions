@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "irrxml", "irrxml\irrxml.vcxproj", "{FF4E2F12-89AF-42AF-9630-66931CAE610A}"
 EndProject
@@ -34,6 +34,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcxproj", "{ED9F5A89-F38C-4283-BF35-6808300DCA94}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chaiscript_stdlib", "chaiscript\chaiscript_stdlib.vcxproj", "{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opentxs", "opentxs\opentxs.vcxproj", "{B21D6506-B74B-4D8E-9B83-F018E088F7C6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "gtest\gtest.vcxproj", "{1F39DFD0-CB8E-4728-BD89-836325467A49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gmock", "gmock\gmock.vcxproj", "{181346BE-FC21-433B-81EA-182EB62078F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +137,30 @@ Global
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|Win32.Build.0 = Release|Win32
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.ActiveCfg = Release|x64
 		{51FBF3DC-9D9E-483E-8BA2-D9D216916D45}.Release|x64.Build.0 = Release|x64
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Debug|Win32.Build.0 = Debug|Win32
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Debug|x64.ActiveCfg = Debug|x64
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Debug|x64.Build.0 = Debug|x64
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Release|Win32.ActiveCfg = Release|Win32
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Release|Win32.Build.0 = Release|Win32
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Release|x64.ActiveCfg = Release|x64
+		{B21D6506-B74B-4D8E-9B83-F018E088F7C6}.Release|x64.Build.0 = Release|x64
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Debug|Win32.Build.0 = Debug|Win32
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Debug|x64.ActiveCfg = Debug|x64
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Debug|x64.Build.0 = Debug|x64
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Release|Win32.ActiveCfg = Release|Win32
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Release|Win32.Build.0 = Release|Win32
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Release|x64.ActiveCfg = Release|x64
+		{1F39DFD0-CB8E-4728-BD89-836325467A49}.Release|x64.Build.0 = Release|x64
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Debug|Win32.Build.0 = Debug|Win32
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Debug|x64.ActiveCfg = Debug|x64
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Debug|x64.Build.0 = Debug|x64
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Release|Win32.ActiveCfg = Release|Win32
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Release|Win32.Build.0 = Release|Win32
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Release|x64.ActiveCfg = Release|x64
+		{181346BE-FC21-433B-81EA-182EB62078F2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

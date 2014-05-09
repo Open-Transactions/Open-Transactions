@@ -73,6 +73,8 @@ package otapi;
 *EncodeObject = *otapic::EncodeObject;
 *DecodeObject = *otapic::DecodeObject;
 *EraseValueByKey = *otapic::EraseValueByKey;
+*OTRecord_GetTypeString = *otapic::OTRecord_GetTypeString;
+*OT_API_Set_AddrBookCallback = *otapic::OT_API_Set_AddrBookCallback;
 *OT_API_Set_PasswordCallback = *otapic::OT_API_Set_PasswordCallback;
 
 ############# Class : otapi::imaxdiv_t ##############
@@ -254,150 +256,6 @@ sub DESTROY {
     delete $ITERATORS{$self};
     if (exists $OWNER{$self}) {
         otapic::delete_OTPassword($self);
-        delete $OWNER{$self};
-    }
-}
-
-sub DISOWN {
-    my $self = shift;
-    my $ptr = tied(%$self);
-    delete $OWNER{$ptr};
-}
-
-sub ACQUIRE {
-    my $self = shift;
-    my $ptr = tied(%$self);
-    $OWNER{$ptr} = 1;
-}
-
-
-############# Class : otapi::OTCallback ##############
-
-package otapi::OTCallback;
-use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
-@ISA = qw( otapi );
-%OWNER = ();
-%ITERATORS = ();
-sub new {
-    my $pkg = $_[0];
-    my $self = otapic::new_OTCallback(@_);
-    bless $self, $pkg if defined($self);
-}
-
-sub DESTROY {
-    return unless $_[0]->isa('HASH');
-    my $self = tied(%{$_[0]});
-    return unless defined $self;
-    delete $ITERATORS{$self};
-    if (exists $OWNER{$self}) {
-        otapic::delete_OTCallback($self);
-        delete $OWNER{$self};
-    }
-}
-
-*runOne = *otapic::OTCallback_runOne;
-*runTwo = *otapic::OTCallback_runTwo;
-sub DISOWN {
-    my $self = shift;
-    otapic::disown_OTCallback($self);
-    my $ptr = tied(%$self);
-    delete $OWNER{$ptr};
-}
-
-sub ACQUIRE {
-    my $self = shift;
-    my $ptr = tied(%$self);
-    $OWNER{$ptr} = 1;
-}
-
-sub FETCH {
-    my ($self,$field) = @_;
-    my $member_func = "swig_${field}_get";
-    if (not $self->can($member_func)) {
-        my $h = otapic::swig_get_attr_OTCallback($self);
-        return $h->{$field} if $h;
-    }
-    return $self->$member_func;
-}
-
-sub STORE {
-    my ($self,$field,$newval) = @_;
-    my $member_func = "swig_${field}_set";
-    if (not $self->can($member_func)) {
-        my $h = otapic::swig_get_attr_OTCallback($self);
-        return $h->{$field} = $newval if $h;
-    }
-    return $self->$member_func($newval);
-}
-
-############# Class : otapi::OTCaller ##############
-
-package otapi::OTCaller;
-use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
-@ISA = qw( otapi );
-%OWNER = ();
-%ITERATORS = ();
-sub new {
-    my $pkg = shift;
-    my $self = otapic::new_OTCaller(@_);
-    bless $self, $pkg if defined($self);
-}
-
-sub DESTROY {
-    return unless $_[0]->isa('HASH');
-    my $self = tied(%{$_[0]});
-    return unless defined $self;
-    delete $ITERATORS{$self};
-    if (exists $OWNER{$self}) {
-        otapic::delete_OTCaller($self);
-        delete $OWNER{$self};
-    }
-}
-
-*GetPassword = *otapic::OTCaller_GetPassword;
-*ZeroOutPassword = *otapic::OTCaller_ZeroOutPassword;
-*GetDisplay = *otapic::OTCaller_GetDisplay;
-*SetDisplay = *otapic::OTCaller_SetDisplay;
-*delCallback = *otapic::OTCaller_delCallback;
-*setCallback = *otapic::OTCaller_setCallback;
-*isCallbackSet = *otapic::OTCaller_isCallbackSet;
-*callOne = *otapic::OTCaller_callOne;
-*callTwo = *otapic::OTCaller_callTwo;
-sub DISOWN {
-    my $self = shift;
-    my $ptr = tied(%$self);
-    delete $OWNER{$ptr};
-}
-
-sub ACQUIRE {
-    my $self = shift;
-    my $ptr = tied(%$self);
-    $OWNER{$ptr} = 1;
-}
-
-
-############# Class : otapi::WrapTimeT ##############
-
-package otapi::WrapTimeT;
-use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
-@ISA = qw( otapi );
-%OWNER = ();
-%ITERATORS = ();
-sub new {
-    my $pkg = shift;
-    my $self = otapic::new_WrapTimeT(@_);
-    bless $self, $pkg if defined($self);
-}
-
-*getTime = *otapic::WrapTimeT_getTime;
-*setTime = *otapic::WrapTimeT_setTime;
-sub DESTROY {
-    return unless $_[0]->isa('HASH');
-    my $self = tied(%{$_[0]});
-    return unless defined $self;
-    delete $ITERATORS{$self};
-    if (exists $OWNER{$self}) {
-        otapic::delete_WrapTimeT($self);
         delete $OWNER{$self};
     }
 }
@@ -2159,6 +2017,289 @@ sub DESTROY {
 *RemoveContact = *otapic::AddressBook_RemoveContact;
 *AddContact = *otapic::AddressBook_AddContact;
 *ot_dynamic_cast = *otapic::AddressBook_ot_dynamic_cast;
+sub DISOWN {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+
+############# Class : otapi::OTRecord ##############
+
+package otapi::OTRecord;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( otapi );
+%OWNER = ();
+%ITERATORS = ();
+*Mail = *otapic::OTRecord_Mail;
+*Transfer = *otapic::OTRecord_Transfer;
+*Receipt = *otapic::OTRecord_Receipt;
+*Instrument = *otapic::OTRecord_Instrument;
+*ErrorState = *otapic::OTRecord_ErrorState;
+*IsPending = *otapic::OTRecord_IsPending;
+*IsOutgoing = *otapic::OTRecord_IsOutgoing;
+*IsRecord = *otapic::OTRecord_IsRecord;
+*IsReceipt = *otapic::OTRecord_IsReceipt;
+*IsMail = *otapic::OTRecord_IsMail;
+*IsTransfer = *otapic::OTRecord_IsTransfer;
+*IsCheque = *otapic::OTRecord_IsCheque;
+*IsInvoice = *otapic::OTRecord_IsInvoice;
+*IsVoucher = *otapic::OTRecord_IsVoucher;
+*IsContract = *otapic::OTRecord_IsContract;
+*IsPaymentPlan = *otapic::OTRecord_IsPaymentPlan;
+*IsCash = *otapic::OTRecord_IsCash;
+*HasContents = *otapic::OTRecord_HasContents;
+*HasMemo = *otapic::OTRecord_HasMemo;
+*IsExpired = *otapic::OTRecord_IsExpired;
+*IsCanceled = *otapic::OTRecord_IsCanceled;
+*SetExpired = *otapic::OTRecord_SetExpired;
+*SetCanceled = *otapic::OTRecord_SetCanceled;
+*GetValidFrom = *otapic::OTRecord_GetValidFrom;
+*GetValidTo = *otapic::OTRecord_GetValidTo;
+*SetDateRange = *otapic::OTRecord_SetDateRange;
+*CanDeleteRecord = *otapic::OTRecord_CanDeleteRecord;
+*CanAcceptIncoming = *otapic::OTRecord_CanAcceptIncoming;
+*CanDiscardIncoming = *otapic::OTRecord_CanDiscardIncoming;
+*CanCancelOutgoing = *otapic::OTRecord_CanCancelOutgoing;
+*CanDiscardOutgoingCash = *otapic::OTRecord_CanDiscardOutgoingCash;
+*CancelOutgoing = *otapic::OTRecord_CancelOutgoing;
+*AcceptIncomingInstrument = *otapic::OTRecord_AcceptIncomingInstrument;
+*AcceptIncomingTransfer = *otapic::OTRecord_AcceptIncomingTransfer;
+*AcceptIncomingReceipt = *otapic::OTRecord_AcceptIncomingReceipt;
+*DiscardIncoming = *otapic::OTRecord_DiscardIncoming;
+*DeleteRecord = *otapic::OTRecord_DeleteRecord;
+*DiscardOutgoingCash = *otapic::OTRecord_DiscardOutgoingCash;
+*GetBoxIndex = *otapic::OTRecord_GetBoxIndex;
+*SetBoxIndex = *otapic::OTRecord_SetBoxIndex;
+*GetTransactionNum = *otapic::OTRecord_GetTransactionNum;
+*SetTransactionNum = *otapic::OTRecord_SetTransactionNum;
+*GetTransNumForDisplay = *otapic::OTRecord_GetTransNumForDisplay;
+*SetTransNumForDisplay = *otapic::OTRecord_SetTransNumForDisplay;
+*GetRecordType = *otapic::OTRecord_GetRecordType;
+*GetServerID = *otapic::OTRecord_GetServerID;
+*GetAssetID = *otapic::OTRecord_GetAssetID;
+*GetCurrencyTLA = *otapic::OTRecord_GetCurrencyTLA;
+*GetNymID = *otapic::OTRecord_GetNymID;
+*GetAccountID = *otapic::OTRecord_GetAccountID;
+*GetOtherNymID = *otapic::OTRecord_GetOtherNymID;
+*GetOtherAccountID = *otapic::OTRecord_GetOtherAccountID;
+*GetName = *otapic::OTRecord_GetName;
+*GetDate = *otapic::OTRecord_GetDate;
+*GetAmount = *otapic::OTRecord_GetAmount;
+*GetInstrumentType = *otapic::OTRecord_GetInstrumentType;
+*GetMemo = *otapic::OTRecord_GetMemo;
+*GetContents = *otapic::OTRecord_GetContents;
+*SetOtherNymID = *otapic::OTRecord_SetOtherNymID;
+*SetOtherAccountID = *otapic::OTRecord_SetOtherAccountID;
+*SetMemo = *otapic::OTRecord_SetMemo;
+*SetContents = *otapic::OTRecord_SetContents;
+*HasInitialPayment = *otapic::OTRecord_HasInitialPayment;
+*HasPaymentPlan = *otapic::OTRecord_HasPaymentPlan;
+*GetInitialPaymentDate = *otapic::OTRecord_GetInitialPaymentDate;
+*GetPaymentPlanStartDate = *otapic::OTRecord_GetPaymentPlanStartDate;
+*GetTimeBetweenPayments = *otapic::OTRecord_GetTimeBetweenPayments;
+*GetInitialPaymentAmount = *otapic::OTRecord_GetInitialPaymentAmount;
+*GetPaymentPlanAmount = *otapic::OTRecord_GetPaymentPlanAmount;
+*GetMaximumNoPayments = *otapic::OTRecord_GetMaximumNoPayments;
+*FormatAmount = *otapic::OTRecord_FormatAmount;
+*FormatDescription = *otapic::OTRecord_FormatDescription;
+*FormatShortMailDescription = *otapic::OTRecord_FormatShortMailDescription;
+*FormatMailSubject = *otapic::OTRecord_FormatMailSubject;
+sub new {
+    my $pkg = shift;
+    my $self = otapic::new_OTRecord(@_);
+    bless $self, $pkg if defined($self);
+}
+
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        otapic::delete_OTRecord($self);
+        delete $OWNER{$self};
+    }
+}
+
+sub DISOWN {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+
+############# Class : otapi::OTNameLookup ##############
+
+package otapi::OTNameLookup;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( otapi );
+%OWNER = ();
+%ITERATORS = ();
+sub new {
+    my $pkg = $_[0];
+    my $self = otapic::new_OTNameLookup(@_);
+    bless $self, $pkg if defined($self);
+}
+
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        otapic::delete_OTNameLookup($self);
+        delete $OWNER{$self};
+    }
+}
+
+*GetNymName = *otapic::OTNameLookup_GetNymName;
+*GetAcctName = *otapic::OTNameLookup_GetAcctName;
+sub DISOWN {
+    my $self = shift;
+    otapic::disown_OTNameLookup($self);
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+sub FETCH {
+    my ($self,$field) = @_;
+    my $member_func = "swig_${field}_get";
+    if (not $self->can($member_func)) {
+        my $h = otapic::swig_get_attr_OTNameLookup($self);
+        return $h->{$field} if $h;
+    }
+    return $self->$member_func;
+}
+
+sub STORE {
+    my ($self,$field,$newval) = @_;
+    my $member_func = "swig_${field}_set";
+    if (not $self->can($member_func)) {
+        my $h = otapic::swig_get_attr_OTNameLookup($self);
+        return $h->{$field} = $newval if $h;
+    }
+    return $self->$member_func($newval);
+}
+
+############# Class : otapi::OTLookupCaller ##############
+
+package otapi::OTLookupCaller;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( otapi );
+%OWNER = ();
+%ITERATORS = ();
+sub new {
+    my $pkg = shift;
+    my $self = otapic::new_OTLookupCaller(@_);
+    bless $self, $pkg if defined($self);
+}
+
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        otapic::delete_OTLookupCaller($self);
+        delete $OWNER{$self};
+    }
+}
+
+*getCallback = *otapic::OTLookupCaller_getCallback;
+*delCallback = *otapic::OTLookupCaller_delCallback;
+*setCallback = *otapic::OTLookupCaller_setCallback;
+*isCallbackSet = *otapic::OTLookupCaller_isCallbackSet;
+*GetNymName = *otapic::OTLookupCaller_GetNymName;
+*GetAcctName = *otapic::OTLookupCaller_GetAcctName;
+sub DISOWN {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+
+############# Class : otapi::OTRecordList ##############
+
+package otapi::OTRecordList;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( otapi );
+%OWNER = ();
+%ITERATORS = ();
+*setAddrBookCaller = *otapic::OTRecordList_setAddrBookCaller;
+*getAddrBookCaller = *otapic::OTRecordList_getAddrBookCaller;
+sub new {
+    my $pkg = shift;
+    my $self = otapic::new_OTRecordList(@_);
+    bless $self, $pkg if defined($self);
+}
+
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        otapic::delete_OTRecordList($self);
+        delete $OWNER{$self};
+    }
+}
+
+*textTo = *otapic::OTRecordList_textTo;
+*textFrom = *otapic::OTRecordList_textFrom;
+*setTextTo = *otapic::OTRecordList_setTextTo;
+*setTextFrom = *otapic::OTRecordList_setTextFrom;
+*SetFastMode = *otapic::OTRecordList_SetFastMode;
+*SetServerID = *otapic::OTRecordList_SetServerID;
+*AddServerID = *otapic::OTRecordList_AddServerID;
+*ClearServers = *otapic::OTRecordList_ClearServers;
+*SetAssetID = *otapic::OTRecordList_SetAssetID;
+*AddAssetID = *otapic::OTRecordList_AddAssetID;
+*ClearAssets = *otapic::OTRecordList_ClearAssets;
+*SetNymID = *otapic::OTRecordList_SetNymID;
+*AddNymID = *otapic::OTRecordList_AddNymID;
+*ClearNyms = *otapic::OTRecordList_ClearNyms;
+*SetAccountID = *otapic::OTRecordList_SetAccountID;
+*AddAccountID = *otapic::OTRecordList_AddAccountID;
+*ClearAccounts = *otapic::OTRecordList_ClearAccounts;
+*AcceptChequesAutomatically = *otapic::OTRecordList_AcceptChequesAutomatically;
+*AcceptReceiptsAutomatically = *otapic::OTRecordList_AcceptReceiptsAutomatically;
+*AcceptTransfersAutomatically = *otapic::OTRecordList_AcceptTransfersAutomatically;
+*AcceptCashAutomatically = *otapic::OTRecordList_AcceptCashAutomatically;
+*DoesAcceptChequesAutomatically = *otapic::OTRecordList_DoesAcceptChequesAutomatically;
+*DoesAcceptReceiptsAutomatically = *otapic::OTRecordList_DoesAcceptReceiptsAutomatically;
+*DoesAcceptTransfersAutomatically = *otapic::OTRecordList_DoesAcceptTransfersAutomatically;
+*DoesAcceptCashAutomatically = *otapic::OTRecordList_DoesAcceptCashAutomatically;
+*PerformAutoAccept = *otapic::OTRecordList_PerformAutoAccept;
+*Populate = *otapic::OTRecordList_Populate;
+*ClearContents = *otapic::OTRecordList_ClearContents;
+*size = *otapic::OTRecordList_size;
+*GetRecord = *otapic::OTRecordList_GetRecord;
+*RemoveRecord = *otapic::OTRecordList_RemoveRecord;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);

@@ -1,6 +1,6 @@
-/*************************************************************
+/************************************************************
  *
- *  OTCronItem.h
+ *  OTCronItem.hpp
  *
  */
 
@@ -130,23 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-
 // Base class for OTTrade and OTAgreement.
 // OTCron contains lists of these for regular processing.
 
-#ifndef __OTCRON_ITEM_HPP__
-#define __OTCRON_ITEM_HPP__
+#ifndef __OT_CRON_ITEM_HPP__
+#define __OT_CRON_ITEM_HPP__
+
+#include <deque>
 
 #include "OTCommon.hpp"
 
 #include "OTTrackable.hpp"
 
-#include <deque>
-
 class OTIdentifier;
 class OTCron;
 class OTString;
 class OTPseudonym;
+
 
 class OTCronItem : public OTTrackable
 {
@@ -155,9 +155,9 @@ private:  // Private prevents erroneous use by other classes.
 
 private:
 	OTCron *	m_pCron;
-	time_t		m_CREATION_DATE;		// The date, in seconds, when the CronItem was authorized.
-	time_t		m_LAST_PROCESS_DATE;	// The last time this item was processed.
-    time_t		m_PROCESS_INTERVAL;		// How often to Process Cron on this item.
+	time64_t	m_CREATION_DATE;		// The date, in seconds, when the CronItem was authorized.
+	time64_t	m_LAST_PROCESS_DATE;	// The last time this item was processed.
+    int64_t		m_PROCESS_INTERVAL;		// How often to Process Cron on this item.
 
 protected:
     std::deque<int64_t> m_dequeClosingNumbers; // Numbers used for CLOSING a transaction. (finalReceipt.)
@@ -236,16 +236,16 @@ EXPORT  static bool         GetActiveCronTransNums(      OTNumList    & output, 
                                                    const OTIdentifier & nymID,
                                                    const OTIdentifier & serverID);
     // -----------------------------------------------------------------
-	inline void SetCreationDate(const time_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
-	inline const time_t & GetCreationDate() const { return m_CREATION_DATE; }
+	inline void SetCreationDate(const time64_t & CREATION_DATE) { m_CREATION_DATE = CREATION_DATE; }
+	inline const time64_t & GetCreationDate() const { return m_CREATION_DATE; }
 
-EXPORT	bool SetDateRange(const time_t VALID_FROM=0,  const time_t VALID_TO=0);
+    EXPORT	bool SetDateRange(const time64_t VALID_FROM = OT_TIME_ZERO, const time64_t VALID_TO = OT_TIME_ZERO);
 	// --------------------------------------------
-	inline void SetLastProcessDate(const time_t & THE_DATE) { m_LAST_PROCESS_DATE = THE_DATE; }
-	inline const time_t & GetLastProcessDate() const { return m_LAST_PROCESS_DATE; }
+	inline void SetLastProcessDate(const time64_t & THE_DATE) { m_LAST_PROCESS_DATE = THE_DATE; }
+	inline const time64_t & GetLastProcessDate() const { return m_LAST_PROCESS_DATE; }
 
-	inline void SetProcessInterval(const time_t & THE_DATE) { m_PROCESS_INTERVAL = THE_DATE; }
-	inline const time_t & GetProcessInterval() const { return m_PROCESS_INTERVAL; }
+	inline void SetProcessInterval(const int64_t & THE_DATE) { m_PROCESS_INTERVAL = THE_DATE; }
+	inline const int64_t & GetProcessInterval() const { return m_PROCESS_INTERVAL; }
 
 	inline OTCron * GetCron() { return m_pCron; }
     // -----------------------------------------------------------------
@@ -280,11 +280,11 @@ EXPORT	bool SaveActiveCronReceipt(const OTIdentifier & theNymID); // client side
 	/*
 	 OTInstrument(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID) : OTContract()
 
-	 inline time_t GetValidFrom()	const { return m_VALID_FROM; }
-	 inline time_t GetValidTo()		const { return m_VALID_TO; }
+	 inline time64_t GetValidFrom()	const { return m_VALID_FROM; }
+	 inline time64_t GetValidTo()		const { return m_VALID_TO; }
 
-	 inline void SetValidFrom(time_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
-	 inline void SetValidTo(time_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
+	 inline void SetValidFrom(time64_t TIME_FROM)	{ m_VALID_FROM	= TIME_FROM; }
+	 inline void SetValidTo(time64_t TIME_TO)		{ m_VALID_TO	= TIME_TO; }
 
 	 inline const OTIdentifier & GetAssetID() const { return m_AssetTypeID; }
 	 inline const OTIdentifier & GetServerID() const { return m_ServerID; }
@@ -335,6 +335,4 @@ EXPORT      int64_t GetClosingNum() const;
 };
 
 
-
-
-#endif // __OTCRON_ITEM_HPP__
+#endif // __OT_CRON_ITEM_HPP__

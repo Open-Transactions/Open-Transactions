@@ -1,4 +1,10 @@
 /************************************************************
+*
+*  OTAssert.cpp
+*
+*/
+
+/************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
  
@@ -132,13 +138,16 @@
 #include <fstream>
 #include <cstring>
 
+
 //static
 OTAssert * OTAssert::s_pOTAssert = new OTAssert(OTAssert::Assert);
+
 
 OTAssert::OTAssert(fpt_Assert_sz_n_sz &fp1)
 : m_fpt_Assert(fp1)
 {
 }
+
 
 size_t OTAssert::m_AssertDefault(const char * szFilename, size_t nLinenumber, const char * szMessage)
 {
