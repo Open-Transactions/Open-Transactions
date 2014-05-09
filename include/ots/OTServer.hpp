@@ -270,6 +270,7 @@ public:
 	// From server.cfg:
 
     static int64_t      GetMinMarketScale() { return __min_market_scale; }
+
     static void     SetMinMarketScale(int64_t lVal) { __min_market_scale = lVal; }
 
     static int32_t      GetHeartbeatNoRequests() { return __heartbeat_no_requests; }

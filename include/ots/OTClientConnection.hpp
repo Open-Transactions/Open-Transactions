@@ -194,7 +194,6 @@ class OTClientConnection
 	bool			m_bFocused;		// Defaults to false. If true, it means we're in XmlRpc mode, or some such, instead of TCP over SSL streaming.
 	
 public:
-//	SFSocket * m_pSocket;	// For TCP / SSL mode. 
 	
 	void ProcessBuffer();
 	void ReadBytesIntoBuffer();
@@ -204,7 +203,6 @@ public:
 
 	void ProcessReply(OTMessage &theReply);
 
-//	OTClientConnection(SFSocket & theSocket, OTServer & theServer); // TCP		/ over SSL mode.
 	OTClientConnection(OTServer & theServer);						// XmlRpc	/ over HTTP mode.
 	~OTClientConnection();
 	

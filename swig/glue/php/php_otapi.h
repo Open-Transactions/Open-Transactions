@@ -420,8 +420,6 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewAssetTypeID);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNewAcctID);
 ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Message_GetNymboxHash);
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ConnectServer);
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProcessSockets);
 ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetArgsCount);
 ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetValueByKey);
 ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetValueByIndex);

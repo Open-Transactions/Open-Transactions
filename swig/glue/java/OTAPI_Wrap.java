@@ -1383,12 +1383,4 @@ public class OTAPI_Wrap {
     return otapiJNI.OTAPI_Wrap_Message_GetNymboxHash(THE_MESSAGE);
   }
 
-  public static boolean ConnectServer(String SERVER_ID, String USER_ID, String strCA_FILE, String strKEY_FILE, String strKEY_PASSWORD) {
-    return otapiJNI.OTAPI_Wrap_ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
-  }
-
-  public static boolean ProcessSockets() {
-    return otapiJNI.OTAPI_Wrap_ProcessSockets();
-  }
-
 }

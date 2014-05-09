@@ -6600,38 +6600,6 @@ void
 
 
 
-#pragma dynimport _wrap_OTAPI_Wrap_ConnectServer _wrap_OTAPI_Wrap_ConnectServer ""
-#pragma cgo_import_static _wrap_OTAPI_Wrap_ConnectServer
-extern void (*_wrap_OTAPI_Wrap_ConnectServer)(void*);
-static void (*x_wrap_OTAPI_Wrap_ConnectServer)(void*) = _wrap_OTAPI_Wrap_ConnectServer;
-
-void
-·OTAPI_WrapConnectServer(struct {
-  uint8 x[(2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + (2 * SWIG_PARM_SIZE) + SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Wrap_ConnectServer, &p);
-}
-
-
-
-#pragma dynimport _wrap_OTAPI_Wrap_ProcessSockets _wrap_OTAPI_Wrap_ProcessSockets ""
-#pragma cgo_import_static _wrap_OTAPI_Wrap_ProcessSockets
-extern void (*_wrap_OTAPI_Wrap_ProcessSockets)(void*);
-static void (*x_wrap_OTAPI_Wrap_ProcessSockets)(void*) = _wrap_OTAPI_Wrap_ProcessSockets;
-
-void
-·OTAPI_WrapProcessSockets(struct {
-  uint8 x[SWIG_PARM_SIZE];
-} p)
-
-{
-  runtime·cgocall(x_wrap_OTAPI_Wrap_ProcessSockets, &p);
-}
-
-
-
 #pragma dynimport _wrap_OT_CLI_GetArgsCount _wrap_OT_CLI_GetArgsCount ""
 #pragma cgo_import_static _wrap_OT_CLI_GetArgsCount
 extern void (*_wrap_OT_CLI_GetArgsCount)(void*);

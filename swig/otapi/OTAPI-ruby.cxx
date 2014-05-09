@@ -29506,113 +29506,6 @@ fail:
 
 
 SWIGINTERN VALUE
-_wrap_OTAPI_Wrap_ConnectServer(int argc, VALUE *argv, VALUE self) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 5) || (argc > 5)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 5)",argc); SWIG_fail;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Wrap::ConnectServer", 1, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Wrap::ConnectServer", 1, argv[0])); 
-    }
-    arg1 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Wrap::ConnectServer", 2, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Wrap::ConnectServer", 2, argv[1])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[2], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Wrap::ConnectServer", 3, argv[2] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Wrap::ConnectServer", 3, argv[2])); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string(argv[3], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Wrap::ConnectServer", 4, argv[3] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Wrap::ConnectServer", 4, argv[3])); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string(argv[4], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","OTAPI_Wrap::ConnectServer", 5, argv[4] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OTAPI_Wrap::ConnectServer", 5, argv[4])); 
-    }
-    arg5 = ptr;
-  }
-  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OTAPI_Wrap_ProcessSockets(int argc, VALUE *argv, VALUE self) {
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 0) || (argc > 0)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
-  }
-  result = (bool)OTAPI_Wrap::ProcessSockets();
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  return vresult;
-fail:
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
 _wrap_OT_CLI_GetArgsCount(int argc, VALUE *argv, VALUE self) {
   std::string arg1 ;
   int32_t result;
@@ -57841,8 +57734,6 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_singleton_method(SwigClassOTAPI_Wrap.klass, "Message_GetNewIssuerAcctID", VALUEFUNC(_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID), -1);
   rb_define_singleton_method(SwigClassOTAPI_Wrap.klass, "Message_GetNewAcctID", VALUEFUNC(_wrap_OTAPI_Wrap_Message_GetNewAcctID), -1);
   rb_define_singleton_method(SwigClassOTAPI_Wrap.klass, "Message_GetNymboxHash", VALUEFUNC(_wrap_OTAPI_Wrap_Message_GetNymboxHash), -1);
-  rb_define_singleton_method(SwigClassOTAPI_Wrap.klass, "ConnectServer", VALUEFUNC(_wrap_OTAPI_Wrap_ConnectServer), -1);
-  rb_define_singleton_method(SwigClassOTAPI_Wrap.klass, "ProcessSockets", VALUEFUNC(_wrap_OTAPI_Wrap_ProcessSockets), -1);
   SwigClassOTAPI_Wrap.mark = 0;
   SwigClassOTAPI_Wrap.trackObjects = 0;
   rb_define_module_function(mOtapi, "OT_CLI_GetArgsCount", VALUEFUNC(_wrap_OT_CLI_GetArgsCount), -1);
