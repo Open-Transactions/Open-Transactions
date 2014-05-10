@@ -268,7 +268,13 @@ bool OTAPI_Wrap::AppCleanup()
 //
 void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
 {
-    Exec()->SetAppBinaryFolder(strFolder);
+    if (NULL == exec)
+	{
+		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
+		OT_FAIL;
+	}
+    
+	return exec->SetAppBinaryFolder(strFolder);
 }
 
 // --------------------------------------------------------------------
@@ -287,7 +293,13 @@ void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
 //
 void OTAPI_Wrap::SetHomeFolder(const std::string & strFolder)
 {
-    Exec()->SetHomeFolder(strFolder);
+    if (NULL == exec)
+	{
+		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
+		OT_FAIL;
+	}
+    
+	return exec->SetHomeFolder(strFolder);
 }
 
 
