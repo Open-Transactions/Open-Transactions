@@ -17,30 +17,33 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __ZMQ_PRECOMPILED_HPP_INCLUDED__
-#define __ZMQ_PRECOMPILED_HPP_INCLUDED__
+#include "metadata.hpp"
 
-#ifdef _MSC_VER
+zmq::metadata_t::metadata_t (const dict_t &dict) :
+    ref_cnt (1),
+    dict (dict)
+{
+}
 
-// Windows headers
-#include "platform.hpp"
-#include "windows.hpp"
-#include <fcntl.h>
-#include <intrin.h>
-#include <io.h>
-#include <rpc.h>
-#include <sys/stat.h>
+zmq::metadata_t::~metadata_t ()
+{
+}
 
-// standard C++ headers
-#include <algorithm>
-#include <map>
-#include <set>
-#include <string>
-#include <vector>
+const char *zmq::metadata_t::get (const std::string &property) const
+{
+    dict_t::const_iterator it = dict.find (property);
+    if (it == dict.end ())
+        return NULL;
+    else
+        return it->second.c_str ();
+}
 
-// 0MQ definitions and exported functions
-#include <zmq/zmq.h>
+void zmq::metadata_t::add_ref ()
+{
+    ref_cnt.add (1);
+}
 
-#endif // _MSC_VER
-
-#endif
+bool zmq::metadata_t::drop_ref ()
+{
+    return !ref_cnt.sub (1);
+}

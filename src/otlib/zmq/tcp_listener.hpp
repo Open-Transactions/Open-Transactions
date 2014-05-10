@@ -25,7 +25,7 @@
 #include "stdint.hpp"
 #include "io_object.hpp"
 #include "tcp_address.hpp"
-#include <zmq.h>
+#include <zmq/zmq.h>
 
 namespace zmq
 {

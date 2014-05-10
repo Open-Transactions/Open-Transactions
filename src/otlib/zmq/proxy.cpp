@@ -36,7 +36,7 @@
 #include "err.hpp"
 
 // zmq.h must be included *after* poll.h for AIX to build properly
-#include <zmq.h>
+#include <zmq/zmq.h>
 
 int capture(
         class zmq::socket_base_t *capture_,
