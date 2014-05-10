@@ -27,7 +27,7 @@
 #include "stddef.h"
 #include "stdint.hpp"
 #include "tcp_address.hpp"
-#include <zmq.h>
+#include <zmq/zmq.h>
 
 #if defined ZMQ_HAVE_SO_PEERCRED || defined ZMQ_HAVE_LOCAL_PEERCRED
 #include <sys/types.h>
@@ -156,6 +156,13 @@ namespace zmq
         uint8_t curve_secret_key [CURVE_KEYSIZE];
         uint8_t curve_server_key [CURVE_KEYSIZE];
 
+        //  Principals for GSSAPI mechanism
+        std::string gss_principal;
+        std::string gss_service_principal;
+
+        //  If true, gss encryption will be disabled
+        bool gss_plaintext;
+
         //  ID of the socket.
         int socket_id;
 
@@ -164,6 +171,11 @@ namespace zmq
         //  Cannot receive multi-part messages.
         //  Ignores hwm
         bool conflate;
+
+        //  If connection handshake is not done after this many milliseconds,
+        //  close socket.  Default is 30 secs.  0 means no handshake timeout.
+        int handshake_ivl;
+
     };
 }
 

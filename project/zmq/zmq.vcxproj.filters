@@ -315,6 +315,18 @@
     <ClInclude Include="..\..\src\otlib\zmq\yqueue.hpp">
       <Filter>Header Files\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_client.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_mechanism_base.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_server.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\otlib\zmq\metadata.hpp">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\otlib\zmq\address.cpp">
@@ -531,6 +543,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\otlib\zmq\zmq_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_mechanism_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\zmq\metadata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

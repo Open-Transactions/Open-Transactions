@@ -29,7 +29,8 @@
 #include "i_decoder.hpp"
 #include "options.hpp"
 #include "socket_base.hpp"
-#include <zmq.h>
+#include <zmq/zmq.h>
+#include "metadata.hpp"
 
 namespace zmq
 {
@@ -67,6 +68,7 @@ namespace zmq
         //  i_poll_events interface implementation.
         void in_event ();
         void out_event ();
+        void timer_event (int id_);
 
     private:
 
@@ -92,8 +94,8 @@ namespace zmq
         //  Zero indicates the peer has closed the connection.
         int read (void *data_, size_t size_);
 
-        int read_identity (msg_t *msg_);
-        int write_identity (msg_t *msg_);
+        int identity_msg (msg_t *msg_);
+        int process_identity_msg (msg_t *msg_);
 
         int next_handshake_command (msg_t *msg);
         int process_handshake_command (msg_t *msg);
@@ -113,6 +115,8 @@ namespace zmq
         size_t add_property (unsigned char *ptr,
             const char *name, const void *value, size_t value_len);
 
+        void set_handshake_timer();
+
         //  Underlying socket.
         fd_t s;
 
@@ -130,6 +134,9 @@ namespace zmq
         unsigned char *outpos;
         size_t outsize;
         i_encoder *encoder;
+
+        //  Metadata to be attached to received messages. May be NULL.
+        metadata_t *metadata;
 
         //  When true, we are still trying to determine whether
         //  the peer is using versioned protocol, and if so, which
@@ -164,9 +171,9 @@ namespace zmq
 
         bool plugged;
 
-        int (stream_engine_t::*read_msg) (msg_t *msg_);
+        int (stream_engine_t::*next_msg) (msg_t *msg_);
 
-        int (stream_engine_t::*write_msg) (msg_t *msg_);
+        int (stream_engine_t::*process_msg) (msg_t *msg_);
 
         bool io_error;
 
@@ -182,6 +189,12 @@ namespace zmq
 
         //  True iff the engine doesn't have any message to encode.
         bool output_stopped;
+
+        //  ID of the handshake timer
+        enum {handshake_timer_id = 0x40};
+
+        //  True is linger timer is running.
+        bool has_handshake_timer;
 
         // Socket
         zmq::socket_base_t *socket;

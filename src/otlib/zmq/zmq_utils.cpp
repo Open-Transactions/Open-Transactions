@@ -23,15 +23,20 @@
 #include "err.hpp"
 #include "thread.hpp"
 #include <assert.h>
-#include <zmq_utils.h>
+#include <zmq/zmq_utils.h>
 
 #if !defined ZMQ_HAVE_WINDOWS
 #include <unistd.h>
 #else
 #include "windows.hpp"
 #endif
+
 #ifdef HAVE_LIBSODIUM
-#   include <sodium.h>
+#ifdef HAVE_TWEETNACL
+#include "tweetnacl_base.h"
+#else
+#include "sodium.h"
+#endif
 #endif
 
 

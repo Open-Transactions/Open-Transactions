@@ -24,7 +24,7 @@
 #include "own.hpp"
 #include "stdint.hpp"
 #include "io_object.hpp"
-#include <zmq.h>
+#include <zmq/zmq.h>
 
 namespace zmq
 {

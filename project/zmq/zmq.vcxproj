@@ -43,6 +43,9 @@
     <ClInclude Include="..\..\src\otlib\zmq\err.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\fd.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\fq.hpp" />
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_client.hpp" />
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_mechanism_base.hpp" />
+    <ClInclude Include="..\..\src\otlib\zmq\gssapi_server.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\io_object.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\io_thread.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\ip.hpp" />
@@ -58,6 +61,7 @@
     <ClInclude Include="..\..\src\otlib\zmq\likely.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\mailbox.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\mechanism.hpp" />
+    <ClInclude Include="..\..\src\otlib\zmq\metadata.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\msg.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\mtrie.hpp" />
     <ClInclude Include="..\..\src\otlib\zmq\mutex.hpp" />
@@ -131,6 +135,9 @@
     <ClCompile Include="..\..\src\otlib\zmq\epoll.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\err.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\fq.cpp" />
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_client.cpp" />
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_mechanism_base.cpp" />
+    <ClCompile Include="..\..\src\otlib\zmq\gssapi_server.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\io_object.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\io_thread.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\ip.cpp" />
@@ -141,6 +148,7 @@
     <ClCompile Include="..\..\src\otlib\zmq\lb.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\mailbox.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\mechanism.cpp" />
+    <ClCompile Include="..\..\src\otlib\zmq\metadata.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\msg.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\mtrie.cpp" />
     <ClCompile Include="..\..\src\otlib\zmq\norm_engine.cpp" />
