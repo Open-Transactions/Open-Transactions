@@ -6,7 +6,7 @@ install:
   - sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev libboost-all-dev
   - git clone https://github.com/zeromq/cppzmq.git
   - sudo cp cppzmq/zmq.hpp /usr/local/include/
-script: ./autogen.sh && ./configure && make distcheck -j4
+script: ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
     - master
