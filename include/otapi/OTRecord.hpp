@@ -145,7 +145,7 @@
 #include <string>
 
 
-const std::string & OTRecord_GetTypeString(int theType);
+const std::string & OTRecord_GetTypeString(int32_t theType);
 
 
 /*
@@ -169,7 +169,7 @@ public:
         ErrorState
     };
 private:
-    int          m_nBoxIndex;
+    int32_t      m_nBoxIndex;
     time64_t     m_ValidFrom;
     time64_t     m_ValidTo;
     // ---------------------------------------

@@ -332,8 +332,8 @@ EXPORT    bool                 RemoveRecord(int32_t nIndex);
  
  // THEN:
  
- int               nSize  = blah.size();
- int               nIndex = [0 .. nSize-1]
+ int32_t nSize  = blah.size();
+ int32_t nIndex = [0 .. nSize-1]
  weak_ptr_OTRecord record = blah.GetRecord(nIndex);
  
  

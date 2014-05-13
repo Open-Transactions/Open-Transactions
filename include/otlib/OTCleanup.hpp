@@ -133,13 +133,6 @@
 #ifndef __OT_CLEANUP_HPP__
 #define __OT_CLEANUP_HPP__
 
-#include <cstddef>
-
-#include "OTCommon.hpp"
-#include "OTData.hpp"
-
-class OTASCIIArmor;
-
 
 // A simple class used for making sure that dynamically allocated objects
 // are deleted once the pointer goes out of scope.
@@ -151,24 +144,25 @@ class OTASCIIArmor;
 // For example, if you call SetCleanupTarget() on multiple objects, then only the LAST
 // one will get cleaned up, and the others will leak!
 //
-template <class T>
-class OTCleanup
+template <class T> class OTCleanup
 {
-protected:
-	T * m_pCharge;
+private:
+	const T * m_pCharge;
 
 public:
-	inline bool SetCleanupTarget(const T & theTarget) // Use this as much as you can.
-	{ m_pCharge = &((T&)theTarget); return true; }
+	// Use this as much as you can.
+	inline void SetCleanupTarget(const T & theTarget) { m_pCharge = &theTarget; }
 
-	inline bool SetCleanupTargetPointer(const T * pTarget)	// Use this when you want it to work even if pTarget is NULL.
-	{ m_pCharge = (T*)pTarget; return true; }				// (Like, it will accept the NULL pointer, and just be smart
-															// enough NOT to delete it, since it's already NULL.)
-	OTCleanup()                     : m_pCharge(NULL) { }
-	OTCleanup(const T & theTarget)  : m_pCharge(NULL) { SetCleanupTarget(theTarget); }
-	OTCleanup(const T * pTarget)    : m_pCharge(NULL) { SetCleanupTargetPointer(pTarget); }
+	// Use this when you want it to work even if pTarget is NULL.
+	// (Like, it will accept the NULL pointer, and just be smart
+	// enough NOT to delete it, since it's already NULL.)
+	inline void SetCleanupTargetPointer(const T * pTarget) { m_pCharge = pTarget; }
 
-	~OTCleanup() { if (m_pCharge) delete m_pCharge; m_pCharge = NULL; }
+	OTCleanup()                    : m_pCharge(NULL) { }
+	OTCleanup(const T & theTarget) : m_pCharge(&theTarget) {  }
+	OTCleanup(const T * pTarget)   : m_pCharge(pTarget) {  }
+
+	~OTCleanup() { if (m_pCharge) delete const_cast<T *>(m_pCharge); m_pCharge = NULL; }
 };
 
 

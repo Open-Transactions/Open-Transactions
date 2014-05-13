@@ -529,7 +529,7 @@ bool OTRecordList::PerformAutoAccept()
     // ------------------------------------------------
     // LOOP NYMS
     //
-    int nNymIndex = -1;
+    int32_t nNymIndex = -1;
     if (m_bAutoAcceptCheques || m_bAutoAcceptCash) FOR_EACH_IT(list_of_strings, m_nyms, it_nym)
     {
         ++nNymIndex;
@@ -547,7 +547,7 @@ bool OTRecordList::PerformAutoAccept()
         //
         // For each nym, for each server, loop through its payments inbox
         //
-        int nServerIndex = -1;
+        int32_t nServerIndex = -1;
         FOR_EACH_IT(list_of_strings, m_servers, it_server)
         {
             ++nServerIndex;
@@ -631,7 +631,7 @@ bool OTRecordList::PerformAutoAccept()
                     OT_ASSERT(NULL != p_str_asset_name); // and it's either blank, or it's one of the asset types we care about.
                     // ---------------------------------------------------
                     // Instrument type (cheque, voucher, etc)
-                    int nType = static_cast<int> (pPayment->GetType());
+                    int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                     str_type = OTRecord_GetTypeString(nType);
                     // ------------------------------
@@ -663,7 +663,7 @@ bool OTRecordList::PerformAutoAccept()
             {
                 for (mapOfPayments::reverse_iterator it = thePaymentMap.rbegin(); it != thePaymentMap.rend(); ++it) // backwards since we are processing (removing) payments by index.
                 {
-                    long        lIndex   = static_cast<long>(it->first);
+                    int32_t     lIndex   = it->first;
                     OTPayment * pPayment = it->second;
                     // -------------------------
                     if (NULL == pPayment)
@@ -735,7 +735,7 @@ bool OTRecordList::PerformAutoAccept()
                             // Accept it.
                             //
                             OTString strIndices;
-                            strIndices.Format("%ld", lIndex);
+                            strIndices.Format("%d", lIndex);
                             const std::string str_indices(strIndices.Get());
 
                             OT_ME madeEasy;
@@ -777,7 +777,7 @@ bool OTRecordList::PerformAutoAccept()
     // Loop through the Accounts.
     //
     // ------------------------------------------------
-    int nAccountIndex = -1;
+    int32_t nAccountIndex = -1;
     if (m_bAutoAcceptReceipts || m_bAutoAcceptTransfers) FOR_EACH_IT(list_of_strings, m_accounts, it_acct)
     {
         ++nAccountIndex; // (0 on first iteration.)
@@ -863,7 +863,7 @@ bool OTRecordList::PerformAutoAccept()
         bool bFoundAnyToAccept = false;
         std::string strResponseLedger;
         // ------------------------------------------------
-        int nInboxIndex = -1;
+        int32_t nInboxIndex = -1;
         // It loaded up, so let's loop through it.
         FOR_EACH(mapOfTransactions, pInbox->GetTransactionMap())
         {
@@ -1017,7 +1017,7 @@ bool OTRecordList::Populate()
     // OUTPAYMENTS, OUTMAIL, MAIL, PAYMENTS INBOX, and RECORD BOX (2 kinds.)
     // Loop through the Nyms.
     //
-    int nNymIndex = -1;
+    int32_t nNymIndex = -1;
     FOR_EACH_IT(list_of_strings, m_nyms, it_nym)
     {
         ++nNymIndex;
@@ -1195,7 +1195,7 @@ bool OTRecordList::Populate()
                 // ---------------------------------------------------
                 // Instrument type (cheque, voucher, etc)
                 //
-                int nType = static_cast<int> (theOutPayment.GetType());
+                int32_t nType = static_cast<int32_t> (theOutPayment.GetType());
 
                 const std::string & str_type = OTRecord_GetTypeString(nType);
                 // ---------------------------------------------------
@@ -1231,7 +1231,7 @@ bool OTRecordList::Populate()
                     sp_Record->SetMemo(str_memo);
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tFrom, tTo);
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentOutpayment));
+                sp_Record->SetBoxIndex(nCurrentOutpayment);
                 // -------------------------------------------------
                 int64_t lTransNum = 0;
                 theOutPayment.GetOpeningNum(lTransNum, theNymID);
@@ -1255,7 +1255,7 @@ bool OTRecordList::Populate()
             // ------------------------------------------------
             OTLog::vOutput(0, "%s: Mail index: %d\n", __FUNCTION__, nCurrentMail);
             // ------------------------------------------------
-            OTMessage *	pMsg = pNym->GetMailByIndex(static_cast<int>(nCurrentMail));
+            OTMessage *	pMsg = pNym->GetMailByIndex(nCurrentMail);
             OT_ASSERT(NULL != pMsg);
             // ------------------------------------------------
             const std::string str_mail_server =
@@ -1326,7 +1326,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetOtherNymID(str_mail_senderID);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentMail));
+                sp_Record->SetBoxIndex(nCurrentMail);
                 // -------------------------------------------------
                 sp_Record->SetDateRange(OTTimeGetTimeFromSeconds(pMsg->m_lTime), OTTimeGetTimeFromSeconds(pMsg->m_lTime));
                 // -------------------------------------------------
@@ -1342,7 +1342,7 @@ bool OTRecordList::Populate()
             // ------------------------------------------------
             OTLog::vOutput(0, "%s: Outmail index: %d\n", __FUNCTION__, nCurrentOutmail);
             // ------------------------------------------------
-            OTMessage *	pMsg = pNym->GetOutmailByIndex(static_cast<int>(nCurrentOutmail));
+            OTMessage *	pMsg = pNym->GetOutmailByIndex(nCurrentOutmail);
             OT_ASSERT(NULL != pMsg);
             // ------------------------------------------------
             const std::string str_mail_server =
@@ -1411,7 +1411,7 @@ bool OTRecordList::Populate()
                 const OTString strOutmail(OTAPI_Wrap::GetNym_OutmailContentsByIndex(str_nym_id, nCurrentOutmail));
                 sp_Record->SetContents(strOutmail.Get());
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentOutmail));
+                sp_Record->SetBoxIndex(nCurrentOutmail);
                 // -------------------------------------------------
                 sp_Record->SetOtherNymID(str_mail_recipientID);
                 // -------------------------------------------------
@@ -1423,7 +1423,7 @@ bool OTRecordList::Populate()
         // ------------------------------------------------
         // For each nym, for each server, loop through its payments inbox and record box.
         //
-        int nServerIndex = -1;
+        int32_t nServerIndex = -1;
         FOR_EACH_IT(list_of_strings, m_servers, it_server)
         {
             ++nServerIndex;
@@ -1606,7 +1606,7 @@ bool OTRecordList::Populate()
                         OT_ASSERT(NULL != p_str_asset_name); // and it's either blank, or it's one of the asset types we care about.
                         // ---------------------------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -1647,7 +1647,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tValidFrom, tValidTo);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -1943,7 +1943,7 @@ bool OTRecordList::Populate()
                         }
                         // ----------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -1984,7 +1984,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tValidFrom, tValidTo);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -2282,7 +2282,7 @@ bool OTRecordList::Populate()
                         }
                         // ----------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -2325,7 +2325,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetExpired();
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -2357,7 +2357,7 @@ bool OTRecordList::Populate()
     // ------------------------------------------------
     OTLog::vOutput(0, "================ %s: Looping through the accounts in the wallet...\n", __FUNCTION__);
     // ------------------------------------------------
-    int nAccountIndex = -1;
+    int32_t nAccountIndex = -1;
     FOR_EACH_IT(list_of_strings, m_accounts, it_acct)
     {
         ++nAccountIndex; // (0 on first iteration.)
@@ -2427,7 +2427,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theInboxAngel(pInbox);
 
         // ------------------------------------------------
-        int nInboxIndex = -1;
+        int32_t nInboxIndex = -1;
         // It loaded up, so let's loop through it.
         if (NULL != pInbox) FOR_EACH(mapOfTransactions, pInbox->GetTransactionMap())
         {
@@ -2642,7 +2642,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nInboxIndex));
+            sp_Record->SetBoxIndex(nInboxIndex);
             // -------------------------------------------------
             if (bCanceled)
                 sp_Record->SetCanceled();
@@ -2672,7 +2672,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 
         // It loaded up, so let's loop through it.
-        int nOutboxIndex = -1;
+        int32_t nOutboxIndex = -1;
         if (NULL != pOutbox) FOR_EACH(mapOfTransactions, pOutbox->GetTransactionMap())
         {
             ++nOutboxIndex; // (0 on first iteration.)
@@ -2811,7 +2811,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nOutboxIndex));
+            sp_Record->SetBoxIndex(nOutboxIndex);
             // -------------------------------------------------
             if (!str_memo.empty())
                 sp_Record->SetMemo(str_memo);
@@ -2841,7 +2841,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theRecordBoxAngel(pRecordbox);
 
         // It loaded up, so let's loop through it.
-        int nRecordIndex = -1;
+        int32_t nRecordIndex = -1;
         if (NULL != pRecordbox) FOR_EACH(mapOfTransactions, pRecordbox->GetTransactionMap())
         {
             ++nRecordIndex;
@@ -3192,7 +3192,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nRecordIndex));
+            sp_Record->SetBoxIndex(nRecordIndex);
             // -------------------------------------------------
             if (!str_memo.empty())
                 sp_Record->SetMemo(str_memo);

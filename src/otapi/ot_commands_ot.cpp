@@ -9431,7 +9431,7 @@ OT_COMMANDS_OT int32_t OT_Command::handle_payment_index(const string & strMyAcct
         OTAPI_Wrap::Output(0, "The instrument at index " + to_string(nIndex) + " is not yet within its valid date range. (Skipping.)\n");
         return -1;
     }
-    if ((tTo > OT_TIME_ZERO) && (tTime > tTo))
+    if (tTo > OT_TIME_ZERO && tTime > tTo)
     {
         OTAPI_Wrap::Output(0, "The instrument at index " + to_string(nIndex) + " is expired. (Moving it to the record box.)\n");
 
@@ -9456,19 +9456,12 @@ OT_COMMANDS_OT int32_t OT_Command::handle_payment_index(const string & strMyAcct
     // They DO need to be removed from the payments inbox, but just not here in the script. (Rather,
     // internally by OT itself.)
     //
-    if ("CHEQUE" == strType)
+	if ("CHEQUE" == strType || "VOUCHER" == strType || "INVOICE" == strType)
     {
         return details_deposit_cheque(strServerID, strMyAcctID, strMyNymID, strInstrument, strType);
     }
-    else if ("VOUCHER" == strType)
-    {
-        return details_deposit_cheque(strServerID, strMyAcctID, strMyNymID, strInstrument, strType);
-    }
-    else if ("INVOICE" == strType)
-    {
-        return details_deposit_cheque(strServerID, strMyAcctID, strMyNymID, strInstrument, strType);
-    }
-    else if ("PURSE" == strType)
+ 
+	if ("PURSE" == strType)
     {
         int32_t nDepositPurse = details_deposit_purse(strServerID, strMyAcctID, strMyNymID, strInstrument, ""); // strIndices is left blank in this case
 
@@ -9483,10 +9476,8 @@ OT_COMMANDS_OT int32_t OT_Command::handle_payment_index(const string & strMyAcct
 
         return nDepositPurse;
     }
-    else
-    {
-        OTAPI_Wrap::Output(0, "\nSkipping this instrument: Expected CHEQUE, VOUCHER, INVOICE, or (cash) PURSE.\n");
-    }
+
+	OTAPI_Wrap::Output(0, "\nSkipping this instrument: Expected CHEQUE, VOUCHER, INVOICE, or (cash) PURSE.\n");
 
     return -1;
 }

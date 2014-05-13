@@ -133,11 +133,9 @@
 #ifndef __OT_DATA_HPP__
 #define __OT_DATA_HPP__
 
-#include <cstddef>
-
 #include "OTCommon.hpp"
 
-class OTASCIIArmor;
+#include "OTCleanup.hpp"
 
 
 class OTData
@@ -195,9 +193,6 @@ public:
 	inline void reset() { m_lPosition = 0; };
 	// --------------------------------------------
 };
-
-
-#include "OTCleanup.hpp"
 
 
 #endif // __OT_DATA_HPP__
