@@ -206,19 +206,19 @@ AC_CHECK_LIB([msgpack],[msgpack_unpack],
 
 AC_ARG_WITH(	[transport],
 		[AS_HELP_STRING([--with-transport@<:@=zmq@:>@],
-		[Choose a transport backend (available: zmq, testclient)])],
+		[Choose a transport backend (available: zmq2, zmq4)])],
 		[case "${withval}" in
-			zmq) true ;;
-			testclient) true ;;
+			zmq2) true ;;
+			zmq4) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-transport]) ;;
 			esac],
 		[with_transport="zmq4"])
 
-AM_CONDITIONAL(	[TRANSPORT_ZMQ],	[test x"$with_transport" == x"zmq"])
+AM_CONDITIONAL(	[TRANSPORT_ZMQ2],	[test x"$with_transport" == x"zmq2"])
 AM_CONDITIONAL(	[TRANSPORT_ZMQ4],	[test x"$with_transport" == x"zmq4"])
 
 
-AS_IF(	[test x"$with_transport" == x"zmq"],
+AS_IF(	[test x"$with_transport" == x"zmq2"],
 	[PKG_CHECK_MODULES([ZMQ],[libzmq >= 2.1.4],
 		[AC_LANG_PUSH([C++])
 		AC_CHECK_HEADERS([zmq.hpp],
@@ -230,12 +230,12 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		)
 	])
 
-if test x"$with_transport" == x"zmq"; then
-	AC_DEFINE([TRANSPORT_ZMQ],  [1], [Using ZMQ 2 Transport])
+if test x"$with_transport" == x"zmq2"; then
+	AC_DEFINE([TRANSPORT_ZMQ2], [1], [Using ZMQ 2 Transport])
 elif test x"$with_transport" == x"zmq4"; then
 	AC_DEFINE([TRANSPORT_ZMQ4], [1], [Using ZMQ 4 Transport])
 else
-	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
+	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported (for the moment)!])
 fi
 
 ## Keyring Options ##
