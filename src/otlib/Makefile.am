@@ -1,7 +1,13 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	zmq otprotob bigint irrxml lucre otext
+SUBDIRS 		= 	otprotob bigint irrxml lucre otext
+
+if TRANSPORT_ZMQ4
+
+SUBDIRS 		+= zmq
+
+endif
 
 lib_LTLIBRARIES		=	libot.la
 
