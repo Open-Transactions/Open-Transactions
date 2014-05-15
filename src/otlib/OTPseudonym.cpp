@@ -134,8 +134,6 @@
 
 #include <OTPseudonym.hpp>
 
-#include <fstream>
-
 #include <OTLog.hpp>
 #include <OTCredential.hpp>
 #include <OTLedger.hpp>
@@ -147,6 +145,10 @@
 #include <OTSymmetricKey.hpp>
 
 #include "irrxml/irrXML.hpp"
+
+#include <fstream>
+#include <list>
+#include <algorithm>
 
 
 //static
