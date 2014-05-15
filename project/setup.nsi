@@ -88,16 +88,16 @@ Section -Main SEC0000
 !insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED ..\lib\Win32\Release\chaiscript_stdlib.dll $INSTDIR\chaiscript_stdlib.dll $INSTDIR
 
 # ZMQ
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED ..\lib\Win32\Release\libzmq.dll $INSTDIR\libzmq.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED ..\lib\Win32\Release\zmq.dll $INSTDIR\zmq.dll $INSTDIR
 
 # QT
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\Qt5Widgets.dll $INSTDIR\Qt5Widgets.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\Qt5Network.dll $INSTDIR\Qt5Network.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\Qt5Sql.dll $INSTDIR\Qt5Sql.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\Qt5Gui.dll $INSTDIR\Qt5Gui.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\libEGL.dll $INSTDIR\libEGL.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\libGLESv2.dll $INSTDIR\libGLESv2.dll $INSTDIR
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\bin\Qt5Core.dll $INSTDIR\Qt5Core.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\Qt5Widgets.dll $INSTDIR\Qt5Widgets.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\Qt5Network.dll $INSTDIR\Qt5Network.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\Qt5Sql.dll $INSTDIR\Qt5Sql.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\Qt5Gui.dll $INSTDIR\Qt5Gui.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\libEGL.dll $INSTDIR\libEGL.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\libGLESv2.dll $INSTDIR\libGLESv2.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\bin\Qt5Core.dll $INSTDIR\Qt5Core.dll $INSTDIR
 
 # OT
 !insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED ..\lib\Win32\Release\otapi.dll $INSTDIR\otapi.dll $INSTDIR
@@ -114,10 +114,10 @@ Section -Main SEC0000
 
 # QT Plugins
 SetOutPath $INSTDIR\platforms
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\plugins\platforms\qwindows.dll $INSTDIR\platforms\qwindows.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\plugins\platforms\qwindows.dll $INSTDIR\platforms\qwindows.dll $INSTDIR
 
 SetOutPath $INSTDIR\sqldrivers
-!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\qt5\plugins\sqldrivers\qsqlite.dll $INSTDIR\sqldrivers\qsqlite.dll $INSTDIR
+!insertmacro InstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED C:\Qt\Qt5.3.0\5.3\msvc2013\plugins\sqldrivers\qsqlite.dll $INSTDIR\sqldrivers\qsqlite.dll $INSTDIR
 
 # Scripts
 
@@ -185,7 +185,7 @@ Section /o -un.Main UNSEC0000
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\msvcr120.dll
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\vccorlib120.dll
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\chaiscript_stdlib.dll
-!insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\libzmq.dll
+!insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\zmq.dll
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\Qt5Widgets.dll
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\Qt5Network.dll
 !insertmacro UninstallLib DLL    NOTSHARED NOREBOOT_NOTPROTECTED $INSTDIR\Qt5Sql.dll
