@@ -6,7 +6,7 @@ compiler:
   - gcc
   - clang
 install:
-  - bootstrap/install-deps-${TRAVIS_OS_NAME}.sh
+  - ./bootstrap/install-deps-${TRAVIS_OS_NAME}.sh
 script: ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
