@@ -135,6 +135,8 @@
 #include <OTCrypto.hpp>
 #include <OTMint.hpp>
 
+#include <cstdio>
+
 #include <time.h>
 #include <assert.h>
 
