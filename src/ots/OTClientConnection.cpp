@@ -141,6 +141,8 @@
 #include <OTDataCheck.hpp>
 #include <OTMessage.hpp>
 
+#include <cstdio>
+
 
 extern "C"
 {
