@@ -144,6 +144,8 @@
 #include <OTPseudonym.hpp>
 #include <OTWallet.hpp>
 
+#include <cstdio>
+
 extern "C"
 {
 #if defined (OPENTXS_HAVE_NETINET_IN_H)
