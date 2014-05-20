@@ -151,6 +151,8 @@
 
 #include <OTAccount.hpp>  //included in OTSmartContract.hpp
 
+#include <cstdio>
+
 #include <time.h>
 
 
