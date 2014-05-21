@@ -27,3 +27,10 @@ notifications:
       - "%{branch} (%{commit} - %{author}): %{message}"
       - "Change view: %{compare_url}"
       - "Build: %{build_url}"
+env:
+  global:
+    secure: Nry0SprRMjKfEYzcgSv6be18WVDXgqBY0OfF9N+GAtGABFGVtgBa7bA/h5bAwjpsFX0a03OeVMtwngSEOSD3B/7/ASKEk6KJOB3xSOolf8QUF3rDTZCFelrUzQkG8EqAS7sP8u1ztDS6pgKmfGPCfxIQkhPm/sKAkBdwP30+tGg=
+after_success:
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- scripts/travis_update_online_documentation.sh
