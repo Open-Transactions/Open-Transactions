@@ -283,7 +283,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPrivateKeyFromCertString(const OTString & strC
         else // Otherwise, use pImportPassword instead of the normal OTCachedKey system.
         {
 //          OTLog::vOutput(0, "%s: READING using EXPORT password.\n", __FUNCTION__);
-            pkey = PEM_read_bio_PrivateKey( bio, NULL, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())) );
+            pkey = PEM_read_bio_PrivateKey( bio, NULL, 0, pImportPassword->getMemory().first);
         }
         // ------------------------------------------------------
 //      if (strWithBookends.GetLength() > 0)
@@ -294,12 +294,8 @@ bool OTAsymmetricKey_OpenSSL::LoadPrivateKeyFromCertString(const OTString & strC
 		{ 
 			OTLog::vError("%s: (pImportPassword size: %d) Error reading private key from string.\n\n",
 						  __FUNCTION__,
-                          NULL == pImportPassword ? 0 : pImportPassword->getPasswordSize());
-//			OTLog::vError("%s: (pImportPassword is %s, size: %d) Error reading private key from string:\n%s\n\n",
-//						  __FUNCTION__, NULL == pImportPassword ? "NULL" : pImportPassword->getPassword(),
-//                          NULL == pImportPassword ? 0 : pImportPassword->getPasswordSize(),
-//                          strWithBookends.Get()
-//                          );
+                          NULL == pImportPassword ? 0 : pImportPassword->length());
+
 			return false;
 		}
 		else 
@@ -378,7 +374,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPublicKeyFromCertString(const OTString   & str
     if (NULL == pImportPassword)
         x509 = PEM_read_bio_X509(keyBio, NULL, OTAsymmetricKey::GetPasswordCallback(), &thePWData);
     else
-        x509 = PEM_read_bio_X509(keyBio, NULL, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())));
+        x509 = PEM_read_bio_X509(keyBio, NULL, 0, pImportPassword->getMemory().first);
 		
 	// TODO security: At some point need to switch to using X509_AUX functions.
 	// The current x509 functions will read a trust certificate but discard the trust structure.
@@ -467,7 +463,7 @@ bool OTAsymmetricKey_OpenSSL::ReEncryptPrivateKey(OTPassword & theExportPassword
         if (bImporting)
         {
 //          OTLog::vOutput(0, "RE-ENCRYPT PRIVATE KEY -- READING using special EXPORT password: %s\n", theExportPassword.getPassword());
-            pClearKey = PEM_read_bio_PrivateKey( keyBio, NULL, 0, const_cast<void*>(reinterpret_cast<const void*>(theExportPassword.getPassword())) );
+            pClearKey = PEM_read_bio_PrivateKey( keyBio, NULL, 0, theExportPassword.getMemory().first );
         }
         // --------------------------------------
         // Else if we're exporting, that means we're currently stored in the wallet (i.e. using the wallet's
@@ -518,7 +514,7 @@ bool OTAsymmetricKey_OpenSSL::ReEncryptPrivateKey(OTPassword & theExportPassword
 //              OTLog::vOutput(0, "RE-ENCRYPT PRIVATE KEY -- WRITING using special EXPORT password: %s  Size: %d\n", theExportPassword.getPassword(),
 //                             theExportPassword.getPasswordSize());
                 nWriteBio = PEM_write_bio_PrivateKey(bmem, pClearKey, pCipher,
-                                                     NULL, 0, 0, const_cast<void*>(reinterpret_cast<const void*>(theExportPassword.getPassword())));
+                    NULL, 0, 0, theExportPassword.getMemory().first);
             }
             // ----------------------------------------
             EVP_PKEY_free(pClearKey);
@@ -543,13 +539,8 @@ bool OTAsymmetricKey_OpenSSL::ReEncryptPrivateKey(OTPassword & theExportPassword
                 {
                     // Set the buffer size in our own memory.
                     theNewData.SetPayloadSize(nSize);
+                    theNewData.Assign(pChar, nSize);
                     
-//                  void * pv =
-                    OTPassword::safe_memcpy((static_cast<char*>(const_cast<void*>(theNewData.GetPayloadPointer()))), // destination
-                                            theNewData.GetSize(),    // size of destination buffer.
-                                            pChar,                // source
-                                            nSize);               // length of source.
-                                         // bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
                     // ------------------------------------------------
                     // This base64 encodes the private key data, which
                     // is already encrypted to its passphase as well.
@@ -659,7 +650,7 @@ bool OTAsymmetricKey_OpenSSL::SavePrivateKeyToString(OTString & strOutput, const
         PEM_write_bio_PrivateKey(bio_out_pri,
                                  pPrivateKey,
                                  pCipher,
-                                 NULL, 0, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())));
+                                 NULL, 0, 0, pImportPassword->getMemory().first);
     // ---------------------------------------
     bool bSuccess = false;
     

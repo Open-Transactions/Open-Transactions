@@ -213,10 +213,10 @@ bool OTSymmetricKey::GenerateKey(const
     // Generate actual key (a randomized memory space.)
     // We will use the derived key for encrypting the actual key.
     //
-    OTPassword  theActualKey;
+    BinaryPassword  theActualKey;
 
 	{
-		int32_t nRes = theActualKey.randomizeMemory(OTCryptoConfig::SymmetricKeySize()); if (0 > nRes) { OT_FAIL; }
+		int32_t nRes = theActualKey.randomize(OTCryptoConfig::SymmetricKeySize()); if (0 > nRes) { OT_FAIL; }
 		uint32_t uRes = static_cast<uint32_t>(nRes); // we need an uint32_t value.
 
 		if (OTCryptoConfig::SymmetricKeySize() != uRes)
@@ -257,8 +257,8 @@ bool OTSymmetricKey::GenerateKey(const
     //
     const bool bEncryptedKey = OTCrypto::It()->Encrypt(*pDerivedKey,  // pDerivedKey is a symmetric key, in clear form. Used for encrypting theActualKey.
                                                        // -------------------------------
-                                                       reinterpret_cast<const char *>(theActualKey.getMemory_uint8()), // This is the Plaintext that's being encrypted.
-                                                       static_cast<uint32_t>(theActualKey.getMemorySize()),
+                                                       reinterpret_cast<const char *>(theActualKey.getMemoryConst().first), // This is the Plaintext that's being encrypted.
+                                                       static_cast<uint32_t>(theActualKey.getMemoryConst().second),
                                                        // -------------------------------
                                                        m_dataIV, // generated above.
                                                        // -------------------------------
@@ -463,7 +463,7 @@ bool OTSymmetricKey::GetRawKeyFromPassphrase(const
 bool OTSymmetricKey::GetRawKeyFromDerivedKey(const OTPassword & theDerivedKey, OTPassword & theRawKeyOutput) const
 {
     OT_ASSERT(m_bIsGenerated);
-    OT_ASSERT(theDerivedKey.isMemory());
+    OT_ASSERT(theDerivedKey.getType() == OTPassword::BINARY);
     // -------------------------------------------------------------------------------------------------
     const char * szFunc = "OTSymmetricKey::GetRawKeyFromDerivedKey";
     // -------------------------------------------------------------------------------------------------
@@ -486,7 +486,7 @@ bool OTSymmetricKey::GetRawKeyFromDerivedKey(const OTPassword & theDerivedKey, O
                                                        // -------------------------------
                                                        m_dataIV, // Created when *this symmetric key was generated. Both are already stored.
                                                        // -------------------------------
-                                                       theRawKeyOutput); // OUTPUT. (Recovered plaintext of symmetric key.) You can pass OTPassword& OR OTPayload& here (either will work.)
+                                                       &theRawKeyOutput); // OUTPUT. (Recovered plaintext of symmetric key.) You can pass OTPassword& OR OTPayload& here (either will work.)
 
     OTLog::vOutput(2, "%s: (End) attempt to recover actual key using derived key...\n", szFunc);
     return bDecryptedKey;
@@ -501,32 +501,42 @@ OTPassword * OTSymmetricKey::GetPassphraseFromUser(const OTString * pstrDisplay/
 {
     // Caller MUST delete!
     // ---------------------------------------------------
-    OTPassword * pPassUserInput = OTPassword::CreateTextBuffer(); // already asserts.
-//  pPassUserInput->zeroMemory(); // This was causing the password to come out blank.
+    OTPassword * pPassUserInput = new BinaryPassword(); // already asserts.
+    pPassUserInput->resize(OTPASSWORD_BLOCKSIZE);
+
     //
     // Below this point, pPassUserInput must be returned, or deleted. (Or it will leak.)
     // -----------------------------------------------
     const char *    szDisplay = "OTSymmetricKey::GetPassphraseFromUser";
     OTPasswordData  thePWData((NULL == pstrDisplay) ? szDisplay : pstrDisplay->Get());
-    thePWData.setUsingOldSystem(); // So the cached key doesn't interfere, since this is for a plain symmetric key.
+    thePWData.setUsingCachedKey(false); // So the cached key doesn't interfere, since this is for a plain symmetric key.
     // -----------------------------------------------
-    const int32_t nCallback = souped_up_pass_cb(pPassUserInput->getPasswordWritable_char(),
-                                            pPassUserInput->getBlockSize(),
-                                            bAskTwice ? 1 : 0,
-                                            static_cast<void *>(&thePWData));
+    uint32_t nCallback = 0;
+    {
+        void * data; size_t size;
+        pPassUserInput->getMemory(data, size);
+
+        int32_t nCallbackRet = souped_up_pass_cb(static_cast<char *>(data), size,
+            bAskTwice ? 1 : 0,
+            static_cast<void *>(&thePWData));
+
+        if (0 > nCallbackRet) OT_FAIL; // should never be lower than zero.
+
+    }
     const uint32_t uCallback = static_cast<uint32_t>(nCallback);
-    if ((nCallback > 0) &&// Success retrieving the passphrase from the user.
-        pPassUserInput->SetSize(uCallback))
-    {
-//      OTLog::vOutput(0, "%s: Retrieved passphrase (blocksize %d, actual size %d) from user: %s\n", __FUNCTION__,
-//                     pPassUserInput->getBlockSize(), nCallback, pPassUserInput->getPassword());
-        return pPassUserInput; // Caller MUST delete!
+
+    if (nCallback > 0) {
+        pPassUserInput->resize(uCallback);
+        if (pPassUserInput->length() == nCallback){
+            return pPassUserInput; // Caller MUST delete!
+        }
+        else
+        {
+            delete pPassUserInput; pPassUserInput = NULL;
+            OTLog::vOutput(0, "%s: Sorry, unable to retrieve passphrase from user. (Failure.)\n", __FUNCTION__);
+        }
     }
-    else
-    {
-        delete pPassUserInput; pPassUserInput = NULL;
-        OTLog::vOutput(0, "%s: Sorry, unable to retrieve passphrase from user. (Failure.)\n", __FUNCTION__);
-    }
+
 
     return NULL;
 }

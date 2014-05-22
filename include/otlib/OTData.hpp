@@ -189,8 +189,14 @@ public:
 	EXPORT  bool Randomize(uint32_t lNewSize);
 	// --------------------------------------------
 	EXPORT  void zeroMemory();
-	// --------------------------------------------
-	EXPORT	uint32_t OTfread(uint8_t * buf, uint32_t buflen);
+    // --------------------------------------------
+    EXPORT	uint32_t OTfread(uint8_t * buf, const uint32_t buflen);
+
+    template<typename _Ty>
+    EXPORT	uint32_t OTfreadNetwork(_Ty & _Ref);
+
+    EXPORT	size_t OTfreadData(void * data, const size_t size);
+
 
 	inline void reset() { m_lPosition = 0; };
 	// --------------------------------------------

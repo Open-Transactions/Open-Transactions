@@ -200,30 +200,21 @@ public:
 // without duplicating the static Decrypt() function, by wrapping both
 // types.
 //
-class OTCrypto_Decrypt_Output
-{
-private:
-	OTPassword * m_pPassword;
-	OTPayload  * m_pPayload;
+typedef std::pair<OTPassword *, OTPayload *> PasswordPayloadPair;
 
-	OTCrypto_Decrypt_Output();
-public:
-EXPORT	~OTCrypto_Decrypt_Output();
 
-EXPORT	OTCrypto_Decrypt_Output(const OTCrypto_Decrypt_Output & rhs);
+// this->first is Password, this->second is Payload.
+struct PassOrPayload : public PasswordPayloadPair {
 
-EXPORT	OTCrypto_Decrypt_Output(OTPassword & thePassword);
-EXPORT	OTCrypto_Decrypt_Output(OTPayload  & thePayload);
 
-EXPORT	void swap(OTCrypto_Decrypt_Output & other);
+    PassOrPayload(OTPassword * password) : PasswordPayloadPair(password, NULL) {}
+    PassOrPayload(OTPayload * payload) : PasswordPayloadPair(NULL, payload) {}
 
-EXPORT	OTCrypto_Decrypt_Output & operator = (OTCrypto_Decrypt_Output other); // passed by value.
 
-EXPORT	bool Concatenate(const void * pAppendData, uint32_t lAppendSize);
-
-EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
-EXPORT	void Release_Envelope_Decrypt_Output();
+    EXPORT uint32_t Concatenate(const void * pAppendData, uint32_t lAppendSize);
+    EXPORT void Release();
 };
+
 
 
 // OT CRYPTO -- ABSTRACT INTERFACE
@@ -332,7 +323,7 @@ EXPORT    bool GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
                          // -------------------------------
                          const OTPayload  & theIV,               // (We assume this IV is already generated and passed in.)
                          // -------------------------------
-                         OTCrypto_Decrypt_Output theDecryptedOutput) const=0; // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
+                         PassOrPayload theDecryptedOutput) const = 0; // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
     // ------------------------------------------------------------------------
     // SEAL / OPEN (RSA envelopes...)
     //
@@ -468,7 +459,7 @@ public:
                          // -------------------------------
                          const OTPayload  &  theIV,               // (We assume this IV is already generated and passed in.)
                          // -------------------------------
-                         OTCrypto_Decrypt_Output theDecryptedOutput) const; // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
+                         PassOrPayload theDecryptedOutput) const; // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
     // ------------------------------------------------------------------------
     // SEAL / OPEN
     // Asymmetric (public key) encryption / decryption

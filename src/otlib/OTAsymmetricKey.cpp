@@ -346,81 +346,6 @@ bool OT_API_Set_PasswordCallback(OTCaller & theCaller) // Caller must have Callb
  #define OPENSSL_CALLBACK_FUNC(name) extern \"C\" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *u)
  */
 
-// If the password callback isn't set, then it uses the default ("test") password.
-// #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
-//
-OPENSSL_CALLBACK_FUNC(default_pass_cb)
-{
-	int32_t len = 0;
-    const uint32_t theSize = uint32_t(size);
-	// ------------------------------------
-	// We'd probably do something else if 'rwflag' is 1
-
-    OTPasswordData * pPWData = NULL;
-    std::string    str_userdata;
-    
-    if (NULL != userdata)
-    {
-        pPWData  = static_cast<OTPasswordData *>(userdata);
-        
-        if (NULL != pPWData)
-        {
-            str_userdata = pPWData->GetDisplayString();
-            
-        }        
-    }
-    else
-        str_userdata = "";
-    // -------------------------------------
-
-//	OTLog::vOutput(1, "OPENSSL_CALLBACK_FUNC: (Password callback hasn't been set yet...) Using 'test' pass phrase for \"%s\"\n", (char *)u);
-    
-	OTLog::vOutput(1, "%s: Using DEFAULT TEST PASSWORD: "
-                   "'test' (for \"%s\")\n", __FUNCTION__, str_userdata.c_str());
-	
-	// get pass phrase, length 'len' into 'tmp'
-	//
-//	std::string str_Password;
-//	std::getline (std::cin, str_Password);
-
-//	const char *tmp_passwd = ""; // For now removing any possibility that "test" password can slip through.
-	const char *tmp_passwd = "test";
-//	const char *tmp_passwd = str_Password.c_str();
-
-	len = static_cast<int32_t> (strlen(tmp_passwd));
-//	len = str_Password.size();
-	
-	if (len <= 0)
-	{
-		OTLog::vOutput(0, "%s: Problem? Returning 0...\n", __FUNCTION__);
-		return 0;
-	}
-	
-	// if too int64_t, truncate
-	if (len > size) 
-		len = size;
-	
-    const uint32_t theLength = static_cast<const uint32_t>(len);
-    // ------------------------------------------------------
-    
-    //void * pv = 
-    OTPassword::safe_memcpy(buf,        // destination
-                            theSize,    // size of destination buffer.
-                            tmp_passwd, // source
-                            theLength); // length of source.
-                            //bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
-	return len;
-}
-
-
-//#ifdef _WIN32
-//    memcpy_s(buf,        
-//             theSize,    
-//             tmp_passwd, // source
-//             theLength); // length of source.
-//#else
-//    memcpy(buf, tmp_passwd, len);
-//#endif    
 
 #ifndef _PASSWORD_LEN
 #define _PASSWORD_LEN   128
@@ -435,16 +360,16 @@ OPENSSL_CALLBACK_FUNC(default_pass_cb)
 //
 OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
 {
-//  OT_ASSERT(NULL != buf); // apparently it CAN be NULL sometimes.
+    //  OT_ASSERT(NULL != buf); // apparently it CAN be NULL sometimes.
     OT_ASSERT(NULL != userdata);
-    OTPasswordData * pPWData  = static_cast<OTPasswordData *>(userdata);
-    const std::string str_userdata = pPWData->GetDisplayString();    
+    OTPasswordData * pPWData = static_cast<OTPasswordData *>(userdata);
+    const std::string str_userdata = pPWData->GetDisplayString();
     // -----------------------------------------------------
-    OTPassword  thePassword;
+    StringPassword  thePassword;
     bool        bGotPassword = false;
     // -------------------------------------
     _SharedPtr<OTCachedKey> pCachedKey(pPWData->GetCachedKey()); // Sometimes it's passed in, otherwise we use the global one.
-    
+
     if (!pCachedKey)
     {
         // Global one.
@@ -452,212 +377,103 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     }
     if (!pCachedKey) OT_FAIL;
     // -------------------------------------
-    const bool b1 = pPWData->isForNormalNym();
-    const bool b3 = !(pCachedKey->isPaused());
-    
-    // For example, perhaps we need to collect a password for a symmetric key.
-    // In that case, it has nothing to do with any master key, or any public/private
-    // keys. It ONLY wants to do a simple password collect.
-    //
-    const bool bOldSystem = pPWData->isUsingOldSystem();
 
-//    OTLog::vOutput(5, "--------------------------------------------------------------------------------\n"
-//                  "TOP OF SOUPED-UP PASS CB:\n pPWData->isForNormalNym(): %s \n "
-////                "!pPWData->isUsingOldSystem(): %s \n "
-//                  "!(pCachedKey->isPaused()): %s \n",
-//                  b1 ? "NORMAL" : "NOT normal",
-////                b2 ? "NOT using old system" : "USING old system",
-//                  b3 ? "NOT paused" : "PAUSED"
-//                  );
-    
-    //
-    // It's for one of the normal Nyms.
-    // (NOT the master key.)
-    // If it was for the master key, we'd just pop up the dialog and get the master passphrase.
-    // But since it's for a NORMAL Nym, we have to call OTCachedKey::GetMasterPassword. IT will pop
-    // up the dialog if it needs to, by recursively calling this in master mode, and then it'll use
-    // the user passphrase from that dialog to derive a key, and use THAT key to unlock the actual
-    // "passphrase" (a random value) which is then passed back to OpenSSL to use for the Nyms.
-    //
-    if ( b1 &&  // Normal Nyms, unlike Master passwords, have to look up the master password first.
-         !bOldSystem &&  
-         b3)    // ...Unless they are still using the old system, in which case they do NOT look up the master password...
-    {
-        
-        // Therefore we need to provide the password from an OTSymmetricKey stored here.
-        // (the "actual key" in the OTSymmetricKey IS the password that we are passing back!)
-        
-        // So either the "actual key" is cached on a timer, from some previous request like
-        // this, OR we have to pop up the passphrase dialog, ask for the passphrase for the
-        // OTSymmetricKey, and then use it to GET the actual key from that OTSymmetricKey.
-        // The OTSymmetricKey should be stored in the OTWallet or OTServer, which sets a pointer
-        // to itself inside the OTPasswordData class statically, on initialization.
-        // That way, OTPasswordData can use that pointer to get a pointer to the relevant
-        // OTSymmetricKey being used as the MASTER key.
-        //
+
+    const bool bNormalNym = pPWData->isForNormalNym();
+    const bool bUsingCachedKey = pPWData->isUsingCachedKey();
+    const bool bCachedKeyIsPaused = pCachedKey->isPaused();
+
+
+    // We get the key from the master password if:
+    // 1. Not a MasterPassword (aka, is a normal Nym).
+    // 2. We have a CachedKey in the PasswordData.
+    // 3. The CachedKey is not locked.
+
+    const bool GetMasterPassword = bNormalNym && bUsingCachedKey && !bCachedKeyIsPaused;
+
+    if (GetMasterPassword) {
+
         OTLog::vOutput(3, "%s: Using GetMasterPassword() call. \n", __FUNCTION__);
-        
-        bGotPassword = pCachedKey->GetMasterPassword(pCachedKey, thePassword, str_userdata.c_str());//bool bVerifyTwice=false
 
-        // NOTE: shouldn't the above call to GetMasterPassword be passing the rwflag as the final parameter?
-        // Just as we see below with the call to GetPasswordFromConsole. Right? Of course, it DOES generate internally,
-        // if necessary, and thus it forces an "ask twice" in that situation anyway. (It's that smart.)
-        // Actually that's it. The master already asks twice when it's generating.
-        
-//      bool   GetMasterPassword(      OTPassword & theOutput,
-//                               const char       * szDisplay=NULL,
-//                                     bool         bVerifyTwice=false);
+        bGotPassword = pCachedKey->GetMasterPassword(pCachedKey, thePassword, str_userdata.c_str());
 
-        
-//      OTLog::vOutput(0, "OPENSSL_CALLBACK_FUNC (souped_up_pass_cb): Finished calling GetMasterPassword(). Result: %s\n",
-//                     bGotPassword ? "SUCCESS" : "FAILURE");
     }
-    // -----------------------------------------------------
-    else
-    {
+    else {  // we get the password from the user (via the Callback).
+
         OTLog::vOutput(3, "%s: Using OT Password Callback. \n", __FUNCTION__);
-                
-        OTCaller * pCaller = OTAsymmetricKey::GetPasswordCaller(); // See if the developer registered one via the OT API.
-        
-//      if (NULL == pCaller)
-//      {
-//          OTLog::Error("OPENSSL_CALLBACK_FUNC (souped_up_pass_cb): OTCaller is NULL. Try calling OT_API_Set_PasswordCallback() first.\n");
-//          OT_ASSERT(0); // This will never actually happen, since SetPasswordCaller() and souped_up_pass_cb are activated in same place.
-//      }
-        // ---------------------------------------
-        if (NULL == pCaller) // We'll just grab it from the console then.
+
         {
-            OTLog::vOutput(0, "Passphrase request for: \"%s\"\n", str_userdata.c_str());
+            OTCaller * pCaller = OTAsymmetricKey::GetPasswordCaller(); // See if the developer registered one via the OT API.
 
-            bGotPassword = OTCrypto::It()->GetPasswordFromConsole(thePassword, (1 == rwflag) ? true : false);
-        }
-        else // Okay, we have a callback, so let's pop up the dialog!
-        {
-            // ---------------------------------------
-            // The dialog should display this string (so the user knows what he is authorizing.)
-            //
-            pCaller->SetDisplay(str_userdata.c_str(), static_cast<int32_t> (str_userdata.size()));
-            
-            // ---------------------------------------
-            if (1 == rwflag)
+            if (NULL == pCaller) // We'll just grab it from the console then.
             {
-                OTLog::vOutput(4, "%s: Using OT Password Callback (asks twice) for \"%s\"...\n", __FUNCTION__,
-                               str_userdata.c_str());
-                pCaller->callTwo(); // This is where Java pops up a modal dialog and asks for password twice...
+                OTLog::vOutput(0, "Passphrase request for: \"%s\"\n", str_userdata.c_str());
+
+                bGotPassword = OTCrypto::It()->GetPasswordFromConsole(thePassword, (1 == rwflag) ? true : false);
             }
-            else
+            else // Okay, we have a callback, so let's pop up the dialog!
             {
-                OTLog::vOutput(4, "%s: Using OT Password Callback (asks once) for \"%s\"...\n", __FUNCTION__,
-                               str_userdata.c_str());
-                pCaller->callOne(); // This is where Java pops up a modal dialog and asks for password once...
+                // ---------------------------------------
+                // The dialog should display this string (so the user knows what he is authorizing.)
+                //
+                pCaller->SetDisplay(str_userdata.c_str(), static_cast<int32_t> (str_userdata.size()));
+
+                // ---------------------------------------
+                if (1 == rwflag)
+                {
+                    OTLog::vOutput(4, "%s: Using OT Password Callback (asks twice) for \"%s\"...\n", __FUNCTION__,
+                        str_userdata.c_str());
+                    pCaller->callTwo(); // This is where Java pops up a modal dialog and asks for password twice...
+                }
+                else
+                {
+                    OTLog::vOutput(4, "%s: Using OT Password Callback (asks once) for \"%s\"...\n", __FUNCTION__,
+                        str_userdata.c_str());
+                    pCaller->callOne(); // This is where Java pops up a modal dialog and asks for password once...
+                }
+                // ---------------------------------------
+
+                bGotPassword = pCaller->GetPassword(thePassword);
             }
-            // ---------------------------------------
-
-            /*
-             NOTICE: (For security...)
-             
-             We are using an OTPassword object to collect the password from the caller. 
-             (We're not passing strings back and forth.) The OTPassword object is where we
-             can centralize our efforts to scrub the memory clean as soon as we're done with
-             the password. It's also designed to be light (no baggage) and to be passed around
-             easily, with a set-size array for the data.
-
-             Notice I am copying the password directly from the OTPassword object into the buffer
-             provided to me by OpenSSL. When the OTPassword object goes out of scope, then it cleans
-             up automatically.
-             */
-            
-            bGotPassword = pCaller->GetPassword(thePassword);
         }
     }
+
     // --------------------------------------    
-	if (false == bGotPassword)
-	{
-		OTLog::vOutput(0, "%s: Failure: (false == bGotPassword.) (Returning 0.)\n", __FUNCTION__);
-		return 0;
-	}
-    // --------------------------------------	
-    OTLog::vOutput(2, "%s: Success!\n", __FUNCTION__);
-	/* 
-	 http://openssl.org/docs/crypto/pem.html#
-	 "The callback must return the number of characters in the passphrase or 0 if an error occurred."
-	 */
-	int32_t len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
-	
-	if (len < 0) 
-	{
-		OTLog::vOutput(0, "%s: <0 length password was "
-                       "returned from the API password callback. "
-                       "Returning 0.\n", __FUNCTION__);
-		return 0;        
-	}
-    // --------------------------------------	
-	else if (len == 0) 
-	{
-        const char * szDefault = "test";
-        
-		OTLog::vOutput(0, "%s: 0 length password was "
-                       "returned from the API password callback. "
-                       "Substituting default password 'test'.\n", __FUNCTION__); // todo: security: is this safe? Here's what's driving this: We can't return 0 length string, but users wanted to be able to "just hit enter" and use an empty passphrase. So for cases where the user has explicitly "hit enter" we will substitute "test" as their passphrase instead. They still have to do this explicitly--it only happens when they use an empty one. 
-		
-        if (thePassword.isPassword())
-            thePassword.setPassword(szDefault, static_cast<int32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)));
-        else
-            thePassword.setMemory(static_cast<const void *>(szDefault),
-                                  static_cast<uint32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)) + 1); // setMemory doesn't assume the null terminator like setPassword does.
-        
-        len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
-	}
+    if (false == bGotPassword)
+    {
+        OTLog::vOutput(0, "%s: Failure: (false == bGotPassword.) (Returning 0.)\n", __FUNCTION__);
+        return 0;
+    }
+    {
+        // --------------------------------------	
+        OTLog::vOutput(2, "%s: Success!\n", __FUNCTION__);
+        /*
+        http://openssl.org/docs/crypto/pem.html#
+        "The callback must return the number of characters in the passphrase or 0 if an error occurred."
+        */
+        size_t len = thePassword.length();
+
+        OTLog::vError("Error: Password was Zero Length. Exiting Now. This should happen here. \n"
+            "this should be caught by the user-facing code! \n %s \n", __FUNCTION__);
+        OT_ASSERT(len != 0);
+    }
+
     // -------------------------------------------------------
     OTPassword * pMasterPW = pPWData->GetMasterPW();
 
     if (pPWData->isForCachedKey() && (NULL != pMasterPW))
     {
         *pMasterPW = thePassword;
+        return thePassword.length();
     }
-    // --------------------------------------	
-    else if (NULL != buf)
-    {
-        // if too int64_t, truncate
-        if (len > size) 
-            len = size;
-        
-        const uint32_t theSize   = static_cast<uint32_t>(size);
-        const uint32_t theLength = static_cast<uint32_t>(len);
 
-        if (thePassword.isPassword())
-        {
-//          OTLog::vError("%s: BEFORE TEXT PASSWORD: %s  LENGTH: %d\n", __FUNCTION__, thePassword.getPassword(), theLength);
-
-            OTPassword::safe_memcpy(buf,                   // destination
-                                    theSize,               // size of destination buffer.
-                                    thePassword.getPassword_uint8(), // source
-                                    theLength); // length of source.
-                                   //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
-            buf[theLength] = '\0'; // null terminator.
-            
-//          int32_t nSize = static_cast<int32_t>(thePassword.getPasswordSize());
-//          OTLog::vError("%s: AFTER TEXT PASSWORD: %s  LENGTH: %d\n", __FUNCTION__, buf, nSize);
-        }
-        else
-        {
-            OTPassword::safe_memcpy(buf,                   // destination
-                                    theSize,               // size of destination buffer.
-                                    thePassword.getMemory_uint8(), // source
-                                    theLength); // length of source.
-                                   //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
-            
-//          int32_t nSize = static_cast<int32_t>(thePassword.getMemorySize());
-//          OTLog::vError("%s: (BINARY PASSWORD)  LENGTH: %d\n", __FUNCTION__, nSize);
-        }
-        
-    }
-    // --------------------------------------	
-    else // should never happen
+    OT_ASSERT(NULL != buf);
     {
-//      OT_FAIL_MSG("This should never happen. (souped_up_pass_cb");
+        BinaryPassword binaryPassword(thePassword);
+        binaryPassword.getMemoryCopyOnto(buf, size);
+
+        return binaryPassword.length();
     }
-	return len;
 }
 
 

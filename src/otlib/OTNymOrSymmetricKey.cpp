@@ -283,7 +283,7 @@ void OTNym_or_SymmetricKey::Release_Nym_or_SymmetricKey()
 
     if (NULL != m_pPassword)
     {
-        m_pPassword->zeroMemory();
+        m_pPassword->zero();
         // -------------
         if (m_bCleanupPassword) // Only in cases where *this is the actual owner of m_pPassword.
         {

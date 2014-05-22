@@ -290,14 +290,10 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPublicKey
 
             // Set the buffer size in our own memory.
             theData.SetPayloadSize(nSize);
-            
-            void * pv = 
-               OTPassword::safe_memcpy((static_cast<char*>(const_cast<void*>(theData.GetPayloadPointer()))), // destination
-                                    theData.GetSize(),    // size of destination buffer.
-                                    pChar,                // source
-                                    nSize);               // length of source.
-            // bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
+            theData.Assign(pChar, nSize);
 
+            const void * pv = theData.GetPayloadPointer();
+            
             if (NULL != pv)
             {
                 // -----------------------------------------------
@@ -375,11 +371,9 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPrivateKe
     int32_t nWriteBio = false;
     
     if (NULL == pImportPassword)
-        nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, pCipher,
-                                             NULL, 0, OTAsymmetricKey::GetPasswordCallback(), NULL == pPWData ? &thePWDataWrite : pPWData);
+        nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, pCipher, NULL, 0, OTAsymmetricKey::GetPasswordCallback(), NULL == pPWData ? &thePWDataWrite : pPWData);
     else
-        nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, pCipher,
-                                             NULL, 0, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())));
+        nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, pCipher, NULL, 0, 0, pImportPassword->getMemory().first);
 	// ------------------------------------------------------------------------
 	if (0 == nWriteBio)
 	{
@@ -404,12 +398,8 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPrivateKe
             // Set the buffer size in our own memory.
             theData.SetPayloadSize(nSize);
             
-            void * pv = 
-               OTPassword::safe_memcpy((static_cast<char*>(const_cast<void*>(theData.GetPayloadPointer()))), // destination
-                                       theData.GetSize(),    // size of destination buffer.
-                                       pChar,                // source
-                                       nSize);               // length of source.
-            // bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
+            theData.Assign(pChar, nSize);
+            const void * pv = theData.GetPayloadPointer();
             
             if (NULL != pv)
             {
@@ -428,7 +418,7 @@ EVP_PKEY * OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::CopyPrivateKe
                 if (NULL == pImportPassword)
                     pReturnKey = PEM_read_bio_PrivateKey( keyBio, NULL, OTAsymmetricKey::GetPasswordCallback(), NULL == pPWData ? &thePWData : pPWData);
                 else
-                    pReturnKey = PEM_read_bio_PrivateKey( keyBio, NULL, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())));
+                    pReturnKey = PEM_read_bio_PrivateKey(keyBio, NULL, 0, pImportPassword->getMemory().first);
                 // -------------------------------------------
             }
             else 
@@ -491,13 +481,7 @@ bool OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPublicKey(EVP_
 		{
 			// Set the buffer size in our own memory.
 			theData.SetPayloadSize(nSize);
-            
-//            void * pv = 
-                OTPassword::safe_memcpy((static_cast<char*>(const_cast<void*>(theData.GetPayloadPointer()))), // destination
-                                    theData.GetSize(),    // size of destination buffer.
-                                    pChar,                // source
-                                    nSize);               // length of source.
-                                    // bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
+            theData.Assign(pChar, nSize);
             
             // ------------------------------------------------
 			// This base64 encodes the public key data
@@ -668,7 +652,7 @@ bool OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPrivateKey(EVP
                                              NULL, 0, OTAsymmetricKey::GetPasswordCallback(), pPWData);
     else
         nWriteBio = PEM_write_bio_PrivateKey(bmem, &theKey, EVP_des_ede3_cbc(), // todo should this algorithm be hardcoded?
-                                             NULL, 0, 0, const_cast<void*>(reinterpret_cast<const void*>(pImportPassword->getPassword())));
+                                             NULL, 0, 0, pImportPassword->getMemory().first);
 	
 	if (0 == nWriteBio)
 	{
@@ -700,14 +684,8 @@ bool OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::ArmorPrivateKey(EVP
 		{
 			// Set the buffer size in our own memory.
 			theData.SetPayloadSize(nSize);
-            
-//            void * pv = 
-                OTPassword::safe_memcpy((static_cast<char*>(const_cast<void*>(theData.GetPayloadPointer()))), // destination
-                                    theData.GetSize(),    // size of destination buffer.
-                                    pChar,                // source
-                                    nSize);               // length of source.
-            // bool bZeroSource=false); // if true, sets the source buffer to zero after copying is done.
-            
+            theData.Assign(pChar, nSize);
+
             // ------------------------------------------------
 			// This base64 encodes the private key data, which
             // is already encrypted to its passphase as well.

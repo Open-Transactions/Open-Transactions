@@ -196,15 +196,15 @@ public:
 };
  */
 
-bool OTPasswordData::isUsingOldSystem() const
+bool OTPasswordData::isUsingCachedKey() const
 {
-    return m_bUsingOldSystem;
+    return m_bUsingCachedKey;
 }
 
 
-void OTPasswordData::setUsingOldSystem(bool bUsing/*=true*/)
+void OTPasswordData::setUsingCachedKey(bool bUsing/*=true*/)
 {
-    m_bUsingOldSystem = bUsing;
+    m_bUsingCachedKey = bUsing;
 }
 
 
@@ -229,7 +229,7 @@ const char * OTPasswordData::GetDisplayString() const
 OTPasswordData::OTPasswordData(const char * szDisplay, OTPassword * pMasterPW/*=NULL*/, _SharedPtr<OTCachedKey> pCachedKey/*=_SharedPtr<OTCachedKey>()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(NULL == szDisplay ? "(Sorry, no user data provided.)" : szDisplay),
-  m_bUsingOldSystem(false),
+  m_bUsingCachedKey(true),
   m_pCachedKey(pCachedKey)
 {
     // They can both be NULL, or they can both be not NULL.
@@ -241,7 +241,7 @@ OTPasswordData::OTPasswordData(const char * szDisplay, OTPassword * pMasterPW/*=
 OTPasswordData::OTPasswordData(const std::string & str_Display, OTPassword * pMasterPW/*=NULL*/, _SharedPtr<OTCachedKey> pCachedKey/*=_SharedPtr<OTCachedKey>()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(str_Display),
-  m_bUsingOldSystem(false),
+  m_bUsingCachedKey(true),
   m_pCachedKey(pCachedKey)
 {
     // They can both be NULL, or they can both be not NULL.
@@ -253,7 +253,7 @@ OTPasswordData::OTPasswordData(const std::string & str_Display, OTPassword * pMa
 OTPasswordData::OTPasswordData(const OTString & strDisplay, OTPassword * pMasterPW/*=NULL*/, _SharedPtr<OTCachedKey> pCachedKey/*=_SharedPtr<OTCachedKey>()*/)
 : m_pMasterPW(pMasterPW),
   m_strDisplay(strDisplay.Get()),
-  m_bUsingOldSystem(false),
+  m_bUsingCachedKey(true),
   m_pCachedKey(pCachedKey)
 {
     // They can both be NULL, or they can both be  not NULL.

@@ -342,7 +342,7 @@ class OTPasswordData
 private:
     OTPassword *        m_pMasterPW; // Used only when isForCachedKey is true, for output. Points to output value from original caller (not owned.)
     const std::string   m_strDisplay;
-    bool                m_bUsingOldSystem; // "Do NOT use CachedKey if this is true."
+    bool                m_bUsingCachedKey; // "Do NOT use CachedKey if this is true."
 
     _SharedPtr<OTCachedKey> m_pCachedKey;  // If m_pMasterPW is set, this must be set as well.
 public:
@@ -352,8 +352,8 @@ EXPORT    bool            isForCachedKey()   const;
     // --------------------------------
 EXPORT    const char *    GetDisplayString() const;
     // --------------------------------
-EXPORT    bool            isUsingOldSystem() const;
-EXPORT    void            setUsingOldSystem(bool bUsing=true);
+EXPORT    bool            isUsingCachedKey() const;
+EXPORT    void            setUsingCachedKey(bool bUsing = true);
     // --------------------------------
     OTPassword          * GetMasterPW () { return m_pMasterPW;  }
     _SharedPtr<OTCachedKey> GetCachedKey() { return m_pCachedKey; }
