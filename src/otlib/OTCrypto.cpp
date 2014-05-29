@@ -1653,12 +1653,17 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 // todo return a smartpointer here.
 OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
 {
-    uint8_t *  tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
-    OTPassword    * pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
-    OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
+  uint8_t* tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
+  OTPassword* pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
+  OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
 
-	if (NULL != tmp_data) { delete tmp_data; tmp_data = NULL; } // clean up tempdata
-    return pNewKey;
+	if (NULL != tmp_data)
+  {
+    delete [] tmp_data;
+    tmp_data = NULL;
+  }
+  
+  return pNewKey;
 }
 
 

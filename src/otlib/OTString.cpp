@@ -229,7 +229,7 @@ bool OTString::vformat(const char * fmt, va_list * pvl, std::string & str_Output
     if (size <= nsize) 
     {
 	size  = nsize+1;
-	delete buffer; buffer = NULL;
+	delete [] buffer;
 	buffer = new char[size+100];
 	OT_ASSERT(NULL != buffer);
 	OTPassword::zeroMemory(buffer, size+100);
@@ -247,7 +247,8 @@ bool OTString::vformat(const char * fmt, va_list * pvl, std::string & str_Output
     OT_ASSERT(  size >  nsize);
     // ------------------------------------
     str_Output = buffer;
-    delete buffer; buffer = NULL;
+    delete [] buffer;
+    buffer = NULL;
     return true;
 }
 
