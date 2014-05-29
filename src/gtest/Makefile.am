@@ -24,8 +24,10 @@ otserver_srcdir             =   $(opentxs_srcdir)/ots
 
 swig_dir                    =   $(top_srcdir)/swig
 
-common_includes             =   -I$(otapi_incdir) \
-                                -I$(otlib_incdir) \
+common_includes             =   $(AM_CXXFLAGS)			\
+				-I$(top_builddir)/include/otlib	\
+				-I$(otapi_incdir)		\
+                                -I$(otlib_incdir)		\
                                 -I$(opentxs_incdir)
 
 common_libraries            =   $(otapi_srcdir)/libotapi.la \
@@ -35,21 +37,39 @@ common_libraries            =   $(otapi_srcdir)/libotapi.la \
 
 libgtest_la_SOURCES         =   $(gtestlib_sources) $(gtestlib_headers)
 
-libgtest_la_CXXFLAGS        =   $(AM_CXXFLAGS) \
-                                -I$(gtest_incdir) \
-                                -I$(opentxs_incdir)
+libgtest_la_CXXFLAGS        =   $(common_includes) -I$(gtest_incdir)
 
 libgtest_la_LDFLAGS         =   --no-undefined -g
 
 ######################## DEPENDENCIES ###############################
 
-gtestlib_sources            =   gtest.cc \
-                                gtest-death-test.cc \
-                                gtest-filepath.cc \
-                                gtest-port.cc \
-                                gtest-printers.cc \
-                                gtest-test-part.cc \
+gtestlib_sources            =   gtest.cc		\
+                                gtest-death-test.cc	\
+                                gtest-filepath.cc	\
+                                gtest-port.cc		\
+                                gtest-printers.cc	\
+                                gtest-test-part.cc	\
                                 gtest-typed-test.cc               
 
-gtestlib_headers            =   stdafx.h
+gtestlib_headers	=	$(gtest_incdir)/gtest-death-test.h	\
+				$(gtest_incdir)/gtest.h			\
+				$(gtest_incdir)/gtest-message.h		\
+				$(gtest_incdir)/gtest-param-test.h	\
+				$(gtest_incdir)/gtest_pred_impl.h	\
+				$(gtest_incdir)/gtest-printers.h	\
+				$(gtest_incdir)/gtest_prod.h		\
+				$(gtest_incdir)/gtest-spi.h		\
+				$(gtest_incdir)/gtest-test-part.h	\
+				$(gtest_incdir)/gtest-typed-test.h	\
+				$(gtest_incdir)/internal/gtest-death-test-internal.h	\
+				$(gtest_incdir)/internal/gtest-filepath.h		\
+				$(gtest_incdir)/internal/gtest-param-util.h		\
+				$(gtest_incdir)/internal/gtest-type-util.h		\
+				$(gtest_incdir)/internal/gtest-internal.h		\
+				$(gtest_incdir)/internal/gtest-port.h			\
+				$(gtest_incdir)/internal/gtest-linked_ptr.h		\
+				$(gtest_incdir)/internal/gtest-string.h			\
+				$(gtest_incdir)/internal/gtest-param-util-generated.h	\
+				$(gtest_incdir)/internal/gtest-tuple.h			\
+				$(gtest_incdir)/src/gtest-internal-inl.h
 
