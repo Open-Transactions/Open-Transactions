@@ -8,6 +8,7 @@
 #ifndef CHAISCRIPT_PROXY_FUNCTIONS_HPP_
 #define CHAISCRIPT_PROXY_FUNCTIONS_HPP_
 
+
 #include "boxed_value.hpp"
 #include "type_info.hpp"
 #include <string>
@@ -22,7 +23,7 @@ namespace chaiscript
   class Boxed_Number;
   struct AST_Node;
 
-  typedef std::shared_ptr<struct AST_Node> AST_NodePtr;
+  typedef std::shared_ptr<AST_Node> AST_NodePtr;
 
   namespace dispatch
   {
