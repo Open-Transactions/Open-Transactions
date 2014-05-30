@@ -143,6 +143,7 @@
 
 class OTString;
 class OTPassword;
+class OTCallback;
 
 
 /*
@@ -334,9 +335,6 @@ void main()
 //
 //#undef OT_DEFAULT_BLOCKSIZE
 //#undef OT_DEFAULT_MEMSIZE
-
-
-#include "OTCallback.hpp"
 
 
 class OTCaller

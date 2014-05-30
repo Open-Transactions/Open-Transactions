@@ -134,6 +134,7 @@
 
 #include <OTCaller.hpp>
 
+#include "OTCallback.hpp"
 #include <OTPassword.hpp>
 #include <OTAssert.hpp>
 #include <OTString.hpp>

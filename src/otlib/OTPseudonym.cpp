@@ -143,6 +143,8 @@
 #include <OTPayment.hpp>
 #include <OTSignedFile.hpp>
 #include <OTSymmetricKey.hpp>
+#include <OTSubkey.hpp>
+#include <OTSubcredential.hpp>
 
 #include "irrxml/irrXML.hpp"
 

@@ -132,8 +132,6 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTBylaw.hpp>
 #include <OTClause.hpp>
 
 #include <OTLog.hpp>

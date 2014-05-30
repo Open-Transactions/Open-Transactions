@@ -623,6 +623,12 @@
     <ClCompile Include="..\..\src\otlib\OTSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAsymmetricKeyOpenSSL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\otlib\OTAsymmetricKeyOpenSSLPrivdp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\otlib\otlib.rc">

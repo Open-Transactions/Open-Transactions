@@ -447,12 +447,6 @@ EXPORT	~OTPassword();
 //#undef OT_DEFAULT_MEMSIZE
 
 
-#include "OTCallback.hpp"
-
-
-#include "OTCaller.hpp"
-
-
 /*
  HOW TO PREVENT MEMORY FROM GOING INTO CORE DUMPS
 

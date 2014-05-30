@@ -139,6 +139,10 @@
 #include "OTASCIIArmor.hpp"
 #include "OTSignatureMetadata.hpp"
 
+class OTSignature;
+
+typedef std::list<OTSignature *>	listOfSignatures;
+
 
 class OTSignature : public OTASCIIArmor
 {
@@ -147,15 +151,13 @@ private: // BASE CLASS
         
 public:  // PUBLIC INTERFACE
     OTSignatureMetadata m_metadata;
-    // ---------------------------------------------------------------------------
+
 	OTSignature();
 	OTSignature(const char * szValue);
 	OTSignature(const OTString & strValue);
 	OTSignature(const OTASCIIArmor & strValue);
 	virtual ~OTSignature();
 };
-
-typedef std::list<OTSignature *>	listOfSignatures;
 
 
 #endif // __OT_SIGNATURE_HPP__ 

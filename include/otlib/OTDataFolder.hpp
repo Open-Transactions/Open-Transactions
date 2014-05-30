@@ -133,8 +133,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited paths class.
-
 #ifndef __OT_DATA_FOLDER_HPP__
 #define __OT_DATA_FOLDER_HPP__
 

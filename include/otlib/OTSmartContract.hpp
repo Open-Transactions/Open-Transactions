@@ -140,6 +140,7 @@
 
 #include "OTCronItem.hpp"
 #include "OTAccount.hpp"
+#include "OTAcctList.hpp"
 
 class OTParty;
 class OTPseudonym;

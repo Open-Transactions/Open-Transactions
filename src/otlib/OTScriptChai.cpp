@@ -132,16 +132,13 @@
 
 #include <stdafx.hpp>
 
+#ifdef OT_USE_SCRIPT_CHAI
 #include <OTScriptChai.hpp>
 
-#ifdef OT_USE_SCRIPT_CHAI
 #include <chaiscript/chaiscript.hpp>
 
 #ifdef OT_USE_CHAI_STDLIB
 #include <chaiscript/chaiscript_stdlib.hpp>
-
-#endif
-
 #endif
 
 #include <OTScript.hpp>
@@ -149,25 +146,6 @@
 #include <OTAssert.hpp>
 #include <OTStorage.hpp>
 
-
-// SUBCLASS:  CHAI SCRIPT
-
-
-#ifdef OT_USE_SCRIPT_CHAI
-
-/*
-double x_function(int32_t i, double j)
-{
-    return i * j;
-}
-
-int32_t main()
-{
-    chaiscript::ChaiScript chai;
-    this->chai->add(chaiscript::fun(&x_function), "x_function");
-    double d = this->chai->eval<double>("x_function(3, 4.75);");
-}
-*/
 
 bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)
 {

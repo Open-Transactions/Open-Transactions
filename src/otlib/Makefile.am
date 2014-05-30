@@ -97,6 +97,8 @@ otlib_sources     =	OTAccount.cpp		\
 			OTAssert.cpp		\
 			OTAssetContract.cpp	\
 			OTAsymmetricKey.cpp	\
+			OTAsymmetricKeyOpenSSL.cpp	\
+			OTAsymmetricKeyOpenSSLPrivdp.cpp	\
 			OTBasket.cpp		\
 			OTBasketItem.cpp	\
 			OTBylaw.cpp		\
@@ -168,8 +170,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTTransaction.cpp	\
 			OTTransactionType.cpp	\
 			OTVariable.cpp		\
-			OTWallet.cpp		\
-			OTWindowsRegistryTools.cpp
+			OTWallet.cpp
 
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
@@ -281,8 +282,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTTransaction.hpp		\
 				$(otlib_headers_dir)/OTTransactionType.hpp	\
 				$(otlib_headers_dir)/OTVariable.hpp		\
-				$(otlib_headers_dir)/OTWallet.hpp 		\
-				$(otlib_headers_dir)/OTWindowsRegistryTools.hpp
+				$(otlib_headers_dir)/OTWallet.hpp
 ####   Containers
 
 containers_headers_dir	=	$(opentxs_include_dir)/containers

@@ -134,7 +134,6 @@
 
 #include <OTString.hpp>
 
-
 #include <OTAssert.hpp>
 #include <OTPassword.hpp>
 #include <OTIdentifier.hpp>

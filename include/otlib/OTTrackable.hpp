@@ -137,6 +137,8 @@
 
 #include "OTInstrument.hpp"
 
+class OTNumList;
+
 
 // OTTrackable is very similar to OTInstrument.
 // The difference is, it may have identifying info on it:

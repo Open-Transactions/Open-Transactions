@@ -142,11 +142,12 @@
 
 #include "OTContract.hpp"
 
-class OTPurse;
-class OTTrackable;
 class OTCheque;
+class OTNumList;
 class OTPaymentPlan;
+class OTPurse;
 class OTSmartContract;
+class OTTrackable;
 
 
 /*

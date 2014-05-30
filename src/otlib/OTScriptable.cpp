@@ -139,25 +139,17 @@
 #include <OTSmartContract.hpp>
 #include <OTScript.hpp>
 #include <OTPseudonym.hpp>
+#include <OTClause.hpp>
 
 #include "irrxml/irrXML.hpp"
 
-// ---------------------------------------------------
 #ifdef OT_USE_SCRIPT_CHAI
-#include <chaiscript/chaiscript.hpp>
-
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-
+#  include "OTScriptChai.hpp"
+#  include <chaiscript/chaiscript.hpp>
+#  ifdef OT_USE_CHAI_STDLIB
+#    include <chaiscript/chaiscript_stdlib.hpp>
+#  endif
 #endif
-
-#endif
-
-#include <OTLog.hpp>
-#include <OTAssert.hpp>
-#include <OTSmartContract.hpp>
-#include <OTScript.hpp>
-#include <OTPseudonym.hpp>
 
 
 // CALLBACKS

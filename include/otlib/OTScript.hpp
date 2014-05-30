@@ -225,9 +225,6 @@ EXPORT _SharedPtr<OTScript> OTScriptFactory(const std::string & script_type,
                                           const std::string & script_contents);
 
 
-#include "OTScriptChai.hpp"
-
-
 #if __clang__
 #pragma clang diagnostic pop
 #endif

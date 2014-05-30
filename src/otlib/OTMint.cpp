@@ -134,6 +134,8 @@
 
 #include <OTMint.hpp>
 
+#include "OTMintLucre.hpp"
+
 #include <OTToken.hpp>
 #include <OTPseudonym.hpp>
 #include <OTLog.hpp>

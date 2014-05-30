@@ -147,9 +147,12 @@
 #include <stdafx.hpp>
 
 //FIX ORDER OF DEPENDENCY
-#include <OTCredential.hpp>
+//#include <OTCredential.hpp>
 #include <OTKeypair.hpp>
 
+#include "OTLowLevelKeyData.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTContract.hpp"
 #include <OTAssert.hpp>
 #include <OTSignature.hpp>
 #include <OTLog.hpp>

@@ -139,46 +139,25 @@
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTParty.hpp"
-#include "OTVariable.hpp"
-#include "OTBylaw.hpp"
 
-class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
-class OTAccount;
-class OTParty;
-class OTPartyAccount;
-class OTScriptable;
-class OTSmartContract;
-class OTScript;
-class OTAccount;
-class OTScriptable;
-class OTScript;
 class OTBylaw;
-
-typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
 class OTClause
 {
 	OTString	m_strName;	// Name of this Clause.
 	OTString	m_strCode;	// script code.
-
 	OTBylaw	*	m_pBylaw; // the Bylaw that this clause belongs to.
 
 public:
 	void SetBylaw(OTBylaw& theBylaw) { m_pBylaw = &theBylaw; }
-    //------------------
+
 EXPORT	const OTString & GetName() const { return m_strName; }
-    //------------------
+
 	OTBylaw	* GetBylaw() const { return m_pBylaw; }
-    //------------------
+
 EXPORT	const char * GetCode() const;
-	// -------------
+
 	bool Compare(const OTClause & rhs) const;
 
 	OTClause();

@@ -133,11 +133,9 @@
 #ifndef __OT_KEYPAIR_HPP__
 #define __OT_KEYPAIR_HPP__
 
-#include "OTCommon.hpp"
+#include <list>
 
-#include "OTContract.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTCredential.hpp"
+#include "OTCommon.hpp"
 
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -174,13 +172,17 @@
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
+class OTContract;
 class OTPassword;
 class OTString;
 class OTIdentifier;
 class OTASCIIArmor;
 class OTPasswordData;
 class OTSignatureMetadata;
+class OTSignature;
+class OTAsymmetricKey;
 
+typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 // Encapsulates public/private key (though often there may only be
 // a public key present, unless the nym belongs to you.)

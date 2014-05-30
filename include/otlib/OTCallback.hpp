@@ -137,11 +137,6 @@
 
 #include "OTCommon.hpp"
 
-#include "OTCachedKey.hpp"
-#include "OTPasswordData.hpp"
-#include "OTPassword.hpp"
-
-class OTString;
 class OTPassword;
 
 

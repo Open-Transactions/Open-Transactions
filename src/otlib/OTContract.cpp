@@ -148,6 +148,7 @@
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
+#include "OTNumList.hpp"
 #include <OTOffer.hpp>
 #include <OTPassword.hpp>
 #include <OTPaths.hpp>

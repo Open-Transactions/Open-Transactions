@@ -139,6 +139,7 @@
 #include "OTAssetContract.hpp"
 #include "OTPseudonym.hpp"
 #include "OTAccount.hpp"
+#include "OTAcctList.hpp"
 #include "OTCron.hpp"
 #include "OTTransaction.hpp"
 

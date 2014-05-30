@@ -161,8 +161,6 @@ class OTKeyring
 {
 public:
 
-    // -------------------------------------------------------
-
     // NOTE: Normally the "username" in our context is related to the
     // master key. OTCachedKey will call OTKeyring::RetrieveSecret, and
     // will pass in probably a hash of the encrypted master key as the
@@ -293,7 +291,7 @@ EXPORT static const char * FlatFile_GetPasswordFolder();
 private:
 EXPORT static std::string s_str_passwd_folder; //NOTE: Do not ever use this. OT_KEYRING_FLATFILE should NEVER be defined! No! For testing only.
 #endif
-    // -------------------------------------------------------
+
 };
 
 

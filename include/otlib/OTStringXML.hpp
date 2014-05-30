@@ -134,15 +134,8 @@
 #ifndef __OT_STRING_XML_HPP__
 #define __OT_STRING_XML_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTString.hpp"
 
-namespace irr{
-    namespace io{
-        class IFileReadCallBack;
-    }
-}
 
 //class OTStringXML : public OTString, public irr::io::IFileReadCallBack
 class OTStringXML : public OTString

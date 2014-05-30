@@ -353,7 +353,4 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 typedef std::deque <OTToken *> dequeOfTokenPtrs;
 
 
-#include "OTTokenLucre.hpp"
-
-
 #endif // __OT_TOKEN_HPP__

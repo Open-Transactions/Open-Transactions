@@ -136,32 +136,11 @@
 #include <map>
 #include <string>
 
-#include "OTCommon.hpp"
-
 #include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTParty.hpp"
-#include "OTVariable.hpp"
-#include "OTClause.hpp"
-#include "OTBylaw.hpp"
 
-class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
-class OTAccount;
-class OTParty;
-class OTPartyAccount;
-class OTScriptable;
-class OTSmartContract;
-class OTScript;
-class OTAccount;
-class OTScriptable;
-class OTScript;
-class OTBylaw;
+class OTStashItem;
 
-typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+typedef std::map<std::string, OTStashItem *>	mapOfStashItems;
 
 
 class OTStashItem
@@ -185,7 +164,6 @@ public:
 
 // Each item is mapped by AssetTypeID
 //
-typedef std::map<std::string, OTStashItem *> mapOfStashItems;
 
 
 #endif // __OT_STASH_ITEM_HPP__
