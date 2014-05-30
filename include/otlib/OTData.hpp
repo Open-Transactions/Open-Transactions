@@ -137,6 +137,8 @@
 
 #include "OTCleanup.hpp"
 
+class OTASCIIArmor;
+
 
 class OTData
 {
