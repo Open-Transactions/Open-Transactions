@@ -134,7 +134,7 @@
 
 #include <OTVariable.hpp>
 
-#include <OTAsciiArmor.hpp>
+#include <OTASCIIArmor.hpp>
 #include <OTLog.hpp>
 #include <OTScript.hpp>
 
