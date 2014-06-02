@@ -6,7 +6,7 @@ compiler:
   - gcc
   - clang
 install:
-  - ./bootstrap/install-deps-${TRAVIS_OS_NAME}.sh
+  - ./scripts/travis/install-deps-${TRAVIS_OS_NAME}.sh
 script: ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
@@ -33,4 +33,5 @@ env:
 after_success:
 - git config credential.helper "store --file=.git/credentials"
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-- ./scripts/travis_update_online_documentation.sh
+- ./scripts/travis/update_online_documentation.sh
+- ./scripts/travis/update_sample_mint.sh
