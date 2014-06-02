@@ -153,6 +153,12 @@
 #pragma warning( pop )
 #endif
 
+class OTParty;
+class OTPartyAccount;
+
+typedef std::map<std::string, OTParty *>		mapOfParties;
+typedef std::map<std::string, OTPartyAccount *> mapOfPartyAccounts;
+
 
 // A script should be "Dumb", meaning that you just stick it with its
 // parties and other resources, and it EXPECTS them to be the correct

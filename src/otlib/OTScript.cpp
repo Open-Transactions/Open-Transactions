@@ -134,8 +134,9 @@
 
 #include <OTScript.hpp>
 
-#include <OTLog.hpp>
 #include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
 #include <OTStorage.hpp>
 
 #ifdef OT_USE_SCRIPT_CHAI

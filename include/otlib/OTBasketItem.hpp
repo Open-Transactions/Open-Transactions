@@ -132,12 +132,15 @@
 
 #ifndef __OT_BASKET_ITEM_HPP__
 #define __OT_BASKET_ITEM_HPP__
+//DONE
+
+#include "OTIdentifier.hpp"
 
 #include <deque>
 
-#include "OTCommon.hpp"
+class BasketItem;
 
-#include "OTIdentifier.hpp"
+typedef std::deque <BasketItem *> dequeOfBasketItems;
 
 
 class BasketItem
@@ -161,8 +164,6 @@ public:
 	BasketItem();
 	~BasketItem() {}
 };
-
-typedef std::deque <BasketItem *> dequeOfBasketItems;
 
 
 #endif // __OT_BASKET_ITEM_HPP__

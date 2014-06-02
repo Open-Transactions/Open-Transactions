@@ -134,12 +134,15 @@
 
 #include <OTScriptable.hpp>
 
-#include <OTLog.hpp>
+#include <OTAgent.hpp>
 #include <OTAssert.hpp>
-#include <OTSmartContract.hpp>
-#include <OTScript.hpp>
-#include <OTPseudonym.hpp>
 #include <OTClause.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
+#include <OTSmartContract.hpp>
 
 #include "irrxml/irrXML.hpp"
 

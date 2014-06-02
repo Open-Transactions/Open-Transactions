@@ -132,18 +132,18 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTBylaw.hpp>
 #include <OTStash.hpp>
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
+#include <OTAgreement.hpp>
+#include <OTBylaw.hpp>
+#include <OTContract.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
+#include <OTStashItem.hpp>
 
 #include "irrxml/irrXML.hpp"
 

@@ -461,13 +461,17 @@
 #  endif
 #endif
 
-#include <OTLog.hpp>
-#include <OTScript.hpp>
-#include <OTCron.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLedger.hpp>
-#include <OTPaths.hpp>
 #include <OTClause.hpp>
+#include <OTCron.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTPaths.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
+#include <OTStash.hpp>
+#include <OTStashItem.hpp>
 
 
 #include "irrxml/irrXML.hpp"

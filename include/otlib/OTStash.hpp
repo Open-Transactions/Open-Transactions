@@ -138,21 +138,19 @@
 
 #include "OTCommon.hpp"
 
+class OTAccount;
 class OTIdentifier;
 class OTNumList;
-class OTPseudonym;
-class OTAccount;
 class OTParty;
 class OTPartyAccount;
+class OTPseudonym;
+class OTBylaw;
+class OTScript;
 class OTScriptable;
 class OTSmartContract;
-class OTScript;
-class OTAccount;
-class OTScriptable;
-class OTScript;
-class OTBylaw;
 class OTStash;
 class OTStashItem;
+class OTString;
 
 typedef std::map<std::string, OTStash *>		mapOfStashes;
 typedef std::map<std::string, OTStashItem *>	mapOfStashItems;

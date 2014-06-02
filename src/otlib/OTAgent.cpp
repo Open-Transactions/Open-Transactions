@@ -134,14 +134,16 @@
 
 #include <OTAgent.hpp>
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
+#include <OTAgreement.hpp>
+#include <OTContract.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
 
 
 // Have the agent try to verify his own signature against any contract.
