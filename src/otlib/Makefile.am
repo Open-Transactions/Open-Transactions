@@ -12,6 +12,7 @@ endif
 lib_LTLIBRARIES		=	libot.la
 
 opentxs_include_dir 	=	$(top_srcdir)/include
+
 opentxs_source_dir 	=	$(top_srcdir)/src
 
 ## COMMON FLAGS ###
@@ -21,6 +22,7 @@ common_includes		=	$(AM_CXXFLAGS)				\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
 				-I$(opentxs_include_dir)/containers	\
+				-I$(top_srcdir)/deps/include		\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
 
@@ -336,7 +338,7 @@ pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
 
 ## Extra to package chai4 headers
 
-chai4hdrs_dir		=	$(top_srcdir)/include/chai4/chaiscript
+chai4hdrs_dir		=	$(top_srcdir)/deps/include/chai4/chaiscript
 
 noinst_HEADERS		=	$(chai4hdrs_dir)/license.txt				\
 				$(chai4hdrs_dir)/chaiscript.hpp				\
@@ -374,7 +376,7 @@ noinst_HEADERS		=	$(chai4hdrs_dir)/license.txt				\
 
 ## Extra to package chai5 headers
 
-chai5hdrs_dir		=	$(top_srcdir)/include/chai5/chaiscript
+chai5hdrs_dir		=	$(top_srcdir)/deps/include/chai5/chaiscript
 
 noinst_HEADERS		+=	$(chai5hdrs_dir)/license.txt				\
 				$(chai5hdrs_dir)/chaiscript_defines.hpp			\
