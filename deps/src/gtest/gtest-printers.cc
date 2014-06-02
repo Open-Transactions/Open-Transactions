@@ -42,8 +42,6 @@
 // or void PrintTo(const Foo&, ::std::ostream*) in the namespace that
 // defines Foo.
 
-#include <stdafx.h>
-
 #include "gtest/gtest-printers.h"
 #include <ctype.h>
 #include <stdio.h>

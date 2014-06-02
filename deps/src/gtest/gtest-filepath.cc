@@ -29,8 +29,6 @@
 //
 // Authors: keith.ray@gmail.com (Keith Ray)
 
-#include <stdafx.h>
-
 #include "gtest/gtest-message.h"
 #include "gtest/internal/gtest-filepath.h"
 #include "gtest/internal/gtest-port.h"

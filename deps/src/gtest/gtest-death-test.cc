@@ -31,8 +31,6 @@
 //
 // This file implements death tests.
 
-#include <stdafx.h>
-
 #include "gtest/gtest-death-test.h"
 #include "gtest/internal/gtest-port.h"
 
