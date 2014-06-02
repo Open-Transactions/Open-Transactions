@@ -138,16 +138,6 @@
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTParty.hpp"
-#include "OTVariable.hpp"
-#include "OTClause.hpp"
-#include "OTStashItem.hpp"
-#include "OTBylaw.hpp"
-
-
 class OTIdentifier;
 class OTNumList;
 class OTPseudonym;
@@ -161,21 +151,11 @@ class OTAccount;
 class OTScriptable;
 class OTScript;
 class OTBylaw;
+class OTStash;
+class OTStashItem;
 
-// forward decleration.  (need to match what is in the irr source code). Cam.
-namespace irr{
-    namespace io{
-        template<class char_type, class super_class>
-        class IIrrXMLReader;
-
-        class IXMLBase;
-
-        typedef IIrrXMLReader<char, IXMLBase> IrrXMLReader;
-    }
-}
-
-typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+typedef std::map<std::string, OTStash *>		mapOfStashes;
+typedef std::map<std::string, OTStashItem *>	mapOfStashItems;
 
 
 class OTStash
@@ -203,9 +183,6 @@ public:
 	virtual ~OTStash();
 };
 
-// Each stash is mapped by Stash Name
-//
-typedef std::map<std::string, OTStash *> mapOfStashes;  // Used in OTSmartContract.
 
 
 #endif // __OT_STASH_HPP__

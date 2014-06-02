@@ -135,13 +135,8 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTKeypair.hpp"
-#include "OTSubcredential.hpp"
-#include "OTKeyCredential.hpp"
-#include "OTSubkey.hpp"
 #include "OTMasterkey.hpp"
+#include "OTString.hpp"
 
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -187,6 +182,7 @@ class OTPasswordData;
 class OTSignatureMetadata;
 class OTCredential;
 class OTPseudonym;
+class OTSubkey;
 
 
 // THE MASTER CREDENTIAL (below -- OTCredential)

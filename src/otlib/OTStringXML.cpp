@@ -137,7 +137,6 @@
 #include "irrxml/irrXML.hpp"
 
 
-
 class OTStringXML::OTStringXMLPvt : public irr::io::IFileReadCallBack {
 
 public:

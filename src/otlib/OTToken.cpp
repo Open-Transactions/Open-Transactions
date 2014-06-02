@@ -147,6 +147,7 @@
 
 #if defined (OT_CASH_USING_LUCRE)
 
+#include "OTTokenLucre.hpp"
 #include "OpenSSL_BIO.hpp"
 
 #endif

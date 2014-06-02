@@ -133,8 +133,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited paths class.
-
 #ifndef __OT_PATHS_HPP__
 #define __OT_PATHS_HPP__
 
@@ -142,6 +140,8 @@
 
 #include "OTSettings.hpp"
 #include "OTAssert.hpp"
+#include "OTDataFolder.hpp"
+#include "OTFolders.hpp"
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
@@ -244,15 +244,6 @@ public:
 	EXPORT static bool BuildFilePath(const OTString & strFolderPath, bool & out_bFolderCreated);		// will build all the folders up to the file.  Will return false if unable to build path.
 
 }; // class OTPaths
-
-
-#include "OTWindowsRegistryTools.hpp"
-
-
-#include "OTDataFolder.hpp"
-
-
-#include "OTFolders.hpp"
 
 
 #endif // __OT_PATHS_HPP__

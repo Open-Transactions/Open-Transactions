@@ -146,6 +146,8 @@ class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
 
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+
 
 // This class is used by ForEachAccountRecord (above) which loops through
 // all the "simple" accounts of a specific asset type, and calls this functor

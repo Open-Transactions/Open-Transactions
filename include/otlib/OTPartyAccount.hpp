@@ -146,6 +146,7 @@ class OTIdentifier;
 class OTNumList;
 class OTPseudonym;
 class OTAccount;
+class OTAgent;
 class OTParty;
 class OTPartyAccount;
 class OTScriptable;

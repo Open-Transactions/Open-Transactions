@@ -132,36 +132,12 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTBylaw.hpp>
 #include <OTVariable.hpp>
 
+#include <OTASCIIArmor.hpp>
 #include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
-#include <OTScriptable.hpp>
-#include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
 #include <OTScript.hpp>
 
-/*
- enum OTVariable_Type
- {
- Var_String,	// std::string
- Var_Integer,	// Integer.
- Var_Bool,		// Boolean
- Var_Error_Type	// should never happen.
- };
-
- enum OTVariable_Access
- {
- Var_Constant,		// Constant -- you cannot change this value.
- Var_Persistent,		// Persistent -- changing value doesn't require notice to parties.
- Var_Important,		// Important -- changing value requires notice to parties.
- Var_Error_Access	// should never happen.
- };
- */
 
 void OTVariable::Serialize(OTString & strAppend,
 						   bool bCalculatingID/*=false*/)
@@ -376,35 +352,6 @@ bool OTVariable::SetValue(const std::string & str_Value)
 }
 
 
-/*
-	enum OTVariable_Type
-	{
-		Var_String,		// std::string
-		Var_Integer,	// Long integer.
-		Var_Bool,		// Boolean
-		Var_Error_Type	// should never happen.
-	};
-
-	enum OTVariable_Access
-	{
-		Var_Constant,		// Constant -- you cannot change this value.
-		Var_Persistent,		// Persistent -- changing value doesn't require notice to parties.
-		Var_Important,		// Important -- changing value requires notice to parties.
-		Var_Error_Access	// should never happen.
-	};
-
-	OTString	m_strName;		// Name of this variable.
-	std::string m_str_Value;	// If a string, the value is stored here.
-	int32_t			m_nValue;		// If a int64_t, the value is stored here.
-	bool		m_bValue;		// If a bool...
-	std::string m_str_ValueBackup;	// If a string, the value backup is stored here. (So we can see if it has changed since execution)
-	int64_t		m_lValueBackup;	// If a int64_t, the value backup is stored here.  (So we can see if it has changed since execution)
-	bool		m_bValueBackup; // If a bool...
-	OTBylaw	*	m_pBylaw;		// the Bylaw that this variable belongs to.
-
-	OTVariable_Type		m_Type;  // Currently int64_t or string.
-	OTVariable_Access	m_Access;  // Determines how the variable is used inside the script.
- */
 
 // So you can tell if the variable has CHANGED since it was last set clean.
 // (Usually you set clean just before running the script, and you check dirty just AFTER running the script.)

@@ -147,9 +147,10 @@
 #include <stdafx.hpp>
 
 //FIX ORDER OF DEPENDENCY
-#include <OTCredential.hpp>
 #include <OTMasterkey.hpp>
 
+#include <OTCredential.hpp>
+#include <OTKeyCredential.hpp>
 #include <OTAssert.hpp>
 #include <OTSignature.hpp>
 #include <OTLog.hpp>

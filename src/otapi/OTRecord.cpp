@@ -1107,8 +1107,8 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
 
                     if (strOutpayment.empty())
                     {
-                        long lIndex = static_cast<long>(GetBoxIndex());
-                        OTLog::vError("%s: Error: Blank outpayment at index %ld\n", __FUNCTION__, lIndex);
+                        int32_t lIndex = GetBoxIndex();
+                        OTLog::vError("%s: Error: Blank outpayment at index %d\n", __FUNCTION__, lIndex);
                         return false;
                     }
                     // ------------------------
@@ -1117,8 +1117,8 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
 
                     if (!thePayment.IsValid() || !thePayment.SetTempValues())
                     {
-                        long lIndex = static_cast<long>(GetBoxIndex());
-                        OTLog::vError("%s: Error: Invalid outpayment at index %ld\n", __FUNCTION__, lIndex);
+                        int32_t lIndex = GetBoxIndex();
+                        OTLog::vError("%s: Error: Invalid outpayment at index %d\n", __FUNCTION__, lIndex);
                         return false;
                     }
                     // ------------------------
@@ -1127,9 +1127,9 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
                     // ------------------------
                     if (0 == lTransNum) // Found it.
                     {
-                        long lIndex = static_cast<long>(GetBoxIndex());
+                        int32_t lIndex = GetBoxIndex();
                         OTString strIndices;
-                        strIndices.Format("%ld", lIndex);
+                        strIndices.Format("%d", lIndex);
                         const std::string str_indices(strIndices.Get());
                         // ---------------------------------
                         OT_ME madeEasy;
@@ -1162,8 +1162,7 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
 
                 if (strOutpayment.empty())
                 {
-                    long lIndex = nIndex;
-                    OTLog::vError("%s: Error: Blank outpayment at index %ld\n", __FUNCTION__, lIndex);
+                    OTLog::vError("%s: Error: Blank outpayment at index %d\n", __FUNCTION__, nIndex);
                     return false;
                 }
                 // ------------------------
@@ -1172,8 +1171,7 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
 
                 if (!thePayment.IsValid() || !thePayment.SetTempValues())
                 {
-                    long lIndex = nIndex;
-                    OTLog::vError("%s: Error: Invalid outpayment at index %ld\n", __FUNCTION__, lIndex);
+                    OTLog::vError("%s: Error: Invalid outpayment at index %d\n", __FUNCTION__, nIndex);
                     return false;
                 }
                 // ------------------------
@@ -1182,9 +1180,8 @@ bool OTRecord::CancelOutgoing(const std::string str_via_acct) // This can be bla
                 // ------------------------
                 if (lTransNum == m_lTransactionNum) // Found it.
                 {
-                    long lIndex = nIndex;
                     OTString strIndices;
-                    strIndices.Format("%ld", lIndex);
+                    strIndices.Format("%d", nIndex);
                     const std::string str_indices(strIndices.Get());
                     // ---------------------------------
                     OT_ME madeEasy;

@@ -130,8 +130,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited logging class.
-
 #ifndef __OT_LOG_HPP__
 #define __OT_LOG_HPP__
 

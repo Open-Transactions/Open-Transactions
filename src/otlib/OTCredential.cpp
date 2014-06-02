@@ -153,6 +153,7 @@
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTPassword.hpp>
+#include <OTSubkey.hpp>
 
 #include "irrxml/irrXML.hpp"
 

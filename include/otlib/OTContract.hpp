@@ -135,16 +135,16 @@
 
 #include <set>
 
-#include "OTCommon.hpp"
-
-#include "OTStringXML.hpp"
 #include "OTIdentifier.hpp"
-#include "OTBylaw.hpp"
-#include "OTNumList.hpp"
-#include "OTSignature.hpp"
+#include "OTStringXML.hpp"
 
 class OTAsymmetricKey;
 class OTPasswordData;
+class OTSignature;
+
+typedef std::list<OTSignature *>	listOfSignatures;
+typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
+
 
 class OTContract
 {

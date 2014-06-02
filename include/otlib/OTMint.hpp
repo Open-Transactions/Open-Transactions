@@ -267,7 +267,4 @@ EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartext
 };
 
 
-#include "OTMintLucre.hpp"
-
-
 #endif // __OT_MINT_HPP__

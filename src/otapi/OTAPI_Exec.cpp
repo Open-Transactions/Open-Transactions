@@ -140,6 +140,7 @@
 
 #include "OTBasket.hpp"
 #include "OTCheque.hpp"
+#include "OTClause.hpp"
 #include "OTCredential.hpp"
 #include "OTEnvelope.hpp"
 #include "OTLedger.hpp"

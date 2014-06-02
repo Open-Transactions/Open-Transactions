@@ -1,4 +1,10 @@
 /************************************************************
+*
+*  OTStoragePB.hpp
+*
+*/
+
+/************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
  Hash: SHA1
 
@@ -143,8 +149,6 @@
 #include <vector>
 
 
-// *******************************************************************************************
-
 #if defined(OTDB_PROTOCOL_BUFFERS)
 
 #ifdef _WIN32
@@ -154,14 +158,14 @@
 #endif
 
 
-// -----------------------------------------------
 #if defined(ANDROID) || defined(OT_KEYRING_IOS)
 #include "Generics-lite.pb.h"
 #include "Markets-lite.pb.h"
 #include "Bitcoin-lite.pb.h"
 #include "Moneychanger-lite.pb.h"
 #else
-// -----------------------------------------------
+
+
 // (NOT Android.)
 //
 #include "Generics.pb.h"
@@ -169,14 +173,11 @@
 #include "Bitcoin.pb.h"
 #include "Moneychanger.pb.h"
 #endif
-// -----------------------------------------------
 
 
 #ifdef _WIN32
 #pragma warning( pop )
 #endif
-
-
 
 
 // To make subclasses of the various data objects (for Protocol Buffers):
@@ -359,12 +360,9 @@ namespace OTDB
 	*/
 
 
-
 } // namespace OTDB
 
 #endif // defined(OTDB_PROTOCOL_BUFFERS)
-// *******************************************************************************************
-
 
 
 #if __clang__
@@ -372,14 +370,3 @@ namespace OTDB
 #endif
 
 #endif // __OT_STORAGE_PB_HPP__
-
-
-
-
-
-
-
-
-
-
-

@@ -134,6 +134,7 @@
 
 #include <OTMessageBuffer.hpp>
 
+#include "OTMessageOutBuffer.hpp"
 #include <OTAssert.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>

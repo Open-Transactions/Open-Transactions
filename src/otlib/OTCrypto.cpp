@@ -145,6 +145,7 @@
 #include <OTLog.hpp>
 #include <OTIdentifier.hpp>
 #include <OTAsymmetricKey.hpp>
+#include "OTAsymmetricKeyOpenSSL.hpp"
 #include <OTStorage.hpp>
 #include <OTPseudonym.hpp>
 #include <OTSignature.hpp>

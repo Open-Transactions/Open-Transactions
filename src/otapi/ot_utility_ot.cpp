@@ -2156,8 +2156,6 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
 
         //
         bool bWasProcessSent = false;
-        bool bFoundNymboxItem = false;
-
         bool bForceDownload = true;
         int32_t nProcessNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
 
@@ -2336,8 +2334,6 @@ OT_UTILITY_OT bool Utility::getTransactionNumbers(const string & serverID, const
         //
 
         bool bWasProcessSent = false;
-        bool bFoundNymboxItem = false;
-
         bool bForceDownload = true;
         int32_t nGetNymbox = getAndProcessNymbox_4(serverID, nymID, bWasProcessSent, bForceDownload); //boolean bForceDownload=true;
 

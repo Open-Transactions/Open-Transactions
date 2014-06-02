@@ -139,19 +139,20 @@
 #include "OTCommon.hpp"
 
 #include "OTString.hpp"
-#include "OTBylaw.hpp"
+
 
 class OTIdentifier;
 class OTNumList;
 class OTPseudonym;
 class OTAccount;
+class OTAgent;
 class OTParty;
 class OTPartyAccount;
 class OTScriptable;
 class OTSmartContract;
 
+typedef std::map<std::string, OTAgent *>		mapOfAgents;
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
 // Agent is always either the Owner Nym acting in his own interests,
@@ -379,7 +380,6 @@ EXPORT	const OTString & GetName() { return m_strName; } // agent's name as used 
 								 OTString * pstrNote=NULL,
 								 OTString * pstrAttachment=NULL);
 
-	// -----------------------------------------------------------
 	bool DropServerNoticeToNymbox(bool bSuccessMsg, // the notice can be "acknowledgment" or "rejection"
                                   OTPseudonym & theServerNym,
 								  const OTIdentifier & theServerID,
@@ -391,8 +391,6 @@ EXPORT	const OTString & GetName() { return m_strName; } // agent's name as used 
                                   OTPseudonym   * pActualNym=NULL);
 
 };
-
-typedef std::map<std::string, OTAgent *> mapOfAgents;
 
 
 #endif // __OT_AGENT_HPP__

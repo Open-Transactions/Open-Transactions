@@ -132,14 +132,10 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTPassword.hpp>
 #include <OTCallback.hpp>
 
 #include <OTAssert.hpp>
-#include <OTString.hpp>
 #include <OTLog.hpp>
-#include <OTCrypto.hpp>
 
 
 // For SecureZeroMemory

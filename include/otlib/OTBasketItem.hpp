@@ -137,8 +137,7 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
-#include "OTBasket.hpp"
+#include "OTIdentifier.hpp"
 
 
 class BasketItem

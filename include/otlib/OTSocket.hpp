@@ -156,8 +156,6 @@
 #endif
 
 
-
-// --------------------------------------------------------------------
 // Server and Client Side.
 //
 class OTSocket
@@ -332,27 +330,4 @@ private:
 #endif // OT_ZMQ_2_MODE
 
 
-
 #endif // __OTSOCKET_HPP__ 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

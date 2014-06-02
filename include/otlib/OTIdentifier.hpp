@@ -135,8 +135,6 @@
 
 #include <string>
 
-#include "OTCommon.hpp"
-
 #include "OTData.hpp"
 
 // An Identifier is basically a 256 bit hash value.

@@ -197,9 +197,6 @@ EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
 
-#include "OTLowLevelKeyData.hpp"
-
-
 class OTAsymmetricKey   // <========= OT ASYMMETRIC KEY
 {
 // ---------------------------------------------------------------
@@ -377,9 +374,6 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
 };
 
 typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
-
-
-#include "OTAsymmetricKeyOpenSSL.hpp"
 
 
 #endif // __OT_ASYMMETRIC_KEY_HPP__

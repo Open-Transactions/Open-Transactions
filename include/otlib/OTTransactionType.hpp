@@ -135,8 +135,9 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
 #include "OTASCIIArmor.hpp"
+#include "OTContract.hpp"
+#include "OTNumList.hpp"
 
 class OTString;
 class OTIdentifier;

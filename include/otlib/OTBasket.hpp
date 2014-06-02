@@ -137,8 +137,8 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
 #include "OTBasketItem.hpp"
+#include "OTContract.hpp"
 
 /*
 

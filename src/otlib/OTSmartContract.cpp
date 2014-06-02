@@ -454,13 +454,11 @@
 #include <OTSmartContract.hpp>
 
 #ifdef OT_USE_SCRIPT_CHAI
-#include <chaiscript/chaiscript.hpp>
-
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-
-#endif
-
+#  include "OTScriptChai.hpp"
+#  include <chaiscript/chaiscript.hpp>
+#  ifdef OT_USE_CHAI_STDLIB
+#    include <chaiscript/chaiscript_stdlib.hpp>
+#  endif
 #endif
 
 #include <OTLog.hpp>
@@ -469,6 +467,7 @@
 #include <OTPseudonym.hpp>
 #include <OTLedger.hpp>
 #include <OTPaths.hpp>
+#include <OTClause.hpp>
 
 
 #include "irrxml/irrXML.hpp"

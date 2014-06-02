@@ -176,7 +176,4 @@ EXPORT	OTMessage * Pop     (const int64_t & lRequestNum,    // Pop:  Caller IS r
 };
 
 
-#include "OTMessageOutBuffer.hpp"
-
-
 #endif // __OT_MESSAGE_BUFFER_HPP__

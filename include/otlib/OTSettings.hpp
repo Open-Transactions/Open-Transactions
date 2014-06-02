@@ -135,8 +135,6 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited configuration class.
-
 #ifndef __OT_SETTINGS_HPP__
 #define __OT_SETTINGS_HPP__
 

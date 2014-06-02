@@ -60,7 +60,6 @@ OT_MADE_EASY_OT bool MadeEasy::insure_enough_nums(const int32_t nNumberNeeded, c
 
         bool bWasMsgSent = false;
         bool bForceDownload = false;
-
         bool bRefresh = OT_Command::details_refresh_nym(strMyServerID, strMyNymID, bWasMsgSent, bForceDownload);
 
         if (!bRefresh)
