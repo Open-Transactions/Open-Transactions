@@ -730,29 +730,38 @@ bool OTRecord::DeleteRecord()
         //
         case OTRecord::Mail:
         {
-            if (m_bIsOutgoing) // outgoing mail
+            // If it's a Bitmessage or any other "non-OT" mail, then we can't
+            // delete it here. We have to assume the client application is
+            // smart enough to check for this and perform the deletion itself.
+            // (Not all client apps will even support forms of mail other than
+            // OT mail.)
+            //
+            if (!m_bIsSpecialMail)
             {
-                int32_t	nCount = OTAPI_Wrap::GetNym_OutmailCount(m_str_nym_id);
-                for (int32_t nIndex = 0; nIndex < nCount; ++nIndex)
+                if (m_bIsOutgoing) // outgoing mail
                 {
-                    const std::string str_contents(OTAPI_Wrap::GetNym_OutmailContentsByIndex(m_str_nym_id, nIndex));
-
-                    if (str_contents == m_str_contents) // found it.
+                    int32_t	nCount = OTAPI_Wrap::GetNym_OutmailCount(m_str_nym_id);
+                    for (int32_t nIndex = 0; nIndex < nCount; ++nIndex)
                     {
-                        return OTAPI_Wrap::Nym_RemoveOutmailByIndex(m_str_nym_id, nIndex);
+                        const std::string str_contents(OTAPI_Wrap::GetNym_OutmailContentsByIndex(m_str_nym_id, nIndex));
+
+                        if (str_contents == m_str_contents) // found it.
+                        {
+                            return OTAPI_Wrap::Nym_RemoveOutmailByIndex(m_str_nym_id, nIndex);
+                        }
                     }
                 }
-            }
-            else // incoming mail
-            {
-                int32_t	nCount = OTAPI_Wrap::GetNym_MailCount(m_str_nym_id);
-                for (int32_t nIndex = 0; nIndex < nCount; ++nIndex)
+                else // incoming mail
                 {
-                    const std::string str_contents(OTAPI_Wrap::GetNym_MailContentsByIndex(m_str_nym_id, nIndex));
-
-                    if (str_contents == m_str_contents) // found it.
+                    int32_t	nCount = OTAPI_Wrap::GetNym_MailCount(m_str_nym_id);
+                    for (int32_t nIndex = 0; nIndex < nCount; ++nIndex)
                     {
-                        return OTAPI_Wrap::Nym_RemoveMailByIndex(m_str_nym_id, nIndex);
+                        const std::string str_contents(OTAPI_Wrap::GetNym_MailContentsByIndex(m_str_nym_id, nIndex));
+
+                        if (str_contents == m_str_contents) // found it.
+                        {
+                            return OTAPI_Wrap::Nym_RemoveMailByIndex(m_str_nym_id, nIndex);
+                        }
                     }
                 }
             }
@@ -1212,32 +1221,49 @@ void  OTRecord::SetTransNumForDisplay(int64_t lTransNum) { m_lTransNumForDisplay
 void  OTRecord::SetExpired()   { m_bIsExpired  = true; }
 void  OTRecord::SetCanceled()  { m_bIsCanceled = true; }
 // ---------------------------------------
-bool  OTRecord::IsMail()                          const { return OTRecord::Mail == this->GetRecordType(); }
+bool  OTRecord::IsMail()                           const { return OTRecord::Mail == this->GetRecordType(); }
 // ---------------------------------------
-bool  OTRecord::IsPending()                       const { return m_bIsPending;            }
-bool  OTRecord::IsOutgoing()                      const { return m_bIsOutgoing;           }
-bool  OTRecord::IsRecord()                        const { return m_bIsRecord;             }
-bool  OTRecord::IsReceipt()                       const { return m_bIsReceipt;            }
-bool  OTRecord::HasContents()                     const { return !m_str_contents.empty(); }
-bool  OTRecord::HasMemo()                         const { return !m_str_memo.empty();     }
+bool  OTRecord::IsPending()                        const { return m_bIsPending;            }
+bool  OTRecord::IsOutgoing()                       const { return m_bIsOutgoing;           }
+bool  OTRecord::IsRecord()                         const { return m_bIsRecord;             }
+bool  OTRecord::IsReceipt()                        const { return m_bIsReceipt;            }
+bool  OTRecord::HasContents()                      const { return !m_str_contents.empty(); }
+bool  OTRecord::HasMemo()                          const { return !m_str_memo.empty();     }
 // ---------------------------------------
-bool  OTRecord::IsExpired()                       const { return m_bIsExpired;            }
-bool  OTRecord::IsCanceled()                      const { return m_bIsCanceled;           }
+bool  OTRecord::IsExpired()                        const { return m_bIsExpired;            }
+bool  OTRecord::IsCanceled()                       const { return m_bIsCanceled;           }
 // ---------------------------------------
-const std::string & OTRecord::GetServerID()       const { return m_str_server_id;         }
-const std::string & OTRecord::GetAssetID()        const { return m_str_asset_id;          }
-const std::string & OTRecord::GetCurrencyTLA()    const { return m_str_currency_tla;      }
-const std::string & OTRecord::GetNymID()          const { return m_str_nym_id;            }
-const std::string & OTRecord::GetAccountID()      const { return m_str_account_id;        }
-const std::string & OTRecord::GetOtherNymID()     const { return m_str_other_nym_id;      }
-const std::string & OTRecord::GetOtherAccountID() const { return m_str_other_account_id;  }
+const std::string & OTRecord::GetServerID()        const { return m_str_server_id;         }
+const std::string & OTRecord::GetAssetID()         const { return m_str_asset_id;          }
+const std::string & OTRecord::GetCurrencyTLA()     const { return m_str_currency_tla;      }
+const std::string & OTRecord::GetNymID()           const { return m_str_nym_id;            }
+const std::string & OTRecord::GetAccountID()       const { return m_str_account_id;        }
+const std::string & OTRecord::GetOtherNymID()      const { return m_str_other_nym_id;      }
+const std::string & OTRecord::GetOtherAccountID()  const { return m_str_other_account_id;  }
 // ---------------------------------------
-const std::string & OTRecord::GetName()           const { return m_str_name;              }
-const std::string & OTRecord::GetDate()           const { return m_str_date;              }
-const std::string & OTRecord::GetAmount()         const { return m_str_amount;            }
-const std::string & OTRecord::GetInstrumentType() const { return m_str_type;              }
-const std::string & OTRecord::GetMemo()           const { return m_str_memo;              }
-const std::string & OTRecord::GetContents()       const { return m_str_contents;          }
+const std::string & OTRecord::GetName()            const { return m_str_name;              }
+const std::string & OTRecord::GetDate()            const { return m_str_date;              }
+const std::string & OTRecord::GetAmount()          const { return m_str_amount;            }
+const std::string & OTRecord::GetInstrumentType()  const { return m_str_type;              }
+const std::string & OTRecord::GetMemo()            const { return m_str_memo;              }
+const std::string & OTRecord::GetContents()        const { return m_str_contents;          }
+// ---------------------------------------
+bool                OTRecord::IsSpecialMail()      const { return m_bIsSpecialMail;        }
+int32_t             OTRecord::GetMethodID()        const { return m_nMethodID;             }
+const std::string & OTRecord::GetAddress()         const { return m_str_my_address;        }
+const std::string & OTRecord::GetOtherAddress()    const { return m_str_other_address;     }
+const std::string & OTRecord::GetMsgID()           const { return m_str_msg_id;            }
+const std::string & OTRecord::GetMsgType()         const { return m_str_msg_type;          }
+const std::string & OTRecord::GetMsgTypeDisplay()  const { return m_str_msg_type_display;  }
+// ---------------------------------------
+void  OTRecord::SetSpecialMail(bool bIsSpecial/*=true*/) { m_bIsSpecialMail = bIsSpecial;  }
+// ---------------------------------------
+void    OTRecord::SetMethodID      (int32_t nMethodID)                { m_nMethodID            = nMethodID;   }
+void    OTRecord::SetAddress       (const std::string & str_Address)  { m_str_my_address       = str_Address; }
+void    OTRecord::SetOtherAddress  (const std::string & str_Address)  { m_str_other_address    = str_Address; }
+void    OTRecord::SetMsgID         (const std::string & str_id)       { m_str_msg_id           = str_id;      }
+void    OTRecord::SetMsgType       (const std::string & str_type)     { m_str_msg_type         = str_type;    }
+void    OTRecord::SetMsgTypeDisplay(const std::string & str_type)     { m_str_msg_type_display = str_type;    }
 // ---------------------------------------
 int32_t OTRecord::GetBoxIndex() const             { return m_nBoxIndex;      }
 void    OTRecord::SetBoxIndex(int32_t nBoxIndex)  { m_nBoxIndex = nBoxIndex; }
@@ -1308,6 +1334,8 @@ OTRecord::OTRecord(const std::string & str_server_id,
 m_nBoxIndex(-1),
 m_ValidFrom(OT_TIME_ZERO),
 m_ValidTo(OT_TIME_ZERO),
+m_bIsSpecialMail(false),
+m_nMethodID(0),
 m_str_server_id(str_server_id),
 m_str_asset_id(str_asset_id),
 m_str_currency_tla(str_currency_tla),
