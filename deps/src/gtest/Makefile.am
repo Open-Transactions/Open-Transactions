@@ -5,10 +5,10 @@ lib_LTLIBRARIES             =   libgtest.la
 opentxs_incdir              =   $(top_srcdir)/include
 opentxs_srcdir              =   $(top_srcdir)/src
 
-gmock_incdir                =   $(opentxs_incdir)/gmock
-gmock_srcdir                =   $(opentxs_srcdir)/gmock
-gtest_incdir                =   $(opentxs_incdir)/gtest
-gtest_srcdir                =   $(opentxs_srcdir)/gtest
+gmock_incdir                =   $(top_srcdir)/deps/include/gmock
+gmock_srcdir                =   $(top_srcdir)/deps/src/gmock
+gtest_incdir                =   $(top_srcdir)/deps/include/gtest
+gtest_srcdir                =   $(top_srcdir)/deps/src/gtest
 ot_incdir                   =   $(opentxs_incdir)/otd
 ot_srcdir                   =   $(opentxs_srcdir)/otd
 otapi_incdir                =   $(opentxs_incdir)/otapi
@@ -28,7 +28,8 @@ common_includes             =   $(AM_CXXFLAGS)			\
 				-I$(top_builddir)/include/otlib	\
 				-I$(otapi_incdir)		\
                                 -I$(otlib_incdir)		\
-                                -I$(opentxs_incdir)
+                                -I$(opentxs_incdir)		\
+                                -I$(top_srcdir)/deps/include
 
 common_libraries            =   $(otapi_srcdir)/libotapi.la \
                                 $(otlib_srcdir)/libotlib.la

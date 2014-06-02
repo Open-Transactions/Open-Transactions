@@ -29,8 +29,6 @@
 //
 // Author: wan@google.com (Zhanyong Wan)
 
-#include <stdafx.h>
-
 #include "gtest/gtest-typed-test.h"
 #include "gtest/gtest.h"
 
