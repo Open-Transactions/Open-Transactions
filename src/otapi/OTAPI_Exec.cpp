@@ -139,6 +139,7 @@
 #include <OpenTransactions.hpp>
 
 #include "OTBasket.hpp"
+#include "OTBylaw.hpp"
 #include "OTCheque.hpp"
 #include "OTClause.hpp"
 #include "OTCredential.hpp"
@@ -147,6 +148,7 @@
 #include "OTLog.hpp"
 #include "OTMessage.hpp"
 #include "OTMint.hpp"
+#include "OTParty.hpp"
 #include "OTPassword.hpp"
 #include "OTPaths.hpp"
 #include "OTPayment.hpp"

@@ -150,6 +150,8 @@
 #include <OTBasket.hpp>
 #include <OTTrade.hpp>
 #include <OTOffer.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPayment.hpp>
 #include <OTServerContract.hpp>

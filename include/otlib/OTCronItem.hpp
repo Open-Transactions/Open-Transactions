@@ -135,17 +135,16 @@
 
 #ifndef __OT_CRON_ITEM_HPP__
 #define __OT_CRON_ITEM_HPP__
-
-#include <deque>
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTTrackable.hpp"
 
-class OTIdentifier;
+#include <deque>
+
 class OTCron;
-class OTString;
+class OTIdentifier;
 class OTPseudonym;
+class OTString;
 
 
 class OTCronItem : public OTTrackable

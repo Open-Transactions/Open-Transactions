@@ -145,6 +145,10 @@
 class OTParty;
 class OTPseudonym;
 class OTSmartContract;
+class OTStash;
+
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+typedef std::map<std::string, OTStash *>		mapOfStashes;
 
 
 // global with int64_t parameter

@@ -140,12 +140,15 @@
 #include "OTAcctFunctor.hpp"
 
 class OTAmount;
+class OTAssetContract;
 class OTBasket;
 class OTPseudonym;
 class OTString;
 class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
+
+typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 
 
 class OTAssetContract : public OTContract
@@ -224,8 +227,6 @@ EXPORT    const OTString & GetCurrencyTLA      () const { return m_strCurrencyTL
 	// ----------------------------------
 	virtual bool DisplayStatistics(OTString & strContents) const;
 };
-
-typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 
 
 // NOTE: Moved to OTServer.h and .cpp

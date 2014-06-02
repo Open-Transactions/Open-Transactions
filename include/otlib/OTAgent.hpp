@@ -132,26 +132,20 @@
 
 #ifndef __OT_AGENT_HPP__
 #define __OT_AGENT_HPP__
-
-#include <map>
-#include <string>
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTString.hpp"
 
+#include <map>
 
-class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
 class OTAccount;
 class OTAgent;
+class OTIdentifier;
 class OTParty;
 class OTPartyAccount;
-class OTScriptable;
+class OTPseudonym;
 class OTSmartContract;
 
-typedef std::map<std::string, OTAgent *>		mapOfAgents;
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
 
 
