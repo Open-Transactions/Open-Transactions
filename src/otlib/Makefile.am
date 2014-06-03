@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob bigint lucre otext
+SUBDIRS 		= 	otprotob lucre otext
 
 if TRANSPORT_ZMQ4
 
@@ -35,17 +35,17 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 
 libot_la_CXXFLAGS	=	$(common_includes)
 
-libot_la_LIBADD		=	$(top_builddir)/deps/src/irrxml/libirrxml.la	\
-				bigint/libbigint.la				\
+libot_la_LIBADD		=	$(top_builddir)/deps/src/bigint/libbigint.la	\
+				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
                                 lucre/liblucre.la				\
 				otprotob/libotprotob.la				\
                                 otext/libotext.la				\
                                 $(DEPS_LIBS)
 
-libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
-				$(top_builddir)/deps/src/irrxml/libirrxml.la		\
-				lucre/liblucre.la		\
-				otprotob/libotprotob.la		\
+libot_la_DEPENDENCIES	=	$(top_builddir)/deps/src/bigint/libbigint.la	\
+				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
+				lucre/liblucre.la				\
+				otprotob/libotprotob.la				\
 				otext/libotext.la
 
 libot_la_LDFLAGS	=	--no-undefined
