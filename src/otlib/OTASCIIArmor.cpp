@@ -138,7 +138,11 @@
 #include <sstream>
 #include <fstream>
 
+#ifdef _WIN32
+#include <zlib/zlib.h>
+#else
 #include <zlib.h>
+#endif
 
 #include <OTPayload.hpp>
 #include <OTEnvelope.hpp>

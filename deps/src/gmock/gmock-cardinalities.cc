@@ -33,8 +33,6 @@
 //
 // This file implements cardinalities.
 
-#include <stdafx.h>
-
 #include "gmock/gmock-cardinalities.h"
 
 #include <limits.h>
