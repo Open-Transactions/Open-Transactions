@@ -10,7 +10,7 @@ libirrxml_la_LDFLAGS	=	-static
 
 irrxml_sources		=	irrXML.cpp
 
-irrxml_headers_dir	=	$(top_srcdir)/include/irrxml
+irrxml_headers_dir	=	$(top_srcdir)/deps/include/irrxml
 
 irrxml_headers		=	$(irrxml_headers_dir)/CXMLReaderImpl.hpp	\
 				$(irrxml_headers_dir)/fast_atof.hpp		\

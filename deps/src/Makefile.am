@@ -1,4 +1,5 @@
 
 AUTOMAKE_OPTIONS	=	subdir-objects
 
-SUBDIRS                 =	gtest
+SUBDIRS                 =	irrxml \
+				gtest
