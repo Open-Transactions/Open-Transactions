@@ -143,11 +143,11 @@ fi
 if test x"$ac_cv_ot_cxx11" == x"true"; then
 	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
 	AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai5"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/deps/include/chai5"])
 	AC_DEFINE([CHAISCRIPT_5], [1], [Building with Chaiscript 5])
 else
 	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
-	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai4"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/deps/include/chai4"])
 	AC_DEFINE([CHAISCRIPT_4], [1], [Building with Chaiscript 4])
 	AX_BOOST_BASE([1.25.0])
 	AX_BOOST_THREAD
