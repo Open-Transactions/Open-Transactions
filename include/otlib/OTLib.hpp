@@ -135,6 +135,7 @@
 
 #include "OTCommon.hpp"
 
+#ifndef _WIN32
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -146,6 +147,8 @@ class OTLib
 };
 
 #pragma GCC visibility pop
+
+#endif
 
 
 #endif // __OT_LIB_HPP__

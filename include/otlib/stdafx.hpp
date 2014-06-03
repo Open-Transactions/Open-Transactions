@@ -79,20 +79,103 @@
 #define _XOPEN_SOURCE 500
 #endif
 
-//#include <list>
-//#include <string>
-//#include <map>
-//#include <set>
-//#include <stack>
-//#include <deque>
-//#include <vector>
-//#include <locale>
-
 
 #ifdef _WIN32
 #ifndef NO_OT_PCH
-//#include "OTStorage.h"
-//#include "OTSmartContract.h"
+
+//#include <OTAccount.hpp>
+//#include <OTAcctFunctor.hpp>
+//#include <OTAcctList.hpp>
+//#include <OTAgent.hpp>
+//#include <OTAgreement.hpp>
+//#include <OTAmount.hpp>
+//#include <OTASCIIArmor.hpp>
+//#include <OTAssert.hpp>
+//#include <OTAssetContract.hpp>
+//#include <OTAsymmetricKey.hpp>
+//#include <OTAsymmetricKey_OpenSSLPrivdp.hpp>
+//#include <OTAsymmetricKeyOpenSSL.hpp>
+//#include <OTBasket.hpp>
+//#include <OTBasketItem.hpp>
+//#include <OTBylaw.hpp>
+//#include <OTCachedKey.hpp>
+//#include <OTCallback.hpp>
+//#include <OTCaller.hpp>
+//#include <OTCheque.hpp>
+//#include <OTClause.hpp>
+//#include <OTCleanup.hpp>
+//#include <OTCommon.hpp>
+//#include <OTContract.hpp>
+//#include <OTCredential.hpp>
+//#include <OTCron.hpp>
+//#include <OTCronItem.hpp>
+//#include <OTCrypto.hpp>         
+//#include <OTDataCheck.hpp>
+//#include <OTDataFolder.hpp>
+//#include <OTData.hpp>
+//#include <OTDigitalCash.hpp>
+//#include <OTEnvelope.hpp>
+//#include <OTFolders.hpp>
+//#include <OTIdentifier.hpp>
+//#include <OTInstrument.hpp>
+//#include <OTItem.hpp>
+//#include <OTKeyCredential.hpp>
+//#include <OTKeypair.hpp>
+//#include <OTKeyring.hpp>
+//#include <OTLedger.hpp>
+//#include <OTLib.hpp>
+//#include <OTLibPriv.hpp>
+//#include <OTLog.hpp>
+//#include <OTLowLevelKeyData.hpp>
+//#include <OTMarket.hpp>
+//#include <OTMasterkey.hpp>
+//#include <OTMessageBuffer.hpp>
+//#include <OTMessage.hpp>
+//#include <OTMessageOutBuffer.hpp>
+//#include <OTMint.hpp>
+//#include <OTMintLucre.hpp>
+//#include <OTNumList.hpp>
+//#include <OTNymOrSymmetricKey.hpp>
+//#include <OTOffer.hpp>
+//#include <OTPartyAccount.hpp>
+//#include <OTParty.hpp>
+//#include <OTPasswordData.hpp>
+//#include <OTPassword.hpp>
+//#include <OTPaths.hpp>
+//#include <OTPayload.hpp>
+//#include <OTPayment.hpp>
+//#include <OTPaymentPlan.hpp>
+//#include <OTPseudonym.hpp>
+//#include <OTPurse.hpp>
+//#include <OTScriptable.hpp>
+//#include <OTScriptChai.hpp>
+//#include <OTScript.hpp>
+//#include <OTServerContract.hpp>
+//#include <OTSettings.hpp>
+//#include <OTStoragePB.hpp>
+//#include <OTSignature.hpp>
+//#include <OTSignatureMetadata.hpp>
+//#include <OTSignedFile.hpp>
+//#include <OTSmartContract.hpp>
+//#include <OTStash.hpp>
+//#include <OTStashItem.hpp>
+//#include <OTSocket.hpp>
+//#include <OTStorage.hpp>
+//#include <OTString.hpp>
+//#include <OTStringXML.hpp>
+//#include <OTSubcredential.hpp>
+//#include <OTSubkey.hpp>
+//#include <OTSymmetricKey.hpp>
+//#include <OTToken.hpp>
+//#include <OTTokenLucre.hpp>
+//#include <OTTrackable.hpp>
+//#include <OTTrade.hpp>
+//#include <OTTransaction.hpp>
+//#include <OTTransactionType.hpp>
+//#include <OTVariable.hpp>
+//#include <OTWallet.hpp>
+
+
 #else
 #undef NO_OT_PCH
 #endif
