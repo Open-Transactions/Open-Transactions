@@ -3,7 +3,7 @@ noinst_LTLIBRARIES = libbigint.la
 ## For now we build locally and statically link to this library as a convenience library
 
 
-bigint_headers_dir	=	$(top_srcdir)/include/bigint
+bigint_headers_dir	=	$(top_srcdir)/deps/include/bigint
 
 bigint_headers		=	$(bigint_headers_dir)/BigInteger.hh		\
 				$(bigint_headers_dir)/BigIntegerAlgorithms.hh	\

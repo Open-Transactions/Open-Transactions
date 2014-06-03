@@ -1,5 +1,6 @@
 
 AUTOMAKE_OPTIONS	=	subdir-objects
 
-SUBDIRS                 =	irrxml \
-				gtest
+SUBDIRS                 =	bigint \
+				gtest \
+				irrxml
