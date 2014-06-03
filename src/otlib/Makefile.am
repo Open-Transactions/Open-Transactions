@@ -328,7 +328,7 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 
 ## Extra to package simpleini headers
 
-simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
+simpleini_headers_dir		=	$(top_srcdir)/deps/include/simpleini
 
 simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  		\
 					$(simpleini_headers_dir)/SimpleIni.hpp
