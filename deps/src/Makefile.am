@@ -3,4 +3,5 @@ AUTOMAKE_OPTIONS	=	subdir-objects
 
 SUBDIRS                 =	bigint \
 				gtest \
-				irrxml
+				irrxml \
+				lucre
