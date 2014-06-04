@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\simpleini\ConvertUTF.h">
+    <ClInclude Include="..\..\deps\include\simpleini\ConvertUTF.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\simpleini\SimpleIni.hpp">
+    <ClInclude Include="..\..\deps\include\simpleini\SimpleIni.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\otlib\simpleini\ConvertUTF.cpp">
+    <ClCompile Include="..\..\deps\src\simpleini\ConvertUTF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
