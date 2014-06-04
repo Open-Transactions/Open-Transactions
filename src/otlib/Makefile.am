@@ -3,12 +3,6 @@ AUTOMAKE_OPTIONS 	=	subdir-objects
 
 SUBDIRS 		= 	otprotob otext
 
-if TRANSPORT_ZMQ4
-
-SUBDIRS 		+= zmq
-
-endif
-
 lib_LTLIBRARIES		=	libot.la
 
 opentxs_include_dir 	=	$(top_srcdir)/include
@@ -56,9 +50,9 @@ libot_la_LDFLAGS	=	--no-undefined
 
 if TRANSPORT_ZMQ4
 
-libot_la_LIBADD		+=	zmq/libzmq.la
+libot_la_LIBADD		+=	$(top_builddir)/deps/src/zmq/libzmq.la
 
-libot_la_DEPENDENCIES	+=	zmq/libzmq.la
+libot_la_DEPENDENCIES	+=	$(top_builddir)/deps/src/zmq/libzmq.la
 
 endif
 

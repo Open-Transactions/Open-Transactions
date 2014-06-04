@@ -555,7 +555,7 @@ AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAG
 AC_CONFIG_FILES([Makefile
 			deps/src/gtest/Makefile
 			deps/src/Makefile
-			src/otlib/zmq/Makefile
+			deps/src/zmq/Makefile
 			deps/src/bigint/Makefile
 			deps/src/irrxml/Makefile
 			src/otlib/otprotob/Makefile

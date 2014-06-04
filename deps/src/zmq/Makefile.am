@@ -191,7 +191,7 @@ libzmq_sources	= \
 
 
 
-libzmq_headers_dir = $(opentxs_include_dir)/zmq
+libzmq_headers_dir = $(top_srcdir)/deps/include/zmq
 
 libzmq_headers = \
 		$(libzmq_headers_dir)/zmq.h \
