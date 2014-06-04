@@ -21,7 +21,7 @@ common_includes		=	$(AM_CXXFLAGS)				\
 				-I$(top_builddir)/include/otlib 	\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
-				-I$(opentxs_include_dir)/containers	\
+				-I$(top_srcdir)/deps/include/containers	\
 				-I$(top_srcdir)/deps/include		\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
@@ -287,7 +287,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTWallet.hpp
 ####   Containers
 
-containers_headers_dir	=	$(opentxs_include_dir)/containers
+containers_headers_dir	=	$(top_srcdir)/deps/include/containers
 
 containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 				$(containers_headers_dir)/containers_fixes.hpp	\
