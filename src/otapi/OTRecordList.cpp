@@ -141,6 +141,8 @@
 #include <OTWallet.hpp>
 #include <OTPayment.hpp>
 #include <OTAccount.hpp>
+#include <OTAssetContract.hpp>
+#include <OTPseudonym.hpp>
 #include <OTLedger.hpp>
 #include <OT_ME.hpp>
 #include <OTMessage.hpp>

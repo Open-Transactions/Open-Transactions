@@ -132,12 +132,10 @@
 
 // An OTTrade is derived from OTCronItem. OTCron has a list of items,
 // which may be trades or agreements or who knows what next.
-//
 
 #ifndef __OT_TRADE_HPP__
 #define __OT_TRADE_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTCronItem.hpp"
 

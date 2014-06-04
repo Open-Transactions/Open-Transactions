@@ -132,16 +132,12 @@
 
 #ifndef __OT_SIGNATURE_HPP__
 #define __OT_SIGNATURE_HPP__
+//DONE
 
-#include "OTCommon.hpp"
-
-#include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
 #include "OTSignatureMetadata.hpp"
 
-class OTSignature;
-
-typedef std::list<OTSignature *>	listOfSignatures;
+class OTString;
 
 
 class OTSignature : public OTASCIIArmor

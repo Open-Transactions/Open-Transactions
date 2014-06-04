@@ -135,6 +135,7 @@
 #include <OTWallet.hpp>
 
 #include <OTAccount.hpp>
+#include <OTAssetContract.hpp>
 #include <OTCachedKey.hpp>
 #include <OTDataFolder.hpp>
 #include <OTFolders.hpp>
@@ -142,6 +143,7 @@
 #include <OTPassword.hpp>
 #include <OTPasswordData.hpp>
 #include <OTPaths.hpp>
+#include <OTPseudonym.hpp>
 #include <OTPurse.hpp>
 #include <OTServerContract.hpp>
 

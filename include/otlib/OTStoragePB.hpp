@@ -143,8 +143,8 @@
 
 #include "OTAssert.hpp"
 
-#include <iostream>
 #include <deque>
+#include <iostream>
 #include <map>
 #include <vector>
 

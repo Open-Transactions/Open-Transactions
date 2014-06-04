@@ -136,6 +136,7 @@
 
 #include <OTAgent.hpp>
 #include <OTAssert.hpp>
+#include <OTBylaw.hpp>
 #include <OTClause.hpp>
 #include <OTLog.hpp>
 #include <OTParty.hpp>
@@ -143,6 +144,7 @@
 #include <OTPseudonym.hpp>
 #include <OTScript.hpp>
 #include <OTSmartContract.hpp>
+#include <OTVariable.hpp>
 
 #include "irrxml/irrXML.hpp"
 

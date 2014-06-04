@@ -132,15 +132,9 @@
 
 #ifndef __OT_STASH_ITEM_HPP__
 #define __OT_STASH_ITEM_HPP__
-
-#include <map>
-#include <string>
+//DONE
 
 #include "OTString.hpp"
-
-class OTStashItem;
-
-typedef std::map<std::string, OTStashItem *>	mapOfStashItems;
 
 
 class OTStashItem

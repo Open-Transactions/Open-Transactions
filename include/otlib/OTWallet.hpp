@@ -132,11 +132,11 @@
 
 #ifndef __OT_WALLET_HPP__
 #define __OT_WALLET_HPP__
+//DONE
 
-#include "OTCommon.hpp"
+#include "OTString.hpp"
 
-#include "OTAssetContract.hpp"
-#include "OTPseudonym.hpp"
+#include <set>
 
 class OTAccount;
 class OTAssetContract;
@@ -150,9 +150,9 @@ class OTPurse;
 class OTServerContract;
 class OTString;
 
-//typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
 typedef std::map<std::string, OTAccount *>			mapOfAccounts;
 typedef std::map<std::string, OTAssetContract *>	mapOfContracts;
+typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
 typedef std::map<std::string, OTServerContract *>	mapOfServers;
 typedef std::set<OTIdentifier>                      setOfIdentifiers;
 

@@ -132,13 +132,9 @@
 
 #ifndef __OT_SIGNATURE_METADATA_HPP__
 #define __OT_SIGNATURE_METADATA_HPP__
+//DONE
 
 #include "OTCommon.hpp"
-
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignature.hpp"
-
 
 class OTSignatureMetadata
 {    

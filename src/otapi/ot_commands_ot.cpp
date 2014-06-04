@@ -9928,7 +9928,7 @@ OT_COMMANDS_OT int32_t OT_Command::main_show_active()
                                 // ----------------------------------
                                 if (0 == nIndex)
                                 {
-                                    OTAPI_Wrap::Output(0, "\n Found " + to_string(vecIDs.size()) + " active transactions:\n\n");
+                                    OTAPI_Wrap::Output(0, "\n Found " + to_string((int64_t)vecIDs.size()) + " active transactions:\n\n");
                                 }
                                 // ----------------------------------
                                 print("ID: " + strTransNum + "  Type: " + strType + "\n");

@@ -132,8 +132,7 @@
 
 #ifndef __OT_SUBKEY_HPP__
 #define __OT_SUBKEY_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTKeyCredential.hpp"
 

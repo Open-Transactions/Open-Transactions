@@ -137,6 +137,7 @@
 #include <OTClient.hpp>
 #include <OpenTransactions.hpp>
 
+#include <OTAssetContract.hpp>
 #include <OTDataCheck.hpp>
 #include <OTEnvelope.hpp>
 #include <OTLog.hpp>

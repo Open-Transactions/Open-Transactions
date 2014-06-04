@@ -146,6 +146,7 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
 #include "OTMeCpp.hpp"
 #include "OTPaths.hpp"
 #include "OTStorage.hpp"
+#include "OTVariable.hpp"
 
 #ifdef OT_USE_SCRIPT_CHAI
 #  include "OTScriptChai.hpp"

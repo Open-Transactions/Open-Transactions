@@ -132,8 +132,7 @@
 
 #ifndef __OT_SERVER_CONTRACT_HPP__
 #define __OT_SERVER_CONTRACT_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTContract.hpp"
 

@@ -462,6 +462,7 @@
 #endif
 
 #include <OTAgent.hpp>
+#include <OTBylaw.hpp>
 #include <OTClause.hpp>
 #include <OTCron.hpp>
 #include <OTFolders.hpp>
@@ -474,7 +475,7 @@
 #include <OTScript.hpp>
 #include <OTStash.hpp>
 #include <OTStashItem.hpp>
-
+#include <OTVariable.hpp>
 
 #include "irrxml/irrXML.hpp"
 

@@ -144,6 +144,7 @@
 #include <OTAPI.hpp>
 
 #include <OTAgent.hpp>
+#include <OTAssetContract.hpp>
 #include <OTAsymmetricKey.hpp>
 #include <OTBasket.hpp>
 #include <OTBylaw.hpp>
@@ -166,6 +167,7 @@
 #include <OTPaths.hpp>
 #include <OTPayment.hpp>
 #include <OTPaymentPlan.hpp>
+#include <OTPseudonym.hpp>
 #include <OTPurse.hpp>
 #include <OTSmartContract.hpp>
 #include <OTSymmetricKey.hpp>

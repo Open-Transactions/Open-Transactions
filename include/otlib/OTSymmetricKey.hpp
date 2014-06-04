@@ -132,16 +132,14 @@
 
 #ifndef __OT_SYMMETRIC_KEY_HPP__
 #define __OT_SYMMETRIC_KEY_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTPayload.hpp"
-#include "OTIdentifier.hpp"
 
-class OTString;
 class OTASCIIArmor;
-class OTSymmetricKey;
+class OTIdentifier;
 class OTPassword;
+class OTString;
 
 
 class OTSymmetricKey
