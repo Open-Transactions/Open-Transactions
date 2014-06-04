@@ -7,6 +7,7 @@ opentxs_include_dir     =	$(top_srcdir)/include
 opentxs_source_dir      =	$(top_srcdir)/src
 
 common_includes         =	$(AM_CXXFLAGS)		 		\
+				-I$(top_srcdir)/deps/include/misc	\
 				-I$(top_srcdir)/deps/include		\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib
