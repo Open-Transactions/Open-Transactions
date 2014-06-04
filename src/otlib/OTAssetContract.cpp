@@ -145,6 +145,7 @@
 #include <OTASCIIArmor.hpp>
 #include <OTAssert.hpp>
 #include <OTBasket.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 

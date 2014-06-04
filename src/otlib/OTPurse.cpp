@@ -134,14 +134,19 @@
 
 #include <OTPurse.hpp>
 
+#include <OTCachedKey.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTNymOrSymmetricKey.hpp>
 #include <OTPassword.hpp>
 #include <OTPaths.hpp>
 #include <OTSymmetricKey.hpp>
+#include <OTToken.hpp>
 
 #include "irrxml/irrXML.hpp"
+
+typedef std::map    <std::string, OTToken *>    mapOfTokenPointers;
 
 
 bool OTPurse::GetNymID(OTIdentifier & theOutput) const

@@ -136,6 +136,7 @@
 
 #include <OTAccount.hpp>
 #include <OTCron.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTOffer.hpp>

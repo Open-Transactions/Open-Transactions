@@ -140,6 +140,7 @@
 #include <OTAsymmetricKey.hpp>
 #include <OTCheque.hpp>
 #include <OTCrypto.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>

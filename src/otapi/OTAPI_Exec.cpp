@@ -139,6 +139,7 @@
 #include <OpenTransactions.hpp>
 
 #include "OTAgent.hpp"
+#include "OTAsymmetricKey.hpp"
 #include "OTAmount.hpp"
 #include "OTBasket.hpp"
 #include "OTBylaw.hpp"
@@ -160,6 +161,7 @@
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
 #include "OTSymmetricKey.hpp"
+#include "OTToken.hpp"
 #include "OTWallet.hpp"
 
 #include "OTAccount.hpp"  //included in OTSmartContract.hpp

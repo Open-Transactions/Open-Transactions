@@ -136,9 +136,13 @@
 
 #include <OTClientConnection.hpp>
 
+#include <OTAsymmetricKey.hpp>
 #include <OTBasket.hpp>
+#include <OTCachedKey.hpp>
 #include <OTCheque.hpp>
+#include <OTDataFolder.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
 #include <OTKeyring.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
@@ -156,6 +160,7 @@
 #include <OTPurse.hpp>
 #include <OTServerContract.hpp>
 #include <OTSmartContract.hpp>
+#include <OTToken.hpp>
 #include <OTTrade.hpp>
 
 #include "irrxml/irrXML.hpp"

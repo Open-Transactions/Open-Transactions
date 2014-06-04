@@ -132,15 +132,14 @@
 
 #ifndef __OT_PSEUDONYM_HPP__
 #define __OT_PSEUDONYM_HPP__
+//DONE
+
+#include "OTASCIIArmor.hpp"
+#include "OTIdentifier.hpp"
 
 #include <set>
 
-#include "OTCommon.hpp"
-
-#include "OTASCIIArmor.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTIdentifier.hpp"
-
+class OTAsymmetricKey;
 class OTCredential;
 class OTItem;
 class OTKeypair;
@@ -152,13 +151,13 @@ class OTSubcredential;
 class OTTransaction;
 
 typedef std::deque<OTMessage *>                     dequeOfMail;
-typedef std::map<std::string, int64_t>                 mapOfRequestNums;
-typedef std::map<std::string, int64_t>                 mapOfHighestNums;
+typedef std::map<std::string, int64_t>              mapOfRequestNums;
+typedef std::map<std::string, int64_t>              mapOfHighestNums;
 typedef std::deque<int64_t>							dequeOfTransNums;
 typedef std::map<std::string, dequeOfTransNums *>	mapOfTransNums;
 typedef std::map<std::string, OTIdentifier>         mapOfIdentifiers;
-typedef std::set<OTIdentifier>                      setOfIdentifiers;
 typedef std::map<std::string, OTCredential *>       mapOfCredentials;
+typedef std::list<OTAsymmetricKey *>				listOfAsymmetricKeys;
 
 
 class OTPseudonym

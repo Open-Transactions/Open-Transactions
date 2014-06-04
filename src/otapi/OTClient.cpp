@@ -134,9 +134,11 @@
 
 #include <OTClient.hpp>
 
+#include <OTAsymmetricKey.hpp>
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
@@ -148,6 +150,7 @@
 #include <OTPayment.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPurse.hpp>
+#include <OTToken.hpp>
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>
 

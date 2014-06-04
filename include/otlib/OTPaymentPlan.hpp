@@ -132,8 +132,7 @@
 
 #ifndef __OT_PAYMENT_PLAN_HPP__
 #define __OT_PAYMENT_PLAN_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTAgreement.hpp"
 

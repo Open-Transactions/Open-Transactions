@@ -135,6 +135,7 @@
 #include <OTPartyAccount.hpp>
 
 #include <OTAccount.hpp>
+#include <OTAgent.hpp>
 #include <OTAgreement.hpp>
 #include <OTContract.hpp>
 #include <OTLog.hpp>

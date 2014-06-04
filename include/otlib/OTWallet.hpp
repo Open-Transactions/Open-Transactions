@@ -154,6 +154,7 @@ class OTString;
 typedef std::map<std::string, OTAccount *>			mapOfAccounts;
 typedef std::map<std::string, OTAssetContract *>	mapOfContracts;
 typedef std::map<std::string, OTServerContract *>	mapOfServers;
+typedef std::set<OTIdentifier>                      setOfIdentifiers;
 
 
 class OTWallet

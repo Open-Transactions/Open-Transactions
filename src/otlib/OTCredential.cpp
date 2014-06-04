@@ -149,6 +149,7 @@
 #include <OTCredential.hpp>
 
 #include <OTAssert.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTPassword.hpp>
 #include <OTPasswordData.hpp>

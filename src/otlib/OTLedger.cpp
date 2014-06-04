@@ -137,6 +137,7 @@
 #include <OTAccount.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTPaths.hpp>

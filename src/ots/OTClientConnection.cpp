@@ -136,6 +136,7 @@
 
 #include <OTServer.hpp>
 
+#include <OTAsymmetricKey.hpp>
 #include <OTDataCheck.hpp>
 #include <OTEnvelope.hpp>
 #include <OTLog.hpp>

@@ -134,11 +134,12 @@
 
 #include <OTStorage.hpp>
 
-#include <OTStoragePB.hpp>
+#include <OTASCIIArmor.hpp>
+#include <OTDataFolder.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
-#include <OTASCIIArmor.hpp>
 #include <OTPayload.hpp>
+#include <OTStoragePB.hpp>
 
 #include <typeinfo>
 #include <fstream>

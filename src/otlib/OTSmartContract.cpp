@@ -461,8 +461,10 @@
 #  endif
 #endif
 
+#include <OTAgent.hpp>
 #include <OTClause.hpp>
 #include <OTCron.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTParty.hpp>
