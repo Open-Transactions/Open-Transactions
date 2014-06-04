@@ -5,16 +5,17 @@ language: cpp
 compiler:
   - gcc
   - clang
-install:
-  - ./scripts/travis/install-deps.sh "${TRAVIS_OS_NAME}"
-script: ./autogen.sh && ./configure && make distcheck -j 2
+install: ./scripts/travis/install-deps.sh "${TRAVIS_OS_NAME}"
+script:
+  - export CXX="g++-4.8"
+  - ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
     - master
     - develop
 notifications:
   recipients:
-    - tommy@monetas.net
+    - ot-dev@opentransactions.org
   email:
     on_success: change
     on_failure: always

@@ -9,8 +9,12 @@ os=$1
 
 case "$os" in
     linux)
+before_install:
+        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+        sudo apt-get -qq update
+        sudo apt-get -qq install g++-4.8
         sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev \
-            libboost-all-dev doxygen
+            libboost-all-dev doxygen 
         ;;
     osx)
         brew update
