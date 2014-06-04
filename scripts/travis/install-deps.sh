@@ -15,6 +15,7 @@ before_install:
         sudo apt-get -qq install g++-4.8
         sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev \
             libboost-all-dev doxygen 
+	export CC="gcc-4.8"
 	export CXX="g++-4.8"
         ;;
     osx)
