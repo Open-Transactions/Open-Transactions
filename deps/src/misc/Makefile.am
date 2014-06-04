@@ -18,7 +18,8 @@ libmisc_la_SOURCES	=	$(misc_sources) $(misc_headers)
 
 libmisc_la_CXXFLAGS	=	$(AM_CXXFLAGS)			\
 				-I$(misc_headers_dir)		\
-				-I$(top_builddir)/include/otlib
+				-I$(top_builddir)/include/otlib	\
+				-I$(top_srcdir)/include/otlib
 
 libmisc_la_LDFLAGS	=	-static --no-undefined
 
