@@ -135,12 +135,10 @@
 
 #ifndef __OT_FOLDERS_HPP__
 #define __OT_FOLDERS_HPP__
+//DONE
 
-#include "OTCommon.hpp"
-
-#include "OTSettings.hpp"
 #include "OTAssert.hpp"
-#include "OTPaths.hpp"
+#include "OTSettings.hpp"
 
 
 // This class is for storing the names of the folders.  A instance of it must be made.

@@ -136,11 +136,9 @@
 
 #ifndef __OT_KEYRING_HPP__
 #define __OT_KEYRING_HPP__
-
-#include <string>
+//DONE
 
 #include "OTCommon.hpp"
-
 
 // It's better to turn-on one of these, by using the Makefile,
 // instead of hardcoding it here, which is entirely unnecessary.
@@ -156,6 +154,7 @@
 
 class OTString;
 class OTPassword;
+
 
 class OTKeyring
 {

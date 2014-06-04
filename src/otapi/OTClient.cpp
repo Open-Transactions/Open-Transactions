@@ -141,6 +141,7 @@
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
 #include <OTPaths.hpp>
 #include <OTPayment.hpp>

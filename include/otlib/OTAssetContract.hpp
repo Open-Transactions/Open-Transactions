@@ -132,23 +132,17 @@
 
 #ifndef __OT_ASSET_CONTRACT_HPP__
 #define __OT_ASSET_CONTRACT_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTContract.hpp"
-#include "OTAmount.hpp"
-#include "OTAcctFunctor.hpp"
 
-class OTAmount;
-class OTAssetContract;
-class OTBasket;
-class OTPseudonym;
-class OTString;
-class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
-
-typedef std::map<std::string, OTAssetContract *> mapOfContracts;
+class OTAmount;
+class OTBasket;
+class OTIdentifier;
+class OTPseudonym;
+class OTString;
 
 
 class OTAssetContract : public OTContract

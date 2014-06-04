@@ -136,10 +136,11 @@
 
 #include <OTServer.hpp>
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
 #include <OTDataCheck.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
 #include <OTMessage.hpp>
+#include <OTPayload.hpp>
 
 #include <cstdio>
 

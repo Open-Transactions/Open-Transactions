@@ -134,12 +134,12 @@
 
 #include <OTPurse.hpp>
 
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTSymmetricKey.hpp>
 #include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTNymOrSymmetricKey.hpp>
+#include <OTPassword.hpp>
 #include <OTPaths.hpp>
-
+#include <OTSymmetricKey.hpp>
 
 #include "irrxml/irrXML.hpp"
 

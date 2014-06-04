@@ -136,6 +136,7 @@
 
 #include <OTASCIIArmor.hpp>
 #include <OTAsymmetricKey.hpp>
+#include <OTCrypto.hpp>
 #include <OTEnvelope.hpp>
 #include <OTIdentifier.hpp>
 #include <OTLog.hpp>

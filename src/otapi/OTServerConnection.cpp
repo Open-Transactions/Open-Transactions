@@ -137,10 +137,11 @@
 #include <OTClient.hpp>
 #include <OpenTransactions.hpp>
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMessage.hpp>
 #include <OTDataCheck.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPayload.hpp>
 #include <OTPseudonym.hpp>
 #include <OTWallet.hpp>
 

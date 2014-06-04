@@ -151,7 +151,6 @@
 #include <OTSignature.hpp>
 #include <OTStorage.hpp>
 
-
 #include <bigint/BigIntegerLibrary.hh>
 
 #include <vector>
@@ -328,6 +327,38 @@ bool OTCryptoConfig::GetSetAll()
 
     return true;
 }
+
+
+bool OTCryptoConfig::GetSetValue(OTSettings & config, const std::string strKeyName,
+	const int32_t nDefaultValue, const int32_t *& out_nValue)
+
+{
+	if (strKeyName.empty())    return false;
+	if (3 > strKeyName.size()) return false;
+
+	OTString strResult("");
+	bool bIsNew(false);
+
+	{
+		int64_t nValue = 0;
+		config.CheckSet_long("crypto", strKeyName, nDefaultValue, nValue, bIsNew);
+
+		if (NULL != out_nValue) { delete out_nValue; out_nValue = NULL; }
+
+		out_nValue = new int32_t(bIsNew ? nDefaultValue : static_cast<int32_t>(nValue));
+	}
+
+	return true;
+}
+
+
+const int32_t & OTCryptoConfig::GetValue(const int32_t *& pValue)
+{
+	if (NULL == pValue) { if (!GetSetAll()) OT_FAIL; }
+	if (NULL == pValue) { OT_FAIL; }
+	return *pValue;
+}
+
 
 uint32_t OTCryptoConfig::IterationCount()       { return GetValue(sp_nIterationCount); }
 uint32_t OTCryptoConfig::SymmetricSaltSize()    { return GetValue(sp_nSymmetricSaltSize); }

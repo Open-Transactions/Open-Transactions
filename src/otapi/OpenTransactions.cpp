@@ -145,11 +145,13 @@
 
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
+#include <OTCrypto.hpp>
 #include <OTEnvelope.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
 #include <OTParty.hpp>
 #include <OTPartyAccount.hpp>

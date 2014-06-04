@@ -134,8 +134,6 @@
 #define __OT_TRANSACTION_TYPE_HPP__
 //DONE
 
-#include "OTCommon.hpp"
-
 #include "OTASCIIArmor.hpp"
 #include "OTContract.hpp"
 #include "OTNumList.hpp"

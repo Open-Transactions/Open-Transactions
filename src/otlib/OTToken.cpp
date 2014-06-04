@@ -134,12 +134,13 @@
 
 #include <OTToken.hpp>
 
-#include <OTLog.hpp>
-#include <OTPurse.hpp>
-#include <OTPaths.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMint.hpp>
 #include <OTDigitalCash.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
+#include <OTPaths.hpp>
+#include <OTPurse.hpp>
 
 
 #include "irrxml/irrXML.hpp"

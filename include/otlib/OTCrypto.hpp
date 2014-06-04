@@ -132,10 +132,13 @@
 
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
+//DONE
+
+// only included because it needs constructor for default parameter initialization
+#include "OTPayload.hpp"
 
 #include "OTAssert.hpp"
-#include "OTPayload.hpp"
-#include "OTSettings.hpp"
+#include "OTString.hpp"
 
 #include "tinythread.hpp"
 
@@ -146,9 +149,10 @@ class OTData;
 class OTIdentifier;
 class OTPassword;
 class OTPasswordData;
+class OTPayload;
 class OTPseudonym;
+class OTSettings;
 class OTSignature;
-class OTString;
 
 typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 
@@ -158,34 +162,10 @@ class OTCryptoConfig
 private:
 	static bool GetSetAll();
 
-    static inline bool GetSetValue(OTSettings & config, const std::string strKeyName,
-		                                 const int32_t nDefaultValue, const int32_t *& out_nValue)
+	static bool GetSetValue(OTSettings & config, const std::string strKeyName,
+		const int32_t nDefaultValue, const int32_t *& out_nValue);
 
-	{
-		if (strKeyName.empty())    return false;
-		if (3 > strKeyName.size()) return false;
-
-		OTString strResult("");
-		bool bIsNew(false);
-
-		{
-			int64_t nValue = 0;
-			config.CheckSet_long("crypto",strKeyName,nDefaultValue,nValue,bIsNew);
-
-			if (NULL != out_nValue) { delete out_nValue; out_nValue = NULL; }
-
-			out_nValue = new int32_t(bIsNew ? nDefaultValue : static_cast<int32_t>(nValue));
-		}
-
-		return true;
-	}
-
-    static inline const int32_t & GetValue(const int32_t *& pValue)
-    {
-        if (NULL == pValue) { if (!GetSetAll()) OT_FAIL; }
-        if (NULL == pValue) { OT_FAIL; }
-        return *pValue;
-    }
+	static const int32_t & GetValue(const int32_t *& pValue);
 
 	static const int32_t * sp_nIterationCount;
 	static const int32_t * sp_nSymmetricSaltSize;

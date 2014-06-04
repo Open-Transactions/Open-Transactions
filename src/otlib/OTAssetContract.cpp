@@ -139,12 +139,14 @@
 
 #include "irrxml/irrXML.hpp"
 
-#include <OTAssert.hpp>
+#include <OTAccount.hpp>
+#include <OTAcctFunctor.hpp>
+#include <OTAmount.hpp>
 #include <OTASCIIArmor.hpp>
+#include <OTAssert.hpp>
+#include <OTBasket.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
-#include <OTAccount.hpp>
-#include <OTBasket.hpp>
 
 using namespace irr;
 using namespace io;

@@ -132,6 +132,7 @@
 
 #ifndef __OT_CREDENTIAL_HPP__
 #define __OT_CREDENTIAL_HPP__
+//DONE
 
 #include "OTMasterkey.hpp"
 #include "OTString.hpp"
@@ -174,7 +175,6 @@ class OTCredential;
 class OTIdentifier;
 class OTPassword;
 class OTPasswordData;
-class OTString;
 class OTSubcredential;
 class OTSubkey;
 

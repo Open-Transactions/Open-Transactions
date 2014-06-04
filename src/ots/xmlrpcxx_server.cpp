@@ -135,10 +135,11 @@
 
 #include <OTServer.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTMessage.hpp>
+#include <OTCrypto.hpp>
 #include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
 #include <OTSocket.hpp>
 
 #include <OTCachedKey.hpp>

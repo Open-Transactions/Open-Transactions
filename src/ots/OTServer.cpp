@@ -132,32 +132,31 @@
 
 #include <stdafx.hpp>
 
-#include <stdafx.hpp>
-
 #include <OTServer.hpp>
 
 #include <OTClientConnection.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTMint.hpp>
-#include <OTPurse.hpp>
-#include <OTMessage.hpp>
-#include <OTSmartContract.hpp>
-#include <OTLedger.hpp>
-#include <OTEnvelope.hpp>
-#include <OTCheque.hpp>
 #include <OTBasket.hpp>
-#include <OTTrade.hpp>
+#include <OTCheque.hpp>
+#include <OTEnvelope.hpp>
+#include <OTKeyring.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMarket.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
 #include <OTParty.hpp>
 #include <OTPartyAccount.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPayment.hpp>
+#include <OTPurse.hpp>
 #include <OTServerContract.hpp>
-#include <OTPassword.hpp>
-#include <OTMarket.hpp>
-#include <OTKeyring.hpp>
+#include <OTSmartContract.hpp>
+#include <OTTrade.hpp>
 
 #include "irrxml/irrXML.hpp"
 

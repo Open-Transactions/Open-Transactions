@@ -135,15 +135,12 @@
 
 #ifndef __OT_MARKET_HPP__
 #define __OT_MARKET_HPP__
+//DONE
 
-#include "OTCommon.hpp"
-
-#include "OTContract.hpp"
 #include "OTCron.hpp"
 #include "OTStorage.hpp"
 
 class OTTrade;
-
 
 #define MAX_MARKET_QUERY_DEPTH	50  // todo add this to the ini file. (Now that we actually have one.)
 

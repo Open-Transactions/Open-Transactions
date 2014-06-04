@@ -131,14 +131,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// This header is for info shared between OTMint and OTToken.
-
 #ifndef __OT_DIGITAL_CASH_HPP__
 #define __OT_DIGITAL_CASH_HPP__
+//DONE
 
 #include "OTCommon.hpp"
 
-//#include <string>
 
 #ifdef OT_CASH_USING_LUCRE
 #include "lucre/bank.hpp"  // Lucre

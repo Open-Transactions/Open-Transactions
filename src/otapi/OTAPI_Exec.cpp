@@ -139,6 +139,7 @@
 #include <OpenTransactions.hpp>
 
 #include "OTAgent.hpp"
+#include "OTAmount.hpp"
 #include "OTBasket.hpp"
 #include "OTBylaw.hpp"
 #include "OTCheque.hpp"
