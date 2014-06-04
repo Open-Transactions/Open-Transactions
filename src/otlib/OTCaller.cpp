@@ -167,14 +167,6 @@
 #endif
 
 
-//#include "OTPassword.h"
-//
-//#include "OTString.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
-
-
 OTCaller::~OTCaller()
 {
 	OTLog::vOutput(0, "OTCaller::~OTCaller: (This should only happen as the application is closing.)\n");

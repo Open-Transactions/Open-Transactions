@@ -138,7 +138,6 @@
 
 #include "OTAcctList.hpp"
 #include "OTCronItem.hpp"
-//#include "OTAccount.hpp"
 
 class OTAccount;
 class OTParty;

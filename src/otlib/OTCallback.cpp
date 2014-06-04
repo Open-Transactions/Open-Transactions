@@ -163,14 +163,6 @@
 #endif
 
 
-//#include "OTPassword.h"
-//
-//#include "OTString.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
-
-
 OTCallback::~OTCallback()
 {
 	OTLog::vError("OTCallback::~OTCallback:  (This should only happen ONCE ONLY -- as the application is closing.)\n");
