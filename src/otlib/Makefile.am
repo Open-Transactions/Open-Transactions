@@ -1,7 +1,7 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob otext
+SUBDIRS 		= 	otprotob
 
 lib_LTLIBRARIES		=	libot.la
 
@@ -15,6 +15,7 @@ common_includes		=	$(AM_CXXFLAGS)				\
 				-I$(top_builddir)/include/otlib 	\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
+				-I$(top_srcdir)/deps/include/misc	\
 				-I$(top_srcdir)/deps/include/containers	\
 				-I$(top_srcdir)/deps/include		\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
@@ -31,16 +32,16 @@ libot_la_CXXFLAGS	=	$(common_includes)
 
 libot_la_LIBADD		=	$(top_builddir)/deps/src/bigint/libbigint.la	\
 				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
-                                $(top_builddir)/deps/src/lucre/liblucre.la				\
-				otprotob/libotprotob.la				\
-                                otext/libotext.la				\
+                                $(top_builddir)/deps/src/lucre/liblucre.la	\
+				$(top_builddir)/deps/src/misc/libmisc.la	\
+                                otprotob/libotprotob.la				\
                                 $(DEPS_LIBS)
 
 libot_la_DEPENDENCIES	=	$(top_builddir)/deps/src/bigint/libbigint.la	\
 				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
-				$(top_builddir)/deps/src/lucre/liblucre.la				\
-				otprotob/libotprotob.la				\
-				otext/libotext.la
+				$(top_builddir)/deps/src/lucre/liblucre.la	\
+				$(top_builddir)/deps/src/misc/libmisc.la	\
+				otprotob/libotprotob.la
 
 libot_la_LDFLAGS	=	--no-undefined
 
@@ -174,11 +175,9 @@ otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/fast_mutex.h		\
 				$(otlib_headers_dir)/stacktrace.h		\
-				$(otlib_headers_dir)/tinythread.hpp		\
 				$(otlib_headers_dir)/win32_utf8conv.hpp		\
 				$(otlib_headers_dir)/win32_utf8conv_inl.hpp	\
 				$(otlib_headers_dir)/OpenSSL_BIO.hpp		\
-				$(otlib_headers_dir)/Timer.hpp			\
 				$(otlib_headers_ext)
 
 otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
