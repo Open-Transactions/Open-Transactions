@@ -6,9 +6,7 @@ compiler:
   - gcc
   - clang
 install: ./scripts/travis/install-deps.sh "${TRAVIS_OS_NAME}"
-script:
-  - export CXX="g++-4.8"
-  - ./autogen.sh && ./configure && make distcheck -j 2
+script: ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
     - master
