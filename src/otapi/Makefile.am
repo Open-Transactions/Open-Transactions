@@ -17,7 +17,8 @@ common_includes		=	$(AM_CXXFLAGS)          	\
 				-I$(top_builddir)/include/otlib	\
 				-I$(opentxs_include_dir)	\
 				-I$(opentxs_include_dir)/otlib	\
-				-I$(opentxs_include_dir)/otapi
+				-I$(opentxs_include_dir)/otapi	\
+				-I$(top_srcdir)/deps/include/
 
 
 ########################
