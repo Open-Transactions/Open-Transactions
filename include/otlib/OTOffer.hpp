@@ -134,8 +134,7 @@
 
 #ifndef __OT_OFFER_HPP__
 #define __OT_OFFER_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTInstrument.hpp"
 

@@ -144,6 +144,7 @@
 #include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
 #include <OTPaths.hpp>
+#include <OTPayload.hpp>
 #include <OTPayment.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPurse.hpp>

@@ -132,14 +132,15 @@
 
 #ifndef __OT_MINT_HPP__
 #define __OT_MINT_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTContract.hpp"
-#include "OTASCIIArmor.hpp"
 
-class OTToken;
 class OTAccount;
+class OTASCIIArmor;
+class OTToken;
+
+typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 class OTMint : public OTContract
