@@ -132,7 +132,6 @@
 
 #ifndef __OT_INSTRUMENT_HPP__
 #define __OT_INSTRUMENT_HPP__
-//DONE
 
 #include "OTScriptable.hpp"
 

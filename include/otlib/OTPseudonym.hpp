@@ -132,7 +132,6 @@
 
 #ifndef __OT_PSEUDONYM_HPP__
 #define __OT_PSEUDONYM_HPP__
-//DONE
 
 #include "OTASCIIArmor.hpp"
 #include "OTIdentifier.hpp"

@@ -132,7 +132,6 @@
 
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
-//DONE
 
 // only included because it needs constructor for default parameter initialization
 #include "OTPayload.hpp"

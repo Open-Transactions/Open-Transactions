@@ -132,7 +132,6 @@
 
 #ifndef __OT_SOCKET_HPP__
 #define __OT_SOCKET_HPP__
-//DONE
 
 #include "OTASCIIArmor.hpp"
 #include "OTString.hpp"

@@ -135,7 +135,6 @@
 
 #ifndef __OT_MARKET_HPP__
 #define __OT_MARKET_HPP__
-//DONE
 
 #include "OTCron.hpp"
 #include "OTStorage.hpp"

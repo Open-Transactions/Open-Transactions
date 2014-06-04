@@ -132,7 +132,6 @@
 
 #ifndef __OT_PARTY_ACCOUNT_HPP__
 #define __OT_PARTY_ACCOUNT_HPP__
-//DONE
 
 #include "OTString.hpp"
 

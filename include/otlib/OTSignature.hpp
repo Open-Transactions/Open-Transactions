@@ -132,7 +132,6 @@
 
 #ifndef __OT_SIGNATURE_HPP__
 #define __OT_SIGNATURE_HPP__
-//DONE
 
 #include "OTASCIIArmor.hpp"
 #include "OTSignatureMetadata.hpp"

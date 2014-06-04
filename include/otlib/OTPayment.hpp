@@ -137,7 +137,6 @@
 
 #ifndef __OT_PAYMENT_HPP__
 #define __OT_PAYMENT_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

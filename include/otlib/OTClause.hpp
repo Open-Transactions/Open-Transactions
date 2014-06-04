@@ -132,7 +132,6 @@
 
 #ifndef __OT_CLAUSE_HPP__
 #define __OT_CLAUSE_HPP__
-//DONE
 
 #include "OTString.hpp"
 

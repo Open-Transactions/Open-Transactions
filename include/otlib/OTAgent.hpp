@@ -132,7 +132,6 @@
 
 #ifndef __OT_AGENT_HPP__
 #define __OT_AGENT_HPP__
-//DONE
 
 #include "OTString.hpp"
 

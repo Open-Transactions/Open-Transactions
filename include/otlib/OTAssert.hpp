@@ -132,7 +132,6 @@
 
 #ifndef __OT_ASSERT_HPP__
 #define __OT_ASSERT_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

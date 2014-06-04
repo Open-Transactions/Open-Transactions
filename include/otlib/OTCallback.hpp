@@ -132,7 +132,6 @@
 
 #ifndef __OT_CALLBACK_HPP__
 #define __OT_CALLBACK_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

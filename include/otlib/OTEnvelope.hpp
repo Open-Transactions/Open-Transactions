@@ -132,7 +132,6 @@
 
 #ifndef __OT_ENVELOPE_HPP__
 #define __OT_ENVELOPE_HPP__
-//DONE
 
 #include "OTData.hpp"
 

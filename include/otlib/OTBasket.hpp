@@ -132,7 +132,6 @@
 
 #ifndef __OT_BASKET_HPP__
 #define __OT_BASKET_HPP__
-//DONE
 
 #include "OTBasketItem.hpp"
 #include "OTContract.hpp"

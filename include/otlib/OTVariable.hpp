@@ -132,7 +132,6 @@
 
 #ifndef __OT_VARIABLE_HPP__
 #define __OT_VARIABLE_HPP__
-//DONE
 
 #include "OTString.hpp"
 

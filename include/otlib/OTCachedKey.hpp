@@ -132,7 +132,6 @@
 
 #ifndef __OT_CACHED_KEY_HPP__
 #define __OT_CACHED_KEY_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

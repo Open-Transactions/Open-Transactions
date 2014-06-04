@@ -132,7 +132,6 @@
 
 #ifndef __OT_PAYLOAD_HPP__
 #define __OT_PAYLOAD_HPP__
-//DONE
 
 #include "OTData.hpp"
 

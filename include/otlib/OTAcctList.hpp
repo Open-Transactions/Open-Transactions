@@ -132,7 +132,6 @@
 
 #ifndef __OT_ACCT_LIST_HPP__
 #define __OT_ACCT_LIST_HPP__
-//DONE
 
 // only necessary because of OTAccount::AccountType
 #include "OTAccount.hpp"

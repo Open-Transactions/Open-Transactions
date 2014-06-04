@@ -132,7 +132,6 @@
 
 #ifndef __OT_MESSAGE_BUFFER_HPP__
 #define __OT_MESSAGE_BUFFER_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

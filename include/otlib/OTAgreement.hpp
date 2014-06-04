@@ -134,7 +134,6 @@
 
 #ifndef __OT_AGREEMENT_HPP__
 #define __OT_AGREEMENT_HPP__
-//DONE
 
 #include "OTCronItem.hpp"
 

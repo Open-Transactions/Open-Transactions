@@ -132,7 +132,6 @@
 
 #ifndef __OT_MINT_LUCRE_HPP__
 #define __OT_MINT_LUCRE_HPP__
-//DONE
 
 #include "OTMint.hpp"
 

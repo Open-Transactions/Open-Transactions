@@ -132,7 +132,6 @@
 
 #ifndef __OT_SIGNATURE_METADATA_HPP__
 #define __OT_SIGNATURE_METADATA_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

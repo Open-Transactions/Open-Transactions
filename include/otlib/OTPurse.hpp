@@ -132,7 +132,6 @@
 
 #ifndef __OT_PURSE_HPP__
 #define __OT_PURSE_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_TRANSACTION_TYPE_HPP__
 #define __OT_TRANSACTION_TYPE_HPP__
-//DONE
 
 #include "OTASCIIArmor.hpp"
 #include "OTContract.hpp"

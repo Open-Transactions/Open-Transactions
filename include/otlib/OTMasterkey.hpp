@@ -132,7 +132,6 @@
 
 #ifndef __OT_MASTERKEY_HPP__
 #define __OT_MASTERKEY_HPP__
-//DONE
 
 #include "OTKeyCredential.hpp"
 

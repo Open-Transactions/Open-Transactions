@@ -132,7 +132,6 @@
 
 #ifndef __OT_SIGNED_FILE_HPP__
 #define __OT_SIGNED_FILE_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

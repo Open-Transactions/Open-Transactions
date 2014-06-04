@@ -132,7 +132,6 @@
 
 #ifndef __OT_TOKEN_HPP__
 #define __OT_TOKEN_HPP__
-//DONE
 
 #include "OTASCIIArmor.hpp"
 #include "OTInstrument.hpp"

@@ -132,7 +132,6 @@
 
 #ifndef __OT_BYLAW_HPP__
 #define __OT_BYLAW_HPP__
-//DONE
 
 #include "OTVariable.hpp"
 

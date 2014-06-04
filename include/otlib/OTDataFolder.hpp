@@ -135,7 +135,6 @@
 
 #ifndef __OT_DATA_FOLDER_HPP__
 #define __OT_DATA_FOLDER_HPP__
-//DONE
 
 #include "OTAssert.hpp"
 #include "OTString.hpp"

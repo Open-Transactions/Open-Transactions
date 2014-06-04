@@ -132,7 +132,6 @@
 
 #ifndef __OT_CALLER_HPP__
 #define __OT_CALLER_HPP__
-//DONE
 
 #include "OTPassword.hpp"
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_KEY_CREDENTIAL_HPP__
 #define __OT_KEY_CREDENTIAL_HPP__
-//DONE
 
 #include "OTKeypair.hpp"
 #include "OTSubcredential.hpp"

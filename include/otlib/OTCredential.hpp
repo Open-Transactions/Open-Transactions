@@ -132,7 +132,6 @@
 
 #ifndef __OT_CREDENTIAL_HPP__
 #define __OT_CREDENTIAL_HPP__
-//DONE
 
 #include "OTMasterkey.hpp"
 #include "OTString.hpp"

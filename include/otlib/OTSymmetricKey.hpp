@@ -132,7 +132,6 @@
 
 #ifndef __OT_SYMMETRIC_KEY_HPP__
 #define __OT_SYMMETRIC_KEY_HPP__
-//DONE
 
 #include "OTPayload.hpp"
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_WALLET_HPP__
 #define __OT_WALLET_HPP__
-//DONE
 
 #include "OTString.hpp"
 

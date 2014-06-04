@@ -135,7 +135,6 @@
 
 #ifndef __OT_FOLDERS_HPP__
 #define __OT_FOLDERS_HPP__
-//DONE
 
 #include "OTAssert.hpp"
 #include "OTSettings.hpp"

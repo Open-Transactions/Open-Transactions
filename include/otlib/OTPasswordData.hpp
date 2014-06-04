@@ -132,7 +132,6 @@
 
 #ifndef __OT_PASSWORD_DATA_HPP__
 #define __OT_PASSWORD_DATA_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_STASH_ITEM_HPP__
 #define __OT_STASH_ITEM_HPP__
-//DONE
 
 #include "OTString.hpp"
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_TOKEN_LUCRE_HPP__
 #define __OT_TOKEN_LUCRE_HPP__
-//DONE
 
 #include "OTToken.hpp"
 

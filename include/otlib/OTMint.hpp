@@ -132,7 +132,6 @@
 
 #ifndef __OT_MINT_HPP__
 #define __OT_MINT_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

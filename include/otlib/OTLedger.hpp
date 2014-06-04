@@ -132,7 +132,6 @@
 
 #ifndef __OT_LEDGER_HPP__
 #define __OT_LEDGER_HPP__
-//DONE
 
 #include "OTTransaction.hpp"
 

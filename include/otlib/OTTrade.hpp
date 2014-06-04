@@ -135,7 +135,6 @@
 
 #ifndef __OT_TRADE_HPP__
 #define __OT_TRADE_HPP__
-//DONE
 
 #include "OTCronItem.hpp"
 

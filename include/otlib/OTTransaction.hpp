@@ -132,7 +132,6 @@
 
 #ifndef __OT_TRANSACTION_HPP__
 #define __OT_TRANSACTION_HPP__
-//DONE
 
 #include "OTItem.hpp"
 

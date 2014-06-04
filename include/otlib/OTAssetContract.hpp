@@ -132,7 +132,6 @@
 
 #ifndef __OT_ASSET_CONTRACT_HPP__
 #define __OT_ASSET_CONTRACT_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

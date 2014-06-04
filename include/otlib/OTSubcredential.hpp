@@ -132,7 +132,6 @@
 
 #ifndef __OT_SUBCREDENTIAL_HPP__
 #define __OT_SUBCREDENTIAL_HPP__
-//DONE
 
 #include "OTContract.hpp"
 

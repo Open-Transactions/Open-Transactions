@@ -132,7 +132,6 @@
 
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
-//DONE
 
 #include "Timer.hpp"
 

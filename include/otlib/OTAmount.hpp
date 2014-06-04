@@ -132,7 +132,6 @@
 
 #ifndef __OT_AMOUNT_HPP__
 #define __OT_AMOUNT_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

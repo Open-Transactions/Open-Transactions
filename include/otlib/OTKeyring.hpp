@@ -136,7 +136,6 @@
 
 #ifndef __OT_KEYRING_HPP__
 #define __OT_KEYRING_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

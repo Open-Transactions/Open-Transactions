@@ -133,7 +133,6 @@
 
 #ifndef __OT_DIGITAL_CASH_HPP__
 #define __OT_DIGITAL_CASH_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 
