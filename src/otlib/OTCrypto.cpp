@@ -139,16 +139,17 @@
 
 #include <OTCrypto.hpp>
 
-#include <OTPaths.hpp>
 #include <OTAssert.hpp>
-#include <OTPassword.hpp>
-#include <OTLog.hpp>
-#include <OTIdentifier.hpp>
 #include <OTAsymmetricKey.hpp>
 #include "OTAsymmetricKeyOpenSSL.hpp"
-#include <OTStorage.hpp>
+#include <OTIdentifier.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPaths.hpp>
 #include <OTPseudonym.hpp>
 #include <OTSignature.hpp>
+#include <OTStorage.hpp>
 
 
 #include <bigint/BigIntegerLibrary.hh>

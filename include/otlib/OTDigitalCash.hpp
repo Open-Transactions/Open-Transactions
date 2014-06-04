@@ -136,9 +136,9 @@
 #ifndef __OT_DIGITAL_CASH_HPP__
 #define __OT_DIGITAL_CASH_HPP__
 
-#include <string>
-
 #include "OTCommon.hpp"
+
+//#include <string>
 
 #ifdef OT_CASH_USING_LUCRE
 #include "lucre/bank.hpp"  // Lucre

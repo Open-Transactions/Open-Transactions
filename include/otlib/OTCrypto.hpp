@@ -133,25 +133,24 @@
 #ifndef __OT_CRYPTO_HPP__
 #define __OT_CRYPTO_HPP__
 
-#include <set>
-
-#include "OTCommon.hpp"
-
-#include "OTSettings.hpp"
-#include "OTPayload.hpp"
 #include "OTAssert.hpp"
+#include "OTPayload.hpp"
+#include "OTSettings.hpp"
 
 #include "tinythread.hpp"
 
+#include <set>
+
+class OTAsymmetricKey;
 class OTData;
 class OTIdentifier;
-class OTString;
-class OTAsymmetricKey;
-class OTSymmetricKey;
 class OTPassword;
 class OTPasswordData;
-class OTSignature;
 class OTPseudonym;
+class OTSignature;
+class OTString;
+
+typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 
 
 class OTCryptoConfig
@@ -246,10 +245,6 @@ EXPORT	bool Concatenate(const void * pAppendData, uint32_t lAppendSize);
 EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
 EXPORT	void Release_Envelope_Decrypt_Output();
 };
-
-
-typedef std::set<OTPseudonym *>                         setOfNyms;
-typedef std::multimap<std::string, OTAsymmetricKey *>   mapOfAsymmetricKeys;
 
 
 // OT CRYPTO -- ABSTRACT INTERFACE

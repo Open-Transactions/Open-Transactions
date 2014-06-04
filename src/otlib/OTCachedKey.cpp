@@ -134,15 +134,16 @@
 
 #include <OTCachedKey.hpp>
 
-#include <OTSymmetricKey.hpp>
-#include <OTString.hpp>
-#include <OTLog.hpp>
-#include <OTIdentifier.hpp>
 #include <OTASCIIArmor.hpp>
-#include <OTPassword.hpp>
-#include <OTCrypto.hpp>
-#include <OTKeyring.hpp>
 #include <OTAsymmetricKey.hpp>
+#include <OTCrypto.hpp>
+#include <OTIdentifier.hpp>
+#include <OTKeyring.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTString.hpp>
+#include <OTSymmetricKey.hpp>
 
 #include "tinythread.hpp"   // These are in the header already.
 using namespace tthread;

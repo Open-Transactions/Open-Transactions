@@ -132,21 +132,20 @@
 
 #ifndef __OT_CACHED_KEY_HPP__
 #define __OT_CACHED_KEY_HPP__
+//DONE
 
 #include "OTCommon.hpp"
 
-#include <map>
-#include <string>
-
 #include "tinythread.hpp"
 
-class OTString;
-class OTASCIIArmor;
-class OTSymmetricKey;
-class OTCachedKey;
-class OTPassword;
-class OTIdentifier;
+#include <map>
 
+class OTASCIIArmor;
+class OTCachedKey;
+class OTIdentifier;
+class OTPassword;
+class OTString;
+class OTSymmetricKey;
 
 /// OTCachedKey
 /// This class handles the functionality of caching the master key for X seconds
@@ -243,7 +242,6 @@ class OTIdentifier;
  */
 
 // This is only the hard-coded default; it's also configurable in the opt file.
-//
 #define OT_MASTER_KEY_TIMEOUT  300
 
 typedef std::map<std::string, _SharedPtr<OTCachedKey> > mapOfCachedKeys;

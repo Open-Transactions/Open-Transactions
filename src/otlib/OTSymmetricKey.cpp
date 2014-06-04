@@ -134,12 +134,13 @@
 
 #include <OTSymmetricKey.hpp>
 
-#include <OTLog.hpp>
-#include <OTIdentifier.hpp>
-#include <OTEnvelope.hpp>
 #include <OTASCIIArmor.hpp>
-#include <OTPassword.hpp>
 #include <OTAsymmetricKey.hpp>
+#include <OTEnvelope.hpp>
+#include <OTIdentifier.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
 
 extern "C"
 {

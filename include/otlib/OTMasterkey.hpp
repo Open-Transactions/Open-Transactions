@@ -132,8 +132,7 @@
 
 #ifndef __OT_MASTERKEY_HPP__
 #define __OT_MASTERKEY_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTKeyCredential.hpp"
 
@@ -173,7 +172,7 @@
 
 class OTString;
 class OTCredential;
-class OTSubcredential;
+
 
 class OTMasterkey : public OTKeyCredential
 {
@@ -205,8 +204,6 @@ public:
     virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
 };
-
-typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 
 
 #endif // __OT_MASTERKEY_HPP__

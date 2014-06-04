@@ -132,8 +132,7 @@
 
 #ifndef __OT_CHEQUE_HPP__
 #define __OT_CHEQUE_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTTrackable.hpp"
 

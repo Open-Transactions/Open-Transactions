@@ -146,6 +146,7 @@
 #include "OTNumList.hpp"
 #include <OTOffer.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
 #include <OTPaths.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPseudonym.hpp>

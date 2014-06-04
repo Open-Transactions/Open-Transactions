@@ -138,16 +138,18 @@
 #include "OTCrypto.hpp"
 #include "OTNymOrSymmetricKey.hpp"
 
-class OTPseudonym;
-class OTString;
 class OTASCIIArmor;
 class OTAsymmetricKey;
-class OTSymmetricKey;
 class OTPassword;
 class OTPasswordData;
+class OTPseudonym;
+class OTString;
+class OTSymmetricKey;
+
+typedef std::set<OTPseudonym *>		setOfNyms;
 
 
-class OTEnvelope     // <=============== OT ENVELOPE!
+class OTEnvelope
 {
 	friend class OTPayload;
 

@@ -154,6 +154,7 @@
 #include <OTParty.hpp>
 #include <OTPartyAccount.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
 #include <OTPaths.hpp>
 #include <OTPayment.hpp>
 #include <OTPaymentPlan.hpp>

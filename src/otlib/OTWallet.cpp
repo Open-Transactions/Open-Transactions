@@ -134,14 +134,16 @@
 
 #include <OTWallet.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
 #include <OTAccount.hpp>
-#include <OTServerContract.hpp>
+#include <OTLog.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPaths.hpp>
 #include <OTPurse.hpp>
+#include <OTServerContract.hpp>
 
 #include "irrxml/irrXML.hpp"
+
 
 OTWallet::OTWallet() : m_strDataFolder(OTDataFolder::Get())
 {

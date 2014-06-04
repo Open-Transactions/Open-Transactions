@@ -135,7 +135,6 @@
 
 #include "OTCommon.hpp"
 
-
 typedef uint8_t OT_BYTE;
 typedef bool OT_BOOL;
 

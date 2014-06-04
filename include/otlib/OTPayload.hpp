@@ -132,14 +132,13 @@
 
 #ifndef __OT_PAYLOAD_HPP__
 #define __OT_PAYLOAD_HPP__
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "OTData.hpp"
 
-class OTMessage;
-class OTEnvelope;
 class OTASCIIArmor;
+class OTEnvelope;
+class OTMessage;
 
 
 class OTPayload : public OTData 
