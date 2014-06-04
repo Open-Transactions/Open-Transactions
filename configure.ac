@@ -559,7 +559,7 @@ AC_CONFIG_FILES([Makefile
 			deps/src/bigint/Makefile
 			deps/src/irrxml/Makefile
 			src/otlib/otprotob/Makefile
-			src/otlib/lucre/Makefile
+			deps/src/lucre/Makefile
 			src/otlib/otext/Makefile
 			src/otlib/Makefile
 			src/otapi/Makefile
