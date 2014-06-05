@@ -137,7 +137,9 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
+#ifndef _WIN32
 #include <cerrno>
+#endif
 
 #include <OTSettings.hpp>
 #include <OTPaths.hpp>
