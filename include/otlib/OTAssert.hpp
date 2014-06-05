@@ -135,9 +135,6 @@
 
 #include "OTCommon.hpp"
 
-//#include <cstddef>
-//#include <exception>
-
 
 #define    OT_FAIL                               { OTAssert::Assert(__FILE__, __LINE__, NULL);      std::terminate(); };
 #define    OT_FAIL_MSG(s)                        { OTAssert::Assert(__FILE__, __LINE__, (s)); std::terminate(); };

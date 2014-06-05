@@ -137,6 +137,7 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
+#include <cerrno>
 
 #include <OTSettings.hpp>
 #include <OTPaths.hpp>
