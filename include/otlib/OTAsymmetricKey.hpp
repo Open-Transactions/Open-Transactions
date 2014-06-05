@@ -132,22 +132,21 @@
 
 #ifndef __OT_ASYMMETRIC_KEY_HPP__
 #define __OT_ASYMMETRIC_KEY_HPP__
-
-#include <list>
-#include <cstddef>
-
-#include "OTCommon.hpp"
+//DONE
 
 #include "Timer.hpp"
 
-class OTCaller;
-class OTKeypair;
-class OTString;
-class OTPassword;
-class OTIdentifier;
+#include <list>
+
 class OTASCIIArmor;
+class OTAsymmetricKey;
+class OTCaller;
+class OTIdentifier;
+class OTPassword;
 class OTSignatureMetadata;
-class OTPasswordData;
+class OTString;
+
+typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 
 // Todo:
@@ -372,8 +371,6 @@ EXPORT	bool SetPublicKey(const OTString & strKey, bool bEscaped=false);
 	bool SetPrivateKey(const OTASCIIArmor & strKey); // Decodes a private key from ASCII armor into an actual key pointer and sets that as the m_pKey on this object.
     // ***************************************************************************************
 };
-
-typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
 
 
 #endif // __OT_ASYMMETRIC_KEY_HPP__

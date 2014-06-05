@@ -151,6 +151,8 @@
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
 #include <OTOffer.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
 #include <OTPassword.hpp>
 #include <OTPaths.hpp>
 #include <OTPayment.hpp>

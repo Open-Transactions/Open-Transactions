@@ -132,23 +132,12 @@
 
 #ifndef __OT_LOW_LEVEL_KEY_DATA_HPP__
 #define __OT_LOW_LEVEL_KEY_DATA_HPP__
-
-#include <list>
-#include <cstddef>
+//DONE
 
 #include "OTCommon.hpp"
 
-#include "Timer.hpp"
-#include "OTAsymmetricKey.hpp"
-
 class OTCaller;
 class OTKeypair;
-class OTString;
-class OTPassword;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTSignatureMetadata;
-class OTPasswordData;
 
 
 // Todo:
@@ -214,14 +203,14 @@ public:
     OTLowLevelKeyData();
     ~OTLowLevelKeyData();
 
-// ***************************************************************
+
 #if defined (OT_CRYPTO_USING_OPENSSL)
     class OTLowLevelKeyDataOpenSSLdp;
     OTLowLevelKeyDataOpenSSLdp *dp;
-// ***************************************************************
+
 #elif defined (OT_CRYPTO_USING_GPG)
 
-// ***************************************************************
+
 #else
 
 #endif  // Crypto engine.

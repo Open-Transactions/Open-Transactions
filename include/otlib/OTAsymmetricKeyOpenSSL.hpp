@@ -132,24 +132,14 @@
 
 #ifndef __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
 #define __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
+//DONE
 
-#include <list>
-#include <cstddef>
+#include "OTAsymmetricKey.hpp"
 
-#include "OTCommon.hpp"
-
-#include "Timer.hpp"
-
-#include "OTLowLevelKeyData.hpp"
-
-class OTCaller;
-class OTKeypair;
-class OTString;
-class OTPassword;
-class OTIdentifier;
 class OTASCIIArmor;
-class OTSignatureMetadata;
-class OTPasswordData;
+class OTCaller;
+class OTPassword;
+class OTString;
 
 
 // Todo:

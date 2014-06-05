@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////////////
-// Timer.h
+// Timer.hpp
 // =======
 // High Resolution Timer.
 // This timer is able to measure the elapsed time with 1 micro-second accuracy
@@ -12,8 +12,8 @@
 // Copyright (c) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
 
-#ifndef TIMER_H_DEF
-#define TIMER_H_DEF
+#ifndef __TIMER_HPP__
+#define __TIMER_HPP__
 
 #include "OTCommon.hpp"
 
@@ -51,4 +51,5 @@ private:
 #endif
 };
 
-#endif // TIMER_H_DEF
+
+#endif // __TIMER_HPP__

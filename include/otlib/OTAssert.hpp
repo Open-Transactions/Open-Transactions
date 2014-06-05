@@ -132,11 +132,12 @@
 
 #ifndef __OT_ASSERT_HPP__
 #define __OT_ASSERT_HPP__
-
-#include <cstddef>
-#include <exception>
+//DONE
 
 #include "OTCommon.hpp"
+
+//#include <cstddef>
+//#include <exception>
 
 
 #define    OT_FAIL                               { OTAssert::Assert(__FILE__, __LINE__, NULL);      std::terminate(); };

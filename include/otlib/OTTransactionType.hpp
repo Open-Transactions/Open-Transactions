@@ -132,6 +132,7 @@
 
 #ifndef __OT_TRANSACTION_TYPE_HPP__
 #define __OT_TRANSACTION_TYPE_HPP__
+//DONE
 
 #include "OTCommon.hpp"
 
@@ -139,12 +140,11 @@
 #include "OTContract.hpp"
 #include "OTNumList.hpp"
 
-class OTString;
 class OTIdentifier;
+class OTString;
 
 
 // OTTransactionType is a base class for OTLedger, OTTransaction, and OTItem.
-//
 class OTTransactionType : public OTContract
 {
 private:  // Private prevents erroneous use by other classes.

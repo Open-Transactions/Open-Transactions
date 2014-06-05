@@ -135,11 +135,6 @@
 
 #include <OTContract.hpp>
 
-#include <locale>
-#include <fstream>
-
-#include "irrxml/irrXML.hpp"
-
 #include <OTAssert.hpp>
 #include <OTAssetContract.hpp>
 #include <OTAsymmetricKey.hpp>
@@ -161,6 +156,11 @@
 #include <OTStorage.hpp>
 #include <OTToken.hpp>
 #include <OTTrade.hpp>
+
+#include "irrxml/irrXML.hpp"
+
+#include <locale>
+#include <fstream>
 
 using namespace irr;
 using namespace io;
