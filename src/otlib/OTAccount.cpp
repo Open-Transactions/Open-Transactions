@@ -145,14 +145,9 @@
 
 #include "irrxml/irrXML.hpp"
 
-//#include <iomanip>
 #include <fstream>
-//#include <ostream>
-//#include <sstream>
 
-#ifdef _WIN32
-//#include <Mmsystem.h>
-#else
+#ifndef _WIN32
 #include <unistd.h>
 #include <sys/time.h>
 #endif
