@@ -130,17 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTItem.hpp>
+#include "OTItem.hpp"
 
-#include <OTLog.hpp>
-#include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
-#include <OTLedger.hpp>
-#include <OTCheque.hpp>
+#include "OTAccount.hpp"
+#include "OTCheque.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
+#include "OTPseudonym.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 // Server-side.
 //

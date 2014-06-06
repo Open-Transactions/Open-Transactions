@@ -130,26 +130,20 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTLog.hpp>
+#include "OTLog.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <exception>
-#ifndef _WIN32
-#include <cerrno>
-#endif
-
-#include <OTSettings.hpp>
-#include <OTPaths.hpp>
-#include <OTAssert.hpp>
+#include "OTPaths.hpp"
 
 #include "tinythread.hpp"
 
+//#include <exception>
+#include <fstream>
+#include <iostream>
+
 #include <constants.h>
 #include <stacktrace.h>
-
 
 #ifdef _WIN32
 #include <Shlobj.h>
@@ -169,7 +163,6 @@
 #endif
 
 #define LOG_DEQUE_SIZE 1024
-
 
 extern "C"
 {
@@ -245,14 +238,8 @@ extern "C"
 #include <sys/stat.h>
 } // extern C
 
-
 #ifdef ANDROID
 #include <android/log.h>
-#endif
-
-
-#ifndef _WIN32  // No Windows for now.
-#include "stacktrace.h"
 #endif
 
 
@@ -263,7 +250,6 @@ extern "C"
 
 
 //  OTLog Static Variables and Constants.
-
 
 #ifndef thread_local
 #define thread_local

@@ -130,9 +130,9 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTBasketItem.hpp>
+#include "OTBasketItem.hpp"
 
 BasketItem::BasketItem() :
     lMinimumTransferAmount(0), 

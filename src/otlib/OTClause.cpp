@@ -130,18 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTClause.hpp>
+#include "OTClause.hpp"
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
-#include <OTScriptable.hpp>
-#include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTLog.hpp"
+
 
 // ------------- OPERATIONS -------------
 // Below this point, have all the actions that a party might do.
@@ -150,7 +145,6 @@
 // the script should not care how the party chooses its agents. At the most, the script
 // only cares that the party has an active agent, but does not actually speak directly
 // to said agent.)
-
 
 OTClause::OTClause() : m_pBylaw(NULL)
 {

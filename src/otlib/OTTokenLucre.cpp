@@ -130,23 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTTokenLucre.hpp>
+#include "OTTokenLucre.hpp"
 
-#include <OTToken.hpp>
-#include <OTLog.hpp>
-#include <OTPurse.hpp>
-#include <OTPaths.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMint.hpp>
-#include <OTDigitalCash.hpp>
-
+#include "OTDigitalCash.hpp"
+#include "OTEnvelope.hpp"
+#include "OTLog.hpp"
+#include "OTMint.hpp"
+#include "OTToken.hpp"
 
 #if defined (OT_CASH_USING_LUCRE)
-
 #include "OpenSSL_BIO.hpp"
-
 #endif
 
 

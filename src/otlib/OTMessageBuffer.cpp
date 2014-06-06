@@ -130,19 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTMessageBuffer.hpp>
+#include "OTMessageBuffer.hpp"
 
-#include <OTAssert.hpp>
-#include <OTDataFolder.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
+#include "OTDataFolder.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
 #include "OTMessageOutBuffer.hpp"
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTTransaction.hpp>
+#include "OTPaths.hpp"
+#include "OTPseudonym.hpp"
+#include "OTTransaction.hpp"
 
 
 // INCOMING SERVER REPLIES.
