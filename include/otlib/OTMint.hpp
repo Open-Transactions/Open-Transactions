@@ -133,13 +133,13 @@
 #ifndef __OT_MINT_HPP__
 #define __OT_MINT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
-#include "OTASCIIArmor.hpp"
 
-class OTToken;
 class OTAccount;
+class OTASCIIArmor;
+class OTToken;
+
+typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 class OTMint : public OTContract
@@ -265,9 +265,6 @@ EXPORT	virtual bool VerifyToken(OTPseudonym & theNotary, OTString & theCleartext
 
 	virtual bool SaveContractWallet(std::ofstream & ofs);
 };
-
-
-#include "OTMintLucre.hpp"
 
 
 #endif // __OT_MINT_HPP__

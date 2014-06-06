@@ -133,24 +133,15 @@
 #ifndef __OT_TOKEN_LUCRE_HPP__
 #define __OT_TOKEN_LUCRE_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTInstrument.hpp"
-#include "OTASCIIArmor.hpp"
 #include "OTToken.hpp"
 
-class OTString;
 class OTIdentifier;
 class OTMint;
-class OTPurse;
 class OTPseudonym;
-class OTNym_or_SymmetricKey;
-
-typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
+class OTPurse;
 
 
 /*
-
  Here's a rough sketch of the protocol:
 
  Client requests Mint for withdrawal of 100 ithica work hours.
@@ -181,7 +172,6 @@ typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 
 
 // SUBCLASSES OF OTTOKEN FOR EACH DIGITAL CASH ALGORITHM.
-//
 #if defined (OT_CASH_USING_MAGIC_MONEY)
 // Todo:  Someday...
 #endif // Magic Money
@@ -194,23 +184,25 @@ class OTToken_Lucre : public OTToken
 private:  // Private prevents erroneous use by other classes.
     typedef OTToken ot_super;
     friend class OTToken; // for the factory.
-    // ------------------------------------------------------------------------------
+
+
 protected:
 EXPORT	OTToken_Lucre();
 EXPORT	OTToken_Lucre(const OTIdentifier & SERVER_ID, const OTIdentifier & ASSET_ID);
 EXPORT	OTToken_Lucre(const OTPurse & thePurse);
-// ------------------------------------------------------------------------
+
 EXPORT	virtual bool GenerateTokenRequest(const OTPseudonym & theNym,
                                           OTMint & theMint,
                                           int64_t lDenomination,
                                           int32_t nTokenCount=OTToken::GetMinimumPrototokenCount()
                                           );
-// ------------------------------------------------------------------------
+
+
 public:
 EXPORT  virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, OTToken & theRequest);
-// ------------------------------------------------------------------------
+
 EXPORT	virtual ~OTToken_Lucre();
-    // ------------------------------------------------------------------------------
+
 };
 
 #endif // Lucre

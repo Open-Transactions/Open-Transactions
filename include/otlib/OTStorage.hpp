@@ -148,11 +148,9 @@
 
 #include "OTAssert.hpp"
 
-#include <iostream>
 #include <deque>
-#include <map>
+#include <iostream>
 #include <vector>
-
 
 // credit:stlplus library.
 #include "containers/simple_ptr.hpp"
@@ -168,7 +166,6 @@
 
 #define OTDB_PROTOCOL_BUFFERS 1
 //#define OTDB_JSON_PACKING 1 // coming soon.
-
 
 
 //#define OTDB_DEFAULT_PACKER	OTDB::PACK_MESSAGE_PACK

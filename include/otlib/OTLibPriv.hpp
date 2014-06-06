@@ -134,6 +134,8 @@
 #define __OT_LIB_PRIV_HPP__
 
 
+#ifndef _WIN32
+
 /* The classes below are not exported */
 #pragma GCC visibility push(hidden)
 
@@ -144,6 +146,8 @@ class OTLibPriv
 };
 
 #pragma GCC visibility pop
+
+#endif
 
 
 #endif // __OT_LIB_PRIV_HPP__

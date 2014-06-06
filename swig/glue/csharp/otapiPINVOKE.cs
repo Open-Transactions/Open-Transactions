@@ -1514,12 +1514,6 @@ class otapiPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_Message_GetNymboxHash")]
   public static extern string OTAPI_Wrap_Message_GetNymboxHash(string jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ConnectServer")]
-  public static extern bool OTAPI_Wrap_ConnectServer(string jarg1, string jarg2, string jarg3, string jarg4, string jarg5);
-
-  [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OTAPI_Wrap_ProcessSockets")]
-  public static extern bool OTAPI_Wrap_ProcessSockets();
-
   [global::System.Runtime.InteropServices.DllImport("otapi-csharp", EntryPoint="CSharp_OT_CLI_GetArgsCount")]
   public static extern int OT_CLI_GetArgsCount(string jarg1);
 

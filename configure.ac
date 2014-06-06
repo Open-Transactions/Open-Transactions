@@ -85,15 +85,15 @@ if test x"$ac_cv_ot_clang" == x"true"; then
 fi
 
 if test x"$ac_cv_ot_clang" == x"true"; then
-        AC_MSG_CHECKING([if compiling with clang TR1])
+	AC_MSG_CHECKING([if compiling with clang TR1])
 	AC_LANG_PUSH([C++])
-        AC_COMPILE_IFELSE(
-                [AC_LANG_PROGRAM([[#include <tr1/memory>]],
-                        [[]])],
-                [ac_cv_ot_clangtr1=true],
-                [ac_cv_ot_clangtr1=false])
+	   AC_COMPILE_IFELSE(
+			 [AC_LANG_PROGRAM([[#include <tr1/memory>]],
+				    [[]])],
+			 [ac_cv_ot_clangtr1=true],
+			[ac_cv_ot_clangtr1=false])
 	AC_LANG_POP
-        AC_MSG_RESULT([$ac_cv_ot_clangtr1])
+	AC_MSG_RESULT([$ac_cv_ot_clangtr1])
 fi
 
 if test x"$ac_cv_ot_clang" == x"false"; then
@@ -143,11 +143,11 @@ fi
 if test x"$ac_cv_ot_cxx11" == x"true"; then
 	AC_SUBST([CXX11_FLAGS],["-std=c++11"])
 	AC_DEFINE([HAVE_CXX11], [1], [Building with C++11])
-	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai5"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/deps/include/chai5"])
 	AC_DEFINE([CHAISCRIPT_5], [1], [Building with Chaiscript 5])
 else
 	AC_DEFINE([CXX03_TR1], [1], [Building with C++03 TR1])
-	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/include/chai4"])
+	AC_SUBST([CHAI_CFLAGS],["-I\$(top_srcdir)/deps/include/chai4"])
 	AC_DEFINE([CHAISCRIPT_4], [1], [Building with Chaiscript 4])
 	AX_BOOST_BASE([1.25.0])
 	AX_BOOST_THREAD
@@ -206,18 +206,19 @@ AC_CHECK_LIB([msgpack],[msgpack_unpack],
 
 AC_ARG_WITH(	[transport],
 		[AS_HELP_STRING([--with-transport@<:@=zmq@:>@],
-		[Choose a transport backend (available: zmq, testclient)])],
+		[Choose a transport backend (available: zmq2, zmq4)])],
 		[case "${withval}" in
-			zmq) true ;;
-			testclient) true ;;
+			zmq2) true ;;
+			zmq4) true ;;
 			*) AC_MSG_ERROR([bad value ${withval} for --with-transport]) ;;
 			esac],
-		[with_transport=zmq])
+		[with_transport="zmq4"])
 
-AM_CONDITIONAL(	[TRANSPORT_ZMQ],	[test x"$with_transport" == x"zmq"])
-AM_CONDITIONAL(	[TRANSPORT_TESTCLIENT],	[test x"$with_transport" == x"testclient"])
+AM_CONDITIONAL(	[TRANSPORT_ZMQ2],	[test x"$with_transport" == x"zmq2"])
+AM_CONDITIONAL(	[TRANSPORT_ZMQ4],	[test x"$with_transport" == x"zmq4"])
 
-AS_IF(	[test x"$with_transport" == x"zmq"],
+
+AS_IF(	[test x"$with_transport" == x"zmq2"],
 	[PKG_CHECK_MODULES([ZMQ],[libzmq >= 2.1.4],
 		[AC_LANG_PUSH([C++])
 		AC_CHECK_HEADERS([zmq.hpp],
@@ -229,10 +230,12 @@ AS_IF(	[test x"$with_transport" == x"zmq"],
 		)
 	])
 
-if test x"$with_transport" == x"zmq"; then
-	AC_DEFINE([TRANSPORT_ZMQ], [1], [Using ZMQ Transport])
+if test x"$with_transport" == x"zmq2"; then
+	AC_DEFINE([TRANSPORT_ZMQ2], [1], [Using ZMQ 2 Transport])
+elif test x"$with_transport" == x"zmq4"; then
+	AC_DEFINE([TRANSPORT_ZMQ4], [1], [Using ZMQ 4 Transport])
 else
-	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported!])
+	AC_MSG_ERROR([ERROR: Only ZMQ Transport Supported (for the moment)!])
 fi
 
 ## Keyring Options ##
@@ -550,14 +553,19 @@ AC_SUBST([DEPS_LIBS],	["$PROTOBUF_LIBS $ZMQ_LIBS $MSG_LIBS $KRG_LIBS $OPENSSL_LD
 AC_SUBST([AM_CXXFLAGS],	["$DBG_CXXFLAGS $REL_CXXFLAGS $WARN_CXXFLAGS $CXX11_FLAGS $DEPS_CFLAGS"])
 
 AC_CONFIG_FILES([Makefile
-			src/otlib/otprotob/Makefile
-			src/otlib/bigint/Makefile
-			src/otlib/irrxml/Makefile
-			src/otlib/lucre/Makefile
-			src/otlib/otext/Makefile
-			src/otlib/Makefile
-			src/otapi/Makefile
+			deps/src/Makefile
+			deps/src/zmq/Makefile
+			deps/src/gtest/Makefile
+			deps/src/bigint/Makefile
+			deps/src/irrxml/Makefile
+			deps/src/lucre/Makefile
+			deps/src/misc/Makefile
 			src/Makefile
+			src/otlib/Makefile
+			src/otlib/otprotob/Makefile
+			src/otapi/Makefile
+			tests/Makefile
+			tests/otlib/Makefile
 			src/opentxs.pc])
 
 AC_OUTPUT

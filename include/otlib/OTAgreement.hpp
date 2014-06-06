@@ -135,8 +135,6 @@
 #ifndef __OT_AGREEMENT_HPP__
 #define __OT_AGREEMENT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTCronItem.hpp"
 
 class OTPseudonym;

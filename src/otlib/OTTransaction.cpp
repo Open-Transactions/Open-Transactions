@@ -134,16 +134,17 @@
 
 #include <OTTransaction.hpp>
 
-#include <OTLog.hpp>
+#include <OTBasket.hpp>
 #include <OTCheque.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
 #include <OTPaths.hpp>
 #include <OTPseudonym.hpp>
-#include <OTTrade.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTSmartContract.hpp>
-#include <OTBasket.hpp>
-#include <OTMessage.hpp>
+#include <OTTrade.hpp>
 
 #include "irrxml/irrXML.hpp"
 

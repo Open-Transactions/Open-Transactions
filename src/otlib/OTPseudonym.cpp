@@ -134,19 +134,25 @@
 
 #include <OTPseudonym.hpp>
 
-#include <fstream>
-
-#include <OTLog.hpp>
 #include <OTCredential.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
-#include <OTPaths.hpp>
+#include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPaths.hpp>
 #include <OTPayment.hpp>
 #include <OTSignedFile.hpp>
+#include <OTSubkey.hpp>
+#include <OTSubcredential.hpp>
 #include <OTSymmetricKey.hpp>
 
 #include "irrxml/irrXML.hpp"
+
+#include <algorithm>
+#include <fstream>
+#include <list>
 
 
 //static

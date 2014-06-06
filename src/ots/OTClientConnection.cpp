@@ -136,10 +136,14 @@
 
 #include <OTServer.hpp>
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
+#include <OTAsymmetricKey.hpp>
 #include <OTDataCheck.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
 #include <OTMessage.hpp>
+#include <OTPayload.hpp>
+
+#include <cstdio>
 
 
 extern "C"
@@ -660,119 +664,6 @@ bool OTClientConnection::SealMessageForRecipient(OTMessage & theMsg, OTEnvelope 
 	return false;
 }
 
-// Process my reply back out to the client.  @something.
-// For TCP / SSL mode.
-void OTClientConnection::ProcessReply(OTMessage &theReply)
-{
-    OT_ASSERT(NULL != m_pPublicKey);
-
-    int32_t  err = 0;
-	uint32_t nwritten = 0;
-	bool bSendCommand = false;
-	bool bSendPayload = false;
-
-	u_header  theCMD;
-	OTPayload thePayload;
-
-	memset((void *)theCMD.buf, 0, OT_CMD_HEADER_SIZE); // todo cast
-
-	// For now let's send ALL replies in Envelopes (encrypted to public key of client)
-	// IF we have a public key, that is. Otherwise we send as a normal message.
-	//
-	// All messages already require either a public key, or a nymID used to look up a
-	// public key. So given that I have that information when I reply, I might as well
-	// ENCRYPT my reply to that same public key. More secure that way.
-	//
-	// The wallet (and server) are both ready to open and process these encrypted envelopes.
-
-
-	// If GetKey() returns something, that means the key was set in there, it's
-	// not just a null pointer. This means we can use it!  So let's encrypt to it.
-	if (m_pPublicKey->IsPublic())
-	{
-		OTString strEnvelopeContents(theReply);
-		// Save the ready-to-go message into a string.
-
-		OTEnvelope theEnvelope;
-		// Seal the string up into an encrypted Envelope
-		theEnvelope.Seal(*m_pPublicKey, strEnvelopeContents);
-
-		// From here on out, theMessage is disposable. OTPayload takes over.
-		// OTMessage doesn't care about checksums and headers.
-		thePayload.SetEnvelope(theEnvelope);
-
-		// Now that the payload is ready, we'll set up the header.
-		SetupHeader(&theCMD, CMD_TYPE_1, TYPE_1_CMD_2, thePayload);
-	}
-	else
-    {
-		thePayload.SetMessagePayload(theReply);
-
-		// Now that the payload is ready, we'll set up the header.
-		SetupHeader(&theCMD, CMD_TYPE_1, TYPE_1_CMD_1, thePayload);
-	}
-
-	bSendCommand = true;
-	bSendPayload = true;
-
-
-	OTLog::vOutput(2, "\n****************************************************************\n"
-			"===> Finished setting up header for response.\nFirst 9 bytes are: %d %d %d %d %d %d %d %d %d...\n",
-			theCMD.buf[0], theCMD.buf[1], theCMD.buf[2], theCMD.buf[3], theCMD.buf[4],
-			theCMD.buf[5], theCMD.buf[6], theCMD.buf[7], theCMD.buf[8]);
-
-
-	// ------------------------------------------------------------------------------
-	/*
-	 // Write to Client
-	 strcpy(buffer, "Hello Client!");
-	 SFSocketWrite(clientSocket, buffer, strlen(buffer));
-
-	 */
-
-	if (bSendCommand)
-	{
-
-		const uint32_t nHeaderSize = OT_CMD_HEADER_SIZE;
-
-		for (nwritten = 0;  nwritten < nHeaderSize;  nwritten += err)
-		{
-//			err = SFSocketWrite(m_pSocket, theCMD.buf + nwritten, nHeaderSize - nwritten);
-
-#ifdef _WIN32
-			if (0 == err || SOCKET_ERROR == err) // 0 means disconnect. error means error. >0 means bytes read.
-#else
-			if (err <= 0)
-#endif
-				break;
-		}
-	}
-	// At this point, we have sent the header across the pipe.
-
-	if (bSendPayload)
-	{
-
-		uint32_t nPayloadSize = thePayload.GetSize();
-
-		for (nwritten = 0;  nwritten < nPayloadSize;  nwritten += err)
-		{
-//			err = SFSocketWrite(m_pSocket, (uint8_t *)thePayload.GetPayloadPointer() + nwritten, nPayloadSize - nwritten);
-
-#ifdef _WIN32
-			if (0 == err || SOCKET_ERROR == err) // 0 means disconnect. error means error. >0 means bytes read.
-#else
-			if (err <= 0)
-#endif
-				break;
-		}
-	}
-	// At this point, we have sent the payload across the pipe.
-
-	OTLog::Output(2, "...Done.\n");
-}
-
-
-
 void OTClientConnection::AddToInputList(OTMessage & theMessage)
 {
 	m_listIn.Push(theMessage);
@@ -780,12 +671,6 @@ void OTClientConnection::AddToInputList(OTMessage & theMessage)
 
 OTMessage * OTClientConnection::GetNextInputMessage()
 {
-//#if !defined(OT_ZMQ_MODE)
-//	return m_listIn.Pop();
-//#else
-//    OT_FAIL_MSG("OTClientConnection::GetNextInputMessage: ASSERT: Should not be calling this...");
-//#endif
-
     OT_FAIL_MSG("OTClientConnection::GetNextInputMessage: ASSERT: Should not be calling this...");
 }
 
@@ -799,46 +684,20 @@ void OTClientConnection::AddToOutputList(OTMessage & theMessage)
 
 OTMessage * OTClientConnection::GetNextOutputMessage()
 {
-//#if !defined(OT_ZMQ_MODE)
-//	return m_listOut.Pop();
-//#else
-//    OT_FAIL_MSG("OTClientConnection::GetNextOutputMessage: ASSERT: Should not be calling this...");
-//#endif
-
     OT_FAIL_MSG("OTClientConnection::GetNextOutputMessage: ASSERT: Should not be calling this...");
 }
 
-
-// For TCP / SSL mode.
-//OTClientConnection::OTClientConnection(SFSocket & theSocket, OTServer & theServer)
-//{
-//	m_pSocket		= &theSocket;
-//	m_pServer		= &theServer;
-//
-//	m_bHaveHeader	= false;
-//	m_bFocused		= false; // tcp over ssl mode
-//}
 
 // For XmlRpc / HTTP mode.
 OTClientConnection::OTClientConnection(OTServer & theServer)
 : m_pServer(&theServer), m_pPublicKey(OTAsymmetricKey::KeyFactory())
 {
-//	m_pSocket		= NULL;
-//	m_pServer		= &theServer;
-
 	m_bHaveHeader	= false;
 	m_bFocused		= true; // rpc over http mode
 }
 
 OTClientConnection::~OTClientConnection()
 {
-	// Disconnect Client
-//	if (NULL != m_pSocket)
-//	{
-////		SFSocketRelease(m_pSocket);
-//		m_pSocket = NULL;
-//	}
-
     if (NULL != m_pPublicKey)
     {
         delete m_pPublicKey;

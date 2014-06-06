@@ -2024,17 +2024,6 @@ public class OTAPI_Wrap : global::System.IDisposable {
     return ret;
   }
 
-  public static bool ConnectServer(string SERVER_ID, string USER_ID, string strCA_FILE, string strKEY_FILE, string strKEY_PASSWORD) {
-    bool ret = otapiPINVOKE.OTAPI_Wrap_ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static bool ProcessSockets() {
-    bool ret = otapiPINVOKE.OTAPI_Wrap_ProcessSockets();
-    return ret;
-  }
-
 }
 
 }

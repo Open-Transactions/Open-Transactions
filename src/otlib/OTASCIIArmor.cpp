@@ -138,11 +138,16 @@
 #include <sstream>
 #include <fstream>
 
+#ifdef _WIN32
+#include <zlib/zlib.h>
+#else
 #include <zlib.h>
+#endif
 
-#include <OTPayload.hpp>
+#include <OTCrypto.hpp>
 #include <OTEnvelope.hpp>
 #include <OTLog.hpp>
+#include <OTPayload.hpp>
 
 
 const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";

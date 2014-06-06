@@ -1304,7 +1304,7 @@ OT_OTAPI_OT MapOfMaps * convert_offerlist_to_maps(OTDB::OfferListNym & offerList
                 return map_of_maps;
             }
 
-            string strScale = to_string(offerData.scale);
+            string strScale = offerData.scale;
             string strAssetTypeID = offerData.asset_type_id;
             string strCurrencyTypeID = offerData.currency_type_id;
             string strSellStatus = offerData.selling ? "SELL" : "BUY";
@@ -1368,7 +1368,7 @@ OT_OTAPI_OT int32_t output_nymoffer_data(OTDB::OfferDataNym & offer_data, const 
 { // extra_vals unused in this function, but not in others that share this parameter profile.
     // (It's used as a lambda.)
 
-    string strScale = to_string(offer_data.scale);
+    string strScale = offer_data.scale;
     string strAssetTypeID = offer_data.asset_type_id;
     string strCurrencyTypeID = offer_data.currency_type_id;
     string strSellStatus = offer_data.selling ? "SELL" : "BUY";

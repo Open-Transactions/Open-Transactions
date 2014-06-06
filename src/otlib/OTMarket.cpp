@@ -134,15 +134,16 @@
 
 #include <OTMarket.hpp>
 
+#include <OTAccount.hpp>
 #include <OTCron.hpp>
+#include <OTFolders.hpp>
+#include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTOffer.hpp>
-#include <OTStorage.hpp>
-#include <OTAccount.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLedger.hpp>
-#include <OTTrade.hpp>
 #include <OTPaths.hpp>
+#include <OTPseudonym.hpp>
+#include <OTStorage.hpp>
+#include <OTTrade.hpp>
 
 #include <time.h>
 

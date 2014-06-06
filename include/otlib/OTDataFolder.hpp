@@ -133,20 +133,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited paths class.
-
 #ifndef __OT_DATA_FOLDER_HPP__
 #define __OT_DATA_FOLDER_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTSettings.hpp"
 #include "OTAssert.hpp"
-#include "OTPaths.hpp"
+#include "OTString.hpp"
 
 
 // Thread local.
-//
 class OTDataFolder
 {
 private:

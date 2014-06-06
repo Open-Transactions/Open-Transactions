@@ -134,15 +134,18 @@
 
 #include <OTMint.hpp>
 
-#include <OTToken.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTPaths.hpp>
+#include "OTMintLucre.hpp"
+
 #include <OTAccount.hpp>
-#include <OTMessage.hpp>
+#include <OTAsymmetricKey.hpp>
 #include <OTDigitalCash.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
+#include <OTPseudonym.hpp>
+#include <OTToken.hpp>
 
 #include "irrxml/irrXML.hpp"
 

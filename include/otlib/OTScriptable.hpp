@@ -134,11 +134,21 @@
 #ifndef __OT_SCRIPTABLE_HPP__
 #define __OT_SCRIPTABLE_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
 
 class OTAccount;
+class OTAgent;
+class OTBylaw;
+class OTClause;
+class OTParty;
+class OTPartyAccount;
+class OTScript;
+class OTVariable;
+
+typedef std::map<std::string, OTBylaw *>		mapOfBylaws;
+typedef std::map<std::string, OTClause *>		mapOfClauses;
+typedef std::map<std::string, OTParty *>		mapOfParties;
+typedef std::map<std::string, OTVariable *>		mapOfVariables;
 
 
 class OTScriptable : public OTContract

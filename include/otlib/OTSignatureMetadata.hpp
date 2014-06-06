@@ -135,11 +135,6 @@
 
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTSignature.hpp"
-
-
 class OTSignatureMetadata
 {    
 private: // PRIVATE MEMBERS

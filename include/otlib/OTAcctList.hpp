@@ -133,15 +133,11 @@
 #ifndef __OT_ACCT_LIST_HPP__
 #define __OT_ACCT_LIST_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTTransactionType.hpp"
+// only necessary because of OTAccount::AccountType
 #include "OTAccount.hpp"
 
-class OTPseudonym;
 class OTAccount;
-class OTMessage;
-class OTLedger;
+class OTPseudonym;
 
 
 // The server needs to store a list of accounts, by asset type ID, to store the backing funds
@@ -151,7 +147,7 @@ class OTLedger;
 // already does now.)
 //
 class OTAcctList
-{
+{	
 	OTAccount::AccountType	m_AcctType;
 		
 	mapOfStrings		m_mapAcctIDs; // AcctIDs as second mapped by ASSET TYPE ID as first. 

@@ -133,14 +133,15 @@
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTString.hpp"
 #include "OTStorage.hpp"
+#include "OTString.hpp"
 
+class OTASCIIArmor;
 class OTData;
-class OTPayload;
 class OTEnvelope;
+class OTPayload;
+
+typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 extern const char * OT_BEGIN_ARMORED;
@@ -242,8 +243,6 @@ EXPORT  bool GetAndUnpackStringMap(std::map<std::string, std::string> & the_map,
 EXPORT  bool SetStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);
 EXPORT  bool SetAndPackStringMap(const std::map<std::string, std::string> & the_map, bool bLineBreaks=true);
 };
-
-typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 #endif // __OT_ASCII_ARMOR_HPP__

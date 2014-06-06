@@ -137,14 +137,15 @@
 #include "irrxml/irrXML.hpp"
 
 #include <OTAssert.hpp>
+#include <OTCron.hpp>
+#include <OTFolders.hpp>
+#include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
 #include <OTPaymentPlan.hpp>
-#include <OTTrade.hpp>
-#include <OTSmartContract.hpp>
-#include <OTCron.hpp>
 #include <OTPseudonym.hpp>
-#include <OTLedger.hpp>
+#include <OTSmartContract.hpp>
+#include <OTTrade.hpp>
 
 using namespace irr;
 using namespace io;

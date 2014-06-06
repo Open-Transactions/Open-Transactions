@@ -139,16 +139,17 @@
 
 #include <OTCrypto.hpp>
 
-#include <OTPaths.hpp>
 #include <OTAssert.hpp>
-#include <OTPassword.hpp>
-#include <OTLog.hpp>
-#include <OTIdentifier.hpp>
 #include <OTAsymmetricKey.hpp>
-#include <OTStorage.hpp>
+#include "OTAsymmetricKeyOpenSSL.hpp"
+#include <OTIdentifier.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPaths.hpp>
 #include <OTPseudonym.hpp>
 #include <OTSignature.hpp>
-
+#include <OTStorage.hpp>
 
 #include <bigint/BigIntegerLibrary.hh>
 
@@ -326,6 +327,38 @@ bool OTCryptoConfig::GetSetAll()
 
     return true;
 }
+
+
+bool OTCryptoConfig::GetSetValue(OTSettings & config, const std::string strKeyName,
+	const int32_t nDefaultValue, const int32_t *& out_nValue)
+
+{
+	if (strKeyName.empty())    return false;
+	if (3 > strKeyName.size()) return false;
+
+	OTString strResult("");
+	bool bIsNew(false);
+
+	{
+		int64_t nValue = 0;
+		config.CheckSet_long("crypto", strKeyName, nDefaultValue, nValue, bIsNew);
+
+		if (NULL != out_nValue) { delete out_nValue; out_nValue = NULL; }
+
+		out_nValue = new int32_t(bIsNew ? nDefaultValue : static_cast<int32_t>(nValue));
+	}
+
+	return true;
+}
+
+
+const int32_t & OTCryptoConfig::GetValue(const int32_t *& pValue)
+{
+	if (NULL == pValue) { if (!GetSetAll()) OT_FAIL; }
+	if (NULL == pValue) { OT_FAIL; }
+	return *pValue;
+}
+
 
 uint32_t OTCryptoConfig::IterationCount()       { return GetValue(sp_nIterationCount); }
 uint32_t OTCryptoConfig::SymmetricSaltSize()    { return GetValue(sp_nSymmetricSaltSize); }
@@ -1653,12 +1686,17 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 // todo return a smartpointer here.
 OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
 {
-    uint8_t *  tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
-    OTPassword    * pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
-    OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
+  uint8_t* tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
+  OTPassword* pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
+  OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
 
-	if (NULL != tmp_data) { delete tmp_data; tmp_data = NULL; } // clean up tempdata
-    return pNewKey;
+	if (NULL != tmp_data)
+  {
+    delete [] tmp_data;
+    tmp_data = NULL;
+  }
+  
+  return pNewKey;
 }
 
 

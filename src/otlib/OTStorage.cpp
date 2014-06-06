@@ -133,15 +133,16 @@
 #include <stdafx.hpp>
 
 #include <OTStorage.hpp>
+
+#include <OTASCIIArmor.hpp>
+#include <OTDataFolder.hpp>
+#include <OTLog.hpp>
+#include <OTPaths.hpp>
+#include <OTPayload.hpp>
 #include <OTStoragePB.hpp>
 
 #include <typeinfo>
 #include <fstream>
-
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTPayload.hpp>
 
 /*
 

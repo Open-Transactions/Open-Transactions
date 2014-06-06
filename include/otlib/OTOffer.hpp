@@ -135,8 +135,6 @@
 #ifndef __OT_OFFER_HPP__
 #define __OT_OFFER_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTInstrument.hpp"
 
 class OTTrade;

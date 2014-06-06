@@ -136,12 +136,13 @@
 
 #include "irrxml/irrXML.hpp"
 
-#include <OTPaths.hpp>
-#include <OTLog.hpp>
-#include <OTStorage.hpp>
-#include <OTMarket.hpp>
 #include <OTASCIIArmor.hpp>
 #include <OTCronItem.hpp>
+#include <OTFolders.hpp>
+#include <OTLog.hpp>
+#include <OTMarket.hpp>
+#include <OTPaths.hpp>
+#include <OTStorage.hpp>
 
 #include <Timer.hpp>
 

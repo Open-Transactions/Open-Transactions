@@ -268,7 +268,13 @@ bool OTAPI_Wrap::AppCleanup()
 //
 void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
 {
-    Exec()->SetAppBinaryFolder(strFolder);
+    if (NULL == exec)
+	{
+		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
+		OT_FAIL;
+	}
+    
+	return exec->SetAppBinaryFolder(strFolder);
 }
 
 // --------------------------------------------------------------------
@@ -287,7 +293,13 @@ void OTAPI_Wrap::SetAppBinaryFolder(const std::string & strFolder)
 //
 void OTAPI_Wrap::SetHomeFolder(const std::string & strFolder)
 {
-    Exec()->SetHomeFolder(strFolder);
+    if (NULL == exec)
+	{
+		OTLog::sError("%s: Error: OTAPI_Exec wrapper not found!!\n", __FUNCTION__);
+		OT_FAIL;
+	}
+    
+	return exec->SetHomeFolder(strFolder);
 }
 
 
@@ -1949,12 +1961,3 @@ OT_BOOL OTAPI_Wrap::Message_GetTransactionSuccess(const std::string & SERVER_ID,
     return Exec()->Message_GetTransactionSuccess(SERVER_ID, USER_ID, ACCOUNT_ID, THE_MESSAGE);
 }
 
-bool OTAPI_Wrap::ConnectServer(const std::string & SERVER_ID, const std::string & USER_ID, const std::string & strCA_FILE, const std::string & strKEY_FILE, const std::string & strKEY_PASSWORD)
-{
-    return Exec()->ConnectServer(SERVER_ID, USER_ID, strCA_FILE, strKEY_FILE, strKEY_PASSWORD);
-}
-
-bool OTAPI_Wrap::ProcessSockets(void)
-{
-    return Exec()->ProcessSockets();
-}

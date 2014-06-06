@@ -137,7 +137,7 @@
 
 #include "OTServerConnection.hpp"
 
-#include "OTMessageBuffer.hpp"
+#include "OTMessageOutBuffer.hpp"
 
 
 struct TransportCallback;

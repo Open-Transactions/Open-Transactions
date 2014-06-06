@@ -135,8 +135,9 @@
 #include <OTDigitalCash.hpp>
 
 #include <OTAssert.hpp>
-#include <OTString.hpp>
+#include <OTDataFolder.hpp>
 #include <OTPaths.hpp>
+#include <OTString.hpp>
 
 
 #ifdef OT_CASH_USING_MAGIC_MONEY

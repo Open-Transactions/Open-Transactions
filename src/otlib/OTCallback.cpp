@@ -132,14 +132,10 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTPassword.hpp>
 #include <OTCallback.hpp>
 
 #include <OTAssert.hpp>
-#include <OTString.hpp>
 #include <OTLog.hpp>
-#include <OTCrypto.hpp>
 
 
 // For SecureZeroMemory
@@ -165,14 +161,6 @@
   munlock(((void *)(((size_t)(a)) & (~((PAGESIZE)-1)))),\
   (((((size_t)(a)) + (b) - 1) | ((PAGESIZE) - 1)) + 1) - (((size_t)(a)) & (~((PAGESIZE) - 1))))
 #endif
-
-
-//#include "OTPassword.h"
-//
-//#include "OTString.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
 
 
 OTCallback::~OTCallback()

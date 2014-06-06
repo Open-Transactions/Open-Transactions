@@ -164,6 +164,8 @@ EXPORT virtual std::string GetAcctName(const std::string & str_id, // AcctID
                                        const std::string * p_nym_id=NULL,
                                        const std::string * p_server_id=NULL,
                                        const std::string * p_asset_id=NULL) const;
+
+EXPORT virtual std::string GetAddressName (const std::string & str_address) const; // Used for Bitmessage and other special addresses.
 };
 
 /*
@@ -175,6 +177,7 @@ EXPORT virtual std::string GetAcctName(const std::string & str_id, // AcctID
  public:
     virtual std::string GetNymName(const std::string & str_id) const;
     virtual std::string GetAcctName(const std::string & str_id) const;
+    virtual std::string GetAddressName(const std::string & str_id) const; // Used for Bitmessage and other special addresses.
  };
  */
 
@@ -207,6 +210,8 @@ EXPORT	std::string GetAcctName(const std::string & str_id, // AcctID
                                 const std::string * p_nym_id=NULL,
                                 const std::string * p_server_id=NULL,
                                 const std::string * p_asset_id=NULL) const;
+    
+EXPORT	std::string GetAddressName (const std::string & str_address) const;
 };
 
 
@@ -291,6 +296,7 @@ EXPORT    void SetAccountID(const std::string str_id);
 EXPORT    void AddAccountID(const std::string str_id);
 EXPORT    void ClearAccounts(); // Also clears m_contents
     
+EXPORT    const list_of_strings & GetNyms() const;
     // ------------------------------------------------
 EXPORT    void AcceptChequesAutomatically  (bool bVal=true);
 EXPORT    void AcceptReceiptsAutomatically (bool bVal=true);
@@ -308,6 +314,19 @@ EXPORT    bool PerformAutoAccept(); // Before populating, process out any items 
     
 EXPORT    bool Populate();      // Populates m_contents from OT API. Calls ClearContents().
 EXPORT    void ClearContents(); // Clears m_contents (NOT nyms, accounts, servers, or asset types.)
+EXPORT    void SortRecords();   // Populate already sorts. But if you have to add some external records after Populate, then you can sort again. P.S. sorting is performed based on the "from" date.
+    
+    // Let's say you also want to add some Bitmessages. (Or any other external source.) This is where you do that. Make sure to call Populate, then use AddSpecialMsg a few times, then call SortRecords.
+EXPORT    void AddSpecialMsg(const std::string & str_msg_id,     // The ID of this message, from whatever system it came from.
+                             bool                bIsOutgoing,
+                             int32_t             nMethodID,
+                             const std::string & str_contents, // Make sure to concatentate subject with contents, before passing here.
+                             const std::string & str_address,
+                             const std::string & str_other_address,
+                             const std::string & str_type,
+                             const std::string & str_type_display,
+                             const std::string   str_my_nym_id ="",
+                             time64_t            tDate         =OT_TIME_ZERO);
     // ------------------------------------------------
     // RETRIEVE:
     //
@@ -332,8 +351,8 @@ EXPORT    bool                 RemoveRecord(int32_t nIndex);
  
  // THEN:
  
- int               nSize  = blah.size();
- int               nIndex = [0 .. nSize-1]
+ int32_t nSize  = blah.size();
+ int32_t nIndex = [0 .. nSize-1]
  weak_ptr_OTRecord record = blah.GetRecord(nIndex);
  
  

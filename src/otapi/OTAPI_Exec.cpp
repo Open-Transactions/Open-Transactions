@@ -138,21 +138,32 @@
 
 #include <OpenTransactions.hpp>
 
+#include "OTAgent.hpp"
+#include "OTAssetContract.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTAmount.hpp"
 #include "OTBasket.hpp"
+#include "OTBylaw.hpp"
 #include "OTCheque.hpp"
+#include "OTClause.hpp"
 #include "OTCredential.hpp"
 #include "OTEnvelope.hpp"
 #include "OTLedger.hpp"
 #include "OTLog.hpp"
 #include "OTMessage.hpp"
 #include "OTMint.hpp"
+#include "OTParty.hpp"
+#include "OTPartyAccount.hpp"
 #include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
 #include "OTPaths.hpp"
 #include "OTPayment.hpp"
 #include "OTPaymentPlan.hpp"
+#include "OTPseudonym.hpp"
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
 #include "OTSymmetricKey.hpp"
+#include "OTToken.hpp"
 #include "OTWallet.hpp"
 
 #include "OTAccount.hpp"  //included in OTSmartContract.hpp
@@ -14398,45 +14409,3 @@ OT_BOOL OTAPI_Exec::Message_GetTransactionSuccess(const std::string & SERVER_ID,
 
 
 
-
-// -----------------------------------------------------------
-// NOT necessary in XmlRpc->HTTP mode (the preferred way.)
-// Only TCP/SSL mode maintains a connection to the server, and was for testing.
-bool OTAPI_Exec::ConnectServer(const std::string & SERVER_ID,
-                               const std::string & USER_ID,
-                               const std::string & strCA_FILE,
-                               const std::string & strKEY_FILE,
-                               const std::string & strKEY_PASSWORD)
-{
-	if (SERVER_ID.empty())       { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SERVER_ID"       ); OT_FAIL; }
-	if (USER_ID.empty())         { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "USER_ID"         ); OT_FAIL; }
-	if (strCA_FILE.empty())      { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strCA_FILE"      ); OT_FAIL; }
-	if (strKEY_FILE.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strKEY_FILE"     ); OT_FAIL; }
-	if (strKEY_PASSWORD.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "strKEY_PASSWORD" ); OT_FAIL; }
-
-	OTIdentifier theServerID(SERVER_ID), theUserID(USER_ID);
-
-	OTString strCA(strCA_FILE), strKeyFile(strKEY_FILE), strKeyPassword(strKEY_PASSWORD);
-
-	bool bConnected = OTAPI()->ConnectServer(theServerID, theUserID, strCA, strKeyFile, strKeyPassword);
-
-	if (bConnected)
-		return true;
-
-	return false;
-}
-
-
-// Not necessary in HTTP mode.
-// (Request/Response; no need to check sockets periodically in that mode.)
-// If you use TCP/SSL mode, you have to call this in order to check for
-// server replies and process them.
-bool OTAPI_Exec::ProcessSockets(void)
-{
-	bool bProcess = OTAPI()->ProcessSockets();
-
-	if (bProcess)
-		return true;
-
-	return false;
-}

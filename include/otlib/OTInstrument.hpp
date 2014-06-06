@@ -133,9 +133,8 @@
 #ifndef __OT_INSTRUMENT_HPP__
 #define __OT_INSTRUMENT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTScriptable.hpp"
+
 
 class OTInstrument : public OTScriptable
 {

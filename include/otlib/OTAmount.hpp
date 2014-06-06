@@ -135,16 +135,6 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
-#include "OTAssetContract.hpp"
-
-class OTBasket;
-class OTPseudonym;
-class OTString;
-class OTIdentifier;
-class OTAccount;
-class OTAcctFunctor;
-
 
 class OTAmount
 {
@@ -174,21 +164,6 @@ EXPORT    OTAmount& operator=(OTAmount other);
 
 EXPORT    ~OTAmount() {}
 };
-
-
-// NOTE: Moved to OTServer.hpp and .cpp
-// Because the Trigger method needs to be able to call
-// OTServer-specific functions, and thus can't be in the otlib,
-// which doesn't know of the server.
-//
-//class OTAcctFunctor_PayDividend
-//{
-//public:
-//    OTAcctFunctor_PayDividend(const OTIdentifier & theServerID);
-//    virtual ~OTAcctFunctor_PayDividend();
-//
-//    virtual bool Trigger(OTAccount & theAccount);
-//};
 
 
 #endif // __OT_AMOUNT_HPP__

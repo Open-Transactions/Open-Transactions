@@ -133,14 +133,16 @@
 #ifndef __OT_ACCOUNT_HPP__
 #define __OT_ACCOUNT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTTransactionType.hpp"
 
-class OTPseudonym;
 class OTAccount;
-class OTMessage;
 class OTLedger;
+class OTMessage;
+class OTPseudonym;
+
+typedef std::auto_ptr<OTAccount> OTAccount_AutoPtr;
+typedef std::list<OTAccount *> listOfAccounts;
+typedef std::map<std::string, _WeakPtr<OTAccount> >	mapOfWeakAccounts; // mapped by ACCT ID
 
 
 class OTAccount : public OTTransactionType 
@@ -261,13 +263,6 @@ EXPORT  bool  GetOutboxHash(OTIdentifier & theOutput);
 EXPORT	static char const * _GetTypeString(AccountType theType);
 EXPORT	char const * GetTypeString() { return OTAccount::_GetTypeString(m_AcctType); }
 };
-
-typedef std::list<OTAccount *> listOfAccounts;
-typedef std::auto_ptr<OTAccount> OTAccount_AutoPtr;
-typedef std::map<std::string, _WeakPtr<OTAccount> >	mapOfWeakAccounts; // mapped by ACCT ID
-
-
-#include "OTAcctList.hpp"
 
 
 #endif // __OT_ACCOUNT_HPP__

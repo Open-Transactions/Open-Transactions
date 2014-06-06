@@ -570,8 +570,6 @@ public:
 	MOCK_METHOD1(Message_GetNewIssuerAcctID, std::string (const std::string & THE_MESSAGE));
 	MOCK_METHOD1(Message_GetNewAcctID, std::string (const std::string & THE_MESSAGE));
 	MOCK_METHOD1(Message_GetNymboxHash, std::string (const std::string & THE_MESSAGE));
-	MOCK_METHOD5(ConnectServer, bool (const std::string & SERVER_ID, const std::string & USER_ID, const std::string & strCA_FILE, const std::string & strKEY_FILE, const std::string & strKEY_PASSWORD));
-	MOCK_METHOD0(ProcessSockets, bool ());
 };
 
 #endif

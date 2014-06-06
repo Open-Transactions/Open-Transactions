@@ -149,10 +149,13 @@
 #include <OTCredential.hpp>
 
 #include <OTAssert.hpp>
-#include <OTSignature.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
-#include <OTPaths.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPaths.hpp>
+#include <OTSignature.hpp>
+#include <OTSubkey.hpp>
 
 #include "irrxml/irrXML.hpp"
 

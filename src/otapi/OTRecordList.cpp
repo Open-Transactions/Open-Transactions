@@ -141,6 +141,8 @@
 #include <OTWallet.hpp>
 #include <OTPayment.hpp>
 #include <OTAccount.hpp>
+#include <OTAssetContract.hpp>
+#include <OTPseudonym.hpp>
 #include <OTLedger.hpp>
 #include <OT_ME.hpp>
 #include <OTMessage.hpp>
@@ -220,6 +222,12 @@ std::string OTNameLookup::GetAcctName(const std::string & str_id,
     return OTAPI_Wrap::GetAccountWallet_Name(str_id);
 }
 
+//virtual
+std::string OTNameLookup::GetAddressName(const std::string & str_address) const
+{
+    return ""; // There are no native OT lookups for a Bitmessage address. (Only useful when overriding.)
+}
+
 // ***************************************************
 
 // OTLookupCaller CLASS
@@ -277,7 +285,7 @@ std::string OTLookupCaller::GetNymName(const std::string & str_id, // NymID
 {
 	if (isCallbackSet())
 	{
-		OTLog::Output(0, "OTLookupCaller::GetNymName: FYI, Executing address book callback...\n");
+		OTLog::Output(1, "OTLookupCaller::GetNymName: FYI, Executing address book callback...\n");
 		return _callback->GetNymName(str_id, p_server_id);
 	}
 	else
@@ -297,7 +305,7 @@ std::string OTLookupCaller::GetAcctName(const std::string & str_id, // AcctID
 {
 	if (isCallbackSet())
 	{
-		OTLog::Output(0, "OTLookupCaller::GetAcctName: FYI, Executing address book callback...\n");
+		OTLog::Output(1, "OTLookupCaller::GetAcctName: FYI, Executing address book callback...\n");
 		return _callback->GetAcctName(str_id, p_nym_id, p_server_id, p_asset_id);
 	}
 	else
@@ -309,13 +317,30 @@ std::string OTLookupCaller::GetAcctName(const std::string & str_id, // AcctID
 }
 
 // ------------------------------------------------
+
+std::string OTLookupCaller::GetAddressName(const std::string & str_address) const
+{
+	if (isCallbackSet())
+	{
+		OTLog::Output(1, "OTLookupCaller::GetAddressName: FYI, Executing address book callback...\n");
+		return _callback->GetAddressName(str_address);
+	}
+	else
+	{
+		OTLog::Output(0, "OTLookupCaller::GetAddressName: "
+                      "WARNING: Failed attempt to trigger address book callback, due to \"it hasn't been set yet.\"\n");
+	}
+    return "";
+}
+
+// ------------------------------------------------
 //static
 
 const std::string  OTRecordList::s_blank("");
 const std::string  OTRecordList::s_message_type("message");
 
-std::string  OTRecordList::s_strTextTo  (MC_UI_TEXT_TO);   // "To: "
-std::string  OTRecordList::s_strTextFrom(MC_UI_TEXT_FROM); // "From: "
+std::string  OTRecordList::s_strTextTo  (MC_UI_TEXT_TO);   // "To: %s"
+std::string  OTRecordList::s_strTextFrom(MC_UI_TEXT_FROM); // "From: %s"
 
 OTLookupCaller * OTRecordList::s_pCaller = NULL;
 
@@ -348,7 +373,7 @@ bool OTRecordList::setAddrBookCaller(OTLookupCaller & theCaller)
 	s_pCaller = &theCaller;
 	// ---------------------------
 	OTLog::vOutput(1, "%s: FYI, Successfully set the address book caller object from "
-                   "Java. Returning true.\n", __FUNCTION__);
+                   "Java (or from another SWIG language.) Returning true.\n", __FUNCTION__);
     
 	return true;
 }
@@ -529,7 +554,7 @@ bool OTRecordList::PerformAutoAccept()
     // ------------------------------------------------
     // LOOP NYMS
     //
-    int nNymIndex = -1;
+    int32_t nNymIndex = -1;
     if (m_bAutoAcceptCheques || m_bAutoAcceptCash) FOR_EACH_IT(list_of_strings, m_nyms, it_nym)
     {
         ++nNymIndex;
@@ -547,7 +572,7 @@ bool OTRecordList::PerformAutoAccept()
         //
         // For each nym, for each server, loop through its payments inbox
         //
-        int nServerIndex = -1;
+        int32_t nServerIndex = -1;
         FOR_EACH_IT(list_of_strings, m_servers, it_server)
         {
             ++nServerIndex;
@@ -631,7 +656,7 @@ bool OTRecordList::PerformAutoAccept()
                     OT_ASSERT(NULL != p_str_asset_name); // and it's either blank, or it's one of the asset types we care about.
                     // ---------------------------------------------------
                     // Instrument type (cheque, voucher, etc)
-                    int nType = static_cast<int> (pPayment->GetType());
+                    int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                     str_type = OTRecord_GetTypeString(nType);
                     // ------------------------------
@@ -663,7 +688,7 @@ bool OTRecordList::PerformAutoAccept()
             {
                 for (mapOfPayments::reverse_iterator it = thePaymentMap.rbegin(); it != thePaymentMap.rend(); ++it) // backwards since we are processing (removing) payments by index.
                 {
-                    long        lIndex   = static_cast<long>(it->first);
+                    int32_t     lIndex   = it->first;
                     OTPayment * pPayment = it->second;
                     // -------------------------
                     if (NULL == pPayment)
@@ -735,7 +760,7 @@ bool OTRecordList::PerformAutoAccept()
                             // Accept it.
                             //
                             OTString strIndices;
-                            strIndices.Format("%ld", lIndex);
+                            strIndices.Format("%d", lIndex);
                             const std::string str_indices(strIndices.Get());
 
                             OT_ME madeEasy;
@@ -777,7 +802,7 @@ bool OTRecordList::PerformAutoAccept()
     // Loop through the Accounts.
     //
     // ------------------------------------------------
-    int nAccountIndex = -1;
+    int32_t nAccountIndex = -1;
     if (m_bAutoAcceptReceipts || m_bAutoAcceptTransfers) FOR_EACH_IT(list_of_strings, m_accounts, it_acct)
     {
         ++nAccountIndex; // (0 on first iteration.)
@@ -863,7 +888,7 @@ bool OTRecordList::PerformAutoAccept()
         bool bFoundAnyToAccept = false;
         std::string strResponseLedger;
         // ------------------------------------------------
-        int nInboxIndex = -1;
+        int32_t nInboxIndex = -1;
         // It loaded up, so let's loop through it.
         FOR_EACH(mapOfTransactions, pInbox->GetTransactionMap())
         {
@@ -1017,7 +1042,7 @@ bool OTRecordList::Populate()
     // OUTPAYMENTS, OUTMAIL, MAIL, PAYMENTS INBOX, and RECORD BOX (2 kinds.)
     // Loop through the Nyms.
     //
-    int nNymIndex = -1;
+    int32_t nNymIndex = -1;
     FOR_EACH_IT(list_of_strings, m_nyms, it_nym)
     {
         ++nNymIndex;
@@ -1182,7 +1207,7 @@ bool OTRecordList::Populate()
                 // For the "date" on this record we're using the "valid from" date on the instrument.
                 std::string str_date = "0";
                 time64_t tFrom = OT_TIME_ZERO;
-                time64_t tTo = OT_TIME_ZERO;
+                time64_t tTo   = OT_TIME_ZERO;
 
                 if (theOutPayment.GetValidFrom(tFrom))
                 {
@@ -1195,7 +1220,7 @@ bool OTRecordList::Populate()
                 // ---------------------------------------------------
                 // Instrument type (cheque, voucher, etc)
                 //
-                int nType = static_cast<int> (theOutPayment.GetType());
+                int32_t nType = static_cast<int32_t> (theOutPayment.GetType());
 
                 const std::string & str_type = OTRecord_GetTypeString(nType);
                 // ---------------------------------------------------
@@ -1231,7 +1256,7 @@ bool OTRecordList::Populate()
                     sp_Record->SetMemo(str_memo);
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tFrom, tTo);
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentOutpayment));
+                sp_Record->SetBoxIndex(nCurrentOutpayment);
                 // -------------------------------------------------
                 int64_t lTransNum = 0;
                 theOutPayment.GetOpeningNum(lTransNum, theNymID);
@@ -1255,7 +1280,7 @@ bool OTRecordList::Populate()
             // ------------------------------------------------
             OTLog::vOutput(0, "%s: Mail index: %d\n", __FUNCTION__, nCurrentMail);
             // ------------------------------------------------
-            OTMessage *	pMsg = pNym->GetMailByIndex(static_cast<int>(nCurrentMail));
+            OTMessage *	pMsg = pNym->GetMailByIndex(nCurrentMail);
             OT_ASSERT(NULL != pMsg);
             // ------------------------------------------------
             const std::string str_mail_server =
@@ -1286,7 +1311,7 @@ bool OTRecordList::Populate()
                 else
                     strNameTemp.Format(OTRecordList::textFrom(), str_mail_senderID.c_str());
 
-                str_name = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                str_name = strNameTemp.Get();
                 // ---------------------------------------------------
                 const std::string * p_str_asset_type = &OTRecordList::s_blank; // <========== ASSET TYPE
                 const std::string * p_str_asset_name = &OTRecordList::s_blank; // asset type display name.
@@ -1326,7 +1351,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetOtherNymID(str_mail_senderID);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentMail));
+                sp_Record->SetBoxIndex(nCurrentMail);
                 // -------------------------------------------------
                 sp_Record->SetDateRange(OTTimeGetTimeFromSeconds(pMsg->m_lTime), OTTimeGetTimeFromSeconds(pMsg->m_lTime));
                 // -------------------------------------------------
@@ -1342,7 +1367,7 @@ bool OTRecordList::Populate()
             // ------------------------------------------------
             OTLog::vOutput(0, "%s: Outmail index: %d\n", __FUNCTION__, nCurrentOutmail);
             // ------------------------------------------------
-            OTMessage *	pMsg = pNym->GetOutmailByIndex(static_cast<int>(nCurrentOutmail));
+            OTMessage *	pMsg = pNym->GetOutmailByIndex(nCurrentOutmail);
             OT_ASSERT(NULL != pMsg);
             // ------------------------------------------------
             const std::string str_mail_server =
@@ -1411,7 +1436,7 @@ bool OTRecordList::Populate()
                 const OTString strOutmail(OTAPI_Wrap::GetNym_OutmailContentsByIndex(str_nym_id, nCurrentOutmail));
                 sp_Record->SetContents(strOutmail.Get());
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nCurrentOutmail));
+                sp_Record->SetBoxIndex(nCurrentOutmail);
                 // -------------------------------------------------
                 sp_Record->SetOtherNymID(str_mail_recipientID);
                 // -------------------------------------------------
@@ -1423,7 +1448,7 @@ bool OTRecordList::Populate()
         // ------------------------------------------------
         // For each nym, for each server, loop through its payments inbox and record box.
         //
-        int nServerIndex = -1;
+        int32_t nServerIndex = -1;
         FOR_EACH_IT(list_of_strings, m_servers, it_server)
         {
             ++nServerIndex;
@@ -1475,7 +1500,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textFrom(), str_sender_nym_id.c_str());
 
-                        str_name = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name = strNameTemp.Get();
                     }
 
                     theSenderID.Release();
@@ -1606,7 +1631,7 @@ bool OTRecordList::Populate()
                         OT_ASSERT(NULL != p_str_asset_name); // and it's either blank, or it's one of the asset types we care about.
                         // ---------------------------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -1647,7 +1672,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tValidFrom, tValidTo);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -1724,7 +1749,7 @@ bool OTRecordList::Populate()
                                 else
                                     strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                                str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                                str_name         = strNameTemp.Get();
                                 str_other_nym_id = str_recipient_id;
                                 // -------------------------------------------
                                 if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -1744,7 +1769,7 @@ bool OTRecordList::Populate()
                             else
                                 strNameTemp.Format(OTRecordList::textFrom(), str_sender_id.c_str());
 
-                            str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                            str_name         = strNameTemp.Get();
                             str_other_nym_id = str_sender_id;
                             // -------------------------------------------
                             if (pBoxTrans->GetSenderAcctIDForDisplay(theSenderAcctID))
@@ -1774,7 +1799,7 @@ bool OTRecordList::Populate()
                             else
                                 strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                            str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                            str_name         = strNameTemp.Get();
                             str_other_nym_id = str_recipient_id;
                             // -------------------------------------------
                             if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -1943,7 +1968,7 @@ bool OTRecordList::Populate()
                         }
                         // ----------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -1984,7 +2009,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetDateRange(tValidFrom, tValidTo);
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -2063,7 +2088,7 @@ bool OTRecordList::Populate()
                                 else
                                     strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                                str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                                str_name         = strNameTemp.Get();
                                 str_other_nym_id = str_recipient_id;
                                 // -------------------------------------------
                                 if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -2083,7 +2108,7 @@ bool OTRecordList::Populate()
                             else
                                 strNameTemp.Format(OTRecordList::textFrom(), str_sender_id.c_str());
 
-                            str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                            str_name         = strNameTemp.Get();
                             str_other_nym_id = str_sender_id;
                             // -------------------------------------------
                             if (pBoxTrans->GetSenderAcctIDForDisplay(theSenderAcctID))
@@ -2113,7 +2138,7 @@ bool OTRecordList::Populate()
                             else
                                 strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                            str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                            str_name         = strNameTemp.Get();
                             str_other_nym_id = str_recipient_id;
                             // -------------------------------------------
                             if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -2282,7 +2307,7 @@ bool OTRecordList::Populate()
                         }
                         // ----------------------------------
                         // Instrument type (cheque, voucher, etc)
-                        int nType = static_cast<int> (pPayment->GetType());
+                        int32_t nType = static_cast<int32_t> (pPayment->GetType());
 
                         str_type = OTRecord_GetTypeString(nType);
                         // ---------------------------------------------------
@@ -2325,7 +2350,7 @@ bool OTRecordList::Populate()
                 // -------------------------------------------------
                 sp_Record->SetExpired();
                 // -------------------------------------------------
-                sp_Record->SetBoxIndex(static_cast<int>(nIndex));
+                sp_Record->SetBoxIndex(nIndex);
                 // -------------------------------------------------
                 if (!str_memo.empty())
                     sp_Record->SetMemo(str_memo);
@@ -2357,7 +2382,7 @@ bool OTRecordList::Populate()
     // ------------------------------------------------
     OTLog::vOutput(0, "================ %s: Looping through the accounts in the wallet...\n", __FUNCTION__);
     // ------------------------------------------------
-    int nAccountIndex = -1;
+    int32_t nAccountIndex = -1;
     FOR_EACH_IT(list_of_strings, m_accounts, it_acct)
     {
         ++nAccountIndex; // (0 on first iteration.)
@@ -2427,7 +2452,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theInboxAngel(pInbox);
 
         // ------------------------------------------------
-        int nInboxIndex = -1;
+        int32_t nInboxIndex = -1;
         // It loaded up, so let's loop through it.
         if (NULL != pInbox) FOR_EACH(mapOfTransactions, pInbox->GetTransactionMap())
         {
@@ -2531,7 +2556,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp = str_account_id;
 
-                        str_name = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name = strNameTemp.Get();
                     }
                 } // end: (if pending)
 
@@ -2551,7 +2576,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textTo(), str_recipient_user_id.c_str());
 
-                        str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name         = strNameTemp.Get();
                         str_other_nym_id = str_recipient_user_id;
                         // ------------------------------------
                         if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -2576,7 +2601,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textTo(), str_recipient_acct_id.c_str());
 
-                        str_name          = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name          = strNameTemp.Get();
                         str_other_acct_id = str_recipient_acct_id;
                     }
                 } //end: (else it's a receipt.)
@@ -2642,7 +2667,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nInboxIndex));
+            sp_Record->SetBoxIndex(nInboxIndex);
             // -------------------------------------------------
             if (bCanceled)
                 sp_Record->SetCanceled();
@@ -2672,7 +2697,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theOutboxAngel(pOutbox);
 
         // It loaded up, so let's loop through it.
-        int nOutboxIndex = -1;
+        int32_t nOutboxIndex = -1;
         if (NULL != pOutbox) FOR_EACH(mapOfTransactions, pOutbox->GetTransactionMap())
         {
             ++nOutboxIndex; // (0 on first iteration.)
@@ -2706,7 +2731,7 @@ bool OTRecordList::Populate()
                     else
                         strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                    str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                    str_name         = strNameTemp.Get();
                     str_other_nym_id = str_recipient_id;
                     // ------------------------------------
                     if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -2731,7 +2756,7 @@ bool OTRecordList::Populate()
                     else
                         strNameTemp.Format(OTRecordList::textTo(), str_recipient_acct_id.c_str());
 
-                    str_name          = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                    str_name          = strNameTemp.Get();
                     str_other_acct_id = str_recipient_acct_id;
                 }
                 // --------------------------
@@ -2811,7 +2836,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nOutboxIndex));
+            sp_Record->SetBoxIndex(nOutboxIndex);
             // -------------------------------------------------
             if (!str_memo.empty())
                 sp_Record->SetMemo(str_memo);
@@ -2841,7 +2866,7 @@ bool OTRecordList::Populate()
         OTCleanup<OTLedger> theRecordBoxAngel(pRecordbox);
 
         // It loaded up, so let's loop through it.
-        int nRecordIndex = -1;
+        int32_t nRecordIndex = -1;
         if (NULL != pRecordbox) FOR_EACH(mapOfTransactions, pRecordbox->GetTransactionMap())
         {
             ++nRecordIndex;
@@ -3004,7 +3029,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textTo(), str_recipient_acct_id.c_str());
 
-                        str_name          = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name          = strNameTemp.Get();
                         str_other_acct_id = str_recipient_acct_id;
                     }
                 }
@@ -3054,7 +3079,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textFrom(), str_sender_id.c_str());
 
-                        str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name         = strNameTemp.Get();
                         str_other_nym_id = str_sender_id;
                         // ------------------------------------
                         if (pBoxTrans->GetSenderAcctIDForDisplay(theSenderAcctID))
@@ -3084,7 +3109,7 @@ bool OTRecordList::Populate()
                         else
                             strNameTemp.Format(OTRecordList::textTo(), str_recipient_id.c_str());
 
-                        str_name         = strNameTemp.Get(); // Todo: lookup the name in address book also.
+                        str_name         = strNameTemp.Get();
                         str_other_nym_id = str_recipient_id;
                         // ------------------------------------
                         if (pBoxTrans->GetRecipientAcctIDForDisplay(theRecipientAcctID))
@@ -3192,7 +3217,7 @@ bool OTRecordList::Populate()
             // -------------------------------------------------
             sp_Record->SetDateRange(tValidFrom, tValidTo);
             // -------------------------------------------------
-            sp_Record->SetBoxIndex(static_cast<int>(nRecordIndex));
+            sp_Record->SetBoxIndex(nRecordIndex);
             // -------------------------------------------------
             if (!str_memo.empty())
                 sp_Record->SetMemo(str_memo);
@@ -3214,16 +3239,151 @@ bool OTRecordList::Populate()
     // ------------------------------------------------
     // SORT the vector.
     //
+    SortRecords();
+    // ------------------------------------------------
+    return true;
+}
+
+
+
+const list_of_strings & OTRecordList::GetNyms() const
+{
+    return m_nyms;
+}
+
+
+// Populate already sorts. But if you have to add some external records
+// after Populate, then you can sort again.
+//
+void OTRecordList::SortRecords()
+{
     // TODO OPTIMIZE: We might load everything up into a multimap, and THEN copy it
     // directly over to the vector. (Since the multimap sorts automatically on insert.)
     // The question is, would doing that be any faster than just sorting it here?
     // (Possibly not, but I'm not sure. Re-visit later.)
     //
     std::sort (m_contents.begin(), m_contents.end(), compare_records); // Todo optimize: any faster sorting algorithms?
-    // ------------------------------------------------
-    return true;
 }
 
+// ---------------------------------------
+
+// Let's say you also want to add some Bitmessages. (Or any other external
+// source.) This is where you do that. Make sure to call Populate, then use
+// AddSpecialMsg a few times, then call SortRecords.
+//
+void OTRecordList::AddSpecialMsg(
+    const std::string & str_msg_id,   // The id of this message, from whatever system it came from.
+    bool                bIsOutgoing,
+    int32_t             nMethodID,
+    const std::string & str_contents, // Make sure to concatentate subject with contents, before passing here.
+    const std::string & str_address,
+    const std::string & str_other_address,
+    const std::string & str_type,
+    const std::string & str_type_display,
+    const std::string   str_my_nym_id /*=""*/,
+    time64_t            tDate         /*=OT_TIME_ZERO*/
+)
+{
+    // ------------------------------------------------
+    const char * pToFrom = bIsOutgoing ? OTRecordList::textTo() : OTRecordList::textFrom();
+    // ------------------------------------------------
+    const std::string * p_str_server = &OTRecordList::s_blank; // <========== Bitmessage doesn't use OT servers.
+    // ---------------------------------------------------
+    // TODO OPTIMIZE: instead of looking up the Nym's name every time, look it
+    // up ONCE when first adding the NymID. Add it to a map, instead of a list,
+    // and add the Nym's name as the second item in the map's pair.
+    // (Just like I already did with the asset type.)
+    //
+    std::string str_other_name;
+    
+    if (!str_other_address.empty())
+        str_other_name = m_pLookup->GetAddressName(str_other_address);
+    // ---------------------------------------------------
+    OTString     strNameTemp;
+    std::string  str_name("");
+    
+    if (!str_other_name.empty())
+        strNameTemp.Format(pToFrom, str_other_name.c_str());
+    else if (!str_other_address.empty())
+        strNameTemp.Format(pToFrom, str_other_address.c_str());
+    
+    str_name = strNameTemp.Get();
+    // ---------------------------------------------------
+    const std::string * p_str_nym_id     = &OTRecordList::s_blank; // <========== MY NYM ID
+    const std::string * p_str_asset_type = &OTRecordList::s_blank; // <========== ASSET TYPE
+    const std::string * p_str_asset_name = &OTRecordList::s_blank; // asset type display name.
+    const std::string * p_str_account    = &OTRecordList::s_blank; // <========== ACCOUNT
+    
+    std::string str_amount; // There IS NO amount, on mail. (So we leave this empty.)
+    // ---------------------------------------------------    
+    uint64_t lDate = static_cast<uint64_t>(tDate);
+    OTString strDate;
+    strDate.Format("%" PRIu64 "", lDate);
+    const std::string str_date(strDate.Get());
+    // ---------------------------------------------------
+    // CREATE AN OTRecord AND POPULATE IT...
+    //
+    // This loop is here because normally an OTRecord's "nym id" is
+    // a reference to a string found in OTRecordList's list of Nyms.
+    // We can't just stick a Nym ID in there, we have to find the
+    // specific Nym ID string in the OTRecordList and use THAT, otherwise
+    // we'd end up with bad pointer problems.
+    //
+    if (!str_my_nym_id.empty())
+    {
+        FOR_EACH_IT(list_of_strings, m_nyms, it_nym)
+        {
+            const std::string & str_nym_id(*it_nym);
+            
+            if (0 == str_my_nym_id.compare(str_nym_id))
+            {
+                p_str_nym_id = &str_nym_id;
+                break;
+            }
+        }
+    }
+    // ----------------------------------------------------
+    shared_ptr_OTRecord sp_Record(new OTRecord(*p_str_server,
+                                               *p_str_asset_type,
+                                               *p_str_asset_name,
+                                               *p_str_nym_id,  // This is "me" (the sender Nym, if outgoing, or recipient, if incoming.)
+                                               *p_str_account, // No OT asset account on any mail, much less on a "bitmessage" mail.
+                                               // Everything above this line, it stores a reference to an external string.
+                                               // -----------------------------
+                                               // Everything below this line, it makes its own internal copy of the string.
+                                               str_name, // name of sender for incoming, otherwise name of recipient for outgoing.
+                                               str_date,
+                                               str_amount,
+                                               OTRecordList::s_message_type, // "message"
+                                               false, //bIsPending=false since its already received.
+                                               bIsOutgoing,
+                                               false, //IsRecord
+                                               false, //IsReceipt
+                                               OTRecord::Mail
+                                               ));
+    sp_Record->SetSpecialMail(); //true by default. This means it's not an OT message, but a Bitmessage (or something like that.)
+    // -------------------------------------------------
+    sp_Record->SetContents(str_contents.c_str()); // "Subject: %s\n[Contents]"
+    // -------------------------------------------------
+    sp_Record->SetMsgID(str_msg_id);
+    // -------------------------------------------------
+    sp_Record->SetDateRange(OTTimeGetTimeFromSeconds(tDate), OTTimeGetTimeFromSeconds(tDate));
+    // -------------------------------------------------
+    sp_Record->SetMethodID(nMethodID);
+    // -------------------------------------------------
+    sp_Record->SetAddress(str_address);
+    // -------------------------------------------------
+    sp_Record->SetOtherAddress(str_other_address);
+    // -------------------------------------------------
+    sp_Record->SetMsgType(str_type);
+    // -------------------------------------------------
+    sp_Record->SetMsgTypeDisplay(str_type_display);
+    // -------------------------------------------------
+    OTLog::vOutput(1, "%s: ADDED: %s special mail.\n", __FUNCTION__,
+                   bIsOutgoing ? "outgoing" : "incoming");
+
+    m_contents.push_back(sp_Record);
+}
 
 // ------------------------------------------------
 

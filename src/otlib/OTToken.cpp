@@ -134,19 +134,20 @@
 
 #include <OTToken.hpp>
 
-#include <OTLog.hpp>
-#include <OTPurse.hpp>
-#include <OTPaths.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMint.hpp>
 #include <OTDigitalCash.hpp>
-
+#include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
+#include <OTLog.hpp>
+#include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
+#include <OTPaths.hpp>
+#include <OTPurse.hpp>
 
 #include "irrxml/irrXML.hpp"
 
-
 #if defined (OT_CASH_USING_LUCRE)
 
+#include "OTTokenLucre.hpp"
 #include "OpenSSL_BIO.hpp"
 
 #endif

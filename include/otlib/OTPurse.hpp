@@ -133,16 +133,15 @@
 #ifndef __OT_PURSE_HPP__
 #define __OT_PURSE_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
-#include "OTASCIIArmor.hpp"
-#include "OTToken.hpp"
-#include "OTCachedKey.hpp"
 
-class OTPurse;
-class OTPseudonym;
+#include <deque>
+
+class OTASCIIArmor;
 class OTNym_or_SymmetricKey;
+class OTPassword;
+class OTPseudonym;
+class OTToken;
 
 // A token has no User ID, or Account ID, or even a traceable TokenID (the tokenID only becomes relevant
 // after it is spent.)
@@ -159,7 +158,6 @@ class OTNym_or_SymmetricKey;
 // Imagine a stack of poker chips.
 
 typedef std::deque  <OTASCIIArmor *>            dequeOfTokens;
-typedef std::map    <std::string, OTToken *>    mapOfTokenPointers;
 
 
 class OTPurse : public OTContract

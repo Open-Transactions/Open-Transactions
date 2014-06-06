@@ -132,30 +132,36 @@
 
 #include <stdafx.hpp>
 
-#include <stdafx.hpp>
-
 #include <OTServer.hpp>
 
 #include <OTClientConnection.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTMint.hpp>
-#include <OTPurse.hpp>
-#include <OTMessage.hpp>
-#include <OTSmartContract.hpp>
-#include <OTLedger.hpp>
-#include <OTEnvelope.hpp>
-#include <OTCheque.hpp>
+#include <OTAsymmetricKey.hpp>
 #include <OTBasket.hpp>
-#include <OTTrade.hpp>
+#include <OTCachedKey.hpp>
+#include <OTCheque.hpp>
+#include <OTDataFolder.hpp>
+#include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
+#include <OTKeyring.hpp>
+#include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTMarket.hpp>
+#include <OTMessage.hpp>
+#include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTPassword.hpp>
+#include <OTPaths.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPayment.hpp>
+#include <OTPurse.hpp>
 #include <OTServerContract.hpp>
-#include <OTPassword.hpp>
-#include <OTMarket.hpp>
-#include <OTKeyring.hpp>
+#include <OTSmartContract.hpp>
+#include <OTToken.hpp>
+#include <OTTrade.hpp>
 
 #include "irrxml/irrXML.hpp"
 
@@ -171,6 +177,10 @@
 #define SERVER_USE_SYSTEM_KEYRING false
 #define SERVER_PASSWORD_FOLDER ""
 #define SERVER_PID_FILENAME "ot.pid"
+
+
+typedef std::deque <OTToken *> dequeOfTokenPtrs;
+
 
 //#ifdef _WIN32
 //const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";
@@ -280,8 +290,6 @@ bool	OTServer::__cmd_trigger_clause = true; // Bool.
 	} \
 }
 
-// --------------------------------------------------------------------------------------
-
 
 
 void OTServer::ActivateCron()
@@ -333,13 +341,11 @@ void OTServer::ProcessCron()
 }
 
 
-// --------------------------------------------------------------------------------------
-
-
 const OTPseudonym & OTServer::GetServerNym() const
 {
 	return m_nymServer;
 }
+
 
 // Server stores a map of BASKET_ID to BASKET_ACCOUNT_ID.
 bool OTServer::AddBasketAccountID(const OTIdentifier & BASKET_ID, const OTIdentifier & BASKET_ACCOUNT_ID,
@@ -361,6 +367,7 @@ bool OTServer::AddBasketAccountID(const OTIdentifier & BASKET_ID, const OTIdenti
 	return true;
 }
 
+
 /// Looks up a basket account ID and returns true or false.
 /// (So you can confirm whether or not it's on the list.)
 bool OTServer::VerifyBasketAccountID(const OTIdentifier & BASKET_ACCOUNT_ID)
@@ -379,6 +386,7 @@ bool OTServer::VerifyBasketAccountID(const OTIdentifier & BASKET_ACCOUNT_ID)
 	}
 	return false;
 }
+
 
 /// Use this to find the basket account ID for this server (which is unique to this server)
 /// using the contract ID to look it up. (The basket contract ID is unique to this server.)
@@ -450,7 +458,6 @@ bool OTServer::LookupBasketAccountID(const OTIdentifier & BASKET_ID, OTIdentifie
 /// return a pointer to the account.  Since it's SUPPOSED to exist, and since it's being requested,
 /// also will GENERATE it if it cannot be found, add it to the list, and return the pointer. Should
 /// always succeed.
-//
 _SharedPtr<OTAccount> OTServer::GetVoucherAccount(const OTIdentifier & ASSET_TYPE_ID)
 {
 	_SharedPtr<OTAccount> pAccount;
@@ -634,7 +641,6 @@ bool OTServer::IssueNextTransactionNumber(OTPseudonym & theNym, int64_t &lTransa
 }
 
 
-
 /// Transaction numbers are now stored in the nym file (on client and server side) for whichever nym
 /// they were issued to. This function verifies whether or not the transaction number is present and valid
 /// for any specific nym (i.e. for the nym passed in.)
@@ -718,7 +724,6 @@ bool OTServer::RemoveIssuedNumber(OTPseudonym & theNym, const int64_t &lTransact
 }
 
 
-
 /// The server supports various different asset types.
 /// Any user may create a new asset type by uploading the asset contract to the server.
 /// The server stores the contract in a directory and in its in-memory list of asset types.
@@ -746,10 +751,8 @@ OTAssetContract * OTServer::GetAssetContract(const OTIdentifier & ASSET_TYPE_ID)
 }
 
 
-
 /// OTServer will take ownership of theContract from this point on,
 /// and will be responsible for deleting it. MUST be allocated on the heap.
-//
 bool OTServer::AddAssetContract(OTAssetContract & theContract)
 {
 	OTAssetContract * pContract = NULL;
@@ -877,9 +880,6 @@ bool OTServer::SaveMainFileToString(OTString & strMainFile)
 }
 
 
-
-
-// ---------------------------------------------------------------
 // Setup the default location for the Sever Main File...
 // maybe this should be set differently...
 // should be set in the servers configuration.
@@ -918,8 +918,6 @@ bool OTServer::SaveMainFile()
 
 	return bSaved;
 }
-
-
 
 
 // TODO: da2ce7 put a bunch of hardcoded numbers in here. These need to be changed
@@ -1207,8 +1205,6 @@ bool OTServer::LoadConfigFile()
 	return true;
 }
 
-// -----------------------------------------------------
-
 
 OTServer::OTServer() : m_bReadOnly(false), m_bShutdownFlag(false), m_pServerContract(NULL), m_lTransactionNumber(0)
 {
@@ -1224,7 +1220,6 @@ OTServer::~OTServer()
     Release_Server();
 }
 
-// -----------------------------------------------------
 
 void OTServer::Release_Server()
 {
@@ -1293,7 +1288,6 @@ void OTServer::Release_Server()
 }
 
 
-
 void OTServer::Release()
 {
     Release_Server();
@@ -1301,7 +1295,6 @@ void OTServer::Release()
     // ot_super::Release() call would normally go here, if we had a super class.
 }
 
-// -----------------------------------------------------
 
 // Loads the config file,
 // Initializes OTDB:: default storage,
@@ -1438,8 +1431,6 @@ void OTServer::Init(bool bReadOnly/*=false*/)
 	// With the Server's private key loaded, and the latest transaction number loaded,
     // and all the various other data (contracts, etc) the server is now ready for operation!
 }
-// -----------------------------------------------------
-
 
 
 bool OTServer::LoadServerUserAndContract()
@@ -1522,11 +1513,7 @@ bool OTServer::LoadServerUserAndContract()
 }
 
 
-
-
-// -------------------------
 // Reads from cin until Newline.
-//
 std::string OT_CLI_ReadLine()
 {
 	std::string line;
@@ -1539,9 +1526,7 @@ std::string OT_CLI_ReadLine()
 }
 
 
-// -------------------------
 // Reads from cin until EOF. (Or until the ~ character as the first character on a line.)
-//
 std::string OT_CLI_ReadUntilEOF()
 {
 	// don't skip the whitespace while reading
@@ -1812,7 +1797,6 @@ bool OTServer::CreateMainFile()
 
  */
 
-// ------------------------------------------
 
 bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
 {
@@ -2141,11 +2125,6 @@ bool OTServer::LoadMainFile(bool bReadOnly/*=false*/)
     }
 	return !bFailure;
 }
-
-
-
-// ------------------------------------------------------------------------
-
 
 
 // Get the list of markets on this server.

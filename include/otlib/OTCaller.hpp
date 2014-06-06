@@ -133,16 +133,10 @@
 #ifndef __OT_CALLER_HPP__
 #define __OT_CALLER_HPP__
 
-#include <string>
-
-#include "OTCommon.hpp"
-
-#include "OTCachedKey.hpp"
-#include "OTPasswordData.hpp"
 #include "OTPassword.hpp"
 
-class OTString;
 class OTPassword;
+class OTCallback;
 
 
 /*
@@ -181,7 +175,6 @@ class OTPassword;
 // Default is the smaller size.
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
-
 
 // https://github.com/lorf/keepassx/blob/master/src/lib/SecString.cpp
 
@@ -334,9 +327,6 @@ void main()
 //
 //#undef OT_DEFAULT_BLOCKSIZE
 //#undef OT_DEFAULT_MEMSIZE
-
-
-#include "OTCallback.hpp"
 
 
 class OTCaller

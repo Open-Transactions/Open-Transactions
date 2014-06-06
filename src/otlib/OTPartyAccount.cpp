@@ -132,18 +132,18 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTBylaw.hpp>
 #include <OTPartyAccount.hpp>
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
+#include <OTAgent.hpp>
+#include <OTAgreement.hpp>
+#include <OTContract.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
 
 
 // IDEA: Put a Nym in the Nyms folder for each entity. While it may

@@ -30,11 +30,13 @@ inline void   print    (const string & text)   { std::cout << text << "\n"; }
 inline string to_string(const bool     bValue) { return bValue ? "true" : "false"; }
 // --------------------------------------------------------------
 #if defined(OT_USE_CXX11) && !defined(ANDROID)
+inline string  to_string(const int32_t  nValue)   { return std::to_string(nValue); }
 inline string  to_string(const int64_t  nValue)   { return std::to_string(nValue); }
 inline int32_t to_int   (const string & strValue) { return static_cast<int32_t>(std::stoi(strValue)); }
 inline int64_t to_long  (const string & strValue) { return std::stoll(strValue); }
 // --------------------------------------------------------------
 #else
+inline string  to_string(const int32_t  nValue)   { return OTAPI_Wrap::LongToString(nValue); }
 inline string  to_string(const int64_t  nValue)   { return OTAPI_Wrap::LongToString(nValue); }
 inline int32_t to_int   (const string & strValue) { return static_cast<int32_t>(std::atoi(strValue.c_str())); }
 inline int64_t to_long  (const string & strValue) { return OTAPI_Wrap::StringToLong(strValue); }

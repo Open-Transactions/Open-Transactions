@@ -133,19 +133,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited paths class.
-
 #ifndef __OT_PATHS_HPP__
 #define __OT_PATHS_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTSettings.hpp"
-#include "OTAssert.hpp"
 
 
 // All directories have a trailing "/" while files do not. <== remember to enforce this!!!
-//
 class OTPaths
 {
 private:
@@ -212,7 +206,7 @@ public:
 		const				  OTString	  & strComment = ""
 		);
 
-	// ------------------------------------------------------------
+
 	EXPORT static bool FixPath(const OTString & strPath, OTString & out_strFixedPath, const bool & bIsFolder);
 	EXPORT static bool PathExists(const OTString & strPath); // returns true if path exists.
 
@@ -232,9 +226,8 @@ public:
 
 #endif
 
-	// ------------------------------------------------------------
+
 	// High Level Helper Functions
-	//
 	EXPORT static bool AppendFolder(OTString & out_strPath, const OTString & strBasePath, const OTString & strFolderName); // the trailing "/" is optional for the strFolderName
 	EXPORT static bool AppendFile	 (OTString & out_strPath, const OTString & strBasePath, const OTString & strFileName); // the trailing "/" is optional for the strFolderName
 
@@ -244,15 +237,6 @@ public:
 	EXPORT static bool BuildFilePath(const OTString & strFolderPath, bool & out_bFolderCreated);		// will build all the folders up to the file.  Will return false if unable to build path.
 
 }; // class OTPaths
-
-
-#include "OTWindowsRegistryTools.hpp"
-
-
-#include "OTDataFolder.hpp"
-
-
-#include "OTFolders.hpp"
 
 
 #endif // __OT_PATHS_HPP__

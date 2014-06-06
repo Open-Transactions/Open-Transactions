@@ -133,13 +133,8 @@
 #ifndef __OT_KEY_CREDENTIAL_HPP__
 #define __OT_KEY_CREDENTIAL_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTContract.hpp"
-#include "OTAsymmetricKey.hpp"
 #include "OTKeypair.hpp"
 #include "OTSubcredential.hpp"
-#include "OTCredential.hpp"
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -175,14 +170,12 @@
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
-class OTPassword;
-class OTString;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTPasswordData;
-class OTSignatureMetadata;
+class OTAsymmetricKey;
 class OTCredential;
-class OTPseudonym;
+class OTPassword;
+class OTPasswordData;
+
+typedef std::list<OTAsymmetricKey *> listOfAsymmetricKeys;
 
 
 // CONTENTS needs to be PUBLIC and PRIVATE contents, EACH being a string map.

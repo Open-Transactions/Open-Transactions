@@ -135,16 +135,13 @@
 
 #include "OTCommon.hpp"
 
-#include "OTContract.hpp"
-#include "OTAmount.hpp"
-#include "OTAssetContract.hpp"
+#include <map>
 
-class OTBasket;
-class OTPseudonym;
-class OTString;
-class OTIdentifier;
 class OTAccount;
 class OTAcctFunctor;
+class OTIdentifier;
+
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
 // This class is used by ForEachAccountRecord (above) which loops through

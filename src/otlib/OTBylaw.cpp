@@ -134,32 +134,16 @@
 
 #include <OTBylaw.hpp>
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
+#include <OTAgreement.hpp>
+#include <OTClause.hpp>
+#include <OTContract.hpp>
+#include <OTLog.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
 
-/*
- enum OTVariable_Type
- {
- Var_String,	// std::string
- Var_Integer,	// Integer.
- Var_Bool,		// Boolean
- Var_Error_Type	// should never happen.
- };
-
- enum OTVariable_Access
- {
- Var_Constant,		// Constant -- you cannot change this value.
- Var_Persistent,		// Persistent -- changing value doesn't require notice to parties.
- Var_Important,		// Important -- changing value requires notice to parties.
- Var_Error_Access	// should never happen.
- };
- */
 
 void OTBylaw::Serialize(OTString & strAppend,
 						bool bCalculatingID/*=false*/)

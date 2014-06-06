@@ -130,19 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-// The int64_t-awaited logging class.
-
 #ifndef __OT_LOG_HPP__
 #define __OT_LOG_HPP__
 
-#include <deque>
-#include <cerrno>
-#include <cstdlib>
-
-#include "OTCommon.hpp"
-
 #include "OTAssert.hpp"
 #include "OTString.hpp"
+
+#include <deque>
 
 
 #if defined(unix) || defined(__unix__) || defined(__unix) || defined(__APPLE__) || defined(linux) || defined(__linux) || defined(__linux__)

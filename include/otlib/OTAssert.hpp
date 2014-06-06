@@ -133,9 +133,6 @@
 #ifndef __OT_ASSERT_HPP__
 #define __OT_ASSERT_HPP__
 
-#include <cstddef>
-#include <exception>
-
 #include "OTCommon.hpp"
 
 

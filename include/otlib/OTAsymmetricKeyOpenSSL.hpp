@@ -133,21 +133,12 @@
 #ifndef __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
 #define __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
 
-#include <list>
-#include <cstddef>
+#include "OTAsymmetricKey.hpp"
 
-#include "OTCommon.hpp"
-
-#include "Timer.hpp"
-
-class OTCaller;
-class OTKeypair;
-class OTString;
-class OTPassword;
-class OTIdentifier;
 class OTASCIIArmor;
-class OTSignatureMetadata;
-class OTPasswordData;
+class OTCaller;
+class OTPassword;
+class OTString;
 
 
 // Todo:
@@ -197,9 +188,6 @@ EXPORT	OT_OPENSSL_CALLBACK souped_up_pass_cb;
 #define OPENSSL_CALLBACK_FUNC(name) extern "C" int32_t (name)(char *buf, int32_t size, int32_t rwflag, void *userdata)
 
 
-#include "OTLowLevelKeyData.hpp"
-
-
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
 class OTAsymmetricKey_OpenSSL : public OTAsymmetricKey
@@ -225,12 +213,12 @@ public:
 	virtual bool LoadPublicKeyFromCertString(const OTString   & strCert, bool bEscaped=true,
                                              const OTString   * pstrReason=NULL,
                                                    OTPassword * pImportPassword=NULL); // DOES handle bookends, AND escapes.
-    // ---------------------------------------------------------------
+
     virtual bool SaveCertToString      (OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
     virtual bool SavePrivateKeyToString(OTString & strOutput, const OTString * pstrReason=NULL, OTPassword * pImportPassword=NULL);
-    // -------------------------------------
+
 	virtual bool LoadPublicKeyFromPGPKey(const OTASCIIArmor & strKey); // does NOT handle bookends.
-// -----------------------------------------------------
+
     virtual bool ReEncryptPrivateKey(OTPassword & theExportPassword, bool bImporting);
 
     class OTAsymmetricKey_OpenSSLPrivdp;
@@ -239,7 +227,7 @@ public:
 protected: // CONSTRUCTOR
     OTAsymmetricKey_OpenSSL();
 
-    // -----------------------------------------------------
+
 public: // DERSTRUCTION
     virtual ~OTAsymmetricKey_OpenSSL();
     virtual void Release();

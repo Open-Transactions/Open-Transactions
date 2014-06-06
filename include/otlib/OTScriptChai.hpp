@@ -133,11 +133,7 @@
 #ifndef __OT_SCRIPT_CHAI_HPP__
 #define __OT_SCRIPT_CHAI_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTBylaw.hpp"
 #include "OTScript.hpp"
-
 
 #if __clang__
 #pragma clang diagnostic push
@@ -154,11 +150,10 @@
 #pragma warning( pop )
 #endif
 
+
 #ifdef OT_USE_SCRIPT_CHAI
 
-
 // SUBCLASS:  CHAI SCRIPT
-
 
 namespace chaiscript{
     class ChaiScript;

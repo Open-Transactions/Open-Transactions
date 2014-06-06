@@ -454,22 +454,28 @@
 #include <OTSmartContract.hpp>
 
 #ifdef OT_USE_SCRIPT_CHAI
-#include <chaiscript/chaiscript.hpp>
-
-#ifdef OT_USE_CHAI_STDLIB
-#include <chaiscript/chaiscript_stdlib.hpp>
-
+#  include "OTScriptChai.hpp"
+#  include <chaiscript/chaiscript.hpp>
+#  ifdef OT_USE_CHAI_STDLIB
+#    include <chaiscript/chaiscript_stdlib.hpp>
+#  endif
 #endif
 
-#endif
-
-#include <OTLog.hpp>
-#include <OTScript.hpp>
+#include <OTAgent.hpp>
+#include <OTBylaw.hpp>
+#include <OTClause.hpp>
 #include <OTCron.hpp>
-#include <OTPseudonym.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
 #include <OTPaths.hpp>
-
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
+#include <OTStash.hpp>
+#include <OTStashItem.hpp>
+#include <OTVariable.hpp>
 
 #include "irrxml/irrXML.hpp"
 

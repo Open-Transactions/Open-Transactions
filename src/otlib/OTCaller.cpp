@@ -134,6 +134,7 @@
 
 #include <OTCaller.hpp>
 
+#include "OTCallback.hpp"
 #include <OTPassword.hpp>
 #include <OTAssert.hpp>
 #include <OTString.hpp>
@@ -164,14 +165,6 @@
   munlock(((void *)(((size_t)(a)) & (~((PAGESIZE)-1)))),\
   (((((size_t)(a)) + (b) - 1) | ((PAGESIZE) - 1)) + 1) - (((size_t)(a)) & (~((PAGESIZE) - 1))))
 #endif
-
-
-//#include "OTPassword.h"
-//
-//#include "OTString.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
 
 
 OTCaller::~OTCaller()

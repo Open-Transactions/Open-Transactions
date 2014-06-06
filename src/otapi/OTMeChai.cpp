@@ -129,6 +129,7 @@
 #ifdef OT_USE_SCRIPT_CHAI
 
 #include "OTMeChai.hpp"
+#include "OTVariable.hpp"
 
 #include <chaiscript/chaiscript.hpp>
 

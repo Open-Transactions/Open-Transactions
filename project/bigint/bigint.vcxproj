@@ -18,6 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\deps\include\bigint\BigInteger.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\BigIntegerAlgorithms.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\BigIntegerLibrary.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\BigIntegerUtils.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\BigUnsigned.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\BigUnsignedInABase.hh" />
+    <ClInclude Include="..\..\deps\include\bigint\NumberlikeArray.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\deps\src\bigint\BigInteger.cc" />
+    <ClCompile Include="..\..\deps\src\bigint\BigIntegerAlgorithms.cc" />
+    <ClCompile Include="..\..\deps\src\bigint\BigIntegerUtils.cc" />
+    <ClCompile Include="..\..\deps\src\bigint\BigUnsigned.cc" />
+    <ClCompile Include="..\..\deps\src\bigint\BigUnsignedInABase.cc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7FBB7FB9-AE41-457C-8672-8919695AB198}</ProjectGuid>
     <RootNamespace>bigint</RootNamespace>
@@ -69,25 +85,25 @@
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -140,34 +156,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\otlib\bigint\BigInteger.cc" />
-    <ClCompile Include="..\..\src\otlib\bigint\BigIntegerAlgorithms.cc" />
-    <ClCompile Include="..\..\src\otlib\bigint\BigIntegerUtils.cc" />
-    <ClCompile Include="..\..\src\otlib\bigint\BigUnsigned.cc" />
-    <ClCompile Include="..\..\src\otlib\bigint\BigUnsignedInABase.cc" />
-    <ClCompile Include="..\..\src\otlib\bigint\sample.cc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otlib\bigint\testsuite.cc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\bigint\BigInteger.hh" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerAlgorithms.hh" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerLibrary.hh" />
-    <ClInclude Include="..\..\include\bigint\BigIntegerUtils.hh" />
-    <ClInclude Include="..\..\include\bigint\BigUnsigned.hh" />
-    <ClInclude Include="..\..\include\bigint\BigUnsignedInABase.hh" />
-    <ClInclude Include="..\..\include\bigint\NumberlikeArray.hh" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

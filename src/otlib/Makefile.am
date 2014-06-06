@@ -1,11 +1,12 @@
 
 AUTOMAKE_OPTIONS 	=	subdir-objects
 
-SUBDIRS 		= 	otprotob bigint irrxml lucre otext
+SUBDIRS 		= 	otprotob
 
 lib_LTLIBRARIES		=	libot.la
 
 opentxs_include_dir 	=	$(top_srcdir)/include
+
 opentxs_source_dir 	=	$(top_srcdir)/src
 
 ## COMMON FLAGS ###
@@ -14,7 +15,9 @@ common_includes		=	$(AM_CXXFLAGS)				\
 				-I$(top_builddir)/include/otlib 	\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
-				-I$(opentxs_include_dir)/containers	\
+				-I$(top_srcdir)/deps/include/misc	\
+				-I$(top_srcdir)/deps/include/containers	\
+				-I$(top_srcdir)/deps/include		\
 				-DOT_PREFIX_PATH="\"${prefix}\""	\
 				-DOT_VERSION="\"${VERSION}\""
 
@@ -27,20 +30,33 @@ libot_la_SOURCES	=	$(otlib_sources)		\
 
 libot_la_CXXFLAGS	=	$(common_includes)
 
-libot_la_LIBADD		=	bigint/libbigint.la		\
-                                irrxml/libirrxml.la		\
-                                lucre/liblucre.la		\
-				otprotob/libotprotob.la		\
-                                otext/libotext.la		\
+libot_la_LIBADD		=	$(top_builddir)/deps/src/bigint/libbigint.la	\
+				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
+                                $(top_builddir)/deps/src/lucre/liblucre.la	\
+				$(top_builddir)/deps/src/misc/libmisc.la	\
+                                otprotob/libotprotob.la				\
                                 $(DEPS_LIBS)
 
-libot_la_DEPENDENCIES	=	bigint/libbigint.la		\
-				irrxml/libirrxml.la		\
-				lucre/liblucre.la		\
-				otprotob/libotprotob.la		\
-				otext/libotext.la
+libot_la_DEPENDENCIES	=	$(top_builddir)/deps/src/bigint/libbigint.la	\
+				$(top_builddir)/deps/src/irrxml/libirrxml.la	\
+				$(top_builddir)/deps/src/lucre/liblucre.la	\
+				$(top_builddir)/deps/src/misc/libmisc.la	\
+				otprotob/libotprotob.la
 
 libot_la_LDFLAGS	=	--no-undefined
+
+
+
+#### Transport ZMQ 'option'
+
+if TRANSPORT_ZMQ4
+
+libot_la_LIBADD		+=	$(top_builddir)/deps/src/zmq/libzmq.la
+
+libot_la_DEPENDENCIES	+=	$(top_builddir)/deps/src/zmq/libzmq.la
+
+endif
+
 
 
 #### KEYRING Options
@@ -78,6 +94,8 @@ otlib_sources     =	OTAccount.cpp		\
 			OTAssert.cpp		\
 			OTAssetContract.cpp	\
 			OTAsymmetricKey.cpp	\
+			OTAsymmetricKeyOpenSSL.cpp	\
+			OTAsymmetricKeyOpenSSLPrivdp.cpp	\
 			OTBasket.cpp		\
 			OTBasketItem.cpp	\
 			OTBylaw.cpp		\
@@ -133,6 +151,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTSignature.cpp		\
 			OTSignedFile.cpp	\
 			OTSmartContract.cpp	\
+			OTSocket.cpp		\
 			OTStash.cpp		\
 			OTStashItem.cpp		\
 			OTStorage.cpp		\
@@ -148,8 +167,7 @@ otlib_sources     =	OTAccount.cpp		\
 			OTTransaction.cpp	\
 			OTTransactionType.cpp	\
 			OTVariable.cpp		\
-			OTWallet.cpp		\
-			OTWindowsRegistryTools.cpp
+			OTWallet.cpp
 
 
 otlib_headers_dir	=	$(opentxs_include_dir)/otlib
@@ -157,11 +175,9 @@ otlib_headers_dir	=	$(opentxs_include_dir)/otlib
 otlib_headers		=	$(otlib_headers_dir)/constants.h		\
 				$(otlib_headers_dir)/fast_mutex.h		\
 				$(otlib_headers_dir)/stacktrace.h		\
-				$(otlib_headers_dir)/tinythread.hpp		\
 				$(otlib_headers_dir)/win32_utf8conv.hpp		\
 				$(otlib_headers_dir)/win32_utf8conv_inl.hpp	\
 				$(otlib_headers_dir)/OpenSSL_BIO.hpp		\
-				$(otlib_headers_dir)/Timer.hpp			\
 				$(otlib_headers_ext)
 
 otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
@@ -247,6 +263,7 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTSmartContract.hpp	\
 				$(otlib_headers_dir)/OTStash.hpp		\
 				$(otlib_headers_dir)/OTStashItem.hpp		\
+				$(otlib_headers_dir)/OTSocket.hpp		\
 				$(otlib_headers_dir)/OTStorage.hpp		\
 				$(otlib_headers_dir)/OTString.hpp		\
 				$(otlib_headers_dir)/OTStringXML.hpp		\
@@ -260,11 +277,10 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTTransaction.hpp		\
 				$(otlib_headers_dir)/OTTransactionType.hpp	\
 				$(otlib_headers_dir)/OTVariable.hpp		\
-				$(otlib_headers_dir)/OTWallet.hpp 		\
-				$(otlib_headers_dir)/OTWindowsRegistryTools.hpp
+				$(otlib_headers_dir)/OTWallet.hpp
 ####   Containers
 
-containers_headers_dir	=	$(opentxs_include_dir)/containers
+containers_headers_dir	=	$(top_srcdir)/deps/include/containers
 
 containers_headers 	=	$(containers_headers_dir)/containers.hpp	\
 				$(containers_headers_dir)/containers_fixes.hpp	\
@@ -305,7 +321,7 @@ pkginclude_containers_HEADERS	=	$(containers_headers)
 
 ## Extra to package simpleini headers
 
-simpleini_headers_dir		=	$(top_srcdir)/include/simpleini
+simpleini_headers_dir		=	$(top_srcdir)/deps/include/simpleini
 
 simpleini_headers		=	$(simpleini_headers_dir)/ConvertUTF.h  		\
 					$(simpleini_headers_dir)/SimpleIni.hpp
@@ -315,7 +331,7 @@ pkginclude_simpleini_HEADERS	=	$(simpleini_headers)
 
 ## Extra to package chai4 headers
 
-chai4hdrs_dir		=	$(top_srcdir)/include/chai4/chaiscript
+chai4hdrs_dir		=	$(top_srcdir)/deps/include/chai4/chaiscript
 
 noinst_HEADERS		=	$(chai4hdrs_dir)/license.txt				\
 				$(chai4hdrs_dir)/chaiscript.hpp				\
@@ -353,7 +369,7 @@ noinst_HEADERS		=	$(chai4hdrs_dir)/license.txt				\
 
 ## Extra to package chai5 headers
 
-chai5hdrs_dir		=	$(top_srcdir)/include/chai5/chaiscript
+chai5hdrs_dir		=	$(top_srcdir)/deps/include/chai5/chaiscript
 
 noinst_HEADERS		+=	$(chai5hdrs_dir)/license.txt				\
 				$(chai5hdrs_dir)/chaiscript_defines.hpp			\

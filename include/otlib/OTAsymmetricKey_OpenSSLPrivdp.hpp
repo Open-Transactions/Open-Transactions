@@ -133,6 +133,7 @@
 #ifndef __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
 #define __OT_ASYMETRIC_KEY_OPENSSL_PRIV_DP_HPP__
 
+#include "OTAsymmetricKeyOpenSSL.hpp"
 
 extern "C"
 {
@@ -142,6 +143,9 @@ extern "C"
 
 int32_t mkcert(X509 **x509p, EVP_PKEY **pkeyp, int32_t bits, int32_t serial, int32_t days);
 }
+
+class OTPasswordData;
+
 
 class OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp {
 private:

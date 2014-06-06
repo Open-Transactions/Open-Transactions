@@ -133,40 +133,30 @@
 #ifndef  __OT_STRING_HPP__
 #define  __OT_STRING_HPP__
 
-#include <list>
-#include <map>
-#include <sstream>
-#include <string.h>
-
 #include "OTCommon.hpp"
 
 #ifdef _WIN32
-#include "win32_utf8conv.hpp"  // support for changig between std::string and std::wstring
+#include "win32_utf8conv.hpp"  // support for changing between std::string and std::wstring
 #endif
 
 #include <cstdarg>
+#include <list>
+#include <map>
+#include <sstream>
 
-class OTIdentifier;
-class OTContract;
-class OTASCIIArmor;
-class OTSignature;
-class OTPseudonym;
-
+#include <string.h>
 
 // All of the below PRI values are defined in inttypes.h
 // Therefore if it's NOT defined, then we must probably be
 // on Windows, since Windows doesn't have inttypes.h yet,
 // only stdint.h
-
 #if !defined( PRId8 )
 #define PRId8 "d"
 #endif
 
-
 #if !defined( PRId16 )
 #define PRId16 "d"
 #endif
-
 
 #if !defined( PRId32 )
 #if defined( WINAPI )
@@ -177,7 +167,6 @@ class OTPseudonym;
 
 #endif
 #endif
-
 
 #if !defined( PRId64 )
 #if defined( WINAPI )
@@ -192,7 +181,6 @@ class OTPseudonym;
 #endif
 #endif
 
-
 //#ifdef _WIN32
 //#define MAX_STRING_LENGTH   631072
 //#else
@@ -201,9 +189,14 @@ class OTPseudonym;
 //#endif // _WIN32
 // TODO: consider how MAX_SIZE affects the above hard-coded number...
 
+class OTASCIIArmor;
+class OTContract;
+class OTIdentifier;
+class OTPseudonym;
+class OTSignature;
 
-typedef std::map	<std::string, std::string>		mapOfStrings;
 typedef std::list   <std::string>                   listOfStrings;
+typedef std::map	<std::string, std::string>		mapOfStrings;
 
 
 // If you've already strlen'd the string,

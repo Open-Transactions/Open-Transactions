@@ -135,16 +135,12 @@
 
 #include "OTCommon.hpp"
 
-#include "OTCrypto.hpp"
-#include "OTEnvelope.hpp"
-
+class OTEnvelope;
+class OTIdentifier;
+class OTPassword;
 class OTPseudonym;
 class OTString;
-class OTASCIIArmor;
-class OTAsymmetricKey;
 class OTSymmetricKey;
-class OTPassword;
-class OTPasswordData;
 
 
 // There are certain cases where we want the option to pass a Nym OR a
@@ -155,49 +151,51 @@ class OTNym_or_SymmetricKey
 {
 private:
     OTPseudonym     * m_pNym;
-    // ---------------------------------
+
     OTSymmetricKey  * m_pKey;
     OTPassword      * m_pPassword; // optional. Goes with m_pKey.
-    // ---------------------------------
-    bool              m_bCleanupPassword; // m_pPassword is usually not owned. But if we create it and keep it around to avoid (for example forcing the user to enter the PW 30 times in a row when exporting his purse...) then we want to set this to true (where it normally defaults to false) in order to make sure we cleanup on destruction.
-    // ---------------------------------
+
+	// m_pPassword is usually not owned. But if we create it and keep it around to avoid
+	// (for example forcing the user to enter the PW 30 times in a row when exporting his purse...)
+	// then we want to set this to true (where it normally defaults to false) in order to make sure we cleanup on destruction.
+    bool              m_bCleanupPassword;
+
     const OTString  * m_pstrDisplay;
-    // ---------------------------------
+
     OTNym_or_SymmetricKey();
-    // ---------------------------------
+
 public:
-    // ---------------------------------
+
 	EXPORT	OTPseudonym    * GetNym()      const { return m_pNym;      }
 	EXPORT	OTSymmetricKey * GetKey()      const { return m_pKey;      }
 	EXPORT	OTPassword     * GetPassword() const { return m_pPassword; } // for symmetric key (optional)
-	// ---------------------------------
+
 	EXPORT	bool  IsNym()       const { return (NULL != m_pNym);      }
 	EXPORT	bool  IsKey()       const { return (NULL != m_pKey);      }
 	EXPORT	bool  HasPassword() const { return (NULL != m_pPassword); } // for symmetric key (optional)
-	// ------------------------------------------------------------------------
+
 	EXPORT	void GetIdentifier(OTIdentifier & theIdentifier) const;
 	EXPORT	void GetIdentifier(OTString     & strIdentifier) const;
-	// ---------------------------------
+
 	EXPORT	bool CompareID(const OTNym_or_SymmetricKey & rhs) const;
-	// ------------------------------------------------------------------------
+
 	// Seal / Open is for public / private key crypto. (With OTPseudonym and OTAsymmetricKey.)
 	// Whereas Encrypt/Decrypt is for symmetric key crypto (With OTSymmetricKey.)
-	//
 	EXPORT	bool Seal_or_Encrypt(      OTEnvelope & outputEnvelope, const OTString   strInput,  const OTString * pstrDisplay=NULL);
 	EXPORT	bool Open_or_Decrypt(const OTEnvelope & inputEnvelope,        OTString & strOutput, const OTString * pstrDisplay=NULL);
-	// ---------------------------------
+
 	EXPORT	~OTNym_or_SymmetricKey();
-	// ---------------------------------
+
 	EXPORT	OTNym_or_SymmetricKey(const OTNym_or_SymmetricKey & rhs);
-	// ---------------------------------
+
 	EXPORT	OTNym_or_SymmetricKey(const OTPseudonym     & theNym, const OTString  * pstrDisplay=NULL);
 	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTString  * pstrDisplay=NULL);
 	EXPORT	OTNym_or_SymmetricKey(const OTSymmetricKey  & theKey, const OTPassword & thePassword, const OTString * pstrDisplay=NULL);
-	// ---------------------------------
+
 	EXPORT	void swap(OTNym_or_SymmetricKey & other);
 
 	EXPORT	OTNym_or_SymmetricKey & operator = (OTNym_or_SymmetricKey other); // passed by value.
-	// ---------------------------------
+
 	EXPORT	void Release(); // Someday make this virtual, if we ever subclass it.
 	EXPORT	void Release_Nym_or_SymmetricKey(); // NOT called in the destructor, since this normally doesn't own its contents.
 };

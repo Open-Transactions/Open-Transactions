@@ -134,6 +134,8 @@
 
 #include <OTTrackable.hpp>
 
+#include "OTNumList.hpp"
+
 
 // This class is like OTInstrument except with identifying info (such as transaction number) added.
 

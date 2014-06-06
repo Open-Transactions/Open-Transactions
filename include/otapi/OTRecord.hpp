@@ -145,7 +145,7 @@
 #include <string>
 
 
-const std::string & OTRecord_GetTypeString(int theType);
+const std::string & OTRecord_GetTypeString(int32_t theType);
 
 
 /*
@@ -169,7 +169,7 @@ public:
         ErrorState
     };
 private:
-    int          m_nBoxIndex;
+    int32_t      m_nBoxIndex;
     time64_t     m_ValidFrom;
     time64_t     m_ValidTo;
     // ---------------------------------------
@@ -191,6 +191,25 @@ private:
     // Contains payment instrument or mail message (or nothing, if not applicable.)
     //
     std::string   m_str_contents;
+    // ---------------------------------------
+    // SPECIAL MAIL
+    //
+    // Let's say this OTRecord is a Mail, but it's not via OT. (Perhaps it's
+    // from Bitmessage or Freenet.) In that case it's a "special mail." In that
+    // case, there are a few additional pieces of data we store here.
+    // For example, the method ID (if one is available.) If you use Moneychanger
+    // to send or receive a message through Bitmessage, the sender or recipient
+    // will have a Method ID which references the connection string used to send
+    // or receive. There will also be the message type "bitmessage" with the
+    // type display string "Bitmessage", and the sender and recipient addresses.
+    //
+    bool          m_bIsSpecialMail;       // Meaning a bitmessage vs an OT message.
+    int32_t       m_nMethodID;            // A Nym in Moneychanger might have 2 Bitmessage addresses, each used on different BM nodes with different connection strings. The Method ID is used to lookup the connection string.
+    std::string   m_str_my_address;       // My Bitmessage address.
+    std::string   m_str_other_address;    // The sender or recipient's Bitmessage address.
+    std::string   m_str_msg_id;           // If you want to delete a Bitmessage, you must know the message ID.
+    std::string   m_str_msg_type;         // "bitmessage"
+    std::string   m_str_msg_type_display; // "Bitmessage"
     // ---------------------------------------
     // Contains transaction number of actual receipt in inbox,
     // or payment inbox, or record box. (If outpayment, contains
@@ -214,11 +233,14 @@ private:
     bool          m_bIsExpired;
     bool          m_bIsCanceled;
     // ---------------------------------------
-    OTRecordType        m_RecordType;
+    OTRecordType  m_RecordType;
     // ---------------------------------------
     bool  AcceptIncomingTransferOrReceipt();
 public:
     // ---------------------------------------
+EXPORT    void  SetSpecialMail(bool bIsSpecial=true);
+    // ---------------------------------------
+EXPORT    bool  IsSpecialMail() const;
 EXPORT    bool  IsPending()     const;
 EXPORT    bool  IsOutgoing()    const;
 EXPORT    bool  IsRecord()      const;
@@ -262,6 +284,18 @@ EXPORT    bool  DiscardOutgoingCash();        // For OUTgoing cash. (No way to s
 EXPORT    int32_t GetBoxIndex() const; // If this is set to 3, for example, for a payment in the payments inbox, then index 3 in that same box refers to the payment corresponding to this record.
 EXPORT    void    SetBoxIndex(int32_t nBoxIndex);
     // ---------------------------------------
+EXPORT    int32_t GetMethodID() const; // Used by "special mail."
+EXPORT    void    SetMethodID(int32_t nMethodID);
+    // ---------------------------------------
+EXPORT    const std::string & GetMsgID() const; // Used by "special mail."
+EXPORT    void                SetMsgID(const std::string & str_id);
+    // ---------------------------------------
+EXPORT    const std::string & GetMsgType() const; // Used by "special mail."
+EXPORT    void                SetMsgType(const std::string & str_type);
+    // ---------------------------------------
+EXPORT    const std::string & GetMsgTypeDisplay() const; // Used by "special mail."
+EXPORT    void                SetMsgTypeDisplay(const std::string & str_type);
+    // ---------------------------------------
 EXPORT    int64_t GetTransactionNum() const; // Trans Num of receipt in the box. (Unless outpayment, contains number for instrument.)
 EXPORT    void    SetTransactionNum(int64_t lTransNum);
     // ---------------------------------------
@@ -275,9 +309,11 @@ EXPORT    const std::string & GetAssetID()        const;
 EXPORT    const std::string & GetCurrencyTLA()    const; // BTC, USD, etc.
 EXPORT    const std::string & GetNymID()          const;
 EXPORT    const std::string & GetAccountID()      const;
+EXPORT    const std::string & GetAddress()        const; // Used by "special mail"
     // ---------------------------------------
 EXPORT    const std::string & GetOtherNymID()     const; // Could be sender OR recipient depending on whether incoming/outgoing.
 EXPORT    const std::string & GetOtherAccountID() const; // Could be sender OR recipient depending on whether incoming/outgoing.
+EXPORT    const std::string & GetOtherAddress()   const; // Used by "special mail"
     // ---------------------------------------
 EXPORT    const std::string & GetName()           const;
 EXPORT    const std::string & GetDate()           const;
@@ -288,6 +324,8 @@ EXPORT    const std::string & GetContents()       const;
     // ---------------------------------------
 EXPORT    void  SetOtherNymID    (const std::string & str_ID);
 EXPORT    void  SetOtherAccountID(const std::string & str_ID);
+EXPORT    void  SetAddress       (const std::string & str_Address); // Used by "special mail"
+EXPORT    void  SetOtherAddress  (const std::string & str_Address); // Used by "special mail"
 EXPORT    void  SetMemo          (const std::string & str_memo);
 EXPORT    void  SetContents      (const std::string & str_contents);
     // ---------------------------------------

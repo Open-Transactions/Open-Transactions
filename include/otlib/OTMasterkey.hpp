@@ -133,15 +133,7 @@
 #ifndef __OT_MASTERKEY_HPP__
 #define __OT_MASTERKEY_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTContract.hpp"
-#include "OTAsymmetricKey.hpp"
-#include "OTKeypair.hpp"
-#include "OTSubcredential.hpp"
 #include "OTKeyCredential.hpp"
-#include "OTSubkey.hpp"
-#include "OTCredential.hpp"
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -177,14 +169,8 @@
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
-class OTPassword;
 class OTString;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTPasswordData;
-class OTSignatureMetadata;
 class OTCredential;
-class OTPseudonym;
 
 
 class OTMasterkey : public OTKeyCredential
@@ -217,8 +203,6 @@ public:
     virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
 };
-
-typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 
 
 #endif // __OT_MASTERKEY_HPP__

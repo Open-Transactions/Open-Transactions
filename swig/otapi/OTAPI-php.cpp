@@ -18239,83 +18239,6 @@ fail:
 }
 
 
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ConnectServer) {
-  std::string *arg1 = 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp1 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  
-  convert_to_string_ex(args[0]);
-  temp1.assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
-  arg1 = &temp1;
-  
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (bool)OTAPI_Wrap::ConnectServer((std::string const &)*arg1,(std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProcessSockets) {
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 0) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  result = (bool)OTAPI_Wrap::ProcessSockets();
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
 ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetArgsCount) {
   std::string arg1 ;
   zval **args[1];
@@ -44945,15 +44868,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_message_getnymboxhash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_connectserver, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otapi_wrap_processsockets, 0, 0, 0)
-ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_cli_getargscount, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -47533,8 +47447,6 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnewissueracctid,_wrap_OTAPI_Wrap_Message_GetNewIssuerAcctID,swig_arginfo_otapi_wrap_message_getnewissueracctid)
  SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnewacctid,_wrap_OTAPI_Wrap_Message_GetNewAcctID,swig_arginfo_otapi_wrap_message_getnewacctid)
  SWIG_ZEND_NAMED_FE(otapi_wrap_message_getnymboxhash,_wrap_OTAPI_Wrap_Message_GetNymboxHash,swig_arginfo_otapi_wrap_message_getnymboxhash)
- SWIG_ZEND_NAMED_FE(otapi_wrap_connectserver,_wrap_OTAPI_Wrap_ConnectServer,swig_arginfo_otapi_wrap_connectserver)
- SWIG_ZEND_NAMED_FE(otapi_wrap_processsockets,_wrap_OTAPI_Wrap_ProcessSockets,swig_arginfo_otapi_wrap_processsockets)
  SWIG_ZEND_NAMED_FE(ot_cli_getargscount,_wrap_OT_CLI_GetArgsCount,swig_arginfo_ot_cli_getargscount)
  SWIG_ZEND_NAMED_FE(ot_cli_getvaluebykey,_wrap_OT_CLI_GetValueByKey,swig_arginfo_ot_cli_getvaluebykey)
  SWIG_ZEND_NAMED_FE(ot_cli_getvaluebyindex,_wrap_OT_CLI_GetValueByIndex,swig_arginfo_ot_cli_getvaluebyindex)

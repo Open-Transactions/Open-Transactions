@@ -133,15 +133,11 @@
 #ifndef __OT_PASSWORD_DATA_HPP__
 #define __OT_PASSWORD_DATA_HPP__
 
-#include <string>
-
 #include "OTCommon.hpp"
 
-#include "OTCachedKey.hpp"
-#include "OTPassword.hpp"
-
-class OTString;
+class OTCachedKey;
 class OTPassword;
+class OTString;
 
 
 /*
@@ -173,14 +169,12 @@ class OTPassword;
 #define OTPASSWORD_MEMSIZE		129		// +1 for null terminator.
 
 // UPDATE: Increasing the size here, so we can accommodate private keys (in addition to passphrases.)
-//
 #define OT_LARGE_BLOCKSIZE	32767		// (32767 bytes max length for a password.)
 #define OT_LARGE_MEMSIZE	32768		// +1 for null terminator.
 
 // Default is the smaller size.
 #define OT_DEFAULT_BLOCKSIZE  128
 #define OT_DEFAULT_MEMSIZE    129
-
 
 // https://github.com/lorf/keepassx/blob/master/src/lib/SecString.cpp
 
@@ -283,8 +277,6 @@ void main()
 
     return hr;
 }
-
-
 
 
 #ifndef _WINDOWS_

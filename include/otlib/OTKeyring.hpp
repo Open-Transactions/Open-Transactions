@@ -137,10 +137,7 @@
 #ifndef __OT_KEYRING_HPP__
 #define __OT_KEYRING_HPP__
 
-#include <string>
-
 #include "OTCommon.hpp"
-
 
 // It's better to turn-on one of these, by using the Makefile,
 // instead of hardcoding it here, which is entirely unnecessary.
@@ -157,11 +154,10 @@
 class OTString;
 class OTPassword;
 
+
 class OTKeyring
 {
 public:
-
-    // -------------------------------------------------------
 
     // NOTE: Normally the "username" in our context is related to the
     // master key. OTCachedKey will call OTKeyring::RetrieveSecret, and
@@ -293,7 +289,7 @@ EXPORT static const char * FlatFile_GetPasswordFolder();
 private:
 EXPORT static std::string s_str_passwd_folder; //NOTE: Do not ever use this. OT_KEYRING_FLATFILE should NEVER be defined! No! For testing only.
 #endif
-    // -------------------------------------------------------
+
 };
 
 

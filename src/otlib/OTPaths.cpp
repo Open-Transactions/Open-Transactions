@@ -134,12 +134,18 @@
 
 #include <OTPaths.hpp>
 
+#include <OTAssert.hpp>
+#include <OTLog.hpp>
+#ifdef _WIN32
+#include "OTWindowsRegistryTools.hpp"
+#endif
+
+#ifndef _WIN32
+#include <cerrno>
+#endif
 #include <vector>
 
 #include <sys/stat.h>
-
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
 
 
 #ifdef _WIN32

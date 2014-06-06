@@ -133,9 +133,9 @@
 #ifndef __OT_TRACKABLE_HPP__
 #define __OT_TRACKABLE_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTInstrument.hpp"
+
+class OTNumList;
 
 
 // OTTrackable is very similar to OTInstrument.

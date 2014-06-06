@@ -145,12 +145,15 @@ kamH0Y/n11lCvo1oQxM+
 #include <OpenTransactions.hpp>
 #include <OT_ME.hpp>
 #include <OTClient.hpp>
-//
+
+#include <OTAccount.hpp>
+#include <OTAssetContract.hpp>
 #include <OTLog.hpp>
 #include <OTPaths.hpp>
-#include <OTWallet.hpp>
+#include <OTPseudonym.hpp>
 #include <OTServerContract.hpp>
-#include <OTAccount.hpp>
+#include <OTVariable.hpp>
+#include <OTWallet.hpp>
 
 #include "ot_otapi_ot.hpp"
 

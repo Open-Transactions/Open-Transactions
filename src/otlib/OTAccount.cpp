@@ -149,12 +149,14 @@
 #include "irrxml/irrXML.hpp"
 
 #include <OTAssert.hpp>
+#include <OTDataFolder.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
-#include <OTPseudonym.hpp>
-#include <OTPayload.hpp>
 #include <OTMessage.hpp>
 #include <OTPaths.hpp>
+#include <OTPayload.hpp>
+#include <OTPseudonym.hpp>
 
 using namespace irr;
 using namespace io;

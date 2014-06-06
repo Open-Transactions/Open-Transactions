@@ -133,22 +133,20 @@
 #ifndef __OT_IDENTIFIER_HPP__
 #define __OT_IDENTIFIER_HPP__
 
-#include <string>
-
-#include "OTCommon.hpp"
-
 #include "OTData.hpp"
+
+#include <string>
 
 // An Identifier is basically a 256 bit hash value.
 // This class makes it easy to convert IDs back and forth to strings.
 //
-class OTString;
-class OTPseudonym;
-class OTOffer;
-class OTMarket;
-class OTSymmetricKey;
 class OTCachedKey;
 class OTContract;
+class OTMarket;
+class OTOffer;
+class OTPseudonym;
+class OTString;
+class OTSymmetricKey;
 
 class OTIdentifier : public OTData
 {

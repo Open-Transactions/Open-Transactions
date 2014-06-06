@@ -21,6 +21,18 @@
 #include <string>
 #include <cstdlib>
 
+// forward decleration.  (need to match what is in the irr source code). Cam.
+namespace irr{
+	namespace io{
+		template<class char_type, class super_class>
+		class IIrrXMLReader;
+		class IFileReadCallBack;
+		class IXMLBase;
+
+		typedef IIrrXMLReader<char, IXMLBase> IrrXMLReader;
+	}
+}
+
 
 #define OT_TIME_YEAR_IN_SECONDS          OTTimeGetTimeFromSeconds(31536000)  // 60 * 60 * 24 * 365
 #define OT_TIME_SIX_MONTHS_IN_SECONDS    OTTimeGetTimeFromSeconds(15552000)  // 60 * 60 * 24 * 180
@@ -70,4 +82,4 @@ inline time64_t OTTimeAddTimeInterval(time64_t lhs, int64_t rhs) { return lhs + 
 #endif
 
 
-#endif //__OT_COMMON_HPP__
+#endif // __OT_COMMON_HPP__

@@ -1113,8 +1113,6 @@ func OTAPI_WrapMessage_GetNewAssetTypeID(string) string
 func OTAPI_WrapMessage_GetNewIssuerAcctID(string) string
 func OTAPI_WrapMessage_GetNewAcctID(string) string
 func OTAPI_WrapMessage_GetNymboxHash(string) string
-func OTAPI_WrapConnectServer(string, string, string, string, string) bool
-func OTAPI_WrapProcessSockets() bool
 type OTAPI_Wrap interface {
 	Swigcptr() uintptr
 	SwigIsOTAPI_Wrap()

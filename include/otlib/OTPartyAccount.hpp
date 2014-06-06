@@ -133,28 +133,17 @@
 #ifndef __OT_PARTY_ACCOUNT_HPP__
 #define __OT_PARTY_ACCOUNT_HPP__
 
-#include <map>
-#include <string>
-
-#include "OTCommon.hpp"
-
 #include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTBylaw.hpp"
 
+class OTAccount;
+class OTAgent;
 class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
-class OTAccount;
 class OTParty;
-class OTPartyAccount;
-class OTScriptable;
-class OTSmartContract;
+class OTPseudonym;
 class OTScript;
-class OTAccount;
+class OTSmartContract;
 
 typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
 
 
 // Each party has a list of accounts. Just as the agent, depending on context, MAY
@@ -202,7 +191,7 @@ class OTPartyAccount
 	// between them) should be logically the same as m_pOwnerParty->GetPartyID().
 	//
 public:
-EXPORT	void RegisterForExecution(OTScript& theScript);
+EXPORT	void RegisterForExecution(OTScript & theScript);
 
 	OTParty * GetParty() { return m_pForParty; }
 	void SetParty(OTParty & theOwnerParty); // This happens when the partyaccount is added to the party. (so I have a ptr back)
@@ -255,8 +244,6 @@ EXPORT	OTAgent   * GetAuthorizedAgent();
 	//
 	void ClearTemporaryPointers() { m_pAccount = NULL; }
 };
-
-typedef std::map<std::string, OTPartyAccount *> mapOfPartyAccounts;
 
 
 #endif // __OT_PARTY_ACCOUNT_HPP__

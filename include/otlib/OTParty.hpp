@@ -133,30 +133,21 @@
 #ifndef __OT_PARTY_HPP__
 #define __OT_PARTY_HPP__
 
-#include <map>
-#include <string>
-
-#include "OTCommon.hpp"
-
 #include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTBylaw.hpp"
 
+class OTAccount;
+class OTAgent;
 class OTIdentifier;
 class OTNumList;
-class OTPseudonym;
-class OTAccount;
-class OTParty;
 class OTPartyAccount;
-class OTScriptable;
-class OTSmartContract;
+class OTPseudonym;
 class OTScript;
-class OTAccount;
 class OTScriptable;
 
-typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
 typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+typedef std::map<std::string, OTAgent *>		mapOfAgents;
+typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
+typedef std::map<std::string, OTPartyAccount *>	mapOfPartyAccounts;
 
 
 // Party is always either an Owner Nym, or an Owner Entity formed by Contract.
@@ -352,8 +343,8 @@ EXPORT  OTAgent *   GetAgentByIndex(int32_t nIndex);
 	//
 	void RetrieveNymPointers(mapOfNyms & map_Nyms_Already_Loaded);
 	// ----------------------------------------
-        bool AddAccount(OTPartyAccount& thePartyAcct);
-EXPORT	bool AddAccount(const OTString& strAgentName, const OTString& strName,
+        bool AddAccount(OTPartyAccount & thePartyAcct);
+EXPORT	bool AddAccount(const OTString & strAgentName, const OTString& strName,
                         const OTString & strAcctID, const OTString & strAssetTypeID,
                         const int64_t lClosingTransNo);
 EXPORT	bool AddAccount(const OTString& strAgentName, const char * szAcctName,
@@ -388,7 +379,7 @@ EXPORT	OTPartyAccount * GetAccountByID   (const OTIdentifier & theAcctID) const;
 	// ----------------------
 EXPORT	bool CopyAcctsToConfirmingParty(OTParty & theParty) const; // When confirming a party, a new version replaces the original. This is part of that process.
     // ----------------------
-	void RegisterAccountsForExecution(OTScript& theScript);
+	void RegisterAccountsForExecution(OTScript & theScript);
 	// ------------------------------------------------------
 	bool LoadAndVerifyAgentNyms(OTPseudonym & theServerNym,
 								mapOfNyms	& map_Nyms_Already_Loaded,
@@ -410,8 +401,6 @@ EXPORT	bool CopyAcctsToConfirmingParty(OTParty & theParty) const; // When confir
 
 
 };
-
-typedef std::map<std::string, OTParty *> mapOfParties;
 
 
 #endif // __OT_PARTY_HPP__

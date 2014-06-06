@@ -132,14 +132,7 @@
 
 #include <stdafx.hpp>
 
-//FIX: ORDER DEPENDING
-#include <OTBasket.hpp>
 #include <OTBasketItem.hpp>
-
-#include <OTAssert.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
-
 
 BasketItem::BasketItem() :
     lMinimumTransferAmount(0), 

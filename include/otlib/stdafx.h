@@ -11,6 +11,8 @@
 
 #include "OTCommon.hpp"
 
+#include "OTglobal.h"
+
 // NOTE: Turns out moneypunct kind of sucks.
 // As a result, for internationalization purposes,
 // these values have to be set here before compilation.

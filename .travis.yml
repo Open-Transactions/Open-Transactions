@@ -1,28 +1,36 @@
+os:
+  - linux
+  - osx
 language: cpp
 compiler:
   - gcc
   - clang
-install:
-  - sudo apt-get install libprotobuf-dev protobuf-compiler libzmq3-dev libboost-all-dev
-  - git clone https://github.com/zeromq/cppzmq.git
-  - sudo cp cppzmq/zmq.hpp /usr/local/include/
-script: ./autogen.sh && ./configure && make distcheck -j4
+install: ./scripts/travis/install-deps.sh "${TRAVIS_OS_NAME}"
+script: ./autogen.sh && ./configure && make distcheck -j 2
 branches:
   only:
     - master
     - develop
 notifications:
   recipients:
-    - tommy@monetas.net
+    - ot-dev@opentransactions.org
   email:
     on_success: change
     on_failure: always
-#  irc:
-#    on_success: change
-#    on_failure: always
-#    channels:
-#      - "chat.freenode.net#opentransactions"
-#    template:
-#      - "%{branch} (%{commit} - %{author}): %{message}"
-#      - "Change view: %{compare_url}"
-#      - "Build: %{build_url}"
+  irc:
+    on_success: change
+    on_failure: always
+    channels:
+      - "chat.freenode.net#opentransactions"
+    template:
+      - "%{branch} (%{commit} - %{author}): %{message}"
+      - "Change view: %{compare_url}"
+      - "Build: %{build_url}"
+env:
+  global:
+    secure: Nry0SprRMjKfEYzcgSv6be18WVDXgqBY0OfF9N+GAtGABFGVtgBa7bA/h5bAwjpsFX0a03OeVMtwngSEOSD3B/7/ASKEk6KJOB3xSOolf8QUF3rDTZCFelrUzQkG8EqAS7sP8u1ztDS6pgKmfGPCfxIQkhPm/sKAkBdwP30+tGg=
+after_success:
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- ./scripts/travis/update_online_documentation.sh
+- ./scripts/travis/update_sample_mint.sh

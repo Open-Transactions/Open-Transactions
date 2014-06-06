@@ -132,18 +132,18 @@
 
 #include <stdafx.hpp>
 
-//FIX ORDER OF DEPENDENCY
-#include <OTBylaw.hpp>
 #include <OTParty.hpp>
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
 #include <OTAccount.hpp>
+#include <OTAgent.hpp>
+#include <OTAgreement.hpp>
+#include <OTContract.hpp>
+#include <OTLog.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTPseudonym.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
 
 
 // Checks opening number on party, and closing numbers on his accounts.

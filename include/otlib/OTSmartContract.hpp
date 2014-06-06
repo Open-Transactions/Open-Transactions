@@ -136,14 +136,16 @@
 #ifndef __OT_SMART_CONTRACT_HPP__
 #define __OT_SMART_CONTRACT_HPP__
 
-#include "OTCommon.hpp"
-
+#include "OTAcctList.hpp"
 #include "OTCronItem.hpp"
-#include "OTAccount.hpp"
 
+class OTAccount;
 class OTParty;
 class OTPseudonym;
-class OTSmartContract;
+class OTStash;
+
+typedef std::map<std::string, OTAccount *>		mapOfAccounts;
+typedef std::map<std::string, OTStash *>		mapOfStashes;
 
 
 // global with int64_t parameter

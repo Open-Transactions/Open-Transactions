@@ -139,14 +139,17 @@
 #include <OT_ME.hpp>
 #include <OTClient.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTWallet.hpp>
-#include <OTServerContract.hpp>
-#include <OTMessage.hpp>
-#include <OTPurse.hpp>
-#include <OTEnvelope.hpp>
 #include <OTAccount.hpp>
+#include <OTAssetContract.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
+#include <OTPseudonym.hpp>
+#include <OTPurse.hpp>
+#include <OTServerContract.hpp>
+#include <OTVariable.hpp>
+#include <OTWallet.hpp>
 
 #include "ot_me_switch.hpp"
 

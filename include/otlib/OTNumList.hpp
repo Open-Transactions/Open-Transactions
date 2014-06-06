@@ -133,17 +133,13 @@
 #ifndef __OT_NUM_LIST_HPP__
 #define __OT_NUM_LIST_HPP__
 
-#include <set>
-
 #include "OTCommon.hpp"
 
-#include "OTStringXML.hpp"
-#include "OTIdentifier.hpp"
-#include "OTBylaw.hpp"
-#include "OTContract.hpp"
+#include <set>
 
 class OTAsymmetricKey;
 class OTPasswordData;
+class OTString;
 
 
 // Useful for storing a std::set of longs,

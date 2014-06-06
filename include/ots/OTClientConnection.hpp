@@ -140,38 +140,6 @@
 #include "OTMessageBuffer.hpp"
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-	
-#define TYPE_1_CMD_1	1
-#define TYPE_1_CMD_2	2
-#define TYPE_1_CMD_3	3
-#define TYPE_1_CMD_4	4
-	
-#define CMD_TYPE_1		1
-	
-#define OT_CMD_HEADER_SIZE  9
-	
-	typedef uint8_t	BYTE;
-	typedef unsigned short	USHORT;
-	
-	union u_header
-	{
-		BYTE buf[OT_CMD_HEADER_SIZE];
-		struct {
-			BYTE		type_id;	// 1 byte
-			BYTE		command_id;	// 1 byte
-			BYTE		filler[2];	// 2 extra bytes here so the size begins on a 4-byte boundary
-			uint32_t	size;		// 4 bytes to describe size of payload
-			BYTE		checksum;	// 1 byte
-		} fields;	// total of 9 bytes
-	};
-	
-#ifdef __cplusplus
-}
-#endif
-
 class OTAsymmetricKey;
 class OTMessage;
 class OTServer;
@@ -194,7 +162,6 @@ class OTClientConnection
 	bool			m_bFocused;		// Defaults to false. If true, it means we're in XmlRpc mode, or some such, instead of TCP over SSL streaming.
 	
 public:
-//	SFSocket * m_pSocket;	// For TCP / SSL mode. 
 	
 	void ProcessBuffer();
 	void ReadBytesIntoBuffer();
@@ -204,7 +171,6 @@ public:
 
 	void ProcessReply(OTMessage &theReply);
 
-//	OTClientConnection(SFSocket & theSocket, OTServer & theServer); // TCP		/ over SSL mode.
 	OTClientConnection(OTServer & theServer);						// XmlRpc	/ over HTTP mode.
 	~OTClientConnection();
 	
