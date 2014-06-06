@@ -142,6 +142,7 @@
 #include <fstream>
 #include <iostream>
 
+#include <cerrno.h>
 #include <constants.h>
 #include <stacktrace.h>
 
