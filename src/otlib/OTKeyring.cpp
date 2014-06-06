@@ -142,8 +142,6 @@
 #include "OTCachedKey.hpp"
 #include "OTLog.hpp"
 
-//#include <fstream>
-
 
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)
 //

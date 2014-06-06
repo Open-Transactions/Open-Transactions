@@ -138,9 +138,7 @@
 #include "OTEnvelope.hpp"
 #include "OTLog.hpp"
 
-//#include <iostream>
 #include <fstream>
-//#include <sstream>
 
 #ifdef _WIN32
 #include <zlib/zlib.h>

@@ -137,9 +137,6 @@
 #include "OTAssert.hpp"
 #include "OTIdentifier.hpp"
 
-//#include <sstream>
-//#include <fstream>
-
 
 OTAcctFunctor::OTAcctFunctor(const OTIdentifier & theServerID, mapOfAccounts * pLoadedAccounts/*=NULL*/)
  : m_pServerID(new OTIdentifier(theServerID)), // owned

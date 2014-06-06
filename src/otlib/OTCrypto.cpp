@@ -148,9 +148,6 @@
 
 #include <bigint/BigIntegerLibrary.hh>
 
-//#include <iostream>
-//#include <vector>
-
 #include "stacktrace.h"
 
 extern "C"

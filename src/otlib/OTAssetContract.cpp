@@ -143,7 +143,6 @@
 
 #include "irrxml/irrXML.hpp"
 
-//#include <sstream>
 #include <fstream>
 
 using namespace irr;

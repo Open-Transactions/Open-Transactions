@@ -142,8 +142,6 @@
 
 #include "irrxml/irrXML.hpp"
 
-//#include <time.h>
-
 
 // OTAgreement is derived from OTCronItem.  It handles re-occuring billing.
 bool OTAgreement::SendNoticeToAllParties(bool bSuccessMsg,

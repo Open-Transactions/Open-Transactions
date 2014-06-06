@@ -137,10 +137,6 @@
 #include "OTLog.hpp"
 #include "OTPaths.hpp"
 
-//#include <vector>
-
-//#include <sys/stat.h>
-
 
 #ifdef _WIN32
 #include <direct.h>

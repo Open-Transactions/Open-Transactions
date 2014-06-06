@@ -137,8 +137,6 @@
 #include "OTKeypair.hpp"
 #include "OTLog.hpp"
 
-//#include <stacktrace.h>
-
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 

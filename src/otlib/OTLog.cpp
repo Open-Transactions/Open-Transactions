@@ -138,7 +138,6 @@
 
 #include "tinythread.hpp"
 
-//#include <exception>
 #include <fstream>
 #include <iostream>
 

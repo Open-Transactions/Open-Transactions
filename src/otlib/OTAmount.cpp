@@ -134,9 +134,6 @@
 
 #include "OTAmount.hpp"
 
-//#include <sstream>
-//#include <fstream>
-
 
 OTAmount::OTAmount(int64_t lAmount/*=0*/) :
     m_lAmount(lAmount)

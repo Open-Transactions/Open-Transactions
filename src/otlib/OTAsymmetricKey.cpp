@@ -147,8 +147,6 @@
 #include "OTAsymmetricKeyOpenSSL.hpp"
 #endif
 
-//#include <stacktrace.h>
-
 
 //static
 OTAsymmetricKey * OTAsymmetricKey::KeyFactory() // Caller IS responsible to delete!

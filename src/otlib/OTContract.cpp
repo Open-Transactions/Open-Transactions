@@ -157,7 +157,6 @@
 #include "irrxml/irrXML.hpp"
 
 #include <fstream>
-//#include <locale>
 
 using namespace irr;
 using namespace io;

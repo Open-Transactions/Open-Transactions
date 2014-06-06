@@ -145,8 +145,6 @@
 #include "OpenSSL_BIO.hpp"
 #endif
 
-//#include <stacktrace.h>
-
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 

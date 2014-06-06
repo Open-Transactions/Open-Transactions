@@ -139,11 +139,6 @@
 
 #include "irrxml/irrXML.hpp"
 
-//#include <ostream>
-//#include <sstream>
-//#include <iomanip>
-//#include <fstream>
-
 #ifdef _WIN32
 //#include <Mmsystem.h>
 #else
