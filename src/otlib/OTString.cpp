@@ -142,9 +142,9 @@
 
 #include <cstdio>
 
-//#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
-//#include <wordexp.h>
-//#endif
+#if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
+#include <wordexp.h>
+#endif
 
 
 /*
