@@ -154,7 +154,7 @@
 #include "OTStorage.hpp"
 #include "OTSubkey.hpp"
 
-//#include <algorithm>
+#include <algorithm>
 
 
 // '0' for cKeyType means, theSignature MUST have metadata in order for ANY keys to be returned, and it MUST match.
