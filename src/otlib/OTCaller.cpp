@@ -130,17 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCaller.hpp>
+#include "OTCaller.hpp"
 
 #include "OTCallback.hpp"
-#include <OTPassword.hpp>
-#include <OTAssert.hpp>
-#include <OTString.hpp>
-#include <OTLog.hpp>
-#include <OTCrypto.hpp>
-
+#include "OTLog.hpp"
 
 // For SecureZeroMemory
 #ifdef _WIN32
@@ -297,6 +292,7 @@ void OTCaller::callTwo()
  SecureZeroMemory(szPassword, sizeof(szPassword));
 
  */
+
 
 /*
  SOURCE: https://www.securecoding.cert.org

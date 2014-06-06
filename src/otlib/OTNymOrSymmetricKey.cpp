@@ -130,18 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTNymOrSymmetricKey.hpp>
+#include "OTNymOrSymmetricKey.hpp"
 
-#include <OTEnvelope.hpp>
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
-#include <OTSymmetricKey.hpp>
-#include <OTPassword.hpp>
-#include <OTIdentifier.hpp>
-#include <OTPseudonym.hpp>
-
+#include "OTEnvelope.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSymmetricKey.hpp"
 
 extern "C"
 {
@@ -155,7 +152,6 @@ extern "C"
 // symmetric key, and the function should be able to handle either.
 // This class is used to make that possible.
 //
-
 /// (This constructor is private.)
 OTNym_or_SymmetricKey::OTNym_or_SymmetricKey()
 : m_pNym(NULL), m_pKey(NULL), m_pPassword(NULL), m_bCleanupPassword(false), m_pstrDisplay(NULL)  {}

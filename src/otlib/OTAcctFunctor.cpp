@@ -130,24 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAcctFunctor.hpp>
+#include "OTAcctFunctor.hpp"
 
-#include <sstream>
-#include <fstream>
+#include "OTAssert.hpp"
+#include "OTIdentifier.hpp"
 
-#include "irrxml/irrXML.hpp"
-
-#include <OTAssert.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTAccount.hpp>
-#include <OTBasket.hpp>
-
-using namespace irr;
-using namespace io;
+//#include <sstream>
+//#include <fstream>
 
 
 OTAcctFunctor::OTAcctFunctor(const OTIdentifier & theServerID, mapOfAccounts * pLoadedAccounts/*=NULL*/)

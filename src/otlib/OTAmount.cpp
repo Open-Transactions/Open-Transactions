@@ -130,24 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAmount.hpp>
+#include "OTAmount.hpp"
 
-#include <sstream>
-#include <fstream>
-
-#include "irrxml/irrXML.hpp"
-
-#include <OTAssert.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTAccount.hpp>
-#include <OTBasket.hpp>
-
-using namespace irr;
-using namespace io;
+//#include <sstream>
+//#include <fstream>
 
 
 OTAmount::OTAmount(int64_t lAmount/*=0*/) :

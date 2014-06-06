@@ -130,13 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTTransactionType.hpp>
+#include "OTTransactionType.hpp"
 
-#include <OTLog.hpp>
-#include <OTLedger.hpp>
-#include <OTAccount.hpp>
+#include "OTAccount.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
 
 
 // static -- class factory.

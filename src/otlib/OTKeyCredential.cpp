@@ -144,16 +144,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTKeyCredential.hpp>
+#include "OTKeyCredential.hpp"
 
-#include <OTCredential.hpp>
-#include <OTAssert.hpp>
-#include <OTSignature.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTPassword.hpp>
+#include "OTCredential.hpp"
+#include "OTLog.hpp"
+#include "OTSignature.hpp"
 
 
 bool OTKeyCredential::VerifySignedBySelf()

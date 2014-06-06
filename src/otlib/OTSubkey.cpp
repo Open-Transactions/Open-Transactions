@@ -144,18 +144,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSubkey.hpp>
+#include "OTSubkey.hpp"
 
-#include <OTCredential.hpp>
-#include <OTAssert.hpp>
-#include <OTSignature.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTPassword.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTCredential.hpp"
+#include "OTLog.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 //
