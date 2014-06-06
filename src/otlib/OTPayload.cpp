@@ -130,14 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTPayload.hpp>
+#include "OTPayload.hpp"
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
-#include <OTDataCheck.hpp>
-#include <OTMessage.hpp>
+#include "OTDataCheck.hpp"
+#include "OTEnvelope.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
 
 
 OTPayload::OTPayload() : OTData()

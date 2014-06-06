@@ -130,9 +130,9 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTInstrument.hpp>
+#include "OTInstrument.hpp"
 
 
 // Verify whether the CURRENT date is AFTER the the VALID TO date.

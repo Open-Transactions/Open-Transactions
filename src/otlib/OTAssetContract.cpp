@@ -130,24 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAssetContract.hpp>
+#include "OTAssetContract.hpp"
 
-#include <sstream>
-#include <fstream>
+#include "OTAccount.hpp"
+#include "OTAcctFunctor.hpp"
+#include "OTAmount.hpp"
+#include "OTBasket.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
 
 #include "irrxml/irrXML.hpp"
 
-#include <OTAccount.hpp>
-#include <OTAcctFunctor.hpp>
-#include <OTAmount.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTAssert.hpp>
-#include <OTBasket.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
+//#include <sstream>
+#include <fstream>
 
 using namespace irr;
 using namespace io;
@@ -303,6 +300,7 @@ bool OTAssetContract::ParseFormatted(int64_t & lResult,
     // -------------------------------
     return true;
 }
+
 
 //static
 std::string OTAssetContract::formatLongAmount(int64_t & lOriginalValue, int32_t nFactor/*=100*/, int32_t nPower/*=2*/, const char * szSymbol/*=""*/,
@@ -588,6 +586,7 @@ bool OTAssetContract::SaveContractWallet(std::ofstream & ofs)
 	return false;
 }
 
+
 /*
 bool OTAssetContract::SaveContractWallet(FILE * fl)
 {
@@ -601,7 +600,6 @@ bool OTAssetContract::SaveContractWallet(FILE * fl)
 */
 
 
-// ----------------------------------------------------------------
 // currently only "simple" accounts (normal user asset accounts) are added to this list
 // Any "special" accounts, such as basket reserve accounts, or voucher reserve accounts,
 // or cash reserve accounts, are not included on this list.

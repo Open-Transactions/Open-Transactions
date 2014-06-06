@@ -130,12 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSignature.hpp>
+#include "OTSignature.hpp"
 
-#include <OTLog.hpp>
-#include <OTCrypto.hpp>
+#include "OTCrypto.hpp"
+#include "OTLog.hpp"
 
 
 bool OTSignatureMetadata::SetMetadata(char cMetaKeyType, char cMetaNymID, char cMetaMasterCredID, char cMetaSubCredID)

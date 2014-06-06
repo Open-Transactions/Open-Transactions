@@ -130,26 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTMintLucre.hpp>
+#include "OTMintLucre.hpp"
 
-#include <OTMint.hpp>
-#include <OTToken.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTPaths.hpp>
-#include <OTAccount.hpp>
-#include <OTMessage.hpp>
-#include <OTDigitalCash.hpp>
-#include <OTEnvelope.hpp>
-
+#include "OTAsymmetricKey.hpp"
+#include "OTDigitalCash.hpp"
+#include "OTEnvelope.hpp"
+#include "OTLog.hpp"
+#include "OTPseudonym.hpp"
+#include "OTToken.hpp"
 
 #if defined (OT_CASH_USING_LUCRE)
-
 #include "OpenSSL_BIO.hpp"
-
 #endif
 
 
@@ -317,6 +310,7 @@ bool OTMint_Lucre::AddDenomination(OTPseudonym & theNotary, int64_t lDenominatio
  BIO_free(mem);
 
  */
+
 
 #if defined(OT_CASH_USING_LUCRE) && defined(OT_CRYPTO_USING_OPENSSL)
 

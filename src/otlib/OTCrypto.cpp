@@ -135,25 +135,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCrypto.hpp>
+#include "OTCrypto.hpp"
 
-#include <OTAssert.hpp>
-#include <OTAsymmetricKey.hpp>
-#include "OTAsymmetricKeyOpenSSL.hpp"
-#include <OTIdentifier.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTSignature.hpp>
-#include <OTStorage.hpp>
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
+#include "OTPaths.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSignature.hpp"
 
 #include <bigint/BigIntegerLibrary.hh>
 
-#include <vector>
+//#include <iostream>
+//#include <vector>
 
 #include "stacktrace.h"
 
@@ -167,7 +163,6 @@ extern "C"
 #include <sys/resource.h>
 #endif
 }
-
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
@@ -198,9 +193,7 @@ extern "C"
 #include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
 #include "OpenSSL_BIO.hpp"
 
-
 #elif defined (OT_CRYPTO_USING_GPG)
-
 
 #else
 
@@ -208,8 +201,6 @@ extern "C"
 
 
 // OpenSSL / Crypto-lib d-pointer
-
-
 #if defined (OT_CRYPTO_USING_GPG)
 
 // Someday    }:-)        OTCrypto_GPG
@@ -438,8 +429,6 @@ int32_t main()
 }
 */
 
-
-#include <iostream>
 
 #ifndef _PASSWORD_LEN
 #define _PASSWORD_LEN   128

@@ -130,9 +130,9 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTStringXML.hpp>
+#include "OTStringXML.hpp"
 
 #include "irrxml/irrXML.hpp"
 
@@ -160,10 +160,12 @@ OTStringXML::OTStringXML() : pvt(new OTStringXMLPvt(this)), OTString()
 	
 }
 
+
 OTStringXML::OTStringXML(const OTString & strValue) : pvt(new OTStringXMLPvt(this)), OTString(strValue)
 {
 	
 }
+
 
 OTStringXML::OTStringXML(const OTStringXML & strValue) : pvt(new OTStringXMLPvt(this)), OTString(strValue)
 {
@@ -214,6 +216,7 @@ OTStringXML::~OTStringXML()
 OTStringXML::operator irr::io::IFileReadCallBack *(){
     return this->pvt;
 }
+
 
 int32_t OTStringXML::read(void* buffer, uint32_t sizeToRead)
 {

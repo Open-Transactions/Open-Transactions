@@ -130,17 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTPaymentPlan.hpp>
+#include "OTPaymentPlan.hpp"
 
-#include <OTLog.hpp>
-#include <OTPseudonym.hpp>
-#include <OTCron.hpp>
-#include <OTAccount.hpp>
-#include <OTLedger.hpp>
+#include "OTAccount.hpp"
+#include "OTCron.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
+#include "OTPseudonym.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 // return -1 if error, 0 if nothing, and 1 if the node was processed.
 int32_t OTPaymentPlan::ProcessXMLNode(irr::io::IrrXMLReader*& xml)

@@ -148,14 +148,11 @@
 
 #include "OTKeypair.hpp"
 
-#include "OTAssert.hpp"
 #include "OTAsymmetricKey.hpp"
 #include "OTContract.hpp"
 #include "OTFolders.hpp"
 #include "OTLog.hpp"
 #include "OTLowLevelKeyData.hpp"
-#include "OTPassword.hpp"
-#include "OTPaths.hpp"
 #include "OTSignature.hpp"
 
 

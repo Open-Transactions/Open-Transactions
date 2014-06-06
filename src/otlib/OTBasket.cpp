@@ -130,15 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTBasket.hpp>
+#include "OTBasket.hpp"
 
-#include <OTAssert.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
+#include "OTPseudonym.hpp"
+#include "OTLog.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 // This is a good implementation. Dots all the i's, so to speak.
 // client-side.

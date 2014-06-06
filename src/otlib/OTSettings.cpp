@@ -130,15 +130,15 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSettings.hpp>
+#include "OTSettings.hpp"
 
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
 
 #include "simpleini/SimpleIni.hpp"
+
 
 class OTSettings::OTSettingsPvt{
 public:
