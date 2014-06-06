@@ -58,7 +58,7 @@ simpleini_sources_dir	= 	$(top_srcdir)/deps/src/simpleini
 simpleini_sources	=	$(simpleini_sources_dir)/ConvertUTF.cpp		\
 				$(simpleini_sources_dir)/snippets.cpp
 
-####  OTAPI
+####  otextensions
 
 otextensions_sources_dir	= 	$(top_srcdir)/src/otextensions
 
@@ -68,3 +68,7 @@ otextensions_sources		=	OTSocket.cpp
 otextensions_headers_dir	=	$(opentxs_include_dir)/otextensions
 
 otextensions_headers		=	$(otextensions_headers_dir)/OTSocket.hpp
+
+####	Global headers for dist.
+
+pkginclude_HEADERS		=	$(otextensions_headers)
