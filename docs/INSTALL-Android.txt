@@ -1,0 +1,12 @@
+#########################################################################
+#									#
+#									#
+#	##		INSTALL - Android			##	#
+#									#
+#									#
+#########################################################################
+
+
+You can find a build system for Open Transactions on Android at 
+
+https://github.com/monetas/ot-android
