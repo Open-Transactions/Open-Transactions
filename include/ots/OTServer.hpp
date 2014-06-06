@@ -1,6 +1,6 @@
 /************************************************************
  *
- *  OTServer.h
+ *  OTServer.hpp
  *
  */
 
@@ -131,35 +131,36 @@
  **************************************************************/
 
 
-#ifndef __OTSERVER_HPP__
-#define __OTSERVER_HPP__
+#ifndef __OT_SERVER_HPP__
+#define __OT_SERVER_HPP__
 
 #include "OTCommon.hpp"
 
-#include "OTAssetContract.hpp"
-#include "OTPseudonym.hpp"
 #include "OTAccount.hpp"
+#include "OTAcctFunctor.hpp"
 #include "OTAcctList.hpp"
+#include "OTAssetContract.hpp"
 #include "OTCron.hpp"
+#include "OTPseudonym.hpp"
 #include "OTTransaction.hpp"
 
 #include <cstddef>
 
-
-class OTMessage;
-class OTClientConnection;
-class OTPayment;
-class OTMint;
-class OTTrade;
-class OTServerContract;
 class OTAccount;
 class OTAssetContract;
+class OTClientConnection;
 class OTIdentifier;
+class OTMessage;
+class OTMint;
+class OTPayment;
+class OTServerContract;
+class OTTrade;
 class OTTransaction;
 
 // these correspond--same IDs.
 typedef std::multimap<std::string, OTMint *>	mapOfMints;
 typedef std::map<std::string, std::string>		mapOfBaskets;
+typedef std::map<std::string, OTAssetContract *> mapOfContracts;
 typedef std::map<std::string, OTAccount *>		mapOfAccounts; // server side these are keyed by asset type ID
 
 // Why does the map of mints use multimap instead of map?
@@ -170,6 +171,7 @@ typedef std::map<std::string, OTAccount *>		mapOfAccounts; // server side these 
 // Therefore the server manages different mints for the same asset type, and since the asset
 // type is the key in the multimap, we don't want to accidentally remove one from the list
 // every time another is added. Thus multimap is employed.
+
 
 class OTServer
 {
@@ -526,21 +528,4 @@ public:
 };
 
 
-#endif // __OTSERVER_HPP__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif // __OT_SERVER_HPP__

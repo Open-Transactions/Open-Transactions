@@ -133,16 +133,11 @@
 #ifndef __OT_VARIABLE_HPP__
 #define __OT_VARIABLE_HPP__
 
-#include <map>
-#include <string>
-
 #include "OTString.hpp"
 
 class OTBylaw;
 class OTScript;
 class OTVariable;
-
-typedef std::map<std::string, OTVariable *> mapOfVariables;
 
 
 class OTVariable

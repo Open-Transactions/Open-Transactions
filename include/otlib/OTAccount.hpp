@@ -132,7 +132,6 @@
 
 #ifndef __OT_ACCOUNT_HPP__
 #define __OT_ACCOUNT_HPP__
-//DONE
 
 #include "OTTransactionType.hpp"
 

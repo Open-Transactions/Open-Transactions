@@ -130,10 +130,12 @@
 
 #include <OTServer.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
 #include <OTCrypto.hpp>
+#include <OTDataFolder.hpp>
+#include <OTFolders.hpp>
+#include <OTLog.hpp>
 #include <OTMint.hpp>
+#include <OTPaths.hpp>
 
 #include <cstdio>
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
 #define __OT_ASYMMETRIC_KEY_OPEN_SSL_HPP__
-//DONE
 
 #include "OTAsymmetricKey.hpp"
 

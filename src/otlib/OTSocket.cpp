@@ -136,6 +136,7 @@
 #include <OTSocket.hpp>
 
 #include <OTLog.hpp>
+#include <OTSettings.hpp>
 
 
 #define	KEY_LATENCY_SEND_MS					"latency_send_ms"

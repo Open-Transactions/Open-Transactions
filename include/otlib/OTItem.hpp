@@ -133,17 +133,13 @@
 #ifndef __OT_ITEM_HPP__
 #define __OT_ITEM_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTTransactionType.hpp"
-#include "OTASCIIArmor.hpp"
 
 class OTAccount;
-class OTLedger;
-class OTMessage;
-class OTTransaction;
 class OTItem;
+class OTLedger;
 class OTPseudonym;
+class OTTransaction;
 
 typedef std::list  <OTItem *>	listOfItems;
 

@@ -132,7 +132,6 @@
 
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
-//DONE
 
 #include "OTStorage.hpp"
 #include "OTString.hpp"

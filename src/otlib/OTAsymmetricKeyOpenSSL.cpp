@@ -145,14 +145,15 @@
 
 #endif
 
-#include <OTPassword.hpp>
+#include <OTASCIIArmor.hpp>
 #include <OTAssert.hpp>
 #include <OTAsymmetricKey.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTLog.hpp>
 #include <OTCredential.hpp>
-#include <OTPayload.hpp>
 #include <OTCrypto.hpp>
+#include <OTLog.hpp>
+#include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
+#include <OTPayload.hpp>
 #include <OTSignature.hpp>
 
 

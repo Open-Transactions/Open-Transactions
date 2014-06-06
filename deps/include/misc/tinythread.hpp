@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
     distribution.
 */
 
-#ifndef _TINYTHREAD_H_
-#define _TINYTHREAD_H_
+#ifndef __TINYTHREAD_HPP__
+#define __TINYTHREAD_HPP__
 
 /// @file
 /// @mainpage TinyThread++ API Reference
@@ -724,4 +724,4 @@ unsigned long int get_raw_id();
 // Define/macro cleanup
 #undef _TTHREAD_DISABLE_ASSIGNMENT
 
-#endif // _TINYTHREAD_H_
+#endif // __TINYTHREAD_HPP__

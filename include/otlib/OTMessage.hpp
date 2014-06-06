@@ -133,14 +133,12 @@
 #ifndef __OT_MESSAGE_HPP__
 #define __OT_MESSAGE_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTASCIIArmor.hpp"
 #include "OTContract.hpp"
 #include "OTNumList.hpp"
 
-class OTPseudonym;
 class OTPasswordData;
+class OTPseudonym;
 
 
 class OTMessage : public OTContract

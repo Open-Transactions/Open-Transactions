@@ -135,21 +135,18 @@
 #ifndef __OT_CRON_HPP__
 #define __OT_CRON_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTContract.hpp"
 #include "OTAssert.hpp"
+#include "OTContract.hpp"
 
 class OTCronItem;
-class OTPseudonym;
 class OTMarket;
+class OTPseudonym;
 
 
 // mapOfCronItems:      Mapped (uniquely) to transaction number.
 // multimapOfCronItems: Mapped to date the item was added to Cron.
 //
 // (Any given CronItem will be found on BOTH lists.)
-
 typedef std::map      <int64_t,   OTCronItem *> mapOfCronItems;
 typedef std::multimap <time64_t, OTCronItem *> multimapOfCronItems;
 

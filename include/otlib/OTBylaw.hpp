@@ -133,45 +133,19 @@
 #ifndef __OT_BYLAW_HPP__
 #define __OT_BYLAW_HPP__
 
-#include <map>
-#include <string>
-
-#include "OTCommon.hpp"
-
-#include "OTString.hpp"
-#include "OTAgent.hpp"
-#include "OTPartyAccount.hpp"
-#include "OTParty.hpp"
 #include "OTVariable.hpp"
-#include "OTStashItem.hpp"
-#include "OTStash.hpp"
 
-class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
-class OTAccount;
-class OTAgent;
 class OTClause;
-class OTParty;
-class OTPartyAccount;
 class OTScriptable;
-class OTSmartContract;
-class OTScript;
-class OTBylaw;
 
-
-typedef std::map<std::string, OTAccount *>		mapOfAccounts;
-typedef std::map<std::string, OTAgent *>		mapOfAgents;
-typedef std::map<std::string, OTBylaw *>		mapOfBylaws;
+typedef std::map<std::string, std::string>		mapOfCallbacks;
 typedef std::map<std::string, OTClause *>		mapOfClauses;
-typedef std::map<std::string, OTPseudonym *>	mapOfNyms;
-
+typedef std::map<std::string, OTVariable *>		mapOfVariables;
 
 // First is the name of some standard OT hook, like OnActivate, and Second is name of clause.
 // It's a multimap because you might have 6 or 7 clauses that all trigger on the same hook.
 //
 typedef std::multimap	<std::string, std::string> mapOfHooks;
-typedef std::map		<std::string, std::string> mapOfCallbacks;
 
 
 // A section of law, including its own clauses (scripts). A bylaw is kind of
@@ -194,7 +168,7 @@ public:
 	EXPORT	const OTString & GetName()     const { return m_strName; }
 	EXPORT  const char     * GetLanguage() const;
 	// ---------------------
-	EXPORT  bool AddVariable(OTVariable& theVariable);
+	EXPORT  bool AddVariable(OTVariable & theVariable);
 	EXPORT	bool AddVariable(const std::string str_Name, const std::string str_Value,
                              const OTVariable::OTVariable_Access theAccess=OTVariable::Var_Persistent);
 	EXPORT	bool AddVariable(const std::string str_Name, const int32_t nValue,
@@ -239,7 +213,7 @@ public:
 	// This pointer isn't owned -- just stored for convenience.
 	//
 	EXPORT	OTScriptable * GetOwnerAgreement() { return m_pOwnerAgreement; }
-	EXPORT	void SetOwnerAgreement(OTScriptable& theOwner) { m_pOwnerAgreement = &theOwner; }
+	EXPORT	void SetOwnerAgreement(OTScriptable & theOwner) { m_pOwnerAgreement = &theOwner; }
 	// ---------------------
 	EXPORT  OTBylaw();
 	EXPORT	OTBylaw(const char * szName, const char * szLanguage);

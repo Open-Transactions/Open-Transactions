@@ -141,10 +141,13 @@
 #include <chaiscript/chaiscript_stdlib.hpp>
 #endif
 
-#include <OTScript.hpp>
-#include <OTLog.hpp>
 #include <OTAssert.hpp>
+#include <OTLog.hpp>
+#include <OTParty.hpp>
+#include <OTPartyAccount.hpp>
+#include <OTScript.hpp>
 #include <OTStorage.hpp>
+#include <OTVariable.hpp>
 
 
 bool OTScriptChai::ExecuteScript(OTVariable * pReturnVar/*=NULL*/)

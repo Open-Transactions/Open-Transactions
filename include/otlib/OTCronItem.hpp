@@ -135,7 +135,6 @@
 
 #ifndef __OT_CRON_ITEM_HPP__
 #define __OT_CRON_ITEM_HPP__
-//DONE
 
 #include "OTTrackable.hpp"
 

@@ -134,18 +134,25 @@
 
 #include <OTClient.hpp>
 
+#include <OTAssetContract.hpp>
+#include <OTAsymmetricKey.hpp>
 #include <OTBasket.hpp>
 #include <OTCheque.hpp>
 #include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
 #include <OTLedger.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
+#include <OTNymOrSymmetricKey.hpp>
 #include <OTOffer.hpp>
 #include <OTPaths.hpp>
+#include <OTPayload.hpp>
 #include <OTPayment.hpp>
 #include <OTPaymentPlan.hpp>
+#include <OTPseudonym.hpp>
 #include <OTPurse.hpp>
+#include <OTToken.hpp>
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>
 

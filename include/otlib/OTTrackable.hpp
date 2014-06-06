@@ -132,7 +132,6 @@
 
 #ifndef __OT_TRACKABLE_HPP__
 #define __OT_TRACKABLE_HPP__
-//DONE
 
 #include "OTInstrument.hpp"
 

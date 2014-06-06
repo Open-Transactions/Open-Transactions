@@ -137,10 +137,12 @@
 #include <OTClient.hpp>
 #include <OpenTransactions.hpp>
 
-#include <OTLog.hpp>
-#include <OTEnvelope.hpp>
-#include <OTMessage.hpp>
+#include <OTAssetContract.hpp>
 #include <OTDataCheck.hpp>
+#include <OTEnvelope.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPayload.hpp>
 #include <OTPseudonym.hpp>
 #include <OTWallet.hpp>
 
@@ -743,15 +745,15 @@ void OTServerConnection::ProcessMessageOut(OTMessage & theMessage)
 		OT_ASSERT(NULL != m_pServerContract);
 
 		// Call the callback here.
-		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %lld\n",
+		OTLog::vOutput(0, "\n=====>BEGIN Sending %s message via ZMQ... Request number: %s\n",
                        theMessage.m_strCommand.Get(),
-                       atol(theMessage.m_strRequestNum.Get()));
+                       theMessage.m_strRequestNum.Get());
 
 		m_pCallback->operator()(*m_pServerContract, theEnvelope);
 
-		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %lld\n\n",
+		OTLog::vOutput(1, "<=====END Finished sending %s message (and hopefully receiving a reply.)\nRequest number: %s\n\n",
                        theMessage.m_strCommand.Get(),
-                       atol(theMessage.m_strRequestNum.Get()));
+                       theMessage.m_strRequestNum.Get());
 	}
 	// ******************************************************************************
 

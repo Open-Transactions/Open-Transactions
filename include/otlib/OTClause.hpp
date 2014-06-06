@@ -133,11 +133,6 @@
 #ifndef __OT_CLAUSE_HPP__
 #define __OT_CLAUSE_HPP__
 
-#include <map>
-#include <string>
-
-#include "OTCommon.hpp"
-
 #include "OTString.hpp"
 
 class OTBylaw;
@@ -166,8 +161,6 @@ EXPORT	const char * GetCode() const;
 
 	void Serialize(OTString & strAppend);
 };
-
-typedef std::map<std::string, OTClause *> mapOfClauses;
 
 
 #endif // __OT_CLAUSE_HPP__

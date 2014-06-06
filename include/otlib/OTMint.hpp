@@ -133,13 +133,13 @@
 #ifndef __OT_MINT_HPP__
 #define __OT_MINT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
-#include "OTASCIIArmor.hpp"
 
-class OTToken;
 class OTAccount;
+class OTASCIIArmor;
+class OTToken;
+
+typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 
 
 class OTMint : public OTContract

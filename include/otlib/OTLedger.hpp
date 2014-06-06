@@ -133,19 +133,15 @@
 #ifndef __OT_LEDGER_HPP__
 #define __OT_LEDGER_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTTransactionType.hpp"
 #include "OTTransaction.hpp"
 
-class OTItem;
-class OTString;
 class OTAccount;
-class OTMessage;
+class OTCheque;
+class OTIdentifier;
+class OTItem;
 class OTPayment;
 class OTPseudonym;
-class OTIdentifier;
-class OTCheque;
+class OTString;
 
 // transaction ID is a int64_t, assigned by the server. Each transaction has one.
 // FIRST the server issues the ID. THEN we create the blank transaction object with the
@@ -154,8 +150,8 @@ class OTCheque;
 
 typedef std::map  <int64_t, OTTransaction *>	mapOfTransactions;
 
+
 // the "inbox" and "outbox" functionality is implemented in this class
-//
 class OTLedger : public OTTransactionType
 {
 private:  // Private prevents erroneous use by other classes.

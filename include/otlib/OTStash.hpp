@@ -133,28 +133,14 @@
 #ifndef __OT_STASH_HPP__
 #define __OT_STASH_HPP__
 
-#include <map>
-#include <string>
-
 #include "OTCommon.hpp"
 
-class OTIdentifier;
-class OTNumList;
-class OTPseudonym;
-class OTAccount;
-class OTParty;
-class OTPartyAccount;
-class OTScriptable;
-class OTSmartContract;
-class OTScript;
-class OTAccount;
-class OTScriptable;
-class OTScript;
-class OTBylaw;
-class OTStash;
-class OTStashItem;
+#include <map>
 
-typedef std::map<std::string, OTStash *>		mapOfStashes;
+class OTIdentifier;
+class OTStashItem;
+class OTString;
+
 typedef std::map<std::string, OTStashItem *>	mapOfStashItems;
 
 
@@ -164,17 +150,17 @@ class OTStash
 
 	mapOfStashItems	m_mapStashItems;	// map of stash items by asset type ID. owned.
 public:
-	// -------------------------------
+	
 	const std::string	GetName() const { return m_str_stash_name; }
 	OTStashItem *		GetStash(const std::string & str_asset_type_id);
-	// -------------------------------
+	
 	int64_t                GetAmount  (const std::string str_asset_type_id);
 	bool                CreditStash(const std::string str_asset_type_id, const int64_t &lAmount);
 	bool                DebitStash (const std::string str_asset_type_id, const int64_t &lAmount);
-	// -------------------------------
+	
 	void Serialize(OTString & strAppend);
 	int32_t ReadFromXMLNode(irr::io::IrrXMLReader*& xml, const OTString & strStashName, const OTString & strItemCount);
-	// -------------------------------
+	
 	OTStash();
 	OTStash(const std::string str_stash_name)
 		{ m_str_stash_name = str_stash_name; }
@@ -182,7 +168,6 @@ public:
 	OTStash(const OTIdentifier & theAssetTypeID, const int64_t lAmount=0);
 	virtual ~OTStash();
 };
-
 
 
 #endif // __OT_STASH_HPP__

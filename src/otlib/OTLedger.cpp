@@ -134,14 +134,15 @@
 
 #include <OTLedger.hpp>
 
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
 #include <OTAccount.hpp>
 #include <OTCheque.hpp>
+#include <OTEnvelope.hpp>
+#include <OTFolders.hpp>
+#include <OTLog.hpp>
+#include <OTMessage.hpp>
+#include <OTPaths.hpp>
 #include <OTPayment.hpp>
 #include <OTPseudonym.hpp>
-#include <OTMessage.hpp>
-#include <OTEnvelope.hpp>
 
 #include "irrxml/irrXML.hpp"
 

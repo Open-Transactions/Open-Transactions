@@ -133,10 +133,9 @@
 #ifndef __OT_KEYPAIR_HPP__
 #define __OT_KEYPAIR_HPP__
 
-#include <list>
-
 #include "OTCommon.hpp"
 
+#include <list>
 
 // A nym contains a list of master credentials, via OTCredential.
 // The whole purpose of a Nym is to be an identity, which can have
@@ -172,17 +171,18 @@
 // the subkeys, meanwhile should only be able to do actions, and not issue
 // any new keys.
 
-class OTContract;
-class OTPassword;
-class OTString;
-class OTIdentifier;
 class OTASCIIArmor;
-class OTPasswordData;
-class OTSignatureMetadata;
-class OTSignature;
 class OTAsymmetricKey;
+class OTContract;
+class OTIdentifier;
+class OTPassword;
+class OTPasswordData;
+class OTSignature;
+class OTSignatureMetadata;
+class OTString;
 
 typedef std::list<OTAsymmetricKey *>    listOfAsymmetricKeys;
+
 
 // Encapsulates public/private key (though often there may only be
 // a public key present, unless the nym belongs to you.)

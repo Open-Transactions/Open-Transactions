@@ -134,15 +134,15 @@
 
 #include <OTBylaw.hpp>
 
-#include <OTLog.hpp>
+#include <OTAccount.hpp>
+#include <OTAgreement.hpp>
 #include <OTClause.hpp>
 #include <OTContract.hpp>
+#include <OTLog.hpp>
 #include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
+#include <OTScript.hpp>
 #include <OTScriptable.hpp>
 #include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
 
 
 void OTBylaw::Serialize(OTString & strAppend,

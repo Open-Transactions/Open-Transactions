@@ -133,8 +133,6 @@
 #ifndef __OT_MASTERKEY_HPP__
 #define __OT_MASTERKEY_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTKeyCredential.hpp"
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -173,7 +171,7 @@
 
 class OTString;
 class OTCredential;
-class OTSubcredential;
+
 
 class OTMasterkey : public OTKeyCredential
 {
@@ -205,8 +203,6 @@ public:
     virtual int32_t  ProcessXMLNode(irr::io::IrrXMLReader*& xml);
     // ------------------------------
 };
-
-typedef std::map<std::string, OTSubcredential *> mapOfSubcredentials;
 
 
 #endif // __OT_MASTERKEY_HPP__

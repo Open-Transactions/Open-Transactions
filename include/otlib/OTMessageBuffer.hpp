@@ -133,19 +133,14 @@
 #ifndef __OT_MESSAGE_BUFFER_HPP__
 #define __OT_MESSAGE_BUFFER_HPP__
 
-#include <list>
-#include <map>
-
 #include "OTCommon.hpp"
 
-#include "OTString.hpp"
+#include <list>
 
-class OTPseudonym;
 class OTMessage;
-class OTTransaction;
+class OTString;
 
 typedef std::list<OTMessage *>       listOfMessages; // Incoming server replies to your messages.
-typedef std::multimap <int64_t, OTMessage *> mapOfMessages;  // Your outgoing messages, mapped by request number.
 
 
 // INCOMING SERVER REPLIES.

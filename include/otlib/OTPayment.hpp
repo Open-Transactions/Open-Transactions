@@ -138,8 +138,6 @@
 #ifndef __OT_PAYMENT_HPP__
 #define __OT_PAYMENT_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
 
 class OTCheque;
@@ -157,33 +155,32 @@ class OTTrackable;
     - PURSE (containing cash)
 
  FYI:
- // ----------------------
+
  OTContract — Most other classes are derived from this one. Contains the actual XML contents,
   as well as various data values that were loaded from those contents, including public keys.
   Also contains a list of signatures.
- // ----------------------
+
  OTScriptable — Derived from OTContract, but enables scriptable clauses. Also contains a list
   of parties (each with agents and asset accounts) as well as a list of bylaws (each with scripted
   clauses, internal state, hooks, callbacks, etc.)
- // ----------------------
+
  OTInstrument — Has a date range, a server ID, and an asset ID. Derived from OTScriptable.
- // ----------------------
+
  OTTrackable  — Has a transaction number, user ID, and an asset account ID. Derived from OTInstrument.
- // ----------------------
+
  OTCheque — A financial instrument. Derived from OTTrackable.
- // ----------------------
+
  OTCronItem — Derived from OTTrackable. OT has a central “Cron” object which runs recurring tasks, known as CronItems.
- // ----------------------
+
  OTAgreement — Derived from OTCronItem. It has a recipient and recipient asset account.
- // ----------------------
+
  OTPaymentPlan — Derived from OTAgreement, derived from OTCronItem. Allows merchants and customers
   to set up recurring payments. (Cancel anytime, with a receipt going to both inboxes.)
- // ----------------------
+
  OTSmartContract — Derived from OTCronItem. All CronItems are actually derived from OTScriptable already
   (through OTTrackable/OTInstrument). But OTSmartContract is the first/only Cron Item specifically designed
   to take full advantage of both the cron system AND the scriptable system in conjunction with each other.
   Currently OTSmartContract is the only actual server-side scripting on OT.
- // ----------------------
  */
 
 

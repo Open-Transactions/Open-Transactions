@@ -134,25 +134,29 @@ This could be wrapped by OTAPI_Basic, just as OTAPI was.
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <ot_me_switch.hpp>
+#include "ot_me_switch.hpp"
 
-#include <OT_ME.hpp>
+#include "OT_ME.hpp"
 
+#include "OTAPI.hpp"
+#include "OTDataFolder.hpp"
+#include "OTLog.hpp"
 #include "OTMeCpp.hpp"
-#include <OTAPI.hpp>
-#include <OTLog.hpp>
-#include <OTStorage.hpp>
-#include <OTPaths.hpp>
+#include "OTPaths.hpp"
+#include "OTStorage.hpp"
+#include "OTVariable.hpp"
 
 #ifdef OT_USE_SCRIPT_CHAI
+#include "OTMeChai.hpp"
 #  include "OTScriptChai.hpp"
 #  include <chaiscript/chaiscript.hpp>
 #  ifdef OT_USE_CHAI_STDLIB
-#    include <chaiscript/chaiscript_stdlib.hpp>
+#  include <chaiscript/chaiscript_stdlib.hpp>
 #  endif
 #endif
+
 
 OT_ME * OT_ME::s_pMe = NULL;
 
@@ -168,6 +172,7 @@ OT_ME::OT_ME() : r_pPrev(NULL)
     m_pImplementation = new OTMeCpp;
 #endif
 }
+
 
 OT_ME::~OT_ME()
 {

@@ -130,19 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#ifndef __OTSOCKET_HPP__
-#define __OTSOCKET_HPP__
+#ifndef __OT_SOCKET_HPP__
+#define __OT_SOCKET_HPP__
 
-#include "ExportWrapper.h"
-#include "WinsockWrapper.h"
-#include "TR1_Wrapper.hpp"
-
-#include "OTString.hpp"
 #include "OTASCIIArmor.hpp"
-#include "OTSettings.hpp"
+#include "OTString.hpp"
 
 #include "tinythread.hpp"
-
 
 #if defined(OPENTXS_TRANSPORT_ZMQ2)
 #ifndef OT_ZMQ_2_MODE
@@ -155,9 +149,10 @@
 #endif
 #endif
 
+class OTSettings;
+
 
 // Server and Client Side.
-//
 class OTSocket
 {
 public:
@@ -330,4 +325,4 @@ private:
 #endif // OT_ZMQ_2_MODE
 
 
-#endif // __OTSOCKET_HPP__ 
+#endif // __OT_SOCKET_HPP__ 

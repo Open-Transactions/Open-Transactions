@@ -132,7 +132,6 @@
 
 #ifndef __OT_LOW_LEVEL_KEY_DATA_HPP__
 #define __OT_LOW_LEVEL_KEY_DATA_HPP__
-//DONE
 
 #include "OTCommon.hpp"
 

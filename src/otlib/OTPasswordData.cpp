@@ -166,14 +166,6 @@
 #endif
 
 
-//#include "OTPassword.h"
-//
-//#include "OTString.h"
-//#include "OTCrypto.h"
-//
-//#include "OTLog.h"
-
-
 // Instantiate one of these whenever you do an action that may
 // require a passphrase. When you call the OpenSSL private key
 // using function, just pass in the address to this instance along

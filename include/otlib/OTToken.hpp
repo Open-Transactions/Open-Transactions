@@ -133,23 +133,20 @@
 #ifndef __OT_TOKEN_HPP__
 #define __OT_TOKEN_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTInstrument.hpp"
 #include "OTASCIIArmor.hpp"
+#include "OTInstrument.hpp"
 
-class OTString;
 class OTIdentifier;
 class OTMint;
-class OTPurse;
-class OTPseudonym;
 class OTNym_or_SymmetricKey;
+class OTPseudonym;
+class OTPurse;
+class OTString;
 
 typedef std::map  <int32_t, OTASCIIArmor *>	mapOfPrototokens;
 
 
 /*
-
  Here's a rough sketch of the protocol:
 
  Client requests Mint for withdrawal of 100 ithica work hours.
@@ -184,7 +181,8 @@ class OTToken : public OTInstrument
 {
 private:  // Private prevents erroneous use by other classes.
     typedef OTInstrument ot_super;
-// ------------------------------------------------------------------------
+
+
 public:
 	enum tokenState {
 		blankToken,
@@ -349,8 +347,6 @@ EXPORT virtual bool ProcessToken(const OTPseudonym & theNym, OTMint & theMint, O
 
 	virtual	bool SaveContractWallet(std::ofstream & ofs);
 };
-
-typedef std::deque <OTToken *> dequeOfTokenPtrs;
 
 
 #endif // __OT_TOKEN_HPP__

@@ -544,7 +544,7 @@ OT_MADE_EASY_OT string MadeEasy::get_box_receipt(const string & SERVER_ID, const
 {
     OTAPI_Func ot_Msg;
 
-    OTAPI_Func theRequest(GET_BOX_RECEIPT, SERVER_ID, NYM_ID, ACCT_ID, to_string(nBoxType), to_string(STR_TRANS_NUM));
+    OTAPI_Func theRequest(GET_BOX_RECEIPT, SERVER_ID, NYM_ID, ACCT_ID, to_string(nBoxType), STR_TRANS_NUM);
     string strResponse = theRequest.SendRequest(theRequest, "GET_BOX_RECEIPT");
 
     return strResponse;

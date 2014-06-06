@@ -133,8 +133,6 @@
 #ifndef __OT_KEY_CREDENTIAL_HPP__
 #define __OT_KEY_CREDENTIAL_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTKeypair.hpp"
 #include "OTSubcredential.hpp"
 
@@ -173,16 +171,12 @@
 // any new keys.
 
 class OTAsymmetricKey;
-class OTPassword;
-class OTString;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTPasswordData;
-class OTSignatureMetadata;
 class OTCredential;
-class OTPseudonym;
+class OTPassword;
+class OTPasswordData;
 
 typedef std::list<OTAsymmetricKey *> listOfAsymmetricKeys;
+
 
 // CONTENTS needs to be PUBLIC and PRIVATE contents, EACH being a string map.
 //

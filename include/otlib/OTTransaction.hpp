@@ -133,8 +133,6 @@
 #ifndef __OT_TRANSACTION_HPP__
 #define __OT_TRANSACTION_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTItem.hpp"
 
 /*

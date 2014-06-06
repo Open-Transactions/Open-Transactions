@@ -140,12 +140,14 @@
 #include <OTAsymmetricKey.hpp>
 #include <OTCheque.hpp>
 #include <OTCrypto.hpp>
+#include <OTFolders.hpp>
 #include <OTLog.hpp>
 #include <OTMessage.hpp>
 #include <OTMint.hpp>
 #include "OTNumList.hpp"
 #include <OTOffer.hpp>
 #include <OTPassword.hpp>
+#include <OTPasswordData.hpp>
 #include <OTPaths.hpp>
 #include <OTPaymentPlan.hpp>
 #include <OTPseudonym.hpp>

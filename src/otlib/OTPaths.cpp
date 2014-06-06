@@ -140,6 +140,9 @@
 #include "OTWindowsRegistryTools.hpp"
 #endif
 
+#ifndef _WIN32
+#include <cerrno>
+#endif
 #include <vector>
 
 #include <sys/stat.h>

@@ -135,8 +135,7 @@
 
 #include "OTCommon.hpp"
 
-#include "OTBylaw.hpp"
-
+#include <map>
 
 #if __clang__
 #pragma clang diagnostic push
@@ -152,6 +151,15 @@
 #ifdef _MSC_VER
 #pragma warning( pop )
 #endif
+
+class OTParty;
+class OTPartyAccount;
+class OTString;
+class OTVariable;
+
+typedef std::map<std::string, OTParty *>		mapOfParties;
+typedef std::map<std::string, OTPartyAccount *> mapOfPartyAccounts;
+typedef std::map<std::string, OTVariable *>		mapOfVariables;
 
 
 // A script should be "Dumb", meaning that you just stick it with its

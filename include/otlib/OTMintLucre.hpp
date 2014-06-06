@@ -133,14 +133,9 @@
 #ifndef __OT_MINT_LUCRE_HPP__
 #define __OT_MINT_LUCRE_HPP__
 
-#include "OTCommon.hpp"
-
-#include "OTContract.hpp"
-#include "OTASCIIArmor.hpp"
 #include "OTMint.hpp"
 
 class OTToken;
-class OTAccount;
 
 
 // SUBCLASSES OF OTMINT FOR EACH DIGITAL CASH ALGORITHM.
@@ -151,7 +146,6 @@ class OTAccount;
 
 
 #if defined (OT_CASH_USING_LUCRE)
-
 
 class OTMint_Lucre : public OTMint
 {

@@ -132,7 +132,6 @@
 
 #ifndef __OT_IDENTIFIER_HPP__
 #define __OT_IDENTIFIER_HPP__
-//DONE
 
 #include "OTData.hpp"
 

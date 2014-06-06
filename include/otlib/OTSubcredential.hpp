@@ -133,8 +133,6 @@
 #ifndef __OT_SUBCREDENTIAL_HPP__
 #define __OT_SUBCREDENTIAL_HPP__
 
-#include "OTCommon.hpp"
-
 #include "OTContract.hpp"
 
 // A nym contains a list of master credentials, via OTCredential.
@@ -172,15 +170,10 @@
 // any new keys.
 
 class OTContract;
+class OTCredential;
+class OTIdentifier;
 class OTPassword;
 class OTString;
-class OTIdentifier;
-class OTASCIIArmor;
-class OTPasswordData;
-class OTSignatureMetadata;
-class OTCredential;
-class OTPseudonym;
-
 
 // This is stored as an OTContract, and it must be signed by the
 // master key. (which is also an OTSubcredential.)
