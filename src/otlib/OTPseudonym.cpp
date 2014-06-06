@@ -148,7 +148,7 @@
 
 #include "irrxml/irrXML.hpp"
 
-//#include <algorithm>
+#include <algorithm>
 #include <fstream>
 //#include <list>
 
