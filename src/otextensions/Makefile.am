@@ -14,14 +14,14 @@ common_includes		=	$(AM_CXXFLAGS)          		\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
 				-I$(opentxs_include_dir)/otextensions	\
+				-I$(top_srcdir)/deps/include/simpleini	\
 				-I$(top_srcdir)/deps/include/misc	\
 				-I$(top_srcdir)/deps/include
 
 
 ########################
 
-libotextensions_la_SOURCES	=	$(otextensions_sources) $(otextensions_headers)	\
-					$(simpleini_headers)
+libotextensions_la_SOURCES	=	$(otextensions_sources) $(otextensions_headers)
 
 libotextensions_la_CXXFLAGS		=	$(common_includes)
 
@@ -45,18 +45,6 @@ libotextensions_la_DEPENDENCIES		+=	$(top_builddir)/deps/src/zmq/libzmq.la
 
 endif
 
-
-####	Simple Ini
-
-simpleini_headers_dir	=	$(top_srcdir)/deps/include/simpleini
-
-simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h		\
-				$(simpleini_headers_dir)/SimpleIni.hpp
-
-simpleini_sources_dir	= 	$(top_srcdir)/deps/src/simpleini
-
-simpleini_sources	=	$(simpleini_sources_dir)/ConvertUTF.cpp		\
-				$(simpleini_sources_dir)/snippets.cpp
 
 ####  otextensions
 
